@@ -44,8 +44,14 @@ case "${1:-}" in
         printf "go 1.24.0\nuse (\n /project\n /dosgolem\n)\n" > /tmp/go.work
         export GOWORK=/tmp/go.work
         if [[ "$1" == test || "$1" == test-player ]]; then
+          art_assets=""
+          if [[ -f /out/assets-painted-r4/terrain.json ]]; then
+            art_assets=/out/assets-painted-r4
+          else
+            printf "%s\n" "未備本機 HD 圖像，僅執行字型測試；圖像測試會明示跳過。"
+          fi
           EIGHTSWORD_TEST_ORIG=/project/workplace/intake-20261023/sources/game/8sword \
-            EIGHTSWORD_TEST_ASSETS=/out/assets EIGHTSWORD_TEST_GRAPHICS_ASSETS=/out/assets-painted-r2 \
+            EIGHTSWORD_TEST_ASSETS=/out/assets EIGHTSWORD_TEST_GRAPHICS_ASSETS="$art_assets" \
             go test -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -80,6 +86,8 @@ case "${1:-}" in
   graphics-assets)
     task_name="${2:?指定新的素材組名稱}"
     valid_name "$task_name"
+    task_set="${3:-current}"
+    case "$task_set" in ground|landscape|current) ;; *) exit 2;; esac
     task_refs="$task_work/probe-20261023/graphics-first"
     test -f "$task_orig/PMAP.AY"; test -d "$task_refs"; test -f "$task_player/assets/font.json"
     test -d "$task_root/docs/images"
@@ -94,7 +102,7 @@ case "${1:-}" in
       --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
       --mount "type=bind,src=$task_out,dst=/out" \
       "$task_py" python /tools/prepare-hd-graphics.py --source /orig/PMAP.AY --refs /refs \
-      --font-assets /fonts --style-reference /style/hd-style-approved-r1.png --out /out
+      --font-assets /fonts --style-reference /style/hd-style-approved-r1.png --out /out --set "$task_set"
     ;;
   replay)
     task_mode="${2:?指定 hd 或 native}"

@@ -18,7 +18,7 @@
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
-| HD 圖像 | 已接入 B 古風草地、水面及十二種岸線合成，走過正常人物頁往返與真正存退讀；山地、建築、角色、介面及其他圖像仍為原版 |
+| HD 圖像 | 已接入 B 古風草地、水面、岸線、山地、人物頁底紋與主角肖像，走過正常人物頁往返與真正存退讀；沙地、建築、角色動畫、外框及其他圖像仍為原版 |
 | HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII；已透過實際視窗操作主選單、新遊戲、人物頁、系統選單及真正存退讀，更廣畫面與長文仍待驗 |
 | HD 音樂 | 已確認音樂欣賞第一項讀取的原曲資料與 AdLib 寫入；尚未製作 HD 曲目 |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
@@ -97,16 +97,16 @@ EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false bash tools/player.sh gui-c
 
 正常視窗存退讀可用 `EIGHTSWORD_GUI_FLOW=save-cycle` 選擇，測試會由原版 F7 儲存、正常回 DOS，再開另一個程序選「繼續」，不以快照取代讀檔。每輪保留建置來源、實際按鍵、逐幀畫面及原版檔案事件；[存退讀核對工具](tools/audit-save-cycle.py) 的範圍見 003。`EIGHTSWORD_GUI_RECORD=0` 與 `EIGHTSWORD_GUI_VSYNC=false` 只供效能比較，不代表正式播放設定。
 
-HD 圖像使用本機生成原圖，不隨倉庫提供。[匯入工具](tools/prepare-hd-graphics.py)要求固定草地、水面 PNG 與原始提示，來源路徑及雜湊見[004 圖像規格](docs/spec/004-hd-bitmap-presentation.md)及研究紀錄。已具備這些輸入後，可建立新的素材組再驗證：
+HD 圖像使用本機生成原圖，不隨倉庫提供。[匯入工具](tools/prepare-hd-graphics.py)要求固定草地、水面、岩石、玉紙與肖像 PNG 及原始提示，來源路徑及雜湊見[004 圖像規格](docs/spec/004-hd-bitmap-presentation.md)及研究紀錄。已具備這些輸入後，可建立新的素材組再驗證：
 
 ```bash
-bash tools/player.sh graphics-assets painted-r2
-EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r2 \
+bash tools/player.sh graphics-assets painted-r4
+EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r4 \
   EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false \
   EIGHTSWORD_GUI_FLOW=save-cycle bash tools/player.sh gui-check painted-check
 ```
 
-圖像組包含 Noto 字集，透過 `-assets` 選用，不覆寫原版檔案。岸線按原圖色群柔化，是視覺近似；未知圖像保留原版。圖像損壞時整組停用，保留已驗證的 Noto，並在視窗標題顯示原因。無頭[隔離核對工具](tools/audit-player.py)的 `--graphics` 另要求圖像確實啟用，避免把回退誤算為 HD 成功。
+圖像組包含 Noto 字集，透過 `-assets` 選用，不覆寫原版檔案。岸線與山地按原圖色群柔化，是視覺近似；肖像依原版重繪，未知圖像保留原版。圖像損壞時整組停用，保留已驗證的 Noto，並在視窗標題顯示原因。無頭[隔離核對工具](tools/audit-player.py)的 `--graphics` 另要求圖像確實啟用，避免把回退誤算為 HD 成功。匯入命令的第三參數可選 `ground`、`landscape` 或預設 `current`；前兩者用來重建較早的素材組。未備本機圖像時，測試工具明示跳過圖像測試，仍可驗證字型。
 
 ## 文件與權利
 

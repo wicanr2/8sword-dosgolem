@@ -10,8 +10,11 @@ from PIL import Image
 
 PMAP_SHA = "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02"
 STYLE_SHA = "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6"
-MATERIALS = [(0, "grass-painted-r1", "4e6baf80381f064a8da9d9fa6c09e7a3009498da0dfd11c8472f449d7ed14992"),
-             (1, "water-painted-r1", "6a0fc05d7911bbf2d318f697e9361f19a09ed4c3c1d172d46eb09c400af70e93")]
+MATERIALS = [(0, "grass-painted-r1", "4e6baf80381f064a8da9d9fa6c09e7a3009498da0dfd11c8472f449d7ed14992",256,200),
+             (1, "water-painted-r1", "6a0fc05d7911bbf2d318f697e9361f19a09ed4c3c1d172d46eb09c400af70e93",256,200),
+             (15, "ochre-rock-r1", "39afceb0428407ff189d075328ccd64acbd3e49443a48f975e4c6ee499074aa7",512,400),
+             (46, "jade-paper-r1", "2b837ec73368ce72f85be474e056bfef7fd8e7328c864e42407a02757c303527",512,400),
+             (68, "hero-portrait-r1", "8150858af91388a8fb46587c55a3ff83df6e51d1bf7bb2b9eb8b9d03d99a1533",0,0)]
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -29,7 +32,8 @@ def prepare(args):
     manifest = {"schema":1,"source_sha256":PMAP_SHA,"style":"B-bright-painted-r1",
                 "style_reference_sha256":STYLE_SHA,"generator":"built-in image_gen",
                 "rights":"local-only-derived","materials":[]}
-    for index,name,expected in MATERIALS:
+    selected=MATERIALS if args.set=="current" else MATERIALS[:4] if args.set=="landscape" else MATERIALS[:2]
+    for index,name,expected,crop_width,crop_height in selected:
         image_path=args.refs / (name+".png")
         if sha(image_path)!=expected:
             raise ValueError("已選取生成圖的 SHA 不符")
@@ -44,10 +48,14 @@ def prepare(args):
             raise ValueError("生成提示缺失")
         for source in [image_path,prompt]:
             shutil.copyfile(source,args.out / source.name)
+        if index==68:
+            crop_width,crop_height=width,height
         manifest["materials"].append({"source_index":index,"file":image_path.name,"sha256":expected,
                                      "width":width,"height":height,"prompt_file":prompt.name,"prompt_sha256":sha(prompt),
-                                     "sampling":"periodic","source_rect":[(width-256)//2,(height-200)//2,256,200]})
+                                     "sampling":"bitmap" if index==68 else "periodic","source_rect":[(width-crop_width)//2,(height-crop_height)//2,crop_width,crop_height]})
     manifest["composites"]=[{"source_index":i,"land_source":0,"water_source":1,"mask_rule":"pmap-green-blue-v1"} for i in range(2,14)]
+    if args.set!="ground":
+        manifest["composites"] += [{"source_index":i,"land_source":0,"rock_source":15,"mask_rule":"pmap-grass-rock-v1"} for i in range(14,30) if i!=15]
     for name in ["font.json","font.png"]:
         shutil.copyfile(args.font_assets/name,args.out/name)
     (args.out / "terrain.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n")
@@ -64,4 +72,5 @@ if __name__=="__main__":
     parser.add_argument("--font-assets",type=Path,required=True)
     parser.add_argument("--style-reference",type=Path,required=True)
     parser.add_argument("--out",type=Path,required=True)
+    parser.add_argument("--set",choices=["ground","landscape","current"],default="current")
     prepare(parser.parse_args())

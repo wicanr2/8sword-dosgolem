@@ -135,7 +135,7 @@ func realGraphics(t *testing.T) (*GraphicsAssets, []byte, string, string) {
 }
 func TestActualMaterialSeamsAndPixelContainment(t *testing.T) {
 	assets, _, _, _ := realGraphics(t)
-	if len(assets.Native) != 68 || len(assets.Materials) != 14 {
+	if len(assets.Native) != 69 || len(assets.Materials) != 32 {
 		t.Fatal("wrong actual asset shape")
 	}
 	tile := assets.Materials[1].Tile
@@ -209,6 +209,59 @@ func TestRealShorelineUsesBothHDMaterials(t *testing.T) {
 	}
 }
 
+func TestRealMountainsAndCharacterPaper(t *testing.T) {
+	assets, _, _, root := realGraphics(t)
+	land, rock := assets.Materials[1].Tile, assets.Materials[16].Tile
+	for index := 14; index <= 29; index++ {
+		if assets.Materials[uint16(index+1)] == nil {
+			t.Fatalf("missing mountain %d", index)
+		}
+	}
+	// Real PMAP 14 has grass at its west edge and rock in the middle.
+	tile := assets.Materials[15].Tile
+	for _, test := range []struct {
+		p        image.Point
+		material *image.RGBA
+	}{
+		{image.Pt(0, 75), land}, {image.Pt(96, 75), rock},
+	} {
+		if tile.RGBAAt(test.p.X, test.p.Y) != test.material.RGBAAt(test.p.X, test.p.Y) {
+			t.Fatalf("native mountain silhouette lost at %v", test.p)
+		}
+	}
+	// Pale native rock faces must not become grass when their local votes are empty.
+	bright := assets.Native[15]
+	bright.Pixels = bytes.Repeat([]byte{14}, 64*25)
+	plain, err := terrainMaterial(bright, land, rock, true)
+	if err != nil || !bytes.Equal(plain.Pix, rock.Pix) {
+		t.Fatal("shared yellow rock face introduced grass noise")
+	}
+	paper := assets.Materials[47].Tile
+	if paper.Bounds() != image.Rect(0, 0, 192, 150) {
+		t.Fatal("character paper shape mismatch")
+	}
+	for i := 0; i < len(paper.Pix); i += 4 {
+		// The actual generated paper remains dark beneath native bright text.
+		if int(paper.Pix[i])+int(paper.Pix[i+1])+int(paper.Pix[i+2]) > 240 || paper.Pix[i+3] != 255 {
+			t.Fatal("character paper is too bright or transparent for native text")
+		}
+	}
+	portrait := assets.Materials[69].Tile
+	man, err := os.ReadFile(filepath.Join(root, "MAN.AY"))
+	if err != nil || hash(man) != "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12" {
+		t.Fatal("original portrait file differs from captured source")
+	}
+	if hash(man[17552:17552+1604]) != assets.Native[68].NativeSHA {
+		t.Fatal("portrait fingerprint differs from the real source record")
+	}
+	if portrait.Bounds() != image.Rect(0, 0, 240, 240) {
+		t.Fatal("portrait did not preserve corrected pixel aspect")
+	}
+	if bytes.Equal(portrait.Pix[:4], portrait.Pix[portrait.Stride-4:portrait.Stride]) {
+		t.Fatal("portrait edges were mirrored like a repeating terrain texture")
+	}
+}
+
 func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 	_, pmap, dir, _ := realGraphics(t)
 	raw, err := os.ReadFile(filepath.Join(dir, "terrain.json"))
@@ -219,7 +272,7 @@ func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 	if err := json.Unmarshal(raw, &original); err != nil {
 		t.Fatal(err)
 	}
-	for _, name := range []string{"crop-overflow", "unknown-sampling", "duplicate-composite", "wrong-dependency"} {
+	for _, name := range []string{"crop-overflow", "unknown-sampling", "duplicate-composite", "wrong-dependency", "wrong-rock", "unknown-composite"} {
 		t.Run(name, func(t *testing.T) {
 			temp := t.TempDir()
 			for _, file := range original.Materials {
@@ -240,6 +293,10 @@ func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 				m.Composites[1].Index = m.Composites[0].Index
 			case "wrong-dependency":
 				m.Composites[0].Land = 2
+			case "wrong-rock":
+				m.Composites[12].Rock = 0
+			case "unknown-composite":
+				m.Composites[12].Rule = "unknown"
 			}
 			changed, err := json.Marshal(m)
 			if err != nil {

@@ -45,6 +45,7 @@ type terrainManifest struct {
 		Index int    `json:"source_index"`
 		Land  int    `json:"land_source"`
 		Water int    `json:"water_source"`
+		Rock  int    `json:"rock_source"`
 		Rule  string `json:"mask_rule"`
 	} `json:"composites"`
 }
@@ -103,10 +104,14 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Additional known source, not another PMAP record: MAN.AY offset 17552,
+	// runtime 8000:4490, 10 bytes x 40 rows. Evidence: spec 004.
+	native = append(native, nativeBitmap{Index: 68, WidthBytes: 10, Height: 40,
+		NativeSHA: "1a1ae3e30190ecea4cc2384a78ed21331b4904ea9e0a4b1b2cbf66a3a9417e54"})
 	out := &GraphicsAssets{Native: native, ByNative: map[string]uint16{}, Materials: map[uint16]*graphicMaterial{}}
 	for _, b := range native {
 		if _, ok := out.ByNative[b.NativeSHA]; ok {
-			return nil, fmt.Errorf("PMAP 圖像指紋不唯一")
+			return nil, fmt.Errorf("原版圖像指紋不唯一")
 		}
 		out.ByNative[b.NativeSHA] = uint16(b.Index + 1)
 	}
@@ -166,23 +171,30 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 	for id, material := range out.Materials {
 		materials[id] = material
 	}
-	if len(m.Composites) > 12 {
-		return nil, fmt.Errorf("HD 岸線數量不符")
+	if len(m.Composites) > 27 {
+		return nil, fmt.Errorf("HD 地表合成數量不符")
 	}
 	for _, entry := range m.Composites {
-		if entry.Index < 2 || entry.Index > 13 || entry.Land != 0 || entry.Water != 1 || entry.Rule != "pmap-green-blue-v1" {
-			return nil, fmt.Errorf("HD 岸線來源／合成規則不符")
+		mountain := entry.Rule == "pmap-grass-rock-v1"
+		detailID := uint16(2)
+		if mountain {
+			if entry.Index < 14 || entry.Index > 29 || entry.Index == 15 || entry.Land != 0 || entry.Water != 0 || entry.Rock != 15 {
+				return nil, fmt.Errorf("HD 山地來源／合成規則不符")
+			}
+			detailID = 16
+		} else if entry.Rule != "pmap-green-blue-v1" || entry.Index < 2 || entry.Index > 13 || entry.Land != 0 || entry.Water != 1 || entry.Rock != 0 {
+			return nil, fmt.Errorf("HD 地表來源／合成規則不符")
 		}
 		id := uint16(entry.Index + 1)
 		if out.Materials[id] != nil {
 			return nil, fmt.Errorf("HD 圖像來源索引重複")
 		}
-		land, water := materials[1], materials[2]
-		if land == nil || water == nil {
-			return nil, fmt.Errorf("HD 岸線缺少草地或水面")
+		land, detail := materials[1], materials[detailID]
+		if land == nil || detail == nil {
+			return nil, fmt.Errorf("HD 地表合成缺少直接材質")
 		}
 		b := native[entry.Index]
-		tile, err := shoreMaterial(b, land.Tile, water.Tile)
+		tile, err := terrainMaterial(b, land.Tile, detail.Tile, mountain)
 		if err != nil {
 			return nil, err
 		}
@@ -254,12 +266,29 @@ func sampleMaterial(source image.Image, bounds image.Rectangle, width, height in
 
 // Presentation approximation of the visible shoreline, not a native alpha mask.
 func shoreMaterial(b nativeBitmap, land, water *image.RGBA) (*image.RGBA, error) {
+	return terrainMaterial(b, land, water, false)
+}
+
+// Both masks are explicit visual approximations of native palette groups.
+func terrainMaterial(b nativeBitmap, land, detail *image.RGBA, mountain bool) (*image.RGBA, error) {
 	w, h := b.WidthBytes*8, b.Height
-	if w != 64 || h != 25 || len(b.Pixels) != w*h || land.Bounds() != water.Bounds() || land.Bounds() != image.Rect(0, 0, w*3, h*6) {
-		return nil, fmt.Errorf("HD 岸線幾何不符")
+	if w != 64 || h != 25 || len(b.Pixels) != w*h || land.Bounds() != detail.Bounds() || land.Bounds() != image.Rect(0, 0, w*3, h*6) {
+		return nil, fmt.Errorf("HD 地表合成幾何不符")
 	}
 	labels := make([]int, len(b.Pixels))
 	for i, code := range b.Pixels {
+		if mountain {
+			switch code {
+			case 2, 10:
+				labels[i] = 1
+			case 4, 12, 15:
+				labels[i] = -1
+			case 0, 1, 3, 8, 9, 14:
+			default:
+				return nil, fmt.Errorf("HD 山地出現未知色碼 %d", code)
+			}
+			continue
+		}
 		switch code {
 		case 2, 10, 14:
 			labels[i] = 1
@@ -287,6 +316,9 @@ func shoreMaterial(b nativeBitmap, land, water *image.RGBA) (*image.RGBA, error)
 				}
 			}
 			ratio := 0.5
+			if mountain {
+				ratio = 0
+			}
 			if total != 0 {
 				ratio = float64(votes) / float64(total)
 			}
@@ -303,7 +335,7 @@ func shoreMaterial(b nativeBitmap, land, water *image.RGBA) (*image.RGBA, error)
 			a := (alpha[y0*w+x0]*(1-fx)+alpha[y0*w+x1]*fx)*(1-fy) + (alpha[y1*w+x0]*(1-fx)+alpha[y1*w+x1]*fx)*fy
 			at := y*out.Stride + x*4
 			for c := 0; c < 3; c++ {
-				out.Pix[at+c] = uint8(float64(land.Pix[y*land.Stride+x*4+c])*a + float64(water.Pix[y*water.Stride+x*4+c])*(1-a) + 0.5)
+				out.Pix[at+c] = uint8(float64(land.Pix[y*land.Stride+x*4+c])*a + float64(detail.Pix[y*detail.Stride+x*4+c])*(1-a) + 0.5)
 			}
 			out.Pix[at+3] = 255
 		}

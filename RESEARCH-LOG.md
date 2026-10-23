@@ -225,3 +225,40 @@ HD 畫風草稿及這份字型樣張均維持本機研究用途。圖像與文�
 來源觀測補強：核對固定核心 `oracle/oracle.go` 的 `Oracle.Bytes`，實際會呼叫 `m.Read8`。圖像觀測器因此在讀取表頭前就拒絕傳統 RAM 外的指標，讀取完整記錄前再次核對長度與段界，避免碰到 VGA latch。所有已驗的來源緩衝區都在此界內。新增邊界測試涵蓋真實 `8000:20EC`、最後一個傳統 RAM byte、跨入 VGA 及跨 64 KiB 段界；測試通過。這是觀測安全範圍，沒有新增原版畫面或玩法假說。
 
 補強後的權威收據為 `painted-coast-r3` 與 `painted-coast-visible-r3`。前者十張 PNG 逐 byte 同 r2，完整客體狀態、31 個工作檔、輸入及載入事件同 native，14 筆素材、206 次 HD 來源及 312517 個合成原生像素均不變。後者重新走完兩個冷啟動視窗程序，存檔段 233 幀／41 次改變、讀檔段 89 幀／9 次改變，已獨立解碼與檢視；來源範圍拒絕及追蹤錯誤皆為 0。原版第 10212973 步讀入 2987 bytes，RAM 與落地進度檔 SHA 仍同 `29dd62ae…2359`，圖片差異仍限主角動畫區。`painted-coast-isolation-r3.json` 及該視窗的 `save-cycle-audit.json` 保存完整值，r2 留作可追溯歷史。
+
+## 2026-10-23：山地、玉紙底紋與主角肖像
+
+沿用固定 Go 1.24.13、Pillow 11.3.0、dosgolem `f79eab6d` 及原有兩份補丁。原版輸入仍為同一份 PAM／PMAP；本輪沒有改核心、原版邏輯、時基或存檔。新契約已先補進 [004](docs/spec/004-hd-bitmap-presentation.md)，再實作。
+
+內建 image_gen 的新素材與最終提示均保存於 `workplace/probe-20261023/graphics-first/`，原始 PNG bytes 不變，`generated-art-r2.json` 記錄生成來源與輸入角色。它們只留本機，未獲新增散布授權。
+
+| 原圖／同名提示檔 | 實際尺寸 | 原圖 SHA-256 | 呈現用途 |
+|---|---|---|---|
+| `jade-paper-r1.png`、`jade-paper-r1.prompt.txt` | 1402×1122 | `2b837ec73368ce72f85be474e056bfef7fd8e7328c864e42407a02757c303527` | PMAP 46 的深玉色人物頁底紋 |
+| `ochre-rock-r1.png`、`ochre-rock-r1.prompt.txt` | 1466×1073 | `39afceb0428407ff189d075328ccd64acbd3e49443a48f975e4c6ee499074aa7` | PMAP 15 及十五筆山地過渡 |
+| `hero-portrait-r1.png`、`hero-portrait-r1.prompt.txt` | 1254×1254 | `8150858af91388a8fb46587c55a3ff83df6e51d1bf7bb2b9eb8b9d03d99a1533` | 原版主角肖像的 B 風格重繪 |
+
+肖像的編修目標是從真實資料解碼、校正像素比例的 `extra-bitmaps-r1/portrait-native-corrected.png`；另一張輸入只取定稿圖下半部 B 的風格。保留原肖像朝向、髮型、面部構圖及白衣，不由生成圖推論人物身分。肖像整圖取樣為 240×240，不使用地表的對邊漸混。玉紙與岩石取中心 512×400，來源圖不改動。山地沿原圖色群柔化，屬視覺近似，不是原版透明遮罩或地形規則；色碼計數及特殊單像素 12 見 `mountain-palette-counts.json`。
+
+- `assets-painted-r3` 是先完成的 31 筆景觀組；`assets-painted-r4` 加入肖像後共 32 筆，包含五張直接生成素材及二十七筆色群合成。r4 清單 SHA 為 `a5644a5815778139ce97a612578bdf704777dd512f78955eab3b8186e89f550f`。匯入工具可用 `ground`／`landscape`／`current` 選擇既有組，拒絕覆寫輸出。
+- 本作測試使用真實原版及生成圖，核對山地原圖輪廓錨點、共有黃色的岩面、玉紙亮度、肖像來源指紋與實際像素比例，以及錯誤岩石依賴、未知合成規則等拒絕路徑。未備本機圖像時明示跳過圖像測試，不把跳過當通過；本輪實際具備 r4，全部圖像測試均執行。
+- `painted-portrait-r1` 正常冷啟動同輸入到 250000000 步，實際載入 32 筆素材，374 次 HD 來源呼叫、558917 個合成原生像素。完整狀態 SHA 仍為 `4b55d17998e2fa05176fdf9c2a4deab2321c15d6fd79164d88bfde82d82c64ac`，31 個工作檔、按鍵及載入事件同 native，收據 `painted-portrait-isolation-r1.json`。較早的 `painted-ground-compat-r1` 另證明地表舊組的十張 PNG 與 `painted-coast-r3` 完全相同。
+- `painted-portrait-visible-r1` 重新以兩個冷啟動視窗程序走新遊戲、兩次人物頁、返回、移動、F7 儲存及回 DOS，再重開繼續與 F1。185 幀／23 次改變及 55 幀／7 次改變均已獨立解碼、檢視縮圖與人物頁實圖。主角肖像、深玉底紋及 Noto 正確顯示，返回與讀檔後無人物頁殘留；本輪未遇怪物，沒有重擲挑結果或驗亂數規則。
+- 真正落地存檔與新程序讀回 RAM 的 2987 bytes 完全相同，SHA 仍為 `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`。原版讀取在第 11679567 步，退出碼 0；快照只作結束後 0 指令的緩衝區核對。兩張地圖的 2080 個不同像素限主角動畫區 `(402,388)-(520,448)`，未宣稱整幀相符。
+- `painted-bad-portrait-r1` 刻意損壞最後一張肖像 PNG。雖然前四張已處理，仍整組拒用，不留下半組圖像，Noto 繼續運作。十張保存 PNG 逐 byte 同純 Noto 基準，完整狀態及 31 個工作檔相同；收據 `painted-portrait-fallback-r1.json`。既有活視窗的圖像故障標題驗證仍保留，不把這份無頭故障測試說成新視窗驗證。
+
+### 非 PMAP 來源的最小目錄
+
+可丟棄的 `graphics-first/bitmap-catalog.go` 只讀觀測既有三個入口，來源都先檢查傳統 RAM 與段界。`extra-bitmaps-r1/catalog.json` 保存九筆來源的尺寸、完整記錄 SHA、四色平面 SHA、原始參數及步數；`source-exact-matches.json` 核對原始檔 bytes，`native-contact.png` 僅為解碼檢視。此觀測重播的完整狀態同上述 native，拒絕範圍 0，沒有跳過繪圖。
+
+探針原始碼 SHA 為 `00c1e09acefa74dcbfce2c0771264e51d4511017debabf37d70af0ba37b2a68c`，目錄收據 SHA 為 `6f02bafca0d3d6efa04d55c5d7c54e8e01ef00dce62d82a8c8d332eef4b343a4`。編譯與執行皆在固定 Go 映像、非 root、無網路容器；JSON 位址欄位是十進位整數，下表以檔案偏移及明示的執行期十六進位分開記錄。
+
+| 來源 | 解碼形狀 | 原始檔／證據與目前用途 |
+|---|---|---|
+| 主選單底圖 | 408×20、四組 | 完整 bytes 同 `BUMBOO.AY` offset 0，SHA `83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb`；待 HD |
+| 原版外框緩衝區 | 640×200、四組 | 執行期十六進位 `6000:0000`，SHA `2df9ede8fd23ba02fbac60f635e81e504f6dd93bc2f143570ff97faccd573530`；未在原始檔找到完整相同記錄，不補寫檔案來源 |
+| 主角肖像 | 80×40、五組 | `MAN.AY` offset 17552，完整 2004 bytes 相同，來源細節見 004；已接 HD |
+| 主角五張動作 | 64×25、六組 | `MAN.AY` offsets 7224、8428、9632、10836、12040，皆為十進位檔案偏移，與執行期記錄相同；目前仍原版 |
+| 系統訊息框 | 448×75、四組 | 完整 bytes 同 `MSGBOX.AY` offset 0，SHA `20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791`；待 HD |
+
+九筆中八筆有完整原始檔匹配。外框只有執行期來源，這已足供後續呈現規格使用，暫不追查遊戲無關的建構 helper。全幅外框有 128000 個圖內像素，目前 `graphicCell.Local` 是 uint16，正式接入前需擴充；角色生成 alpha 則需要原版背景還原契約，不能只加入素材表。這些是下一批的實作依賴，本輪沒有冒稱已完成。
