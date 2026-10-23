@@ -19,7 +19,7 @@
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已有忠實像素與明亮手繪的比較草稿，畫風尚待選定，尚未接入遊戲 |
-| HD 文字 | 已確定要將原版文字替換為繁體 Noto 粗字；Bold／Black 樣張已製作，字重、文字來源與實際覆繪待驗證 |
+| HD 文字 | 已選定 Noto Sans CJK TC Black 900 替換原版文字；真實字型樣張已確認，文字來源與遊戲內覆繪、排版仍待驗證 |
 | HD 音樂 | 已確認音樂欣賞第一項讀取的原曲資料與 AdLib 寫入；尚未製作 HD 曲目 |
 | 玩家前端 | 尚未建立視窗前端與正式交付包，戰鬥及完整流程仍待驗證 |
 
@@ -35,6 +35,8 @@
 | `workplace/probe-20261023/noto-weight-comparison-r1.png` | 真實 Noto Sans CJK TC，左側 Bold 700、右側 Black 900；包含原版七項地圖指令與自製排版測試句，尚未接入遊戲 |
 
 字型樣張可用 `bash tools/research.sh font-preview` 在 Docker 重生。需具備 `/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc` 與 `NotoSansCJK-Black.ttc`；工具會驗證繁體字面並保存字型及圖片雜湊。已有同名輸出時會停止，不覆寫。
+
+目前已選定右側的 Noto Sans CJK TC Black 900。樣張用來確認字形與字重，實際遊戲內的字級、行距與安全範圍仍須逐欄位驗證。
 
 ## 研究環境與執行
 
