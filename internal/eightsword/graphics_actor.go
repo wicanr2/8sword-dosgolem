@@ -2,9 +2,14 @@ package eightsword
 
 import (
 	"fmt"
-	"github.com/wicanr2/dosgolem/oracle"
 	"image"
+
+	"github.com/wicanr2/dosgolem/oracle"
 )
+
+// MAN01.EGG record 0 mirrored horizontally, all six planes. Spec 018.
+const militiaNativeSHA = "0b22eb3e544d9f7805cc4df1f0c99fc47b8818ef4bf6e78a7ac08d6993df62e8"
+const militiaRecordSHA = "78b8127ab7346e62e062dc514bad4a749be8d21f69e6dede53a246240d74b924"
 
 // Fixed MAN.AY records, file offset frame*1204. See spec 007.
 var heroSources = [...]struct{ NativeSHA, RecordSHA string }{
@@ -34,7 +39,7 @@ func (g *Graphics) heroRecordMatches(id uint16, kind int, source []byte) bool {
 }
 
 func (g *Graphics) actorBackgroundKnown(first uint32, width, height int) bool {
-	if width != 64 || height != 25 || len(g.actors) == 0 {
+	if !((width == 64 && height == 25) || (width == 88 && height == 50)) || len(g.actors) == 0 {
 		return false
 	}
 	for y := 0; y < height; y++ {
@@ -51,6 +56,14 @@ func (g *Graphics) actorBackgroundKnown(first uint32, width, height int) bool {
 
 // The generated PNG is not edited. Cache values use premultiplied RGBA.
 func sampleActor(source image.Image) (*image.RGBA, error) {
+	return sampleActorSize(source, 64, 25)
+}
+
+func sampleActorSize(source image.Image, nativeWidth, nativeHeight int) (*image.RGBA, error) {
+	if !((nativeWidth == 64 && nativeHeight == 25) || (nativeWidth == 88 && nativeHeight == 50)) {
+		return nil, fmt.Errorf("HD 人物尺寸未驗證")
+	}
+	width, height := nativeWidth*3, nativeHeight*6
 	bounds := source.Bounds()
 	sw, sh := bounds.Dx(), bounds.Dy()
 	hasZero, hasOpaque := false, false
@@ -65,12 +78,12 @@ func sampleActor(source image.Image) (*image.RGBA, error) {
 		}
 	}
 	if !hasZero || !hasOpaque {
-		return nil, fmt.Errorf("HD 主角須有透明背景與不透明主體")
+		return nil, fmt.Errorf("HD 人物須有透明背景與不透明主體")
 	}
-	out := image.NewRGBA(image.Rect(0, 0, 192, 150))
-	for y := 0; y < 150; y++ {
-		for x := 0; x < 192; x++ {
-			sx, sy := max(0, (float64(x)+0.5)*float64(sw)/192-0.5), max(0, (float64(y)+0.5)*float64(sh)/150-0.5)
+	out := image.NewRGBA(image.Rect(0, 0, width, height))
+	for y := 0; y < height; y++ {
+		for x := 0; x < width; x++ {
+			sx, sy := max(0, (float64(x)+0.5)*float64(sw)/float64(width)-0.5), max(0, (float64(y)+0.5)*float64(sh)/float64(height)-0.5)
 			x0, y0 := int(sx), int(sy)
 			x1, y1 := min(x0+1, sw-1), min(y0+1, sh-1)
 			fx, fy := sx-float64(x0), sy-float64(y0)
@@ -107,11 +120,11 @@ func (g *Graphics) paintActors(out *image.RGBA, p oracle.PlanarDisplay) {
 			if m == nil {
 				continue
 			}
-			if cell.Local >= 1600 {
+			if cell.Local >= uint32(m.NativeWidth*m.NativeHeight) {
 				g.setActor(off*8+uint32(x%8), graphicCell{})
 				continue
 			}
-			sx, sy := int(cell.Local)%64, int(cell.Local)/64
+			sx, sy := int(cell.Local)%m.NativeWidth, int(cell.Local)/m.NativeWidth
 			for dy := 0; dy < 6; dy++ {
 				for dx := 0; dx < 3; dx++ {
 					src := (sy*6+dy)*m.Tile.Stride + (sx*3+dx)*4

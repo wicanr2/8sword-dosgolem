@@ -18,7 +18,7 @@
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
-| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、金玉介面與五頁深藍故事背景，走過四方向移動、人物頁往返及真正存退讀；沙地實景、其他角色與圖像仍待處理。故事背景範圍見 [014](docs/spec/014-intro-story-background.md) |
+| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2 民兵、金玉介面與五頁深藍故事背景，走過四方向移動、人物頁往返及真正存退讀；沙地實景、其他角色與圖像仍待處理。故事背景範圍見 [014](docs/spec/014-intro-story-background.md) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。F10 可切換隸書風或草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
@@ -115,6 +115,8 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r8 \
 正常存退讀的視窗驗證可另設 `EIGHTSWORD_GUI_ACTOR_WALK=1`，在儲存前透過 XTEST 增加四方向移動及人物頁往返。這是驗證選項，不會改正式遊戲規則；逐一遍歷十二種原版動作及其餘背景仍須另外確認。
 
 更多新遊戲選單可設 `EIGHTSWORD_GUI_FLOW=menus`，在相同 Docker 視窗工具測 F2 軍隊、F4 無法施法提示及 F5 地圖位置。此流程只檢查新遊戲已有的民兵與未習得法術狀態；實際施法及戰鬥另驗。
+
+F2 的初始民兵已有手繪 HD 圖，保留藍背心、白褲、青頭巾與持槍方向。使用本機 r16 素材組；來源、[可重現匯入工具](tools/prepare-hd-army.py)及限定驗收見 [018](docs/spec/018-army-militia-image.md)。存退讀流程另設 `EIGHTSWORD_GUI_ARMY_CHECK=1`，在新遊戲及繼續進度後各測兩次 F2／F1 往返。其他兵種仍依各自原版資料顯示。
 
 片頭標題以原版實際繪圖及完整來源指紋驅動，四字改用 Noto Black 900，保留原位置、黑底及原版 Esc。字圖損壞時回原版標題，其他 HD 保留。來源、幾何及驗證範圍見 [011](docs/spec/011-intro-title-noto.md)。已有本機 r9、固定 TIT2 及上述 Noto 字型後，可建立新組：
 

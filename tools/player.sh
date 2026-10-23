@@ -66,6 +66,7 @@ case "${1:-}" in
             EIGHTSWORD_TEST_STORY_BACKGROUND_ASSETS=/out/assets-painted-r12 \
             EIGHTSWORD_TEST_FONT_CHOICES_ASSETS=/out/assets-painted-r14 \
             EIGHTSWORD_TEST_PUBLISHER_ASSETS=/out/assets-painted-r15 \
+            EIGHTSWORD_TEST_ARMY_ASSETS=/out/assets-painted-r16 \
             go test -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -299,6 +300,7 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_VSYNC="${EIGHTSWORD_GUI_VSYNC:-true}" \
       -e EIGHTSWORD_GUI_FLOW="${EIGHTSWORD_GUI_FLOW:-inspect}" \
       -e EIGHTSWORD_GUI_ACTOR_WALK="${EIGHTSWORD_GUI_ACTOR_WALK:-0}" \
+      -e EIGHTSWORD_GUI_ARMY_CHECK="${EIGHTSWORD_GUI_ARMY_CHECK:-0}" \
       -e EIGHTSWORD_GUI_SHOW_INTRO="${EIGHTSWORD_GUI_SHOW_INTRO:-0}" \
       -e EIGHTSWORD_GUI_SHOW_PUBLISHER="${EIGHTSWORD_GUI_SHOW_PUBLISHER:-0}" \
       -e EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE="${EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE:-0}" \

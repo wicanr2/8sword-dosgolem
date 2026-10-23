@@ -122,12 +122,18 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 	native = append(native, nativeBitmap{Index: 68, WidthBytes: 10, Height: 40,
 		NativeSHA: "1a1ae3e30190ecea4cc2384a78ed21331b4904ea9e0a4b1b2cbf66a3a9417e54"})
 	native = append(native, uiNativeSources()...)
-	if len(m.Actors) > 12 {
-		return nil, fmt.Errorf("HD 主角動作數量不符")
+	if len(m.Actors) > 13 {
+		return nil, fmt.Errorf("HD 人物圖像數量不符")
 	}
 	if len(m.Actors) > 0 {
 		for frame, source := range heroSources {
 			native = append(native, nativeBitmap{Index: 72 + frame, WidthBytes: 8, Height: 25, NativeSHA: source.NativeSHA})
+		}
+	}
+	for _, entry := range m.Actors {
+		if entry.Index == 84 {
+			native = append(native, nativeBitmap{Index: 84, WidthBytes: 11, Height: 50, NativeSHA: militiaNativeSHA})
+			break
 		}
 	}
 	out := &GraphicsAssets{Native: native, ByNative: map[string]uint16{}, Materials: map[uint16]*graphicMaterial{}, Actors: map[uint16]*graphicMaterial{}, ActorSHA: map[uint16]string{}}
@@ -254,23 +260,29 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 		}
 	}
 	for _, entry := range m.Actors {
-		if entry.Index < 72 || entry.Index > 83 || entry.Sampling != "bitmap" || len(entry.SourceRect) != 0 {
-			return nil, fmt.Errorf("HD 主角來源或取樣不符")
+		if entry.Index < 72 || entry.Index > 84 || entry.Sampling != "bitmap" || len(entry.SourceRect) != 0 {
+			return nil, fmt.Errorf("HD 人物來源或取樣不符")
 		}
 		id := uint16(entry.Index + 1)
 		if out.Actors[id] != nil {
-			return nil, fmt.Errorf("HD 主角來源重複")
+			return nil, fmt.Errorf("HD 人物來源重複")
 		}
 		decoded, err := loadGraphicPNG(dir, entry)
 		if err != nil {
 			return nil, err
 		}
-		tile, err := sampleActor(decoded)
+		width, height, recordSHA := 64, 25, ""
+		if entry.Index == 84 {
+			width, height, recordSHA = 88, 50, militiaRecordSHA
+		} else {
+			recordSHA = heroSources[entry.Index-72].RecordSHA
+		}
+		tile, err := sampleActorSize(decoded, width, height)
 		if err != nil {
 			return nil, err
 		}
-		out.Actors[id] = &graphicMaterial{64, 25, tile}
-		out.ActorSHA[id] = heroSources[entry.Index-72].RecordSHA
+		out.Actors[id] = &graphicMaterial{width, height, tile}
+		out.ActorSHA[id] = recordSHA
 	}
 	return out, nil
 }

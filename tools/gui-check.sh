@@ -24,6 +24,7 @@ if [[ -n "${EIGHTSWORD_GUI_INITIAL_FONT:-}" ]]; then font_flags=(-font "$EIGHTSW
 actor_flags=()
 intro_flags=()
 if [[ "${EIGHTSWORD_GUI_ACTOR_WALK:-0}" == 1 ]]; then actor_flags=(-actor-walk); fi
+if [[ "${EIGHTSWORD_GUI_ARMY_CHECK:-0}" == 1 ]]; then actor_flags+=(-army-check); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_INTRO:-0}" == 1 ]]; then intro_flags=(-intro-title); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_PUBLISHER:-0}" == 1 ]]; then intro_flags+=(-intro-publisher); fi
 if [[ "${EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE:-0}" == 1 ]]; then intro_flags+=(-publisher-font-cycle); fi

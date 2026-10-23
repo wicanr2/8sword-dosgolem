@@ -7,9 +7,13 @@
 | 目標 | 以 dosgolem 執行《神州八劍》，接入 HD 畫面及 HD 音樂；參考 mm3 的方法 |
 | 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900，〈幻〉配樂已選 B 撥弦／長笛方向。平台及公開方式尚未定案 |
 | 本輪決定 | 使用者選 A 深藍手繪故事背景，保留故事原文、字色及位置。另要求字型設定，允許隸書或草書，明確授權由 Codex 自行找合適字型，不再訪談選型 |
+| 民兵 HD 接入 | [018](docs/spec/018-army-militia-image.md)限定 CONFORMED。正常 F2 的 MAN01.EGG 首筆水平鏡射與六塊遮罩已核對，固定來源 84、88×50 畫幅。現行素材 `workplace/player/assets-painted-r16` 共 77 檔，與獨立重建相同；r15 保留作基準，73 份非清單檔不變。其他兵種未套用 |
+| 民兵隔離與故障 | `graphics-first/army-r1/runtime-audit-r1.json`：四組正常 F2／F1 兩次往返，完整 state `2ad291e1…872b`、PCM `01abf481…cf4a`、26 工作檔及事件相同。兩個 79200 像素人物區同獨立重建，Noto 與人物頁不變；壞第十三張 PNG 整組回退，四張畫面同停圖組。十二張舊主角與舊材質快取不變，完整前端測試 195.890 秒通過 |
+| 民兵實際視窗 | `workplace/player/gui/army-save-r1` 187／111 幀、33／19 次改變已解碼及看圖。新遊戲與繼續後各兩次 F2／F1，32 個實際 Draw 的人物區同獨立合成；真正 F7 存退讀的 2987 bytes 同 RAM `29dd62ae…2359`，read step 33812777，正常 DOS 退出碼 0。X11 縮放未獨立建模，精確像素聲明限原尺寸 Draw |
+| 民兵前歷史來源 | 正式改動前的 44 筆 Go 來源及四個程式已按 `bd6a6810…b7` 保存於 `workplace/player/build-pre-army-r1`。舊博物館收據對照此來源，不能用本輪新增民兵的程式冒充舊建置 |
 | 故事背景接入 | [014](docs/spec/014-intro-story-background.md)限定 CONFORMED。批准的 A 深藍原圖在 `graphics-first/story-art-r1/blue-raw.png`，原圖與完整提示留本機。r12 保留 r11 全部 56 檔並新增三檔。最終三字型、原背景及壞背景完整客體同 SHA `ce429bca…49e5`，12 工作檔、原版呼叫、事件及整段 PCM 相同；見該目錄 `runtime-audit-r2.json` |
 | 字型設定接入 | [015](docs/spec/015-font-settings.md)限定 CONFORMED。Noto Black 900 預設，F10 切隸書風 UnYetgul／劉建毛草，偏好存系統設定目錄的 `8sword/settings.json`，與 DOS 存檔分開。最終 r14 保留 r12 全部 59 檔，共 68 檔，獨立重建相同。英數標點 131 字沿用黑體，中文缺字以 Noto 宋體補足，隸書風 50 字、草書 259 字；固定來源及授權見 015 |
-| 發行商圖片文字 | [016](docs/spec/016-publisher-wordmarks.md)限定 CONFORMED。TIT1 的「軟體世界」、公司／年份字樣支援同三字型，配色及中央圖標保留。現行 r15 保留 r14 全部 68 檔，共 74 檔，獨立重建相同。`publisher-r1/runtime-audit-r1.json` 核對五組完整客體同 SHA `25cb7e3e…32a0`、17 工作檔、原版事件與 PCM 相同；中央圖標仍為原版美術 |
+| 發行商圖片文字 | [016](docs/spec/016-publisher-wordmarks.md)限定 CONFORMED。TIT1 的「軟體世界」、公司／年份字樣支援同三字型，配色及中央圖標保留。r15 基準保留 r14 全部 68 檔，共 74 檔，獨立重建相同。`publisher-r1/runtime-audit-r1.json` 核對五組完整客體同 SHA `25cb7e3e…32a0`、17 工作檔、原版事件與 PCM 相同；中央圖標仍為原版美術 |
 | 發行商視窗 | `publisher-visible-r4/publisher` 的 160／21、`publisher-save-r1` 的 146／24 及 68／11、`publisher-fallback-r1/publisher-fallback` 的 119／17 為實際幀數／改變次數，已解碼及看圖。Noto／隸書七個、草書十六個 Draw 與一個完整轉場逐 RGBA byte 同獨立重建；壞最後一張 PNG 六個 Draw 回原版。正常 F10、自然轉標題、Esc、新遊戲、人物頁與 F7 存退讀通過，2987 bytes 同讀回 RAM SHA `29dd62ae…2359` |
 | 博物館美術原型 | [017](docs/spec/017-intro-museum-art.md)為 DRAFT。本機 `graphics-first/museum-art-r1/` 已有 A 紫藍手繪、B 青玉金色與同狀態比較圖；內建 image_gen 原圖、完整提示、輸入及 SHA 已保存，尚未選定，也未接入正式程式。配色 A／B 已提問，建議 A 保留原版氣氛；不得把沉默當作同意 |
 | 博物館來源目錄 | 同目錄 `source-catalog.json` 核對 TIT3 兩幅背景、TIT4 十二筆記錄與 TIT5 近景；`MUSEUM-MASK-RESOLVED` 已補 IDA `sub_52C0` consumer 與正常逐次驗證。首四塊供本次色號，第六塊決定寫入／保留，第五塊供未驗的替代顯示分支。十二張原版 RGBA 與遮罩已抽出、檢視；真正黑墨不能當透明。正式 HD 動態圖仍未接入，最新完整場景原型見下列 r6 |
@@ -21,7 +25,7 @@
 | 博物館失效原型 | `invalidation-runtime-audit-r4.json`：兩版各 428 幀的完整串流、交易、客體、音訊及九工作檔分別同 r3。3009554 次活動寫入的美術帶只有五個已驗寫入點，未知數零。另以主機 metadata 診斷驗證未知寫入／模式失效、另一頁保留、已知來源恢復與進行中交易作廢，四組前後客體相同。正常標題 Esc 退休後 Noto／PAM 保持，通知數零；診斷不冒稱原版真的發生未知寫入 |
 | 博物館完整場景原型 | 最新 r6 已補紫藍／青玉右景、近景與雙色光束，十五筆已驗來源皆有候選映射。五份原圖、五份完整提示與 SHA 見 `scene-art-provenance-r1.json`，八個匯入產物獨立重建相同。光束兩版原圖仍有淡 alpha 雜點，研究裁幅移除 alpha 質量 0.01133%，未稱正式乾淨。`scene-runtime-audit-r6.json` 五組各 428 幀，24 左景、39 右景、3 近景、6 光束、19 保留帶及 81 交接 Draw 同獨立 RGBA 合成；完整客體、九工作檔及音訊相同。壞最後 PNG 在前三張驗過後整組回退，串流同停用組 |
 | 博物館自然交接 | `MUSEUM-NATURAL-HANDOFF-RESOLVED`：常式在 203Ch 退休，但原版畫面再保持約 4.085 模擬秒，step 42125150 才切 mode 13h。r5 提前撤圖的 81 幀由獨立驗證器全部拒絕，r6 依真正模式事件結束 HD 保留，未用安全上限。普通 Esc／保留期間 Esc 的成對客體、事件、音訊及 17／20 工作檔相同；五階段呈現與退休後未知寫入／同模式的主機 metadata 診斷前後客體相同，不混稱原版真的發生未知寫入 |
-| 博物館原型視窗 | 最新 `live-gui-save-r6` 的 467／297 幀、79／61 次改變已解碼及看圖。左右景、近景、光束及交接 66／77 個實際 Draw 同獨立合成，退休至模式變更之間每幀保持 HD；四組字幕 38／16 個 Draw 同 Noto 重建。正常 F1、返回與 F7 存退讀通過，2987 bytes 同 RAM `29dd62ae…2359`。繁體中文三欄動畫 `scene-live-comparison-r6b.webp` 收 149 個連續來源幀、7.45 模擬秒，沒有省略中間狀態。r5 失敗保留，017 維持 DRAFT；配色、正式 alpha、群組契約與正式接入仍待完成，正式程式及 r15 不變 |
+| 博物館原型視窗 | 最新 `live-gui-save-r6` 的 467／297 幀、79／61 次改變已解碼及看圖。左右景、近景、光束及交接 66／77 個實際 Draw 同獨立合成，退休至模式變更之間每幀保持 HD；四組字幕 38／16 個 Draw 同 Noto 重建。正常 F1、返回與 F7 存退讀通過，2987 bytes 同 RAM `29dd62ae…2359`。繁體中文三欄動畫 `scene-live-comparison-r6b.webp` 收 149 個連續來源幀、7.45 模擬秒，沒有省略中間狀態。r5 失敗保留，017 維持 DRAFT；配色、正式 alpha、群組契約與正式接入仍待完成，該博物館原型未改正式程式與 r15，後續民兵另見 018 |
 | 背景與字型視窗 | `story-art-caoshu-visible-r2/story` 409 幀／147 次改變已解碼及看圖，五頁 90 個故事 Draw、四組 19 個字幕 Draw 逐 RGBA byte 同獨立重建。`font-settings-save-r2` 的 421／271 幀、90／72 次改變已檢視；F10 五次循環、Noto 原像素恢復、偏好重啟、F7 存退讀及 F1 通過，2987 bytes 同 RAM SHA `29dd62ae…2359`。背景故障 286／78、草書故障 344／91，已看圖及獨立核對各自回退，其他 HD 保留 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
@@ -55,7 +59,7 @@
 | 片頭音樂視窗 | `workplace/player/gui/intro-music-visible-r1/music/` 以 XTEST 完成片頭、音樂欣賞、重播、反白、換曲、Esc、新遊戲、F1 與 F7。18 張圖、361 幀／31 次改變已獨立解碼並檢視。前端 PCM 814744 frames，322923 為 HD，片頭及兩次欣賞起音均經 FFmpeg 核對；見 `intro-events-r1/gui-intro-audio-r1.json`。裝置靜音，這份歷史基準的片頭美術與文字為原版，現行標題另見 011 |
 | 遨遊配器樣本 | `music-first/hd-audition-r1/mwlk-timbre-r1/` 留 A 原音色取樣及 B 撥弦／長笛兩份 80 秒候選與 30 秒試聽。使用者選擇待回答，兩版均未加入正式素材。短樣本首版的 Ogg 再轉碼有時間戳及長度問題，改用原始 PCM 重生 `*-30s-r2.ogg`，不覆寫舊檔；試聽改用 r2。鼓點保留原時刻，GM 鼓取樣屬明示配器選擇 |
 | 遨遊原曲證據 | 正常冷啟動選曲並播放 90 個虛擬秒，640 個旋律起音及 336 個節奏觸發順序符合來源。旋律音高差小於 0.1 半音、全部起音時間差小於 0.05 秒；來源全長 80 秒，原版模型首輪 79.976403 秒，仍為硬體規格近似。新 `audit-music-source.py` 已獨立核對 MINT／MWLK，不重做 parser 或 driver RE |
-| 更多 Noto 選單 | `workplace/player/gui/noto-more-menus-r2/menus/` 以正式 XTEST 流程走 F2 民兵頁、F4 無法施法提示、F5 完整位置文字，再走 F1、返回、F7 與移動。238 次全形、527 次半形，無缺字或追蹤錯誤；197 幀／37 次改變已解碼及檢視。軍隊圖像仍原版，未驗習得法術、長文或戰鬥 |
+| 更多 Noto 選單 | `workplace/player/gui/noto-more-menus-r2/menus/` 以正式 XTEST 流程走 F2 民兵頁、F4 無法施法提示、F5 完整位置文字，再走 F1、返回、F7 與移動。238 次全形、527 次半形，無缺字或追蹤錯誤；197 幀／37 次改變已解碼及檢視。該歷史基準的軍隊圖為原版，現行民兵另見 018；未驗習得法術、長文或戰鬥 |
 | 地圖取圖勘誤 | 初次探針只等文字暫停，在 F5 逐列繪圖中途取圖；正式驗證改等本次位置字串 1278／1304，再等實際呈現。正常冷啟動的原版 RGB 與 HD 在中央 `(100,14)-(380,171)` 的 43960 個原生像素一致，黑色區域兩側皆有；未推定其世界地圖或探索語意。收據 `noto-more-menus-r1/map-source/native-hd-interior-audit.json` |
 | 標題存讀基準 | `workplace/player/gui/intro-title-save-r6/` 兩個冷啟動視窗都先呈現 Noto 標題，再普通 Esc、新遊戲、人物頁、移動、F7 儲存、回 DOS及繼續。392／130 幀、31／13 次改變已解碼與檢視，每個程序各 79 次標題合成，PAM 後退休，無逾時、缺字或追蹤錯誤。落地及讀回 RAM 的 2987 bytes SHA 都為 `29dd62ae…2359`，讀取 step 27085850；快照只作 0 指令檢視。4755 個差異像素限主角圖塊，動畫相位未同步；見該目錄 `save-cycle-audit.json`。本輪只回歸標題與存讀，四方向及自然遭遇沿用既有明列基準 |
 | HD 畫面 | B 古風地表、兩種建築、布旗、十二張主角動作、人物頁及金玉介面已接入；r9 保留 r8 的 53 筆底圖及十二張主角，共 65 筆 HD 對應。[004](docs/spec/004-hd-bitmap-presentation.md)、[006](docs/spec/006-static-map-objects-and-sand.md)及[007](docs/spec/007-masked-hero-animation.md)仍 READY，[005](docs/spec/005-jade-gold-interface.md)介面限定 CONFORMED。沙地已載入但未驗實景，其他角色、圖像與更廣動畫仍待處理，新素材只留本機 |
@@ -76,7 +80,7 @@
 | 靜物故障與舊組 | `static-corrupt-r1` 真實損壞新房屋 PNG，回報 SHA 不符並整組停用圖像，Noto 保留。十張保存畫面、客體狀態及 31 個工作檔同純 Noto 基準；舊 35 筆組亦保持十張畫面及狀態不變，收據 `static-objects-fallback-r1.json`。本輪故障核對為無頭流程 |
 | 主角覆繪與故障 | 主機分開保存底圖及人物層，完整 MAN 記錄與整個底圖可確認才覆繪。六次固定重播及視窗 17／2 次主角皆完成四平面寫入，無回退。真實破壞最後一張主角 PNG 後整組圖像拒用、Noto 保留，十張 PNG、客體及 31 個工作檔同純 Noto 基準，見 `hero-actors-fallback-r1.json`。尚未逐一記錄十二個動作的正常呈現覆蓋 |
 | 沙地路徑診斷 | `graphics-first/f5-route-r1` 正常按 F5，起點為 40，40；`f5-north-r1` 送出 16 次向北按鍵後，F5 顯示 40，36，仍未見沙地。相同按鍵的純原版終點狀態、31 個工作檔與事件一致，SHA `629bc628…d848f`，見 `f5-north-isolation-r1.json`。前方直條圖樣兩側皆有，語意未確認，未將它改稱沙地或 HD 缺陷 |
-| 圖像來源目錄 | `graphics-first/extra-bitmaps-r1/` 的九個非 PMAP 來源中，八個與原始檔 bytes 精確相同，外框為執行期緩衝區。肖像、介面與五張已遇主角皆已接入；`actor-native-catalog-r1.json` 另核對 MAN 前十二筆及遮罩，原版來源目錄現為 84 筆。原版第五組仍不是 alpha |
+| 圖像來源目錄 | `graphics-first/extra-bitmaps-r1/` 的九個非 PMAP 來源中，八個與原始檔 bytes 精確相同，外框為執行期緩衝區。肖像、介面與五張已遇主角皆已接入；`actor-native-catalog-r1.json` 另核對 MAN 前十二筆及遮罩，該主角階段的來源目錄為 84 筆，018 加入民兵後為 85 筆。原版第五組仍不是 alpha |
 | 專案介紹 | [README.md](README.md)已撰寫遊戲故事、玩法、現況與研究操作入口；介紹以原版手冊及包裝為據，不將手冊內容當成本案驗收成果 |
 | 參考入口 | 已查閱 mm3 的 AGENTS、CONTEXT 與音樂、呈現及效能規格，以及 dosgolem 的 README、CLAUDE；入口見 AGENTS |
 | 已完成 | 來源盤點、原版啟動及真正存讀檔研究路段、BIOS 顯示頁、PAM 字碼字模、Noto 字集與執行期覆繪、首批地表及有限正常視窗路段。每項證明範圍不同，不能合稱全遊戲完成 |

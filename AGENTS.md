@@ -42,6 +42,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 博物館美術：[017：博物館片頭美術](docs/spec/017-intro-museum-art.md)，原版構圖與手繪樣張的研究入口。未選定的原型不進正式素材，正常人物、轉場與字幕須分開驗收。
 
+軍隊頁圖像：[018：民兵圖片來源與 HD](docs/spec/018-army-militia-image.md)，新遊戲民兵限定 CONFORMED；來源、88×50 座標、正常 F2／F1 與真正存退讀已驗。重生入口為[民兵素材工具](tools/prepare-hd-army.py)，參數及 Docker 驗證見 018，不能直接套主角尺寸或擴稱其他兵種。
+
 開場直排故事規格：[012：開場故事直排文字](docs/spec/012-intro-story-noto.md)，來源與逐字順序已由正常冷啟動擷取；實作與驗收狀態以該規格為準。
 
 博物館字幕規格：[013：博物館製作名單](docs/spec/013-intro-museum-captions.md)，四組來源與五次背景頁繪製已核對，接入狀態以該規格為準。

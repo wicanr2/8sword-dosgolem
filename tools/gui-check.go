@@ -180,10 +180,59 @@ func (d *driver) quit() {
 	d.key(37, false)
 }
 
+func (d *driver) army(prefix string) {
+	for _, visit := range []string{"first", "again"} {
+		before := d.status()["steps"].(float64)
+		d.press(68) // F2 through XTEST.
+		d.wait("本次民兵頁文字完成", 35, func(s map[string]any) bool {
+			seen := map[float64]bool{}
+			for _, item := range s["strings"].([]any) {
+				e := item.(map[string]any)
+				if e["Step"].(float64) > before {
+					seen[e["Source"].(float64)] = true
+				}
+			}
+			return seen[1330] && seen[1338] && seen[1346] && seen[10380]
+		})
+		lastFull, lastHalf, stable := float64(-1), float64(-1), float64(0)
+		d.wait("民兵頁持續 Draw", 25, func(s map[string]any) bool {
+			t := s["text"].(map[string]any)
+			f, h, frame := t["Full"].(float64), t["Half"].(float64), s["presented_frames"].(float64)
+			if f != lastFull || h != lastHalf {
+				lastFull, lastHalf, stable = f, h, frame
+				return false
+			}
+			return frame >= stable+3
+		})
+		d.shot(prefix + "-army-" + visit)
+		raw, err := json.MarshalIndent(d.status(), "", "  ")
+		check(err)
+		check(os.WriteFile(filepath.Join(d.out, prefix+"-army-"+visit+".json"), append(raw, '\n'), 0644))
+		before = d.status()["steps"].(float64)
+		d.press(9)
+		d.wait("本次 F2 返回地圖", 25, func(s map[string]any) bool {
+			for _, item := range s["strings"].([]any) {
+				e := item.(map[string]any)
+				if e["Step"].(float64) > before && e["Source"] == float64(1010) {
+					return true
+				}
+			}
+			return false
+		})
+		d.scene("map")
+		d.press(67)
+		d.scene("character")
+		d.shot(prefix + "-character-" + visit)
+		d.press(9)
+		d.scene("map")
+	}
+}
+
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
 	flow := flag.String("flow", "inspect", "inspect, captions, captions-fallback, story, story-skip, story-fallback, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
+	armyCheck := flag.Bool("army-check", false, "visit F2 twice through F1 before save and after reload")
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
 	showPublisher := flag.Bool("intro-publisher", false, "wait for actual publisher wordmarks before Esc")
 	publisherCycle := flag.Bool("publisher-font-cycle", false, "switch one actual F10 font while publisher is visible")
@@ -624,6 +673,9 @@ func main() {
 		d.press(36) // 原版預設「繼續上次進度」。
 		d.scene("map")
 		d.shot("04-loaded-map")
+		if *armyCheck {
+			d.army("loaded")
+		}
 		d.press(67)
 		d.scene("character")
 		d.shot("05-loaded-character")
@@ -641,6 +693,9 @@ func main() {
 	d.press(36)
 	d.scene("map")
 	d.shot("05-map")
+	if *armyCheck {
+		d.army("new")
+	}
 	if *flow == "menus" {
 		// Fixed new-game pages, verified by normal original input. F5 prints
 		// its position label after drawing the map; side-menu text is earlier.
