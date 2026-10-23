@@ -20,3 +20,9 @@
 - 新增 `.gitignore` 排除兩份原始壓縮檔、研究與交付目錄。建立 CONTEXT 保存現況、WORKLOG 保存歷程，並從 AGENTS 掛入入口；不建立其他空白文件或研究目錄。
 - 初始同步範圍為 AGENTS.md、CONTEXT.md、WORKLOG.md 與 .gitignore。提交與推送結果於遠端核對後追加。
 - 未完成事項：來源雜湊、版本辨識、dosgolem 冷啟動、HD 音畫樣本與方向確認。
+
+### 初始推送核對
+
+- 初始提交 `46ff80b2c73acc7145f56e6ccde06da7c6e1f551` 已推送至 `origin/main`，`git ls-remote` 回讀與本機 HEAD 一致。
+- 主機 gh 讀回遠端樹，確認只有上述四份文件與設定，沒有 ZIP、RAR 或其他原版素材。兩份來源封包的忽略規則均生效。
+- 暫存變更的空白檢查通過，文件擁有者均為 UID/GID 1000:1000。`docker ps -a --filter name=8sword` 無輸出，本案沒有殘留容器。

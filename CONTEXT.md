@@ -8,6 +8,7 @@
 | 授權 | 使用者已授權 Docker 存取與主機 gh 建立 GitHub 倉庫；畫風、音色、平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
+| 文件同步 | 初始提交 `46ff80b` 已推送；遠端樹回讀只有 `.gitignore`、AGENTS.md、CONTEXT.md、WORKLOG.md，未含來源封包 |
 | Docker | 已可列出映像及容器；以既有 `mm3-research:20261015-r1` 成功執行唯讀、無網路、非 root 的一次性檢查 |
 | 工具能力 | 上述映像內為 UID/GID 1000:1000、Python 3.13.15，具 `/usr/bin/7z` 與 `/usr/bin/bsdtar`；尚未用本作封包驗證解包能力 |
 | 原始輸入 | 根目錄有 `8sword.zip`、`珍092-神州八劍.rar`；尚未解包、計算 SHA-256 或辨識版本。已由 `.gitignore` 排除 |
