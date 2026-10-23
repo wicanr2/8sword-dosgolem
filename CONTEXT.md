@@ -17,7 +17,9 @@
 | 博物館背景原型驗證 | `live-audit-r2.json`：控制／原版重建／A／B 各 428 幀，24 個完成左景幀及全部 19 個交易保留幀同獨立來源、遮罩及兩頁合成，沒有未知保留帶；全部美術帶外不變。完整 state 同 `b1cafef3…f6b7`、9 工作檔及 HD PCM 相同。這份歷史基準的人物為原版；最新人物原型見下列 r3 |
 | 博物館頁面交易勘誤 | `MUSEUM-PAGE-COPY-RESOLVED`：IDA 與正常六次完整兩頁索引核對，5D76／510B 是頁 0→4000h、5D9C／517E 是反向，各複製 16000 byte 位址；目的頁不依 D208。只有 5B0C 真正清頁。`page-audit-r2.json` 核對五次複製／一次清頁、來源頁與尾端不變；控制 state 同 `b1cafef3…f6b7`、9 工作檔、事件及 FM PCM 相同，正式 DB 不變。013 的來源分類已回填，字幕實作及既有驗收不變 |
 | 博物館 HD 人物原型 | `actor-hd-assets-r1.json` 為十張現代服裝人物樣張，第十格另修正轉頭，原圖、兩份完整提示及 SHA 見 `actor-art-provenance-r1.json`。十張 PNG、清單及接觸表獨立重建 byte 相同；alpha 淡雜點處理是研究匯入，正式乾淨邊緣仍待定稿。`actor-runtime-audit-r3.json`：四組各 428 幀，41 次左景人物指派，22 個真正 HD 人物帶、9 種可見來源及 796 個跨列 alpha 像素同獨立合成；24 個左景／19 個保留帶皆核對。完整 state、9 工作檔、事件及 HD PCM 同控制。最後 PNG 真實損壞，前九張驗過後整組回原人物，全部幀同控制 |
-| 博物館原型視窗 | 最新 `live-gui-save-r3` 的 191／116 幀、32／19 次改變已解碼及看圖，兩個程序各 8 個 HD 人物帶逐像素同獨立合成。字幕後 Esc、主選單、F1、返回、F7 存退讀通過，2987 bytes 同 RAM `29dd62ae…2359`，未再閃回；r1 失敗及 r2 修正收據保留。連續對照 `actor-live-comparison-r3b.webp` 收原版人物／HD 人物 A／HD 人物 B 的第 130–153 幀，模擬時間每幀 50 ms，未省略中間幀。右景／近景／光束、未知寫入失效及正式素材群組故障仍待完成；017 仍 DRAFT，正式程式與 r15 不變 |
+| 共用呈現觀測 | [003](docs/spec/003-noto-runtime-overlay.md#共用只讀觀測的訂閱契約)的 metadata 訂閱已實作，保持既有 Noto／片頭回呼順序；同值寫入、兩次模式設定、回呼內解除、正常字幕／PAM 隔離通過。變更前的 42 筆來源與四個程式依提交 `b3d091e…d66` 存 `workplace/player/build-pre-observers-r1/`，不以新 Engine 冒充歷史來源 |
+| 博物館失效原型 | `invalidation-runtime-audit-r4.json`：兩版各 428 幀的完整串流、交易、客體、音訊及九工作檔分別同 r3。3009554 次活動寫入的美術帶只有五個已驗寫入點，未知數零。另以主機 metadata 診斷驗證未知寫入／模式失效、另一頁保留、已知來源恢復與進行中交易作廢，四組前後客體相同。正常標題 Esc 退休後 Noto／PAM 保持，通知數零；診斷不冒稱原版真的發生未知寫入 |
+| 博物館原型視窗 | 最新 `live-gui-save-r4` 的 193／128 幀、36／22 次改變已解碼及看圖；7／10 個 HD 人物帶、每程序一個字幕 Draw 同獨立 RGBA 合成，無原背景閃回。普通 Esc、主選單、F1、返回、F7 存退讀通過，2987 bytes 同 RAM `29dd62ae…2359`。初次驗證器漏掉摘要間的短字幕，失敗留 `live-gui-save-r4-summary-miss`；已改查實際 Draw 日誌並乾淨重跑。連續三欄對照仍為 `actor-live-comparison-r3b.webp`。右景／近景／光束及正式素材仍待完成，017 維持 DRAFT；正式美術與 r15 不變 |
 | 背景與字型視窗 | `story-art-caoshu-visible-r2/story` 409 幀／147 次改變已解碼及看圖，五頁 90 個故事 Draw、四組 19 個字幕 Draw 逐 RGBA byte 同獨立重建。`font-settings-save-r2` 的 421／271 幀、90／72 次改變已檢視；F10 五次循環、Noto 原像素恢復、偏好重啟、F7 存退讀及 F1 通過，2987 bytes 同 RAM SHA `29dd62ae…2359`。背景故障 286／78、草書故障 344／91，已看圖及獨立核對各自回退，其他 HD 保留 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
@@ -60,7 +62,7 @@
 | 連續幀 | 存檔段 248 幀、46 次畫面改變，讀檔段 125 幀、9 次改變，獨立解碼及縮圖檢視通過。已修正只看背景頁繪字事件便過早抓圖的驗證器；現在等待真正顯示頁的文字所有權及後續 Draw。未走畫面與長文仍未全面驗證 |
 | 純 Noto 基準存退讀 | `save-cycle-audit.json`：F7 儲存、正常回 DOS 碼 0、重新啟動繼續；原版讀取 2987 bytes，結束後只讀檢視 0x9E000 緩衝區與進度檔逐 byte 相同，SHA 為 `29dd62ae…2359`。地圖差異限主角動畫區，未稱整幀 parity；現行 HD 加入四方向移動，存檔另列下方 |
 | 效能 | 已分開量測錄製開關，現行 `perf-recorded-r1` 存檔段平均 advance／audio／compose／upload 為 5.26／1.99／1.50／0.19 ms，record 每次平均 2.43 ms；它們是階段實際耗時，不是完整 CPU 分配。389 幀含 330 幀免掃描重複畫面，幀號及步數仍全保留。同一組舊 306 幀重編碼 bytes 完全相同，列掃描 367200→40800，寫入單輪耗時約減 22%。新 GUI 地圖按鍵取樣中位數約 24.6 FPS，無錄製約 26.2 FPS，TPS 都近 29.9；不同負載與自然遭遇不作嚴格成對速度結論。收據 `performance-comparison-r1.json`、`record-repeat-bench-r1.json`；非靜音音訊與正式速度仍未驗完 |
-| 建置與測試 | `bash tools/player.sh build` 建出四個程式，來源／輸出 SHA 已存。現行完整本作測試 180.371 秒，發行商三項先行測試 30.997 秒。三種字型及發行商無頭流程均同客體／音訊。核心八檔不變，其他核心測試沿用已驗證結果。完整 HD 仍未完成 |
+| 建置與測試 | 現行四個程式的來源／輸出 SHA 保存在 `workplace/player/build-*.sha256`，重建入口為 `bash tools/player.sh build`。共用訂閱變更後完整本作測試 252.949 秒；最後增加第二次同模式設定的三項針對測試 9.299 秒。正常 Noto／人物頁／存退讀回歸通過，核心八檔與 r15 的 74 檔不變。整體 HD 仍未完成 |
 | 覆繪狀態隔離 | 現行 `noto-cache-hd-r1` 與原版基準，同一冷啟動輸入到 250000000 步，完整狀態檔、31 個工作檔、輸入及載入事件一致；完整狀態 SHA 仍為 `4b55d179…64ac`。`noto-cache-isolation-r1.json` 與 `noto-cache-render-audit-r1.json` 分別核對客體隔離及優化前後畫面 |
 | 故障回退 | 正式共用 Engine 與實際視窗都已載入受損 PNG，回報 SHA 不符並關閉覆繪。`noto-fallback-visible-r1/fallback/` 的實際原版選單與 native 參考逐 RGB 像素相同；XTEST 也核對視窗標題包含「HD 字型載入失敗」。收據為 `fallback-window-audit.json`，沒有畫成空白 |
 | HD 圖像來源 | PMAP 68 筆形狀及三個繪圖入口已由 IDA 與 731 次執行期呼叫確認。第五組供另一顯示分支，第六組才是角色透明遮罩，不能混稱。只讀所有權追蹤及頁搬移已接入，未知來源保留原版；新範圍不再重查已解 ABI |

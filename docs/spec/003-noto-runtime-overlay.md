@@ -108,3 +108,18 @@
 開場故事文字另見 [012](012-intro-story-noto.md)，只限五頁直排 Noto，通過自然交接、普通 Esc、故障回退及真正存讀。未擴張本規格原有的完成聲明。
 
 博物館四組製作名單另見 [013](013-intro-museum-captions.md)，重用 012 字集，按原版實體頁與清除流程呈現；不擴張本規格的整體完成聲明。
+
+## 共用只讀觀測的訂閱契約
+
+本節是既有單一核心回呼的轉送維護，不改原版、Noto 規則、資產格式或玩家操作。003 維持 READY；017 的候選仍是 DRAFT，不因新增觀測入口取得正式接入資格。
+
+- 已證實的核心契約位於固定隔離核心 `workplace/dosgolem/internal/machine/machine.go` 的 `VideoWrite`／`ObserveVideoWrites` 及 `oracle/presentation_observe.go`：單一 pre-write 回呼，同值寫入也通知；觀察器不進 state。模式回呼在模式設定後、後續 BIOS 調色盤完成前，不能讀 Palette。沿用現有三份補丁與八檔 SHA，不修改共用 dosgolem。
+- Engine 保有唯一核心回呼，既有 Tracker→發行商→標題→故事→字幕的轉送順序不變。新增呈現器使用 [ObservePresentation](../../internal/eightsword/presentation_observers.go)，不得另外呼叫 Oracle 的單一視訊觀測 setter。此入口支援加入／解除 metadata 訂閱，不能替換客體寫入。
+- 訂閱只收到值型 Step、CS／IP、實體平面 Offset、WriteMode，或 Step／Mode；不提供 Value、原始記憶體或 Oracle 引用。模式通知只能使主機圖層失效，不在通知內讀色盤或執行客體。事件是既有核心值的直接投影，不重新解釋位址或時序。
+- 同一 Engine 的訂閱依註冊順序通知，既有呈現器先處理。解除立即停用該訂閱，可在回呼中解除；該次迭代結束後再整理清單，避免漏送後續訂閱者。解除可重複呼叫。回呼中新增訂閱不支援，明確拒絕；訂閱、解除與 Advance 均由同一執行緒呼叫，不提供跨執行緒並行契約。
+- 沒有外部訂閱時不建立 metadata 或保留多餘訂閱；有 Tracker 時維持原回呼。原字模 Engine 沒有訂閱時維持無視訊回呼，最後一個訂閱解除後恢復。Close 停用所有訂閱並解除核心回呼，舊解除函式不重新安裝它們。
+- 驗證入口為 [真實寫入與正常字幕流程測試](../../internal/eightsword/presentation_observers_test.go)，透過 `bash tools/player.sh test-player` 執行。需驗同值 guest write、pre-write、順序、回呼內解除、關閉及原字模／Noto 的客體與畫面隔離，再做正式前端正常選單、人物頁與存退讀回歸。診斷事件不當成正常玩家路徑證據。
+
+變更前的正式四個程式、42 筆來源 manifest 與程式來源已核對並保存在本機 `workplace/player/build-pre-observers-r1/`，鍵為提交 `b3d091e583921f8261461f09d1968aeeb26b8d66`。歷史原型的來源驗證以此鍵為準，不把新 Engine 換名冒充舊收據。
+
+驗證收據位於 `graphics-first/museum-art-r1/`：只讀來源的完整本作測試 `presentation-player-suite-r1.log` 為 252.949 秒；最後補第二次同模式通知的三項測試 `presentation-subscriptions-final-r1.log` 為 9.299 秒。兩組正常 428 幀與舊呈現逐 byte 相同；`live-gui-save-r4` 真正視窗 193／128 幀及 Noto／人物頁／F7 存退讀通過，2987-byte 進度檔同讀回 RAM。GUI 驗證器改查實際 Draw 日誌，避免定期摘要漏掉短字幕；失敗與乾淨重跑分開保留。這些只核對本節維護及已走路段，003 的整體狀態仍為 READY。

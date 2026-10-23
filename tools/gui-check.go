@@ -383,9 +383,31 @@ func main() {
 		for _, source := range sources {
 			source := source
 			d.wait(fmt.Sprintf("製作名單 %04X 已真正呈現", source), 80, func(s map[string]any) bool {
-				return s["presented_intro"] == "captions-noto" && s["presented_caption_source"] == float64(source)
+				if s["presented_intro"] == "captions-noto" && s["presented_caption_source"] == float64(source) {
+					return true
+				}
+				// 摘要可能略過短暫 Draw。逐幀日誌只在真正 Draw 後記錄，
+				// 不用「已請求字幕」或背景頁繪字代替已呈現的證據。
+				lines, err := os.ReadFile(filepath.Join(d.out, "intro-draw.jsonl"))
+				if err != nil {
+					return false
+				}
+				for _, line := range bytes.Split(lines, []byte{'\n'}) {
+					var frame struct {
+						Stage         string `json:"stage"`
+						CaptionSource uint16 `json:"caption_source"`
+					}
+					if json.Unmarshal(line, &frame) == nil && frame.Stage == "captions-noto" && frame.CaptionSource == source {
+						return true
+					}
+				}
+				return false
 			})
-			d.shot(fmt.Sprintf("captions-%04x", source))
+			if s := d.status(); s["presented_intro"] == "captions-noto" && s["presented_caption_source"] == float64(source) {
+				d.shot(fmt.Sprintf("captions-%04x", source))
+			} else {
+				fmt.Printf("製作名單 %04X 已在逐幀日誌呈現；目前已轉場，略過同名視窗截圖。\n", source)
+			}
 		}
 		if *flow == "captions" {
 			d.wait("博物館後續動畫與五頁故事自然結束", 180, func(s map[string]any) bool { return s["presented_scene"] == "main-menu" })

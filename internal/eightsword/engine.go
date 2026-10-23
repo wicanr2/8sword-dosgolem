@@ -16,28 +16,31 @@ type Options struct {
 	HD                  bool
 }
 type Engine struct {
-	Oracle         *oracle.Oracle
-	Tracker        *Tracker
-	Assets         *Assets
-	PAM            []byte
-	HD             bool
-	AssetError     string
-	GraphicsError  string
-	Exited         bool
-	ExitCode       uint8
-	PAMLoaded      bool
-	InputEvents    []InputEvent
-	Sound          *oracle.Audio
-	Music          *Music
-	Intro          *IntroTitle
-	IntroError     string
-	Publisher      *IntroTitle
-	PublisherError string
-	Story          *IntroStory
-	StoryError     string
-	Captions       *IntroCaptions
-	fonts          *fontChoices
-	FontError      string
+	Oracle                *oracle.Oracle
+	Tracker               *Tracker
+	Assets                *Assets
+	PAM                   []byte
+	HD                    bool
+	AssetError            string
+	GraphicsError         string
+	Exited                bool
+	ExitCode              uint8
+	PAMLoaded             bool
+	InputEvents           []InputEvent
+	Sound                 *oracle.Audio
+	Music                 *Music
+	Intro                 *IntroTitle
+	IntroError            string
+	Publisher             *IntroTitle
+	PublisherError        string
+	Story                 *IntroStory
+	StoryError            string
+	Captions              *IntroCaptions
+	fonts                 *fontChoices
+	FontError             string
+	presentationObservers []*presentationSubscription
+	presentationDispatch  int
+	presentationSweep     bool
 }
 type InputEvent struct {
 	Step  uint64
@@ -108,44 +111,13 @@ func Open(opt Options) (*Engine, error) {
 		if err != nil {
 			e.PublisherError = err.Error()
 		}
-		if (e.Intro != nil || e.Story != nil || e.Captions != nil || e.Publisher != nil) && e.Tracker != nil {
-			// The core has one callback per event, shared by both presenters.
-			o.ObserveVideoWrites(func(v oracle.VideoWrite) {
-				e.Tracker.write(v)
-				if e.Publisher != nil {
-					e.Publisher.observeWrite(v)
-				}
-				if e.Intro != nil {
-					e.Intro.observeWrite(v)
-				}
-				if e.Story != nil {
-					e.Story.observeWrite(v)
-				}
-				if e.Captions != nil {
-					e.Captions.observeWrite(v)
-				}
-			})
-			o.ObserveVideoModeChanges(func(oracle.VideoModeChange) {
-				e.Tracker.clear()
-				if e.Publisher != nil {
-					e.Publisher.invalidate()
-				}
-				if e.Intro != nil {
-					e.Intro.invalidate()
-				}
-				if e.Story != nil {
-					e.Story.invalidate()
-				}
-				if e.Captions != nil {
-					e.Captions.invalidate()
-				}
-			})
-		}
 	}
 	e.loadFontChoices(opt.Assets)
+	e.syncPresentationObservers()
 	return e, nil
 }
 func (e *Engine) Close() {
+	e.closePresentationObservers()
 	if e.Music != nil {
 		e.Music.Close()
 	}
