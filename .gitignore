@@ -1,0 +1,9 @@
+# 原始遊戲輸入僅供本機研究。
+/8sword.zip
+/珍092-神州八劍.rar
+
+# 研究、中間產物與本機交付不加入 Git。
+/workplace/
+/dist-all/
+/build/
+/dist/
