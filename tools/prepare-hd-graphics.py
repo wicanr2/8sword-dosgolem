@@ -32,7 +32,7 @@ def prepare(args):
     manifest = {"schema":1,"source_sha256":PMAP_SHA,"style":"B-bright-painted-r1",
                 "style_reference_sha256":STYLE_SHA,"generator":"built-in image_gen",
                 "rights":"local-only-derived","materials":[]}
-    selected=MATERIALS if args.set=="current" else MATERIALS[:4] if args.set=="landscape" else MATERIALS[:2]
+    selected=MATERIALS if args.set in ("current","portrait") else MATERIALS[:4] if args.set=="landscape" else MATERIALS[:2]
     for index,name,expected,crop_width,crop_height in selected:
         image_path=args.refs / (name+".png")
         if sha(image_path)!=expected:
@@ -56,13 +56,15 @@ def prepare(args):
     manifest["composites"]=[{"source_index":i,"land_source":0,"water_source":1,"mask_rule":"pmap-green-blue-v1"} for i in range(2,14)]
     if args.set!="ground":
         manifest["composites"] += [{"source_index":i,"land_source":0,"rock_source":15,"mask_rule":"pmap-grass-rock-v1"} for i in range(14,30) if i!=15]
+    if args.set=="current":
+        manifest["ui"]={"style":"jade-gold-v1","paper_source":46}
     for name in ["font.json","font.png"]:
         shutil.copyfile(args.font_assets/name,args.out/name)
     (args.out / "terrain.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n")
     for p in args.out.iterdir():
         if (p.stat().st_uid,p.stat().st_gid)!=(os.getuid(),os.getgid()):
             raise ValueError("輸出檔擁有權不符")
-    print(json.dumps({"materials":len(manifest["materials"]),"composites":len(manifest["composites"]),"manifest_sha256":sha(args.out/"terrain.json"),
+    print(json.dumps({"materials":len(manifest["materials"]),"composites":len(manifest["composites"]),"ui":3 if "ui" in manifest else 0,"manifest_sha256":sha(args.out/"terrain.json"),
                       "rights":manifest["rights"],"generated_png_bytes":"preserved"}))
 
 if __name__=="__main__":
@@ -72,5 +74,5 @@ if __name__=="__main__":
     parser.add_argument("--font-assets",type=Path,required=True)
     parser.add_argument("--style-reference",type=Path,required=True)
     parser.add_argument("--out",type=Path,required=True)
-    parser.add_argument("--set",choices=["ground","landscape","current"],default="current")
+    parser.add_argument("--set",choices=["ground","landscape","portrait","current"],default="current")
     prepare(parser.parse_args())

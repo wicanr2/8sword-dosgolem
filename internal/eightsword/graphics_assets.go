@@ -32,6 +32,10 @@ type terrainManifest struct {
 	SourceSHA string `json:"source_sha256"`
 	Style     string `json:"style"`
 	StyleSHA  string `json:"style_reference_sha256"`
+	UI        *struct {
+		Style       string `json:"style"`
+		PaperSource int    `json:"paper_source"`
+	} `json:"ui"`
 	Materials []struct {
 		Index      int    `json:"source_index"`
 		File       string `json:"file"`
@@ -108,6 +112,7 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 	// runtime 8000:4490, 10 bytes x 40 rows. Evidence: spec 004.
 	native = append(native, nativeBitmap{Index: 68, WidthBytes: 10, Height: 40,
 		NativeSHA: "1a1ae3e30190ecea4cc2384a78ed21331b4904ea9e0a4b1b2cbf66a3a9417e54"})
+	native = append(native, uiNativeSources()...)
 	out := &GraphicsAssets{Native: native, ByNative: map[string]uint16{}, Materials: map[uint16]*graphicMaterial{}}
 	for _, b := range native {
 		if _, ok := out.ByNative[b.NativeSHA]; ok {
@@ -199,6 +204,18 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 			return nil, err
 		}
 		out.Materials[id] = &graphicMaterial{b.WidthBytes * 8, b.Height, tile}
+	}
+	if m.UI != nil {
+		if m.UI.Style != "jade-gold-v1" || m.UI.PaperSource != 46 || materials[47] == nil {
+			return nil, fmt.Errorf("HD 介面樣式或玉紙依賴不符")
+		}
+		for _, b := range uiNativeSources() {
+			id := uint16(b.Index + 1)
+			if out.Materials[id] != nil {
+				return nil, fmt.Errorf("HD 介面來源重複")
+			}
+			out.Materials[id] = &graphicMaterial{b.WidthBytes * 8, b.Height, makeUIBitmap(b.Index, materials[47].Tile)}
+		}
 	}
 	return out, nil
 }

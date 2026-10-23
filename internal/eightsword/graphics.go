@@ -7,7 +7,10 @@ import (
 	"image"
 )
 
-type graphicCell struct{ ID, Local uint16 }
+type graphicCell struct {
+	ID    uint16
+	Local uint32
+}
 type bitmapCall struct {
 	Kind          int
 	Width, Height int
@@ -172,7 +175,7 @@ func (g *Graphics) write(w oracle.VideoWrite) uint8 {
 				if mask&(0x80>>uint(bit)) != 0 {
 					value := graphicCell{}
 					if b.Material != 0 {
-						value = graphicCell{b.Material, uint16(row*b.Width*8 + col*8 + bit)}
+						value = graphicCell{b.Material, uint32(row*b.Width*8 + col*8 + bit)}
 						g.Stats.AssignedPixels++
 					}
 					g.set(w.Offset*8+uint32(bit), value)

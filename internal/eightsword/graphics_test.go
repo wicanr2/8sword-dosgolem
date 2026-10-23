@@ -66,7 +66,7 @@ func TestRealSpriteMaskPreservesTransparentImageAndText(t *testing.T) {
 	g.active = &bitmapCall{Kind: 6, Width: width, Height: height, First: first, Mask: mask}
 	for bit := 0; bit < 8; bit++ {
 		at := off*8 + uint32(bit)
-		g.set(at, graphicCell{1, uint16(bit)})
+		g.set(at, graphicCell{1, uint32(bit)})
 		tracker.set(at, cell{ID: 1, Local: uint16(bit), Ink: true})
 	}
 	tracker.write(oracle.VideoWrite{CS: 0x14d2, IP: 0x57d, Offset: off, Value: 0, WriteMode: 0})
@@ -86,7 +86,7 @@ func TestImagePageCopyAndSameValueWrite(t *testing.T) {
 	const source = uint32(11)
 	const dest = uint32(0x400b)
 	for bit := 0; bit < 8; bit++ {
-		g.set(source*8+uint32(bit), graphicCell{1, uint16(320 + bit)})
+		g.set(source*8+uint32(bit), graphicCell{1, uint32(320 + bit)})
 	}
 	tracker.copyByte(dest, source)
 	if !bytes.Equal(graphicBytes(g.owners[source*8:source*8+8]), graphicBytes(g.owners[dest*8:dest*8+8])) {
@@ -105,10 +105,10 @@ func TestImagePageCopyAndSameValueWrite(t *testing.T) {
 	}
 }
 func graphicBytes(cells []graphicCell) []byte {
-	out := make([]byte, len(cells)*4)
+	out := make([]byte, len(cells)*6)
 	for i, c := range cells {
-		binary.LittleEndian.PutUint16(out[i*4:], c.ID)
-		binary.LittleEndian.PutUint16(out[i*4+2:], c.Local)
+		binary.LittleEndian.PutUint16(out[i*6:], c.ID)
+		binary.LittleEndian.PutUint32(out[i*6+2:], c.Local)
 	}
 	return out
 }
@@ -135,7 +135,7 @@ func realGraphics(t *testing.T) (*GraphicsAssets, []byte, string, string) {
 }
 func TestActualMaterialSeamsAndPixelContainment(t *testing.T) {
 	assets, _, _, _ := realGraphics(t)
-	if len(assets.Native) != 69 || len(assets.Materials) != 32 {
+	if len(assets.Native) != 72 || len(assets.Materials) != 35 {
 		t.Fatal("wrong actual asset shape")
 	}
 	tile := assets.Materials[1].Tile
@@ -272,7 +272,7 @@ func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 	if err := json.Unmarshal(raw, &original); err != nil {
 		t.Fatal(err)
 	}
-	for _, name := range []string{"crop-overflow", "unknown-sampling", "duplicate-composite", "wrong-dependency", "wrong-rock", "unknown-composite"} {
+	for _, name := range []string{"crop-overflow", "unknown-sampling", "duplicate-composite", "wrong-dependency", "wrong-rock", "unknown-composite", "unknown-ui", "wrong-ui-paper", "missing-ui-paper"} {
 		t.Run(name, func(t *testing.T) {
 			temp := t.TempDir()
 			for _, file := range original.Materials {
@@ -297,6 +297,17 @@ func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 				m.Composites[12].Rock = 0
 			case "unknown-composite":
 				m.Composites[12].Rule = "unknown"
+			case "unknown-ui":
+				m.UI.Style = "unknown"
+			case "wrong-ui-paper":
+				m.UI.PaperSource = 68
+			case "missing-ui-paper":
+				for i, e := range m.Materials {
+					if e.Index == 46 {
+						m.Materials = append(m.Materials[:i], m.Materials[i+1:]...)
+						break
+					}
+				}
 			}
 			changed, err := json.Marshal(m)
 			if err != nil {

@@ -45,8 +45,8 @@ case "${1:-}" in
         export GOWORK=/tmp/go.work
         if [[ "$1" == test || "$1" == test-player ]]; then
           art_assets=""
-          if [[ -f /out/assets-painted-r4/terrain.json ]]; then
-            art_assets=/out/assets-painted-r4
+          if [[ -f /out/assets-painted-r5/terrain.json ]]; then
+            art_assets=/out/assets-painted-r5
           else
             printf "%s\n" "未備本機 HD 圖像，僅執行字型測試；圖像測試會明示跳過。"
           fi
@@ -87,7 +87,7 @@ case "${1:-}" in
     task_name="${2:?指定新的素材組名稱}"
     valid_name "$task_name"
     task_set="${3:-current}"
-    case "$task_set" in ground|landscape|current) ;; *) exit 2;; esac
+    case "$task_set" in ground|landscape|portrait|current) ;; *) exit 2;; esac
     task_refs="$task_work/probe-20261023/graphics-first"
     test -f "$task_orig/PMAP.AY"; test -d "$task_refs"; test -f "$task_player/assets/font.json"
     test -d "$task_root/docs/images"
