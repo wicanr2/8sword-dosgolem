@@ -19,11 +19,11 @@
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已選定 B 明亮手繪的中國古風，定稿參考圖已保存於倉庫，尚未接入遊戲 |
-| HD 文字 | 已選定 Noto Sans CJK TC Black 900；解出 PAM 的 636 字對照並製作 Noto 字集，七項地圖指令的原版字模已核對，遊戲內覆繪與排版仍待接入 |
+| HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII；已透過實際視窗操作主選單、新遊戲、人物頁、返回與系統選單，存退讀及更廣畫面的覆繪仍待驗 |
 | HD 音樂 | 已確認音樂欣賞第一項讀取的原曲資料與 AdLib 寫入；尚未製作 HD 曲目 |
-| 玩家前端 | 尚未建立視窗前端與正式交付包，戰鬥及完整流程仍待驗證 |
+| 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
 
-目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。以上成果限於列出的原版路段，尚未完成 HD 接入或全遊戲驗收。
+目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
 
 ## 畫面與文字樣張
 
@@ -46,7 +46,7 @@
 
 ## 研究環境與執行
 
-目前入口是無頭研究工具。主機負責 Docker／Git 編排，遊戲、盤點、建置與驗證均在 Docker 執行。
+提供無頭研究工具與開發用視窗前端。主機負責 Docker／Git 編排，遊戲、盤點、建置與驗證均在 Docker 執行。
 
 必要輸入與依賴：
 
@@ -81,12 +81,27 @@ bash tools/research.sh audit
 
 `test` 檢查相關核心套件。`audit` 核對已保存的原版流程收據與來源完整性，須先具備研究紀錄所列的本機收據；首次啟動輸出不能取代完整存退讀驗證。
 
+Noto 前端的建置與驗證入口：
+
+```bash
+bash tools/player.sh dependencies
+bash tools/player.sh assets
+bash tools/player.sh build
+bash tools/player.sh test
+EIGHTSWORD_GUI_CYCLES=1000 bash tools/player.sh gui-check noto-check
+```
+
+`dependencies` 僅在下載鎖定版依賴時開放容器網路，不掛入原版資料。`assets` 讀取上述 Noto Black 字型與固定版本 PAM，製作本機字型素材；已有輸出便停止。`gui-check` 在 Xvfb 真正操作視窗並保存畫面與連續幀，不是互動啟動命令。名稱須未使用，收據在 `workplace/player/gui/<名稱>/`；此處的 cycles 值是診斷設定，尚未定為正式執行速度。前端目前有明顯效能限制，不能以設定的 30 TPS 當成實測幀率。
+
+覆繪規格、核心觀測補丁、狀態隔離及未驗範圍見 [003：Noto 執行期文字覆繪](docs/spec/003-noto-runtime-overlay.md)。字型素材、原版截圖與機器快照均留本機。
+
 ## 文件與權利
 
 - [AGENTS.md](AGENTS.md)：工作規則與索引。
 - [CONTEXT.md](CONTEXT.md)：唯一目前狀態表與下一步。
 - [RESEARCH-LOG.md](RESEARCH-LOG.md)：來源、工具、原版流程與驗證證據。
 - [PAM 字碼與字模規格](docs/spec/002-pam-font-catalog.md)：636 字對照、字型製作入口與限定驗收。
+- [執行期文字覆繪規格](docs/spec/003-noto-runtime-overlay.md)：實際繪字、顯示頁搬移與開發用前端驗證。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 
-自有程式的授權依 [AGENTS.md](AGENTS.md#10-docker文件與交付)指定的 RRSAL-1.0 契約；第三方元件及字型保留各自授權。原版遊戲、手冊及衍生素材的權利不因轉檔或重製而改變。本專案為獨立保存與重製工作，未宣稱與原作者或發行商有隸屬關係。
+自有程式採 [RRSAL-1.0 source-available 授權](LICENSE)：非商業使用免費，允許實況與展示，商業使用另洽。此授權不涵蓋原版素材，第三方元件及字型保留各自授權。原版遊戲、手冊及衍生素材的權利不因轉檔或重製而改變。本專案為獨立保存與重製工作，未宣稱與原作者或發行商有隸屬關係。

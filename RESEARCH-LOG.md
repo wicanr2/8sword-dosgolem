@@ -139,3 +139,18 @@ HD 畫風草稿及這份字型樣張均維持本機研究用途。圖像與文�
 - 同一次正常 F1 輸入進入人物頁，未使用記憶體注入或直接進入函式；畫面可見密集底紋，尚未取得原版輔助基準確認其成因，不列為人物頁畫面正確的驗收。原字串包含半形空格與冒號，例如檔案偏移 `0x1F082` 的「等    級 :」；來源順序及空格須保留作排版依據。ASCII 繪字、顯示頁、底圖還原與動態文字失效仍須建立覆繪規格，不由這份來源解析推論完成。
 
 可重生入口為 `bash tools/research.sh font-source`，輸出與 SHA 見 002。限定驗收只涵蓋本份 PAM 字集解析、Noto 字集製作與七項指令點陣，其他程式／場景及正式 UI 不在完成聲明內。
+
+## 2026-10-23：執行期覆繪、載入段勘誤與正常視窗
+
+來源沿用前述 `PAM.AY` 與 `PREDELLA.EXE` SHA-256，字型為 TC Black 900。工具為 Go 1.24.13、dosgolem `f79eab6d` 加本案兩份補丁；VGA 觀測補丁 SHA-256 為 `c5d9443c76d469c159aa94657558bd989260ca86b23bc5afa1034d451fb110c1`。完整位址空間、繪字指令及等級見 [003](docs/spec/003-noto-runtime-overlay.md)。下列載入與有限路段結果為已證實，沒有延伸到未走畫面。
+
+- 勘誤：先前「EXEC PAM」的敘述未區分 overlay 與子行程。`text-runtime-bind/` 的正常執行與核心 `loadOverlay` 契約證明原版使用 AX=4B03，PAM 的 Seg／Reloc 均為 `0110`。ExecRecord.PSP 在這個紀錄代表 overlay 載入段，不能加 `10h`。第一版掛勾加錯偏移，來源防護拒絕字碼表並回退原版；當時的相同狀態檔只能證明該回退路徑，不能當成 Noto 成功。規格退回 DRAFT，改用 OverlayLoad 後審查回 READY，再重跑。
+- `text-runtime-r3/` 從正常片頭快照續行，記錄 667 個文字事件及 VGA 寫入者；`text-runtime-r2/` 記錄正常 F1／返回／F7／移動。這些是掛勾取證，不代替後續冷啟動前端驗收。快照的 host root 需要明示映射，第一輪路徑缺失已歸類為驗證環境問題。
+- 同源 DOSBox-X 經正常選單走到 F1，`aux-character/character.png` 亦有密集底紋。這足以推翻「僅憑底紋即判定 dosgolem 出錯」的假說；未宣稱底紋的原始美術設計意圖，也未把 DOSBox 圖當成 dosgolem 收據。
+- `tools/prepare-hd-assets.py` 生成 731 字，保留 636 個來源字碼及 95 個 ASCII。本機 `workplace/player/assets/font.png` SHA-256 為 `31f7d0dee25661b35afbd94f9cf8f17a81d3fec612ce5ed34ae4091313a396ad`；manifest 為 `beb34794c7915a29e09a236eabb3807fd0cf1d6891493449a697d5e3c2e19741`。本輪字庫與原版畫面均不入 Git。
+- 目前正式程式從原版入口冷啟動，沒有載入快照、直接進入函式或注入記憶體。`workplace/player/replays/noto-current-hd-r1/` 與 `noto-current-native-r1/` 同一組 BIOS／IRQ1 輸入跑到 250000000 步，各取樣 249 幀。HD 實際掛入全形 194 次、半形 427 次，缺字與追蹤錯誤為 0；最終畫面不同，完整客體狀態檔相同，SHA-256 為 `4b55d17998e2fa05176fdf9c2a4deab2321c15d6fd79164d88bfde82d82c64ac`。31 個 DOS 工作檔、輸入序列與載入事件相同，核對入口為 [audit-player.py](tools/audit-player.py)，收據 `noto-current-isolation-r1.json`。
+- `workplace/player/gui/noto-clock1000-r1/` 經 XTEST 實際視窗輸入，原版顯示與音效選擇、Esc 略過片頭、主選單、新遊戲、地圖、F1、返回、F7 開關、移動及再次 F1 均完成。11 張圖片由 X11 GetImage 擷取，沒有用離線合成圖冒充視窗。字墨與狀態觀測不控制原版場景。
+- 每次 Draw 保存無損列差分。獨立解碼器 [inspect-presentation.py](tools/inspect-presentation.py) 核對 194 幀及 29 次畫面改變，串流 SHA-256 為 `d20ac7115f46e23511a9a14ee2c7a78bfe2839c269fa7b35beef70881dfa3b43`，幀序連續、列數合法、關閉時幀數相符。已檢視全部改變畫面的縮圖及人物頁實圖，返回未見整頁舊字殘留；縮圖不構成所有中間字墨與每字安全矩形的全面證明。
+- 視窗仍慢，未達交付：cycles 20000 的 profile 路段約 2.64 FPS；改成診斷 cycles 1000 後完成輸入鏈，但末段仍約 2.62 FPS，模擬約 7–10 ms、合成約 36–70 ms。單輪 profile 沒涵蓋整個 Draw／記錄成本，不能據此斷言完整瓶頸。初次 profile 的 Down／Enter 落在同一 Update，驗證腳本改成等待按下與放開各被處理，再送下一鍵；乾淨重跑成功，效能限制仍保留。
+
+以上只完成 Noto 執行期實作與有限路段。003 仍為 READY；新視窗真正存退讀、缺損資產實際回退、完整連續字墨驗收及效能尚未結案。古風 HD 圖像與 HD 音樂尚未接入，不以字型接入宣稱整體 HD 完成。

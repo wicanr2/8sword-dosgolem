@@ -1,0 +1,130 @@
+diff --git a/oracle/presentation_observe.go b/oracle/presentation_observe.go
+new file mode 100644
+index 0000000..700a986
+--- /dev/null
++++ b/oracle/presentation_observe.go
+@@ -0,0 +1,50 @@
++package oracle
++
++import (
++	"github.com/wicanr2/dosgolem/internal/machine"
++)
++
++// VideoWrite is a value-only pre-write observation. It neither changes nor
++// replaces the guest write. See 8sword spec 003 and machine.VideoWrite.
++type VideoWrite = machine.VideoWrite
++type VideoModeChange = machine.ModeChange
++
++func (o *Oracle) ObserveVideoWrites(fn func(VideoWrite))           { o.m.ObserveVideoWrites(fn) }
++func (o *Oracle) ObserveVideoModeChanges(fn func(VideoModeChange)) { o.m.ObserveModeChanges(fn) }
++
++// PlanarDisplay is a read-only copy of the current planar presentation state.
++// Palette already includes the VGA attribute-controller and DAC-mask mapping.
++type PlanarDisplay struct {
++	Width, Height      int
++	Start              uint32
++	Pitch, LineCompare int
++	Palette            [16][3]uint8
++}
++
++func (o *Oracle) PlanarDisplay() (PlanarDisplay, bool) {
++	w, h := o.m.PlanarSize()
++	if w == 0 || h == 0 {
++		return PlanarDisplay{}, false
++	}
++	out := PlanarDisplay{Width: w, Height: h, Start: o.m.VGA.DisplayStart(), Pitch: o.m.VGA.Pitch(w), LineCompare: o.m.VGA.LineCompare()}
++	pal := o.m.Palette()
++	for i := range out.Palette {
++		out.Palette[i] = pal[o.m.VGA.DACIndex(uint8(i))]
++	}
++	return out, true
++}
++
++// PlanarBytePixels reads a physical byte in all four VGA planes without
++// touching the CPU-visible read latch. Off-screen pages are valid inputs.
++func (o *Oracle) PlanarBytePixels(offset uint32) (out [8]uint8, ok bool) {
++	if offset >= machine.PlaneSize {
++		return out, false
++	}
++	for p := 0; p < 4; p++ {
++		v := o.m.VGA.Planes[p][offset]
++		for bit := 0; bit < 8; bit++ {
++			out[bit] |= ((v >> uint(7-bit)) & 1) << uint(p)
++		}
++	}
++	return out, true
++}
+diff --git a/oracle/presentation_observe_test.go b/oracle/presentation_observe_test.go
+new file mode 100644
+index 0000000..aadd783
+--- /dev/null
++++ b/oracle/presentation_observe_test.go
+@@ -0,0 +1,68 @@
++package oracle
++
++import (
++	"bytes"
++	"github.com/wicanr2/dosgolem/internal/machine"
++	"testing"
++)
++
++func TestPresentationObservationDoesNotMutateState(t *testing.T) {
++	m := machine.New()
++	o := &Oracle{m: m}
++	var before, after bytes.Buffer
++	if err := m.SaveState(&before); err != nil {
++		t.Fatal(err)
++	}
++	o.ObserveVideoWrites(func(VideoWrite) {})
++	o.ObserveVideoModeChanges(func(VideoModeChange) {})
++	if _, ok := o.PlanarDisplay(); ok {
++		t.Fatal("text mode reported as planar")
++	}
++	if err := m.SaveState(&after); err != nil {
++		t.Fatal(err)
++	}
++	if !bytes.Equal(before.Bytes(), after.Bytes()) {
++		t.Fatal("observations changed guest state")
++	}
++}
++
++func TestPresentationCallbacksAndVisiblePage(t *testing.T) {
++	m := machine.New()
++	o := &Oracle{m: m}
++	modes := 0
++	writes := 0
++	o.ObserveVideoModeChanges(func(v VideoModeChange) {
++		if v.Mode != 0x0e {
++			t.Fatal(v)
++		}
++		modes++
++	})
++	m.SetVideoMode(0x0e)
++	m.SetBIOSPlanarPage(1)
++	o.ObserveVideoWrites(func(v VideoWrite) {
++		writes++
++		if v.Offset != 0x4000 {
++			t.Fatal(v)
++		}
++	})
++	m.Write8(0xa4000, 0x55)
++	m.Write8(0xa4000, 0x55)
++	o.ObserveVideoWrites(nil)
++	m.Write8(0xa4000, 0x55)
++	if writes != 2 || modes != 1 {
++		t.Fatalf("writes=%d modes=%d", writes, modes)
++	}
++	p, ok := o.PlanarDisplay()
++	if !ok || p.Start != 0x4000 || p.Pitch != 80 || p.Width != 640 || p.Height != 200 {
++		t.Fatal(p, ok)
++	}
++	for c := 0; c < 16; c++ {
++		m.PlanarPutPixel(0x4000+uint32(c/8), uint8(0x80>>uint(c%8)), uint8(c))
++	}
++	_, _, rgb := o.ScreenRGB()
++	for c := 0; c < 16; c++ {
++		if !bytes.Equal(rgb[c*3:c*3+3], p.Palette[c][:]) {
++			t.Fatalf("palette %d: %v != %v", c, rgb[c*3:c*3+3], p.Palette[c])
++		}
++	}
++}

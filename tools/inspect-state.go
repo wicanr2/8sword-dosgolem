@@ -1,4 +1,7 @@
-// 研究工具：在固定 dosgolem 模組的 cmd/eightsword-inspect/ 下編譯。
+//go:build dosgolem_research
+
+// 研究工具：複製到固定 dosgolem 模組的 cmd/eightsword-inspect/，以
+// go build -tags dosgolem_research ./cmd/eightsword-inspect 編譯。
 // 唯讀檢視原版快照的顯示頁；不修改遊戲 RAM、指令或顯示起點。
 package main
 

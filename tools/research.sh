@@ -47,11 +47,18 @@ case "${1:-}" in
     test "$(git -C "$task_work/dosgolem" rev-parse HEAD)" = "$dosgolem_rev"
     if ! git -C "$task_work/dosgolem" diff --quiet HEAD -- . \
       ':(exclude)internal/machine/bda.go' ':(exclude)internal/machine/bios_page.go' \
-      ':(exclude)internal/dos/bios.go' ':(exclude)internal/dos/planar_bios_page_test.go'; then
+      ':(exclude)internal/dos/bios.go' ':(exclude)internal/dos/planar_bios_page_test.go' \
+      ':(exclude)oracle/presentation_observe.go' ':(exclude)oracle/presentation_observe_test.go'; then
       printf '%s\n' 'dosgolem 副本有補丁範圍外的變更，先核對來源。' >&2
       exit 1
     fi
     task_patch="$task_root/tools/dosgolem-planar-pages.patch"
+    if git -C "$task_work/dosgolem" apply --check "$task_patch" 2>/dev/null; then
+      git -C "$task_work/dosgolem" apply "$task_patch"
+    else
+      git -C "$task_work/dosgolem" apply --reverse --check "$task_patch"
+    fi
+    task_patch="$task_root/tools/dosgolem-presentation-observe.patch"
     if git -C "$task_work/dosgolem" apply --check "$task_patch" 2>/dev/null; then
       git -C "$task_work/dosgolem" apply "$task_patch"
     else
@@ -64,7 +71,7 @@ case "${1:-}" in
       --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
       --mount "type=bind,src=$task_work,dst=/work" \
       -w /source -e GOCACHE=/work/gocache -e GOMODCACHE=/work/gomodcache -e HOME=/tmp \
-      "$go_image" bash -c 'set -e; sha256sum -c /tools/dosgolem-page-files.sha256; go build -mod=readonly -o /work/probe-pages ./cmd/probe'
+      "$go_image" bash -c 'set -e; sha256sum -c /tools/dosgolem-page-files.sha256; sha256sum -c /tools/dosgolem-presentation-files.sha256; go build -mod=readonly -o /work/probe-pages ./cmd/probe'
     ;;
   probe)
     shift
