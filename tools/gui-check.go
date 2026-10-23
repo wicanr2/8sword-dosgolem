@@ -182,10 +182,11 @@ func (d *driver) quit() {
 
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
-	flow := flag.String("flow", "inspect", "inspect, story, story-skip, story-fallback, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
+	flow := flag.String("flow", "inspect", "inspect, captions, captions-fallback, story, story-skip, story-fallback, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
 	showStory := flag.Bool("intro-story", false, "wait for actual Noto story before Esc, including save/reload flows")
+	showCaptions := flag.Bool("intro-captions", false, "wait for actual museum Noto before Esc, including save/reload flows")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
 	flag.Parse()
@@ -307,6 +308,49 @@ func main() {
 		})
 		d.shot("music-00-intro")
 	}
+	if *flow == "captions" || *showCaptions {
+		sources := []uint16{0x42, 0x6a, 0x92, 0xba}
+		if *showCaptions {
+			sources = sources[:1]
+		}
+		for _, source := range sources {
+			source := source
+			d.wait(fmt.Sprintf("製作名單 %04X 已真正呈現", source), 80, func(s map[string]any) bool {
+				return s["presented_intro"] == "captions-noto" && s["presented_caption_source"] == float64(source)
+			})
+			d.shot(fmt.Sprintf("captions-%04x", source))
+		}
+		if *flow == "captions" {
+			d.wait("博物館後續動畫與五頁故事自然結束", 180, func(s map[string]any) bool { return s["presented_scene"] == "main-menu" })
+		}
+	}
+	if *flow == "captions-fallback" {
+		if *nativeFrame == "" {
+			panic("caption fallback requires independent native caption PNG")
+		}
+		f, err := os.Open(*nativeFrame)
+		check(err)
+		native, err := png.Decode(f)
+		check(err)
+		check(f.Close())
+		d.wait("真實壞 atlas 回原版製作名單", 80, func(s map[string]any) bool {
+			if s["hd"] != true || s["asset_error"] != "" || s["graphics_error"] != "" || s["intro_story"].(map[string]any)["load_error"] != "故事字型圖片 SHA-256 不符" {
+				return false
+			}
+			im := d.grab()
+			for y := im.Bounds().Dy() * 160 / 200; y < im.Bounds().Dy()*175/200; y++ {
+				for x := 0; x < im.Bounds().Dx(); x++ {
+					r, g, b, _ := native.At(x*640/im.Bounds().Dx(), y*200/im.Bounds().Dy()).RGBA()
+					at := y*im.Stride + x*4
+					if im.Pix[at] != uint8(r>>8) || im.Pix[at+1] != uint8(g>>8) || im.Pix[at+2] != uint8(b>>8) {
+						return false
+					}
+				}
+			}
+			return true
+		})
+		d.shot("captions-native-fallback")
+	}
 	if *flow == "story" || *flow == "story-skip" || *showStory {
 		pages := 5
 		if *flow == "story-skip" || *showStory {
@@ -375,7 +419,7 @@ func main() {
 		}
 		d.shot("story-native-fallback")
 	}
-	if *flow != "story" {
+	if *flow != "story" && *flow != "captions" {
 		d.press(9)
 	} // 原版 Esc，未直接進入 PAM。
 	if *flow == "fallback" || *flow == "art-fallback" {

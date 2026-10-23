@@ -52,33 +52,34 @@ func (q *pcmQueue) push(samples []int16) {
 }
 
 type game struct {
-	engine                                   *eightsword.Engine
-	texture                                  *ebiten.Image
-	frame                                    *image.RGBA
-	capture                                  string
-	updates, maxUpdates                      int
-	cycles                                   uint64
-	pcm                                      *pcmQueue
-	audio                                    *audio.Player
-	audioCapture                             *os.File
-	audioFrames                              uint64
-	recorder                                 *eightsword.FrameRecorder
-	recordErr                                error
-	profile                                  map[string]float64
-	recordMS                                 float64
-	draws                                    uint64
-	presentedScene                           string
-	frameConsole                             string
-	presentedConsole                         string
-	frameIntro                               string
-	presentedIntro                           string
-	frameStoryCalls, frameStoryPages         uint64
-	presentedStoryCalls, presentedStoryPages uint64
-	introDraw                                *os.File
-	recordedFrame                            *image.RGBA
-	stageTotals                              map[string]*stageTiming
-	started                                  time.Time
-	startCycles                              uint64
+	engine                                     *eightsword.Engine
+	texture                                    *ebiten.Image
+	frame                                      *image.RGBA
+	capture                                    string
+	updates, maxUpdates                        int
+	cycles                                     uint64
+	pcm                                        *pcmQueue
+	audio                                      *audio.Player
+	audioCapture                               *os.File
+	audioFrames                                uint64
+	recorder                                   *eightsword.FrameRecorder
+	recordErr                                  error
+	profile                                    map[string]float64
+	recordMS                                   float64
+	draws                                      uint64
+	presentedScene                             string
+	frameConsole                               string
+	presentedConsole                           string
+	frameIntro                                 string
+	presentedIntro                             string
+	frameStoryCalls, frameStoryPages           uint64
+	frameCaptionSource, presentedCaptionSource uint16
+	presentedStoryCalls, presentedStoryPages   uint64
+	introDraw                                  *os.File
+	recordedFrame                              *image.RGBA
+	stageTotals                                map[string]*stageTiming
+	started                                    time.Time
+	startCycles                                uint64
 }
 
 type stageTiming struct {
@@ -112,6 +113,7 @@ func (g *game) status(closed bool) map[string]any {
 	status["presented_console"] = g.presentedConsole
 	status["presented_intro"] = g.presentedIntro
 	status["presented_story_calls"], status["presented_story_pages"] = g.presentedStoryCalls, g.presentedStoryPages
+	status["presented_caption_source"] = g.presentedCaptionSource
 	status["stage_totals"] = g.stageTotals
 	if g.audioCapture != nil {
 		status["captured_audio_frames"] = g.audioFrames
@@ -190,6 +192,10 @@ func (g *game) Update() error {
 	g.frame = g.engine.Frame()
 	g.frameConsole = g.engine.ConsoleStage()
 	g.frameIntro = g.engine.IntroFrameStage(g.frame)
+	g.frameCaptionSource = 0
+	if g.engine.Captions != nil && g.frameIntro == "captions-noto" {
+		g.frameCaptionSource = g.engine.Captions.FrameSource(g.frame)
+	}
 	g.frameStoryCalls, g.frameStoryPages = 0, 0
 	if g.engine.Story != nil && g.frameIntro != "" {
 		g.frameStoryCalls, g.frameStoryPages = g.engine.Story.FrameInfo(g.frame)
@@ -205,7 +211,7 @@ func (g *game) Update() error {
 	g.observe("upload", uploaded.Sub(composed))
 	g.profile = map[string]float64{"advance_ms": float64(advanced.Sub(started).Microseconds()) / 1000, "audio_ms": float64(audioDone.Sub(advanced).Microseconds()) / 1000, "compose_ms": float64(composed.Sub(audioDone).Microseconds()) / 1000, "upload_ms": float64(uploaded.Sub(composed).Microseconds()) / 1000, "previous_record_ms": g.recordMS}
 	g.updates++
-	if g.capture != "" && g.updates%5 == 0 {
+	if g.capture != "" && (g.updates%5 == 0 || g.frameCaptionSource != 0) {
 		status := g.status(false)
 		b, err := json.MarshalIndent(status, "", "  ")
 		if err != nil {
@@ -242,9 +248,10 @@ func (g *game) Draw(screen *ebiten.Image) {
 	g.draws++
 	g.presentedConsole = g.frameConsole
 	g.presentedIntro = g.frameIntro
+	g.presentedCaptionSource = g.frameCaptionSource
 	g.presentedStoryCalls, g.presentedStoryPages = g.frameStoryCalls, g.frameStoryPages
 	if g.introDraw != nil {
-		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages}); err != nil {
+		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource}); err != nil {
 			g.recordErr = err
 		}
 	}

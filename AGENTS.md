@@ -18,7 +18,7 @@
 
 啟動文字規格：[010：啟動選項的 DOS 文字呈現](docs/spec/010-boot-console-text.md)，兩頁限定 CONFORMED；以實際 DOS 輸出修正漏畫的 VGA／音效提示，保留原文與鍵盤流程，已驗無效輸入、實際呈現、原字模回退與存退讀。
 
-片頭標題規格：[011：片頭標題的 Noto 呈現](docs/spec/011-intro-title-noto.md)，標題四字限定 CONFORMED；已驗正常轉場、Esc、原版回退與真正存退讀，其他片頭美術及故事捲文仍待接續。
+片頭標題規格：[011：片頭標題的 Noto 呈現](docs/spec/011-intro-title-noto.md)，標題四字限定 CONFORMED；已驗正常轉場、Esc、原版回退與真正存退讀，其餘開場文字另由 012／013 定義，其他片頭美術仍待接續。
 
 片頭字圖工具：[prepare-hd-intro.py](tools/prepare-hd-intro.py)，透過 `bash tools/player.sh intro-assets <新名稱> <基底名稱>` 在既有 Pillow Docker 生成真實 Noto 標題並保存原組檔案。載入器／只讀呈現見 [intro_title.go](internal/eightsword/intro_title.go)，原版圖片與新字圖留本機。視窗工具支援 `intro`、`intro-skip`、`intro-fallback`；存退讀可設 `EIGHTSWORD_GUI_SHOW_INTRO=1`，參數與限制見 011。
 
@@ -33,6 +33,10 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 執行期 HD 規格：[003：Noto 文字覆繪](docs/spec/003-noto-runtime-overlay.md)，已完成參數與 VGA 搬移證據審查，READY 授權實作；正常選單、人物頁、返回及狀態隔離是必要驗收。
 
 開場直排故事規格：[012：開場故事直排文字](docs/spec/012-intro-story-noto.md)，來源與逐字順序已由正常冷啟動擷取；實作與驗收狀態以該規格為準。
+
+博物館字幕規格：[013：博物館製作名單](docs/spec/013-intro-museum-captions.md)，四組來源與五次背景頁繪製已核對，接入狀態以該規格為準。
+
+字幕工具：[只讀呈現](internal/eightsword/intro_captions.go)、[正常來源測試](internal/eightsword/intro_captions_test.go)、[逐幀獨立核對](tools/inspect-captions.py)。重用 012 字集，資產及原文留本機。
 
 故事工具入口：[字集匯入](tools/prepare-hd-story.py)、[只讀覆繪](internal/eightsword/intro_story.go)、[真實來源測試](internal/eightsword/intro_story_test.go)、[逐幀獨立重建](tools/inspect-story.py)。命令見 README，原文與字型資產留在 workplace。
 

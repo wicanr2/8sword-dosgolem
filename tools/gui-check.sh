@@ -24,6 +24,7 @@ intro_flags=()
 if [[ "${EIGHTSWORD_GUI_ACTOR_WALK:-0}" == 1 ]]; then actor_flags=(-actor-walk); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_INTRO:-0}" == 1 ]]; then intro_flags=(-intro-title); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_STORY:-0}" == 1 ]]; then intro_flags+=(-intro-story); fi
+if [[ "${EIGHTSWORD_GUI_SHOW_CAPTIONS:-0}" == 1 ]]; then intro_flags+=(-intro-captions); fi
 if [[ "${EIGHTSWORD_GUI_RECORD:-1}" == 1 ]]; then record_flags=(-record); fi
 if [[ "${EIGHTSWORD_GUI_RECORD_AUDIO:-0}" == 1 ]]; then audio_flags=(-record-audio); fi
 phases=(inspect)
@@ -38,6 +39,8 @@ if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro ]]; then phases=(intro); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro-skip ]]; then phases=(intro-skip); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro-fallback ]]; then phases=(intro-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == story ]]; then phases=(story); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == captions ]]; then phases=(captions); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == captions-fallback ]]; then phases=(captions-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == story-skip ]]; then phases=(story-skip); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == story-fallback ]]; then phases=(story-fallback); fi
 for phase in "${phases[@]}"; do

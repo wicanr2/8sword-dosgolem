@@ -33,6 +33,7 @@ type Engine struct {
 	IntroError    string
 	Story         *IntroStory
 	StoryError    string
+	Captions      *IntroCaptions
 }
 type InputEvent struct {
 	Step  uint64
@@ -98,7 +99,8 @@ func Open(opt Options) (*Engine, error) {
 		if err != nil {
 			e.StoryError = err.Error()
 		}
-		if (e.Intro != nil || e.Story != nil) && e.Tracker != nil {
+		e.Captions = newIntroCaptions(o, e.Story)
+		if (e.Intro != nil || e.Story != nil || e.Captions != nil) && e.Tracker != nil {
 			// The core has one callback per event, shared by both presenters.
 			o.ObserveVideoWrites(func(v oracle.VideoWrite) {
 				e.Tracker.write(v)
@@ -108,6 +110,9 @@ func Open(opt Options) (*Engine, error) {
 				if e.Story != nil {
 					e.Story.observeWrite(v)
 				}
+				if e.Captions != nil {
+					e.Captions.observeWrite(v)
+				}
 			})
 			o.ObserveVideoModeChanges(func(oracle.VideoModeChange) {
 				e.Tracker.clear()
@@ -116,6 +121,9 @@ func Open(opt Options) (*Engine, error) {
 				}
 				if e.Story != nil {
 					e.Story.invalidate()
+				}
+				if e.Captions != nil {
+					e.Captions.invalidate()
 				}
 			})
 		}
@@ -167,6 +175,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		if e.Story != nil {
 			e.Story.Bind()
 		}
+		if e.Captions != nil {
+			e.Captions.Bind()
+		}
 		n -= count
 	}
 	return nil
@@ -203,6 +214,9 @@ func (e *Engine) Advance(n uint64) error {
 		}
 		if e.Story != nil {
 			e.Story.Bind()
+		}
+		if e.Captions != nil {
+			e.Captions.Bind()
 		}
 		n -= count
 	}
@@ -280,7 +294,7 @@ func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
 	if !e.HD || e.IntroStage() == "" {
 		return frame
 	}
-	if (e.Intro != nil && e.Intro.active) || (e.Story != nil && e.Story.active) {
+	if (e.Intro != nil && e.Intro.active) || (e.Story != nil && e.Story.active) || (e.Captions != nil && e.Captions.Stage() != "") {
 		// Tracker owns this cached frame. Intro overlays must not mutate it.
 		copyFrame := image.NewRGBA(frame.Bounds())
 		copy(copyFrame.Pix, frame.Pix)
@@ -292,9 +306,15 @@ func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
 	if e.Story != nil {
 		frame = e.Story.Compose(frame)
 	}
+	if e.Captions != nil {
+		frame = e.Captions.Compose(frame)
+	}
 	return frame
 }
 func (e *Engine) IntroStage() string {
+	if e.Captions != nil && e.HD && e.Captions.Stage() != "" {
+		return e.Captions.Stage()
+	}
 	if e.Story != nil && e.HD && e.Story.Stage() != "" {
 		return e.Story.Stage()
 	}
@@ -304,6 +324,9 @@ func (e *Engine) IntroStage() string {
 	return ""
 }
 func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
+	if e.Captions != nil && e.HD && e.Captions.FrameSource(frame) != 0 {
+		return "captions-noto"
+	}
 	if e.Story != nil && e.HD && frame != nil && (frame == e.Story.last || frame == e.Story.hold) {
 		return e.Story.Stage()
 	}
@@ -327,6 +350,9 @@ func (e *Engine) Status() map[string]any {
 		story["stage"] = e.Story.Stage()
 	}
 	out["intro_story"] = story
+	if e.Captions != nil {
+		out["intro_captions"] = map[string]any{"stage": e.Captions.Stage(), "stats": e.Captions.Stats}
+	}
 	if e.Tracker != nil {
 		out["text"] = e.Tracker.Stats
 		out["scene"] = e.Tracker.Scene

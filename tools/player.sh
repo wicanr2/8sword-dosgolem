@@ -224,6 +224,7 @@ case "${1:-}" in
     task_out="$task_player/gui/$task_name"
     test ! -e "$task_out"; mkdir -p "$task_out"
     task_limit=220s
+    if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == captions ]]; then task_limit=360s; fi
     if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then task_limit=420s; fi
     exec timeout "$task_limit" docker run --rm --name "8sword-gui-$task_name" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
@@ -240,6 +241,7 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_ACTOR_WALK="${EIGHTSWORD_GUI_ACTOR_WALK:-0}" \
       -e EIGHTSWORD_GUI_SHOW_INTRO="${EIGHTSWORD_GUI_SHOW_INTRO:-0}" \
       -e EIGHTSWORD_GUI_SHOW_STORY="${EIGHTSWORD_GUI_SHOW_STORY:-0}" \
+      -e EIGHTSWORD_GUI_SHOW_CAPTIONS="${EIGHTSWORD_GUI_SHOW_CAPTIONS:-0}" \
       -e EIGHTSWORD_GUI_ASSETS="${EIGHTSWORD_GUI_ASSETS:-/assets}" \
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh

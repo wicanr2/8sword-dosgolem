@@ -1,6 +1,6 @@
 # 目前狀態
 
-核對日期：2026-10-23。工作規則：[AGENTS.md](AGENTS.md)。歷程：[WORKLOG.md](WORKLOG.md)。
+核對日期：2026-10-24。工作規則：[AGENTS.md](AGENTS.md)。歷程：[WORKLOG.md](WORKLOG.md)。
 
 | 面向 | 現況與證據 |
 |---|---|
@@ -8,7 +8,7 @@
 | 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900，〈幻〉配樂已選 B 撥弦／長笛方向。平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 目前程式包含 008 音樂事件、009 片頭交接、010 啟動文字、011 Noto 標題及 012 直排故事，建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
+| 文件同步 | 目前程式包含 008 音樂事件、009 片頭交接、010 啟動文字、011 Noto 標題、012 直排故事及 013 製作名單，建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
 | Docker | 沿用既有研究／Go／影像及 IDA 映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；片頭後以 INT 21h AX=4B03 覆蓋載入 `PAM.AY`，Seg／Reloc 都是 0110，沒有新的子行程 PSP。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |
@@ -19,7 +19,10 @@
 | 標題同狀態與回退 | `graphics-first/intro-r1/final-audit-r6.json`：現行 HD 與原書法標題基準的完整 state 同 SHA `5e8b6679…9514`，28 個工作檔、輸入、I/O、音樂事件及整段 PCM 相同，十三張後續 PNG 相同。真實壞字圖的十四張 PNG 亦同基準，Noto／圖像／音樂保留。原標題基準其餘畫面沿用既有 HD，不稱純原版。現行正常視窗 218 幀／28 次改變、標題 Esc 327／23、壞圖回退 255／24 均已解碼及看圖，來源見 011；發行商識別及其餘美術仍原版，故事文字另見 012 |
 | 開場故事 | [012](docs/spec/012-intro-story-noto.md)五頁直排文字限定 CONFORMED。正常來源 888 次出字、785 次 CJK 選字與字模皆核對。TIT6X 為背景，完整原版緩衝區已同獨立 parser。`assets-painted-r11` 保留 r10 全部 53 檔，另加獨立 448 字 atlas、清單及來源，共 56 檔；重建相同，來源與素材留本機 |
 | 故事隔離與視窗 | `graphics-first/story-r1/runtime-audit-r1.json`：r10／r11／壞 atlas 完整 state 同 SHA `ce429bca…49e5`，12 個工作檔、原版呼叫及整段 PCM 相同。`intro-story-visible-r1/story` 的 493 幀／129 次改變已解碼及檢視，五頁 68 個真正故事 Draw 由獨立工具逐 RGBA byte 重建相同。真實故障視窗 283／71，原字與獨立背景核對，其餘 HD 保留 |
-| 故事後存讀 | `intro-story-save-r1` 兩個冷啟動皆先呈現故事，再普通 Esc。323／308 幀、81／82 次改變已解碼與檢視；12 個故事 Draw 另逐像素相同。正常 F7 存退讀的 2987 bytes 同 SHA `29dd62ae…2359`，read step 55627473，快照只作結束後 0 指令檢視。4755 個差異像素仍限主角動畫；故事無逾時或追蹤錯誤 |
+| 故事存讀基準 | `intro-story-save-r1` 兩個冷啟動皆先呈現故事，再普通 Esc。323／308 幀、81／82 次改變已解碼與檢視；12 個故事 Draw 另逐像素相同。正常 F7 存退讀的 2987 bytes 同 SHA `29dd62ae…2359`，read step 55627473，快照只作結束後 0 指令檢視。4755 個差異像素仍限主角動畫；故事無逾時或追蹤錯誤 |
+| 博物館製作名單 | [013](docs/spec/013-intro-museum-captions.md)四組文字限定 CONFORMED。正常五次繪字及兩個 VGA 實體頁已核對，字幕按原版翻頁顯示，保留原文、空格、青色及位置；重用 r11 的 448 字集，56 檔沒有改變。字庫、背景及清頁 helper 不重開相同 RE |
+| 名單同狀態與視窗 | `graphics-first/captions-r1/runtime-audit-r1.json`：三組完整 state 同 SHA `ce429bca…49e5`，12 工作檔、事件及整段 PCM 相同；五張 HD 圖只在字幕帶內改變，故障五張同原字。`intro-captions-visible-r2/captions` 的 494 幀／147 次改變已解碼及檢視，42 個字幕 Draw 逐 RGBA byte 同獨立重建，四組皆可見，無原字露出。r1 只因完整後續片頭超過 35 秒驗證等待而停止，不作通過收據 |
+| 名單後存讀與回退 | `intro-captions-save-r2` 兩次冷啟動先呈現名單，再普通 Esc、F7 存退讀。422／151 幀、48／23 次改變已解碼及檢視；四個字幕 Draw 另逐像素吻合。2987 bytes 與 RAM 同 SHA `29dd62ae…2359`，read step 24808863；4755 像素差異限主角動畫。壞 atlas 的實際視窗回原字，186 幀／29 次改變已檢視。最終三項測試另涵蓋標題階段提早 Esc，59.443 秒通過；最終 r4 標題 Esc 視窗 190 幀／20 次改變亦已檢視，名單請求零、正常退休且 PAM 字墨保持 |
 | 正常原版路段 | 研究入口及新視窗皆已冷啟動、VGA／AdLib、新遊戲、F1、返回、移動、F7 存檔、回 DOS，再冷啟動繼續。視窗透過 XTEST 真正按鍵，實際呈現頁面另由所有權與 Draw 收據確認；遇到的攻擊確認經原版選「否」後返回，未驗亂數或戰鬥規則 |
 | 真正存讀檔 | 原版寫出的 2987-byte 進度檔，讀回 RAM 後逐 byte 相同；已回到保存的鏡頭與主角位置。動畫相位有差異，未稱整幅畫面一致 |
 | 音樂來源 | 十一組 M／S 檔符合 AdLib MUS／SND 形狀，已完整解析資料邊界與音符時刻。兩個檔頭 command_count 與解析事件數不同，保留原值，不作有效事件數。來源清單與雜湊在 `workplace/probe-20261023/music-first/hd-audition-r1/source-catalog.json` |
@@ -39,7 +42,7 @@
 | 地圖取圖勘誤 | 初次探針只等文字暫停，在 F5 逐列繪圖中途取圖；正式驗證改等本次位置字串 1278／1304，再等實際呈現。正常冷啟動的原版 RGB 與 HD 在中央 `(100,14)-(380,171)` 的 43960 個原生像素一致，黑色區域兩側皆有；未推定其世界地圖或探索語意。收據 `noto-more-menus-r1/map-source/native-hd-interior-audit.json` |
 | 標題存讀基準 | `workplace/player/gui/intro-title-save-r6/` 兩個冷啟動視窗都先呈現 Noto 標題，再普通 Esc、新遊戲、人物頁、移動、F7 儲存、回 DOS及繼續。392／130 幀、31／13 次改變已解碼與檢視，每個程序各 79 次標題合成，PAM 後退休，無逾時、缺字或追蹤錯誤。落地及讀回 RAM 的 2987 bytes SHA 都為 `29dd62ae…2359`，讀取 step 27085850；快照只作 0 指令檢視。4755 個差異像素限主角圖塊，動畫相位未同步；見該目錄 `save-cycle-audit.json`。本輪只回歸標題與存讀，四方向及自然遭遇沿用既有明列基準 |
 | HD 畫面 | B 古風地表、兩種建築、布旗、十二張主角動作、人物頁及金玉介面已接入；r9 保留 r8 的 53 筆底圖及十二張主角，共 65 筆 HD 對應。[004](docs/spec/004-hd-bitmap-presentation.md)、[006](docs/spec/006-static-map-objects-and-sand.md)及[007](docs/spec/007-masked-hero-animation.md)仍 READY，[005](docs/spec/005-jade-gold-interface.md)介面限定 CONFORMED。沙地已載入但未驗實景，其他角色、圖像與更廣動畫仍待處理，新素材只留本機 |
-| HD 文字 | 已接入 Noto Sans CJK TC Black 900，PAM 的 731 字包含 636 中文與 95 ASCII，片頭四字另有大字圖，故事另有獨立 448 字集。追蹤實際字墨、同值寫入失效及 VGA 頁搬移，主機合成不改 DOS。[002](docs/spec/002-pam-font-catalog.md)、[011](docs/spec/011-intro-title-noto.md)及 [012](docs/spec/012-intro-story-noto.md)各自限定 CONFORMED；[003](docs/spec/003-noto-runtime-overlay.md)仍 READY，完整文字驗收未結案 |
+| HD 文字 | 已接入 Noto Sans CJK TC Black 900，PAM 的 731 字包含 636 中文與 95 ASCII，片頭四字另有大字圖，故事另有獨立 448 字集，博物館製作名單共用這份字集。追蹤實際字墨、同值寫入失效及 VGA 頁搬移，主機合成不改 DOS。[002](docs/spec/002-pam-font-catalog.md)、[011](docs/spec/011-intro-title-noto.md)、[012](docs/spec/012-intro-story-noto.md)及 [013](docs/spec/013-intro-museum-captions.md)各自限定 CONFORMED；[003](docs/spec/003-noto-runtime-overlay.md)仍 READY，完整文字驗收未結案 |
 | 純 Noto 視窗基準 | `workplace/player/gui/noto-save-visible-r3/` 含 save／reload 兩個真正視窗程序，共 23 張正常路段截圖，包含遭遇確認選否。存檔段全形 314／半形 585 次，讀檔段 87／235 次，皆無缺字及追蹤錯誤；這份基準圖像為原版，現行 HD 圖像另列下方 |
 | 連續幀 | 存檔段 248 幀、46 次畫面改變，讀檔段 125 幀、9 次改變，獨立解碼及縮圖檢視通過。已修正只看背景頁繪字事件便過早抓圖的驗證器；現在等待真正顯示頁的文字所有權及後續 Draw。未走畫面與長文仍未全面驗證 |
 | 純 Noto 基準存退讀 | `save-cycle-audit.json`：F7 儲存、正常回 DOS 碼 0、重新啟動繼續；原版讀取 2987 bytes，結束後只讀檢視 0x9E000 緩衝區與進度檔逐 byte 相同，SHA 為 `29dd62ae…2359`。地圖差異限主角動畫區，未稱整幀 parity；現行 HD 加入四方向移動，存檔另列下方 |
@@ -64,4 +67,4 @@
 | 可選打磨 | 尚未進入；HD 是正式範圍。畫風、字重及首曲已確認並接入，其餘圖像、文字與曲目仍須完成，不能列為可選打磨 |
 | 清理 | 本輪只用一次性 `--rm` 容器，沒有建立新映像。來源、失敗與成功收據留在 workplace；收尾擁有權與容器核對記 WORKLOG |
 
-〈遨遊〉A／B 試聽待答，回答前不重做相同樣本，也不將候選接入正式素材；試聽採修正版 r2。可接續發行商字樣、博物館字幕、故事背景與其他圖片文字、尚未替換圖像、長文、其餘原曲證據與音效共存。標題四字、五頁故事原文／字模、七份壓縮緩衝區、TIT2 幾何、〈幻〉及 PAM／PREDELLA 音樂交接已有收據，不重開相同 RE。TIT6X 已有五次完整原版緩衝區，背景仍原版，其他片頭素材尚未接入；不能把解碼成功當成 HD 完成。音訊裝置、其餘場景及 MFIG 用途仍未知；沙地實景、軍隊與其他角色仍在正式範圍。主角十二張圖與四方向已接入，不重開相同 ABI；003／008／009 仍 READY，整體目標未完成。
+〈遨遊〉A／B 試聽待答，回答前不重做相同樣本，也不將候選接入正式素材；試聽採修正版 r2。可接續發行商字樣、博物館美術、故事背景與其他圖片文字、尚未替換圖像、長文、其餘原曲證據與音效共存。標題四字、五頁故事原文／字模、四組製作名單與五次頁面繪製、七份壓縮緩衝區、TIT2 幾何、〈幻〉及 PAM／PREDELLA 音樂交接已有收據，不重開相同 RE。TIT6X 已有五次完整原版緩衝區，背景仍原版，其他片頭素材尚未接入；不能把解碼成功當成 HD 完成。音訊裝置、其餘場景及 MFIG 用途仍未知；沙地實景、軍隊與其他角色仍在正式範圍。主角十二張圖與四方向已接入，不重開相同 ABI；003／008／009 仍 READY，整體目標未完成。

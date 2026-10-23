@@ -19,7 +19,7 @@
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁與金玉介面，走過四方向移動、人物頁往返及真正存退讀；沙地實景、其他角色與圖像仍待處理 |
-| HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題及五頁直排故事的獨立字集。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；故事驗證範圍見 [012](docs/spec/012-intro-story-noto.md)。其他圖片文字與長文仍待處理 |
+| HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事與四組製作名單。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；開場驗證範圍見 [012](docs/spec/012-intro-story-noto.md)／[013](docs/spec/013-intro-museum-captions.md)。其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
 
@@ -140,6 +140,16 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r11 \
 
 `story` 等待完整片頭、五頁故事及自然交接，再操作正常選單；`story-skip` 在故事中按 Esc。存退讀另設 `EIGHTSWORD_GUI_FLOW=save-cycle EIGHTSWORD_GUI_SHOW_STORY=1`，兩次冷啟動皆先呈現故事。缺少或損壞故事字集時保留原字，標題、PAM Noto、圖像與音樂獨立保留。匯入拒絕覆寫既有素材組。
 
+博物館的四組製作名單重用 r11 字集，按原版背景頁繪製及翻頁顯示，保留空格、青色及原位置。契約與驗證範圍見 [013](docs/spec/013-intro-museum-captions.md)。已有 r11 後可驗證正常完整開場：
+
+```bash
+EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r11 \
+  EIGHTSWORD_GUI_CYCLES=3000 EIGHTSWORD_GUI_FLOW=captions \
+  bash tools/player.sh gui-check captions-window-check
+```
+
+存退讀另設 `EIGHTSWORD_GUI_FLOW=save-cycle EIGHTSWORD_GUI_SHOW_CAPTIONS=1`，兩次冷啟動皆先呈現製作名單，再以原版 Esc 接續。字幕和故事共用字集，損壞時兩者回原字；標題、PAM Noto、圖像與音樂保持。這些是驗證選項，不修改原版流程。
+
 ## HD 音樂
 
 原版控制選曲與停止，前端替換已提供的音樂。〈幻〉保留原曲音符、節奏及滑音，採已批准的撥弦與長笛方向；Koto／Flute 取樣不宣稱真正古箏、竹笛錄音。缺少 HD 曲目時播放原版，損壞音樂不連帶關閉 Noto 或圖像。
@@ -176,6 +186,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 - [啟動文字規格](docs/spec/010-boot-console-text.md)：VGA／音效提示的 Noto 呈現、原字模回退及正常鍵盤流程。
 - [片頭標題規格](docs/spec/011-intro-title-noto.md)：TIT2 壓縮來源、Noto 字圖、只讀呈現交易與 PAM 交接。
 - [開場故事規格](docs/spec/012-intro-story-noto.md)：原文、直排字集、逐字呈現、換頁與 PAM 交接。
+- [博物館名單規格](docs/spec/013-intro-museum-captions.md)：背景頁的製作名單、Noto 覆繪及清除。
 - [Ogg 解碼器授權紀錄](docs/THIRD-PARTY-NOTICES.txt)：固定版本的第三方 MIT 授權全文。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 
