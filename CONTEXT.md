@@ -8,7 +8,7 @@
 | 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900。音色、平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 定稿圖 `de96de9`、Noto 執行期 `176cb65` 及快取／視窗存退讀 `6b5e2cf` 均已推送，遠端 main 回讀一致。倉庫再次確認 PRIVATE；原始素材、圖塊研究圖、字型 atlas、原版畫面與快照未上傳 |
+| 文件同步 | 定稿圖 `de96de9`、Noto 執行期 `176cb65`、快取／視窗存退讀 `6b5e2cf` 及 HD 地表 `5d934d3` 均已推送，遠端 main 回讀一致。倉庫再次確認 PRIVATE；原始素材、新生成圖、字型 atlas、遊戲畫面與快照未上傳 |
 | Docker | 沿用既有研究／Go／影像及 IDA 映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；片頭後以 INT 21h AX=4B03 覆蓋載入 `PAM.AY`，Seg／Reloc 都是 0110，沒有新的子行程 PSP。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |
@@ -19,7 +19,7 @@
 | 音樂 | 已進原版音樂欣賞，第一項實際載入 MINT.AY／SINT.AY 並寫 AdLib 埠；其他映射、全曲、時間與循環未驗，尚無 HD 音樂 |
 | HD 畫面 | B 古風草地、水面及十二種岸線已接入實際遊戲，清單共 14 筆，載入於 `assets-painted-r2`；[004](docs/spec/004-hd-bitmap-presentation.md)記錄來源及刻意視覺近似。山地、建築、角色、介面及其他圖像仍待接入。定稿參考圖與批准紀錄已在私人 GitHub，新增生成圖仍只留本機 |
 | HD 文字 | 已接入 Noto Sans CJK TC Black 900，731 字包含 636 中文與 95 ASCII。追蹤實際字墨、同值寫入失效及 VGA 頁搬移，主機合成不改 DOS。[002](docs/spec/002-pam-font-catalog.md)限定 CONFORMED；[003](docs/spec/003-noto-runtime-overlay.md)仍為 READY，完整驗收未結案 |
-| 視窗證據 | 現行 `workplace/player/gui/noto-save-visible-r3/` 含 save／reload 兩個真正視窗程序，共 23 張正常路段截圖，包含遭遇確認選否。存檔段全形 314／半形 585 次，讀檔段 87／235 次，皆無缺字及追蹤錯誤；來源圖像仍是原版 |
+| 純 Noto 視窗基準 | `workplace/player/gui/noto-save-visible-r3/` 含 save／reload 兩個真正視窗程序，共 23 張正常路段截圖，包含遭遇確認選否。存檔段全形 314／半形 585 次，讀檔段 87／235 次，皆無缺字及追蹤錯誤；這份基準圖像為原版，現行 HD 圖像另列下方 |
 | 連續幀 | 存檔段 248 幀、46 次畫面改變，讀檔段 125 幀、9 次改變，獨立解碼及縮圖檢視通過。已修正只看背景頁繪字事件便過早抓圖的驗證器；現在等待真正顯示頁的文字所有權及後續 Draw。未走畫面與長文仍未全面驗證 |
 | 視窗真正存退讀 | `save-cycle-audit.json`：F7 儲存、正常回 DOS 碼 0、重新啟動繼續；原版讀取 2987 bytes，結束後只讀檢視 0x9E000 緩衝區與進度檔逐 byte 相同，SHA 為 `29dd62ae…2359`。地圖差異限主角動畫區，未稱整幀 parity |
 | 效能 | 已加入 CPU profile、錄製成本、主機負載與容器限流記錄。逐列複製及完整狀態鍵快取，讓同輸入重播的實際合成由 238 降到 74 次，10 張保存畫面逐像素不變。GUI 快取命中時合成約 1–3 ms；14 CPU 主機負載達 50–69，實際 FPS 仍低，不能交付。cycles／vsync 均為診斷選項，未定正式速度 |
