@@ -8,7 +8,7 @@
 | 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900。音色、平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 定稿圖 `de96de9`、Noto 執行期 `176cb65`、快取／視窗存退讀 `6b5e2cf`、HD 地表 `5d934d3` 及山地／人物頁 `e72b6cb` 均已推送，遠端 main 回讀一致。倉庫再次確認 PRIVATE；原始素材、新生成圖、字型 atlas、遊戲畫面與快照未上傳 |
+| 文件同步 | 定稿圖 `de96de9`、Noto 執行期 `176cb65`、快取／視窗存退讀 `6b5e2cf`、HD 地表 `5d934d3`、山地／人物頁 `e72b6cb` 及金玉介面 `a29fca0` 均已推送，遠端 main 回讀一致。倉庫再次確認 PRIVATE；原始素材、新生成圖、字型 atlas、遊戲畫面與快照未上傳 |
 | Docker | 沿用既有研究／Go／影像及 IDA 映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；片頭後以 INT 21h AX=4B03 覆蓋載入 `PAM.AY`，Seg／Reloc 都是 0110，沒有新的子行程 PSP。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |
@@ -32,7 +32,7 @@
 | HD 圖像存讀與回退 | 上述視窗落地及讀回 RAM 的 2987 bytes 相同，SHA `29dd62ae…2359`，地圖差異限主角動畫。真實損壞草地 PNG 後整組圖像拒用，十張保存 PNG 與純 Noto 基準相同，客體與工作檔一致；實際視窗另核對「HD 圖像載入失敗」及 Noto 選單逐 RGB 相同。收據 `painted-fallback-audit-r1.json`、`painted-fallback-window-r1.json` |
 | 肖像故障回退 | 進一步損壞最後載入的肖像 PNG，確認已處理其他四張 PNG 後仍不留下半組圖像，Noto 保留；十張保存 PNG 與純 Noto 基準一致，完整狀態與 31 個工作檔也相同。收據 `painted-portrait-fallback-r1.json` |
 | 介面故障回退 | `jade-ui-invalid-r1` 的未知介面樣式及 `jade-ui-paper-bad-r1` 的真實玉紙 PNG 損壞，皆整組圖像拒用而 Noto 保留，十張 PNG、客體狀態與 31 個工作檔同純 Noto 基準；兩份同名 `-audit.json` 保存結果 |
-| 後續圖像來源 | `graphics-first/extra-bitmaps-r1/` 已擷取九個非 PMAP 來源，包含主選單 BUMBOO、MSGBOX、主角肖像、五張主角動作及原版外框緩衝區，狀態仍同 native。八個來源與原始檔 bytes 精確相同，外框來源為執行期緩衝區。肖像已使用，其他只作後續素材與呈現規格的輸入 |
+| 圖像來源目錄 | `graphics-first/extra-bitmaps-r1/` 已擷取九個非 PMAP 來源，狀態仍同 native。八個來源與原始檔 bytes 精確相同，外框來源為執行期緩衝區；肖像及三種介面已接入，五張主角動作仍待使用 |
 | 專案介紹 | [README.md](README.md)已撰寫遊戲故事、玩法、現況與研究操作入口；介紹以原版手冊及包裝為據，不將手冊內容當成本案驗收成果 |
 | 參考入口 | 已查閱 mm3 的 AGENTS、CONTEXT 與音樂、呈現及效能規格，以及 dosgolem 的 README、CLAUDE；入口見 AGENTS |
 | 已完成 | 來源盤點、原版啟動及真正存讀檔研究路段、BIOS 顯示頁、PAM 字碼字模、Noto 字集與執行期覆繪、首批地表及有限正常視窗路段。每項證明範圍不同，不能合稱全遊戲完成 |
