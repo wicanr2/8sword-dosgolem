@@ -2,7 +2,7 @@
 
 本檔是本專案的工作規則與索引。目前狀態看 [CONTEXT.md](CONTEXT.md)，工作歷程看 [WORKLOG.md](WORKLOG.md)。面向使用者的回覆與文件使用繁體中文，句子簡短，技術內容優先用條列或表格。共用主機規則仍適用。
 
-研究入口：[來源與啟動紀錄](RESEARCH-LOG.md)。目前規格：[001：BIOS 低解析度平面顯示頁](docs/spec/001-planar-bios-display-pages.md)。
+專案介紹與操作入口：[README.md](README.md)。研究入口：[來源與啟動紀錄](RESEARCH-LOG.md)。目前規格：[001：BIOS 低解析度平面顯示頁](docs/spec/001-planar-bios-display-pages.md)。
 
 ## 1. 已確認的方向與範圍
 
@@ -13,7 +13,8 @@
 - 以 dosgolem 執行原版 DOS 程式，另作本作適配與前端。原版程式負責玩法、劇情、事件及存檔語意；本輪未授權改為原生引擎重寫。
 - HD 畫面與 HD 音樂都是正式目標，不能只完成顯示便宣稱整案完成。
 - 先建立可重播的原版基線，再製作音畫樣本、確認方向、接入及驗收。
-- 畫風、字型、顯示倍率、音樂音色與編制、目標平台、預設模式及公開方式尚未定案。不得沿用 mm3 的產品決定作為本作授權。
+- 使用者同日指定原版文字也須替換為 Noto 渾厚字體。繁體 Noto 粗字已納入正式範圍，字重先以 Noto Sans CJK TC Bold／Black 真實樣張比較，尚未選定。須盤點選單、動態文字與圖片內文字，不能只替換前端新增按鈕。
+- 畫風、具體字重、顯示倍率、音樂音色與編制、目標平台、預設模式及公開方式尚未定案。不得沿用 mm3 的產品決定作為本作授權。
 - 新增語系、中文配音、HD 音效、作弊、改難度或跳過劇情，均未列入目前範圍。
 - 已授權的唯讀查證、整理與明確實作自主進行。重大取捨依 `/home/anr2/.codex/skills/grilling/SKILL.md`，查證後只問當前必要的一題；不重問已確認事項。
 
@@ -150,10 +151,10 @@ mm3 的使用者批准、素材、字型、平台、公開範圍及完成標記�
 | `AGENTS.md` | 已建立；穩定工作規則與本專案索引 |
 | `CONTEXT.md` | 已建立；唯一目前狀態表、有效決定、限制、最近證據與下一步 |
 | `WORKLOG.md` | 已建立；按時間追加實際變更、驗證、環境失敗與清理狀態 |
-| `README.md` | 後續建立；穩定用途、操作及現況摘要，不放逐輪歷史 |
+| `README.md` | 已建立；遊戲介紹、穩定用途、操作及現況摘要，不放逐輪歷史 |
 | `WORKLIST.md` | 需要時建立；唯一待辦清單，各項附完成條件與驗證入口 |
 | `docs/spec/` | 已建立；正式規格的入口在本檔上方。研究證據目前集中 RESEARCH-LOG，不另建同職責目錄 |
-| `tools/` | 已建立；[盤點](tools/intake.py)、[Docker 編排](tools/research.sh)、[頁診斷](tools/inspect-state.go)、[收據核對](tools/audit.py)、[核心補丁](tools/dosgolem-planar-pages.patch)、[補丁檔案雜湊](tools/dosgolem-page-files.sha256)、[DOSBox-X 輔助擷取](tools/aux-dosbox.sh)，用法與限制見研究紀錄 |
+| `tools/` | 已建立；[盤點](tools/intake.py)、[Docker 編排](tools/research.sh)、[頁診斷](tools/inspect-state.go)、[收據核對](tools/audit.py)、[核心補丁](tools/dosgolem-planar-pages.patch)、[補丁檔案雜湊](tools/dosgolem-page-files.sha256)、[DOSBox-X 輔助擷取](tools/aux-dosbox.sh)、[Noto 字型樣張](tools/font-preview.py)，用法與限制見 README 及研究紀錄 |
 | `RESEARCH-LOG.md` | 已建立；來源雜湊、工具版本、位址空間、啟動與缺口證據 |
 | `workplace/` | 已建立；唯一研究工作區、解包副本及中間產物，不進 Git |
 | `dist-all/` | 正式交付時才建立；子目錄依知識路由所指的交付契約，不自創名稱 |
