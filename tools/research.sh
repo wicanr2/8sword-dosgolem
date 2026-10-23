@@ -108,6 +108,28 @@ case "${1:-}" in
       -w /source -e GOCACHE=/work/gocache -e GOMODCACHE=/work/gomodcache -e HOME=/tmp \
       "$go_image" bash -c 'set -e; bash -n /tools/research.sh; bash -n /tools/aux-dosbox.sh; sha256sum -c /tools/dosgolem-page-files.sha256; go version > /work/probe-20261023/validation/go-version.txt; go test -mod=readonly ./internal/dos ./internal/machine ./internal/state ./oracle -count=1 > /work/probe-20261023/validation/tests.log 2>&1; cat /work/probe-20261023/validation/tests.log'
     ;;
+  font-source)
+    task_fonts=/usr/share/fonts/opentype/noto
+    task_out="$task_work/probe-20261023/text-first"
+    test -d "$source_dir"
+    test -f "$source_dir/PAM.AY"
+    test -d "$task_fonts"
+    test -f "$task_fonts/NotoSansCJK-Black.ttc"
+    test -d "$task_out"
+    test -f "$task_work/probe-20261023/new-game-confirm/screen.png"
+    require_image sc-cht-hdtools:pillow11.3.0-r1 sha256:44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48
+    exec timeout 40s docker run --rm --name 8sword-font-source \
+      --user "$task_uid:$task_gid" --memory 512m --cpus 1 --pids-limit 64 \
+      --network none --read-only \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_work,dst=/work,readonly" \
+      --mount "type=bind,src=$task_fonts,dst=/fonts,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      --entrypoint python3 sc-cht-hdtools:pillow11.3.0-r1 \
+      /tools/font-source.py --exe /work/intake-20261023/sources/game/8sword/PAM.AY \
+      --reference /work/probe-20261023/new-game-confirm/screen.png \
+      --font /fonts/NotoSansCJK-Black.ttc --out /out
+    ;;
   font-preview)
     task_fonts=/usr/share/fonts/opentype/noto
     test -d "$task_fonts"
@@ -137,7 +159,7 @@ case "${1:-}" in
       /project/tools/audit.py --out /out/bootstrap-audit.json
     ;;
   *)
-    printf '%s\n' '用法：bash tools/research.sh intake|build-probe|test|audit|font-preview|probe <新收據名稱> [probe 參數]' >&2
+    printf '%s\n' '用法：bash tools/research.sh intake|build-probe|test|audit|font-preview|font-source|probe <新收據名稱> [probe 參數]' >&2
     exit 2
     ;;
 esac

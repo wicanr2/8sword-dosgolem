@@ -19,7 +19,7 @@
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已選定 B 明亮手繪的中國古風，定稿參考圖已保存於倉庫，尚未接入遊戲 |
-| HD 文字 | 已選定 Noto Sans CJK TC Black 900 替換原版文字；真實字型樣張已確認，文字來源與遊戲內覆繪、排版仍待驗證 |
+| HD 文字 | 已選定 Noto Sans CJK TC Black 900；解出 PAM 的 636 字對照並製作 Noto 字集，七項地圖指令的原版字模已核對，遊戲內覆繪與排版仍待接入 |
 | HD 音樂 | 已確認音樂欣賞第一項讀取的原曲資料與 AdLib 寫入；尚未製作 HD 曲目 |
 | 玩家前端 | 尚未建立視窗前端與正式交付包，戰鬥及完整流程仍待驗證 |
 
@@ -86,6 +86,7 @@ bash tools/research.sh audit
 - [AGENTS.md](AGENTS.md)：工作規則與索引。
 - [CONTEXT.md](CONTEXT.md)：唯一目前狀態表與下一步。
 - [RESEARCH-LOG.md](RESEARCH-LOG.md)：來源、工具、原版流程與驗證證據。
+- [PAM 字碼與字模規格](docs/spec/002-pam-font-catalog.md)：636 字對照、字型製作入口與限定驗收。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 
 自有程式的授權依 [AGENTS.md](AGENTS.md#10-docker文件與交付)指定的 RRSAL-1.0 契約；第三方元件及字型保留各自授權。原版遊戲、手冊及衍生素材的權利不因轉檔或重製而改變。本專案為獨立保存與重製工作，未宣稱與原作者或發行商有隸屬關係。

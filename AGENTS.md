@@ -4,6 +4,8 @@
 
 專案介紹與操作入口：[README.md](README.md)。研究入口：[來源與啟動紀錄](RESEARCH-LOG.md)。目前規格：[001：BIOS 低解析度平面顯示頁](docs/spec/001-planar-bios-display-pages.md)。
 
+文字解析規格：[002：PAM 字碼對照與字模目錄](docs/spec/002-pam-font-catalog.md)，範圍限於固定來源解析與原版字模核對，不代替遊戲內文字覆繪驗收。
+
 ## 1. 已確認的方向與範圍
 
 使用者於 2026-10-23 指定：參考 `/home/anr2/cht/mm3` 的經驗，為《神州八劍》接入 dosgolem、HD 畫面與 HD 音樂，先建立本檔。
@@ -156,7 +158,7 @@ mm3 的使用者批准、素材、字型、平台、公開範圍及完成標記�
 | `WORKLIST.md` | 需要時建立；唯一待辦清單，各項附完成條件與驗證入口 |
 | `docs/spec/` | 已建立；正式規格的入口在本檔上方。研究證據目前集中 RESEARCH-LOG，不另建同職責目錄 |
 | `docs/images/` | 已建立；經使用者明確批准存入 GitHub 的定稿參考圖、來源與提示。入口見上方已確認方向；未批准的原版圖片與其他衍生素材仍留 workplace |
-| `tools/` | 已建立；[盤點](tools/intake.py)、[Docker 編排](tools/research.sh)、[頁診斷](tools/inspect-state.go)、[收據核對](tools/audit.py)、[核心補丁](tools/dosgolem-planar-pages.patch)、[補丁檔案雜湊](tools/dosgolem-page-files.sha256)、[DOSBox-X 輔助擷取](tools/aux-dosbox.sh)、[Noto 字型樣張](tools/font-preview.py)，用法與限制見 README 及研究紀錄 |
+| `tools/` | 已建立；[盤點](tools/intake.py)、[Docker 編排](tools/research.sh)、[頁診斷](tools/inspect-state.go)、[收據核對](tools/audit.py)、[核心補丁](tools/dosgolem-planar-pages.patch)、[補丁檔案雜湊](tools/dosgolem-page-files.sha256)、[DOSBox-X 輔助擷取](tools/aux-dosbox.sh)、[Noto 字型樣張](tools/font-preview.py)、[PAM 字碼與字集製作](tools/font-source.py)，用法與限制見 README、002 規格及研究紀錄 |
 | `RESEARCH-LOG.md` | 已建立；來源雜湊、工具版本、位址空間、啟動與缺口證據 |
 | `workplace/` | 已建立；唯一研究工作區、解包副本及中間產物，不進 Git |
 | `dist-all/` | 正式交付時才建立；子目錄依知識路由所指的交付契約，不自創名稱 |
