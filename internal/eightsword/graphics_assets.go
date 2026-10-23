@@ -26,6 +26,8 @@ type GraphicsAssets struct {
 	Native    []nativeBitmap
 	ByNative  map[string]uint16
 	Materials map[uint16]*graphicMaterial
+	Actors    map[uint16]*graphicMaterial
+	ActorSHA  map[uint16]string
 }
 type graphicPNG struct {
 	Index      int    `json:"source_index"`
@@ -46,6 +48,7 @@ type terrainManifest struct {
 		PaperSource int    `json:"paper_source"`
 	} `json:"ui"`
 	Materials []graphicPNG `json:"materials"`
+	Actors    []graphicPNG `json:"actors"`
 	Overlays  []struct {
 		graphicPNG
 		Background int `json:"background_source"`
@@ -119,7 +122,15 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 	native = append(native, nativeBitmap{Index: 68, WidthBytes: 10, Height: 40,
 		NativeSHA: "1a1ae3e30190ecea4cc2384a78ed21331b4904ea9e0a4b1b2cbf66a3a9417e54"})
 	native = append(native, uiNativeSources()...)
-	out := &GraphicsAssets{Native: native, ByNative: map[string]uint16{}, Materials: map[uint16]*graphicMaterial{}}
+	if len(m.Actors) > 12 {
+		return nil, fmt.Errorf("HD 主角動作數量不符")
+	}
+	if len(m.Actors) > 0 {
+		for frame, source := range heroSources {
+			native = append(native, nativeBitmap{Index: 72 + frame, WidthBytes: 8, Height: 25, NativeSHA: source.NativeSHA})
+		}
+	}
+	out := &GraphicsAssets{Native: native, ByNative: map[string]uint16{}, Materials: map[uint16]*graphicMaterial{}, Actors: map[uint16]*graphicMaterial{}, ActorSHA: map[uint16]string{}}
 	for _, b := range native {
 		if _, ok := out.ByNative[b.NativeSHA]; ok {
 			return nil, fmt.Errorf("原版圖像指紋不唯一")
@@ -130,7 +141,7 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 		return nil, fmt.Errorf("HD 圖像清單數量不符")
 	}
 	for _, entry := range m.Materials {
-		if entry.Index < 0 || entry.Index >= len(native) || entry.File == "" || entry.File != filepath.Base(entry.File) {
+		if entry.Index < 0 || entry.Index >= 72 || entry.File == "" || entry.File != filepath.Base(entry.File) {
 			return nil, fmt.Errorf("HD 圖像來源索引／檔名不符")
 		}
 		id := uint16(entry.Index + 1)
@@ -241,6 +252,25 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 			}
 			out.Materials[id] = &graphicMaterial{b.WidthBytes * 8, b.Height, makeUIBitmap(b.Index, materials[47].Tile)}
 		}
+	}
+	for _, entry := range m.Actors {
+		if entry.Index < 72 || entry.Index > 83 || entry.Sampling != "bitmap" || len(entry.SourceRect) != 0 {
+			return nil, fmt.Errorf("HD 主角來源或取樣不符")
+		}
+		id := uint16(entry.Index + 1)
+		if out.Actors[id] != nil {
+			return nil, fmt.Errorf("HD 主角來源重複")
+		}
+		decoded, err := loadGraphicPNG(dir, entry)
+		if err != nil {
+			return nil, err
+		}
+		tile, err := sampleActor(decoded)
+		if err != nil {
+			return nil, err
+		}
+		out.Actors[id] = &graphicMaterial{64, 25, tile}
+		out.ActorSHA[id] = heroSources[entry.Index-72].RecordSHA
 	}
 	return out, nil
 }

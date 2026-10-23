@@ -135,7 +135,7 @@ func realGraphics(t *testing.T) (*GraphicsAssets, []byte, string, string) {
 }
 func TestActualMaterialSeamsAndPixelContainment(t *testing.T) {
 	assets, _, _, _ := realGraphics(t)
-	if len(assets.Native) != 72 || len(assets.Materials) != 53 {
+	if len(assets.Native) != 84 || len(assets.Materials) != 53 || len(assets.Actors) != 12 {
 		t.Fatal("wrong actual asset shape")
 	}
 	tile := assets.Materials[1].Tile
@@ -283,13 +283,18 @@ func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
+	for _, file := range original.Actors {
+		if err := os.Symlink(filepath.Join(dir, file.File), filepath.Join(temp, file.File)); err != nil {
+			t.Fatal(err)
+		}
+	}
 	if err := os.WriteFile(filepath.Join(temp, "terrain.json"), raw, 0600); err != nil {
 		t.Fatal(err)
 	}
 	if a, err := loadGraphicsAssets(temp, pmap); err != nil || a == nil {
 		t.Fatal("malformed-case fixture does not load before mutation", err)
 	}
-	for _, name := range []string{"crop-overflow", "unknown-sampling", "duplicate-composite", "wrong-dependency", "wrong-rock", "unknown-composite", "unknown-ui", "wrong-ui-paper", "missing-ui-paper", "wrong-sand", "wrong-overlay-background", "duplicate-overlay", "unknown-overlay"} {
+	for _, name := range []string{"crop-overflow", "unknown-sampling", "duplicate-composite", "wrong-dependency", "wrong-rock", "unknown-composite", "unknown-ui", "wrong-ui-paper", "missing-ui-paper", "wrong-sand", "wrong-overlay-background", "duplicate-overlay", "unknown-overlay", "wrong-actor", "duplicate-actor", "actor-crop", "actor-sampling"} {
 		t.Run(name, func(t *testing.T) {
 			var m terrainManifest
 			if err := json.Unmarshal(raw, &m); err != nil {
@@ -327,6 +332,14 @@ func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 				m.Overlays[1].Index = m.Overlays[0].Index
 			case "unknown-overlay":
 				m.Overlays[0].Index = 45
+			case "wrong-actor":
+				m.Actors[0].Index = 71
+			case "duplicate-actor":
+				m.Actors[1].Index = m.Actors[0].Index
+			case "actor-crop":
+				m.Actors[0].SourceRect = []int{0, 0, 1, 1}
+			case "actor-sampling":
+				m.Actors[0].Sampling = "periodic"
 			}
 			changed, err := json.Marshal(m)
 			if err != nil {

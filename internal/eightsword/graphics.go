@@ -17,6 +17,8 @@ type bitmapCall struct {
 	First         uint32
 	Mask          []byte
 	Material      uint16
+	Actor         uint16
+	ActorWrites   int
 }
 type GraphicsStats struct {
 	Bound                                                                                               bool
@@ -24,17 +26,23 @@ type GraphicsStats struct {
 	MaskedWrites, CopiedBytes, InvalidatedPixels, AssignedPixels, CompositedFrames, PaintedNativePixels uint64
 	LastPaintedPixels, GeometryRejected, PaletteFallbackFrames                                          uint64
 	Errors                                                                                              []string
+	ActorCalls, ActorFallbackCalls, ActorAssignedPixels, ActorPaintedPixels, ActorCompletions           uint64
 }
 type Graphics struct {
 	parent *Tracker
 	assets *GraphicsAssets
 	owners []graphicCell
+	actors []graphicCell
 	active *bitmapCall
 	Stats  GraphicsStats
 }
 
 func newGraphics(t *Tracker, a *GraphicsAssets) *Graphics {
-	return &Graphics{parent: t, assets: a, owners: make([]graphicCell, 65536*8)}
+	g := &Graphics{parent: t, assets: a, owners: make([]graphicCell, 65536*8)}
+	if len(a.Actors) > 0 {
+		g.actors = make([]graphicCell, 65536*8)
+	}
+	return g
 }
 func (g *Graphics) bind() {
 	t := g.parent
@@ -56,7 +64,7 @@ func (g *Graphics) bind() {
 	}
 	g.Stats.Bound = true
 }
-func (g *Graphics) clear() { clear(g.owners); g.active = nil }
+func (g *Graphics) clear() { clear(g.owners); clear(g.actors); g.active = nil }
 
 // Oracle.Bytes uses machine reads. Never touch VGA latches while observing a
 // bitmap source; all verified source buffers are in conventional RAM.
@@ -110,12 +118,28 @@ func (g *Graphics) begin(kind int) {
 	if id != 0 {
 		g.Stats.SourceMatches++
 	}
-	if g.assets.Materials[id] != nil {
+	actor := uint16(0)
+	if g.assets.Actors[id] != nil {
+		if g.heroRecordMatches(id, kind, source) && g.actorBackgroundKnown(first, w*8, h) {
+			actor = id
+			g.Stats.ActorCalls++
+		} else {
+			g.Stats.ActorFallbackCalls++
+			// A rejected replacement must not leave the previous painted pose.
+			for row := 0; row < h; row++ {
+				for pixel := 0; pixel < w*8; pixel++ {
+					g.setActor((first+uint32(row*80+pixel/8))*8+uint32(pixel%8), graphicCell{})
+				}
+			}
+		}
+	}
+	if g.assets.Materials[id] != nil || actor != 0 {
 		g.Stats.HDSourceCalls++
-	} else {
+	}
+	if g.assets.Materials[id] == nil {
 		id = 0
 	}
-	call := &bitmapCall{Kind: kind, Width: w, Height: h, First: first, Material: id}
+	call := &bitmapCall{Kind: kind, Width: w, Height: h, First: first, Material: id, Actor: actor}
 	if kind == 6 {
 		call.Mask = append([]byte(nil), source[4+area*5:4+area*6]...)
 	}
@@ -133,6 +157,12 @@ func (g *Graphics) copyByte(destination, source uint32) {
 	for bit, value := range saved {
 		g.set(destination*8+uint32(bit), value)
 	}
+	if len(g.actors) != 0 {
+		copy(saved[:], g.actors[source*8:source*8+8])
+		for bit, value := range saved {
+			g.setActor(destination*8+uint32(bit), value)
+		}
+	}
 	g.Stats.CopiedBytes++
 }
 func (g *Graphics) clearByte(offset uint32, mask uint8) {
@@ -142,6 +172,7 @@ func (g *Graphics) clearByte(offset uint32, mask uint8) {
 				g.Stats.InvalidatedPixels++
 			}
 			g.set(offset*8+uint32(bit), graphicCell{})
+			g.setActor(offset*8+uint32(bit), graphicCell{})
 		}
 	}
 }
@@ -171,8 +202,20 @@ func (g *Graphics) write(w oracle.VideoWrite) uint8 {
 				mask = b.Mask[row*b.Width+col]
 				g.Stats.MaskedWrites++
 			}
+			if b.Actor != 0 {
+				b.ActorWrites++
+				if b.ActorWrites == b.Width*b.Height*4 {
+					g.Stats.ActorCompletions++
+				}
+				for bit := 0; bit < 8; bit++ {
+					g.setActor(w.Offset*8+uint32(bit), graphicCell{b.Actor, uint32(row*b.Width*8 + col*8 + bit)})
+					g.Stats.ActorAssignedPixels++
+				}
+				return mask
+			}
 			for bit := 0; bit < 8; bit++ {
 				if mask&(0x80>>uint(bit)) != 0 {
+					g.setActor(w.Offset*8+uint32(bit), graphicCell{})
 					value := graphicCell{}
 					if b.Material != 0 {
 						value = graphicCell{b.Material, uint32(row*b.Width*8 + col*8 + bit)}
@@ -251,4 +294,5 @@ func (g *Graphics) paint(out *image.RGBA, p oracle.PlanarDisplay) {
 	}
 	g.Stats.CompositedFrames++
 	g.Stats.PaintedNativePixels += g.Stats.LastPaintedPixels
+	g.paintActors(out, p)
 }

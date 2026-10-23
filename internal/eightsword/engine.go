@@ -258,6 +258,7 @@ func (e *Engine) Status() map[string]any {
 		if e.Tracker.graphics != nil {
 			out["graphics"] = e.Tracker.graphics.Stats
 			out["graphics_materials"] = len(e.Tracker.graphics.assets.Materials)
+			out["graphics_actor_materials"] = len(e.Tracker.graphics.assets.Actors)
 		}
 	}
 	return out

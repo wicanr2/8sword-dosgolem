@@ -18,6 +18,8 @@ trap cleanup EXIT
 trap 'exit 130' INT TERM
 sleep 0.5
 record_flags=()
+actor_flags=()
+if [[ "${EIGHTSWORD_GUI_ACTOR_WALK:-0}" == 1 ]]; then actor_flags=(-actor-walk); fi
 if [[ "${EIGHTSWORD_GUI_RECORD:-1}" == 1 ]]; then record_flags=(-record); fi
 phases=(inspect)
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then phases=(save reload); fi
@@ -37,7 +39,7 @@ for phase in "${phases[@]}"; do
     -cycles "${EIGHTSWORD_GUI_CYCLES:-20000}" > "$phase_out/player.log" 2>&1 &
   gui_pid=$!
   /bin-player/gui-check -out "$phase_out" -flow "$phase" -saves /out/scratch \
-    -native-frame "${EIGHTSWORD_GUI_NATIVE_FRAME:-}" > "$phase_out/gui-check.log" 2>&1
+    -native-frame "${EIGHTSWORD_GUI_NATIVE_FRAME:-}" "${actor_flags[@]}" > "$phase_out/gui-check.log" 2>&1
   wait "$gui_pid"
   gui_pid=""
   cat /proc/loadavg > "$phase_out/load-end.txt"

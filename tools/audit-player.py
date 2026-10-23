@@ -10,7 +10,7 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def audit(hd, native, graphics=False):
+def audit(hd, native, graphics=False, actors=False):
     left = json.loads((hd / "receipt.json").read_text())
     right = json.loads((native / "receipt.json").read_text())
     for result in (left, right):
@@ -46,6 +46,13 @@ def audit(hd, native, graphics=False):
         result["graphics"] = art
         result["graphics_materials"] = left["graphics_materials"]
         result["limit"] = "限此冷啟動、新遊戲、人物頁、返回、F7 開關與移動，確認圖像確實啟用且客體隔離；不含真正存退讀、戰鬥、完整美術或 HD 音樂。"
+    if actors:
+        assert graphics and left["graphics_actor_materials"] == 12
+        art = left["graphics"]
+        assert art["ActorCalls"] == art["MaskedCalls"] and art["ActorCalls"] > 0
+        assert art["ActorPaintedPixels"] > 0 and not art["ActorFallbackCalls"]
+        result["graphics_actor_materials"] = left["graphics_actor_materials"]
+        result["limit"] = "十二張主角素材已載入；此路段限五張左右動作的正常冷啟動、人物頁往返與移動，圖像確實繪出且客體隔離。不含其餘朝向實景、真正存退讀、全遊戲或 HD 音樂。"
     return result
 
 
@@ -55,7 +62,8 @@ if __name__ == "__main__":
     parser.add_argument("native", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--graphics", action="store_true", help="另要求 HD 圖像實際啟用、遮罩及頁搬移")
+    parser.add_argument("--actors", action="store_true", help="另要求十二張主角素材與實際人物層合成，包含 --graphics")
     args = parser.parse_args()
-    result = audit(args.hd, args.native, graphics=args.graphics)
+    result = audit(args.hd, args.native, graphics=args.graphics or args.actors, actors=args.actors)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     print(result["status"], result["guest_state_sha256"], len(result["dos_files"]))

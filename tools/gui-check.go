@@ -174,6 +174,7 @@ func (d *driver) quit() {
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
 	flow := flag.String("flow", "inspect", "inspect, save, reload, fallback or art-fallback")
+	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
 	flag.Parse()
@@ -299,6 +300,25 @@ func main() {
 	d.press(9)
 	d.scene("map")
 	d.shot("11-final-map")
+	if *actorWalk && *flow == "save" {
+		for _, direction := range []struct {
+			name string
+			key  byte
+		}{{"left", 113}, {"up", 111}, {"down", 116}, {"right", 114}} {
+			before := d.status()["graphics"].(map[string]any)["ActorCompletions"].(float64)
+			d.press(direction.key)
+			d.wait("主角四平面繪製完成或自然遭遇", 35, func(s map[string]any) bool {
+				return s["graphics"].(map[string]any)["ActorCompletions"].(float64) > before || s["presented_scene"] == "encounter-confirm"
+			})
+			// The existing character path handles a real encounter by choosing
+			// the original No option. Returning also checks actor restoration.
+			d.press(67)
+			d.scene("character")
+			d.press(9)
+			d.scene("map")
+			d.shot("actor-direction-" + direction.name)
+		}
+	}
 	if *flow == "save" {
 		if *saves == "" {
 			panic("save flow requires -saves")
