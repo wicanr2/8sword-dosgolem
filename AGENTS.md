@@ -14,7 +14,8 @@
 - HD 畫面與 HD 音樂都是正式目標，不能只完成顯示便宣稱整案完成。
 - 先建立可重播的原版基線，再製作音畫樣本、確認方向、接入及驗收。
 - 使用者同日指定原版文字也須替換為 Noto 渾厚字體，觀看真實樣張後確認採 **Noto Sans CJK TC Black 900**。字型來源與重生方法見 [README 字型樣張](README.md#畫面與文字樣張)、[字型工具](tools/font-preview.py)及 [研究來源](RESEARCH-LOG.md#真實-noto-字重樣張)。須盤點選單、動態文字與圖片內文字，不能只替換前端新增按鈕；樣張批准不等於遊戲內接入或排版驗收。
-- 畫風、顯示倍率、音樂音色與編制、目標平台、預設模式及公開方式尚未定案。不得沿用 mm3 的產品決定作為本作授權。
+- 使用者同日確認 B 明亮手繪的中國古風，並明確要求定稿圖存入 GitHub。定稿參考為 [原圖](docs/images/hd-style-approved-r1.png)的下半部 B，[來源與批准紀錄](docs/images/hd-style-approved-r1.json)、[原始生成提示](docs/images/hd-style-approved-r1.prompt.txt)同次保存。原圖 byte 不變，上半部 A 只保留比較歷史；生成字體由已選定的 Noto Black 900 取代。後續構圖與配色以 B 為準，有差異先展示對照。
+- 顯示倍率、音樂音色與編制、目標平台、預設模式及公開方式尚未定案。不得沿用 mm3 的產品決定作為本作授權。
 - 新增語系、中文配音、HD 音效、作弊、改難度或跳過劇情，均未列入目前範圍。
 - 已授權的唯讀查證、整理與明確實作自主進行。重大取捨依 `/home/anr2/.codex/skills/grilling/SKILL.md`，查證後只問當前必要的一題；不重問已確認事項。
 
@@ -154,6 +155,7 @@ mm3 的使用者批准、素材、字型、平台、公開範圍及完成標記�
 | `README.md` | 已建立；遊戲介紹、穩定用途、操作及現況摘要，不放逐輪歷史 |
 | `WORKLIST.md` | 需要時建立；唯一待辦清單，各項附完成條件與驗證入口 |
 | `docs/spec/` | 已建立；正式規格的入口在本檔上方。研究證據目前集中 RESEARCH-LOG，不另建同職責目錄 |
+| `docs/images/` | 已建立；經使用者明確批准存入 GitHub 的定稿參考圖、來源與提示。入口見上方已確認方向；未批准的原版圖片與其他衍生素材仍留 workplace |
 | `tools/` | 已建立；[盤點](tools/intake.py)、[Docker 編排](tools/research.sh)、[頁診斷](tools/inspect-state.go)、[收據核對](tools/audit.py)、[核心補丁](tools/dosgolem-planar-pages.patch)、[補丁檔案雜湊](tools/dosgolem-page-files.sha256)、[DOSBox-X 輔助擷取](tools/aux-dosbox.sh)、[Noto 字型樣張](tools/font-preview.py)，用法與限制見 README 及研究紀錄 |
 | `RESEARCH-LOG.md` | 已建立；來源雜湊、工具版本、位址空間、啟動與缺口證據 |
 | `workplace/` | 已建立；唯一研究工作區、解包副本及中間產物，不進 Git |

@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-23",
+  "timezone": "Asia/Taipei",
+  "artifact": "hd-style-approved-r1.png",
+  "sha256": "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6",
+  "selected_region": "B: bottom panel, 明亮手繪重製",
+  "unselected_region": "A: top panel, 忠實像素精修, retained only because original comparison bytes are preserved",
+  "approved_style": "中國古風，明亮手繪，青玉與銅金邊框",
+  "approved_font": "Noto Sans CJK TC Black 900; generated lettering is not a font reference",
+  "source": "workplace/probe-20261023/hd-style-comparison-r1.png",
+  "generation": "built-in image_gen; original prompt preserved in hd-style-approved-r1.prompt.txt",
+  "approval": [
+    "ok 開工 同意風格",
+    "很有中國古風 贊",
+    "定稿圖請放到 github repo 紀錄"
+  ],
+  "publication_scope": "Explicit permission for this design-reference image and provenance in the existing private repository; no other original assets authorized",
+  "runtime_status": "approved visual reference, not yet integrated into game",
+  "integrity": "byte-identical to original comparison; no crop, regeneration or edits"
+}
