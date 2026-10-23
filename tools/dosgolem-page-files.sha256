@@ -1,0 +1,4 @@
+0ae46d3b711fe1a47d905ff4a24c7e94b3e6d69c309442bfd7640a4288e1fd2d  internal/machine/bda.go
+eb7ab46542d0c44166b6bd4685ccb4945ef01aeddbf79ad4fca2fe6293fc2133  internal/machine/bios_page.go
+ee24ad736c8225677e9d13fa7abc58f0214939032cb57c2f036c507fb74a73e6  internal/dos/bios.go
+f81954e662c80d0027c40467ddbfe0f7291b134d59ea8402313ab3c9a44a5ad0  internal/dos/planar_bios_page_test.go

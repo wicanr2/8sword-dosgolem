@@ -1,0 +1,174 @@
+diff --git a/internal/dos/bios.go b/internal/dos/bios.go
+index 2422bc0..cbc9e8b 100644
+--- a/internal/dos/bios.go
++++ b/internal/dos/bios.go
+@@ -65,7 +65,7 @@ func (d *DOS) int10(c *cpu.CPU) {
+ 		}
+ 		setAH(c, cols)
+ 		setAL(c, mode)
+-		setBH(c, 0) // 顯示頁
++		setBH(c, d.M.Read8(bdaBase+0x62)) // BIOS active display page; 8sword spec 001
+ 
+ 	case 0x11: // 取字型指標 → ES:BP
+ 		if al(c) == 0x30 {
+@@ -221,7 +221,8 @@ func (d *DOS) int10(c *cpu.CPU) {
+ 			d.note(0x10, fn, al(c))
+ 		}
+ 
+-	case 0x05: // 設顯示頁：收下就好（`docs/spec/201` §1.6 不在範圍）
++	case 0x05: // 0Dh/0Eh display page; other modes retain the prior no-op boundary.
++		d.M.SetBIOSPlanarPage(al(c))
+ 	default:
+ 		d.note(0x10, fn, al(c))
+ 	}
+diff --git a/internal/dos/planar_bios_page_test.go b/internal/dos/planar_bios_page_test.go
+new file mode 100644
+index 0000000..794e35f
+--- /dev/null
++++ b/internal/dos/planar_bios_page_test.go
+@@ -0,0 +1,89 @@
++package dos
++
++import (
++	"bytes"
++	"fmt"
++	"testing"
++
++	"github.com/wicanr2/dosgolem/internal/cpu"
++	"github.com/wicanr2/dosgolem/internal/machine"
++)
++
++// Contract: 8sword docs/spec/001-planar-bios-display-pages.md.
++// Distinct page pixels test the visible result independently of BIOS bookkeeping.
++func TestBIOSLowResolutionPlanarDisplayPages(t *testing.T) {
++	for _, tc := range []struct {
++		mode  uint8
++		size  uint16
++		pages uint8
++	}{
++		{0x0d, 0x2000, 8}, {0x0e, 0x4000, 4},
++	} {
++		t.Run(fmt.Sprintf("mode-%02x", tc.mode), func(t *testing.T) {
++			m, d := newTest(t)
++			call(m, d, 0x10, uint16(tc.mode))
++			if m.Read16(0x44c) != tc.size {
++				t.Fatalf("page size=%04x want=%04x", m.Read16(0x44c), tc.size)
++			}
++			for page := uint8(0); page < tc.pages; page++ {
++				// Every page has a different color at its first pixel.
++				for plane := 0; plane < 4; plane++ {
++					if (page+1)&(1<<plane) != 0 {
++						m.VGA.Planes[plane][int(page)*int(tc.size)] = 0x80
++					}
++				}
++			}
++			original := append([]byte(nil), m.VGA.Raw()...)
++			for page := uint8(0); page < tc.pages; page++ {
++				call(m, d, 0x10, 0x0500|uint16(page))
++				if m.Read8(0x462) != page || m.Read16(0x44e) != uint16(page)*tc.size {
++					t.Fatalf("page %d not represented in BDA", page)
++				}
++				_, _, px := m.Planar()
++				if px[0] != page+1 {
++					t.Fatalf("visible page %d first pixel=%d want=%d", page, px[0], page+1)
++				}
++				call(m, d, 0x10, 0x0f00)
++				if uint8(m.CPU.R[cpu.BX]>>8) != page {
++					t.Fatalf("AH0F BH does not report page %d", page)
++				}
++			}
++			call(m, d, 0x10, 0x0500|uint16(tc.pages))
++			if m.Read8(0x462) != tc.pages-1 {
++				t.Fatal("invalid page changed the active page")
++			}
++			if !bytes.Equal(original, m.VGA.Raw()) {
++				t.Fatal("page selection changed VRAM")
++			}
++			call(m, d, 0x10, 0x0500)
++			_, _, px := m.Planar()
++			if px[0] != 1 {
++				t.Fatal("switching back did not preserve page zero")
++			}
++			call(m, d, 0x10, 0x0501)
++			call(m, d, 0x10, uint16(tc.mode))
++			if m.Read8(0x462) != 0 || m.Read16(0x44e) != 0 || m.VGA.DisplayStart() != 0 {
++				t.Fatal("mode reset left stale display page")
++			}
++		})
++	}
++}
++
++func TestBIOSPlanarDisplayPageSurvivesMachineState(t *testing.T) {
++	m, d := newTest(t)
++	call(m, d, 0x10, 0x000e)
++	m.VGA.Planes[2][0x4000] = 0x80
++	call(m, d, 0x10, 0x0501)
++	var saved bytes.Buffer
++	if err := m.SaveState(&saved); err != nil {
++		t.Fatal(err)
++	}
++	restored := machine.New()
++	if err := restored.LoadState(bytes.NewReader(saved.Bytes())); err != nil {
++		t.Fatal(err)
++	}
++	_, _, px := restored.Planar()
++	if px[0] != 4 || restored.Read8(0x462) != 1 || restored.Read16(0x44e) != 0x4000 {
++		t.Fatal("state lost visible page or BDA bookkeeping")
++	}
++}
+diff --git a/internal/machine/bda.go b/internal/machine/bda.go
+index a2e4a6d..7803383 100644
+--- a/internal/machine/bda.go
++++ b/internal/machine/bda.go
+@@ -69,6 +69,15 @@ type ModeChange struct {
+ func (m *Machine) SetVideoMode(mode uint8) {
+ 	m.dacMask = 0xff // IBM VGA 模式初始化契約，見規格 263。
+ 	m.Mem[bdaSeg*16+0x49] = mode
++	// 8sword spec 001: setting a mode resets the BIOS display page.
++	m.Write16(bdaSeg*16+0x4E, 0)
++	m.Write8(bdaSeg*16+0x62, 0)
++	switch mode {
++	case 0x0D:
++		m.Write16(bdaSeg*16+0x4C, 0x2000)
++	case 0x0E:
++		m.Write16(bdaSeg*16+0x4C, 0x4000)
++	}
+ 	// CGA 圖形模式：色彩選擇重設為調色盤 1、高強度、背景黑（docs/spec/250-cga-int10-scroll-and-palette §3.2）；
+ 	// 放在這裡而不是 bios.go 的 AH=00h 分支，因為測試與其他呼叫端會直接呼叫 SetVideoMode，且要在通知觀察者之前完成。
+ 	if isCGAGraphics(mode) {
+diff --git a/internal/machine/bios_page.go b/internal/machine/bios_page.go
+new file mode 100644
+index 0000000..540ddbd
+--- /dev/null
++++ b/internal/machine/bios_page.go
+@@ -0,0 +1,30 @@
++package machine
++
++// SetBIOSPlanarPage implements INT 10h AH=05h for standard modes 0Dh/0Eh.
++// Contract: 8sword docs/spec/001-planar-bios-display-pages.md.
++// This changes scanout and BIOS bookkeeping, never the stored plane bytes.
++// Other video modes and nonstandard CRTC addressing remain outside this slice.
++func (m *Machine) SetBIOSPlanarPage(page uint8) bool {
++	var size uint16
++	var pages uint8
++	switch m.VideoMode() {
++	case 0x0D:
++		size, pages = 0x2000, 8
++	case 0x0E:
++		size, pages = 0x4000, 4
++	default:
++		return false
++	}
++	if page >= pages {
++		return false
++	}
++	start := uint16(page) * size
++	m.Write16(bdaSeg*16+0x4E, start)
++	m.Write8(bdaSeg*16+0x62, page)
++	base := m.Read16(bdaSeg*16 + 0x63)
++	m.Out8(base, 0x0C)
++	m.Out8(base+1, uint8(start>>8))
++	m.Out8(base, 0x0D)
++	m.Out8(base+1, uint8(start))
++	return true
++}

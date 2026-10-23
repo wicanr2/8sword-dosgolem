@@ -8,14 +8,20 @@
 | 授權 | 使用者已授權 Docker 存取與主機 gh 建立 GitHub 倉庫；畫風、音色、平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 初始提交 `46ff80b` 已推送；遠端樹回讀只有 `.gitignore`、AGENTS.md、CONTEXT.md、WORKLOG.md，未含來源封包 |
-| Docker | 已可列出映像及容器；以既有 `mm3-research:20261015-r1` 成功執行唯讀、無網路、非 root 的一次性檢查 |
-| 工具能力 | 上述映像內為 UID/GID 1000:1000、Python 3.13.15，具 `/usr/bin/7z` 與 `/usr/bin/bsdtar`；尚未用本作封包驗證解包能力 |
-| 原始輸入 | 根目錄有 `8sword.zip`、`珍092-神州八劍.rar`；尚未解包、計算 SHA-256 或辨識版本。已由 `.gitignore` 排除 |
+| 文件同步 | 初始文件與建倉收尾已推送至 `6f068bb`；本輪啟動工具、證據與補丁的提交結果另記 WORKLOG，原始素材不加入 Git |
+| Docker | 沿用三份既有研究／Go／影像映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
+| 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
+| DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；原版片頭後自然 EXEC `PAM.AY`。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |
+| dosgolem | 基底 `f79eab6d` 加本案 BIOS 顯示頁補丁，保存在隔離 clone；未修改共用專案。建置入口為 `bash tools/research.sh build-probe` |
+| 黑畫面修正 | 原版切至第 1 頁而基線忽略 AH=05h；已補 0Dh／0Eh 的頁切換、BDA 與目前頁回報。[001 規格](docs/spec/001-planar-bios-display-pages.md)限定 CONFORMED |
+| 正常原版路段 | 已冷啟動、選 VGA／AdLib、片頭、主選單、新遊戲確認、進地圖、方向鍵移動、F7 存檔、正常回 DOS，再冷啟動繼續。這是原版的 dosgolem 研究路段，尚無前端 GUI |
+| 真正存讀檔 | 原版寫出的 2987-byte 進度檔，讀回 RAM 後逐 byte 相同；已回到保存的鏡頭與主角位置。動畫相位有差異，未稱整幅畫面一致 |
+| 音樂 | 已進原版音樂欣賞，第一項實際載入 MINT.AY／SINT.AY 並寫 AdLib 埠；其他映射、全曲、時間與循環未驗，尚無 HD 音樂 |
+| HD 畫面 | 已展示 A 忠實像素／B 明亮手繪比較草稿，等待使用者選擇。草稿僅本機，不是正式資產或遊戲接入 |
 | 參考入口 | 已查閱 mm3 的 AGENTS、CONTEXT 與音樂、呈現及效能規格，以及 dosgolem 的 README、CLAUDE；入口見 AGENTS |
-| 已完成 | 專案規則、Docker 基本執行檢查、私人遠端倉庫與本機 Git 初始化 |
-| 原版未知 | DOS 主程式、版本、素材格式、音樂介面與 dosgolem 相容性均未驗證，阻擋正式接入 |
-| 可選打磨 | 尚未進入此階段；沒有已驗證的遊戲或 HD 資產 |
-| 清理 | 一次性檢查使用 `--rm`，未建立新映像、研究目錄或轉檔產物；容器內擁有權檢查無 root-owned 檔案及誤建 `.md` 目錄 |
+| 已完成 | 來源盤點、原版啟動垂直路段、BIOS 顯示頁修正與四個相關套件測試。核對入口為 `bash tools/research.sh audit` |
+| 原版未知 | 發行版本及既有修改、戰鬥與後期流程、素材格式、中文字對應、其餘曲目及時間契約尚未知；限制依功能分別補證據 |
+| 可選打磨 | 尚未進入；HD 是正式範圍，目前待畫風確認及音樂樣本製作，不能列為可選打磨 |
+| 清理 | 本輪只用一次性 `--rm` 容器，沒有建立新映像。來源、失敗與成功收據留在 workplace；收尾擁有權與容器核對記 WORKLOG |
 
-下一步在 Docker 中唯讀盤點兩份封包，固定來源雜湊與實際 DOS 主程式，再建立 dosgolem 冷啟動基線。目前沒有可啟動、可玩、音畫接入或對拍完成的聲明。
+下一步先依使用者選擇確認 HD 畫風，再定位這個地圖狀態的圖像與文字來源，製作最小覆繪規格；音樂另沿原版欣賞模式核對曲目及試聽方向。重大選擇未確認前只繼續獨立查證。可啟動與上述路段已驗，不宣稱完整可玩、HD 接入或全遊戲對拍完成。
