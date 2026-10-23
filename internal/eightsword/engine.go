@@ -16,17 +16,18 @@ type Options struct {
 	HD                  bool
 }
 type Engine struct {
-	Oracle      *oracle.Oracle
-	Tracker     *Tracker
-	Assets      *Assets
-	PAM         []byte
-	HD          bool
-	AssetError  string
-	Exited      bool
-	ExitCode    uint8
-	PAMLoaded   bool
-	InputEvents []InputEvent
-	Sound       *oracle.Audio
+	Oracle        *oracle.Oracle
+	Tracker       *Tracker
+	Assets        *Assets
+	PAM           []byte
+	HD            bool
+	AssetError    string
+	GraphicsError string
+	Exited        bool
+	ExitCode      uint8
+	PAMLoaded     bool
+	InputEvents   []InputEvent
+	Sound         *oracle.Audio
 }
 type InputEvent struct {
 	Step  uint64
@@ -67,6 +68,19 @@ func Open(opt Options) (*Engine, error) {
 			e.HD = false
 		} else {
 			e.Tracker = NewTracker(o, e.Assets, pam)
+			if _, statErr := os.Stat(filepath.Join(opt.Assets, "terrain.json")); !os.IsNotExist(statErr) {
+				pmap, readErr := os.ReadFile(filepath.Join(opt.Root, "PMAP.AY"))
+				if readErr != nil {
+					e.GraphicsError = readErr.Error()
+				} else {
+					art, artErr := loadGraphicsAssets(opt.Assets, pmap)
+					if artErr != nil {
+						e.GraphicsError = artErr.Error()
+					} else if art != nil {
+						e.Tracker.graphics = newGraphics(e.Tracker, art)
+					}
+				}
+			}
 		}
 	}
 	return e, nil
@@ -235,12 +249,16 @@ func (e *Engine) consoleFrame() *image.RGBA {
 	return out
 }
 func (e *Engine) Status() map[string]any {
-	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
+	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
 	if e.Tracker != nil {
 		out["text"] = e.Tracker.Stats
 		out["scene"] = e.Tracker.Scene
 		out["visible_scene"] = e.Tracker.VisibleScene
 		out["strings"] = e.Tracker.Strings
+		if e.Tracker.graphics != nil {
+			out["graphics"] = e.Tracker.graphics.Stats
+			out["graphics_materials"] = len(e.Tracker.graphics.assets.Materials)
+		}
 	}
 	return out
 }

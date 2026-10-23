@@ -173,7 +173,7 @@ func (d *driver) quit() {
 
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
-	flow := flag.String("flow", "inspect", "inspect, save, reload or fallback")
+	flow := flag.String("flow", "inspect", "inspect, save, reload, fallback or art-fallback")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
 	flag.Parse()
@@ -216,7 +216,7 @@ func main() {
 	d.press(10)
 	d.wait("片頭", 20, func(s map[string]any) bool { return s["mode"] != float64(3) })
 	d.press(9) // 原版手冊允許以 Esc 略過片頭，未直接進入 PAM。
-	if *flow == "fallback" {
+	if *flow == "fallback" || *flow == "art-fallback" {
 		if *nativeFrame == "" {
 			panic("fallback requires an independently captured native reference")
 		}
@@ -225,9 +225,18 @@ func main() {
 		expected, err := png.Decode(f)
 		check(err)
 		check(f.Close())
-		d.wait("原版回退已載入", 35, func(s map[string]any) bool {
-			return s["hd"] == false && s["asset_error"] == "字型圖片 SHA-256 不符" && s["pam_loaded"] == true
-		})
+		failureTitle := "HD 字型載入失敗"
+		if *flow == "art-fallback" {
+			failureTitle = "HD 圖像載入失敗"
+			d.wait("圖像回退且 Noto 保留", 35, func(s map[string]any) bool {
+				return s["hd"] == true && s["asset_error"] == "" && s["graphics_error"] == "HD 圖像 grass-painted-r1.png SHA-256 不符" && s["pam_loaded"] == true
+			})
+			d.scene("main-menu")
+		} else {
+			d.wait("原版回退已載入", 35, func(s map[string]any) bool {
+				return s["hd"] == false && s["asset_error"] == "字型圖片 SHA-256 不符" && s["pam_loaded"] == true
+			})
+		}
 		shape := d.grab().Bounds()
 		resized := image.NewRGBA(shape)
 		for y := 0; y < shape.Dy(); y++ {
@@ -237,10 +246,10 @@ func main() {
 				resized.Pix[at], resized.Pix[at+1], resized.Pix[at+2], resized.Pix[at+3] = uint8(r>>8), uint8(g>>8), uint8(b>>8), 255
 			}
 		}
-		d.wait("真正原版主選單畫面", 35, func(map[string]any) bool { return bytes.Equal(d.grab().Pix, resized.Pix) })
+		d.wait("真正回退主選單畫面", 35, func(map[string]any) bool { return bytes.Equal(d.grab().Pix, resized.Pix) })
 		prop, err := xproto.GetProperty(c, false, d.window, titleAtom.Atom, 0, 0, 1024).Reply()
 		check(err)
-		if !strings.Contains(string(prop.Value), "HD 字型載入失敗") {
+		if !strings.Contains(string(prop.Value), failureTitle) {
 			panic("視窗標題未顯示回退原因")
 		}
 		d.shot("03-fallback-native-menu")

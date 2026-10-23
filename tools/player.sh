@@ -26,7 +26,7 @@ case "${1:-}" in
       -e GOPROXY=https://proxy.golang.org -e GOSUMDB=sum.golang.org \
       "$task_go" go mod download all
     ;;
-  build|test)
+  build|test|test-player)
     task_action="$1"
     bash "$task_root/tools/research.sh" build-probe
     test -d "$task_work/gocache"; test -d "$task_work/gomodcache"
@@ -43,11 +43,14 @@ case "${1:-}" in
         set -e
         printf "go 1.24.0\nuse (\n /project\n /dosgolem\n)\n" > /tmp/go.work
         export GOWORK=/tmp/go.work
-        if [[ "$1" == test ]]; then
+        if [[ "$1" == test || "$1" == test-player ]]; then
           EIGHTSWORD_TEST_ORIG=/project/workplace/intake-20261023/sources/game/8sword \
-            EIGHTSWORD_TEST_ASSETS=/out/assets go test -mod=readonly /project/internal/eightsword
-          cd /dosgolem
-          go test -mod=readonly ./oracle ./internal/machine ./internal/dos ./internal/state
+            EIGHTSWORD_TEST_ASSETS=/out/assets EIGHTSWORD_TEST_GRAPHICS_ASSETS=/out/assets-painted-r2 \
+            go test -mod=readonly /project/internal/eightsword
+          if [[ "$1" == test ]]; then
+            cd /dosgolem
+            go test -mod=readonly ./oracle ./internal/machine ./internal/dos ./internal/state
+          fi
         else
           find /project/internal /project/cmd -type f -name "*.go" -print0 \
             | sort -z | xargs -0 sha256sum > /out/build-inputs.sha256
@@ -73,6 +76,25 @@ case "${1:-}" in
       --mount "type=bind,src=$task_player/assets,dst=/out" \
       "$task_py" python /tools/prepare-hd-assets.py --exe /orig/PAM.AY \
       --font /fonts/NotoSansCJK-Black.ttc --out /out
+    ;;
+  graphics-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    valid_name "$task_name"
+    task_refs="$task_work/probe-20261023/graphics-first"
+    test -f "$task_orig/PMAP.AY"; test -d "$task_refs"; test -f "$task_player/assets/font.json"
+    test -d "$task_root/docs/images"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout 40s docker run --rm --name "8sword-graphics-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 512m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_refs,dst=/refs,readonly" \
+      --mount "type=bind,src=$task_player/assets,dst=/fonts,readonly" \
+      --mount "type=bind,src=$task_root/docs/images,dst=/style,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-graphics.py --source /orig/PMAP.AY --refs /refs \
+      --font-assets /fonts --style-reference /style/hd-style-approved-r1.png --out /out
     ;;
   replay)
     task_mode="${2:?指定 hd 或 native}"
@@ -115,5 +137,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|assets|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

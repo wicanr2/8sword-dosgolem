@@ -222,6 +222,10 @@ func main() {
 		title = "神州八劍 · 原版文字（HD 字型載入失敗）"
 		log.Printf("HD 字型未載入，使用原版呈現：%s", engine.AssetError)
 	}
+	if engine.GraphicsError != "" {
+		title = "神州八劍 · Noto Black 900（HD 圖像載入失敗）"
+		log.Printf("HD 圖像未載入，保留原版圖像：%s", engine.GraphicsError)
+	}
 	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit}
 	if *record {
 		if *capture == "" {

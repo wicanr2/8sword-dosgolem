@@ -51,6 +51,7 @@ type Tracker struct {
 	cachedDisplay                   oracle.PlanarDisplay
 	cachedIndexed                   []uint8
 	cachedFrame                     *image.RGBA
+	graphics                        *Graphics
 }
 type StringEvent struct {
 	Step   uint64
@@ -69,6 +70,9 @@ func (t *Tracker) clear() {
 	clear(t.owners)
 	clear(t.glyphs)
 	t.active = nil
+	if t.graphics != nil {
+		t.graphics.clear()
+	}
 	t.VisibleScene = ""
 	t.stringSource = 0
 	t.cachedFrame = nil
@@ -120,6 +124,9 @@ func (t *Tracker) Bind() {
 		t.o.OnCall(oracle.Addr{Seg: t.fontSeg, Off: 0x4a98}, func(*oracle.Oracle) { t.begin(true) })
 		t.o.OnCall(oracle.Addr{Seg: t.stringSeg, Off: 0xb86}, func(*oracle.Oracle) { t.begin(false) })
 		t.o.OnCall(oracle.Addr{Seg: t.stringSeg, Off: 0xae3}, func(*oracle.Oracle) { t.observeString() })
+		if t.graphics != nil {
+			t.graphics.bind()
+		}
 		return
 	}
 }
@@ -282,6 +289,9 @@ func (t *Tracker) set(at uint32, v cell) {
 }
 
 func (t *Tracker) copyByte(destination, source uint32) {
+	if t.graphics != nil {
+		t.graphics.copyByte(destination, source)
+	}
 	var saved [8]cell
 	for bit := range saved {
 		saved[bit] = t.owners[source*8+uint32(bit)]
@@ -305,6 +315,10 @@ func (t *Tracker) write(w oracle.VideoWrite) {
 			return
 		}
 	}
+	mask := uint8(255)
+	if t.graphics != nil {
+		mask = t.graphics.write(w)
+	}
 	isGlyph := (w.CS == t.fontSeg && (w.IP == 0x4b80 || w.IP == 0x4bda)) || (w.CS == t.stringSeg && w.IP == 0xc71)
 	if isGlyph && t.active != nil {
 		g := t.active
@@ -322,7 +336,9 @@ func (t *Tracker) write(w oracle.VideoWrite) {
 		}
 	}
 	for bit := 0; bit < 8; bit++ {
-		t.set(w.Offset*8+uint32(bit), cell{})
+		if mask&(0x80>>uint(bit)) != 0 {
+			t.set(w.Offset*8+uint32(bit), cell{})
+		}
 	}
 	t.Stats.InvalidatedBytes++
 }
@@ -398,6 +414,9 @@ func (t *Tracker) Compose() *image.RGBA {
 		}
 	}
 	// Stable order avoids map iteration changing overlapping alpha blends.
+	if t.graphics != nil {
+		t.graphics.paint(out, p)
+	}
 	ordered := sortedGroups(groups)
 	sources := map[uint16]bool{}
 	for _, key := range ordered {

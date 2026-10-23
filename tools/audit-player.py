@@ -10,7 +10,7 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def audit(hd, native):
+def audit(hd, native, graphics=False):
     left = json.loads((hd / "receipt.json").read_text())
     right = json.loads((native / "receipt.json").read_text())
     for result in (left, right):
@@ -32,11 +32,21 @@ def audit(hd, native):
     writes = files(hd / "scratch")
     assert writes == files(native / "scratch")
     assert sha(hd / "final.png") != sha(native / "final.png")
-    return {"status": "passed-scoped-guest-isolation", "hd": str(hd), "native": str(native),
+    result = {"status": "passed-scoped-guest-isolation", "hd": str(hd), "native": str(native),
             "guest_state_sha256": state, "steps": left["steps"], "dos_files": writes,
             "hd_text": text, "input_events_sha256": hashlib.sha256(
                 json.dumps(left["input_events"], sort_keys=True).encode()).hexdigest(),
             "limit": "限正常新遊戲、人物頁、返回、F7 開關與移動；不含真正存退讀、戰鬥、HD 美術與 HD 音樂。"}
+    if graphics:
+        art = left["graphics"]
+        assert not left["graphics_error"] and left["graphics_materials"] > 0
+        assert art["Bound"] and art["HDSourceCalls"] > 0 and art["PaintedNativePixels"] > 0
+        assert art["CompositedFrames"] > 0 and art["MaskedCalls"] > 0 and art["CopiedBytes"] > 0
+        assert not art["Errors"] and not art["GeometryRejected"]
+        result["graphics"] = art
+        result["graphics_materials"] = left["graphics_materials"]
+        result["limit"] = "限此冷啟動、新遊戲、人物頁、返回、F7 開關與移動，確認圖像確實啟用且客體隔離；不含真正存退讀、戰鬥、完整美術或 HD 音樂。"
+    return result
 
 
 if __name__ == "__main__":
@@ -44,7 +54,8 @@ if __name__ == "__main__":
     parser.add_argument("hd", type=Path)
     parser.add_argument("native", type=Path)
     parser.add_argument("output", type=Path)
+    parser.add_argument("--graphics", action="store_true", help="另要求 HD 圖像實際啟用、遮罩及頁搬移")
     args = parser.parse_args()
-    result = audit(args.hd, args.native)
+    result = audit(args.hd, args.native, graphics=args.graphics)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     print(result["status"], result["guest_state_sha256"], len(result["dos_files"]))
