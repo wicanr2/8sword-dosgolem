@@ -135,7 +135,7 @@ func realGraphics(t *testing.T) (*GraphicsAssets, []byte, string, string) {
 }
 func TestActualMaterialSeamsAndPixelContainment(t *testing.T) {
 	assets, _, _, _ := realGraphics(t)
-	if len(assets.Native) != 72 || len(assets.Materials) != 35 {
+	if len(assets.Native) != 72 || len(assets.Materials) != 53 {
 		t.Fatal("wrong actual asset shape")
 	}
 	tile := assets.Materials[1].Tile
@@ -272,14 +272,25 @@ func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 	if err := json.Unmarshal(raw, &original); err != nil {
 		t.Fatal(err)
 	}
-	for _, name := range []string{"crop-overflow", "unknown-sampling", "duplicate-composite", "wrong-dependency", "wrong-rock", "unknown-composite", "unknown-ui", "wrong-ui-paper", "missing-ui-paper"} {
+	temp := t.TempDir()
+	for _, file := range original.Materials {
+		if err := os.Symlink(filepath.Join(dir, file.File), filepath.Join(temp, file.File)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	for _, file := range original.Overlays {
+		if err := os.Symlink(filepath.Join(dir, file.File), filepath.Join(temp, file.File)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := os.WriteFile(filepath.Join(temp, "terrain.json"), raw, 0600); err != nil {
+		t.Fatal(err)
+	}
+	if a, err := loadGraphicsAssets(temp, pmap); err != nil || a == nil {
+		t.Fatal("malformed-case fixture does not load before mutation", err)
+	}
+	for _, name := range []string{"crop-overflow", "unknown-sampling", "duplicate-composite", "wrong-dependency", "wrong-rock", "unknown-composite", "unknown-ui", "wrong-ui-paper", "missing-ui-paper", "wrong-sand", "wrong-overlay-background", "duplicate-overlay", "unknown-overlay"} {
 		t.Run(name, func(t *testing.T) {
-			temp := t.TempDir()
-			for _, file := range original.Materials {
-				if err := os.Symlink(filepath.Join(dir, file.File), filepath.Join(temp, file.File)); err != nil {
-					t.Fatal(err)
-				}
-			}
 			var m terrainManifest
 			if err := json.Unmarshal(raw, &m); err != nil {
 				t.Fatal(err)
@@ -308,6 +319,14 @@ func TestActualMaterialRejectsInvalidSamplingAndComposite(t *testing.T) {
 						break
 					}
 				}
+			case "wrong-sand":
+				m.Composites[27].Sand = 31
+			case "wrong-overlay-background":
+				m.Overlays[0].Background = 1
+			case "duplicate-overlay":
+				m.Overlays[1].Index = m.Overlays[0].Index
+			case "unknown-overlay":
+				m.Overlays[0].Index = 45
 			}
 			changed, err := json.Marshal(m)
 			if err != nil {

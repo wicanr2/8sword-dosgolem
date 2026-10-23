@@ -27,6 +27,15 @@ type GraphicsAssets struct {
 	ByNative  map[string]uint16
 	Materials map[uint16]*graphicMaterial
 }
+type graphicPNG struct {
+	Index      int    `json:"source_index"`
+	File       string `json:"file"`
+	SHA        string `json:"sha256"`
+	Width      int    `json:"width"`
+	Height     int    `json:"height"`
+	Sampling   string `json:"sampling"`
+	SourceRect []int  `json:"source_rect"`
+}
 type terrainManifest struct {
 	Schema    int    `json:"schema"`
 	SourceSHA string `json:"source_sha256"`
@@ -36,20 +45,17 @@ type terrainManifest struct {
 		Style       string `json:"style"`
 		PaperSource int    `json:"paper_source"`
 	} `json:"ui"`
-	Materials []struct {
-		Index      int    `json:"source_index"`
-		File       string `json:"file"`
-		SHA        string `json:"sha256"`
-		Width      int    `json:"width"`
-		Height     int    `json:"height"`
-		Sampling   string `json:"sampling"`
-		SourceRect []int  `json:"source_rect"`
-	} `json:"materials"`
+	Materials []graphicPNG `json:"materials"`
+	Overlays  []struct {
+		graphicPNG
+		Background int `json:"background_source"`
+	} `json:"overlays"`
 	Composites []struct {
 		Index int    `json:"source_index"`
 		Land  int    `json:"land_source"`
 		Water int    `json:"water_source"`
 		Rock  int    `json:"rock_source"`
+		Sand  int    `json:"sand_source"`
 		Rule  string `json:"mask_rule"`
 	} `json:"composites"`
 }
@@ -131,21 +137,7 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 		if out.Materials[id] != nil {
 			return nil, fmt.Errorf("HD 圖像來源索引重複")
 		}
-		data, err := os.ReadFile(filepath.Join(dir, entry.File))
-		if err != nil {
-			return nil, err
-		}
-		if len(data) > 32*1024*1024 || hash(data) != entry.SHA {
-			return nil, fmt.Errorf("HD 圖像 %s SHA-256 不符", entry.File)
-		}
-		config, format, err := image.DecodeConfig(bytes.NewReader(data))
-		if err != nil {
-			return nil, err
-		}
-		if format != "png" || config.Width != entry.Width || config.Height != entry.Height || config.Width < 1 || config.Height < 1 || config.Width > 4096 || config.Height > 4096 || config.Width*config.Height > 8388608 {
-			return nil, fmt.Errorf("HD 圖像尺寸／格式不符")
-		}
-		decoded, _, err := image.Decode(bytes.NewReader(data))
+		decoded, err := loadGraphicPNG(dir, entry)
 		if err != nil {
 			return nil, err
 		}
@@ -176,18 +168,27 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 	for id, material := range out.Materials {
 		materials[id] = material
 	}
-	if len(m.Composites) > 27 {
+	if len(m.Composites) > 41 {
 		return nil, fmt.Errorf("HD 地表合成數量不符")
 	}
 	for _, entry := range m.Composites {
-		mountain := entry.Rule == "pmap-grass-rock-v1"
 		detailID := uint16(2)
-		if mountain {
-			if entry.Index < 14 || entry.Index > 29 || entry.Index == 15 || entry.Land != 0 || entry.Water != 0 || entry.Rock != 15 {
+		switch entry.Rule {
+		case "pmap-grass-rock-v1":
+			if entry.Index < 14 || entry.Index > 29 || entry.Index == 15 || entry.Land != 0 || entry.Water != 0 || entry.Rock != 15 || entry.Sand != 0 {
 				return nil, fmt.Errorf("HD 山地來源／合成規則不符")
 			}
 			detailID = 16
-		} else if entry.Rule != "pmap-green-blue-v1" || entry.Index < 2 || entry.Index > 13 || entry.Land != 0 || entry.Water != 1 || entry.Rock != 0 {
+		case "pmap-grass-sand-v1":
+			if entry.Index < 31 || entry.Index > 44 || entry.Land != 0 || entry.Sand != 30 || entry.Water != 0 || entry.Rock != 0 {
+				return nil, fmt.Errorf("HD 黃色地表來源／合成規則不符")
+			}
+			detailID = 31
+		case "pmap-green-blue-v1":
+			if entry.Index < 2 || entry.Index > 13 || entry.Land != 0 || entry.Water != 1 || entry.Rock != 0 || entry.Sand != 0 {
+				return nil, fmt.Errorf("HD 岸線來源／合成規則不符")
+			}
+		default:
 			return nil, fmt.Errorf("HD 地表來源／合成規則不符")
 		}
 		id := uint16(entry.Index + 1)
@@ -199,11 +200,35 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 			return nil, fmt.Errorf("HD 地表合成缺少直接材質")
 		}
 		b := native[entry.Index]
-		tile, err := terrainMaterial(b, land.Tile, detail.Tile, mountain)
+		tile, err := terrainMaterialForRule(b, land.Tile, detail.Tile, entry.Rule)
 		if err != nil {
 			return nil, err
 		}
 		out.Materials[id] = &graphicMaterial{b.WidthBytes * 8, b.Height, tile}
+	}
+	if len(m.Overlays) > 3 {
+		return nil, fmt.Errorf("HD 靜物數量不符")
+	}
+	for _, entry := range m.Overlays {
+		if (entry.Index != 50 && entry.Index != 53 && entry.Index != 57) || entry.Background != 0 || (entry.Sampling != "" && entry.Sampling != "bitmap") || len(entry.SourceRect) != 0 {
+			return nil, fmt.Errorf("HD 靜物來源或草底不符")
+		}
+		id := uint16(entry.Index + 1)
+		if out.Materials[id] != nil {
+			return nil, fmt.Errorf("HD 靜物來源重複")
+		}
+		if materials[1] == nil {
+			return nil, fmt.Errorf("HD 靜物缺少直接草地材質")
+		}
+		decoded, err := loadGraphicPNG(dir, entry.graphicPNG)
+		if err != nil {
+			return nil, err
+		}
+		tile, err := compositeStaticObject(decoded, materials[1].Tile)
+		if err != nil {
+			return nil, err
+		}
+		out.Materials[id] = &graphicMaterial{64, 25, tile}
 	}
 	if m.UI != nil {
 		if m.UI.Style != "jade-gold-v1" || m.UI.PaperSource != 46 || materials[47] == nil {
@@ -218,6 +243,28 @@ func loadGraphicsAssets(dir string, pmap []byte) (*GraphicsAssets, error) {
 		}
 	}
 	return out, nil
+}
+
+func loadGraphicPNG(dir string, entry graphicPNG) (image.Image, error) {
+	if entry.File == "" || entry.File != filepath.Base(entry.File) {
+		return nil, fmt.Errorf("HD 圖像檔名不符")
+	}
+	data, err := os.ReadFile(filepath.Join(dir, entry.File))
+	if err != nil {
+		return nil, err
+	}
+	if len(data) > 32*1024*1024 || hash(data) != entry.SHA {
+		return nil, fmt.Errorf("HD 圖像 %s SHA-256 不符", entry.File)
+	}
+	config, format, err := image.DecodeConfig(bytes.NewReader(data))
+	if err != nil {
+		return nil, err
+	}
+	if format != "png" || config.Width != entry.Width || config.Height != entry.Height || config.Width < 1 || config.Height < 1 || config.Width > 4096 || config.Height > 4096 || config.Width*config.Height > 8388608 {
+		return nil, fmt.Errorf("HD 圖像尺寸／格式不符")
+	}
+	decoded, _, err := image.Decode(bytes.NewReader(data))
+	return decoded, err
 }
 
 // Original PNG bytes remain untouched. This is the renderer's sampling cache.
@@ -288,13 +335,33 @@ func shoreMaterial(b nativeBitmap, land, water *image.RGBA) (*image.RGBA, error)
 
 // Both masks are explicit visual approximations of native palette groups.
 func terrainMaterial(b nativeBitmap, land, detail *image.RGBA, mountain bool) (*image.RGBA, error) {
+	rule := "pmap-green-blue-v1"
+	if mountain {
+		rule = "pmap-grass-rock-v1"
+	}
+	return terrainMaterialForRule(b, land, detail, rule)
+}
+
+func terrainMaterialForRule(b nativeBitmap, land, detail *image.RGBA, rule string) (*image.RGBA, error) {
 	w, h := b.WidthBytes*8, b.Height
 	if w != 64 || h != 25 || len(b.Pixels) != w*h || land.Bounds() != detail.Bounds() || land.Bounds() != image.Rect(0, 0, w*3, h*6) {
 		return nil, fmt.Errorf("HD 地表合成幾何不符")
 	}
 	labels := make([]int, len(b.Pixels))
 	for i, code := range b.Pixels {
-		if mountain {
+		if rule == "pmap-grass-sand-v1" {
+			switch code {
+			case 2, 10:
+				labels[i] = 1
+			case 7, 12, 13, 15:
+				labels[i] = -1
+			case 0, 1, 8, 9, 14:
+			default:
+				return nil, fmt.Errorf("HD 黃色地表出現未知色碼 %d", code)
+			}
+			continue
+		}
+		if rule == "pmap-grass-rock-v1" {
 			switch code {
 			case 2, 10:
 				labels[i] = 1
@@ -333,7 +400,7 @@ func terrainMaterial(b nativeBitmap, land, detail *image.RGBA, mountain bool) (*
 				}
 			}
 			ratio := 0.5
-			if mountain {
+			if rule != "pmap-green-blue-v1" {
 				ratio = 0
 			}
 			if total != 0 {

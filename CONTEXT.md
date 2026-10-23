@@ -17,7 +17,7 @@
 | 正常原版路段 | 研究入口及新視窗皆已冷啟動、VGA／AdLib、新遊戲、F1、返回、移動、F7 存檔、回 DOS，再冷啟動繼續。視窗透過 XTEST 真正按鍵，實際呈現頁面另由所有權與 Draw 收據確認；遇到的攻擊確認經原版選「否」後返回，未驗亂數或戰鬥規則 |
 | 真正存讀檔 | 原版寫出的 2987-byte 進度檔，讀回 RAM 後逐 byte 相同；已回到保存的鏡頭與主角位置。動畫相位有差異，未稱整幅畫面一致 |
 | 音樂 | 已進原版音樂欣賞，第一項實際載入 MINT.AY／SINT.AY 並寫 AdLib 埠；其他映射、全曲、時間與循環未驗，尚無 HD 音樂 |
-| HD 畫面 | B 古風地表、人物頁底紋、主角肖像、金玉外框、主選單與訊息框已接入，`assets-painted-r5` 共 35 筆，包含五張生成原圖、27 筆地表合成及三筆程式繪製的介面。[004](docs/spec/004-hd-bitmap-presentation.md)記錄視覺近似，[005](docs/spec/005-jade-gold-interface.md)介面限定 CONFORMED。沙地、建築、角色動畫及其他畫面仍待處理；未新增生成圖或上傳素材 |
+| HD 畫面 | B 古風地表、兩種建築、布旗、人物頁底紋、主角肖像及金玉介面已接入，`assets-painted-r6` 共 53 筆，包含六張直接材質、41 筆地表合成、三張透明靜物及三筆介面。[004](docs/spec/004-hd-bitmap-presentation.md)記錄視覺近似，[005](docs/spec/005-jade-gold-interface.md)介面限定 CONFORMED，[006](docs/spec/006-static-map-objects-and-sand.md)仍 READY。沙地 30–44 已製作與載入，但未在正常場景看見；角色動畫與其他圖像仍待處理，新素材只留本機 |
 | HD 文字 | 已接入 Noto Sans CJK TC Black 900，731 字包含 636 中文與 95 ASCII。追蹤實際字墨、同值寫入失效及 VGA 頁搬移，主機合成不改 DOS。[002](docs/spec/002-pam-font-catalog.md)限定 CONFORMED；[003](docs/spec/003-noto-runtime-overlay.md)仍為 READY，完整驗收未結案 |
 | 純 Noto 視窗基準 | `workplace/player/gui/noto-save-visible-r3/` 含 save／reload 兩個真正視窗程序，共 23 張正常路段截圖，包含遭遇確認選否。存檔段全形 314／半形 585 次，讀檔段 87／235 次，皆無缺字及追蹤錯誤；這份基準圖像為原版，現行 HD 圖像另列下方 |
 | 連續幀 | 存檔段 248 幀、46 次畫面改變，讀檔段 125 幀、9 次改變，獨立解碼及縮圖檢視通過。已修正只看背景頁繪字事件便過早抓圖的驗證器；現在等待真正顯示頁的文字所有權及後續 Draw。未走畫面與長文仍未全面驗證 |
@@ -27,11 +27,13 @@
 | 覆繪狀態隔離 | 現行 `noto-cache-hd-r1` 與原版基準，同一冷啟動輸入到 250000000 步，完整狀態檔、31 個工作檔、輸入及載入事件一致；完整狀態 SHA 仍為 `4b55d179…64ac`。`noto-cache-isolation-r1.json` 與 `noto-cache-render-audit-r1.json` 分別核對客體隔離及優化前後畫面 |
 | 故障回退 | 正式共用 Engine 與實際視窗都已載入受損 PNG，回報 SHA 不符並關閉覆繪。`noto-fallback-visible-r1/fallback/` 的實際原版選單與 native 參考逐 RGB 像素相同；XTEST 也核對視窗標題包含「HD 字型載入失敗」。收據為 `fallback-window-audit.json`，沒有畫成空白 |
 | HD 圖像來源 | PMAP 68 筆形狀及三個繪圖入口已由 IDA 與 731 次執行期呼叫確認。第五組供另一顯示分支，第六組才是角色透明遮罩，不能混稱。只讀所有權追蹤及頁搬移已接入，未知來源保留原版；新範圍不再重查已解 ABI |
-| HD 圖像隔離 | 現行 `jade-ui-r1` 同輸入冷啟動至 250000000 步，35 筆素材載入，381 次 HD 來源呼叫、1051365 個合成原生像素；完整狀態 SHA `4b55d179…64ac`、31 個工作檔、輸入及載入事件同 native。`jade-ui-isolation-r1.json` 明確要求圖像啟用；`jade-ui-old-pack-r1` 的舊 32 筆素材組十張 PNG 及狀態仍同先前版本 |
-| HD 圖像視窗 | 現行 `workplace/player/gui/jade-ui-visible-r1/` 兩個冷啟動視窗走主選單、新遊戲、兩次人物頁、返回、移動、F7 儲存及退出，再冷啟動繼續。存檔段 158 幀／20 次改變、讀檔段 97 幀／9 次改變，已獨立解碼及檢視。三種新介面、人物頁與 Noto 正確呈現，框飾未侵入內容安全區，返回後無殘留；本輪沒有遭遇，未反覆重擲 |
+| HD 圖像隔離 | 現行 `static-objects-r1` 同輸入冷啟動至 250000000 步，53 筆素材載入，401 次 HD 來源呼叫、1083365 個合成原生像素；完整狀態 SHA `4b55d179…64ac`、31 個工作檔、輸入及載入事件同 native。`static-objects-isolation-r1.json` 明確要求圖像啟用；`static-old-pack-r1` 的舊 35 筆素材組十張 PNG 及狀態同 `jade-ui-r1` |
+| HD 圖像視窗 | 現行 `workplace/player/gui/static-objects-visible-r1/` 兩個冷啟動視窗走主選單、新遊戲、兩次人物頁、返回、移動、F7 儲存及退出，再冷啟動繼續。存檔段 208 幀／21 次改變、讀檔段 102 幀／8 次改變，已獨立解碼及檢視。兩種建築、布旗、金玉介面、人物頁與 Noto 正確呈現；草地接合，返回後無殘留。本輪沒有遭遇，未反覆重擲 |
 | HD 圖像存讀與回退 | 上述視窗落地及讀回 RAM 的 2987 bytes 相同，SHA `29dd62ae…2359`，地圖差異限主角動畫。真實損壞草地 PNG 後整組圖像拒用，十張保存 PNG 與純 Noto 基準相同，客體與工作檔一致；實際視窗另核對「HD 圖像載入失敗」及 Noto 選單逐 RGB 相同。收據 `painted-fallback-audit-r1.json`、`painted-fallback-window-r1.json` |
 | 肖像故障回退 | 進一步損壞最後載入的肖像 PNG，確認已處理其他四張 PNG 後仍不留下半組圖像，Noto 保留；十張保存 PNG 與純 Noto 基準一致，完整狀態與 31 個工作檔也相同。收據 `painted-portrait-fallback-r1.json` |
 | 介面故障回退 | `jade-ui-invalid-r1` 的未知介面樣式及 `jade-ui-paper-bad-r1` 的真實玉紙 PNG 損壞，皆整組圖像拒用而 Noto 保留，十張 PNG、客體狀態與 31 個工作檔同純 Noto 基準；兩份同名 `-audit.json` 保存結果 |
+| 靜物故障與舊組 | `static-corrupt-r1` 真實損壞新房屋 PNG，回報 SHA 不符並整組停用圖像，Noto 保留。十張保存畫面、客體狀態及 31 個工作檔同純 Noto 基準；舊 35 筆組亦保持十張畫面及狀態不變，收據 `static-objects-fallback-r1.json`。本輪故障核對為無頭流程 |
+| 沙地路徑診斷 | `graphics-first/f5-route-r1` 正常按 F5，起點為 40，40；`f5-north-r1` 送出 16 次向北按鍵後，F5 顯示 40，36，仍未見沙地。相同按鍵的純原版終點狀態、31 個工作檔與事件一致，SHA `629bc628…d848f`，見 `f5-north-isolation-r1.json`。前方直條圖樣兩側皆有，語意未確認，未將它改稱沙地或 HD 缺陷 |
 | 圖像來源目錄 | `graphics-first/extra-bitmaps-r1/` 已擷取九個非 PMAP 來源，狀態仍同 native。八個來源與原始檔 bytes 精確相同，外框來源為執行期緩衝區；肖像及三種介面已接入，五張主角動作仍待使用 |
 | 專案介紹 | [README.md](README.md)已撰寫遊戲故事、玩法、現況與研究操作入口；介紹以原版手冊及包裝為據，不將手冊內容當成本案驗收成果 |
 | 參考入口 | 已查閱 mm3 的 AGENTS、CONTEXT 與音樂、呈現及效能規格，以及 dosgolem 的 README、CLAUDE；入口見 AGENTS |
@@ -40,4 +42,4 @@
 | 可選打磨 | 尚未進入；HD 是正式範圍，畫風與字重已確認，接入及音樂樣本仍未完成，不能列為可選打磨 |
 | 清理 | 本輪只用一次性 `--rm` 容器，沒有建立新映像。來源、失敗與成功收據留在 workplace；收尾擁有權與容器核對記 WORKLOG |
 
-下一步製作 PMAP 建築、沙地及角色動畫；金玉外框、BUMBOO、MSGBOX 及 uint32 圖內座標已完成限定路段，不重開同一項研究。角色動畫須先建立生成 alpha 與原版背景還原契約，不能只塞圖。文字仍需未走畫面的實際長文及效能驗收，其他介面依遇到的新來源擴展。HD 音樂仍沿原版曲目來源另做，整體目標未完成。
+下一步接入角色動畫，並沿正常路段擴展尚未替換的地圖圖像及沙地實際場景。兩種建築、布旗與金玉介面已有正常路段證據，不重開相同 ABI 研究；其餘建築依實際來源擴展。角色動畫須先建立生成 alpha 與原版背景還原契約，不能只塞圖。文字仍需未走畫面的實際長文及效能驗收，其他介面依遇到的新來源擴展。HD 音樂仍沿原版曲目來源另做，整體目標未完成。

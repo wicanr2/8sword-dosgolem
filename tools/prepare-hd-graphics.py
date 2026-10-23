@@ -14,7 +14,11 @@ MATERIALS = [(0, "grass-painted-r1", "4e6baf80381f064a8da9d9fa6c09e7a3009498da0d
              (1, "water-painted-r1", "6a0fc05d7911bbf2d318f697e9361f19a09ed4c3c1d172d46eb09c400af70e93",256,200),
              (15, "ochre-rock-r1", "39afceb0428407ff189d075328ccd64acbd3e49443a48f975e4c6ee499074aa7",512,400),
              (46, "jade-paper-r1", "2b837ec73368ce72f85be474e056bfef7fd8e7328c864e42407a02757c303527",512,400),
-             (68, "hero-portrait-r1", "8150858af91388a8fb46587c55a3ff83df6e51d1bf7bb2b9eb8b9d03d99a1533",0,0)]
+             (68, "hero-portrait-r1", "8150858af91388a8fb46587c55a3ff83df6e51d1bf7bb2b9eb8b9d03d99a1533",0,0),
+             (30, "sand-painted-r1", "564482c3eb590fb7da7fb9dff68a5450921ab6f077ea5139f57676a68cd00242",512,400)]
+OVERLAYS=[(50,"pmap-50-banner-r1","881de51a799d407752555e0e34a6fd5b295e5b0233ffd269b8e5be865ff6d648"),
+          (53,"pmap-53-compound-r1","c080e88ac3cd9a8464fc55ec0c9c0b31f12878049d8f6c4ea903bf487beca239"),
+          (57,"pmap-57-house-r1","6bc2e7841c51fa9d72d8bf3b634d8c6433dfd1da0a50f93cf9180fd54233ec2d")]
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -32,7 +36,7 @@ def prepare(args):
     manifest = {"schema":1,"source_sha256":PMAP_SHA,"style":"B-bright-painted-r1",
                 "style_reference_sha256":STYLE_SHA,"generator":"built-in image_gen",
                 "rights":"local-only-derived","materials":[]}
-    selected=MATERIALS if args.set in ("current","portrait") else MATERIALS[:4] if args.set=="landscape" else MATERIALS[:2]
+    selected=MATERIALS if args.set=="current" else MATERIALS[:5] if args.set in ("interface","portrait") else MATERIALS[:4] if args.set=="landscape" else MATERIALS[:2]
     for index,name,expected,crop_width,crop_height in selected:
         image_path=args.refs / (name+".png")
         if sha(image_path)!=expected:
@@ -57,6 +61,20 @@ def prepare(args):
     if args.set!="ground":
         manifest["composites"] += [{"source_index":i,"land_source":0,"rock_source":15,"mask_rule":"pmap-grass-rock-v1"} for i in range(14,30) if i!=15]
     if args.set=="current":
+        manifest["composites"] += [{"source_index":i,"land_source":0,"sand_source":30,"mask_rule":"pmap-grass-sand-v1"} for i in range(31,45)]
+        manifest["overlays"]=[]
+        for index,name,expected in OVERLAYS:
+            image_path=args.refs/(name+".png");prompt=args.refs/(name+".prompt.txt")
+            if sha(image_path)!=expected or not prompt.is_file() or not prompt.read_text().strip():
+                raise ValueError("透明靜物來源或提示不符")
+            with Image.open(image_path) as image:
+                width,height=image.size
+                if image.format!="PNG" or not (1<=width<=4096 and 1<=height<=4096) or width*height>8388608 or image.convert("RGBA").getchannel("A").getextrema()!=(0,255):
+                    raise ValueError("透明靜物格式或 alpha 不符")
+            for source in [image_path,prompt]:shutil.copyfile(source,args.out/source.name)
+            manifest["overlays"].append({"source_index":index,"file":image_path.name,"sha256":expected,"width":width,"height":height,
+                                         "sampling":"bitmap","background_source":0,"prompt_file":prompt.name,"prompt_sha256":sha(prompt)})
+    if args.set in ("current","interface"):
         manifest["ui"]={"style":"jade-gold-v1","paper_source":46}
     for name in ["font.json","font.png"]:
         shutil.copyfile(args.font_assets/name,args.out/name)
@@ -64,7 +82,7 @@ def prepare(args):
     for p in args.out.iterdir():
         if (p.stat().st_uid,p.stat().st_gid)!=(os.getuid(),os.getgid()):
             raise ValueError("輸出檔擁有權不符")
-    print(json.dumps({"materials":len(manifest["materials"]),"composites":len(manifest["composites"]),"ui":3 if "ui" in manifest else 0,"manifest_sha256":sha(args.out/"terrain.json"),
+    print(json.dumps({"materials":len(manifest["materials"]),"composites":len(manifest["composites"]),"overlays":len(manifest.get("overlays",[])),"ui":3 if "ui" in manifest else 0,"manifest_sha256":sha(args.out/"terrain.json"),
                       "rights":manifest["rights"],"generated_png_bytes":"preserved"}))
 
 if __name__=="__main__":
@@ -74,5 +92,5 @@ if __name__=="__main__":
     parser.add_argument("--font-assets",type=Path,required=True)
     parser.add_argument("--style-reference",type=Path,required=True)
     parser.add_argument("--out",type=Path,required=True)
-    parser.add_argument("--set",choices=["ground","landscape","portrait","current"],default="current")
+    parser.add_argument("--set",choices=["ground","landscape","portrait","interface","current"],default="current")
     prepare(parser.parse_args())
