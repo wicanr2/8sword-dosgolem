@@ -697,3 +697,18 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - 已向使用者展示比較並提出單一 A／B 配色問題，建議 A 保留原版紫藍氣氛，目前尚未收到選擇。字型不用再問的授權沿用，不擴張成其他美術的定案。候選不接入正式程式；獨立的來源查證照常進行。
 
 017 維持 DRAFT。完整 HD、正常動態合成、頁面切換及本項接入／存退讀尚待完成，舊項目與其收據不重開。
+
+## 2026-10-24：博物館遮罩與目的頁追查
+
+追加勘誤 `MUSEUM-MASK-RESOLVED`：前一筆記錄及 `source-catalog.json` 將額外兩塊與 consumer 留未知；本輪已解出本次 VGA 使用的第六塊遮罩。現行結論見 [017 的勘誤與回填索引](docs/spec/017-intro-museum-art.md#museum-mask-resolved六塊資料與背景頁勘誤)，舊原型／來源目錄保留歷史，不再當成目前尚未知的依據。
+
+- IDA 技能的安裝路徑是外部 symlink，初次只掛技能根目錄無法讀取目標。確認實際權威路徑後，只讀載入 `/home/anr2/ida_94_official/skills/use-ida-pro-9-4/SKILL.md` 與工具契約。優先 `locked-v1` 仍不在本機，沿用本案已驗證 `py312-v1` 映像 SHA `4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab`，沒有新建映像或搬動授權。
+- 正式 `PREDELLA-runtime.i64` SHA `dccb45c43ec22165a50422e6dbb46bf0c9f8ce7005c570000b29b8f296614616` 只讀，複製至容器 `/tmp` 後查詢。最小 JSON 核對 IDA 9.4、UID 1000、185 函式及分析輸入 SHA `28dbc38d4ef65326ee281b684bf3a7a304ea41c00bfc00410076bce31b1b247a`。沒有改名、bytes 或正式資料庫。
+- 已證實：DOS／PREDELLA runtime SHA `a764a110b9f8b1d32a6ee9cc0dd650350f917959d647fe4b45cd7f1013eaae68` 的線性 `sub_52C0`，308 bytes SHA `c7c0315ee13ef29e26ea2b35098c3cae6453e4f4e5fcd34da6cee81ae57c4dd3`，53F3h 返回。其 caller `sub_1BE2` 傳來源偏移／7000h／x byte／y 列。`word_D208` 是本次實際目的段，`word_D202=1` 選目前平面分支，列位址沿原始 `cs:[bx+4]`；原名、operand、bytes、xref 及原始定位在 `museum-art-r1/ida-museum-r1.json`，此處都是執行期線性位址，TIT 記錄仍用解碼後檔案偏移。
+- 每筆表頭後第 0..3 塊給四個色位元，第 5 塊給寫入遮罩。第 4 塊在此分支未讀，替代 `word_D202=2/3` 分支才使用，不擴張成其他平台已驗。標準 bit mask／latch 契約讀 [FreeVGA Graphics Registers](https://www.scs.stanford.edu/10wi-cs140/pintos/specs/freevga/vga/graphreg.htm#08)，不再逆向標準硬體。原站 502，改讀 Stanford 保存的同一 FreeVGA 文件，沒有把擷取失敗當成硬體問題。
+- `trace-r1` 普通 VGA／AdLib 冷啟動，固定 3000 cycles/ms、21400 ms。`runtime-audit-r1.json` 核對 78 不透明及 134 遮罩繪圖，全部十二筆 TIT4 已到達，5818720 個返回色號逐 byte 同獨立公式。兩目的頁為 0／4000h，其中 150 次目的頁不可見；最長單次 51046 cycles。完整原版 TIT4 執行期緩衝區仍同來源。
+- 無探針 `control-r1` 同輸入／時間的 183704-byte 完整 state 同 SHA `b1cafef3791e821685c691806d4096caa5ee53bc855418ff4ab28df1feeaf6b7`，9 工作檔、原版事件及 4111484-byte PCM 完全相同，PCM SHA `4dc570e5d9677e70b846b6d2844c3490cd800503a807a9bad60e09ee8cb98212`。只讀查看沒有改 VGA latch、客體或聲音。
+- 普通行走中 Esc 的 `escape-r1`／`escape-control-r1`，65 次返回的 2229760 色號相同，1322h 在 step 20903224 退休，PAM 正常載入。162683-byte state 同 SHA `fc73c32536402d7cf534f41674139276529ab8248d65621b830ac60cb4eb7149`，17 工作檔、事件及 4109840-byte PCM 相同，見 `lifecycle-audit-r1.json`。未載快照或改 RAM，亦未宣稱這份無頭收據是新 HD 的 GUI 驗收。
+- 依已證實遮罩抽出十二份原版 RGBA，`verified-mask-atlas-r1.json` 及並列圖已檢視。第七筆偏移 16584 的 `(32,11)` 為遮罩 1／色號 0 的黑墨，原版共寫八次，不能以 RGB 非零推導 alpha。第五塊的未驗顯示分支留作範圍限制，不阻塞本次 VGA 解讀。
+
+舊的「重複表頭只是強推論」「第六塊仍未知」已由原始 consumer、完整緩衝區與全部正常呼叫補足。`audit-resolution-r1.py` 檢查本規格／CONTEXT／本段的回填標記；011 的壓縮與不透明繪圖結論不受影響。017 仍 DRAFT，配色待答，HD 人物／近景、256 色交接、正式接入及視窗／存退讀／故障未完成。
