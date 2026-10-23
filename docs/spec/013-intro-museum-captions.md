@@ -9,7 +9,7 @@
 - 正常 VGA／AdLib 冷啟動的 `trace-r2/calls.jsonl` 共五次 `sub_58B1`。來源為 DS 0B31:0042／006A／0092／00BA／00BA，每筆固定 40 bytes。完整 160 bytes SHA `2689f07c2dde43c039c216e1417276616c12bf824f50dfbd79590f5a88509a44`。零結尾前長度分別 33／25／19／25／25 bytes，保留原版字形與空格，不依人名印象改寫。
 - 五次參數皆為 `[來源,0,160]`，前景色 3、背景值 FF。返回位置為 1C81／1C9A／1DBB／1E4E／1EB0。CJK 及 ASCII 空格沿用 012 的實際 consumer；CJK 占兩個 bytes，空格占一個，各 byte 對應八個原生像素。
 - 每次目的頁字幕區都是黑底。DS:1EF8 為 A400／A000／A000／A400／A000，對應 VGA 實體平面偏移 4000h 或 0。字型列位址表從 0231:2AC4 起，每列 80 bytes；字幕 y=160 至 174。不能把當前可見頁當作繪字目的頁。
-- `sub_5DC2` 選繪圖段；`sub_5E06` 選顯示頁。`sub_2246` 依序選兩頁。`sub_5D76`／`sub_5D9C` 分派清頁，在目前模式的 far return 分別為 5D8F／5DB5。一般清畫面及圖片繪圖的 begin／return 同 011。
+- `sub_5DC2` 選繪圖段；`sub_5E06` 選顯示頁。`sub_2246` 依序選兩頁。`sub_5D76`／`sub_5D9C` 分派頁面複製，在目前模式的 far return 分別為 5D8F／5DB5；真正清頁為 `sub_5B0C`。`MUSEUM-PAGE-COPY-RESOLVED`：詳見 [017 的方向與完整頁驗證](017-intro-museum-art.md#museum-page-copy-resolved原型清頁誤分類勘誤)。一般清畫面及圖片繪圖的 begin／return 同 011。
 - 正常 `sub_1BE2` 在 203C 返回。`source-audit-r1.json` 用原字碼、字模及色盤獨立重建五份目的頁 y160–174 全幅 640×15 區域，逐 RGB byte 同正常原版緩衝區；不是只看字串表。目的頁截圖是診斷，不冒充真正視窗。
 
 固定程式窗 SHA：1BE2/1116 bytes=`792fc06dec03852fa5c88844dc0c11321e263454b9ced40b62521d016d2713f2`；5D76/38=`908543eeb25cf60eb9dac835d484d3dc38cc53ac6b62e150272e988b0a2f5f07`；5D9C/38=`2ce8b80f1c0f969c41e341d89d62eebdba356a5f66d5d8b843b9530eb449e281`；5DC2/68=`24f2b4709430373bfeb8b921f5a4ed0ceab6b549a6aeeb71f861d916890c64fb`。58B1、4C74 及字模同 012，ASCII 5954/256 bytes=`3080de8fc158b5e5ba19394153621a6ed5b0b01210df7bc7ad90b27f0c37c8e3`。
