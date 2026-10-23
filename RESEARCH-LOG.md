@@ -395,3 +395,52 @@ PMAP SHA 仍為 `9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e0
 | 新版無錄製 | 15 | 26.16 | 29.95 |
 
 有錄製路段的主機負載由舊版約 3–4 到新版約 1–2，無錄製路段另有自然遭遇，因此不作嚴格成對的 GUI 加速結論。新版有錄製存檔段的階段平均為 advance 5.26、audio 1.99、compose 1.50、upload 0.19 ms，record 每幀平均 2.43 ms；這些是實際耗時，不是完整 CPU 分配。模型虛擬時間 15573.582 ms、第一次 Update 後的實際時間 15901.774 ms，不含此前素材解碼。音訊仍為靜音驗證，正式速度與音訊連續性未結案；下一步回到原曲事件與 HD 試聽。
+
+## 原曲格式、音樂欣賞映射與試聽
+
+日期：2026-10-23。研究基底為專案 `10823a9ff1fb5baf04b016045094fa2942a9a216`、dosgolem `f79eab6d` 及既有兩份補丁，正式程式與核心本輪不改。證據集中在本機 `workplace/probe-20261023/music-first/hd-audition-r1/`，下文路徑相對此處。
+
+### 格式來源與證據邊界
+
+- [AdPlug 格式庫](https://adplug.github.io/library/entry/AdLibMIDI.html)及其 [mus.cpp](https://github.com/adplug/adplug/blob/182c6ffd80ec61898a34966358431c13759ee6f7/src/mus.cpp)、[mus.h](https://github.com/adplug/adplug/blob/182c6ffd80ec61898a34966358431c13759ee6f7/src/mus.h)提供 MUS／SND 欄位與事件語意。固定提交 `182c6ffd80ec61898a34966358431c13759ee6f7`，兩檔 SHA 分別為 `22554e83940afb337a23ea36515adc5479b94cf0396a1633a05d89de56954fc3`、`162d0a102380e53151749b791b3429edd9c4d94574049558279c3b5337da054a`，來源收據 `adplug-source.json`。外部 LGPL 原始碼只留私有研究區，沒有複製進本案正式程式。
+- `decode-mus.py` 是獨立嚴格解析原型，十一組 M／S 檔都核對完整長度、版本、資料邊界、結尾與累計 tick。MUS 檔頭 70 bytes，SND 檔頭 6 bytes、名稱每筆 9 bytes、音色參數每筆 56 bytes。樂器索引指向各自的 SND，不是 General MIDI 編號。
+- MUS 時差使用 `F8` 累加 240 tick；`A0` 是單 byte 聲道音量；`F0 7F 00` 訊息調整基礎速度的整數與 1/128 倍率。保留原始檔案 offset、tick、status 與資料，不改名掩蓋原始定位。完整輸入 SHA 在 `source-catalog.json`。
+- MEND 檔頭 command_count 為 2444，解析事件為 2435；MWLK 為 1995／1985。其他九份相同。原欄位保留為檔頭值，未推定差異成因，也不以它裁掉可完整解析的事件。十一份可讀不代表十一份都已和原版播放比對。
+- 〈幻〉的 MINT.AY SHA 為 `1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900`，SINT.AY 為 `663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df`。原音色名稱為 syn3、clarinet、piano1；本曲實際使用前兩種，共六個旋律聲道。
+
+### 正常音樂欣賞與完整首輪
+
+`capture.go` 及 `map-menu.go` 都從 PREDELLA 冷啟動，選 VGA／AdLib，按原版允許的 Esc 離開片頭，再用方向鍵與 Enter 選曲。沒有載入快照、直接進入場景或注入記憶體。時基全程為 dosgolem cycles/ms=3000，只是此研究條件，不改前端正式參數。每段音訊合成前先保留 OPL 寫入，避免 Render 清除紀錄。
+
+| 音樂欣賞項目 | 實際載入曲譜 | 實際載入音色 |
+|---|---|---|
+| 幻 | MINT.AY | SINT.AY |
+| 遨遊 | MWLK.AY | SWLK.AY |
+| 刀祭 | MWAR.AY | SWAR.AY |
+| 怡唱 | MONE.AY | SONE.AY |
+| 馳騁 | MTWO.AY | STWO.AY |
+| 幽 | MTHR.AY | STHR.AY |
+| 靈之舞 | MFOU.AY | SFOU.AY |
+| 悚慄 | MFIV.AY | SFIV.AY |
+| 法域 | MSIX.AY | SSIX.AY |
+| 黎明 | MEND.AY | SEND.AY |
+
+映射為已證實，收據 `menu-source-map.json`、`menu-mapping/catalog.json` 及十份個別 receipt。這不證明遊戲場景觸發相同。MFIG.AY／SFIG.AY 沒在十項出現，用途未知。正常選單 Noto 追蹤累計全形 958、半形 4652 次，MissingGlyphs=0，沒有追蹤錯誤；本輪是共用 Engine 無頭操作，未冒稱新增實際視窗驗收。
+
+`audit-original.py` 獨立讀取 `cold-original/opl.jsonl` 的旋律聲道 Key-On，以固定核心 `docs/spec/196-opl2-synth-skeleton.md` 的 YM3812 暫存器契約解音高。六聲道起音數 56、113、113、57、254、254，共 847 個，順序全部符合 MINT；第五號聲道保留原曲 -0.25 半音滑音。最大量化誤差 0.094670 半音。格式導出的完整時長為 85.603748 秒，各起音對原版模型最大時差 0.041319 秒；實際首輪重啟間隔為 85.570673 秒。這是 hardware-spec approximation，不宣稱逐週期或逐波形 parity，不再為這些毫秒深入標準 driver。
+
+完整首輪及第二輪一部分已保存。Esc 後返回主選單，九個旋律聲道 Key-On 全關；見 `cold-original/source-note-audit.json`。原版對照音訊由 dosgolem 的近似 FM 合成器產生，非實機錄音。其他九首只驗選曲與短段載入，沒有稱完整曲目驗收。
+
+### 音色決定、製作工具與修正
+
+先以 `render-midi.py` 保留原音符、節奏、音量事件及滑音，製作 A 合成弦樂／單簧管、B 箏類撥弦／長笛兩份 30 秒試聽。使用者回答「B：撥弦＋長笛方向（建議）」，決定保存於 `decision.json`，同時記錄當時試聽 SHA。採用 B 方向，沒有改寫旋律；Koto／Flute 為概念試配，不宣稱真正古箏與竹笛取樣，也不自動批准其他曲目的具體配器。
+
+工具沿用 `kol-music:timidity2.14-fluid3.1-r1`，映像 SHA `9520e9a4f3341495b3bcb6108cd2e6d7ba835647aaf349381c60a921ae7b927b`。TiMidity++ 2.14.0、FFmpeg 5.1.9，音源庫 `/usr/share/sounds/sf2/FluidR3_GM.sf2` SHA `74594e8f4250680adf590507a306655a299935343583256f3b722c48a1bc1cb0`。工具版本與隨包 MIT 授權文字保存於 `render-toolchain.json`、`soundfont-copyright.txt`；不把音源庫加入正式包，原曲衍生權利仍限本機研究。
+
+追加勘誤：`audition-audit.json` 最初只證明最終 Ogg 可解碼、非靜音及沒有滿幅取樣，不能證明上游乾淨。完整曲製作時發現 B 的 TiMidity `-A 50` 中間 WAV 已削波，首 30 秒有 1697 個滿幅取樣，單次全曲有 6148 個。後級降音量無法還原。舊 r1 保留為失敗研究，不可當正式資產或完整音質驗收。B 配器決定保留，`render-loop.py` 改在合成階段使用 `-A 10`，先檢查上游 PCM，再轉 Ogg；r2 用不同檔名，不覆寫使用者聽到的原始短樣本。
+
+長循環先連續合成三輪相同 MIDI，取中間一輪承接前輪尾音，沒有新增休止或淡出。`b-approved-full-loop-r2.ogg` 是完整製作候選，短版為 `b-plucked-flute-30s-r2.ogg`；長版聽感、連續三輪疲勞與正式播放事件仍待驗。音訊與研究腳本全留本機，尚未建立正式音樂清單、READY 播放規格或改動前端音訊路徑。
+
+r2 技術收據為 `audition-audit-r2.json`。上游 24941918 個聲道取樣、峰值 19391／32768，滿幅數為 0。長版解碼 4108980 frames、85.60375 秒，SHA `4012e14dc7d03c017a532c5c56655794a03a62f395972c026273a2ec99fcbc91`；短版為 30 秒，SHA `53ee210ad0bb26dc72e09138df83daee2ab2c661c9454a536f00cb3211dbe5c5`。兩份最終解碼皆有限值、非靜音且沒有削波。長版真峰值 -2.05 dBTP、響度 -22.06 LUFS，使用固定增益 2.55 dB，受峰值餘裕限制而未硬拉到 -18 LUFS。長版首尾相鄰取樣差為左 0.002591、右 0.010229；這是量測，不代替人耳無縫確認。使用者批准的音色方向有效，舊樣本音質檢查的缺口以本段勘誤保留。
+
+`evidence-manifest.json` 索引 131 份私有研究檔案及其 SHA、大小與 UID/GID，清單 SHA 為 `c385899d76d2c666367e868e690f7e1ccaaa0f1c1904163b37b71e2090f587e0`。其中記錄固定專案／核心提交、三種工具映像，以及失敗 r1 與修正 r2 的區別。來源曲譜／音色的 22 份雜湊及六份 dosgolem 補丁檔案在收尾再次核對，沒有變更。這些中間產物、第三方來源與原曲音訊都沒有加入 Git。

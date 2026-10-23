@@ -5,7 +5,7 @@
 | 面向 | 現況與證據 |
 |---|---|
 | 目標 | 以 dosgolem 執行《神州八劍》，接入 HD 畫面及 HD 音樂；參考 mm3 的方法 |
-| 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900。音色、平台及公開方式尚未定案 |
+| 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900，〈幻〉配樂已選 B 撥弦／長笛方向。平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
 | 文件同步 | 現行程式與文件至 `3091dbe` 已推送，遠端 main 回讀一致；各階段提交見 WORKLOG。批准的定稿參考圖保存於 `de96de9`。倉庫再次確認 PRIVATE；原始素材、其他生成圖、字型 atlas、遊戲畫面與快照未上傳 |
@@ -16,7 +16,10 @@
 | 黑畫面修正 | 原版切至第 1 頁而基線忽略 AH=05h；已補 0Dh／0Eh 的頁切換、BDA 與目前頁回報。[001 規格](docs/spec/001-planar-bios-display-pages.md)限定 CONFORMED |
 | 正常原版路段 | 研究入口及新視窗皆已冷啟動、VGA／AdLib、新遊戲、F1、返回、移動、F7 存檔、回 DOS，再冷啟動繼續。視窗透過 XTEST 真正按鍵，實際呈現頁面另由所有權與 Draw 收據確認；遇到的攻擊確認經原版選「否」後返回，未驗亂數或戰鬥規則 |
 | 真正存讀檔 | 原版寫出的 2987-byte 進度檔，讀回 RAM 後逐 byte 相同；已回到保存的鏡頭與主角位置。動畫相位有差異，未稱整幅畫面一致 |
-| 音樂 | 已進原版音樂欣賞，第一項實際載入 MINT.AY／SINT.AY 並寫 AdLib 埠；其他映射、全曲、時間與循環未驗，尚無 HD 音樂 |
+| 音樂來源 | 十一組 M／S 檔符合 AdLib MUS／SND 形狀，已完整解析資料邊界與音符時刻。兩個檔頭 command_count 與解析事件數不同，保留原值，不作有效事件數。來源清單與雜湊在 `workplace/probe-20261023/music-first/hd-audition-r1/source-catalog.json` |
+| 音樂欣賞 | 正常冷啟動後逐一操作十項，曲名與檔案已核對，見同目錄 `menu-source-map.json`。〈幻〉為 MINT.AY／SINT.AY，六聲部 847 個起音順序與原版 OPL 相符，頻率量化誤差小於 0.1 半音；格式時長 85.603748 秒，原版模型首輪 85.570673 秒。時間為 hardware-spec approximation，未稱逐週期 parity。Esc 返回主選單且所有旋律聲道關閉。MFIG.AY 不在這十項，實際用途仍未知 |
+| HD 音樂試聽 | 使用者從 A 合成弦樂／單簧管、B 箏類撥弦／長笛兩份 30 秒樣本選定 B，決定見 `decision.json`。保留原音符、節奏與滑音；FluidR3 Koto／Flute 是概念試配，不能稱真正古箏／竹笛。後續發現 r1 上游 WAV 削波，最終 Ogg 檢查不足，舊檔保留為失敗研究。修正版 `b-plucked-flute-30s-r2.ogg` 與完整 `b-approved-full-loop-r2.ogg` 已核對上游及最終取樣皆無削波；見 `audition-audit-r2.json` |
+| 完整配樂候選 | 〈幻〉B r2 連續合成三輪取中間輪，48 kHz 雙聲道、4108980 frames、85.60375 秒，沒有淡出或新增休止。最終真峰值 -2.05 dBTP、響度 -22.06 LUFS；上游 24941918 個聲道取樣無削波，最大 19391／32768。長循環聽感、音效共存與遊戲內觸發仍待驗，播放器仍播放原版，HD 音樂尚未正式接入 |
 | HD 畫面 | B 古風地表、兩種建築、布旗、十二張主角動作、人物頁及金玉介面已接入，`assets-painted-r8` 有 53 筆底圖及十二張主角，共 65 筆 HD 對應。[004](docs/spec/004-hd-bitmap-presentation.md)、[006](docs/spec/006-static-map-objects-and-sand.md)及[007](docs/spec/007-masked-hero-animation.md)仍 READY，[005](docs/spec/005-jade-gold-interface.md)介面限定 CONFORMED。沙地已載入但未驗實景，其他角色、圖像與更廣動畫仍待處理，新素材只留本機 |
 | HD 文字 | 已接入 Noto Sans CJK TC Black 900，731 字包含 636 中文與 95 ASCII。追蹤實際字墨、同值寫入失效及 VGA 頁搬移，主機合成不改 DOS。[002](docs/spec/002-pam-font-catalog.md)限定 CONFORMED；[003](docs/spec/003-noto-runtime-overlay.md)仍為 READY，完整驗收未結案 |
 | 純 Noto 視窗基準 | `workplace/player/gui/noto-save-visible-r3/` 含 save／reload 兩個真正視窗程序，共 23 張正常路段截圖，包含遭遇確認選否。存檔段全形 314／半形 585 次，讀檔段 87／235 次，皆無缺字及追蹤錯誤；這份基準圖像為原版，現行 HD 圖像另列下方 |
@@ -39,8 +42,8 @@
 | 專案介紹 | [README.md](README.md)已撰寫遊戲故事、玩法、現況與研究操作入口；介紹以原版手冊及包裝為據，不將手冊內容當成本案驗收成果 |
 | 參考入口 | 已查閱 mm3 的 AGENTS、CONTEXT 與音樂、呈現及效能規格，以及 dosgolem 的 README、CLAUDE；入口見 AGENTS |
 | 已完成 | 來源盤點、原版啟動及真正存讀檔研究路段、BIOS 顯示頁、PAM 字碼字模、Noto 字集與執行期覆繪、首批地表及有限正常視窗路段。每項證明範圍不同，不能合稱全遊戲完成 |
-| 原版未知 | 發行版本及既有修改、戰鬥與後期流程、其餘圖像來源及動畫、其他程式字庫與圖片文字、其餘曲目及時間契約尚未知；PAM 字碼及目前三支 bitmap ABI 已解，不重開同項研究 |
+| 原版未知 | 發行版本及既有修改、戰鬥與後期流程、其餘圖像來源及動畫、其他程式字庫與圖片文字、其他九曲完整播放、遊戲場景的音樂事件與 MFIG 用途尚未知；PAM 字碼及目前三支 bitmap ABI 已解，不重開同項研究 |
 | 可選打磨 | 尚未進入；HD 是正式範圍，畫風與字重已確認，接入及音樂樣本仍未完成，不能列為可選打磨 |
 | 清理 | 本輪只用一次性 `--rm` 容器，沒有建立新映像。來源、失敗與成功收據留在 workplace；收尾擁有權與容器核對記 WORKLOG |
 
-下一步核對原曲的實際播放事件並製作 HD 試聽，保留原曲旋律與場景來源，音色取捨待樣本確認。效能已分開錄製成本，不再以最後一筆合成或舊高負載當整體結論；音訊接通後仍須驗非靜音與長路段。尚未替換的地圖圖像、沙地實景、其他角色及文字長文繼續保留在正式範圍。主角十二張新圖與四方向已接入，不重開相同 ABI，整體目標未完成。
+下一步依實際播放／停止／重啟證據建立 HD 音樂規格及接入；〈幻〉B r2 完整曲已製作，不重做相同音符解析。正常遊戲場景觸發、音效共存、長循環聽感及 MFIG 用途仍待核對，音樂欣賞不代替整個遊戲。效能已分開錄製成本，不再以最後一筆合成或舊高負載當整體結論；音訊接通後仍須驗非靜音與長路段。尚未替換的地圖圖像、沙地實景、其他角色及文字長文繼續保留在正式範圍。主角十二張新圖與四方向已接入，不重開相同 ABI，整體目標未完成。
