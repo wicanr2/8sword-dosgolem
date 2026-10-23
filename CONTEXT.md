@@ -8,7 +8,7 @@
 | 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900。音色、平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 定稿圖 `de96de9`、Noto 執行期 `176cb65`、快取／視窗存退讀 `6b5e2cf`、HD 地表 `5d934d3`、山地／人物頁 `e72b6cb`、金玉介面 `a29fca0` 及靜物／沙地 `e7fc48f` 均已推送，遠端 main 回讀一致。倉庫再次確認 PRIVATE；原始素材、新生成圖、字型 atlas、遊戲畫面與快照未上傳 |
+| 文件同步 | 定稿圖 `de96de9`、Noto 執行期 `176cb65`、快取／視窗存退讀 `6b5e2cf`、HD 地表 `5d934d3`、山地／人物頁 `e72b6cb`、金玉介面 `a29fca0`、靜物／沙地 `e7fc48f` 及主角動作 `6907e2f` 均已推送，遠端 main 回讀一致。倉庫再次確認 PRIVATE；原始素材、新生成圖、字型 atlas、遊戲畫面與快照未上傳 |
 | Docker | 沿用既有研究／Go／影像及 IDA 映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；片頭後以 INT 21h AX=4B03 覆蓋載入 `PAM.AY`，Seg／Reloc 都是 0110，沒有新的子行程 PSP。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |
