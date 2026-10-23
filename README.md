@@ -20,7 +20,7 @@
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁與金玉介面，走過四方向移動、人物頁往返及真正存退讀；沙地實景、其他角色與圖像仍待處理 |
 | HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII；實際視窗已驗主選單、人物、軍隊、無法施法提示、地圖位置、系統選單及真正存退讀，更廣畫面與長文仍待驗 |
-| HD 音樂 | 〈幻〉B 撥弦／長笛已接入，正常選曲、重播、循環、停止及回退通過；實際視窗混音亦已核對。其餘曲目與片頭仍為原版，音訊裝置及完整音效待驗。見[008 規格](docs/spec/008-music-events-and-playback.md) |
+| HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
@@ -118,6 +118,8 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r8 \
 
 原版控制選曲與停止，前端替換已提供的音樂。〈幻〉保留原曲音符、節奏及滑音，採已批准的撥弦與長笛方向；Koto／Flute 取樣不宣稱真正古箏、竹笛錄音。缺少 HD 曲目時播放原版，損壞音樂不連帶關閉 Noto 或圖像。
 
+片頭使用相同〈幻〉，已接入原版初始化與停止事件。正常略過或自然結束後會停歌，再由主選單管理；片頭圖像與圖片文字仍待替換。
+
 已具備本機批准的 Ogg 與配樂研究輸入後，可在既有圖像組上加入音樂：
 
 ```bash
@@ -144,6 +146,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 - [靜物與黃色地表規格](docs/spec/006-static-map-objects-and-sand.md)：兩種建築、布旗的透明合成，以及尚待正常場景驗收的沙地。
 - [主角動作規格](docs/spec/007-masked-hero-animation.md)：十二張動作圖、底圖還原與人物所有權；正常四方向及存退讀驗證範圍。
 - [音樂事件與播放規格](docs/spec/008-music-events-and-playback.md)：原版請求、Ogg 清單、混音及正常操作驗證。
+- [片頭音樂交接規格](docs/spec/009-intro-music-handoff.md)：PREDELLA 的獨立入口、原版停止及 PAM 覆蓋載入後的掛勾隔離。
 - [Ogg 解碼器授權紀錄](docs/THIRD-PARTY-NOTICES.txt)：固定版本的第三方 MIT 授權全文。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 

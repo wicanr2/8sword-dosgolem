@@ -216,6 +216,13 @@ func main() {
 	d.shot("02-sound")
 	d.press(10)
 	d.wait("片頭", 20, func(s map[string]any) bool { return s["mode"] != float64(3) })
+	if *flow == "music" {
+		d.wait("片頭 HD 已實際輸出兩秒", 30, func(s map[string]any) bool {
+			m, _ := s["music"].(map[string]any)
+			return m["intro_bound"] == true && m["mode"] == "hd" && m["hd_frames"].(float64) >= 96000
+		})
+		d.shot("music-00-intro")
+	}
 	d.press(9) // 原版手冊允許以 Esc 略過片頭，未直接進入 PAM。
 	if *flow == "fallback" || *flow == "art-fallback" {
 		if *nativeFrame == "" {
@@ -276,10 +283,11 @@ func main() {
 		first := d.status()["presented_frames"].(float64)
 		d.wait("音樂欣賞已實際呈現", 15, func(s map[string]any) bool { return s["presented_frames"].(float64) >= first+2 })
 		d.shot("music-01-catalog")
+		beforeHD := music(d.status())["hd_frames"].(float64)
 		d.press(36)
 		d.wait("HD 幻已輸出兩秒", 25, func(s map[string]any) bool {
 			m := music(s)
-			return m["mode"] == "hd" && m["cue"] == float64(1) && m["hd_frames"].(float64) > 96000
+			return m["mode"] == "hd" && m["cue"] == float64(1) && m["hd_frames"].(float64) >= beforeHD+96000
 		})
 		d.shot("music-02-first")
 		starts := music(d.status())["starts"].(float64)

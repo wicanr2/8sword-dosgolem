@@ -30,8 +30,9 @@ func main() {
 	assets := flag.String("assets", "", "prepared image/font/music asset directory")
 	out := flag.String("out", "", "new receipt directory")
 	firstMS := flag.Int("first-ms", 90000, "first music-appreciation playback, virtual milliseconds")
+	introMS := flag.Int("intro-ms", 500, "normal intro wait before Esc, virtual milliseconds")
 	flag.Parse()
-	if *root == "" || *assets == "" || *out == "" || *firstMS < 2000 || *firstMS > 180000 || *firstMS%10 != 0 {
+	if *root == "" || *assets == "" || *out == "" || *firstMS < 2000 || *firstMS > 180000 || *firstMS%10 != 0 || *introMS < 500 || *introMS > 120000 || *introMS%10 != 0 {
 		panic("invalid music-check arguments")
 	}
 	check(os.MkdirAll(*out, 0755))
@@ -53,6 +54,10 @@ func main() {
 	advance := func(ms int) {
 		for ; ms > 0; ms -= 10 {
 			check(e.AdvanceCycles(30000))
+			if e.Exited {
+				save(filepath.Join(*out, "unexpected-exit.json"), e.Status())
+				panic("original exited before the requested input path finished")
+			}
 			check(binary.Write(pcm, binary.LittleEndian, e.RenderAudio()))
 		}
 	}
@@ -66,26 +71,76 @@ func main() {
 	advance(200)
 	press(2)
 	press(2)
-	advance(500)
-	press(1)
+	advance(*introMS)
+	shot("intro-before-skip")
+	save(filepath.Join(*out, "intro-before-skip.json"), e.Status())
+	if !e.PAMLoaded {
+		press(1)
+	}
 	for i := 0; i < 300; i++ {
 		advance(100)
 		e.Frame()
-		if e.PAMLoaded && e.Tracker.Scene == "main-menu" {
+		if e.PAMLoaded && e.Tracker.VisibleScene == "main-menu" {
 			break
 		}
 	}
-	if !e.PAMLoaded || e.Tracker.Scene != "main-menu" {
+	if e.Exited || !e.PAMLoaded || e.Tracker.VisibleScene != "main-menu" {
 		panic("cold boot did not reach main-menu")
 	}
 	var rows []map[string]any
 	act := func(name string, scan uint8, wait int) {
 		before := len(e.Oracle.FileOps())
+		beforeStep, beforeStarts := e.Oracle.Steps(), e.Music.Starts
 		press(scan)
 		advance(wait)
 		shot(name)
 		rows = append(rows, map[string]any{"action": name, "step": e.Oracle.Steps(), "cycles": e.Oracle.Cycles(), "scene": e.Tracker.Scene, "opened": e.Oracle.FileOps()[before:]})
 		save(filepath.Join(*out, name+".json"), e.Status())
+		wantScene, wantStart, wantText := "", 0, uint16(0)
+		switch name {
+		case "01-music-menu":
+			wantText = 758
+		case "02-first-play", "03-same-enter":
+			wantStart = 1
+		case "04-highlight-second":
+			wantText = 778
+			if e.Music.Starts != beforeStarts || e.Music.CurrentCue != 1 {
+				panic("moving highlight restarted or changed the original music")
+			}
+		case "05-second-play", "06-second-enter":
+			wantStart = 2
+		case "07-exit-music":
+			wantScene = "main-menu"
+		case "08-new-game-confirm":
+			wantScene = "new-game-confirm"
+		case "09-map", "11-return", "13-leave-save":
+			wantScene = "map"
+		case "10-character":
+			wantScene = "character"
+		case "12-save":
+			wantScene = "system-menu"
+		}
+		if wantScene != "" && e.Tracker.VisibleScene != wantScene {
+			panic("normal action did not reach its visible page: " + name)
+		}
+		if wantStart != 0 {
+			found := false
+			for _, event := range e.Music.Events {
+				found = found || (event.Step > beforeStep && event.Kind == "start" && event.Cue == wantStart && event.Valid && event.Reason == "")
+			}
+			if !found {
+				panic("normal action did not start its original cue: " + name)
+			}
+		}
+		if wantText != 0 {
+			found := false
+			for _, event := range e.Tracker.Strings {
+				found = found || (event.Step > beforeStep && event.Source == wantText)
+			}
+			if !found {
+				panic("normal action did not print its original selection: " + name)
+			}
+		}
 	}
 	press(0x50)
 	press(0x50)
@@ -103,7 +158,7 @@ func main() {
 	act("11-return", 1, 1000)
 	act("12-save", 0x41, 1000)
 	act("13-leave-save", 1, 1000)
-	save(filepath.Join(*out, "catalog.json"), map[string]any{"normal_input_replay": true, "snapshot_loaded": false, "cycles_per_ms": 3000, "sample_rate": 48000, "channels": 2, "first_ms": *firstMS, "go_version": runtime.Version(), "entries": rows, "scope": "music appreciation, new game, F1 and F7; F7 canceled, no save/load claim"})
+	save(filepath.Join(*out, "catalog.json"), map[string]any{"normal_input_replay": true, "snapshot_loaded": false, "cycles_per_ms": 3000, "sample_rate": 48000, "channels": 2, "first_ms": *firstMS, "intro_ms": *introMS, "go_version": runtime.Version(), "entries": rows, "scope": "intro, music appreciation, new game, F1 and F7; F7 canceled, no save/load claim"})
 	save(filepath.Join(*out, "final-receipt.json"), e.Status())
 	check(e.Oracle.SaveStateFile(filepath.Join(*out, "final.state")))
 }

@@ -525,3 +525,37 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - 正式 `EIGHTSWORD_GUI_FLOW=menus` 等待以上完成來源及後續實際呈現，Esc 另等本次側欄還原。它不改正式 Scene 分類、原版輸入或玩法。`noto-more-menus-r2/menus/` 的 38 個 XTEST 事件走完三頁，再接 F1、返回、F7、移動及再次 F1。
 - 197 幀／37 次改變已獨立解碼及檢視，錄製 SHA `7f5f684eb655781d1ab909e03d20dc1091e3019357c154d4f8ce3f5c26f4c796`。全程 238 次全形、527 次半形，0 缺字及追蹤錯誤。軍隊文字與數字、無法施法提示、位置 40，40 均已檢視，沒有以綠色計數代替看圖。
 - 驗證範圍限新遊戲的民兵、尚未學法術及上述頁面。民兵圖像仍是原版，其餘軍隊、實際施法、長文、戰鬥、其他角色與完整 HD 仍未完成。此輪音訊為原版第 2 曲且裝置靜音，不冒稱第二曲 HD 或裝置播放通過。
+
+## 2026-10-23：PREDELLA 片頭的〈幻〉與 PAM 交接
+
+〈遨遊〉配器仍待回答。本輪沿用已批准的〈幻〉，補上其在片頭的獨立入口；沒有製作新曲、改原版控制流或放寬素材權利。正式契約見 [009](docs/spec/009-intro-music-handoff.md)，先 DRAFT、證據審查至 READY 後才實作，狀態仍維持 READY。
+
+### 正常執行期證據
+
+- 原始 PREDELLA.EXE 為 33432 bytes，SHA `b9c7abdac7849711b68b6b6fd5861052e6f3d025b25af5f96d4605bf673cadaa`。原始載入檔的 IDA 分析只有一個函式，不能代替解包後程式；未考證 packer 名稱或逐行還原解壓演算法。
+- `music-first/intro-events-r1/cold-trace/` 的正常開檔堆疊確認片頭先開 MINT／SINT，再開 PAM。於首次 MINT 開檔時只讀擷取 `0110:0000` 的 58368 bytes，SHA `a764a110b9f8b1d32a6ee9cc0dd650350f917959d647fe4b45cd7f1013eaae68`。沒有快照載入、直接進入或客體修改。
+- 研究 wrapper 僅加入 32-byte MZ header，payload 不變，SHA `28dbc38d4ef65326ee281b684bf3a7a304ea41c00bfc00410076bce31b1b247a`。IDA 9.4 用 `-b110`，其線性位址直接對應 dosgolem 執行期線性；wrapper 檔案偏移 32+n 對應執行期 0x1100+n，沒有到原始壓縮檔案偏移的換算。三個檔名字串、原始 bytes、函式與 caller 索引保留於 `ida-runtime.json`、`ida-driver.json`、`ida-stop-wrapper.json`。
+- 既有 `ida-pro-9.4-idapython:py312-v1` 映像 SHA `4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab`，185 個分析函式。正式研究 DB `PREDELLA-runtime.i64` 後續皆唯讀掛載，複製到 /tmp 查詢，不改名、位址或 bytes。資料庫匯出初次缺預期檔案，改明確 save_database 後驗證；不能據此判定 IDA 無法分析。
+- 已證實的 Request 為執行期線性 `0x1AC2`／`sub_1AC2`；AdLib 分支檢查實際 DS:08E4 及 DS:08E2。初始化 `sub_707A` 的 far 參數為 `[0,9000h,0,9600h]`，返回點 `0x1B64`。此處 MINT 的 6644 bytes、SINT 的 201 bytes 完整 SHA 與 008 一致；片頭音色段是 9600，不能用 PAM 的 9400。
+- 停止入口 `sub_7074` 轉到 `sub_7226`。真正播放旗標為 `0B2C:0005`，初始化返回=1、停止返回=0。早期 `active_b2e6` 探針欄位是未證實導覽名稱，實際 B2E6 初始化後為 1、停止後仍為 1，已追加勘誤並保留舊檔。正式程式只採 B2C5。
+- `sub_93C6` 的執行期 `0x93CF` 是 `out dx,al`，DX=0389 的 467 筆片頭輸出全與實際 OPLWrite.Step=觀察 Steps+1、Val 相同。PAM overlay 的 Steps 之後另有 181 筆，不能算片頭未知音效。`source-events-audit.json` 保存 DB、calls、OPL 與收據 SHA。只追到來源、開始與停止，沒有深入 PIT／ISR。
+
+### 正式接入與同狀態
+
+- [music_intro.go](internal/eightsword/music_intro.go) 等待三段固定程式 SHA 後才掛只讀觀察者。Request 立即進入 loading-hd，避免無內部 Stop 的片頭初始化露出 FM；來源與播放旗標核對後才 Start。原版 Stop 立即停止 HD，合成器仍持續推進。
+- 每個舊掛勾先檢查 PAM overlay，出現後永久停用；handoff 是明列的主機事件，不冒充原版 Stop。來源範圍分片頭綁定至 overlay Steps、PAM 綁定之後，交接間原音保留。核心 OnFileOpen 是單一覆寫式 callback，正式接入沒有占用它，也沒有新增核心 API。
+- 片頭與 PAM 的未知 OPL 來源回退、跨 Update 初始化、關閉及交接測試通過；真實 Ogg 與七種錯誤清單亦通過。本作完整測試通過 58.665 秒，後續只擴充未知寫入者測試至兩個程式，最後音樂測試全部通過。最初一個測試把 Audio 建在執行後，無待輸出取樣而誤報靜音；修正測試生命週期，不改播放器通過條件。
+- 短路徑 `intro-hd-short-r1`／`intro-native-short-r1` 正常等待 5000 毫秒再 Esc，十四張圖、28 個工作檔及完整客體 state 相同，SHA `5e8b6679678f062de4c0c6ef1acc37b2a64563f08dcef7d0c37fa0d4fa249514`。前端輸出 1438336 stereo frames，其中 575100 為 HD。起音對 FFmpeg 獨立解碼 RMS 差 0.183059 個 int16 單位，原音差約 2401.81。
+- 同條件 `intro-bad-short-r1` 真實壞 Ogg 令整組音樂拒用，Noto／圖像保留；整份 state、圖像、工作檔、輸入、I/O 及整段 PCM 同原音。`short-fault-audit-r2.json` 為收據。原音恢復比較到下一個 PAM Request 為止；最初誤比較至 Start，把既有 loading-hd 區間算成差異，已依事件契約修正同一份收據，不放寬取樣誤差。
+- 原版片頭自然停止在 cycle 65088413，距 Start 約 21.216 秒，未跑完 85.60375 秒循環。90 秒長等待首版在主選單又送 Esc，造成原版正常回 DOS；歷史 Scene 仍保留，獨立核對因缺後續音樂事件而拒絕。保留這組失敗輸出，不當成長流程通過。
+- music-check 現在只在 PAM 尚未載入時送片頭 Esc，每批拒絕非預期退出；各操作檢查本次 Start、選中項字串或可見頁面。修正版 `intro-hd-long-r2`／`intro-native-long-r2` 重新從冷啟動走完十三個操作點。十四張圖、31 個工作檔、輸入／I/O 與完整 state 相同，SHA `b5907be6604effa46134f550c4a516332e5512fdc43d07a7fc5d4f591823e5d8`。輸出 5463757 frames、1341737 HD frames，無削波或來源回退；停止至下一個 Request 及第 2 曲尾段逐取樣同原音。見 `long-playback-audit-r2.json`。沒有把自然結束片頭說成完整循環。
+- 新核對工具 [audit-intro-music.py](tools/audit-intro-music.py) 已掛入 009。既有 audit-music 依 reason 區分片頭及欣賞 Start，另以舊 PAM 長循環收據核對相容，`pam-compat-audit-r1.json` 通過，不重做既有原曲或長版製作。
+
+### 視窗、前端 PCM 與真正存讀
+
+- `workplace/player/gui/intro-music-visible-r1/music/` 用真正 XTEST 完成片頭、主選單、選曲、重播、反白、換曲、Esc、新遊戲、人物頁及 F7。18 張實際視窗圖，361 幀／31 次改變已獨立解碼並檢視，錄製 SHA `be1f4a2705117c620e74328b1b46bbacda77f605b1b8cbcbff4bdc46a122da4c`。片頭美術與圖片文字仍原版，未稱 HD 圖像完成。
+- 實際前端 PCM 為 814744 stereo frames，322923 為 HD，SHA `65f4279a9334d234e992bb0553a3b7dcdb18a99257d9b93c17c272da85954943`。片頭、第一次欣賞及重播起音的 RMS 差分別為 0.183059／0.183059／0.178043 個 int16 單位。`gui-intro-audio-r1.json` 已通過，裝置仍靜音，不宣稱實機喇叭或裝置連續性。
+- `intro-save-visible-r1` 另以兩個冷啟動視窗走新遊戲、人物頁、移動、F7 儲存、正常回 DOS，再繼續。127／59 幀、19／5 次改變已解碼及檢視，兩個程序的片頭各有 39285 HD frames，無來源回退。此輪未驗四方向或自然遭遇，不取代舊對應基準。
+- 真正落地檔與讀回 RAM 的 2987 bytes SHA 皆為 `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，DOS 讀取在 step 12746288。存檔段退出碼 0，讀檔後快照只作 0 指令檢視；不是從快照啟動。4755 個差異像素在 `(404,350)-(523,446)`，限於原版主角圖塊，動畫相位未同步。收據 `save-cycle-intro-audit-r1.json`。
+
+003／008／009 仍 READY。〈幻〉在片頭及音樂欣賞的上述路段已實作並驗證，剩餘曲目、音效共存、實機裝置、片頭圖像與文字、其他素材及全遊戲仍未完成。沒有新的玩家依賴時，不重開片頭解包、旗標或相同地址研究。

@@ -27,6 +27,8 @@ type Music struct {
 	tracks                                             map[int]*MusicCue
 	bound                                              bool
 	boundCycle                                         uint64
+	introBound, introRetired, introRequestValid        bool
+	introBoundCycle, introEndStep                      uint64
 	pending                                            int
 	queue                                              []MusicEvent
 	Events                                             []MusicEvent
@@ -64,6 +66,7 @@ func (m *Music) event(kind string, cue int, valid bool, reason string) {
 }
 
 func (m *Music) Bind() {
+	m.bindIntro()
 	if m.bound || m.BindingError != "" {
 		return
 	}
@@ -143,6 +146,11 @@ func (m *Music) apply(e MusicEvent) {
 	case "request":
 		m.blocked = false
 		m.nextHD = m.trackFor(MusicEvent{Kind: "start", Cue: e.Cue, Valid: e.Valid}) != nil
+		if e.Reason == introProgram {
+			m.playing = nil
+			m.position = 0
+			m.oplMuted = m.nextHD
+		}
 	case "start":
 		m.Starts++
 		m.CurrentCue = e.Cue
@@ -166,6 +174,13 @@ func (m *Music) apply(e MusicEvent) {
 		m.oplMuted = false
 		m.nextHD = false
 		m.position = 0
+	case "handoff":
+		m.playing = nil
+		m.position = 0
+		m.CurrentCue = 0
+		m.oplMuted = false
+		m.nextHD = false
+		m.blocked = false
 	}
 }
 
@@ -189,9 +204,9 @@ func (m *Music) Render(sound *oracle.Audio) []int16 {
 	}
 	// An unexpected producer overrides HD at its actual write cycle. The
 	// native synthesizer still receives it and all speaker writes.
-	if m.bound && len(m.tracks) > 0 {
+	if (m.bound || m.introBound) && len(m.tracks) > 0 {
 		for _, w := range m.o.OPLWrites() {
-			if w.Cycles < m.lastCycle || w.Cycles < m.boundCycle {
+			if w.Cycles < m.lastCycle || !m.observedWrite(w) {
 				continue
 			}
 			v, ok := m.seenOPL[w.Step]
@@ -217,6 +232,9 @@ func (m *Music) Render(sound *oracle.Audio) []int16 {
 		case "request":
 			blocked = false
 			nextHD = m.trackFor(MusicEvent{Kind: "start", Cue: e.Cue, Valid: e.Valid}) != nil
+			if e.Reason == introProgram {
+				points = append(points, oracle.OPLMutePoint{At: e.Cycles, Muted: nextHD})
+			}
 		case "stop":
 			points = append(points, oracle.OPLMutePoint{At: e.Cycles, Muted: nextHD})
 		case "fallback":
@@ -226,6 +244,10 @@ func (m *Music) Render(sound *oracle.Audio) []int16 {
 		case "start":
 			nextHD = false
 			points = append(points, oracle.OPLMutePoint{At: e.Cycles, Muted: !blocked && m.trackFor(e) != nil})
+		case "handoff":
+			blocked = false
+			nextHD = false
+			points = append(points, oracle.OPLMutePoint{At: e.Cycles, Muted: false})
 		}
 	}
 	native := sound.RenderWithOPLMute(m.oplMuted, points)
@@ -275,7 +297,7 @@ func (m *Music) Status() map[string]any {
 	} else if m.oplMuted {
 		mode = "loading-hd"
 	}
-	return map[string]any{"bound": m.bound, "mode": mode, "cue": m.CurrentCue, "frame": m.position, "loaded_cues": len(m.tracks), "load_error": m.LoadError, "binding_error": m.BindingError, "starts": m.Starts, "stops": m.Stops, "fallbacks": m.Fallbacks, "loops": m.Loops, "hd_frames": m.HDFrames, "clipped_samples": m.Clipped, "events": m.Events}
+	return map[string]any{"bound": m.bound, "intro_bound": m.introBound, "intro_retired": m.introRetired, "intro_bound_cycle": m.introBoundCycle, "intro_end_step": m.introEndStep, "mode": mode, "cue": m.CurrentCue, "frame": m.position, "loaded_cues": len(m.tracks), "load_error": m.LoadError, "binding_error": m.BindingError, "starts": m.Starts, "stops": m.Stops, "fallbacks": m.Fallbacks, "loops": m.Loops, "hd_frames": m.HDFrames, "clipped_samples": m.Clipped, "events": m.Events}
 }
 
 func (m *Music) Close() { m.playing = nil; m.tracks = nil; m.queue = nil; clear(m.seenOPL) }

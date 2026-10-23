@@ -8,7 +8,7 @@
 | 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900，〈幻〉配樂已選 B 撥弦／長笛方向。平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 目前工作樹包含 008 音樂事件與播放，建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
+| 文件同步 | 目前程式包含 008 音樂事件與 009 片頭交接，建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
 | Docker | 沿用既有研究／Go／影像及 IDA 映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；片頭後以 INT 21h AX=4B03 覆蓋載入 `PAM.AY`，Seg／Reloc 都是 0110，沒有新的子行程 PSP。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |
@@ -20,15 +20,18 @@
 | 音樂欣賞 | 正常冷啟動後逐一操作十項，曲名與檔案已核對，見同目錄 `menu-source-map.json`。〈幻〉為 MINT.AY／SINT.AY，六聲部 847 個起音順序與原版 OPL 相符，頻率量化誤差小於 0.1 半音；格式時長 85.603748 秒，原版模型首輪 85.570673 秒。時間為 hardware-spec approximation，未稱逐週期 parity。Esc 返回主選單且所有旋律聲道關閉。MFIG.AY 不在這十項，實際用途仍未知 |
 | HD 音樂試聽 | 使用者從 A 合成弦樂／單簧管、B 箏類撥弦／長笛兩份 30 秒樣本選定 B，決定見 `decision.json`。保留原音符、節奏與滑音；FluidR3 Koto／Flute 是概念試配，不能稱真正古箏／竹笛。後續發現 r1 上游 WAV 削波，最終 Ogg 檢查不足，舊檔保留為失敗研究。修正版 `b-plucked-flute-30s-r2.ogg` 與完整 `b-approved-full-loop-r2.ogg` 已核對上游及最終取樣皆無削波；見 `audition-audit-r2.json` |
 | 已批准配樂 | 使用者追加「ok 音樂同意 繼續囉」。〈幻〉B r2 為 48 kHz 雙聲道、4108980 frames、85.60375 秒，已接入；真峰值 -2.05 dBTP、響度 -22.06 LUFS。原始 r1 上游削波的勘誤保留，正式候選使用無削波 r2，不覆寫批准樣本歷史 |
-| HD 音樂接入 | [008](docs/spec/008-music-events-and-playback.md)為 READY。固定 PAM overlay 的 Request／Stop／初始化完成驅動播放，同曲重啟、移動反白不停歌、Esc 停止及缺 HD 曲目回原版；未知 OPL 寫入者亦回原版。現行本機 `assets-painted-r9` 保留 r8 的 45 個原有檔案、65 筆圖像及 Noto，另加〈幻〉、清單及來源／授權。music.json SHA `adecf522e5f7982a905ad0c32a9f903851a12e88128dff9e7c2ead66ed4b94bc`；其他九曲與 PREDELLA 片頭仍原版 |
+| HD 音樂接入 | [008](docs/spec/008-music-events-and-playback.md)與 [009](docs/spec/009-intro-music-handoff.md)均 READY。PAM 及 PREDELLA 的原版請求／停止／初始化完成驅動播放，跨程式停用舊掛勾；未知 OPL 寫入者回原版。現行本機 `assets-painted-r9` 保留 r8 的 45 個原有檔案、65 筆圖像及 Noto，另加〈幻〉、清單及來源／授權。music.json SHA `adecf522e5f7982a905ad0c32a9f903851a12e88128dff9e7c2ead66ed4b94bc` 不變；片頭沿用同曲，其他九曲仍原版 |
 | 音樂同狀態 | `music-first/runtime-events-r1/playback-audit-r2.json` 核對 90 秒首段的原版 FM／HD 對照，完整客體狀態同為 `66827919b60266b20459ccf559bf8f6238472621bf5904508797aeec3c51d28f`，25 個工作檔、輸入／I/O／事件及 13 張圖相同。兩次起音與完整循環波形均符 Ogg，RMS 差約 0.183 個 int16 單位；切回原版後逐取樣相同。此處畫面兩側皆沿用 r8 圖像，對照差異僅為音樂，不冒稱新純原版畫面驗收 |
 | 音樂故障回退 | 真實破壞 Ogg，與同條件 2000 毫秒首段的原版對照走完十三個操作點。完整狀態、工作檔、圖像及整段音訊相同，Noto／圖像保持，music.load_error 明確回報 SHA 不符；短故障段不取代上述長循環驗收 |
-| HD 音樂視窗 | `workplace/player/gui/music-visible-r1/music/` 以 XTEST 完成音樂欣賞、同曲重啟、反白、缺曲回原版、Esc、新遊戲、人物頁與 F7。17 張真正視窗圖、300 幀／26 次改變已檢視；前端 PCM 587347 frames，其中 138711 frames 為 HD。兩段起音經 FFmpeg 獨立解碼核對，見 `gui-music-audio-r1.json`。容器仍為靜音裝置，不稱真機喇叭或裝置連續性通過 |
+| PAM 音樂視窗基準 | `workplace/player/gui/music-visible-r1/music/` 以 XTEST 完成音樂欣賞、同曲重啟、反白、缺曲回原版、Esc、新遊戲、人物頁與 F7。17 張真正視窗圖、300 幀／26 次改變已檢視；前端 PCM 587347 frames，其中 138711 frames 為 HD。兩段起音經 FFmpeg 獨立解碼核對，見 `gui-music-audio-r1.json`。此為片頭接入前基準，裝置靜音 |
+| 片頭來源 | `music-first/intro-events-r1/` 已核對正常解包後三段程式指紋、MINT／SINT 完整緩衝區、播放旗標與 467 筆 OPL 來源。片頭音色段是 9600，播放旗標是 0B2C:0005；舊探針的 B2E6 僅為初始化旗標。原始檔、分析 wrapper、執行期線性三種位址分開保存，解壓演算法及標準 ISR 不再深挖 |
+| 片頭同狀態 | `short-fault-audit-r2.json`：5 秒正常等待後 Esc，14 張圖、28 個工作檔與完整 state 同原音，SHA `5e8b6679…9514`；真實壞 Ogg 整段 PCM 也同原音。`long-playback-audit-r2.json`：90 秒等待且片頭自然結束，14 張圖、31 個工作檔與完整 state 同原音，SHA `b5907be6…e5d8`。兩組起音 RMS 差約 0.183 個 int16 單位，原版停止至下一次 Request 及第 2 曲尾段逐取樣相同。自然片頭實際播放約 21.216 秒，沒有完整循環，不冒稱片頭循環驗收 |
+| 片頭音樂視窗 | `workplace/player/gui/intro-music-visible-r1/music/` 以 XTEST 完成片頭、音樂欣賞、重播、反白、換曲、Esc、新遊戲、F1 與 F7。18 張圖、361 幀／31 次改變已獨立解碼並檢視。前端 PCM 814744 frames，322923 為 HD，片頭及兩次欣賞起音均經 FFmpeg 核對；見 `intro-events-r1/gui-intro-audio-r1.json`。裝置靜音，片頭美術與文字仍原版 |
 | 遨遊配器樣本 | `music-first/hd-audition-r1/mwlk-timbre-r1/` 留 A 原音色取樣及 B 撥弦／長笛兩份 80 秒候選與 30 秒試聽。使用者選擇待回答，兩版均未加入正式素材。短樣本首版的 Ogg 再轉碼有時間戳及長度問題，改用原始 PCM 重生 `*-30s-r2.ogg`，不覆寫舊檔；試聽改用 r2。鼓點保留原時刻，GM 鼓取樣屬明示配器選擇 |
 | 遨遊原曲證據 | 正常冷啟動選曲並播放 90 個虛擬秒，640 個旋律起音及 336 個節奏觸發順序符合來源。旋律音高差小於 0.1 半音、全部起音時間差小於 0.05 秒；來源全長 80 秒，原版模型首輪 79.976403 秒，仍為硬體規格近似。新 `audit-music-source.py` 已獨立核對 MINT／MWLK，不重做 parser 或 driver RE |
 | 更多 Noto 選單 | `workplace/player/gui/noto-more-menus-r2/menus/` 以正式 XTEST 流程走 F2 民兵頁、F4 無法施法提示、F5 完整位置文字，再走 F1、返回、F7 與移動。238 次全形、527 次半形，無缺字或追蹤錯誤；197 幀／37 次改變已解碼及檢視。軍隊圖像仍原版，未驗習得法術、長文或戰鬥 |
 | 地圖取圖勘誤 | 初次探針只等文字暫停，在 F5 逐列繪圖中途取圖；正式驗證改等本次位置字串 1278／1304，再等實際呈現。正常冷啟動的原版 RGB 與 HD 在中央 `(100,14)-(380,171)` 的 43960 個原生像素一致，黑色區域兩側皆有；未推定其世界地圖或探索語意。收據 `noto-more-menus-r1/map-source/native-hd-interior-audit.json` |
-| 現行正常存讀 | r9 另走 `workplace/player/gui/music-save-visible-r1/` 兩個視窗，含四方向、人物頁、自然遭遇選否、F7 儲存、正常回 DOS及冷啟動繼續。317／56 幀及 56／5 次改變已獨立解碼並檢視；41／2 次主角完成。原版存檔與 0 指令檢視的讀回 RAM 同為 2987 bytes、SHA `6f1689c2…bfc2e`。4789 個差異像素只在原主角圖塊，未同步動畫相位。配樂此路段為原版第 2 曲，保存段停止、讀檔後由原版重啟；見 `save-cycle-music-audit-r1.json` |
+| 現行正常存讀 | `workplace/player/gui/intro-save-visible-r1/` 兩個冷啟動視窗完成新遊戲、人物頁、移動、F7 儲存、回 DOS及繼續。127／59 幀、19／5 次改變已解碼與檢視；每個程序的片頭各輸出 39285 HD frames，無回退或缺字。落地及讀回 RAM 的 2987 bytes SHA 都為 `29dd62ae…2359`，讀取於 step 12746288；快照只作 0 指令檢視。4755 個差異像素限原主角圖塊，動畫相位未同步。保存與載入路段仍為原版第 2 曲，見 `intro-events-r1/save-cycle-intro-audit-r1.json`。四方向及自然遭遇基準仍為前次 music-save-visible-r1，這次未重驗 |
 | HD 畫面 | B 古風地表、兩種建築、布旗、十二張主角動作、人物頁及金玉介面已接入；r9 保留 r8 的 53 筆底圖及十二張主角，共 65 筆 HD 對應。[004](docs/spec/004-hd-bitmap-presentation.md)、[006](docs/spec/006-static-map-objects-and-sand.md)及[007](docs/spec/007-masked-hero-animation.md)仍 READY，[005](docs/spec/005-jade-gold-interface.md)介面限定 CONFORMED。沙地已載入但未驗實景，其他角色、圖像與更廣動畫仍待處理，新素材只留本機 |
 | HD 文字 | 已接入 Noto Sans CJK TC Black 900，731 字包含 636 中文與 95 ASCII。追蹤實際字墨、同值寫入失效及 VGA 頁搬移，主機合成不改 DOS。[002](docs/spec/002-pam-font-catalog.md)限定 CONFORMED；[003](docs/spec/003-noto-runtime-overlay.md)仍為 READY，完整驗收未結案 |
 | 純 Noto 視窗基準 | `workplace/player/gui/noto-save-visible-r3/` 含 save／reload 兩個真正視窗程序，共 23 張正常路段截圖，包含遭遇確認選否。存檔段全形 314／半形 585 次，讀檔段 87／235 次，皆無缺字及追蹤錯誤；這份基準圖像為原版，現行 HD 圖像另列下方 |
@@ -55,4 +58,4 @@
 | 可選打磨 | 尚未進入；HD 是正式範圍。畫風、字重及首曲已確認並接入，其餘圖像、文字與曲目仍須完成，不能列為可選打磨 |
 | 清理 | 本輪只用一次性 `--rm` 容器，沒有建立新映像。來源、失敗與成功收據留在 workplace；收尾擁有權與容器核對記 WORKLOG |
 
-〈遨遊〉A／B 試聽待答，回答前不重做相同樣本，也不將候選接入正式素材；試聽採修正版 r2。可先處理 PREDELLA 片頭的音樂事件、其餘原曲證據、未替換圖像或文字路段，再驗長路段與音效共存。〈幻〉來源解析、PAM 事件及前端接入已有收據，不重做相同 RE。音訊裝置、其餘場景及 MFIG 用途仍未知；音樂欣賞不代替整個遊戲。尚未替換的地圖圖像、沙地實景、軍隊與其他角色、圖片文字及長文繼續保留在正式範圍。主角十二張圖與四方向已接入，不重開相同 ABI；003／008 仍 READY，整體目標未完成。
+〈遨遊〉A／B 試聽待答，回答前不重做相同樣本，也不將候選接入正式素材；試聽採修正版 r2。可接續未替換圖像、片頭圖片文字、長文、其餘原曲證據與音效共存。〈幻〉、PAM 事件、PREDELLA 片頭及交接已有正常路徑收據，不重開相同 RE。音訊裝置、其餘場景及 MFIG 用途仍未知；音樂欣賞不代替整個遊戲。尚未替換的地圖圖像、沙地實景、軍隊與其他角色仍在正式範圍。主角十二張圖與四方向已接入，不重開相同 ABI；003／008／009 仍 READY，整體目標未完成。

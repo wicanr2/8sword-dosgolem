@@ -132,8 +132,10 @@ case "${1:-}" in
     task_name="${2:?指定新的收據名稱}"
     task_set="${3:-painted-r9}"
     task_ms="${4:-90000}"
+    task_intro_ms="${5:-500}"
     valid_name "$task_name"; valid_name "$task_set"
     [[ "$task_ms" =~ ^[0-9]+$ ]]
+    [[ "$task_intro_ms" =~ ^[0-9]+$ ]]
     test -f "$task_player/music-check"; test -d "$task_orig"
     test -d "$task_player/assets-$task_set"
     task_out="$task_player/replays/$task_name"
@@ -144,7 +146,7 @@ case "${1:-}" in
       --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
       --mount "type=bind,src=$task_out,dst=/out" \
       --entrypoint /player/music-check "$task_go" \
-      -root /orig -assets "/player/assets-$task_set" -out /out -first-ms "$task_ms"
+      -root /orig -assets "/player/assets-$task_set" -out /out -first-ms "$task_ms" -intro-ms "$task_intro_ms"
     ;;
   replay)
     task_mode="${2:?指定 hd 或 native}"

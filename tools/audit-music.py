@@ -40,9 +40,11 @@ def audit_gui(args):
     expected = array.array("h", subprocess.check_output(["ffmpeg", "-v", "error", "-nostdin", "-i", str(args.ogg), "-f", "s16le", "-ac", "2", "-ar", "48000", "-"]))
     checks = []
     events = music["events"]
-    starts = [e for e in events if e["kind"] == "start" and e["cue"] == 1 and e["valid"]]
+    starts = [e for e in events if e["kind"] == "start" and e["cue"] == 1 and e["valid"] and e.get("reason") != "PREDELLA.EXE"]
     assert len(starts) == 2
-    for e in starts:
+    intros = [e for e in events if e["kind"] == "start" and e["valid"] and e.get("reason") == "PREDELLA.EXE"]
+    assert len(intros) <= 1
+    for e in intros+starts:
         stop = next(x for x in events if x["kind"] == "stop" and x["cycles"] > e["cycles"])
         frames = min(96000, int((stop["cycles"]-e["cycles"])*48000/(per_ms*1000))-8)
         assert frames > 12000
@@ -52,7 +54,7 @@ def audit_gui(args):
         checks.append(dict(cycles=e["cycles"],compared_frames=frames,calibration_shift_frames=shift,rms_error_int16=error))
     captures = sorted(args.gui.glob("*.png"))
     captures = [p for p in captures if p.stem.startswith(("music-","01-","02-","03-","04-","05-","06-","07-","08-","09-","10-","11-"))]
-    assert len(captures) == 17
+    assert len(captures) == (18 if intros else 17)
     for p in captures:
         header = p.read_bytes()[:24]
         assert header[:8] == b"\x89PNG\r\n\x1a\n" and struct.unpack(">II",header[16:24]) == (1280,800)
@@ -102,7 +104,7 @@ def main():
     native = array.array("h", (args.native/"output-s16le-stereo.pcm").read_bytes())
     hd = array.array("h", (args.hd/"output-s16le-stereo.pcm").read_bytes())
     assert len(native) == len(hd) and len(hd) % 2 == 0
-    cue1 = [e for e in music["events"] if e["kind"] == "start" and e["cue"] == 1 and e["valid"]]
+    cue1 = [e for e in music["events"] if e["kind"] == "start" and e["cue"] == 1 and e["valid"] and e.get("reason") != "PREDELLA.EXE"]
     cue2 = next(e for e in music["events"] if e["kind"] == "start" and e["cue"] == 2 and e["valid"])
     assert len(cue1) == 2
     expected = array.array("h", subprocess.check_output(["ffmpeg", "-v", "error", "-nostdin", "-i", str(args.ogg), "-f", "s16le", "-ac", "2", "-ar", "48000", "-"]))

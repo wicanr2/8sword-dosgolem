@@ -14,6 +14,8 @@
 
 配樂接入規格：[008：原版音樂事件與 HD 播放](docs/spec/008-music-events-and-playback.md)，READY；以實際請求、載入完成、停止及同曲重啟控制主機播放，不以場景或讀檔名代替事件。
 
+片頭配樂規格：[009：片頭音樂與 PAM 交接](docs/spec/009-intro-music-handoff.md)，READY；已獨立核對 PREDELLA 解包後入口、9600 音色緩衝區及播放旗標，授權接入並在 PAM 覆蓋載入後停用舊掛勾。相同〈幻〉沿用已批准 Ogg，不新增配器。
+
 配樂工具：[匯入](tools/prepare-hd-music.py)、[正常音樂流程](tools/music-check.go)、[獨立波形與狀態核對](tools/audit-music.py)。透過 `bash tools/player.sh music-assets`／`music-check` 在 Docker 執行，參數與支援範圍見 008；原曲及衍生音樂不加入 Git。
 
 原曲核對工具：[audit-music-source.py](tools/audit-music-source.py)，在既有音訊 Docker 比較已解析曲譜與正常冷啟動的 OPL 擷取。參數為 `--events`、`--receipt`、`--opl`、`--out`；支援目前 3000 cycles/ms、起始 tick 有音符的完整首輪及循環，分開驗旋律音高與節奏觸發，不宣稱硬體逐週期一致。

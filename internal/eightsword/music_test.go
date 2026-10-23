@@ -66,26 +66,30 @@ func TestMusicStereoClockRestartAndStop(t *testing.T) {
 }
 
 func TestMusicUnknownOPLProducerReturnsNative(t *testing.T) {
-	// The fixture emits an OPL write outside the verified PAM producer.
-	o := musicFixture(t, []byte{0xba, 0x88, 3, 0xb0, 0x20, 0xee, 0x42, 0xb0, 1, 0xee, 0xeb, 0xfe})
-	sound := o.NewAudio(48000)
-	track := &MusicCue{ID: 1, Frames: 2, PCM: []int16{100, 200, 300, 400}}
-	m := &Music{o: o, bound: true, tracks: map[int]*MusicCue{1: track}, playing: track, seenOPL: map[uint64]uint8{}}
-	if err := o.RunCycles(75000); err != nil {
-		t.Fatal(err)
-	}
-	regs := o.Regs()
-	pcm := m.Render(sound)
-	if len(pcm) != 9600 || m.Fallbacks == 0 || m.playing != nil {
-		t.Fatal(m.Status())
-	}
-	for _, v := range pcm[10:] {
-		if v != 0 {
-			t.Fatal("unknown source remained HD")
-		}
-	}
-	if regs != o.Regs() {
-		t.Fatal("presentation fallback changed CPU")
+	for _, program := range []string{"PAM", introProgram} {
+		t.Run(program, func(t *testing.T) {
+			// Emit a real OPL write outside either verified producer.
+			o := musicFixture(t, []byte{0xba, 0x88, 3, 0xb0, 0x20, 0xee, 0x42, 0xb0, 1, 0xee, 0xeb, 0xfe})
+			sound := o.NewAudio(48000)
+			track := &MusicCue{ID: 1, Frames: 2, PCM: []int16{100, 200, 300, 400}}
+			m := &Music{o: o, bound: program == "PAM", introBound: program == introProgram, tracks: map[int]*MusicCue{1: track}, playing: track, seenOPL: map[uint64]uint8{}}
+			if err := o.RunCycles(75000); err != nil {
+				t.Fatal(err)
+			}
+			regs := o.Regs()
+			pcm := m.Render(sound)
+			if len(pcm) != 9600 || m.Fallbacks == 0 || m.playing != nil {
+				t.Fatal(m.Status())
+			}
+			for _, v := range pcm[10:] {
+				if v != 0 {
+					t.Fatal("unknown source remained HD")
+				}
+			}
+			if regs != o.Regs() {
+				t.Fatal("presentation fallback changed CPU")
+			}
+		})
 	}
 }
 
