@@ -26,10 +26,27 @@ def inspect(runtime, assets, background, receipt):
     bg = Image.open(background).convert("RGBA")
     assert bg.size == (640, 200) and set(bg.getdata()) == {(0, 0, 0, 255), (0, 0, 170, 255)}
     bg = bg.resize((1920, 1200), Image.Resampling.NEAREST)
+    art_manifest = assets/"story-background.json"
+    if art_manifest.exists():
+        art = json.loads(art_manifest.read_text())
+        assert art["approved_sha256"] == "bd21a34613dabef939afc9b94c9f45473cef2cd5f0e42aeee660d3d02b6d5c04"
+        art_png = (assets/art["image"]).read_bytes()
+        if sha(art_png) == art["image_sha256"]:
+            bg = Image.open(assets/art["image"]).convert("RGBA")
+            assert bg.size == (1920,1200) and bg.getchannel("A").getextrema() == (255,255)
     metadata = [json.loads(s) for s in (receipt/"intro-draw.jsonl").read_text().splitlines()]
     masks = {}
+    choices = {}
+    needed = {m.get("font_id", "noto") for m in metadata if m["stage"] in ("story-noto", "story-transition")}
+    if (assets/"font-choices.json").exists():
+        for profile in json.loads((assets/"font-choices.json").read_text())["profiles"]:
+            if profile["id"] not in needed:
+                continue
+            assert sha((assets/profile["atlas"]).read_bytes()) == profile["atlas_sha256"]
+            choices[profile["id"]] = (Image.open(assets/profile["atlas"]).getchannel("A"),
+                                      {g["character"]: g for g in profile["glyphs"]})
 
-    def expected(calls, page):
+    def expected(calls, page, font_id="noto"):
         assert 1 <= page <= 5 and (page-1)*192 <= calls <= min(page*192, 888)
         out = bg.copy()
         for i in range((page-1)*192, calls):
@@ -38,17 +55,22 @@ def inspect(runtime, assets, background, receipt):
             if pair in (b"  ", b"\0\0"):
                 continue
             code = pair.hex()
-            if code not in masks:
+            key = font_id, code
+            if key not in masks:
                 g = glyphs[code]
+                selected_atlas = atlas
+                if font_id != "noto":
+                    selected_atlas, selected_glyphs = choices[font_id]
+                    g = selected_glyphs[g["character"]]
                 x, y, iw, ih = g["ink"]
                 dw, dh = min(iw, 48), min(ih, 90)
                 assert dw > 0 and dh > 0
-                source = atlas.crop((x, y, x+iw, y+ih)).tobytes()
+                source = selected_atlas.crop((x, y, x+iw, y+ih)).tobytes()
                 mask = Image.frombytes("L", (dw, dh), bytes(
                     source[(y*ih//dh)*iw+x*iw//dw]
                     for y in range(dh) for x in range(dw)))
-                masks[code] = mask
-            mask = masks[code]
+                masks[key] = mask
+            mask = masks[key]
             x = (75-c%16*5)*8*3+(48-mask.width)//2
             y = (4+r*16)*6+(90-mask.height)//2
             rect = (x, y, x+mask.width, y+mask.height)
@@ -81,7 +103,7 @@ def inspect(runtime, assets, background, receipt):
             if info["stage"] not in ("story-noto", "story-transition"):
                 continue
             calls, page = info["story_calls"], info["story_pages"]
-            im = expected(calls, page)
+            im = expected(calls, page, info.get("font_id", "noto"))
             if im.tobytes() != rgba:
                 im.save(receipt/"story-expected-failed.png")
                 Image.frombytes("RGBA", (width, height), bytes(rgba)).save(receipt/"story-actual-failed.png")
@@ -92,7 +114,7 @@ def inspect(runtime, assets, background, receipt):
     assert frames == len(metadata) == final["recorded_frames"] and matched > 0 and final["closed"]
     result = dict(status="passed-independent-story-pixels", frames=frames, story_draws=matched,
                   pages={p: dict(draws=len(v), first_calls=min(v), last_calls=max(v)) for p, v in pages.items()},
-                  method="independent Python/Pillow composition from original table, Noto alpha and native background; every recorded story Draw equals RGBA byte for byte",
+                  method="independent Python/Pillow composition from original table, active font atlas and verified native or approved HD background; every recorded story Draw equals RGBA byte for byte",
                   recording_sha256=sha((receipt/"presentation.frames.gz").read_bytes()),
                   limit="只涵蓋實際錄製的故事 Draw；實際視窗、玩法、存檔與客體隔離另驗。")
     (receipt/"story-pixel-audit.json").write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n")

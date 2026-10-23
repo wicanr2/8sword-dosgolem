@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime/pprof"
+	"strings"
 	"sync"
 	"time"
 
@@ -72,6 +73,7 @@ type game struct {
 	presentedConsole                           string
 	frameIntro                                 string
 	presentedIntro                             string
+	frameFontID, presentedFontID               string
 	frameStoryCalls, frameStoryPages           uint64
 	frameCaptionSource, presentedCaptionSource uint16
 	presentedStoryCalls, presentedStoryPages   uint64
@@ -80,6 +82,8 @@ type game struct {
 	stageTotals                                map[string]*stageTiming
 	started                                    time.Time
 	startCycles                                uint64
+	settings                                   string
+	titleSuffix                                string
 }
 
 type stageTiming struct {
@@ -112,6 +116,7 @@ func (g *game) status(closed bool) map[string]any {
 	status["presented_frames"], status["presented_scene"] = g.draws, g.presentedScene
 	status["presented_console"] = g.presentedConsole
 	status["presented_intro"] = g.presentedIntro
+	status["presented_font_id"] = g.presentedFontID
 	status["presented_story_calls"], status["presented_story_pages"] = g.presentedStoryCalls, g.presentedStoryPages
 	status["presented_caption_source"] = g.presentedCaptionSource
 	status["stage_totals"] = g.stageTotals
@@ -159,6 +164,21 @@ func (g *game) Update() error {
 	if !ebiten.IsFocused() {
 		g.engine.ReleaseAll()
 	} else {
+		if inpututil.IsKeyJustPressed(ebiten.KeyF10) && g.engine.HD {
+			choices := g.engine.FontChoices()
+			for i, choice := range choices {
+				if choice.ID == g.engine.FontID() {
+					next := choices[(i+1)%len(choices)].ID
+					if err := g.engine.SetFont(next); err != nil {
+						log.Print(err)
+					} else if err := eightsword.SaveFontPreference(g.settings, next); err != nil {
+						log.Printf("字型偏好未儲存：%s", err)
+					}
+					break
+				}
+			}
+			ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型" + g.titleSuffix)
+		}
 		for _, k := range keys {
 			if inpututil.IsKeyJustPressed(k.key) {
 				if err := g.engine.Key(k.scan, true); err != nil {
@@ -190,6 +210,9 @@ func (g *game) Update() error {
 	audioDone := time.Now()
 	previous := g.frame
 	g.frame = g.engine.Frame()
+	if previous != g.frame {
+		g.frameFontID = g.engine.FontID()
+	}
 	g.frameConsole = g.engine.ConsoleStage()
 	g.frameIntro = g.engine.IntroFrameStage(g.frame)
 	g.frameCaptionSource = 0
@@ -248,10 +271,11 @@ func (g *game) Draw(screen *ebiten.Image) {
 	g.draws++
 	g.presentedConsole = g.frameConsole
 	g.presentedIntro = g.frameIntro
+	g.presentedFontID = g.frameFontID
 	g.presentedCaptionSource = g.frameCaptionSource
 	g.presentedStoryCalls, g.presentedStoryPages = g.frameStoryCalls, g.frameStoryPages
 	if g.introDraw != nil {
-		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource}); err != nil {
+		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource, "font_id": g.frameFontID}); err != nil {
 			g.recordErr = err
 		}
 	}
@@ -276,6 +300,8 @@ func (g *game) Layout(int, int) (int, int) { return 1920, 1200 }
 func main() {
 	root := flag.String("root", "", "合法原版資料目錄")
 	assets := flag.String("assets", "", "HD 字型、圖像與音樂素材目錄")
+	font := flag.String("font", "", "字型：noto、lishu、caoshu；空白沿用偏好")
+	settings := flag.String("settings", "", "字型偏好檔，預設為系統使用者設定目錄")
 	saves := flag.String("saves", "", "可寫存檔目錄")
 	capture := flag.String("capture-dir", "", "研究收據目錄，F12 抓圖")
 	record := flag.Bool("record", false, "以無損列差分記錄每次呈現，需要 capture-dir")
@@ -312,7 +338,31 @@ func main() {
 	}
 	defer engine.Close()
 	engine.EnableLiveClock(*cycles)
-	title := "神州八劍 · Noto Black 900"
+	if *settings == "" {
+		config, err := os.UserConfigDir()
+		if err != nil {
+			log.Fatal(err)
+		}
+		*settings = filepath.Join(config, "8sword", "settings.json")
+	}
+	selected := *font
+	if selected == "" {
+		var err error
+		selected, err = eightsword.LoadFontPreference(*settings)
+		if err != nil {
+			log.Print(err)
+		}
+	}
+	if engine.HD {
+		if err := engine.SetFont(selected); err != nil {
+			log.Printf("使用 Noto：%s", err)
+		} else if *font != "" {
+			if err := eightsword.SaveFontPreference(*settings, selected); err != nil {
+				log.Printf("字型偏好未儲存：%s", err)
+			}
+		}
+	}
+	title := "神州八劍 · " + engine.FontName() + " · F10 字型"
 	if !engine.HD {
 		title = "神州八劍 · 原版文字"
 	}
@@ -321,7 +371,7 @@ func main() {
 		log.Printf("HD 字型未載入，使用原版呈現：%s", engine.AssetError)
 	}
 	if engine.GraphicsError != "" {
-		title = "神州八劍 · Noto Black 900（HD 圖像載入失敗）"
+		title += "（HD 圖像載入失敗）"
 		log.Printf("HD 圖像未載入，保留原版圖像：%s", engine.GraphicsError)
 	}
 	if engine.Music != nil && engine.Music.LoadError != "" {
@@ -336,7 +386,19 @@ func main() {
 		title += "（HD 故事文字載入失敗）"
 		log.Printf("HD 故事字型未載入，保留原版文字：%s", engine.StoryError)
 	}
-	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit}
+	if engine.Story != nil && engine.Story.BackgroundError != "" {
+		title += "（HD 故事背景載入失敗）"
+		log.Printf("HD 故事背景未載入，保留原版背景：%s", engine.Story.BackgroundError)
+	}
+	if engine.FontError != "" {
+		title += "（部分可選字型載入失敗）"
+		log.Print(engine.FontError)
+	}
+	suffix := ""
+	if i := strings.IndexRune(title, '（'); i >= 0 {
+		suffix = title[i:]
+	}
+	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit, settings: *settings, titleSuffix: suffix}
 	if *capture != "" {
 		g.introDraw, err = os.Create(filepath.Join(*capture, "intro-draw.jsonl"))
 		if err != nil {

@@ -32,6 +32,10 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 執行期 HD 規格：[003：Noto 文字覆繪](docs/spec/003-noto-runtime-overlay.md)，已完成參數與 VGA 搬移證據審查，READY 授權實作；正常選單、人物頁、返回及狀態隔離是必要驗收。
 
+故事背景規格：[014：深藍手繪故事背景](docs/spec/014-intro-story-background.md)。使用者已選 A 深藍稿，沿用 012 原文、座標與字色；新背景損壞時保留 Noto 並回原底圖。
+
+字型設定：[015：可選字型設定](docs/spec/015-font-settings.md)。使用者授權自行選型，Noto 保持預設，新增隸書風及草書的本機選項，缺字回 Noto；偏好檔與原版存檔分開。
+
 開場直排故事規格：[012：開場故事直排文字](docs/spec/012-intro-story-noto.md)，來源與逐字順序已由正常冷啟動擷取；實作與驗收狀態以該規格為準。
 
 博物館字幕規格：[013：博物館製作名單](docs/spec/013-intro-museum-captions.md)，四組來源與五次背景頁繪製已核對，接入狀態以該規格為準。
@@ -56,6 +60,7 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 - 使用者同日指定原版文字也須替換為 Noto 渾厚字體，觀看真實樣張後確認採 **Noto Sans CJK TC Black 900**。字型來源與重生方法見 [README 字型樣張](README.md#畫面與文字樣張)、[字型工具](tools/font-preview.py)及 [研究來源](RESEARCH-LOG.md#真實-noto-字重樣張)。須盤點選單、動態文字與圖片內文字，不能只替換前端新增按鈕；樣張批准不等於遊戲內接入或排版驗收。
 - 使用者同日確認 B 明亮手繪的中國古風，並明確要求定稿圖存入 GitHub。定稿參考為 [原圖](docs/images/hd-style-approved-r1.png)的下半部 B，[來源與批准紀錄](docs/images/hd-style-approved-r1.json)、[原始生成提示](docs/images/hd-style-approved-r1.prompt.txt)同次保存。原圖 byte 不變，上半部 A 只保留比較歷史；生成字體由已選定的 Noto Black 900 取代。後續構圖與配色以 B 為準，有差異先展示對照。
 - 使用者聽取〈幻〉的 A／B 音色試配後，選定 **B 撥弦與長笛方向**。目前樣本為 FluidR3 的 Koto／Flute 概念音色，不宣稱真正古箏／竹笛錄音。保留原曲音符、節奏及滑音，完整長循環及遊戲內觸發另驗；其他曲目的具體配器不由這份短樣本自動批准。
+- 使用者於 2026-10-24 選定故事背景 A 深藍手繪版。另要求字型設定，允許隸書或草書，授權 Codex 自行選型，不再詢問字型取捨。Noto Black 900 保持預設，替代字型及缺字回退見 [015](docs/spec/015-font-settings.md)，批准背景見 [014](docs/spec/014-intro-story-background.md)。原字碼、原文、字色與位置不因字型切換而變更。
 - 顯示倍率、目標平台、預設模式及公開方式尚未定案。不得沿用 mm3 的產品決定作為本作授權。
 - 新增語系、中文配音、HD 音效、作弊、改難度或跳過劇情，均未列入目前範圍。
 - 已授權的唯讀查證、整理與明確實作自主進行。重大取捨依 `/home/anr2/.codex/skills/grilling/SKILL.md`，查證後只問當前必要的一題；不重問已確認事項。

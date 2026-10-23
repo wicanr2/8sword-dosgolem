@@ -31,7 +31,7 @@ case "${1:-}" in
     bash "$task_root/tools/research.sh" build-probe
     test -d "$task_work/gocache"; test -d "$task_work/gomodcache"
     mkdir -p "$task_player"
-    exec timeout 260s docker run --rm --name "8sword-player-$task_action" --network none \
+    exec timeout 420s docker run --rm --name "8sword-player-$task_action" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
       --mount "type=bind,src=$task_root,dst=/project,readonly" \
       --mount "type=bind,src=$task_work/dosgolem,dst=/dosgolem,readonly" \
@@ -63,6 +63,8 @@ case "${1:-}" in
             EIGHTSWORD_TEST_MUSIC_ASSETS="$music_assets" \
             EIGHTSWORD_TEST_INTRO_ASSETS="$intro_assets" \
             EIGHTSWORD_TEST_STORY_ASSETS=/out/assets-painted-r11 \
+            EIGHTSWORD_TEST_STORY_BACKGROUND_ASSETS=/out/assets-painted-r12 \
+            EIGHTSWORD_TEST_FONT_CHOICES_ASSETS=/out/assets-painted-r14 \
             go test -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -177,6 +179,46 @@ case "${1:-}" in
       --runtime /runtime/runtime-0110.bin --exe /orig/PREDELLA.EXE \
       --font /fonts/NotoSansCJK-Black.ttc --out /out
     ;;
+  story-background-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r11}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_art="$task_work/probe-20261023/graphics-first/story-art-r1"
+    test -f "$task_art/blue-raw.png"; test -d "$task_player/assets-$task_base"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout 60s docker run --rm --name "8sword-story-background-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 700m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_art,dst=/art,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-story-background.py --base /base \
+      --approved /art/blue-raw.png --out /out
+    ;;
+  font-choices-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r12}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_font_sources="$task_work/probe-20261023/graphics-first/font-settings-r1"
+    task_fonts="$task_font_sources"
+    test -d "$task_fonts"; test -f "$task_fonts/NotoSansCJK-Black.ttc"
+    test -f "$task_font_sources/UnYetgul.ttf"; test -f "$task_font_sources/LiuJianMaoCao-Regular.ttf"
+    test -f "$task_fonts/NotoSerifCJK-Regular.ttc"
+    test -f "$task_font_sources/COPYING"; test -f "$task_font_sources/OFL.txt"
+    test -d "$task_player/assets-$task_base"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout 60s docker run --rm --name "8sword-font-choices-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 700m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_font_sources,dst=/sources,readonly" \
+      --mount "type=bind,src=$task_fonts,dst=/fonts,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-font-choices.py --base /base --sources /sources \
+      --noto /fonts/NotoSansCJK-Black.ttc --cjk-fallback /fonts/NotoSerifCJK-Regular.ttc --out /out
+    ;;
   intro-assets)
     task_name="${2:?指定新的素材組名稱}"
     task_base="${3:-painted-r9}"
@@ -242,9 +284,11 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_SHOW_INTRO="${EIGHTSWORD_GUI_SHOW_INTRO:-0}" \
       -e EIGHTSWORD_GUI_SHOW_STORY="${EIGHTSWORD_GUI_SHOW_STORY:-0}" \
       -e EIGHTSWORD_GUI_SHOW_CAPTIONS="${EIGHTSWORD_GUI_SHOW_CAPTIONS:-0}" \
+      -e EIGHTSWORD_GUI_FONT_CYCLE="${EIGHTSWORD_GUI_FONT_CYCLE:-0}" \
+      -e EIGHTSWORD_GUI_INITIAL_FONT="${EIGHTSWORD_GUI_INITIAL_FONT:-}" \
       -e EIGHTSWORD_GUI_ASSETS="${EIGHTSWORD_GUI_ASSETS:-/assets}" \
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

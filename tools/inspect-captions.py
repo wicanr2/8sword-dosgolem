@@ -19,8 +19,20 @@ def inspect(runtime, assets, receipt):
     assert hashlib.sha256(atlas_raw).hexdigest() == manifest["atlas_sha256"]
     atlas = Image.open(assets/"story-font.png").getchannel("A")
     glyphs = {g["big5"]: g for g in manifest["glyphs"] if g["source_index"] >= 0}
+    metadata = [json.loads(l) for l in (receipt/"intro-draw.jsonl").read_text().splitlines()]
+    choices = {"noto": (atlas, glyphs)}
+    needed = {m.get("font_id", "noto") for m in metadata if m["stage"] == "captions-noto"}
+    if (assets/"font-choices.json").exists():
+        for profile in json.loads((assets/"font-choices.json").read_text())["profiles"]:
+            if profile["id"] not in needed:
+                continue
+            assert hashlib.sha256((assets/profile["atlas"]).read_bytes()).hexdigest() == profile["atlas_sha256"]
+            by_char = {g["character"]: g for g in profile["glyphs"]}
+            choices[profile["id"]] = (Image.open(assets/profile["atlas"]).getchannel("A"),
+                                       {code: by_char[g["character"]] for code, g in glyphs.items()})
     expected = {}
-    for source in (0x42, 0x6a, 0x92, 0xba):
+    for font_id, source in ((f, s) for f in needed for s in (0x42, 0x6a, 0x92, 0xba)):
+        atlas, glyphs = choices[font_id]
         b = table[source-0x42:source-0x42+40].split(b"\0")[0]
         im = Image.new("RGBA", (1920, 90), (0, 0, 0, 255))
         i = 0
@@ -38,8 +50,7 @@ def inspect(runtime, assets, receipt):
             black = Image.new("RGBA", mask.size, (0, 0, 0, 255))
             im.paste(Image.composite(color, black, mask), (i*8*3+(48-dw)//2, (90-dh)//2))
             i += 2
-        expected[source] = im.tobytes()
-    metadata = [json.loads(l) for l in (receipt/"intro-draw.jsonl").read_text().splitlines()]
+        expected[font_id, source] = im.tobytes()
     matched, frames, seen, exposures = 0, 0, {}, []
     with gzip.open(receipt/"presentation.frames.gz", "rb") as stream:
         def read(n):
@@ -63,10 +74,11 @@ def inspect(runtime, assets, receipt):
             band = rgba[960*1920*4:1050*1920*4]
             if info["stage"] == "captions-noto":
                 source = info["caption_source"]
-                assert source in expected
-                if band != expected[source]:
+                key = info.get("font_id", "noto"), source
+                assert key in expected
+                if band != expected[key]:
                     Image.frombytes("RGBA", (1920, 90), bytes(band)).save(receipt/"captions-failed-actual.png")
-                    Image.frombytes("RGBA", (1920, 90), expected[source]).save(receipt/"captions-failed-expected.png")
+                    Image.frombytes("RGBA", (1920, 90), expected[key]).save(receipt/"captions-failed-expected.png")
                     raise ValueError(f"字幕帶逐像素不符：draw={ordinal}, source={source:04x}")
                 matched += 1
                 seen[source] = seen.get(source, 0)+1
@@ -81,7 +93,7 @@ def inspect(runtime, assets, receipt):
     assert matched > 0 and not exposures, exposures
     result = dict(status="passed-independent-caption-band", frames=frames, caption_draws=matched,
                   sources={f"{s:04x}": n for s, n in seen.items()}, native_caption_exposure_frames=exposures,
-                  method="original bytes and Noto alpha independently reconstruct full 1920x90 band; exact RGBA comparison",
+                  method="original bytes and active font alpha independently reconstruct full 1920x90 band; exact RGBA comparison",
                   limit="涵蓋錄製的 Draw；字幕以外的美術、實際視窗與客體隔離另驗。")
     (receipt/"captions-pixel-audit.json").write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n")
     print(json.dumps(result, ensure_ascii=False))

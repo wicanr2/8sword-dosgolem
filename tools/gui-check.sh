@@ -19,12 +19,15 @@ trap 'exit 130' INT TERM
 sleep 0.5
 record_flags=()
 audio_flags=()
+font_flags=()
+if [[ -n "${EIGHTSWORD_GUI_INITIAL_FONT:-}" ]]; then font_flags=(-font "$EIGHTSWORD_GUI_INITIAL_FONT"); fi
 actor_flags=()
 intro_flags=()
 if [[ "${EIGHTSWORD_GUI_ACTOR_WALK:-0}" == 1 ]]; then actor_flags=(-actor-walk); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_INTRO:-0}" == 1 ]]; then intro_flags=(-intro-title); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_STORY:-0}" == 1 ]]; then intro_flags+=(-intro-story); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_CAPTIONS:-0}" == 1 ]]; then intro_flags+=(-intro-captions); fi
+if [[ "${EIGHTSWORD_GUI_FONT_CYCLE:-0}" == 1 ]]; then intro_flags+=(-font-cycle); fi
 if [[ "${EIGHTSWORD_GUI_RECORD:-1}" == 1 ]]; then record_flags=(-record); fi
 if [[ "${EIGHTSWORD_GUI_RECORD_AUDIO:-0}" == 1 ]]; then audio_flags=(-record-audio); fi
 phases=(inspect)
@@ -52,7 +55,7 @@ for phase in "${phases[@]}"; do
   cat /sys/fs/cgroup/cpu.stat > "$phase_out/cpu-start.txt"
   cat "/proc/$xvfb_pid/stat" > "$phase_out/xvfb-start.txt"
   /bin-player/8sword -root /orig -assets "${EIGHTSWORD_GUI_ASSETS:-/assets}" -saves /out/scratch \
-    -capture-dir "$phase_out" -max-updates 4000 -mute "${record_flags[@]}" "${audio_flags[@]}" \
+    -settings /out/settings.json "${font_flags[@]}" -capture-dir "$phase_out" -max-updates 4000 -mute "${record_flags[@]}" "${audio_flags[@]}" \
     -cpu-profile "$phase_out/cpu.pprof" -vsync="${EIGHTSWORD_GUI_VSYNC:-true}" \
     -cycles "${EIGHTSWORD_GUI_CYCLES:-20000}" > "$phase_out/player.log" 2>&1 &
   gui_pid=$!

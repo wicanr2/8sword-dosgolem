@@ -43,6 +43,8 @@ type IntroStory struct {
 	background, last, hold                     *image.RGBA
 	palette                                    [256][3]uint8
 	lastCalls, lastPages, holdCalls, holdPages uint64
+	art                                        *image.RGBA
+	BackgroundError                            string
 }
 
 func loadIntroStory(o *oracle.Oracle, dir string) (*IntroStory, error) {
@@ -119,6 +121,10 @@ func loadIntroStory(o *oracle.Oracle, dir string) (*IntroStory, error) {
 	}
 	if hash([]byte(unicode.String())) != "55b9da7db8da920061a3a3f709556e7f90a35b38ab91ed0362687037d2f9ff3e" {
 		return nil, fmt.Errorf("故事 Unicode 對應不符")
+	}
+	t.art, err = loadStoryBackground(dir)
+	if err != nil {
+		t.BackgroundError = err.Error()
 	}
 	return t, nil
 }
@@ -307,9 +313,14 @@ func (t *IntroStory) Compose(native *image.RGBA) *image.RGBA {
 		t.fail("故事色盤改變，恢復原版")
 		return native
 	}
+	if t.art != nil {
+		draw.Draw(native, native.Bounds(), t.art, t.art.Bounds().Min, draw.Src)
+	}
 	for _, c := range t.cells {
 		r := image.Rect(c.x*3, c.y*6, (c.x+16)*3, (c.y+15)*6)
-		draw.Draw(native, r, t.background, r.Min, draw.Src)
+		if t.art == nil {
+			draw.Draw(native, r, t.background, r.Min, draw.Src)
+		}
 		t.font.DrawRune(native, c.r, r, [3]uint8{245, 207, 113})
 	}
 	t.last = native

@@ -187,6 +187,7 @@ func main() {
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
 	showStory := flag.Bool("intro-story", false, "wait for actual Noto story before Esc, including save/reload flows")
 	showCaptions := flag.Bool("intro-captions", false, "wait for actual museum Noto before Esc, including save/reload flows")
+	fontCycle := flag.Bool("font-cycle", false, "use real F10 to cycle fonts before normal save and verify preference on reload")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
 	flag.Parse()
@@ -465,6 +466,31 @@ func main() {
 	}
 	d.scene("main-menu")
 	d.shot("03-main-menu")
+	if *fontCycle {
+		if *flow == "reload" {
+			if d.status()["font_id"] != "caoshu" {
+				panic("font preference was not retained on cold boot")
+			}
+			d.shot("font-restored-caoshu")
+		} else {
+			native := append([]byte(nil), d.grab().Pix...)
+			for _, id := range []string{"lishu", "caoshu", "noto", "lishu", "caoshu"} {
+				d.press(76)
+				d.wait("F10 字型已呈現", 20, func(s map[string]any) bool { return s["font_id"] == id && s["presented_scene"] == "main-menu" })
+				first := d.status()["presented_frames"].(float64)
+				d.wait("F10 後完成 Draw", 15, func(s map[string]any) bool { return s["presented_frames"].(float64) >= first+2 })
+				if id == "noto" && !bytes.Equal(native, d.grab().Pix) {
+					panic("Noto menu did not restore exact visible pixels")
+				}
+				d.shot("font-" + id)
+			}
+			pref, err := os.ReadFile(filepath.Join(filepath.Dir(d.out), "settings.json"))
+			check(err)
+			if !bytes.Contains(pref, []byte("caoshu")) {
+				panic("F10 preference not written")
+			}
+		}
+	}
 	if *flow == "music" {
 		music := func(s map[string]any) map[string]any { m, _ := s["music"].(map[string]any); return m }
 		d.press(116)

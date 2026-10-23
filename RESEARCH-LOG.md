@@ -654,3 +654,19 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - 首版自然視窗在拍齊名單後，用通用 35 秒主選單等待，於 36541726 cycles、約 3.92 TPS 時到期；後續原版片頭仍在播，五次字幕請求無錯誤。保留 r1，改驗證器後續等待 180 秒、外層 360 秒，以相同映像、配額、3000 cycles/ms 及輸入重跑 r2 通過；不是產品修復、速度調整或亂數重擲。
 
 013 只涵蓋四組製作名單。發行商識別、博物館美術、故事背景及其餘音畫仍待完成；003／008／009 與整體目標保持未結案。原文、字模、畫面、音訊及研究產物全部留本機。
+
+
+## 2026-10-24：深藍故事背景與字型設定
+
+入口為 [014](docs/spec/014-intro-story-background.md)及 [015](docs/spec/015-font-settings.md)。依生命週期、規格閘門、字型、README 與文件分工路由進行。原版來源、dosgolem、IDA 執行期位址與 012 相同；本輪不再分析原字庫、壓縮或硬體 driver，沒有新增 IDA 註記。
+
+- 已證實：TIT6X 背景沿用 012 的五次完整緩衝區。原版彩圖 `intro-r1/cold-trace/frame-049.png` 可辨盤龍、白馬武者及猛虎，僅作生成構圖來源，不推定具名人物。內建 image_gen 先產彩色稿，再單獨調為深藍；原圖、提示、來源、比較及決定保存於 `graphics-first/story-art-r1/`。使用者選 A 深藍，Noto 原文與位置保持。批准原圖 SHA `bd21a34613dabef939afc9b94c9f45473cef2cd5f0e42aeee660d3d02b6d5c04`，整幅縮放 PNG SHA `734df8241381d2d016bb6c7421d8ce38b3dec2f7f91bdb0f7589b7d45b58ecbf`，屬刻意美化，沒有稱原版幾何 exact。
+- 使用者另授權自行找隸書／草書，不再提問。字型來源在 `graphics-first/font-settings-r1/sources.json`。劉建毛草固定作者提交 `e589ccd1fe37fa9d2076a52096a3e3992489ad2c`，TTF SHA `cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033`，OFL 1.1。UnYetgul 從 CTAN 2017-06-04 包取得，TTF SHA `c9d42eaac473b8ab0461cc6c2d1a1bac79b0babdf73974c7269ae17b81fd5d51`；完整 ZIP 已存檔，SHA `0d1e3a9b74ea25ecfa4a265679686d8578bad34c44de331e672fce6142865045`。GPLv2 全文、作者及無嵌入例外的原始 README 均保存，不將其授權改成 RRSAL。
+- 初版 r13 技術驗證通過，但實際草書視窗的 Black 缺字筆畫過粗。保留 r13、首輪無頭與 GUI 收據；改用 Noto Serif CJK TC Regular 作中文回退，SHA `93069d8e9e45d515cc421c971a79e6a5777704b348e36a9ef86578bf58adef77`。英文、標點與預設字型仍為原 Noto Black 900。兩份 Noto 輸入已就地存檔，重建不依賴主機字型更新。r14 的 853 字元皆有必要字墨；隸書風為 672 原字型／50 宋體／131 黑體，草書為 463／259／131。每個回退字逐 byte 同指定字型，見 `font-mask-audit-r2.json`。
+- r12 保留 r11 的 56 檔並新增背景三檔。r14 保留 r12 全部 59 檔，共 68 檔；UnYetgul 的作者／嵌入說明另列 `font-choice-lishu-NOTICE.txt`。`assets-fonts-rebuild-r2` 的 68 檔逐 SHA 相同，183 份來源及兩份封包逐檔不變，見 `rebuild-and-source-audit.json`。
+- `story-art-r1/runtime-audit-r2.json`：最終三種字型與原背景基準的完整客體同 SHA `ce429bca70ad5eca2042b30e70a0db6b92c7786a1b46b3f499d4059403a049e5`，12 工作檔、原版呼叫、輸入／事件及整段 PCM 相同，PCM SHA `05945636a336751282b178af29ddba146873c511e29a956b28579e8435a20c76`。真實壞背景的五張圖同原背景加 Noto，r14 的 Noto 五張圖同 r13。基準其他內容已有 HD，未稱純原版全幅對拍。
+- 最終實際視窗 `story-art-caoshu-visible-r2/story` 的 409 幀／147 次改變已解碼及看圖。90 個故事 Draw 與 19 個字幕 Draw 逐 RGBA byte 同獨立重建，四組字幕皆有可見收據。標題、五頁、PAM、新遊戲、F1、F7 與移動走正常輸入。尚未替換的發行商與博物館美術保持原版。
+- `font-settings-save-r2` 的 421／271 幀、90／72 次改變已解碼及看圖。第一程序先 Noto 故事，再 Esc、F10 五次切換、切回 Noto 的 GetImage 完全相同，最後選草書；第二次冷啟動沿偏好回草書。F10 沒有送到 DOS。17 個故事 Draw 另逐像素吻合，2987-byte F7 進度檔與正常讀回 RAM 同 SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，read step 55823850。快照僅在結束後 0 指令檢視；4755 像素差異限主角動畫區。檢視器從現行 `tools/inspect-state.go` 的唯讀輸入及一次性核心副本重建，來源 SHA `55776a833b373cc799471128e621cab135cc00488730f702a37b49a893f605cf`，產物 SHA `f8c479d64d0eb69548bed5c53109271a895309a8396475124fa911d42acd1cb7` 與既有已驗證產物相同。
+- 背景真實故障 GUI 為 286／78，五個故事 Draw 回原背景加 Noto；草書真實故障 GUI 為 344／91，十個故事 Draw 保留 HD 背景並回 Noto。兩者已解碼及看圖，其他 HD 保留；`font-settings-r1/final-gui-audit.json` 彙整實際範圍與錯誤。主選單三字型實際比較在同目錄 `font-settings-comparison.png`，裁切與來源另列 JSON。
+
+014／015 只對上列來源及玩家路徑限定 CONFORMED。003／008／009、其餘美術與文字、其餘曲目、戰鬥／後期及音訊裝置仍未結案。原版、字型、atlas、背景原圖、遊戲畫面、音訊及研究產物全部留本機。
