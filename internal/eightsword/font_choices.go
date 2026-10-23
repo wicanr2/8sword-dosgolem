@@ -200,6 +200,9 @@ func (e *Engine) SetFont(id string) error {
 	if e.Intro != nil {
 		e.Intro.ink = title
 	}
+	if e.Publisher != nil {
+		e.Publisher.ink = e.Publisher.publisher.words[id]
+	}
 	if e.Tracker != nil {
 		e.Tracker.cachedFrame = nil
 	}

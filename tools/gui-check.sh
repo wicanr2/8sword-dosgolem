@@ -25,6 +25,8 @@ actor_flags=()
 intro_flags=()
 if [[ "${EIGHTSWORD_GUI_ACTOR_WALK:-0}" == 1 ]]; then actor_flags=(-actor-walk); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_INTRO:-0}" == 1 ]]; then intro_flags=(-intro-title); fi
+if [[ "${EIGHTSWORD_GUI_SHOW_PUBLISHER:-0}" == 1 ]]; then intro_flags+=(-intro-publisher); fi
+if [[ "${EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE:-0}" == 1 ]]; then intro_flags+=(-publisher-font-cycle); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_STORY:-0}" == 1 ]]; then intro_flags+=(-intro-story); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_CAPTIONS:-0}" == 1 ]]; then intro_flags+=(-intro-captions); fi
 if [[ "${EIGHTSWORD_GUI_FONT_CYCLE:-0}" == 1 ]]; then intro_flags+=(-font-cycle); fi
@@ -39,6 +41,9 @@ if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == menus ]]; then phases=(menus); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == boot ]]; then phases=(boot); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == boot-fallback ]]; then phases=(boot-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro ]]; then phases=(intro); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == publisher ]]; then phases=(publisher); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == publisher-skip ]]; then phases=(publisher-skip); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == publisher-fallback ]]; then phases=(publisher-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro-skip ]]; then phases=(intro-skip); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro-fallback ]]; then phases=(intro-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == story ]]; then phases=(story); fi

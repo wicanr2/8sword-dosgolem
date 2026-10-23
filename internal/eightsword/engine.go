@@ -16,26 +16,28 @@ type Options struct {
 	HD                  bool
 }
 type Engine struct {
-	Oracle        *oracle.Oracle
-	Tracker       *Tracker
-	Assets        *Assets
-	PAM           []byte
-	HD            bool
-	AssetError    string
-	GraphicsError string
-	Exited        bool
-	ExitCode      uint8
-	PAMLoaded     bool
-	InputEvents   []InputEvent
-	Sound         *oracle.Audio
-	Music         *Music
-	Intro         *IntroTitle
-	IntroError    string
-	Story         *IntroStory
-	StoryError    string
-	Captions      *IntroCaptions
-	fonts         *fontChoices
-	FontError     string
+	Oracle         *oracle.Oracle
+	Tracker        *Tracker
+	Assets         *Assets
+	PAM            []byte
+	HD             bool
+	AssetError     string
+	GraphicsError  string
+	Exited         bool
+	ExitCode       uint8
+	PAMLoaded      bool
+	InputEvents    []InputEvent
+	Sound          *oracle.Audio
+	Music          *Music
+	Intro          *IntroTitle
+	IntroError     string
+	Publisher      *IntroTitle
+	PublisherError string
+	Story          *IntroStory
+	StoryError     string
+	Captions       *IntroCaptions
+	fonts          *fontChoices
+	FontError      string
 }
 type InputEvent struct {
 	Step  uint64
@@ -102,10 +104,17 @@ func Open(opt Options) (*Engine, error) {
 			e.StoryError = err.Error()
 		}
 		e.Captions = newIntroCaptions(o, e.Story)
-		if (e.Intro != nil || e.Story != nil || e.Captions != nil) && e.Tracker != nil {
+		e.Publisher, err = loadIntroPublisher(o, opt.Assets, opt.Root)
+		if err != nil {
+			e.PublisherError = err.Error()
+		}
+		if (e.Intro != nil || e.Story != nil || e.Captions != nil || e.Publisher != nil) && e.Tracker != nil {
 			// The core has one callback per event, shared by both presenters.
 			o.ObserveVideoWrites(func(v oracle.VideoWrite) {
 				e.Tracker.write(v)
+				if e.Publisher != nil {
+					e.Publisher.observeWrite(v)
+				}
 				if e.Intro != nil {
 					e.Intro.observeWrite(v)
 				}
@@ -118,6 +127,9 @@ func Open(opt Options) (*Engine, error) {
 			})
 			o.ObserveVideoModeChanges(func(oracle.VideoModeChange) {
 				e.Tracker.clear()
+				if e.Publisher != nil {
+					e.Publisher.invalidate()
+				}
 				if e.Intro != nil {
 					e.Intro.invalidate()
 				}
@@ -175,6 +187,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		if e.Intro != nil {
 			e.Intro.Bind()
 		}
+		if e.Publisher != nil {
+			e.Publisher.Bind()
+		}
 		if e.Story != nil {
 			e.Story.Bind()
 		}
@@ -214,6 +229,9 @@ func (e *Engine) Advance(n uint64) error {
 		}
 		if e.Intro != nil {
 			e.Intro.Bind()
+		}
+		if e.Publisher != nil {
+			e.Publisher.Bind()
 		}
 		if e.Story != nil {
 			e.Story.Bind()
@@ -297,7 +315,7 @@ func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
 	if !e.HD || e.IntroStage() == "" {
 		return frame
 	}
-	if (e.Intro != nil && e.Intro.active) || (e.Story != nil && e.Story.active) || (e.Captions != nil && e.Captions.Stage() != "") {
+	if (e.Intro != nil && e.Intro.active) || (e.Publisher != nil && e.Publisher.Stage() != "") || (e.Story != nil && e.Story.active) || (e.Captions != nil && e.Captions.Stage() != "") {
 		// Tracker owns this cached frame. Intro overlays must not mutate it.
 		copyFrame := image.NewRGBA(frame.Bounds())
 		copy(copyFrame.Pix, frame.Pix)
@@ -305,6 +323,9 @@ func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
 	}
 	if e.Intro != nil {
 		frame = e.Intro.Compose(frame)
+	}
+	if e.Publisher != nil {
+		frame = e.Publisher.Compose(frame)
 	}
 	if e.Story != nil {
 		frame = e.Story.Compose(frame)
@@ -315,6 +336,9 @@ func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
 	return frame
 }
 func (e *Engine) IntroStage() string {
+	if e.Publisher != nil && e.HD && e.Publisher.Stage() != "" {
+		return e.Publisher.Stage()
+	}
 	if e.Captions != nil && e.HD && e.Captions.Stage() != "" {
 		return e.Captions.Stage()
 	}
@@ -327,6 +351,9 @@ func (e *Engine) IntroStage() string {
 	return ""
 }
 func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
+	if e.Publisher != nil && e.HD && frame != nil && (frame == e.Publisher.last || frame == e.Publisher.hold) {
+		return e.Publisher.Stage()
+	}
 	if e.Captions != nil && e.HD && e.Captions.FrameSource(frame) != 0 {
 		return "captions-noto"
 	}
@@ -348,6 +375,11 @@ func (e *Engine) Status() map[string]any {
 		intro["stats"] = e.Intro.Stats
 	}
 	out["intro_title"] = intro
+	pub := map[string]any{"load_error": e.PublisherError, "stage": ""}
+	if e.Publisher != nil {
+		pub["stats"], pub["stage"] = e.Publisher.Stats, e.Publisher.Stage()
+	}
+	out["intro_publisher"] = pub
 	story := map[string]any{"load_error": e.StoryError, "stage": ""}
 	if e.Story != nil {
 		story["stats"] = e.Story.Stats

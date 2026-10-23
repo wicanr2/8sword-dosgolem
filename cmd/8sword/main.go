@@ -382,6 +382,10 @@ func main() {
 		title += "（HD 片頭載入失敗）"
 		log.Printf("HD 片頭未載入，保留原版標題：%s", engine.IntroError)
 	}
+	if engine.PublisherError != "" {
+		title += "（HD 發行商文字載入失敗）"
+		log.Print(engine.PublisherError)
+	}
 	if engine.StoryError != "" {
 		title += "（HD 故事文字載入失敗）"
 		log.Printf("HD 故事字型未載入，保留原版文字：%s", engine.StoryError)

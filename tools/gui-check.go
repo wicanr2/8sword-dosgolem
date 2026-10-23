@@ -185,6 +185,8 @@ func main() {
 	flow := flag.String("flow", "inspect", "inspect, captions, captions-fallback, story, story-skip, story-fallback, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
+	showPublisher := flag.Bool("intro-publisher", false, "wait for actual publisher wordmarks before Esc")
+	publisherCycle := flag.Bool("publisher-font-cycle", false, "switch one actual F10 font while publisher is visible")
 	showStory := flag.Bool("intro-story", false, "wait for actual Noto story before Esc, including save/reload flows")
 	showCaptions := flag.Bool("intro-captions", false, "wait for actual museum Noto before Esc, including save/reload flows")
 	fontCycle := flag.Bool("font-cycle", false, "use real F10 to cycle fonts before normal save and verify preference on reload")
@@ -251,6 +253,70 @@ func main() {
 	}
 	d.press(10)
 	d.wait("片頭", 20, func(s map[string]any) bool { return s["mode"] != float64(3) })
+	if *flow == "publisher" || *flow == "publisher-skip" || *showPublisher {
+		d.wait("發行商字圖已真正呈現", 35, func(s map[string]any) bool { return s["presented_intro"] == "publisher-noto" })
+		d.shot("publisher-01-visible")
+		if *publisherCycle {
+			choices := d.status()["font_choices"].([]any)
+			current := d.status()["font_id"].(string)
+			next := ""
+			for i, c := range choices {
+				if c.(map[string]any)["id"] == current {
+					next = choices[(i+1)%len(choices)].(map[string]any)["id"].(string)
+				}
+			}
+			d.key(76, true)
+			d.wait("發行商 F10 已處理", 15, func(s map[string]any) bool { return s["font_id"] == next })
+			d.key(76, false)
+			d.wait("發行商 F10 字型已呈現", 15, func(s map[string]any) bool {
+				// 摘要每批更新可能漏掉短暫 Draw；逐幀紀錄才是這一幕的收據。
+				lines, err := os.ReadFile(filepath.Join(d.out, "intro-draw.jsonl"))
+				if err != nil {
+					return false
+				}
+				for _, line := range bytes.Split(lines, []byte{'\n'}) {
+					var frame struct{ Stage, FontID string }
+					var record map[string]any
+					if json.Unmarshal(line, &record) == nil {
+						frame.Stage, _ = record["stage"].(string)
+						frame.FontID, _ = record["font_id"].(string)
+						if frame.Stage == "publisher-noto" && frame.FontID == next {
+							return true
+						}
+					}
+				}
+				return false
+			})
+			d.shot("publisher-02-after-font-key")
+		}
+		if *flow == "publisher" {
+			d.wait("發行商自然轉至標題", 35, func(s map[string]any) bool { return s["presented_intro"] == "title-noto" })
+			d.shot("publisher-03-next-title")
+		}
+	}
+	if *flow == "publisher-fallback" {
+		if *nativeFrame == "" {
+			panic("publisher fallback requires independent native PNG")
+		}
+		f, err := os.Open(*nativeFrame)
+		check(err)
+		source, err := png.Decode(f)
+		check(err)
+		check(f.Close())
+		shape := d.grab().Bounds()
+		expected := image.NewRGBA(shape)
+		for y := 0; y < shape.Dy(); y++ {
+			for x := 0; x < shape.Dx(); x++ {
+				r, g, b, _ := source.At(x*640/shape.Dx(), y*200/shape.Dy()).RGBA()
+				at := y*expected.Stride + x*4
+				expected.Pix[at], expected.Pix[at+1], expected.Pix[at+2], expected.Pix[at+3] = uint8(r>>8), uint8(g>>8), uint8(b>>8), 255
+			}
+		}
+		d.wait("真實壞字圖回原發行商畫面", 35, func(s map[string]any) bool {
+			return s["intro_publisher"].(map[string]any)["load_error"] != "" && s["hd"] == true && bytes.Equal(expected.Pix, d.grab().Pix)
+		})
+		d.shot("publisher-native-fallback")
+	}
 	if *flow == "intro" || *flow == "intro-skip" || *showTitle {
 		d.wait("Noto 標題已真正呈現", 35, func(s map[string]any) bool {
 			return s["presented_intro"] == "title-noto" && s["intro_title"].(map[string]any)["stage"] == "title-noto"

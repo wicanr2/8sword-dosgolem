@@ -36,6 +36,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 字型設定：[015：可選字型設定](docs/spec/015-font-settings.md)。使用者授權自行選型，Noto 保持預設，新增隸書風及草書的本機選項，缺字回 Noto；偏好檔與原版存檔分開。
 
+發行商文字：[016：發行商圖片文字](docs/spec/016-publisher-wordmarks.md)，保留圖標、原文與位置，獨立字圖沿用三種字型；正式狀態以規格及目前證據為準。
+
 開場直排故事規格：[012：開場故事直排文字](docs/spec/012-intro-story-noto.md)，來源與逐字順序已由正常冷啟動擷取；實作與驗收狀態以該規格為準。
 
 博物館字幕規格：[013：博物館製作名單](docs/spec/013-intro-museum-captions.md)，四組來源與五次背景頁繪製已核對，接入狀態以該規格為準。
@@ -210,6 +212,8 @@ mm3 的使用者批准、素材、字型、平台、公開範圍及完成標記�
 | `dist-all/` | 正式交付時才建立；子目錄依知識路由所指的交付契約，不自創名稱 |
 
 執行期工具入口：[建置與測試](tools/player.sh)、[字型匯入](tools/prepare-hd-assets.py)、[Xvfb 視窗驗證](tools/gui-check.sh)、[XTEST 按鍵與實際視窗擷取](tools/gui-check.go)、[逐幀收據獨立解碼](tools/inspect-presentation.py)、[客體狀態隔離核對](tools/audit-player.py)、[視窗存退讀核對](tools/audit-save-cycle.py)。核心只讀觀測由[補丁](tools/dosgolem-presentation-observe.patch)及[檔案雜湊](tools/dosgolem-presentation-files.sha256)固定。用法見 README，驗證範圍見 003；逐幀檔格式通過不代表視覺驗收通過。
+
+發行商文字工具：[三字型匯入](tools/prepare-hd-publisher.py)、[逐幀像素核對](tools/inspect-publisher.py)，用法、固定來源、中央圖標保留及正常路徑範圍見 [016](docs/spec/016-publisher-wordmarks.md)。
 
 - 文件按實際需要建立，不預建整套空白文件。新增文件須同次掛入本檔或既有索引；新增目錄前確認現有目錄不能承載，並記錄用途。
 - 自有程式授權依 RRSAL-1.0，第三方元件保留原授權。原版 EXE、資料、手冊、字型與未取得散布權的 HD 圖像或衍生音樂留本機；轉成 PNG／OGG 不改變權利。

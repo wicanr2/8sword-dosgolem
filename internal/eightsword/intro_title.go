@@ -31,6 +31,7 @@ type IntroTitle struct {
 	end        uint16
 	start      uint64
 	last, hold *image.RGBA
+	publisher  *publisherWords
 }
 
 func loadIntroTitle(o *oracle.Oracle, dir, root string) (*IntroTitle, error) {
@@ -136,6 +137,9 @@ func (t *IntroTitle) Bind() {
 		}
 	}
 	t.Stats.Bound = true
+	if t.publisher != nil {
+		t.o.OnCall(oracle.Far(0, 0x1322), func(*oracle.Oracle) { t.Stats.Retired = true; t.invalidate() })
+	}
 	t.o.OnCall(oracle.Far(0, 0x576a), func(*oracle.Oracle) { t.begin() })
 	t.o.OnCall(oracle.Far(0, 0x5b0c), func(*oracle.Oracle) {
 		if t.valid() && t.active {
@@ -185,9 +189,16 @@ func (t *IntroTitle) begin() {
 		off == 0 && seg == 0x8000 && x == 2 && y == 50 &&
 		t.o.Word(oracle.Far(seg, off)) == 74 && t.o.Word(oracle.Far(seg, off+2)) == 95 &&
 		hash(t.o.Bytes(oracle.Far(seg, off), 28124)) == titleDecodedSHA
+	if t.publisher != nil {
+		match = planar && state.Width == 640 && state.Height == 200 && state.Start == 0 && state.Pitch == 80 && state.LineCompare >= 199 &&
+			off == 0 && seg == 0x8000 && x == 8 && y == 20 && t.o.Word(oracle.Far(seg, off)) == 63 && t.o.Word(oracle.Far(seg, off+2)) == 160 && hash(t.o.Bytes(oracle.Far(seg, off), 40324)) == publisherDecodedSHA
+	}
 	if match {
 		t.active, t.inDraw = true, true
 		t.hold = nil
+		if t.publisher != nil {
+			t.hold = introNativeFrame(t.o)
+		}
 		t.end, t.start = 0x583d, t.o.Cycles()
 		t.Stats.Starts++
 	} else if wasTitle {
@@ -198,6 +209,18 @@ func (t *IntroTitle) begin() {
 }
 
 func (t *IntroTitle) Stage() string {
+	if t.publisher != nil {
+		if t.Stats.Retired {
+			return ""
+		}
+		if t.hold != nil {
+			return "publisher-transition"
+		}
+		if t.active {
+			return "publisher-noto"
+		}
+		return ""
+	}
 	if t.active && !t.Stats.Retired {
 		return "title-noto"
 	}
@@ -230,9 +253,14 @@ func (t *IntroTitle) Compose(native *image.RGBA) *image.RGBA {
 	if !t.active {
 		return native
 	}
-	r := image.Rect(48, 300, 1824, 870)
-	draw.Draw(native, r, image.Black, image.Point{}, draw.Src)
-	draw.Draw(native, r, t.ink, image.Point{}, draw.Over)
+	if t.publisher != nil {
+		draw.DrawMask(native, native.Bounds(), image.Black, image.Point{}, t.publisher.erase, image.Point{}, draw.Over)
+		draw.Draw(native, native.Bounds(), t.ink, image.Point{}, draw.Over)
+	} else {
+		r := image.Rect(48, 300, 1824, 870)
+		draw.Draw(native, r, image.Black, image.Point{}, draw.Src)
+		draw.Draw(native, r, t.ink, image.Point{}, draw.Over)
+	}
 	t.last = native
 	t.Stats.Composed++
 	return native

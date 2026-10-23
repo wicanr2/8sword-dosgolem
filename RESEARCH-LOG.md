@@ -670,3 +670,17 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - 背景真實故障 GUI 為 286／78，五個故事 Draw 回原背景加 Noto；草書真實故障 GUI 為 344／91，十個故事 Draw 保留 HD 背景並回 Noto。兩者已解碼及看圖，其他 HD 保留；`font-settings-r1/final-gui-audit.json` 彙整實際範圍與錯誤。主選單三字型實際比較在同目錄 `font-settings-comparison.png`，裁切與來源另列 JSON。
 
 014／015 只對上列來源及玩家路徑限定 CONFORMED。003／008／009、其餘美術與文字、其餘曲目、戰鬥／後期及音訊裝置仍未結案。原版、字型、atlas、背景原圖、遊戲畫面、音訊及研究產物全部留本機。
+
+## 2026-10-24：發行商圖片文字
+
+入口為 [016](docs/spec/016-publisher-wordmarks.md)。命中重製規格閘門、正常試玩、README 與文件職責路由，沿用 011 已驗證的解碼及圖片交易，沒有新挖 driver 或壓縮。位址基準為 dosgolem／IDA 執行期線性，並非壓縮檔偏移；工具及核心固定版本同 015。
+
+- 已證實：`TIT1.AY` SHA `8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac`，解碼 40324 bytes，SHA `d0bcfa366f8d8c13745c253fbeef1a04691aad24d4a5718cebd9645c17fc1308`。正常參數 `[0,8000h,8,20]`、63 bytes／列、160 列、四平面，與獨立 parser 全幅索引相同。`publisher-r1/source-audit.json` 保存原版 frame-001、完整索引與遮罩證據。
+- 原圖人工辨字「軟體」「世界」「C&P」「智冠股份有限公司」「1991」。圖標八鄰接群與文字分開，17972 原文字像素清除，其餘像素保留。三字型、宋體缺字與英數 Black 沿用 015 固定來源。這是圖片辨字與刻意字型美化，不當作 DOS Big5 內文或原字像素相同的證據。
+- r15 保留 r14 全部 68 檔，新增二值清墨、三張透明字圖及兩份清單，共 74 檔。`assets-publisher-rebuild-r1` 逐 SHA 相同，字圖與字型來源 SHA 見 016 及本機 `publisher.json`。沒有上傳原圖、字圖或字型。
+- `graphics-first/publisher-r1/runtime-audit-r1.json` 的五組正常冷啟動：原字基準、三字型、最後一張 PNG 損壞，162313-byte 完整 state 皆同 SHA `25cb7e3e2c1c6fdb0ff7f3f3f2b456e8d5b6f3d4fb7528b7391032dd141132a0`；17 工作檔、原版輸入／事件相同，1632216-byte 原版 PCM 同 SHA `b3d81dbd94dac20eb5151c4534c039a2c44d09a96251ded30a3593c4f7e2e357`。三字圖逐像素同獨立合成，圖標保持；後續 Noto 標題／選單 PNG 同基準。基準其他畫面已有 HD，不稱純原版全幅對拍。
+- `publisher-visible-r4/publisher` 的 160 幀／21 次改變，七個 Draw 分別 Noto 四個、隸書三個，逐 RGBA byte 同獨立重建。`publisher-save-r1` 兩個程序為 146／68 幀、24／11 次改變，各八個草書 Draw 與一個完整保留轉場相同。所有連續圖皆已解碼及檢視，正常自然轉標題、Esc、新遊戲、人物頁及 F7 可用。
+- F7 存退讀的 2987 bytes 同正常讀回 RAM SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，讀取 step 16034819，退出碼 0。4755 差異像素限主角動畫。結束後只讀快照檢視使用已核對的 015 檢視器及現行來源 SHA，不執行指令，也不以快照代替原版讀檔。
+- 真實損壞 `publisher-caoshu.png` 的 `publisher-fallback-r1/publisher-fallback` 共 119 幀／17 次改變；六個完整原圖 Draw 逐 byte 相同，GetImage 與獨立原圖相同，其他 HD 及人物／選單路徑保留。該連續圖亦已檢視。
+
+016 只對圖片文字限定 CONFORMED。中央圖標與博物館美術仍為原版，其他文字、音畫與戰鬥／後期未因本項結案。全目標維持 active。

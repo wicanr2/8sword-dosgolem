@@ -19,7 +19,7 @@
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、金玉介面與五頁深藍故事背景，走過四方向移動、人物頁往返及真正存退讀；沙地實景、其他角色與圖像仍待處理。故事背景範圍見 [014](docs/spec/014-intro-story-background.md) |
-| HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事與四組製作名單。F10 可切換隸書風或草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
+| HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。F10 可切換隸書風或草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
 
@@ -116,7 +116,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r8 \
 
 更多新遊戲選單可設 `EIGHTSWORD_GUI_FLOW=menus`，在相同 Docker 視窗工具測 F2 軍隊、F4 無法施法提示及 F5 地圖位置。此流程只檢查新遊戲已有的民兵與未習得法術狀態；實際施法及戰鬥另驗。
 
-片頭標題以原版實際繪圖及完整來源指紋驅動，四字改用 Noto Black 900，保留原位置、黑底及原版 Esc。字圖損壞時回原版標題，其他 HD 保留；發行商識別仍為原版。來源、幾何及驗證範圍見 [011](docs/spec/011-intro-title-noto.md)。已有本機 r9、固定 TIT2 及上述 Noto 字型後，可建立新組：
+片頭標題以原版實際繪圖及完整來源指紋驅動，四字改用 Noto Black 900，保留原位置、黑底及原版 Esc。字圖損壞時回原版標題，其他 HD 保留。來源、幾何及驗證範圍見 [011](docs/spec/011-intro-title-noto.md)。已有本機 r9、固定 TIT2 及上述 Noto 字型後，可建立新組：
 
 ```bash
 bash tools/player.sh intro-assets painted-r10 painted-r9
@@ -196,6 +196,8 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 
 無頭工具預設完整播放 90 個虛擬秒，再測重播、換曲及人物頁。視窗工具使用真正按鍵，並記錄前端混音；驗證容器維持靜音，不代替真機音訊裝置驗收。獨立波形、狀態及故障核對方法見 [008](docs/spec/008-music-events-and-playback.md)。原版音訊時鐘及合成器持續運作，沒有改 DOS 的曲譜、存檔或遊戲規則。音樂、音源庫及原版對照均留本機。
 
+發行商畫面的「軟體世界」及公司／年份文字亦隨 F10 切換，保留原配色與中央圖標；圖標本身仍是原版像素。固定來源、清墨遮罩、三字圖、獨立逐幀核對及故障回退見 [016](docs/spec/016-publisher-wordmarks.md)、[匯入工具](tools/prepare-hd-publisher.py)與[像素核對工具](tools/inspect-publisher.py)。具備本機 r14、原版 TIT1 及 015 已存檔字型後，執行 `bash tools/player.sh publisher-assets <新名稱>` 建立新組，不覆寫基底。視窗驗證使用 `EIGHTSWORD_GUI_FLOW=publisher EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE=1`，配合既有 `EIGHTSWORD_GUI_CYCLES=4000` 診斷設定及新素材組。這些素材留本機，不隨倉庫提供。
+
 ## 文件與權利
 
 - [AGENTS.md](AGENTS.md)：工作規則與索引。
@@ -215,6 +217,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 - [博物館名單規格](docs/spec/013-intro-museum-captions.md)：背景頁的製作名單、Noto 覆繪及清除。
 - [深藍故事背景規格](docs/spec/014-intro-story-background.md)：批准圖、完整背景替換、換頁及故障回退。
 - [字型設定規格](docs/spec/015-font-settings.md)：Noto、隸書風、草書、缺字回退、F10 及獨立偏好檔。
+- [發行商圖片文字規格](docs/spec/016-publisher-wordmarks.md)：來源分離、三字型字圖、圖標保留及正常片頭交接。
 - [Ogg 解碼器授權紀錄](docs/THIRD-PARTY-NOTICES.txt)：固定版本的第三方 MIT 授權全文。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 
