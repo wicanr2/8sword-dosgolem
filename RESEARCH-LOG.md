@@ -444,3 +444,53 @@ PMAP SHA 仍為 `9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e0
 r2 技術收據為 `audition-audit-r2.json`。上游 24941918 個聲道取樣、峰值 19391／32768，滿幅數為 0。長版解碼 4108980 frames、85.60375 秒，SHA `4012e14dc7d03c017a532c5c56655794a03a62f395972c026273a2ec99fcbc91`；短版為 30 秒，SHA `53ee210ad0bb26dc72e09138df83daee2ab2c661c9454a536f00cb3211dbe5c5`。兩份最終解碼皆有限值、非靜音且沒有削波。長版真峰值 -2.05 dBTP、響度 -22.06 LUFS，使用固定增益 2.55 dB，受峰值餘裕限制而未硬拉到 -18 LUFS。長版首尾相鄰取樣差為左 0.002591、右 0.010229；這是量測，不代替人耳無縫確認。使用者批准的音色方向有效，舊樣本音質檢查的缺口以本段勘誤保留。
 
 `evidence-manifest.json` 索引 131 份私有研究檔案及其 SHA、大小與 UID/GID，清單 SHA 為 `c385899d76d2c666367e868e690f7e1ccaaa0f1c1904163b37b71e2090f587e0`。其中記錄固定專案／核心提交、三種工具映像，以及失敗 r1 與修正 r2 的區別。來源曲譜／音色的 22 份雜湊及六份 dosgolem 補丁檔案在收尾再次核對，沒有變更。這些中間產物、第三方來源與原曲音訊都沒有加入 Git。
+
+## 2026-10-23：PAM 音樂事件與首曲正式接線
+
+本輪輸入仍為上述固定 PREDELLA／PAM、十組已映射的曲譜與音色、〈幻〉無削波 r2 Ogg。使用者追加「ok 音樂同意 繼續囉」，保留 B 撥弦／長笛與原曲，不重新詢問已定方向。新增研究集中 `workplace/probe-20261023/music-first/runtime-events-r1/`，下列未另註路徑皆相對此處。
+
+### 原始入口、資料流與推論等級
+
+IDA 9.4 沿用本案 `ida-pro-9.4-idapython:py312-v1`，映像 SHA `4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab`。優先候選 locked-v1 不在本機，未重建重複映像。正式 PAM.i64 與來源唯讀，複製至容器 /tmp 分析；最小輸出已核對 IDA 9.4、521 函式及 PAM 完整 SHA。字串沒有直接 xref，因此由正常 OnFileOpen 堆疊回查資料庫。沒有改函式名、變數名、bytes 或正式資料庫。
+
+| 定位與地址空間 | 已證實行為 | 證據 |
+|---|---|---|
+| IDA `sub_15CD0`；執行期 `0110:5CD0` | far stack 參數 1–10 選曲，先經停止，再載入曲譜／音色 | ida-music-calls.json、lifecycle-trace/calls.jsonl |
+| IDA `sub_26100`、`sub_262B2` | 停止並清 active／指標，逐旋律聲道 Key-Off | ida-music-driver-entries.json、ida-music-stop.json |
+| IDA `sub_26106` | 實際傳入 9000:0000、9400:0000 初始化兩組來源 | state-trace/calls.jsonl |
+| IDA 0x15E6E；執行期 `0110:5E6E` | 初始化完成，active=1；MINT 的 6644-byte 緩衝區完整 SHA 符合來源 | state-trace/calls.jsonl |
+| IDA `byte_2D72E`；執行期 `1E82:000E` | 初始化設 1，Esc 停止返回後為 0 | ida-music-stop.json、state-trace |
+| IDA `_outp` 內 0x28EFB | 已觀測的 OPL 資料寫入來源，與輸出步數／值逐筆一致 | producer-trace/producer-audit.json |
+
+IDA 線性位址以 MZ loader 的 0x10000 起點為準，PAM overlay Seg／Reloc=0110 時，執行期線性位址為 IDA 值減 0xEF00；檔案 offset 另存於每筆 IDA 匯出，不將它們視為相同地址。此換算不適用 PREDELLA。
+
+五次正常初始化均觀察到 active=1，前兩次 MINT 來源 SHA 相同；Esc 返回後 active=0。`sub_2685A` 只設定循環，不能另當一次 Start。原版同曲 Enter 重載重播，移動反白不停歌，Esc 停止。新遊戲進地圖請求第 2 曲，F1、F7 往返不重啟。音樂欣賞仍被既有 Scene 分類為 main-menu，所以播放器不用畫面名稱判斷音樂。
+
+1944 筆 PAM OPL 寫入皆符合已知 `_outp` 觀測點，無未匹配項。固定核心的 OnCall 位於 Step 前，故實際 `OPLWrite.Step=觀測 Steps+1`；對應 cycles 亦差 1，但混音時間取實際記錄，不用步數換秒。PAM `_outp` 只有 `sub_26090` 直接呼叫；十筆 `_outpw` 呼叫寫 CRT 的 03B4h／03D4h，不把它們誤稱音效。未走戰鬥的音效仍未知，實作遇未知寫入者回原版，不能由這份觀測外推全部音效已驗。標準 driver／ISR 時序到此停止深入。
+
+### READY、實作與資產
+
+[008](docs/spec/008-music-events-and-playback.md)先 DRAFT，核對 active、來源緩衝與 1944 筆寫入後審查 READY，再實作。新增只讀事件觀察、嚴格 Ogg 清單與主機雙聲道混音；同曲重新從 frame 0 開始，原版合成器持續推進。只抑制已辨識的 OPL 音樂，喇叭保留；未知來源、錯清單或缺 HD 曲目回原版。重新載入 HD 的短間隔不露出原版 FM 尾音，跨 Update 保留 loading-hd，失敗初始化立即回退。沒有修改 DOS、PIT、原曲、玩法或存檔。
+
+通用核心補丁只新增 `Audio.RenderWithOPLMute`。原有 Render 仍逐取樣相同，靜音期間 FM 包絡與相位持續，喇叭及 guest state 保留；三項核心測試通過。首次用兩份不同臨時來源的合成 EXE 比 state，DOS Root 路徑不同且被 SaveState 保存，並非同一初始狀態；改以同一原始狀態的合成測試核對，並另以正常遊戲收據證明隔離，沒有放寬客體狀態比較。
+
+Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另存 [第三方授權紀錄](docs/THIRD-PARTY-NOTICES.txt)。Go mod tidy 會掃描跨模組研究工具並嘗試向網路找私有 dosgolem，這不是本案建置入口；沿既有 Go workspace 固定兩模組、明列鎖定依賴，在無網路容器建置。沒有搬運主機 runtime 或憑證。
+
+`assets-painted-r9` 保留 r8 的 45 個檔案及 65 筆圖像，加入〈幻〉、music.json、製作來源及音源庫 notice；原圖、音訊與音源庫均留本機。清單 SHA `adecf522e5f7982a905ad0c32a9f903851a12e88128dff9e7c2ead66ed4b94bc`，Ogg SHA 仍為 `4012e14d…cbc91`。匯入工具重建到新的 `assets-music-rebuild-r1`，沒有覆寫舊組；檔案與來源另核對。其他九曲與 PREDELLA 片頭仍為原版，不能稱完整 HD 音樂完成。
+
+### 正常路徑、波形及故障
+
+- `playback-hd-r2`／`playback-native-r2` 是正常冷啟動、先播放 90000 虛擬毫秒，再同曲重播、移動反白、切換、Esc、新遊戲、F1 與 F7。native 在此指原版 FM，畫面兩側都保留現行 HD 圖像，驗音樂變更不影響客體與畫面。
+- `playback-audit-r2.json`：完整 state SHA 同為 `66827919b60266b20459ccf559bf8f6238472621bf5904508797aeec3c51d28f`，25 個工作檔、輸入／I/O／原版事件及 13 張 PNG 相同。輸出 5465494 個 stereo frames，其中 HD 4547357 frames，循環 1 次，無混音削波或未知來源。
+- FFmpeg 獨立解碼 Ogg，兩次起音與循環後起音的 RMS 差皆約 0.183059 個 int16 單位。起音取樣校準 -1 frame；這是 codec／取樣相位的有界核對，不稱硬體逐波形。切回第 2 曲後，原版 FM 輸出與未替換對照逐取樣相同，證明靜音期間沒有停掉原版合成狀態。
+- 外層三輪批次的 420 秒上限在壞檔第三輪到新遊戲前觸發。確認 Docker 容器已終止並移除後，保留未完成 bad-r2，不將它當通過證據。按預先寫入 008 的比例故障方法，用正式 music-check 工具重跑 2000 毫秒首段的原版／壞檔對照，走完十三個操作點。兩者完整 state、檔案、圖像與整段 PCM 相同，Noto、圖像保持；這不是短段替代完整循環。
+
+### 真正視窗及存退讀
+
+`workplace/player/gui/music-visible-r1/music/` 以 XTEST 操作實際視窗。選〈幻〉、同曲 Enter、Down 反白、切至缺 HD 的〈遨遊〉、Esc、新遊戲、人物頁與 F7 都完成。17 張 1280×800 視窗圖，300 呈現幀／26 次改變已獨立解碼及檢視。前端實際混音輸出 587347 frames，138711 frames 為 HD；兩次起音 RMS 差為 0.183059／0.175771 個 int16 單位。收據 `gui-music-audio-r1.json`。這條容器路徑維持裝置靜音，不宣稱實機喇叭或裝置連續性通過。
+
+`music-save-visible-r1` 另以兩個真正視窗走四方向、人物頁、自然遭遇選原版「否」、F7 儲存、正常回 DOS，再冷啟動繼續。317／56 幀、56／5 次改變已解碼及檢視，41／2 次主角完成。保存與讀回 RAM 的 2987 bytes SHA 都為 `6f1689c2def9a129f89f8d055e4dc1e7532f5df01b6a656c592cde66623bfc2e`；讀取發生於第 11679625 步，後續快照只作 0 指令只讀核對，不代替正常存讀。
+
+存讀兩幅實際 1280×800 視窗圖有 4789 個差異像素，範圍 `(402,349)-(526,447)`。舊 actor-background 收據的 first_physical_byte=6985，對 80-byte 平面列換算原生位置 `(200,87)`，64×25 圖塊以視窗 x2／y4 換算為 `(400,348)-(528,448)`；差異全部位於其中，未同步動畫相位。第一次核對腳本誤將這個既有視窗矩形再縮一次而失敗，核對 PNG 尺寸及原始 byte 位置後修正同腳本，沒有重跑或挑選遊戲。完整收據 `save-cycle-music-audit-r1.json`。
+
+此存讀路段為原版第 2 曲，保存退出會 Stop，讀檔後由原版重新 Request／Start。沒有把主機 HD 游標寫入原版進度；也沒有把這個結果冒稱第 2 曲已 HD。008 保持 READY，裝置、其餘音樂與音效、片頭及更廣原版流程仍未完成。

@@ -1,0 +1,169 @@
+diff --git a/oracle/live.go b/oracle/live.go
+index 51625b3..ae53ca4 100644
+--- a/oracle/live.go
++++ b/oracle/live.go
+@@ -144,7 +144,23 @@ type audioEvent struct {
+ }
+ 
+ // Render 回從上次 Render 到現在的單聲道 16 位元取樣，並清掉消化完的埠紀錄與 OPL 紀錄。
+-func (a *Audio) Render() []int16 {
++func (a *Audio) Render() []int16 { return a.render(false, nil) }
++
++// OPLMutePoint changes presentation mixing at a point on the audio clock.
++// At is a cycle in DOSBox-cycle mode, or a step in instruction-clock mode.
++type OPLMutePoint struct {
++	At    uint64
++	Muted bool
++}
++
++// RenderWithOPLMute preserves the speaker and advances the FM synthesizer even
++// while it is inaudible. Points must be sorted by At. No guest state is changed.
++// Render always uses the original unmuted mix, independently of this method.
++func (a *Audio) RenderWithOPLMute(initialMuted bool, points []OPLMutePoint) []int16 {
++	return a.render(initialMuted, points)
++}
++
++func (a *Audio) render(oplMuted bool, mutePoints []OPLMutePoint) []int16 {
+ 	m := a.o.m
+ 	nowCyc, nowStep := m.CPU.Cycles, m.Steps
+ 	// 載入狀態檔會把時鐘倒回去（規格 199 §3.6）：無號數相減會變成天文數字，
+@@ -199,6 +215,7 @@ func (a *Audio) Render() []int16 {
+ 
+ 	pcm := make([]int16, n)
+ 	j := 0
++	mixIndex := 0
+ 	from, span := when(a.lastStep, a.lastCyc), when(nowStep, nowCyc)-when(a.lastStep, a.lastCyc)
+ 	for i := range pcm {
+ 		at := from
+@@ -208,6 +225,10 @@ func (a *Audio) Render() []int16 {
+ 		for ; j < len(evs) && evs[j].at <= at; j++ {
+ 			apply(evs[j])
+ 		}
++		for mixIndex < len(mutePoints) && mutePoints[mixIndex].At <= at {
++			oplMuted = mutePoints[mixIndex].Muted
++			mixIndex++
++		}
+ 		v := 0.0
+ 		if hz := a.tone.Hz(); hz > 0 {
+ 			if a.phase < 0.5 {
+@@ -219,7 +240,10 @@ func (a *Audio) Render() []int16 {
+ 			a.phase -= math.Floor(a.phase)
+ 		}
+ 		if adlib {
+-			v += a.synth.Sample()
++			fm := a.synth.Sample()
++			if !oplMuted {
++				v += fm
++			}
+ 		}
+ 		pcm[i] = int16(math.Round(math.Max(-1, math.Min(1, v)) * 32767))
+ 	}
+diff --git a/oracle/audio_mix_test.go b/oracle/audio_mix_test.go
+new file mode 100644
+index 0000000..cd940ae
+--- /dev/null
++++ b/oracle/audio_mix_test.go
+@@ -0,0 +1,103 @@
++package oracle
++
++import (
++	"bytes"
++	"os"
++	"path/filepath"
++	"slices"
++	"testing"
++)
++
++func mixFixture(t *testing.T, adlib bool) (*Oracle, *Audio) {
++	t.Helper()
++	o := liveOracle(t)
++	o.SetDOSBoxCycles(750)
++	o.SetAdLib(adlib)
++	a := o.NewAudio(48000)
++	for _, rv := range [][2]uint8{{0x20, 1}, {0x23, 1}, {0x40, 0x10}, {0x43, 0}, {0x60, 0xF0}, {0x63, 0xF0}, {0x80, 0x77}, {0x83, 0x77}, {0xA0, 0x98}, {0xB0, 0x31}} {
++		o.m.Out8(0x388, rv[0])
++		o.m.Out8(0x389, rv[1])
++	}
++	o.m.Out8(0x43, 0xB6)
++	o.m.Out8(0x42, 0x97)
++	o.m.Out8(0x42, 0x0A)
++	o.m.Out8(0x61, 3)
++	return o, a
++}
++
++func mixAdvance(o *Oracle) { o.m.Steps += 75000; o.m.CPU.Cycles += 75000 }
++
++func TestAudioMixDefaultAndGuestStateUnchanged(t *testing.T) {
++	left, native := mixFixture(t, true)
++	right, controlled := mixFixture(t, true)
++	mixAdvance(left)
++	mixAdvance(right)
++	if !slices.Equal(native.Render(), controlled.RenderWithOPLMute(false, nil)) {
++		t.Fatal("default controlled mix differs from original Render")
++	}
++	// Use one oracle for the state comparison: independently created DOS
++	// fixtures have different Root paths, which are part of dos.SaveState.
++	before := left.Save()
++	mixAdvance(left)
++	native.Render()
++	paths := []string{filepath.Join(t.TempDir(), "native.state"), filepath.Join(t.TempDir(), "muted.state")}
++	if err := left.SaveStateFile(paths[0]); err != nil {
++		t.Fatal(err)
++	}
++	left.Restore(before)
++	muted := left.NewAudio(48000)
++	mixAdvance(left)
++	muted.RenderWithOPLMute(true, nil)
++	if err := left.SaveStateFile(paths[1]); err != nil {
++		t.Fatal(err)
++	}
++	a, err := os.ReadFile(paths[0])
++	if err != nil {
++		t.Fatal(err)
++	}
++	b, err := os.ReadFile(paths[1])
++	if err != nil {
++		t.Fatal(err)
++	}
++	if !bytes.Equal(a, b) {
++		t.Fatal("presentation mute changed machine state")
++	}
++}
++
++func TestAudioMixPreservesSpeakerAndFMPhase(t *testing.T) {
++	original, native := mixFixture(t, true)
++	muted, controlled := mixFixture(t, true)
++	speakerOnly, speaker := mixFixture(t, false)
++	for _, o := range []*Oracle{original, muted, speakerOnly} {
++		mixAdvance(o)
++	}
++	full := native.Render()
++	quiet := controlled.RenderWithOPLMute(true, nil)
++	wantSpeaker := speaker.Render()
++	if !slices.Equal(quiet, wantSpeaker) || slices.Equal(quiet, full) {
++		t.Fatal("mute failed to isolate OPL from speaker")
++	}
++	for _, o := range []*Oracle{original, muted} {
++		mixAdvance(o)
++	}
++	if !slices.Equal(native.Render(), controlled.Render()) {
++		t.Fatal("FM phase or envelope stopped during mute")
++	}
++}
++
++func TestAudioMixBoundaryUsesCycleClock(t *testing.T) {
++	one, full := mixFixture(t, true)
++	two, gate := mixFixture(t, true)
++	three, speaker := mixFixture(t, false)
++	for _, o := range []*Oracle{one, two, three} {
++		mixAdvance(o)
++	}
++	a, b := full.Render(), speaker.Render()
++	actual := gate.RenderWithOPLMute(false, []OPLMutePoint{{At: 37500, Muted: true}})
++	if len(actual) != 4800 {
++		t.Fatal("unexpected duration", len(actual))
++	}
++	if !slices.Equal(actual[:2400], a[:2400]) || !slices.Equal(actual[2400:], b[2400:]) {
++		t.Fatal("OPL mute boundary did not follow cycles")
++	}
++}

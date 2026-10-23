@@ -28,6 +28,7 @@ type Engine struct {
 	PAMLoaded     bool
 	InputEvents   []InputEvent
 	Sound         *oracle.Audio
+	Music         *Music
 }
 type InputEvent struct {
 	Step  uint64
@@ -83,9 +84,21 @@ func Open(opt Options) (*Engine, error) {
 			}
 		}
 	}
+	e.Music = newMusic(o, pam, opt.Assets, e.HD)
 	return e, nil
 }
-func (e *Engine) Close()                       { e.Oracle.Close() }
+func (e *Engine) Close() {
+	if e.Music != nil {
+		e.Music.Close()
+	}
+	e.Oracle.Close()
+}
+func (e *Engine) RenderAudio() []int16 {
+	if e.Music != nil {
+		return e.Music.Render(e.Sound)
+	}
+	return stereoMono(e.Sound.Render())
+}
 func (e *Engine) EnableLiveClock(perMS uint64) { e.Oracle.SetDOSBoxCycles(perMS) }
 func (e *Engine) AdvanceCycles(n uint64) error {
 	for n > 0 && !e.Exited {
@@ -109,6 +122,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		}
 		if e.Tracker != nil {
 			e.Tracker.Bind()
+		}
+		if e.Music != nil {
+			e.Music.Bind()
 		}
 		n -= count
 	}
@@ -137,6 +153,9 @@ func (e *Engine) Advance(n uint64) error {
 		}
 		if e.Tracker != nil {
 			e.Tracker.Bind()
+		}
+		if e.Music != nil {
+			e.Music.Bind()
 		}
 		n -= count
 	}
@@ -260,6 +279,9 @@ func (e *Engine) Status() map[string]any {
 			out["graphics_materials"] = len(e.Tracker.graphics.assets.Materials)
 			out["graphics_actor_materials"] = len(e.Tracker.graphics.assets.Actors)
 		}
+	}
+	if e.Music != nil {
+		out["music"] = e.Music.Status()
 	}
 	return out
 }

@@ -1,0 +1,16 @@
+// Source facts from the fixed-input MUS/SND catalog and normal menu receipts.
+// See docs/spec/008-music-events-and-playback.md. No original score bytes.
+package eightsword
+
+var musicSources = map[int]musicSource{
+	1:  {"幻", "MINT.AY", "SINT.AY", "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900", "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df", 6644, 201},
+	2:  {"遨遊", "MWLK.AY", "SWLK.AY", "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7", "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166", 7845, 786},
+	3:  {"刀祭", "MWAR.AY", "SWAR.AY", "e6f2a1cf24eb2e6e1c204583c0926118db9cc7444f1e2c7563ce8389f524011b", "e2508fe93f318361a976ec906966a7971649dd1e4a6079640adbe222af0b88d7", 15060, 526},
+	4:  {"怡唱", "MONE.AY", "SONE.AY", "838001bab3e9c7e06b8a93d12f3e195098ba752c7367cb1508a421b8f7e9c8e2", "f512125efe2b4215f431d89f01c22ba89c2a86869b279ed33203f85f455724e4", 1453, 266},
+	5:  {"馳騁", "MTWO.AY", "STWO.AY", "01511a6ef0844ad0ebb86096cde83e9e316c6819bfc5d611f11eacf0caa317c1", "c00348caa8d3dd002630b71c4daad7d0c8c89c543e47840de0da6554a722dbf0", 2051, 331},
+	6:  {"幽", "MTHR.AY", "STHR.AY", "56ad2cdd446cee18c8a94c39adb28ab4176626df35a4d1dc6edc0956688ec2d2", "33f836824759cebd7fd2cbd89e691a2a81cbc72e59653752c2f9c874aaecb8c8", 4053, 266},
+	7:  {"靈之舞", "MFOU.AY", "SFOU.AY", "c9400d8863e29f923f96c7124d3901935bb52cd475c2b0f3c56b8520f8e6f473", "b616716d2f4a2a9db8e4abae041f55a6fc4af4669e261ab438f6c7ae8037ae80", 1286, 461},
+	8:  {"悚慄", "MFIV.AY", "SFIV.AY", "0c010fbf45e940b54787bda818948800a028860aa40a940a534ae076ad41f823", "a415a80390e65efa895877a086f6225f4abf4997f6125d60241e53ab154808aa", 2980, 331},
+	9:  {"法域", "MSIX.AY", "SSIX.AY", "4e3bad2d1c8b010981ce6b9b9557429862cb44814e1bc51a832965c4cad5b454", "f2c2319faa2284db149e5934a7d46568c5d555dc1631959b943e115fd3e8db0e", 1739, 461},
+	10: {"黎明", "MEND.AY", "SEND.AY", "011b7589da90e99d5b6be2c754c33a6e2e6d0bebe8f03955790aad8ca2e24a64", "a70e016627f98f96def9029f3f9968a5770637c3ab774e3cee8bad4880c0d73c", 9481, 591},
+}

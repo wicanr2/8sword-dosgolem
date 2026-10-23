@@ -10,7 +10,13 @@
 
 專案介紹與操作入口：[README.md](README.md)。研究入口：[來源與啟動紀錄](RESEARCH-LOG.md)。目前規格：[001：BIOS 低解析度平面顯示頁](docs/spec/001-planar-bios-display-pages.md)。
 
-配樂研究入口：[原曲格式、音樂欣賞映射與試聽](RESEARCH-LOG.md#原曲格式音樂欣賞映射與試聽)。十項正常選單映射與〈幻〉的原曲試聽已留本機，使用者選定 B 撥弦與長笛方向；不代表正式 HD 音樂接入。
+配樂研究入口：[原曲格式、音樂欣賞映射與試聽](RESEARCH-LOG.md#原曲格式音樂欣賞映射與試聽)。十項正常選單映射已核對，使用者選定 B 撥弦與長笛方向；〈幻〉已接入，驗證範圍與其餘待辦見 CONTEXT 及 008。
+
+配樂接入規格：[008：原版音樂事件與 HD 播放](docs/spec/008-music-events-and-playback.md)，READY；以實際請求、載入完成、停止及同曲重啟控制主機播放，不以場景或讀檔名代替事件。
+
+配樂工具：[匯入](tools/prepare-hd-music.py)、[正常音樂流程](tools/music-check.go)、[獨立波形與狀態核對](tools/audit-music.py)。透過 `bash tools/player.sh music-assets`／`music-check` 在 Docker 執行，參數與支援範圍見 008；原曲及衍生音樂不加入 Git。
+
+Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-PARTY-NOTICES.txt)；原曲、HD 音樂與音源庫仍各自保存來源及權利，不納入自有程式授權。
 
 文字解析規格：[002：PAM 字碼對照與字模目錄](docs/spec/002-pam-font-catalog.md)，範圍限於固定來源解析與原版字模核對，不代替遊戲內文字覆繪驗收。
 

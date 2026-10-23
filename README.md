@@ -20,7 +20,7 @@
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁與金玉介面，走過四方向移動、人物頁往返及真正存退讀；沙地實景、其他角色與圖像仍待處理 |
 | HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII；已透過實際視窗操作主選單、新遊戲、人物頁、系統選單及真正存退讀，更廣畫面與長文仍待驗 |
-| HD 音樂 | 已核對十項音樂欣賞的原曲映射，〈幻〉試聽已選撥弦與長笛方向；完整循環與遊戲內播放另行驗證，尚未正式接入。見[配樂研究](RESEARCH-LOG.md#原曲格式音樂欣賞映射與試聽) |
+| HD 音樂 | 〈幻〉B 撥弦／長笛已接入，正常選曲、重播、循環、停止及回退通過；實際視窗混音亦已核對。其餘曲目與片頭仍為原版，音訊裝置及完整音效待驗。見[008 規格](docs/spec/008-music-events-and-playback.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
@@ -112,6 +112,24 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r8 \
 
 正常存退讀的視窗驗證可另設 `EIGHTSWORD_GUI_ACTOR_WALK=1`，在儲存前透過 XTEST 增加四方向移動及人物頁往返。這是驗證選項，不會改正式遊戲規則；逐一遍歷十二種原版動作及其餘背景仍須另外確認。
 
+## HD 音樂
+
+原版控制選曲與停止，前端替換已提供的音樂。〈幻〉保留原曲音符、節奏及滑音，採已批准的撥弦與長笛方向；Koto／Flute 取樣不宣稱真正古箏、竹笛錄音。缺少 HD 曲目時播放原版，損壞音樂不連帶關閉 Noto 或圖像。
+
+已具備本機批准的 Ogg 與配樂研究輸入後，可在既有圖像組上加入音樂：
+
+```bash
+bash tools/player.sh music-assets painted-r9 painted-r8
+bash tools/player.sh build
+bash tools/player.sh music-check music-hd-check painted-r9
+EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
+  EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false \
+  EIGHTSWORD_GUI_FLOW=music EIGHTSWORD_GUI_RECORD_AUDIO=1 \
+  bash tools/player.sh gui-check music-window-check
+```
+
+無頭工具預設完整播放 90 個虛擬秒，再測重播、換曲及人物頁。視窗工具使用真正按鍵，並記錄前端混音；驗證容器維持靜音，不代替真機音訊裝置驗收。獨立波形、狀態及故障核對方法見 [008](docs/spec/008-music-events-and-playback.md)。原版音訊時鐘及合成器持續運作，沒有改 DOS 的曲譜、存檔或遊戲規則。音樂、音源庫及原版對照均留本機。
+
 ## 文件與權利
 
 - [AGENTS.md](AGENTS.md)：工作規則與索引。
@@ -123,6 +141,8 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r8 \
 - [古風介面規格](docs/spec/005-jade-gold-interface.md)：金玉外框、選單、訊息框及限定正常操作驗收。
 - [靜物與黃色地表規格](docs/spec/006-static-map-objects-and-sand.md)：兩種建築、布旗的透明合成，以及尚待正常場景驗收的沙地。
 - [主角動作規格](docs/spec/007-masked-hero-animation.md)：十二張動作圖、底圖還原與人物所有權；正常四方向及存退讀驗證範圍。
+- [音樂事件與播放規格](docs/spec/008-music-events-and-playback.md)：原版請求、Ogg 清單、混音及正常操作驗證。
+- [Ogg 解碼器授權紀錄](docs/THIRD-PARTY-NOTICES.txt)：固定版本的第三方 MIT 授權全文。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 
 自有程式採 [RRSAL-1.0 source-available 授權](LICENSE)：非商業使用免費，允許實況與展示，商業使用另洽。此授權不涵蓋原版素材，第三方元件及字型保留各自授權。原版遊戲、手冊及衍生素材的權利不因轉檔或重製而改變。本專案為獨立保存與重製工作，未宣稱與原作者或發行商有隸屬關係。

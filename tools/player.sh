@@ -38,7 +38,7 @@ case "${1:-}" in
       --mount "type=bind,src=$task_work/gocache,dst=/gocache" \
       --mount "type=bind,src=$task_work/gomodcache,dst=/gomodcache,readonly" \
       --mount "type=bind,src=$task_player,dst=/out" \
-      -w /tmp -e GOCACHE=/gocache -e GOMODCACHE=/gomodcache \
+      -w /tmp -e GOCACHE=/gocache -e GOMODCACHE=/gomodcache -e GOMAXPROCS=2 \
       "$task_go" bash -c '
         set -e
         printf "go 1.24.0\nuse (\n /project\n /dosgolem\n)\n" > /tmp/go.work
@@ -50,9 +50,14 @@ case "${1:-}" in
           else
             printf "%s\n" "未備本機 HD 圖像，僅執行字型測試；圖像測試會明示跳過。"
           fi
+          music_assets=""
+          if [[ -f /out/assets-painted-r9/music.json ]]; then
+            music_assets=/out/assets-painted-r9
+          fi
           EIGHTSWORD_TEST_ORIG=/project/workplace/intake-20261023/sources/game/8sword \
             EIGHTSWORD_TEST_ASSETS=/out/assets EIGHTSWORD_TEST_GRAPHICS_ASSETS="$art_assets" \
-            go test -mod=readonly /project/internal/eightsword
+            EIGHTSWORD_TEST_MUSIC_ASSETS="$music_assets" \
+            go test -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
             go test -mod=readonly ./oracle ./internal/machine ./internal/dos ./internal/state
@@ -60,13 +65,14 @@ case "${1:-}" in
         else
           find /project/internal /project/cmd -type f -name "*.go" -print0 \
             | sort -z | xargs -0 sha256sum > /out/build-inputs.sha256
-          sha256sum /project/go.mod /project/go.sum /project/tools/gui-check.go >> /out/build-inputs.sha256
+          sha256sum /project/go.mod /project/go.sum /project/tools/gui-check.go /project/tools/music-check.go >> /out/build-inputs.sha256
           go build -mod=readonly -o /out/8sword /project/cmd/8sword
           go build -mod=readonly -o /out/8sword-replay /project/cmd/8sword-replay
           go build -mod=readonly -o /out/gui-check /project/tools/gui-check.go
+          go build -mod=readonly -o /out/music-check /project/tools/music-check.go
           sha256sum -c /out/build-inputs.sha256 > /out/build-source-checks.log
           go version > /out/build-go-version.txt
-          sha256sum /out/8sword /out/8sword-replay /out/gui-check > /out/build-outputs.sha256
+          sha256sum /out/8sword /out/8sword-replay /out/gui-check /out/music-check > /out/build-outputs.sha256
         fi' build "$task_action"
     ;;
   assets)
@@ -104,6 +110,42 @@ case "${1:-}" in
       "$task_py" python /tools/prepare-hd-graphics.py --source /orig/PMAP.AY --refs /refs \
       --font-assets /fonts --style-reference /style/hd-style-approved-r1.png --out /out --set "$task_set"
     ;;
+  music-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r8}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_music="$task_work/probe-20261023/music-first/hd-audition-r1"
+    test -f "$task_music/b-approved-full-loop-r2.ogg"
+    test -d "$task_player/assets-$task_base"; test -d "$task_root/tools"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout 60s docker run --rm --name "8sword-music-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 700m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_music,dst=/music,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-music.py --base /base \
+      --music /music/b-approved-full-loop-r2.ogg --out /out
+    ;;
+  music-check)
+    task_name="${2:?指定新的收據名稱}"
+    task_set="${3:-painted-r9}"
+    task_ms="${4:-90000}"
+    valid_name "$task_name"; valid_name "$task_set"
+    [[ "$task_ms" =~ ^[0-9]+$ ]]
+    test -f "$task_player/music-check"; test -d "$task_orig"
+    test -d "$task_player/assets-$task_set"
+    task_out="$task_player/replays/$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout 240s docker run --rm --name "8sword-music-check-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
+      --mount "type=bind,src=$task_player,dst=/player,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      --entrypoint /player/music-check "$task_go" \
+      -root /orig -assets "/player/assets-$task_set" -out /out -first-ms "$task_ms"
+    ;;
   replay)
     task_mode="${2:?指定 hd 或 native}"
     task_name="${3:?指定新的收據名稱}"
@@ -139,6 +181,7 @@ case "${1:-}" in
       --mount "type=bind,src=$task_out,dst=/out" \
       -e EIGHTSWORD_GUI_CYCLES="${EIGHTSWORD_GUI_CYCLES:-20000}" \
       -e EIGHTSWORD_GUI_RECORD="${EIGHTSWORD_GUI_RECORD:-1}" \
+      -e EIGHTSWORD_GUI_RECORD_AUDIO="${EIGHTSWORD_GUI_RECORD_AUDIO:-0}" \
       -e EIGHTSWORD_GUI_VSYNC="${EIGHTSWORD_GUI_VSYNC:-true}" \
       -e EIGHTSWORD_GUI_FLOW="${EIGHTSWORD_GUI_FLOW:-inspect}" \
       -e EIGHTSWORD_GUI_ACTOR_WALK="${EIGHTSWORD_GUI_ACTOR_WALK:-0}" \
@@ -146,5 +189,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|music-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

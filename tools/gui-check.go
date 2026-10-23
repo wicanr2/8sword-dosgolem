@@ -173,7 +173,7 @@ func (d *driver) quit() {
 
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
-	flow := flag.String("flow", "inspect", "inspect, save, reload, fallback or art-fallback")
+	flow := flag.String("flow", "inspect", "inspect, save, reload, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
@@ -260,6 +260,46 @@ func main() {
 	}
 	d.scene("main-menu")
 	d.shot("03-main-menu")
+	if *flow == "music" {
+		music := func(s map[string]any) map[string]any { m, _ := s["music"].(map[string]any); return m }
+		d.press(116)
+		d.press(116)
+		d.press(36)
+		d.wait("音樂欣賞文字已出現", 25, func(s map[string]any) bool {
+			for _, item := range s["strings"].([]any) {
+				if item.(map[string]any)["Source"] == float64(758) {
+					return true
+				}
+			}
+			return false
+		})
+		first := d.status()["presented_frames"].(float64)
+		d.wait("音樂欣賞已實際呈現", 15, func(s map[string]any) bool { return s["presented_frames"].(float64) >= first+2 })
+		d.shot("music-01-catalog")
+		d.press(36)
+		d.wait("HD 幻已輸出兩秒", 25, func(s map[string]any) bool {
+			m := music(s)
+			return m["mode"] == "hd" && m["cue"] == float64(1) && m["hd_frames"].(float64) > 96000
+		})
+		d.shot("music-02-first")
+		starts := music(d.status())["starts"].(float64)
+		d.press(36)
+		d.wait("同曲正常重啟", 20, func(s map[string]any) bool { return music(s)["starts"].(float64) > starts && music(s)["mode"] == "hd" })
+		d.shot("music-03-restarted")
+		starts = music(d.status())["starts"].(float64)
+		d.press(116)
+		if m := music(d.status()); m["mode"] != "hd" || m["cue"] != float64(1) || m["starts"] != starts {
+			panic("移動反白改變音樂")
+		}
+		d.shot("music-04-highlight")
+		d.press(36)
+		d.wait("缺 HD 的遨遊使用原版", 20, func(s map[string]any) bool { m := music(s); return m["mode"] == "native" && m["cue"] == float64(2) })
+		d.shot("music-05-native")
+		d.press(9)
+		d.wait("Esc 停止音樂", 20, func(s map[string]any) bool { m := music(s); return m["mode"] == "native" && m["cue"] == float64(0) })
+		d.scene("main-menu")
+		d.shot("music-06-returned")
+	}
 	if *flow == "reload" {
 		d.press(36) // 原版預設「繼續上次進度」。
 		d.scene("map")

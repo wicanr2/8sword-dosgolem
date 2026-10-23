@@ -18,13 +18,16 @@ trap cleanup EXIT
 trap 'exit 130' INT TERM
 sleep 0.5
 record_flags=()
+audio_flags=()
 actor_flags=()
 if [[ "${EIGHTSWORD_GUI_ACTOR_WALK:-0}" == 1 ]]; then actor_flags=(-actor-walk); fi
 if [[ "${EIGHTSWORD_GUI_RECORD:-1}" == 1 ]]; then record_flags=(-record); fi
+if [[ "${EIGHTSWORD_GUI_RECORD_AUDIO:-0}" == 1 ]]; then audio_flags=(-record-audio); fi
 phases=(inspect)
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then phases=(save reload); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == fallback ]]; then phases=(fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == art-fallback ]]; then phases=(art-fallback); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == music ]]; then phases=(music); fi
 for phase in "${phases[@]}"; do
   phase_out=/out
   if [[ "$phase" != inspect ]]; then phase_out="/out/$phase"; mkdir -p "$phase_out"; fi
@@ -34,7 +37,7 @@ for phase in "${phases[@]}"; do
   cat /sys/fs/cgroup/cpu.stat > "$phase_out/cpu-start.txt"
   cat "/proc/$xvfb_pid/stat" > "$phase_out/xvfb-start.txt"
   /bin-player/8sword -root /orig -assets "${EIGHTSWORD_GUI_ASSETS:-/assets}" -saves /out/scratch \
-    -capture-dir "$phase_out" -max-updates 4000 -mute "${record_flags[@]}" \
+    -capture-dir "$phase_out" -max-updates 4000 -mute "${record_flags[@]}" "${audio_flags[@]}" \
     -cpu-profile "$phase_out/cpu.pprof" -vsync="${EIGHTSWORD_GUI_VSYNC:-true}" \
     -cycles "${EIGHTSWORD_GUI_CYCLES:-20000}" > "$phase_out/player.log" 2>&1 &
   gui_pid=$!

@@ -41,10 +41,9 @@ func (q *pcmQueue) push(samples []int16) {
 	q.Lock()
 	defer q.Unlock()
 	for _, s := range samples {
-		var frame [4]byte
-		binary.LittleEndian.PutUint16(frame[:2], uint16(s))
-		binary.LittleEndian.PutUint16(frame[2:], uint16(s))
-		q.data = append(q.data, frame[:]...)
+		var sample [2]byte
+		binary.LittleEndian.PutUint16(sample[:], uint16(s))
+		q.data = append(q.data, sample[:]...)
 	}
 	if len(q.data) > 48000*4 {
 		q.Dropped += uint64(len(q.data) - 48000*4)
@@ -61,6 +60,8 @@ type game struct {
 	cycles              uint64
 	pcm                 *pcmQueue
 	audio               *audio.Player
+	audioCapture        *os.File
+	audioFrames         uint64
 	recorder            *eightsword.FrameRecorder
 	recordErr           error
 	profile             map[string]float64
@@ -102,6 +103,9 @@ func (g *game) status(closed bool) map[string]any {
 	status["actual_fps"], status["actual_tps"] = ebiten.ActualFPS(), ebiten.ActualTPS()
 	status["presented_frames"], status["presented_scene"] = g.draws, g.presentedScene
 	status["stage_totals"] = g.stageTotals
+	if g.audioCapture != nil {
+		status["captured_audio_frames"] = g.audioFrames
+	}
 	if !g.started.IsZero() {
 		cycles := g.engine.Oracle.Cycles() - g.startCycles
 		status["session"] = map[string]any{"wall_ms": float64(time.Since(g.started).Microseconds()) / 1000, "guest_cycles": cycles, "guest_ms": float64(cycles) / float64(g.cycles), "cycles_per_ms": g.cycles, "target_tps": 30, "muted": g.pcm == nil}
@@ -161,7 +165,13 @@ func (g *game) Update() error {
 		return err
 	}
 	advanced := time.Now()
-	samples := g.engine.Sound.Render()
+	samples := g.engine.RenderAudio()
+	if g.audioCapture != nil {
+		if err := binary.Write(g.audioCapture, binary.LittleEndian, samples); err != nil {
+			return err
+		}
+		g.audioFrames += uint64(len(samples) / 2)
+	}
 	if g.pcm != nil {
 		g.pcm.push(samples)
 	}
@@ -234,13 +244,14 @@ func (g *game) Draw(screen *ebiten.Image) {
 func (g *game) Layout(int, int) (int, int) { return 1920, 1200 }
 func main() {
 	root := flag.String("root", "", "合法原版資料目錄")
-	assets := flag.String("assets", "", "HD 字型素材目錄")
+	assets := flag.String("assets", "", "HD 字型、圖像與音樂素材目錄")
 	saves := flag.String("saves", "", "可寫存檔目錄")
 	capture := flag.String("capture-dir", "", "研究收據目錄，F12 抓圖")
 	record := flag.Bool("record", false, "以無損列差分記錄每次呈現，需要 capture-dir")
+	recordAudio := flag.Bool("record-audio", false, "記錄前端交錯雙聲道 PCM，需要 capture-dir")
 	cpuProfile := flag.String("cpu-profile", "", "研究用 CPU profile 輸出檔案")
 	vsync := flag.Bool("vsync", true, "同步視窗更新，研究環境可關閉比較")
-	hd := flag.Bool("hd", true, "啟用 Noto HD 文字")
+	hd := flag.Bool("hd", true, "啟用 HD 文字、圖像與已提供的音樂")
 	mute := flag.Bool("mute", false, "靜音，保留遊戲音訊時鐘")
 	cycles := flag.Uint64("cycles", 20000, "DOSBox 相容 cycles/ms")
 	limit := flag.Int("max-updates", 0, "研究執行上限，0 不限")
@@ -282,7 +293,21 @@ func main() {
 		title = "神州八劍 · Noto Black 900（HD 圖像載入失敗）"
 		log.Printf("HD 圖像未載入，保留原版圖像：%s", engine.GraphicsError)
 	}
+	if engine.Music != nil && engine.Music.LoadError != "" {
+		title += "（HD 音樂載入失敗）"
+		log.Printf("HD 音樂未載入，保留原版音訊：%s", engine.Music.LoadError)
+	}
 	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit}
+	if *recordAudio {
+		if *capture == "" {
+			log.Fatal("-record-audio 需要 -capture-dir")
+		}
+		g.audioCapture, err = os.Create(filepath.Join(*capture, "audio-s16le-stereo.pcm"))
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer g.audioCapture.Close()
+	}
 	if *record {
 		if *capture == "" {
 			log.Fatal("-record 需要 -capture-dir")

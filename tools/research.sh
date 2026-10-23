@@ -48,7 +48,8 @@ case "${1:-}" in
     if ! git -C "$task_work/dosgolem" diff --quiet HEAD -- . \
       ':(exclude)internal/machine/bda.go' ':(exclude)internal/machine/bios_page.go' \
       ':(exclude)internal/dos/bios.go' ':(exclude)internal/dos/planar_bios_page_test.go' \
-      ':(exclude)oracle/presentation_observe.go' ':(exclude)oracle/presentation_observe_test.go'; then
+      ':(exclude)oracle/presentation_observe.go' ':(exclude)oracle/presentation_observe_test.go' \
+      ':(exclude)oracle/live.go' ':(exclude)oracle/audio_mix_test.go'; then
       printf '%s\n' 'dosgolem 副本有補丁範圍外的變更，先核對來源。' >&2
       exit 1
     fi
@@ -64,14 +65,20 @@ case "${1:-}" in
     else
       git -C "$task_work/dosgolem" apply --reverse --check "$task_patch"
     fi
+    task_patch="$task_root/tools/dosgolem-audio-mix.patch"
+    if git -C "$task_work/dosgolem" apply --check "$task_patch" 2>/dev/null; then
+      git -C "$task_work/dosgolem" apply "$task_patch"
+    else
+      git -C "$task_work/dosgolem" apply --reverse --check "$task_patch"
+    fi
     exec timeout 180s docker run --rm --name 8sword-probe-build \
       --user "$task_uid:$task_gid" --memory 1500m --cpus 2 --pids-limit 128 \
       --network none \
       --mount "type=bind,src=$task_work/dosgolem,dst=/source,readonly" \
       --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
       --mount "type=bind,src=$task_work,dst=/work" \
-      -w /source -e GOCACHE=/work/gocache -e GOMODCACHE=/work/gomodcache -e HOME=/tmp \
-      "$go_image" bash -c 'set -e; sha256sum -c /tools/dosgolem-page-files.sha256; sha256sum -c /tools/dosgolem-presentation-files.sha256; go build -mod=readonly -o /work/probe-pages ./cmd/probe'
+      -w /source -e GOCACHE=/work/gocache -e GOMODCACHE=/work/gomodcache -e GOMAXPROCS=2 \
+      "$go_image" bash -c 'set -e; sha256sum -c /tools/dosgolem-page-files.sha256; sha256sum -c /tools/dosgolem-presentation-files.sha256; sha256sum -c /tools/dosgolem-audio-files.sha256; go build -p=2 -mod=readonly -o /work/probe-pages ./cmd/probe'
     ;;
   probe)
     shift
@@ -112,7 +119,7 @@ case "${1:-}" in
       --mount "type=bind,src=$task_work/dosgolem,dst=/source,readonly" \
       --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
       --mount "type=bind,src=$task_work,dst=/work" \
-      -w /source -e GOCACHE=/work/gocache -e GOMODCACHE=/work/gomodcache -e HOME=/tmp \
+      -w /source -e GOCACHE=/work/gocache -e GOMODCACHE=/work/gomodcache -e GOMAXPROCS=2 \
       "$go_image" bash -c 'set -e; bash -n /tools/research.sh; bash -n /tools/aux-dosbox.sh; sha256sum -c /tools/dosgolem-page-files.sha256; go version > /work/probe-20261023/validation/go-version.txt; go test -mod=readonly ./internal/dos ./internal/machine ./internal/state ./oracle -count=1 > /work/probe-20261023/validation/tests.log 2>&1; cat /work/probe-20261023/validation/tests.log'
     ;;
   font-source)
