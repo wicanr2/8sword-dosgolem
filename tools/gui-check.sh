@@ -28,6 +28,7 @@ if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then phases=(save relo
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == fallback ]]; then phases=(fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == art-fallback ]]; then phases=(art-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == music ]]; then phases=(music); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == menus ]]; then phases=(menus); fi
 for phase in "${phases[@]}"; do
   phase_out=/out
   if [[ "$phase" != inspect ]]; then phase_out="/out/$phase"; mkdir -p "$phase_out"; fi

@@ -73,11 +73,13 @@
 | 正常存退讀 | `noto-save-visible-r3` 正常視窗 F7 儲存、回 DOS 碼 0、重新啟動繼續；讀入 2987 bytes，結束後只讀檢視的 0x9E000 緩衝區與檔案完全相同，核對工具見下方 |
 | 實際故障回退 | 正式共用 Engine 及實際視窗皆已驗真實受損 PNG。視窗主選單與 native 參考逐 RGB 像素相同；XTEST 核對標題含「HD 字型載入失敗」，日誌有具體 SHA 錯誤。收據為 `noto-fallback-visible-r1/fallback/fallback-window-audit.json` |
 | 效能與音訊 | 快取及逐列複製後，同輸入十張畫面完全相同，合成次數由 238 降至 74。現行已分開量測錄製開關，新增分段累計與模型虛擬時間；下節列出範圍，正式速度與非靜音音訊仍未結案 |
-| 古風圖像與 HD 音樂 | 圖像已由 [004](004-hd-bitmap-presentation.md) 至 [007](007-masked-hero-animation.md)接入有限正常路段；HD 音樂仍未接入，不以文字通過項代替 |
+| 古風圖像與 HD 音樂 | 圖像已由 [004](004-hd-bitmap-presentation.md) 至 [007](007-masked-hero-animation.md)接入有限正常路段；〈幻〉已依 [008](008-music-events-and-playback.md)接入，其餘曲目與完整音訊仍待驗，不以文字通過項代替 |
 
 可重生入口為 [player.sh](../../tools/player.sh) 的 `build`、`test`、`replay hd|native <新名稱>` 與 `gui-check <新名稱>`。客體隔離由 [audit-player.py](../../tools/audit-player.py) 核對，逐幀由 [inspect-presentation.py](../../tools/inspect-presentation.py) 在 Docker 獨立解碼。收據的來源、SHA 及限制集中於 [研究紀錄](../../RESEARCH-LOG.md#2026-10-23執行期覆繪載入段勘誤與正常視窗)。
 
 正常存退讀採 `EIGHTSWORD_GUI_FLOW=save-cycle`，兩個程序共用指定的可寫存檔層，各自從 PREDELLA 冷啟動。收據保存各程序的建置來源／輸出 SHA、CPU profile、負載及容器限流；[audit-save-cycle.py](../../tools/audit-save-cycle.py) 核對落地檔案、正常退出、原版 read 事件與讀回緩衝區。快照只在程序結束後以 [inspect-state.go](../../tools/inspect-state.go) 的 `-save-buffer` 只讀檢視，沒有從快照啟動玩家路徑。
+
+`EIGHTSWORD_GUI_FLOW=menus` 以新遊戲測 F2 軍隊頁、F4 無法施法提示及 F5 地圖，再接既有 F1、F7 與移動。只支援本作固定新遊戲狀態，軍隊為民兵，未習得法術。驗證器等待本次原版字串來源：F2 為 1330／1338／1346／10380，F4 為 10786，F5 為繪圖後的 1278／1304。不能只等反白或字數暫停，否則會在 F5 逐列繪圖中途取圖。文字完成後再等實際呈現，Esc 亦等待該次返回的側欄字串；這些只讀來源線索不改正式 Scene 分類或客體邏輯。截圖與連續幀仍須獨立檢視，不將新流程的輸入成功當成完整頁面驗收。
 
 實際遇見的「遇見怪物／要攻擊嗎」字串來源為 DS 偏移 `17749/17786`。驗證器觀察此對話時，經方向鍵選到「否」，確認原版實際印出「否」後才按 Enter，之後再進 F1。沒有重擲或反覆重跑挑選無遭遇的結果；本項只驗對話呈現與合法取消，不驗亂數判定，沒有宣稱固定 seed 的戰鬥 parity。
 

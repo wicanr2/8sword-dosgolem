@@ -173,7 +173,7 @@ func (d *driver) quit() {
 
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
-	flow := flag.String("flow", "inspect", "inspect, save, reload, music, fallback or art-fallback")
+	flow := flag.String("flow", "inspect", "inspect, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
@@ -321,6 +321,65 @@ func main() {
 	d.press(36)
 	d.scene("map")
 	d.shot("05-map")
+	if *flow == "menus" {
+		// Fixed new-game pages, verified by normal original input. F5 prints
+		// its position label after drawing the map; side-menu text is earlier.
+		for _, page := range []struct {
+			name    string
+			key     byte
+			side    float64
+			sources []float64
+		}{
+			{"f2-army", 68, 1010, []float64{1330, 1338, 1346, 10380}},
+			{"f4-magic", 70, 1050, []float64{10786}},
+			{"f5-map", 71, 1070, []float64{1278, 1304}},
+		} {
+			before := d.status()["steps"].(float64)
+			d.press(page.key)
+			d.wait("本次選單內容完成", 35, func(s map[string]any) bool {
+				seen := map[float64]bool{}
+				for _, item := range s["strings"].([]any) {
+					e := item.(map[string]any)
+					if e["Step"].(float64) > before {
+						seen[e["Source"].(float64)] = true
+					}
+				}
+				for _, source := range page.sources {
+					if !seen[source] {
+						return false
+					}
+				}
+				return true
+			})
+			lastFull, lastHalf, stable := float64(-1), float64(-1), float64(0)
+			d.wait("選單文字完成且已持續呈現", 25, func(s map[string]any) bool {
+				t := s["text"].(map[string]any)
+				f, h := t["Full"].(float64), t["Half"].(float64)
+				frame := s["presented_frames"].(float64)
+				if f != lastFull || h != lastHalf {
+					lastFull, lastHalf, stable = f, h, frame
+					return false
+				}
+				return frame >= stable+3
+			})
+			d.shot("menus-" + page.name)
+			raw, err := json.MarshalIndent(d.status(), "", "  ")
+			check(err)
+			check(os.WriteFile(filepath.Join(d.out, "menus-"+page.name+".json"), append(raw, '\n'), 0644))
+			before = d.status()["steps"].(float64)
+			d.press(9)
+			d.wait("返回本次地圖指令", 25, func(s map[string]any) bool {
+				for _, item := range s["strings"].([]any) {
+					e := item.(map[string]any)
+					if e["Step"].(float64) > before && e["Source"] == page.side {
+						return true
+					}
+				}
+				return false
+			})
+			d.scene("map")
+		}
+	}
 	d.press(67)
 	d.scene("character")
 	d.shot("06-character")

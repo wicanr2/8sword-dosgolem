@@ -33,6 +33,8 @@
 
 十個請求與來源對應沿用已證實的 `menu-source-map.json`。第 1 曲為 MINT／SINT；MFIG 不在這十項中，不能私自加成第 11 個請求。未進入的戰鬥及後期場景不稱已驗。
 
+原曲音符可用 [audit-music-source.py](../../tools/audit-music-source.py) 在既有音訊 Docker 核對。輸入為既有 parser 的 `--events`、正常冷啟動 `--receipt` 與 `--opl`，輸出指定尚不存在的 `--out`。目前限 3000 cycles/ms、起始 tick 有音符且擷取涵蓋完整首輪與循環的曲目。旋律依來源 pitch-bend 檢查音高，節奏模式依 YM3812 BD 的五個觸發 bit 檢查起音；固定閾值為 0.1 半音及 0.05 秒。此工具已核對〈幻〉與〈遨遊〉的實際擷取，不將解碼通過當成聲音批准或 HD 接入。
+
 ## 只讀觀測及回退
 
 適配層只有在固定來源、PAM overlay 實際載入至 0110 後綁定掛勾。記錄 Request、Stop、Start 的原始步數、cycles、請求值及來源驗證結果。不修改 CPU、DOS、PIT、OPL register、播放旗標、曲譜指標、事件順序與存檔。
