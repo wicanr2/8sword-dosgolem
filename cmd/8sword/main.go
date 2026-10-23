@@ -52,30 +52,33 @@ func (q *pcmQueue) push(samples []int16) {
 }
 
 type game struct {
-	engine              *eightsword.Engine
-	texture             *ebiten.Image
-	frame               *image.RGBA
-	capture             string
-	updates, maxUpdates int
-	cycles              uint64
-	pcm                 *pcmQueue
-	audio               *audio.Player
-	audioCapture        *os.File
-	audioFrames         uint64
-	recorder            *eightsword.FrameRecorder
-	recordErr           error
-	profile             map[string]float64
-	recordMS            float64
-	draws               uint64
-	presentedScene      string
-	frameConsole        string
-	presentedConsole    string
-	frameIntro          string
-	presentedIntro      string
-	recordedFrame       *image.RGBA
-	stageTotals         map[string]*stageTiming
-	started             time.Time
-	startCycles         uint64
+	engine                                   *eightsword.Engine
+	texture                                  *ebiten.Image
+	frame                                    *image.RGBA
+	capture                                  string
+	updates, maxUpdates                      int
+	cycles                                   uint64
+	pcm                                      *pcmQueue
+	audio                                    *audio.Player
+	audioCapture                             *os.File
+	audioFrames                              uint64
+	recorder                                 *eightsword.FrameRecorder
+	recordErr                                error
+	profile                                  map[string]float64
+	recordMS                                 float64
+	draws                                    uint64
+	presentedScene                           string
+	frameConsole                             string
+	presentedConsole                         string
+	frameIntro                               string
+	presentedIntro                           string
+	frameStoryCalls, frameStoryPages         uint64
+	presentedStoryCalls, presentedStoryPages uint64
+	introDraw                                *os.File
+	recordedFrame                            *image.RGBA
+	stageTotals                              map[string]*stageTiming
+	started                                  time.Time
+	startCycles                              uint64
 }
 
 type stageTiming struct {
@@ -108,6 +111,7 @@ func (g *game) status(closed bool) map[string]any {
 	status["presented_frames"], status["presented_scene"] = g.draws, g.presentedScene
 	status["presented_console"] = g.presentedConsole
 	status["presented_intro"] = g.presentedIntro
+	status["presented_story_calls"], status["presented_story_pages"] = g.presentedStoryCalls, g.presentedStoryPages
 	status["stage_totals"] = g.stageTotals
 	if g.audioCapture != nil {
 		status["captured_audio_frames"] = g.audioFrames
@@ -186,6 +190,10 @@ func (g *game) Update() error {
 	g.frame = g.engine.Frame()
 	g.frameConsole = g.engine.ConsoleStage()
 	g.frameIntro = g.engine.IntroFrameStage(g.frame)
+	g.frameStoryCalls, g.frameStoryPages = 0, 0
+	if g.engine.Story != nil && g.frameIntro != "" {
+		g.frameStoryCalls, g.frameStoryPages = g.engine.Story.FrameInfo(g.frame)
+	}
 	composed := time.Now()
 	if previous != g.frame {
 		g.texture.WritePixels(g.frame.Pix)
@@ -234,6 +242,12 @@ func (g *game) Draw(screen *ebiten.Image) {
 	g.draws++
 	g.presentedConsole = g.frameConsole
 	g.presentedIntro = g.frameIntro
+	g.presentedStoryCalls, g.presentedStoryPages = g.frameStoryCalls, g.frameStoryPages
+	if g.introDraw != nil {
+		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages}); err != nil {
+			g.recordErr = err
+		}
+	}
 	if g.engine.Tracker != nil {
 		g.presentedScene = g.engine.Tracker.VisibleScene
 	}
@@ -311,7 +325,18 @@ func main() {
 		title += "（HD 片頭載入失敗）"
 		log.Printf("HD 片頭未載入，保留原版標題：%s", engine.IntroError)
 	}
+	if engine.StoryError != "" {
+		title += "（HD 故事文字載入失敗）"
+		log.Printf("HD 故事字型未載入，保留原版文字：%s", engine.StoryError)
+	}
 	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit}
+	if *capture != "" {
+		g.introDraw, err = os.Create(filepath.Join(*capture, "intro-draw.jsonl"))
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer g.introDraw.Close()
+	}
 	if *recordAudio {
 		if *capture == "" {
 			log.Fatal("-record-audio 需要 -capture-dir")

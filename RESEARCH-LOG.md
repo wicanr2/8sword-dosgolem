@@ -619,3 +619,20 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - `intro-title-save-r6` 設 `EIGHTSWORD_GUI_SHOW_INTRO=1`，兩個冷啟動程序各先呈現 Noto 標題，再由原版 Esc、F7 儲存、回 DOS及繼續。392／130 幀、31／13 次改變已解碼與看圖，每個程序各 79 次標題合成，正常退休且無回退。原版落地檔與讀回 RAM 的 2987 位元組 SHA 同為 `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，DOS read 在 step 27085850。4755 個差異像素只在主角動畫區，未同步動畫相位。沿用已驗證且來源雜湊不變的現行檢視器，快照只在程序結束後執行 0 指令檢視，收據 `save-cycle-audit.json`。
 
 本規格只接入標題四字。發行商識別、故事捲文、其他片頭美術、角色與音樂曲目仍依原整體範圍接續，不將壓縮格式解出當成已完成全部素材。
+
+
+## 2026-10-23：012 開場故事的 Noto 直排覆繪
+
+路由命中字碼反查入口 `sources/claude/retro-cht/glyph-index-text-recovery.md`，實際先查原始 bytes 與 consumer。原文為 Big5，沒有以字模索引猜寫劇情。IDA 沿用 9.4 映像及正式資料庫一次性副本；位址為執行期線性，不映射回壓縮 EXE 偏移。來源、掛勾、字表／字模完整 SHA 與 READY 契約見 [012](docs/spec/012-intro-story-noto.md)。研究入口 `workplace/probe-20261023/graphics-first/story-r1/`，探針與 IDA 匯出同處保存。
+
+- 已證實：正常冷啟動五頁故事共 888 次出字，785 次 CJK 字模選擇。原文 74×26 bytes，兩個 byte 一字，十六欄由右向左、每欄十二字。來源、位置及順序全部吻合，實際 glyph offset 與 Big5 字表逐筆吻合，見 `source-audit-r1.json`。原文包含的異體字及標點照 bytes 保留，不依手冊改寫。
+- 已證實：TIT6X 是藍色線稿背景，沒有故事字墨。TIT6X.AY 為 12822 bytes，SHA `f4a789dc46fffb2848566181d6a81130b45339d8850d5df34bb60407beff02b6`；五次正常 `sub_576A` 完整來源皆同獨立解碼。這補足 011 當時只有格式解析的限制；011 的歷史收據不改寫。
+- 新 448 字集使用相同 Noto TC Black 900、48 px。`assets-painted-r11` 保留 r10 全部 53 檔，新增 atlas、清單及來源，共 56 檔，獨立重建完全相同。atlas SHA `1268ea0c730afc54df79f309f996939045e2e088d002cbec6cf3149790bf55eb`；story.json SHA `f1f7ee24715754486ae9a06f7c36025d0554e0b6d1f56cf378c7a97fa6443e84`。字碼、字模、原文與新資產均留本機。
+- `IntroStory` 只讀觀測真正來源、字碼、欄列及交易，原生字墨區以原背景還原後合成 Noto。換頁及退出保留完整幀，失去返回最多等待 2000000 客體 cycles。核心單一視訊 callback 由 Engine 同次轉送 Tracker、標題與故事，不修改 DOS 或共用核心。
+- 三項真實來源測試通過 87.268 秒；完整本作測試通過 128.239 秒。包含自然五頁、普通 Esc、PAM 真正可見選單及字墨、Frame 前後完整 state 相同、有界交易故障及真實壞 atlas。
+- 三組正常冷啟動同輸入對照的完整 state 為 `ce429bca70ad5eca2042b30e70a0db6b92c7786a1b46b3f499d4059403a049e5`，209213 bytes。12 個工作檔、888 次原版呼叫與事件相同；PCM 4322688 bytes，SHA `05945636a336751282b178af29ddba146873c511e29a956b28579e8435a20c76`。五張故障畫面同 r10 原故事基準，HD 五張均不同。其他部分兩側都是既有 HD，沒有冒稱純原版圖像對拍。
+- 正常視窗 `intro-story-visible-r1/story` 的 493 幀／129 次改變已解碼與看圖；五頁故事 68 個 Draw 由 `inspect-story.py` 獨立重建，每個 RGBA byte 都相同。五頁末次 calls 為 192／384／576／768／888，含換頁。實際 XTEST 另走新遊戲、F1、返回、F7 與移動。
+- `intro-story-save-r1` 兩個冷啟動在故事普通 Esc，各出現 89／49 字。323／308 幀、81／82 次改變已解碼與看圖；另有 12 個故事 Draw 逐像素相同。正常 F7 存退讀的 2987 bytes 與 RAM 同 SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，DOS read step 55627473。既有現行檢視器與來源雜湊核對後，僅於結束後執行 0 指令檢視；4755 個差異像素在 `(404,350)-(523,446)` 主角動畫區，不稱整幀相同。
+- `intro-story-fallback-r1/story-fallback` 的真正壞 atlas 由視窗回報，GetImage 核對原生字色、網格及獨立 TIT6X 背景；標題、Noto 選單、地圖及〈幻〉保留。283 幀／71 次改變已解碼及看圖。
+
+012 僅五頁故事文字限定 CONFORMED。背景、博物館字幕、發行商識別及其他未替換內容仍在正式 HD 範圍，003／008／009 及整體目標未結案。

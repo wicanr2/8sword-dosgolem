@@ -182,9 +182,10 @@ func (d *driver) quit() {
 
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
-	flow := flag.String("flow", "inspect", "inspect, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
+	flow := flag.String("flow", "inspect", "inspect, story, story-skip, story-fallback, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
+	showStory := flag.Bool("intro-story", false, "wait for actual Noto story before Esc, including save/reload flows")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
 	flag.Parse()
@@ -306,7 +307,77 @@ func main() {
 		})
 		d.shot("music-00-intro")
 	}
-	d.press(9) // 原版手冊允許以 Esc 略過片頭，未直接進入 PAM。
+	if *flow == "story" || *flow == "story-skip" || *showStory {
+		pages := 5
+		if *flow == "story-skip" || *showStory {
+			pages = 1
+		}
+		for page := 1; page <= pages; page++ {
+			page := page
+			limit := 45
+			if page == 1 {
+				limit = 120
+			} // 完整正常片頭先於故事，軟體繪圖可能低於即時。
+			d.wait(fmt.Sprintf("故事第 %d 頁已真正呈現", page), limit, func(s map[string]any) bool {
+				return s["presented_intro"] == "story-noto" && s["presented_story_pages"] == float64(page) && s["presented_story_calls"].(float64) >= float64((page-1)*192+36)
+			})
+			d.shot(fmt.Sprintf("story-%02d-page", page))
+		}
+		if *flow == "story" {
+			d.scene("main-menu")
+			stats := d.status()["intro_story"].(map[string]any)["stats"].(map[string]any)
+			if stats["Calls"] != float64(888) || stats["Pages"] != float64(5) || stats["Timeouts"] != float64(0) || stats["Errors"] != nil {
+				panic("故事未完整自然交接")
+			}
+		}
+	}
+	if *flow == "story-fallback" {
+		d.wait("故事字型故障且其他 HD 保留", 30, func(s map[string]any) bool {
+			return s["intro_story"].(map[string]any)["load_error"] == "故事字型圖片 SHA-256 不符" && s["hd"] == true && s["asset_error"] == "" && s["graphics_error"] == ""
+		})
+		if *nativeFrame == "" {
+			panic("story fallback requires independent TIT6X background PNG")
+		}
+		f, err := os.Open(*nativeFrame)
+		check(err)
+		background, err := png.Decode(f)
+		check(err)
+		check(f.Close())
+		d.wait("真正原版故事文字與獨立背景", 120, func(map[string]any) bool {
+			im := d.grab()
+			yellow := 0
+			for y := 0; y < im.Bounds().Dy(); y++ {
+				for x := 0; x < im.Bounds().Dx(); x++ {
+					nx, ny := x*640/im.Bounds().Dx(), y*200/im.Bounds().Dy()
+					at := y*im.Stride + x*4
+					r, g, b := im.Pix[at], im.Pix[at+1], im.Pix[at+2]
+					textCell := nx < 616 && nx%40 < 16 && ny >= 4 && ny < 195 && (ny-4)%16 < 15
+					if !textCell {
+						br, bg, bb, _ := background.At(nx, ny).RGBA()
+						if r != uint8(br>>8) || g != uint8(bg>>8) || b != uint8(bb>>8) {
+							return false
+						}
+					}
+					if !((r == 0 && g == 0 && (b == 0 || b == 170)) || (r == 255 && g == 255 && (b == 85 || b == 255))) {
+						return false
+					}
+					if r == 255 && g == 255 {
+						yellow++
+					}
+				}
+			}
+			return yellow > 100
+		})
+		prop, err := xproto.GetProperty(c, false, d.window, titleAtom.Atom, 0, 0, 1024).Reply()
+		check(err)
+		if !strings.Contains(string(prop.Value), "HD 故事文字載入失敗") {
+			panic("故事回退沒有原因")
+		}
+		d.shot("story-native-fallback")
+	}
+	if *flow != "story" {
+		d.press(9)
+	} // 原版 Esc，未直接進入 PAM。
 	if *flow == "fallback" || *flow == "art-fallback" {
 		if *nativeFrame == "" {
 			panic("fallback requires an independently captured native reference")

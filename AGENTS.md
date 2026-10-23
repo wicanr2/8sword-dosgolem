@@ -32,6 +32,10 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 執行期 HD 規格：[003：Noto 文字覆繪](docs/spec/003-noto-runtime-overlay.md)，已完成參數與 VGA 搬移證據審查，READY 授權實作；正常選單、人物頁、返回及狀態隔離是必要驗收。
 
+開場直排故事規格：[012：開場故事直排文字](docs/spec/012-intro-story-noto.md)，來源與逐字順序已由正常冷啟動擷取；實作與驗收狀態以該規格為準。
+
+故事工具入口：[字集匯入](tools/prepare-hd-story.py)、[只讀覆繪](internal/eightsword/intro_story.go)、[真實來源測試](internal/eightsword/intro_story_test.go)、[逐幀獨立重建](tools/inspect-story.py)。命令見 README，原文與字型資產留在 workplace。
+
 圖像接入規格：[004：圖像觀測與中國古風 HD 素材](docs/spec/004-hd-bitmap-presentation.md)，先核對原版五／六組資料與像素所有權，第一批草地與水面不代表全部 HD 圖像完成。
 
 圖像匯入工具：[prepare-hd-graphics.py](tools/prepare-hd-graphics.py)，透過 `bash tools/player.sh graphics-assets <名稱>` 在 Docker 匯入已記錄 SHA 與提示的草地／水面。原始生成圖不改寫，研究區與素材組均留本機，其他圖像及音樂仍按原範圍接續。

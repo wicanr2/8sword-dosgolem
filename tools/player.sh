@@ -31,7 +31,7 @@ case "${1:-}" in
     bash "$task_root/tools/research.sh" build-probe
     test -d "$task_work/gocache"; test -d "$task_work/gomodcache"
     mkdir -p "$task_player"
-    exec timeout 180s docker run --rm --name "8sword-player-$task_action" --network none \
+    exec timeout 260s docker run --rm --name "8sword-player-$task_action" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
       --mount "type=bind,src=$task_root,dst=/project,readonly" \
       --mount "type=bind,src=$task_work/dosgolem,dst=/dosgolem,readonly" \
@@ -62,6 +62,7 @@ case "${1:-}" in
             EIGHTSWORD_TEST_ASSETS=/out/assets EIGHTSWORD_TEST_GRAPHICS_ASSETS="$art_assets" \
             EIGHTSWORD_TEST_MUSIC_ASSETS="$music_assets" \
             EIGHTSWORD_TEST_INTRO_ASSETS="$intro_assets" \
+            EIGHTSWORD_TEST_STORY_ASSETS=/out/assets-painted-r11 \
             go test -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -153,6 +154,29 @@ case "${1:-}" in
       --entrypoint /player/music-check "$task_go" \
       -root /orig -assets "/player/assets-$task_set" -out /out -first-ms "$task_ms" -intro-ms "$task_intro_ms"
     ;;
+  story-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r10}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_fonts=/usr/share/fonts/opentype/noto
+    task_runtime="$task_work/probe-20261023/music-first/intro-events-r1/unpacked-trace"
+    test -f "$task_runtime/runtime-0110.bin"; test -d "$task_fonts"
+    test -f "$task_fonts/NotoSansCJK-Black.ttc"; test -f "$task_orig/PREDELLA.EXE"
+    test -d "$task_player/assets-$task_base"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout 60s docker run --rm --name "8sword-story-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 700m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_runtime,dst=/runtime,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_fonts,dst=/fonts,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-story.py --base /base \
+      --runtime /runtime/runtime-0110.bin --exe /orig/PREDELLA.EXE \
+      --font /fonts/NotoSansCJK-Black.ttc --out /out
+    ;;
   intro-assets)
     task_name="${2:?指定新的素材組名稱}"
     task_base="${3:-painted-r9}"
@@ -215,9 +239,10 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_FLOW="${EIGHTSWORD_GUI_FLOW:-inspect}" \
       -e EIGHTSWORD_GUI_ACTOR_WALK="${EIGHTSWORD_GUI_ACTOR_WALK:-0}" \
       -e EIGHTSWORD_GUI_SHOW_INTRO="${EIGHTSWORD_GUI_SHOW_INTRO:-0}" \
+      -e EIGHTSWORD_GUI_SHOW_STORY="${EIGHTSWORD_GUI_SHOW_STORY:-0}" \
       -e EIGHTSWORD_GUI_ASSETS="${EIGHTSWORD_GUI_ASSETS:-/assets}" \
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac
