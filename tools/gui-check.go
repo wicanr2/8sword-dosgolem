@@ -85,17 +85,7 @@ func (d *driver) scene(want string) {
 		})
 		if d.status()["presented_scene"] == "encounter-confirm" {
 			d.shot("encounter-before-character")
-			before := d.status()["steps"].(float64)
-			d.press(114)
-			d.wait("遭遇確認已選否", 20, func(s map[string]any) bool {
-				for _, item := range s["strings"].([]any) {
-					ev := item.(map[string]any)
-					if ev["Step"].(float64) > before && strings.TrimSpace(ev["Text"].(string)) == "否" {
-						return true
-					}
-				}
-				return false
-			})
+			d.encounterChoice("否")
 			d.shot("encounter-selected-no")
 			d.press(36)
 			d.scene("map")
@@ -228,11 +218,140 @@ func (d *driver) army(prefix string) {
 	}
 }
 
+func (d *driver) encounterChoice(want string) {
+	selection := func(s map[string]any) (string, float64) {
+		value, step := "", float64(0)
+		for _, item := range s["strings"].([]any) {
+			e := item.(map[string]any)
+			if e["Y"] == float64(133) && (e["Source"] == float64(66) || e["Source"] == float64(72)) {
+				value, step = strings.TrimSpace(e["Text"].(string)), e["Step"].(float64)
+			}
+		}
+		return value, step
+	}
+	current, _ := selection(d.status())
+	if current == want {
+		return
+	}
+	if current != "是" && current != "否" {
+		panic("遭遇目前選項未確認")
+	}
+	before := d.status()["steps"].(float64)
+	d.press(113)
+	d.wait("遭遇實際選項 "+want, 20, func(s map[string]any) bool {
+		value, step := selection(s)
+		return value == want && step > before
+	})
+}
+
+func (d *driver) battle() {
+	shot := func(name string) {
+		d.shot(name)
+		raw, err := json.MarshalIndent(d.status(), "", "  ")
+		check(err)
+		check(os.WriteFile(filepath.Join(d.out, name+".json"), append(raw, '\n'), 0644))
+	}
+	stableText := func() {
+		lastFull, lastHalf, stable := float64(-1), float64(-1), float64(0)
+		d.wait("戰鬥文字完成且持續 Draw", 25, func(s map[string]any) bool {
+			t := s["text"].(map[string]any)
+			f, h, frame := t["Full"].(float64), t["Half"].(float64), s["presented_frames"].(float64)
+			if f != lastFull || h != lastHalf {
+				lastFull, lastHalf, stable = f, h, frame
+				return false
+			}
+			return frame >= stable+3
+		})
+	}
+	for n := 0; n < 128 && d.status()["presented_scene"] != "encounter-confirm"; n++ {
+		key := byte(114)
+		if n%2 == 1 {
+			key = 113
+		}
+		d.press(key)
+	}
+	d.scene("encounter-confirm")
+	shot("battle-01-first-encounter")
+	d.encounterChoice("是")
+	shot("battle-02-selected-yes")
+	before := d.status()["steps"].(float64)
+	d.press(36)
+	d.wait("正常戰場已印兵力", 45, func(s map[string]any) bool {
+		for _, item := range s["strings"].([]any) {
+			e := item.(map[string]any)
+			if e["Step"].(float64) > before && e["Source"] == float64(36000) {
+				return s["music"].(map[string]any)["cue"] == float64(3)
+			}
+		}
+		return false
+	})
+	stableText()
+	shot("battle-03-ready")
+	before = d.status()["steps"].(float64)
+	d.press(55) // V: original troop-count display.
+	d.wait("V 重新印出兵力", 20, func(s map[string]any) bool {
+		for _, item := range s["strings"].([]any) {
+			e := item.(map[string]any)
+			if e["Step"].(float64) > before && e["Source"] == float64(36000) {
+				return true
+			}
+		}
+		return false
+	})
+	stableText()
+	shot("battle-04-counts")
+	controlEvents := func() []map[string]any {
+		var out []map[string]any
+		for _, item := range d.status()["input_events"].([]any) {
+			e := item.(map[string]any)
+			if e["Scan"] == float64(0x1d) {
+				out = append(out, e)
+			}
+		}
+		return out
+	}
+	edge := func(key byte, down bool) {
+		before := d.status()["updates"].(float64)
+		d.key(key, down)
+		d.wait("Ctrl 實際按鍵已處理", 15, func(s map[string]any) bool { return s["updates"].(float64) >= before+5 })
+	}
+	beforeControl := len(controlEvents())
+	edge(37, true)
+	edge(105, true)
+	edge(37, false)
+	control := controlEvents()
+	if len(control) != beforeControl+1 || control[len(control)-1]["Down"] != true {
+		panic("右 Ctrl 仍按住時提前送出 DOS 放開")
+	}
+	edge(105, false)
+	control = controlEvents()
+	if len(control) != beforeControl+2 || control[len(control)-1]["Down"] != false {
+		panic("最後一個 Ctrl 放開沒有送達 DOS")
+	}
+	d.wait("兵力數字結束後可繼續操作", 25, func(s map[string]any) bool {
+		for _, source := range s["visible_sources"].([]any) {
+			if source == float64(36000) {
+				return false
+			}
+		}
+		return true
+	})
+	shot("battle-05-active-unit")
+	d.press(9)
+	d.scene("battle-result")
+	stableText()
+	shot("battle-06-result")
+	d.press(36)
+	d.scene("map")
+	shot("battle-07-result-closed")
+}
+
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
 	flow := flag.String("flow", "inspect", "inspect, captions, captions-fallback, story, story-skip, story-fallback, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	armyCheck := flag.Bool("army-check", false, "visit F2 twice through F1 before save and after reload")
+	battleCheck := flag.Bool("battle-check", false, "first natural encounter, V/Ctrl, retreat and acknowledge result before normal save")
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
 	showPublisher := flag.Bool("intro-publisher", false, "wait for actual publisher wordmarks before Esc")
 	publisherCycle := flag.Bool("publisher-font-cycle", false, "switch one actual F10 font while publisher is visible")
@@ -693,6 +812,9 @@ func main() {
 	d.press(36)
 	d.scene("map")
 	d.shot("05-map")
+	if *battleCheck && *flow == "save" {
+		d.battle()
+	}
 	if *armyCheck {
 		d.army("new")
 	}

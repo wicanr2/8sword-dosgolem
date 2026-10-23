@@ -83,6 +83,7 @@ type game struct {
 	started                                    time.Time
 	startCycles                                uint64
 	settings                                   string
+	controlHeld                                bool
 	titleSuffix                                string
 }
 
@@ -144,6 +145,7 @@ var keys = []struct {
 }{
 	{ebiten.KeyDigit1, 2}, {ebiten.KeyDigit2, 3}, {ebiten.KeyDigit3, 4},
 	{ebiten.KeyEscape, 1}, {ebiten.KeyEnter, 0x1c}, {ebiten.KeySpace, 0x39},
+	{ebiten.KeyV, 0x2f},
 	{ebiten.KeyArrowUp, 0x48}, {ebiten.KeyArrowDown, 0x50}, {ebiten.KeyArrowLeft, 0x4b}, {ebiten.KeyArrowRight, 0x4d},
 	{ebiten.KeyF1, 0x3b}, {ebiten.KeyF2, 0x3c}, {ebiten.KeyF3, 0x3d}, {ebiten.KeyF4, 0x3e}, {ebiten.KeyF5, 0x3f}, {ebiten.KeyF6, 0x40}, {ebiten.KeyF7, 0x41},
 	{ebiten.KeyNumpad1, 0x4f}, {ebiten.KeyNumpad2, 0x50}, {ebiten.KeyNumpad3, 0x51}, {ebiten.KeyNumpad4, 0x4b}, {ebiten.KeyNumpad5, 0x4c}, {ebiten.KeyNumpad6, 0x4d}, {ebiten.KeyNumpad7, 0x47}, {ebiten.KeyNumpad8, 0x48}, {ebiten.KeyNumpad9, 0x49},
@@ -163,6 +165,7 @@ func (g *game) Update() error {
 	}
 	if !ebiten.IsFocused() {
 		g.engine.ReleaseAll()
+		g.controlHeld = false
 	} else {
 		if inpututil.IsKeyJustPressed(ebiten.KeyF10) && g.engine.HD {
 			choices := g.engine.FontChoices()
@@ -190,6 +193,13 @@ func (g *game) Update() error {
 					return err
 				}
 			}
+		}
+		control := ebiten.IsKeyPressed(ebiten.KeyControlLeft) || ebiten.IsKeyPressed(ebiten.KeyControlRight)
+		if control != g.controlHeld {
+			if err := g.engine.Key(0x1d, control); err != nil {
+				return err
+			}
+			g.controlHeld = control
 		}
 	}
 	started := time.Now()

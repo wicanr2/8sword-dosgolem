@@ -812,3 +812,22 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - 完整前端套件 195.890 秒通過，三個目標測試 7.151 秒通過。收尾只補缺素材時明示跳過的測試入口，最終真素材目標測試 9.062 秒通過、缺素材正確跳過；正式二進位仍逐 byte 同實際視窗使用者。完整套件／重播所用測試來源另存 `runtime-graphics_actor_test-r1.go`，不以後加的測試入口冒充原始建置。
 
 正式改動前 44 筆來源及四個程式另存 `workplace/player/build-pre-army-r1/`，綁定 `bd6a6810…b7`，供博物館 r4–r6 歷史收據回查。現行民兵並未接入未批准的博物館配色或〈遨遊〉配器。018 限定 CONFORMED，017 仍 DRAFT，整體 HD 仍 active；無新發行包、tag 或 Release。
+
+## 2026-10-24：正常戰鬥、結果訊息與 V／Ctrl
+
+研究及正式入口分開：[019](docs/spec/019-normal-encounter-battle-presentation.md)的戰場美術為 DRAFT，[020](docs/spec/020-battle-result-presentation.md)的結果辨識與原版按鍵為限定 CONFORMED。來源、探針、失敗版本及完整收據在 `workplace/probe-20261023/graphics-first/battle-r1/`。工具沿用 Go 1.24.13、Pillow 11.3.0、IDA 9.4 及固定映像，原版及正式資料庫唯讀。
+
+- 已證實：正常新遊戲後預定左右移動，第 38 次遇到第一場自然遭遇。r1 的畫面停在「否」，直接 Enter 回地圖，不能稱戰鬥通過。原版先印「是」、後印「否」，期間仍有移動按鍵，不能由末張圖推定初始預設。r2 起核對本次實際「是」才 Enter；沒有重擲挑敵人。
+- 已證實：真正戰場讀 `GRO02.EG`，第 3 曲讀 MWAR／SWAR，撤退回 MWLK／SWLK。GRO02 SHA `9e0182e0…5e4a`，沿用 011 有界 Huffman 解碼後 64004 bytes、80×200×四平面，SHA `b2262e97…f763`。來源與正常 `14D2:0A6F` 返回的 128000 色號由獨立 decoder 全部核對。MFIG 用途未因此解出，沒有新增 HD 曲目。
+- 遭遇長尾圖取自 ENEMY.AY 檔案偏移 12040，六塊水平鏡射。十二個 1／3／…／23 列來源是完整圖的各平面前綴，y+height 固定 112。四個 88×50 未知來源解碼後是 CHOI.EGG 的陰陽圖案，完整記錄精確對上四個偏移，不是四支部隊。活動單位標記的語意仍為強推論。
+- 內建 image_gen 生成 B 手繪夕照山谷候選。原始 1586×992 RGB PNG SHA `4ec05b75…59f2` 與完整提示 SHA `dd2d46bc…e195` 保存於 `background-art-provenance-r1.json`，原始 byte 不改。只加入一次性主機圖像表；正式 loader、r16 素材及索引都沒有加入此背景。
+- `normal-audit-r5.json`：觀測、控制、背景原型三組各 50 個正常操作點的完整 state 相同，150 次 Frame 前後純度通過。最終 state `1e837017…75b6`、PCM `a1a1b9ea…534a`、35 工作檔及原版事件相同。固定 DOS 基準時鐘為 12:00:00.00，但實際 RNG seed 未知；這只證明這些呈現／觀測隔離，不驗傷害、現金公式或精確骰序。
+- 背景原型只剩 75200 個新背景格，52800 格被還原成原版色塊。`background-prototype-comparison-r1.png` 明標同狀態失敗原型，不是定稿或正式接入。IDA 正式 PAM.i64 複製至容器 /tmp，`ida-battle.json` 驗 9.4、521 函式及 PAM SHA；原名、原始 bytes、caller、IDA 線性及檔案偏移保留。`sub_24246` 對應執行期 `14D2:0626`／寫入 `06B8`，`sub_24043` 對應 `0423`／寫入 `047F`。另一頁 latch 與矩形還原是強推論，尚待正常參數、來源頁、遮罩及返回色號驗證；不深入標準 VGA driver。
+- r3／r4 撤退後先見地圖，F1 卻沒有開人物頁。實圖證明還有「戰鬥結果／失敗／遺失現金」訊息，舊分類因側欄仍在而回 map。r5 以可見字墨確認來源 18046，普通 Enter 關閉後，正常 F1／F2 皆可返回。`BATTLE-RESULT-MODAL-RESOLVED` 已回填 003，020 保存不可變鍵與回填台帳。
+- 正式 Tracker 現保存目前顯示頁來源，結果標題優先分類 `battle-result`，模式清除同步失效，排序來源列表是複本。這些 metadata 不修改客體或自動關閉訊息。整合測試 r1／r2 曾把 V 顯示當作會自行結束，失敗日誌保留；修正為已觀察的 V→Ctrl→數字消失→Esc 後，20.663 秒通過。正式內部套件全測 337.654 秒通過。
+- 真正 GUI r1 又發現獨立輸入缺陷：XTEST 送 V，但 DOS 沒有 Scan 47，`cmd/8sword` 的 keys 表確實缺 V／Ctrl。已補 V 轉送，左右 Ctrl 合併為一個 1Dh 狀態。GUI r1 的主程式來源由 `build-pre-battle-result-r1` 回查，控制器原碼依原 manifest SHA 存 `gui-check-failed-r1.go`。失敗日誌與部分幀保留；該次二進位已被重建覆寫，不冒稱仍可驗其 bytes。
+- 最終 `battle-result-save-r2` 真正視窗共 295／102 幀、69／20 次改變已解碼及看圖。V 的按下／放開送達 IRQ1並重新出字；左右 Ctrl 四個物理邊緣只產生一組原版按下／放開，右 Ctrl 仍按住時沒有提前放開。這份正常路段沒有另稱失焦／回焦測試通過。
+- `gui-audit-r2.json` 用實際 atlas 取樣，三個 Draw 共 10410 個兵力數字不透明墨點符合 Noto；原字模負對照 1960 個不符。三個結果欄位在三個 Draw，共九個欄位逐 RGBA 同已驗 Noto 基準；亂數金額排除，不驗公式。結果與地圖來源共存時為 battle-result，普通 Enter 後標題消失且真正呈現 map。精確像素聲明限 1920×1200 Draw，X11 縮放未獨立建模。
+- 同一視窗走真正 F7、正常回 DOS、冷啟動繼續及 F1／F2。2987 bytes 同讀回 RAM SHA `17397b19…267c`，read step 34479484、正常退出碼 0；4755 個視覺差異仍限主角動畫。快照只作結束後 0 指令檢視，不代替讀檔。
+
+實作前 44 筆來源與四個程式綁定 `05695743…440` 保存於 `workplace/player/build-pre-battle-result-r1/`，現行正式建置為 45 筆來源。r16 仍 77 檔，原版、字型、音樂、原圖、提示、DB、快照及逐幀產物不進 Git。下一步只補 019 兩個已定位呈現入口的正常資料與還原生命週期，再回 READY 與正式 HD 合成；全遊戲 HD 仍未完成。

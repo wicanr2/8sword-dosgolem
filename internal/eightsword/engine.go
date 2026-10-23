@@ -367,6 +367,7 @@ func (e *Engine) Status() map[string]any {
 		out["text"] = e.Tracker.Stats
 		out["scene"] = e.Tracker.Scene
 		out["visible_scene"] = e.Tracker.VisibleScene
+		out["visible_sources"] = e.Tracker.VisibleSources()
 		out["strings"] = e.Tracker.Strings
 		if e.Tracker.graphics != nil {
 			out["graphics"] = e.Tracker.graphics.Stats

@@ -7,6 +7,10 @@
 | 目標 | 以 dosgolem 執行《神州八劍》，接入 HD 畫面及 HD 音樂；參考 mm3 的方法 |
 | 授權 | 已授權 Docker、主機 gh 建倉及將這份定稿參考圖存入私人 GitHub 倉庫；已選 B 中國古風及 Noto Black 900，〈幻〉配樂已選 B 撥弦／長笛方向。平台及公開方式尚未定案 |
 | 本輪決定 | 使用者選 A 深藍手繪故事背景，保留故事原文、字色及位置。另要求字型設定，允許隸書或草書，明確授權由 Codex 自行找合適字型，不再訪談選型 |
+| 戰鬥結果與按鍵 | [020](docs/spec/020-battle-result-presentation.md)限定 CONFORMED。`battle-result` 優先於地圖側欄，普通 Enter 才關閉；修正前端漏送 V／Ctrl，左右 Ctrl 合併為單一掃描碼。可見來源 metadata 與 Frame 客體純度已驗。正式內部套件 337.654 秒、正常撤退整合測試 20.663 秒通過 |
+| 正常戰鬥視窗 | `workplace/player/gui/battle-result-save-r2` 為 295／102 幀、69／20 次改變，已解碼及看圖。第一場自然遭遇、V、左右 Ctrl 重疊、撤退、結果關閉、F1／F2 及真正 F7 存退讀通過。10410 個 Noto 不透明數字墨點同 atlas，原字模負對照 1960 個不符；九個結果靜態欄位同已驗 Noto。2987 bytes 同讀回 RAM `17397b19…267c`，read step 34479484，退出碼 0。亂數數額及戰鬥規則未驗 |
+| 戰場 HD 研究 | [019](docs/spec/019-normal-encounter-battle-presentation.md)為 DRAFT。GRO02.EG 由既有 Huffman 解碼，正常來源與返回的 128000 色號皆相同；遇敵圖的十二個高度前綴及 CHOI 四張陰陽圖案已解析。三組正常重播各 50 點的 state 同 `1e837017…75b6`、35 工作檔及 PCM 相同；手繪背景原型仍有 52800 格原版色塊，未接 production。下一步只追 `14D2:0626`／`0423` 的來源頁、遮罩及實際返回，再回正式合成 |
+| 戰鬥前歷史來源 | `workplace/player/build-pre-battle-result-r1` 保存提交 `05695743…440` 的 44 筆來源與四個程式，供民兵及本輪早期研究回查。正式現在為 45 筆建置來源；r16 素材仍 77 檔，戰場候選、原圖及提示只留本機 |
 | 民兵 HD 接入 | [018](docs/spec/018-army-militia-image.md)限定 CONFORMED。正常 F2 的 MAN01.EGG 首筆水平鏡射與六塊遮罩已核對，固定來源 84、88×50 畫幅。現行素材 `workplace/player/assets-painted-r16` 共 77 檔，與獨立重建相同；r15 保留作基準，73 份非清單檔不變。其他兵種未套用 |
 | 民兵隔離與故障 | `graphics-first/army-r1/runtime-audit-r1.json`：四組正常 F2／F1 兩次往返，完整 state `2ad291e1…872b`、PCM `01abf481…cf4a`、26 工作檔及事件相同。兩個 79200 像素人物區同獨立重建，Noto 與人物頁不變；壞第十三張 PNG 整組回退，四張畫面同停圖組。十二張舊主角與舊材質快取不變，完整前端測試 195.890 秒通過 |
 | 民兵實際視窗 | `workplace/player/gui/army-save-r1` 187／111 幀、33／19 次改變已解碼及看圖。新遊戲與繼續後各兩次 F2／F1，32 個實際 Draw 的人物區同獨立合成；真正 F7 存退讀的 2987 bytes 同 RAM `29dd62ae…2359`，read step 33812777，正常 DOS 退出碼 0。X11 縮放未獨立建模，精確像素聲明限原尺寸 Draw |
@@ -29,7 +33,7 @@
 | 背景與字型視窗 | `story-art-caoshu-visible-r2/story` 409 幀／147 次改變已解碼及看圖，五頁 90 個故事 Draw、四組 19 個字幕 Draw 逐 RGBA byte 同獨立重建。`font-settings-save-r2` 的 421／271 幀、90／72 次改變已檢視；F10 五次循環、Noto 原像素恢復、偏好重啟、F7 存退讀及 F1 通過，2987 bytes 同 RAM SHA `29dd62ae…2359`。背景故障 286／78、草書故障 344／91，已看圖及獨立核對各自回退，其他 HD 保留 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 目前程式包含 008 音樂事件至 016 發行商文字，建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
+| 文件同步 | 目前程式包含 008 音樂事件至 020 戰鬥結果及 V／Ctrl，019 戰場美術仍為研究原型；建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
 | Docker | 沿用既有研究／Go／影像及 IDA 映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；片頭後以 INT 21h AX=4B03 覆蓋載入 `PAM.AY`，Seg／Reloc 都是 0110，沒有新的子行程 PSP。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |
@@ -44,7 +48,7 @@
 | 博物館製作名單 | [013](docs/spec/013-intro-museum-captions.md)四組文字限定 CONFORMED。正常五次繪字及兩個 VGA 實體頁已核對，字幕按原版翻頁顯示，保留原文、空格、青色及位置；重用 r11 的 448 字集，56 檔沒有改變。字庫、背景及清頁 helper 不重開相同 RE |
 | 名單同狀態與視窗 | `graphics-first/captions-r1/runtime-audit-r1.json`：三組完整 state 同 SHA `ce429bca…49e5`，12 工作檔、事件及整段 PCM 相同；五張 HD 圖只在字幕帶內改變，故障五張同原字。`intro-captions-visible-r2/captions` 的 494 幀／147 次改變已解碼及檢視，42 個字幕 Draw 逐 RGBA byte 同獨立重建，四組皆可見，無原字露出。r1 只因完整後續片頭超過 35 秒驗證等待而停止，不作通過收據 |
 | 名單後存讀與回退 | `intro-captions-save-r2` 兩次冷啟動先呈現名單，再普通 Esc、F7 存退讀。422／151 幀、48／23 次改變已解碼及檢視；四個字幕 Draw 另逐像素吻合。2987 bytes 與 RAM 同 SHA `29dd62ae…2359`，read step 24808863；4755 像素差異限主角動畫。壞 atlas 的實際視窗回原字，186 幀／29 次改變已檢視。最終三項測試另涵蓋標題階段提早 Esc，59.443 秒通過；最終 r4 標題 Esc 視窗 190 幀／20 次改變亦已檢視，名單請求零、正常退休且 PAM 字墨保持 |
-| 正常原版路段 | 研究入口及新視窗皆已冷啟動、VGA／AdLib、新遊戲、F1、返回、移動、F7 存檔、回 DOS，再冷啟動繼續。視窗透過 XTEST 真正按鍵，實際呈現頁面另由所有權與 Draw 收據確認；遇到的攻擊確認經原版選「否」後返回，未驗亂數或戰鬥規則 |
+| 正常原版路段 | 早期基準已冷啟動、VGA／AdLib、新遊戲、F1、返回、移動、F7 存檔、回 DOS，再冷啟動繼續；遇敵選「否」。後續 020 另走真正「是」、戰場兵力、撤退與結果關閉，實際呈現由所有權及 Draw 確認。未驗亂數、傷害或勝利規則 |
 | 真正存讀檔 | 原版寫出的 2987-byte 進度檔，讀回 RAM 後逐 byte 相同；已回到保存的鏡頭與主角位置。動畫相位有差異，未稱整幅畫面一致 |
 | 音樂來源 | 十一組 M／S 檔符合 AdLib MUS／SND 形狀，已完整解析資料邊界與音符時刻。兩個檔頭 command_count 與解析事件數不同，保留原值，不作有效事件數。來源清單與雜湊在 `workplace/probe-20261023/music-first/hd-audition-r1/source-catalog.json` |
 | 音樂欣賞 | 正常冷啟動後逐一操作十項，曲名與檔案已核對，見同目錄 `menu-source-map.json`。〈幻〉為 MINT.AY／SINT.AY，六聲部 847 個起音順序與原版 OPL 相符，頻率量化誤差小於 0.1 半音；格式時長 85.603748 秒，原版模型首輪 85.570673 秒。時間為 hardware-spec approximation，未稱逐週期 parity。Esc 返回主選單且所有旋律聲道關閉。MFIG.AY 不在這十項，實際用途仍未知 |
@@ -84,7 +88,7 @@
 | 專案介紹 | [README.md](README.md)已撰寫遊戲故事、玩法、現況與研究操作入口；介紹以原版手冊及包裝為據，不將手冊內容當成本案驗收成果 |
 | 參考入口 | 已查閱 mm3 的 AGENTS、CONTEXT 與音樂、呈現及效能規格，以及 dosgolem 的 README、CLAUDE；入口見 AGENTS |
 | 已完成 | 來源盤點、原版啟動及真正存讀檔研究路段、BIOS 顯示頁、PAM 字碼字模、Noto 字集與執行期覆繪、首批地表及有限正常視窗路段。每項證明範圍不同，不能合稱全遊戲完成 |
-| 原版未知 | 發行版本及既有修改、戰鬥與後期流程、其餘圖像來源及動畫、其他程式字庫與圖片文字、其他九曲完整播放、戰鬥／後期音樂場景及 MFIG 用途尚未知。PAM 字碼、目前三支 bitmap ABI、十項選曲與 PAM 播放／停止入口已解，不重開同項研究 |
+| 原版未知 | 發行版本及既有修改、戰鬥規則及其他戰鬥／後期流程、其餘圖像來源及動畫、其他程式字庫與圖片文字、其他九曲完整播放、其他戰鬥／後期音樂場景及 MFIG 用途尚未知。首場戰鬥 MWAR／SWAR 與撤退回 MWLK 已確認；PAM 字碼、既有三支 bitmap ABI、十項選曲及播放／停止入口不重開。019 的兩支新增繪圖常式仍待動態參數及返回驗證 |
 | 可選打磨 | 尚未進入；HD 是正式範圍。畫風、字重及首曲已確認並接入，其餘圖像、文字與曲目仍須完成，不能列為可選打磨 |
 | 清理 | 本輪只用一次性 `--rm` 容器，沒有建立新映像。來源、失敗與成功收據留在 workplace；收尾擁有權與容器核對記 WORKLOG |
 

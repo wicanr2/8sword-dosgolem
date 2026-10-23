@@ -45,6 +45,7 @@ type Tracker struct {
 	Stats                           TrackerStats
 	Scene                           string
 	VisibleScene                    string
+	visibleSources                  map[uint16]bool
 	stringSource                    uint16
 	Strings                         []StringEvent
 	revision, cachedRevision        uint64
@@ -74,6 +75,7 @@ func (t *Tracker) clear() {
 		t.graphics.clear()
 	}
 	t.VisibleScene = ""
+	t.visibleSources = nil
 	t.stringSource = 0
 	t.cachedFrame = nil
 	t.revision++
@@ -181,6 +183,8 @@ func (t *Tracker) observeString() {
 		t.Scene = "map"
 	case 1170, 1182, 1194, 1206, 1218, 1230, 1242:
 		t.Scene = "character"
+	case 18046:
+		t.Scene = "battle-result"
 	case 12742, 12762, 12782, 12802, 12822, 12842:
 		t.Scene = "system-menu"
 	}
@@ -486,6 +490,7 @@ func (t *Tracker) Compose() *image.RGBA {
 		}
 	}
 	t.Stats.ComposedFrames++
+	t.visibleSources = sources
 	t.VisibleScene = visibleScene(sources)
 	t.cachedFrame = out
 	t.cachedDisplay = p
@@ -504,6 +509,11 @@ func visibleScene(sources map[uint16]bool) string {
 			}
 		}
 		return true
+	}
+	// The normal retreat result is drawn over the map. Its visible title
+	// takes priority over the still-present side menu; see spec 020.
+	if all(18046) {
+		return "battle-result"
 	}
 	if all(17749, 17786) {
 		return "encounter-confirm"
@@ -527,3 +537,16 @@ func visibleScene(sources map[uint16]bool) string {
 }
 
 func (t *Tracker) EventSource() string { return hex.EncodeToString(t.pam[0x2463e:0x2464e]) }
+
+func (t *Tracker) HasVisibleSource(source uint16) bool { return t.visibleSources[source] }
+
+// A copy of the last composed display's source IDs. Historical string events
+// and glyphs retained on another VGA page do not enter this list.
+func (t *Tracker) VisibleSources() []uint16 {
+	out := make([]uint16, 0, len(t.visibleSources))
+	for source := range t.visibleSources {
+		out = append(out, source)
+	}
+	sort.Slice(out, func(i, j int) bool { return out[i] < out[j] })
+	return out
+}
