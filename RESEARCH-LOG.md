@@ -712,3 +712,16 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - 依已證實遮罩抽出十二份原版 RGBA，`verified-mask-atlas-r1.json` 及並列圖已檢視。第七筆偏移 16584 的 `(32,11)` 為遮罩 1／色號 0 的黑墨，原版共寫八次，不能以 RGB 非零推導 alpha。第五塊的未驗顯示分支留作範圍限制，不阻塞本次 VGA 解讀。
 
 舊的「重複表頭只是強推論」「第六塊仍未知」已由原始 consumer、完整緩衝區與全部正常呼叫補足。`audit-resolution-r1.py` 檢查本規格／CONTEXT／本段的回填標記；011 的壓縮與不透明繪圖結論不受影響。017 仍 DRAFT，配色待答，HD 人物／近景、256 色交接、正式接入及視窗／存退讀／故障未完成。
+
+## 2026-10-24：博物館即時配色原型與清頁缺口
+
+入口為 [017 即時原型收據](docs/spec/017-intro-museum-art.md#即時配色原型收據與已知失敗)。研究根目錄仍為 `workplace/probe-20261023/graphics-first/museum-art-r1/`，正式程式、r15 與前節已解來源均未修改。使用既有 Go 1.24.13 與 Pillow 11.3 映像，無網路、UID/GID 1000:1000，原版及素材唯讀。未開新的 driver 或解壓研究。
+
+- 原型的 `prepare-live-prototype.py` 保留 A／B 原圖，兩份相同中央裁幅轉成 1920×600，SHA 分別為 `b6eff2d96d1a6b95ed633fe0bfc409537cae06463ad6228c9261e6215f309a55`、`a1ef56d31f9729175ff59f1df0efd61d83db3e8f8933a1bd60afdd234e59e9e7`。`live-assets-r1.json` 保存來源。只在已辨識左側背景上合成，人物仍依原版第六塊遮罩及兩頁實際列位址更新，含色號 0 與右緣跨列；不以角色外框清空背景。
+- `live-off-r1`、`live-native-r1`、`live-a-r1`、`live-b-r1` 採同一普通冷啟動、3000 cycles/ms、21400 ms，未載入快照或改 RAM。四組各 428 幀，完整 state 同 `b1cafef3791e821685c691806d4096caa5ee53bc855418ff4ab28df1feeaf6b7`，9 工作檔、原版檔案事件及整段 PCM 相同。此處聲音含既有〈幻〉HD，PCM SHA `5fe8f10af3b6e891f448af2902e1aa85d20be8f38000111ab2f74043cc4c6e33`，不能與前節純 FM PCM 混用。
+- `audit-live-r1.py` 獨立解析來源平面、遮罩、物理列與逐幀串流。24 個已完成左景幀完整 RGBA 符合來源／人物／背景重建，原版模式同控制，A／B 同獨立合成；全部 428 幀的美術帶外像素同控制。19 個繪圖保留幀只驗證帶外，剩下 385 幀原版回退完全相同。三組 Frame／Compose 前後客體相同；三份原型交易日誌同為 218 筆，其中 212 繪圖、6 清頁。原版模式直接比較過 23 次完整畫面，另一次是已快取畫面。
+- `preview-gui.go` 是正式前端的研究副本，來源與 SHA 見 `preview-gui-source.json`；它保存原本字幕／故事 metadata 後才合成美術帶，沒有覆寫 Engine 的單一視訊 callback。`live-gui-bin-r1/` 保存獨立建置輸入、輸出與 Go 版本，不冒用正式 binary manifest。`live-gui-save-r1` 以 XTEST 普通操作完成兩次冷啟動、字幕、Esc、新遊戲、人物頁往返、F7 儲存、正常回 DOS 再繼續。204／142 幀、41／25 次改變已解碼及檢視，字幕 1／2 個 Draw 完整 1920×90 RGBA 符合獨立 Noto 重建。
+- 正常進度檔 2987 bytes 與重新啟動後原版讀回的 RAM 相同，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`；`save-cycle-audit.json` 記錄讀取 step 27002801、正常退出碼 0。快照僅在結束後執行 0 指令檢視，未取代原版讀檔。前後地圖 4755 個差異像素限主角圖塊，動畫相位未同步。
+- **原型失敗已證實：** save Draw 85、step 22328420、顯示頁 0 暫回原版左景，Draw 86 恢復。serial 44／45 已完成頁 0 的背景／人物；serial 46 記錄清頁目的 4000h，原型卻清除兩頁模型。這是原型主機失效範圍過寬，不是 dosgolem 缺頁或原版圖像來源未知。精確清頁作用範圍仍依 013 與既有 consumer 證據補足；不能憑本輪推論直接改正式實作。失敗幀、前後定位、連續資料與既有存讀成功分別保存。
+
+`live-comparison-r1.webp` 只收 19 個完成交易狀態，左 A、右 B、每張固定 180 ms，不能代替連續呈現或真實時間驗收。原始完整序列在各組 `presentation.frames.gz`，A／B 博物館、原版右景／近景及後續故事轉場已檢視。017 保持 DRAFT，配色待答；完整 HD 人物、未知寫入失效、清頁修正、交易保留帶與素材故障仍未完成。字型選型不再提問，正式 Noto／隸書風／草書設定不變。

@@ -14,6 +14,8 @@
 | 博物館美術原型 | [017](docs/spec/017-intro-museum-art.md)為 DRAFT。本機 `graphics-first/museum-art-r1/` 已有 A 紫藍手繪、B 青玉金色與同狀態比較圖；內建 image_gen 原圖、完整提示、輸入及 SHA 已保存，尚未選定，也未接入正式程式。配色 A／B 已提問，建議 A 保留原版氣氛；不得把沉默當作同意 |
 | 博物館來源目錄 | 同目錄 `source-catalog.json` 核對 TIT3 兩幅背景、TIT4 十二筆記錄與 TIT5 近景；`MUSEUM-MASK-RESOLVED` 已補 IDA `sub_52C0` consumer 與正常逐次驗證。首四塊供本次色號，第六塊決定寫入／保留，第五塊供未驗的替代顯示分支。十二張原版 RGBA 與遮罩已抽出、檢視；真正黑墨不能當透明。HD 動態圖及正式合成仍未接入 |
 | 博物館動態與頁面 | `runtime-audit-r1.json`：212 次原版繪圖、5818720 個返回色號逐 byte 同獨立重建，十二筆動態圖皆到達，150 次畫在背景頁。探針／控制完整 state 同 SHA `b1cafef3…f6b7`，9 工作檔、事件與 PCM 相同。`lifecycle-audit-r1.json` 普通 Esc 在 1322h 退休，65 次返回像素及後續 PAM 載入通過，17 工作檔、state 同 SHA `fc73c325…7149` 與音訊相同。這是原版來源證據，未列為 HD 視窗或全遊戲完成 |
+| 博物館即時原型 | 同研究目錄的 `live-audit-r1.json`：控制／原版重建／A／B 各 428 幀，24 個完成左景幀同獨立來源與遮罩合成，全部美術帶外像素不變，完整 state 同 `b1cafef3…f6b7`、9 工作檔及 HD PCM 相同。19 個交易保留幀未做整帶 exact；右景、人物及近景仍原版。`live-comparison-r1.webp` 為左 A／右 B、19 個完成狀態的抽樣動畫，固定 180 ms，不是連續播放證據 |
+| 博物館原型視窗缺口 | `live-gui-save-r1` 的 204／142 幀與 41／25 次改變已解碼及看圖，字幕三個 Draw 與原文／Noto 獨立合成相同，正常 Esc、人物頁、F7 存退讀通過，2987 bytes 同 RAM `29dd62ae…2359`。但 save Draw 85 曾閃回原背景：清頁交易使原型過度清除另一物理頁模型，Draw 86 才恢復 HD。`live-gui-audit-r1.json` 保留失敗；這份原型未通過連續 HD，017 仍 DRAFT，正式程式與 r15 不變 |
 | 背景與字型視窗 | `story-art-caoshu-visible-r2/story` 409 幀／147 次改變已解碼及看圖，五頁 90 個故事 Draw、四組 19 個字幕 Draw 逐 RGBA byte 同獨立重建。`font-settings-save-r2` 的 421／271 幀、90／72 次改變已檢視；F10 五次循環、Noto 原像素恢復、偏好重啟、F7 存退讀及 F1 通過，2987 bytes 同 RAM SHA `29dd62ae…2359`。背景故障 286／78、草書故障 344／91，已看圖及獨立核對各自回退，其他 HD 保留 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
