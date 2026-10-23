@@ -19,7 +19,7 @@
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁與金玉介面，走過四方向移動、人物頁往返及真正存退讀；沙地實景、其他角色與圖像仍待處理 |
-| HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII；實際視窗已驗主選單、人物、軍隊、無法施法提示、地圖位置、系統選單及真正存退讀，更廣畫面與長文仍待驗 |
+| HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII；已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置、系統選單及真正存退讀，更廣畫面與長文仍待驗 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
 
@@ -95,6 +95,8 @@ EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false bash tools/player.sh gui-c
 
 覆繪規格、核心觀測補丁、狀態隔離及未驗範圍見 [003：Noto 執行期文字覆繪](docs/spec/003-noto-runtime-overlay.md)。字型素材、原版截圖與機器快照均留本機。
 
+啟動時可看見原版 VGA／音效選項，英文換成 Noto，雙線框及 1／2／3 按鍵保留。驗證工具以實際呈現的提示送鍵；`EIGHTSWORD_GUI_FLOW=boot` 另測無效 Return、新遊戲及人物頁，字型損壞可用 `boot-fallback` 核對原字模。來源與限定驗收見 [010：啟動文字](docs/spec/010-boot-console-text.md)。
+
 正常視窗存退讀可用 `EIGHTSWORD_GUI_FLOW=save-cycle` 選擇，測試會由原版 F7 儲存、正常回 DOS，再開另一個程序選「繼續」，不以快照取代讀檔。每輪保留建置來源、實際按鍵、逐幀畫面及原版檔案事件；[存退讀核對工具](tools/audit-save-cycle.py) 的範圍見 003。`EIGHTSWORD_GUI_RECORD=0` 與 `EIGHTSWORD_GUI_VSYNC=false` 只供效能比較，不代表正式播放設定。
 
 視窗收據的 `stage_totals` 保存模擬、音訊、合成、上傳與錄製的累計成本，`session` 分開列出實際時間與 dosgolem 模型虛擬時間。重複畫面錄製會保留每次呈現與步數，減少掃描相同畫素；格式及驗證範圍見 [003 的成本量測](docs/spec/003-noto-runtime-overlay.md#呈現與錄製成本)。近期幀率、全程平均與單次合成耗時須分開判讀。
@@ -147,6 +149,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 - [主角動作規格](docs/spec/007-masked-hero-animation.md)：十二張動作圖、底圖還原與人物所有權；正常四方向及存退讀驗證範圍。
 - [音樂事件與播放規格](docs/spec/008-music-events-and-playback.md)：原版請求、Ogg 清單、混音及正常操作驗證。
 - [片頭音樂交接規格](docs/spec/009-intro-music-handoff.md)：PREDELLA 的獨立入口、原版停止及 PAM 覆蓋載入後的掛勾隔離。
+- [啟動文字規格](docs/spec/010-boot-console-text.md)：VGA／音效提示的 Noto 呈現、原字模回退及正常鍵盤流程。
 - [Ogg 解碼器授權紀錄](docs/THIRD-PARTY-NOTICES.txt)：固定版本的第三方 MIT 授權全文。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 

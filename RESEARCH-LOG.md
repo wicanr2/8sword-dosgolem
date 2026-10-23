@@ -559,3 +559,20 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - 真正落地檔與讀回 RAM 的 2987 bytes SHA 皆為 `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，DOS 讀取在 step 12746288。存檔段退出碼 0，讀檔後快照只作 0 指令檢視；不是從快照啟動。4755 個差異像素在 `(404,350)-(523,446)`，限於原版主角圖塊，動畫相位未同步。收據 `save-cycle-intro-audit-r1.json`。
 
 003／008／009 仍 READY。〈幻〉在片頭及音樂欣賞的上述路段已實作並驗證，剩餘曲目、音效共存、實機裝置、片頭圖像與文字、其他素材及全遊戲仍未完成。沒有新的玩家依賴時，不重開片頭解包、旗標或相同地址研究。
+
+## 啟動提示漏畫與 Noto 呈現
+
+來源及規格入口：[010](docs/spec/010-boot-console-text.md)。本節的輸出、位置及狀態比較為固定 dosgolem 核心上的已證實觀測；字體與雙線框是刻意 HD 呈現，不宣稱 DOS 字型像素或完整終端相同。原始 EXE／PAM、工具映像、三份補丁與字型來源沿用前節及 003；本次沒有新增原版補丁或素材。
+
+- `workplace/probe-20261023/intro-text-r1/console-probe.go` 以正常冷啟動查 200 毫秒及 1000 毫秒。前者仍解包且無輸出，後者有 390-byte 顯示提示，TextScreen 的 25 列卻全空。選 1 後累積 780 bytes，音效提示已輸出，文字記憶體仍空。舊前端只讀 TextScreen，因此是來源漏讀，非單純抓圖過早。
+- `console-probe-r2.go` 追加只讀 BIOS 資料區：dosgolem 執行期線性 `0x044A`=80、`0x0450`=0A00。每頁六列、每列 63 bytes 加 LF／CR，前方 18 格保留；六種框線為 CP437，內文是英文，沒有新的 Big5 字庫。首次診斷用 Big5 解碼所得文字不作字碼證據。
+- 顯示區塊 SHA `c0d69f7b75f9457b2c1f191207340c522b813706969c8a96f463c6df7bc91179`，音效區塊 SHA `ed42cfa2eb548fe083c6b3670d142eef819c8bdec24a42ee1acc59fc57feca6c`。`console-invalid.go` 分別在兩頁送普通 Return，BIOS 消耗增加但仍留原頁；其後 1 能繼續。因此以完整輸出、模式及位置辨識，不用鍵數 0／1 猜頁。
+- 核心 `oracle.Console()` 回傳 DOS／BIOS 輸出累積字串。固定核心的 `internal/dos/files.go` stdout／stderr 與 `int21.go` 字元／字串輸出只附加 Console，未同步 B800。正式 [console.go](internal/eightsword/console.go) 只讀此既有介面，以最後完整區塊 SHA 限定來源，未知或部分輸出沿用既有 TextScreen。原版提示字串沒有抄進 Git。
+- DRAFT 的來源及無效按鍵證據審查至 READY 後才實作。ASCII 沿用已批准 Noto 900，框線按字格繪製；缺字型或關閉 HD 時讀固定 PAM ASCII 字模。沒有新增字型、圖像、音樂或改寫 DOS 記憶體。[console_test.go](internal/eightsword/console_test.go) 的真實來源測試及全部本作測試通過，40.203 秒。
+- 成對 `hd-check-r1`／`native-check-r1` 普通按 Return、1、Return、1。五個操作點的完整客體 state、輸入、Console、I/O、週期與步數相同，各次 Frame 前後亦相同。首個顯示頁 state SHA `f4db740037546da6643851c6a2052db4d12bde27a1bf6a85a9538e5dc472e96b`，進圖形後 `a6a07b5cde12c3902d94addb3e65f8b3b67fd19ac0982e65433bf94a32937613`。完整清單在 `console-isolation-audit-r1.json`；探針 SHA `07d897d695d63bae127a20f494d51aba0d26f55a09b6322eedcc31cd11fd0b34`。
+- `workplace/player/gui/boot-console-visible-r1/boot/` 以 XTEST 及真正 Draw 等待完成 30 個按鍵事件，含兩頁、無效 Return、新遊戲、人物頁及 F7，169 幀／17 次改變已解碼與檢視。顯示與音效 PNG SHA 分別 `28d33f6f448ebca4bb14c3bd2f25f245e8e86f6d177f2593cf511707a380882b`／`d63d4fe150c5139303777b2953aa2c3a596a5c4e3de9886bbd8f89f97034f0b1`；各頁無效輸入前後完全相同，所有四列文字在安全框內。原先全黑的早期提示截圖保留，不能引用為文字可見證據。
+- `boot-font-fallback-r1/boot-fallback/` 實際載入壞字型 PNG，回報 SHA 不符並以 PAM 字模顯示兩頁；43 幀／3 次改變已解碼及看圖，無效 Return 畫面不變。`intro-text-r1/window-audit-r1.json` 保存兩組視窗與安全區檢查。
+- 初版視窗驗證誤將 1920×1200 至 1280×800 視為最近鄰縮放，像素比較失敗。已讀固定 Ebiten 2.9.9 的 `gameforui.go/DefaultDrawFinalScreen`：scale<1 採 FilterLinear。移除這項無契約依據的最近鄰假設，檢查實際文字列、字墨安全框與同頁穩定性，並獨立看圖；沒有改 production 呈現或調字型通過。
+- `boot-console-save-r1` 再以兩個冷啟動視窗完成真正存退讀，201／62 幀及 24／10 次改變已解碼並看圖。原版落地檔與讀回 RAM 的 2987 bytes SHA 同為 `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，讀取 step 13945931，正常退出碼 0。4755 個差異像素限主角圖塊 `(404,350)-(523,446)`，未稱動畫相位相同。初次誤用早期 `workplace/inspect-state` 缺 `-save-buffer`；改由現行受版控工具重建，只讀檢視同一份結束快照，沒有重跑遊戲挑結果。
+
+010 僅將這兩個啟動頁標記 CONFORMED。003／008／009 及整體 HD 範圍維持未結案；片頭圖像與圖片文字、長文、其餘角色及曲目仍待處理。

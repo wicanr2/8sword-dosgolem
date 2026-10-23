@@ -229,46 +229,10 @@ func (e *Engine) Frame() *image.RGBA {
 	}
 	return out
 }
-func (e *Engine) consoleFrame() *image.RGBA {
-	out := image.NewRGBA(image.Rect(0, 0, 1920, 1200))
-	for i := 3; i < len(out.Pix); i += 4 {
-		out.Pix[i] = 255
-	}
-	for row, line := range e.Oracle.TextScreen() {
-		for col, r := range []byte(line) {
-			if r < 32 || r > 126 {
-				continue
-			}
-			if e.Assets != nil {
-				e.Assets.DrawRune(out, rune(r), image.Rect(col*24, row*48, (col+1)*24, (row+1)*48), [3]uint8{220, 224, 230})
-				continue
-			}
-			glyph := e.PAM[0x24b38+int(r)*15 : 0x24b38+(int(r)+1)*15]
-			for y, bits := range glyph {
-				for x := 0; x < 8; x++ {
-					if bits&(0x80>>uint(x)) == 0 {
-						continue
-					}
-					for dy := 0; dy < 3; dy++ {
-						for dx := 0; dx < 3; dx++ {
-							px, py := col*24+x*3, row*48+y*3+dy
-							if px+dx >= 1920 || py >= 1200 {
-								continue
-							}
-							at := py*out.Stride + (px+dx)*4
-							out.Pix[at] = 220
-							out.Pix[at+1] = 224
-							out.Pix[at+2] = 230
-						}
-					}
-				}
-			}
-		}
-	}
-	return out
-}
 func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
+	view := e.bootConsole()
+	out["console_stage"], out["console_source_sha256"] = view.stage, view.sha
 	if e.Tracker != nil {
 		out["text"] = e.Tracker.Stats
 		out["scene"] = e.Tracker.Scene

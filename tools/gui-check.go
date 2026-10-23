@@ -108,6 +108,15 @@ func (d *driver) scene(want string) {
 		return s["presented_scene"] == want && s["presented_frames"].(float64) >= first+2
 	})
 }
+func (d *driver) console(want string) {
+	d.wait("啟動提示已真正呈現 "+want, 30, func(s map[string]any) bool {
+		return s["console_stage"] == want && s["presented_console"] == want
+	})
+	first := d.status()["presented_frames"].(float64)
+	d.wait("啟動提示持續呈現 "+want, 20, func(s map[string]any) bool {
+		return s["console_stage"] == want && s["presented_console"] == want && s["presented_frames"].(float64) >= first+2
+	})
+}
 func (d *driver) grab() *image.RGBA {
 	d.c.Sync()
 	geo, err := xproto.GetGeometry(d.c, xproto.Drawable(d.window)).Reply()
@@ -173,7 +182,7 @@ func (d *driver) quit() {
 
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
-	flow := flag.String("flow", "inspect", "inspect, save, reload, menus, music, fallback or art-fallback")
+	flow := flag.String("flow", "inspect", "inspect, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
@@ -209,11 +218,33 @@ func main() {
 		panic("找不到神州八劍視窗")
 	}
 	check(xproto.SetInputFocusChecked(c, 1, d.window, 0).Check())
-	d.wait("顯示選擇", 30, func(s map[string]any) bool { return s["mode"] == float64(3) && s["bios_consumed"] == float64(0) })
+	d.console("display-config")
 	d.shot("01-display")
+	bootInvalid := func(stage, name string) {
+		before := d.status()["bios_consumed"].(float64)
+		d.press(36)
+		d.wait("原版已消耗無效 Return", 20, func(s map[string]any) bool { return s["bios_consumed"].(float64) > before })
+		d.console(stage)
+		d.shot(name)
+	}
+	if *flow == "boot" || *flow == "boot-fallback" {
+		bootInvalid("display-config", "boot-invalid-display")
+	}
 	d.press(10)
-	d.wait("音效選擇", 20, func(s map[string]any) bool { return s["mode"] == float64(3) && s["bios_consumed"] == float64(1) })
+	d.console("sound-config")
 	d.shot("02-sound")
+	if *flow == "boot" || *flow == "boot-fallback" {
+		bootInvalid("sound-config", "boot-invalid-sound")
+		if *flow == "boot-fallback" {
+			s := d.status()
+			if s["hd"] != false || s["asset_error"] != "字型圖片 SHA-256 不符" {
+				panic("未觸發真實字型回退")
+			}
+			d.receipt(*flow)
+			d.quit()
+			return
+		}
+	}
 	d.press(10)
 	d.wait("片頭", 20, func(s map[string]any) bool { return s["mode"] != float64(3) })
 	if *flow == "music" {

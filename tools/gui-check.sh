@@ -29,6 +29,8 @@ if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == fallback ]]; then phases=(fallback); 
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == art-fallback ]]; then phases=(art-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == music ]]; then phases=(music); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == menus ]]; then phases=(menus); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == boot ]]; then phases=(boot); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == boot-fallback ]]; then phases=(boot-fallback); fi
 for phase in "${phases[@]}"; do
   phase_out=/out
   if [[ "$phase" != inspect ]]; then phase_out="/out/$phase"; mkdir -p "$phase_out"; fi

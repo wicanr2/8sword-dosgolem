@@ -68,6 +68,8 @@ type game struct {
 	recordMS            float64
 	draws               uint64
 	presentedScene      string
+	frameConsole        string
+	presentedConsole    string
 	recordedFrame       *image.RGBA
 	stageTotals         map[string]*stageTiming
 	started             time.Time
@@ -102,6 +104,7 @@ func (g *game) status(closed bool) map[string]any {
 	status["updates"], status["profile"] = g.updates, g.profile
 	status["actual_fps"], status["actual_tps"] = ebiten.ActualFPS(), ebiten.ActualTPS()
 	status["presented_frames"], status["presented_scene"] = g.draws, g.presentedScene
+	status["presented_console"] = g.presentedConsole
 	status["stage_totals"] = g.stageTotals
 	if g.audioCapture != nil {
 		status["captured_audio_frames"] = g.audioFrames
@@ -178,6 +181,7 @@ func (g *game) Update() error {
 	audioDone := time.Now()
 	previous := g.frame
 	g.frame = g.engine.Frame()
+	g.frameConsole = g.engine.ConsoleStage()
 	composed := time.Now()
 	if previous != g.frame {
 		g.texture.WritePixels(g.frame.Pix)
@@ -224,6 +228,7 @@ func (g *game) captureFrame() error {
 func (g *game) Draw(screen *ebiten.Image) {
 	screen.DrawImage(g.texture, nil)
 	g.draws++
+	g.presentedConsole = g.frameConsole
 	if g.engine.Tracker != nil {
 		g.presentedScene = g.engine.Tracker.VisibleScene
 	}
