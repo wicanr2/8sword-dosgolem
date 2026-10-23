@@ -182,8 +182,9 @@ func (d *driver) quit() {
 
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
-	flow := flag.String("flow", "inspect", "inspect, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
+	flow := flag.String("flow", "inspect", "inspect, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
+	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
 	flag.Parse()
@@ -247,6 +248,57 @@ func main() {
 	}
 	d.press(10)
 	d.wait("片頭", 20, func(s map[string]any) bool { return s["mode"] != float64(3) })
+	if *flow == "intro" || *flow == "intro-skip" || *showTitle {
+		d.wait("Noto 標題已真正呈現", 35, func(s map[string]any) bool {
+			return s["presented_intro"] == "title-noto" && s["intro_title"].(map[string]any)["stage"] == "title-noto"
+		})
+		first := d.status()["presented_frames"].(float64)
+		d.wait("Noto 標題已持續呈現", 20, func(s map[string]any) bool {
+			return s["presented_intro"] == "title-noto" && s["presented_frames"].(float64) >= first+2
+		})
+		titlePixels := append([]byte(nil), d.grab().Pix...)
+		d.shot("intro-01-title")
+		if *flow == "intro" {
+			d.wait("下一張原版美術已完成", 35, func(s map[string]any) bool {
+				stats := s["intro_title"].(map[string]any)["stats"].(map[string]any)
+				return stats["Transitions"].(float64) > 0 && s["presented_intro"] == "" && s["intro_title"].(map[string]any)["stage"] == "" && s["mode"] != float64(3)
+			})
+			first = d.status()["presented_frames"].(float64)
+			d.wait("下一張美術實際取代標題", 20, func(s map[string]any) bool {
+				return s["presented_intro"] == "" && s["presented_frames"].(float64) >= first+2 && !bytes.Equal(d.grab().Pix, titlePixels)
+			})
+			d.shot("intro-02-next-art")
+		}
+	}
+	if *flow == "intro-fallback" {
+		if *nativeFrame == "" {
+			panic("intro fallback requires independent native title PNG")
+		}
+		f, err := os.Open(*nativeFrame)
+		check(err)
+		expected, err := png.Decode(f)
+		check(err)
+		check(f.Close())
+		shape := d.grab().Bounds()
+		resized := image.NewRGBA(shape)
+		for y := 0; y < shape.Dy(); y++ {
+			for x := 0; x < shape.Dx(); x++ {
+				r, g, b, _ := expected.At(x*expected.Bounds().Dx()/shape.Dx(), y*expected.Bounds().Dy()/shape.Dy()).RGBA()
+				at := y*resized.Stride + x*4
+				resized.Pix[at], resized.Pix[at+1], resized.Pix[at+2], resized.Pix[at+3] = uint8(r>>8), uint8(g>>8), uint8(b>>8), 255
+			}
+		}
+		d.wait("真實壞片頭回到原版標題", 35, func(s map[string]any) bool {
+			return s["hd"] == true && s["asset_error"] == "" && s["graphics_error"] == "" &&
+				s["intro_title"].(map[string]any)["load_error"] == "HD 片頭圖片 SHA-256 不符" && bytes.Equal(d.grab().Pix, resized.Pix)
+		})
+		prop, err := xproto.GetProperty(c, false, d.window, titleAtom.Atom, 0, 0, 1024).Reply()
+		check(err)
+		if !strings.Contains(string(prop.Value), "HD 片頭載入失敗") {
+			panic("片頭回退未顯示原因")
+		}
+		d.shot("intro-01-native-fallback")
+	}
 	if *flow == "music" {
 		d.wait("片頭 HD 已實際輸出兩秒", 30, func(s map[string]any) bool {
 			m, _ := s["music"].(map[string]any)

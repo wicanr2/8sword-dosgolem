@@ -70,6 +70,8 @@ type game struct {
 	presentedScene      string
 	frameConsole        string
 	presentedConsole    string
+	frameIntro          string
+	presentedIntro      string
 	recordedFrame       *image.RGBA
 	stageTotals         map[string]*stageTiming
 	started             time.Time
@@ -105,6 +107,7 @@ func (g *game) status(closed bool) map[string]any {
 	status["actual_fps"], status["actual_tps"] = ebiten.ActualFPS(), ebiten.ActualTPS()
 	status["presented_frames"], status["presented_scene"] = g.draws, g.presentedScene
 	status["presented_console"] = g.presentedConsole
+	status["presented_intro"] = g.presentedIntro
 	status["stage_totals"] = g.stageTotals
 	if g.audioCapture != nil {
 		status["captured_audio_frames"] = g.audioFrames
@@ -182,6 +185,7 @@ func (g *game) Update() error {
 	previous := g.frame
 	g.frame = g.engine.Frame()
 	g.frameConsole = g.engine.ConsoleStage()
+	g.frameIntro = g.engine.IntroFrameStage(g.frame)
 	composed := time.Now()
 	if previous != g.frame {
 		g.texture.WritePixels(g.frame.Pix)
@@ -229,6 +233,7 @@ func (g *game) Draw(screen *ebiten.Image) {
 	screen.DrawImage(g.texture, nil)
 	g.draws++
 	g.presentedConsole = g.frameConsole
+	g.presentedIntro = g.frameIntro
 	if g.engine.Tracker != nil {
 		g.presentedScene = g.engine.Tracker.VisibleScene
 	}
@@ -301,6 +306,10 @@ func main() {
 	if engine.Music != nil && engine.Music.LoadError != "" {
 		title += "（HD 音樂載入失敗）"
 		log.Printf("HD 音樂未載入，保留原版音訊：%s", engine.Music.LoadError)
+	}
+	if engine.IntroError != "" {
+		title += "（HD 片頭載入失敗）"
+		log.Printf("HD 片頭未載入，保留原版標題：%s", engine.IntroError)
 	}
 	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit}
 	if *recordAudio {

@@ -29,6 +29,8 @@ type Engine struct {
 	InputEvents   []InputEvent
 	Sound         *oracle.Audio
 	Music         *Music
+	Intro         *IntroTitle
+	IntroError    string
 }
 type InputEvent struct {
 	Step  uint64
@@ -85,6 +87,23 @@ func Open(opt Options) (*Engine, error) {
 		}
 	}
 	e.Music = newMusic(o, pam, opt.Assets, e.HD)
+	if e.HD {
+		e.Intro, err = loadIntroTitle(o, opt.Assets, opt.Root)
+		if err != nil {
+			e.IntroError = err.Error()
+		}
+		if e.Intro != nil && e.Tracker != nil {
+			// The core has one callback per event, shared by both presenters.
+			o.ObserveVideoWrites(func(v oracle.VideoWrite) {
+				e.Tracker.write(v)
+				e.Intro.observeWrite(v)
+			})
+			o.ObserveVideoModeChanges(func(oracle.VideoModeChange) {
+				e.Tracker.clear()
+				e.Intro.invalidate()
+			})
+		}
+	}
 	return e, nil
 }
 func (e *Engine) Close() {
@@ -126,6 +145,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		if e.Music != nil {
 			e.Music.Bind()
 		}
+		if e.Intro != nil {
+			e.Intro.Bind()
+		}
 		n -= count
 	}
 	return nil
@@ -156,6 +178,9 @@ func (e *Engine) Advance(n uint64) error {
 		}
 		if e.Music != nil {
 			e.Music.Bind()
+		}
+		if e.Intro != nil {
+			e.Intro.Bind()
 		}
 		n -= count
 	}
@@ -206,7 +231,7 @@ func (e *Engine) ReleaseAll() {
 func (e *Engine) Frame() *image.RGBA {
 	if e.Tracker != nil {
 		if im := e.Tracker.Compose(); im != nil {
-			return im
+			return e.presentIntro(im)
 		}
 	}
 	if e.Oracle.VideoMode() == 3 {
@@ -227,12 +252,41 @@ func (e *Engine) Frame() *image.RGBA {
 			out.Pix[dst+3] = 255
 		}
 	}
-	return out
+	return e.presentIntro(out)
+}
+func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
+	if e.Intro == nil || !e.HD || e.Intro.Stage() == "" {
+		return frame
+	}
+	if e.Intro.active {
+		// Tracker owns this cached frame. Intro overlays must not mutate it.
+		copyFrame := image.NewRGBA(frame.Bounds())
+		copy(copyFrame.Pix, frame.Pix)
+		frame = copyFrame
+	}
+	return e.Intro.Compose(frame)
+}
+func (e *Engine) IntroStage() string {
+	if e.Intro != nil && e.HD {
+		return e.Intro.Stage()
+	}
+	return ""
+}
+func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
+	if e.Intro != nil && e.HD && frame != nil && (frame == e.Intro.last || frame == e.Intro.hold) {
+		return e.Intro.Stage()
+	}
+	return ""
 }
 func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
 	view := e.bootConsole()
 	out["console_stage"], out["console_source_sha256"] = view.stage, view.sha
+	intro := map[string]any{"load_error": e.IntroError, "stage": e.IntroStage()}
+	if e.Intro != nil {
+		intro["stats"] = e.Intro.Stats
+	}
+	out["intro_title"] = intro
 	if e.Tracker != nil {
 		out["text"] = e.Tracker.Stats
 		out["scene"] = e.Tracker.Scene

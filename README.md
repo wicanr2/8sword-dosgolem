@@ -19,7 +19,7 @@
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁與金玉介面，走過四方向移動、人物頁往返及真正存退讀；沙地實景、其他角色與圖像仍待處理 |
-| HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII；已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置、系統選單及真正存退讀，更廣畫面與長文仍待驗 |
+| HD 文字 | 已接入 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII；片頭「神州八劍」另用真實 Noto 字圖。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；故事捲文、其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；效能、音訊連續性、戰鬥及完整流程仍待驗，尚無正式交付包 |
 
@@ -116,11 +116,23 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r8 \
 
 更多新遊戲選單可設 `EIGHTSWORD_GUI_FLOW=menus`，在相同 Docker 視窗工具測 F2 軍隊、F4 無法施法提示及 F5 地圖位置。此流程只檢查新遊戲已有的民兵與未習得法術狀態；實際施法及戰鬥另驗。
 
+片頭標題以原版實際繪圖及完整來源指紋驅動，四字改用 Noto Black 900，保留原位置、黑底及原版 Esc。字圖損壞時回原版標題，其他 HD 保留；發行商識別與故事捲文仍為原版。來源、幾何及驗證範圍見 [011](docs/spec/011-intro-title-noto.md)。已有本機 r9、固定 TIT2 及上述 Noto 字型後，可建立新組：
+
+```bash
+bash tools/player.sh intro-assets painted-r10 painted-r9
+bash tools/player.sh build
+EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r10 \
+  EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false \
+  EIGHTSWORD_GUI_FLOW=intro bash tools/player.sh gui-check title-window-check
+```
+
+`intro-skip` 在實際標題時送原版 Esc，`intro-fallback` 搭配真正壞圖組與 `EIGHTSWORD_GUI_NATIVE_FRAME` 核對原版標題。存退讀設 `EIGHTSWORD_GUI_FLOW=save-cycle EIGHTSWORD_GUI_SHOW_INTRO=1`，兩個冷啟動程序都先呈現 Noto 標題。這些是視窗驗證選項，仍由原版處理輸入與存檔；片頭素材不隨倉庫提供。
+
 ## HD 音樂
 
 原版控制選曲與停止，前端替換已提供的音樂。〈幻〉保留原曲音符、節奏及滑音，採已批准的撥弦與長笛方向；Koto／Flute 取樣不宣稱真正古箏、竹笛錄音。缺少 HD 曲目時播放原版，損壞音樂不連帶關閉 Noto 或圖像。
 
-片頭使用相同〈幻〉，已接入原版初始化與停止事件。正常略過或自然結束後會停歌，再由主選單管理；片頭圖像與圖片文字仍待替換。
+片頭使用相同〈幻〉，已接入原版初始化與停止事件。正常略過或自然結束後會停歌，再由主選單管理；標題文字的 Noto 接入見 011，其餘片頭美術與文字仍待替換。
 
 已具備本機批准的 Ogg 與配樂研究輸入後，可在既有圖像組上加入音樂：
 
@@ -150,6 +162,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 - [音樂事件與播放規格](docs/spec/008-music-events-and-playback.md)：原版請求、Ogg 清單、混音及正常操作驗證。
 - [片頭音樂交接規格](docs/spec/009-intro-music-handoff.md)：PREDELLA 的獨立入口、原版停止及 PAM 覆蓋載入後的掛勾隔離。
 - [啟動文字規格](docs/spec/010-boot-console-text.md)：VGA／音效提示的 Noto 呈現、原字模回退及正常鍵盤流程。
+- [片頭標題規格](docs/spec/011-intro-title-noto.md)：TIT2 壓縮來源、Noto 字圖、只讀呈現交易與 PAM 交接。
 - [Ogg 解碼器授權紀錄](docs/THIRD-PARTY-NOTICES.txt)：固定版本的第三方 MIT 授權全文。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 

@@ -20,7 +20,9 @@ sleep 0.5
 record_flags=()
 audio_flags=()
 actor_flags=()
+intro_flags=()
 if [[ "${EIGHTSWORD_GUI_ACTOR_WALK:-0}" == 1 ]]; then actor_flags=(-actor-walk); fi
+if [[ "${EIGHTSWORD_GUI_SHOW_INTRO:-0}" == 1 ]]; then intro_flags=(-intro-title); fi
 if [[ "${EIGHTSWORD_GUI_RECORD:-1}" == 1 ]]; then record_flags=(-record); fi
 if [[ "${EIGHTSWORD_GUI_RECORD_AUDIO:-0}" == 1 ]]; then audio_flags=(-record-audio); fi
 phases=(inspect)
@@ -31,6 +33,9 @@ if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == music ]]; then phases=(music); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == menus ]]; then phases=(menus); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == boot ]]; then phases=(boot); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == boot-fallback ]]; then phases=(boot-fallback); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro ]]; then phases=(intro); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro-skip ]]; then phases=(intro-skip); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro-fallback ]]; then phases=(intro-fallback); fi
 for phase in "${phases[@]}"; do
   phase_out=/out
   if [[ "$phase" != inspect ]]; then phase_out="/out/$phase"; mkdir -p "$phase_out"; fi
@@ -45,7 +50,7 @@ for phase in "${phases[@]}"; do
     -cycles "${EIGHTSWORD_GUI_CYCLES:-20000}" > "$phase_out/player.log" 2>&1 &
   gui_pid=$!
   /bin-player/gui-check -out "$phase_out" -flow "$phase" -saves /out/scratch \
-    -native-frame "${EIGHTSWORD_GUI_NATIVE_FRAME:-}" "${actor_flags[@]}" > "$phase_out/gui-check.log" 2>&1
+    -native-frame "${EIGHTSWORD_GUI_NATIVE_FRAME:-}" "${actor_flags[@]}" "${intro_flags[@]}" > "$phase_out/gui-check.log" 2>&1
   wait "$gui_pid"
   gui_pid=""
   cat /proc/loadavg > "$phase_out/load-end.txt"
