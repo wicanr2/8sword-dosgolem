@@ -8,7 +8,7 @@
 | 授權 | 使用者已授權 Docker 存取與主機 gh 建立 GitHub 倉庫；畫風、音色、平台及公開方式尚未定案 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 本輪功能提交 `3b577d1` 已推送，遠端 main 與本機回讀一致，倉庫維持 PRIVATE；後續紀錄提交不改程式或補丁。原始素材與 HD 草稿未上傳 |
+| 文件同步 | 功能提交 `3b577d1`、遊戲介紹及 Noto 樣張工具提交 `03ab701` 均已推送，遠端 main 已回讀核對；倉庫維持 PRIVATE。原始素材、HD 草稿與字型樣張圖片未上傳 |
 | Docker | 沿用三份既有研究／Go／影像映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；原版片頭後自然 EXEC `PAM.AY`。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |
