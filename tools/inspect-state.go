@@ -6,6 +6,7 @@
 package main
 
 import (
+	"crypto/sha256"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -32,6 +33,7 @@ func main() {
 	root := flag.String("root", "", "原版資料唯讀目錄")
 	out := flag.String("out", "", "研究輸出目錄")
 	until := flag.Uint64("until", 0, "續跑至絕對步數，0 不執行")
+	saveBuffer := flag.Bool("save-buffer", false, "只讀傾印已查證的原版讀檔緩衝區 0x9E000，2987 bytes")
 	flag.Parse()
 	m := machine.New()
 	d := dos.New(m, *root)
@@ -80,6 +82,15 @@ func main() {
 		"bda_active_page_0040_0062":      m.Read8(0x462),
 		"nonzero_pixels_by_plane_offset": counts,
 		"warning":                        "Diagnostic plane views only; not the player's visible screen; geometry assumes mode 0Eh",
+	}
+	if *saveBuffer {
+		data := make([]byte, 2987)
+		for i := range data {
+			data[i] = m.Read8(0x9e000 + uint32(i))
+		}
+		check(os.WriteFile(filepath.Join(*out, "save-buffer-9e000.bin"), data, 0644))
+		report["save_buffer_sha256"] = fmt.Sprintf("%x", sha256.Sum256(data))
+		report["save_buffer_address_space"] = "dosgolem runtime linear 0x9E000, 2987 bytes; no guest instructions executed when until=0"
 	}
 	b, err := json.MarshalIndent(report, "", "  ")
 	check(err)

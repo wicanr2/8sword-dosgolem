@@ -10,6 +10,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime/pprof"
 	"sync"
 	"time"
 
@@ -63,6 +64,9 @@ type game struct {
 	recorder            *eightsword.FrameRecorder
 	recordErr           error
 	profile             map[string]float64
+	recordMS            float64
+	draws               uint64
+	presentedScene      string
 }
 
 var keys = []struct {
@@ -110,10 +114,13 @@ func (g *game) Update() error {
 		g.pcm.push(samples)
 	}
 	audioDone := time.Now()
+	previous := g.frame
 	g.frame = g.engine.Frame()
 	composed := time.Now()
-	g.texture.WritePixels(g.frame.Pix)
-	g.profile = map[string]float64{"advance_ms": float64(advanced.Sub(started).Microseconds()) / 1000, "audio_ms": float64(audioDone.Sub(advanced).Microseconds()) / 1000, "compose_ms": float64(composed.Sub(audioDone).Microseconds()) / 1000, "upload_ms": float64(time.Since(composed).Microseconds()) / 1000}
+	if previous != g.frame {
+		g.texture.WritePixels(g.frame.Pix)
+	}
+	g.profile = map[string]float64{"advance_ms": float64(advanced.Sub(started).Microseconds()) / 1000, "audio_ms": float64(audioDone.Sub(advanced).Microseconds()) / 1000, "compose_ms": float64(composed.Sub(audioDone).Microseconds()) / 1000, "upload_ms": float64(time.Since(composed).Microseconds()) / 1000, "previous_record_ms": g.recordMS}
 	g.updates++
 	if g.capture != "" && g.updates%5 == 0 {
 		status := g.engine.Status()
@@ -121,6 +128,8 @@ func (g *game) Update() error {
 		status["actual_fps"] = ebiten.ActualFPS()
 		status["actual_tps"] = ebiten.ActualTPS()
 		status["profile"] = g.profile
+		status["presented_frames"] = g.draws
+		status["presented_scene"] = g.presentedScene
 		if g.recorder != nil {
 			status["recorded_frames"] = g.recorder.Frames
 		}
@@ -156,8 +165,14 @@ func (g *game) captureFrame() error {
 }
 func (g *game) Draw(screen *ebiten.Image) {
 	screen.DrawImage(g.texture, nil)
+	g.draws++
+	if g.engine.Tracker != nil {
+		g.presentedScene = g.engine.Tracker.VisibleScene
+	}
 	if g.recorder != nil && g.frame != nil && g.recordErr == nil {
+		started := time.Now()
 		g.recordErr = g.recorder.Write(g.frame, g.engine.Oracle.Steps())
+		g.recordMS = float64(time.Since(started).Microseconds()) / 1000
 	}
 }
 func (g *game) Layout(int, int) (int, int) { return 1920, 1200 }
@@ -167,6 +182,8 @@ func main() {
 	saves := flag.String("saves", "", "可寫存檔目錄")
 	capture := flag.String("capture-dir", "", "研究收據目錄，F12 抓圖")
 	record := flag.Bool("record", false, "以無損列差分記錄每次呈現，需要 capture-dir")
+	cpuProfile := flag.String("cpu-profile", "", "研究用 CPU profile 輸出檔案")
+	vsync := flag.Bool("vsync", true, "同步視窗更新，研究環境可關閉比較")
 	hd := flag.Bool("hd", true, "啟用 Noto HD 文字")
 	mute := flag.Bool("mute", false, "靜音，保留遊戲音訊時鐘")
 	cycles := flag.Uint64("cycles", 20000, "DOSBox 相容 cycles/ms")
@@ -180,6 +197,17 @@ func main() {
 			log.Fatal(err)
 		}
 	}
+	if *cpuProfile != "" {
+		f, err := os.Create(*cpuProfile)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer f.Close()
+		if err = pprof.StartCPUProfile(f); err != nil {
+			log.Fatal(err)
+		}
+		defer pprof.StopCPUProfile()
+	}
 	engine, err := eightsword.Open(eightsword.Options{Root: *root, Assets: *assets, Saves: *saves, HD: *hd})
 	if err != nil {
 		log.Fatal(err)
@@ -191,6 +219,7 @@ func main() {
 		title = "神州八劍 · 原版文字"
 	}
 	if engine.AssetError != "" {
+		title = "神州八劍 · 原版文字（HD 字型載入失敗）"
 		log.Printf("HD 字型未載入，使用原版呈現：%s", engine.AssetError)
 	}
 	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit}
@@ -217,6 +246,7 @@ func main() {
 	ebiten.SetWindowSize(1280, 800)
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	ebiten.SetTPS(30)
+	ebiten.SetVsyncEnabled(*vsync)
 	ebiten.SetRunnableOnUnfocused(true)
 	if err = ebiten.RunGame(g); err != nil {
 		log.Fatal(err)
@@ -231,6 +261,8 @@ func main() {
 		status["updates"] = g.updates
 		status["closed"] = true
 		status["profile"] = g.profile
+		status["presented_frames"] = g.draws
+		status["presented_scene"] = g.presentedScene
 		if g.recorder != nil {
 			status["recorded_frames"] = g.recorder.Frames
 		}

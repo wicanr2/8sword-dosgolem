@@ -98,7 +98,9 @@ case "${1:-}" in
     test -d "$task_player/assets"; test -d "$task_orig"
     task_out="$task_player/gui/$task_name"
     test ! -e "$task_out"; mkdir -p "$task_out"
-    exec timeout 220s docker run --rm --name "8sword-gui-$task_name" --network none \
+    task_limit=220s
+    if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then task_limit=420s; fi
+    exec timeout "$task_limit" docker run --rm --name "8sword-gui-$task_name" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
       --mount "type=bind,src=$task_player,dst=/bin-player,readonly" \
       --mount "type=bind,src=$task_player/assets,dst=/assets,readonly" \
@@ -106,6 +108,11 @@ case "${1:-}" in
       --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
       --mount "type=bind,src=$task_out,dst=/out" \
       -e EIGHTSWORD_GUI_CYCLES="${EIGHTSWORD_GUI_CYCLES:-20000}" \
+      -e EIGHTSWORD_GUI_RECORD="${EIGHTSWORD_GUI_RECORD:-1}" \
+      -e EIGHTSWORD_GUI_VSYNC="${EIGHTSWORD_GUI_VSYNC:-true}" \
+      -e EIGHTSWORD_GUI_FLOW="${EIGHTSWORD_GUI_FLOW:-inspect}" \
+      -e EIGHTSWORD_GUI_ASSETS="${EIGHTSWORD_GUI_ASSETS:-/assets}" \
+      -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
   *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|assets|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;

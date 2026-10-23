@@ -4,7 +4,10 @@
 package main
 
 import (
+	"bytes"
+	"crypto/sha256"
 	"encoding/binary"
+	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -34,7 +37,10 @@ type driver struct {
 }
 
 func (d *driver) status() map[string]any {
-	raw, err := os.ReadFile(filepath.Join(d.out, "gui-state.json"))
+	raw, err := os.ReadFile(filepath.Join(d.out, "gui-final.json"))
+	if err != nil {
+		raw, err = os.ReadFile(filepath.Join(d.out, "gui-state.json"))
+	}
 	if err != nil {
 		return nil
 	}
@@ -73,10 +79,36 @@ func (d *driver) press(code byte) {
 	d.wait("放開鍵已處理", 15, func(s map[string]any) bool { return s["updates"].(float64) >= before+5 })
 }
 func (d *driver) scene(want string) {
-	d.wait(want, 35, func(s map[string]any) bool { return s["scene"] == want })
-	time.Sleep(250 * time.Millisecond)
+	if want == "character" {
+		d.wait("人物頁或已出現的遭遇確認", 35, func(s map[string]any) bool {
+			return s["presented_scene"] == want || s["presented_scene"] == "encounter-confirm"
+		})
+		if d.status()["presented_scene"] == "encounter-confirm" {
+			d.shot("encounter-before-character")
+			before := d.status()["steps"].(float64)
+			d.press(114)
+			d.wait("遭遇確認已選否", 20, func(s map[string]any) bool {
+				for _, item := range s["strings"].([]any) {
+					ev := item.(map[string]any)
+					if ev["Step"].(float64) > before && strings.TrimSpace(ev["Text"].(string)) == "否" {
+						return true
+					}
+				}
+				return false
+			})
+			d.shot("encounter-selected-no")
+			d.press(36)
+			d.scene("map")
+			d.press(67)
+		}
+	}
+	d.wait(want, 35, func(s map[string]any) bool { return s["presented_scene"] == want })
+	first := d.status()["presented_frames"].(float64)
+	d.wait("畫面已持續呈現 "+want, 20, func(s map[string]any) bool {
+		return s["presented_scene"] == want && s["presented_frames"].(float64) >= first+2
+	})
 }
-func (d *driver) shot(name string) {
+func (d *driver) grab() *image.RGBA {
 	d.c.Sync()
 	geo, err := xproto.GetGeometry(d.c, xproto.Drawable(d.window)).Reply()
 	check(err)
@@ -93,14 +125,57 @@ func (d *driver) shot(name string) {
 		im.Pix[i*4+2] = uint8(v)
 		im.Pix[i*4+3] = 255
 	}
+	return im
+}
+func (d *driver) shot(name string) {
+	im := d.grab()
 	f, err := os.Create(filepath.Join(d.out, name+".png"))
 	check(err)
 	check(png.Encode(f, im))
 	check(f.Close())
-	fmt.Println("captured", name, geo.Width, geo.Height)
+	fmt.Println("captured", name, im.Bounds().Dx(), im.Bounds().Dy())
 }
+
+func (d *driver) confirmation(after float64) {
+	d.wait("本次確認文字", 35, func(s map[string]any) bool {
+		events, _ := s["strings"].([]any)
+		for _, item := range events {
+			ev := item.(map[string]any)
+			if ev["Source"] == float64(0x3252) && ev["Step"].(float64) > after {
+				return true
+			}
+		}
+		return false
+	})
+}
+
+func digest(path string) string {
+	raw, err := os.ReadFile(path)
+	check(err)
+	sum := sha256.Sum256(raw)
+	return hex.EncodeToString(sum[:])
+}
+
+func (d *driver) receipt(flow string) {
+	result := map[string]any{"status": "passed-input-path", "flow": flow, "method": "XTEST actual Ebiten window; X11 GetImage captures", "events": d.events, "final_status": d.status(), "warning": "visual, coverage and guest-isolation audits are separate"}
+	raw, err := json.MarshalIndent(result, "", "  ")
+	check(err)
+	check(os.WriteFile(filepath.Join(d.out, "gui-input-receipt.json"), append(raw, '\n'), 0644))
+}
+
+func (d *driver) quit() {
+	d.key(37, true)
+	d.key(24, true)
+	time.Sleep(300 * time.Millisecond)
+	d.key(24, false)
+	d.key(37, false)
+}
+
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
+	flow := flag.String("flow", "inspect", "inspect, save, reload or fallback")
+	saves := flag.String("saves", "", "save-cycle writable layer")
+	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
 	flag.Parse()
 	c, err := xgb.NewConn()
 	check(err)
@@ -141,8 +216,54 @@ func main() {
 	d.press(10)
 	d.wait("片頭", 20, func(s map[string]any) bool { return s["mode"] != float64(3) })
 	d.press(9) // 原版手冊允許以 Esc 略過片頭，未直接進入 PAM。
+	if *flow == "fallback" {
+		if *nativeFrame == "" {
+			panic("fallback requires an independently captured native reference")
+		}
+		f, err := os.Open(*nativeFrame)
+		check(err)
+		expected, err := png.Decode(f)
+		check(err)
+		check(f.Close())
+		d.wait("原版回退已載入", 35, func(s map[string]any) bool {
+			return s["hd"] == false && s["asset_error"] == "字型圖片 SHA-256 不符" && s["pam_loaded"] == true
+		})
+		shape := d.grab().Bounds()
+		resized := image.NewRGBA(shape)
+		for y := 0; y < shape.Dy(); y++ {
+			for x := 0; x < shape.Dx(); x++ {
+				r, g, b, _ := expected.At(x*expected.Bounds().Dx()/shape.Dx(), y*expected.Bounds().Dy()/shape.Dy()).RGBA()
+				at := y*resized.Stride + x*4
+				resized.Pix[at], resized.Pix[at+1], resized.Pix[at+2], resized.Pix[at+3] = uint8(r>>8), uint8(g>>8), uint8(b>>8), 255
+			}
+		}
+		d.wait("真正原版主選單畫面", 35, func(map[string]any) bool { return bytes.Equal(d.grab().Pix, resized.Pix) })
+		prop, err := xproto.GetProperty(c, false, d.window, titleAtom.Atom, 0, 0, 1024).Reply()
+		check(err)
+		if !strings.Contains(string(prop.Value), "HD 字型載入失敗") {
+			panic("視窗標題未顯示回退原因")
+		}
+		d.shot("03-fallback-native-menu")
+		d.receipt(*flow)
+		d.quit()
+		return
+	}
 	d.scene("main-menu")
 	d.shot("03-main-menu")
+	if *flow == "reload" {
+		d.press(36) // 原版預設「繼續上次進度」。
+		d.scene("map")
+		d.shot("04-loaded-map")
+		d.press(67)
+		d.scene("character")
+		d.shot("05-loaded-character")
+		d.press(9)
+		d.scene("map")
+		d.shot("06-returned-map")
+		d.receipt(*flow)
+		d.quit()
+		return
+	}
 	d.press(116)
 	d.press(36)
 	d.scene("new-game-confirm")
@@ -169,13 +290,43 @@ func main() {
 	d.press(9)
 	d.scene("map")
 	d.shot("11-final-map")
-	result := map[string]any{"status": "passed-input-path", "method": "XTEST actual Ebiten window; X11 GetImage captures", "events": d.events, "final_status": d.status(), "warning": "visual, coverage and guest-isolation audits are separate"}
-	raw, err := json.MarshalIndent(result, "", "  ")
-	check(err)
-	check(os.WriteFile(filepath.Join(d.out, "gui-input-receipt.json"), append(raw, '\n'), 0644))
-	d.key(37, true)
-	d.key(24, true)
-	time.Sleep(300 * time.Millisecond)
-	d.key(24, false)
-	d.key(37, false)
+	if *flow == "save" {
+		if *saves == "" {
+			panic("save flow requires -saves")
+		}
+		d.press(73)
+		d.scene("system-menu")
+		before := d.status()["steps"].(float64)
+		d.press(36)
+		d.confirmation(before)
+		d.shot("12-save-confirm")
+		d.press(36)
+		d.scene("map")
+		path := filepath.Join(*saves, "gamedata.ay")
+		d.wait("真正寫檔", 20, func(s map[string]any) bool {
+			info, err := os.Stat(path)
+			return err == nil && info.Size() == 2987
+		})
+		d.shot("13-saved-map")
+		saved := map[string]any{"path": "scratch/gamedata.ay", "bytes": 2987, "sha256": digest(path), "status": d.status()}
+		raw, err := json.MarshalIndent(saved, "", "  ")
+		check(err)
+		check(os.WriteFile(filepath.Join(d.out, "saved.json"), append(raw, '\n'), 0644))
+		d.press(73)
+		d.scene("system-menu")
+		d.press(114)
+		d.shot("14-quit-focused")
+		before = d.status()["steps"].(float64)
+		d.press(36)
+		d.confirmation(before)
+		d.shot("15-quit-confirm")
+		d.key(36, true)
+		d.wait("原版正常回 DOS", 35, func(s map[string]any) bool {
+			return s["closed"] == true && s["exited"] == true && s["exit_code"] == float64(0)
+		})
+		d.receipt(*flow)
+		return
+	}
+	d.receipt(*flow)
+	d.quit()
 }

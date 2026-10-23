@@ -5,7 +5,7 @@ test -f /bin-player/8sword
 test -f /bin-player/gui-check
 test -d /out
 export DISPLAY=:98 LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe LP_NUM_THREADS=1
-export MESA_GLTHREAD=false
+export MESA_GLTHREAD=false GOMAXPROCS=2
 gui_pid=""
 Xvfb "$DISPLAY" -screen 0 1920x1200x24 -nolisten tcp > /out/xvfb.log 2>&1 &
 xvfb_pid=$!
@@ -17,9 +17,30 @@ cleanup(){
 trap cleanup EXIT
 trap 'exit 130' INT TERM
 sleep 0.5
-/bin-player/8sword -root /orig -assets /assets -saves /out/scratch \
-  -capture-dir /out -max-updates 4000 -mute -record -cycles "${EIGHTSWORD_GUI_CYCLES:-20000}" > /out/player.log 2>&1 &
-gui_pid=$!
-/bin-player/gui-check -out /out > /out/gui-check.log 2>&1
-wait "$gui_pid"
+record_flags=()
+if [[ "${EIGHTSWORD_GUI_RECORD:-1}" == 1 ]]; then record_flags=(-record); fi
+phases=(inspect)
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then phases=(save reload); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == fallback ]]; then phases=(fallback); fi
+for phase in "${phases[@]}"; do
+  phase_out=/out
+  if [[ "$phase" != inspect ]]; then phase_out="/out/$phase"; mkdir -p "$phase_out"; fi
+  cp /bin-player/build-inputs.sha256 /bin-player/build-outputs.sha256 /bin-player/build-go-version.txt "$phase_out/"
+  sha256sum /bin-player/8sword /bin-player/gui-check > "$phase_out/executables.sha256"
+  cat /proc/loadavg > "$phase_out/load-start.txt"
+  cat /sys/fs/cgroup/cpu.stat > "$phase_out/cpu-start.txt"
+  cat "/proc/$xvfb_pid/stat" > "$phase_out/xvfb-start.txt"
+  /bin-player/8sword -root /orig -assets "${EIGHTSWORD_GUI_ASSETS:-/assets}" -saves /out/scratch \
+    -capture-dir "$phase_out" -max-updates 4000 -mute "${record_flags[@]}" \
+    -cpu-profile "$phase_out/cpu.pprof" -vsync="${EIGHTSWORD_GUI_VSYNC:-true}" \
+    -cycles "${EIGHTSWORD_GUI_CYCLES:-20000}" > "$phase_out/player.log" 2>&1 &
+  gui_pid=$!
+  /bin-player/gui-check -out "$phase_out" -flow "$phase" -saves /out/scratch \
+    -native-frame "${EIGHTSWORD_GUI_NATIVE_FRAME:-}" > "$phase_out/gui-check.log" 2>&1
+  wait "$gui_pid"
+  gui_pid=""
+  cat /proc/loadavg > "$phase_out/load-end.txt"
+  cat /sys/fs/cgroup/cpu.stat > "$phase_out/cpu-end.txt"
+  cat "/proc/$xvfb_pid/stat" > "$phase_out/xvfb-end.txt"
+done
 printf '%s\n' 'GUI normal-input path finished; inspect image and state audits separately.'

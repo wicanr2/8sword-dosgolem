@@ -18,6 +18,7 @@ type cell struct {
 type glyph struct {
 	ID     uint32
 	Rune   rune
+	Source uint16
 	Width  int
 	FG, BG uint8
 	Native [30]byte
@@ -28,6 +29,7 @@ type glyph struct {
 type TrackerStats struct {
 	Full, Half, PixelWrites, CopiedBytes, InvalidatedBytes, ComposedFrames uint64
 	ErasedInk, RenderedGlyphs, MissingGlyphs                               uint64
+	CachedFrames                                                           uint64
 	BoundLoadSegment                                                       uint16
 	Errors                                                                 []string
 }
@@ -42,7 +44,13 @@ type Tracker struct {
 	fontSeg, stringSeg, loadSegment uint16
 	Stats                           TrackerStats
 	Scene                           string
+	VisibleScene                    string
+	stringSource                    uint16
 	Strings                         []StringEvent
+	revision, cachedRevision        uint64
+	cachedDisplay                   oracle.PlanarDisplay
+	cachedIndexed                   []uint8
+	cachedFrame                     *image.RGBA
 }
 type StringEvent struct {
 	Step   uint64
@@ -57,7 +65,15 @@ func NewTracker(o *oracle.Oracle, a *Assets, pam []byte) *Tracker {
 	o.ObserveVideoModeChanges(func(oracle.VideoModeChange) { t.clear() })
 	return t
 }
-func (t *Tracker) clear() { clear(t.owners); clear(t.glyphs); t.active = nil }
+func (t *Tracker) clear() {
+	clear(t.owners)
+	clear(t.glyphs)
+	t.active = nil
+	t.VisibleScene = ""
+	t.stringSource = 0
+	t.cachedFrame = nil
+	t.revision++
+}
 func (t *Tracker) fail(s string) {
 	if len(t.Stats.Errors) < 16 {
 		t.Stats.Errors = append(t.Stats.Errors, s)
@@ -110,6 +126,7 @@ func (t *Tracker) Bind() {
 
 func (t *Tracker) observeString() {
 	off := t.o.Arg(0)
+	t.stringSource = off
 	ds := t.o.Regs().DS
 	raw := []byte{}
 	for i := 0; i < 1024; i++ {
@@ -183,7 +200,7 @@ func (t *Tracker) begin(full bool) {
 		t.fail("未知字模目的地或顏色")
 		return
 	}
-	g := &glyph{Width: 8, FG: fg, BG: bg}
+	g := &glyph{Width: 8, FG: fg, BG: bg, Source: t.stringSource}
 	stride := 1
 	if full {
 		if arg%30 != 0 || int(arg/30) >= len(t.assets.CJK) {
@@ -247,6 +264,10 @@ func (t *Tracker) begin(full bool) {
 
 func (t *Tracker) set(at uint32, v cell) {
 	old := t.owners[at]
+	if old == v {
+		return
+	}
+	t.revision++
 	if old.ID != 0 {
 		if g := t.glyphs[old.ID]; g != nil {
 			g.Refs--
@@ -336,6 +357,10 @@ func (t *Tracker) Compose() *image.RGBA {
 		return nil
 	}
 	_, _, indexed := t.o.Screen()
+	if t.cachedFrame != nil && t.cachedRevision == t.revision && t.cachedDisplay == p && bytes.Equal(t.cachedIndexed, indexed) {
+		t.Stats.CachedFrames++
+		return t.cachedFrame
+	}
 	out := image.NewRGBA(image.Rect(0, 0, 1920, 1200))
 	groups := map[drawGroup]bool{}
 	for y := 0; y < 200; y++ {
@@ -358,22 +383,28 @@ func (t *Tracker) Compose() *image.RGBA {
 					}
 				}
 			}
-			for dy := 0; dy < 6; dy++ {
-				row := (y*6+dy)*out.Stride + x*3*4
-				for dx := 0; dx < 3; dx++ {
-					o := row + dx*4
-					out.Pix[o] = color[0]
-					out.Pix[o+1] = color[1]
-					out.Pix[o+2] = color[2]
-					out.Pix[o+3] = 255
-				}
+			row := y*6*out.Stride + x*3*4
+			for dx := 0; dx < 3; dx++ {
+				o := row + dx*4
+				out.Pix[o] = color[0]
+				out.Pix[o+1] = color[1]
+				out.Pix[o+2] = color[2]
+				out.Pix[o+3] = 255
 			}
+		}
+		start := y * 6 * out.Stride
+		for dy := 1; dy < 6; dy++ {
+			copy(out.Pix[start+dy*out.Stride:start+(dy+1)*out.Stride], out.Pix[start:start+out.Stride])
 		}
 	}
 	// Stable order avoids map iteration changing overlapping alpha blends.
 	ordered := sortedGroups(groups)
+	sources := map[uint16]bool{}
 	for _, key := range ordered {
 		g := t.glyphs[key.ID]
+		if g != nil {
+			sources[g.Source] = true
+		}
 		if g == nil || g.Rune == ' ' {
 			continue
 		}
@@ -436,7 +467,44 @@ func (t *Tracker) Compose() *image.RGBA {
 		}
 	}
 	t.Stats.ComposedFrames++
+	t.VisibleScene = visibleScene(sources)
+	t.cachedFrame = out
+	t.cachedDisplay = p
+	t.cachedRevision = t.revision
+	t.cachedIndexed = append(t.cachedIndexed[:0], indexed...)
 	return out
+}
+
+// This is a read-only presentation observation. A string being drawn to an
+// off-screen page is not proof that the player can already see that page.
+func visibleScene(sources map[uint16]bool) string {
+	all := func(values ...uint16) bool {
+		for _, value := range values {
+			if !sources[value] {
+				return false
+			}
+		}
+		return true
+	}
+	if all(17749, 17786) {
+		return "encounter-confirm"
+	}
+	if all(12742, 12762, 12782, 12802, 12822) {
+		return "system-menu"
+	}
+	if all(1170, 1182, 1194, 1206, 1218, 1230, 1242) {
+		return "character"
+	}
+	if all(990, 1010, 1030, 1050, 1070, 1090, 1110) {
+		return "map"
+	}
+	if all(338, 398) {
+		return "new-game-confirm"
+	}
+	if all(158, 218, 278) {
+		return "main-menu"
+	}
+	return ""
 }
 
 func (t *Tracker) EventSource() string { return hex.EncodeToString(t.pam[0x2463e:0x2464e]) }
