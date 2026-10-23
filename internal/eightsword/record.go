@@ -12,11 +12,12 @@ import (
 // FrameRecorder saves every submitted frame as lossless changed RGBA rows.
 // Repeated frames still have a frame/guest-step record; no frame is dropped.
 type FrameRecorder struct {
-	file          *os.File
-	zip           *gzip.Writer
-	previous      []byte
-	Width, Height int
-	Frames        uint64
+	file                         *os.File
+	zip                          *gzip.Writer
+	previous                     []byte
+	Width, Height                int
+	Frames                       uint64
+	RepeatedFrames, ComparedRows uint64
 }
 
 func NewFrameRecorder(path string, width, height int) (*FrameRecorder, error) {
@@ -46,14 +47,14 @@ func (r *FrameRecorder) Write(im *image.RGBA, step uint64) error {
 	}
 	changed := []uint16{}
 	rowBytes := r.Width * 4
+	r.ComparedRows += uint64(r.Height)
 	for y := 0; y < r.Height; y++ {
 		at := y * rowBytes
 		if r.Frames == 0 || !bytes.Equal(im.Pix[at:at+rowBytes], r.previous[at:at+rowBytes]) {
 			changed = append(changed, uint16(y))
 		}
 	}
-	r.Frames++
-	if err := binary.Write(r.zip, binary.LittleEndian, [3]uint64{r.Frames, step, uint64(len(changed))}); err != nil {
+	if err := r.header(step, uint64(len(changed))); err != nil {
 		return err
 	}
 	for _, y := range changed {
@@ -67,6 +68,24 @@ func (r *FrameRecorder) Write(im *image.RGBA, step uint64) error {
 		copy(r.previous[at:at+rowBytes], im.Pix[at:at+rowBytes])
 	}
 	return nil
+}
+
+// Repeat records the previous immutable frame at a new guest step. The caller
+// must know the pixels have not changed. Write still detects in-place changes.
+func (r *FrameRecorder) Repeat(step uint64) error {
+	if r.Frames == 0 {
+		return fmt.Errorf("recording has no previous frame")
+	}
+	if err := r.header(step, 0); err != nil {
+		return err
+	}
+	r.RepeatedFrames++
+	return nil
+}
+
+func (r *FrameRecorder) header(step, rows uint64) error {
+	r.Frames++
+	return binary.Write(r.zip, binary.LittleEndian, [3]uint64{r.Frames, step, rows})
 }
 func (r *FrameRecorder) Close() error {
 	if r == nil {

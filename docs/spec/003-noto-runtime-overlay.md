@@ -72,11 +72,29 @@
 | 連續幀保存 | 獨立解碼通過 194 幀、29 次畫面改變，已檢視全部改變畫面的縮圖及人物頁實圖；所有中間字墨與長文安全矩形仍待完整驗收 |
 | 正常存退讀 | `noto-save-visible-r3` 正常視窗 F7 儲存、回 DOS 碼 0、重新啟動繼續；讀入 2987 bytes，結束後只讀檢視的 0x9E000 緩衝區與檔案完全相同，核對工具見下方 |
 | 實際故障回退 | 正式共用 Engine 及實際視窗皆已驗真實受損 PNG。視窗主選單與 native 參考逐 RGB 像素相同；XTEST 核對標題含「HD 字型載入失敗」，日誌有具體 SHA 錯誤。收據為 `noto-fallback-visible-r1/fallback/fallback-window-audit.json` |
-| 效能與音訊 | 快取及逐列複製後，同輸入的 10 張保存畫面完全相同，合成次數由 238 降至 74。GUI 快取命中時約 1–3 ms；主機高負載下 FPS 仍低，尚不能交付。完整 Draw 成本與音訊連續性未結案 |
-| 古風圖像與 HD 音樂 | 未接入，不在本規格的文字通過項中偷渡為完成 |
+| 效能與音訊 | 快取及逐列複製後，同輸入十張畫面完全相同，合成次數由 238 降至 74。現行已分開量測錄製開關，新增分段累計與模型虛擬時間；下節列出範圍，正式速度與非靜音音訊仍未結案 |
+| 古風圖像與 HD 音樂 | 圖像已由 [004](004-hd-bitmap-presentation.md) 至 [007](007-masked-hero-animation.md)接入有限正常路段；HD 音樂仍未接入，不以文字通過項代替 |
 
 可重生入口為 [player.sh](../../tools/player.sh) 的 `build`、`test`、`replay hd|native <新名稱>` 與 `gui-check <新名稱>`。客體隔離由 [audit-player.py](../../tools/audit-player.py) 核對，逐幀由 [inspect-presentation.py](../../tools/inspect-presentation.py) 在 Docker 獨立解碼。收據的來源、SHA 及限制集中於 [研究紀錄](../../RESEARCH-LOG.md#2026-10-23執行期覆繪載入段勘誤與正常視窗)。
 
 正常存退讀採 `EIGHTSWORD_GUI_FLOW=save-cycle`，兩個程序共用指定的可寫存檔層，各自從 PREDELLA 冷啟動。收據保存各程序的建置來源／輸出 SHA、CPU profile、負載及容器限流；[audit-save-cycle.py](../../tools/audit-save-cycle.py) 核對落地檔案、正常退出、原版 read 事件與讀回緩衝區。快照只在程序結束後以 [inspect-state.go](../../tools/inspect-state.go) 的 `-save-buffer` 只讀檢視，沒有從快照啟動玩家路徑。
 
 實際遇見的「遇見怪物／要攻擊嗎」字串來源為 DS 偏移 `17749/17786`。驗證器觀察此對話時，經方向鍵選到「否」，確認原版實際印出「否」後才按 Enter，之後再進 F1。沒有重擲或反覆重跑挑選無遭遇的結果；本項只驗對話呈現與合法取消，不驗亂數判定，沒有宣稱固定 seed 的戰鬥 parity。
+
+## 呈現與錄製成本
+
+維持同步 Update／Draw、原有 30 TPS 及 cycles 參數，沒有套用 mm3 的執行緒架構或調速決定。以下是量測及不改影格的錄製優化，不新增遊戲 RE 或資料格式。
+
+- [FrameRecorder](../../internal/eightsword/record.go)保留 `Write` 的逐列比對，包含同一個 RGBA 物件被原地改寫的情況。新增 `Repeat(step)` 只供呼叫端已確認畫素不變時使用，第一幀前呼叫拒絕；仍寫每個實際 Draw 的幀號及客體步數，不丟幀。
+- 正式前端沿既有材質上傳的不可變幀契約：`Engine.Frame()` 回傳同一個 RGBA 指標時，畫素仍相同。因此只在與上次已錄製幀同指標時用 `Repeat`，其餘仍 `Write`。`8SFRM001` 格式及壓縮參數不變；合成器、原版執行、輸入與音訊時鐘不改。
+- `stage_totals` 為 advance、audio、compose、upload、record 各階段的次數、累計與最大奈秒，原有 `profile` 仍是最後一筆。upload 量的是 CPU 提交成本，沒有等待 GPU 完成；各欄不能當作完整 CPU 百分比分配。
+- `session.wall_ms` 從第一次 Update 開始，不含此前素材載入。`guest_cycles` 讀固定核心 `Oracle.Cycles()` 的增量，`guest_ms=guest_cycles/cycles_per_ms`，只代表 dosgolem 的 DOSBox cycles 模型虛擬時間，不稱原版實機 wall-clock。契約入口為 `workplace/dosgolem/oracle/live.go`、`workplace/dosgolem/docs/spec/198-dosbox-cycles.md` 及 `workplace/dosgolem/docs/spec/199-live-session-api.md`；不得搬用別作的步數換秒常數。
+- 最後狀態也保存最新 `actual_fps`／`actual_tps`，它們是近期窗口值，並非全流程平均。錄製另有 `recorded_repeat_frames` 與 `recorded_compared_rows`；無錄製時不產生這兩項或 record 階段。
+
+`record-repeat-bench-r1.json` 以先前 306 幀真實錄影，同時產生逐列版及已知重複版，兩者及原錄影的壓縮 bytes 完全相同。掃描列數為 367200／40800，單輪寫入累計 970.868／753.175 ms。這是同一組真實資料的 API 驗證，不直接外推整個遊戲加速比例。
+
+格式、原地改寫及第一幀邊界由[錄製測試](../../internal/eightsword/record_test.go)驗證，透過既有 `bash tools/player.sh test-player` 執行。
+
+現行正常視窗 `perf-recorded-r1` 的存檔段 389 幀全部保存，其中 330 幀走重複路徑；實際掃描 70800 列。讀檔段 120 幀中 90 幀重複，兩段已獨立解碼、檢視並通過真正存退讀。`perf-isolation-r1` 的十張保存 PNG、完整客體狀態與 31 個檔案同優化前。
+
+`performance-comparison-r1.json` 分開記錄有／無錄製及前後版本。GUI 地圖按鍵取樣中位數：舊錄製 21.28 FPS、新錄製 24.63 FPS；舊無錄製 25.84 FPS、新無錄製 26.16 FPS，各輪 TPS 約 29.9。主機負載不同，無錄製路段皆自然遇到遭遇並合法取消，未控制骰序；這不是嚴格成對的速度結論。四輪都採 2 CPU、GOMAXPROCS=2、LP_NUM_THREADS=1、cycles=4000、vsync=false 及靜音，不能由此宣稱正式速度或非靜音播放完成。

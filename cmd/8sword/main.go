@@ -67,6 +67,54 @@ type game struct {
 	recordMS            float64
 	draws               uint64
 	presentedScene      string
+	recordedFrame       *image.RGBA
+	stageTotals         map[string]*stageTiming
+	started             time.Time
+	startCycles         uint64
+}
+
+type stageTiming struct {
+	Count   uint64 `json:"count"`
+	TotalNS int64  `json:"total_ns"`
+	MaxNS   int64  `json:"max_ns"`
+}
+
+func (g *game) observe(stage string, duration time.Duration) {
+	if g.capture == "" {
+		return
+	}
+	if g.stageTotals == nil {
+		g.stageTotals = map[string]*stageTiming{}
+	}
+	value := g.stageTotals[stage]
+	if value == nil {
+		value = &stageTiming{}
+		g.stageTotals[stage] = value
+	}
+	value.Count++
+	value.TotalNS += duration.Nanoseconds()
+	value.MaxNS = max(value.MaxNS, duration.Nanoseconds())
+}
+
+func (g *game) status(closed bool) map[string]any {
+	status := g.engine.Status()
+	status["updates"], status["profile"] = g.updates, g.profile
+	status["actual_fps"], status["actual_tps"] = ebiten.ActualFPS(), ebiten.ActualTPS()
+	status["presented_frames"], status["presented_scene"] = g.draws, g.presentedScene
+	status["stage_totals"] = g.stageTotals
+	if !g.started.IsZero() {
+		cycles := g.engine.Oracle.Cycles() - g.startCycles
+		status["session"] = map[string]any{"wall_ms": float64(time.Since(g.started).Microseconds()) / 1000, "guest_cycles": cycles, "guest_ms": float64(cycles) / float64(g.cycles), "cycles_per_ms": g.cycles, "target_tps": 30, "muted": g.pcm == nil}
+	}
+	if g.recorder != nil {
+		status["recorded_frames"] = g.recorder.Frames
+		status["recorded_repeat_frames"] = g.recorder.RepeatedFrames
+		status["recorded_compared_rows"] = g.recorder.ComparedRows
+	}
+	if closed {
+		status["closed"] = true
+	}
+	return status
 }
 
 var keys = []struct {
@@ -82,6 +130,10 @@ var keys = []struct {
 }
 
 func (g *game) Update() error {
+	if g.started.IsZero() {
+		g.started = time.Now()
+		g.startCycles = g.engine.Oracle.Cycles()
+	}
 	if g.recordErr != nil {
 		return g.recordErr
 	}
@@ -120,19 +172,15 @@ func (g *game) Update() error {
 	if previous != g.frame {
 		g.texture.WritePixels(g.frame.Pix)
 	}
-	g.profile = map[string]float64{"advance_ms": float64(advanced.Sub(started).Microseconds()) / 1000, "audio_ms": float64(audioDone.Sub(advanced).Microseconds()) / 1000, "compose_ms": float64(composed.Sub(audioDone).Microseconds()) / 1000, "upload_ms": float64(time.Since(composed).Microseconds()) / 1000, "previous_record_ms": g.recordMS}
+	uploaded := time.Now()
+	g.observe("advance", advanced.Sub(started))
+	g.observe("audio", audioDone.Sub(advanced))
+	g.observe("compose", composed.Sub(audioDone))
+	g.observe("upload", uploaded.Sub(composed))
+	g.profile = map[string]float64{"advance_ms": float64(advanced.Sub(started).Microseconds()) / 1000, "audio_ms": float64(audioDone.Sub(advanced).Microseconds()) / 1000, "compose_ms": float64(composed.Sub(audioDone).Microseconds()) / 1000, "upload_ms": float64(uploaded.Sub(composed).Microseconds()) / 1000, "previous_record_ms": g.recordMS}
 	g.updates++
 	if g.capture != "" && g.updates%5 == 0 {
-		status := g.engine.Status()
-		status["updates"] = g.updates
-		status["actual_fps"] = ebiten.ActualFPS()
-		status["actual_tps"] = ebiten.ActualTPS()
-		status["profile"] = g.profile
-		status["presented_frames"] = g.draws
-		status["presented_scene"] = g.presentedScene
-		if g.recorder != nil {
-			status["recorded_frames"] = g.recorder.Frames
-		}
+		status := g.status(false)
 		b, err := json.MarshalIndent(status, "", "  ")
 		if err != nil {
 			return err
@@ -171,8 +219,16 @@ func (g *game) Draw(screen *ebiten.Image) {
 	}
 	if g.recorder != nil && g.frame != nil && g.recordErr == nil {
 		started := time.Now()
-		g.recordErr = g.recorder.Write(g.frame, g.engine.Oracle.Steps())
+		if g.recordedFrame == g.frame {
+			g.recordErr = g.recorder.Repeat(g.engine.Oracle.Steps())
+		} else {
+			g.recordErr = g.recorder.Write(g.frame, g.engine.Oracle.Steps())
+		}
+		if g.recordErr == nil {
+			g.recordedFrame = g.frame
+		}
 		g.recordMS = float64(time.Since(started).Microseconds()) / 1000
+		g.observe("record", time.Since(started))
 	}
 }
 func (g *game) Layout(int, int) (int, int) { return 1920, 1200 }
@@ -261,15 +317,7 @@ func main() {
 		}
 	}
 	if *capture != "" {
-		status := engine.Status()
-		status["updates"] = g.updates
-		status["closed"] = true
-		status["profile"] = g.profile
-		status["presented_frames"] = g.draws
-		status["presented_scene"] = g.presentedScene
-		if g.recorder != nil {
-			status["recorded_frames"] = g.recorder.Frames
-		}
+		status := g.status(true)
 		b, _ := json.MarshalIndent(status, "", "  ")
 		if err = os.WriteFile(filepath.Join(*capture, "gui-final.json"), append(b, '\n'), 0644); err != nil {
 			log.Fatal(err)
