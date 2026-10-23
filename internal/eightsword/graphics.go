@@ -12,13 +12,15 @@ type graphicCell struct {
 	Local uint32
 }
 type bitmapCall struct {
-	Kind          int
-	Width, Height int
-	First         uint32
-	Mask          []byte
-	Material      uint16
-	Actor         uint16
-	ActorWrites   int
+	Kind            int
+	Width, Height   int
+	First           uint32
+	Background      bool
+	BackgroundFirst uint32
+	Mask            []byte
+	Material        uint16
+	Actor           uint16
+	ActorWrites     int
 }
 type GraphicsStats struct {
 	Bound                                                                                               bool
@@ -27,6 +29,7 @@ type GraphicsStats struct {
 	LastPaintedPixels, GeometryRejected, PaletteFallbackFrames                                          uint64
 	Errors                                                                                              []string
 	ActorCalls, ActorFallbackCalls, ActorAssignedPixels, ActorPaintedPixels, ActorCompletions           uint64
+	BackgroundMaskedCalls                                                                               uint64
 }
 type Graphics struct {
 	parent *Tracker
@@ -49,7 +52,7 @@ func (g *Graphics) bind() {
 	for _, site := range []struct {
 		ip         uint16
 		file, kind int
-	}{{0x4f2, 0x15582, 6}, {0x76f, 0x157ff, 5}, {0x99c, 0x15a2c, 4}} {
+	}{{0x4f2, 0x15582, 6}, {0x76f, 0x157ff, 5}, {0x99c, 0x15a2c, 4}, {0x626, 0x156b6, 6}} {
 		if !bytes.Equal(t.o.Bytes(oracle.Addr{Seg: t.stringSeg, Off: site.ip}, 16), t.pam[site.file:site.file+16]) {
 			g.Stats.Errors = append(g.Stats.Errors, "PAM 圖像入口 bytes 不符")
 			return
@@ -62,6 +65,7 @@ func (g *Graphics) bind() {
 		site := site
 		t.o.OnCall(oracle.Addr{Seg: t.stringSeg, Off: site.ip}, func(*oracle.Oracle) { g.begin(site.kind) })
 	}
+	t.o.OnCall(oracle.Addr{Seg: t.stringSeg, Off: 0x626}, func(*oracle.Oracle) { g.beginSource(6, true) })
 	g.Stats.Bound = true
 }
 func (g *Graphics) clear() { clear(g.owners); clear(g.actors); g.active = nil }
@@ -73,6 +77,10 @@ func bitmapSourceInRAM(ptr oracle.Addr, length int) bool {
 }
 
 func (g *Graphics) begin(kind int) {
+	g.beginSource(kind, false)
+}
+
+func (g *Graphics) beginSource(kind int, background bool) {
 	t := g.parent
 	o := t.o
 	g.active = nil
@@ -113,13 +121,28 @@ func (g *Graphics) begin(kind int) {
 			return
 		}
 	}
+	backgroundFirst := uint32(0)
+	if background {
+		// Spec 021: this helper reads A400 latches instead of preserving
+		// the old destination. Keep unverified page pairs native.
+		if dest != 0xa000 || mode != 1 || o.Word(oracle.Addr{Seg: t.stringSeg, Off: 0x196}) != 0xa400 {
+			g.Stats.GeometryRejected++
+			return
+		}
+		backgroundFirst = first + 0x4000
+		if backgroundFirst+uint32((h-1)*80+w) > 65536 {
+			g.Stats.GeometryRejected++
+			return
+		}
+		g.Stats.BackgroundMaskedCalls++
+	}
 	source := o.Bytes(ptr, n)
 	id := g.assets.ByNative[hash(source[:4+area*4])]
 	if id != 0 {
 		g.Stats.SourceMatches++
 	}
 	actor := uint16(0)
-	if g.assets.Actors[id] != nil {
+	if !background && g.assets.Actors[id] != nil {
 		if g.heroRecordMatches(id, kind, source) && g.actorBackgroundKnown(first, w*8, h) {
 			actor = id
 			g.Stats.ActorCalls++
@@ -139,11 +162,25 @@ func (g *Graphics) begin(kind int) {
 	if g.assets.Materials[id] == nil {
 		id = 0
 	}
-	call := &bitmapCall{Kind: kind, Width: w, Height: h, First: first, Material: id, Actor: actor}
+	call := &bitmapCall{Kind: kind, Width: w, Height: h, First: first, Material: id, Actor: actor, Background: background, BackgroundFirst: backgroundFirst}
 	if kind == 6 {
 		call.Mask = append([]byte(nil), source[4+area*5:4+area*6]...)
 	}
 	g.active = call
+}
+
+// Background-backed writes replace even transparent destination pixels.
+// Source ownership must be copied before the mask removes opaque pixels.
+func (g *Graphics) backgroundSource(w oracle.VideoWrite) (uint32, bool) {
+	b := g.active
+	if b == nil || !b.Background || b.Kind != 6 || w.CS != g.parent.stringSeg || w.IP != 0x6b8 || w.WriteMode != 0 || w.Offset < b.First {
+		return 0, false
+	}
+	delta := w.Offset - b.First
+	if int(delta/80) >= b.Height || int(delta%80) >= b.Width {
+		return 0, false
+	}
+	return b.BackgroundFirst + delta, true
 }
 func (g *Graphics) set(at uint32, value graphicCell) {
 	if g.owners[at] != value {
@@ -185,7 +222,7 @@ func (g *Graphics) write(w oracle.VideoWrite) uint8 {
 	kind := 0
 	if w.CS == t.stringSeg {
 		switch w.IP {
-		case 0x57d:
+		case 0x57d, 0x6b8:
 			kind = 6
 		case 0x7cf:
 			kind = 5
@@ -193,7 +230,7 @@ func (g *Graphics) write(w oracle.VideoWrite) uint8 {
 			kind = 4
 		}
 	}
-	if kind != 0 && b != nil && b.Kind == kind && w.WriteMode == 0 && w.Offset >= b.First {
+	if kind != 0 && b != nil && b.Kind == kind && b.Background == (w.IP == 0x6b8) && w.WriteMode == 0 && w.Offset >= b.First {
 		delta := w.Offset - b.First
 		row, col := int(delta/80), int(delta%80)
 		if row < b.Height && col < b.Width {

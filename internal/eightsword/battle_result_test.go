@@ -10,7 +10,11 @@ import (
 // This covers presentation and ordinary keys, not combat or RNG rules. It
 // takes the first natural encounter without guest-state or save injection.
 func TestNormalRetreatResultAndCharacterReturn(t *testing.T) {
-	e := storyEngine(t, os.Getenv("EIGHTSWORD_TEST_ARMY_ASSETS"))
+	assets := os.Getenv("EIGHTSWORD_TEST_BATTLE_ASSETS")
+	if assets == "" {
+		assets = os.Getenv("EIGHTSWORD_TEST_ARMY_ASSETS")
+	}
+	e := storyEngine(t, assets)
 	e.Oracle.SetClock(12, 0, 0, 0)
 	advance := func(ms int) { storyAdvance(t, e, ms); e.Frame() }
 	press := func(scan byte) { storyPress(t, e, scan); e.Frame() }
@@ -72,6 +76,25 @@ func TestNormalRetreatResultAndCharacterReturn(t *testing.T) {
 		return false
 	})
 	advance(500)
+	if os.Getenv("EIGHTSWORD_TEST_BATTLE_ASSETS") != "" {
+		if e.BattleBackgroundError != "" || e.Tracker.graphics.assets.Materials[battleBackgroundID] == nil || e.Tracker.graphics.Stats.BackgroundMaskedCalls == 0 {
+			t.Fatalf("normal battle background was not used: %+v", e.Status())
+		}
+		visible := 0
+		for _, c := range e.Tracker.graphics.owners[:16000*8] {
+			if c.ID == battleBackgroundID {
+				visible++
+			}
+		}
+		if visible < 100000 {
+			t.Fatalf("native rectangles remain around units: %d background pixels", visible)
+		}
+		before := observerGuestState(t, e)
+		e.Frame()
+		if !bytes.Equal(before, observerGuestState(t, e)) {
+			t.Fatal("battle Frame changed guest")
+		}
+	}
 	beforeV := e.Oracle.Steps()
 	press(0x2f)
 	wait("ordinary V numbers", func() bool {
@@ -105,6 +128,13 @@ func TestNormalRetreatResultAndCharacterReturn(t *testing.T) {
 	}
 	press(0x1c)
 	scene("map")
+	if e.Tracker.graphics != nil {
+		for _, c := range e.Tracker.graphics.owners[:16000*8] {
+			if c.ID == battleBackgroundID {
+				t.Fatal("battle background survived normal return to map")
+			}
+		}
+	}
 	if e.Tracker.HasVisibleSource(18046) {
 		t.Fatal("dismissed result left a visible source")
 	}

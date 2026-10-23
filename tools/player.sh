@@ -67,6 +67,7 @@ case "${1:-}" in
             EIGHTSWORD_TEST_FONT_CHOICES_ASSETS=/out/assets-painted-r14 \
             EIGHTSWORD_TEST_PUBLISHER_ASSETS=/out/assets-painted-r15 \
             EIGHTSWORD_TEST_ARMY_ASSETS=/out/assets-painted-r16 \
+            EIGHTSWORD_TEST_BATTLE_ASSETS=/out/assets-painted-r17 \
             go test -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -119,6 +120,25 @@ case "${1:-}" in
       --mount "type=bind,src=$task_out,dst=/out" \
       "$task_py" python /tools/prepare-hd-graphics.py --source /orig/PMAP.AY --refs /refs \
       --font-assets /fonts --style-reference /style/hd-style-approved-r1.png --out /out --set "$task_set"
+    ;;
+  battle-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r16}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_art="$task_work/probe-20261023/graphics-first/battle-r1"
+    test -d "$task_player/assets-$task_base"; test -f "$task_orig/GRO02.EG"
+    test -f "$task_art/gro02-painted-raw-r1.png"; test -f "$task_art/gro02-painted-r1.prompt.txt"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout 60s docker run --rm --name "8sword-battle-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 700m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_art,dst=/art,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-battle.py --base /base --source /orig/GRO02.EG \
+      --art /art/gro02-painted-raw-r1.png --prompt /art/gro02-painted-r1.prompt.txt --out /out
     ;;
   music-assets)
     task_name="${2:?指定新的素材組名稱}"
@@ -313,5 +333,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

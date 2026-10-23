@@ -1,5 +1,7 @@
 # 003：Noto 執行期文字覆繪
 
+`BATTLE-BACKGROUND-PAGES-RESOLVED`：後續 [021](021-battle-background-pages.md)已證實固定 `DOS/PAM.AY@83e32f13…d6c0/14D2:0423+047F` 的 mode-1 矩形還原，以及 `0626+06B8` 的背景頁遮罩繪圖。文字所有權與圖像、人物同步取得來源背景，透明位不沿用舊目的字墨；新路徑的實作及視窗限制以 021 為準。
+
 狀態：READY。首次實作因將 overlay 的 ExecRecord.PSP 當成行程 PSP 而退回 DRAFT；已核對原版收據「0110:0、重定位加數 0110」及核心 loadOverlay 契約，改採 OverlayLoad.Seg／Reloc 並重新審查。目標為真正接入 Noto Black 900，透過正常主選單、地圖選單、F1 人物頁及返回操作驗證 HD；不能以字集圖或離線改圖取代。
 
 ## 已確認與待查

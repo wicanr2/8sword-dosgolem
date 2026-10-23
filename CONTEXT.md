@@ -9,8 +9,11 @@
 | 本輪決定 | 使用者選 A 深藍手繪故事背景，保留故事原文、字色及位置。另要求字型設定，允許隸書或草書，明確授權由 Codex 自行找合適字型，不再訪談選型 |
 | 戰鬥結果與按鍵 | [020](docs/spec/020-battle-result-presentation.md)限定 CONFORMED。`battle-result` 優先於地圖側欄，普通 Enter 才關閉；修正前端漏送 V／Ctrl，左右 Ctrl 合併為單一掃描碼。可見來源 metadata 與 Frame 客體純度已驗。正式內部套件 337.654 秒、正常撤退整合測試 20.663 秒通過 |
 | 正常戰鬥視窗 | `workplace/player/gui/battle-result-save-r2` 為 295／102 幀、69／20 次改變，已解碼及看圖。第一場自然遭遇、V、左右 Ctrl 重疊、撤退、結果關閉、F1／F2 及真正 F7 存退讀通過。10410 個 Noto 不透明數字墨點同 atlas，原字模負對照 1960 個不符；九個結果靜態欄位同已驗 Noto。2987 bytes 同讀回 RAM `17397b19…267c`，read step 34479484，退出碼 0。亂數數額及戰鬥規則未驗 |
-| 戰場 HD 研究 | [019](docs/spec/019-normal-encounter-battle-presentation.md)為 DRAFT。GRO02.EG 由既有 Huffman 解碼，正常來源與返回的 128000 色號皆相同；遇敵圖的十二個高度前綴及 CHOI 四張陰陽圖案已解析。三組正常重播各 50 點的 state 同 `1e837017…75b6`、35 工作檔及 PCM 相同；手繪背景原型仍有 52800 格原版色塊，未接 production。下一步只追 `14D2:0626`／`0423` 的來源頁、遮罩及實際返回，再回正式合成 |
-| 戰鬥前歷史來源 | `workplace/player/build-pre-battle-result-r1` 保存提交 `05695743…440` 的 44 筆來源與四個程式，供民兵及本輪早期研究回查。正式現在為 45 筆建置來源；r16 素材仍 77 檔，戰場候選、原圖及提示只留本機 |
+| 戰場背景接入 | [021](docs/spec/021-battle-background-pages.md)為 READY，已實作，尚未 CONFORMED。r6 已證實 223 次背景頁遮罩與 21 次矩形還原；r8 的 1073600 個所有權及三張 Noto 分層畫面獨立核對。正式 r17 共 81 檔，完整保留 r16 的 77 檔，獨立重建相同。r9 背景／停用／壞 PNG 各 50 點完整 state、35 工作檔及 PCM 相同，150 次 Frame 純度通過；背景全同獨立 r8，故障全同停用組 |
+| 戰場背景視窗 | `battle-background-save-r1` 的 807／142 幀、179／21 次改變已解碼及看圖。正常自然遭遇、V／左右 Ctrl、撤退、結果、四次 F1／F2 及真正 F7 存退讀通過。10644 個 Noto 數字墨點與九個結果欄位通過；2987 bytes 同 RAM `36d7c2dd…aec2`，read step 11612440。目標測試 11.673 秒、完整套件 288.519 秒通過 |
+| 戰場視窗未決 | Draw 632 的 123970 格背景同核對快取，4030 格為原版前景；敵人 2524 格對上完整來源，民兵／活動標記 1506 格尚未完整重建。雙來源與另一 Draw 的模板假設皆失敗，未放寬驗收。73 次呼叫相對 11×50 四平面形狀少 517 次寫入，支持中間幀的強推論；尚未直接證實當次 helper／平面。下一步在正常 GUI 只讀記錄入口、寫入及返回，區分中間幀與活動標記疊色，再補規格；沒有猜補 production 等待。部隊 HD 仍為 019 DRAFT |
+| 戰鬥前歷史來源 | `workplace/player/build-pre-battle-result-r1` 保存提交 `05695743…440` 的 44 筆來源與四個程式，供民兵及早期戰鬥研究回查。020 當時為 45 筆建置來源及 r16 的 77 檔；本輪以前的來源鍵不能以現行程式冒充 |
+| 背景前歷史來源 | `workplace/player/build-pre-battle-background-r1` 保存提交 `b39b335e…c4d` 的 45 筆來源及四個程式，供 r6／r8 與舊 GUI 回查。現行正式為 47 筆建置來源、四個程式及 r17 的 81 檔；原圖、提示、素材與收據只留本機 |
 | 民兵 HD 接入 | [018](docs/spec/018-army-militia-image.md)限定 CONFORMED。正常 F2 的 MAN01.EGG 首筆水平鏡射與六塊遮罩已核對，固定來源 84、88×50 畫幅。現行素材 `workplace/player/assets-painted-r16` 共 77 檔，與獨立重建相同；r15 保留作基準，73 份非清單檔不變。其他兵種未套用 |
 | 民兵隔離與故障 | `graphics-first/army-r1/runtime-audit-r1.json`：四組正常 F2／F1 兩次往返，完整 state `2ad291e1…872b`、PCM `01abf481…cf4a`、26 工作檔及事件相同。兩個 79200 像素人物區同獨立重建，Noto 與人物頁不變；壞第十三張 PNG 整組回退，四張畫面同停圖組。十二張舊主角與舊材質快取不變，完整前端測試 195.890 秒通過 |
 | 民兵實際視窗 | `workplace/player/gui/army-save-r1` 187／111 幀、33／19 次改變已解碼及看圖。新遊戲與繼續後各兩次 F2／F1，32 個實際 Draw 的人物區同獨立合成；真正 F7 存退讀的 2987 bytes 同 RAM `29dd62ae…2359`，read step 33812777，正常 DOS 退出碼 0。X11 縮放未獨立建模，精確像素聲明限原尺寸 Draw |
@@ -33,7 +36,7 @@
 | 背景與字型視窗 | `story-art-caoshu-visible-r2/story` 409 幀／147 次改變已解碼及看圖，五頁 90 個故事 Draw、四組 19 個字幕 Draw 逐 RGBA byte 同獨立重建。`font-settings-save-r2` 的 421／271 幀、90／72 次改變已檢視；F10 五次循環、Noto 原像素恢復、偏好重啟、F7 存退讀及 F1 通過，2987 bytes 同 RAM SHA `29dd62ae…2359`。背景故障 286／78、草書故障 344／91，已看圖及獨立核對各自回退，其他 HD 保留 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 目前程式包含 008 音樂事件至 020 戰鬥結果及 V／Ctrl，019 戰場美術仍為研究原型；建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
+| 文件同步 | 目前程式包含 008 音樂事件至 021 戰場背景與來源頁還原；021 視窗中間幀仍待核對，019 部隊及 017 博物館美術仍為 DRAFT。建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
 | Docker | 沿用既有研究／Go／影像及 IDA 映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；片頭後以 INT 21h AX=4B03 覆蓋載入 `PAM.AY`，Seg／Reloc 都是 0110，沒有新的子行程 PSP。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |

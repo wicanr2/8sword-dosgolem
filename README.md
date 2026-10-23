@@ -118,7 +118,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r8 \
 
 F2 的初始民兵已有手繪 HD 圖，保留藍背心、白褲、青頭巾與持槍方向。使用本機 r16 素材組；來源、[可重現匯入工具](tools/prepare-hd-army.py)及限定驗收見 [018](docs/spec/018-army-militia-image.md)。存退讀流程另設 `EIGHTSWORD_GUI_ARMY_CHECK=1`，在新遊戲及繼續進度後各測兩次 F2／F1 往返。其他兵種仍依各自原版資料顯示。
 
-視窗支援原版戰鬥的 V 與左右 Ctrl，兵力及撤退結果沿用 Noto；結果訊息需由玩家普通按鍵關閉。正常遭遇、撤退、結果關閉及後續存退讀範圍見 [020](docs/spec/020-battle-result-presentation.md)。驗證時可在 `save-cycle` 另設 `EIGHTSWORD_GUI_BATTLE_CHECK=1`，只取第一場自然遭遇，並核對 V／Ctrl 真正送到 DOS。戰場背景與部隊仍是原版，手繪候選及尚待接入的繪圖路徑見 [019](docs/spec/019-normal-encounter-battle-presentation.md)。
+視窗支援原版戰鬥的 V 與左右 Ctrl，兵力及撤退結果沿用 Noto；結果訊息需由玩家普通按鍵關閉。正常遭遇、撤退、結果關閉及後續存退讀範圍見 [020](docs/spec/020-battle-result-presentation.md)。驗證時可在 `save-cycle` 另設 `EIGHTSWORD_GUI_BATTLE_CHECK=1`，只取第一場自然遭遇，並核對 V／Ctrl 真正送到 DOS。本機 r17 已接手繪戰場背景及背景頁還原，無頭對拍與故障回退通過，實際視窗的前景中間幀仍待核對，見 [021](docs/spec/021-battle-background-pages.md)。部隊圖像保持原版，其餘戰鬥美術見 [019](docs/spec/019-normal-encounter-battle-presentation.md)。
 
 片頭標題以原版實際繪圖及完整來源指紋驅動，四字改用 Noto Black 900，保留原位置、黑底及原版 Esc。字圖損壞時回原版標題，其他 HD 保留。來源、幾何及驗證範圍見 [011](docs/spec/011-intro-title-noto.md)。已有本機 r9、固定 TIT2 及上述 Noto 字型後，可建立新組：
 

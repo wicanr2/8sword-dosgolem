@@ -23,6 +23,7 @@ type Engine struct {
 	HD                    bool
 	AssetError            string
 	GraphicsError         string
+	BattleBackgroundError string
 	Exited                bool
 	ExitCode              uint8
 	PAMLoaded             bool
@@ -90,6 +91,9 @@ func Open(opt Options) (*Engine, error) {
 					if artErr != nil {
 						e.GraphicsError = artErr.Error()
 					} else if art != nil {
+						if battleErr := loadBattleBackground(opt.Assets, opt.Root, art); battleErr != nil {
+							e.BattleBackgroundError = battleErr.Error()
+						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)
 					}
 				}
@@ -340,6 +344,7 @@ func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
 func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
 	out["font_id"], out["font_name"], out["font_error"], out["font_choices"] = e.FontID(), e.FontName(), e.FontError, e.FontChoices()
+	out["battle_background_error"] = e.BattleBackgroundError
 	view := e.bootConsole()
 	out["console_stage"], out["console_source_sha256"] = view.stage, view.sha
 	intro := map[string]any{"load_error": e.IntroError, "stage": e.IntroStage()}

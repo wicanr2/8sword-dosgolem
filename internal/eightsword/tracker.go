@@ -310,7 +310,7 @@ func (t *Tracker) write(w oracle.VideoWrite) {
 	}
 	t.Stats.PixelWrites++
 	// The source and destination registers still point to the current byte.
-	if w.CS == t.stringSeg && (w.IP == 0x364 || w.IP == 0x3d7) && w.WriteMode == 1 {
+	if w.CS == t.stringSeg && (w.IP == 0x364 || w.IP == 0x3d7 || w.IP == 0x47f) && w.WriteMode == 1 {
 		r := t.o.Regs()
 		source := uint32(r.DS)*16 + uint32(r.SI)
 		if source >= 0xa0000 && source < 0xb0000 {
@@ -321,6 +321,9 @@ func (t *Tracker) write(w oracle.VideoWrite) {
 	}
 	mask := uint8(255)
 	if t.graphics != nil {
+		if source, ok := t.graphics.backgroundSource(w); ok {
+			t.copyByte(w.Offset, source)
+		}
 		mask = t.graphics.write(w)
 	}
 	isGlyph := (w.CS == t.fontSeg && (w.IP == 0x4b80 || w.IP == 0x4bda)) || (w.CS == t.stringSeg && w.IP == 0xc71)
