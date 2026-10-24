@@ -273,4 +273,4 @@ HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-ref
 4. 展示代表 HD 畫面與原曲音色提升試聽，完成必要取捨及 READY 規格。
 5. 在正常前端接通顯示、輸入、HD 音樂及真正存讀檔，再擴展素材與曲目。
 
-博物館背景已選 A 紫藍手繪，女主角保持 033。[批准原圖](docs/images/museum-a-approved-r1.png)、[完整提示](docs/images/museum-a-approved-r1.prompt.txt)與[來源／決定](docs/images/museum-a-approved-r1.json)保存於私人倉庫；原始生成 PNG 不改，正式背景接入依 [017](docs/spec/017-intro-museum-art.md)完成契約審查與驗收。
+博物館背景已選 A 紫藍手繪，女主角保持 033。[批准原圖](docs/images/museum-a-approved-r1.png)、[完整提示](docs/images/museum-a-approved-r1.prompt.txt)與[來源／決定](docs/images/museum-a-approved-r1.json)保存於私人倉庫；原始生成 PNG 不改，[017](docs/spec/017-intro-museum-art.md#ready選定-a-與既有女主角的正式整合契約)已完成契約審查並 READY，授權單一博物館呈現器接入，仍待正式實作與驗收。
