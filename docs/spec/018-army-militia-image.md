@@ -1,5 +1,7 @@
 # 018：軍隊頁的民兵圖像
 
+回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的戰場首筆另見 [028](028-battle-militia-image.md)。`PAM/runtime14D2:0626/06B8/076E` 使用可選別名 107，共用本規格的不可變快取；F2 仍為 85。正常戰場及 F2／F1 對拍已核對，完整狀態依 028，不把其他三筆未驗來源套入。
+
 狀態：限定 CONFORMED。正常新遊戲 F2 民兵圖已接入 B 明亮手繪風格，原文、兵種、數量、月薪與玩家操作保持。正常 F2／F1 往返、存退讀及真實 PNG 故障驗收通過。其他兵種、戰鬥及整體 HD 未結案。
 
 入口：[目前狀態](../../CONTEXT.md)、[研究紀錄](../../RESEARCH-LOG.md)。繪圖 ABI 與所有權沿用 [004](004-hd-bitmap-presentation.md)，透明圖像呈現參考 [007](007-masked-hero-animation.md)，不可直接套用主角尺寸或第六塊遮罩。

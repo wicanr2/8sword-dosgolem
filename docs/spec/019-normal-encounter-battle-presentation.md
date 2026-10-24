@@ -1,5 +1,7 @@
 # 019：正常遭遇與戰鬥的文字及圖像
 
+回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的戰場首筆由 [028](028-battle-militia-image.md)沿 `PAM/runtime14D2:0626/06B8/076E` 接入。同一完整來源共用 018 快取，F2 分支保持；其他三筆、CHOI 與玩法語意仍待證據，歷史來源目錄不因新呈現改寫。
+
 狀態：DRAFT。範圍是正常冷啟動、新遊戲、地圖移動、第一個自然遭遇與原版「是」分支，盤點尚未呈現為 HD 的文字與圖像。戰鬥規則仍完全由 DOS 程式執行，不重寫或推定原版玩法。
 
 入口：[目前狀態](../../CONTEXT.md)、[研究紀錄](../../RESEARCH-LOG.md)。本機探針、操作及來源記錄集中 `workplace/probe-20261023/graphics-first/battle-r1/`，用途是正常戰鬥的呈現與回退證據，不另建研究根目錄。

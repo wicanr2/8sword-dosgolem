@@ -102,6 +102,12 @@ func Open(opt Options) (*Engine, error) {
 						if effectErr := loadBattleEffects(opt.Assets, opt.Root, art); effectErr != nil {
 							e.BattleEffectError = effectErr.Error()
 						}
+						if militiaErr := loadBattleMilitia(opt.Assets, opt.Root, art); militiaErr != nil {
+							if e.BattleActorError != "" {
+								e.BattleActorError += "；"
+							}
+							e.BattleActorError += "戰場民兵: " + militiaErr.Error()
+						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)
 					}
 				}

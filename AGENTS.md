@@ -6,6 +6,12 @@
 
 戰場火花：[027：PON 效果](docs/spec/027-battle-pon-effects.md)，限定 CONFORMED。獨立效果層保留底色與累積透明圖，四筆正常返回全幅、三組隔離、失效、實際 Draw 快取及真正存退讀已驗。GUI 精確圖層抽樣來源 3，不把即時 metadata 套到較早保留幀，也不宣稱四筆皆在 GUI 完整抽驗。
 
+戰場民兵：[028：民兵共用圖像](docs/spec/028-battle-militia-image.md)，限定 CONFORMED。共用 018 的不可變快取，不改 F2 全域分類；正常戰場、PON、F2／F1、存退讀及 63 項分批套件通過。其他民兵來源與整體 HD 仍待驗證。
+
+README 比較圖：[原版／HD 怪物總覽](docs/images/monsters-original-hd-r1.png)、[相同狀態戰場總覽](docs/images/battle-original-hd-r1.png)，使用者於 2026-10-24 明確要求放入 README，限既有私人倉庫；未延伸為原始遊戲或全素材散布授權。[來源紀錄](docs/images/overviews-r1.json)、[重生工具](tools/prepare-readme-overviews.py)同次保存。主角新方向依使用者更正為中國武將美男子；鏡中王子思念美人的使用者概念圖只作美術參考，開場動畫亦須 HD，保留原版順序與操作。
+
+武將主角肖像：[004 的更新契約](docs/spec/004-hd-bitmap-presentation.md#主角武將肖像更新)、[匯入工具](tools/prepare-hd-hero-redesign.py)，本節限定 CONFORMED。r24 保持原版肖像來源與位置，兩次 F1 像素、客體隔離、實際視窗與存退讀通過；R3 原圖及完整生成紀錄留本機。開場概念試播不是正式動畫接入證據，仍依 017。
+
 本檔是本專案的工作規則與索引。目前狀態看 [CONTEXT.md](CONTEXT.md)，工作歷程看 [WORKLOG.md](WORKLOG.md)。面向使用者的回覆與文件使用繁體中文，句子簡短，技術內容優先用條列或表格。共用主機規則仍適用。
 
 介面接入規格：[005：古風介面來源與所有權](docs/spec/005-jade-gold-interface.md)，外框、主選單與系統訊息框已在指定正常路段限定 CONFORMED；不代表其餘 HD 素材與全遊戲完成。

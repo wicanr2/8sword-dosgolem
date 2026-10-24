@@ -175,6 +175,11 @@ func (g *Graphics) beginSource(kind int, background bool) {
 	}
 	source := o.Bytes(ptr, n)
 	id := g.assets.ByNative[hash(source[:4+area*4])]
+	// Spec 028: only the background-backed branch uses the battle alias.
+	// The global source and destination-preserving F2 branch remain ID 85.
+	if background && id == 85 && g.assets.BattleActors[battleMilitiaID] {
+		id = battleMilitiaID
+	}
 	effectSource := id
 	if id != 0 {
 		g.Stats.SourceMatches++

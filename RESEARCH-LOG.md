@@ -941,3 +941,14 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - **真正玩家路徑**：從既有原版存檔正常繼續，一場自然遭遇、休息／撤退／結果返回、F1／F2、四方向與 F7 存退讀完成，不載快照或重開選編成。559／156 幀、172／20 次改變與四張接觸表已看。2987 bytes 同讀回 RAM `9b7b7cc4…e0a4`，read step 11012398、退出碼 0；4755 個視窗差異限主角動畫。結束後快照只零指令檢視，不代替原版讀檔。
 
 027 限定 CONFORMED，019／022／026 回填 `BATTLE-PON-EFFECTS-RESOLVED`。新正式 56 筆來源／四程式；改動前 54 筆／四程式與 Git archive 按 `7e17ddc…0aa` 存 `build-pre-pon-r1`。PON-r1/r2 的 51 筆研究輸入對舊 archive，r3 的 53 筆對新程式；GUI-r2 58 筆／兩程式另存，不能拿現行碼冒充歷史來源。r22 116 檔保留 109 檔。提示記錄的換行轉義勘誤只改兩份 metadata，114 個執行期檔案保持，舊文字與雜湊另存。民兵戰場、CHOI、其他曲目與整體 HD 仍待完成。
+
+## 2026-10-24：民兵共用來源、武將肖像與 README 比較圖
+
+本次工具沿用 Go 1.24.13、Pillow 11.3.0 與固定 dosgolem f79eab6d 加八檔補丁。來源、檔案偏移、執行期位址與推論等級分別沿 [028](docs/spec/028-battle-militia-image.md)、[004 肖像更新](docs/spec/004-hd-bitmap-presentation.md#主角武將肖像更新)。沒有新增 IDA 研究或改正式資料庫。
+
+- 已證實：`MAN01.EGG` 首筆六塊鏡射完整 SHA `78b8127a…b924`，228 次正常 `PAM/runtime14D2:0626/06B8/076E` 與既有 F2 完整來源相同。戰場用別名 107，F2 仍 85，共用 `1c795ec9…2fe5` 的不可變快取。其他三筆與動作語意未補猜測。
+- 正常三組對拍及實際視窗見 `battle-r1/militia-runtime-audit-r1.json`、`militia-gui-audit-r1.json`、`militia-final-audit-r1.json`。46 點／138 純度、完整 state／PCM／工作檔、五張正常全幅、實際完整快取及真正存讀分開核對。獨立核對器初稿的掛載父目錄與 PON 索引順序假設均已修正，沒有更改來源、原版輸入、畫面容差或正式程式迎合核對器。
+- 使用者更正首張為主角後，圖像更新仍對 `MAN.AY/file+17552`、2004 bytes、完整 SHA `61694748…7c28a`、原生 80×40／索引 68。內建圖像工具保留前版構圖及 B 筆觸，R2 改中國武將；R3 只拉遠構圖保留完整金冠，輸出 SHA `b97e3a9c…1e41`。完整實際提示與參考保存在 `hero-portrait-redesign-provenance-r1.json`，生成本身不保證重跑同圖。
+- 已證實呈現：`hero-warrior-runtime-audit-r1.json` 的兩次 F1 各 57600 像素，RGB SHA `ec30ea03…50a9` 同獨立整圖取樣。250M state `4b55d179…64ac` 及 31 工作檔同 r23，其他畫面同源；真正視窗與進度收據另在 `player/gui/hero-warrior-save-r1/`。人物身分及新造型方向來自使用者，不從舊像素推定劇情。
+- 原版／HD 總覽由 [工具](tools/prepare-readme-overviews.py)製作，原版怪物按已證實第六塊遮罩解碼；戰場採正常原生索引與同時色盤，HD 為同一狀態的正式 Frame。來源、尺寸與全部輸入／輸出 SHA 見 [紀錄](docs/images/overviews-r1.json)。兩張 PNG 及 metadata 的獨立重建相同，公開文字明列十六筆及兩個抽樣，不稱全怪物完成。使用者本次明確要求將這兩張比較圖放入私人倉庫，其他原版與完整素材仍留本機。
+- 概念試播 `opening-mirror-concept-r2.mp4` 是新情緒圖的緩慢推鏡與已批准〈幻〉HD 配樂，非原版鏡頭、角色動畫或已接入片頭。工具為既有 cok-ffmpeg:r1／FFmpeg 5.1.9；R1 音訊被截短的失敗保留，R2 分離混音後視音訊約八秒。完整媒體資料、來源 SHA、192 幀與音量核對見 `opening-mirror-concept-r2-audit.json`；正式開場仍依 [017](docs/spec/017-intro-museum-art.md)的原版順序及閘門處理。

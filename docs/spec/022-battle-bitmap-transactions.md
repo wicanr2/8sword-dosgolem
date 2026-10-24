@@ -1,5 +1,7 @@
 # 022：戰場繪圖交易與完整幀呈現
 
+回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的首筆 HD 呈現另見 [028](028-battle-militia-image.md)，入口仍為 `PAM/runtime14D2:0626/06B8/076E`。別名 107 沿用本規格的原幀交易、背景衛式與返回點，不改 F2 的 85 或重做 helper 逆向。其他來源與歷史原版重建證據保持。
+
 狀態：限定 CONFORMED。`transaction-ready-review-r1.json` 先核對 48 筆研究來源、兩個研究程式、117 次原版返回、11 個中間 Draw、來源限制及失效契約，才進正式實作。下列正常重播、正式視窗、失效診斷與獨立圖層重建已通過。範圍限 [021](021-battle-background-pages.md)的已驗戰場矩形，不代替部隊美術或完整遊戲驗收。
 
 入口：[目前狀態](../../CONTEXT.md)、[019](019-normal-encounter-battle-presentation.md)、[字墨與快取](003-noto-runtime-overlay.md)、[原版圖像觀測](004-hd-bitmap-presentation.md)。本機原型及證據沿用 `workplace/probe-20261023/graphics-first/battle-r1/`，不新增研究根目錄。

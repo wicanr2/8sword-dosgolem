@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "tool": "Pillow 11.3.0",
+  "script_sha256": "df78f8fbe7ae515589c97fefcecb27e744a0496f8585797649e56c33ac1c911d",
+  "sources": {
+    "workplace/probe-20261023/graphics-first/font-settings-r1/NotoSansCJK-Black.ttc": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+    "workplace/intake-20261023/sources/game/8sword/MAN16.EGG": "d4acf7c58c199c1776ffde6c86afa3c9b0ae3b132e4cc59973e1e0d5c2011d6a",
+    "workplace/probe-20261023/graphics-first/battle-r1/man16-art-r1/cache-frame-0.rgba": "7bba23cffb1c221ed3e004c72e9a8703a956da149adc2e998d7b40b380855d6e",
+    "workplace/probe-20261023/graphics-first/battle-r1/man16-art-r1/cache-frame-1.rgba": "8a4ec6ab6a947eb90b5ccbb89223c3fd2be60f71c3af87699b1665fe3b3ebf1c",
+    "workplace/probe-20261023/graphics-first/battle-r1/man16-art-r1/cache-frame-2.rgba": "fce9eb9d394453dbf05fee19d9f7bc3ca6a88af34fb87fe21e109d19f2159692",
+    "workplace/probe-20261023/graphics-first/battle-r1/man16-art-r1/cache-frame-3.rgba": "7ef65d8bc1c2c922eb9829cd0e96529c1e064e454f2943df23d7fd371ad19756",
+    "workplace/intake-20261023/sources/game/8sword/MAN06.EGG": "97be211dd9289538aaa46f01b2340bcac9ce0a7c8e44ed9d3c4e9abdac873579",
+    "workplace/probe-20261023/graphics-first/battle-r1/man06-art-r1/cache-frame-0.rgba": "9b55c520330108df14928b31d8316119b17b6483de642d235cbed98051dcac83",
+    "workplace/probe-20261023/graphics-first/battle-r1/man06-art-r1/cache-frame-1.rgba": "4bf57a5779015cc6b097232ee1756e9041f1aafe4891154bf3281e07426677c6",
+    "workplace/probe-20261023/graphics-first/battle-r1/man06-art-r1/cache-frame-2.rgba": "580c2103d6f1b83f51f6dfd23bd59165b192d9d3f5cf76f1d06819323ca6e8ca",
+    "workplace/probe-20261023/graphics-first/battle-r1/man06-art-r1/cache-frame-3.rgba": "f04efa101294464834835196f655cec70d1f4428531699bf44b912846134c334",
+    "workplace/intake-20261023/sources/game/8sword/MAN11.EGG": "860ab98a7165f25fe2007dd597ddf6fc698c9d2f048701eec955a1a0cd65f832",
+    "workplace/probe-20261023/graphics-first/battle-r1/man11-art-r1/cache-frame-0.rgba": "00d51b8808497edd5e75a2fa8f95e20a5a6bed474612078667f9c722e05c1cab",
+    "workplace/probe-20261023/graphics-first/battle-r1/man11-art-r1/cache-frame-1.rgba": "1909138634dd2fdd906a3dd4c341a0a842e9e85d6b3e5c4d653750a3c8cd0e20",
+    "workplace/probe-20261023/graphics-first/battle-r1/man11-art-r1/cache-frame-2.rgba": "9e3cf0f8949354237d92488e56475883b52184c321a81d2f74d34e3b410a6185",
+    "workplace/probe-20261023/graphics-first/battle-r1/man11-art-r1/cache-frame-3.rgba": "d42449826209acef52ada6ccb49e320496983dff44fbf20b2944117a102c8486",
+    "workplace/intake-20261023/sources/game/8sword/MAN21.EGG": "47cc484319abeba53551c20b7cf4b9b2c6061f2da3b6cda14155b3598f10982c",
+    "workplace/probe-20261023/graphics-first/battle-r1/man21-art-r1/cache-frame-0.rgba": "90f3e7d4039f3aca90f5921f79e04e1155c699fe923482a42c588f9a61148f4c",
+    "workplace/probe-20261023/graphics-first/battle-r1/man21-art-r1/cache-frame-1.rgba": "445a326ab52abba8fcd78426fde3ee2ef23e061b803169e2c680e59a843587f6",
+    "workplace/probe-20261023/graphics-first/battle-r1/man21-art-r1/cache-frame-2.rgba": "fbf95dd4af01dfb54534d94b91d8558d6637ff10ff0ca8ed66c0aeee73485eaa",
+    "workplace/probe-20261023/graphics-first/battle-r1/man21-art-r1/cache-frame-3.rgba": "5dfca14098b37bbc581ccc16ea2d76275d2bccda67089103485d35088210eb1c",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/01-counts-layers.json": "0213b198cafa4582f5b8601ed8b43749f98c3ffee0fa89a70cf9de81a96274a5",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/01-counts-native.idx": "7d496a4519f764773dff542526d87d3a8e16b6e72dd8367d094c03fa0e7994d4",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/01-counts.png": "776aeb6f320bc23dad6b8296287d274b4ea36d158ebfc3bcc0674cf3d641a4c7",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/01-counts-before.state": "ce11a5df05a3feffa9011b063539c9289f31dd8dd78eda2d7a8345d083631de3",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/01-counts-after.state": "ce11a5df05a3feffa9011b063539c9289f31dd8dd78eda2d7a8345d083631de3",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/01-counts.json": "15c40152587a313479091df7d05081a8aa3125485644c3dd1c74dea1155d2efb",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/07-pon-3-return-layers.json": "c52c3e909389e781f3c4e3c9d37a61a647ee049bf08ab25b5015314c513ec483",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/07-pon-3-return-native.idx": "7a4310ad2632b16513f9b4be7fb38aede82f0aeb5d15341d8fd850fd973059ac",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/07-pon-3-return.png": "68690c17d96ae5febeada104edc2da5ca856d95e0e0ca6feadd18da1ca2f4ca6",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/07-pon-3-return-before.state": "4dabc7bca6f407d8d8a85aca9075898b2e128a3a5bcbd929f73c8f5f0239b272",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/07-pon-3-return-after.state": "4dabc7bca6f407d8d8a85aca9075898b2e128a3a5bcbd929f73c8f5f0239b272",
+    "workplace/probe-20261023/graphics-first/battle-r1/militia-hd-r1/07-pon-3-return.json": "195635f139b498587c5310d01176b359a895bf836e51bcc29bf12db8feabae81"
+  },
+  "monsters": [
+    {
+      "source": "MAN16.EGG",
+      "record": 0,
+      "offset": 0,
+      "original_rgba_sha256": "4d19073fafe5cc4d174074bca8be8e386011bd5f7379820f26ec9ec5c2003248",
+      "HD_cache_sha256": "7bba23cffb1c221ed3e004c72e9a8703a956da149adc2e998d7b40b380855d6e",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN16.EGG",
+      "record": 1,
+      "offset": 3304,
+      "original_rgba_sha256": "bb6dde3514aa5c608d3c36acdac47212edb1f1f0267859e3e034074dbf44d75c",
+      "HD_cache_sha256": "8a4ec6ab6a947eb90b5ccbb89223c3fd2be60f71c3af87699b1665fe3b3ebf1c",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN16.EGG",
+      "record": 2,
+      "offset": 6608,
+      "original_rgba_sha256": "50a870b013083b286a7e1ae7746cc56e2a41c235666b52baaf9de41feb70ce1c",
+      "HD_cache_sha256": "fce9eb9d394453dbf05fee19d9f7bc3ca6a88af34fb87fe21e109d19f2159692",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN16.EGG",
+      "record": 3,
+      "offset": 9912,
+      "original_rgba_sha256": "1d568f45cd42b5ef838b335a48e3fb29c736184eb814d790a84840b26b6d9dd7",
+      "HD_cache_sha256": "7ef65d8bc1c2c922eb9829cd0e96529c1e064e454f2943df23d7fd371ad19756",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN06.EGG",
+      "record": 0,
+      "offset": 0,
+      "original_rgba_sha256": "3fc41e01ab561534b90df9560b02604fe7b4405e9f13c8ece5f30bc1620cc23b",
+      "HD_cache_sha256": "9b55c520330108df14928b31d8316119b17b6483de642d235cbed98051dcac83",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN06.EGG",
+      "record": 1,
+      "offset": 3304,
+      "original_rgba_sha256": "e1ae000b06b902b3cd1ac5e92814f16e09c87a0907dc96b6699d59bdaf0afe77",
+      "HD_cache_sha256": "4bf57a5779015cc6b097232ee1756e9041f1aafe4891154bf3281e07426677c6",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN06.EGG",
+      "record": 2,
+      "offset": 6608,
+      "original_rgba_sha256": "550350d287cff20a90f2d922ef604469ccb9b76c49767933b7071f87f32032cd",
+      "HD_cache_sha256": "580c2103d6f1b83f51f6dfd23bd59165b192d9d3f5cf76f1d06819323ca6e8ca",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN06.EGG",
+      "record": 3,
+      "offset": 9912,
+      "original_rgba_sha256": "2265b17fc97724d3b5cf9b950977953965d0da424b29de6617b03399e77a023d",
+      "HD_cache_sha256": "f04efa101294464834835196f655cec70d1f4428531699bf44b912846134c334",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN11.EGG",
+      "record": 0,
+      "offset": 0,
+      "original_rgba_sha256": "e35cc0b51a3205d7b46c2dc428884b9afbf81d9c27a1e244de1317ac04ba951b",
+      "HD_cache_sha256": "00d51b8808497edd5e75a2fa8f95e20a5a6bed474612078667f9c722e05c1cab",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN11.EGG",
+      "record": 1,
+      "offset": 3304,
+      "original_rgba_sha256": "eabda08a10c3cb70143ab1bb2464bdf6a30508ff659604c84407b5db04b31246",
+      "HD_cache_sha256": "1909138634dd2fdd906a3dd4c341a0a842e9e85d6b3e5c4d653750a3c8cd0e20",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN11.EGG",
+      "record": 2,
+      "offset": 6608,
+      "original_rgba_sha256": "319841685361d9c9649f17988daa9895d3888912d53ea086a412b6834250c7e7",
+      "HD_cache_sha256": "9e3cf0f8949354237d92488e56475883b52184c321a81d2f74d34e3b410a6185",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN11.EGG",
+      "record": 3,
+      "offset": 9912,
+      "original_rgba_sha256": "5197d859643b899bdcd46904ed2067df4ae21e1bc4301241253009a850f317cd",
+      "HD_cache_sha256": "d42449826209acef52ada6ccb49e320496983dff44fbf20b2944117a102c8486",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN21.EGG",
+      "record": 0,
+      "offset": 0,
+      "original_rgba_sha256": "7f1c027417fe2c8fbdc12826bb0776c8c4b45c67a850d268775167539207ae00",
+      "HD_cache_sha256": "90f3e7d4039f3aca90f5921f79e04e1155c699fe923482a42c588f9a61148f4c",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN21.EGG",
+      "record": 1,
+      "offset": 3304,
+      "original_rgba_sha256": "2c5ce6075c0d0902e5793f930c8163267307be401799eb902c7aa10b24ac5663",
+      "HD_cache_sha256": "445a326ab52abba8fcd78426fde3ee2ef23e061b803169e2c680e59a843587f6",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN21.EGG",
+      "record": 2,
+      "offset": 6608,
+      "original_rgba_sha256": "af15d8457f6bdecc8d5aeacf527d4411764854fcff6a70202b9f5350872040e1",
+      "HD_cache_sha256": "fbf95dd4af01dfb54534d94b91d8558d6637ff10ff0ca8ed66c0aeee73485eaa",
+      "action_semantics": "unknown"
+    },
+    {
+      "source": "MAN21.EGG",
+      "record": 3,
+      "offset": 9912,
+      "original_rgba_sha256": "7474a876c77fdd479c72c2fdcfbc69161b2f6d13ac7208d327d146a45f30d856",
+      "HD_cache_sha256": "5dfca14098b37bbc581ccc16ea2d76275d2bccda67089103485d35088210eb1c",
+      "action_semantics": "unknown"
+    }
+  ],
+  "battles": [
+    {
+      "point": "01-counts",
+      "step": 70209885,
+      "state_sha256": "ce11a5df05a3feffa9011b063539c9289f31dd8dd78eda2d7a8345d083631de3",
+      "original_RGBA_source": "actual VGA indices plus captured palette; no DOSBox or generated replacement",
+      "native_index_sha256": "7d496a4519f764773dff542526d87d3a8e16b6e72dd8367d094c03fa0e7994d4",
+      "HD_frame_sha256": "776aeb6f320bc23dad6b8296287d274b4ea36d158ebfc3bcc0674cf3d641a4c7"
+    },
+    {
+      "point": "07-pon-3-return",
+      "step": 88934872,
+      "state_sha256": "4dabc7bca6f407d8d8a85aca9075898b2e128a3a5bcbd929f73c8f5f0239b272",
+      "original_RGBA_source": "actual VGA indices plus captured palette; no DOSBox or generated replacement",
+      "native_index_sha256": "7a4310ad2632b16513f9b4be7fb38aede82f0aeb5d15341d8fd850fd973059ac",
+      "HD_frame_sha256": "68690c17d96ae5febeada104edc2da5ca856d95e0e0ca6feadd18da1ca2f4ca6"
+    }
+  ],
+  "outputs": {
+    "monsters-original-hd-r1.png": "90c0e164277684b226e8af024335e807a02b4e61bdee33b90af547e3665c2f76",
+    "battle-original-hd-r1.png": "a58359e3a753a5385b27a5af524f7df0e1c5bb391d6827c07143426537416eb2"
+  },
+  "user_authorization": "使用者要求將原版／HD 怪物總覽及戰場總覽放入 README；限既有私人倉庫的比較圖。",
+  "scope": "四組十六筆敵方來源；兩個相同狀態戰場抽樣。不是全遊戲／全怪物完成聲明。",
+  "rights": "Comparison documentation only; no original game files, full-resolution asset packs or public redistribution grant."
+}

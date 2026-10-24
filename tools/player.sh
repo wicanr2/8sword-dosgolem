@@ -31,7 +31,7 @@ case "${1:-}" in
     bash "$task_root/tools/research.sh" build-probe
     test -d "$task_work/gocache"; test -d "$task_work/gomodcache"
     mkdir -p "$task_player"
-    exec timeout 420s docker run --rm --name "8sword-player-$task_action" --network none \
+    exec timeout -k 10s 420s docker run --rm --init --name "8sword-player-$task_action" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
       --mount "type=bind,src=$task_root,dst=/project,readonly" \
       --mount "type=bind,src=$task_work/dosgolem,dst=/dosgolem,readonly" \
@@ -78,7 +78,8 @@ case "${1:-}" in
             EIGHTSWORD_TEST_MAN21_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/man21-art-r1 \
             EIGHTSWORD_TEST_PON_ASSETS=/out/assets-painted-r22 \
             EIGHTSWORD_TEST_PON_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/pon-art-r1 \
-            go test -p=2 -mod=readonly /project/internal/eightsword
+            EIGHTSWORD_TEST_BATTLE_MILITIA_ASSETS=/out/assets-painted-r23 \
+            go test -v -timeout=390s -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
             go test -mod=readonly ./oracle ./internal/machine ./internal/dos ./internal/state
@@ -173,6 +174,40 @@ case "${1:-}" in
       --mount "type=bind,src=$task_out,dst=/out" \
       "$task_py" python /tools/prepare-hd-battle-actors.py --base /base --source "/orig/$task_unit.EGG" \
       --unit "$task_unit" --art-dir /art --out /out
+    ;;
+  battle-militia-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r22}"
+    valid_name "$task_name"; valid_name "$task_base"
+    test -d "$task_player/assets-$task_base"; test -f "$task_orig/MAN01.EGG"
+    test -d "$task_root/tools"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout 60s docker run --rm --name "8sword-battle-militia-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 700m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-battle-militia.py --base /base --source /orig/MAN01.EGG --out /out
+    ;;
+  hero-redesign-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r23}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_refs="$task_work/probe-20261023/graphics-first"
+    test -d "$task_player/assets-$task_base"; test -f "$task_orig/MAN.AY"
+    test -f "$task_refs/hero-portrait-r3.png"; test -d "$task_root/tools"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 60s docker run --rm --init --name "8sword-hero-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 700m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_refs,dst=/refs,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-hero-redesign.py --base /base --source /orig/MAN.AY --refs /refs --out /out
     ;;
   music-assets)
     task_name="${2:?指定新的素材組名稱}"
@@ -367,5 +402,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

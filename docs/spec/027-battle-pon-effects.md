@@ -1,5 +1,7 @@
 # 027：PON 戰場火花
 
+回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的首筆 HD 底圖由 [028](028-battle-militia-image.md)沿 `PAM/runtime14D2:0626/06B8/076E` 加入。本規格原版底色與累積火花契約保持；新增同狀態及實際 Draw 證據核對民兵與火花共存。下列 r22 圖像與 GUI 來源 3 仍是歷史證據，不用新圖覆寫。
+
 狀態：限定 CONFORMED。先建立 DRAFT，再以 36 次正常返回、完整逐色號重建及疊圖原型審查進 READY，實作下列獨立效果層並通過正常重播與 GUI。沿 [019](019-normal-encounter-battle-presentation.md)來源與 [022](022-battle-bitmap-transactions.md)的交易，不把僅驗 `0626` 的部隊路徑放寬為 `04F2`。四筆皆有正常返回 Frame，實際視窗的精確圖層驗證抽樣來源 3，不稱四筆都已在 GUI 逐一驗證。
 
 ## 來源與範圍
