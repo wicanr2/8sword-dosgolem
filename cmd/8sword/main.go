@@ -161,6 +161,8 @@ var keys = []struct {
 	scan uint8
 }{
 	{ebiten.KeyDigit1, 2}, {ebiten.KeyDigit2, 3}, {ebiten.KeyDigit3, 4},
+	{ebiten.KeyDigit4, 5}, {ebiten.KeyDigit5, 6}, {ebiten.KeyDigit6, 7}, {ebiten.KeyDigit7, 8},
+	{ebiten.KeyDigit8, 9}, {ebiten.KeyDigit9, 10}, {ebiten.KeyDigit0, 11}, {ebiten.KeyBackspace, 0x0e},
 	{ebiten.KeyEscape, 1}, {ebiten.KeyEnter, 0x1c}, {ebiten.KeySpace, 0x39},
 	{ebiten.KeyV, 0x2f},
 	{ebiten.KeyArrowUp, 0x48}, {ebiten.KeyArrowDown, 0x50}, {ebiten.KeyArrowLeft, 0x4b}, {ebiten.KeyArrowRight, 0x4d},

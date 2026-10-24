@@ -27,6 +27,7 @@ if [[ "${EIGHTSWORD_GUI_ACTOR_WALK:-0}" == 1 ]]; then actor_flags=(-actor-walk);
 if [[ "${EIGHTSWORD_GUI_ARMY_CHECK:-0}" == 1 ]]; then actor_flags+=(-army-check); fi
 if [[ "${EIGHTSWORD_GUI_DISMISS_CHECK:-0}" == 1 ]]; then actor_flags+=(-dismiss-check); fi
 if [[ "${EIGHTSWORD_GUI_RECRUITMENT_CHECK:-0}" == 1 ]]; then actor_flags+=(-recruitment-check); fi
+if [[ "${EIGHTSWORD_GUI_RECRUITMENT_HIRE_CHECK:-0}" == 1 ]]; then actor_flags+=(-recruitment-hire-check); fi
 if [[ "${EIGHTSWORD_GUI_BATTLE_CHECK:-0}" == 1 ]]; then actor_flags+=(-battle-check); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_INTRO:-0}" == 1 ]]; then intro_flags=(-intro-title); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_PUBLISHER:-0}" == 1 ]]; then intro_flags+=(-intro-publisher); fi

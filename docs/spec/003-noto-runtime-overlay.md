@@ -12,6 +12,24 @@
 
 該正常路徑的 LIVE2 來源與手繪城門接入另見 [034](034-recruitment-building.md)，不重開本規格的 PAM 字碼、字庫或印字掛點。只讀場景分類在搜尋及募兵提示時仍為 map；本項依原始圖像來源辨識，不用粗分類猜測顯示狀態。
 
+數字編輯追加研究仍在 `graphics-first/map-interaction-r1/`。`hire-live-r1` 正常輸入 1 後，實際 F2 為民兵 31／月薪 31，F1 現金 499。`hire-*-r2` 另測原版 10、Backspace 回 1 及三字型，不改規則。前端 keys 表原先僅含主鍵盤 1–3，缺少 0／4–9 與 Backspace；修正前視窗負對照已確認，以下契約補齊映射。
+
+### 主鍵盤數字與退格的原版輸入路徑
+
+本追加限定 CONFORMED，僅涵蓋下述數字鍵、編輯與一次正常募兵路徑，整體 003 仍依原有未結案範圍。
+
+原版輸入與 Noto 呈現證據為 `hire-numeric-pixels-r1.json`：普通按鍵輸入 1、10、切換三字型，再以 Backspace 回 1，五個完整 192×90 輸入欄逐 RGB 同字型 atlas 與既有色盤的獨立合成，包含原版游標可見／不可見相位。F2 的 31／31 與 F1 的 499 共 2520 個不透明數字墨點相同。F1 文字事件明列現金欄 y=117，不能沿用初版核對器誤填的 119。這些是此正常路段的已證實觀察，不是通用費用或上限公式。
+
+視窗 `cmd/8sword/main.go` 的 keys 列表僅含 Digit1–3，Update 只遍歷該列表送出按下／放開。新增 Digit4、5、6、7、8、9、0 對應 DOS scan 0x05、06、07、08、09、0A、0B，Backspace 對應 0x0E，沿既有 Engine.Key、焦點與工具列擋鍵機制。原版程式、DOS 掛點、數字解析、錯誤處理、存檔與字型 atlas 均保持。這是補齊原版已能處理的普通鍵盤輸入，不改為主機文字或直接改數量。
+
+驗收須有舊視窗程式的負對照及新程式的實際 XTEST：逐一輸入 4–9、退格清空、10 退回 1，送出的客體 make／break 紀錄與十四個輸入欄 actual Draw 皆核對。Enter 後普通 F2／F1、F7 真存退讀，再核對讀回後同一數字與真正存檔緩衝區。既有三字型與取消路徑保持，未測其他數字邊界、鍵盤數字區與平台不外推。完成狀態由追加收據決定。
+
+收據與工具：`map-interaction-r1/hire-runtime-audit-r1.json` 保存三組各 573 幀、1719 次 Frame 純度，客體 SHA `231a1a4b…9b56`、PCM `6ac0c342…621`、32 工作檔及事件相同，26 幀只改建築，真壞圖全同舊組。原版數字編輯與輸入欄全幅核對為 `hire-numeric-pixels-r1.json`，工具 [audit-recruitment-input.py](../../tools/audit-recruitment-input.py)。
+
+舊視窗負對照 `gui/recruitment-input-negative-r2/negative-audit-r1.json` 為預期拒絕：356 幀操作流程能結束，但第一個數字 4 的 actual Draw 為空白，客體缺少新八個 scan。修正後 `gui/recruitment-hire-save-r1` 為 580／189 Draw，162／21 次改變與四張接觸表已看。十四個輸入欄各 51840 RGB bytes 全同獨立字型／背景／游標模型，八個 scan 均有 make 及 break。三字型建築各 806400 像素與字墨保持，41 個連續建築 Draw 通過。
+
+`input-edit-audit-r1.json` 與 `loaded-party-audit-r1.json` 另核對儲存前／讀回後各兩個 F2 actual Draw 的 31／31，以及四／三個人物頁 actual Draw 的 499。F7 真存退讀的 2987 bytes 同原版讀回 RAM SHA `4009c81e9e83ecb7777ebc55fff334754e1d826a3f32e791c0e24ec241ef2abe`，read step 13279553、退出碼 0，3158 個截圖差異限主角動畫框。只修改視窗按鍵表與驗證工具；Engine、核心、素材、字庫、募兵規則及存檔格式保持。靜音與固定 4000 cycles/ms 的測試不外推裝置音訊、即時幀率或其他平台。
+
 ## 已確認與待查
 
 - 以 [002](002-pam-font-catalog.md) 的 PAM 字碼與字模為來源，原版照常執行及寫入；前端只讀觀測，主機 RGBA 合成文字，不改玩法、亂數或存檔。

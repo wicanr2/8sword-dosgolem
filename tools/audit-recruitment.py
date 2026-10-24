@@ -74,13 +74,13 @@ def gui(a,art,profiles):
     checkpoints={}
     for p in root.glob('recruitment-*.json'):
         s=read(p)
-        if p.name=='recruitment-cancel.json': continue
+        if p.name not in ['recruitment-noto.json','recruitment-lishu.json','recruitment-caoshu.json']: continue
         checkpoints[int(s['presented_frames'])]=(p.name,s['font_id'])
     assert len(checkpoints)==3
     events=read(root/'gui-input-receipt.json')['events']
     start=min(checkpoints)
-    after=max(read(p)['steps'] for p in root.glob('recruitment-*.json') if p.name!='recruitment-cancel.json')
-    end=next(int(e['status']['presented_frames']) for e in events if e['x11_keycode']==9 and e['down'] and e['status']['steps']>after)
+    after=max(read(root/name)['steps'] for name in ['recruitment-noto.json','recruitment-lishu.json','recruitment-caoshu.json'])
+    end=next(int(e['status']['presented_frames']) for e in events if e['x11_keycode'] in [9,13] and e['down'] and e['status']['steps']>after)
     samples=[];continuous=0
     for n,step,im in helper.stream(root):
         assert meta[n-1]['draw']==n and meta[n-1]['step']==step
@@ -99,7 +99,7 @@ def gui(a,art,profiles):
     for k in ['recruitment_building_error','graphics_error','font_error','battle_marker_error','battle_actor_error','battle_effect_error','battle_background_error']: assert not final[k],(k,final[k])
     assert not final['text']['MissingGlyphs'] and not final['text']['Errors']
     assert continuous==end-start+1
-    return dict(status='passed-actual-Draw',frames=n,samples=samples,continuous_building_draws=continuous,continuous_draw_range=[start,end],limit='complete building from first selected checkpoint through actual Esc key-down, three normal-input fonts; save/reload audited separately')
+    return dict(status='passed-actual-Draw',frames=n,samples=samples,continuous_building_draws=continuous,continuous_draw_range=[start,end],limit='complete building from first selected checkpoint through Esc or first numeric-edit key-down, three normal-input fonts; save/reload audited separately')
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--assets',type=Path,required=True);p.add_argument('--out',type=Path,required=True)

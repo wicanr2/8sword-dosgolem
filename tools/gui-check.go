@@ -572,7 +572,7 @@ func (d *driver) dismissArmy(prefix string, remove bool) {
 // Ordinary movement from the new-game starting square to the observed LIVE2
 // recruitment building. F1 between moves also resolves a real encounter using
 // the existing original No/retreat path; no position or party state is injected.
-func (d *driver) recruitmentBuilding() {
+func (d *driver) recruitmentBuilding(hire bool) {
 	visible := func(s map[string]any, want float64) bool {
 		for _, v := range s["visible_sources"].([]any) {
 			if v == want {
@@ -606,6 +606,28 @@ func (d *driver) recruitmentBuilding() {
 		d.press(76)
 		d.wait("募兵頁 F10", 20, func(s map[string]any) bool { return s["font_id"] == next && s["presented_font_id"] == next })
 	}
+	if hire {
+		// Exercise ordinary numeric editing. Original DOS code owns the result.
+		for _, digit := range []struct {
+			name string
+			code byte
+		}{{"4", 13}, {"5", 14}, {"6", 15}, {"7", 16}, {"8", 17}, {"9", 18}} {
+			d.press(digit.code)
+			shot("input-digit-" + digit.name)
+			d.press(22)
+			shot("cleared-digit-" + digit.name)
+		}
+		d.press(10) // 1
+		d.press(19) // 0
+		shot("input-ten")
+		d.press(22) // Backspace
+		shot("edited-one")
+		d.press(36)
+		d.wait("原版接受募兵數量並返回", 25, func(s map[string]any) bool { return !visible(s, 11988) && !visible(s, 12238) })
+		d.scene("map")
+		shot("accepted")
+		return
+	}
 	d.press(9)
 	d.wait("募兵頁 Esc 返回", 25, func(s map[string]any) bool { return !visible(s, 11988) && !visible(s, 12238) })
 	d.scene("map")
@@ -619,6 +641,7 @@ func main() {
 	armyCheck := flag.Bool("army-check", false, "visit F2 twice through F1 before save and after reload")
 	dismissCheck := flag.Bool("dismiss-check", false, "normal F3 three-font cancel, Enter, empty F2/F3 and persisted empty army")
 	buildingCheck := flag.Bool("recruitment-check", false, "normal new-game movement to LIVE2, three fonts and Esc")
+	hireCheck := flag.Bool("recruitment-hire-check", false, "normal recruitment input 10, Backspace, Enter; preserve original result")
 	battleCheck := flag.Bool("battle-check", false, "first natural encounter, V/Ctrl, retreat and acknowledge result before normal save")
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
 	showPublisher := flag.Bool("intro-publisher", false, "wait for actual publisher wordmarks before Esc")
@@ -1196,8 +1219,8 @@ func main() {
 	d.press(36)
 	d.scene("map")
 	d.shot("05-map")
-	if *buildingCheck {
-		d.recruitmentBuilding()
+	if *buildingCheck || *hireCheck {
+		d.recruitmentBuilding(*hireCheck)
 	}
 	if *flow == "toolbar" {
 		if d.status()["font_name"] != "教育部隸書" {

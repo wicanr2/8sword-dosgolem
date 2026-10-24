@@ -164,6 +164,8 @@ F3 解雇頁亦使用同一張 HD 民兵，保留原版黑底與選取文字。[
 
 募兵建築已採用使用者選定的[手繪城門](docs/images/recruitment-gate-approved-r1.png)，保留原版朱紅屋頂、綠色簷飾、赭色城牆及閉合城門。[匯入工具](tools/prepare-hd-recruitment.py)用法為 `bash tools/player.sh recruitment-assets <新名稱> [基底名稱]`，預設基底 r33；沒有修改募兵規則。視窗存退讀流程加 `EIGHTSWORD_GUI_RECRUITMENT_CHECK=1`，以普通按鍵走到建築、切換 Noto／教育部隸書／草書並取消返回。來源、批准提示與驗收範圍見 [034](docs/spec/034-recruitment-building.md)，獨立像素核對入口為 [audit-recruitment.py](tools/audit-recruitment.py)。新建築資產失敗只回退這張圖，其他 HD 保留。
 
+主鍵盤 `0–9` 與 `Backspace` 會送給原版程式，支援募兵數量輸入與退格。`EIGHTSWORD_GUI_RECRUITMENT_HIRE_CHECK=1` 搭配 `EIGHTSWORD_GUI_FLOW=save-cycle`、`EIGHTSWORD_GUI_ARMY_CHECK=1`，可測數字 4–9、退格清空、10 改為 1、募兵及讀回後的軍隊／人物頁。原版結果與 Noto 輸入欄由 [audit-recruitment-input.py](tools/audit-recruitment-input.py)獨立核對，範圍見 [003 數字追加](docs/spec/003-noto-runtime-overlay.md#主鍵盤數字與退格的原版輸入路徑)。
+
 戰場已共用這張民兵首筆圖，沿原版背景頁入口啟用，F2 的來源分類保持。正常戰場、火花共存、返回與真正存退讀已核對，完整狀態見 [028](docs/spec/028-battle-militia-image.md)。已有本機 r22 後，用 `bash tools/player.sh battle-militia-assets <新名稱>` 加入可選對應。錯誤的新清單只停用戰場對應，共用 PNG 損壞仍依 018 的整組圖像回退。其他三筆民兵來源與其餘兵種另行驗證。
 
 人物頁主角已改為中國武將美男子，採束髮金冠、深色甲冑與紅披風，保持原版肖像位置及人物資料。來源、限定對拍與存退讀見 [004 的武將肖像更新](docs/spec/004-hd-bitmap-presentation.md#主角武將肖像更新)。已有本機 r23 與規格所列原圖／生成紀錄後，用 `bash tools/player.sh hero-redesign-assets <新名稱>` 建立新組；肖像原圖留本機。
