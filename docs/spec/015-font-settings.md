@@ -50,7 +50,7 @@
 
 ## 教育部隸書追加契約
 
-狀態：READY。使用者要求真正隸書，並授權自行選型。既有 UnYetgul 收據只證明「隸書風」，不據此完成新要求。
+狀態：限定 CONFORMED。本追加先經 READY 審查再實作。使用者要求真正隸書，並授權自行選型。既有 UnYetgul 收據只證明「隸書風」，不據此完成新要求。
 
 - 正式來源：[教育部字型下載頁](https://language.moe.gov.tw/material/info?m=9fe3fb11-c3d5-41f2-b029-6d18a2c2fd0d)，教育部隸書 3.00，作者標示中華民國教育部，授權 URI 為 [CC BY-ND 3.0 TW](https://creativecommons.org/licenses/by-nd/3.0/tw/legalcode)。完整 TTF 保持不變，不做子集、輪廓修改或人造加粗。
 - 固定原檔 `font-settings-r1/TW-MOE-Li-3.00.ttf` SHA `f0ba5eda31727ad89cc0b1f6b9a7dfda02f061fa101c18548b6f8ea0145c108b`，下載 ZIP SHA `fd7e633ed8cebc94d46e2295e6bd9d58814be5fb7489e99dc23f99b7e435dce0`。來源及下載契約見同目錄 `moe-lishu-source-r1.json`。
