@@ -39,6 +39,10 @@ func TestNormalRetreatResultAndCharacterReturn(t *testing.T) {
 	scene("new-game-confirm")
 	press(0x1c)
 	scene("map")
+	guardsPassed := func() bool { return true }
+	if os.Getenv("EIGHTSWORD_TEST_BATTLE_ASSETS") != "" {
+		guardsPassed = checkRealBattleTransactionGuards(t, e)
+	}
 	for n := 0; n < 128 && e.Tracker.VisibleScene != "encounter-confirm"; n++ {
 		scan := byte(0x4d)
 		if n%2 == 1 {
@@ -155,5 +159,11 @@ func TestNormalRetreatResultAndCharacterReturn(t *testing.T) {
 	advance(300)
 	if e.Tracker.Stats.MissingGlyphs != 0 || len(e.Tracker.Stats.Errors) != 0 || len(e.Oracle.Unimplemented()) != 0 {
 		t.Fatalf("normal retreat/Noto path: %+v", e.Status())
+	}
+	if os.Getenv("EIGHTSWORD_TEST_BATTLE_ASSETS") != "" {
+		g := e.Tracker.graphics
+		if !guardsPassed() || g.Stats.BitmapTransactions == 0 || g.Stats.BitmapTransactions != g.Stats.BitmapTransactionCompletions || g.Stats.BitmapTransactionFallbacks != 0 || g.pending != nil {
+			t.Fatalf("normal bitmap transaction completion/guards: %+v", e.Status())
+		}
 	}
 }

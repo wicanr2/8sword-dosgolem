@@ -48,7 +48,9 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 結果與戰鬥按鍵：[020：戰鬥結果與正常返回](docs/spec/020-battle-result-presentation.md)，正常 V／Ctrl、結果關閉、F1／F2 及真正存退讀限定 CONFORMED。`battle-result` 優先於側欄，修正前端漏送 V／Ctrl；不自動略過訊息，也不授權 DRAFT 戰場美術接入。
 
-戰場背景：[021：背景頁與還原](docs/spec/021-battle-background-pages.md)，READY，已實作，視窗中間幀仍待核對。正常 244 次來源頁／遮罩與分層原型已核對，正式 r17 無頭三組及故障回退通過；重生入口為[戰場素材工具](tools/prepare-hd-battle.py)，載入及驗收限制見 021。部隊 HD 仍依 019 另行完成。
+戰場背景：[021：背景頁與還原](docs/spec/021-battle-background-pages.md)，限定 CONFORMED。正常來源頁／遮罩、正式 r17、故障回退與完整視窗已驗；原中間幀缺口由 022 閉合。重生入口為[戰場素材工具](tools/prepare-hd-battle.py)，載入及驗收限制見 021。部隊 HD 仍依 019 另行完成。
+
+戰場中間幀：[022：繪圖交易](docs/spec/022-battle-bitmap-transactions.md)，限定 CONFORMED。已證實原版中間平面，完成[交易與返回點快取](internal/eightsword/battle_transactions.go)、[真交易護欄測試](internal/eightsword/battle_transactions_test.go)、三組客體隔離與正式視窗完整模板核對，不用固定延遲；其他圖像與戰鬥分支不外推。
 
 開場直排故事規格：[012：開場故事直排文字](docs/spec/012-intro-story-noto.md)，來源與逐字順序已由正常冷啟動擷取；實作與驗收狀態以該規格為準。
 

@@ -30,10 +30,11 @@ func check(err error) {
 }
 
 type driver struct {
-	c            *xgb.Conn
-	root, window xproto.Window
-	out          string
-	events       []map[string]any
+	c             *xgb.Conn
+	root, window  xproto.Window
+	out           string
+	events        []map[string]any
+	forcedBattles int
 }
 
 func (d *driver) status() map[string]any {
@@ -87,7 +88,25 @@ func (d *driver) scene(want string) {
 			d.shot("encounter-before-character")
 			d.encounterChoice("否")
 			d.shot("encounter-selected-no")
+			decisionStep := d.status()["steps"].(float64)
 			d.press(36)
+			forced := false
+			d.wait("拒戰後返回地圖或原版強制戰鬥", 40, func(s map[string]any) bool {
+				if s["presented_scene"] == "map" {
+					return true
+				}
+				for _, item := range s["strings"].([]any) {
+					e := item.(map[string]any)
+					if e["Step"].(float64) > decisionStep && e["Source"] == float64(17860) && s["music"].(map[string]any)["cue"] == float64(3) {
+						forced = true
+						return true
+					}
+				}
+				return false
+			})
+			if forced {
+				d.retreatForcedEncounter(decisionStep)
+			}
 			d.scene("map")
 			d.press(67)
 		}
@@ -97,6 +116,47 @@ func (d *driver) scene(want string) {
 	d.wait("畫面已持續呈現 "+want, 20, func(s map[string]any) bool {
 		return s["presented_scene"] == want && s["presented_frames"].(float64) >= first+2
 	})
+}
+
+// A refusal can still enter battle. Follow the observed ordinary retreat path;
+// do not wait for a map that the original game has not restored.
+func (d *driver) retreatForcedEncounter(after float64) {
+	d.forcedBattles++
+	prefix := fmt.Sprintf("forced-battle-%02d", d.forcedBattles)
+	shot := func(name string) {
+		d.shot(prefix + "-" + name)
+		raw, err := json.MarshalIndent(d.status(), "", "  ")
+		check(err)
+		check(os.WriteFile(filepath.Join(d.out, prefix+"-"+name+".json"), append(raw, '\n'), 0644))
+	}
+	d.wait("被迫戰鬥的原版兵力已出字", 45, func(s map[string]any) bool {
+		for _, item := range s["strings"].([]any) {
+			e := item.(map[string]any)
+			if e["Source"] == float64(36000) && e["Step"].(float64) > after {
+				return true
+			}
+		}
+		return false
+	})
+	shot("ready")
+	visibleCounts := func(s map[string]any) bool {
+		for _, source := range s["visible_sources"].([]any) {
+			if source == float64(36000) {
+				return true
+			}
+		}
+		return false
+	}
+	if visibleCounts(d.status()) {
+		d.press(37)
+		d.wait("原版兵力顯示已結束", 25, func(s map[string]any) bool { return !visibleCounts(s) })
+	}
+	d.press(9)
+	d.scene("battle-result")
+	shot("result")
+	d.press(36)
+	d.scene("map")
+	shot("returned")
 }
 func (d *driver) console(want string) {
 	d.wait("啟動提示已真正呈現 "+want, 30, func(s map[string]any) bool {

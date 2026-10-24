@@ -23,21 +23,25 @@ type bitmapCall struct {
 	ActorWrites     int
 }
 type GraphicsStats struct {
-	Bound                                                                                               bool
-	MaskedCalls, Opaque5Calls, Opaque4Calls, SourceMatches, HDSourceCalls                               uint64
-	MaskedWrites, CopiedBytes, InvalidatedPixels, AssignedPixels, CompositedFrames, PaintedNativePixels uint64
-	LastPaintedPixels, GeometryRejected, PaletteFallbackFrames                                          uint64
-	Errors                                                                                              []string
-	ActorCalls, ActorFallbackCalls, ActorAssignedPixels, ActorPaintedPixels, ActorCompletions           uint64
-	BackgroundMaskedCalls                                                                               uint64
+	Bound                                                                                                          bool
+	MaskedCalls, Opaque5Calls, Opaque4Calls, SourceMatches, HDSourceCalls                                          uint64
+	MaskedWrites, CopiedBytes, InvalidatedPixels, AssignedPixels, CompositedFrames, PaintedNativePixels            uint64
+	LastPaintedPixels, GeometryRejected, PaletteFallbackFrames                                                     uint64
+	Errors                                                                                                         []string
+	ActorCalls, ActorFallbackCalls, ActorAssignedPixels, ActorPaintedPixels, ActorCompletions                      uint64
+	BackgroundMaskedCalls                                                                                          uint64
+	BitmapTransactions, BitmapTransactionCompletions, BitmapHeldFrames, BitmapTransactionFallbacks, BitmapMaxSteps uint64
+	BitmapCompletionCaptures                                                                                       uint64
 }
 type Graphics struct {
-	parent *Tracker
-	assets *GraphicsAssets
-	owners []graphicCell
-	actors []graphicCell
-	active *bitmapCall
-	Stats  GraphicsStats
+	parent           *Tracker
+	assets           *GraphicsAssets
+	owners           []graphicCell
+	actors           []graphicCell
+	active           *bitmapCall
+	pending          *battleBitmapTransaction
+	captureAfterHold bool
+	Stats            GraphicsStats
 }
 
 func newGraphics(t *Tracker, a *GraphicsAssets) *Graphics {
@@ -52,9 +56,15 @@ func (g *Graphics) bind() {
 	for _, site := range []struct {
 		ip         uint16
 		file, kind int
-	}{{0x4f2, 0x15582, 6}, {0x76f, 0x157ff, 5}, {0x99c, 0x15a2c, 4}, {0x626, 0x156b6, 6}} {
+	}{{0x4f2, 0x15582, 6}, {0x76f, 0x157ff, 5}, {0x99c, 0x15a2c, 4}, {0x626, 0x156b6, 6}, {0x423, 0x154b3, 1}} {
 		if !bytes.Equal(t.o.Bytes(oracle.Addr{Seg: t.stringSeg, Off: site.ip}, 16), t.pam[site.file:site.file+16]) {
 			g.Stats.Errors = append(g.Stats.Errors, "PAM 圖像入口 bytes 不符")
+			return
+		}
+	}
+	for _, ret := range []uint16{0x625, 0x76e, 0x4f1} {
+		if t.o.Byte(oracle.Addr{Seg: t.stringSeg, Off: ret}) != 0xcb {
+			g.Stats.Errors = append(g.Stats.Errors, "PAM 圖像返回 bytes 不符")
 			return
 		}
 	}
@@ -66,9 +76,19 @@ func (g *Graphics) bind() {
 		t.o.OnCall(oracle.Addr{Seg: t.stringSeg, Off: site.ip}, func(*oracle.Oracle) { g.begin(site.kind) })
 	}
 	t.o.OnCall(oracle.Addr{Seg: t.stringSeg, Off: 0x626}, func(*oracle.Oracle) { g.beginSource(6, true) })
+	t.o.OnCall(oracle.Addr{Seg: t.stringSeg, Off: 0x423}, func(*oracle.Oracle) { g.beginBattleRestoreTransaction() })
+	for _, site := range []struct{ entry, ret uint16 }{{0x4f2, 0x625}, {0x626, 0x76e}, {0x423, 0x4f1}} {
+		site := site
+		t.o.OnCall(oracle.Addr{Seg: t.stringSeg, Off: site.ret}, func(*oracle.Oracle) { g.finishBattleTransaction(site.entry) })
+	}
 	g.Stats.Bound = true
 }
-func (g *Graphics) clear() { clear(g.owners); clear(g.actors); g.active = nil }
+func (g *Graphics) clear() {
+	g.abortBattleTransaction()
+	clear(g.owners)
+	clear(g.actors)
+	g.active = nil
+}
 
 // Oracle.Bytes uses machine reads. Never touch VGA latches while observing a
 // bitmap source; all verified source buffers are in conventional RAM.
@@ -81,6 +101,7 @@ func (g *Graphics) begin(kind int) {
 }
 
 func (g *Graphics) beginSource(kind int, background bool) {
+	g.abortBattleTransaction()
 	t := g.parent
 	o := t.o
 	g.active = nil
@@ -167,6 +188,13 @@ func (g *Graphics) beginSource(kind int, background bool) {
 		call.Mask = append([]byte(nil), source[4+area*5:4+area*6]...)
 	}
 	g.active = call
+	if kind == 6 {
+		entry := uint16(0x4f2)
+		if background {
+			entry = 0x626
+		}
+		g.startBattleTransaction(entry, first, w, h, dest, mode)
+	}
 }
 
 // Background-backed writes replace even transparent destination pixels.

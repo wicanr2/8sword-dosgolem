@@ -48,3 +48,7 @@ IDA 9.4 沿用既有 py312-v1、UID 1000，正式 PAM.i64 唯讀，複製到容�
 ### BATTLE-BACKGROUND-PAGES-RESOLVED
 
 上述「待核對來源頁及返回」是 r5 時的歷史限制，已由 [021](021-battle-background-pages.md)的 r6 正常 244 次與 r8 分層原型解出。`DOS/PAM.AY@83e32f13…d6c0/14D2:0626+06B8` 是背景頁遮罩繪圖，`0423+047F` 是背景頁矩形還原，兩者在本路段由 A400 取回、畫至 A000；來源、同值寫入及返回已證實。正式背景組 r17 已接入，三組無頭對拍通過。實際視窗的完整前景模板仍有未知，021 保持 READY，不把本規格或部隊 HD 升為 CONFORMED。下一條窄任務改為正常 GUI 的中間幀／活動標記觀測，見 021 現況。
+
+### BATTLE-BITMAP-TRANSACTION-RESOLVED
+
+前段的「021 保持 READY／前景模板未知」是 022 前的歷史狀態。[022](022-battle-bitmap-transactions.md)已證實三個 helper 的中間平面，加入返回點呈現並通過正式完整 Draw 的背景、單位及標記模板。021／022 現為限定 CONFORMED，本規格的部隊 HD、其他戰鬥畫面與未走到的分支仍為 DRAFT。上述 helper 不再列入未解 RE；下一步回部隊美術與既有來源的正常接入。

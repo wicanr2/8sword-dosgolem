@@ -309,6 +309,9 @@ func (t *Tracker) write(w oracle.VideoWrite) {
 		return
 	}
 	t.Stats.PixelWrites++
+	if t.graphics != nil {
+		t.graphics.observeBattleTransactionWrite(w)
+	}
 	// The source and destination registers still point to the current byte.
 	if w.CS == t.stringSeg && (w.IP == 0x364 || w.IP == 0x3d7 || w.IP == 0x47f) && w.WriteMode == 1 {
 		r := t.o.Regs()
@@ -375,6 +378,9 @@ func sortedGroups(groups map[drawGroup]bool) []drawGroup {
 // Compose never writes to DOS. The baseline is scaled with the game's 2:1
 // vertical pixel aspect; text is drawn from the checked Black 900 atlas.
 func (t *Tracker) Compose() *image.RGBA {
+	if t.graphics != nil && t.graphics.holdBattleFrame() {
+		return t.cachedFrame
+	}
 	p, ok := t.o.PlanarDisplay()
 	if !ok || p.Width != 640 || p.Height != 200 {
 		return nil
