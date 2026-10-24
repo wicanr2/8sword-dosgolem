@@ -650,3 +650,5 @@ timeout -k 5 180 docker run --rm --init --network none \
 ```
 
 後續要修改某個共用產物，將 `/work` 改為可寫掛載，尾端改為 `--workspace /work detach player/<相對檔案路徑>`。工具會先保留原內容建立獨立 inode，其他共用路徑保持原值。原始遊戲與未列入的檔案類型不在工具操作範圍。
+
+整理工具、共用檔保護規則與本輪紀錄已提交 `9d25531d9606a6f37ede926244926918e81ea15d`，推至既有私人 `origin/main` 並回讀確認。此同步紀錄另隨文件提交；本機計畫、自測與完整逐檔收據留在 workplace。
