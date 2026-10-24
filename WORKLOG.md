@@ -553,3 +553,5 @@
 - 回填 019／024 的 MAN11 完成標記，更新 CONTEXT／README。整體 HD 仍 active；下一步接 MAN21 已實際出現首筆及其他戰場美術，不重做三組已閉合研究。最終來源、連結、擁有權、Git 與 Docker 清理核對另接下方。
 
 收尾 `man11-final-audit-r1.json` 通過：183 原始檔、兩封包、八核心檔不變；53 筆正式來源／四程式、52 筆前版 archive／四程式、50 筆研究來源／程式均符 SHA。102 素材、95 保留、四原圖／四提示、16 全幅無頭圖、111 次 Frame 純度、GUI 全幅與 Noto、409 個本機文件連結、三份回填皆通過。兩組 GUI 的實際執行檔另按正式與私人按鍵工具分開核對。`find` 無 root-owned 或 `.md` 目錄，沒有本案殘留容器、沒有新建映像；`git diff --check` 通過。主機 gh 認證為 wicanr2，遠端仍為 PRIVATE，提交身分為 Chun-Yu Wang／wicanr2@gmail.com。
+
+本輪程式與驗收文件提交 `8b943cc4b317bdcf8dcdd8308a82276d53c92b71` 已推至私人 `origin/main`，`git ls-remote` 回讀一致。這筆同步紀錄另隨文件提交保存；建置來源及原有收據不因 Git metadata 重新產生。
