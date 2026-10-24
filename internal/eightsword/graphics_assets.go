@@ -23,11 +23,12 @@ type graphicMaterial struct {
 	Tile                      *image.RGBA
 }
 type GraphicsAssets struct {
-	Native    []nativeBitmap
-	ByNative  map[string]uint16
-	Materials map[uint16]*graphicMaterial
-	Actors    map[uint16]*graphicMaterial
-	ActorSHA  map[uint16]string
+	Native       []nativeBitmap
+	ByNative     map[string]uint16
+	Materials    map[uint16]*graphicMaterial
+	Actors       map[uint16]*graphicMaterial
+	ActorSHA     map[uint16]string
+	BattleActors map[uint16]bool
 }
 type graphicPNG struct {
 	Index      int    `json:"source_index"`

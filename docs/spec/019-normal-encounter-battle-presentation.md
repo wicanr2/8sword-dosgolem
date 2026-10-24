@@ -79,3 +79,7 @@ python /project/tools/catalog-battle-actors.py \
 新增四張火花外觀的來源為 `PON.EGG`，SHA `5fe52b534cccbcaab5265681c42f208751f69da1144161541f161d93b89b786e`。檔案偏移 0／3304／6608／9912 分別匹配本次 DOS 執行期 `8000:6740/7428/8110/8DF8` 的完整記錄，兩種位址基準分開記錄於 `actor-action-effects-source-r1.json`。沒有由火花推定傷害或規則。
 
 33 張原尺寸圖均保留，`actor-actions-contact-r1.png` 為其中四個操作點。最後 Esc 後仍在戰場，沒有完成撤退或存讀聲明；這是新增來源覆蓋，不取代 020／022 的正常完整返回與存讀驗收。下一步可製作已實際出現的 MAN06／11／16 姿勢，民兵新圖仍需目標選擇與位置校準。
+
+### BATTLE-MAN16-ACTORS-RESOLVED
+
+前段下一步中的 MAN16 四筆，已由 [023](023-battle-man16-actors.md)完成來源／位置審查、正式 r18、三組同狀態、四筆正常呈現與實際視窗存退讀，限定 CONFORMED。不可變鍵為 `DOS/MAN16.EGG@d4acf7c5…11d6a/file+0,+3304,+6608,+9912`，沿用已驗 `PAM/runtime14D2:0626/06B8/076E`。019 其餘部隊與戰鬥美術仍 DRAFT，保留先前探針未完成撤退的限制，不拿新 GUI 改寫舊收據。

@@ -30,6 +30,7 @@ type GraphicsStats struct {
 	Errors                                                                                                         []string
 	ActorCalls, ActorFallbackCalls, ActorAssignedPixels, ActorPaintedPixels, ActorCompletions                      uint64
 	BackgroundMaskedCalls                                                                                          uint64
+	BattleActorCalls, BattleActorCompletions, BattleActorFallbackCalls                                             uint64
 	BitmapTransactions, BitmapTransactionCompletions, BitmapHeldFrames, BitmapTransactionFallbacks, BitmapMaxSteps uint64
 	BitmapCompletionCaptures                                                                                       uint64
 }
@@ -163,12 +164,27 @@ func (g *Graphics) beginSource(kind int, background bool) {
 		g.Stats.SourceMatches++
 	}
 	actor := uint16(0)
-	if !background && g.assets.Actors[id] != nil {
-		if g.heroRecordMatches(id, kind, source) && g.actorBackgroundKnown(first, w*8, h) {
-			actor = id
-			g.Stats.ActorCalls++
+	battleActor := g.assets.BattleActors[id]
+	if g.assets.Actors[id] != nil && ((!background && !battleActor) || (background && battleActor)) {
+		knownBackground := false
+		if background {
+			knownBackground = g.battleActorBackgroundKnown(backgroundFirst, w*8, h)
 		} else {
-			g.Stats.ActorFallbackCalls++
+			knownBackground = g.actorBackgroundKnown(first, w*8, h)
+		}
+		if g.heroRecordMatches(id, kind, source) && knownBackground {
+			actor = id
+			if battleActor {
+				g.Stats.BattleActorCalls++
+			} else {
+				g.Stats.ActorCalls++
+			}
+		} else {
+			if battleActor {
+				g.Stats.BattleActorFallbackCalls++
+			} else {
+				g.Stats.ActorFallbackCalls++
+			}
 			// A rejected replacement must not leave the previous painted pose.
 			for row := 0; row < h; row++ {
 				for pixel := 0; pixel < w*8; pixel++ {
@@ -270,7 +286,11 @@ func (g *Graphics) write(w oracle.VideoWrite) uint8 {
 			if b.Actor != 0 {
 				b.ActorWrites++
 				if b.ActorWrites == b.Width*b.Height*4 {
-					g.Stats.ActorCompletions++
+					if g.assets.BattleActors[b.Actor] {
+						g.Stats.BattleActorCompletions++
+					} else {
+						g.Stats.ActorCompletions++
+					}
 				}
 				for bit := 0; bit < 8; bit++ {
 					g.setActor(w.Offset*8+uint32(bit), graphicCell{b.Actor, uint32(row*b.Width*8 + col*8 + bit)})

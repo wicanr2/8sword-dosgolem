@@ -384,6 +384,10 @@ func main() {
 		title += "（HD 圖像載入失敗）"
 		log.Printf("HD 圖像未載入，保留原版圖像：%s", engine.GraphicsError)
 	}
+	if engine.BattleActorError != "" {
+		title += "（HD 戰場部隊載入失敗）"
+		log.Print(engine.BattleActorError)
+	}
 	if engine.Music != nil && engine.Music.LoadError != "" {
 		title += "（HD 音樂載入失敗）"
 		log.Printf("HD 音樂未載入，保留原版音訊：%s", engine.Music.LoadError)
