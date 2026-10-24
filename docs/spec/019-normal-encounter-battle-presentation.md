@@ -52,3 +52,30 @@ IDA 9.4 沿用既有 py312-v1、UID 1000，正式 PAM.i64 唯讀，複製到容�
 ### BATTLE-BITMAP-TRANSACTION-RESOLVED
 
 前段的「021 保持 READY／前景模板未知」是 022 前的歷史狀態。[022](022-battle-bitmap-transactions.md)已證實三個 helper 的中間平面，加入返回點呈現並通過正式完整 Draw 的背景、單位及標記模板。021／022 現為限定 CONFORMED，本規格的部隊 HD、其他戰鬥畫面與未走到的分支仍為 DRAFT。上述 helper 不再列入未解 RE；下一步回部隊美術與既有來源的正常接入。
+
+## 部隊姿勢目錄
+
+[盤點工具](../../tools/catalog-battle-actors.py)只讀固定來源，以 Pillow 11.3.0 輸出五個檔案各四筆記錄。每筆 3304 bytes，標頭 11×50，88×50 原生像素，六塊各 550 bytes；顯示長寬比校正為 264×300。四筆記錄的動作名稱仍未知，不以排列順序稱攻擊、走路或死亡。
+
+在既有 `sc-cht-hdtools:pillow11.3.0-r1` 容器內，專案掛為唯讀 `/project`、本規格的既有研究目錄掛為可寫 `/out`，以 UID/GID 1000、512 MiB、1 CPU、64 PID、無網路及外層 30 秒逾時執行：
+
+```sh
+python /project/tools/catalog-battle-actors.py \
+  --sources /project/workplace/intake-20261023/sources/game/8sword \
+  --calls /project/workplace/probe-20261023/graphics-first/battle-r1/gui-observer-r13/save/battle-observer/calls.json \
+  --out /out/actor-poses-new-r1
+```
+
+`actor-poses-r3/catalog.json` 保存五檔 SHA、原始檔案偏移、各平面與鏡射 SHA、遮罩像素量及呼叫對應。r13 實際 92 筆 88×50 呼叫中，40 筆為部隊、28 筆為 CHOI 四張標記，24 筆僅為還原標頭；沒有未知六塊記錄。該視窗的部隊限 MAN01 首筆鏡射及 MAN06／11／16 首筆，不能外推到 MAN21 或其他姿勢。20 張圖與目錄、接觸表共 22 檔的第二次重建完全相同，MAN01 首筆鏡射亦同 018 的既有來源錨點。r1／r2 為先前目錄，最終工具來源副本另存 `catalog-battle-actors-final-r1.py`。
+
+`actor-poses-r1/` 留原始解碼與民兵第 1 筆的手繪原型。內建 image_gen 沿用 018 的人物衣著及已批准 B 風格；r1 槍尖碰邊，r2 改留透明邊界。兩版原始 PNG、完整提示及 `militia-record-1-art-provenance.json` 均保留，不修改生成原圖 byte。r2 為 1176×1337 RGBA、SHA `0f1d3f99ca06570d208ed179197e936082e6aeacbd240f0061360197e74fdde3`。同畫幅的原圖與新圖槍身高度仍有差異，接入前須校準位置及透明遮罩，不能把美術已生成稱為正式替換。
+
+### 正常操作取得的其他姿勢
+
+本機 `probe-actor-actions-r1-formatted.go.txt` 由目前程式隔離複本編譯，46 筆研究輸入及測試程式 SHA 分開保存。正常冷啟動、VGA／AdLib、新遊戲、第一個自然遭遇確認「是」、V／Ctrl，再送 Enter、空白鍵及 Esc。手冊依據為 `掃描0007.jpg` 印頁 9；沒有快照載入、座標或兵力注入。DOS 時鐘預先固定為 12:00，內部 RNG seed 仍未知。
+
+`actor-actions-r1.log` 的有界探針 139.54 秒通過，`actor-action-catalog-r2/catalog.json` 及 `actor-actions-audit-r1.json` 核對 838 次完整六塊來源：454 次部隊、360 次 CHOI 標記及 24 次 PON，無未知記錄。MAN06／11／16 的第 0 至 3 筆均已在正常流程出現；MAN21 及 MAN01 鏡射仍只有首筆。不能由輸入階段標籤反推某筆必定屬於攻擊或休息，亦不能把送出 Enter 當成成功選到攻擊目標。
+
+新增四張火花外觀的來源為 `PON.EGG`，SHA `5fe52b534cccbcaab5265681c42f208751f69da1144161541f161d93b89b786e`。檔案偏移 0／3304／6608／9912 分別匹配本次 DOS 執行期 `8000:6740/7428/8110/8DF8` 的完整記錄，兩種位址基準分開記錄於 `actor-action-effects-source-r1.json`。沒有由火花推定傷害或規則。
+
+33 張原尺寸圖均保留，`actor-actions-contact-r1.png` 為其中四個操作點。最後 Esc 後仍在戰場，沒有完成撤退或存讀聲明；這是新增來源覆蓋，不取代 020／022 的正常完整返回與存讀驗收。下一步可製作已實際出現的 MAN06／11／16 姿勢，民兵新圖仍需目標選擇與位置校準。

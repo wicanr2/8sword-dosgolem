@@ -46,6 +46,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 正常戰鬥呈現：[019：自然遭遇、戰鬥文字與圖像](docs/spec/019-normal-encounter-battle-presentation.md)，DRAFT。先以正常移動進入第一場自然遭遇，盤點文字、圖片及音樂來源；不以座標或兵力注入代替玩家路徑。
 
+部隊姿勢盤點：[來源對照工具](tools/catalog-battle-actors.py)固定核對 MAN01／06／11／16／21 的四筆六塊記錄，輸出原圖、水平鏡射雜湊與正常呼叫對應；CHOI 標記及還原標頭另列。Docker 用法、證據與美術原型限制見 [019](docs/spec/019-normal-encounter-battle-presentation.md#部隊姿勢目錄)。原型不直接進正式素材。
+
 結果與戰鬥按鍵：[020：戰鬥結果與正常返回](docs/spec/020-battle-result-presentation.md)，正常 V／Ctrl、結果關閉、F1／F2 及真正存退讀限定 CONFORMED。`battle-result` 優先於側欄，修正前端漏送 V／Ctrl；不自動略過訊息，也不授權 DRAFT 戰場美術接入。
 
 戰場背景：[021：背景頁與還原](docs/spec/021-battle-background-pages.md)，限定 CONFORMED。正常來源頁／遮罩、正式 r17、故障回退與完整視窗已驗；原中間幀缺口由 022 閉合。重生入口為[戰場素材工具](tools/prepare-hd-battle.py)，載入及驗收限制見 021。部隊 HD 仍依 019 另行完成。
