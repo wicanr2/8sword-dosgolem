@@ -101,3 +101,7 @@ python /project/tools/catalog-battle-actors.py \
 ### BATTLE-PON-EFFECTS-RESOLVED
 
 前段 PON 待接入已由 [027](027-battle-pon-effects.md)完成獨立累積效果層、四筆正常返回全幅、三組隔離、實際 Draw 與真正存退讀，限定 CONFORMED。不可變鍵 `DOS/PON.EGG@5fe52b53…786e/file+0,+3304,+6608,+9912`，入口 `PAM/runtime14D2:04F2/057D/0625`。正常火花間無 `0423` 還原，已由原版 36 次入口／返回證實；HD alpha 累積是明示手繪呈現，不能改稱原版 alpha。其他民兵姿勢、CHOI 及全遊戲仍待驗。
+
+## CHOI 後續閉合
+
+`CHOI-HD-GUI-RESOLVED`：前述 CHOI 待辦已由 [029](029-battle-choi-markers.md#正常視窗四姿態與限定結案)閉合，鍵 `DOS/CHOI.EGG@55045918…bcb/file+0,+3304,+6608,+9912`，沿 `PAM/runtime14D2:04F2/057D/0625`。現行正常續玩四個實際 Draw、全幅獨立重建、224 次完成與真正存退讀已驗；本規格歷史來源及快照不改，活動單位語意仍為強推論。

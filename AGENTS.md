@@ -251,7 +251,7 @@ mm3 的使用者批准、素材、字型、平台、公開範圍及完成標記�
 
 空間整理工具：[workspace-space.py](tools/workspace-space.py)。工作區中的部分不可變圖像、逐幀錄影及研究快照以唯讀硬連結共用完全相同的內容，原路徑與 SHA 保留。後續需要修改這類檔案時，先在固定 Pillow Docker 內執行 `python /project/tools/workspace-space.py --workspace /work detach <workplace 相對路徑>`，建立獨立可寫副本；禁止直接 chmod 後原地修改共用 inode。掛載及完整清理／驗證入口見 WORKLOG 的「2026-10-24：工作區空間整理」，範圍只含本案 `player/` 與 `probe-20261023/`，不處理原始遊戲或全域 Docker 資源。
 
-戰場陰陽圖案：[029：CHOI 四筆來源與 HD](docs/spec/029-battle-choi-markers.md)，READY。396 次正常入口／返回及手繪原型已審查，正式接入與驗收進行中。[載入器](internal/eightsword/battle_markers.go)共用一張原圖建立四個方向，只接受沒有既有效果的矩形；PON 累積契約保持。研究美術與原型留 `battle-r1/choi-art-r1/`，原始來源及共用唯讀檔不改寫。
+戰場陰陽圖案：[029：CHOI 四筆來源與 HD](docs/spec/029-battle-choi-markers.md)限定 CONFORMED，正常續玩四姿態、224 次完成、實際 Draw 全幅重建與真正 F7 存退讀已驗。[載入器](internal/eightsword/battle_markers.go)共用一張原圖建立四個方向，只接受沒有既有效果的矩形，PON 累積契約保持。獨立驗證入口為 [audit-choi-gui.py](tools/audit-choi-gui.py)，用法及 70 筆唯讀研究建置見 029；原始來源及歷史收據不改寫。
 
 戰術擴充：[030：部隊特性、戰術 AI、法術動畫與字型工具列提案](docs/spec/030-battle-expansion-proposal.md)，方向已確認，實作規格仍 DRAFT。參考 `/home/anr2/openkb/openkb-code` 的實際兵種及增強 AI；使用者已同意保留原版規則與獨立戰術增強模式，追加 HD 配色調整。配色跟 HD 開關走，不跟規則模式綁定。AI 從原版決策掛點切入，現有繪圖觀測不能代替決策證據。真正繁體隸書與工具列列為必要工作，現有 UnYetgul 過渡選項不視為隸書需求完成。只讀研究與可撤回原型入口見 030 和 RESEARCH-LOG，正式新規則及新配色尚未接入。
 
@@ -272,3 +272,5 @@ HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-ref
 3. 定位一條實際文字／圖像路徑與一條實際音樂事件，分別建立原版證據。
 4. 展示代表 HD 畫面與原曲音色提升試聽，完成必要取捨及 READY 規格。
 5. 在正常前端接通顯示、輸入、HD 音樂及真正存讀檔，再擴展素材與曲目。
+
+博物館背景已選 A 紫藍手繪，女主角保持 033。[批准原圖](docs/images/museum-a-approved-r1.png)、[完整提示](docs/images/museum-a-approved-r1.prompt.txt)與[來源／決定](docs/images/museum-a-approved-r1.json)保存於私人倉庫；原始生成 PNG 不改，正式背景接入依 [017](docs/spec/017-intro-museum-art.md)完成契約審查與驗收。

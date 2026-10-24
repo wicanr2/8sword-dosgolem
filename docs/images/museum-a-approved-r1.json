@@ -1,0 +1,82 @@
+{
+  "scope": "使用者選定 A 紫藍手繪博物館背景；女主角依 033，其他動畫及正式接入尚待驗收",
+  "approved_date": "2026-10-24",
+  "approval": "A：紫藍手繪（建議）",
+  "approved_reference": "workplace/probe-20261023/graphics-first/museum-art-r1/comparison.png",
+  "image": "museum-a-approved-r1.png",
+  "image_sha256": "b4a0929be89303cfa2af8260010cc00442c92c95c494e7ac741031f0469c1d95",
+  "prompt": "museum-a-approved-r1.prompt.txt",
+  "prompt_sha256": "1614ea651f69966eef1285be951fe072dea02bb70e43c7592c8285f8a53d70d1",
+  "generator": "內建 image_gen",
+  "source_record": {
+    "schema": 1,
+    "status": "unapproved-prototype",
+    "tool": "built-in image_gen",
+    "artifacts": [
+      {
+        "file": "native-room-left.png",
+        "sha256": "896422be20c160f9134f6d86484ffbf562718a38f7fa94c08ae9fca17da5409c",
+        "size": [
+          1920,
+          1200
+        ],
+        "generation_path": null,
+        "role": "original-geometry"
+      },
+      {
+        "file": "a-purple-raw.png",
+        "sha256": "b4a0929be89303cfa2af8260010cc00442c92c95c494e7ac741031f0469c1d95",
+        "size": [
+          1586,
+          992
+        ],
+        "generation_path": "exec-d95701db-2c4d-4260-bded-b5778492cf0a.png",
+        "role": "prototype"
+      },
+      {
+        "file": "b-jade-raw.png",
+        "sha256": "033c933aba743122a5ed2718339e1bb222b69b3fefa15d426a9bcb4aca10aa06",
+        "size": [
+          1585,
+          992
+        ],
+        "generation_path": "exec-c2012b2a-931b-4090-ab67-9d2664eafff5.png",
+        "role": "prototype"
+      }
+    ],
+    "prompts": {
+      "a-purple.prompt.txt": "1614ea651f69966eef1285be951fe072dea02bb70e43c7592c8285f8a53d70d1",
+      "b-jade.prompt.txt": "b509322afbb54262bb7d12333deaa78f201a722a44eaec0da350c55413bf6364"
+    },
+    "comparison_sha256": "49d33cc41f31a40917bb6f1fcf4c16c612ce3e7a2dd21921af0805cfbeb6b79b",
+    "method": "same normalized center-half artwork crop for comparison; source images remain byte-identical",
+    "rights": "local-only original-derived prologue art; not uploaded",
+    "inputs": {
+      "native_frame": {
+        "path": "graphics-first/intro-r1/cold-trace/frame-003.png",
+        "sha256": "224774497bb7b9fb10ef99f855678049e85c97ccb57c9e5775b31df23a8f951b"
+      },
+      "approved_full_style": {
+        "path": "docs/images/hd-style-approved-r1.png",
+        "sha256": "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6"
+      },
+      "approved_style_crop": {
+        "file": "approved-style-b.png",
+        "sha256": "81335e1770c17db799ae70d0931d6f013398cf24f664feffcd88777114a0fcb7"
+      }
+    },
+    "parent_roles": {
+      "a-purple-raw.png": [
+        "native-room-left.png: edit target and geometry",
+        "approved-style-b.png: brush style only"
+      ],
+      "b-jade-raw.png": [
+        "a-purple-raw.png: edit target and geometry",
+        "approved-style-b.png: jade palette only"
+      ]
+    },
+    "limits": "Unapproved color prototypes, approximate repainted details; no runtime integration or completion claim. Awaiting the A/B choice."
+  },
+  "rights": "依使用者定稿圖記錄要求保存於既有私人倉庫；不代表原版參考或衍生素材取得公開散布權",
+  "preservation": "原始生成 PNG byte 不改；尚非正式執行期截圖"
+}

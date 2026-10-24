@@ -1089,3 +1089,15 @@ R2 以已確認 B 的原圖 `docs/images/hd-style-approved-r1.png` 為配色參�
 以上 `museum-art-r1` 的共同前綴為 `workplace/probe-20261023/graphics-first/`。Go 1.24.13 與既有兩份鎖定 Docker 映像沿前節。68 筆無頭來源與原程式的完整重建、68 筆正式 GUI 來源與五程式的封存 SHA 見 033，不能把後續 GUI 測試碼版本冒充早期原始收據。原 source-catalog 的顏色差異計數勘誤見上一節。
 
 第一個 GUI 在標題階段到觀察上限，與特寫掛勾無關。後續修正海報完整像素快取，實際省下 274／282 次新物件但相同像素的重建與上傳；另使用記錄的 vsync=false 與依量測設定的有界等待。這些條件不同，不據此推算成對 FPS 增益；未驗真機音訊裝置、其他平台、全博物館 HD 或全遊戲。
+
+## 2026-10-24：CHOI 四姿態實際 Draw
+
+證據等級：限定已證實呈現與正常存退讀，玩法及 RNG 未驗。輸入 CHOI.EGG SHA `5504591888f306aee2fce04015a81fca30e4e6c8bd48897c5103abcece780bcb`，PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；程式位址為 dosgolem 執行期 PAM/14D2，CHOI offset 為原始檔案基準，互不混用。固定工具與原始來源沿 029。
+
+正式 cd510e6 的 68 筆來源及 r29 加唯讀觀測，研究 70 筆來源／兩程式留 `battle-r1/choi-gui-r2`；66 筆不變，前端移除三個觀測入口後 byte 相同。來源 archive SHA `f69b8c986c05790c11d2be370d1299d96cb817ceba39b56c192243553bd2d6e1`。`formal-source-audit.json` 保存差異審查。Go 1.24.13，固定 Go／Pillow 映像，不修改共用 dosgolem 或原版。
+
+`workplace/player/gui/choi-save-r3` 從真正原版 d8b9227e…3152 進度正常繼續，一場自然遭遇、休息、退戰及真正存退讀。646 次來源／646 次返回，其中 CHOI 224 次全部完成，零回退；四個實際 Draw 為 498／506／533／540，step 分別 525953995／534160144／559094233／567300985。逐張 2304000 像素及每個底色 4400 格全部獨立重建，四筆亦連回完整寬版串流。四次 Frame 與八組擷取 state 成對不變，完整結果見 `choi-draw-audit.json` 及 029。核對器為 `tools/audit-choi-gui.py`。
+
+存檔段 761 幀／138 次改變、讀檔段 140 幀／19 次改變，四接觸表與四姿態比較均已檢視。F2／F1、四方向、F7、回 DOS 碼 0、冷啟動讀回 2987 bytes 同 RAM，SHA `b97c8719825d7e9abeb9aca281d02feda25908de3776410d14161553863aa99c`，DOS read step 38479053。3158 差異像素限主角動畫框，不稱全幅存讀 parity。靜音 GUI 不作裝置音訊或即時速度聲明。r25 的四份 battle-choi 資產與 r29 相同，既有真壞圖與無頭隔離收據保持。
+
+使用者同輪選定博物館 A 紫藍背景，原始生成 PNG 與完整提示依先前定稿圖入 Git 要求保存 docs/images；來源及批准內容見 museum-a-approved-r1.json。只批准背景，女主角保持 033。017 尚待正式契約與整合，不以選圖宣稱接入。
