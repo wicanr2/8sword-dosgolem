@@ -273,4 +273,18 @@ HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-ref
 4. 展示代表 HD 畫面與原曲音色提升試聽，完成必要取捨及 READY 規格。
 5. 在正常前端接通顯示、輸入、HD 音樂及真正存讀檔，再擴展素材與曲目。
 
-博物館背景已選 A 紫藍手繪，女主角保持 033。[批准原圖](docs/images/museum-a-approved-r1.png)、[完整提示](docs/images/museum-a-approved-r1.prompt.txt)與[來源／決定](docs/images/museum-a-approved-r1.json)保存於私人倉庫；原始生成 PNG 不改，[017](docs/spec/017-intro-museum-art.md#ready選定-a-與既有女主角的正式整合契約)已完成契約審查並 READY，授權單一博物館呈現器接入，仍待正式實作與驗收。
+博物館背景已選 A 紫藍手繪，女主角保持 033。[批准原圖](docs/images/museum-a-approved-r1.png)、[完整提示](docs/images/museum-a-approved-r1.prompt.txt)與[來源／決定](docs/images/museum-a-approved-r1.json)保存於私人倉庫；原始生成 PNG 不改。[017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)已限定 CONFORMED，完整組由單一呈現器接入；缺組／壞組保留 033。故事原版淡入與其餘開場圖像另待處理。
+
+017 正式接入程式：[來源與交易](internal/eightsword/intro_museum.go)、[群組載入](internal/eightsword/intro_museum_assets.go)、[圖層合成](internal/eightsword/intro_museum_layers.go)、[失效與自然交接](internal/eightsword/intro_museum_lifecycle.go)。依 READY 契約實作，正常片頭、Esc、真正存退讀與回退已限定驗收，證據入口見 017。
+
+017 群組匯入工具：[prepare-hd-museum.py](tools/prepare-hd-museum.py)，在固定 Pillow 容器中指定 `--base` 現行 r29、`--candidate` 選定 A-r8、`--orig` 合法原版資料與 `--out` 空輸出目錄。只驗證固定候選並複製原始 PNG，不重畫素材；正常原版與 GUI 驗收仍依 017。
+
+017 針對驗證：[intro_museum_test.go](internal/eightsword/intro_museum_test.go)，使用合法原版與 `EIGHTSWORD_TEST_MUSEUM_ASSETS` 的實際素材，涵蓋正常片頭、字型／Frame 純度、晚期 PNG 故障、頁複製／失效及 RAM 邊界；metadata 診斷不視為正常玩家證據。
+
+017 正常收據工具：[museum-check.go](tools/museum-check.go)，Docker 編排為 `bash tools/player.sh museum-check <新收據名稱> [素材組] [普通Esc毫秒] [字型]`；沿正常 VGA／AdLib 選單與虛擬時間，記錄逐幀、完整 state／PCM 及來源交易，不做場景注入。素材重建入口為 `bash tools/player.sh museum-assets <新素材組名稱> [基底]`。
+
+017 無頭逐幀驗證器：[audit-museum.py](tools/audit-museum.py)，在固定 Pillow 容器指定 HD／舊組／真壞組的正常收據、`--assets` 正式群組、`--project` 專案與 `--research` 博物館研究根目錄。核對來源交易、原始平面、PNG／透明快取、完整畫面及客體隔離；不代替 GUI 或裝置音訊。
+
+017 實際 Draw 驗證器：[audit-museum-gui.py](tools/audit-museum-gui.py)，共用獨立 Python 來源模型，核對寬版串流中央美術帶與原版交易，輸出 `museum-draw-audit.json` 及首次實際 Draw 圖。範圍不包含 GUI 外帶的獨立原版對拍；正常存退讀及客體隔離另驗。
+
+017 普通 Esc 驗證：[audit-museum-escape.py](tools/audit-museum-escape.py)，輸入真正近景後送 Esc 的 HD／舊組正常收據，核對完整 state／PCM／事件、PAM、離場後每幀及 Frame 純度。它不注入原版狀態。

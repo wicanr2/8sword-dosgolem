@@ -90,6 +90,8 @@ type game struct {
 	blocked                                    map[ebiten.Key]bool
 	controlBlocked                             bool
 	frameHeroinePixels, presentedHeroinePixels int
+	frameMuseumStage, presentedMuseumStage     string
+	frameMuseumInfo                            map[string]any
 }
 
 type stageTiming struct {
@@ -124,6 +126,7 @@ func (g *game) status(closed bool) map[string]any {
 	status["presented_intro"] = g.presentedIntro
 	status["presented_font_id"] = g.presentedFontID
 	status["presented_heroine_pixels"] = g.presentedHeroinePixels
+	status["presented_museum_stage"] = g.presentedMuseumStage
 	status["presented_story_calls"], status["presented_story_pages"] = g.presentedStoryCalls, g.presentedStoryPages
 	status["presented_caption_source"] = g.presentedCaptionSource
 	status["stage_totals"] = g.stageTotals
@@ -288,6 +291,12 @@ func (g *game) Update() error {
 	}
 	g.frameConsole = g.engine.ConsoleStage()
 	g.frameIntro = g.engine.IntroFrameStage(g.frame)
+	g.frameMuseumStage = ""
+	g.frameMuseumInfo = nil
+	if g.engine.Museum != nil {
+		g.frameMuseumStage = g.engine.Museum.FrameStage(g.frame)
+		g.frameMuseumInfo = g.engine.Museum.Status()
+	}
 	g.frameHeroinePixels = 0
 	if g.engine.Heroine != nil {
 		g.frameHeroinePixels = g.engine.Heroine.FramePixels(g.frame)
@@ -354,10 +363,11 @@ func (g *game) Draw(screen *ebiten.Image) {
 	g.presentedIntro = g.frameIntro
 	g.presentedFontID = g.frameFontID
 	g.presentedHeroinePixels = g.frameHeroinePixels
+	g.presentedMuseumStage = g.frameMuseumStage
 	g.presentedCaptionSource = g.frameCaptionSource
 	g.presentedStoryCalls, g.presentedStoryPages = g.frameStoryCalls, g.frameStoryPages
 	if g.introDraw != nil {
-		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource, "font_id": g.frameFontID, "heroine_pixels": g.frameHeroinePixels}); err != nil {
+		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource, "font_id": g.frameFontID, "heroine_pixels": g.frameHeroinePixels, "museum_stage": g.frameMuseumStage, "museum": g.frameMuseumInfo}); err != nil {
 			g.recordErr = err
 		}
 	}
@@ -510,6 +520,10 @@ func main() {
 	if engine.PublisherError != "" {
 		title += "（HD 發行商文字載入失敗）"
 		log.Print(engine.PublisherError)
+	}
+	if engine.MuseumError != "" {
+		title += "（HD 博物館載入失敗）"
+		log.Print(engine.MuseumError)
 	}
 	if engine.HeroineError != "" {
 		title += "（HD 女主角載入失敗）"

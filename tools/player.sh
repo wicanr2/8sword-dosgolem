@@ -85,6 +85,7 @@ case "${1:-}" in
             EIGHTSWORD_TEST_POSTER_ASSETS=/out/assets-painted-r28 \
             EIGHTSWORD_TEST_MOE_ASSETS=/out/assets-painted-r27 \
             EIGHTSWORD_TEST_HEROINE_ASSETS=/out/assets-painted-r29 \
+            EIGHTSWORD_TEST_MUSEUM_ASSETS=/out/assets-painted-r30 \
             go test -v -timeout=390s -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -93,15 +94,16 @@ case "${1:-}" in
         else
           find /project/internal /project/cmd -type f -name "*.go" -print0 \
             | sort -z | xargs -0 sha256sum > /out/build-inputs.sha256
-          sha256sum /project/go.mod /project/go.sum /project/tools/gui-check.go /project/tools/music-check.go /project/tools/heroine-check.go >> /out/build-inputs.sha256
+          sha256sum /project/go.mod /project/go.sum /project/tools/gui-check.go /project/tools/music-check.go /project/tools/heroine-check.go /project/tools/museum-check.go >> /out/build-inputs.sha256
           go build -mod=readonly -o /out/8sword /project/cmd/8sword
           go build -mod=readonly -o /out/8sword-replay /project/cmd/8sword-replay
           go build -mod=readonly -o /out/gui-check /project/tools/gui-check.go
           go build -mod=readonly -o /out/music-check /project/tools/music-check.go
           go build -mod=readonly -o /out/heroine-check /project/tools/heroine-check.go
+          go build -mod=readonly -o /out/museum-check /project/tools/museum-check.go
           sha256sum -c /out/build-inputs.sha256 > /out/build-source-checks.log
           go version > /out/build-go-version.txt
-          sha256sum /out/8sword /out/8sword-replay /out/gui-check /out/music-check /out/heroine-check > /out/build-outputs.sha256
+          sha256sum /out/8sword /out/8sword-replay /out/gui-check /out/music-check /out/heroine-check /out/museum-check > /out/build-outputs.sha256
         fi' build "$task_action"
     ;;
   assets)
@@ -295,6 +297,42 @@ case "${1:-}" in
       --entrypoint /player/heroine-check "$task_go" \
       -root /orig -assets "/player/assets-$task_set" -out /out -escape-ms "$task_escape" -font "$task_font"
     ;;
+  museum-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r29}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_refs="$task_work/probe-20261023/graphics-first/museum-art-r1/formal-assets-a-purple-r8"
+    test -d "$task_player/assets-$task_base"; test -d "$task_orig"; test -f "$task_refs/museum.json"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 120s docker run --rm --init --name "8sword-museum-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 900m --cpus 2 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_refs,dst=/refs,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-museum.py --base /base --orig /orig --candidate /refs --out /out
+    ;;
+  museum-check)
+    task_name="${2:?指定新的收據名稱}"
+    task_set="${3:-painted-r30}"
+    task_escape="${4:-0}"
+    task_font="${5:-noto}"
+    valid_name "$task_name"; valid_name "$task_set"
+    [[ "$task_escape" =~ ^[0-9]+$ ]]
+    [[ "$task_font" == noto || "$task_font" == lishu || "$task_font" == caoshu ]]
+    test -f "$task_player/museum-check"; test -d "$task_orig"; test -d "$task_player/assets-$task_set"
+    task_out="$task_player/replays/$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 300s docker run --rm --init --name "8sword-museum-check-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
+      --mount "type=bind,src=$task_player,dst=/player,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      --entrypoint /player/museum-check "$task_go" \
+      -root /orig -assets "/player/assets-$task_set" -out /out -escape-ms "$task_escape" -font "$task_font"
+    ;;
   hero-redesign-assets)
     task_name="${2:?指定新的素材組名稱}"
     task_base="${3:-painted-r23}"
@@ -481,7 +519,8 @@ case "${1:-}" in
     if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == captions ]]; then task_limit=360s; fi
     if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then task_limit=420s; fi
     if [[ "${EIGHTSWORD_GUI_SHOW_HEROINE:-0}" == 1 ]]; then task_limit=600s; fi
-    exec timeout "$task_limit" docker run --rm --name "8sword-gui-$task_name" --network none \
+    if [[ "${EIGHTSWORD_GUI_SHOW_MUSEUM:-0}" == 1 ]]; then task_limit=1000s; fi
+    exec timeout "$task_limit" docker run --rm --init --name "8sword-gui-$task_name" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
       --mount "type=bind,src=$task_player,dst=/bin-player,readonly" \
       --mount "type=bind,src=$task_player/assets,dst=/assets,readonly" \
@@ -502,11 +541,12 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_SHOW_STORY="${EIGHTSWORD_GUI_SHOW_STORY:-0}" \
       -e EIGHTSWORD_GUI_SHOW_CAPTIONS="${EIGHTSWORD_GUI_SHOW_CAPTIONS:-0}" \
       -e EIGHTSWORD_GUI_SHOW_HEROINE="${EIGHTSWORD_GUI_SHOW_HEROINE:-0}" \
+      -e EIGHTSWORD_GUI_SHOW_MUSEUM="${EIGHTSWORD_GUI_SHOW_MUSEUM:-0}" \
       -e EIGHTSWORD_GUI_FONT_CYCLE="${EIGHTSWORD_GUI_FONT_CYCLE:-0}" \
       -e EIGHTSWORD_GUI_INITIAL_FONT="${EIGHTSWORD_GUI_INITIAL_FONT:-}" \
       -e EIGHTSWORD_GUI_ASSETS="${EIGHTSWORD_GUI_ASSETS:-/assets}" \
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

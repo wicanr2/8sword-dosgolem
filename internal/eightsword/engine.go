@@ -43,6 +43,8 @@ type Engine struct {
 	Captions              *IntroCaptions
 	Heroine               *IntroHeroine
 	HeroineError          string
+	Museum                *IntroMuseum
+	MuseumError           string
 	fonts                 *fontChoices
 	FontError             string
 	presentationObservers []*presentationSubscription
@@ -144,9 +146,15 @@ func Open(opt Options) (*Engine, error) {
 		if err != nil {
 			e.PublisherError = err.Error()
 		}
-		e.Heroine, err = loadIntroHeroine(e, opt.Assets, opt.Root)
+		e.Museum, err = loadIntroMuseum(e, opt.Assets, opt.Root)
 		if err != nil {
-			e.HeroineError = err.Error()
+			e.MuseumError = err.Error()
+		}
+		if e.Museum == nil {
+			e.Heroine, err = loadIntroHeroine(e, opt.Assets, opt.Root)
+			if err != nil {
+				e.HeroineError = err.Error()
+			}
 		}
 	}
 	e.loadFontChoices(opt.Assets)
@@ -154,6 +162,9 @@ func Open(opt Options) (*Engine, error) {
 	return e, nil
 }
 func (e *Engine) Close() {
+	if e.Museum != nil {
+		e.Museum.retireMuseum()
+	}
 	e.closePresentationObservers()
 	if e.Music != nil {
 		e.Music.Close()
@@ -208,6 +219,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		if e.Heroine != nil {
 			e.Heroine.Tick()
 		}
+		if e.Museum != nil {
+			e.Museum.Tick()
+		}
 		n -= count
 	}
 	return nil
@@ -253,6 +267,9 @@ func (e *Engine) Advance(n uint64) error {
 		}
 		if e.Heroine != nil {
 			e.Heroine.Tick()
+		}
+		if e.Museum != nil {
+			e.Museum.Tick()
 		}
 		n -= count
 	}
@@ -327,7 +344,7 @@ func (e *Engine) Frame() *image.RGBA {
 	return e.presentIntro(out)
 }
 func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
-	if !e.HD || (e.IntroStage() == "" && e.Heroine == nil) {
+	if !e.HD || (e.IntroStage() == "" && e.Heroine == nil && e.Museum == nil) {
 		return frame
 	}
 	if (e.Intro != nil && e.Intro.active) || (e.Publisher != nil && e.Publisher.Stage() != "") || (e.Story != nil && e.Story.active) || (e.Captions != nil && e.Captions.Stage() != "") {
@@ -345,11 +362,17 @@ func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
 	if e.Story != nil {
 		frame = e.Story.Compose(frame)
 	}
+	if e.Museum != nil {
+		frame = e.Museum.Compose(frame)
+	}
 	if e.Heroine != nil {
 		frame = e.Heroine.Compose(frame)
 	}
 	if e.Captions != nil {
 		frame = e.Captions.Compose(frame)
+	}
+	if e.Museum != nil && e.Museum.Stage != "" {
+		e.Museum.final = frame
 	}
 	if e.Heroine != nil && e.Heroine.used != 0 {
 		e.Heroine.final = frame
@@ -378,6 +401,9 @@ func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
 	if e.Captions != nil && e.HD && e.Captions.FrameSource(frame) != 0 {
 		return "captions-noto"
 	}
+	if e.Museum != nil && e.HD && e.Museum.FrameStage(frame) != "" {
+		return "museum-" + e.Museum.FrameStage(frame)
+	}
 	if e.Heroine != nil && e.HD && e.Heroine.FramePixels(frame) != 0 {
 		return "heroine-hd"
 	}
@@ -397,6 +423,10 @@ func (e *Engine) Status() map[string]any {
 	out["battle_effect_error"] = e.BattleEffectError
 	out["battle_marker_error"] = e.BattleMarkerError
 	out["heroine_error"], out["heroine"] = e.HeroineError, e.Heroine.Status()
+	out["museum_error"], out["museum"] = e.MuseumError, e.Museum.Status()
+	if e.Museum != nil {
+		out["museum_transactions"] = e.Museum.Events
+	}
 	out["palette_error"], out["palette_style"] = e.PaletteError, ""
 	if e.Tracker != nil && e.Tracker.palette != nil {
 		out["palette_style"] = paletteStyle

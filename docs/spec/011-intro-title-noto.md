@@ -4,6 +4,8 @@
 
 ## 原版證據
 
+後續 [017](017-intro-museum-art.md#正式接入與限定驗收)已接入完整館景。標題的完整 HD 保留幀繼續由本模組持有；館景第一筆交易尚無所有權時保留該上游幀。正常 Frame 測試、舊問題幀負對照及新視窗已核對，不改本規格的標題來源或字型契約。
+
 原始 PREDELLA.EXE／PAM.AY、dosgolem `f79eab6d` 及三份補丁同 009／010。TIT2.AY SHA `ff31a0a4916ee1b27a56f2f7da32ec06df3716b42f831b547ed5518586f64060`，7015 bytes。IDA 9.4 使用既有唯讀 PREDELLA-runtime.i64 的一次性副本，Go 1.24.13／Pillow 11.3.0 在既有鎖定映像執行。下列位址為 dosgolem 執行期線性，IDA 以合成 MZ 的 `-b110` 直接對應；未換算為壓縮 EXE 偏移。
 
 - 已證實：正常冷啟動 VGA／AdLib 完整流程讀取 TIT1、TIT2、TIT3、TIT4、TIT5、TIT6V，另有 TIT6X 疊圖。`workplace/probe-20261023/graphics-first/intro-r1/cold-trace/` 保存檔案、參數、解碼緩衝區及 94 個改變畫面的原生擷取。沒有載入快照、注入 RAM 或直接進場。

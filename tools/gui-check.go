@@ -485,6 +485,7 @@ func main() {
 	showStory := flag.Bool("intro-story", false, "wait for actual Noto story before Esc, including save/reload flows")
 	showCaptions := flag.Bool("intro-captions", false, "wait for actual museum Noto before Esc, including save/reload flows")
 	showHeroine := flag.Bool("intro-heroine", false, "wait for actual HD heroine Draw and natural full intro")
+	showMuseum := flag.Bool("intro-museum", false, "wait for actual complete HD museum Draw and natural intro")
 	fontCycle := flag.Bool("font-cycle", false, "use real F10 to cycle fonts before normal save and verify preference on reload")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
@@ -574,6 +575,15 @@ func main() {
 			fmt.Println("女主角特寫已在實際 Draw 日誌呈現，由完整逐幀串流擷取。")
 		}
 		d.sceneAfterHeroine()
+	}
+	if *showMuseum {
+		d.wait("完整博物館已真正 Draw", 180, func(s map[string]any) bool { stage, _ := s["presented_museum_stage"].(string); return stage != "" })
+		d.shot("museum-first-actual-visible")
+		d.wait("完整博物館自然交接至主選單", 240, func(s map[string]any) bool { return s["presented_scene"] == "main-menu" })
+		if d.status()["presented_museum_stage"] != "" {
+			panic("博物館離場後殘留")
+		}
+		d.shot("museum-natural-main-menu")
 	}
 	if *flow == "publisher" || *flow == "publisher-skip" || *showPublisher {
 		d.wait("發行商字圖已真正呈現", 35, func(s map[string]any) bool { return s["presented_intro"] == "publisher-noto" })
@@ -830,7 +840,7 @@ func main() {
 		}
 		d.shot("story-native-fallback")
 	}
-	if *flow != "story" && *flow != "captions" && !*showHeroine {
+	if *flow != "story" && *flow != "captions" && !*showHeroine && !*showMuseum {
 		d.press(9)
 	} // 原版 Esc，未直接進入 PAM。
 	if *flow == "fallback" || *flow == "art-fallback" {
@@ -876,6 +886,16 @@ func main() {
 	}
 	d.scene("main-menu")
 	d.shot("03-main-menu")
+	if *flow == "museum-fallback" {
+		st := d.status()
+		if st["museum_error"] == "" || st["heroine"] == nil || st["heroine_error"] != "" || st["graphics_error"] != "" || st["font_error"] != "" || st["asset_error"] != "" || st["presented_museum_stage"] != "" {
+			panic("博物館故障未隔離")
+		}
+		d.shot("museum-real-corrupt-fallback")
+		d.receipt(*flow)
+		d.quit()
+		return
+	}
 	if *flow == "heroine-fallback" {
 		if d.status()["heroine_error"] == "" || d.status()["graphics_error"] != "" || d.status()["font_error"] != "" || d.status()["asset_error"] != "" || d.status()["presented_heroine_pixels"] != float64(0) {
 			panic("女主角故障未隔離")

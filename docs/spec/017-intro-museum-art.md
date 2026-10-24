@@ -10,7 +10,7 @@
 
 鏡中情緒試播為 `graphics-first/opening-mirror-concept-r2.mp4`，1920×1200、24 fps、192 幀、8 秒緩慢推鏡，配已批准〈幻〉HD 曲的前八秒及淡入淡出。`opening-mirror-concept-r2-audit.json` 核對視訊與音訊各八秒、192 個不同解碼幀、非靜音與取樣峰值；第 3 秒畫面已看。R1 單次編碼被 `-frames:v` 提早截斷 AAC 至 7.232 秒，失敗與舊核對均保存；R2 保留同一視訊位元流，另行混入完整八秒音訊。這是鏡頭及配樂概念試播，未包含角色動作，不替代原版十張人物、光束、換頁與正式接入驗收。
 
-狀態：READY。A 紫藍背景已定稿，原版證據、十四圖群組與 033 分工審查完成，授權依下列正式契約實作。正式接入與整段 HD 驗收尚未完成。
+狀態：限定 CONFORMED。A 紫藍背景、十人物、033 的同一女主角與兩色光束已正式接入。正常片頭、標題交接、自然交接、普通 Esc、原子回退及真正存退讀的證據見[正式驗收](#正式接入與限定驗收)。故事 mode 13h 的原版淡入、其他開場圖像、音訊裝置及整體 HD 不在本項完成聲明內。下文草案與 READY 文字保留作歷史。
 
 ## r7：正式素材與透明快取契約草案
 
@@ -295,3 +295,53 @@ r6 為可丟棄研究副本，範圍只修正上述等待期間：
 - 真壞圖在正常視窗只拒用博物館群組，既有 033 及其他 HD 保持。舊 r29 缺少新清單時畫面與目前版一致。技術解碼、候選存在或內部綠色測試均不代替正式接入、實際畫面及正常存讀。
 
 本節通過前不修改正式 Go；目前狀態升 READY 後才開始正式實作。版權與上傳範圍保持既有規則，十四圖完整執行期包仍留本機，使用者批准的 A 原圖另存私人倉庫。
+
+## READY 追加：標題到第一幅館景的保留幀
+
+`MUSEUM-TITLE-HANDOFF-RESOLVED`：首輪正式 `museum-save-r1/save` 的 Draw 81 為 Noto 標題，step 19630566；Draw 82 為首個 `museum-hold`，step 19814897、serial=0、page=0，尚無任何已完成的博物館來源，實際圖像短暫回到原版標題。Draw 83 才是完整左景。兩份原始串流與 r1 的圖像驗證保留，不將這個已發現差異隱去。
+
+已證實原因來自正式呈現鏈：`IntroTitle.begin → startTransition` 已用 `t.last` 保留完整 HD 標題，`IntroTitle.Compose` 回傳同一 `t.hold`；其後 `IntroMuseum.Compose` 卻用入口時的 `museumRawBand` 蓋過該帶。既有獨立 GUI 模型在沒有館景所有權的 hold 直接以 actual 當基底，未覆核這個上游文字交接；即使美術帶核對綠色，也不能宣稱沒有原版標題曝光。
+
+追加契約保持 READY：博物館保存既有 `IntroTitle` 參考。可見交易的目的頁尚無已驗館景，而且輸入 Frame 指標正是該標題模組的完整 `hold` 時，直接保留上游 Frame，不用原生美術帶覆蓋，也不提早提交新館景。來源必須是目前標題模組明示的 hold，不以固定等待、過去任意畫面或影像像素猜測。該幀歸標題轉場，博物館 stage 保持空白；有館景所有權的 hold 仍沿原契約。缺少已驗上游標題時保留原版回退。
+
+實作後增加真正普通啟動中捕捉這個首交易的狀態／Frame 純度測試，並重跑完整新組、舊組與真壞組的無頭對拍及正式正常存退讀視窗。獨立模型對正常有效素材組新增「museum hold 必須具有已知館景」的負向檢查，原本 r1 的 unowned hold 必須失敗。新 r2 收據不能取代或改名 r1。
+
+## 正式接入與限定驗收
+
+2026-10-24，依上述 READY 與追加契約實作，再以正式程式完成下列驗收，狀態升為限定 CONFORMED。沒有修改原版規則、DOS 資料、輸入或存檔格式。原始位址與來源沿本規格既有證據，沒有新增推測性的 RE 語意。
+
+### 程式與素材
+
+- 正式入口：[Engine](../../internal/eightsword/engine.go)、[來源／交易](../../internal/eightsword/intro_museum.go)、[載入器](../../internal/eightsword/intro_museum_assets.go)、[合成](../../internal/eightsword/intro_museum_layers.go)、[生命週期](../../internal/eightsword/intro_museum_lifecycle.go)。共用觀測，完整組成功時不另裝 033；失敗保持 033、其他 HD、音樂與工具列。
+- [匯入工具](../../tools/prepare-hd-museum.py)輸出可選 `museum.json`。r30 共 149 檔，r29 的 134 檔逐 byte 保持。`assets-museum-rebuild-r1` 的 149 檔獨立重建相同。十四 PNG 對應十五原版記錄，3902400 解碼像素，原圖不改，alpha 清理僅在快取。
+- 執行與驗收入口：[player.sh](../../tools/player.sh)、[正常收據](../../tools/museum-check.go)、[獨立像素模型](../../tools/audit-museum.py)、[實際 Draw 核對](../../tools/audit-museum-gui.py)、[普通 Esc 核對](../../tools/audit-museum-escape.py)。一般 `museum-check` 為 21400 虛擬毫秒，每 50 毫秒呈現並檢查 Frame 前後客體純度。
+- 工具版本：Go 1.24.13、Pillow 11.3.0；映像沿專案固定的 `dosgolem-go-ebiten:1.24-r1` 與 `sc-cht-hdtools:pillow11.3.0-r1`。私有 dosgolem 仍為 f79eab6d 加既有補丁，八份核心指紋全部保持。
+
+### 正常路徑與回退
+
+下列路徑相對 `workplace/player/`，研究負對照另相對 `probe-20261023/graphics-first/museum-art-r1/`。
+
+| 收據 | 結果與邊界 |
+|---|---|
+| `replays/museum-hd-r2`、`museum-control-r2`、`museum-broken-r2` | 各 428 幀，共 1284 次 Frame 純度。完整 state 同 `b1cafef3791e821685c691806d4096caa5ee53bc855418ff4ab28df1feeaf6b7`，PCM 同 `5fe8f10af3b6e891f448af2902e1aa85d20be8f38000111ab2f74043cc4c6e33`；九工作檔、輸入及檔案／EXEC／音樂／文字事件相同。壞最後 PNG 的 428 幀同 r29 控制。`museum-pixel-audit.json` 通過 |
+| 同組獨立像素核對 | 24 左景、39 右景、3 近景、19 交易保留、6 光束與 81 自然交接，共 172 個 HD 幀完整同獨立模型；十人物與黃／白兩色光束皆到達，218 交易。模型從原始記錄、遮罩、固定來源色盤與 PNG 快取重建，不用 Go 畫面當預期值 |
+| `replays/museum-escape-hd-r2`、`museum-escape-control-r2` | 真正到達近景後，9100 虛擬毫秒送普通 Esc。各 428 幀，共 856 次純度；state 同 `163e22944d8ce06786ab1f4539fa4ce122f261ed44b7cd1166e8f9930cf01b6c`，PCM 同 `89c3ef392f09f13687e206d8e209abb14450d6b88143b810122c2bb5bcb991cd`，18 工作檔及事件相同，之後 246 幀同控制。退休且無 drain 殘留，正常進 PAM |
+| `gui/museum-save-r2` | 兩次冷啟動自然播放整段片頭，再走新遊戲／繼續、F10、兩次 F2／F1、四方向、F7 存退讀及正常 DOS 退出。save 679 Draw／183 次改變，reload 451／137，七張接觸表、特寫及頁面均已解碼檢視。每個已知美術帶逐 RGBA 同獨立合成；十人物來源分別抽到 9／10，兩程序合計全到達。自然交接 76／45 個實際 Draw 皆保持 HD，真實模式事件撤圖 |
+| 同組字幕、故事與存讀 | Noto／草書字幕 22／20 Draw，四組皆到達，原字露出零；五頁故事 81／71 Draw 全中央 RGBA 同獨立模型。2987 bytes 存檔與實際讀回 RAM 同 SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，read step 70109990、退出碼 0。快照僅結束後零指令檢視；3158 個地圖差異點限主角動畫框，不稱整幀同相位 |
+| `gui/museum-fallback-r1/museum-fallback` | 真正損壞 `museum-beam.png`，完整組拒用，既有 033 保持。322 Draw／139 次改變，三張接觸表已看；四個實際特寫 Draw 的 42034 所有權／366 原版前景同獨立模型，無殘留。其他 HD 及文字保持，錯誤明示。此失敗載入分支使用 GUI-r1 程式封存；標題修正只作用成功完整組，現行 r2 的壞組無頭亦逐幀同控制 |
+
+GUI 像素模型獨立重建已知美術區；區外沿實際畫面作基底，不能稱整個 GUI 與成對原版全幅相同。客體隔離另由五份無頭流程共 2140 次 Frame 純度及成對完整 state／PCM 驗證。GUI 為靜音、3000 cycles/ms、vsync=false 的容器環境，不證明裝置音訊或即時 30 FPS。
+
+### 標題交接修正與邊界測試
+
+`museum-title-handoff-test-r2.log` 的正常啟動在真正首交易直接觀察 `Frame`：必須保持同一 `IntroTitle.hold`、標題轉場標籤及完整客體純度，19.845 秒通過。GUI-r2 兩程序各記錄一次 handoff Update，但恰好沒有在中間狀態呼叫 Draw，不能冒稱實際 Draw 捕捉到這一幀。其餘 51／50 個標題 Draw 的不透明 Noto／草書墨色及透明黑底皆通過獨立核對，正常 hold 全有已知館景。
+
+`title-handoff-negative-exec-audit-r1.json` 在暫存副本真正執行加強後核對器，舊 r1 Draw 82 以 `unowned museum hold overwrites upstream frame` 被拒絕，exit 1 符合預期。原始串流 SHA `431d9185cb119e50a88c00f2d19ee8d6ac21aea7e19501faa9dc054ee9339eed` 及原檔保持。舊驗證器的綠色結果只證明它原有的局部美術帶範圍，不作首交接通過證據。
+
+[Go 測試](../../internal/eightsword/intro_museum_test.go)分批通過正常場景／純度、六種晚期載入故障、RAM 與頁面邊界、深拷貝、清頁、未知寫入、待複製來源頁失效、交易逾時、512 事件上限、無 Draw 的 Tick 回收與模式回呼。未知來源測試在合法載入後清空主機登錄，正常原版來源觸發回退，13.491 秒通過；客體及其他 HD 保持。這是主機 metadata 邊界診斷，不冒稱原版自然產生未知來源。兩項既有 033 正常／故障測試亦通過。
+
+### 來源版本與停止線
+
+- `build-pre-museum-r1` 保留修改前 68 筆來源與五程式。首無頭、首 GUI、修正後 r2 分別封存 74 筆來源、六程式；來源 tar SHA 依序為 `9773d01043c25e632090c72866a8a4fb6dfc80fc33f57705134ec91541993407`、`233b32f6609cc48dd7ce4445b8b64885c5d17dacc66c1f3e3acb1b9930c6eb1e`、`d032ec456207ba2708da4f8d59bda7b5e3d11b609e33c787fd97c9ea1cc8cf01`。舊收據與新版本不混用。
+- 最後只增加未知來源測試，現行六程式 byte 同 `build-museum-handoff-r2`；`museum-final-build-audit-r1.json` 記錄唯一來源差異為測試檔。`museum-original-audit-r1.json` 核對兩原始封包與 183 個解出檔案，來源內容與檔案集合皆保持。
+- 未重跑未受影響的完整套件，不以舊套件通過聲稱本輪重新測試。原圖、十四圖包、原版及實際 Draw 截圖仍留本機，僅已批准的 A 背景參考存私人 GitHub。故事原版淡入、發行商中央圖案、其他資產與曲目、音效共存、後期玩家路徑及其他平台仍待處理；本項完成不等於整體 HD 完成。

@@ -1107,3 +1107,19 @@ R2 以已確認 B 的原圖 `docs/images/hd-style-approved-r1.png` 為配色參�
 017 已 READY，尚非 CONFORMED。原版十五筆來源、頁面交易及自然交接沿既有 r6／r7，不重開 RE。選定候選 `museum-art-r1/formal-assets-a-purple-r8` 保留 A-r7 的十三張 PNG，只換近景為 033 的相同 PNG `9a9775fc…b09f8`。既有獨立 Python `load_group` 完整驗證十四圖、十五筆來源與 3902400 解碼像素，收據 `selected-group-audit-r8.json`；清單 SHA `88dbda67e6c1b4d3d0f1ce2a17b5695c97813e3ed6c7e2996cf33e716a3af09c`。這是候選輸入，不是新組的正常動態或正式 GUI 證據。
 
 正式契約規定完整組成功時單一呈現器接手所有博物館美術，033 不另裝重疊頁面回呼；缺組或載入失敗保留舊 033。新完整組以 HD 人物替原版前景，女主角圖片／尺寸／位置保持，不把 033 模式的 366 點原版前景要求誤套到 HD 人物。來源 RAM、程式指紋、頁交易、未知寫入失效、自然交接、容量與原子回退、字幕及實際 Draw 分工都已記入 017。正式 Go、現行 r29 與正常收據不變；實作與三組隔離、Esc、正常視窗、存退讀及真壞組回退是下一個 gate。
+
+## 2026-10-24：首館景交接的原版標題曝光
+
+正式 GUI `museum-save-r1/save` Draw 81／82／83 的標籤依序為 title-noto／museum-hold／museum-left；82 的 serial=0、無館景所有權，卻覆蓋原生標題。程式資料流確認 `IntroTitle` 的完整 Noto hold 被後層 museumRawBand 覆蓋，屬呈現組合缺陷，沒有原版規則未知需要猜補。獨立 GUI 模型原先對無館景 hold 使用 actual 基底，未驗這個交接，因此其綠色收據限縮為有來源所有權的美術帶。017 追加 READY 契約與負向檢查，保留舊收據，修正及正式 r2 重跑接續；不重開原始 bitmap 或硬體研究。
+
+## 2026-10-24：正式館景 r2 與標題交接閉合
+
+證據等級：限定已證實呈現、客體隔離與正常存退讀。十五筆 TIT3／4／5 來源、固定程式指紋與 dosgolem 執行期位址沿 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)，不增加 IDA 語意或規則推論。Go 1.24.13、Pillow 11.3.0 與既有鎖定映像；r30 的十四 PNG 對應十五筆原版記錄，3902400 解碼像素。149 檔獨立重建相同，134 舊檔保持。
+
+`workplace/player/replays/museum-hd-r2`、`museum-control-r2`、`museum-broken-r2` 各 428 幀，完整 state 同 `b1cafef3791e821685c691806d4096caa5ee53bc855418ff4ab28df1feeaf6b7`，PCM 同 `5fe8f10af3b6e891f448af2902e1aa85d20be8f38000111ab2f74043cc4c6e33`；九工作檔及輸入／事件同。172 個 HD 幀逐 RGBA 同獨立來源模型，包含十人物、兩光束色及 81 自然交接幀。普通 Esc 的兩份 r2 正常收據在 9100 虛擬毫秒真正近景後送入，state 同 `163e22944d8ce06786ab1f4539fa4ce122f261ed44b7cd1166e8f9930cf01b6c`，PCM 同 `89c3ef392f09f13687e206d8e209abb14450d6b88143b810122c2bb5bcb991cd`，18 工作檔相同，之後 246 幀同控制。五份共 2140 次 Frame 純度通過。
+
+`gui/museum-save-r2` 自然完整片頭後走新遊戲／繼續、字型、軍隊／人物、四方向及真正 F7 存退讀。679／451 個實際 Draw、七張接觸表與代表頁面已解碼檢視；所有已知美術帶同獨立模型，Noto／草書四組字幕 22／20 Draw、五頁故事 81／71 Draw 通過。2987 bytes 進度檔同實際讀回 RAM SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，read step 70109990，退出碼 0；3158 地圖差異點限主角動畫框。GUI 美術區外不是成對原版 oracle，靜音不作音訊裝置或即時速度聲明。
+
+`MUSEUM-TITLE-HANDOFF-RESOLVED` 的正常 Frame 測試實際捕捉首交易並驗保留上游完整 Noto hold，19.845 秒通過。GUI 各有一次 handoff Update，沒有中間態實際 Draw；其餘 51／50 個標題 Draw 的不透明字墨及透明黑底另驗。加強核對器真正拒絕舊 r1 Draw 82，原串流 SHA `431d9185cb119e50a88c00f2d19ee8d6ac21aea7e19501faa9dc054ee9339eed` 保持，負對照為 museum-art-r1/title-handoff-negative-exec-audit-r1.json。未知來源、頁面、RAM、逾時、事件上限與回收測試屬 metadata 邊界，不冒稱原版自然發生。
+
+真壞組 GUI 的 322 Draw 及三張接觸表完成檢視，四個實際女主角 Draw 保持 033 的 42034 所有權／366 原版前景。此收據的載入失敗分支沿 build-museum-gui-r1，成功完整組的標題修正不影響它；現行 r2 壞組無頭逐幀同控制。修正後來源封存 build-museum-handoff-r2，tar SHA `d032ec456207ba2708da4f8d59bda7b5e3d11b609e33c787fd97c9ea1cc8cf01`；最後六程式仍逐 byte 相同，只追加測試檔。兩原始封包、183 解出檔案及八核心指紋皆保持。017 升限定 CONFORMED，故事淡入、其他圖像／曲目與全遊戲 HD 仍未完成。

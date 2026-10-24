@@ -27,9 +27,11 @@
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
 
-開場畫中的女主角特寫已換成中國古典美女，保留原版畫前人物、字幕與切鏡。正式視窗已自然走完片頭，並核對 Noto／草書字幕、五頁故事及後續人物／軍隊與真正存退讀，範圍見 [033](docs/spec/033-intro-heroine-closeup.md)。博物館背景、走動人物及光束的完整 HD 美術仍在製作，原圖與新素材組留本機。
+開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕。正式視窗已自然走完片頭，並核對 Noto／草書字幕、五頁故事、人物／軍隊及真正存退讀，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事頁的原版淡入與發行商中央圖案仍待處理，整體 HD 尚未完成。原圖與完整執行期素材組留本機。
 
 已有本機固定美術與合法原版資料時，可用 `bash tools/player.sh heroine-assets <新名稱> [基底名稱]` 製作特寫素材組，預設基底為 r28；正常原版收據使用 `bash tools/player.sh heroine-check <新收據名稱> [素材組]`。來源、輸出指紋與故障回退契約均見 033。
+
+完整博物館使用 `bash tools/player.sh museum-assets <新名稱> [基底名稱]`，預設基底為 r29；正常收據使用 `bash tools/player.sh museum-check <新收據名稱> [素材組]`。視窗驗證入口為 `EIGHTSWORD_GUI_SHOW_MUSEUM=1` 搭配 `gui-check`，素材組由 `EIGHTSWORD_GUI_ASSETS` 指定，格式與檢查工具見 017。
 
 ## 畫面與文字樣張
 
@@ -200,7 +202,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r11 \
 
 存退讀另設 `EIGHTSWORD_GUI_FLOW=save-cycle EIGHTSWORD_GUI_SHOW_CAPTIONS=1`，兩次冷啟動皆先呈現製作名單，再以原版 Esc 接續。字幕和故事共用字集，損壞時兩者回原字；標題、PAM Noto、圖像與音樂保持。這些是驗證選項，不修改原版流程。
 
-開場動畫也列入 HD 範圍。博物館左右展間、十個人物動作、畫作近景與光束已有完整研究原型，保留原版劇情與播放順序，尚未正式接入。素材、動態對照與剩餘驗收見 [開場 HD 規格](docs/spec/017-intro-museum-art.md)。鏡中美人的概念圖另作美術參考。
+博物館左右展間、十個人物動作、畫作近景與光束已正式接入，保留原版劇情與播放順序。素材、動態對照與限定驗收見 [開場 HD 規格](docs/spec/017-intro-museum-art.md)。鏡中美人的概念圖另作美術參考。
 
 ## 字型設定與故事背景
 
