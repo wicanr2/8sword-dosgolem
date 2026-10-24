@@ -91,3 +91,7 @@ python /project/tools/catalog-battle-actors.py \
 ### BATTLE-MAN11-ACTORS-RESOLVED
 
 前段 MAN11 待辦已由 [025](025-battle-man11-actors.md)完成正式 r20、三組同狀態、四筆正常完整 Frame、續玩自然遭遇及真正 GUI 存退讀，限定 CONFORMED。不可變鍵為 `DOS/MAN11.EGG@860ab98a…5f832/file+0,+3304,+6608,+9912`，沿用 `PAM/runtime14D2:0626/06B8/076E`。019 其他兵種、標記與效果仍 DRAFT，不將新收據改寫成舊探針已撤退，也不重開本組來源或頁交易。
+
+### BATTLE-MAN21-ACTORS-RESOLVED
+
+前段 MAN21 僅首筆的歷史記錄保持，現在由 [026](026-battle-man21-actors.md)完成 r21 四筆、三組隔離、正式首筆視窗與正常續玩四姿勢，限定 CONFORMED。不可變鍵為 `DOS/MAN21.EGG@47cc4843…982c/file+0,+3304,+6608,+9912`，沿用 `PAM/runtime14D2:0626/06B8/076E`。motion-r3 的 301 次原版來源返回及四個實際 Draw 閉合動作閘門；r7 無頭仍只首筆，不改寫舊收據。其餘民兵姿勢、CHOI／PON 及整體 HD 仍待接入，不重開本組來源或猜補動畫規則。

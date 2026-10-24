@@ -1,4 +1,4 @@
-"""在 Pillow Docker 內匯入 023／024／025 的已審查圖像，不修改原始 PNG。"""
+"""在 Pillow Docker 內匯入 023 至 026 的已審查圖像，不修改原始 PNG。"""
 import argparse
 import hashlib
 import json
@@ -33,6 +33,15 @@ MAN11_ART = [
 ]
 
 
+MAN21_SHA = "47cc484319abeba53551c20b7cf4b9b2c6061f2da3b6cda14155b3598f10982c"
+MAN21_ART = [
+    ("frame-0-painted-raw-r1.png", "e710379542cf1c4279ce1703b17ed9d3a839a2e831add705d0f93a370cbf8122", [119,161,1041,1074], [48,78,213,186]),
+    ("frame-1-painted-raw-r1.png", "5e6b3a90ad34fef1914e42c6d9bee491df0596102f7dc134376d420d8c34c80a", [128,153,1031,1085], [60,78,201,186]),
+    ("frame-2-painted-raw-r1.png", "483573cabb50b4ae6ecb2ac9b6a68c776398d37f847c2f36a45556862ade48c7", [180,163,972,1074], [84,78,177,186]),
+    ("frame-3-painted-raw-r1.png", "1c079c414df24d03ae56e93990a17fa850782a10c796087dc403ec0b10be192d", [39,222,1130,985], [0,78,261,186]),
+]
+
+
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -41,7 +50,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ("base", "source", "art-dir", "out"):
         p.add_argument("--"+name,required=True,type=Path)
-    p.add_argument("--unit",choices=("MAN16","MAN06","MAN11"),default="MAN16")
+    p.add_argument("--unit",choices=("MAN16","MAN06","MAN11","MAN21"),default="MAN16")
     a=p.parse_args()
     entries,source_sha,first_index,spec,prefix,manifest_name=ART,SOURCE_SHA,86,"023","battle-actors","battle-actors.json"
     stem="battle-man16"
@@ -54,6 +63,10 @@ def main():
         entries,source_sha,first_index,spec,prefix,manifest_name=MAN11_ART,MAN11_SHA,94,"025","battle-man11","battle-man11.json"
         stem="battle-man11"
         prompt_names=[f"frame-{i}-r1.prompt.txt" for i in range(4)]
+    if a.unit=="MAN21":
+        entries,source_sha,first_index,spec,prefix,manifest_name=MAN21_ART,MAN21_SHA,98,"026","battle-man21","battle-man21.json"
+        stem="battle-man21"
+        prompt_names=[f"frame-{i}-r1.prompt.txt" for i in range(4)]
     assert a.out.is_dir() and not any(a.out.iterdir()), "輸出須為已存在的空目錄"
     source=a.source.read_bytes();assert sha(source)==source_sha
     assert (a.base/"battle-background.json").is_file()
@@ -62,7 +75,8 @@ def main():
     for i,(name,expected,src,dst) in enumerate(entries):
         raw=(a.art_dir/name).read_bytes();assert sha(raw)==expected,name
         with Image.open(a.art_dir/name) as im:
-            expected_size=(1177 if a.unit=="MAN11" and i in (1,3) else 1176,1337)
+            wide=(a.unit=="MAN11" and i in (1,3)) or (a.unit=="MAN21" and i in (2,3))
+            expected_size=(1177 if wide else 1176,1337)
             assert im.format=="PNG" and im.mode=="RGBA" and im.size==expected_size
             alpha=im.getchannel("A");assert alpha.getextrema()==(0,255)
             box=alpha.point(lambda v:255 if v>3 else 0).getbbox()

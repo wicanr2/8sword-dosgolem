@@ -57,3 +57,7 @@ r20 共 102 檔，保留 r19 全部 95 檔。`assets-man11-rebuild-r1` 逐檔相
 ### BATTLE-MAN11-ACTORS-RESOLVED
 
 不可變鍵為 `DOS/MAN11.EGG@860ab98a…5f832/file+0,+3304,+6608,+9912`，沿用 `PAM/runtime14D2:0626/06B8/076E`。019／024 回填本標記；MAN11 四筆已閉合，不重做相同來源、位置及頁交易研究。MAN21、民兵戰場姿勢、CHOI／PON 美術、後期及整體 HD 仍未完成。
+
+### BATTLE-MAN21-ACTORS-RESOLVED
+
+上述 MAN21 待辦後由 [026](026-battle-man21-actors.md)閉合：`DOS/MAN21.EGG@47cc4843…982c/file+0,+3304,+6608,+9912`，沿用 `PAM/runtime14D2:0626/06B8/076E`，四筆正式載入、正常續玩來源返回／實際 Draw 及真正存退讀通過。這不改變 025 舊視窗只抽驗 MAN11 首筆的範圍；民兵其他姿勢、CHOI／PON 美術及整體 HD 仍未完成。

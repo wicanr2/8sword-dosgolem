@@ -74,6 +74,8 @@ case "${1:-}" in
             EIGHTSWORD_TEST_MAN06_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/man06-art-r1 \
             EIGHTSWORD_TEST_MAN11_ASSETS=/out/assets-painted-r20 \
             EIGHTSWORD_TEST_MAN11_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/man11-art-r1 \
+            EIGHTSWORD_TEST_MAN21_ASSETS=/out/assets-painted-r21 \
+            EIGHTSWORD_TEST_MAN21_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/man21-art-r1 \
             go test -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -146,11 +148,12 @@ case "${1:-}" in
       "$task_py" python /tools/prepare-hd-battle.py --base /base --source /orig/GRO02.EG \
       --art /art/gro02-painted-raw-r1.png --prompt /art/gro02-painted-r1.prompt.txt --out /out
     ;;
-  battle-actor-assets|battle-man06-assets|battle-man11-assets)
+  battle-actor-assets|battle-man06-assets|battle-man11-assets|battle-man21-assets)
     task_name="${2:?指定新的素材組名稱}"
     task_unit=MAN16; task_default_base=painted-r17
     if [[ "$1" == battle-man06-assets ]]; then task_unit=MAN06; task_default_base=painted-r18; fi
     if [[ "$1" == battle-man11-assets ]]; then task_unit=MAN11; task_default_base=painted-r19; fi
+    if [[ "$1" == battle-man21-assets ]]; then task_unit=MAN21; task_default_base=painted-r20; fi
     task_base="${3:-$task_default_base}"
     valid_name "$task_name"; valid_name "$task_base"
     task_art="$task_work/probe-20261023/graphics-first/battle-r1/${task_unit,,}-art-r1"
@@ -361,5 +364,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

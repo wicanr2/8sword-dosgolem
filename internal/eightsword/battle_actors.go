@@ -47,6 +47,18 @@ var man11Sources = [...]battleActorSource{
 
 var man11Targets = [...][4]int{{96, 30, 165, 246}, {96, 18, 165, 258}, {96, 6, 165, 234}, {24, 6, 237, 234}}
 
+const man21SourceSHA = "47cc484319abeba53551c20b7cf4b9b2c6061f2da3b6cda14155b3598f10982c"
+
+// Spec 026: exact source records; action-trigger semantics remain unverified.
+var man21Sources = [...]battleActorSource{
+	{"acf951cb60d240be24a1359db34bb16e16268961ad064ce66e81b43e0d8e4235", "60692a5484c93406ec70ae7316e0a905d09ce9a9d1f8cce5b051692dbcc64164"},
+	{"220a6ab3f6303d844a43657e98a64d58c29a43547b41c1c5ba0197018f9a085f", "0426c60e7ab8b5ea3dbcf184b7372beb3a520406e730c4527b666ab2bc56777f"},
+	{"72657edc7d53a4729afc8d6bdc11ec838bd3beaf5f9bd5399f441b5d68ef4576", "547205ea9d571c29e718c0a94f2633902270c2139aa2a8939c6dbd006746b146"},
+	{"4777b384a41809bee4e3b77e611ce2300f83145e5be91ee73b4d29c6c7c3d455", "549d51ea698bcd20116cdc3e552d5a47826a077ce13bf7debd5086e6f38d6051"},
+}
+
+var man21Targets = [...][4]int{{48, 78, 213, 186}, {60, 78, 201, 186}, {84, 78, 177, 186}, {0, 78, 261, 186}}
+
 type battleActorGroup struct {
 	Manifest, Source, SourceSHA, Stem string
 	FirstID                           uint16
@@ -71,6 +83,7 @@ func loadBattleActors(dir, root string, assets *GraphicsAssets) error {
 		{"battle-actors.json", "MAN16.EGG", man16SourceSHA, "battle-man16", 87, man16Sources, man16Targets},
 		{"battle-man06.json", "MAN06.EGG", man06SourceSHA, "battle-man06", 91, man06Sources, man06Targets},
 		{"battle-man11.json", "MAN11.EGG", man11SourceSHA, "battle-man11", 95, man11Sources, man11Targets},
+		{"battle-man21.json", "MAN21.EGG", man21SourceSHA, "battle-man21", 99, man21Sources, man21Targets},
 	}
 	var failures []string
 	for _, group := range groups {

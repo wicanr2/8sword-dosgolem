@@ -18,7 +18,7 @@
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
-| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2 民兵、金玉介面、五頁深藍故事背景、手繪戰場與三組敵方部隊共十二筆姿勢。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)及 [025](docs/spec/025-battle-man11-actors.md) |
+| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2 民兵、金玉介面、五頁深藍故事背景、手繪戰場與四組敵方部隊共十六筆姿勢。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)、[025](docs/spec/025-battle-man11-actors.md)及 [026](docs/spec/026-battle-man21-actors.md) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。F10 可切換隸書風或草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；正常遭遇與返回已驗，效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
@@ -125,6 +125,8 @@ F2 的初始民兵已有手繪 HD 圖，保留藍背心、白褲、青頭巾與�
 MAN06 的四筆來源與位置另見 [024](docs/spec/024-battle-man06-actors.md)。備齊本機 r18 與規格列出的原圖及提示後，用 `bash tools/player.sh battle-man06-assets <新名稱>` 加入第二組；兩組各自驗證，缺失或壞檔只回退該組。
 
 MAN11 四筆另見 [025](docs/spec/025-battle-man11-actors.md)。備齊本機 r19 與規格所列原圖及提示後，用 `bash tools/player.sh battle-man11-assets <新名稱>` 加入第三組。三組各自完整驗證與載入；任一組壞檔時，其餘組與 Noto 保持。正常流程已取得四筆畫面，實際視窗抽驗第 0 筆，不外推其他動畫。
+
+MAN21 四筆另見 [026](docs/spec/026-battle-man21-actors.md)。備齊本機 r20 與規格所列四張原圖及完整提示後，用 `bash tools/player.sh battle-man21-assets <新名稱>` 加入第四組。四組各自完整驗證與載入；正常續玩的實際視窗已取得四筆來源返回及畫面，並完成存退讀。此為圖像呈現驗收，不代表戰鬥規則或全遊戲已驗證。
 
 片頭標題以原版實際繪圖及完整來源指紋驅動，四字改用 Noto Black 900，保留原位置、黑底及原版 Esc。字圖損壞時回原版標題，其他 HD 保留。來源、幾何及驗證範圍見 [011](docs/spec/011-intro-title-noto.md)。已有本機 r9、固定 TIT2 及上述 Noto 字型後，可建立新組：
 
