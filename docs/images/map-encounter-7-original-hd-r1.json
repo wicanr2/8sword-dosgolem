@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "spec": "039",
+  "output": "map-encounter-7-original-hd-r1.png",
+  "output_sha256": "7b754bb6ecba1e04b1ff6cb34267aed18720123b068c660544016faf19b7ee8c",
+  "actual_draw": 256,
+  "step": 45049184,
+  "source_record": {
+    "file": "ENEMY.AY",
+    "record": 7,
+    "transform": "mirror-six-planes"
+  },
+  "inputs": [
+    {
+      "path": "workplace/player/gui/encounter7-save-r3/save/research-encounter-draws/record-07-height-25-font-noto-first-draw.json",
+      "sha256": "57422e544d471918cfe2b95e310edc5fbfd9d35426f5bb1921ecd0087d23f1d8"
+    },
+    {
+      "path": "workplace/player/gui/encounter7-save-r3/save/research-encounter-draws/record-07-height-25-font-noto-first-draw.png",
+      "sha256": "584f7fb9085cbfb733eac484e817207f96442bf4cb8884cd9c79c0c7a35003cd"
+    },
+    {
+      "path": "workplace/player/gui/encounter7-save-r3/save/research-encounter-draws/record-07-height-25-font-noto-first-draw-native.idx",
+      "sha256": "40052ab66b07106765d8ffde5ae7247cf895aa50ef2ad05676bba8768da7f545"
+    },
+    {
+      "path": "workplace/player/gui/encounter7-save-r3/save/research-encounter-draws/record-07-height-25-font-noto-first-draw-before.state",
+      "sha256": "615d90e8ea02002277907cd70d69a6cd98496432d088e8a8418583c81712d5d9"
+    },
+    {
+      "path": "workplace/player/gui/encounter7-save-r3/save/research-encounter-draws/record-07-height-25-font-noto-first-draw-after.state",
+      "sha256": "615d90e8ea02002277907cd70d69a6cd98496432d088e8a8418583c81712d5d9"
+    }
+  ],
+  "capture": "same actual Draw; native VGA indexes and palette reconstructed independently; no guest advance between sides",
+  "layout": "same central viewport, nearest-neighbor resize to 960x600 on both sides",
+  "tool": {
+    "pillow": "11.3.0",
+    "script_sha256": "ed4083322714d68a4cac4b90a5c2ff6461f29ad14d40162767b50db7fd7ca417",
+    "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+    "font_index": 3
+  },
+  "approval_basis": "user requested original-versus-HD monster and battlefield overviews in README",
+  "rights": "requested comparison in existing private repository only; no public distribution grant; full sprites and packs remain local"
+}

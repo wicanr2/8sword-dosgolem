@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""037／038：從原生像素、所有權、PNG 與字型重建實際中央 Draw。Docker only。"""
+"""037–039：從原生像素、所有權、PNG 與字型重建實際中央 Draw。Docker only。"""
 import argparse
 import hashlib
 import importlib.util
@@ -197,7 +197,18 @@ class Model:
 
     def actor(self, ident):
         if ident not in self.actors:
-            if 126 <= ident <= 138:
+            if 139 <= ident <= 149:
+                entry = read(self.assets / "map-encounter-7.json")["image"]
+                assert sha(self.assets/entry["file"]) == "b5f71a301064ed1d2a050588d400b0fe9113289e9baa2e5bb39c4e66def4e1b0"
+                sampled = sample(self.assets/entry["file"], 141, 132, actor=True, rect=[62, 54, 1298, 991])
+                full = bytearray(192*150*4)
+                for y in range(132):
+                    at = ((y+18)*192+21)*4
+                    full[at:at+141*4] = sampled[y*141*4:(y+1)*141*4]
+                data = bytes(full)
+                assert hashlib.sha256(data).hexdigest() == "9898de9adfd7db00aa65808077bce8774d45105e07454612b9ed6f89c093d126"
+                result = data, 64, 5+(ident-139)*2
+            elif 126 <= ident <= 138:
                 entry = read(self.assets / "map-encounter-10.json")["image"]
                 assert sha(self.assets/entry["file"]) == "53a599a6db8f10cf76d08de389fbf07b72b6f3c8f9fdf6647256c440809300ad"
                 left = sample(self.assets/entry["file"], 192, 150, actor=True, rect=[123, 311, 1052, 902])
@@ -330,11 +341,12 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     for name in ["assets", "original", "cache", "receipt", "out"]:
         ap.add_argument("--"+name, type=Path, required=True)
-    ap.add_argument("--record", type=int, choices=[10, 13], default=13)
+    ap.add_argument("--record", type=int, choices=[7, 10, 13], default=13)
     a = ap.parse_args()
     assert not a.out.exists()
     root = a.receipt / "save"
-    packets = sorted((root / "research-encounter-draws").glob("*-first-draw.json"))
+    packets = [p for p in sorted((root / "research-encounter-draws").glob("*-first-draw.json"))
+               if read(p)["record"] == a.record]
     assert packets
     sources = read(root / "research-encounter-sources.json")
     assert not sources["error"] and sources[f"full{a.record}_count"] >= 2

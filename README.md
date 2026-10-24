@@ -81,6 +81,10 @@
 
 左側是原生 VGA，右側是同一正常流程狀態的 HD。紫衣角色保留白衣、藍靴與青色光束，依原版高度逐步出現及退場。已核對十段畫面、真正視窗的三種字型、人物頁與存退讀；範圍見 [037](docs/spec/037-map-encounter-actor.md)。[來源紀錄](docs/images/map-encounter-original-hd-r1.json)與[重生工具](tools/prepare-readme-encounter-overview.py)隨圖保存，其餘地圖遭遇圖仍待處理。比較圖依先前要求收錄於私人倉庫，完整原圖與素材組留本機。
 
+![相同原版狀態的粉紅遭遇怪物與 HD 對照](docs/images/map-encounter-7-original-hd-r1.png)
+
+粉紅咧嘴怪物也已接入，保留原版配色、雙爪及逐段出場。上圖兩側來自真正視窗的同一客體狀態；已驗三字型、戰鬥返回、人物頁與存退讀。[限定驗收](docs/spec/039-map-encounter-pink-creature.md)、[來源紀錄](docs/images/map-encounter-7-original-hd-r1.json)及[重生工具](tools/prepare-readme-encounter7-overview.py)可回查。正式名稱仍未知，其餘遭遇角色繼續處理。
+
 ### 已選定的整體畫風
 
 已確認採用下圖**下半部 B「明亮手繪重製」**的中國古風。上半部 A 保留比較歷史；圖檔與最初展示版本完全相同。文字另依已選定的 Noto Sans CJK TC Black 900 實作，圖中文字僅為生成示意。

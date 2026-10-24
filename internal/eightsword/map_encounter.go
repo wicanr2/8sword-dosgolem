@@ -59,6 +59,15 @@ func loadMapEncounter10(dir, root string, assets *GraphicsAssets) error {
 	})
 }
 
+func loadMapEncounter7(dir, root string, assets *GraphicsAssets) error {
+	return loadMapEncounterGroup(dir, root, assets, encounterGroup{
+		Manifest: "map-encounter-7.json", Record: 7, FirstHeight: 5, FirstID: 139,
+		Image: graphicPNG{Index: 138, File: "map-encounter-7-r1.png", SHA: "b5f71a301064ed1d2a050588d400b0fe9113289e9baa2e5bb39c4e66def4e1b0", Width: 1419, Height: 1108, Sampling: "bitmap"},
+		Rect:  [4]int{62, 54, 1360, 1045}, Target: [4]int{21, 18, 162, 150}, SampleRect: image.Rect(62, 54, 1360, 1045),
+		PromptFile: "map-encounter-7-r1.prompt.txt", PromptSHA: "cef47c1fcc11ebc15810b596f720df9b8db25b12ef1a01162c25412e7cb2eb4e",
+	})
+}
+
 func loadMapEncounterGroup(dir, root string, assets *GraphicsAssets, cfg encounterGroup) error {
 	raw, err := encounterRead(filepath.Join(dir, cfg.Manifest), 64*1024)
 	if os.IsNotExist(err) {

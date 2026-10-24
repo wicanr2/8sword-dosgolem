@@ -52,6 +52,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 地圖遭遇追加：[038：第 10 筆紅身蓬尾角色](docs/spec/038-map-encounter-red-beast.md)，共用已接入的戰場原圖；狀態與驗收範圍以該規格及 CONTEXT 為準。
 
+地圖遭遇第 7 筆：[039：粉紅咧嘴角色](docs/spec/039-map-encounter-pink-creature.md)，依已錄製的正常來源補圖，不借用其他角色造型；實作閘門見該規格。
+
 戰場素材範圍核對：[全部 MAN*.EGG 與 HD 登錄盤點工具](tools/catalog-battle-coverage.py)。執行 `bash tools/player.sh battle-coverage <新報告名稱> [painted-r38]`，由既有 `sc-cht-hdtools:pillow11.3.0-r1` Docker 核對，JSON 存在 `workplace/probe-20261023/graphics-first/battle-r1/<新報告名稱>.json`；只證明記錄及素材登錄，不代替正常路徑或全遊戲完成驗收。
 
 募兵建築追加：[034：募兵建築的手繪背景](docs/spec/034-recruitment-building.md)，定稿及正常路徑證據由此索引；READY 與完成狀態以該規格為準。
