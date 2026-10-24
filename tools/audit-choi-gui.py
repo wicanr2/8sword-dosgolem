@@ -8,7 +8,7 @@ parser.add_argument('gui',type=Path)
 parser.add_argument('--project',type=Path,default=Path(__file__).resolve().parents[1])
 parser.add_argument('--battle',type=Path)
 args=parser.parse_args()
-r=args.project; b=args.battle or r/'workplace/probe-20261023/graphics-first/battle-r1'; g=args.gui; s=g/'save' 
+r=args.project; b=args.battle or r/'workplace/probe-20261023/graphics-first/battle-r1'; g=args.gui; s=g/'save'
 read=lambda p:json.loads(p.read_text())
 sha=lambda data:hashlib.sha256(data).hexdigest()
 original=r/'workplace/intake-20261023/sources/game/8sword'
