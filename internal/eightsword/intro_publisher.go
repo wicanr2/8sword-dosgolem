@@ -20,9 +20,11 @@ var publisherRects = []image.Rectangle{
 }
 
 type publisherWords struct {
-	erase   *image.Alpha
-	words   map[string]image.Image
-	sources map[string]string
+	erase     *image.Alpha
+	words     map[string]image.Image
+	sources   map[string]string
+	icon      *publisherIcon
+	iconError string
 }
 
 func loadIntroPublisher(o *oracle.Oracle, dir, root string) (*IntroTitle, error) {
@@ -137,6 +139,10 @@ func loadIntroPublisher(o *oracle.Oracle, dir, root string) (*IntroTitle, error)
 		}
 		p.words[v.ID] = im
 		p.sources[v.ID] = v.FontSource
+	}
+	p.icon, err = loadPublisherIcon(dir, p)
+	if err != nil {
+		p.iconError = err.Error()
 	}
 	return &IntroTitle{o: o, ink: p.words["noto"], publisher: p}, nil
 }

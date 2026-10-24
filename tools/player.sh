@@ -87,6 +87,7 @@ case "${1:-}" in
             EIGHTSWORD_TEST_HEROINE_ASSETS=/out/assets-painted-r29 \
             EIGHTSWORD_TEST_MUSEUM_ASSETS=/out/assets-painted-r30 \
             EIGHTSWORD_TEST_STORY_PRELUDE_ASSETS=/out/assets-painted-r31 \
+            EIGHTSWORD_TEST_PUBLISHER_ICON_ASSETS=/out/assets-painted-r32 \
             go test -v -timeout=390s -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -489,6 +490,24 @@ case "${1:-}" in
       --mount "type=bind,src=$task_out,dst=/out" \
       "$task_py" python /tools/prepare-font-choices.py --base /base --sources /sources \
       --noto /fonts/NotoSansCJK-Black.ttc --cjk-fallback /fonts/NotoSerifCJK-Regular.ttc --out /out
+    ;;
+  publisher-icon-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r31}"
+    valid_name "$task_name"; valid_name "$task_base"
+    test -d "$task_player/assets-$task_base"; test -d "$task_orig"
+    test -f "$task_root/docs/images/publisher-icon-gradient-approved-r1.png"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 90s docker run --rm --init --name "8sword-publisher-icon-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 900m --cpus 2 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_root/docs/images,dst=/approved,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-publisher-icon.py --base /base --orig /orig \
+        --approved /approved/publisher-icon-gradient-approved-r1.png --out /out
     ;;
   publisher-assets)
     task_name="${2:?指定新的素材組名稱}"

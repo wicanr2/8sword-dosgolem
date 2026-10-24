@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "date": "2026-10-24",
+  "decision": "使用者明確選 B：柔和漸層",
+  "png_sha256": "21b9bb5de42c011434160cb208ff9a28354959a2d751e286c078a6b68699f2a0",
+  "svg_sha256": "3fc352f0bf37d3ef5279e09a468f94048139df5ee564051a469273671b6b2dbd",
+  "renderer": "Python 3.13.15 / Pillow 11.3.0; 48-sample cubic curves; 2x raster then Lanczos",
+  "method": "code-native curve redraw; PNG canonical, SVG editable source",
+  "source_script": "workplace/probe-20261023/graphics-first/publisher-r1/make-icon-prototype-r1.py",
+  "source_script_sha256": "7d63c4883aab51e7dc46c32fc26aacec4b6a8bc7f4424c51a36c182c44cc210d",
+  "rights": "approved reference for existing private GitHub repository; original brand derivative; no public distribution permission"
+}

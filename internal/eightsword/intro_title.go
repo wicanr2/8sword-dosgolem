@@ -255,6 +255,10 @@ func (t *IntroTitle) Compose(native *image.RGBA) *image.RGBA {
 	}
 	if t.publisher != nil {
 		draw.DrawMask(native, native.Bounds(), image.Black, image.Point{}, t.publisher.erase, image.Point{}, draw.Over)
+		if icon := t.publisher.icon; icon != nil {
+			draw.DrawMask(native, native.Bounds(), image.Black, image.Point{}, icon.erase, image.Point{}, draw.Over)
+			draw.Draw(native, native.Bounds(), icon.art, image.Point{}, draw.Over)
+		}
 		draw.Draw(native, native.Bounds(), t.ink, image.Point{}, draw.Over)
 	} else {
 		r := image.Rect(48, 300, 1824, 870)

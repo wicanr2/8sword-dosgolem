@@ -27,7 +27,7 @@
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
 
-開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導已採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；[014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)記錄正常片頭、字型、人物／軍隊、存退讀與故障回退的限定驗收。發行商中央圖案與其他音畫仍待處理，整體 HD 尚未完成。完整執行期素材組留本機。
+開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；驗收見 [014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。發行商中央圖案亦已採 B 柔和漸層，三字型、正常交接、存退讀與故障回退的範圍見 [016](docs/spec/016-publisher-wordmarks.md#b-圖案正式追加驗收)。其他音畫與整體 HD 尚未完成。完整執行期素材組留本機。
 
 已有本機固定美術與合法原版資料時，可用 `bash tools/player.sh heroine-assets <新名稱> [基底名稱]` 製作特寫素材組，預設基底為 r28；正常原版收據使用 `bash tools/player.sh heroine-check <新收據名稱> [素材組]`。來源、輸出指紋與故障回退契約均見 033。
 
@@ -258,7 +258,9 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 
 無頭工具預設完整播放 90 個虛擬秒，再測重播、換曲及人物頁。視窗工具使用真正按鍵，並記錄前端混音；驗證容器維持靜音，不代替真機音訊裝置驗收。獨立波形、狀態及故障核對方法見 [008](docs/spec/008-music-events-and-playback.md)。原版音訊時鐘及合成器持續運作，沒有改 DOS 的曲譜、存檔或遊戲規則。音樂、音源庫及原版對照均留本機。
 
-發行商畫面的「軟體世界」及公司／年份文字亦隨 F10 切換，保留原配色與中央圖標；圖標本身仍是原版像素。固定來源、清墨遮罩、三字圖、獨立逐幀核對及故障回退見 [016](docs/spec/016-publisher-wordmarks.md)、[匯入工具](tools/prepare-hd-publisher.py)與[像素核對工具](tools/inspect-publisher.py)。具備本機 r14、原版 TIT1 及 015 已存檔字型後，執行 `bash tools/player.sh publisher-assets <新名稱>` 建立新組，不覆寫基底。視窗驗證使用 `EIGHTSWORD_GUI_FLOW=publisher EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE=1`，配合既有 `EIGHTSWORD_GUI_CYCLES=4000` 診斷設定及新素材組。這些素材留本機，不隨倉庫提供。
+發行商畫面的「軟體世界」及公司／年份文字隨 F10 切換。中央圖案採使用者選定的 [B 柔和漸層](docs/images/publisher-icon-gradient-approved-r1.png)，保留笑臉、棋格帽、旋翼與彩色星形，字型及位置保持。[批准紀錄](docs/images/publisher-icon-gradient-approved-r1.json)與[曲線來源](docs/images/publisher-icon-gradient-approved-r1.svg)隨圖保存。固定來源、清墨遮罩、逐幀核對及故障回退見 [016](docs/spec/016-publisher-wordmarks.md)。
+
+具備本機 r31 與合法原版 TIT1 後，執行 `bash tools/player.sh publisher-icon-assets <新名稱>` 建立包含圖案的新組，不覆寫基底。圖案缺失或損壞時保留原版中央圖案，HD 文字與其他素材繼續使用。視窗驗證使用 `EIGHTSWORD_GUI_SHOW_PUBLISHER=1 EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE=1` 搭配 `save-cycle` 流程及新素材組。原有字圖組仍可用 [文字匯入工具](tools/prepare-hd-publisher.py)建立，兩組的[像素核對工具](tools/inspect-publisher.py)相同；完整執行期素材留本機。
 
 ## 文件與權利
 
@@ -282,7 +284,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 - [博物館名單規格](docs/spec/013-intro-museum-captions.md)：背景頁的製作名單、Noto 覆繪及清除。
 - [深藍故事背景規格](docs/spec/014-intro-story-background.md)：批准圖、完整背景替換、換頁及故障回退。
 - [字型設定規格](docs/spec/015-font-settings.md)：Noto、隸書風、草書、缺字回退、F10 及獨立偏好檔。
-- [發行商圖片文字規格](docs/spec/016-publisher-wordmarks.md)：來源分離、三字型字圖、圖標保留及正常片頭交接。
+- [發行商畫面規格](docs/spec/016-publisher-wordmarks.md)：來源分離、三字型字圖、柔和漸層圖案及正常片頭交接。
 - [Ogg 解碼器授權紀錄](docs/THIRD-PARTY-NOTICES.txt)：固定版本的第三方 MIT 授權全文。
 - [WORKLOG.md](WORKLOG.md)：實際變更與工作歷程。
 

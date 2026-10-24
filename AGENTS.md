@@ -58,7 +58,7 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 字型設定：[015：可選字型設定](docs/spec/015-font-settings.md)。使用者授權自行選型，Noto 保持預設，新增隸書風及草書的本機選項，缺字回 Noto；偏好檔與原版存檔分開。
 
-發行商文字：[016：發行商圖片文字](docs/spec/016-publisher-wordmarks.md)，保留圖標、原文與位置，獨立字圖沿用三種字型；正式狀態以規格及目前證據為準。
+發行商畫面：[016：發行商圖片文字與圖案](docs/spec/016-publisher-wordmarks.md)，獨立字圖沿用三種字型，原文與位置保持。使用者另選 B 柔和漸層中央圖案，[定稿 PNG](docs/images/publisher-icon-gradient-approved-r1.png)、[曲線來源](docs/images/publisher-icon-gradient-approved-r1.svg)與[批准紀錄](docs/images/publisher-icon-gradient-approved-r1.json)同次保存；正式狀態以規格及目前證據為準。
 
 博物館美術：[017：博物館片頭美術](docs/spec/017-intro-museum-art.md)，原版構圖與手繪樣張的研究入口。未選定的原型不進正式素材，正常人物、轉場與字幕須分開驗收。
 
@@ -263,7 +263,7 @@ mm3 的使用者批准、素材、字型、平台、公開範圍及完成標記�
 
 HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-refinement.md)，READY。使用者確認保留玉綠、金框、黑底及朱紅的 R2，批准圖與來源存 `docs/images/hd-palette-approved-r2.*`。依真實字格、來源與當前頁辨認側欄選取，不能按紅色或右側座標全幅換色。實作及驗收範圍見 031。
 
-發行商文字工具：[三字型匯入](tools/prepare-hd-publisher.py)、[逐幀像素核對](tools/inspect-publisher.py)，用法、固定來源、中央圖標保留及正常路徑範圍見 [016](docs/spec/016-publisher-wordmarks.md)。
+發行商工具：[三字型匯入](tools/prepare-hd-publisher.py)、[B 圖案匯入](tools/prepare-hd-publisher-icon.py)、[逐幀像素核對](tools/inspect-publisher.py)及[三組隔離](tools/audit-publisher-icon.py)，用法、固定來源、獨立回退及正常路徑範圍見 [016](docs/spec/016-publisher-wordmarks.md)。圖案[載入](internal/eightsword/intro_publisher_icon.go)與[故障測試](internal/eightsword/intro_publisher_icon_test.go)沿同一規格，不新增 CPU 掛點。
 
 - 文件按實際需要建立，不預建整套空白文件。新增文件須同次掛入本檔或既有索引；新增目錄前確認現有目錄不能承載，並記錄用途。
 - 自有程式授權依 RRSAL-1.0，第三方元件保留原授權。原版 EXE、資料、手冊、字型與未取得散布權的 HD 圖像或衍生音樂留本機；轉成 PNG／OGG 不改變權利。

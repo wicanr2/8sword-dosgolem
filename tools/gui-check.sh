@@ -53,6 +53,7 @@ if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro ]]; then phases=(intro); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == publisher ]]; then phases=(publisher); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == publisher-skip ]]; then phases=(publisher-skip); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == publisher-fallback ]]; then phases=(publisher-fallback); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == publisher-icon-fallback ]]; then phases=(publisher-icon-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro-skip ]]; then phases=(intro-skip); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == intro-fallback ]]; then phases=(intro-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == story ]]; then phases=(story); fi

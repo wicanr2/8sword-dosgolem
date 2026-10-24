@@ -585,12 +585,21 @@ func main() {
 		}
 		d.shot("museum-natural-main-menu")
 	}
-	if *flow == "publisher" || *flow == "publisher-skip" || *showPublisher {
+	fontBeforePublisherCycle := ""
+	if *flow == "publisher" || *flow == "publisher-skip" || *flow == "publisher-icon-fallback" || *showPublisher {
 		d.wait("發行商字圖已真正呈現", 35, func(s map[string]any) bool { return s["presented_intro"] == "publisher-noto" })
+		if *flow == "publisher-icon-fallback" {
+			p := d.status()["intro_publisher"].(map[string]any)
+			icon := p["icon"].(map[string]any)
+			if p["load_error"] != "" || icon["loaded"] != false || icon["load_error"] != "發行商圖案 publisher-icon.png SHA-256 不符" {
+				panic("optional publisher icon did not fail independently")
+			}
+		}
 		d.shot("publisher-01-visible")
 		if *publisherCycle {
 			choices := d.status()["font_choices"].([]any)
 			current := d.status()["font_id"].(string)
+			fontBeforePublisherCycle = current
 			next := ""
 			for i, c := range choices {
 				if c.(map[string]any)["id"] == current {
@@ -621,7 +630,7 @@ func main() {
 			})
 			d.shot("publisher-02-after-font-key")
 		}
-		if *flow == "publisher" {
+		if *flow == "publisher" || *flow == "publisher-icon-fallback" {
 			d.wait("發行商自然轉至標題", 35, func(s map[string]any) bool { return s["presented_intro"] == "title-noto" })
 			d.shot("publisher-03-next-title")
 		}
@@ -940,11 +949,27 @@ func main() {
 	}
 	if *fontCycle {
 		if *flow == "reload" {
-			if d.status()["font_id"] != "caoshu" {
+			retained := d.status()["font_id"]
+			if fontBeforePublisherCycle != "" {
+				retained = fontBeforePublisherCycle
+			}
+			if retained != "caoshu" {
 				panic("font preference was not retained on cold boot")
 			}
-			d.shot("font-restored-caoshu")
+			d.shot("font-preference-verified")
 		} else {
+			// Publisher cycling may already have selected another font.
+			// Reach a genuinely drawn Noto baseline before the existing menu cycle.
+			for i := 0; d.status()["font_id"] != "noto" && i < 3; i++ {
+				next := map[string]string{"noto": "lishu", "lishu": "caoshu", "caoshu": "noto"}[d.status()["font_id"].(string)]
+				d.press(76)
+				d.wait("選單字型基線", 20, func(s map[string]any) bool { return s["font_id"] == next && s["presented_scene"] == "main-menu" })
+				first := d.status()["presented_frames"].(float64)
+				d.wait("字型基線 Draw", 15, func(s map[string]any) bool { return s["presented_frames"].(float64) >= first+2 })
+			}
+			if d.status()["font_id"] != "noto" {
+				panic("Noto menu baseline unavailable")
+			}
 			native := append([]byte(nil), d.grab().Pix...)
 			for _, id := range []string{"lishu", "caoshu", "noto", "lishu", "caoshu"} {
 				d.press(76)

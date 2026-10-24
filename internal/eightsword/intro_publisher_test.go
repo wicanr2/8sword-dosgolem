@@ -64,7 +64,12 @@ func TestPublisherNormalFontsReadOnlyAndNaturalHandoff(t *testing.T) {
 		for y := 0; y < 1200; y++ {
 			for x := 0; x < 1920; x++ {
 				_, _, _, alpha := e.Publisher.ink.At(x, y).RGBA()
-				if e.Publisher.publisher.erase.AlphaAt(x, y).A == 0 && alpha == 0 {
+				iconPixel := false
+				if icon := e.Publisher.publisher.icon; icon != nil {
+					_, _, _, a := icon.art.At(x, y).RGBA()
+					iconPixel = a != 0 || icon.erase.AlphaAt(x, y).A != 0
+				}
+				if !iconPixel && e.Publisher.publisher.erase.AlphaAt(x, y).A == 0 && alpha == 0 {
 					at := y*frame.Stride + x*4
 					if !bytes.Equal(frame.Pix[at:at+4], native.Pix[at:at+4]) {
 						t.Fatal("non-text pixel changed", x, y)

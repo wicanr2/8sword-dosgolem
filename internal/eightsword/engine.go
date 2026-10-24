@@ -451,6 +451,7 @@ func (e *Engine) Status() map[string]any {
 	pub := map[string]any{"load_error": e.PublisherError, "stage": ""}
 	if e.Publisher != nil {
 		pub["stats"], pub["stage"] = e.Publisher.Stats, e.Publisher.Stage()
+		pub["icon"] = map[string]any{"loaded": e.Publisher.publisher.icon != nil, "load_error": e.Publisher.publisher.iconError}
 	}
 	out["intro_publisher"] = pub
 	story := map[string]any{"load_error": e.StoryError, "stage": ""}
