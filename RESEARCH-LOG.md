@@ -1242,3 +1242,18 @@ F7 真存檔與正常冷啟動讀回 RAM 的 2987 bytes 同 SHA `1ef10c17…f933
 現行 47e8358 基線的只讀正常探針重新取得十三高度及最後完整重繪。encounter-10-source-audit-r1.json 核對 10816 個返回色碼，全部同各目的頁入口前像素與第六塊遮罩公式。沿既有 dosgolem runtime 14D2:04F2/057D/0625，PAM 檔案偏移 0x15582 的 308 bytes 及返回 CB；來源、工具與位址基準依 037，沒有新 helper 或 CPU 掛點。
 
 候選共用 MAN16 原 PNG，預乘取樣後只鏡射主機快取，原 PNG bytes 保持。正常三組各 550 幀的客體、PCM、輸入與 35 工作檔相同；十五份完整 Frame 包由獨立 PNG／所有權／字型模型逐像素核對，涵蓋十三高度與三字型。實際 GUI 在預定路線未遇本筆，故只列 READY 候選，未提升 r38 或正式七程式。完整規格、來源快照、失敗驗證腳本的界限及下一閘門集中於 038，不以正常無頭證據冒稱 GUI。
+
+
+## 戰場部隊完整資料範圍
+
+2026-10-25 以固定原版來源及正式 r38 盤點，26 份 MAN*.EGG 各 13216 bytes，四筆各 3304 bytes，逐筆標頭 11×50 與六塊 550-byte 平面均已核對。合計 104 筆，實際檔名包含 MAN27.EGG，沒有自行補出不存在的 MAN26.EGG。來源檔、各筆原始檔案偏移、完整六塊及前四塊 SHA 集中在 `battle-r1/battle-coverage-r2.json`。這是固定記錄與素材登錄的已證實盤點，不是新 opcode、玩法或全部正常路徑研究。
+
+[盤點工具](tools/catalog-battle-coverage.py)核對六份正式清單、來源 SHA 與二十張圖 SHA，登錄的二十筆為 MAN01／06／11／16／21 各四筆；其餘八十四筆尚未正式登錄。MAN01 首筆沿既有別名，不重複計算。沒有把 CHOI／PON、MAN.AY 主角、ENEMY.AY 地圖遭遇或 F2 路由放入分母。重生方式為 `bash tools/player.sh battle-coverage <新報告名稱> [painted-r38]`，由既有離線 Pillow Docker 執行，拒絕覆寫。
+
+MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad` 的四筆先以同一已驗六塊公式產生原版參考，再用內建 image_gen 製作左向持劍兵樣稿。第 0／2 筆各一次修正裁切，原 PNG 與所有提示皆保存；選用 0-r2／1-r1／2-r2／3-r1，四張均有真正透明背景，完整主體離開畫布邊界。各原圖 SHA、alpha 界限、完整提示、角色／姿勢參考及來源偏移見 `battle-r1/man02-art-catalog-r1.json`。`man02-art-comparison-r1.png` 只是原生參考與未校準完整 PNG 並列，不是遊戲畫面。正式名稱、執行期對應與矩形尚未由此證實，不改原版規則或正式組。
+
+另外 `man17-normal-file-io-r1.json` 保存 GUI r2 的原版 MAN17.EGG 載入證據：檔案 SHA `01d5fcc69a2968ad4cdaa3c95fcae59888f4c2697d6c328364a5083a8bbe13b0`，13216 bytes，正常 DOS read step 10758328。這次讀取在早期載入階段，不能推成四姿勢或戰場掛點已驗，更不能用來取代 MAN02 的來源。僅作後續實際依賴的線索，不據此開完整 helper 逆向。
+
+## 第 10 筆候選的一般 Noto 視窗追加
+
+`encounter10-menus-r1` 的 423／159 Draw 已獨立解碼，兩張接觸表及人物／軍隊頁已檢視。兩次冷啟動用 XTEST 走正常選單、F1／F2、四方向與 F7 真存退讀。2987-byte 存檔與原版讀回 RAM 完全相同，SHA `6f1689c2…fc2e`，DOS read step 13412431、退出 0；3158 個差異像素限主角動畫。此回歸不含第 10 筆新圖，038 維持 READY。固定時鐘目標 r2 未遇新圖，F5／F2 的腳本失敗及一般回歸成功分列於 [038](docs/spec/038-map-encounter-red-beast.md#固定時鐘與一般視窗追加)，沒有以無頭或測試旗標替代目標的正常實際 Draw。

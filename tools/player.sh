@@ -135,6 +135,21 @@ case "${1:-}" in
       "$task_py" python /tools/prepare-hd-assets.py --exe /orig/PAM.AY \
       --font /fonts/NotoSansCJK-Black.ttc --out /out
     ;;
+  battle-coverage)
+    task_name="${2:?指定新的報告名稱}"
+    task_base="${3:-painted-r38}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_art="$task_work/probe-20261023/graphics-first/battle-r1"
+    test -d "$task_player/assets-$task_base"; test -d "$task_orig"; test -d "$task_art"
+    test ! -e "$task_art/$task_name.json"
+    exec timeout 30s docker run --rm --name "8sword-battle-coverage-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 384m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_art,dst=/out" \
+      "$task_py" python /project/tools/catalog-battle-coverage.py \
+        --original /project/workplace/intake-20261023/sources/game/8sword \
+        --assets "/project/workplace/player/assets-$task_base" --out "/out/$task_name.json"
+    ;;
   encounter10-assets)
     task_name="${2:?指定新的素材組名稱}"
     task_base="${3:-painted-r38}"
