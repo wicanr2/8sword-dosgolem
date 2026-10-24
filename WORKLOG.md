@@ -588,3 +588,5 @@
 - 027 限定 CONFORMED，同次回填 019／022／026、AGENTS／CONTEXT／README。新正式 56 筆／四程式，前版 54 筆／四程式與 Git archive 存 `build-pre-pon-r1`，研究與 GUI 另存 SHA。整體 HD 保持 active，下一步為民兵戰場呈現與 CHOI 等其他素材及曲目。最終來源完整性、文件連結、擁有權、Git 同步與容器清理接下方。
 
 收尾 `pon-final-audit-r1.json` 通過：183 原始檔、兩封包、八核心檔與正式 DB 不變；56 筆正式來源／四程式、54 筆歷史 archive／四程式、三份研究建置、兩份各 58 筆／兩程式 GUI 建置皆符 SHA。116 素材與 109 保留檔、四張選定原圖、五次內建生成及每個參考／輸出 SHA、五份實際提示、metadata 勘誤、40 點隔離／120 次純度、四張正常全幅、9 份快取純度與一張實際全幅、真正存讀、438 個本機文件連結與四份回填通過。`find` 無 root-owned 或 `.md` 目錄，沒有本案殘留容器，沒有新建映像；`git diff --check` 通過。主機 gh 認證 wicanr2，倉庫仍 PRIVATE，Git 身分 Chun-Yu Wang／wicanr2@gmail.com。程式及文件同步接下方，生成圖與研究產物留本機。
+
+本輪程式與驗收文件提交 `b0de572bba38b86639077b24f7a0ed92c76de312` 已推至私人 `origin/main`，`git ls-remote` 回讀一致。此同步紀錄另存文件提交，已驗建置與收據不因 Git metadata 重新產生。
