@@ -184,6 +184,8 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r11 \
 
 存退讀另設 `EIGHTSWORD_GUI_FLOW=save-cycle EIGHTSWORD_GUI_SHOW_CAPTIONS=1`，兩次冷啟動皆先呈現製作名單，再以原版 Esc 接續。字幕和故事共用字集，損壞時兩者回原字；標題、PAM Noto、圖像與音樂保持。這些是驗證選項，不修改原版流程。
 
+開場動畫也列入 HD 範圍。博物館左右展間、十個人物動作、畫作近景與光束已有完整研究原型，保留原版劇情與播放順序，尚未正式接入。素材、動態對照與剩餘驗收見 [開場 HD 規格](docs/spec/017-intro-museum-art.md)。鏡中美人的概念圖另作美術參考。
+
 ## 字型設定與故事背景
 
 預設為 Noto Sans CJK TC Black 900。載入可選字型組後，可按 **F10** 循環切換 Noto、隸書風 UnYetgul、劉建毛草。視窗標題顯示目前字型；主選單、人物頁、片頭標題、故事與製作名單同步切換。原文、字色與位置保持。英數與標點沿用 Noto Black，替代字型的中文缺字用 Noto 宋體補足，不把繁體換成簡體。

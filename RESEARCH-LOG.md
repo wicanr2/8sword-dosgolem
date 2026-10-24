@@ -952,3 +952,15 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - 已證實呈現：`hero-warrior-runtime-audit-r1.json` 的兩次 F1 各 57600 像素，RGB SHA `ec30ea03…50a9` 同獨立整圖取樣。250M state `4b55d179…64ac` 及 31 工作檔同 r23，其他畫面同源；真正視窗與進度收據另在 `player/gui/hero-warrior-save-r1/`。人物身分及新造型方向來自使用者，不從舊像素推定劇情。
 - 原版／HD 總覽由 [工具](tools/prepare-readme-overviews.py)製作，原版怪物按已證實第六塊遮罩解碼；戰場採正常原生索引與同時色盤，HD 為同一狀態的正式 Frame。來源、尺寸與全部輸入／輸出 SHA 見 [紀錄](docs/images/overviews-r1.json)。兩張 PNG 及 metadata 的獨立重建相同，公開文字明列十六筆及兩個抽樣，不稱全怪物完成。使用者本次明確要求將這兩張比較圖放入私人倉庫，其他原版與完整素材仍留本機。
 - 概念試播 `opening-mirror-concept-r2.mp4` 是新情緒圖的緩慢推鏡與已批准〈幻〉HD 配樂，非原版鏡頭、角色動畫或已接入片頭。工具為既有 cok-ffmpeg:r1／FFmpeg 5.1.9；R1 音訊被截短的失敗保留，R2 分離混音後視音訊約八秒。完整媒體資料、來源 SHA、192 幀與音量核對見 `opening-mirror-concept-r2-audit.json`；正式開場仍依 [017](docs/spec/017-intro-museum-art.md)的原版順序及閘門處理。
+
+## 2026-10-24：開場 HD 完整候選組與透明快取
+
+本次入口為 [017 的 r7 收據](docs/spec/017-intro-museum-art.md#r7-素材及正常重播收據)，所有研究程式與輸出沿用 `workplace/probe-20261023/graphics-first/museum-art-r1/`。工具是固定 Go 1.24.13、Pillow 11.3.0、Python 3.13 及原有 dosgolem。原始 PREDELLA／TIT3／TIT4／TIT5 壓縮檔、解碼後 SHA、每筆檔案偏移與完整記錄 SHA 收於兩份 `formal-assets-*-r7/museum.json`，不混用執行期程式位址。
+
+- 已證實素材結果：兩色各十四 PNG／十五筆來源，原 PNG byte 保持。`floor8-largest8` 只產生不可變呈現快取，像素位置與保留通道不變。最大 alpha 質量移除約 0.178%，低於 0.2% 上限。洪水填充與獨立聯集查找的二十八份完整快取相同，來源及輸出 SHA 在 `formal-alpha-review-r7.json`、`formal-group-audit-r7.json`。
+- 已證實正常隔離與呈現：兩色各 428 幀、218 交易，完整客體 state SHA `b1cafef3791e821685c691806d4096caa5ee53bc855418ff4ab28df1feeaf6b7`、PCM SHA `5fe8f10af3b6e891f448af2902e1aa85d20be8f38000111ab2f74043cc4c6e33`、九工作檔、輸入及事件同既有正常原版控制。HD 帶、保留幀與自然交接均完整獨立重建，十人物來源及兩光束色到達。細節見 `scene-runtime-audit-r7.json`，不外推正式前端或整體開場完成。
+- 建置錯誤勘誤：第一次研究版誤用 `museum-actors-r3.go`，它對應 600 像素背景帶；r6 收據實際使用 r5 的 780 像素近景帶。首次第 132 幀全幅核對失敗及其程式、來源、原始重播保留為 `*-failed-r1`。改沿 r6 建置 SHA 的直接輸入後乾淨通過。原版來源、位址語意、r6 歷史收據與正式程式都不變，沒有新的逆向未知需要追查。
+- 研究載入器的兩色各十二項 Python／九項 Go 故障拒用整組，十個 RAM 邊界案例通過。這只證明候選載入與快取原子性，未證明正式前端壞組回退。`group-go-tests-r7.log` 及固定輸入列出實際執行版本。
+- `scene-live-preview-r7.json` 記錄原版／A／B 的 149 個連續狀態、虛擬時距、來源串流及字型 SHA。WebP 7.45 秒、SHA `4d9e275769564714c7eddfcb2777dc22f41e349fa139ea0d21bb25789df059b0`；匯出後全部來源狀態解碼相同。無聲美術比較不充作實際音訊或原硬體時間證據。
+
+配色仍未知，017 為 DRAFT。正式接入及相應正常視窗、Esc、存退讀與故障驗收仍在 READY 之後。`formal-final-audit-r7.json` 保存本輪收尾雜湊、正式程式不變與擁有權核對。
