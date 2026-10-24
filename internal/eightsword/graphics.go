@@ -21,6 +21,8 @@ type bitmapCall struct {
 	Material        uint16
 	Actor           uint16
 	ActorWrites     int
+	Effect          uint16
+	EffectWrites    int
 }
 type GraphicsStats struct {
 	Bound                                                                                                          bool
@@ -33,6 +35,7 @@ type GraphicsStats struct {
 	BattleActorCalls, BattleActorCompletions, BattleActorFallbackCalls                                             uint64
 	BitmapTransactions, BitmapTransactionCompletions, BitmapHeldFrames, BitmapTransactionFallbacks, BitmapMaxSteps uint64
 	BitmapCompletionCaptures                                                                                       uint64
+	BattleEffectCalls, BattleEffectCompletions, BattleEffectFallbackCalls, EffectPaintedPixels                     uint64
 }
 type Graphics struct {
 	parent           *Tracker
@@ -42,6 +45,10 @@ type Graphics struct {
 	active           *bitmapCall
 	pending          *battleBitmapTransaction
 	captureAfterHold bool
+	effects          []graphicCell
+	effectBase       []uint8
+	effectFrames     map[uint16]*battleEffectFrame
+	effectDraft      *battleEffectDraft
 	Stats            GraphicsStats
 }
 
@@ -49,6 +56,11 @@ func newGraphics(t *Tracker, a *GraphicsAssets) *Graphics {
 	g := &Graphics{parent: t, assets: a, owners: make([]graphicCell, 65536*8)}
 	if len(a.Actors) > 0 {
 		g.actors = make([]graphicCell, 65536*8)
+	}
+	if len(a.Effects) > 0 {
+		g.effects = make([]graphicCell, 65536*8)
+		g.effectBase = make([]uint8, 65536*8)
+		g.effectFrames = map[uint16]*battleEffectFrame{}
 	}
 	return g
 }
@@ -88,6 +100,9 @@ func (g *Graphics) clear() {
 	g.abortBattleTransaction()
 	clear(g.owners)
 	clear(g.actors)
+	clear(g.effects)
+	clear(g.effectBase)
+	clear(g.effectFrames)
 	g.active = nil
 }
 
@@ -160,6 +175,7 @@ func (g *Graphics) beginSource(kind int, background bool) {
 	}
 	source := o.Bytes(ptr, n)
 	id := g.assets.ByNative[hash(source[:4+area*4])]
+	effectSource := id
 	if id != 0 {
 		g.Stats.SourceMatches++
 	}
@@ -210,6 +226,9 @@ func (g *Graphics) beginSource(kind int, background bool) {
 			entry = 0x626
 		}
 		g.startBattleTransaction(entry, first, w, h, dest, mode)
+		if !background {
+			g.prepareBattleEffect(effectSource, source)
+		}
 	}
 }
 
@@ -245,6 +264,7 @@ func (g *Graphics) copyByte(destination, source uint32) {
 		}
 	}
 	g.Stats.CopiedBytes++
+	g.copyEffectByte(destination, source)
 }
 func (g *Graphics) clearByte(offset uint32, mask uint8) {
 	for bit := 0; bit < 8; bit++ {
@@ -254,6 +274,7 @@ func (g *Graphics) clearByte(offset uint32, mask uint8) {
 			}
 			g.set(offset*8+uint32(bit), graphicCell{})
 			g.setActor(offset*8+uint32(bit), graphicCell{})
+			g.setEffect(offset*8+uint32(bit), graphicCell{}, 0)
 		}
 	}
 }
@@ -283,6 +304,11 @@ func (g *Graphics) write(w oracle.VideoWrite) uint8 {
 				mask = b.Mask[row*b.Width+col]
 				g.Stats.MaskedWrites++
 			}
+			if b.Effect != 0 {
+				b.EffectWrites++
+				return mask
+			}
+			g.clearEffectByte(w.Offset, mask)
 			if b.Actor != 0 {
 				b.ActorWrites++
 				if b.ActorWrites == b.Width*b.Height*4 {
@@ -326,6 +352,7 @@ func (g *Graphics) write(w oracle.VideoWrite) uint8 {
 		}
 	}
 	if font && t.active != nil && t.active.BG == 255 {
+		g.clearEffectByte(w.Offset, 255)
 		return 255
 	}
 	g.clearByte(w.Offset, 255)
@@ -340,6 +367,7 @@ func (g *Graphics) paint(out *image.RGBA, p oracle.PlanarDisplay) {
 		g.Stats.PaletteFallbackFrames++
 		return
 	}
+	g.restoreEffectBases(out, p)
 	for y := 0; y < 200; y++ {
 		for x := 0; x < 640; {
 			off := (p.Start + uint32(y*p.Pitch+x/8)) & 65535
@@ -380,4 +408,5 @@ func (g *Graphics) paint(out *image.RGBA, p oracle.PlanarDisplay) {
 	g.Stats.CompositedFrames++
 	g.Stats.PaintedNativePixels += g.Stats.LastPaintedPixels
 	g.paintActors(out, p)
+	g.paintEffects(out, p)
 }

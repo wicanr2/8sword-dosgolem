@@ -1,4 +1,4 @@
-"""在 Pillow Docker 內匯入 023 至 026 的已審查圖像，不修改原始 PNG。"""
+"""在 Pillow Docker 內匯入 023 至 027 的已審查圖像，不修改原始 PNG。"""
 import argparse
 import hashlib
 import json
@@ -41,6 +41,14 @@ MAN21_ART = [
     ("frame-3-painted-raw-r1.png", "1c079c414df24d03ae56e93990a17fa850782a10c796087dc403ec0b10be192d", [39,222,1130,985], [0,78,261,186]),
 ]
 
+PON_SHA = "5fe52b534cccbcaab5265681c42f208751f69da1144161541f161d93b89b786e"
+PON_ART = [
+    ("frame-0-painted-raw-r1.png", "7f6d0bd35ac1a338f54bdf4ba64decba4b11f80ac0ba247983f2eab7404fe1c6", [45,52,1093,1233], [0,0,264,300]),
+    ("frame-1-painted-raw-r1.png", "ca9b4e6aac263753d5135a28da3f04b9594dae7650c583fdef9d13d989b64b30", [48,67,1097,1223], [33,30,225,222]),
+    ("frame-2-painted-raw-r1.png", "c60add2fde67e7e33463b3944c5d36cf78f8327562470d551e8f83e9060b8bcd", [64,75,1070,1205], [63,66,165,174]),
+    ("frame-3-painted-raw-r2.png", "dbc2081a6b2bb66613825a0d4c807b765d2cddb30b5b7cd38650312b22622103", [235,229,797,840], [90,96,114,102]),
+]
+
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
@@ -50,7 +58,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ("base", "source", "art-dir", "out"):
         p.add_argument("--"+name,required=True,type=Path)
-    p.add_argument("--unit",choices=("MAN16","MAN06","MAN11","MAN21"),default="MAN16")
+    p.add_argument("--unit",choices=("MAN16","MAN06","MAN11","MAN21","PON"),default="MAN16")
     a=p.parse_args()
     entries,source_sha,first_index,spec,prefix,manifest_name=ART,SOURCE_SHA,86,"023","battle-actors","battle-actors.json"
     stem="battle-man16"
@@ -67,6 +75,10 @@ def main():
         entries,source_sha,first_index,spec,prefix,manifest_name=MAN21_ART,MAN21_SHA,98,"026","battle-man21","battle-man21.json"
         stem="battle-man21"
         prompt_names=[f"frame-{i}-r1.prompt.txt" for i in range(4)]
+    if a.unit=="PON":
+        entries,source_sha,first_index,spec,prefix,manifest_name=PON_ART,PON_SHA,102,"027","battle-pon","battle-pon.json"
+        stem="battle-pon"
+        prompt_names=[f"frame-{i}-r1.prompt.txt" for i in range(4)]+["frame-3-r2.prompt.txt"]
     assert a.out.is_dir() and not any(a.out.iterdir()), "輸出須為已存在的空目錄"
     source=a.source.read_bytes();assert sha(source)==source_sha
     assert (a.base/"battle-background.json").is_file()
@@ -77,6 +89,7 @@ def main():
         with Image.open(a.art_dir/name) as im:
             wide=(a.unit=="MAN11" and i in (1,3)) or (a.unit=="MAN21" and i in (2,3))
             expected_size=(1177 if wide else 1176,1337)
+            if a.unit=="PON":expected_size=[(1178,1335),(1177,1337),(1177,1337),(1178,1335)][i]
             assert im.format=="PNG" and im.mode=="RGBA" and im.size==expected_size
             alpha=im.getchannel("A");assert alpha.getextrema()==(0,255)
             box=alpha.point(lambda v:255 if v>3 else 0).getbbox()
@@ -94,9 +107,9 @@ def main():
     (a.out/manifest_name).write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n")
     provenance=dict(spec=spec,source_sha256=source_sha,record_bytes=3304,record_offsets=[0,3304,6608,9912],
                     tool="built-in image_gen",original_png_bytes_preserved=True,
-                    input_art_sha256={q.name:sha(q.read_bytes()) for q in sorted(a.art_dir.glob("frame-*-painted-raw-*.png"))},
+                    input_art_sha256={n:sha((a.art_dir/n).read_bytes()) for n,_,_,_ in entries},
                     prompt_sha256={n:sha(b) for n,b in prompts.items()},preserved_files=preserved,
-                    registration="native-position display approximation; original oval shadow omitted",
+                    registration=("original colored bounds; cumulative painted source-over is a presentation approximation" if a.unit=="PON" else "native-position display approximation; original oval shadow omitted"),
                     rights="local-only original-game derivatives; no public redistribution grant")
     (a.out/(prefix+"-source.json")).write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+"\n")
     (a.out/(prefix+"-prompts.txt")).write_bytes(b"\n\n".join(n.encode()+b"\n"+b for n,b in prompts.items()))

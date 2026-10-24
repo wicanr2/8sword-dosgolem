@@ -25,6 +25,7 @@ type Engine struct {
 	GraphicsError         string
 	BattleBackgroundError string
 	BattleActorError      string
+	BattleEffectError     string
 	Exited                bool
 	ExitCode              uint8
 	PAMLoaded             bool
@@ -97,6 +98,9 @@ func Open(opt Options) (*Engine, error) {
 						}
 						if actorErr := loadBattleActors(opt.Assets, opt.Root, art); actorErr != nil {
 							e.BattleActorError = actorErr.Error()
+						}
+						if effectErr := loadBattleEffects(opt.Assets, opt.Root, art); effectErr != nil {
+							e.BattleEffectError = effectErr.Error()
 						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)
 					}
@@ -350,6 +354,7 @@ func (e *Engine) Status() map[string]any {
 	out["font_id"], out["font_name"], out["font_error"], out["font_choices"] = e.FontID(), e.FontName(), e.FontError, e.FontChoices()
 	out["battle_background_error"] = e.BattleBackgroundError
 	out["battle_actor_error"] = e.BattleActorError
+	out["battle_effect_error"] = e.BattleEffectError
 	view := e.bootConsole()
 	out["console_stage"], out["console_source_sha256"] = view.stage, view.sha
 	intro := map[string]any{"load_error": e.IntroError, "stage": e.IntroStage()}

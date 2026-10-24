@@ -4,6 +4,8 @@
 
 第四組部隊：[026：MAN21 與正常動作](docs/spec/026-battle-man21-actors.md)，限定 CONFORMED。四筆已接入並取得正常續玩視窗、原版來源返回及實際 Draw 的獨立重建。r7 無頭路段僅首筆，其他姿勢由獨立的 motion-r3 收據補足，不改寫歷史，也不推論戰鬥規則。
 
+戰場火花：[027：PON 效果](docs/spec/027-battle-pon-effects.md)，限定 CONFORMED。獨立效果層保留底色與累積透明圖，四筆正常返回全幅、三組隔離、失效、實際 Draw 快取及真正存退讀已驗。GUI 精確圖層抽樣來源 3，不把即時 metadata 套到較早保留幀，也不宣稱四筆皆在 GUI 完整抽驗。
+
 本檔是本專案的工作規則與索引。目前狀態看 [CONTEXT.md](CONTEXT.md)，工作歷程看 [WORKLOG.md](WORKLOG.md)。面向使用者的回覆與文件使用繁體中文，句子簡短，技術內容優先用條列或表格。共用主機規則仍適用。
 
 介面接入規格：[005：古風介面來源與所有權](docs/spec/005-jade-gold-interface.md)，外框、主選單與系統訊息框已在指定正常路段限定 CONFORMED；不代表其餘 HD 素材與全遊戲完成。

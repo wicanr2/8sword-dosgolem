@@ -29,6 +29,8 @@ type GraphicsAssets struct {
 	Actors       map[uint16]*graphicMaterial
 	ActorSHA     map[uint16]string
 	BattleActors map[uint16]bool
+	Effects      map[uint16]*graphicMaterial
+	EffectSHA    map[uint16]string
 }
 type graphicPNG struct {
 	Index      int    `json:"source_index"`

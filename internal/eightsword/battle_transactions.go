@@ -20,6 +20,7 @@ type battleBitmapTransaction struct {
 const battleBitmapStepBound = uint64(100000)
 
 func (g *Graphics) abortBattleTransaction() {
+	g.abortBattleEffect()
 	g.captureAfterHold = false
 	if g.pending != nil {
 		g.Stats.BitmapTransactionFallbacks++
@@ -122,6 +123,7 @@ func (g *Graphics) finishBattleTransaction(entry uint16) {
 	}
 	g.pending = nil
 	g.Stats.BitmapTransactionCompletions++
+	g.commitBattleEffect()
 	if g.captureAfterHold {
 		g.captureAfterHold = false
 		g.parent.Compose()

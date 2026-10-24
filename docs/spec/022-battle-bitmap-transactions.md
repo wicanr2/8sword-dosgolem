@@ -54,3 +54,7 @@ GUI r2 的後續移動曾在拒戰後被原版強制進入戰鬥，操作器錯�
 ### BATTLE-MAN16-ACTORS-RESOLVED
 
 「部隊 HD 未由本項完成」保留本規格的範圍。後續 [023](023-battle-man16-actors.md)已完成 `DOS/MAN16.EGG@d4acf7c5…11d6a/file+0,+3304,+6608,+9912` 四筆接入，沿用 `runtime14D2:0626/06B8/076E` 及本項完整幀守衛。四筆正常無頭呈現與第 0 筆實際 GUI 全幅重建通過，其他兵種仍未完成；不重新開啟本項已閉合的中間平面研究。
+
+### BATTLE-PON-EFFECTS-RESOLVED
+
+[027](027-battle-pon-effects.md)沿本項 `PAM/runtime14D2:04F2/057D/0625`，完成 `DOS/PON.EGG@5fe52b53…786e/file+0,+3304,+6608,+9912` 的四筆累積效果。原版仍執行每次遮罩寫入；新層只在本項完整返回後提交，缺返回沿原 100000 步上限回退。GUI 研究 r1 曾混用較晚即時 metadata 與保留幀，r2 改為凍結本項原本已產生的返回點快取，並連結實際 Draw，沒有額外 Compose 或修改本項時序。PON 限定 CONFORMED，其他圖像仍分別驗收。
