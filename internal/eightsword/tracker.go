@@ -32,6 +32,7 @@ type TrackerStats struct {
 	CachedFrames                                                           uint64
 	BoundLoadSegment                                                       uint16
 	Errors                                                                 []string
+	PaletteFrames, PaletteSidebarFrames, PaletteMappedPixels               uint64
 }
 type Tracker struct {
 	o                               *oracle.Oracle
@@ -53,6 +54,7 @@ type Tracker struct {
 	cachedIndexed                   []uint8
 	cachedFrame                     *image.RGBA
 	graphics                        *Graphics
+	palette                         *presentationPalette
 }
 type StringEvent struct {
 	Step   uint64
@@ -391,11 +393,22 @@ func (t *Tracker) Compose() *image.RGBA {
 		return t.cachedFrame
 	}
 	out := image.NewRGBA(image.Rect(0, 0, 1920, 1200))
+	var palette *presentationPalette
+	sidebar := false
+	if t.paletteEnabled(p) {
+		palette = t.palette
+		sidebar = t.paletteSidebarVisible(p)
+		t.Stats.PaletteFrames++
+		if sidebar {
+			t.Stats.PaletteSidebarFrames++
+		}
+	}
 	groups := map[drawGroup]bool{}
 	for y := 0; y < 200; y++ {
 		for x := 0; x < 640; x++ {
 			at := y*640 + x
-			color := p.Palette[indexed[at]&15]
+			backdrop := indexed[at] & 15
+			color := p.Palette[backdrop]
 			off := (p.Start + uint32(y*p.Pitch+x/8)) & 65535
 			c := t.owners[off*8+uint32(x%8)]
 			if c.ID != 0 {
@@ -408,8 +421,15 @@ func (t *Tracker) Compose() *image.RGBA {
 							bg = g.BG
 						}
 						color = p.Palette[bg&15]
+						backdrop = bg & 15
 						t.Stats.ErasedInk++
 					}
+				}
+			}
+			if palette != nil && sidebar {
+				if next, replace := palette.backdrop(backdrop, x, y, c, t.glyphs[c.ID], true); replace {
+					color = next
+					t.Stats.PaletteMappedPixels++
 				}
 			}
 			row := y*6*out.Stride + x*3*4
@@ -462,6 +482,7 @@ func (t *Tracker) Compose() *image.RGBA {
 		if g.FG == 14 {
 			color = [3]uint8{255, 241, 181}
 		}
+		color = palette.ink(g.FG, color)
 		for yy := 0; yy < dh; yy++ {
 			oy := top + yy
 			if oy < 0 || oy >= 1200 {

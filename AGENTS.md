@@ -14,6 +14,8 @@ README 比較圖：[原版／HD 怪物總覽](docs/images/monsters-original-hd-r
 
 本檔是本專案的工作規則與索引。目前狀態看 [CONTEXT.md](CONTEXT.md)，工作歷程看 [WORKLOG.md](WORKLOG.md)。面向使用者的回覆與文件使用繁體中文，句子簡短，技術內容優先用條列或表格。共用主機規則仍適用。
 
+兩側海報與字型工具列：[032](docs/spec/032-poster-toolbar.md)，排版已批准，限定 CONFORMED。生成海報、開場女主角原圖及提示的工作區入口也在該規格。工具列須獨占選單輸入，中央遊戲完整保留。教育部真正隸書的來源與驗收見 [015 追加契約](docs/spec/015-font-settings.md#教育部隸書追加契約)，製作工具為 [prepare-moe-lishu.py](tools/prepare-moe-lishu.py)。
+
 介面接入規格：[005：古風介面來源與所有權](docs/spec/005-jade-gold-interface.md)，外框、主選單與系統訊息框已在指定正常路段限定 CONFORMED；不代表其餘 HD 素材與全遊戲完成。
 
 靜物與地表規格：[006：透明靜物與黃色地表](docs/spec/006-static-map-objects-and-sand.md)，新增靜態圖塊的 alpha 預合成，不代替角色背景還原；達 READY 才可進正式載入器。
@@ -246,6 +248,12 @@ mm3 的使用者批准、素材、字型、平台、公開範圍及完成標記�
 執行期工具入口：[建置與測試](tools/player.sh)、[字型匯入](tools/prepare-hd-assets.py)、[Xvfb 視窗驗證](tools/gui-check.sh)、[XTEST 按鍵與實際視窗擷取](tools/gui-check.go)、[逐幀收據獨立解碼](tools/inspect-presentation.py)、[客體狀態隔離核對](tools/audit-player.py)、[視窗存退讀核對](tools/audit-save-cycle.py)。核心只讀觀測由[補丁](tools/dosgolem-presentation-observe.patch)及[檔案雜湊](tools/dosgolem-presentation-files.sha256)固定。用法見 README，驗證範圍見 003；逐幀檔格式通過不代表視覺驗收通過。
 
 空間整理工具：[workspace-space.py](tools/workspace-space.py)。工作區中的部分不可變圖像、逐幀錄影及研究快照以唯讀硬連結共用完全相同的內容，原路徑與 SHA 保留。後續需要修改這類檔案時，先在固定 Pillow Docker 內執行 `python /project/tools/workspace-space.py --workspace /work detach <workplace 相對路徑>`，建立獨立可寫副本；禁止直接 chmod 後原地修改共用 inode。掛載及完整清理／驗證入口見 WORKLOG 的「2026-10-24：工作區空間整理」，範圍只含本案 `player/` 與 `probe-20261023/`，不處理原始遊戲或全域 Docker 資源。
+
+戰場陰陽圖案：[029：CHOI 四筆來源與 HD](docs/spec/029-battle-choi-markers.md)，READY。396 次正常入口／返回及手繪原型已審查，正式接入與驗收進行中。[載入器](internal/eightsword/battle_markers.go)共用一張原圖建立四個方向，只接受沒有既有效果的矩形；PON 累積契約保持。研究美術與原型留 `battle-r1/choi-art-r1/`，原始來源及共用唯讀檔不改寫。
+
+戰術擴充：[030：部隊特性、戰術 AI、法術動畫與字型工具列提案](docs/spec/030-battle-expansion-proposal.md)，方向已確認，實作規格仍 DRAFT。參考 `/home/anr2/openkb/openkb-code` 的實際兵種及增強 AI；使用者已同意保留原版規則與獨立戰術增強模式，追加 HD 配色調整。配色跟 HD 開關走，不跟規則模式綁定。AI 從原版決策掛點切入，現有繪圖觀測不能代替決策證據。真正繁體隸書與工具列列為必要工作，現有 UnYetgul 過渡選項不視為隸書需求完成。只讀研究與可撤回原型入口見 030 和 RESEARCH-LOG，正式新規則及新配色尚未接入。
+
+HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-refinement.md)，READY。使用者確認保留玉綠、金框、黑底及朱紅的 R2，批准圖與來源存 `docs/images/hd-palette-approved-r2.*`。依真實字格、來源與當前頁辨認側欄選取，不能按紅色或右側座標全幅換色。實作及驗收範圍見 031。
 
 發行商文字工具：[三字型匯入](tools/prepare-hd-publisher.py)、[逐幀像素核對](tools/inspect-publisher.py)，用法、固定來源、中央圖標保留及正常路徑範圍見 [016](docs/spec/016-publisher-wordmarks.md)。
 

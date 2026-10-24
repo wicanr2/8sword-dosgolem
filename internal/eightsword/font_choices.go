@@ -13,9 +13,19 @@ type FontChoice struct {
 	ID            string `json:"id"`
 	Label         string `json:"label"`
 	FallbackCount int    `json:"fallback_count"`
+	SourceSHA     string `json:"source_sha256,omitempty"`
 	font          *Assets
 	title         image.Image
 }
+
+const moeLishuSHA = "f0ba5eda31727ad89cc0b1f6b9a7dfda02f061fa101c18548b6f8ea0145c108b"
+
+var legacyFontSHA = map[string]string{"noto": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151", "lishu": "c9d42eaac473b8ab0461cc6c2d1a1bac79b0babdf73974c7269ae17b81fd5d51", "caoshu": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033"}
+
+func validChoiceSource(id, sha string) bool {
+	return (id == "lishu" && (sha == legacyFontSHA[id] || sha == moeLishuSHA)) || (id == "caoshu" && sha == legacyFontSHA[id])
+}
+
 type fontChoices struct {
 	choices    []FontChoice
 	pam, story Assets
@@ -74,9 +84,14 @@ func (e *Engine) loadFontChoices(dir string) {
 	seen := map[string]bool{}
 	for _, p := range m.Profiles {
 		load := func() (FontChoice, error) {
-			expected := map[string]string{"lishu": "c9d42eaac473b8ab0461cc6c2d1a1bac79b0babdf73974c7269ae17b81fd5d51", "caoshu": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033"}
-			if expected[p.ID] == "" || seen[p.ID] || p.SourceSHA != expected[p.ID] || len([]rune(p.Label)) > 40 || p.Label == "" || p.Atlas != "font-choice-"+p.ID+".png" || p.Title != "font-title-"+p.ID+".png" || p.Width != 1024 || p.Height != 3456 || len(p.Glyphs) != 853 || p.FallbackCount < 0 || p.FallbackCount > 853 {
+			if !validChoiceSource(p.ID, p.SourceSHA) || seen[p.ID] || len([]rune(p.Label)) > 40 || p.Label == "" || p.Atlas != "font-choice-"+p.ID+".png" || p.Title != "font-title-"+p.ID+".png" || p.Width != 1024 || p.Height != 3456 || len(p.Glyphs) != 853 || p.FallbackCount < 0 || p.FallbackCount > 853 {
 				return FontChoice{}, fmt.Errorf("可選字型來源／形狀不符")
+			}
+			if p.SourceSHA == moeLishuSHA && (p.Label != "教育部隸書" || p.FallbackCount != 135 || p.CJKFallbackSHA == "") {
+				return FontChoice{}, fmt.Errorf("教育部隸書設定不符")
+			}
+			if e.Publisher != nil && e.Publisher.publisher.sources[p.ID] != p.SourceSHA {
+				return FontChoice{}, fmt.Errorf("發行商與內文字型來源不一致")
 			}
 			seen[p.ID] = true
 			if p.CJKFallbackSHA != "" && p.CJKFallbackSHA != "93069d8e9e45d515cc421c971a79e6a5777704b348e36a9ef86578bf58adef77" {
@@ -139,7 +154,7 @@ func (e *Engine) loadFontChoices(dir string) {
 					return FontChoice{}, fmt.Errorf("可選字型缺字 %U", r)
 				}
 			}
-			return FontChoice{ID: p.ID, Label: p.Label, FallbackCount: p.FallbackCount, font: f, title: title}, nil
+			return FontChoice{ID: p.ID, Label: p.Label, FallbackCount: p.FallbackCount, SourceSHA: p.SourceSHA, font: f, title: title}, nil
 		}
 		choice, err := load()
 		if err != nil {

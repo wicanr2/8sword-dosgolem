@@ -1,0 +1,48 @@
+# 032：兩側海報與字型工具列
+
+狀態：限定 CONFORMED。使用者已選擇「採用目前排版」，批准 `poster-art-r1/layout-preview-r1.html` 的中央遊戲、兩側海報、工具列及漸淡銜接。入口：[AGENTS](../../AGENTS.md)、[目前狀態](../../CONTEXT.md)。
+
+## 已確認的畫面
+
+研究工作區前綴為 `workplace/probe-20261023/graphics-first/`。以下檔案留在該工作區，圖片原始 byte 不變。
+
+| 內容 | 路徑 | SHA-256 |
+|---|---|---|
+| 封面手繪圖 | `poster-art-r1/cover-poster-r1.png` | `2d666efbb2b1fc714e92b82f078c3fd4139b7c690fce794b95c99c8b2725c55d` |
+| 龍虎延展圖 | `poster-art-r1/side-wings-r1.png` | `f14552801e98d4171befeb1220a9626c9e2e7a25efdad011896d2d3abfcba341` |
+| 開場女主角新圖 | `museum-art-r1/heroine-closeup-r1.png` | `f060f488db011379ec80e82e48f2112309baf639fe1179f81cd822e95310a186` |
+
+來源、提示及尺寸見 `poster-heroine-generated-r1.json`，使用內建 image_gen 生成。女主角圖另依 [017](017-intro-museum-art.md) 的來源及遮擋規格接入，不隨海報蓋到遊戲上。原型的 Go 靜態重現為 `poster-art-r1/layout-preview-wings-r1.png`、`layout-preview-cover-r1.png`。
+
+兩張海報原始 PNG 已依使用者的定稿紀錄要求保存為[經典封面](../images/poster-cover-approved-r1.png)、[龍虎延展](../images/poster-wings-approved-r1.png)，完整生成提示為同名 `.prompt.txt`。[來源紀錄](../images/poster-approved-r1.json)附雜湊及批准範圍，[實際視窗](../images/poster-toolbar-runtime-r1.png)另標為執行成果，不與生成原圖混稱。
+
+## 正式契約
+
+1. 新增可選 `poster-toolbar.json`，schema 1。清單、Noto 工具列字集、兩張海報均限固定檔名、SHA、尺寸、資源上限及已批准來源。缺少清單保持舊前端；海報損壞只關閉海報，遊戲與字型不受影響。工具列字集損壞則停用整個新介面並提示。
+2. 邏輯畫布 2944×1264。工具列高 64，中央完整 1920×1200 遊戲位於 `[512,64,2432,1264)`，兩側各 512×1200。關閉海報保持相同幾何與素色背景，避免切換時遊戲縮放跳動。原版／舊素材組維持原 1920×1200。
+3. 龍虎延展取原圖 `[160,0,469,724)`、`[1640,0,1949,724)`；經典封面取 `[0,0,600,1402)`、`[522,0,1122,1402)`。雙線性取樣，內側 112 邏輯像素以 smoothstep 混合到深玉綠 `(8,36,23)`。原圖保存，執行期只做呈現。
+4. 海報選項為「龍虎延展／經典封面／關閉」，預設龍虎延展。使用主機單調時鐘作 400 ms 淡入淡出，與 DOS 時間、音樂速度及亂數分開。切換中再次選取，以當前混合圖為起點，不跳回舊海報。有限快取，不逐幀解碼。
+5. 工具列使用固定 Noto Black 900 字集。字型選項沿 Engine.FontChoices 與 SetFont，包含 Noto／隸書／草書，F10 保留。真正隸書另沿 015 的來源驗證；舊隸書風素材組不得改標教育部隸書。
+6. 滑鼠點選開啟下拉選單，可點列選擇、上下移動、Enter 確認、Esc 或點外取消。這些輸入由工具列獨占。開啟時釋放客體已按住的鍵；選單關閉後，仍按住的鍵須先放開再送入客體。失焦同樣釋放，不能留下卡住的 Ctrl 或方向鍵。
+7. 工具列不暫停 DOS 或音樂。所有選項都不寫 DOS 記憶體、客體色盤或遊戲存檔。字型偏好沿既有 schema 1；海報另存 `<字型偏好路徑>.poster.json`，固定 schema 1 與三個 ID，原子寫入。無效設定回預設並提示。可用 `-poster` 明確覆寫。
+8. 截圖與逐幀錄製保存實際完整前端；Engine.Frame 仍回傳中央原畫面。新介面未啟用時保留歷史收據格式。狀態額外記錄海報、選單、錯誤及呈現尺寸。
+
+## 驗收與邊界
+
+- 素材獨立重建逐檔相同；驗真正壞 PNG、清單未知值、字集缺字及舊素材組。
+- 中央裁切逐 RGBA 同 Engine.Frame，海報切換起點／中點／完成、快速重選及關閉均不改中央像素。
+- 選單取消不改設定；確認與 F10 都保存偏好。字型與海報偏好重新啟動後恢復。
+- 使用 XTEST 操作正式視窗，驗三種海報、三種字型、下拉鍵盤與滑鼠、取消、失焦及回遊戲正常 F1／F2。輸入紀錄不得包含選單操作的客體按鍵。
+- 本項只授權前端呈現，不改戰術規則，也不據此宣稱整體 HD 或完整開場完成。
+
+READY 審查：排版、畫風與選項已由使用者確認；來源幾何、字集及原前端鍵盤路徑已可查證。工具列直接控制既有字型介面，無新的原版行為推測。
+
+## 限定驗收
+
+- 素材組 r28 共 131 檔，在 r27 上增加兩份原圖、工具列字圖、清單及製作紀錄。工具 [prepare-poster-toolbar.py](../../tools/prepare-poster-toolbar.py)直接由固定 Noto TTF 重生 123 字工具列，不依賴原型字圖；也接受私人倉庫已保存的定稿原圖。`bash tools/player.sh poster-toolbar-assets <新名稱> [基底名稱]` 在 Docker 執行。獨立重建逐檔一致，收據 `poster-art-r1/font-poster-asset-audit-r1.json`。
+- 三項真實素材測試核對中央 RGBA、快取、淡入中途重選、取消／確認、偏好、壞 PNG 與舊組。另有教育部來源混組測試、正常故事中的切換純度及 Noto 還原測試。新組六項通過，舊組字型／發行商五項回歸通過。
+- 正式視窗 `poster-art-r1/toolbar/`、`toolbar-reload/` 完成 19 次點選、三種海報／字型、鍵盤確認／取消、失焦關閉選單、重新啟動偏好及 F1／F2 正常往返。選單操作前後客體輸入紀錄完全相同。308／46 個實際 Draw 已獨立解碼及檢視；122 幀龍虎、164 幀封面、10 幀關閉與靜態原型側翼逐 RGBA 相同，12 幀為淡入，其中 8 幀與前幀中央遊戲相同。收據 `toolbar-gui-audit-r1.json`。
+- 真正損壞 `poster-cover.png` 的正式視窗在 `workplace/player/gui/poster-fallback-r1/toolbar-fallback/`：整組海報關閉，工具列、教育部隸書及其他 HD 保留，錯誤清楚回報，未畫成空白遊戲。
+- 65 筆實際建置輸入與四程式保存在 `workplace/player/build-toolbar-r1/`，source.tar SHA `87281883030c212b3c71bdb31871da7de37f66ad81f0235576078be967e5cb2b`。後續僅修正故障標題保持及增加故障 GUI 驅動，正式產物指紋另見現行 build 清單。
+
+範圍限本機 Linux 正式前端及上述玩家操作。沒有發行包，不外推其他平台、全開場動畫、全字集或戰術 AI 完成。

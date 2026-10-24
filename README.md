@@ -14,18 +14,30 @@
 
 ## 重製方向與現況
 
+部隊特性、策略 AI 與法術動畫的擴充方案見[戰術增強提案](docs/spec/030-battle-expansion-proposal.md)。已確認保留原版規則並新增獨立戰術增強模式，尚未接入新玩法；AI 從原版判斷掛點切入。HD 配色與規則模式分開，採保留玉綠、金框、黑底與朱紅的[原概念圖修色](docs/spec/031-hd-palette-refinement.md)。
+
 | 面向 | 目前狀態 |
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2 與戰場民兵首筆、金玉介面、五頁深藍故事背景、手繪戰場、四組敵方部隊共十六筆姿勢與累積火花效果。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)、[025](docs/spec/025-battle-man11-actors.md)、[026](docs/spec/026-battle-man21-actors.md)及 [027](docs/spec/027-battle-pon-effects.md) |
-| HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。F10 可切換隸書風或草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
+| HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
-| 玩家前端 | 已有開發用視窗與鍵盤前端；正常遭遇與返回已驗，效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
+| 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
 
 ## 畫面與文字樣張
+
+### 兩側海報與字型工具列
+
+![正式前端的經典封面海報與教育部隸書](docs/images/poster-toolbar-runtime-r1.png)
+
+這是正式前端的實際視窗截圖。中央遊戲完整保留，兩側海報內緣漸淡；工具列可切換海報及字型，選單操作不會送進遊戲。海報可看[經典封面原圖](docs/images/poster-cover-approved-r1.png)與[龍虎延展原圖](docs/images/poster-wings-approved-r1.png)。兩張由內建 image_gen 依使用者提供的包裝參考繪製，原始 PNG、完整提示及[來源紀錄](docs/images/poster-approved-r1.json)保存於私人倉庫。
+
+教育部隸書出自[教育部官方下載頁](https://language.moe.gov.tw/material/info?m=9fe3fb11-c3d5-41f2-b029-6d18a2c2fd0d)，署名中華民國教育部，沿原標示 CC BY-ND 3.0 TW。原始字型保持不變。已核對的 722 個中文字中，718 字直接使用，`佈崗歎秘` 四字以 Noto 宋體補足；英數與標點保留 Noto Black。舊素材組仍標示原有隸書風，不混稱教育部隸書。
+
+已有本機 r26 及固定字型來源時，使用 `bash tools/player.sh moe-lishu-assets <新名稱> [基底名稱]` 製作教育部隸書組，再用 `bash tools/player.sh poster-toolbar-assets <另一個新名稱> <前一步名稱>` 加入海報。兩者都由 Docker 執行，拒絕覆寫輸出。前端參數 `-font noto|lishu|caoshu`、`-poster wings|cover|off` 可指定初始選擇；未指定便讀取使用者偏好。舊素材組的視窗尺寸保持原樣。
 
 ### 原版／HD 怪物總覽
 
@@ -235,6 +247,9 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 發行商畫面的「軟體世界」及公司／年份文字亦隨 F10 切換，保留原配色與中央圖標；圖標本身仍是原版像素。固定來源、清墨遮罩、三字圖、獨立逐幀核對及故障回退見 [016](docs/spec/016-publisher-wordmarks.md)、[匯入工具](tools/prepare-hd-publisher.py)與[像素核對工具](tools/inspect-publisher.py)。具備本機 r14、原版 TIT1 及 015 已存檔字型後，執行 `bash tools/player.sh publisher-assets <新名稱>` 建立新組，不覆寫基底。視窗驗證使用 `EIGHTSWORD_GUI_FLOW=publisher EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE=1`，配合既有 `EIGHTSWORD_GUI_CYCLES=4000` 診斷設定及新素材組。這些素材留本機，不隨倉庫提供。
 
 ## 文件與權利
+
+- [海報與工具列規格](docs/spec/032-poster-toolbar.md)：完整遊戲區、海報漸淡、選單輸入隔離及偏好保存。
+- [原概念圖修色規格](docs/spec/031-hd-palette-refinement.md)：來源字格限定的暖金與朱紅，保留原風格及故障回退。
 
 - [AGENTS.md](AGENTS.md)：工作規則與索引。
 - [CONTEXT.md](CONTEXT.md)：唯一目前狀態表與下一步。

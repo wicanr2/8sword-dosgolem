@@ -35,6 +35,8 @@ if [[ "${EIGHTSWORD_GUI_FONT_CYCLE:-0}" == 1 ]]; then intro_flags+=(-font-cycle)
 if [[ "${EIGHTSWORD_GUI_RECORD:-1}" == 1 ]]; then record_flags=(-record); fi
 if [[ "${EIGHTSWORD_GUI_RECORD_AUDIO:-0}" == 1 ]]; then audio_flags=(-record-audio); fi
 phases=(inspect)
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == toolbar-cycle ]]; then phases=(toolbar toolbar-reload); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == toolbar-fallback ]]; then phases=(toolbar-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then phases=(save reload); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == fallback ]]; then phases=(fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == art-fallback ]]; then phases=(art-fallback); fi

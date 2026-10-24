@@ -85,6 +85,10 @@ type game struct {
 	settings                                   string
 	controlHeld                                bool
 	titleSuffix                                string
+	toolbar                                    *eightsword.PosterToolbar
+	toolbarError                               string
+	blocked                                    map[ebiten.Key]bool
+	controlBlocked                             bool
 }
 
 type stageTiming struct {
@@ -121,6 +125,12 @@ func (g *game) status(closed bool) map[string]any {
 	status["presented_story_calls"], status["presented_story_pages"] = g.presentedStoryCalls, g.presentedStoryPages
 	status["presented_caption_source"] = g.presentedCaptionSource
 	status["stage_totals"] = g.stageTotals
+	status["toolbar_error"] = g.toolbarError
+	if g.toolbar != nil {
+		status["poster_id"], status["toolbar_menu"] = g.toolbar.ID, g.toolbar.Menu
+		status["poster_error"] = g.toolbar.Error
+		status["presentation_size"] = []int{eightsword.PosterWidth, eightsword.PosterHeight}
+	}
 	if g.audioCapture != nil {
 		status["captured_audio_frames"] = g.audioFrames
 	}
@@ -166,23 +176,64 @@ func (g *game) Update() error {
 	if !ebiten.IsFocused() {
 		g.engine.ReleaseAll()
 		g.controlHeld = false
+		if g.toolbar != nil {
+			g.toolbar.CloseMenu()
+			g.blockHeld()
+		}
 	} else {
+		consumed := false
+		if g.toolbar != nil {
+			x, y := ebiten.CursorPosition()
+			key := ""
+			for _, k := range []struct {
+				key  ebiten.Key
+				name string
+			}{{ebiten.KeyArrowUp, "up"}, {ebiten.KeyArrowDown, "down"}, {ebiten.KeyEnter, "enter"}, {ebiten.KeyEscape, "escape"}} {
+				if inpututil.IsKeyJustPressed(k.key) {
+					key = k.name
+					break
+				}
+			}
+			previousMenu := g.toolbar.Menu
+			a := g.toolbar.Input(x, y, inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft), key)
+			consumed = a.Consumed
+			if previousMenu != "" || consumed {
+				g.engine.ReleaseAll()
+				g.controlHeld = false
+				g.blockHeld()
+			}
+			if a.Font != "" {
+				g.selectFont(a.Font)
+			}
+			if a.Poster != "" {
+				if err := g.toolbar.SetPoster(a.Poster, time.Now()); err != nil {
+					log.Print(err)
+				} else if err = eightsword.SavePosterPreference(g.settings+".poster.json", a.Poster); err != nil {
+					log.Print(err)
+				}
+			}
+		}
 		if inpututil.IsKeyJustPressed(ebiten.KeyF10) && g.engine.HD {
 			choices := g.engine.FontChoices()
 			for i, choice := range choices {
 				if choice.ID == g.engine.FontID() {
 					next := choices[(i+1)%len(choices)].ID
-					if err := g.engine.SetFont(next); err != nil {
-						log.Print(err)
-					} else if err := eightsword.SaveFontPreference(g.settings, next); err != nil {
-						log.Printf("字型偏好未儲存：%s", err)
-					}
+					g.selectFont(next)
 					break
 				}
 			}
 			ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型" + g.titleSuffix)
 		}
 		for _, k := range keys {
+			if g.blocked[k.key] {
+				if !ebiten.IsKeyPressed(k.key) {
+					delete(g.blocked, k.key)
+				}
+				continue
+			}
+			if consumed {
+				continue
+			}
 			if inpututil.IsKeyJustPressed(k.key) {
 				if err := g.engine.Key(k.scan, true); err != nil {
 					return err
@@ -195,6 +246,15 @@ func (g *game) Update() error {
 			}
 		}
 		control := ebiten.IsKeyPressed(ebiten.KeyControlLeft) || ebiten.IsKeyPressed(ebiten.KeyControlRight)
+		if g.controlBlocked {
+			if !control {
+				g.controlBlocked = false
+			}
+			control = false
+		}
+		if consumed {
+			control = false
+		}
 		if control != g.controlHeld {
 			if err := g.engine.Key(0x1d, control); err != nil {
 				return err
@@ -232,6 +292,10 @@ func (g *game) Update() error {
 	g.frameStoryCalls, g.frameStoryPages = 0, 0
 	if g.engine.Story != nil && g.frameIntro != "" {
 		g.frameStoryCalls, g.frameStoryPages = g.engine.Story.FrameInfo(g.frame)
+	}
+	if g.toolbar != nil {
+		g.toolbar.SyncFont(g.engine.FontID())
+		g.frame = g.toolbar.Frame(g.frame, time.Now())
 	}
 	composed := time.Now()
 	if previous != g.frame {
@@ -306,11 +370,38 @@ func (g *game) Draw(screen *ebiten.Image) {
 		g.observe("record", time.Since(started))
 	}
 }
-func (g *game) Layout(int, int) (int, int) { return 1920, 1200 }
+func (g *game) blockHeld() {
+	if g.blocked == nil {
+		g.blocked = map[ebiten.Key]bool{}
+	}
+	for _, k := range keys {
+		if ebiten.IsKeyPressed(k.key) {
+			g.blocked[k.key] = true
+		}
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyControlLeft) || ebiten.IsKeyPressed(ebiten.KeyControlRight) {
+		g.controlBlocked = true
+	}
+}
+func (g *game) selectFont(id string) {
+	if err := g.engine.SetFont(id); err != nil {
+		log.Print(err)
+	} else if err = eightsword.SaveFontPreference(g.settings, id); err != nil {
+		log.Printf("字型偏好未儲存：%s", err)
+	}
+	ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型" + g.titleSuffix)
+}
+func (g *game) Layout(int, int) (int, int) {
+	if g.toolbar != nil {
+		return eightsword.PosterWidth, eightsword.PosterHeight
+	}
+	return 1920, 1200
+}
 func main() {
 	root := flag.String("root", "", "合法原版資料目錄")
 	assets := flag.String("assets", "", "HD 字型、圖像與音樂素材目錄")
 	font := flag.String("font", "", "字型：noto、lishu、caoshu；空白沿用偏好")
+	poster := flag.String("poster", "", "海報：wings、cover、off；空白沿用偏好")
 	settings := flag.String("settings", "", "字型偏好檔，預設為系統使用者設定目錄")
 	saves := flag.String("saves", "", "可寫存檔目錄")
 	capture := flag.String("capture-dir", "", "研究收據目錄，F12 抓圖")
@@ -392,6 +483,14 @@ func main() {
 		title += "（HD 戰場效果載入失敗）"
 		log.Print(engine.BattleEffectError)
 	}
+	if engine.BattleMarkerError != "" {
+		title += "（HD 陰陽圖案載入失敗）"
+		log.Print(engine.BattleMarkerError)
+	}
+	if engine.PaletteError != "" {
+		title += "（HD 修色已回退）"
+		log.Print(engine.PaletteError)
+	}
 	if engine.Music != nil && engine.Music.LoadError != "" {
 		title += "（HD 音樂載入失敗）"
 		log.Printf("HD 音樂未載入，保留原版音訊：%s", engine.Music.LoadError)
@@ -421,6 +520,39 @@ func main() {
 		suffix = title[i:]
 	}
 	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit, settings: *settings, titleSuffix: suffix}
+	if engine.HD {
+		g.toolbar, err = eightsword.LoadPosterToolbar(*assets, engine.FontChoices())
+		if err != nil {
+			g.toolbarError = err.Error()
+			log.Printf("海報工具列未載入：%s", err)
+			title += "（海報工具列載入失敗）"
+		}
+		if g.toolbar != nil {
+			selectedPoster := *poster
+			if selectedPoster == "" {
+				selectedPoster, err = eightsword.LoadPosterPreference(*settings + ".poster.json")
+				if err != nil {
+					log.Print(err)
+				}
+			}
+			if err = g.toolbar.SetPoster(selectedPoster, time.Now()); err != nil {
+				log.Print(err)
+			} else if *poster != "" {
+				if err = eightsword.SavePosterPreference(*settings+".poster.json", selectedPoster); err != nil {
+					log.Print(err)
+				}
+			}
+			if g.toolbar.Error != "" {
+				log.Print(g.toolbar.Error)
+				title += "（海報已關閉）"
+			}
+			g.texture.Dispose()
+			g.texture = ebiten.NewImage(eightsword.PosterWidth, eightsword.PosterHeight)
+		}
+	}
+	if i := strings.IndexRune(title, '（'); i >= 0 {
+		g.titleSuffix = title[i:]
+	}
 	if *capture != "" {
 		g.introDraw, err = os.Create(filepath.Join(*capture, "intro-draw.jsonl"))
 		if err != nil {
@@ -442,7 +574,8 @@ func main() {
 		if *capture == "" {
 			log.Fatal("-record 需要 -capture-dir")
 		}
-		g.recorder, err = eightsword.NewFrameRecorder(filepath.Join(*capture, "presentation.frames.gz"), 1920, 1200)
+		w, h := g.Layout(0, 0)
+		g.recorder, err = eightsword.NewFrameRecorder(filepath.Join(*capture, "presentation.frames.gz"), w, h)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -459,6 +592,9 @@ func main() {
 	}
 	ebiten.SetWindowTitle(title)
 	ebiten.SetWindowSize(1280, 800)
+	if g.toolbar != nil {
+		ebiten.SetWindowSize(1600, 687)
+	}
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	ebiten.SetTPS(30)
 	ebiten.SetVsyncEnabled(*vsync)

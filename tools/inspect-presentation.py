@@ -37,8 +37,10 @@ def inspect(root):
         if read(8) != b"8SFRM001":
             raise ValueError("未知逐幀格式")
         width, height = struct.unpack("<II", read(8))
-        if (width, height) != (1920, 1200):
+        if (width, height) not in ((1920, 1200), (2944, 1264)):
             raise ValueError("未知呈現尺寸")
+        if (width, height) == (2944, 1264) and final.get('presentation_size') != [2944, 1264]:
+            raise ValueError("工具列尺寸與前端收據不符")
         rgba = bytearray(width * height * 4)
         previous_step = 0
         while header := stream.read(24):
@@ -66,7 +68,13 @@ def inspect(root):
                 hashes.append({"frame": ordinal, "step": step, "changed_rows": rows,
                                "rgba_sha256": hashlib.sha256(rgba).hexdigest()})
                 image = Image.frombytes("RGBA", (width, height), bytes(rgba)).convert("RGB")
-                thumbs.append((image.resize((320, 200), Image.Resampling.LANCZOS),
+                if (width, height) == (2944, 1264):
+                    preview = Image.new('RGB', (320, 200), '#081817')
+                    small = image.resize((320, round(320 * height / width)), Image.Resampling.LANCZOS)
+                    preview.paste(small, (0, (200 - small.height) // 2))
+                else:
+                    preview = image.resize((320, 200), Image.Resampling.LANCZOS)
+                thumbs.append((preview,
                                f"frame {ordinal} / step {step}"))
                 if len(thumbs) == 60:
                     sheet()
@@ -74,7 +82,7 @@ def inspect(root):
     if frames != final["recorded_frames"] or not final["closed"]:
         raise ValueError("關閉收據與實際幀數不符")
     Image.frombytes("RGBA", (width, height), bytes(rgba)).save(root / "continuous-final.png")
-    result = {"status": "lossless-stream-valid", "frames": frames, "changed_frames": changed,
+    result = {"status": "lossless-stream-valid", "width": width, "height": height, "frames": frames, "changed_frames": changed,
               "recording_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
               "contact_sheets": sheets, "frame_hashes": hashes,
               "limit": "只證明逐幀完整性；字墨、轉場及殘字仍須檢視連續畫面。"}

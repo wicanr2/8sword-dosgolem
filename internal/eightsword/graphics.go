@@ -36,6 +36,7 @@ type GraphicsStats struct {
 	BitmapTransactions, BitmapTransactionCompletions, BitmapHeldFrames, BitmapTransactionFallbacks, BitmapMaxSteps uint64
 	BitmapCompletionCaptures                                                                                       uint64
 	BattleEffectCalls, BattleEffectCompletions, BattleEffectFallbackCalls, EffectPaintedPixels                     uint64
+	BattleMarkerCalls, BattleMarkerCompletions, BattleMarkerFallbackCalls                                          uint64
 }
 type Graphics struct {
 	parent           *Tracker

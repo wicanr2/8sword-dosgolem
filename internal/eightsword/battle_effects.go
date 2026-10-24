@@ -121,7 +121,8 @@ func (g *Graphics) prepareBattleEffect(id uint16, raw []byte) {
 	if valid {
 		for y := 0; y < 50 && valid; y++ {
 			for x := 0; x < 88; x++ {
-				if g.parent.owners[(b.First+uint32(y*80+x/8))*8+uint32(x%8)].ID != 0 {
+				at := (b.First+uint32(y*80+x/8))*8 + uint32(x%8)
+				if g.parent.owners[at].ID != 0 || (isChoiSource(id) && (len(g.effects) == 0 || g.effects[at].ID != 0)) {
 					valid = false
 					break
 				}
@@ -129,12 +130,12 @@ func (g *Graphics) prepareBattleEffect(id uint16, raw []byte) {
 		}
 	}
 	if !valid {
-		g.Stats.BattleEffectFallbackCalls++
+		g.recordEffectFallback(id)
 		return
 	}
 	free := g.freeBattleEffectSlot()
 	if free == 0 {
-		g.Stats.BattleEffectFallbackCalls++
+		g.recordEffectFallback(id)
 		return
 	}
 	f := &battleEffectFrame{Tile: image.NewRGBA(image.Rect(0, 0, 264, 300)), Source: id}
@@ -144,7 +145,7 @@ func (g *Graphics) prepareBattleEffect(id uint16, raw []byte) {
 			off := b.First + uint32(y*80+col)
 			native, available := o.PlanarBytePixels(off)
 			if !available {
-				g.Stats.BattleEffectFallbackCalls++
+				g.recordEffectFallback(id)
 				return
 			}
 			for bit := 0; bit < 8; bit++ {
@@ -172,7 +173,11 @@ func (g *Graphics) prepareBattleEffect(id uint16, raw []byte) {
 	}
 	g.effectDraft, b.Effect = d, id
 	g.Stats.HDSourceCalls++
-	g.Stats.BattleEffectCalls++
+	if isChoiSource(id) {
+		g.Stats.BattleMarkerCalls++
+	} else {
+		g.Stats.BattleEffectCalls++
+	}
 }
 
 func (g *Graphics) freeBattleEffectSlot() uint16 {
@@ -190,7 +195,14 @@ func (g *Graphics) abortBattleEffect() {
 		return
 	}
 	g.effectDraft = nil
+	source := uint16(0)
+	if d.Frame != nil {
+		source = d.Frame.Source
+	}
 	if g.active != nil {
+		if g.active.Effect != 0 {
+			source = g.active.Effect
+		}
 		g.active.Effect = 0
 	}
 	for y := 0; y < 50; y++ {
@@ -201,7 +213,7 @@ func (g *Graphics) abortBattleEffect() {
 			g.setActor(at, graphicCell{})
 		}
 	}
-	g.Stats.BattleEffectFallbackCalls++
+	g.recordEffectFallback(source)
 }
 
 func (g *Graphics) commitBattleEffect() {
@@ -222,7 +234,11 @@ func (g *Graphics) commitBattleEffect() {
 		}
 	}
 	g.active.Effect = 0
-	g.Stats.BattleEffectCompletions++
+	if isChoiSource(d.Frame.Source) {
+		g.Stats.BattleMarkerCompletions++
+	} else {
+		g.Stats.BattleEffectCompletions++
+	}
 }
 
 func (g *Graphics) restoreEffectBases(out *image.RGBA, p oracle.PlanarDisplay) {

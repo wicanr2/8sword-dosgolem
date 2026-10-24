@@ -26,6 +26,8 @@ type Engine struct {
 	BattleBackgroundError string
 	BattleActorError      string
 	BattleEffectError     string
+	BattleMarkerError     string
+	PaletteError          string
 	Exited                bool
 	ExitCode              uint8
 	PAMLoaded             bool
@@ -102,6 +104,9 @@ func Open(opt Options) (*Engine, error) {
 						if effectErr := loadBattleEffects(opt.Assets, opt.Root, art); effectErr != nil {
 							e.BattleEffectError = effectErr.Error()
 						}
+						if markerErr := loadBattleMarkers(opt.Assets, opt.Root, art); markerErr != nil {
+							e.BattleMarkerError = markerErr.Error()
+						}
 						if militiaErr := loadBattleMilitia(opt.Assets, opt.Root, art); militiaErr != nil {
 							if e.BattleActorError != "" {
 								e.BattleActorError += "；"
@@ -112,6 +117,14 @@ func Open(opt Options) (*Engine, error) {
 					}
 				}
 			}
+		}
+	}
+	if e.Tracker != nil {
+		palette, paletteErr := loadPresentationPalette(opt.Assets, e.Tracker.graphics)
+		if paletteErr != nil {
+			e.PaletteError = paletteErr.Error()
+		} else {
+			e.Tracker.palette = palette
 		}
 	}
 	e.Music = newMusic(o, pam, opt.Assets, e.HD)
@@ -361,6 +374,11 @@ func (e *Engine) Status() map[string]any {
 	out["battle_background_error"] = e.BattleBackgroundError
 	out["battle_actor_error"] = e.BattleActorError
 	out["battle_effect_error"] = e.BattleEffectError
+	out["battle_marker_error"] = e.BattleMarkerError
+	out["palette_error"], out["palette_style"] = e.PaletteError, ""
+	if e.Tracker != nil && e.Tracker.palette != nil {
+		out["palette_style"] = paletteStyle
+	}
 	view := e.bootConsole()
 	out["console_stage"], out["console_source_sha256"] = view.stage, view.sha
 	intro := map[string]any{"load_error": e.IntroError, "stage": e.IntroStage()}

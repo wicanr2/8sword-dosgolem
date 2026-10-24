@@ -1,0 +1,39 @@
+{
+  "decision": "採用目前排版（建議）",
+  "scope": "兩側海報、完整中央遊戲、字型與海報工具列、內側漸淡及淡入淡出",
+  "generation": "Built-in image_gen; original generated PNG bytes preserved",
+  "runtime": "Actual production frontend X11 GetImage, 1600x687, MOE lishu and cover selected",
+  "rights": "Recorded in existing private repository at user request; no public release authorization inferred",
+  "files": [
+    {
+      "file": "poster-cover-approved-r1.png",
+      "source": "cover-poster-r1.png",
+      "sha256": "2d666efbb2b1fc714e92b82f078c3fd4139b7c690fce794b95c99c8b2725c55d",
+      "bytes": 3763390
+    },
+    {
+      "file": "poster-cover-approved-r1.prompt.txt",
+      "source": "cover-poster-r1.prompt.txt",
+      "sha256": "478e4951483fe86d9762dfb14a3b5183044d766ffd7e4441dfd21fa303b5b180",
+      "bytes": 1480
+    },
+    {
+      "file": "poster-wings-approved-r1.png",
+      "source": "side-wings-r1.png",
+      "sha256": "f14552801e98d4171befeb1220a9626c9e2e7a25efdad011896d2d3abfcba341",
+      "bytes": 3278119
+    },
+    {
+      "file": "poster-wings-approved-r1.prompt.txt",
+      "source": "side-wings-r1.prompt.txt",
+      "sha256": "535c30439aa2a5bc6ffcd086dde36e72058553e7c32bd7a99f5eedb4a3ea0160",
+      "bytes": 1704
+    },
+    {
+      "file": "poster-toolbar-runtime-r1.png",
+      "source": "toolbar/toolbar-moe-character.png",
+      "sha256": "268cc7ebbc34698d33a2fccd76dd7e158682742f9234436c1ef7dd99aa45efdf",
+      "bytes": 1688738
+    }
+  ]
+}

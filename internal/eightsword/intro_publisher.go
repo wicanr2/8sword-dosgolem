@@ -20,8 +20,9 @@ var publisherRects = []image.Rectangle{
 }
 
 type publisherWords struct {
-	erase *image.Alpha
-	words map[string]image.Image
+	erase   *image.Alpha
+	words   map[string]image.Image
+	sources map[string]string
 }
 
 func loadIntroPublisher(o *oracle.Oracle, dir, root string) (*IntroTitle, error) {
@@ -41,6 +42,7 @@ func loadIntroPublisher(o *oracle.Oracle, dir, root string) (*IntroTitle, error)
 		Words      []struct {
 			ID, File, SHA string
 			Width, Height int
+			FontSource    string `json:"font_source_sha256"`
 		}
 	}
 	if json.Unmarshal(raw, &m) != nil || m.Schema != 1 || m.SourceSHA != publisherSourceSHA || m.DecodedSHA != publisherDecodedSHA || m.Mask != "publisher-erase.png" || len(m.Words) != 3 {
@@ -93,10 +95,16 @@ func loadIntroPublisher(o *oracle.Oracle, dir, root string) (*IntroTitle, error)
 	if hash(gray) != publisherEraseSHA {
 		return nil, fmt.Errorf("發行商清墨來源不符")
 	}
-	p := &publisherWords{erase: alpha, words: map[string]image.Image{}}
+	p := &publisherWords{erase: alpha, words: map[string]image.Image{}, sources: map[string]string{}}
 	for _, v := range m.Words {
 		if (v.ID != "noto" && v.ID != "lishu" && v.ID != "caoshu") || p.words[v.ID] != nil || v.File != "publisher-"+v.ID+".png" || v.Width != 1920 || v.Height != 1200 {
 			return nil, fmt.Errorf("發行商字圖選項不符")
+		}
+		if v.FontSource == "" {
+			v.FontSource = legacyFontSHA[v.ID]
+		}
+		if (v.ID == "noto" && v.FontSource != legacyFontSHA["noto"]) || (v.ID != "noto" && !validChoiceSource(v.ID, v.FontSource)) {
+			return nil, fmt.Errorf("發行商字型來源不符")
 		}
 		im, err := decode(v.File, v.SHA, 1920, 1200)
 		if err != nil {
@@ -128,6 +136,7 @@ func loadIntroPublisher(o *oracle.Oracle, dir, root string) (*IntroTitle, error)
 			}
 		}
 		p.words[v.ID] = im
+		p.sources[v.ID] = v.FontSource
 	}
 	return &IntroTitle{o: o, ink: p.words["noto"], publisher: p}, nil
 }

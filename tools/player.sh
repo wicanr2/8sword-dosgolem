@@ -79,6 +79,11 @@ case "${1:-}" in
             EIGHTSWORD_TEST_PON_ASSETS=/out/assets-painted-r22 \
             EIGHTSWORD_TEST_PON_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/pon-art-r1 \
             EIGHTSWORD_TEST_BATTLE_MILITIA_ASSETS=/out/assets-painted-r23 \
+            EIGHTSWORD_TEST_CHOI_ASSETS=/out/assets-painted-r25 \
+            EIGHTSWORD_TEST_CHOI_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/choi-art-r1 \
+            EIGHTSWORD_TEST_PALETTE_ASSETS=/out/assets-painted-r26 \
+            EIGHTSWORD_TEST_POSTER_ASSETS=/out/assets-painted-r28 \
+            EIGHTSWORD_TEST_MOE_ASSETS=/out/assets-painted-r27 \
             go test -v -timeout=390s -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -190,6 +195,66 @@ case "${1:-}" in
       --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
       --mount "type=bind,src=$task_out,dst=/out" \
       "$task_py" python /tools/prepare-hd-battle-militia.py --base /base --source /orig/MAN01.EGG --out /out
+    ;;
+  battle-choi-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r24}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_refs="$task_work/probe-20261023/graphics-first/battle-r1/choi-art-r1"
+    test -d "$task_player/assets-$task_base"; test -f "$task_orig/CHOI.EGG"
+    test -f "$task_refs/frame-0-painted-raw-r1.png"; test -d "$task_root/tools"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 60s docker run --rm --init --name "8sword-choi-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 700m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_refs,dst=/refs,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-battle-markers.py --base /base --source /orig/CHOI.EGG --refs /refs --out /out
+    ;;
+  palette-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r25}"
+    valid_name "$task_name"; valid_name "$task_base"
+    test -d "$task_player/assets-$task_base"; test -f "$task_root/tools/prepare-hd-palette.py"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 60s docker run --rm --init --name "8sword-palette-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 512m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-palette.py --base /base --out /out
+    ;;
+  moe-lishu-assets|poster-toolbar-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    valid_name "$task_name"
+    task_default_base=painted-r26
+    if [[ "$1" == poster-toolbar-assets ]]; then task_default_base=painted-r27; fi
+    task_base="${3:-$task_default_base}"
+    valid_name "$task_base"
+    task_refs="$task_work/probe-20261023/graphics-first"
+    test -d "$task_player/assets-$task_base"; test -d "$task_refs"; test -d "$task_orig"
+    test -f "$task_refs/font-settings-r1/NotoSansCJK-Black.ttc"
+    task_args=(python /tools/prepare-poster-toolbar.py --base /base --art /refs/poster-art-r1 --font /refs/font-settings-r1/NotoSansCJK-Black.ttc --out /out)
+    if [[ "$1" == moe-lishu-assets ]]; then
+      test -d "$task_player/assets-painted-r14"; test -f "$task_orig/TIT1.AY"
+      test -f "$task_refs/font-settings-r1/TW-MOE-Li-3.00.ttf"
+      task_args=(python /tools/prepare-moe-lishu.py --base /base --publisher-base /player/assets-painted-r14 --source /orig/TIT1.AY --fonts /refs/font-settings-r1 --out /out)
+    fi
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 90s docker run --rm --init --name "8sword-ui-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 1200m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_player,dst=/player,readonly" \
+      --mount "type=bind,src=$task_refs,dst=/refs,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" "${task_args[@]}"
     ;;
   hero-redesign-assets)
     task_name="${2:?指定新的素材組名稱}"
@@ -402,5 +467,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

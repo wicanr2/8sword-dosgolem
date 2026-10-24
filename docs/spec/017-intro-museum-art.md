@@ -1,5 +1,7 @@
 # 017：博物館片頭美術
 
+女主角追加：使用者提供 TIT5 特寫畫面，要求仙氣飄飄的中國古典美女。新原圖 `graphics-first/museum-art-r1/heroine-closeup-r1.png` 為 1825×862，SHA `f060f488db011379ec80e82e48f2112309baf639fe1179f81cd822e95310a186`；完整提示為同名 `.prompt.txt`，來源與生成紀錄為 `graphics-first/poster-heroine-generated-r1.json`。使用內建 image_gen，以原版女主角畫面及包裝人物為參考，保留原始 PNG。這張是美術成果，尚未接入正常片頭；不能據此稱整段動畫完成，也不代答既有博物館整體配色 A／B。
+
 2026-10-24 追加方向：使用者明確要求開場動畫 HD，並提供「王子想念鏡中的美女」概念圖。參考原圖已存 `graphics-first/mirror-reference-user-r1.png`，新手繪情緒樣稿、完整提示及來源為同目錄 `opening-mirror-r1.png`／`.prompt.txt`／`-source.json`。主角造型沿 [004 武將肖像更新](004-hd-bitmap-presentation.md#主角武將肖像更新)。樣稿是新美術參考，尚非原版鏡頭證據或已接入的動畫；本規格仍按下列原版博物館順序、行走、光束、換頁及 Esc 契約續作。既有配色問題與正式素材閘門不由靜態概念圖代答。
 
 鏡中情緒試播為 `graphics-first/opening-mirror-concept-r2.mp4`，1920×1200、24 fps、192 幀、8 秒緩慢推鏡，配已批准〈幻〉HD 曲的前八秒及淡入淡出。`opening-mirror-concept-r2-audit.json` 核對視訊與音訊各八秒、192 個不同解碼幀、非靜音與取樣峰值；第 3 秒畫面已看。R1 單次編碼被 `-frames:v` 提早截斷 AAC 至 7.232 秒，失敗與舊核對均保存；R2 保留同一視訊位元流，另行混入完整八秒音訊。這是鏡頭及配樂概念試播，未包含角色動作，不替代原版十張人物、光束、換頁與正式接入驗收。

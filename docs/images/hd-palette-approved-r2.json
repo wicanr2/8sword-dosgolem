@@ -1,0 +1,10 @@
+{
+  "kind": "user-approved reference screenshot",
+  "decision": "Keep original concept jade, gold, black and cinnabar; soften dynamic green text and bright red selection",
+  "approved": "2026-10-24 user: ok 繼續",
+  "supersedes": "navy R1 approval withdrawn; R2 accepted",
+  "png_sha256": "a817d0b60b919f79f185efac72440880f7c28a211308db8de3e953f6337ea5d8",
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/13-F1-character-proposal.png",
+  "method": "normal-input dosgolem run; disposable host compositor; original PNG bytes preserved",
+  "rights": "reference only in existing private repository; no grant for public game asset distribution"
+}

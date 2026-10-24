@@ -964,3 +964,101 @@ Ogg 解碼使用既有快取的 oggvorbis 1.0.5／vorbis 1.0.2，MIT 原文另�
 - `scene-live-preview-r7.json` 記錄原版／A／B 的 149 個連續狀態、虛擬時距、來源串流及字型 SHA。WebP 7.45 秒、SHA `4d9e275769564714c7eddfcb2777dc22f41e349fa139ea0d21bb25789df059b0`；匯出後全部來源狀態解碼相同。無聲美術比較不充作實際音訊或原硬體時間證據。
 
 配色仍未知，017 為 DRAFT。正式接入及相應正常視窗、Esc、存退讀與故障驗收仍在 READY 之後。`formal-final-audit-r7.json` 保存本輪收尾雜湊、正式程式不變與擁有權核對。
+
+## 戰術增強提案與 AI 掛點候選
+
+2026-10-24。使用者指定參考 `/home/anr2/openkb`，先提部隊特性、策略 AI 與法術動畫提案，並強調從原版 AI 判斷 hook 切入。另指定字型工具列及隸書。[030 DRAFT](docs/spec/030-battle-expansion-proposal.md)保存建議，未接正式新規則。
+
+### 參考專案
+
+實際根目錄 `/home/anr2/openkb/openkb-code`，提交 `f67208e1aeedaefd737a860f66c9635305ad9376`，唯讀參考。`src/game.c` 的 `ai_pick_target_evolved`／`ai_unit_think_evolved` 與主戰鬥迴圈已核對；`opt_ai_mode` 確實切換原版與增強版。增強版對射手加 1000、技能等級乘 20、加最大傷害及近身已反擊加 30，並處理貼身射手改近戰。這些數值是參考實作事實，不是本作正式評分公式。
+
+| 輸入 | SHA-256 |
+|---|---|
+| `src/game.c` | `ab13945fdbfb8a646f2286451a53c796c295be33ce339e53f84b7982f88ff551` |
+| `src/bounty.c` | `a4e3778b43865f973fadba6f93917bfa4d159c216ccdb88092d0a7a31ed3191b` |
+| `src/bounty.h` | `d5f0c1e03389344a63c12e5efcdb9c80444811c512974053c6b5e6f242e7d5e7` |
+| `data/free/troops.ini` | `d7059047d3ab529cd390f806702b0a4db0332d50141dbf3d66a6ebda38017573` |
+| `data/free/COPYING` | `be03dc3f1dc43c36f570ca8ca6d1d432f003230b24fff2e374303d550643cb7b` |
+| `src/COPYING` | `46084eba1d6083431dff8f1d4da52b5fc60ea2064a49e5755ab476dea2a64cb3` |
+
+兵種 INI 有 25 筆，能力列舉在 bounty.h；能力效果仍須各自追 consumer。美術目錄的 COPYING 為 CC-BY-SA 4.0／GPL3+ 雙授權，程式為 GPL3+。未把參考程式或素材複製進本案，不能把 DOS fallback 圖像當成自由素材，也不把 GPL 參考碼標成自有 RRSAL 程式。
+
+### 神州八劍候選鏈
+
+輸入 `PAM.AY` SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，正式 `text-first/PAM.i64` SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。工具沿已驗證 IDA 9.4、UID 1000、521 函式及 `ida-pro-9.4-idapython:py312-v1` image `4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab`。locked-v1 本機仍不存在，沒有重建重複映像。正式 DB／來源唯讀，DB 複製到容器 `/tmp` 後查詢，沒有改名或回寫。
+
+證據在 `workplace/probe-20261023/graphics-first/battle-r1/`：`ida-ai-candidates-r1.json`、`ida-ai-parents-r2.json`、`ida-ai-entry-r3.json` 保存原函式、bytes、xref、IDA 線性及逐指令檔案偏移。r2 執行時腳本路徑仍叫 r1，當次內容另存 `ida-ai-parents-r2.py`，r1 原腳本已恢復；收尾 audit 保存兩者雜湊。
+
+| IDA MZ loader 線性定位 | dosgolem 執行期段位址 | 原始 PAM 檔案偏移 | 等級及用途 |
+|---|---|---|---|
+| `sub_206DA`／`0x206DA` | `0F67:216A` | `0x11B4A` | 已證實六個行動旗標初始化及 `sub_1FB6C` 呼叫迴圈；敵方輪次語意為強推論 |
+| `sub_1FB6C`／`0x1FB6C` | `0F67:15FC` | `0x10FDC` | 已證實部隊欄位檢查、亂數候選及執行器呼叫；AI 完整語意為強推論 |
+| `0x1FD7A` | `0F67:180A` | `0x111EA` | 已證實候選值扣 7 後，以兩個參數呼叫 `sub_22DBC`；目標替換契約尚未 READY |
+| `sub_22DBC`／`0x22DBC` | `0F67:484C` | `0x1422C` | 已證實為上列 caller 的被呼叫端；完整動作、傷害與副作用未知 |
+| `sub_22B96`／`0x22B96` | `0F67:4626` | `0x14006` | 已證實另一個六參數被呼叫端；合法動作及結算語意未知 |
+
+上述位址三欄屬不同基準，不能互換。由既有已驗繪圖錨點 `14D2:04F2`／IDA `0x24112` 推導本次模組載入段 `0110`，對完整 MZ 重定位表套用後，十三個執行期 24-byte 前綴與原檔逐 byte 相同，包含跨取樣尾端的 relocation word。`ai-hook-audit-r1.json` 狀態 `PASS-byte-location-only`，不代表 AI 動態語意通過。
+
+`ai-hook-trace-r1.go.txt` 從正常路徑產生的 `choi-hd-r1/03-attack-00-before.state` 做快照診斷，來源 SHA `5f59ebd624bb3603fd381f71699ad43e489d699c090a8805121b79dd7a10945e`，步數 75593388 至 85593388。沒有注入輸入或觀測者寫入；六個候選沒有事件。這是診斷缺席，不能聲稱 AI 掛點已動態驗證，也不能以此認定候選無效。後續應從正常實際敵方回合擷取入口與目標參數，不重擲挑成功案例。
+
+既有 `0F67:5533` 對應 `sub_23A42` 內四幀部隊繪圖迴圈，其 caller 不能直接當作 AI 決策掛點。正式 `14D2` 圖像與文字觀測保持只讀。
+
+### 工具列原型
+
+`graphics-first/font-settings-r1/toolbar-proposal-r1.html` 是可切換原型，未接引擎。三張圖直接嵌入既有 `font-settings-save-r2` 的 X11 GetImage 原始 PNG，逐張核對原 SHA，沒有改圖；生成腳本及來源收據在同目錄。現有 UnYetgul 的古韓文印刷風與真正繁體隸書需求分開記錄，不以改標籤充作完成。正式工具列、真正隸書選型及新字集尚未完成。
+
+## HD 配色原型與紅綠衝突來源
+
+2026-10-24。使用者同意 030 提案方向，追加原版紅綠配色在 HD 也須調整。規則模式與呈現模式分開，原版規則＋HD 同樣使用新配色。方向與未完成項見 [030 配色範圍](docs/spec/030-battle-expansion-proposal.md#hd-配色追加範圍)。
+
+已證實原因：正式 `tracker.go` 的 `Compose` 使用客體 `PlanarDisplay.Palette` 產生底色與 Noto 字色，只有色碼 14 改為既有暖黃色；色碼 10 因而仍為亮綠。005 的三筆 UI 快取沒有改動原版後續動態選取，人物頁及軍隊頁的色碼 12 亮紅底也保留。`graphics_ui.go` 的 `uiJade` 增加綠色通道，加上來源 46 的玉紙，形成深綠背景。這些是主機呈現與既有 UI 範圍，不需要另找 AI hook。
+
+`graphics-first/battle-r1/palette-proposal-r1.go.txt`、同名 `_test.go.txt` 與 `prepare-palette-proposal-r1.py` 在容器 `/tmp/palette-project` 建立一次性程式。主機正式 Go 檔與素材不改，原始來源及素材唯讀。深靛藍底為程式繪製的細布紋，框飾沿用既有程式幾何，字色與選取只在主機合成；沒有編修原始 PNG、把畫面全幅套色，或重製已批准的部隊及地表素材。
+
+| 原型用途 | RGB |
+|---|---|
+| 布紋基底 | `(15,29,44)` 加有界細紋 |
+| 欄位文字 | `(218,185,123)` |
+| 內文與數字 | `(245,234,207)` |
+| 原版亮紅反白的候選底色 | `(43,67,92)` |
+| 柔和朱紅文字候選 | `(215,133,111)` |
+
+同一條普通冷啟動、新遊戲、預定左右移動、自然遭遇、普通 Enter／空白／Esc、F2／F1 及返回路徑重播，未載快照、未注入記憶體。試驗 115.69 秒，輸出 `battle-r1/palette-replay-r1/`。四點依序為步數 70209885 的戰場數字、124035796 的 F2、128104528 的 F1、131656854 的地圖。每點先保存目前 HD，切換主機原型，再還原目前 HD；切換前後完整客體 state 相同，還原圖像亦相同。`VisibleScene` 在戰場為空、F2 為 map，因此本輪不依該字串猜場景或定義正式色彩規則。
+
+`audit-palette-proposal-r1.py` 獨立驗證四張目前 HD 圖全幅 RGBA 同 `choi-hd-r1` 控制。最終 state SHA `d29a77c052bcc0649f7517a2c31d9c11405ef538f3a288c14c7ddf3139000188`、PCM SHA `1a573c8b4194bf00f04df6aa246c2d799de066c208d0063d7c9c41b196d60d77`、35 工作檔及 58 個輸入掃描碼／步數全部相同。地圖內容物理矩形 `[72,72,1368,1122)` 的 1360800 像素原樣保持。來源程式、一次性建置輸入、程式與圖像 SHA 見 `palette-replay-r1/audit.json`，狀態 `PASS-prototype-only`。
+
+已檢視四張原型，人物頁及軍隊頁的亮綠字改暖金，亮紅反白改靛青；地表與部隊仍是既有素材。肖像圖片內的深綠背景保留。主字對布紋基底的計算明暗比約 9.09，象牙白對選取底約 8.52，僅供這些固定色對的設計參考，不等於所有手繪底圖上的可讀性驗收。戰場數字尚須正式可讀性與動態遮擋檢查。
+
+工具沿用 Go 1.24.13 映像 `8ed6bdee2bce1f32f804e888f942b25bbf62f2165a43344bb4587f3371de0581`、Pillow 11.3.0 映像 `44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48`、前節固定 PAM 與 dosgolem，不修改參考專案或正式 DB。這是主機無頭呈現原型；新配色未定版，未接正式程式，也未驗實際視窗、全部訊息／法術／故事頁。
+
+### 配色方向撤回與原概念圖保守修色 R2
+
+使用者一度選定 R1「靛青鎏金」，隨後明確撤回，要求以原先概念圖的配色為基礎，認為藍底已失去原來風格。R1 的批准不再有效。撤回前沒有正式配色程式、素材、Git 圖像或存檔變更，因此沒有已接入的新配色需要回退；保留其原型與收據，不重寫歷史。
+
+R2 以已確認 B 的原圖 `docs/images/hd-style-approved-r1.png` 為配色參考，SHA `2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6`。現有原玉綠素材 46、金框及黑底維持，不生成新材質。一次性主機呈現只將文字色碼 10 改為暖金 `(223,195,121)`、色碼 12 改柔朱紅 `(215,112,89)`，已知側欄亮紅選取底改深朱紅 `(128,45,39)`；下方原綠／黃指示配色保留關係並降低刺激感。不推斷指示內容或賦予新玩法語意。
+
+來源為 `battle-r1/palette-refinement-r2.go.txt`、`palette-refinement-r2_test.go.txt`、`prepare-palette-refinement-r2.py`。一次性程式仍只在容器 `/tmp` 修改，正式 source、資產 PNG、客體色盤與 RAM 保持。正常重播 73.98 秒，輸出 `battle-r1/palette-refinement-r2/`，沒有快照載入或輸入注入。`audit-palette-refinement-r2.py` 的 `audit.json` 保存原型來源、一次性建置輸入／程式、PNG、參考圖 SHA，狀態 `PASS-prototype-only`。
+
+四張目前 HD 全幅 RGBA 同既有控制，四個呈現點的前後完整 state 相同，還原後畫面亦相同。最終 state `d29a77c0…0188`、PCM `1a573c8b…0d77`、35 工作檔及 58 輸入掃描碼／步數相同。地圖內容 `[72,72,1368,1122)`、人物頁空白玉紙 `[960,360,1200,1050)` 與肖像 `[72,78,312,318)` 各自逐 RGBA byte 保持。
+
+已檢視新人物頁、軍隊頁及地圖。`comparison.html` 提供同畫面切換與滑動比較，另以 SVG viewport 顯示原 B 概念圖下半部，內嵌原 PNG byte 保持。R2 尚未定版，未接正式程式，沒有把 R1 的選擇或驗證當成 R2 的批准與完成證據。
+
+
+## 2026-10-24：正式原色修色、海報與教育部隸書
+
+已證實的呈現範圍見 [031](docs/spec/031-hd-palette-refinement.md)、[032](docs/spec/032-poster-toolbar.md)及 [015 追加](docs/spec/015-font-settings.md#教育部隸書追加契約)。這次沒有新增客體 hook 或位址語意。原版來源、固定 dosgolem 與原補丁保持。
+
+| 證據 | 位置與結果 |
+|---|---|
+| 正式修色三組重播 | graphics-first/battle-r1/palette-runtime-audit-r1.json，完整 state SHA d29a77c052bcc0649f7517a2c31d9c11405ef538f3a288c14c7ddf3139000188；PCM SHA 1a573c8b4194bf00f04df6aa246c2d799de066c208d0063d7c9c41b196d60d77，35 工作檔及 58 輸入一致。沒有以相同 seed 宣稱未知 RNG parity |
+| 正式修色 GUI | workplace/player/gui/palette-save-r1/palette-gui-audit-r1.json，暖金 567、朱紅 15782 像素，舊亮色零；三點戰場側欄計數同為 32。實際 DOS read 在 step 11012417 讀進度 2987 bytes，零指令檢視 runtime linear 0x9E000 與落地 SHA 同 9c50e6952e0e7fdec2a95c8d85eb394ad94b7ac2351fce757f08988ad11c3247 |
+| 配色來源封存 | workplace/player/build-pre-toolbar-r1/source.tar，62 筆來源，SHA 8014353da66e292ce502d0a53fcbf490d59bc6eeeeef2640eb98dc88134d578c；並保留四程式與建置指紋 |
+| 海報與女主角原圖 | graphics-first/poster-heroine-generated-r1.json，完整提示、來源、原 PNG 尺寸與 SHA；內建 image_gen，byte 未改。海報定稿與實際視窗入口 docs/images/poster-approved-r1.json；女主角留本機，尚未接片頭 |
+| 教育部來源 | graphics-first/font-settings-r1/moe-lishu-source-r1.json；官方 ZIP fd7e633ed8cebc94d46e2295e6bd9d58814be5fb7489e99dc23f99b7e435dce0；完整 TTF f0ba5eda31727ad89cc0b1f6b9a7dfda02f061fa101c18548b6f8ea0145c108b，名稱 TW-MOE-Li Regular。官方頁與授權 URI 見 015 |
+| 字型與重建 | graphics-first/poster-art-r1/font-poster-asset-audit-r1.json，Pillow 11.3.0；全部 853 字墨按指定來源逐 byte 同獨立排版。r27 126 檔、r28 131 檔各獨立重建相同，工具列 123 字直接從固定 Noto 字型重生 |
+| 工具列 GUI | graphics-first/poster-art-r1/toolbar-gui-audit-r1.json，XTEST 真正視窗，308／46 幀，19 次點選，工具列零 DOS 輸入；三種穩定側翼逐 RGBA 同批准原型，另有 12 淡入幀。第二程序偏好恢復 lishu／cover |
+| 故障 GUI | workplace/player/gui/poster-fallback-r1/toolbar-fallback/，真壞 poster-cover.png 導致整組海報關閉；教育部隸書與遊戲保留，42 幀獨立解碼，錯誤明示 SHA 不符 |
+| 工具列來源封存 | workplace/player/build-toolbar-r1/source.tar，65 筆來源，SHA 87281883030c212b3c71bdb31871da7de37f66ad81f0235576078be967e5cb2b；實際 GUI 的四程式保留 |
+
+以上 graphics-first 的共同前綴為 workplace/probe-20261023/。工具版本為既有鎖定 sc-cht-hdtools:pillow11.3.0-r1 及 dosgolem-go-ebiten:1.24-r1，Go 1.24.13。新組測試、舊組回歸及 68 項分批測試日誌由相應規格索引。字型實際來源、呈現純度與視窗操作已證實；全場景、其他平台、全開場與 AI 掛點語意不由這些收據證明。

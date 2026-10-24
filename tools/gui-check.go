@@ -195,6 +195,65 @@ func (d *driver) shot(name string) {
 	fmt.Println("captured", name, im.Bounds().Dx(), im.Bounds().Dy())
 }
 
+func (d *driver) toolbarClick(x, y int) {
+	geo, err := xproto.GetGeometry(d.c, xproto.Drawable(d.window)).Reply()
+	check(err)
+	pos, err := xproto.TranslateCoordinates(d.c, d.window, d.root, 0, 0).Reply()
+	check(err)
+	xx := pos.DstX + int16(x*int(geo.Width)/2944)
+	yy := pos.DstY + int16(y*int(geo.Height)/1264)
+	check(xtest.FakeInputChecked(d.c, 6, 0, 0, d.root, xx, yy, 0).Check())
+	before := d.status()["updates"].(float64)
+	check(xtest.FakeInputChecked(d.c, 4, 1, 0, d.root, 0, 0, 0).Check())
+	d.wait("工具列滑鼠按下", 15, func(s map[string]any) bool { return s["updates"].(float64) >= before+3 })
+	check(xtest.FakeInputChecked(d.c, 5, 1, 0, d.root, 0, 0, 0).Check())
+	d.events = append(d.events, map[string]any{"toolbar_click": []int{x, y}, "status": d.status()})
+	before = d.status()["updates"].(float64)
+	d.wait("工具列滑鼠放開", 15, func(s map[string]any) bool { return s["updates"].(float64) >= before+3 })
+}
+func (d *driver) toolbar() {
+	before := len(d.status()["input_events"].([]any))
+	for _, row := range []struct {
+		id string
+		y  int
+	}{{"lishu", 145}, {"caoshu", 202}, {"noto", 88}, {"lishu", 145}} {
+		d.toolbarClick(700, 28)
+		d.wait("字型選單", 15, func(s map[string]any) bool { return s["toolbar_menu"] == "font" })
+		d.shot("toolbar-font-menu-" + row.id)
+		d.toolbarClick(700, row.y)
+		d.wait("工具列字型已呈現", 15, func(s map[string]any) bool { return s["presented_font_id"] == row.id && s["toolbar_menu"] == "" })
+		d.shot("toolbar-font-" + row.id)
+	}
+	for _, row := range []struct {
+		id string
+		y  int
+	}{{"cover", 145}, {"off", 202}, {"wings", 88}, {"cover", 145}} {
+		d.toolbarClick(1300, 28)
+		d.toolbarClick(1300, row.y)
+		d.wait("海報切換", 15, func(s map[string]any) bool { return s["poster_id"] == row.id && s["toolbar_menu"] == "" })
+		time.Sleep(500 * time.Millisecond)
+		d.shot("toolbar-poster-" + row.id)
+	}
+	d.toolbarClick(700, 28)
+	d.press(116)
+	d.press(9)
+	if d.status()["font_id"] != "lishu" || d.status()["toolbar_menu"] != "" {
+		panic("取消字型選單改動選擇")
+	}
+	d.toolbarClick(1300, 28)
+	d.press(116)
+	d.press(36)
+	d.wait("鍵盤選海報", 15, func(s map[string]any) bool { return s["poster_id"] == "cover" && s["toolbar_menu"] == "" })
+	d.toolbarClick(700, 28)
+	check(xproto.SetInputFocusChecked(d.c, 1, d.root, 0).Check())
+	d.wait("失焦關閉工具列", 15, func(s map[string]any) bool { return s["toolbar_menu"] == "" })
+	check(xproto.SetInputFocusChecked(d.c, 1, d.window, 0).Check())
+	if len(d.status()["input_events"].([]any)) != before {
+		panic("工具列將按鍵送入 DOS")
+	}
+	d.shot("toolbar-final-selection")
+}
+
 func (d *driver) confirmation(after float64) {
 	d.wait("本次確認文字", 35, func(s map[string]any) bool {
 		events, _ := s["strings"].([]any)
@@ -782,6 +841,27 @@ func main() {
 	}
 	d.scene("main-menu")
 	d.shot("03-main-menu")
+	if *flow == "toolbar-fallback" {
+		if d.status()["poster_id"] != "off" || d.status()["poster_error"] == "" || d.status()["font_name"] != "教育部隸書" || d.status()["toolbar_error"] != "" {
+			panic("海報故障未隔離")
+		}
+		d.shot("toolbar-real-corrupt-fallback")
+		d.receipt(*flow)
+		d.quit()
+		return
+	}
+	if *flow == "toolbar-reload" {
+		if d.status()["font_id"] != "lishu" || d.status()["font_name"] != "教育部隸書" || d.status()["poster_id"] != "cover" {
+			panic("工具列偏好沒有恢復")
+		}
+		d.shot("toolbar-preferences-restored")
+		d.receipt(*flow)
+		d.quit()
+		return
+	}
+	if *flow == "toolbar" {
+		d.toolbar()
+	}
 	if *fontCycle {
 		if *flow == "reload" {
 			if d.status()["font_id"] != "caoshu" {
@@ -872,6 +952,21 @@ func main() {
 	d.press(36)
 	d.scene("map")
 	d.shot("05-map")
+	if *flow == "toolbar" {
+		if d.status()["font_name"] != "教育部隸書" {
+			panic("新字型來源未載入")
+		}
+		d.army("toolbar")
+		d.press(67)
+		d.scene("character")
+		d.shot("toolbar-moe-character")
+		d.press(9)
+		d.scene("map")
+		d.shot("toolbar-return-map")
+		d.receipt(*flow)
+		d.quit()
+		return
+	}
 	if *battleCheck && *flow == "save" {
 		d.battle()
 	}
