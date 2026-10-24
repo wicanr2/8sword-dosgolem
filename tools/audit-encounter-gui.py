@@ -197,7 +197,19 @@ class Model:
 
     def actor(self, ident):
         if ident not in self.actors:
-            if 139 <= ident <= 149:
+            if ident == 150:
+                entry = read(self.assets / "battle-man21.json")["frames"][0]["image"]
+                assert sha(self.assets/entry["file"]) == "e710379542cf1c4279ce1703b17ed9d3a839a2e831add705d0f93a370cbf8122"
+                sampled = sample(self.assets/entry["file"], 213, 186, actor=True, rect=[119, 161, 1041, 1074])
+                full = bytearray(264*300*4)
+                for y in range(186):
+                    at = ((y+78)*264+48)*4
+                    full[at:at+213*4] = sampled[y*213*4:(y+1)*213*4]
+                assert hashlib.sha256(full).hexdigest() == "90f3e7d4039f3aca90f5921f79e04e1155c699fe923482a42c588f9a61148f4c"
+                data = b"".join(full[(y*264+x)*4:(y*264+x+1)*4] for y in range(300) for x in range(263, -1, -1))
+                assert hashlib.sha256(data).hexdigest() == "0d2155399bd208382cc623fd4087ebf274bdc497f82d807b5d56b551f22f58ee"
+                result = data, 88, 50
+            elif 139 <= ident <= 149:
                 entry = read(self.assets / "map-encounter-7.json")["image"]
                 assert sha(self.assets/entry["file"]) == "b5f71a301064ed1d2a050588d400b0fe9113289e9baa2e5bb39c4e66def4e1b0"
                 sampled = sample(self.assets/entry["file"], 141, 132, actor=True, rect=[62, 54, 1298, 991])

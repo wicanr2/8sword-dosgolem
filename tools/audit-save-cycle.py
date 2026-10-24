@@ -54,6 +54,18 @@ def audit(root, original):
         "encounter_dialog_observed": (root / "save/encounter-selected-no.png").exists(),
         "scope": "XTEST 冷啟動、新遊戲、人物頁、F7 儲存與回 DOS、重新啟動繼續；未驗亂數規則、戰鬥、HD 美術或 HD 音樂。",
     }
+    continued = root / "continued-game.json"
+    if continued.exists():
+        initial = read(continued)
+        expected = initial["sha256"]
+        assert len(expected) == 64 and all(c in "0123456789abcdef" for c in expected)
+        initial_reads = [entry for entry in first["file_ops"]
+                         if entry["Op"] == "read" and entry["Name"] == "gamedata.ay"
+                         and entry["Pos"] == 0 and entry["Len"] == 2987 and not entry["Failed"]]
+        assert initial_reads
+        result["normal_start"] = {"mode": "continue-original-F7-save", "input_save_sha256": expected,
+                                  "input_receipt_sha256": digest(continued), "dos_reads": initial_reads}
+        result["scope"] = "XTEST 冷啟動、從既有 F7 存檔普通繼續、人物頁、F7 儲存與回 DOS、重新啟動繼續；未驗亂數規則、戰鬥、HD 美術或 HD 音樂。"
     (root / "save-cycle-audit.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(result, ensure_ascii=False))
 

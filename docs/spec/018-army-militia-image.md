@@ -1,5 +1,7 @@
 # 018：軍隊頁的民兵圖像
 
+`MAN21-ARMY-HD-RESOLVED`：其他軍隊頁的一處缺口已由 [041](041-army-man21-image.md#正式提升與限定驗收)閉合。鍵 `DOS/MAN21.EGG@47cc484319abeba53551c20b7cf4b9b2c6061f2da3b6cda14155b3598f10982c/file+0/mirror-six-planes`，沿 `PAM/runtime14D2:04F2/057D/0625`，ID 150 共用原向 99 的不可變鏡射副本。正常招募的第二列矮人、F2／F3 三字型與存退讀已驗；本規格民兵及其他未驗來源保持原範圍。
+
 回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的戰場首筆另見 [028](028-battle-militia-image.md)。`PAM/runtime14D2:0626/06B8/076E` 使用可選別名 107，共用本規格的不可變快取；F2 仍為 85。正常戰場及 F2／F1 對拍已核對，完整狀態依 028，不把其他三筆未驗來源套入。
 
 狀態：限定 CONFORMED。正常新遊戲 F2 民兵圖與 [F3 黑底追加](#f3-黑底追加驗收)已接入 B 明亮手繪風格，原文、兵種、數量、月薪與玩家操作保持。F3 取消、原版 Enter、空列表、三字型與真正存退讀已抽驗。原 F2／F1 及故障收據保留，其他兵種、戰鬥規則及整體 HD 未結案。

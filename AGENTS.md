@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+後續部隊姿勢入口：[040：持劍兵四姿勢](docs/spec/040-battle-swordsman-poses.md)，目前 DRAFT；來源、取樣原型及正常招募／戰場證據依該規格收斂。
+
+軍隊頁圖像入口：[041：MAN21 圖像](docs/spec/041-army-man21-image.md)，沿現有 HD 快取與正常招募來源；現況以 CONTEXT 為準。
+
 地圖遭遇圖像：[037：紫衣角色與逐步出現](docs/spec/037-map-encounter-actor.md)限定 CONFORMED。`ENEMY.AY` 第 13 筆已接 r38；十段正常畫面、十個實際 Draw 與三字型逐像素重建，真正視窗存退讀通過。完整「否」退場另有正常 dosgolem 兩組驗證，不稱完整拒戰已在 GUI 抽到。舊 019 第 10 筆是另一張蠍形圖，其餘十三筆仍待處理；原圖與快取留本機，README 只收使用者要求的比較圖。工具與證據見 037。
 
 第三組部隊規格：[025：MAN11 四筆部隊圖像](docs/spec/025-battle-man11-actors.md)，限定 CONFORMED；四筆正常完整 Frame、第 0 筆實際視窗及真正存退讀通過。沿 019 正常來源及 023／024 既有呈現機制，不重開頁與返回點研究。

@@ -28,6 +28,7 @@ type Engine struct {
 	MapEncounterError        string
 	MapEncounter10Error      string
 	MapEncounter7Error       string
+	ArmyMan21Error           string
 	BattleActorError         string
 	BattleEffectError        string
 	BattleMarkerError        string
@@ -132,6 +133,9 @@ func Open(opt Options) (*Engine, error) {
 						}
 						if encounterErr := loadMapEncounter7(opt.Assets, opt.Root, art); encounterErr != nil {
 							e.MapEncounter7Error = encounterErr.Error()
+						}
+						if armyErr := loadArmyMan21(opt.Assets, opt.Root, art); armyErr != nil {
+							e.ArmyMan21Error = armyErr.Error()
 						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)
 					}
@@ -449,6 +453,7 @@ func (e *Engine) Status() map[string]any {
 	out["map_encounter_error"] = e.MapEncounterError
 	out["map_encounter_10_error"] = e.MapEncounter10Error
 	out["map_encounter_7_error"] = e.MapEncounter7Error
+	out["army_man21_error"] = e.ArmyMan21Error
 	out["battle_actor_error"] = e.BattleActorError
 	out["battle_effect_error"] = e.BattleEffectError
 	out["battle_marker_error"] = e.BattleMarkerError
