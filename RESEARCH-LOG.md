@@ -1287,3 +1287,14 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 - r40 共 183 檔，同候選及獨立重建，181 舊檔保持，沒有新 PNG。build-army21-r1 保存 89 筆正式輸入、七程式、來源快照及 Go 1.24.13；正式七程式與四份建置紀錄已原子提升。README 比較圖 SHA b3ce33e1…09a2，由同狀態原生 VGA／HD 重生；實際視窗另有獨立收據。
 
 041 限定 CONFORMED，018／026 已回填相同來源鍵與範圍。040、038、友軍戰場鏡射、LIVE6 待選稿與全遊戲 HD 仍未結案。工具沿既有固定 Go 及 Pillow Docker，原版與研究輸入唯讀，輸出 UID/GID 1000；每份建置指紋與原始失敗收據保留。
+# 2026-10-25：042 鏡射原型與存檔伴隨地圖
+
+本輪證據入口為 [042](docs/spec/042-friendly-man21-battle-poses.md)。新增研究不更動 041 的有限來源結論，也不證實友軍戰場動作。
+
+- 已證實：原始 `MAN21.EGG` SHA `47cc484319abeba53551c20b7cf4b9b2c6061f2da3b6cda14155b3598f10982c`。四筆各 3304 bytes、88×50、六塊；鏡射快取及原 PNG 指紋由 `ally21-mirror-prototype-r1/registration.json` 保存，獨立重建六檔相同。沒有新生成圖或正式登錄。
+- 工具固定 Go 1.24.13，Docker `dosgolem-go-ebiten:1.24-r1` image `8ed6bdee…0581`；獨立取樣與核對為 Pillow 11.3.0，image `44d0742c…c48`。dosgolem 仍為 f79eab6d 加既有八檔補丁。`ally21-source-build-r1` 與 r2 各保存 44 筆輸入、完整來源、Go 版本及程式 SHA；r2 原始探針 SHA `190e3c8ab7927f3d0585d72efa96c84eef906443d58e31a74b62ed42390bb298`。
+- 唯讀戰場觀察定位仍為 dosgolem 執行期 `14D2:0626 → 076E`，與 `PAM.AY` 檔案偏移 `0x156B6` 的 329 bytes 分開標記。本輪未進此路徑，零部隊來源，不能稱四筆動作或返回公式已驗。原版 RND seed 未知；預設時鐘 12:00:00.00 與 3000 cycles/ms 只是執行條件。
+- 觀測開關的兩組普通行程各 1892 幀，完整客體、PCM、輸入、無損串流、checkpoint、22 工作檔及事件相同，見 `ally21-source-isolation-r1.json`。行程從 F7 繼續到 F5 的 3,25，沒有自然遭遇。這是該行程的負結果，不推論整個遊戲沒有遭遇或矮人不能作戰。
+- 已證實：這條 F7 路徑保存兩份會改變的檔案。人物檔 `gamedata.ay` 2987 bytes、SHA `f1998cd5e449ede436ca474533ef55df8b9778b21510779decc19d4f6acdc2ea`；地圖伴隨檔 `map01.ay` 5761 bytes、SHA `7074c69d69a8bce2ab697f10aed02d8a521bf94509bcc1c6d05c90d2cf7290eb`。它們都由原版普通 F7 寫出，原版來源副本唯讀。只有人物檔的冷讀雖能保持 RAM 與兵力，不能恢復探索圖。
+- `ally21-reload-r1` 單檔負對照的探索區域差 21168 像素。`ally21-reload-r2` 帶完整兩檔，RAM 零指令診斷只讀 `dosgolem runtime linear 0x9E000` 的 2987 bytes，同實際存檔；診斷不作遊戲讀檔替代，普通 Continue 與 DOS 讀取已在先前執行。F2 畫面相同；F5 第 205 個實際錄製 Frame、step 30198653，全幅相同。固定 checkpoint 的 108 點差異另記為原版位置標記閃爍相位，不用任意遮罩消掉差異。
+- 證據範圍是本地圖的研究輸入修正，不是新的存檔格式解析。正式前端保持同一持久化目錄，本輪沒有改它。過去只核對 2987 bytes 的證據仍證明其明列範圍，不自動升為探索圖或所有大陸的完整保存。其他地圖的伴隨檔及沒有遇敵的原因仍未知。

@@ -4,6 +4,8 @@
 
 軍隊頁圖像入口：[041：MAN21 圖像](docs/spec/041-army-man21-image.md)，沿現有 HD 快取與正常招募來源；現況以 CONTEXT 為準。
 
+友軍戰場方向入口：[042：MAN21 四姿勢](docs/spec/042-friendly-man21-battle-poses.md)，從真正招募與自然戰鬥取證，不以軍隊頁或原向快取代替正常動作驗收。研究工具為[鏡射原型](tools/prepare-battle-mirror-prototype.py)及[來源與續玩核對](tools/audit-friendly-man21.py)。以真正 F7 存檔建立冷讀時，同時盤點客體保存的伴隨檔；042 已證實 MAP01 需要 `gamedata.ay` 與 `map01.ay`，匯入方式及其他地圖的支援邊界見該規格。
+
 地圖遭遇圖像：[037：紫衣角色與逐步出現](docs/spec/037-map-encounter-actor.md)限定 CONFORMED。`ENEMY.AY` 第 13 筆已接 r38；十段正常畫面、十個實際 Draw 與三字型逐像素重建，真正視窗存退讀通過。完整「否」退場另有正常 dosgolem 兩組驗證，不稱完整拒戰已在 GUI 抽到。舊 019 第 10 筆是另一張蠍形圖，其餘十三筆仍待處理；原圖與快取留本機，README 只收使用者要求的比較圖。工具與證據見 037。
 
 第三組部隊規格：[025：MAN11 四筆部隊圖像](docs/spec/025-battle-man11-actors.md)，限定 CONFORMED；四筆正常完整 Frame、第 0 筆實際視窗及真正存退讀通過。沿 019 正常來源及 023／024 既有呈現機制，不重開頁與返回點研究。
