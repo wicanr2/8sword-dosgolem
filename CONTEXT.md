@@ -1,9 +1,10 @@
 # 目前狀態
 
-核對日期：2026-10-24。工作規則：[AGENTS.md](AGENTS.md)。歷程：[WORKLOG.md](WORKLOG.md)。
+核對日期：2026-10-25。工作規則：[AGENTS.md](AGENTS.md)。歷程：[WORKLOG.md](WORKLOG.md)。
 
 | 面向 | 現況與證據 |
 |---|---|
+| 搜尋與募兵建築 | 正常冷啟動、新遊戲、F6 空搜尋、F1 返回、自然遇敵選否、F5 及附近建築已留診斷收據 `graphics-first/map-interaction-r1/research-audit-r1.json`。472 幀客體純度、零缺字；募兵提示及 Esc 返回已看，建築大圖仍原版。來源 9690 搜尋提示與募兵提示可見時，場景分類仍為 map。沒有成功募兵、同狀態控制重播、此路段 GUI 或存讀驗收，不升 CONFORMED。下一步先處理這條建築美術與文字路徑，其他已結案項目保持 |
 | 目前工作 | 使用者已同意 [030 的方向](docs/spec/030-battle-expansion-proposal.md)：保留原版規則，新增獨立戰術增強模式，引入部隊特性、策略 AI 與法術動畫，AI 從原版判斷 hook 切入。字型工具列與真正隸書已接入，見 015／032。數值、掛點及存檔格式尚未 READY，正式新玩法尚未接入 |
 | 目前 HD 驗收 | [018 的 F3 追加](docs/spec/018-army-militia-image.md#f3-黑底追加驗收)限定 CONFORMED。r33 共 158 檔，補原版 PMAP 47 的純黑材質，F3 沿既有 HD 民兵。四組各 418 幀、1672 次 Frame 純度，state／PCM／29 工作檔與事件相同；真壞組 418 幀同原圖控制。正常 GUI 474／205 Draw、故障 193 Draw 及四張接觸表已看，41 個 F3 Draw 涵蓋三字型、六個故障 Draw 正確回退。取消、Enter、五個空頁 actual Draw 及 F7 存退讀通過，2987 bytes 同 RAM 1ef10c17…f933，存讀圖片零差異。引擎及規則程式保持，接續其他未驗路段 |
 | HD 配色追加 | 使用者撤回藍底 R1，確認原概念圖保守 R2。正式 r26 已接入，[031](docs/spec/031-hd-palette-refinement.md)限定 CONFORMED。三組完整 state／PCM／35 工作檔／58 輸入相同；四幀逐 RGBA 同 R2。正式視窗自然戰鬥、F1／F2、字型與 F7 存退讀通過，733／277 幀已解碼檢視。戰場不誤用歷史側欄，壞清單只回退配色。不是全場景或 RNG 規則驗收 |
