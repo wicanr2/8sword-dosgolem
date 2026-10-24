@@ -25,6 +25,7 @@ type Engine struct {
 	GraphicsError            string
 	BattleBackgroundError    string
 	RecruitmentBuildingError string
+	MapEncounterError        string
 	BattleActorError         string
 	BattleEffectError        string
 	BattleMarkerError        string
@@ -120,6 +121,9 @@ func Open(opt Options) (*Engine, error) {
 						}
 						if buildingErr := loadRecruitmentBuilding(opt.Assets, opt.Root, art); buildingErr != nil {
 							e.RecruitmentBuildingError = buildingErr.Error()
+						}
+						if encounterErr := loadMapEncounter(opt.Assets, opt.Root, art); encounterErr != nil {
+							e.MapEncounterError = encounterErr.Error()
 						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)
 					}
@@ -434,6 +438,7 @@ func (e *Engine) Status() map[string]any {
 	out["font_id"], out["font_name"], out["font_error"], out["font_choices"] = e.FontID(), e.FontName(), e.FontError, e.FontChoices()
 	out["battle_background_error"] = e.BattleBackgroundError
 	out["recruitment_building_error"] = e.RecruitmentBuildingError
+	out["map_encounter_error"] = e.MapEncounterError
 	out["battle_actor_error"] = e.BattleActorError
 	out["battle_effect_error"] = e.BattleEffectError
 	out["battle_marker_error"] = e.BattleMarkerError

@@ -39,7 +39,8 @@ func (g *Graphics) heroRecordMatches(id uint16, kind int, source []byte) bool {
 }
 
 func (g *Graphics) actorBackgroundKnown(first uint32, width, height int) bool {
-	if !((width == 64 && height == 25) || (width == 88 && height == 50)) || len(g.actors) == 0 {
+	// Spec 037 adds only fixed, six-plane-verified encounter prefixes.
+	if !((width == 64 && height >= 7 && height <= 25 && height%2 == 1) || (width == 88 && height == 50)) || len(g.actors) == 0 {
 		return false
 	}
 	for y := 0; y < height; y++ {

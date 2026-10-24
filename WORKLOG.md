@@ -940,3 +940,14 @@ GUI r3 共 494／196 Draw、71／19 次改變，三張接觸表及 r2 三張實�
 收尾 man01-final-integrity-r1.json 通過：兩個原始封包、183 檔與來源集合、八核心保持；新建置 83 輸入、七程式全部核對，原 82 輸入只有 battle_actors.go／battle_effects.go 兩筆變更，另增一筆測試。173 素材與獨立重建相同、165 舊檔保持、壞組只改末張 PNG。十份文件 473 個相對連結、57 個錨點、五處 resolution backlink、新工具索引與既有入口正對照通過，Python／shell 語法、Go 格式、Git 空白檢查通過。七程式與四份建置紀錄已原子提升，前後 SHA 存 man01-promoted-build-r1.json，來源快照留新建置目錄。
 
 本輪六組已完成、不可變的頂層二進位收據中，265 個同內容路徑改為唯讀硬連結，回收 1200095232 bytes；原路徑與 SHA 保持，沒有處理 scratch 存檔、文字 metadata、原始輸入、生成原圖或其他專案，見 man01-own-receipt-dedupe-r1.json。工作根沒有 root-owned 檔案或 .md 目錄，本案容器已清空，沒有新映像或全域清理。主機 gh 認證、Git 身分與 PRIVATE 倉庫核對通過；本次同步範圍為十九份明列程式、文件、比較圖與來源紀錄，不含原版及完整素材。整體 Goal 保持 active。
+
+## 2026-10-25：037 地圖遭遇角色候選接入
+
+- 上一輪只重述已完成 LIVE2，分類為無新增進度；本輪回到正常遭遇的原圖缺口。命中復古重製驗收、spec 閘門與文件職責路由，沿既有 battle 研究根目錄工作。
+- 新增 037 READY 規格及 AGENTS／CONTEXT 入口。來源目錄分清舊第 10 筆蠍形怪物與現行第 13 筆向右施法者，新增兩頁正常只讀觀測與獨立返回核對。source r1 限制目的頁錯誤的 panic 留存，r2 修正探針後通過。兩次 Docker inspect 查詢不存在的 Entrypoint 欄位後改讀完整既有映像設定，沒有另建 image。
+- 使用內建 image_gen 製作地圖比例圖，1419×1108 RGBA，原圖 SHA `81f72e1a…e146`，完整提示 SHA `9b5cbabe…6360d`。原圖與提示保存在本機 battle 研究根目錄，沒有上傳。原圖／手繪並列及真正正常遭遇無頭圖已看。
+- 新增可選載入器、來源／提示／PNG 嚴格驗證、十段共用快取與獨立 `map_encounter_error`。空白 1／3／5 列不登錄，7–25 奇數列只裁相同完整快取；既有正常目的保留分支與兩頁所有權保持，不改 DOS 或核心。
+- `assets-encounter-candidate-r1` 為 177 檔，173 舊檔保持；`bash tools/player.sh encounter-assets encounter-rebuild-r1 painted-r37` 獨立重建相同。真壞組只加一個 byte 到新 PNG。正式七程式與 r37 保持，沒有提前提升候選。
+- 新兩項測試及六個故障子案例 16.638 秒通過；六項既有字墨／人物／圖層／頁搬移測試 7.953 秒通過，沒有略過。第一次既有測試未帶 fixture 環境造成略過，收據保留且不計通過，補環境後同容器乾淨重跑。
+- `encounter-build-r1` 的 81 筆輸入、探針、來源快照已保存。三組完整普通輸入至 89900 ms，每 50 ms 仍呼叫 Frame，從 54000 ms 起各錄 719 幀。客體、PCM、36 工作檔及事件相同；11 次新接入，54 個差異幀只在原版矩形內，真壞組全同 r37，其他 checkpoint 不變。正常戰鬥、F1／F2、F7 真存檔與 DOS 退出已到達。
+- 仍待本組 HD 返回全幅模型、Frame 純度抽樣、實際視窗、三字型與真正讀回，037 保持 READY，整體 HD Goal 未完成。下一輪只補這些缺口，原版來源與同一張圖不重做。GitHub 仍 PRIVATE，主機 gh 身分與 Git 身分已核對；只提交程式與文件。Docker 均 --rm，沒有建立新映像，最後清理與擁有權結果見 `encounter-final-integrity-r1.json`。
