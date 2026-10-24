@@ -1,6 +1,6 @@
 # 037：地圖遭遇的紫衣角色與逐步出現
 
-狀態：READY。來源、逐次返回、兩頁與原型幾何已審查，允許以下呈現實作。尚未完成正式提升或 GUI 驗收。承接 [019](019-normal-encounter-battle-presentation.md)、[007](007-masked-hero-animation.md)及既有六平面人物觀測；原版仍決定遭遇、確認、戰鬥與存檔。
+狀態：限定 CONFORMED。來源、十段正常完整畫面、十個實際 Draw、三字型、真正視窗存退讀及正常「否」退場已按末節範圍驗證；r38 與七程式已正式提升。完整拒戰的 GUI 未抽到，不以正常 dosgolem 收據冒稱 GUI。承接 [019](019-normal-encounter-battle-presentation.md)、[007](007-masked-hero-animation.md)及既有六平面人物觀測；原版仍決定遭遇、確認、戰鬥與存檔。
 
 ## 範圍與證據
 
@@ -51,7 +51,9 @@
 
 實作入口：[群組載入器](../../internal/eightsword/map_encounter.go)、[實際來源與回退測試](../../internal/eightsword/map_encounter_test.go)、[素材匯入器](../../tools/prepare-hd-encounter.py)。匯入器在上述固定容器以 `--base assets-painted-r37 --source ENEMY.AY --refs 既有battle研究目錄 --out 不存在的新素材目錄` 執行，新增四檔、保留 173 舊檔。候選素材與測試收據仍須依本規格完成正常路段驗收後才提升。
 
-## 候選接入與已驗範圍
+## 候選階段紀錄
+
+本節保留正式提升前的階段與限制，現況以末節為準。
 
 - `assets-encounter-candidate-r1` 共 177 檔，173 舊檔保持；由 `bash tools/player.sh encounter-assets encounter-rebuild-r1 painted-r37` 獨立重建相同。`assets-encounter-broken-r1` 只在新 PNG 末端增加一個 byte，真實觸發 SHA 拒用。正式素材仍 r37，正式七程式尚未提升。
 - `encounter-build-r1` 保存 81 筆 Go／模組／探針輸入指紋、正常探針與來源快照，與上述正式主程式建置分開。新 `map_encounter.go`、`graphics_actor.go` 形狀擴充及 Engine 可選群組接入均在此候選；原版與 dosgolem 核心不變。
@@ -61,3 +63,27 @@
 - 已檢視 `encounter-13-comparison-r1.png` 與正常 `encounter-normal-hd-r1/06-west-frontier-hd.png`。這是正常無頭畫面，未當作 GUI。逐次返回的 HD 全幅模型、Frame 純度抽樣、真正視窗、三字型與讀回仍未完成，037 保持 READY。
 
 三組核對器在固定 Pillow 容器以 `--hd 新組收據 --control r37收據 --broken 真壞收據 --out 新JSON` 執行，900 MiB、2 CPU、64 PID、無網路及外層 180 秒逾時。下一條工作限定補上述驗收缺口，不重新分析 helper、挑選 RNG 或生成相同角色。
+
+## 正式提升與限定驗收
+
+`MAP-ENCOUNTER-13-HD-RESOLVED` 的不可變鍵為 `DOS/ENEMY.AY@0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd/file+15652/mirror-six-planes`，掛點仍 `PAM/runtime14D2:04F2/057D/0625`。較早 [019](019-normal-encounter-battle-presentation.md)已回填相同標記與來源，沒有把第 10 筆改名為第 13 筆。
+
+| 項目 | 已驗證範圍 |
+|---|---|
+| 正式程式與素材 | `build-encounter-r1` 的 85 筆來源／模組／工具指紋、七程式與來源快照已保存，七程式與四份建置紀錄原子提升。`assets-painted-r38` 共 177 檔，等同候選與獨立重建，173 舊檔保持。正式變更只含前輪已驗載入器與十段形狀，這輪沒有再改 Go 呈現或核心 |
+| 十段完整畫面 | `encounter-fine-normal-r1` 從正常冷啟動與普通按鍵取得高度 7–25 全十段。每份 Frame 前後完整客體相同，原生畫面、圖層所有權、固定 PNG 與字型獨立重建全部 2304000 像素，最新同工具收據 `encounter-fine-model-audit-r3.json`，較早 r2 保留。此探針以 1 ms 執行片段細看，與前輪 10 ms 的執行邊界不同，**未當成與 r3 探針同狀態或 PCM 相同**；各自的正常來源與逐份 Frame 純度成立 |
+| 真正視窗 | `encounter-save-r2` 的 save／reload 為 843／160 Draw、170／19 次改變。四張連續接觸表、完整遭遇及存前／讀回畫面已檢視。研究程式沿目前 main，只增加兩處唯讀擷取；17 次原版來源含兩次完整第 13 筆，沒有注入遊戲狀態 |
+| 實際 Draw 重建 | `encounter-gui-audit-r5.json` 的十個實際 Draw，含草書的 7／9／11／13／17／19／21／25 高度及 Noto／隸書完整圖。每份中央 2304000 像素同獨立 PNG、原生像素與所有權、預乘 alpha、地表、邊框及真實字型 atlas 的模型，連回逐幀串流，Frame 前後客體相同。3146 個實際遮罩墨點另同原始六平面。15／23 高度未在此 GUI 抽到，完整十段的範圍以前列正常細看收據為準 |
+| 操作與存讀 | 正常「否／是」反白、確認「是」、戰鬥與返回、三字型、F1／F2 往返、四方向及真正 F7 存退讀通過。2987 bytes 同讀回 RAM SHA `ae6fb42ff63e9ce02c7444eae52ac8fa24535fd0c17e01688d6cf0c6eca5e632`，read step 12512421，DOS 退出 0。存讀畫面差異 3158 像素限主角動畫框，位置與鏡頭一致，沒有宣稱動畫同相 |
+| 完整拒戰 | `encounter-no-normal-r1`／`encounter-no-control-r1` 是普通冷啟動、完整角色後選「否」與 Enter，不是快照續跑。原版依序用 25／19／13／7／1 列退場，正常回地圖。兩組各 339 幀、19 次來源，15 次新人物接入、零新增回退；33 個差異幀只在角色矩形。完整 state `3f3f920d…8524`、PCM `c9644e22…754a`、29 工作檔及事件相同；離場、F1／F2、F7 存檔與 DOS 退出的 PNG 全同控制。見 `encounter-no-audit-r1.json`。這是 dosgolem 正常無頭分支，完整拒戰未在 GUI 抽到 |
+| 原有三組與故障 | 更新的同一核對器重查前輪資料，`encounter-yes-audit-r2.json` 仍為三組各 719 幀、state／PCM／36 工作檔與事件相同；真壞組全部同 r37。沒有為了 GUI 更改來源、既有部隊、規則、CPU 參數或正式顯示邏輯 |
+| README 比較圖 | [同狀態總覽](../images/map-encounter-original-hd-r1.png)、[來源紀錄](../images/map-encounter-original-hd-r1.json)與[重生工具](../../tools/prepare-readme-encounter-overview.py)沿使用者要求收錄私人倉庫。全幅來源來自同一正常 checkpoint 的原生／HD 兩圖，兩側採相同比例；完整原圖與素材組仍留本機 |
+
+### 執行與驗證入口
+
+- 素材匯入為 `bash tools/player.sh encounter-assets <新名稱> painted-r37`，必須是尚不存在的新名稱。正式測試編排已轉交 037 所需的素材、基底與獨立快取環境變數。
+- [視窗核對器](../../tools/audit-encounter-gui.py)在固定 Pillow Docker 執行：`--assets assets-painted-r38 --original 原版目錄 --cache 既有battle研究根 --receipt encounter-save-r2 --out 新JSON`。模型從固定 PNG 重新取樣，既有獨立快取只作額外比對。支援本路段的地表、靜物、UI、人物與三字型，未知圖層會拒絕，不推成全遊戲模型。使用 1100 MiB、2 CPU、64 PID、無網路與外層 300 秒逾時。
+- 正常拒戰用[同一核對器](../../tools/audit-encounter-runtime.py)加 `--branch no --hd encounter-no-normal-r1 --control encounter-no-control-r1 --out 新JSON`，此分支不要求不存在的真壞第三組。完整輸入保存 `encounter-no-complete-commands-r1.txt`，時鐘於啟動前設 12:00，3000 cycles/ms，內部 RNG seed 仍未知。
+- 視窗來源快照、探針、兩處 main 差異與只讀擷取程式存於 `encounter-gui-build-r2`；十段細看來源在 `encounter-frame-build-r1`。它們不進正式程式，也不替代上述真正玩家路徑。
+
+第一次 GUI 路線停在募兵數量頁，雖然摘要仍為 map，方向鍵已被輸入欄消耗。r2 按可見原版募兵字串辨認後送普通 Esc，保留失敗 r1。額外完整拒戰 GUI 的有界路線沒有再次遇到目標，記為未抽到，沒有重抽種子或擴大步數挑結果；改以已固定時鐘的正常 dosgolem 路線補足分支。完整遊戲、其他十三種地圖遭遇圖、規則與音樂不由本項結案。沒有新玩家依賴，不重開本組來源、helper、同一張圖或已完成的驗收。

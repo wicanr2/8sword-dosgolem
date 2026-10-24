@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "spec": "037",
+  "output": "map-encounter-original-hd-r1.png",
+  "output_sha256": "47c505b645e235f83436b5ade1c2aff3b550b54c41791298ce8d24e515985043",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/encounter-normal-hd-r1/06-west-frontier-native.png",
+      "sha256": "c89a3826a0933a09952c9367b0a268b4b4c9503bedcd4620aabd04134397a0db",
+      "mode": "native"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/encounter-normal-hd-r1/06-west-frontier-hd.png",
+      "sha256": "6fe6a60ecc04b9239b637bf8171154c1d3f49677f2f77efc302992d431d74556",
+      "mode": "hd"
+    }
+  ],
+  "source_status": {
+    "path": "workplace/probe-20261023/graphics-first/battle-r1/encounter-normal-hd-r1/06-west-frontier.json",
+    "sha256": "ca13fb4abd9d4ad7691afdc406768cb250031b641685ed480c9616cfed283122"
+  },
+  "source_record": {
+    "file": "ENEMY.AY",
+    "record": 13,
+    "file_offset": 15652,
+    "sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+    "transform": "mirror-six-planes"
+  },
+  "step": 165382267,
+  "clock": "pre-run 12:00, live 3000 cycles/ms",
+  "internal_rng_seed": "unknown",
+  "capture": "native and HD in one normal-input probe shot, no guest advance between images",
+  "layout": "same 1920x1200 viewport on both sides, both resized to 960x600 with nearest-neighbor",
+  "tool": {
+    "pillow": "11.3.0",
+    "script_sha256": "21e9e76539174f4e3a64a16e38284205117eb44feae75c9b23dd8eca2aa5228e",
+    "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+    "font_index": 3
+  },
+  "approval_basis": "user requested original-versus-HD monster and battlefield overviews in README",
+  "rights": "requested comparison in existing private repository only; original-derived; no public distribution grant; full original and HD packs stay local"
+}

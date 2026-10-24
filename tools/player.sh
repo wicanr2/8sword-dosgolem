@@ -81,6 +81,9 @@ case "${1:-}" in
             EIGHTSWORD_TEST_MAN01_ASSETS=/out/assets-painted-r37 \
             EIGHTSWORD_TEST_MAN01_BASE=/out/assets-painted-r36 \
             EIGHTSWORD_TEST_MAN01_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1 \
+            EIGHTSWORD_TEST_ENCOUNTER_ASSETS=/out/assets-painted-r38 \
+            EIGHTSWORD_TEST_ENCOUNTER_BASE=/out/assets-painted-r37 \
+            EIGHTSWORD_TEST_ENCOUNTER_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1 \
             EIGHTSWORD_TEST_PON_ASSETS=/out/assets-painted-r22 \
             EIGHTSWORD_TEST_PON_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/pon-art-r1 \
             EIGHTSWORD_TEST_BATTLE_MILITIA_ASSETS=/out/assets-painted-r23 \
@@ -700,5 +703,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-man01-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|recruitment-assets <名稱> [基底名稱]|bamboo-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|encounter-assets <名稱> [基底名稱]|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-man01-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|recruitment-assets <名稱> [基底名稱]|bamboo-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac
