@@ -59,11 +59,23 @@ var man21Sources = [...]battleActorSource{
 
 var man21Targets = [...][4]int{{48, 78, 213, 186}, {60, 78, 201, 186}, {84, 78, 177, 186}, {0, 78, 261, 186}}
 
+// Spec 036: records 1–3 after all six planes have been mirrored by the guest.
+// Record 0 keeps the shared F2 cache and the separate spec 028 battle alias.
+var man01PoseSources = [4]battleActorSource{
+	{"99b7d57ea025fe32f02f245c457c6fc779794fdd6ed50baf62654de031335d7c", "ea9735a587549708dcfb17d8c163065b5265e0ccfcd66fd9cb505f68f386f175"},
+	{"8bc1fa0a96f90ab9b8636d765bbd6eb949223e781c2d73aff8e76cb755dc4e42", "f741358c8c7ffe767479f5be83236afca0fcc7087b6d1dd02506c76bfd0f2611"},
+	{"9679f25b082babf9376fc4093e2cba00b8bafea538724d82b28cf4b2be122a6c", "343d7379493dffbfaf7f23e074bc5799aa74bc705d1a3cf4fa556ed3d91b2c21"},
+}
+
+var man01PoseTargets = [4][4]int{{0, 0, 264, 300}, {0, 0, 264, 300}, {0, 0, 264, 300}}
+
 type battleActorGroup struct {
 	Manifest, Source, SourceSHA, Stem string
 	FirstID                           uint16
 	Sources                           [4]battleActorSource
 	Targets                           [4][4]int
+	FirstRecord, Count                int
+	Transform                         string
 }
 
 func battleActorRect(values []int, width, height int) (image.Rectangle, error) {
@@ -80,10 +92,11 @@ func battleActorRect(values []int, width, height int) (image.Rectangle, error) {
 // Groups commit independently; a broken optional group cannot disable another.
 func loadBattleActors(dir, root string, assets *GraphicsAssets) error {
 	groups := []battleActorGroup{
-		{"battle-actors.json", "MAN16.EGG", man16SourceSHA, "battle-man16", 87, man16Sources, man16Targets},
-		{"battle-man06.json", "MAN06.EGG", man06SourceSHA, "battle-man06", 91, man06Sources, man06Targets},
-		{"battle-man11.json", "MAN11.EGG", man11SourceSHA, "battle-man11", 95, man11Sources, man11Targets},
-		{"battle-man21.json", "MAN21.EGG", man21SourceSHA, "battle-man21", 99, man21Sources, man21Targets},
+		{"battle-actors.json", "MAN16.EGG", man16SourceSHA, "battle-man16", 87, man16Sources, man16Targets, 0, 4, ""},
+		{"battle-man06.json", "MAN06.EGG", man06SourceSHA, "battle-man06", 91, man06Sources, man06Targets, 0, 4, ""},
+		{"battle-man11.json", "MAN11.EGG", man11SourceSHA, "battle-man11", 95, man11Sources, man11Targets, 0, 4, ""},
+		{"battle-man21.json", "MAN21.EGG", man21SourceSHA, "battle-man21", 99, man21Sources, man21Targets, 0, 4, ""},
+		{"battle-man01.json", "MAN01.EGG", militiaSourceSHA, "battle-man01", 113, man01PoseSources, man01PoseTargets, 1, 3, "mirror-six-planes"},
 	}
 	var failures []string
 	for _, group := range groups {
@@ -97,7 +110,7 @@ func loadBattleActors(dir, root string, assets *GraphicsAssets) error {
 	return nil
 }
 
-// Each group commits only after all four images have passed validation.
+// Each fixed group commits only after all of its images pass validation.
 func loadBattleActorGroup(dir, root string, assets *GraphicsAssets, group battleActorGroup) error {
 	raw, err := os.ReadFile(filepath.Join(dir, group.Manifest))
 	if os.IsNotExist(err) {
@@ -112,6 +125,7 @@ func loadBattleActorGroup(dir, root string, assets *GraphicsAssets, group battle
 		SourceSHA string `json:"source_sha256"`
 		Style     string `json:"style"`
 		StyleSHA  string `json:"style_reference_sha256"`
+		Transform string `json:"transform"`
 		Frames    []struct {
 			Record int        `json:"record"`
 			Image  graphicPNG `json:"image"`
@@ -121,7 +135,7 @@ func loadBattleActorGroup(dir, root string, assets *GraphicsAssets, group battle
 	if err = json.Unmarshal(raw, &m); err != nil {
 		return err
 	}
-	if m.Schema != 1 || m.Source != group.Source || m.SourceSHA != group.SourceSHA || m.Style != "B-bright-painted-r1" || m.StyleSHA != ApprovedStyleSHA || len(m.Frames) != 4 {
+	if m.Schema != 1 || m.Source != group.Source || m.SourceSHA != group.SourceSHA || m.Style != "B-bright-painted-r1" || m.StyleSHA != ApprovedStyleSHA || m.Transform != group.Transform || len(m.Frames) != group.Count {
 		return fmt.Errorf("戰場部隊清單來源／樣式不符")
 	}
 	if assets.Materials[battleBackgroundID] == nil || assets.ByNative[battleBackgroundNativeSHA] != battleBackgroundID {
@@ -137,7 +151,7 @@ func loadBattleActorGroup(dir, root string, assets *GraphicsAssets, group battle
 	var tiles [4]*image.RGBA
 	for i, frame := range m.Frames {
 		entry, id := frame.Image, group.FirstID+uint16(i)
-		if frame.Record != i || entry.Index != int(group.FirstID)-1+i || entry.File != fmt.Sprintf("%s-%d-r1.png", group.Stem, i) || entry.Sampling != "bitmap" || len(frame.Target) != 4 {
+		if frame.Record != group.FirstRecord+i || entry.Index != int(group.FirstID)-1+i || entry.File != fmt.Sprintf("%s-%d-r1.png", group.Stem, group.FirstRecord+i) || entry.Sampling != "bitmap" || len(frame.Target) != 4 {
 			return fmt.Errorf("戰場部隊記錄／檔名不符")
 		}
 		for n, want := range group.Targets[i] {
@@ -168,7 +182,7 @@ func loadBattleActorGroup(dir, root string, assets *GraphicsAssets, group battle
 	if assets.BattleActors == nil {
 		assets.BattleActors = map[uint16]bool{}
 	}
-	for i, tile := range tiles {
+	for i, tile := range tiles[:group.Count] {
 		id := group.FirstID + uint16(i)
 		assets.ByNative[group.Sources[i].Native] = id
 		assets.Actors[id] = &graphicMaterial{88, 50, tile}

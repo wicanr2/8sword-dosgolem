@@ -30,7 +30,7 @@ func loadBattleEffects(dir, root string, assets *GraphicsAssets) error {
 	for h, id := range assets.ByNative {
 		tmp.ByNative[h] = id
 	}
-	group := battleActorGroup{"battle-pon.json", "PON.EGG", ponSourceSHA, "battle-pon", 103, ponSources, ponTargets}
+	group := battleActorGroup{"battle-pon.json", "PON.EGG", ponSourceSHA, "battle-pon", 103, ponSources, ponTargets, 0, 4, ""}
 	if err := loadBattleActorGroup(dir, root, tmp, group); err != nil {
 		return err
 	}

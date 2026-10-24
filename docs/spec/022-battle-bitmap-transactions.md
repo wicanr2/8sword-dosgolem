@@ -60,3 +60,7 @@ GUI r2 的後續移動曾在拒戰後被原版強制進入戰鬥，操作器錯�
 ### BATTLE-PON-EFFECTS-RESOLVED
 
 [027](027-battle-pon-effects.md)沿本項 `PAM/runtime14D2:04F2/057D/0625`，完成 `DOS/PON.EGG@5fe52b53…786e/file+0,+3304,+6608,+9912` 的四筆累積效果。原版仍執行每次遮罩寫入；新層只在本項完整返回後提交，缺返回沿原 100000 步上限回退。GUI 研究 r1 曾混用較晚即時 metadata 與保留幀，r2 改為凍結本項原本已產生的返回點快取，並連結實際 Draw，沒有額外 Compose 或修改本項時序。PON 限定 CONFORMED，其他圖像仍分別驗收。
+
+## 民兵其餘姿勢後續閉合
+
+`MAN01-POSES-HD-RESOLVED`：前述 MAN01 其餘三筆待辦已由 [036](036-battle-militia-poses.md#正式接入與限定驗收)閉合，來源鍵 `DOS/MAN01.EGG@a7e02cf4…e5f1/file+3304,+6608,+9912/mirror-six-planes`，沿 `PAM/runtime14D2:0626/06B8/076E`。普通游標右移選中敵方後 Enter，三筆來源與返回色碼、三組隔離、完整返回與實際 Draw、F1／F2 及真正存退讀已驗。較早只見首筆的收據保持歷史；原版動作規則、傷害、AI 與整體 HD 不由此結案。

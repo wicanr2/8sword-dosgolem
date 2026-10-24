@@ -52,6 +52,10 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 另一處募兵建築：[035：LIVE6 紅牆院門](docs/spec/035-recruitment-courtyard.md)，正常續玩、四平面來源與樣稿的入口；目前 DRAFT，待樣稿選定，不能沿用 LIVE2 的美術批准。
 
+戰場民兵其餘姿勢：[036：MAN01 第 1–3 筆](docs/spec/036-battle-militia-poses.md)，限定 CONFORMED。正常選中敵方後的來源、返回色碼、觀測隔離、三筆正式接入與實際 Draw 已驗；[匯入工具](tools/prepare-hd-battle-man01.py)、[真實來源／原子回退測試](internal/eightsword/battle_man01_test.go)及[完整畫面核對](tools/audit-battle-man01.py)由此索引。不重開已解的戰場 ABI。
+
+README 的[民兵動作原版／HD 總覽](docs/images/battle-militia-poses-original-hd-r1.png)、[來源](docs/images/battle-militia-poses-original-hd-r1.json)與[重生工具](tools/prepare-readme-militia-overview.py)沿使用者既有總覽要求收錄於私人倉庫；原圖與完整素材不隨圖上傳。
+
 共用呈現觀測由 [Engine 訂閱入口](internal/eightsword/presentation_observers.go)轉送；契約及[測試](internal/eightsword/presentation_observers_test.go)入口見 003。新增呈現器不能覆蓋核心的單一視訊回呼。
 
 故事背景規格：[014：深藍手繪故事背景](docs/spec/014-intro-story-background.md)。使用者已選 A 深藍稿，沿用 012 原文、座標與字色；新背景損壞時保留 Noto 並回原底圖。

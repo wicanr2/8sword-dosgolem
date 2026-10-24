@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "spec": "036",
+  "tool": "Pillow 11.3.0",
+  "output": "battle-militia-poses-original-hd-r1.png",
+  "sha256": "33351df285469884d45befff07d7d588bbe903d7697c9eb58e958553340c3b62",
+  "size": [
+    1600,
+    830
+  ],
+  "font": "Noto Sans CJK TC Black 900",
+  "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "font_index": 3,
+  "sources": [
+    {
+      "record": 1,
+      "step": 190937746,
+      "full_guest_state_sha256": "371dab790c0227d35cf378bdc686473024cf858f8fe433d3cd738aa660f33328",
+      "native_file": "man01-runtime-hd-r1/pose-1-first-return-native.png",
+      "native_sha256": "dace6ebee28274215eb2f09f36e6924b090882133a3eb47fa631449b91df26ed",
+      "hd_file": "man01-runtime-hd-r1/pose-1-first-return-hd.png",
+      "hd_sha256": "dc328ceae15b66876999e3128bc3e87aab406a21b8814e7a96c2e547b4848c0a",
+      "scope": "same complete guest state at the first completed original draw; appearance differs"
+    },
+    {
+      "record": 2,
+      "step": 191132197,
+      "full_guest_state_sha256": "5128058ad357a69a959814308fe1c2f3cf755d9a5c4d7693abd668f7aca1c764",
+      "native_file": "man01-runtime-hd-r1/pose-2-first-return-native.png",
+      "native_sha256": "7efa89c94837d0c71badd7f8b40e0ea1923886da0fc700409c241f438a32c1f6",
+      "hd_file": "man01-runtime-hd-r1/pose-2-first-return-hd.png",
+      "hd_sha256": "e78d03d56b584f1f309f135d6163318051039bde928358826c7d650e031ab15f",
+      "scope": "same complete guest state at the first completed original draw; appearance differs"
+    },
+    {
+      "record": 3,
+      "step": 191324488,
+      "full_guest_state_sha256": "e554e9cda8bbe6f34bb10b18c5a4eb9c3e4d757d12cad9c8bc3d69a5fc10f2cf",
+      "native_file": "man01-runtime-hd-r1/pose-3-first-return-native.png",
+      "native_sha256": "f7b38faf3a49f8b8ceac307abf27aa535722245e0229e444d5e4cf46600bd45c",
+      "hd_file": "man01-runtime-hd-r1/pose-3-first-return-hd.png",
+      "hd_sha256": "aa5ee2b78a8b520bef8d430539f8f6fc944542f4c8e052889e65ed53d4903e9c",
+      "scope": "same complete guest state at the first completed original draw; appearance differs"
+    }
+  ],
+  "rights": "original/HD comparison montage requested by user for existing private README; no raw asset or public distribution grant"
+}

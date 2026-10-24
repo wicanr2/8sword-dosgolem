@@ -53,3 +53,7 @@
 ## CHOI 後續閉合
 
 `CHOI-HD-GUI-RESOLVED`：前述 CHOI 待辦已由 [029](029-battle-choi-markers.md#正常視窗四姿態與限定結案)閉合，鍵 `DOS/CHOI.EGG@55045918…bcb/file+0,+3304,+6608,+9912`，沿 `PAM/runtime14D2:04F2/057D/0625`。現行正常續玩四個實際 Draw、全幅獨立重建、224 次完成與真正存退讀已驗；本規格歷史來源及快照不改，活動單位語意仍為強推論。
+
+## 民兵其餘姿勢後續閉合
+
+`MAN01-POSES-HD-RESOLVED`：前述 MAN01 其餘三筆待辦已由 [036](036-battle-militia-poses.md#正式接入與限定驗收)閉合，來源鍵 `DOS/MAN01.EGG@a7e02cf4…e5f1/file+3304,+6608,+9912/mirror-six-planes`，沿 `PAM/runtime14D2:0626/06B8/076E`。普通游標右移選中敵方後 Enter，三筆來源與返回色碼、三組隔離、完整返回與實際 Draw、F1／F2 及真正存退讀已驗。較早只見首筆的收據保持歷史；原版動作規則、傷害、AI 與整體 HD 不由此結案。

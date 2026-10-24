@@ -20,7 +20,7 @@
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
-| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2／F3 與戰場民兵首筆、金玉介面、五頁深藍故事背景、手繪戰場、四組敵方部隊共十六筆姿勢、累積火花效果與四姿態陰陽圖案。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[018](docs/spec/018-army-militia-image.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)、[025](docs/spec/025-battle-man11-actors.md)、[026](docs/spec/026-battle-man21-actors.md)、[027](docs/spec/027-battle-pon-effects.md)及 [029](docs/spec/029-battle-choi-markers.md) |
+| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2／F3 與戰場民兵四姿勢、金玉介面、五頁深藍故事背景、手繪戰場、四組敵方部隊共十六筆姿勢、累積火花效果與四姿態陰陽圖案。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[018](docs/spec/018-army-militia-image.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)、[025](docs/spec/025-battle-man11-actors.md)、[026](docs/spec/026-battle-man21-actors.md)、[027](docs/spec/027-battle-pon-effects.md)及 [029](docs/spec/029-battle-choi-markers.md)；民兵追加見 [036](docs/spec/036-battle-militia-poses.md) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
@@ -66,6 +66,12 @@
 左側為 dosgolem 實際原生 VGA 索引與當時色盤重建，右側為相同客體狀態的 HD 畫面，包含手繪背景、敵方部隊、民兵及火花。兩列分別抽樣戰場兵力與交戰火花，不代表全遊戲已完成。來源及對拍見 [022](docs/spec/022-battle-bitmap-transactions.md)、[027](docs/spec/027-battle-pon-effects.md)與 [028](docs/spec/028-battle-militia-image.md)。
 
 上述兩張比較圖依使用者要求收錄於既有私人倉庫。原始遊戲檔與完整素材組仍留本機。[來源與輸出雜湊](docs/images/overviews-r1.json)及[重生工具](tools/prepare-readme-overviews.py)隨圖保存；在固定 Pillow Docker 內指定 `--project` 與空白輸出位置即可重生，不以生成圖冒充原版。
+
+### 民兵三個戰場動作
+
+![相同原版狀態的民兵三個姿勢與 HD 對照](docs/images/battle-militia-poses-original-hd-r1.png)
+
+原版在上，HD 在下。三欄來自正常選中敵方後的實際返回點，每欄的完整客體狀態相同。連同既有待機圖，民兵四筆戰場姿勢皆已接入；真正視窗亦取得三個新姿勢及存退讀。來源與限定驗收見 [036](docs/spec/036-battle-militia-poses.md)，[圖像紀錄](docs/images/battle-militia-poses-original-hd-r1.json)與[重生工具](tools/prepare-readme-militia-overview.py)隨圖保存。比較圖沿使用者要求收錄於既有私人倉庫，完整原圖與素材組留本機。
 
 ### 已選定的整體畫風
 
@@ -167,6 +173,8 @@ F3 解雇頁亦使用同一張 HD 民兵，保留原版黑底與選取文字。[
 主鍵盤 `0–9` 與 `Backspace` 會送給原版程式，支援募兵數量輸入與退格。`EIGHTSWORD_GUI_RECRUITMENT_HIRE_CHECK=1` 搭配 `EIGHTSWORD_GUI_FLOW=save-cycle`、`EIGHTSWORD_GUI_ARMY_CHECK=1`，可測數字 4–9、退格清空、10 改為 1、募兵及讀回後的軍隊／人物頁。原版結果與 Noto 輸入欄由 [audit-recruitment-input.py](tools/audit-recruitment-input.py)獨立核對，範圍見 [003 數字追加](docs/spec/003-noto-runtime-overlay.md#主鍵盤數字與退格的原版輸入路徑)。
 
 地圖竹林已沿同一手繪風格補齊，保留原版格子、遮擋與捲動。[匯入工具](tools/prepare-hd-bamboo.py)用法為 `bash tools/player.sh bamboo-assets <新名稱> [基底名稱]`，預設基底 r35；須具備本機原圖與完整提示。來源、正常續玩、存退讀及故障回退範圍見 [006 的竹林追加](docs/spec/006-static-map-objects-and-sand.md#pmap-45-竹林追加)，獨立核對入口為 [audit-bamboo.py](tools/audit-bamboo.py)。竹林圖損壞時沿既有地表整組回退，Noto 保留。
+
+民兵其餘三個戰場姿勢使用 `bash tools/player.sh battle-man01-assets <新名稱> [基底名稱]` 匯入，預設基底 r36；需要本機三張原圖、完整提示與固定原版。三筆整組載入，壞新圖只停用新增姿勢，首筆與 F2 共用圖保持。[獨立核對工具](tools/audit-battle-man01.py)比較正常三組及真正視窗，契約見 [036](docs/spec/036-battle-militia-poses.md)，沒有修改攻擊、傷害或 AI 規則。
 
 戰場已共用這張民兵首筆圖，沿原版背景頁入口啟用，F2 的來源分類保持。正常戰場、火花共存、返回與真正存退讀已核對，完整狀態見 [028](docs/spec/028-battle-militia-image.md)。已有本機 r22 後，用 `bash tools/player.sh battle-militia-assets <新名稱>` 加入可選對應。錯誤的新清單只停用戰場對應，共用 PNG 損壞仍依 018 的整組圖像回退。其他三筆民兵來源與其餘兵種另行驗證。
 
@@ -284,6 +292,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
 - [古風介面規格](docs/spec/005-jade-gold-interface.md)：金玉外框、選單、訊息框及限定正常操作驗收。
 - [靜物與地表規格](docs/spec/006-static-map-objects-and-sand.md)：兩種建築、布旗、已驗竹林，以及尚待正常場景驗收的沙地。
 - [主角動作規格](docs/spec/007-masked-hero-animation.md)：十二張動作圖、底圖還原與人物所有權；正常四方向及存退讀驗證範圍。
+- [民兵其餘戰場姿勢](docs/spec/036-battle-militia-poses.md)：三筆鏡射來源、正常目標選擇、完整圖重建及實際視窗，與 028 的首筆合成四姿勢。
 - [音樂事件與播放規格](docs/spec/008-music-events-and-playback.md)：原版請求、Ogg 清單、混音及正常操作驗證。
 - [片頭音樂交接規格](docs/spec/009-intro-music-handoff.md)：PREDELLA 的獨立入口、原版停止及 PAM 覆蓋載入後的掛勾隔離。
 - [啟動文字規格](docs/spec/010-boot-console-text.md)：VGA／音效提示的 Noto 呈現、原字模回退及正常鍵盤流程。
