@@ -83,3 +83,7 @@ python /project/tools/catalog-battle-actors.py \
 ### BATTLE-MAN16-ACTORS-RESOLVED
 
 前段下一步中的 MAN16 四筆，已由 [023](023-battle-man16-actors.md)完成來源／位置審查、正式 r18、三組同狀態、四筆正常呈現與實際視窗存退讀，限定 CONFORMED。不可變鍵為 `DOS/MAN16.EGG@d4acf7c5…11d6a/file+0,+3304,+6608,+9912`，沿用已驗 `PAM/runtime14D2:0626/06B8/076E`。019 其餘部隊與戰鬥美術仍 DRAFT，保留先前探針未完成撤退的限制，不拿新 GUI 改寫舊收據。
+
+### BATTLE-MAN06-ACTORS-RESOLVED
+
+前段下一步中的 MAN06 四筆，已由 [024](024-battle-man06-actors.md)完成正式 r19、三組同狀態、四筆正常完整 Frame 及 GUI 存退讀，限定 CONFORMED。不可變鍵為 `DOS/MAN06.EGG@97be211d…73579/file+0,+3304,+6608,+9912`，沿用已驗 `PAM/runtime14D2:0626/06B8/076E`。MAN11、其餘部隊及其他戰鬥美術仍 DRAFT，不重開本組來源及已閉合的頁／交易 RE。

@@ -6,12 +6,15 @@ import (
 	"image"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 const man16SourceSHA = "d4acf7c58c199c1776ffde6c86afa3c9b0ae3b132e4cc59973e1e0d5c2011d6a"
 
 // Spec 023: original file offsets record*3304, no runtime pointer aliases.
-var man16Sources = [...]struct{ Native, Record string }{
+type battleActorSource struct{ Native, Record string }
+
+var man16Sources = [...]battleActorSource{
 	{"fc39ee5d322f75dcfd282c49577428e17b618aa6e7b3c66cd3cec6c2c91d1ebc", "6f63681e789a462164c7213774c2cac6367cb820ad661665aad541d0cfc6250d"},
 	{"49333ee62fcb5752cd36a5c96de680d3203dc0a89d5820ace9dfc02248955b13", "821286f200de68b303d4ecaa11791b6d54b1dfe922f098b17fd35707d1673b3a"},
 	{"e7e80754f15a5523cf48648081e8def41df88e67d4d2b38eb60e2aaf8af73c93", "e00d323c14f7ecb4d4b871ce06cd8d35efc278ad8bb9810908007bed4781307b"},
@@ -19,6 +22,25 @@ var man16Sources = [...]struct{ Native, Record string }{
 }
 
 var man16Targets = [...][4]int{{30, 84, 231, 192}, {30, 96, 231, 180}, {27, 36, 234, 174}, {33, 60, 228, 174}}
+
+const man06SourceSHA = "97be211dd9289538aaa46f01b2340bcac9ce0a7c8e44ed9d3c4e9abdac873579"
+
+// Spec 024: MAN06.EGG file offsets record*3304, all six blocks verified.
+var man06Sources = [...]battleActorSource{
+	{"aa5f02e465c9de0a3e5712b113bf55485f9a77b0f0ee4e899d09740ddc6ead44", "26912dfd61615c79153fdce658ef87e8c7a91033b8b696b1944671ebf12a9191"},
+	{"5684432d40e7bf4dfdb4c530a28b0cd08f4d7445acec8935dece70001f337b6b", "665bac29b8c8d54912a52da5eda20ae44ed9c81c3d6fcd8b039a9317a066c022"},
+	{"86c1ad22335e8d4031ec519c04ca136a2e3b5fca05def14ec0fce56b0faf008c", "feb0565d9333a288d5e8f89d37cdfbfa1804cc4d33183810120ba3f74e77c9a7"},
+	{"b414a5e640206ffe720c71737dce7a2d70e31fb478e58f9bd84e06e43a271674", "8ce14e5fa82252dd91b698803e3738ab2b6ce3f3e3f3f22ec1b7b4c1f03f1b00"},
+}
+
+var man06Targets = [...][4]int{{75, 54, 177, 210}, {78, 42, 177, 222}, {78, 0, 183, 210}, {18, 0, 243, 210}}
+
+type battleActorGroup struct {
+	Manifest, Source, SourceSHA, Stem string
+	FirstID                           uint16
+	Sources                           [4]battleActorSource
+	Targets                           [4][4]int
+}
 
 func battleActorRect(values []int, width, height int) (image.Rectangle, error) {
 	if len(values) != 4 {
@@ -31,9 +53,27 @@ func battleActorRect(values []int, width, height int) (image.Rectangle, error) {
 	return image.Rect(x, y, x+w, y+h), nil
 }
 
-// Optional, atomic group. Existing terrain, Noto and actors survive any failure.
+// Groups commit independently; a broken optional group cannot disable another.
 func loadBattleActors(dir, root string, assets *GraphicsAssets) error {
-	raw, err := os.ReadFile(filepath.Join(dir, "battle-actors.json"))
+	groups := []battleActorGroup{
+		{"battle-actors.json", "MAN16.EGG", man16SourceSHA, "battle-man16", 87, man16Sources, man16Targets},
+		{"battle-man06.json", "MAN06.EGG", man06SourceSHA, "battle-man06", 91, man06Sources, man06Targets},
+	}
+	var failures []string
+	for _, group := range groups {
+		if err := loadBattleActorGroup(dir, root, assets, group); err != nil {
+			failures = append(failures, group.Source+": "+err.Error())
+		}
+	}
+	if len(failures) > 0 {
+		return fmt.Errorf("%s", strings.Join(failures, "；"))
+	}
+	return nil
+}
+
+// Each group commits only after all four images have passed validation.
+func loadBattleActorGroup(dir, root string, assets *GraphicsAssets, group battleActorGroup) error {
+	raw, err := os.ReadFile(filepath.Join(dir, group.Manifest))
 	if os.IsNotExist(err) {
 		return nil
 	}
@@ -55,7 +95,7 @@ func loadBattleActors(dir, root string, assets *GraphicsAssets) error {
 	if err = json.Unmarshal(raw, &m); err != nil {
 		return err
 	}
-	if m.Schema != 1 || m.Source != "MAN16.EGG" || m.SourceSHA != man16SourceSHA || m.Style != "B-bright-painted-r1" || m.StyleSHA != ApprovedStyleSHA || len(m.Frames) != 4 {
+	if m.Schema != 1 || m.Source != group.Source || m.SourceSHA != group.SourceSHA || m.Style != "B-bright-painted-r1" || m.StyleSHA != ApprovedStyleSHA || len(m.Frames) != 4 {
 		return fmt.Errorf("戰場部隊清單來源／樣式不符")
 	}
 	if assets.Materials[battleBackgroundID] == nil || assets.ByNative[battleBackgroundNativeSHA] != battleBackgroundID {
@@ -65,21 +105,21 @@ func loadBattleActors(dir, root string, assets *GraphicsAssets) error {
 	if err != nil {
 		return err
 	}
-	if hash(source) != man16SourceSHA {
-		return fmt.Errorf("MAN16.EGG 來源雜湊不符")
+	if hash(source) != group.SourceSHA {
+		return fmt.Errorf("%s 來源雜湊不符", group.Source)
 	}
 	var tiles [4]*image.RGBA
 	for i, frame := range m.Frames {
-		entry, id := frame.Image, uint16(87+i)
-		if frame.Record != i || entry.Index != 86+i || entry.File != fmt.Sprintf("battle-man16-%d-r1.png", i) || entry.Sampling != "bitmap" || len(frame.Target) != 4 {
+		entry, id := frame.Image, group.FirstID+uint16(i)
+		if frame.Record != i || entry.Index != int(group.FirstID)-1+i || entry.File != fmt.Sprintf("%s-%d-r1.png", group.Stem, i) || entry.Sampling != "bitmap" || len(frame.Target) != 4 {
 			return fmt.Errorf("戰場部隊記錄／檔名不符")
 		}
-		for n, want := range man16Targets[i] {
+		for n, want := range group.Targets[i] {
 			if frame.Target[n] != want {
 				return fmt.Errorf("戰場部隊目的位置不符")
 			}
 		}
-		if assets.ByNative[man16Sources[i].Native] != 0 || assets.Materials[id] != nil || assets.Actors[id] != nil {
+		if assets.ByNative[group.Sources[i].Native] != 0 || assets.Materials[id] != nil || assets.Actors[id] != nil {
 			return fmt.Errorf("戰場部隊識別重複")
 		}
 		decoded, err := loadGraphicPNG(dir, entry)
@@ -103,10 +143,10 @@ func loadBattleActors(dir, root string, assets *GraphicsAssets) error {
 		assets.BattleActors = map[uint16]bool{}
 	}
 	for i, tile := range tiles {
-		id := uint16(87 + i)
-		assets.ByNative[man16Sources[i].Native] = id
+		id := group.FirstID + uint16(i)
+		assets.ByNative[group.Sources[i].Native] = id
 		assets.Actors[id] = &graphicMaterial{88, 50, tile}
-		assets.ActorSHA[id] = man16Sources[i].Record
+		assets.ActorSHA[id] = group.Sources[i].Record
 		assets.BattleActors[id] = true
 	}
 	return nil

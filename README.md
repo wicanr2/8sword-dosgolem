@@ -18,7 +18,7 @@
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
-| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2 民兵、金玉介面、五頁深藍故事背景、手繪戰場與首組敵方部隊四筆姿勢。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)及 [023](docs/spec/023-battle-man16-actors.md) |
+| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2 民兵、金玉介面、五頁深藍故事背景、手繪戰場與兩組敵方部隊共八筆姿勢。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)及 [024](docs/spec/024-battle-man06-actors.md) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。F10 可切換隸書風或草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗與鍵盤前端；正常遭遇與返回已驗，效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
@@ -121,6 +121,8 @@ F2 的初始民兵已有手繪 HD 圖，保留藍背心、白褲、青頭巾與�
 視窗支援原版戰鬥的 V 與左右 Ctrl，兵力及撤退結果沿用 Noto；結果訊息需由玩家普通按鍵關閉。正常遭遇、撤退、結果關閉及後續存退讀範圍見 [020](docs/spec/020-battle-result-presentation.md)。驗證時可在 `save-cycle` 另設 `EIGHTSWORD_GUI_BATTLE_CHECK=1`。[手繪戰場背景](docs/spec/021-battle-background-pages.md)以[完整幀與返回點快取](docs/spec/022-battle-bitmap-transactions.md)避免呈現尚未寫完的平面；首組敵方部隊 MAN16 的四筆圖像亦已接入，正常呈現、Noto、故障、隔離及存退讀範圍見 [023](docs/spec/023-battle-man16-actors.md)。其餘部隊與戰鬥美術仍依 [019](docs/spec/019-normal-encounter-battle-presentation.md)接續。
 
 已有本機 r17 與 023 所列固定原圖及提示時，執行 `bash tools/player.sh battle-actor-assets <新名稱>` 建立新組，再以視窗的 `-assets` 指定該目錄。[匯入工具](tools/prepare-hd-battle-actors.py)保留原始 PNG，拒絕覆寫既有輸出；新圖像與完整提示留本機。
+
+MAN06 的四筆來源與位置另見 [024](docs/spec/024-battle-man06-actors.md)。備齊本機 r18 與規格列出的原圖及提示後，用 `bash tools/player.sh battle-man06-assets <新名稱>` 加入第二組；兩組各自驗證，缺失或壞檔只回退該組。
 
 片頭標題以原版實際繪圖及完整來源指紋驅動，四字改用 Noto Black 900，保留原位置、黑底及原版 Esc。字圖損壞時回原版標題，其他 HD 保留。來源、幾何及驗證範圍見 [011](docs/spec/011-intro-title-noto.md)。已有本機 r9、固定 TIT2 及上述 Noto 字型後，可建立新組：
 

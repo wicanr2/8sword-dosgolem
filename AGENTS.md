@@ -50,6 +50,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 首組敵方部隊：[023：MAN16 四筆圖像](docs/spec/023-battle-man16-actors.md)，限定 CONFORMED。四筆正常呈現、隔離與末張故障、Noto、正常人物／軍隊頁及真正存讀已驗。入口為[原子載入](internal/eightsword/battle_actors.go)與[素材匯入](tools/prepare-hd-battle-actors.py)，Docker 重建用法見 023；其他部隊與整體 HD 仍未完成。
 
+第二組敵方部隊：[024：MAN06 四筆圖像](docs/spec/024-battle-man06-actors.md)，限定 CONFORMED。四筆正常呈現、兩組獨立故障、Noto、人物／軍隊頁及存讀已驗，r19 保留舊組。共用載入與匯入入口同 023，MAN06 的 Docker 重建用法見 024。其餘部隊及整體 HD 未完成。
+
 結果與戰鬥按鍵：[020：戰鬥結果與正常返回](docs/spec/020-battle-result-presentation.md)，正常 V／Ctrl、結果關閉、F1／F2 及真正存退讀限定 CONFORMED。`battle-result` 優先於側欄，修正前端漏送 V／Ctrl；不自動略過訊息，也不授權 DRAFT 戰場美術接入。
 
 戰場背景：[021：背景頁與還原](docs/spec/021-battle-background-pages.md)，限定 CONFORMED。正常來源頁／遮罩、正式 r17、故障回退與完整視窗已驗；原中間幀缺口由 022 閉合。重生入口為[戰場素材工具](tools/prepare-hd-battle.py)，載入及驗收限制見 021。部隊 HD 仍依 019 另行完成。
