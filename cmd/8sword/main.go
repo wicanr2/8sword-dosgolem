@@ -89,6 +89,7 @@ type game struct {
 	toolbarError                               string
 	blocked                                    map[ebiten.Key]bool
 	controlBlocked                             bool
+	frameHeroinePixels, presentedHeroinePixels int
 }
 
 type stageTiming struct {
@@ -122,6 +123,7 @@ func (g *game) status(closed bool) map[string]any {
 	status["presented_console"] = g.presentedConsole
 	status["presented_intro"] = g.presentedIntro
 	status["presented_font_id"] = g.presentedFontID
+	status["presented_heroine_pixels"] = g.presentedHeroinePixels
 	status["presented_story_calls"], status["presented_story_pages"] = g.presentedStoryCalls, g.presentedStoryPages
 	status["presented_caption_source"] = g.presentedCaptionSource
 	status["stage_totals"] = g.stageTotals
@@ -129,6 +131,7 @@ func (g *game) status(closed bool) map[string]any {
 	if g.toolbar != nil {
 		status["poster_id"], status["toolbar_menu"] = g.toolbar.ID, g.toolbar.Menu
 		status["poster_error"] = g.toolbar.Error
+		status["toolbar_cached_pixels"], status["toolbar_rendered_frames"] = g.toolbar.CachedPixels, g.toolbar.RenderedFrames
 		status["presentation_size"] = []int{eightsword.PosterWidth, eightsword.PosterHeight}
 	}
 	if g.audioCapture != nil {
@@ -285,6 +288,10 @@ func (g *game) Update() error {
 	}
 	g.frameConsole = g.engine.ConsoleStage()
 	g.frameIntro = g.engine.IntroFrameStage(g.frame)
+	g.frameHeroinePixels = 0
+	if g.engine.Heroine != nil {
+		g.frameHeroinePixels = g.engine.Heroine.FramePixels(g.frame)
+	}
 	g.frameCaptionSource = 0
 	if g.engine.Captions != nil && g.frameIntro == "captions-noto" {
 		g.frameCaptionSource = g.engine.Captions.FrameSource(g.frame)
@@ -346,10 +353,11 @@ func (g *game) Draw(screen *ebiten.Image) {
 	g.presentedConsole = g.frameConsole
 	g.presentedIntro = g.frameIntro
 	g.presentedFontID = g.frameFontID
+	g.presentedHeroinePixels = g.frameHeroinePixels
 	g.presentedCaptionSource = g.frameCaptionSource
 	g.presentedStoryCalls, g.presentedStoryPages = g.frameStoryCalls, g.frameStoryPages
 	if g.introDraw != nil {
-		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource, "font_id": g.frameFontID}); err != nil {
+		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource, "font_id": g.frameFontID, "heroine_pixels": g.frameHeroinePixels}); err != nil {
 			g.recordErr = err
 		}
 	}
@@ -502,6 +510,10 @@ func main() {
 	if engine.PublisherError != "" {
 		title += "（HD 發行商文字載入失敗）"
 		log.Print(engine.PublisherError)
+	}
+	if engine.HeroineError != "" {
+		title += "（HD 女主角載入失敗）"
+		log.Print(engine.HeroineError)
 	}
 	if engine.StoryError != "" {
 		title += "（HD 故事文字載入失敗）"

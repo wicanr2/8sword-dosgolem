@@ -9,7 +9,7 @@
 | AI 研究 | IDA 9.4 找到 `sub_206DA → sub_1FB6C → sub_22DBC/22B96` 候選鏈，十三處執行期前綴按 MZ 重定位全同原檔。決策語意仍為強推論；一次正常來源快照的 10M 步診斷沒有進入候選，不稱動態掛點已驗。原版狀態、合法行動與參數仍待正常回合觀測 |
 | 字型追加要求 | 工具列已接 Noto／教育部真正隸書／草書，F10 及偏好保持。r27 將 lishu 換為教育部隸書 3.00，原 TTF 不變，722 中文中 718 字原字型、4 字宋體，131 英數標點 Noto。內文／標題／發行商來源同組核對；舊 UnYetgul 保持歷史標示。追加範圍見 [015](docs/spec/015-font-settings.md#教育部隸書追加契約)，不稱全遊戲文字已驗 |
 | 兩側海報與工具列 | 使用者批准目前排版，[032](docs/spec/032-poster-toolbar.md)限定 CONFORMED。正式 r28 共 131 檔，完整中央遊戲、兩側手繪海報、內側漸淡與 400 ms 淡入。真實視窗完成 19 次點選、三選項、取消／確認／失焦與偏好恢復，工具列零 DOS 輸入；308／46 幀已解碼檢視，12 幀淡入、8 幀中央保持。真壞海報關閉兩側，工具列及 HD 字型保留。定稿圖、提示與實際畫面收錄 docs/images，來源見 poster-approved-r1.json |
-| 女主角新圖 | 已按使用者 TIT5 特寫畫面，以內建 image_gen 繪製仙氣中國古典美女，原圖及完整提示見 [017](docs/spec/017-intro-museum-art.md)。尚未接正式開場動畫；不混稱海報或整段片頭已完成，也不代答博物館整體配色 A／B |
+| 女主角特寫 | [033](docs/spec/033-intro-heroine-closeup.md)限定 CONFORMED，正式 r29 共 134 檔。依 TIT5 換入仙氣中國古典美女，保留真正遮罩覆蓋的 366 個前景點；舊 301 是顏色差異，含 65 個同色覆蓋的勘誤已回填 017。三組正常／兩組普通 Esc 共 2140 次 Frame 純度通過，完整客體、PCM、輸入及工作檔成對相同。正式 GUI 739／734 個實際 Draw 已解碼檢視，特寫 2／4 幀逐 RGBA 同獨立合成，四組字幕與五頁故事的 Noto／草書、F1／F2 及真正 F7 存退讀通過；真壞圖 GUI 回退保留其他 HD。完整博物館仍依 017，不稱整段開場美術完成 |
 | CHOI 目前驗收 | [029](docs/spec/029-battle-choi-markers.md)保持 READY，r25 共 125 檔，獨立重建相同；五項目標測試通過。三組正常重播各 50 點、150 次 Frame 純度，完整 state／PCM／35 工作檔／969 次來源及輸入相同，396 次標記完成、零回退，壞 PNG 50 幀同控制，四張完整幀同獨立原型。正式建置完成，視窗擷取研究程式已建置但尚未執行，029 不升 CONFORMED |
 | 工作區空間 | 使用者暫停 HD Goal 後要求整理空間。934 組、12246 個不可變產物路徑改為唯讀硬連結，內容及原路徑保持；清空本案 Go 編譯快取，共回收約 12.3 GiB，工作區約 16 GiB。收據為 `workplace/space-cleanup-20261024-receipt.json`，全部路徑 SHA 核對通過。共用檔需要修改時先用 [整理工具](tools/workspace-space.py)的 `detach` 建立獨立副本，用法見 AGENTS 與 WORKLOG |
 | 戰場民兵首筆 | [028](docs/spec/028-battle-militia-image.md)限定 CONFORMED，可選別名 107 共用 018 的 85 快取；F2 全域映射保持。r23 共 118 檔，保留 r22 全部 116 檔，獨立重建相同，沒有新圖或重取樣。63 項分批套件全部通過，末批達限時後剩餘兩項由同一程式另跑，沒有略過或失敗斷言 |
@@ -63,7 +63,7 @@
 | 發行商圖片文字 | [016](docs/spec/016-publisher-wordmarks.md)限定 CONFORMED。TIT1 的「軟體世界」、公司／年份字樣支援同三字型，配色及中央圖標保留。r15 基準保留 r14 全部 68 檔，共 74 檔，獨立重建相同。`publisher-r1/runtime-audit-r1.json` 核對五組完整客體同 SHA `25cb7e3e…32a0`、17 工作檔、原版事件與 PCM 相同；中央圖標仍為原版美術 |
 | 發行商視窗 | `publisher-visible-r4/publisher` 的 160／21、`publisher-save-r1` 的 146／24 及 68／11、`publisher-fallback-r1/publisher-fallback` 的 119／17 為實際幀數／改變次數，已解碼及看圖。Noto／隸書七個、草書十六個 Draw 與一個完整轉場逐 RGBA byte 同獨立重建；壞最後一張 PNG 六個 Draw 回原版。正常 F10、自然轉標題、Esc、新遊戲、人物頁與 F7 存退讀通過，2987 bytes 同讀回 RAM SHA `29dd62ae…2359` |
 | 博物館美術原型 | [017](docs/spec/017-intro-museum-art.md)為 DRAFT。本機 `graphics-first/museum-art-r1/` 已有 A 紫藍手繪、B 青玉金色與同狀態比較圖；內建 image_gen 原圖、完整提示、輸入及 SHA 已保存，尚未選定，也未接入正式程式。配色 A／B 已提問，建議 A 保留原版氣氛；不得把沉默當作同意 |
-| 博物館來源目錄 | 同目錄 `source-catalog.json` 核對 TIT3 兩幅背景、TIT4 十二筆記錄與 TIT5 近景；`MUSEUM-MASK-RESOLVED` 已補 IDA `sub_52C0` consumer 與正常逐次驗證。首四塊供本次色號，第六塊決定寫入／保留，第五塊供未驗的替代顯示分支。十二張原版 RGBA 與遮罩已抽出、檢視；真正黑墨不能當透明。正式 HD 動態圖仍未接入，最新完整場景原型見下列 r6 |
+| 博物館來源目錄 | 同目錄 `source-catalog.json` 核對 TIT3 兩幅背景、TIT4 十二筆記錄與 TIT5 近景；`MUSEUM-MASK-RESOLVED` 已補 IDA `sub_52C0` consumer 與正常逐次驗證。首四塊供本次色號，第六塊決定寫入／保留，第五塊供未驗的替代顯示分支。十二張原版 RGBA 與遮罩已抽出、檢視；真正黑墨不能當透明。畫中女主角已沿 033 接入；其餘 HD 動態圖仍未接入，最新完整場景原型見下列 r6 |
 | 博物館動態與頁面 | `runtime-audit-r1.json`：212 次原版繪圖、5818720 個返回色號逐 byte 同獨立重建，十二筆動態圖皆到達，150 次畫在背景頁。探針／控制完整 state 同 SHA `b1cafef3…f6b7`，9 工作檔、事件與 PCM 相同。`lifecycle-audit-r1.json` 普通 Esc 在 1322h 退休，65 次返回像素及後續 PAM 載入通過，17 工作檔、state 同 SHA `fc73c325…7149` 與音訊相同。這是原版來源證據，未列為 HD 視窗或全遊戲完成 |
 | 博物館背景原型驗證 | `live-audit-r2.json`：控制／原版重建／A／B 各 428 幀，24 個完成左景幀及全部 19 個交易保留幀同獨立來源、遮罩及兩頁合成，沒有未知保留帶；全部美術帶外不變。完整 state 同 `b1cafef3…f6b7`、9 工作檔及 HD PCM 相同。這份歷史基準的人物為原版；最新完整場景原型見下列 r6 |
 | 博物館頁面交易勘誤 | `MUSEUM-PAGE-COPY-RESOLVED`：IDA 與正常六次完整兩頁索引核對，5D76／510B 是頁 0→4000h、5D9C／517E 是反向，各複製 16000 byte 位址；目的頁不依 D208。只有 5B0C 真正清頁。`page-audit-r2.json` 核對五次複製／一次清頁、來源頁與尾端不變；控制 state 同 `b1cafef3…f6b7`、9 工作檔、事件及 FM PCM 相同，正式 DB 不變。013 的來源分類已回填，字幕實作及既有驗收不變 |
@@ -76,7 +76,7 @@
 | 背景與字型視窗 | `story-art-caoshu-visible-r2/story` 409 幀／147 次改變已解碼及看圖，五頁 90 個故事 Draw、四組 19 個字幕 Draw 逐 RGBA byte 同獨立重建。`font-settings-save-r2` 的 421／271 幀、90／72 次改變已檢視；F10 五次循環、Noto 原像素恢復、偏好重啟、F7 存退讀及 F1 通過，2987 bytes 同 RAM SHA `29dd62ae…2359`。背景故障 286／78、草書故障 344／91，已看圖及獨立核對各自回退，其他 HD 保留 |
 | GitHub | [wicanr2/8sword-dosgolem](https://github.com/wicanr2/8sword-dosgolem)，主機 gh 認證為 wicanr2；遠端回讀確認 PRIVATE |
 | 本機 Git | 已建立 `main`，`origin` 指向上述倉庫。提交身分沿用 mm3 的 Chun-Yu Wang、`wicanr2@gmail.com`，僅設定本案 |
-| 文件同步 | 目前程式包含 008 音樂事件至 025 部隊呈現；021 至 025 各自限定驗收通過。019 其他部隊／效果與 017 博物館美術仍為 DRAFT。建置輸入／輸出存於 `workplace/player/build-*.sha256`。Git 同步核對見 WORKLOG；批准的定稿參考圖保存於 `de96de9`。原始素材、其他生成圖、字型 atlas、遊戲畫面、音訊與快照不加入 Git |
+| 文件同步 | 正式程式目前含 033 女主角特寫與 032 海報像素快取，現行建置清單為 68 筆輸入、五程式。無頭與實際視窗版本各自封存在 build-heroine-headless-r1／build-heroine-gui-r2，來源與二進位指紋見 033。030 戰術增強仍為方向批准，沒有把未 READY 的規則或 AI 掛點進正式玩法。Git 同步見 WORKLOG；未另行批准的新特寫圖、完整素材組、字型及音訊留本機 |
 | Docker | 沿用既有研究／Go／影像及 IDA 映像，無網路、UID/GID 1000:1000、資源上限；版本與映像雜湊見 [研究紀錄](RESEARCH-LOG.md) |
 | 原始輸入 | ZIP 已盤點為 158 個遊戲檔案，RAR 為 25 個手冊相關檔案，其中 23 張 JPG。逐檔雜湊與兩份封包均已核對不變；來源全留本機 |
 | DOS 入口 | `PLAY.BAT` 執行 `PREDELLA.EXE`；片頭後以 INT 21h AX=4B03 覆蓋載入 `PAM.AY`，Seg／Reloc 都是 0110，沒有新的子行程 PSP。另有帶 MZ 表頭的 `PAE.AY`，用途尚未驗證 |

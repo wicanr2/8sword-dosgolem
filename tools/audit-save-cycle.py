@@ -38,7 +38,9 @@ def audit(root, original):
     assert len(reads) == 1 and reads[0]["Pos"] == 0 and reads[0]["Len"] == 2987 and not reads[0]["Failed"]
     a = Image.open(root / "save/13-saved-map.png").convert("RGB")
     b = Image.open(root / "reload/04-loaded-map.png").convert("RGB")
-    assert a.size == b.size == (1280, 800)
+    assert a.size == b.size and a.size in ((1280,800),(1600,687))
+    if a.size==(1600,687):
+        assert first.get('presentation_size')==second.get('presentation_size')==[2944,1264]
     difference = ImageChops.difference(a, b)
     result = {
         "status": "passed-scoped-normal-gui-save-exit-reload",

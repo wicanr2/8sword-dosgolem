@@ -32,19 +32,20 @@ type toolbarManifest struct {
 
 // PosterToolbar owns host presentation only. It has no guest or clock reference.
 type PosterToolbar struct {
-	Error           string
-	ID              string
-	Menu            string
-	Selected        int
-	panels          map[string]*image.RGBA
-	atlas           image.Image
-	glyphs          map[rune][4]int
-	from, target    *image.RGBA
-	started         time.Time
-	font            string
-	choices         []FontChoice
-	frame, lastGame *image.RGBA
-	dirty           bool
+	Error                        string
+	ID                           string
+	Menu                         string
+	Selected                     int
+	panels                       map[string]*image.RGBA
+	atlas                        image.Image
+	glyphs                       map[rune][4]int
+	from, target                 *image.RGBA
+	started                      time.Time
+	font                         string
+	choices                      []FontChoice
+	frame, lastGame              *image.RGBA
+	dirty                        bool
+	CachedPixels, RenderedFrames uint64
 }
 
 func posterID(id string) bool { return id == "wings" || id == "cover" || id == "off" }
@@ -325,8 +326,15 @@ func posterLabel(id string) string {
 }
 
 func (v *PosterToolbar) Frame(game *image.RGBA, now time.Time) *image.RGBA {
-	if v.frame != nil && v.lastGame == game && !v.dirty && v.from == nil {
-		return v.frame
+	if v.frame != nil && !v.dirty && v.from == nil {
+		if v.lastGame == game {
+			return v.frame
+		}
+		if v.lastGame != nil && v.lastGame.Bounds() == game.Bounds() && v.lastGame.Stride == game.Stride && bytes.Equal(v.lastGame.Pix, game.Pix) {
+			v.CachedPixels++
+			v.lastGame = game
+			return v.frame
+		}
 	}
 	out := image.NewRGBA(image.Rect(0, 0, PosterWidth, PosterHeight))
 	draw.Draw(out, out.Bounds(), image.NewUniform(posterMatte), image.Point{}, draw.Src)
@@ -367,6 +375,7 @@ func (v *PosterToolbar) Frame(game *image.RGBA, now time.Time) *image.RGBA {
 		}
 	}
 	v.frame, v.lastGame, v.dirty = out, game, false
+	v.RenderedFrames++
 	return out
 }
 

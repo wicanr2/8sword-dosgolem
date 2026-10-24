@@ -43,6 +43,17 @@ func TestPosterCentralPixelsAndInterruptedFade(t *testing.T) {
 	if v.Frame(im, now) != first {
 		t.Fatal("穩定畫面沒有快取")
 	}
+	copyFrame := image.NewRGBA(im.Bounds())
+	copy(copyFrame.Pix, im.Pix)
+	if v.Frame(copyFrame, now) != first || v.CachedPixels != 1 {
+		t.Fatal("相同畫素的新原版緩衝區重複上傳")
+	}
+	copyFrame2 := image.NewRGBA(im.Bounds())
+	copy(copyFrame2.Pix, im.Pix)
+	copyFrame2.Pix[0]++
+	if v.Frame(copyFrame2, now) == first {
+		t.Fatal("真實畫素變更被快取吞掉")
+	}
 	if err := v.SetPoster("cover", now); err != nil {
 		t.Fatal(err)
 	}

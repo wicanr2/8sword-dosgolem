@@ -254,6 +254,14 @@ func (d *driver) toolbar() {
 	d.shot("toolbar-final-selection")
 }
 
+func (d *driver) sceneAfterHeroine() {
+	d.wait("女主角後完整開場自然交接", 180, func(s map[string]any) bool { return s["presented_scene"] == "main-menu" })
+	if d.status()["presented_heroine_pixels"] != float64(0) {
+		panic("離開片頭後殘留女主角")
+	}
+	d.shot("heroine-natural-main-menu")
+}
+
 func (d *driver) confirmation(after float64) {
 	d.wait("本次確認文字", 35, func(s map[string]any) bool {
 		events, _ := s["strings"].([]any)
@@ -476,6 +484,7 @@ func main() {
 	publisherCycle := flag.Bool("publisher-font-cycle", false, "switch one actual F10 font while publisher is visible")
 	showStory := flag.Bool("intro-story", false, "wait for actual Noto story before Esc, including save/reload flows")
 	showCaptions := flag.Bool("intro-captions", false, "wait for actual museum Noto before Esc, including save/reload flows")
+	showHeroine := flag.Bool("intro-heroine", false, "wait for actual HD heroine Draw and natural full intro")
 	fontCycle := flag.Bool("font-cycle", false, "use real F10 to cycle fonts before normal save and verify preference on reload")
 	saves := flag.String("saves", "", "save-cycle writable layer")
 	nativeFrame := flag.String("native-frame", "", "fallback original reference PNG")
@@ -540,6 +549,32 @@ func main() {
 	}
 	d.press(10)
 	d.wait("片頭", 20, func(s map[string]any) bool { return s["mode"] != float64(3) })
+	if *showHeroine {
+		d.wait("女主角 HD 已真正 Draw", 180, func(s map[string]any) bool {
+			if n, ok := s["presented_heroine_pixels"].(float64); ok && n > 0 {
+				return true
+			}
+			b, err := os.ReadFile(filepath.Join(d.out, "intro-draw.jsonl"))
+			if err != nil {
+				return false
+			}
+			for _, line := range bytes.Split(b, []byte{'\n'}) {
+				var j struct {
+					Pixels int `json:"heroine_pixels"`
+				}
+				if json.Unmarshal(line, &j) == nil && j.Pixels > 0 {
+					return true
+				}
+			}
+			return false
+		})
+		if n, _ := d.status()["presented_heroine_pixels"].(float64); n > 0 {
+			d.shot("heroine-actual-visible")
+		} else {
+			fmt.Println("女主角特寫已在實際 Draw 日誌呈現，由完整逐幀串流擷取。")
+		}
+		d.sceneAfterHeroine()
+	}
 	if *flow == "publisher" || *flow == "publisher-skip" || *showPublisher {
 		d.wait("發行商字圖已真正呈現", 35, func(s map[string]any) bool { return s["presented_intro"] == "publisher-noto" })
 		d.shot("publisher-01-visible")
@@ -795,7 +830,7 @@ func main() {
 		}
 		d.shot("story-native-fallback")
 	}
-	if *flow != "story" && *flow != "captions" {
+	if *flow != "story" && *flow != "captions" && !*showHeroine {
 		d.press(9)
 	} // 原版 Esc，未直接進入 PAM。
 	if *flow == "fallback" || *flow == "art-fallback" {
@@ -841,6 +876,15 @@ func main() {
 	}
 	d.scene("main-menu")
 	d.shot("03-main-menu")
+	if *flow == "heroine-fallback" {
+		if d.status()["heroine_error"] == "" || d.status()["graphics_error"] != "" || d.status()["font_error"] != "" || d.status()["asset_error"] != "" || d.status()["presented_heroine_pixels"] != float64(0) {
+			panic("女主角故障未隔離")
+		}
+		d.shot("heroine-real-corrupt-fallback")
+		d.receipt(*flow)
+		d.quit()
+		return
+	}
 	if *flow == "toolbar-fallback" {
 		if d.status()["poster_id"] != "off" || d.status()["poster_error"] == "" || d.status()["font_name"] != "教育部隸書" || d.status()["toolbar_error"] != "" {
 			panic("海報故障未隔離")

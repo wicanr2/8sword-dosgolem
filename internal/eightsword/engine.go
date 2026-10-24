@@ -41,6 +41,8 @@ type Engine struct {
 	Story                 *IntroStory
 	StoryError            string
 	Captions              *IntroCaptions
+	Heroine               *IntroHeroine
+	HeroineError          string
 	fonts                 *fontChoices
 	FontError             string
 	presentationObservers []*presentationSubscription
@@ -142,6 +144,10 @@ func Open(opt Options) (*Engine, error) {
 		if err != nil {
 			e.PublisherError = err.Error()
 		}
+		e.Heroine, err = loadIntroHeroine(e, opt.Assets, opt.Root)
+		if err != nil {
+			e.HeroineError = err.Error()
+		}
 	}
 	e.loadFontChoices(opt.Assets)
 	e.syncPresentationObservers()
@@ -199,6 +205,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		if e.Captions != nil {
 			e.Captions.Bind()
 		}
+		if e.Heroine != nil {
+			e.Heroine.Tick()
+		}
 		n -= count
 	}
 	return nil
@@ -241,6 +250,9 @@ func (e *Engine) Advance(n uint64) error {
 		}
 		if e.Captions != nil {
 			e.Captions.Bind()
+		}
+		if e.Heroine != nil {
+			e.Heroine.Tick()
 		}
 		n -= count
 	}
@@ -315,7 +327,7 @@ func (e *Engine) Frame() *image.RGBA {
 	return e.presentIntro(out)
 }
 func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
-	if !e.HD || e.IntroStage() == "" {
+	if !e.HD || (e.IntroStage() == "" && e.Heroine == nil) {
 		return frame
 	}
 	if (e.Intro != nil && e.Intro.active) || (e.Publisher != nil && e.Publisher.Stage() != "") || (e.Story != nil && e.Story.active) || (e.Captions != nil && e.Captions.Stage() != "") {
@@ -333,8 +345,14 @@ func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
 	if e.Story != nil {
 		frame = e.Story.Compose(frame)
 	}
+	if e.Heroine != nil {
+		frame = e.Heroine.Compose(frame)
+	}
 	if e.Captions != nil {
 		frame = e.Captions.Compose(frame)
+	}
+	if e.Heroine != nil && e.Heroine.used != 0 {
+		e.Heroine.final = frame
 	}
 	return frame
 }
@@ -360,6 +378,9 @@ func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
 	if e.Captions != nil && e.HD && e.Captions.FrameSource(frame) != 0 {
 		return "captions-noto"
 	}
+	if e.Heroine != nil && e.HD && e.Heroine.FramePixels(frame) != 0 {
+		return "heroine-hd"
+	}
 	if e.Story != nil && e.HD && frame != nil && (frame == e.Story.last || frame == e.Story.hold) {
 		return e.Story.Stage()
 	}
@@ -375,6 +396,7 @@ func (e *Engine) Status() map[string]any {
 	out["battle_actor_error"] = e.BattleActorError
 	out["battle_effect_error"] = e.BattleEffectError
 	out["battle_marker_error"] = e.BattleMarkerError
+	out["heroine_error"], out["heroine"] = e.HeroineError, e.Heroine.Status()
 	out["palette_error"], out["palette_style"] = e.PaletteError, ""
 	if e.Tracker != nil && e.Tracker.palette != nil {
 		out["palette_style"] = paletteStyle

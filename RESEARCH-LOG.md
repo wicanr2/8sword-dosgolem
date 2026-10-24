@@ -1062,3 +1062,30 @@ R2 以已確認 B 的原圖 `docs/images/hd-style-approved-r1.png` 為配色參�
 | 工具列來源封存 | workplace/player/build-toolbar-r1/source.tar，65 筆來源，SHA 87281883030c212b3c71bdb31871da7de37f66ad81f0235576078be967e5cb2b；實際 GUI 的四程式保留 |
 
 以上 graphics-first 的共同前綴為 workplace/probe-20261023/。工具版本為既有鎖定 sc-cht-hdtools:pillow11.3.0-r1 及 dosgolem-go-ebiten:1.24-r1，Go 1.24.13。新組測試、舊組回歸及 68 項分批測試日誌由相應規格索引。字型實際來源、呈現純度與視窗操作已證實；全場景、其他平台、全開場與 AI 掛點語意不由這些收據證明。
+
+
+## MUSEUM-OCCLUSION-COUNT-RESOLVED：特寫前景同色覆蓋
+
+033 正常路徑測試發現舊預期 42099 與所有權 42034 不同。追查 `museum-art-r1/catalog.py`，早期 301 是來源與畫面色號不同的數量，且當時遮罩尚未證實，不能當成 mask=1 總量。以已確認的 TIT4 第六塊及正常 frame-020 重新核對，覆蓋為 366，其中 301 點顏色不同、65 點恰好同色，餘下 42034 點可作 HD。舊影像重建結果保持成立，舊「未遮擋」計數解釋撤回。原始遮罩位於解碼 TIT4 偏移 27180，取偏移 24876 記錄的前 20 列，原生錨點 224,100。
+
+收據 `graphics-first/museum-art-r1/occlusion-count-audit-r1.json` 記錄兩來源 SHA、原始 byte 偏移、工具與正常 VGA 索引 SHA。017 活躍表格與 033 已回填；首次測試日誌 `workplace/player/heroine-tests-r1.log` 保留，沒有改程式忽略同色遮罩，也沒有改容差湊過測試。
+
+
+## 2026-10-24：033 女主角特寫的正式呈現
+
+沿 [033](docs/spec/033-intro-heroine-closeup.md) 的 READY 契約完成原版資料 → 完整來源指紋 → 兩頁所有權／人物遮罩 → HD 合成 → 正常 GUI → 存退讀及故障回退。原始定位仍為 dosgolem 執行期線性位址；沒有新增 IDA 名稱或遊戲規則推論。十五筆記錄的完整 SHA 沿 017 r7 已審查表，讀 RAM 前檢查 64 KiB 與傳統 RAM，未知來源不繪。核心八檔保持。
+
+| 證據 | 結果 |
+|---|---|
+| `museum-art-r1/heroine-asset-audit-r1.json` | Pillow 11.3.0，r29 保留 r28 的 131 檔並加三檔，獨立重建 134 檔相同；1272×600 PNG SHA 9a9775fcf7c58ac5c60e8b8e1774858c6527d580801d5d04920b4c419f0b09f8。原圖 f060f488…a186 及提示 byte 保持 |
+| `museum-art-r1/heroine-runtime-audit-r1.json` | 三組各 428 幀、合計 1284 次 Frame 純度；正常完整 state b1cafef3791e821685c691806d4096caa5ee53bc855418ff4ab28df1feeaf6b7、PCM 5fe8f10af3b6e891f448af2902e1aa85d20be8f38000111ab2f74043cc4c6e33、九工作檔及四輸入同控制。三近景全幅同獨立來源／mask，保留含同色點在內的全部 366 個前景點；真壞圖全部幀同控制 |
+| `museum-art-r1/heroine-escape-audit-r1.json` | 先正常呈現近景，再於 9100 虛擬毫秒送普通 Esc；兩組共 856 次純度，後 246 幀同控制，進 PAM。state 163e22944d8ce06786ab1f4539fa4ce122f261ed44b7cd1166e8f9930cf01b6c、PCM 89c3ef392f09f13687e206d8e209abb14450d6b88143b810122c2bb5bcb991cd、18 工作檔及六輸入相同 |
+| `workplace/player/gui/heroine-save-r2/{save,reload}/heroine-draw-audit.json` | 739／734 實際 Draw；其中 2／4 特寫 Draw 的完整矩形同新圖與獨立解碼的原第六塊前景。未持有畫面的 Draw 沒有殘圖；沒有用較晚即時摘要替代 Draw metadata |
+| 同組 `captions-pixel-audit.json`、`story-pixel-audit.json` | Noto／草書各 18／45 個字幕 Draw 與 146／138 個故事 Draw 同獨立重建，四來源及五頁都到達，原字露出零。驗證器只增加 032 中央矩形讀取，舊尺寸分支保持 |
+| 同組根目錄 `save-cycle-audit.json` | 自然片頭後走人物／軍隊、三字型、移動、真正 F7 存檔、DOS 退出 0、冷啟動繼續。2987 bytes 落地與 runtime linear 0x9E000 緩衝區同 29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359，read step 70609991；快照檢視執行零指令。3158 個地圖差異點限主角動畫區，未稱整幀 parity |
+| `museum-art-r1/heroine-missing-loader-audit-r1.json` | 研究探針真缺 PNG，零客體指令，其他 HD 與教育部隸書保留。符號連結、未知來源、另一頁、八 RAM 邊界及真壞圖另有單元測試；主機 metadata 交易／失效診斷不當作正常原版事件 |
+| `workplace/player/gui/heroine-fallback-r1/heroine-fallback/heroine-fallback-audit-r1.json` | 真壞 PNG 的正式視窗 67 幀，Noto、介面及海報保留，女主角錯誤明示 SHA 不符；已解碼檢視 |
+
+以上 `museum-art-r1` 的共同前綴為 `workplace/probe-20261023/graphics-first/`。Go 1.24.13 與既有兩份鎖定 Docker 映像沿前節。68 筆無頭來源與原程式的完整重建、68 筆正式 GUI 來源與五程式的封存 SHA 見 033，不能把後續 GUI 測試碼版本冒充早期原始收據。原 source-catalog 的顏色差異計數勘誤見上一節。
+
+第一個 GUI 在標題階段到觀察上限，與特寫掛勾無關。後續修正海報完整像素快取，實際省下 274／282 次新物件但相同像素的重建與上傳；另使用記錄的 vsync=false 與依量測設定的有界等待。這些條件不同，不據此推算成對 FPS 增益；未驗真機音訊裝置、其他平台、全博物館 HD 或全遊戲。

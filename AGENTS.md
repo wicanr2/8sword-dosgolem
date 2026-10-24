@@ -56,6 +56,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 博物館美術：[017：博物館片頭美術](docs/spec/017-intro-museum-art.md)，原版構圖與手繪樣張的研究入口。未選定的原型不進正式素材，正常人物、轉場與字幕須分開驗收。
 
+畫中女主角特寫：[033](docs/spec/033-intro-heroine-closeup.md)，限定 CONFORMED。沿 017 已確認的 TIT5、原版遮罩與兩頁生命週期，接入新古典美女。三組／普通 Esc／實際 Draw／Noto與草書字幕／故事／存退讀及故障通過；保留 366 個真正前景遮罩點，也不據此稱整段開場美術完成。
+
 軍隊頁圖像：[018：民兵圖片來源與 HD](docs/spec/018-army-militia-image.md)，新遊戲民兵限定 CONFORMED；來源、88×50 座標、正常 F2／F1 與真正存退讀已驗。重生入口為[民兵素材工具](tools/prepare-hd-army.py)，參數及 Docker 驗證見 018，不能直接套主角尺寸或擴稱其他兵種。
 
 正常戰鬥呈現：[019：自然遭遇、戰鬥文字與圖像](docs/spec/019-normal-encounter-battle-presentation.md)，DRAFT。先以正常移動進入第一場自然遭遇，盤點文字、圖片及音樂來源；不以座標或兵力注入代替玩家路徑。

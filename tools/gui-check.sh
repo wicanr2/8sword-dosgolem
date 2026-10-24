@@ -31,12 +31,14 @@ if [[ "${EIGHTSWORD_GUI_SHOW_PUBLISHER:-0}" == 1 ]]; then intro_flags+=(-intro-p
 if [[ "${EIGHTSWORD_GUI_PUBLISHER_FONT_CYCLE:-0}" == 1 ]]; then intro_flags+=(-publisher-font-cycle); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_STORY:-0}" == 1 ]]; then intro_flags+=(-intro-story); fi
 if [[ "${EIGHTSWORD_GUI_SHOW_CAPTIONS:-0}" == 1 ]]; then intro_flags+=(-intro-captions); fi
+if [[ "${EIGHTSWORD_GUI_SHOW_HEROINE:-0}" == 1 ]]; then intro_flags+=(-intro-heroine); fi
 if [[ "${EIGHTSWORD_GUI_FONT_CYCLE:-0}" == 1 ]]; then intro_flags+=(-font-cycle); fi
 if [[ "${EIGHTSWORD_GUI_RECORD:-1}" == 1 ]]; then record_flags=(-record); fi
 if [[ "${EIGHTSWORD_GUI_RECORD_AUDIO:-0}" == 1 ]]; then audio_flags=(-record-audio); fi
 phases=(inspect)
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == toolbar-cycle ]]; then phases=(toolbar toolbar-reload); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == toolbar-fallback ]]; then phases=(toolbar-fallback); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == heroine-fallback ]]; then phases=(heroine-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then phases=(save reload); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == fallback ]]; then phases=(fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == art-fallback ]]; then phases=(art-fallback); fi

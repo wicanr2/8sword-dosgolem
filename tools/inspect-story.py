@@ -86,7 +86,8 @@ def inspect(runtime, assets, background, receipt):
             return b
         assert read(8) == b"8SFRM001"
         width, height = struct.unpack("<II", read(8))
-        assert (width, height) == (1920, 1200)
+        assert (width, height) in ((1920, 1200), (2944,1264))
+        ox,oy=(512,64) if width==2944 else (0,0)
         rgba = bytearray(width*height*4)
         while header := stream.read(24):
             ordinal, step, rows = struct.unpack("<QQQ", header)
@@ -104,9 +105,10 @@ def inspect(runtime, assets, background, receipt):
                 continue
             calls, page = info["story_calls"], info["story_pages"]
             im = expected(calls, page, info.get("font_id", "noto"))
-            if im.tobytes() != rgba:
+            central=b''.join(rgba[((y+oy)*width+ox)*4:((y+oy)*width+ox+1920)*4] for y in range(1200))
+            if im.tobytes() != central:
                 im.save(receipt/"story-expected-failed.png")
-                Image.frombytes("RGBA", (width, height), bytes(rgba)).save(receipt/"story-actual-failed.png")
+                Image.frombytes("RGBA", (1920, 1200), central).save(receipt/"story-actual-failed.png")
                 raise ValueError(f"故事逐像素不符：draw={ordinal}, calls={calls}, page={page}")
             matched += 1
             pages.setdefault(str(page), []).append(calls)

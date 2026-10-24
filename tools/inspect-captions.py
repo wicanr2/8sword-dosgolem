@@ -57,21 +57,23 @@ def inspect(runtime, assets, receipt):
             b = stream.read(n)
             assert len(b) == n
             return b
-        assert read(8) == b"8SFRM001" and struct.unpack("<II", read(8)) == (1920, 1200)
-        rgba = bytearray(1920*1200*4)
+        assert read(8) == b"8SFRM001"
+        width,height=struct.unpack("<II", read(8));assert (width,height) in [(1920,1200),(2944,1264)]
+        ox,oy=(512,64) if width==2944 else (0,0)
+        rgba = bytearray(width*height*4)
         while header := stream.read(24):
             ordinal, step, rows = struct.unpack("<QQQ", header)
             frames += 1
-            assert ordinal == frames and rows <= 1200
+            assert ordinal == frames and rows <= height
             rowset = set()
             for _ in range(rows):
                 y, = struct.unpack("<H", read(2))
-                assert y < 1200 and y not in rowset
+                assert y < height and y not in rowset
                 rowset.add(y)
-                rgba[y*1920*4:(y+1)*1920*4] = read(1920*4)
+                rgba[y*width*4:(y+1)*width*4] = read(width*4)
             info = metadata[ordinal-1]
             assert info["draw"] == ordinal and info["step"] == step
-            band = rgba[960*1920*4:1050*1920*4]
+            band = b''.join(rgba[((y+oy)*width+ox)*4:((y+oy)*width+ox+1920)*4] for y in range(960,1050))
             if info["stage"] == "captions-noto":
                 source = info["caption_source"]
                 key = info.get("font_id", "noto"), source
