@@ -1005,3 +1005,5 @@ GUI r3 共 494／196 Draw、71／19 次改變，三張接觸表及 r2 三張實�
 - README 依既有總覽要求追加相同實際 Draw 的原版／HD 比較、來源 JSON 與重生工具。兩版生成原 PNG、完整提示及素材組留本機，不作逐圖使用者批准或公開散布聲明。完整 HD Goal 保持進行。
 
 收尾補記：完整 root-owned 檢查另找到前述誤掛快取時由 Docker 建立的 workplace/modcache，UID/GID 0:0、空目錄。唯讀核對後以 UID 1000 只刪除這個明確空目錄，沒有遞迴 chown 或刪除其他快取。其餘專案容器保持。
+
+最後核對：encounter7-final-integrity-r1.json 通過兩來源包、183 原版檔、八核心檔、87 建置輸入、七正式程式、181 正式素材、177 舊素材及 782 文件連結。候選與獨立重建相同，研究唯讀擷取的正式來源一致；沒有 root-owned 或 .md 目錄，本案容器清空。6e67e17 已推送 origin/main；GitHub visibility 仍為 PRIVATE。原始生成圖與完整素材組未進 Git。
