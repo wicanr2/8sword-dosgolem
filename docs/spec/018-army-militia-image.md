@@ -2,7 +2,7 @@
 
 回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的戰場首筆另見 [028](028-battle-militia-image.md)。`PAM/runtime14D2:0626/06B8/076E` 使用可選別名 107，共用本規格的不可變快取；F2 仍為 85。正常戰場及 F2／F1 對拍已核對，完整狀態依 028，不把其他三筆未驗來源套入。
 
-狀態：限定 CONFORMED。正常新遊戲 F2 民兵圖已接入 B 明亮手繪風格，原文、兵種、數量、月薪與玩家操作保持。正常 F2／F1 往返、存退讀及真實 PNG 故障驗收通過。其他兵種、戰鬥及整體 HD 未結案。
+狀態：限定 CONFORMED。正常新遊戲 F2 民兵圖與 [F3 黑底追加](#f3-黑底追加驗收)已接入 B 明亮手繪風格，原文、兵種、數量、月薪與玩家操作保持。F3 取消、原版 Enter、空列表、三字型與真正存退讀已抽驗。原 F2／F1 及故障收據保留，其他兵種、戰鬥規則及整體 HD 未結案。
 
 入口：[目前狀態](../../CONTEXT.md)、[研究紀錄](../../RESEARCH-LOG.md)。繪圖 ABI 與所有權沿用 [004](004-hd-bitmap-presentation.md)，透明圖像呈現參考 [007](007-masked-hero-animation.md)，不可直接套用主角尺寸或第六塊遮罩。
 
@@ -60,3 +60,47 @@
 | 故障 | 第十三張民兵 PNG 實際改一 byte，整組圖像拒用且 Noto 保留。四張保存畫面逐 byte 同停用圖像組，客體、音訊及工作檔亦相同。此項為正常無頭流程，未另稱故障視窗驗收 |
 
 視窗重播入口為 `EIGHTSWORD_GUI_FLOW=save-cycle EIGHTSWORD_GUI_ARMY_CHECK=1`，配合 `EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r16` 使用 [player.sh](../../tools/player.sh) 的 `gui-check <新名稱>`。Xvfb 工具維持有界、非 root、無網路的容器。驗收來源、腳本及失敗嘗試保存在本規格的既有研究目錄；沒有新增發行包或其他兵種的完成聲明。
+
+## READY：F3 黑底與 HD 民兵
+
+2026-10-24 的正常冷啟動發現 F3 民兵仍為原版；F2 保持 HD。研究沿 003 的 `graphics-first/army-dismiss-r1/`，不重開本規格已證實的圖像 ABI、鏡射或民兵來源。`source-r2` 從正常新遊戲進入 F2、Esc、F3、Esc，再回 F2，取得 290 個純 Frame；`source-audit-r2.json` 保存原始來源與獨立公式核對。
+
+已證實：F3 以 `PMAP.AY` SHA `9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02` 的零起算索引 47 鋪黑底。檔案偏移 47188、長 1004 bytes，表頭為 8×25，後方 1000 bytes 全零；完整記錄 SHA `a324cf0cd3eb5295e0470d9067ceee03740d5d7ef628af86feaa3a689036f455`，前四平面指紋 `0433c4a7db02f4011fad162839e8a66be3f0f3e1a6789738ceb6ad18fa68abd9`。它已在既有 68 筆原版目錄內，材質 ID 為 48，尚未配材質。
+
+正常 49 次 `14D2:076F → 0854` 在目的 A400、mode 1，座標 `(1+8*x,12+25*y)`、x/y 各 0..6，返回後各 1600 原生像素均為索引 0。後續 `14D2:04F2 → 0625` 的完整民兵記錄仍同本規格；4400 點底色全為 0，六塊遮罩 1506 點與四平面公式逐點同原版結果。位址為 dosgolem 執行期 CS:IP，前述 47188 為檔案偏移，不能混用。只讀掛點前綴／完整常式已對固定 PAM 核對，觀測／未觀測的最終 state、PCM 相同。
+
+實作契約：
+
+1. 沿 `terrain.json` schema 1 的既有 materials，新增 `source_index:47`。採 1×1 不透明 RGB 黑色 PNG `black-panel-r1.png`，固定 SHA `c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96`，`sampling:bitmap`；既有取樣生成 192×150 全黑快取。這是原版黑底的精確保留，不新增畫風、色彩或生成美術。
+2. 原有原生指紋、來源 ID、材質所有權及民兵完整記錄檢查照常執行。來源 48 的材質使 4400 點底圖可被確認，民兵沿原有 ID 85 及 264×300 快取合成。不能用「看到黑色」代替來源所有權，不能放寬未知背景、記錄、遮罩或幾何檢查。
+3. 匯入器驗固定 PMAP、索引 47 完整記錄與定色 PNG，保留 r32 的 155 份非 terrain 檔案 bytes，只追加既有 materials 項及黑圖、來源收據，共 158 檔。新組預設 r33，獨立重建逐 SHA 相同，舊組不變。不增 JSON 欄位、原版資料、CPU 掛點或正式規則。
+4. 真壞黑圖沿既有材質組原子回退，Noto、片頭及音樂保持。原版／HD 以同初始來源、普通鍵盤、虛擬時間及完整 state／PCM／工作檔對拍；確認 F2 保持、F3 確實繪出新民兵、Esc 保持部隊、原版 Enter 的結果及空部隊文字以實際來源為準。新圖與舊圖差異限已定義的黑底來源及民兵覆繪，不能抹去選取字墨。
+5. 正常 GUI 實際 Draw、三字型、F2／F1 往返與真正 F7 存退讀須抽驗。獨立從已存民兵原圖重新取樣，與純黑底合成，再逐 RGBA 核對民兵區；文字從真實字碼、字型 atlas 及來源位置核對。沒有新資料格式或存檔欄位，未跑到的兵種與玩法不外推。
+
+證據審查：純黑來源、既有指紋與實際合成缺口均已證實，足以作上述材質追加。原版 Enter 的資料欄位與玩法細節仍不在本次重製規則範圍，由原 DOS 程式控制；只驗正常 UI 與實際存讀。上一版 `discovery-r1/*-native.png` 取圖時直接改 HD 布林，未停用 Tracker，標籤錯誤；保留作探針勘誤，正式原版證據限 `source-r2` 直接 `Oracle.ScreenRGB` 擷取，不把前者當原版。
+
+匯入入口為 [prepare-hd-black-panel.py](../../tools/prepare-hd-black-panel.py)，`bash tools/player.sh black-panel-assets <新名稱> [基底名稱]` 預設基底 painted-r32。只有素材清單與固定純色圖片新增，正式 Engine、材質 schema、字型、民兵原圖與合成器維持既有版本。
+
+正常 `hd-r4` 已從原版 Enter 取得空軍隊結果，F2／F3 不再有 1330／1338／1346／10380 的有效字墨，空 F3 只出現原版來源 10370 的空字串，不能自行補「沒有部隊」訊息。視窗工具 `EIGHTSWORD_GUI_DISMISS_CHECK=1` 配合 `save-cycle`，在其他正常操作後驗 F3 三字型、Esc 保持部隊、Enter、空 F2／F3，再真正 F7 存退讀；讀回時再驗空 F2／F3。`menus` 流程亦加入 F3 的顯示與取消，可搭配壞黑圖組驗 Noto 與原版圖回退。
+
+獨立核對入口為 [audit-army-dismiss.py](../../tools/audit-army-dismiss.py)，在固定 Pillow 容器指定 `--assets`、`--original` 與新的 `--out` 收據，再選 `normal` 四組正常無頭或 `gui --receipt` 實際 Draw，故障 GUI 加 `--fallback`。從原始民兵 PNG 重新取樣及黑底合成，依真實 atlas 與固定文字位置核對不透明墨點，不以內部成功計數代替真正圖片。
+
+## F3 黑底追加驗收
+
+2026-10-24，上述契約限定 CONFORMED。研究根仍為 `army-dismiss-r1/`；現行引擎及合成器未改，r33 只追加既有材質。下表為本次正常玩家路徑的範圍，不以新驗收改寫原 F2 收據。
+
+| 項目 | 結果與入口 |
+|---|---|
+| 資產 | r33 共 158 檔；r32 的 155 份非 terrain 檔案逐 SHA 保持，terrain 只多索引 47 的 material。黑圖為 69 bytes、1×1 RGB 黑色；獨立重建全檔相同，見 `assets-audit-r1.json`。真壞組僅該黑圖追加一個 0；原圖組只移除 terrain，保留 Noto、片頭與音樂 |
+| 程式 | `build-audit-r1.json` 保存 80 筆建置來源及七程式，`build-dismiss-r1.tar` 可回查。與 016 最終版本相比只有 GUI 操作器及其程式改變，其他 79 筆輸入、六程式與八核心保持。沒有正式規則或材質 schema 變更 |
+| 回歸 | `militia-regression-r2.log` 的真實來源、完整六塊遮罩、底圖與既有快取檢查 11.365 秒通過。r1 使用歷史 r15 參考，因已批准 r24 主角肖像 69 不同而失敗；r2 從現行 r32 只移除民兵 actor 84 建立對應十二動作參考，其他 155 檔不變，見 `legacy-fixture-r2.json`。沒有改斷言、引擎或素材去配合舊肖像 |
+| 正常四組 | `hd-r4`／`control-r4`／`broken-r4`／`native-r4` 各 418 幀、合計 1672 次 Frame 純度。完整 state SHA `c412f5438c061024321589b7c4936d499fcc33f0e327a97a1562d9a16f8c8cd4`，PCM SHA `00e756d2710bb0bf7867a5ec6c073625aaa89485aff4e77714edaaa372ad0fa4`；29 工作檔、輸入、I/O、EXEC、BIOS、IRQ 與原始文字事件相同。新舊 HD 只有 32 幀內容區變更，其他 386 幀相同；真壞組全部 418 幀同原圖控制，見 `normal-audit-r1.json` |
+| 無頭像素 | 兩次 F3 的民兵區各 79200 像素同獨立原圖取樣與純黑底合成，各 10844 個 Noto 不透明墨點同 atlas。F2 取消前後及空 F2／F3 的完整 PNG byte 同舊組；HD ActorFallbackCalls 由舊組 2 降為 0，沒有放寬來源或底圖條件 |
+| 正常視窗 | `army-dismiss-save-r1` 的 save／reload 為 474／205 Draw，61／14 次改變。三張接觸表已看。F3 由選取名字紅底及黑色內容區識別，全部 41 個候選 Draw 的民兵區及字墨通過：草書 23、Noto 8、教育部隸書 10。每幀字型不透明墨點分別為 3485／10844／3833，見 save 的 `dismiss-pixel-audit-r2.json` |
+| 取消、確認與清空 | 真實 F3、三次 F10、Esc 取消、F2 保持民兵、再次 F3 Enter，原版清空後回到空頁。確認後、空 F2／F3 共三個 actual Draw 的 79200 像素逐一同獨立黑底或玉紙，不留原版或 HD 民兵。空表原版沒有文字，不補假訊息 |
+| 存退讀 | 相同視窗正常 F7 儲存、回 DOS 碼 0、重新冷啟動繼續。2987 bytes 同真正讀回 RAM SHA `1ef10c176c5ca34b9ace094b76098ea7615d2fef5e84f8861e95d3c85d1cf933`，read step 12212587；存讀地圖截圖零差異。讀回後空 F2／F3 兩個 actual Draw 的民兵區同獨立玉紙／黑底，見 reload 的 `dismiss-pixel-audit-r2.json` |
+| 真壞黑圖視窗 | `army-dismiss-fallback-r1/menus` 為 193 Draw／44 次改變，一張接觸表已看。六個 F3 Draw 的原版民兵／黑底與 10844 個 Noto 墨點通過。材質組整組拒用，Noto、海報、獨立片頭／音樂保持，F2／F3 取消、F4 空法術提示、F5 及人物往返完成；故障 GUI 沒有額外聲稱存檔或戰鬥 |
+
+空列表核對加在獨立工具的 `gui --empty-only`，從已批准玉紙原圖重新取樣及週期邊緣公式重建 F2 區域；F3 直接驗原版純黑。空頁的原字串來源亦須消失，不能只看歷史事件。GUI 為靜音、4000 cycles/ms、vsync=false 診斷，不作音訊裝置、即時速度或跨平台聲明。沒有新增 HD 美術或兵種，也沒有重新解碼已驗的民兵 ABI。
+
+研究區 `final-audit-r1.py`／`final-audit-r1.json` 為收尾入口，核對原版封包、完整來源集合、八核心、80 筆輸入／七程式、158 素材、舊素材保持、schema 與文件連結；不增加上述玩家路徑的驗收範圍。

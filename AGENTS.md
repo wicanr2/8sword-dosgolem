@@ -66,6 +66,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 軍隊頁圖像：[018：民兵圖片來源與 HD](docs/spec/018-army-militia-image.md)，新遊戲民兵限定 CONFORMED；來源、88×50 座標、正常 F2／F1 與真正存退讀已驗。重生入口為[民兵素材工具](tools/prepare-hd-army.py)，參數及 Docker 驗證見 018，不能直接套主角尺寸或擴稱其他兵種。
 
+F3 解雇軍隊：[018 追加驗收](docs/spec/018-army-militia-image.md#f3-黑底追加驗收)限定 CONFORMED。r33 將固定 PMAP 47 純黑圖塊沿既有 material schema 加入，F3 可共用 HD 民兵，不放寬背景所有權。入口為[黑底素材工具](tools/prepare-hd-black-panel.py)及[獨立像素／字墨／隔離核對](tools/audit-army-dismiss.py)。正常三字型、取消、原版 Enter、空 F2／F3、真正存退讀與壞圖回退已驗，其他兵種與規則不外推。
+
 正常戰鬥呈現：[019：自然遭遇、戰鬥文字與圖像](docs/spec/019-normal-encounter-battle-presentation.md)，DRAFT。先以正常移動進入第一場自然遭遇，盤點文字、圖片及音樂來源；不以座標或兵力注入代替玩家路徑。
 
 部隊姿勢盤點：[來源對照工具](tools/catalog-battle-actors.py)固定核對 MAN01／06／11／16／21 的四筆六塊記錄，輸出原圖、水平鏡射雜湊與正常呼叫對應；CHOI 標記及還原標頭另列。Docker 用法、證據與美術原型限制見 [019](docs/spec/019-normal-encounter-battle-presentation.md#部隊姿勢目錄)。原型不直接進正式素材。

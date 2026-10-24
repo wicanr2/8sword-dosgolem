@@ -20,7 +20,7 @@
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
-| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2 與戰場民兵首筆、金玉介面、五頁深藍故事背景、手繪戰場、四組敵方部隊共十六筆姿勢、累積火花效果與四姿態陰陽圖案。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)、[025](docs/spec/025-battle-man11-actors.md)、[026](docs/spec/026-battle-man21-actors.md)、[027](docs/spec/027-battle-pon-effects.md)及 [029](docs/spec/029-battle-choi-markers.md) |
+| HD 圖像 | 已接入 B 古風地表、兩種建築、布旗、十二張主角動作、人物頁、F2／F3 與戰場民兵首筆、金玉介面、五頁深藍故事背景、手繪戰場、四組敵方部隊共十六筆姿勢、累積火花效果與四姿態陰陽圖案。正常移動、頁面往返及真正存退讀已抽驗；沙地實景、其他角色與圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[018](docs/spec/018-army-militia-image.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)、[025](docs/spec/025-battle-man11-actors.md)、[026](docs/spec/026-battle-man21-actors.md)、[027](docs/spec/027-battle-pon-effects.md)及 [029](docs/spec/029-battle-choi-markers.md) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
@@ -156,9 +156,11 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r8 \
 
 正常存退讀的視窗驗證可另設 `EIGHTSWORD_GUI_ACTOR_WALK=1`，在儲存前透過 XTEST 增加四方向移動及人物頁往返。這是驗證選項，不會改正式遊戲規則；逐一遍歷十二種原版動作及其餘背景仍須另外確認。
 
-更多新遊戲選單可設 `EIGHTSWORD_GUI_FLOW=menus`，在相同 Docker 視窗工具測 F2 軍隊、F4 無法施法提示及 F5 地圖位置。此流程只檢查新遊戲已有的民兵與未習得法術狀態；習得後施法及其他戰鬥分支另驗。
+更多新遊戲選單可設 `EIGHTSWORD_GUI_FLOW=menus`，在相同 Docker 視窗工具測 F2 軍隊、F3 解雇頁及取消、F4 無法施法提示、F5 地圖位置。此流程只檢查新遊戲已有的民兵與未習得法術狀態；習得後施法及其他戰鬥分支另驗。
 
 F2 的初始民兵已有手繪 HD 圖，保留藍背心、白褲、青頭巾與持槍方向。來源、[可重現匯入工具](tools/prepare-hd-army.py)及軍隊頁限定驗收見 [018](docs/spec/018-army-militia-image.md)。存退讀流程另設 `EIGHTSWORD_GUI_ARMY_CHECK=1`，在新遊戲及繼續進度後各測兩次 F2／F1 往返。
+
+F3 解雇頁亦使用同一張 HD 民兵，保留原版黑底與選取文字。[黑底匯入工具](tools/prepare-hd-black-panel.py)使用 `bash tools/player.sh black-panel-assets <新名稱> [基底名稱]`，預設基底 r32。存退讀流程加 `EIGHTSWORD_GUI_DISMISS_CHECK=1`，可驗三字型、Esc 取消、原版 Enter、空軍隊及重新讀取。正常與故障驗收見 [018 追加](docs/spec/018-army-militia-image.md#f3-黑底追加驗收)，沒有修改軍隊規則或新增存檔欄位。
 
 戰場已共用這張民兵首筆圖，沿原版背景頁入口啟用，F2 的來源分類保持。正常戰場、火花共存、返回與真正存退讀已核對，完整狀態見 [028](docs/spec/028-battle-militia-image.md)。已有本機 r22 後，用 `bash tools/player.sh battle-militia-assets <新名稱>` 加入可選對應。錯誤的新清單只停用戰場對應，共用 PNG 損壞仍依 018 的整組圖像回退。其他三筆民兵來源與其餘兵種另行驗證。
 

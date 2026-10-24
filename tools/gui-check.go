@@ -473,11 +473,108 @@ func (d *driver) battle() {
 	shot("battle-07-result-closed")
 }
 
+// F3 uses the original list, cancellation, Enter and empty-list paths.
+func (d *driver) dismissArmy(prefix string, remove bool) {
+	visible := func(s map[string]any, want float64) bool {
+		for _, v := range s["visible_sources"].([]any) {
+			if v == want {
+				return true
+			}
+		}
+		return false
+	}
+	stable := func() {
+		lastFull, lastHalf, first := float64(-1), float64(-1), float64(0)
+		d.wait("軍隊頁穩定並完成 Draw", 25, func(s map[string]any) bool {
+			t := s["text"].(map[string]any)
+			f, h, n := t["Full"].(float64), t["Half"].(float64), s["presented_frames"].(float64)
+			if f != lastFull || h != lastHalf {
+				lastFull, lastHalf, first = f, h, n
+				return false
+			}
+			return n >= first+3
+		})
+	}
+	shot := func(name string) {
+		d.shot(prefix + "-" + name)
+		b, err := json.MarshalIndent(d.status(), "", "  ")
+		check(err)
+		check(os.WriteFile(filepath.Join(d.out, prefix+"-"+name+".json"), append(b, '\n'), 0644))
+	}
+	open := func(key byte, side float64, occupied bool) {
+		before := d.status()["steps"].(float64)
+		d.press(key)
+		d.wait("本次軍隊頁已繪出", 35, func(s map[string]any) bool {
+			seen := map[float64]bool{}
+			for _, v := range s["strings"].([]any) {
+				r := v.(map[string]any)
+				if r["Step"].(float64) > before {
+					seen[r["Source"].(float64)] = true
+				}
+			}
+			if !seen[side] {
+				return false
+			}
+			if occupied {
+				return seen[1330] && seen[1338] && seen[1346] && seen[10380] && visible(s, 10380)
+			}
+			return !visible(s, 1330) && !visible(s, 10380)
+		})
+		stable()
+	}
+	close := func(side float64) {
+		before := d.status()["steps"].(float64)
+		d.press(9)
+		d.wait("軍隊頁正常 Esc 返回", 25, func(s map[string]any) bool {
+			if visible(s, 1330) || visible(s, 10380) {
+				return false
+			}
+			for _, v := range s["strings"].([]any) {
+				r := v.(map[string]any)
+				if r["Step"].(float64) > before && r["Source"] == side {
+					return true
+				}
+			}
+			return false
+		})
+		d.scene("map")
+	}
+	if remove {
+		open(69, 1030, true)
+		for i := 0; i < 3; i++ {
+			id := d.status()["font_id"].(string)
+			shot("f3-" + id)
+			next := map[string]string{"noto": "lishu", "lishu": "caoshu", "caoshu": "noto"}[id]
+			d.press(76)
+			d.wait("F3 字型切換", 20, func(s map[string]any) bool { return s["font_id"] == next && s["presented_font_id"] == next })
+			stable()
+		}
+		close(1030)
+		open(68, 1010, true)
+		shot("cancel-kept-army")
+		close(1010)
+		open(69, 1030, true)
+		shot("before-enter")
+		d.press(36)
+		d.wait("原版 Enter 後列表清空", 35, func(s map[string]any) bool { return !visible(s, 1330) && !visible(s, 10380) })
+		stable()
+		shot("after-enter")
+		close(1030)
+	}
+	open(68, 1010, false)
+	shot("empty-f2")
+	close(1010)
+	open(69, 1030, false)
+	shot("empty-f3")
+	close(1030)
+}
+
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
 	flow := flag.String("flow", "inspect", "inspect, captions, captions-fallback, story, story-skip, story-fallback, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	armyCheck := flag.Bool("army-check", false, "visit F2 twice through F1 before save and after reload")
+	dismissCheck := flag.Bool("dismiss-check", false, "normal F3 three-font cancel, Enter, empty F2/F3 and persisted empty army")
 	battleCheck := flag.Bool("battle-check", false, "first natural encounter, V/Ctrl, retreat and acknowledge result before normal save")
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
 	showPublisher := flag.Bool("intro-publisher", false, "wait for actual publisher wordmarks before Esc")
@@ -1033,7 +1130,9 @@ func main() {
 		d.press(36) // 原版預設「繼續上次進度」。
 		d.scene("map")
 		d.shot("04-loaded-map")
-		if *armyCheck {
+		if *dismissCheck {
+			d.dismissArmy("loaded-dismiss", false)
+		} else if *armyCheck {
 			d.army("loaded")
 		}
 		d.press(67)
@@ -1084,6 +1183,7 @@ func main() {
 			sources []float64
 		}{
 			{"f2-army", 68, 1010, []float64{1330, 1338, 1346, 10380}},
+			{"f3-dismiss", 69, 1030, []float64{1330, 1338, 1346, 10380}},
 			{"f4-magic", 70, 1050, []float64{10786}},
 			{"f5-map", 71, 1070, []float64{1278, 1304}},
 		} {
@@ -1170,6 +1270,9 @@ func main() {
 			d.scene("map")
 			d.shot("actor-direction-" + direction.name)
 		}
+	}
+	if *dismissCheck && *flow == "save" {
+		d.dismissArmy("dismiss", true)
 	}
 	if *flow == "save" {
 		if *saves == "" {

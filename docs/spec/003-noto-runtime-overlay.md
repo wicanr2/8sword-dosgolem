@@ -6,6 +6,8 @@
 
 狀態：READY。首次實作因將 overlay 的 ExecRecord.PSP 當成行程 PSP 而退回 DRAFT；已核對原版收據「0110:0、重定位加數 0110」及核心 loadOverlay 契約，改採 OverlayLoad.Seg／Reloc 並重新審查。目標為真正接入 Noto Black 900，透過正常主選單、地圖選單、F1 人物頁及返回操作驗證 HD；不能以字集圖或離線改圖取代。
 
+`F3-BLACK-PANEL-RESOLVED`：[018 的 F3 追加驗收](018-army-militia-image.md#f3-黑底追加驗收)已補正常黑底材質 48，使已確認民兵來源可沿既有底圖所有權合成，沒有改本規格的字型、字墨或掛點。正常新遊戲 F3、三字型、取消、原版 Enter、空列表及存退讀已有實際 Draw；原圖與 HD 的 1672 次 Frame 純度及完整客體對拍通過。研究入口為 `graphics-first/army-dismiss-r1/`，其他文字及整體 003 仍維持本規格未結案條件。
+
 ## 已確認與待查
 
 - 以 [002](002-pam-font-catalog.md) 的 PAM 字碼與字模為來源，原版照常執行及寫入；前端只讀觀測，主機 RGBA 合成文字，不改玩法、亂數或存檔。

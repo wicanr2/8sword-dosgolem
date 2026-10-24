@@ -491,6 +491,21 @@ case "${1:-}" in
       "$task_py" python /tools/prepare-font-choices.py --base /base --sources /sources \
       --noto /fonts/NotoSansCJK-Black.ttc --cjk-fallback /fonts/NotoSerifCJK-Regular.ttc --out /out
     ;;
+  black-panel-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r32}"
+    valid_name "$task_name"; valid_name "$task_base"
+    test -d "$task_player/assets-$task_base"; test -d "$task_orig"; test -f "$task_orig/PMAP.AY"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 90s docker run --rm --init --name "8sword-black-panel-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 900m --cpus 2 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-black-panel.py --base /base --source /orig/PMAP.AY --out /out
+    ;;
   publisher-icon-assets)
     task_name="${2:?指定新的素材組名稱}"
     task_base="${3:-painted-r31}"
@@ -591,6 +606,7 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_FLOW="${EIGHTSWORD_GUI_FLOW:-inspect}" \
       -e EIGHTSWORD_GUI_ACTOR_WALK="${EIGHTSWORD_GUI_ACTOR_WALK:-0}" \
       -e EIGHTSWORD_GUI_ARMY_CHECK="${EIGHTSWORD_GUI_ARMY_CHECK:-0}" \
+      -e EIGHTSWORD_GUI_DISMISS_CHECK="${EIGHTSWORD_GUI_DISMISS_CHECK:-0}" \
       -e EIGHTSWORD_GUI_BATTLE_CHECK="${EIGHTSWORD_GUI_BATTLE_CHECK:-0}" \
       -e EIGHTSWORD_GUI_SHOW_INTRO="${EIGHTSWORD_GUI_SHOW_INTRO:-0}" \
       -e EIGHTSWORD_GUI_SHOW_PUBLISHER="${EIGHTSWORD_GUI_SHOW_PUBLISHER:-0}" \
