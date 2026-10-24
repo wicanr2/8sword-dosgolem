@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "decision": "使用者明確選擇：採用這版手繪城門",
+  "tool": "built-in image_gen",
+  "image_sha256": "7aa67f8975843e91e0a393863ba08bb77582fd4ab62ee10fad059bebcd5b61ab",
+  "prompt_sha256": "a5a7397084a136035ef0824c9636d6658250b196752f765190e666e39c16f02e",
+  "source": "LIVE2.AY",
+  "reference": "docs/images/hd-style-approved-r1.png 下半部 B",
+  "comparison": "workplace/probe-20261023/graphics-first/map-interaction-r1/live2-comparison-r1.png",
+  "rights": "approved reference in existing private GitHub repository only; original-derived; no public distribution grant"
+}

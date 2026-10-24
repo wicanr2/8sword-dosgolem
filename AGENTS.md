@@ -46,6 +46,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 執行期 HD 規格：[003：Noto 文字覆繪](docs/spec/003-noto-runtime-overlay.md)，已完成參數與 VGA 搬移證據審查，READY 授權實作；正常選單、人物頁、返回及狀態隔離是必要驗收。
 
+募兵建築追加：[034：募兵建築的手繪背景](docs/spec/034-recruitment-building.md)，定稿及正常路徑證據由此索引；READY 與完成狀態以該規格為準。
+
 共用呈現觀測由 [Engine 訂閱入口](internal/eightsword/presentation_observers.go)轉送；契約及[測試](internal/eightsword/presentation_observers_test.go)入口見 003。新增呈現器不能覆蓋核心的單一視訊回呼。
 
 故事背景規格：[014：深藍手繪故事背景](docs/spec/014-intro-story-background.md)。使用者已選 A 深藍稿，沿用 012 原文、座標與字色；新背景損壞時保留 Noto 並回原底圖。

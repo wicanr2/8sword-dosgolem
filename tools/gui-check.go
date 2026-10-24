@@ -569,12 +569,56 @@ func (d *driver) dismissArmy(prefix string, remove bool) {
 	close(1030)
 }
 
+// Ordinary movement from the new-game starting square to the observed LIVE2
+// recruitment building. F1 between moves also resolves a real encounter using
+// the existing original No/retreat path; no position or party state is injected.
+func (d *driver) recruitmentBuilding() {
+	visible := func(s map[string]any, want float64) bool {
+		for _, v := range s["visible_sources"].([]any) {
+			if v == want {
+				return true
+			}
+		}
+		return false
+	}
+	shot := func(name string) {
+		d.shot("recruitment-" + name)
+		raw, err := json.MarshalIndent(d.status(), "", "  ")
+		check(err)
+		check(os.WriteFile(filepath.Join(d.out, "recruitment-"+name+".json"), append(raw, '\n'), 0644))
+	}
+	for _, key := range []byte{113, 111} {
+		d.press(key)
+		d.press(67)
+		d.scene("character")
+		d.press(9)
+		d.scene("map")
+	}
+	d.press(111)
+	d.wait("正常移動進入募兵建築", 40, func(s map[string]any) bool { return visible(s, 11988) && visible(s, 12238) })
+	for i := 0; i < 3; i++ {
+		id := d.status()["font_id"].(string)
+		d.wait("募兵字型已呈現", 20, func(s map[string]any) bool { return s["presented_font_id"] == id && visible(s, 12238) })
+		first := d.status()["presented_frames"].(float64)
+		d.wait("募兵頁連續呈現", 20, func(s map[string]any) bool { return s["presented_frames"].(float64) >= first+3 })
+		shot(id)
+		next := map[string]string{"noto": "lishu", "lishu": "caoshu", "caoshu": "noto"}[id]
+		d.press(76)
+		d.wait("募兵頁 F10", 20, func(s map[string]any) bool { return s["font_id"] == next && s["presented_font_id"] == next })
+	}
+	d.press(9)
+	d.wait("募兵頁 Esc 返回", 25, func(s map[string]any) bool { return !visible(s, 11988) && !visible(s, 12238) })
+	d.scene("map")
+	shot("cancel")
+}
+
 func main() {
 	out := flag.String("out", "", "GUI receipt directory")
 	flow := flag.String("flow", "inspect", "inspect, captions, captions-fallback, story, story-skip, story-fallback, intro, intro-skip, intro-fallback, boot, boot-fallback, save, reload, menus, music, fallback or art-fallback")
 	actorWalk := flag.Bool("actor-walk", false, "save flow also walks four directions through normal input")
 	armyCheck := flag.Bool("army-check", false, "visit F2 twice through F1 before save and after reload")
 	dismissCheck := flag.Bool("dismiss-check", false, "normal F3 three-font cancel, Enter, empty F2/F3 and persisted empty army")
+	buildingCheck := flag.Bool("recruitment-check", false, "normal new-game movement to LIVE2, three fonts and Esc")
 	battleCheck := flag.Bool("battle-check", false, "first natural encounter, V/Ctrl, retreat and acknowledge result before normal save")
 	showTitle := flag.Bool("intro-title", false, "wait for actual Noto title before Esc, including save/reload flows")
 	showPublisher := flag.Bool("intro-publisher", false, "wait for actual publisher wordmarks before Esc")
@@ -1152,6 +1196,9 @@ func main() {
 	d.press(36)
 	d.scene("map")
 	d.shot("05-map")
+	if *buildingCheck {
+		d.recruitmentBuilding()
+	}
 	if *flow == "toolbar" {
 		if d.status()["font_name"] != "教育部隸書" {
 			panic("新字型來源未載入")

@@ -16,40 +16,41 @@ type Options struct {
 	HD                  bool
 }
 type Engine struct {
-	Oracle                *oracle.Oracle
-	Tracker               *Tracker
-	Assets                *Assets
-	PAM                   []byte
-	HD                    bool
-	AssetError            string
-	GraphicsError         string
-	BattleBackgroundError string
-	BattleActorError      string
-	BattleEffectError     string
-	BattleMarkerError     string
-	PaletteError          string
-	Exited                bool
-	ExitCode              uint8
-	PAMLoaded             bool
-	InputEvents           []InputEvent
-	Sound                 *oracle.Audio
-	Music                 *Music
-	Intro                 *IntroTitle
-	IntroError            string
-	Publisher             *IntroTitle
-	PublisherError        string
-	Story                 *IntroStory
-	StoryError            string
-	Captions              *IntroCaptions
-	Heroine               *IntroHeroine
-	HeroineError          string
-	Museum                *IntroMuseum
-	MuseumError           string
-	fonts                 *fontChoices
-	FontError             string
-	presentationObservers []*presentationSubscription
-	presentationDispatch  int
-	presentationSweep     bool
+	Oracle                   *oracle.Oracle
+	Tracker                  *Tracker
+	Assets                   *Assets
+	PAM                      []byte
+	HD                       bool
+	AssetError               string
+	GraphicsError            string
+	BattleBackgroundError    string
+	RecruitmentBuildingError string
+	BattleActorError         string
+	BattleEffectError        string
+	BattleMarkerError        string
+	PaletteError             string
+	Exited                   bool
+	ExitCode                 uint8
+	PAMLoaded                bool
+	InputEvents              []InputEvent
+	Sound                    *oracle.Audio
+	Music                    *Music
+	Intro                    *IntroTitle
+	IntroError               string
+	Publisher                *IntroTitle
+	PublisherError           string
+	Story                    *IntroStory
+	StoryError               string
+	Captions                 *IntroCaptions
+	Heroine                  *IntroHeroine
+	HeroineError             string
+	Museum                   *IntroMuseum
+	MuseumError              string
+	fonts                    *fontChoices
+	FontError                string
+	presentationObservers    []*presentationSubscription
+	presentationDispatch     int
+	presentationSweep        bool
 }
 type InputEvent struct {
 	Step  uint64
@@ -116,6 +117,9 @@ func Open(opt Options) (*Engine, error) {
 								e.BattleActorError += "；"
 							}
 							e.BattleActorError += "戰場民兵: " + militiaErr.Error()
+						}
+						if buildingErr := loadRecruitmentBuilding(opt.Assets, opt.Root, art); buildingErr != nil {
+							e.RecruitmentBuildingError = buildingErr.Error()
 						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)
 					}
@@ -429,6 +433,7 @@ func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
 	out["font_id"], out["font_name"], out["font_error"], out["font_choices"] = e.FontID(), e.FontName(), e.FontError, e.FontChoices()
 	out["battle_background_error"] = e.BattleBackgroundError
+	out["recruitment_building_error"] = e.RecruitmentBuildingError
 	out["battle_actor_error"] = e.BattleActorError
 	out["battle_effect_error"] = e.BattleEffectError
 	out["battle_marker_error"] = e.BattleMarkerError

@@ -1179,3 +1179,11 @@ F7 真存檔與正常冷啟動讀回 RAM 的 2987 bytes 同 SHA `1ef10c17…f933
 研究入口為 [003](docs/spec/003-noto-runtime-overlay.md)所列 `graphics-first/map-interaction-r1/`。`probe.go` 從冷啟動、新遊戲及普通按鍵取得 F6 空結果、Esc、F1 返回、自然遇敵拒戰、F5 及募兵建築；沒有讀快照或注入。`commands.jsonl` 記錄按鍵、步數與虛擬時間，`live-r1` 的十二組 PNG 直接保存同一時點的 Oracle.ScreenRGB 原圖及正式 Frame。`research-audit-r1.json` 記錄 PAM.AY／PMAP.AY、探針、78 個研究檔、80 筆建置輸入與七程式的 SHA，工具為 Go 1.24.13、Python 3.11.2 與固定 dosgolem-go-ebiten:1.24-r1。這些步數及文字來源編號屬 dosgolem 執行期與既有 PAM 文字來源空間，不是 IDA 線性位址。
 
 已證實的觀察：來源 9690 在 x32,y118 顯示「這裡什麼也沒有」，Esc 後消失；第十一組畫面出現民兵募兵數字輸入，Noto 正常但建築全景仍原版，Esc 返回。兩種提示的現有場景分類均仍為 map。23.6 秒虛擬時間、68379414 步、472 次 Frame 前後客體核對全同，零缺字及未實作服務。這只證明該次正常輸入診斷及抽樣呈現，沒有成功募兵、同狀態控制重播、GUI、存讀或亂數規則證據。數字與建築外觀不延伸為費用公式、事件類型或座標規則，整體 003 保持未結案。
+
+### LIVE2 來源補足
+
+[034](docs/spec/034-recruitment-building.md)集中來源與接入契約。LIVE2.AY SHA `b854b04f…32eb`，解碼 22404 bytes／SHA `edf6a0cc…5978`，56×100 bytes 的四平面圖。正常客體完整畫面 `(8,12)-(456,112)` 的 44800 像素全同解碼，不能從檔名猜建築種類。`live2-runtime-source-audit-r1.json` 保存三次既有 `14D2:099C → 0A6F` 呼叫、完整來源、返回後色碼、探針及工具指紋。PAM 檔案偏移 `0x15A2C` 起 212 bytes 同實際入口，執行期段位址與檔案偏移分列。各次返回完整像素同獨立平面公式，證據等級為已證實。
+
+兩組各 472 次 Frame 純度、state `5c439e34…23a3`、PCM `2c0f83c3…6abf`、31 工作檔及事件同，亦同未加掛點的上一輪正常路徑。原版會重繪三次，初版探針的單次限制錯誤保留在 source-r2，修正及編譯工具問題見 WORKLOG，不列成遊戲缺陷。募兵上限、費用與亂數仍不由此宣稱原版規則 parity。
+
+使用者選定手繪城門後，034 依上述證據先升 READY，再接入獨立可選材質。正式 r35 的 162 檔保持原 r33 的 158 檔。`runtime-audit-r2.json` 核對三組各 475 幀、1425 次純度、全部客體／PCM／31 工作檔與事件相同；8 幀改動嚴格限建築矩形，真壞圖全同舊組。`recruitment-save-r3/building-draw-audit-r3.json` 核對三字型、三個完整 actual Draw 與 34 個連續建築 Draw，存退讀真正緩衝區同 2987-byte 存檔。完整路段與限制見 034，不外推其他建築或成功募兵；場景粗分類仍為 map。
