@@ -1,6 +1,6 @@
 # 012：開場故事直排文字
 
-狀態：限定 CONFORMED。先經 DRAFT、正常來源審查及 READY，再實作與驗證。範圍限 PREDELLA 正常開場的五頁故事。沿用已批准的 Noto Sans CJK TC Black 900，保留原文、直排、分頁、逐字順序與 Esc。背景仍為原版，不宣稱故事插畫 HD 完成。
+狀態：限定 CONFORMED。先經 DRAFT、正常來源審查及 READY，再實作與驗證。範圍限 PREDELLA 正常開場的五頁故事文字。沿用已批准的 Noto Sans CJK TC Black 900，保留原文、直排、分頁、逐字順序與 Esc。本項早期收據使用原版背景；現行深藍五頁與彩色前導的追加呈現、第一頁交接及限定驗收見 [014](014-intro-story-background.md#彩色前導正式追加驗收)，不以本項文字驗收外推其他美術。
 
 ## 原版證據
 

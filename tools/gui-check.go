@@ -886,6 +886,18 @@ func main() {
 	}
 	d.scene("main-menu")
 	d.shot("03-main-menu")
+	if *flow == "prelude-fallback" {
+		st := d.status()
+		story := st["intro_story"].(map[string]any)
+		prelude := story["prelude"].(map[string]any)
+		if story["prelude_error"] == "" || prelude["loaded"] != false || story["load_error"] != "" || story["background_error"] != "" || story["hd_background"] != true || st["museum_error"] != "" || st["graphics_error"] != "" || st["font_error"] != "" || st["asset_error"] != "" {
+			panic("故事前導故障未隔離")
+		}
+		d.shot("prelude-real-corrupt-fallback")
+		d.receipt(*flow)
+		d.quit()
+		return
+	}
 	if *flow == "museum-fallback" {
 		st := d.status()
 		if st["museum_error"] == "" || st["heroine"] == nil || st["heroine_error"] != "" || st["graphics_error"] != "" || st["font_error"] != "" || st["asset_error"] != "" || st["presented_museum_stage"] != "" {

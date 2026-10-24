@@ -27,13 +27,21 @@
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
 
-開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕。正式視窗已自然走完片頭，並核對 Noto／草書字幕、五頁故事、人物／軍隊及真正存退讀，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事頁的原版淡入與發行商中央圖案仍待處理，整體 HD 尚未完成。原圖與完整執行期素材組留本機。
+開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導已採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；[014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)記錄正常片頭、字型、人物／軍隊、存退讀與故障回退的限定驗收。發行商中央圖案與其他音畫仍待處理，整體 HD 尚未完成。完整執行期素材組留本機。
 
 已有本機固定美術與合法原版資料時，可用 `bash tools/player.sh heroine-assets <新名稱> [基底名稱]` 製作特寫素材組，預設基底為 r28；正常原版收據使用 `bash tools/player.sh heroine-check <新收據名稱> [素材組]`。來源、輸出指紋與故障回退契約均見 033。
 
 完整博物館使用 `bash tools/player.sh museum-assets <新名稱> [基底名稱]`，預設基底為 r29；正常收據使用 `bash tools/player.sh museum-check <新收據名稱> [素材組]`。視窗驗證入口為 `EIGHTSWORD_GUI_SHOW_MUSEUM=1` 搭配 `gui-check`，素材組由 `EIGHTSWORD_GUI_ASSETS` 指定，格式與檢查工具見 017。
 
+彩色前導使用 `bash tools/player.sh story-prelude-assets <新名稱> [基底名稱]`，預設基底為 r30；正常收據使用 `bash tools/player.sh story-prelude-check <新收據名稱> [素材組] [普通Esc毫秒] [字型]`，預設素材為 r31。相同視窗入口可自然走完前導與五頁故事，檢查方法見 014。
+
 ## 畫面與文字樣張
+
+### 彩色故事前導
+
+![故事前導的彩色手繪定稿參考](docs/images/story-prelude-color-approved-r1.png)
+
+這是使用者選定的彩色前導原圖，執行期依固定畫布呈現，逐點動畫沿原版寫入順序。五頁文字使用深藍背景。原始提示與批准範圍見[來源紀錄](docs/images/story-prelude-color-approved-r1.json)，正式接入與驗收見 [014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。
 
 ### 兩側海報與字型工具列
 

@@ -45,6 +45,8 @@ type IntroStory struct {
 	lastCalls, lastPages, holdCalls, holdPages uint64
 	art                                        *image.RGBA
 	BackgroundError                            string
+	prelude                                    *StoryPrelude
+	PreludeError                               string
 }
 
 func loadIntroStory(o *oracle.Oracle, dir string) (*IntroStory, error) {
@@ -126,6 +128,10 @@ func loadIntroStory(o *oracle.Oracle, dir string) (*IntroStory, error) {
 	if err != nil {
 		t.BackgroundError = err.Error()
 	}
+	t.prelude, err = loadStoryPrelude(t, dir)
+	if err != nil {
+		t.PreludeError = err.Error()
+	}
 	return t, nil
 }
 
@@ -135,13 +141,19 @@ func (t *IntroStory) invalidate() {
 	t.last, t.hold = nil, nil
 }
 func (t *IntroStory) fail(message string) {
+	if t.prelude != nil {
+		t.prelude.stop("story-failure", false)
+	}
 	if len(t.Stats.Errors) < 8 {
 		t.Stats.Errors = append(t.Stats.Errors, message)
 	}
 	t.failed = true
 	t.invalidate()
 }
-func (t *IntroStory) observeWrite(oracle.VideoWrite) {
+func (t *IntroStory) observeWrite(v oracle.VideoWrite) {
+	if t.prelude != nil {
+		t.prelude.observeWrite(v)
+	}
 	if t.active && !t.inDraw && !t.inText {
 		t.fail("故事出現未知視訊寫入，恢復原版")
 	}
@@ -232,6 +244,9 @@ func (t *IntroStory) Bind() {
 		t.palette = o.Palette()
 		t.inDraw = false
 		t.hold = nil
+		if t.prelude != nil {
+			t.prelude.stop("story-background", false)
+		}
 	})
 	t.o.OnCall(oracle.Far(0, 0x58b1), func(o *oracle.Oracle) { t.beginText() })
 	t.o.OnCall(oracle.Far(0, 0x590f), func(o *oracle.Oracle) {
@@ -283,6 +298,12 @@ func (t *IntroStory) beginText() {
 }
 func (t *IntroStory) Stage() string {
 	if !t.active {
+		if t.prelude != nil && t.prelude.phase != "" {
+			if t.prelude.phase == "handoff" {
+				return "story-prelude-handoff"
+			}
+			return "story-prelude"
+		}
 		return ""
 	}
 	if t.hold != nil {
@@ -291,6 +312,11 @@ func (t *IntroStory) Stage() string {
 	return "story-noto"
 }
 func (t *IntroStory) Compose(native *image.RGBA) *image.RGBA {
+	if t.prelude != nil {
+		if out, used := t.prelude.compose(native); used {
+			return out
+		}
+	}
 	if !t.valid() || !t.active {
 		return native
 	}
@@ -337,4 +363,14 @@ func (t *IntroStory) FrameInfo(frame *image.RGBA) (uint64, uint64) {
 		return t.lastCalls, t.lastPages
 	}
 	return 0, 0
+}
+
+func (t *IntroStory) Tick() {
+	if t.prelude != nil {
+		t.prelude.tick()
+	}
+}
+
+func (t *IntroStory) PreludeStatus() map[string]any {
+	return t.prelude.Status()
 }

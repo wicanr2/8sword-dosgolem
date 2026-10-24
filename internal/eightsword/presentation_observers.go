@@ -122,6 +122,9 @@ func (e *Engine) observePresentationMode(v oracle.VideoModeChange) {
 		e.Intro.invalidate()
 	}
 	if e.Story != nil {
+		if e.Story.prelude != nil {
+			e.Story.prelude.mode(v)
+		}
 		e.Story.invalidate()
 	}
 	if e.Captions != nil {

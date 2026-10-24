@@ -1123,3 +1123,27 @@ R2 以已確認 B 的原圖 `docs/images/hd-style-approved-r1.png` 為配色參�
 `MUSEUM-TITLE-HANDOFF-RESOLVED` 的正常 Frame 測試實際捕捉首交易並驗保留上游完整 Noto hold，19.845 秒通過。GUI 各有一次 handoff Update，沒有中間態實際 Draw；其餘 51／50 個標題 Draw 的不透明字墨及透明黑底另驗。加強核對器真正拒絕舊 r1 Draw 82，原串流 SHA `431d9185cb119e50a88c00f2d19ee8d6ac21aea7e19501faa9dc054ee9339eed` 保持，負對照為 museum-art-r1/title-handoff-negative-exec-audit-r1.json。未知來源、頁面、RAM、逾時、事件上限與回收測試屬 metadata 邊界，不冒稱原版自然發生。
 
 真壞組 GUI 的 322 Draw 及三張接觸表完成檢視，四個實際女主角 Draw 保持 033 的 42034 所有權／366 原版前景。此收據的載入失敗分支沿 build-museum-gui-r1，成功完整組的標題修正不影響它；現行 r2 壞組無頭逐幀同控制。修正後來源封存 build-museum-handoff-r2，tar SHA `d032ec456207ba2708da4f8d59bda7b5e3d11b609e33c787fd97c9ea1cc8cf01`；最後六程式仍逐 byte 相同，只追加測試檔。兩原始封包、183 解出檔案及八核心指紋皆保持。017 升限定 CONFORMED，故事淡入、其他圖像／曲目與全遊戲 HD 仍未完成。
+
+## 2026-10-24：故事前導揭圖與第一頁交接
+
+已證實範圍限來源、逐點覆蓋與呈現邊界。正式程式仍為 9c557ae 的 74 筆來源，沒有加入 HD 前導。入口為 [014 追加研究](docs/spec/014-intro-story-background.md#已證實的前導來源)，研究檔集中 `graphics-first/story-art-r1/`，不另建研究根目錄。
+
+正常 VGA／AdLib 啟動的 `probe-fade-r1.go`、r2、r3 分別保存 50／50／58 個樣本，158 次 Frame 前後完整 state 相同。三輪最終 state 都為 `a1df4484bd351cfe6a0afb3b455047000d1b4be649459f81e00bf843588d4c71`，PCM 都為 `5978bc910ea0c4b7ba9686b8954d5378e87e1016c43c3ddd00d1292eb5a821a1`。來源 TIT6V 解碼 64768 bytes 同既有 `9aadec77…d6dfe`，前 768 色盤及 64000 色號；沒有重開壓縮或硬體 driver。
+
+IDA 9.4 在正式 DB 唯讀輸入的 `/tmp` 副本查詢，9.4／UID 1000／185 函式／DB SHA `dccb45c4…4616` 核對通過。沿本案既有 py312-v1 image `4ac62de8…06ab`，沒有新建 image 或搬出授權。`ida-fade-r1.json` 保存原始 sub_A3D0、sub_A451、A486h 寫入者及 A450h 返回。A633h 的原始 1600-word 固定排列經獨立解讀，完整重建 64000 個寫入 offset，逐項同正常串流。此為固定資料驅動的呈現，不新增 RNG 規則；782 個原版黑色點也有真正覆蓋，不能用色差當所有權。
+
+`audit-fade-source-r1.py`／`source-audit-fade-r1.json` 核對 74 筆正式來源、三探針來源／程式 SHA、原始圖、IDA 資料庫、靜態排列、完整遮罩及 98 張 mode 13h 原版 RGB。r3 在 17480／17490 虛擬毫秒看到 mode 0Eh、Pages=1／Calls=0，第一頁仍在背景交易；17500 ms 才進入現行 story-noto。這兩個中間狀態會影響未來 HD 交接，不能只替換前導後立刻撤圖。位址基準與完整雜湊見 014，未標為已實作修正。
+
+深藍連續原型及原版／A 彩色／B 深藍並列已生成，入口 `fade-preview-r1/`、`fade-options-r1/`，原始美術不改。使用者先前批准深藍五頁，不直接延伸到前導。已問前導配色，建議彩色以保留原版色彩，答案待回覆；兩方案都未加入正式素材。原型與來源證據不作正式 GUI、存退讀或整體 HD 完成聲明。
+
+## 2026-10-24：A 彩色前導正式閉合
+
+使用者明確選 A 彩色前導後，先將原圖／提示／批准紀錄存 docs/images，再完成 [014 READY 契約](docs/spec/014-intro-story-background.md#ready-a-彩色前導正式接入契約)及正式實作。五頁維持深藍，原版 reveal 順序與 DOS 狀態保持；正式結果與完整雜湊見 [014 追加驗收](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。本段為後續結果，不改寫前述待答與來源探針歷史。
+
+r31 新增三檔共 152，原 r30 的 149 檔保持、獨立重建相同。首正式無頭及 GUI 的 78 筆來源／七程式各自封存；現行七程式 byte 同 GUI 版本，最後只追加測試。早期 74 筆來源由修改前 tar 回查，穩定來源驗證器為 story-art-r1/audit-fade-source-r2.py；原 r1 收據不改名。
+
+正常三組及兩組成對普通 Esc 各 548 幀，合計 3836 次 Frame 純度，完整客體、音訊、20 工作檔與輸入／I/O／EXEC 事件成對相同。正常 52 個前導／交接幀全幅同獨立原始排列與批准圖；兩個第一頁中間狀態皆保持完整 HD。真壞 PNG 的 548 幀同 r30 控制，舊 r30 另按客體 step 與舊程式 museum-hd-r2 的 428 抽樣全幅相同。沒有額外執行或等待客體來配合呈現。
+
+正常 GUI 753／526 個實際 Draw、十張含故障的接觸表均已解碼檢視。前導 69／43 Draw 逐中央 RGBA 同獨立模型，字幕 18／19、五頁故事 123／78 Draw 通過。2987 bytes 同真正讀回 RAM，read step 69209967、正常退出碼 0；3158 個差異點限主角動畫框。兩程序沒有實際交接中間 Draw，正向交接證據來自加密正常無頭及整段不呼叫 Frame 的 18.79 秒測試。真壞組 GUI 379 Draw，前導拒用而其餘 HD 保持，四字幕組 25 Draw／五頁故事 78 Draw 逐 RGBA 通過。
+
+五項不同目標父測試分批全部通過，涵蓋十一種載入故障、兩個容量上限、原故事 atlas 故障、不可變幀、Frame／字型純度、未知寫入／來源、模式、Tick／Close 與沒有先前 Frame 的正常交接／回收。未知情形的 metadata 注入不稱原版自然發生。014 追加限定 CONFORMED；裝置音訊、即時速度、其他圖像／曲目、後期玩法及全遊戲 HD 仍未完成。

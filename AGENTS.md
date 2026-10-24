@@ -50,6 +50,12 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 故事背景規格：[014：深藍手繪故事背景](docs/spec/014-intro-story-background.md)。使用者已選 A 深藍稿，沿用 012 原文、座標與字色；新背景損壞時保留 Noto 並回原底圖。
 
+故事前導揭圖：[014 正式追加驗收](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)限定 CONFORMED。使用者選 A 彩色前導，五頁仍深藍；原版逐點順序、第一頁交接、普通 Esc、正常存退讀及回退通過。[批准原圖](docs/images/story-prelude-color-approved-r1.png)、[完整提示](docs/images/story-prelude-color-approved-r1.prompt.txt)與[來源／決定](docs/images/story-prelude-color-approved-r1.json)存私人倉庫。
+
+前導實作入口：[呈現與生命週期](internal/eightsword/story_prelude.go)、[載入](internal/eightsword/story_prelude_assets.go)、[邊界測試](internal/eightsword/story_prelude_test.go)、[素材匯入](tools/prepare-hd-story-prelude.py)、[正常收據](tools/story-prelude-check.go)。依 014 READY 實作並限定驗收，r31 共 152 檔；完整素材及原版留本機。
+
+前導獨立核對：[audit-story-prelude.py](tools/audit-story-prelude.py)，Docker 內指定 `--project`、`--assets`，再選 `normal` 的 HD／控制／真壞三收據、`escape` 的 HD／控制兩收據、`gui` 的實際視窗段或 `gui-fallback` 的故障視窗段。從固定原始排列與選定圖片重建逐點畫面，成對隔離與其他 GUI 區域另驗，不把內部模型當全遊戲 parity。
+
 字型設定：[015：可選字型設定](docs/spec/015-font-settings.md)。使用者授權自行選型，Noto 保持預設，新增隸書風及草書的本機選項，缺字回 Noto；偏好檔與原版存檔分開。
 
 發行商文字：[016：發行商圖片文字](docs/spec/016-publisher-wordmarks.md)，保留圖標、原文與位置，獨立字圖沿用三種字型；正式狀態以規格及目前證據為準。

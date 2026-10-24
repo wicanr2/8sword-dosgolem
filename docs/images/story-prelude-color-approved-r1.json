@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "method": "built-in image_gen; existing approved-style comparison candidate",
+  "decision_date": "2026-10-24",
+  "decision": "使用者明確選 A 彩色手繪前導；五頁文字保持深藍背景。",
+  "scope": "彩圖前導定稿參考；不表示正式接入或整體 HD 完成。",
+  "file": "story-prelude-color-approved-r1.png",
+  "sha256": "12aed4841ed37026e91547dce49a4696fc3c20b511de5983dd4ed43c5a3340e8",
+  "size": [
+    1586,
+    992
+  ],
+  "original_prompt": "story-prelude-color-approved-r1.prompt.txt",
+  "prompt_sha256": "bb68b871ebf4df8b0aad85a037a85312d958b0ef5bd1fbb77e489b6437d4bf3b",
+  "original_research_prompt_file": "workplace/probe-20261023/graphics-first/story-art-r1/prompts.json",
+  "original_prompt_inputs": [
+    "intro-r1/cold-trace/frame-049.png",
+    "docs/images/hd-style-approved-r1.png"
+  ],
+  "shown_canvas": "workplace/probe-20261023/graphics-first/story-art-r1/color-canvas.png",
+  "shown_canvas_sha256": "93879b591e694968c7b777a0b89bdc60f2e3965718ddd520491ebdb2b198eb7c",
+  "rights": "private repository approved reference; complete runtime pack and original game remain local"
+}

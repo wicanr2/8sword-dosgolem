@@ -86,6 +86,7 @@ case "${1:-}" in
             EIGHTSWORD_TEST_MOE_ASSETS=/out/assets-painted-r27 \
             EIGHTSWORD_TEST_HEROINE_ASSETS=/out/assets-painted-r29 \
             EIGHTSWORD_TEST_MUSEUM_ASSETS=/out/assets-painted-r30 \
+            EIGHTSWORD_TEST_STORY_PRELUDE_ASSETS=/out/assets-painted-r31 \
             go test -v -timeout=390s -p=2 -mod=readonly /project/internal/eightsword
           if [[ "$1" == test ]]; then
             cd /dosgolem
@@ -94,16 +95,17 @@ case "${1:-}" in
         else
           find /project/internal /project/cmd -type f -name "*.go" -print0 \
             | sort -z | xargs -0 sha256sum > /out/build-inputs.sha256
-          sha256sum /project/go.mod /project/go.sum /project/tools/gui-check.go /project/tools/music-check.go /project/tools/heroine-check.go /project/tools/museum-check.go >> /out/build-inputs.sha256
+          sha256sum /project/go.mod /project/go.sum /project/tools/gui-check.go /project/tools/music-check.go /project/tools/heroine-check.go /project/tools/museum-check.go /project/tools/story-prelude-check.go >> /out/build-inputs.sha256
           go build -mod=readonly -o /out/8sword /project/cmd/8sword
           go build -mod=readonly -o /out/8sword-replay /project/cmd/8sword-replay
           go build -mod=readonly -o /out/gui-check /project/tools/gui-check.go
           go build -mod=readonly -o /out/music-check /project/tools/music-check.go
           go build -mod=readonly -o /out/heroine-check /project/tools/heroine-check.go
           go build -mod=readonly -o /out/museum-check /project/tools/museum-check.go
+          go build -mod=readonly -o /out/story-prelude-check /project/tools/story-prelude-check.go
           sha256sum -c /out/build-inputs.sha256 > /out/build-source-checks.log
           go version > /out/build-go-version.txt
-          sha256sum /out/8sword /out/8sword-replay /out/gui-check /out/music-check /out/heroine-check /out/museum-check > /out/build-outputs.sha256
+          sha256sum /out/8sword /out/8sword-replay /out/gui-check /out/music-check /out/heroine-check /out/museum-check /out/story-prelude-check > /out/build-outputs.sha256
         fi' build "$task_action"
     ;;
   assets)
@@ -295,6 +297,42 @@ case "${1:-}" in
       --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
       --mount "type=bind,src=$task_out,dst=/out" \
       --entrypoint /player/heroine-check "$task_go" \
+      -root /orig -assets "/player/assets-$task_set" -out /out -escape-ms "$task_escape" -font "$task_font"
+    ;;
+  story-prelude-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r30}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_refs="$task_work/probe-20261023/graphics-first/story-art-r1"
+    test -d "$task_player/assets-$task_base"; test -d "$task_orig"; test -f "$task_refs/color-canvas.png"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 120s docker run --rm --init --name "8sword-prelude-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 900m --cpus 2 --pids-limit 64 \
+      --mount "type=bind,src=$task_player/assets-$task_base,dst=/base,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_refs,dst=/refs,readonly" \
+      --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      "$task_py" python /tools/prepare-hd-story-prelude.py --base /base --orig /orig --candidate /refs --out /out
+    ;;
+  story-prelude-check)
+    task_name="${2:?指定新的收據名稱}"
+    task_set="${3:-painted-r31}"
+    task_escape="${4:-0}"
+    task_font="${5:-noto}"
+    valid_name "$task_name"; valid_name "$task_set"
+    [[ "$task_escape" =~ ^[0-9]+$ ]]
+    [[ "$task_font" == noto || "$task_font" == lishu || "$task_font" == caoshu ]]
+    test -f "$task_player/story-prelude-check"; test -d "$task_orig"; test -d "$task_player/assets-$task_set"
+    task_out="$task_player/replays/$task_name"
+    test ! -e "$task_out"; mkdir -p "$task_out"
+    exec timeout -k 5s 300s docker run --rm --init --name "8sword-prelude-check-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
+      --mount "type=bind,src=$task_player,dst=/player,readonly" \
+      --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
+      --mount "type=bind,src=$task_out,dst=/out" \
+      --entrypoint /player/story-prelude-check "$task_go" \
       -root /orig -assets "/player/assets-$task_set" -out /out -escape-ms "$task_escape" -font "$task_font"
     ;;
   museum-assets)

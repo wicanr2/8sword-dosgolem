@@ -162,6 +162,9 @@ func Open(opt Options) (*Engine, error) {
 	return e, nil
 }
 func (e *Engine) Close() {
+	if e.Story != nil && e.Story.prelude != nil {
+		e.Story.prelude.stop("close", false)
+	}
 	if e.Museum != nil {
 		e.Museum.retireMuseum()
 	}
@@ -212,6 +215,7 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		}
 		if e.Story != nil {
 			e.Story.Bind()
+			e.Story.Tick()
 		}
 		if e.Captions != nil {
 			e.Captions.Bind()
@@ -261,6 +265,7 @@ func (e *Engine) Advance(n uint64) error {
 		}
 		if e.Story != nil {
 			e.Story.Bind()
+			e.Story.Tick()
 		}
 		if e.Captions != nil {
 			e.Captions.Bind()
@@ -395,6 +400,11 @@ func (e *Engine) IntroStage() string {
 	return ""
 }
 func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
+	if e.Story != nil && e.HD && e.Story.prelude != nil {
+		if stage := e.Story.prelude.FrameStage(frame); stage != "" {
+			return stage
+		}
+	}
 	if e.Publisher != nil && e.HD && frame != nil && (frame == e.Publisher.last || frame == e.Publisher.hold) {
 		return e.Publisher.Stage()
 	}
@@ -449,6 +459,8 @@ func (e *Engine) Status() map[string]any {
 		story["stage"] = e.Story.Stage()
 		story["background_error"] = e.Story.BackgroundError
 		story["hd_background"] = e.Story.art != nil
+		story["prelude_error"] = e.Story.PreludeError
+		story["prelude"] = e.Story.prelude.Status()
 	}
 	out["intro_story"] = story
 	if e.Captions != nil {

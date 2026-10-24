@@ -92,6 +92,7 @@ type game struct {
 	frameHeroinePixels, presentedHeroinePixels int
 	frameMuseumStage, presentedMuseumStage     string
 	frameMuseumInfo                            map[string]any
+	framePreludeInfo                           map[string]any
 }
 
 type stageTiming struct {
@@ -291,6 +292,10 @@ func (g *game) Update() error {
 	}
 	g.frameConsole = g.engine.ConsoleStage()
 	g.frameIntro = g.engine.IntroFrameStage(g.frame)
+	g.framePreludeInfo = nil
+	if g.engine.Story != nil {
+		g.framePreludeInfo = g.engine.Story.PreludeStatus()
+	}
 	g.frameMuseumStage = ""
 	g.frameMuseumInfo = nil
 	if g.engine.Museum != nil {
@@ -367,7 +372,7 @@ func (g *game) Draw(screen *ebiten.Image) {
 	g.presentedCaptionSource = g.frameCaptionSource
 	g.presentedStoryCalls, g.presentedStoryPages = g.frameStoryCalls, g.frameStoryPages
 	if g.introDraw != nil {
-		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource, "font_id": g.frameFontID, "heroine_pixels": g.frameHeroinePixels, "museum_stage": g.frameMuseumStage, "museum": g.frameMuseumInfo}); err != nil {
+		if err := json.NewEncoder(g.introDraw).Encode(map[string]any{"draw": g.draws, "step": g.engine.Oracle.Steps(), "stage": g.frameIntro, "story_calls": g.frameStoryCalls, "story_pages": g.frameStoryPages, "caption_source": g.frameCaptionSource, "font_id": g.frameFontID, "heroine_pixels": g.frameHeroinePixels, "museum_stage": g.frameMuseumStage, "museum": g.frameMuseumInfo, "prelude": g.framePreludeInfo}); err != nil {
 			g.recordErr = err
 		}
 	}
@@ -524,6 +529,10 @@ func main() {
 	if engine.MuseumError != "" {
 		title += "（HD 博物館載入失敗）"
 		log.Print(engine.MuseumError)
+	}
+	if engine.Story != nil && engine.Story.PreludeError != "" {
+		title += "（HD 故事前導載入失敗）"
+		log.Print(engine.Story.PreludeError)
 	}
 	if engine.HeroineError != "" {
 		title += "（HD 女主角載入失敗）"

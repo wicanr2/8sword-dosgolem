@@ -41,6 +41,7 @@ if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == toolbar-cycle ]]; then phases=(toolba
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == toolbar-fallback ]]; then phases=(toolbar-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == heroine-fallback ]]; then phases=(heroine-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == museum-fallback ]]; then phases=(museum-fallback); fi
+if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == prelude-fallback ]]; then phases=(prelude-fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == save-cycle ]]; then phases=(save reload); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == fallback ]]; then phases=(fallback); fi
 if [[ "${EIGHTSWORD_GUI_FLOW:-inspect}" == art-fallback ]]; then phases=(art-fallback); fi
