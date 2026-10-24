@@ -624,3 +624,29 @@
 - README、CONTEXT、017 與研究紀錄已同步實際範圍。正式接入、正式視窗、Esc／自然交接、真正存退讀及壞群組回退仍未驗，017 保持 DRAFT，整體 HD 未完成。
 
 本輪五份文件已提交 `a4445344874b8eab4288b6263228286fde8416aa` 並推至既有私人 `origin/main`，遠端回讀相同。原圖、候選組、影片與研究程式都留本機，正式 58 筆來源及四程式保持。Docker 收尾無本案執行中或停止容器，`find /project -user root -o -type d -name '*.md'` 無輸出。本筆 Git 同步紀錄另隨文件提交，不重跑未改動的驗證。
+
+## 2026-10-24：工作區空間整理
+
+使用者先暫停 HD Goal，再要求清理工作區。本輪只處理本專案儲存空間，不繼續 HD 開發。命中文件職責路由，載入 `knowledge-base/local/project-document-responsibilities.md`；原始來源、素材與歷史證據的保護規則沿 AGENTS。
+
+- 初始工作區約 28 GiB，其中研究區約 18 GiB、播放器與視窗證據約 9.7 GiB；分割區當時可用約 16 GiB。大宗是 12 GiB 的 `.frames.gz` 與 9 GiB 的 PNG，沒有將唯一錄影或失敗收據視為可刪暫存。
+- `workplace/space-cleanup-20261024-plan.json` 列出 934 組、12246 個完全相同的檔案路徑，只含 `player/` 與 `probe-20261023/` 內至少 64 KiB 的 PNG、逐幀錄影、狀態、索引、PCM、WAV 及 Ogg。原版來源唯讀掛載，原始遊戲、字型、原始美術、保存的進度及分析來源保留。
+- 新增 [整理與分離工具](tools/workspace-space.py)，工具入口同次加入 AGENTS。套用前逐檔 SHA 檢查，再逐 byte 比對，原子替換為同一內容的硬連結，共用 inode 設為唯讀。全部路徑保持；需要修改共用檔時先執行 `detach`，不得直接 chmod 後原地修改。收據保存舊權限及每組路徑，沒有對整個專案遞迴 chown。
+- 最小實際檔案測試證明內容不變、同 inode 唯讀共用、Go 快取移除、分離後修改不影響原檔，以及越界／符號連結拒絕；結果在 `workplace/space-cleanup-20261024-selftest.json`。
+- `workplace/space-cleanup-20261024-receipt.json` 狀態 PASS，套用前後均逐路徑核對全部 12246 個 SHA，所有共用檔為同 inode 且唯讀。重複內容釋放 12417191736 bytes，本案 Go 編譯快取釋放 736321536 bytes，合計約 12.25 GiB。保留空的 `workplace/gocache/`，下次編譯正常重建；模組快取及工具映像保持。
+- 工作區占用約 16 GiB。收尾分割區可用約 219 GiB，使用率 88%；分割區同期其他作業造成的空間變化不計入本案回收量。沒有執行全域 Docker prune、刪映像或其他專案資料。
+- `find /project -user root -o -type d -name '*.md'` 無輸出，沒有本案執行中或停止殘留容器，沒有故障測試暫存目錄。`git diff --check` 通過。HD Goal 維持 paused。
+
+重新核對清理收據時，掛載工作區並在既有 Pillow 容器執行：
+
+```bash
+test -d "$PWD/workplace"
+timeout -k 5 180 docker run --rm --init --network none \
+  --user "$(id -u):$(id -g)" --memory 768m --cpus 2 --pids-limit 64 \
+  -v "$PWD:/project:ro" -v "$PWD/workplace:/work:ro" \
+  sc-cht-hdtools:pillow11.3.0-r1 \
+  python -B /project/tools/workspace-space.py --workspace /work \
+  --plan /work/space-cleanup-20261024-plan.json verify
+```
+
+後續要修改某個共用產物，將 `/work` 改為可寫掛載，尾端改為 `--workspace /work detach player/<相對檔案路徑>`。工具會先保留原內容建立獨立 inode，其他共用路徑保持原值。原始遊戲與未列入的檔案類型不在工具操作範圍。
