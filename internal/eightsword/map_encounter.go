@@ -28,10 +28,39 @@ func encounterRead(path string, limit int64) ([]byte, error) {
 	return os.ReadFile(path)
 }
 
-// Spec 037. Empty, shared heights 1/3/5 stay native; only the ten fixed
-// visible prefixes of mirrored ENEMY.AY record 13 are registered together.
+// Each fixed source group commits independently. Spec 037 keeps empty,
+// shared heights 1/3/5 native; spec 038 has thirteen unique visible prefixes.
+type encounterGroup struct {
+	Manifest              string
+	Record, FirstHeight   int
+	FirstID               uint16
+	Image                 graphicPNG
+	Rect, Target          [4]int
+	SampleRect            image.Rectangle
+	PromptFile, PromptSHA string
+	MirrorCache           bool
+}
+
 func loadMapEncounter(dir, root string, assets *GraphicsAssets) error {
-	raw, err := encounterRead(filepath.Join(dir, "map-encounter.json"), 64*1024)
+	return loadMapEncounterGroup(dir, root, assets, encounterGroup{
+		Manifest: "map-encounter.json", Record: 13, FirstHeight: 7, FirstID: encounterFirstID,
+		Image: graphicPNG{Index: 115, File: "map-encounter-13-r1.png", SHA: encounterImageSHA, Width: 1419, Height: 1108, Sampling: "bitmap"},
+		Rect:  [4]int{11, 72, 1408, 1078}, Target: [4]int{3, 30, 189, 150}, SampleRect: image.Rect(11, 72, 1408, 1078),
+		PromptFile: "map-encounter-13-r1.prompt.txt", PromptSHA: encounterPromptSHA,
+	})
+}
+
+func loadMapEncounter10(dir, root string, assets *GraphicsAssets) error {
+	return loadMapEncounterGroup(dir, root, assets, encounterGroup{
+		Manifest: "map-encounter-10.json", Record: 10, FirstHeight: 1, FirstID: 126,
+		Image: graphicPNG{Index: 125, File: "battle-man16-0-r1.png", SHA: "53a599a6db8f10cf76d08de389fbf07b72b6f3c8f9fdf6647256c440809300ad", Width: 1176, Height: 1337, Sampling: "bitmap"},
+		Rect:  [4]int{123, 311, 1052, 902}, Target: [4]int{0, 0, 192, 150}, SampleRect: image.Rect(123, 311, 1175, 1213),
+		PromptFile: "battle-actors-prompts.txt", PromptSHA: "c319d1165e849f1177a537a05fdf32a74418998f83cf2b6f6f9f45340b6ddf62", MirrorCache: true,
+	})
+}
+
+func loadMapEncounterGroup(dir, root string, assets *GraphicsAssets, cfg encounterGroup) error {
+	raw, err := encounterRead(filepath.Join(dir, cfg.Manifest), 64*1024)
 	if os.IsNotExist(err) {
 		return nil
 	}
@@ -60,10 +89,10 @@ func loadMapEncounter(dir, root string, assets *GraphicsAssets) error {
 	if err = d.Decode(new(any)); err != io.EOF {
 		return fmt.Errorf("地圖遭遇清單有尾隨資料")
 	}
-	if m.Schema != 1 || m.Source != "ENEMY.AY" || m.SourceSHA != encounterSourceSHA || m.Record != 13 || m.Transform != "mirror-six-planes" || m.Style != "B-bright-painted-r1" || m.StyleSHA != ApprovedStyleSHA || m.Image.Index != 115 || m.Image.File != "map-encounter-13-r1.png" || m.Image.SHA != encounterImageSHA || m.Image.Width != 1419 || m.Image.Height != 1108 || m.Image.Sampling != "bitmap" || m.PromptFile != "map-encounter-13-r1.prompt.txt" || m.PromptSHA != encounterPromptSHA {
+	if m.Schema != 1 || m.Source != "ENEMY.AY" || m.SourceSHA != encounterSourceSHA || m.Record != cfg.Record || m.Transform != "mirror-six-planes" || m.Style != "B-bright-painted-r1" || m.StyleSHA != ApprovedStyleSHA || m.Image.Index != cfg.Image.Index || m.Image.File != cfg.Image.File || m.Image.SHA != cfg.Image.SHA || m.Image.Width != cfg.Image.Width || m.Image.Height != cfg.Image.Height || m.Image.Sampling != "bitmap" || m.PromptFile != cfg.PromptFile || m.PromptSHA != cfg.PromptSHA {
 		return fmt.Errorf("地圖遭遇來源／圖像不符")
 	}
-	if !equalEncounterRect(m.Image.SourceRect, [4]int{11, 72, 1408, 1078}) || !equalEncounterRect(m.Target, [4]int{3, 30, 189, 150}) {
+	if !equalEncounterRect(m.Image.SourceRect, cfg.Rect) || !equalEncounterRect(m.Target, cfg.Target) {
 		return fmt.Errorf("地圖遭遇取樣位置不符")
 	}
 	source, err := encounterRead(filepath.Join(root, m.Source), 16856)
@@ -77,7 +106,7 @@ func loadMapEncounter(dir, root string, assets *GraphicsAssets) error {
 	if err != nil {
 		return err
 	}
-	if hash(prompt) != encounterPromptSHA {
+	if hash(prompt) != cfg.PromptSHA {
 		return fmt.Errorf("地圖遭遇提示 SHA-256 不符")
 	}
 	if _, err = encounterRead(filepath.Join(dir, m.Image.File), 8*1024*1024); err != nil {
@@ -88,7 +117,7 @@ func loadMapEncounter(dir, root string, assets *GraphicsAssets) error {
 		return err
 	}
 	// Reuse the verified premultiplied sampler; keep the map-sized rectangle.
-	sampled, err := sampleBattleActor(im, image.Rect(11, 72, 1408, 1078), image.Rect(3, 30, 189, 150))
+	sampled, err := sampleBattleActor(im, cfg.SampleRect, image.Rect(cfg.Target[0], cfg.Target[1], cfg.Target[2], cfg.Target[3]))
 	if err != nil {
 		return err
 	}
@@ -96,7 +125,17 @@ func loadMapEncounter(dir, root string, assets *GraphicsAssets) error {
 	for y := 0; y < 150; y++ {
 		copy(full.Pix[y*full.Stride:(y+1)*full.Stride], sampled.Pix[y*sampled.Stride:y*sampled.Stride+192*4])
 	}
-	record := source[13*1204 : 14*1204]
+	if cfg.MirrorCache {
+		for y := 0; y < 150; y++ {
+			for x := 0; x < 96; x++ {
+				a, b := y*full.Stride+x*4, y*full.Stride+(191-x)*4
+				for c := 0; c < 4; c++ {
+					full.Pix[a+c], full.Pix[b+c] = full.Pix[b+c], full.Pix[a+c]
+				}
+			}
+		}
+	}
+	record := source[cfg.Record*1204 : (cfg.Record+1)*1204]
 	mirrored := make([]byte, 1204)
 	copy(mirrored, record[:4])
 	for row := 4; row < 1204; row += 8 {
@@ -104,9 +143,9 @@ func loadMapEncounter(dir, root string, assets *GraphicsAssets) error {
 			mirrored[row+x] = bits.Reverse8(record[row+7-x])
 		}
 	}
-	var native, complete [10]string
+	native, complete := make([]string, (27-cfg.FirstHeight)/2), make([]string, (27-cfg.FirstHeight)/2)
 	for i := range native {
-		height := 7 + i*2
+		height := cfg.FirstHeight + i*2
 		prefix := make([]byte, 4+48*height)
 		binary.LittleEndian.PutUint16(prefix, 8)
 		binary.LittleEndian.PutUint16(prefix[2:], uint16(height))
@@ -114,7 +153,7 @@ func loadMapEncounter(dir, root string, assets *GraphicsAssets) error {
 			copy(prefix[4+plane*8*height:], mirrored[4+plane*200:4+plane*200+8*height])
 		}
 		native[i], complete[i] = hash(prefix[:4+32*height]), hash(prefix)
-		id := encounterFirstID + uint16(i)
+		id := cfg.FirstID + uint16(i)
 		if assets.ByNative[native[i]] != 0 || assets.Materials[id] != nil || assets.Actors[id] != nil || assets.Effects[id] != nil || assets.BattleActors[id] {
 			return fmt.Errorf("地圖遭遇來源識別重複")
 		}
@@ -130,7 +169,7 @@ func loadMapEncounter(dir, root string, assets *GraphicsAssets) error {
 		assets.ActorSHA = map[uint16]string{}
 	}
 	for i := range native {
-		height, id := 7+i*2, encounterFirstID+uint16(i)
+		height, id := cfg.FirstHeight+i*2, cfg.FirstID+uint16(i)
 		assets.ByNative[native[i]] = id
 		assets.ActorSHA[id] = complete[i]
 		assets.Actors[id] = &graphicMaterial{64, height, full.SubImage(image.Rect(0, 0, 192, height*6)).(*image.RGBA)}

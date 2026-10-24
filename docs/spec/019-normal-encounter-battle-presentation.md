@@ -1,6 +1,6 @@
 # 019：正常遭遇與戰鬥的文字及圖像
 
-`MAP-ENCOUNTER-13-HD-RESOLVED`：地圖遭遇的後續來源見 [037](037-map-encounter-actor.md#正式提升與限定驗收)，第 13 筆向右施法者已限定 CONFORMED。不可變鍵為 `DOS/ENEMY.AY@0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd/file+15652/mirror-six-planes`，沿 `PAM/runtime14D2:04F2/057D/0625`。十段完整正常畫面、十個實際 Draw、三字型、存退讀與正常「否」退場已分別驗證。舊 `source-r5` 第 10 筆蠍形圖仍是另一份來源，其餘十三筆與玩法語意未由此閉合，不重開相同 helper 或改寫舊對應。
+`MAP-ENCOUNTER-13-HD-RESOLVED`：地圖遭遇的後續來源見 [037](037-map-encounter-actor.md#正式提升與限定驗收)，第 13 筆向右施法者已限定 CONFORMED。不可變鍵為 `DOS/ENEMY.AY@0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd/file+15652/mirror-six-planes`，沿 `PAM/runtime14D2:04F2/057D/0625`。十段完整正常畫面、十個實際 Draw、三字型、存退讀與正常「否」退場已分別驗證。舊 `source-r5` 第 10 筆紅身蓬尾角色仍是另一份來源，先前「蠍形」的外觀誤判已由 [038](038-map-encounter-red-beast.md#來源與造型)訂正；byte 對應保持。其餘十三筆與玩法語意未由此閉合，不重開相同 helper 或改寫舊對應。
 
 回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的戰場首筆由 [028](028-battle-militia-image.md)沿 `PAM/runtime14D2:0626/06B8/076E` 接入。同一完整來源共用 018 快取，F2 分支保持；其他三筆、CHOI 與玩法語意仍待證據，歷史來源目錄不因新呈現改寫。
 

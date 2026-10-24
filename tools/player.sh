@@ -84,6 +84,9 @@ case "${1:-}" in
             EIGHTSWORD_TEST_ENCOUNTER_ASSETS=/out/assets-painted-r38 \
             EIGHTSWORD_TEST_ENCOUNTER_BASE=/out/assets-painted-r37 \
             EIGHTSWORD_TEST_ENCOUNTER_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1 \
+            EIGHTSWORD_TEST_ENCOUNTER10_ASSETS=/out/assets-encounter10-candidate-r1 \
+            EIGHTSWORD_TEST_ENCOUNTER10_BASE=/out/assets-painted-r38 \
+            EIGHTSWORD_TEST_ENCOUNTER10_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1 \
             EIGHTSWORD_TEST_PON_ASSETS=/out/assets-painted-r22 \
             EIGHTSWORD_TEST_PON_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/pon-art-r1 \
             EIGHTSWORD_TEST_BATTLE_MILITIA_ASSETS=/out/assets-painted-r23 \
@@ -131,6 +134,22 @@ case "${1:-}" in
       --mount "type=bind,src=$task_player/assets,dst=/out" \
       "$task_py" python /tools/prepare-hd-assets.py --exe /orig/PAM.AY \
       --font /fonts/NotoSansCJK-Black.ttc --out /out
+    ;;
+  encounter10-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r38}"
+    valid_name "$task_name"; valid_name "$task_base"
+    test -d "$task_player"; test -d "$task_player/assets-$task_base"
+    test -f "$task_orig/ENEMY.AY"
+    task_out="$task_player/assets-$task_name"
+    test ! -e "$task_out"
+    exec timeout 60s docker run --rm --name "8sword-encounter10-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 600m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_player,dst=/out" \
+      "$task_py" python /project/tools/prepare-hd-encounter10.py \
+        --base "/out/assets-$task_base" --source /project/workplace/intake-20261023/sources/game/8sword/ENEMY.AY \
+        --out "/out/assets-$task_name"
     ;;
   encounter-assets)
     task_name="${2:?指定新的素材組名稱}"

@@ -50,6 +50,8 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 執行期 HD 規格：[003：Noto 文字覆繪](docs/spec/003-noto-runtime-overlay.md)，已完成參數與 VGA 搬移證據審查，READY 授權實作；正常選單、人物頁、返回及狀態隔離是必要驗收。
 
+地圖遭遇追加：[038：第 10 筆紅身蓬尾角色](docs/spec/038-map-encounter-red-beast.md)，共用已接入的戰場原圖；狀態與驗收範圍以該規格及 CONTEXT 為準。
+
 募兵建築追加：[034：募兵建築的手繪背景](docs/spec/034-recruitment-building.md)，定稿及正常路徑證據由此索引；READY 與完成狀態以該規格為準。
 
 另一處募兵建築：[035：LIVE6 紅牆院門](docs/spec/035-recruitment-courtyard.md)，正常續玩、四平面來源與樣稿的入口；目前 DRAFT，待樣稿選定，不能沿用 LIVE2 的美術批准。

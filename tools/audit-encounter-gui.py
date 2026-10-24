@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""037：從原生像素、所有權、PNG 與字型重建實際中央 Draw。Docker only。"""
+"""037／038：從原生像素、所有權、PNG 與字型重建實際中央 Draw。Docker only。"""
 import argparse
 import hashlib
 import importlib.util
@@ -197,7 +197,15 @@ class Model:
 
     def actor(self, ident):
         if ident not in self.actors:
-            if 116 <= ident <= 125:
+            if 126 <= ident <= 138:
+                entry = read(self.assets / "map-encounter-10.json")["image"]
+                assert sha(self.assets/entry["file"]) == "53a599a6db8f10cf76d08de389fbf07b72b6f3c8f9fdf6647256c440809300ad"
+                left = sample(self.assets/entry["file"], 192, 150, actor=True, rect=[123, 311, 1052, 902])
+                data = b"".join(left[(y*192+x)*4:(y*192+x+1)*4]
+                                for y in range(150) for x in range(191, -1, -1))
+                assert hashlib.sha256(data).hexdigest() == "314e66eae62475a9076a3ea996885013dddb1f698d01c6466fd0a2bad27d4f74"
+                result = data, 64, 1+(ident-126)*2
+            elif 116 <= ident <= 125:
                 entry = read(self.assets / "map-encounter.json")["image"]
                 assert sha(self.assets/entry["file"]) == "81f72e1ad3e1363c38c49eed75fcd906302a74818f21845e073310026954e146"
                 sampled = sample(self.assets/entry["file"], 186, 120, actor=True, rect=[11, 72, 1397, 1006])
@@ -322,17 +330,19 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     for name in ["assets", "original", "cache", "receipt", "out"]:
         ap.add_argument("--"+name, type=Path, required=True)
+    ap.add_argument("--record", type=int, choices=[10, 13], default=13)
     a = ap.parse_args()
     assert not a.out.exists()
     root = a.receipt / "save"
     packets = sorted((root / "research-encounter-draws").glob("*-first-draw.json"))
     assert packets
     sources = read(root / "research-encounter-sources.json")
-    assert not sources["error"] and sources["full13_count"] >= 2
+    assert not sources["error"] and sources[f"full{a.record}_count"] >= 2
     model = Model(a.assets, a.original, a.cache)
     results = [model.frame(p.with_suffix("")) for p in packets]
     for p, result in zip(packets, results):
         meta = read(p)
+        assert meta["record"] == a.record
         raw_path = root / ("encounter-source-"+meta["source_sha256"]+".bin")
         assert sha(raw_path) == meta["source_sha256"]
         h = meta["height"]
@@ -343,7 +353,7 @@ def main():
                       and c["first_physical_byte"] == meta["display"]["Start"]+c["args"][3]*80+c["args"][2]]
         assert candidates
         call = candidates[-1]
-        assert call["records"] == [13] and call["args"][3]+h == 112
+        assert call["records"] == [a.record] and call["args"][3]+h == 112
         native = p.with_name(p.name.removesuffix(".json")+"-native.idx").read_bytes()
         pixels = 0
         for y in range(h):
@@ -370,7 +380,7 @@ def main():
         assert hashlib.sha256(frame.tobytes()).hexdigest() == record["rgba_sha256"]
     assert not wanted
     result = dict(schema=1, status="passed-independent-actual-Draws", packets=results,
-                  source_calls=len(sources["calls"]), source_full13_calls=sources["full13_count"],
+                  source_calls=len(sources["calls"]), **{f"source_full{a.record}_calls": sources[f"full{a.record}_count"]},
                   actual_stream_link=True, formal_source_roles="unknown", gui_receipt=str(a.receipt),
                   limitation="sampled actual central Draws, native layers and PNG/font reconstruction; gameplay/RNG and full game are outside scope",
                   tool_sha256=sha(Path(__file__)))
