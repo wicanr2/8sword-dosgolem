@@ -35,6 +35,18 @@ var man06Sources = [...]battleActorSource{
 
 var man06Targets = [...][4]int{{75, 54, 177, 210}, {78, 42, 177, 222}, {78, 0, 183, 210}, {18, 0, 243, 210}}
 
+const man11SourceSHA = "860ab98a7165f25fe2007dd597ddf6fc698c9d2f048701eec955a1a0cd65f832"
+
+// Spec 025: MAN11.EGG file offsets record*3304, all six blocks verified.
+var man11Sources = [...]battleActorSource{
+	{"d9e5a89286a0a638fab3e58fa97971b43e4ca91bb2511242a3389999f69e6e01", "6da1d9280af54d9f30da94fd6da26c6c61149dc2e8a615affbd497a0a0b43d5d"},
+	{"25b04512737dbb914f852a421d805279afb5134c2153964550b1833f05536a37", "87c1811812b52903da1e84d28097f2aa36bf2dbffdda733499ee09140bfacadf"},
+	{"f2a8d585bdc3c07d263d3add30817e6b79cf5316c0b5ab2fc449e54aa8ee0fc8", "8b62cd1556331c561f8e83d1b1afc8b5cb08d059a4c1c085b339679a8babcf96"},
+	{"8de82b2648b9624e11fe619f9884dd6663ac749dc858613b2a7fce73d9f39fff", "5ce96cf4662823aada52459ae9d1a2a933f9b45d844a128defbf10dd6b300693"},
+}
+
+var man11Targets = [...][4]int{{96, 30, 165, 246}, {96, 18, 165, 258}, {96, 6, 165, 234}, {24, 6, 237, 234}}
+
 type battleActorGroup struct {
 	Manifest, Source, SourceSHA, Stem string
 	FirstID                           uint16
@@ -58,6 +70,7 @@ func loadBattleActors(dir, root string, assets *GraphicsAssets) error {
 	groups := []battleActorGroup{
 		{"battle-actors.json", "MAN16.EGG", man16SourceSHA, "battle-man16", 87, man16Sources, man16Targets},
 		{"battle-man06.json", "MAN06.EGG", man06SourceSHA, "battle-man06", 91, man06Sources, man06Targets},
+		{"battle-man11.json", "MAN11.EGG", man11SourceSHA, "battle-man11", 95, man11Sources, man11Targets},
 	}
 	var failures []string
 	for _, group := range groups {

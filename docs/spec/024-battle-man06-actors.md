@@ -52,3 +52,7 @@ r19 共 95 檔，保留 r18 全部 88 檔，新增四張 PNG、新清單、來�
 ### BATTLE-MAN06-ACTORS-RESOLVED
 
 不可變鍵為 `DOS/MAN06.EGG@97be211d…73579/file+0,+3304,+6608,+9912`，沿用 `PAM/runtime14D2:0626/06B8/076E`。019／023 回填本標記；MAN06 四筆已閉合，不重做相同來源或位置研究。MAN11／21、民兵其餘動作與戰場接入、CHOI／PON、後期及整體 HD 仍未完成。
+
+### BATTLE-MAN11-ACTORS-RESOLVED
+
+上述 MAN11 限制已由 [025](025-battle-man11-actors.md)的四筆正式接入、正常呈現、續玩遭遇及真正存退讀閉合，限定 CONFORMED。不可變鍵為 `DOS/MAN11.EGG@860ab98a…5f832/file+0,+3304,+6608,+9912`，沿用 `PAM/runtime14D2:0626/06B8/076E`；MAN21、民兵其餘姿勢、標記／效果及整體 HD 仍未完成。

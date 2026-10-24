@@ -1,4 +1,4 @@
-"""在 Pillow Docker 內匯入 023／024 的已審查圖像，不修改原始 PNG。"""
+"""在 Pillow Docker 內匯入 023／024／025 的已審查圖像，不修改原始 PNG。"""
 import argparse
 import hashlib
 import json
@@ -24,6 +24,15 @@ MAN06_ART = [
 ]
 
 
+MAN11_SHA = "860ab98a7165f25fe2007dd597ddf6fc698c9d2f048701eec955a1a0cd65f832"
+MAN11_ART = [
+    ("frame-0-painted-raw-r1.png", "1657bfc58772177d2b2819f30c01b198ed1702f0d64f3fa10662d6e5aa1452ef", [91,22,1071,1283], [96,30,165,246]),
+    ("frame-1-painted-raw-r1.png", "e0cb5749c13db0ac91f526941bff6168eb94bbe2b4c034c5e47de3b58e3c86a0", [93,16,1076,1276], [96,18,165,258]),
+    ("frame-2-painted-raw-r1.png", "49366f236e47db052009a52d4572fb4286dbc4767fff6e0d49067820aa2cca66", [102,25,1044,1299], [96,6,165,234]),
+    ("frame-3-painted-raw-r1.png", "e0a50aa7717689827abae19de62335ae65ea8b760aa6169c368336f7bbc89eba", [25,79,1139,1131], [24,6,237,234]),
+]
+
+
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -32,7 +41,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ("base", "source", "art-dir", "out"):
         p.add_argument("--"+name,required=True,type=Path)
-    p.add_argument("--unit",choices=("MAN16","MAN06"),default="MAN16")
+    p.add_argument("--unit",choices=("MAN16","MAN06","MAN11"),default="MAN16")
     a=p.parse_args()
     entries,source_sha,first_index,spec,prefix,manifest_name=ART,SOURCE_SHA,86,"023","battle-actors","battle-actors.json"
     stem="battle-man16"
@@ -40,6 +49,10 @@ def main():
     if a.unit=="MAN06":
         entries,source_sha,first_index,spec,prefix,manifest_name=MAN06_ART,MAN06_SHA,90,"024","battle-man06","battle-man06.json"
         stem="battle-man06"
+        prompt_names=[f"frame-{i}-r1.prompt.txt" for i in range(4)]
+    if a.unit=="MAN11":
+        entries,source_sha,first_index,spec,prefix,manifest_name=MAN11_ART,MAN11_SHA,94,"025","battle-man11","battle-man11.json"
+        stem="battle-man11"
         prompt_names=[f"frame-{i}-r1.prompt.txt" for i in range(4)]
     assert a.out.is_dir() and not any(a.out.iterdir()), "輸出須為已存在的空目錄"
     source=a.source.read_bytes();assert sha(source)==source_sha
@@ -49,12 +62,13 @@ def main():
     for i,(name,expected,src,dst) in enumerate(entries):
         raw=(a.art_dir/name).read_bytes();assert sha(raw)==expected,name
         with Image.open(a.art_dir/name) as im:
-            assert im.format=="PNG" and im.mode=="RGBA" and im.size==(1176,1337)
+            expected_size=(1177 if a.unit=="MAN11" and i in (1,3) else 1176,1337)
+            assert im.format=="PNG" and im.mode=="RGBA" and im.size==expected_size
             alpha=im.getchannel("A");assert alpha.getextrema()==(0,255)
             box=alpha.point(lambda v:255 if v>3 else 0).getbbox()
             assert list(box)==[src[0],src[1],src[0]+src[2],src[1]+src[3]]
         frames.append(dict(record=i,image=dict(source_index=first_index+i,file=f"{stem}-{i}-r1.png",
-                      sha256=expected,width=1176,height=1337,sampling="bitmap",source_rect=src),target_rect=dst))
+                      sha256=expected,width=expected_size[0],height=expected_size[1],sampling="bitmap",source_rect=src),target_rect=dst))
     prompts={name:(a.art_dir/name).read_bytes() for name in prompt_names}
     preserved={}
     for path in sorted(a.base.iterdir()):
