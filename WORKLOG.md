@@ -571,3 +571,5 @@
 - 新正式 54 筆來源及四程式；前版 53 筆與四程式連同 Git archive 存 `build-pre-man21-r1`，研究 r1 至 r6 依舊 archive 比對，r7 固定 51 筆與一程式，motion-r3 固定 56 筆與兩程式。來源、正式 DB、核心不改。收尾完整性、Git 同步與容器清理接下方記錄，不為更新提交 metadata 重建已驗程式。
 
 `man21-final-audit-r1.json` 通過：183 原始檔、兩封包、八核心檔及正式 DB 不變；54 筆正式來源／四程式、53 筆舊 archive／四程式、七份研究建置、56 筆 motion 來源／兩程式皆符 SHA。109 素材與 102 保留檔、四原圖／四提示、37 點隔離、111 次 Frame 純度、正常 GUI 四姿勢／301 次返回、全幅重建、10713 個 Noto 墨點、結果九次核對、422 個本機文件連結與三份回填皆通過。`find` 無 root-owned 或 `.md` 目錄，沒有本案殘留容器或新建映像；`git diff --check` 通過。主機 gh 認證 wicanr2，倉庫仍為 PRIVATE，Git 身分 Chun-Yu Wang／wicanr2@gmail.com。提交及遠端回讀紀錄另接下方。
+
+本輪程式與驗收文件提交 `7d73cc8be7eb9f5b8ed5974e4e835337f5d06221` 已推至私人 `origin/main`，`git ls-remote` 回讀一致。此同步紀錄另存文件提交，已驗建置與收據不因提交 metadata 重新產生。
