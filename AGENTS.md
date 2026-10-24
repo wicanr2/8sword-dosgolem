@@ -20,6 +20,8 @@ README 比較圖：[原版／HD 怪物總覽](docs/images/monsters-original-hd-r
 
 靜物與地表規格：[006：透明靜物與黃色地表](docs/spec/006-static-map-objects-and-sand.md)，新增靜態圖塊的 alpha 預合成，不代替角色背景還原；達 READY 才可進正式載入器。
 
+竹林材質沿 [006 的 PMAP 45 追加](docs/spec/006-static-map-objects-and-sand.md#pmap-45-竹林追加)，匯入入口為 [prepare-hd-bamboo.py](tools/prepare-hd-bamboo.py)，四組隔離與實際視窗核對入口為 [audit-bamboo.py](tools/audit-bamboo.py)。限定驗收不延伸到沙地或其他建築。
+
 角色接入規格：[007：主角動作與透明背景](docs/spec/007-masked-hero-animation.md)，已核對完整背景與十二張主角動作圖，READY 授權分層呈現；各朝向的正常路段另行驗證。
 
 專案介紹與操作入口：[README.md](README.md)。研究入口：[來源與啟動紀錄](RESEARCH-LOG.md)。目前規格：[001：BIOS 低解析度平面顯示頁](docs/spec/001-planar-bios-display-pages.md)。

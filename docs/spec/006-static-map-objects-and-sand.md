@@ -50,3 +50,29 @@ READY 前核對上述偏移、來源指紋、色碼集合、透明 PNG、取樣�
 - 原版落地及讀回 RAM 的 2987 bytes 相同，SHA 為 `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`。正常退出碼 0，地圖差異限主角動畫區；細節見該視窗 `save-cycle-audit.json`。
 - `static-corrupt-r1` 真實損壞最後一張新房屋 PNG，整組圖像拒用而 Noto 保留；十張畫面、完整狀態及 31 個工作檔同純 Noto 基準。舊 35 筆組十張畫面與狀態仍同 `jade-ui-r1`。收據為 `workplace/player/static-objects-fallback-r1.json`；這次故障測試是無頭流程。
 - `graphics-first/f5-route-r1` 及 `f5-north-r1` 是正常按鍵診斷，F5 起點 40，40，16 次向北按鍵後為 40，36，未看到沙地。相同按鍵的 `f5-north-native-r1` 終點狀態、輸入、載入事件與 31 個檔案一致，證據為 `f5-north-isolation-r1.json`。兩側前方皆有尚未替換的直條圖樣，其語意未定；不能據此宣稱沙地或其餘場景完成。
+
+## PMAP 45 竹林追加
+
+本追加狀態：限定 CONFORMED。先完成來源與呈現契約審查為 READY，再匯入及驗收。沿已批准的 B 明亮手繪風格補齊既有地圖材質，不另設畫風、配色或版面決策。原文所列 45 排除於沙地 30–44 的結論保持；本節只解決該直條植物圖樣的來源及 HD 呈現，不推導地形通行或遊戲規則。LIVE6 樣稿仍依 [035](035-recruitment-courtyard.md)等待選定，不由本節代答。
+
+- 原版仍是本規格固定 PMAP.AY。第 45 筆位於檔案偏移 45180，1004 bytes，完整 SHA `fb5ce418cd148e59050d07869bd932ef9ad8a1d26d1971182b00a4ddf55eb88b`，首四色平面含表頭 SHA `ebdaf124adf6d4532fdf4cb03aead362180b300438b3321985057f4e1262c21a`。形狀 8 bytes×25 列，對應 64×25 原生像素。正常續玩畫面上六格皆逐 RGB 同該來源，見 `graphics-first/map-interaction-r1/raw-top-row-source-r1.json`。
+- `bamboo-source-audit-r1.json` 保存正常 F7 繼續、F5、方向鍵、LIVE6 募兵頁與 Esc 的四十二次真實來源／返回。執行期 `14D2:076F → 0854`，入口 230 bytes 同固定 PAM 檔案偏移 `0x157FF` 起原 bytes，返回為 `CB`；每次返回全部 1600 色碼皆同獨立首四平面公式。第五組不是本 VGA 路徑透明遮罩。位址空間、原來源 bytes、探針及工具 SHA 同收據。
+- 開／關觀測各 380 次 Frame 純度，完整 state `164c1fa9…91bf`、PCM `0b812776…bb6a`、23 工作檔及事件相同，也同 035 首次未加觀測續玩。工具為 Go 1.24.13、Python 3.11.2 與固定 dosgolem／八檔補丁。來源與像素為已證實；竹林是本材質的外觀描述，不當作原版地形功能名稱。
+- 素材是內建 image_gen 依原版植物格與既有 B 風格重繪，完整原 PNG、提示及來源留在同一研究工作區的 `bamboo-painted-r1.*`。1419×1108 RGB、不透明，PNG SHA `f778eee7b8d058cc7dd1ff8c989e78ffed1a33b3e2270ebfbb2076dd59f1f880`，提示 SHA `626ceb0a1e368f1068952c39270c525a50c9ba64c7c52e162b824ce4450cf3f6`。`bamboo-comparison-r1.png` 已展示同畫面對照；這是已確認風格內的材質補漏，沒有宣稱使用者逐圖批准這份 PNG。
+
+接入沿既有 `terrain.json` schema 1，materials 增加 source_index=45、sampling=bitmap、完整圖像及提示指紋，不加透明圖層、裁切、對邊漸混或 CPU 掛點。既有材質 ID 46 的來源指紋已在原始目錄中，載入 PNG 後沿既有雙線性取樣形成 192×150 快取。保留原版格子、遮擋、捲動、搬移與失效；其他來源、文字及規則保持。
+
+匯入從 r35 的 162 檔建立新組，除 terrain.json 外 161 檔保持，新增原 PNG、提示及來源收據，共 165 檔。獨立乾淨重建須相同。未知或損壞 PNG 沿既有整組地表拒用，Noto 保留；不能將此描述為只回退竹林。原版與完整素材組留本機，不因沿用 B 風格就新增公開素材授權。
+
+驗收採正常繼續的相同命令：新材質／r35／真壞 PNG／移除地表清單四組，完整客體、PCM、工作檔及事件相同；新圖差異須只在真實來源 45 的區域，真壞組全同無地表控制。至少核對初始六格共 172800 個 HD 像素、頁面切換後失效與原圖控制。再以正常新遊戲、移動、人物／軍隊頁、字型切換及 F7 真存退讀取得 actual Draw，核對竹林取樣、原生來源、Noto 與連續畫面。沒有新玩家依賴，不重開已證實的五組繪圖 ABI 或沙地研究。
+
+### 竹林接入與限定驗收
+
+[匯入工具](../../tools/prepare-hd-bamboo.py)由 `bash tools/player.sh bamboo-assets <新名稱> [基底名稱]` 呼叫，預設基底 painted-r35。[獨立核對工具](../../tools/audit-bamboo.py)的 `normal` 比較四組，`gui` 核對實際 Draw 與唯讀原圖。共用參數為 `--assets`、`--original`、`--out`，詳細命令以工具 `--help` 為準；均在既有 Pillow Docker 執行。
+
+- `map-interaction-r1/bamboo-runtime-audit-r1.json`：四組各 380 幀、1520 次 Frame 純度，完整 state `164c1fa9fe37445628afba72748cf1a8c545ceca7d09173d65c6d7b7568091bf`、PCM `0b812776a356eae040a8375bf1c66305f965aea5830de046d7b602b4f9cbbb6a`、23 工作檔及事件全同，也同前述原始來源探針。每幀差異皆限 42 次真實來源呼叫的矩形聯集；六個完整 checkpoint 依各自原圖辨識圖塊並獨立重建，分別有 6／0／8／8／0／7 格。這是逐幀範圍加完整 checkpoint 驗證，不稱逐幀全圖層重建。真壞組全部 380 幀逐 RGBA 同無地表控制。
+- `bamboo-integrity-audit-r1.json`：r36 與獨立重建的全部 165 檔相同，161 份非地表清單舊檔保持，清單只多一筆來源 45。兩個原始封包、183 檔、八份核心、82 建置輸入與七程式保持，沒有重建或修改正式 Go 程式。
+- `workplace/player/gui/bamboo-save-r1`：正常新遊戲、移動、城門三字型、Esc、兩次 F2／F1 及真正 F7 存退讀。602／267 個 Draw 全部獨立解碼，80／22 次改變與三張接觸表已檢視。存前 Draw 564、讀回 Draw 267 各六格共 172800 像素同獨立雙線性取樣，讀回原生畫面的 9600 像素同固定 PMAP 45，見 `bamboo-gui-audit-r1.json`。城門三個 actual Draw 各 806400 像素與各字型墨點相同，41 個連續建築 Draw 保持，見 `save/recruitment-audit.json`。
+- 同輪 `save-cycle-audit.json`：真正 2987-byte 存檔與讀回 RAM 的 SHA 同為 `06a337e5de21ca6082b0bd2b62b3c1c6a900957f77cd2a28f00661deab94d21f`，read step 12079256，正常 DOS 退出碼 0。兩張視窗圖只有 3158 個差異像素，限主角動畫框；未宣稱動畫相位或玩法亂數 parity。
+
+原始圖、提示、原版與視窗圖仍留本機，沒有新增 PNG 上傳。整份 006 的沙地狀態仍為 READY；本追加不完成沙地、其餘建築、全遊戲 HD 或音樂。
