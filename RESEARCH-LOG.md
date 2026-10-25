@@ -1781,3 +1781,14 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 - 第一案完整state `9a10d9eb85f80fd26b0896d130b92e3a679253368442466d29d082700e165314`，第二案 `91f0deaff52ee76dd3a82ca7c96f55cce1042b0c0eb4903c383a108fff2611ac`，各同其控制。PCM均為 `f8ddf02bb8ccd1776374f7bdbdb28bbdfe921b357e2f296e447917a07016b231`，全部工作檔同值。這是呈現隔離，沒有自然觸發、RNG規則或硬體逐週期聲明。
 - 同r42正常GUI的主選單／音樂／取消／人物／軍隊與真正F7存退讀通過，261／113 Draw、十一／五完成圖連回Draw，沒有型別故障或原版RGB回退。2987-byte檔案與兩側RAM同29dd62ae…2359，read38450609。Noto人物與兩總覽已看，正常GUI不能代替故障GUI聲明。
 - 統一owned-guard-audit-r3.json記126來源／三程式、四案與既有前綴／批次回歸、正常GUI與真存讀。047仍DRAFT，原版／正式r49不變；有界停止已取得代表證據，未知操作後的自動恢復仍未宣稱，下一步回到其餘完整場景交易及正式整合。
+
+## 2026-10-26：募兵完整等待點與每鍵提交
+
+入口：[047募兵限定結果](docs/spec/047-hd-scene-renderer.md#募兵交易的限定結果)、[交易掛點](tools/research-owned-recruitment.go)、[獨立核對](tools/audit-owned-recruitment.py)。PAM.AY SHA仍為 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，IDA9.4 r10匯出SHA `c76f0fa422a31198bbd8edcab192ac56faaf4284473d2cc722f17f7b352ccf40`，資料庫SHA沿047；Go1.24.13、Pillow11.3.0。來源與資料庫唯讀，沒有新增IDA操作。
+
+- 已證實：原sub_159C4準備募兵背景並依序呼叫154EA；154EA在完整部隊與提示後進入14E7E數字編輯。執行期均為load0110：59C4／54EA開始整頁，4EA6等待前完成，4ECE讀鍵後開始編輯交易，50C9／50E1返回；844C、5565／5772及5A53閉合結果。IDA線性用10000+IP，PAM file用1470+IP，MZ重定位後核對16 bytes及RETF，不混用三種位址。
+- r43兩側普通47命令、611幀；新募兵交易step69021890至71619627包含18張不同於控制的錄製幀，皆保留前一完整場景。四次原始key AX為0231／0B30／0E08／1C0D。完整state `fd5ce2b145df6edb885102fd640ff2cdd839e395a026f3931bc766dc627b492a`、PCM `41e92abb0cbea43084c265113321293ce6d1cf5b36efaca90d93e2f01dc7d9ce`、來源／讀回事件與32檔同值；沒有注入或改種子取證，也不沿用舊自然開場542幀的雜湊。
+- 五個數字欄同獨立字圖與游標模型，八份完成取樣全圖同控制，31／31與499字墨正確。三個新增完成PNG同既有合成；小地圖只保留047既有23040像素差異，不將其當成新缺陷。
+- GUI412／115 Draw、67／18變化，兩個募兵交易中Draw保持，14份真實數字欄、三字型城門與Noto全頁核對通過。首次游標前完成PNG未跨Draw，實際全頁以欄外同狀態參考及欄內字型／游標模型完整覆蓋。存前兩軍隊／四人物、冷讀兩軍隊／三人物的字墨為31／31與499。
+- 真正F7存退冷讀2987 bytes同兩側RAM `4009c81e9e83ecb7777ebc55fff334754e1d826a3f32e791c0e24ec241ef2abe`，read41783939、DOS退出0。來源857／207、PAM舊RGB0、無型別故障；三實窗與三總覽已看。
+- 統一owned-recruit-audit-r3.json SHA `a47fbd904f01a1ccc52f7c430ee6ce9df5d67ebadc73447d1c982988f5822a28`。正式r49保持，047仍DRAFT；本組停止擴張同機制驗證，接續正式接入審查與移除診斷依賴。

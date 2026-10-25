@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+募兵的[整頁與數字編輯交易](tools/research-owned-recruitment.go)依[047 DRAFT](docs/spec/047-hd-scene-renderer.md#募兵整頁與數字編輯的交易研究)。場景準備器在既有Go Docker沿r42加`--recruitment-menus --source-guards`，只接私有副本；`EIGHTSWORD_RESEARCH_RECRUIT_CONTROL=1`只停用新增交易作同建置控制。正常無頭重播沿既有`battle-r1/owned-hire-commands-r1.txt`，GUI沿既有募兵輸入流程，不改數量、規則、原版存檔或已選城門美術。
+
+募兵的[獨立核對器](tools/audit-owned-recruitment.py)在固定Pillow Docker使用`--project <唯讀專案> --out <新JSON>`，核對r43、同建置611幀與交易差異；`--gui`另核對14份真實數字輸入、三字型城門及真正存退讀。游標等待維持原版動畫，首次游標前完成擷取不冒稱同一次Draw；Noto整頁以同狀態原版合成作參考，游標欄另用字型字墨模型核對。
+
 未知來源的[有界錯誤研究](tools/research-owned-guard.go)與[受控對照](tools/research-owned-guard_test.go)依[047 DRAFT](docs/spec/047-hd-scene-renderer.md#未知來源的有界錯誤研究)。場景準備器在既有Go Docker加`--source-guards`，須同時使用`--intro --gui --direct-render --batch-render`，只修改私有副本。測試使用`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_GUARD_ASSETS`及新`EIGHTSWORD_TEST_OWNED_GUARD_OUT`，以`go test ./internal/eightsword -run '^TestResearchOwned(SourceGuard|GuardDoesNotSwallowRuntimePanic)$'`執行。`EIGHTSWORD_RESEARCH_GUARD_CONTROL=1`只停用研究保護作對照，不接正式入口或猜測重新同步。
 
 該研究的[獨立核對器](tools/audit-owned-guard.py)在固定Pillow Docker以`--project <唯讀專案> --out <新JSON>`核對r42、受控兩種失敗與原版客體同值；`--gui`另驗正常Noto人物／軍隊與真正存退讀。顯示模式通知的CS:IP是回呼當下寄存器，與視訊寫入metadata的原始store位置分開記錄。

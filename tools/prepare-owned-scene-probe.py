@@ -25,6 +25,7 @@ def main():
     parser.add_argument('--masked-rows', action='store_true', help='六平面剩餘列在原版內圈入口接管，保留事件邊界')
     parser.add_argument('--fallback-checks', action='store_true', help='複製圖像組失效的研究對照，不改正式套件')
     parser.add_argument('--source-guards', action='store_true', help='隔離研究：來源拒絕返回型別錯誤並保留最後完整自有圖')
+    parser.add_argument('--recruitment-menus', action='store_true', help='研究募兵整頁與每次數字編輯的完整提交')
     args = parser.parse_args()
     root, out = args.project, args.out
     assert os.getuid() == 1000
@@ -36,6 +37,7 @@ def main():
     assert not args.masked_rows or args.masked_planar
     assert not args.fallback_checks or args.direct_render
     assert not args.source_guards or (args.intro and args.gui and args.direct_render and args.batch_render)
+    assert not args.recruitment_menus or args.source_guards
     assert root.is_dir() and not out.exists()
     assert out.parent.stat().st_uid == root.stat().st_uid == 1000
     seed = root / 'workplace/probe-20261023/graphics-first/battle-r1/friendly21-validation-build-r2/src'
@@ -121,6 +123,15 @@ def main():
         assert data.count(marker) == 1
         data = data.replace(marker, '\t\t\t\tif e.researchRenderFault!=nil {return false,nil}\n'+marker)
         path.write_text(data)
+    if args.recruitment_menus:
+        data = (root/'tools/research-owned-recruitment.go').read_text()
+        assert data.startswith('//go:build ignore\n')
+        (source/'internal/eightsword/research_owned_recruitment.go').write_text(data.replace('//go:build ignore\n', '', 1))
+        path = source/'internal/eightsword/research_owned_scene.go'
+        data = path.read_text()
+        marker = '\tp.bindPanels()'
+        assert data.count(marker) == 1
+        path.write_text(data.replace(marker, marker+'\n\tp.bindRecruitmentPanels()'))
     probe = (seed / 'tools/probe-friendly.go').read_text()
     if args.vga_read_trace:
         marker = '\te.EnableLiveClock(3000)'
@@ -379,6 +390,8 @@ quit
         if args.source_guards:
             format_paths.extend([source/'internal/eightsword/research_owned_guard.go',
                                  source/'internal/eightsword/research_owned_guard_test.go'])
+        if args.recruitment_menus:
+            format_paths.append(source/'internal/eightsword/research_owned_recruitment.go')
         subprocess.run(['gofmt', '-w', *map(str, format_paths)], check=True, timeout=30)
         targets = [('probe', './tools/probe-owned.go')]
         if args.gui:
