@@ -31,6 +31,7 @@ type Engine struct {
 	ArmyMan21Error           string
 	MapCastleError           string
 	MapChestError            string
+	MapLandmarkError         string
 	BattleActorError         string
 	BattleEffectError        string
 	BattleMarkerError        string
@@ -144,6 +145,9 @@ func Open(opt Options) (*Engine, error) {
 						}
 						if chestErr := loadMapChest(opt.Assets, pmap, art); chestErr != nil {
 							e.MapChestError = chestErr.Error()
+						}
+						if landmarkErr := loadMapLandmark55(opt.Assets, pmap, art); landmarkErr != nil {
+							e.MapLandmarkError = landmarkErr.Error()
 						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)
 					}
@@ -464,6 +468,7 @@ func (e *Engine) Status() map[string]any {
 	out["army_man21_error"] = e.ArmyMan21Error
 	out["map_castle_error"] = e.MapCastleError
 	out["map_chest_error"] = e.MapChestError
+	out["map_landmark_error"] = e.MapLandmarkError
 	out["battle_actor_error"] = e.BattleActorError
 	out["battle_effect_error"] = e.BattleEffectError
 	out["battle_marker_error"] = e.BattleMarkerError

@@ -1361,3 +1361,14 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 - 已證實：兩側前綴完整 state 408a8a98…9183、PCM 099a7c0a…4052、逐幀串流、輸入、檔案事件、20 工作檔及十二 checkpoint 狀態相同。控制尾程總 1382 幀，原版 DOS 退出 0；尾程未與來源組配對。host 文字歷史只保留 32 筆，尾程會淘汰前綴，故只聲稱十二 checkpoint 列表相同，不將最終滾動列表當作完整事件史。
 - 真正存檔人物 SHA 62bc6fc9…4e75、地圖伴隨檔 d2bdbccc…4277。另以完整兩檔普通冷讀，312 幀、F5 仍 53,22、F1／F2 與正常 DOS 退出通過；人物檔同存後／讀後 RAM 0x9E000，原版 read step 22839250，兩份 DOS read 有證。核心寫入函式使用 `DOS.Wrote`，未在 `FileOps` 記 write；未更動核心，改用實際檔案改變、普通冷讀及 RAM 驗證成功保存。
 - 新核對器 `audit-map-landmarks.py` 與 `landmark-source-art-audit-r1.json` 連回上述範圍及四張圖的獨立快取。第 55 筆正常矩形先核對所有原生像素，再放入選定快取製作可丟棄場景，已看；那張圖是排版合成，不是新素材的實際 Draw。55 呈現已達 READY，其餘六筆維持 DRAFT，正式 r42 與七程式保持。下一步直接用真正進度 53,22 接入，不重走 69 步或重做美術。
+
+## 2026-10-25：PMAP 55 正式呈現與正常存讀
+
+依 [045](docs/spec/045-map-landmarks.md#正式提升與限定驗收)的 READY 契約接入，既有 PMAP／PAM 輸入、來源位址與雜湊保持，不開新 RE。用 `landmark-control-r1/scratch` 的真正人物／地圖兩件存檔普通 Continue；沒有注入位置、快照或挑亂數。Linux Docker Go 1.24.13 與 Pillow 11.3.0 沿 045 固定映像。
+
+- 已證實：`landmark55-runtime-audit-r2.json` 核對三組各 395 幀、1185 次純度、五份完整 Frame、158 幀差異矩形及真壞全串流。完整 state `cae8c4226e2121f002298aca9bc3958f4cf019e664acf437898684f133b9c80c`、PCM `8c172ea0b0ca825a66f70b28b99212bb663f3961ee93a23406a201f879caa0a6`、22 工作檔與事件相同，正常退出 0。
+- 已證實：`landmark55-draw-audit-r1.json` 核對 313／267 實際 Draw 中的六份三字型完整畫面，13824000 像素同獨立模型及錄影。兩段 10/6 次來源，首筆各 1600 返回色碼通過。兩張接觸表及 Noto 視窗已看。
+- 已證實：真正 F7 人物檔 `0a90802727eaa50f8b7dc8ba00130c1feae2843b8f0c44baab8078d565bf6c11` 同存後／冷讀 RAM 線性 0x9E000，2987 bytes；read step 12412389，地圖 `d2bdbccc526e2b8a8b89c2308321a57e9716eb00db0c9af07203354f7e234277`。冷讀走原版選單，RAM 檢查為零指令診斷。
+- 未知：物件正式名稱、用途與獎勵。純呈現沒有依賴，不為此深入互動規則。其餘六筆及整體 HD 未完成。
+
+實作、匯入與核對工具入口掛於 AGENTS。95 筆正式輸入及七程式保存 `build-landmark55-r1`，52 筆研究輸入及三程式保存 `landmark55-validation-build-r1`；44 份套件來源相同，無原型安裝函式。原 PNG、完整提示、快取及收據留本機。

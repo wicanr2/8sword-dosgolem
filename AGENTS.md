@@ -346,3 +346,5 @@ HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-ref
 017 實際 Draw 驗證器：[audit-museum-gui.py](tools/audit-museum-gui.py)，共用獨立 Python 來源模型，核對寬版串流中央美術帶與原版交易，輸出 `museum-draw-audit.json` 及首次實際 Draw 圖。範圍不包含 GUI 外帶的獨立原版對拍；正常存退讀及客體隔離另驗。
 
 017 普通 Esc 驗證：[audit-museum-escape.py](tools/audit-museum-escape.py)，輸入真正近景後送 Esc 的 HD／舊組正常收據，核對完整 state／PCM／事件、PAM、離場後每幀及 Frame 純度。它不注入原版狀態。
+
+第 55 筆地圖圖像依 [045](docs/spec/045-map-landmarks.md)接入：[獨立載入器](internal/eightsword/map_landmark55.go)、[來源與回退測試](internal/eightsword/map_landmark55_test.go)、[素材匯入](tools/prepare-hd-landmark55.py)、[正常三組核對](tools/audit-landmark55.py)、[實際 Draw 與存讀核對](tools/audit-landmark55-gui.py)。匯入用 `tools/player.sh landmark55-assets <新名稱> painted-r42`；完整圖及收據留本機，狀態看 CONTEXT。
