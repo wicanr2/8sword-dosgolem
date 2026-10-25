@@ -1,6 +1,6 @@
 # 042：MAN21 友軍戰場方向
 
-狀態：DRAFT。承接 [026](026-battle-man21-actors.md)的四個原向快取、[041](041-army-man21-image.md)的正常招募與軍隊頁鏡射，以及 [028](028-battle-militia-image.md)的背景分支別名。正式素材保持 r40，先取得友軍戰場的真正來源，不由 F2 來源推定全部動作已驗。
+狀態：DRAFT。承接 [026](026-battle-man21-actors.md)的四個原向快取、[041](041-army-man21-image.md)的正常招募與軍隊頁鏡射，以及 [028](028-battle-militia-image.md)的背景分支別名。初稿時正式素材為 r40，目前為 r46，友軍戰場鏡射仍未正式登錄。正常攻城已取得四筆來源，見末節；尚待載入契約及戰場背景接入審查，不由 F2 來源推定全部動作已驗。
 
 ## 玩家範圍與已知資料
 
@@ -85,3 +85,56 @@
 核對工具：[audit-encounter-gate.py](../../tools/audit-encounter-gate.py)。在既有 Pillow Docker 傳入 `--pam`、`--database`、`--ida-report` 第二份 IDA JSON、`--build` r3 建置、`--observed`、`--control` 及不存在的 `--out`。先核對兩種 MZ 重定位與原始定位，再核對有界輸入、129 筆判定及完整隔離，明確輸出 `normal_encounter_acquired=false`、`production_ready=false`。
 
 本切片至此停止。不追加等待次數或調參數追求命中；四姿勢留待真正普通遭遇補證，其他 HD 圖像與曲目繼續推進。這條掛點不接進正式前端，也不擴張為遭遇規則或 AI 改寫授權。
+
+## 正常攻城的四筆友軍來源
+
+2026-10-25 追加。上節四筆未取得是當時的限定結果，現已由正常攻城補齊。042 仍為 DRAFT；素材保持 r46，沒有正式登錄鏡射戰場組。
+
+### 真正進度與攻城入口
+
+`ally21-castle-source-r1` 從正式 GUI `landmark48-save-r1/scratch` 的人物檔及 MAP01／MAP02 繼續。普通步行 39 步到 MAP2 城堡，再向東走到 F5 的 43,54。側面進入沒有攻城問題，F6 回覆「這裡什麼也沒有」。正常 F7 存退後，源／控制各 2013 幀，4026 次 Frame 純度、二十二工作檔、全部 checkpoint、完整 state／PCM／串流及事件同值，見 `ally21-castle-route-audit-r2.json`。不重走這段長途路線。
+
+後續短路徑使用該輪正常保存的三件組，並未讀模擬器快照：
+
+| 檔案 | bytes | SHA-256 |
+|---|---:|---|
+| `gamedata.ay` | 2987 | `80f3840390b317940ebb099d20ba2daed49808367959971cb37f8f7ebaf6146e` |
+| `map01.ay` | 5761 | `783448e3418182847a42aea1422799692c58ef5c049e49c815cdf80298c621f3` |
+| `map02.ay` | 5761 | `8cdf908ab45e8e2da10745fea7df39fc955c9cab78119b2408e178d0bff1846c` |
+
+原版 PAM／資料庫 SHA 沿上節。`ida-castle-entry-r1.json` 由同一 IDA 9.4、UID 1000、521 函式的唯讀副本匯出：
+
+| 原始定位 | 證據及範圍 |
+|---|---|
+| IDA MZ 線性 `sub_12446`，`0x125EA–0x125EB`；PAM file+`0x3A5A–0x3A5B` | 已證實：`sub_13AEC(4,4)` 返回 65 的分支呼叫 `sub_12DDE`。地圖目錄的 native 64 與此返回值基準不同，不能直接混比 |
+| IDA `sub_12DDE`，`0x12DFF–0x12E0D`；PAM file+`0x426F–0x427D` | 已證實：原 `word_32E44`、DS 原偏移 `56C4h`，只在值為 1 或 3 時繼續。本路段已驗南側往北可進；其他方向映射不由這份靜態比較補全 |
+| IDA `0x12FA0`；PAM file+`0x4410`，原 bytes `B8 30 45` | 已證實：`mov ax,4530h` 對應來源 17712「要攻城嗎」。原名、運算元及各自位址基準保持 |
+
+`ally21-castle-source-r3` 從真正 43,54 存檔向南一次、往北一次，正常出現確認框，以普通空白鍵確認。未改地格、軍隊、觸發條件、時鐘或種子；編成維持戰前民兵 31／矮人 69。依手冊印頁 9 選定敵方前列矮人並按 Enter，取得四筆友軍動畫。其餘曾選到自身或遠方目標的普通操作完整保留，不倒推未證實的射程規則。
+
+### 六平面及返回像素
+
+固定 PAM file+`0x156B6` 的 329 bytes 與 dosgolem 執行期 `14D2:0626` 全同。`ida-castle-bitmap-returns-r2.json` 另核對 IDA MZ 線性原名 `sub_24246`、`0x24246–0x2438F`，唯一 `retf` 為 IDA `0x2438E`、PAM file+`0x157FE`，對應執行期 `14D2:076E`。
+
+四筆完整 3304 bytes 分別與原始 EGG 的逐列、逐塊水平鏡射相同。首筆返回皆為 A000、mode 1、背景 A400、x byte 23、y 100，首實體 byte 8023。每筆 4400 色碼按前四平面顏色及第六塊遮罩獨立重建，透明處取實際 A400 背景，共 17600 點全同。第五塊未作 alpha。
+
+| 記錄 | 完整鏡射六塊 SHA-256 | 實際返回次數 | 首次返回 step |
+|---|---|---:|---:|
+| 0 | `5168810f892b3d4723a990d7c231f1a14801568166030fd9eef661140d937f30` | 221 | 50064181 |
+| 1 | `d47ee736fa72a13fbc8946a7be8c5207cdd45ba98419b571c4d56685c1300905` | 6 | 130576181 |
+| 2 | `e24e8e88378e972239b075d818652bf8b288ef2c5000f8cb631d88ad9f4bb22a` | 6 | 130771092 |
+| 3 | `83f267fa78962beef351880accb8a8c39a03ebe7aed38e846fe5d5e6e4ff57e9` | 6 | 130963383 |
+
+### 觀測隔離、工具修正與接入限制
+
+`ally21-castle-source-audit-r4.json` 核對源／控制各 1324 幀、2648 次 Frame 純度、六十九普通命令、二十八 checkpoint、三十二工作檔及完整 state／PCM／串流／輸入與 I/O 事件同值。完整 state SHA `580b2f8ff4cbf6d351538e09c24f5e194bd932a17aec98de54190b95ccb7e7fa`，PCM SHA `5c527113a8cdf28d6373801ddb23b48b0ebe325c0027935a603e826e8fa74627`。共 1237 次正常來源與返回，四筆覆蓋為 `four-normal-sources-verified`，`production_ready=false`。
+
+- `ally21-castle-source-r2` 在第 801 次來源前遇到重複入口，舊探針誤報缺少返回而停止。該輪沒有完整結尾，不驗收。原版 ABI 只有一個返回點；dosgolem 的 OnCall 在 Machine.Step 前觸發，而 Step 可先送中斷。修正後的只讀探針確認兩次入口相隔十三步，全部暫存器與十二 bytes 堆疊相同，保留一份重入紀錄及一組正常來源／返回。具體中斷號未追查，未修改核心或遊戲。
+- 研究建置 r1／r2 各固定五十二輸入、四十九份正式套件、Go 1.24.13、程式 SHA 及完整來源 archive。只有 r2 的觀察器增加上述核對。原時鐘仍為執行前 12:00、3000 cycles/ms，RND seed 未知，不宣稱固定 seed 或玩法 parity。
+- 原版 I/O 在 step 40862675 開啟 `gro01.eg`，來源 SHA `4e5c5c6569cc6fc9f1e585b7048c099228f787da041d46ded685e034b7594103`。實際畫面為朱柱、金色山景與藍色地板。既有正式背景與部隊呈現要求已驗 GRO02 所有權，此處保留原版。不能直接把 GRO02 原生指紋或夕照山谷圖套到 GRO01。
+- 普通 Esc 撤退後，原版顯示失敗並扣現金 33。接著 F1 人物頁、Noto／隸書／草書、F2 及 F7 保存、退出 DOS 0 完成。三份人物頁及戰場截圖已檢視。這輪沒有新增 GUI 實際 Draw 或冷讀收據，不稱真正存退讀閉合。
+- 核對器初次沿用無戰鬥路徑的二十二檔數量，實際戰鬥多載入十檔，兩側完整三十二檔完全相同。已改為比較全部實際檔案並驗人物檔與兩張伴隨地圖，不以舊案例數量拒絕有效戰鬥。沒有重跑遊戲湊檔數。
+
+核對入口為 [audit-castle-source.py](../../tools/audit-castle-source.py)。在既有 Go Docker 傳入 `--original`、`--database`、`--ida` 攻城查詢、`--bitmap-ida` 正確 r2 返回查詢、`--build`、`--observed`、`--control` 及不存在的 `--out` JSON。工具同時核對 MZ 重定位、來源 archive、原版正常進退、觀測隔離及獨立六平面返回；無目標時明示覆蓋不足。
+
+下一個接入閘門是 GRO01 背景的正常來源／所有權，以及四筆鏡射的嚴格載入、識別及分組回退契約。沿用已重建的四份鏡射快取，不再生成矮人圖或等待隨機遭遇。MAN17／22／07 此輪只取得首筆，不能稱四姿勢完成；整體 HD 仍未完成。

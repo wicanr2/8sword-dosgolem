@@ -37,6 +37,7 @@
 軍隊頁圖像入口：[041：MAN21 圖像](docs/spec/041-army-man21-image.md)，沿現有 HD 快取與正常招募來源；現況以 CONTEXT 為準。
 
 友軍戰場方向入口：[042：MAN21 四姿勢](docs/spec/042-friendly-man21-battle-poses.md)，從真正招募與自然戰鬥取證，不以軍隊頁或原向快取代替正常動作驗收。研究工具為[鏡射原型](tools/prepare-battle-mirror-prototype.py)及[來源與續玩核對](tools/audit-friendly-man21.py)。以真正 F7 存檔建立冷讀時，同時盤點客體保存的伴隨檔；042 已證實 MAP01 需要 `gamedata.ay` 與 `map01.ay`，匯入方式及其他地圖的支援邊界見該規格。
+正常攻城的四筆友軍來源與[獨立核對工具](tools/audit-castle-source.py)見 [042 攻城來源](docs/spec/042-friendly-man21-battle-poses.md#正常攻城的四筆友軍來源)。研究輸入保留真正人物檔及 MAP01／MAP02。這條路徑使用 GRO01，既有正式戰場呈現只支援已驗 GRO02；來源齊全不等於四筆 HD 已接入，不重走長途路線或改種子取證。
 
 正常遭遇的研究掛點與[核對工具](tools/audit-encounter-gate.py)見 [042 的窄定位](docs/spec/042-friendly-man21-battle-poses.md#正常遭遇前置的窄定位)。已核對原始定位及有界等待的觀測隔離，沒有取得本輪戰場來源。不得將研究掛點視為正式遭遇率、AI 或玩法修改授權，也不繼續追加等待次數湊姿勢。
 
