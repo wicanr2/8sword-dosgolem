@@ -24,7 +24,8 @@ def main():
     assert report['status'] == 'PASS-single-routine-direct-source-command-contract'
     assert not report['production'] and not report['normal_player_route'] and not report['timer_irq_enabled']
     assert (b/'go-version-r4.txt').read_text().startswith('go version go1.24.13 linux/amd64')
-    assert (b/'probe-direct-r4.go').read_bytes() == (p/'tools/probe-direct-planar.go').read_bytes()
+    # Audit the immutable r4 program, independently of later tool annotations.
+    assert sha(b/'probe-direct-r4.go') == '63510e6da295f98bf06798299c8f8a65fc5ff443368bedcf1baf29239b91d639'
     for line in (b/'build-r4.sha256').read_text().splitlines():
         digest, path = line.split('  ', 1)
         assert sha(b/Path(path).name) == digest
@@ -58,7 +59,8 @@ def main():
         assert (command['WidthBytes'], command['Height']) == (source['width_bytes'], source['height'])
         assert case['original_steps'] == 32*source['height']+82 and case['original_cycles'] > 0
         assert case['original_vga_stores'] == 4*source['width_bytes']*source['height']
-        assert case['replacement_emulated_steps'] == case['replacement_vga_stores'] == case['vga_reads_inside_original_call'] == 0
+        assert case['replacement_emulated_steps'] == case['replacement_vga_stores'] == 0
+        # r4 WatchReads bypasses planar VGA; its zero cannot prove no reads.
         for field in ('live_registers_equal', 'flags_equal', 'conventional_ram_equal', 'vga_control_equal',
                       'source_surface_equals_original', 'empty_return_rejected', 'replacement_vga_planes_unchanged'):
             assert case[field] is True, (key, field)
@@ -71,7 +73,8 @@ def main():
                   original_steps=[min(c['original_steps'] for c in report['cases']), max(c['original_steps'] for c in report['cases'])],
                   original_vga_stores=sorted({c['original_vga_stores'] for c in report['cases']}),
                   replacement_emulated_steps=0, replacement_vga_stores=0,
-                  report_sha256=sha(b/'call-contract-r4.json'), source_sha256=sha(p/'tools/probe-direct-planar.go'),
+                  report_sha256=sha(b/'call-contract-r4.json'), source_sha256=sha(b/'probe-direct-r4.go'),
+                  historical_read_count_is_dynamic_evidence=False,
                   limits=report['limits'])
     assert not args.out.exists() and args.out.parent.stat().st_uid == 1000
     args.out.write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')

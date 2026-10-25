@@ -1638,3 +1638,50 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 `direct-planar-r2/call-contract-r4.json`及`audit-r2.json`已通過30個不重複案例：PMAP首筆、LIVE2及GRO02各一筆，兩目的頁、三輸入旗標，正常／邊界位置。原版每次882–6482步、800／22400／64000次VGA byte寫入，替換端兩者為0且四平面SHA保持；活暫存器、旗標、一般RAM與指定VGA控制狀態同值，30組空返回均拒絕。Go從來源命令重建表面，Python再獨立核對原版全幅640×200的色碼雜湊，沒有拿原版畫面作命令輸入。
 
 原型在Go1.24.13的既有離線Docker使用公開dosgolem Machine API，關閉計時IRQ後直接呼叫常式，未改共用核心、正式七程式或r48素材。r4追加BIOS 0Eh及VGA write mode0／bit mask FF／無set-reset或rotate的前置檢查後通過；程式SHA `72f472815556705961aff0fd15e617adbc60c0527f1c7653ae46c0c6e530d628`，原始碼與程式清單存`build-r4.sha256`。此處尚未處理後續VGA讀回、虛擬週期／IRQ／音樂或正常玩家路徑；不宣稱整機同狀態、完整HD接管或FPS固定提升。
+
+## 2026-10-25：直接攔截的平面讀回與事件預算
+
+入口為[047](docs/spec/047-hd-scene-renderer.md#平面vga專用觀測與按需背板)。工具在固定`dosgolem-go-ebiten:1.24-r1`、Go1.24.13／Python3.11、UID1000、離線Docker執行。圖像來源與前節相同，PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；IDA9.4固定DB SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`保持。只讀既有IDA r10的原名／指令／bytes，沒有重跑全庫分析。
+
+### 觀測盲點勘誤
+
+已證實：本案固定核心`internal/machine/machine.go`的Read8在A0000平面分支先返回VGA.Read，一般WatchReads不會收到事件。因此前節r4的`vga_reads_inside_original_call=0`不能當作動態證據。IDA的RAM來源參數與指令仍有效，不推翻四平面30組輸出契約。原JSON及來源快照保留；工具增加註記，核對器固定歷史r4來源SHA、不再將零讀取列入已證實結果，重核結果為`direct-planar-r2/audit-r3.json`。
+
+`prepare-vga-read-probe.py`將固定核心複製到研究副本，保存910份基底檔案SHA及修改patch。專用VideoRead回呼在VGA.Read前觸發，原本四個latch載入保持。`core-direct-r1/source-manifest.json`記錄原始來源與四份新增／修改的身分，不改原`workplace/dosgolem`或共用上游。回呼不進客體狀態檔。
+
+### 按需背板與原版消費端
+
+已證實的限定原型：四平面來源命令只登記目的byte與不可變來源，入口不畫原版、不改VGA平面。原版真正讀取或改寫該byte時才補四平面資料；直接補平面不觸發VGA.Read，維持原有latch。再執行原版讀寫邏輯。這份背板只供客體相容，HD呈現器不收它。
+
+`shadow-contract-r1/receipt.json`共20個案例，三筆真實來源、兩頁、正常／右下邊界及兩種CPU計費。每組有真正讀取正對照及另一byte的masked-write正對照，再執行原版14D2:033D或03B0整頁搬移。每次搬移讀16000次，所有待補來源恰好實現一次；完整四平面／CPU／旗標／一般RAM及GC／sequencer／latch同原版。Python獨立從fixture重建四個65536-byte平面，包含舊latch的局部寫入與搬移，SHA均相同。收據SHA `a764979a9cddd47dedfda25cc211192a45ed9e1352b0d392883bc7e104b7bcb6`。
+
+### 最新mm3參考與本作時間差異
+
+已重新讀mm3的AGENTS／CONTEXT、075及獨立方法論，參考HEAD `366104dabcfdd1750bcbc2cd88993b314858bf69`。075已達限定CONFORMED，中文普通／鏡像分支已接主機命令；074的早期DRAFT保留歷史。唯讀全文快照存`direct-planar-r2/mm3-reference-r2.json`：075 SHA `5970739b9c29fbd860b664144cb53331235782331237d97fe0d182f770ee0514`，方法論SHA `cef2b2245c04a947037fb3ecf59e1ccc244dfde6e2f968fdf6d61e8267116131`，事件預算patch SHA `dd8650c56dd2709ce2b395e43f78e060cb46b49cef3d6ed380e96a9f770ee031`。不改參考專案，不沿用MM3的位址／旗標／費率或正常路線聲明。
+
+已證實：mm3參考API拒絕CycleClock，本作正常EnableLiveClock(3000)卻開啟CycleClock及DOSBoxCost。研究`research-host-work.go`分開限制步數的幀／週期呼叫與週期IRQ，亦受外部步數／週期配額限制。待發IRQ、排隊鍵盤／回呼、除錯觀測及溢位拒絕。提交只增加已驗計數，恰好到期事件在下一次Step執行，不在半提交的狀態中發ISR。
+
+`core-direct-r3/event-budget-tests-r1.log`三個父測試、12組邊界對照通過。兩種時鐘、兩種CPU計費各驗幀、IRQ及週期遠呼叫，和原版NOP序列的CPU與事件時點相同。首次r2誤用新版核心才有的MPU欄位而編譯失敗；查本作固定Step／tick後修正，未加不相關硬體介面。失敗副本與log保留，新r3重建。
+
+`shadow-contract-r2/receipt.json`另20組直接來源／背板／原版搬移，將原呼叫實測步數與週期計入事件預算；DOSBox-cost組開啟3000 cycles/ms，這些呼叫均放得進無事件區間。原版繪圖迴圈仍為零次執行，搬移後兩側步數、週期、tick及frame相同。PMAP／LIVE2／GRO02的預設計費實測8870／129770／354970，DOSBox-cost為1682／25682／70482；它們是固定執行器計費，非實機週期。收據SHA `471e9d6c544096dad34ff22518b0c129b3370063fd9e9dad6e014c1496fb9a2b`。本原型使用本次呼叫的原版實測計數，尚未證明適用所有參數的正式成本估算器。
+
+### 正常流程的讀回盤點與觀測隔離
+
+研究r25只加讀回位置觀測，沿正常冷啟動、新遊戲、F6搜尋、F1、F5、步行、LIVE2募兵數字10再退格改1、F2／F1及返回。無注入、快照或改種子。`owned-hire-vga-read-r2`與已完成r24的`owned-hire-baseline-r1`各542幀；完整state SHA `c4aa051f5487544f3a07193519ac484a41776adc88d1ed8784c93641d5a0a401`，PCM SHA `a0c4b7fe987c57883a82d08001f5cacc2438f0ea6c67551a2608d844b4942c3b`，兩側相同。全部30工作檔、final事件、輸入、繪圖命令與解壓後逐幀串流相同；串流SHA `1793c8fcdaae13719f3ff7cb54eca5e2c38a87d4110aa33aa25b679f34544a56`。RND種子未知，只證明觀測隔離，不外推亂數規則。
+
+| 正常VGA讀取分類 | 次數 | 原始執行期定位 |
+|---|---:|---|
+| 單點 | 599104 | 14D2:02FA／030B |
+| 整頁搬移 | 288000 | 14D2:0364／03D7 |
+| 半寬字模 | 107370 | 14D2:0C40／0C65 |
+| 全寬字模 | 9240 | 0AA8:4B4B／4B71／4BA5／4BCB |
+| 遮罩 | 11000 | 14D2:057A |
+| 未知 | 20 | 9FE5:0002，保留原定位，不猜語意 |
+
+總數1,014,734，12個位置。四平面常式的專用掛點為零，且由前述實際VGA讀寫正對照證明掛點可見。原始CS:IP由CPU.OpAddr回報，VGA offset基準為A0000。位置分類依既有IDA及來源掛點區間，不取代各函式副作用的證據。
+
+首份候選r1誤用`/project/workplace/...`作原版根目錄，既有控制為`/orig`。解壓狀態的完整機器段1379342 bytes同值，DOS段只差Root字串及其序列化長度；沒有放寬比較。改成同一`/orig`掛載後，以相同命令在新r2目錄乾淨重跑，完整壓縮state亦相同。r1保留為環境／驗證命令問題。
+
+統一[核對器](tools/audit-vga-read-probe.py)產生`vga-read-clock-audit-r1.json`。正常路線本輪只觀測，仍執行原版繪圖；直接略過與計時僅限上述單常式案例。Oracle受控替換、返回掛點、重疊命令、模式切換及遮罩消費端尚未閉合，047維持DRAFT。不將兩份不同路徑證據合併聲稱正常玩家已直接接管。正式111輸入、七程式、六份固定核心與r48素材由收尾完整性另核對。
+
+後續介面整理：`core-direct-r4`將相容背板的資料準備分離到明確可寫的`PreparePlanarAccess`，先於只讀VideoRead／VideoWrite觀測執行，保留既有觀測契約。`shadow-contract-r3`同一不可變程式重生20組未計時與20組計時案例，原版讀寫正對照另外確認觀測時已完成資料準備。三父測試／12事件邊界再次通過。現行統一核對器讀這份新收據，輸出`vga-read-clock-audit-r2.json`；早先收據不覆寫，也沒有為此重跑542幀正常路線。

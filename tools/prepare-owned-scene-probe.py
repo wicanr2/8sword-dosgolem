@@ -18,6 +18,7 @@ def main():
     parser.add_argument('--build', action='store_true', help='在固定Go Docker內編譯並保存全部私有來源與程式雜湊')
     parser.add_argument('--intro', action='store_true', help='研究版接PREDELLA來源場景；須搭配--gui以提供診斷Frame參考')
     parser.add_argument('--natural-intro', action='store_true', help='無頭探針與研究視窗等待開場自然結束，不按Escape')
+    parser.add_argument('--vga-read-trace', action='store_true', help='研究核心須有VGA讀取前觀測；只記位置，不替換繪圖')
     args = parser.parse_args()
     root, out = args.project, args.out
     assert os.getuid() == 1000
@@ -44,7 +45,15 @@ def main():
         data = (root/'tools/research-owned-intro.go').read_text()
         assert data.startswith('//go:build ignore\n')
         (source/'internal/eightsword/research_owned_intro.go').write_text(data.replace('//go:build ignore\n', '', 1))
+    if args.vga_read_trace:
+        data = (root/'tools/research-vga-reads.go').read_text()
+        assert data.startswith('//go:build ignore\n')
+        (source/'internal/eightsword/research_vga_reads.go').write_text(data.replace('//go:build ignore\n', '', 1))
     probe = (seed / 'tools/probe-friendly.go').read_text()
+    if args.vga_read_trace:
+        marker = '\te.EnableLiveClock(3000)'
+        assert probe.count(marker) == 1
+        probe = probe.replace(marker, marker + '\n\tfinishVGAReads:=e.ResearchVGAReads(*out)\n\tdefer func(){must(finishVGAReads())}()')
     probe = probe.replace('install := func() { installMap(); installBattle(); installPalace() }',
                           'installOwned, ownedFrame, finishOwned := e.ResearchOwnedScene(*out)\n'
                           '\tdefer func(){must(finishOwned())}()\n'
@@ -217,6 +226,8 @@ quit
             format_paths.append(source/'tools/gui-check.go')
         if args.intro:
             format_paths.append(source/'internal/eightsword/research_owned_intro.go')
+        if args.vga_read_trace:
+            format_paths.append(source/'internal/eightsword/research_vga_reads.go')
         subprocess.run(['gofmt', '-w', *map(str, format_paths)], check=True, timeout=30)
         targets = [('probe', './tools/probe-owned.go')]
         if args.gui:

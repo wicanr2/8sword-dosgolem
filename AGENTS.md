@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+直接攔截研究工具：[獨立核心與 VGA 讀取前掛點](tools/prepare-vga-read-probe.py)、[按需背板與原版搬移驗證](tools/probe-vga-shadow.go)、[正常玩家讀回位置觀測](tools/research-vga-reads.go)、[背板與客體隔離核對](tools/audit-vga-read-probe.py)。只用於 [047 DRAFT](docs/spec/047-hd-scene-renderer.md#直接攔截原版繪圖入口)，用法及限制見該節；不改正式核心。舊四平面探針的一般記憶體讀取零計數不涵蓋 VGA，不能作為沒有圖形讀回的動態證據。
+
+直接攔截的[雙重事件預算](tools/research-host-work.go)及[原版邊界對照](tools/research-host-work_test.go)由上述準備器的`--event-budget`只接研究核心。本作正常週期時鐘與mm3不同，分開限制步數與週期；mm3最新075及方法紀錄快照、來源、用法與限定驗證見047，原參考專案保持唯讀。
+
 完整HD場景接管研究見[047](docs/spec/047-hd-scene-renderer.md)，即時探針為[自有場景](tools/research-owned-scene.go)、[隔離準備器](tools/prepare-owned-scene-probe.py)與[代表案例核對](tools/audit-owned-scene-live.py)。DRAFT只在既有研究區建立私有副本，不進正式程式。
 
 [面板交易核對器](tools/audit-owned-panel.py)在固定Pillow11.3.0容器核對人物／軍隊／返回地圖的完整逐幀畫面、完成狀態與真正存退讀。以`--project`指定唯讀專案、`--out`指定既有研究目錄中的新收據；適用範圍與位址契約見047，不外推其他對話框。

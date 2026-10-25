@@ -243,8 +243,47 @@ PAM主選單、人物／軍隊、確認、地圖與返回，以及PREDELLA自然
 | 直接替換 | 原版繪圖指令0、VGA像素寫入0，四個VGA平面SHA保持 |
 | 回傳狀態 | 通用／段暫存器、CS:IP、SP、旗標、一般記憶體及上述VGA控制狀態同原版；各30組空返回負對照均被拒絕 |
 | 來源表面 | 原版輸出與命令獨立重建的640×200色碼全幅相同，Python再從fixture重建並核對雜湊 |
-| 讀回範圍 | 這30組在該常式內沒有VGA讀取，不外推後續背景還原、遮罩、讀檔或全遊戲都不讀圖 |
+| 讀回範圍 | IDA來源參數與指令支持該常式不讀VGA；r4的一般WatchReads不涵蓋平面VGA，其零計數不作動態證據。下節已用專用掛點補驗，不外推其他常式 |
 
 下一步接正常選單與人物頁前，須補來源命令與返回掛點交接、後續VGA讀回的影子表面、虛擬週期及IRQ／音樂契約，再延伸文字、遮罩、複製與開場入口。本原型未畫新的HD樣稿、未修改正式r48、未改共用dosgolem，也未宣稱FPS固定提升或完整HD接管。
 
 現行`workplace/dosgolem/oracle/state.go`的`SetRegs`不提供CS:IP、SS:SP、Flags或週期完整寫入；正常前端需受控攔截介面或具同等輸出契約的執行期替換。實驗使用公開`dosgolem.Machine`直接呼叫，不能據此推定Oracle前端已可略過。共用核心保持；需要核心能力時沿本案隔離副本研究。
+
+### 最新mm3方法與本作時間模型
+
+後續重新核對mm3的HEAD `366104dabcfdd1750bcbc2cd88993b314858bf69`。其075已達限定CONFORMED，中文普通／鏡像圖片呼叫已由來源命令接管，原版像素迴圈不再執行。074先前的DRAFT及空返回反例保留作歷史。最新[075快照](../../workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r2/mm3-spec075-reference.md)與[方法紀錄](../../workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r2/mm3-direct-render-methodology.md)由`mm3-reference-r2.json`固定雜湊；參考專案維持唯讀。
+
+沿用的方法是完整呼叫效果、相容背板、事件預算及單次RGB。mm3的`HostWorkBudget`會拒絕`CycleClock`，本作正常前端則以3000 cycles/ms開啟該模式，不能原樣套用。研究[事件預算](../../tools/research-host-work.go)分別限制步數事件與週期IRQ，另受本次執行配額限制。整筆工作放不進預算就拒絕，恰好到期的事件交由下一次原版Step處理。此API只計入已驗步數與週期，呼叫效果與來源有效性仍須另驗。
+
+`core-direct-r3/event-budget-tests-r1.log`通過三項父測試，含兩種時鐘、兩種CPU計費下的12組原版NOP對照：畫面回呼、IRQ與週期遠呼叫在相同邊界執行。另驗排隊輸入、待發中斷、除錯觀測、溢位及配額不足的拒絕。這是固定dosgolem模型的事件契約，不稱原始硬體逐週期。
+
+### 平面VGA專用觀測與按需背板
+
+已證實：固定核心的`Machine.Read8`在平面VGA分支直接呼叫`VGA.Read`，沒有經過一般`WatchReads`。先前r4的`vga_reads_inside_original_call=0`有觀測盲點。歷史檔不覆寫；[舊核對器](../../tools/audit-direct-planar.py)改明示此限制，`direct-planar-r2/audit-r3.json`仍驗原有30組輸出契約。
+
+[準備器](../../tools/prepare-vga-read-probe.py)將固定核心複製到新研究目錄，排除`.git`、研究產物及既有binary，保存逐檔雜湊及可重生patch。新增的`ObserveVideoReads`在真正VGA讀取及四個latch載入前觸發。原本讀取仍執行，位置紀錄不讀像素值。固定本案核心與共用上游均不改。
+
+[按需背板探針](../../tools/probe-vga-shadow.go)沿前述四平面來源命令，只保存目的byte與來源參照，入口不生成原版表面。原版之後真正讀取或改寫該byte時，先補四平面資料，再由原本VGA邏輯處理latch及遮罩。補資料不經VGA.Read，因此不會誤換latch。HD呈現器不以背板為輸入。
+
+| 限定抽樣 | 證據與結果 |
+|---|---|
+| 延遲實現 | `shadow-contract-r1/receipt.json`，PMAP／LIVE2／GRO02、兩頁、正常／邊界、兩種計費共20組。入口原版繪圖指令及VGA寫入皆0，平面SHA保持；直到讀回才實現一個byte |
+| 讀寫正對照 | 第一次讀取的值及四個latch同原版；再對另一byte作局部平面寫入，保留原有latch，僅多實現一個byte |
+| 原版搬移消費端 | 執行真正14D2:033D或03B0，兩向各讀16000次。搬移後全四平面、CPU、旗標、一般RAM與控制狀態同原版。Python獨立重建完整平面，包含局部寫入及搬移 |
+| 虛擬時間 | `shadow-contract-r2/receipt.json`另20組。計入實測的原呼叫步數／週期；DOSBox-cost組開3000 cycles/ms，預算內不跨事件。搬移後兩側步數、週期、tick與frame相同。這些是直接呼叫抽樣，未接正常玩家略過 |
+| 正常流程讀回盤點 | r25冷啟動、新遊戲、F6／F1／F5、步行、募兵輸入10再退格改1、F2／F1及返回，共542幀。`owned-hire-vga-read-r2`與既有r24控制的完整state、PCM、逐幀串流、原版事件及30工作檔相同。此路段只觀測讀取，仍執行原版繪圖 |
+
+正常路段共1,014,734次平面讀取、12個原始CS:IP位置。其中單點599104、頁搬移288000、字模116610、遮罩11000；另20次保留原始定位9FE5:0002，語意未知。四平面常式內專用掛點計數為0，並有上述真正讀取正對照。不能由這條路線推論所有讀回用途均已盤點。
+
+第一份正常候選r1將來源掛在不同絕對路徑，造成DOS狀態的Root欄位不同；機器段已逐byte相同。r2將兩側來源統一為`/orig`後乾淨重跑，完整壓縮state亦相同。原失敗保留，不放寬狀態比較。`core-direct-r2`首次事件預算編譯誤帶新版mm3才有的MPU欄位，依本作固定核心Step／tick移除後以新副本r3重跑通過。
+
+重生入口均在固定Go1.24.13 Docker中，專案／原版唯讀，指定輸出目錄可寫：
+
+- `python3 tools/prepare-vga-read-probe.py --project <專案> --out <新核心研究目錄> --event-budget`建立核心副本及事件預算測試。於其`src`以`GOWORK=off go test -count=1 -v ./internal/machine -run '^TestResearchHostWork'`執行。
+- 將`probe-direct-planar.go`的研究副本main改名contractMain，與`probe-vga-shadow.go`同包建置，Go workspace指向上述核心副本。以`-root <原版目錄> -fixtures <direct-planar fixture目錄> -out <新JSON> -account-clock`重跑來源、讀回與計時。
+- [場景準備器](../../tools/prepare-owned-scene-probe.py)追加`--vga-read-trace`，以此核心建置；[正常觀測器](../../tools/research-vga-reads.go)只記位置。r25使用`--intro --gui --natural-intro --main-menu --vga-read-trace --build`，正常探針接既有`owned-hire-commands-r1.txt`與`-intro-escape-step 9000000`。
+- [獨立核對器](../../tools/audit-vga-read-probe.py)以`--project <專案> --out <新JSON>`核對固定研究收據；統一結果為`vga-read-clock-audit-r1.json`。
+
+下一閘門是Oracle內受控攔截及返回掛點交接，將來源命令、相容資料與上述事件預算接到正常選單／人物頁，抽樣比較原版與HD。重疊命令、遮罩消費端、模式轉換、其他繪圖入口與故障仍待閉合。047維持DRAFT，正式r48保持；不把正常讀回觀測與單常式略過合併宣稱正常玩家已略過。
+
+最新研究核心為`core-direct-r4`。背板準備另用`PreparePlanarAccess`，在原本的只讀觀測器之前補資料；`ObserveVideoReads`與`ObserveVideoWrites`維持只讀。`shadow-contract-r3/receipt-uncharged.json`及`receipt-clock.json`以相同程式分別重生上述20組背板／20組計時，三項事件預算測試及12邊界對照重跑通過。前述r1／r2收據保留歷史。現行統一核對為`vga-read-clock-audit-r2.json`，準備器`--event-budget`產生此介面與測試。

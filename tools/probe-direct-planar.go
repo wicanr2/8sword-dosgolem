@@ -175,6 +175,9 @@ func main() {
 					for plane := range beforePlanes {
 						beforePlanes[plane] = digest(direct.EGAPlane(plane))
 					}
+					// Historical WatchReads does not see planar VGA. This count is
+					// retained for receipt compatibility, not as evidence of no reads.
+					// probe-vga-shadow.go uses the dedicated pre-read hook instead.
 					reads := 0
 					original.WatchReads(0xa0000, 0xaffff, func(uint32, uint8) { reads++ })
 					original.RowWritesFrom = 1
