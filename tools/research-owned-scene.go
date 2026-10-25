@@ -66,6 +66,16 @@ type ownedProbe struct {
 	presented     *ownedScene
 	cachedScene   *ownedScene
 	cachedSources map[uint16]bool
+	sourceOnlyArt GraphicsAssets
+}
+
+// Source decoding must not depend on an optional HD graphics group. A nil-map
+// registry selects source pixels without inventing materials or changing Tracker.
+func (p *ownedProbe) graphicsAssets() *GraphicsAssets {
+	if t := p.e.Tracker; t != nil && t.graphics != nil && t.graphics.assets != nil {
+		return t.graphics.assets
+	}
+	return &p.sourceOnlyArt
 }
 
 func cloneOwnedScene(s *ownedScene) *ownedScene {
@@ -206,7 +216,7 @@ func (e *Engine) ResearchOwnedScene(out string) (func(), func() *image.RGBA, fun
 			state = p.presented
 		}
 		if p.cached == nil || p.cachedScene != state || p.revision != state.Revision || p.fontID != e.FontID() {
-			p.cached = renderOwnedScene(state, e.Tracker.assets, e.Tracker.graphics.assets, e.Tracker.palette)
+			p.cached = renderOwnedScene(state, e.Tracker.assets, p.graphicsAssets(), e.Tracker.palette)
 			p.cachedSources = map[uint16]bool{}
 			for _, pixel := range state.Pixels[state.Start : state.Start+16000*8] {
 				if g := state.Glyphs[pixel.Text.ID]; g != nil {
@@ -277,10 +287,11 @@ func ownedCaller(o *oracle.Oracle) map[string]any {
 }
 func (p *ownedProbe) bind() {
 	t := p.e.Tracker
-	if p.bound || t == nil || t.loadSegment == 0 || t.graphics == nil {
+	if p.bound || t == nil || t.loadSegment == 0 {
 		return
 	}
 	p.bound = true
+	art := p.graphicsAssets()
 	o := p.e.Oracle
 	seg := t.stringSeg
 	p.bindPanels()
@@ -449,7 +460,7 @@ func (p *ownedProbe) bind() {
 			}
 			id, actor := uint16(0), uint16(0)
 			if c.kind > 0 {
-				id = t.graphics.assets.ByNative[hash(raw[:4+w*h*4])]
+				id = art.ByNative[hash(raw[:4+w*h*4])]
 				if c.entry == 0x626 {
 					if id == 85 {
 						id = 107
@@ -457,11 +468,11 @@ func (p *ownedProbe) bind() {
 					if id == 150 {
 						id = 152
 					}
-					if alias := t.graphics.assets.BattleAliases[id]; alias != 0 {
+					if alias := art.BattleAliases[id]; alias != 0 {
 						id = alias
 					}
 				}
-				if t.graphics.assets.ActorSHA[id] == hash(raw) {
+				if art.ActorSHA[id] == hash(raw) {
 					actor = id
 				}
 			}
@@ -476,24 +487,24 @@ func (p *ownedProbe) bind() {
 				for row := 0; row < h && known; row++ {
 					for col := 0; col < w*8; col++ {
 						v := p.scene.Pixels[base+row*640+col].Material
-						m := t.graphics.assets.Materials[v.ID]
+						m := art.Materials[v.ID]
 						if m == nil || v.Local >= uint32(m.NativeWidth*m.NativeHeight) {
 							known = false
 							break
 						}
 					}
 				}
-				if !known || background != t.graphics.assets.BattleActors[actor] {
+				if !known || background != art.BattleActors[actor] {
 					actor = 0
 				}
 			}
 			effect := uint16(0)
-			if c.entry == 0x4f2 && w == 11 && h == 50 && dest == 0xa000 && t.graphics.assets.EffectSHA[id] == hash(raw) && t.graphics.assets.Effects[id] != nil {
+			if c.entry == 0x4f2 && w == 11 && h == 50 && dest == 0xa000 && art.EffectSHA[id] == hash(raw) && art.Effects[id] != nil {
 				valid := true
 				for row := 0; row < h && valid; row++ {
 					for col := 0; col < w*8; col++ {
 						v := p.scene.Pixels[first+row*640+col]
-						if v.Text.ID != 0 || (isChoiSource(id) && v.Effect.ID != 0) || t.graphics.assets.Materials[v.Material.ID] == nil {
+						if v.Text.ID != 0 || (isChoiSource(id) && v.Effect.ID != 0) || art.Materials[v.Material.ID] == nil {
 							valid = false
 							break
 						}
@@ -510,7 +521,7 @@ func (p *ownedProbe) bind() {
 				area := w * h
 				fxID := uint16(0)
 				if effect != 0 {
-					fxID = p.effectFrame(first, t.graphics.assets.Effects[effect].Tile)
+					fxID = p.effectFrame(first, art.Effects[effect].Tile)
 				}
 				for row := 0; row < h; row++ {
 					for col := 0; col < w*8; col++ {
@@ -865,7 +876,7 @@ func (p *ownedProbe) capture(kind string) {
 		return
 	}
 	p.captures[kind] = true
-	own := renderOwnedScene(p.scene, p.e.Tracker.assets, p.e.Tracker.graphics.assets, p.e.Tracker.palette)
+	own := renderOwnedScene(p.scene, p.e.Tracker.assets, p.graphicsAssets(), p.e.Tracker.palette)
 	legacy := p.e.Tracker.Compose()
 	diff := 0
 	for at := 0; at < len(own.Pix); at += 4 {

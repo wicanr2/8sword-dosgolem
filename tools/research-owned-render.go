@@ -280,8 +280,8 @@ func renderOwnedSceneBatch(s *ownedScene, fonts *Assets, art *GraphicsAssets, pa
 // Full old/new RGB comparison is diagnostic only, outside the presented Frame.
 func (p *ownedProbe) auditOwnedRenderer(kind string) {
 	t := p.e.Tracker
-	reference := renderOwnedSceneReference(p.scene, t.assets, t.graphics.assets, t.palette)
-	batch, stats := renderOwnedSceneBatch(p.scene, t.assets, t.graphics.assets, t.palette)
+	reference := renderOwnedSceneReference(p.scene, t.assets, p.graphicsAssets(), t.palette)
+	batch, stats := renderOwnedSceneBatch(p.scene, t.assets, p.graphicsAssets(), t.palette)
 	if !bytes.Equal(reference.Pix, batch.Pix) {
 		panic("batched source renderer differs from frozen reference: " + kind)
 	}
@@ -290,12 +290,12 @@ func (p *ownedProbe) auditOwnedRenderer(kind string) {
 		for i := 0; i < 3; i++ {
 			old := func() {
 				start := time.Now()
-				reference = renderOwnedSceneReference(p.scene, t.assets, t.graphics.assets, t.palette)
+				reference = renderOwnedSceneReference(p.scene, t.assets, p.graphicsAssets(), t.palette)
 				oldTimes = append(oldTimes, time.Since(start).Nanoseconds())
 			}
 			modern := func() {
 				start := time.Now()
-				batch, _ = renderOwnedSceneBatch(p.scene, t.assets, t.graphics.assets, t.palette)
+				batch, _ = renderOwnedSceneBatch(p.scene, t.assets, p.graphicsAssets(), t.palette)
 				newTimes = append(newTimes, time.Since(start).Nanoseconds())
 			}
 			if i%2 == 0 {

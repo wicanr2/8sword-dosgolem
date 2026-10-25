@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+圖像組失效研究使用[固定故障素材準備](tools/prepare-owned-fallback-assets.py)、[來源呈現對照](tools/research-owned-fallback_test.go)及[獨立核對](tools/audit-owned-fallback.py)，範圍見[047故障契約](docs/spec/047-hd-scene-renderer.md#基底圖像組失效的來源呈現)。準備器在既有Pillow Docker以`--project`與新`--out`複製r49，分別移除清單或破壞草地PNG，不改原組。場景準備器加`--fallback-checks`只複製研究測試。測試以`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`、`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`及既有原版變數指定輸入，`EIGHTSWORD_TEST_OWNED_FALLBACK_CONTROL=1`用原版合成作對照；不把故障資料接正式入口。核對器在Pillow Docker以`--project`與新`--out`核對固定r39，`--gui`另驗壞PNG的實際視窗。
+
 六平面逐列研究入口：[計畫](tools/research-direct-masked-rows.go)、[原版逐列對照](tools/research-direct-masked-rows_test.go)及[核對器](tools/audit-direct-masked-rows.py)。場景準備器在既有Go Docker沿047加`--masked-planar --masked-rows`，只接新研究副本；核心沿core-direct-r6。r33的60組原版／剩餘列對照、正常募兵542幀與攻城557幀、Noto實際視窗及真正存退讀已驗。核對器在Pillow Docker以`--project`與新`--out`固定核對r33，加`--gui`核對direct-rows-save-r1。輸入、事件邊界、測試環境變數與限制見[047逐列DRAFT](docs/spec/047-hd-scene-renderer.md#六平面逐列研究契約)，正式r49未切換。
 
 六平面角色的[整筆來源計畫](tools/research-direct-masked.go)、[原生讀回介面](tools/research-host-planar-read.go)與[歷史基線核對](tools/audit-direct-masked.py)只屬[047 DRAFT研究](docs/spec/047-hd-scene-renderer.md#六平面角色的受控接管)。兩個準備器加`--masked-planar`，核心與場景各用新輸出；既有Go Docker、原版唯讀掛載及快取沿047。歷史核對器在Pillow Docker使用`--project`與`--out`，固定核對r31／core-direct-r6，加`--controlled`核對12案自有場景部隊全幅與別名。r31的24組受控原版前綴通過，當時正常12筆全因配額拒絕；此缺口已由上列r33逐列研究補足，舊收據不覆寫。正式r49保持。

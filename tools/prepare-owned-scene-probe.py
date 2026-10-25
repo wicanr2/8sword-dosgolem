@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--batch-render', action='store_true', help='自有場景改用紋理矩形批次，保留凍結的舊畫法作診斷')
     parser.add_argument('--masked-planar', action='store_true', help='研究核心須有ReadHostPlanar；追加六平面角色入口')
     parser.add_argument('--masked-rows', action='store_true', help='六平面剩餘列在原版內圈入口接管，保留事件邊界')
+    parser.add_argument('--fallback-checks', action='store_true', help='複製圖像組失效的研究對照，不改正式套件')
     args = parser.parse_args()
     root, out = args.project, args.out
     assert os.getuid() == 1000
@@ -32,6 +33,7 @@ def main():
     assert not args.batch_render or args.direct_render
     assert not args.masked_planar or args.direct_render
     assert not args.masked_rows or args.masked_planar
+    assert not args.fallback_checks or args.direct_render
     assert root.is_dir() and not out.exists()
     assert out.parent.stat().st_uid == root.stat().st_uid == 1000
     seed = root / 'workplace/probe-20261023/graphics-first/battle-r1/friendly21-validation-build-r2/src'
@@ -90,6 +92,10 @@ def main():
             data = (root/'tools'/name).read_text()
             assert data.startswith('//go:build ignore\n')
             (source/'internal/eightsword'/name.replace('-', '_')).write_text(data.replace('//go:build ignore\n', '', 1))
+    if args.fallback_checks:
+        data = (root/'tools/research-owned-fallback_test.go').read_text()
+        assert data.startswith('//go:build ignore\n')
+        (source/'internal/eightsword/research_owned_fallback_test.go').write_text(data.replace('//go:build ignore\n', '', 1))
     probe = (seed / 'tools/probe-friendly.go').read_text()
     if args.vga_read_trace:
         marker = '\te.EnableLiveClock(3000)'
@@ -104,9 +110,10 @@ def main():
                           'write("-hd", e.Frame())\n\t\twrite("-owned", ownedFrame())')
     if args.intro:
         probe = probe.replace('e.ResearchOwnedScene(*out)', 'e.ResearchOwnedEverything(*out)')
-        marker = '\tpreload := flag.String("commands", "", "ordinary command prefix, then continue reading stdin")'
-        assert probe.count(marker) == 1
-        probe = probe.replace(marker, marker + '\n\tintroEscapeStep := flag.Uint64("intro-escape-step", 0, "ordinary Escape after this guest step; zero waits naturally")')
+        if args.natural_intro:
+            marker = '\tpreload := flag.String("commands", "", "ordinary command prefix, then continue reading stdin")'
+            assert probe.count(marker) == 1
+            probe = probe.replace(marker, marker + '\n\tintroEscapeStep := flag.Uint64("intro-escape-step", 0, "ordinary Escape after this guest step; zero waits naturally")')
     if args.natural_intro:
         marker='\tadvance(3000)\n\tpress(1, 100, 100)\n\twait("main-menu")'
         assert probe.count(marker)==1
@@ -313,6 +320,8 @@ quit
         if args.masked_rows:
             format_paths.extend([source/'internal/eightsword/research_direct_masked_rows.go',
                                  source/'internal/eightsword/research_direct_masked_rows_test.go'])
+        if args.fallback_checks:
+            format_paths.append(source/'internal/eightsword/research_owned_fallback_test.go')
         subprocess.run(['gofmt', '-w', *map(str, format_paths)], check=True, timeout=30)
         targets = [('probe', './tools/probe-owned.go')]
         if args.gui:

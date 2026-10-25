@@ -1753,3 +1753,12 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 - r33／core-direct-r6只在私有研究副本接管。正常募兵masked-rows-hire-r1共542幀，12來源全有接管，1298批，10909 byte自有／91原版。普通43,54續玩攻城masked-rows-palace-r1共557幀，238來源全有接管，46283批，498951／7849 byte；背景頁入口24738批。兩側控制的完整state、PCM、串流、原版事件與全部工作檔均相同，沒有以調整IRQ或速度湊成功。
 - 實際視窗direct-rows-save-r1為501／357 Draw，十一／五完成圖全幅同既有模型並出現在真正Draw，兩側各三份交易中Draw保持；Noto人物及兩份連續總覽已看。原生F7存退冷讀2987 bytes同存後／冷讀後RAM，29dd62ae…2359，read196978341。偏好檔缺省是015的Noto正常分支，不冒稱已測新的字型切換。
 - 統一direct-masked-rows-audit-r2.json包含123建置輸入、三程式、60逐列案、全部來源／列與事件配額記帳、兩條正常流程及真正視窗。舊r31十二筆全拒絕是歷史基線，已由新證據補足；不覆寫舊收據。殘留原版byte限於預算與事件邊界，索引色相容資料仍供原版讀回，PAM可見RGB全走自有來源場景。沒有宣稱全遊戲、其他模式、故障覆蓋或整體FPS完成。
+
+## 2026-10-26：基底圖像組失效與來源解碼獨立
+
+入口：[047限定結果](docs/spec/047-hd-scene-renderer.md#圖像組失效的限定結果)、[故障準備](tools/prepare-owned-fallback-assets.py)、[正常對照](tools/research-owned-fallback_test.go)、[核對器](tools/audit-owned-fallback.py)。輸入PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，工具Go1.24.13、Pillow11.3.0、Python3.13.15；core-direct-r6與r49原組保持。沒有新IDA分析。
+
+- 已證實：有效字型與可選graphics分開載入。缺terrain.json或真正草地PNG SHA失敗使Tracker.graphics為nil，舊來源安裝guard因此不綁定；r34兩組前置診斷各12舊RGB／0來源。此診斷停在主選單完成前，不能當作整段正常路徑。候選只改來源安裝及美術查表，保持原載入錯誤與nil物件，固定r27參考畫法不變。
+- r39正常控制／候選各兩組，固定原版執行期0110:055A觀測完成主選單，雙側step10647747。普通新遊戲／F1／F2／返回八份畫面共18432000像素同Noto控制，完整state `97999a8d7b046556b9a5a61340c730bf25348b3a70db19d43dfbe77c75196036`、PCM `9f82d2e03eedd2f2eb9d586538678d19937d209012df7ed734388c89ca3ded83`及工作檔相同。每組418筆四／五／六平面命令皆無材質／角色／效果登錄，來源自行解碼；79來源Frame、0舊RGB，沒有受控記憶體或快照載入。
+- 壞PNG實際視窗353／137 Draw、十一／五完成圖同參考並連回Draw，一／兩交易中Draw保持；來源Frame492／187、PAM舊RGB皆0。真正F7存退冷讀的檔案與兩側RAM同2987 bytes、SHA29dd62ae…2359，read step35812815。Noto人物與兩張連續總覽已看，屬故障回退畫面。
+- 統一`owned-fallback-audit-r3.json`記錄124來源／三程式、兩組來源命令與直接接管、全幅像素、state／PCM、回歸測試、實際GUI與真正存讀。正式r49不變。未知繪圖命令、未驗模式與基底字型失效仍未知，不能把本節外推為全遊戲或全部閃爍完成。

@@ -176,7 +176,7 @@ func (e *Engine) ResearchDirectRuntime(out string) (func(), func() error) {
 	control := os.Getenv("EIGHTSWORD_RESEARCH_DIRECT_CONTROL") == "1"
 	install := func() {
 		t := e.Tracker
-		if bound || t == nil || t.loadSegment == 0 || t.graphics == nil {
+		if bound || t == nil || t.loadSegment == 0 {
 			return
 		}
 		bound = true

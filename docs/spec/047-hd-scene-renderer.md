@@ -414,3 +414,40 @@ PAM主選單、人物／軍隊、確認、地圖與返回，以及PREDELLA自然
 重生沿前節的核心／場景命令，再加`--masked-rows --build`。測試增加`EIGHTSWORD_MASKED_ROWS_RECEIPT=<不存在的新JSON>`及`-run '^TestResearch(DirectMasked|HostPlanarRead|DirectRuntime|OwnedBatch)'`；r32是先行測試，正式研究建置以r33的來源清單為準。[逐列核對器](../../tools/audit-direct-masked-rows.py)在Pillow Docker指定`--project`與新`--out`，固定核對r33兩條正常路徑；追加`--gui`核對上述視窗、實際Draw與真正存讀。統一結果為`battle-r1/direct-masked-rows-audit-r2.json`。
 
 047整體仍DRAFT，正式r49保持。下一步補齊未知繪圖命令與素材失效的處理，再審查正式切換；已驗部隊、美術與正常路段不重做。
+
+### 基底圖像組失效的來源呈現
+
+本節DRAFT不處理未知VGA寫入或未驗繪圖模式。固定PAM、core-direct-r6及r49素材沿前節。已由目前程式證實：`Engine.Open`在terrain清單不存在或圖像驗證失敗時保留Noto，但不建立`Tracker.graphics`；自有場景與直接攔截的安裝器都把此指標當必要條件。因此缺少可選美術也會退回舊VGA合成，與來源呈現方向不符。
+
+候選修正讓來源解碼與美術登錄分開。原版字碼／字型有效時仍綁定已驗PAM來源命令；沒有可用美術時以空登錄表解析原始平面、遮罩、文字及頁面，不建立假圖像組，也不由VGA寫入生成HD底圖。Noto、音樂與遊戲控制保持。損壞組仍由既有載入器原子拒絕與回報，來源場景不能解參考空指標。
+
+[故障素材工具](../../tools/prepare-owned-fallback-assets.py)僅複製固定r49到新研究目錄：一組移除terrain.json，一組只在grass-painted-r1.png附加一byte以觸發真正SHA失敗。其餘檔案與原組逐項核對。[對照測試](../../tools/research-owned-fallback_test.go)以相同普通鍵序取得主選單、人物／軍隊頁與返回，保存state／PCM／畫面及原版檔案讀寫。修正前保留拒絕的收據，修正後驗來源呈現、字型與Frame客體隔離。兩組正常路徑各已有418筆未登錄圖像命令，涵蓋四／五／六平面，沿同一來源解碼契約核對，不再另加重複的受控呼叫。
+
+#### 圖像組失效的限定結果
+
+2026-10-26，研究r39保存124份來源、三程式與Go1.24.13。來源與直接攔截只解除對可選`Tracker.graphics`的安裝依賴；原圖像物件仍為nil，來源登錄表為空。固定r27參考繪圖函式與core-direct-r6不變。正式r49／344素材及七程式保持，047仍DRAFT。
+
+`owned-fallback-assets-r1`保存兩組獨立複本及完整SHA。缺清單組343檔，既有載入器視為沒有可選圖像；壞PNG組344檔，既有載入器確實回報`HD 圖像 grass-painted-r1.png SHA-256 不符`。原版、Noto與音樂均未破壞。
+
+| 正常輸入抽樣 | 缺清單 | 真壞PNG |
+|---|---:|---:|
+| 原版主選單完成位置的步數 | 10647747 | 10647747 |
+| 主選單、人物、軍隊、返回的完整1920×1200畫面 | 4 | 4 |
+| PAM自有來源Frame／舊RGB入口 | 79／0 | 79／0 |
+| 空美術登錄的圖像來源命令 | 418 | 418 |
+| 六平面逐列批次／處理byte | 500／4559 | 500／4559 |
+
+八張完整畫面共18432000像素逐項同既有Noto合成控制組。兩側完整state SHA均為`97999a8d7b046556b9a5a61340c730bf25348b3a70db19d43dfbe77c75196036`，PCM SHA為`9f82d2e03eedd2f2eb9d586538678d19937d209012df7ed734388c89ca3ded83`；全部工作檔相同，Frame前後客體狀態保持。每組來源包含474字模、34字串，沒有缺字、未知寫入或來源拒絕。四／五平面及逐列實際接管共832次，41個六平面byte因事件配額保留原版；不能宣稱所有原版像素指令已消失。
+
+前置診斷r34兩組各12次PAM舊RGB入口、來源Frame為0，只證明舊安裝條件的問題。該測試停在主選單完成前，不當作整段正常路徑。後續測試以既有IDA證據的固定執行期`0110:055A`觀測原版主選單完成，並核對PAM已載入，避免PREDELLA同段碰撞。軍隊頁沿用map場景，實際來源標籤為1330／1338／1346。過早取樣與誤用小地圖標籤的失敗保留，沒有調整遊戲速度或原版狀態來通過。
+
+真正GUI `player/gui/owned-fallback-save-r1`使用壞PNG組、預設Noto，普通Esc略過開場。存前／冷讀353／137 Draw、40／18變化幀，十一／五份完整完成圖同參考且連回實際Draw，一／兩份交易中Draw保持。來源Frame為492／187、舊RGB入口皆0；逐列1100／299批，整筆04F2各六次。正常主選單、音樂、新遊戲取消、人物／軍隊及真正F7存退冷讀通過，DOS退出0。2987-byte人物檔同存後／冷讀零步只讀RAM，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`；冷讀確實從檔案讀2987 bytes，read step為35812815。Noto人物實窗與兩張連續總覽已抽看，這些畫面是故障回退，不能代表預設HD美術。
+
+重生入口：
+
+- 固定Pillow11.3.0 Docker執行故障素材工具，指定`--project <唯讀專案> --out <既有研究根內的新目錄>`，拒絕覆寫輸出。
+- 沿core-direct-r6準備場景，使用`--intro --gui --main-menu --vga-read-trace --direct-render --batch-render --masked-planar --masked-rows --fallback-checks --build`。不加`--natural-intro`，此探針沒有`-intro-escape-step`參數；自然開場分支仍依前節。
+- 在Go1.24.13私有來源執行`go test -count=1 -v ./internal/eightsword -run '^TestResearchOwnedGraphicsGroupFailure$'`，指定`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`、不存在的`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`；控制組加`EIGHTSWORD_TEST_OWNED_FALLBACK_CONTROL=1`。現行成功收據為`owned-fallback-control-r2`及`owned-fallback-fixed-r2`，兩組各兩子案例通過。
+- [獨立核對器](../../tools/audit-owned-fallback.py)在Pillow Docker使用`--project`與新`--out`，`--gui`追加上述固定視窗。統一收據為`battle-r1/owned-fallback-audit-r3.json`，包含60組逐列、十四拒絕、24組整筆、16組四／五平面及兩個批次圖層回歸測試。
+
+此結果只閉合「字型有效、可選基底圖像組失效」。未登錄圖像識別碼已有正常來源證據；未知繪圖命令、未驗模式與基底字型失效仍另待契約。沒有正式切換、全遊戲HD或所有閃爍已修復的聲明。
