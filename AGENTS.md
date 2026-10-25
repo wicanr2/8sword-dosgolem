@@ -17,6 +17,8 @@
 
 全圖形素材與載入線索由[IDA素材索引匯出](tools/export-graphics-inventory-ida.py)核對，結果與限制追加於RESEARCH-LOG。正式PAM.i64及來源唯讀，僅在容器/tmp副本查詢。IDA技能的可用原始入口為`/home/anr2/ida_94_official/skills/use-ida-pro-9-4/SKILL.md`；先讀該專案README與knowledge-base/ida-94-tools.md，沿用已驗py312-v1映像，不因安裝副本缺失另建工具鏈。
 
+使用者於2026-10-25追加要求攔截繪圖入口，省去原版像素迴圈，再由HD呈現器直接消費來源命令，指定參考`/home/anr2/cht/mm3`。此方向依[047直接攔截](docs/spec/047-hd-scene-renderer.md#直接攔截原版繪圖入口)落實；原本來源場景的正常收據不證明DOS繪圖已略過。單常式研究入口為[來源準備](tools/prepare-direct-planar.py)、[直接替換原型](tools/probe-direct-planar.go)與[獨立核對](tools/audit-direct-planar.py)。目前DRAFT，只驗四平面常式輸出；正常讀回、計時及其他繪圖入口另待閉合，不把原型接入正式程式。
+
 [全圖形盤點與圖集](tools/catalog-all-graphics.py)在固定Pillow容器解碼來源、記錄全部檔案與未分類項，並產生26份MAN／104記錄與其他圖像總覽。盤點不等於HD完成或正常路徑驗收；來源檔與完整解碼素材留既有workplace研究區。
 
 [全圖形核對器](tools/audit-graphics-inventory.py)核對158檔、記錄邊界、既有六平面解碼器、13份README圖集及兩份IDA來源。MAN27為四筆太極圖，原版用途未證實；不能把26份MAN檔直接解讀為26種部隊。

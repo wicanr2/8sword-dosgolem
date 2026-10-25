@@ -1617,3 +1617,24 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 `owned-intro-lifecycle-audit-r1.json`已通過原始資料、完成PNG、獨立逐幀串流、實際Draw、原版事件及客體隔離。GUI近景Esc的454／204 Draw、65／41變化幀，各五份完成圖連回Draw；故障故事Esc的742／541 Draw、139／112變化幀，各十份完成圖連回Draw，69／68次自有原生核對零差異。抽看兩張Esc前實窗、近景存前第2及故障存前第2接觸表，人物位置與存讀鏡頭符合。
 
 兩組三字型、人物頁及真正F7存退讀通過，2987-byte檔案同零步檢視RAM，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，read32081155／54227524、DOS退出0。各3158差異像素限主角動畫區。r23早期Esc來源同已驗r22，r24只改可選圖片交接，其餘來源／GUI／Engine包裝同r23。047仍DRAFT，正式r48未切換；後續接其他對話框、施法、未知操作與其餘素材故障，不重開本例。
+
+### 募兵對話來源與直接攔截繪圖
+
+本輪先沿正常路徑查對話框，之後使用者追加要求參考mm3直接攔截繪圖，省去原版像素迴圈。後續優先目標已回填[047直接攔截](docs/spec/047-hd-scene-renderer.md#直接攔截原版繪圖入口)，不以來源場景獨立呈現冒稱DOS繪圖已略過。
+
+已證實：IDA9.4在同一唯讀PAM DB副本追加`graphics-first/ida-graphics-inventory-r9.json`與`r10.json`，SHA分別為`94b1b2dd69bf03325d87d35f4d28cdd4e334e792e322e1e40a1f6a687ffdf978`、`c76f0fa422a31198bbd8edcab192ac56faaf4284473d2cc722f17f7b352ccf40`。521函式、PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`及原DB SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`保持。保留原名、指令與原始操作數。
+
+| 證據 | 範圍與限制 |
+|---|---|
+| `owned-hire-baseline-r1` | 固定r24普通冷啟動、新遊戲、移動、一次募兵與F2／F1，542幀／542次純度；1405圖、3990字，既有21面板交易，觀察寫入皆在已知命令內。這是募兵來源基線，尚未新增募兵整頁交易或GUI驗收 |
+| IDA MZ線性 `sub_159C4`、`sub_154EA`、`sub_14E7E`、`sub_14A06` | 分別定位正常募兵分派、畫面與數量處理、普通數字輸入／游標、共用建築背景。數字等待在14EBD，鍵盤返回14ECE，輸入返回150C9／150E1；這些是後續完整提交邊界線索，未當作已接入 |
+| `owned-spells-source-r1` | 從真正F7進度普通冷讀、F4及返回159幀。原版字串10786仍為「你 不 會 使 用 法 術」，不視為持有法術或施放的驗收 |
+| IDA `word_2FE2A` | 已匯出直接讀取xref。其完整意義與間接寫入尚未知，不命名為法術數，也不因缺少直接寫入xref宣稱沒有寫入端 |
+
+mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade4868ce1db2ae9f5ae13db7aabb85da8da2eba2455d8ee5faab312`；`mm3display/render_control.go` SHA `37c06483102f96da68df858b24160616a8d82ac64b4da6c69ed919dbec0ee43d`；`tools/probe_direct_render_skip.go` SHA `37fe35c4cfae17e1f4dc75c94ee86db79e6a8b2038ca2ecaecd95f990ea0ad5c`。074直接替換分支於參考時為DRAFT；來源追蹤與返回邊界已接入，原版像素迴圈仍執行。80組空返回負對照的教訓用於本作輸出契約，未複製mm3位址或回傳值。完整規格參考快照保存在`battle-r1/direct-planar-r2/mm3-spec074-reference.md`，由`mm3-reference.json`索引；未改參考專案。
+
+已證實：本作四平面常式為IDA `sub_245BC`，執行期`14D2:099C..0A6F`、load0110；PAM原檔偏移`0x15A2C..0x15AFF`共212 bytes，SHA `a2f457e4ad98813eb3b8e2d727e71074b612c52b473cc3153ce42f915c1b70c8`。限定mode1，參數是來源遠指標、byte橫座標及列，目的A000／A400。原型由來源建立命令、補回30-byte堆疊痕跡及VGA sequencer控制，保留暫存器並模擬far return。旗標公式為清CF／PF／AF／ZF／SF／OF／DF後設PF／ZF，其餘輸入旗標保持，依最後比較與CLD推導並由原版執行驗證。
+
+`direct-planar-r2/call-contract-r4.json`及`audit-r2.json`已通過30個不重複案例：PMAP首筆、LIVE2及GRO02各一筆，兩目的頁、三輸入旗標，正常／邊界位置。原版每次882–6482步、800／22400／64000次VGA byte寫入，替換端兩者為0且四平面SHA保持；活暫存器、旗標、一般RAM與指定VGA控制狀態同值，30組空返回均拒絕。Go從來源命令重建表面，Python再獨立核對原版全幅640×200的色碼雜湊，沒有拿原版畫面作命令輸入。
+
+原型在Go1.24.13的既有離線Docker使用公開dosgolem Machine API，關閉計時IRQ後直接呼叫常式，未改共用核心、正式七程式或r48素材。r4追加BIOS 0Eh及VGA write mode0／bit mask FF／無set-reset或rotate的前置檢查後通過；程式SHA `72f472815556705961aff0fd15e617adbc60c0527f1c7653ae46c0c6e530d628`，原始碼與程式清單存`build-r4.sha256`。此處尚未處理後續VGA讀回、虛擬週期／IRQ／音樂或正常玩家路徑；不宣稱整機同狀態、完整HD接管或FPS固定提升。

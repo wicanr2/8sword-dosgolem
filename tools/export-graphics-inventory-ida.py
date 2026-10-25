@@ -24,7 +24,7 @@ intro = os.environ.get('EIGHTSWORD_IDA_GRAPHICS_TARGET') == 'intro'
 source = Path('/source/PREDELLA-runtime-analysis.exe') if intro else Path('/game/PAM.AY')
 database = Path('/source/PREDELLA-runtime.i64') if intro else Path('/source/PAM.i64')
 revision = os.environ.get('EIGHTSWORD_IDA_GRAPHICS_REV', 'r2')
-assert revision in ('r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8')
+assert revision in ('r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10')
 intro_revision = os.environ.get('EIGHTSWORD_IDA_INTRO_REV', 'r1')
 assert intro_revision in ('r1', 'r2', 'r3')
 slug = 'intro-graphics-inventory-' + intro_revision if intro else 'graphics-inventory-' + revision
@@ -74,18 +74,27 @@ if intro and intro_revision in ('r2','r3'):
                0x58b1, 0x6258, 0x5954, 0x583e, 0xa3d0, 0xa450]
 if intro and intro_revision == 'r3':
     queries += [0x4c74, 0x5910, 0x5d50, 0xa451]
-if not intro and revision in ('r3','r4','r5','r6','r7','r8'):
+if not intro and revision in ('r3','r4','r5','r6','r7','r8','r9','r10'):
     queries += [0x13c18,0x13d74,0x11f60,0x268aa,0x26b1f]
-if not intro and revision in ('r4','r5','r6','r7','r8'):
+if not intro and revision in ('r4','r5','r6','r7','r8','r9','r10'):
     queries += [0x13df0,0x13e4a,0x1720e]
-if not intro and revision in ('r5','r6','r7','r8'):
+if not intro and revision in ('r5','r6','r7','r8','r9','r10'):
     queries += [0x1775a, 0x16720, 0x18292, 0x17fb4, 0x13f08]
-if not intro and revision in ('r6','r7','r8'):
+if not intro and revision in ('r6','r7','r8','r9','r10'):
     queries += [0x1430e, 0x16226, 0x171b8, 0x248a6, 0x248ab]
-if not intro and revision in ('r7','r8'):
+if not intro and revision in ('r7','r8','r9','r10'):
     queries += [0x1434e, 0x161a2]
-if not intro and revision == 'r8':
+if not intro and revision in ('r8','r9','r10'):
     queries += [0x1041e, 0x1090c, 0x10b38, 0x171d8]
+if not intro and revision in ('r9','r10'):
+    queries += [0x14a06, 0x154ea, 0x159c4, 0x12446, 0x16638]
+    report['data_queries'] = [dict(ida_linear=0x2fe2a, original_name=idc.get_name(0x2fe2a),
+                                   xrefs=refs(0x2fe2a), evidence_level='raw references; meaning not assigned')]
+    for ref in report['data_queries'][0]['xrefs']:
+        if ref['function'] is not None:
+            starts.add(ref['function'])
+if not intro and revision == 'r10':
+    queries += [0x14e7e, 0x15792, 0x15962, 0x1512c]
 query_functions = []
 for ea in queries:
     fn = ida_funcs.get_func(ea)
