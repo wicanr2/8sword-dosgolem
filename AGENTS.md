@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+地圖城堡入口：[043：PMAP 六塊城堡](docs/spec/043-map-castle-parts.md)，目前 READY，正式接入與視窗尚待完成。透明全景沿既有 B 畫風，完整畫布取樣後分六塊，不改地圖或原版資料。[核對工具](tools/audit-map-castle.py)檢查六筆返回、觀測隔離，`--prototype` 搭配 `--image`／`--assets` 核對五個完整 Frame；`--continuation-control`、`--broken` 與兩個 inspection 參數核對短續玩、回退及真正存讀，不代替實際 Draw。
+
 後續部隊姿勢入口：[040：持劍兵四姿勢](docs/spec/040-battle-swordsman-poses.md)，目前 DRAFT；來源、取樣原型及正常招募／戰場證據依該規格收斂。
 
 軍隊頁圖像入口：[041：MAN21 圖像](docs/spec/041-army-man21-image.md)，沿現有 HD 快取與正常招募來源；現況以 CONTEXT 為準。
