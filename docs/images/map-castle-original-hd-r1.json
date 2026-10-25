@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "scope": "same-state native VGA and verified actual central Draw; castle six parts only",
+  "image_sha256": "a5799719a81db525520866ebfc6628d8add0b7a2ac9e0617a614e625997cc096",
+  "native_index_sha256": "eab6ab6dccd3482f0554f5e9c75cd087eedb3d11d8c6385573f32fa5e6dd7049",
+  "actual_png_sha256": "0060d51faaae560b192fc78d8712f95af11a198b46f62177bbd19ed14c0ee946",
+  "actual_draw": 81,
+  "runtime_step": 12391255,
+  "font_id": "noto",
+  "state_sha256": "c65512643fbce6140aa1b6e4a4ba91a611b605dd33167fb16bfaa39d9d60f4c2",
+  "source_return_steps": {
+    "59": 12322571,
+    "60": 12323608,
+    "61": 12324643,
+    "62": 12329851,
+    "63": 12331709,
+    "64": 12332744
+  },
+  "production_build_inputs_sha256": "6b8ffef264d25db34643e91e9bae51dc486765edc08801ba994a277d521342a4",
+  "gui_build_inputs_sha256": "e142daabb5866288509e4039aeaa088304df25f653d8636883932a2f9da2984a",
+  "display_palette": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      170
+    ],
+    [
+      0,
+      170,
+      0
+    ],
+    [
+      0,
+      170,
+      170
+    ],
+    [
+      170,
+      0,
+      0
+    ],
+    [
+      170,
+      0,
+      170
+    ],
+    [
+      170,
+      85,
+      0
+    ],
+    [
+      170,
+      170,
+      170
+    ],
+    [
+      85,
+      85,
+      85
+    ],
+    [
+      85,
+      85,
+      255
+    ],
+    [
+      85,
+      255,
+      85
+    ],
+    [
+      85,
+      255,
+      255
+    ],
+    [
+      255,
+      85,
+      85
+    ],
+    [
+      255,
+      85,
+      255
+    ],
+    [
+      255,
+      255,
+      85
+    ],
+    [
+      255,
+      255,
+      255
+    ]
+  ],
+  "clock": "12:00:00.00 before execution; 3000 cycles/ms; normal PIT",
+  "rng_seed": "unknown; no seed changes or selection",
+  "initial_save_sha256": "926775806e88365168c7421212b720d1a85ae2bc8a304b39ab01ab1468f1cb7f",
+  "resulting_save_sha256": "550875f1af16656afec601932b07a5e5354478f3dda8b7604ea950ced7cd24d9",
+  "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "art_sha256": "744a39bb04c869803c0583604ac3c5c0481e174ad3153c4a8489f1219ad50a97",
+  "source": "workplace/player/gui/castle-save-r1/save/research-castle-draws/font-noto-first-draw",
+  "rights": "requested comparison only in existing private repository; full art and original data remain local"
+}

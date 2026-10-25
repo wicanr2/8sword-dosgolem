@@ -1,6 +1,12 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
-地圖城堡入口：[043：PMAP 六塊城堡](docs/spec/043-map-castle-parts.md)，目前 READY，正式接入與視窗尚待完成。透明全景沿既有 B 畫風，完整畫布取樣後分六塊，不改地圖或原版資料。[核對工具](tools/audit-map-castle.py)檢查六筆返回、觀測隔離，`--prototype` 搭配 `--image`／`--assets` 核對五個完整 Frame；`--continuation-control`、`--broken` 與兩個 inspection 參數核對短續玩、回退及真正存讀，不代替實際 Draw。
+地圖城堡入口：[043：PMAP 六塊城堡](docs/spec/043-map-castle-parts.md#正式提升與限定驗收)限定 CONFORMED，已提升正式 r41。透明全景接既有草地，完整取樣後分六塊，不改原版資料。[核對工具](tools/audit-map-castle.py)保留來源／原型審查，正式載入器使用 `--production` 核對三組正常續玩、完整 Frame 與回退；實際 Draw 見下方 GUI 核對器。其他建築與整體 HD 仍待完成。
+
+城堡實作入口：[獨立載入器](internal/eightsword/map_castle.go)、[素材匯入與獨立快取](tools/prepare-hd-castle.py)、[來源／原子回退測試](internal/eightsword/map_castle_test.go)。工具在 Docker 內使用 `--base`、`--original`、`--image`、`--prompt`、`--first-prompt`、`--out`、`--cache-out`，只接受 043 固定來源；候選、獨立快取與正式提升的界線見該規格。
+
+[城堡實際 Draw 核對](tools/audit-castle-gui.py)使用 `--assets`、`--original`、`--cache`、`--gui`、`--out`，從 PNG 重建快取及兩次視窗的三字型完整中央畫面，再連回原版返回與錄影。`--saved-inspection`／`--loaded-inspection` 連回真正 F7 與讀回 RAM；支援範圍限 043 六個圖塊。
+
+[城堡 README 比較圖工具](tools/prepare-readme-castle-overview.py)在固定 Pillow Docker 使用 `--project`、`--gui`、`--font`、`--out`，只接受已通過 Draw 與真正存讀核對的收據，不將完整原圖或遊戲檔加入 Git。
 
 後續部隊姿勢入口：[040：持劍兵四姿勢](docs/spec/040-battle-swordsman-poses.md)，目前 DRAFT；來源、取樣原型及正常招募／戰場證據依該規格收斂。
 

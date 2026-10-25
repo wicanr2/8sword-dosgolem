@@ -1320,3 +1320,13 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 - 隔離原型完整重播 1421 幀，五個全幅 Frame 同獨立模型。透明版改從真正城堡 F7 兩檔普通繼續，短控制／原型／真壞各 345 幀、1035 次純度；state `8a0ce7b1…132e`、PCM `4b65bbeb…c1a3` 與工作檔相同。五份完整 Frame 共 11520000 像素，三字型及六份快取同獨立模型；F1／F2 保持，壞圖全部串流同控制。原型只增加六份材質，主角因底圖完整已知而恢復既有 HD，沒有新 CPU 掛勾。
 - 原 F7 的 2987-byte 進度 SHA `92677580…cb7f` 與存前、冷繼續 RAM 線性 0x9E000 相同；普通 read step 22839250，地圖 5761-byte 有正常 read。只讀零步數檢視與真正兩檔輸出分開保存，不用模擬器快照代替原版存檔。短控制 r2 的 `advance` 命令拼寫錯誤已在同一映像及執行檔修為 `wait`，r3 重跑；沒有改遊戲。
 - 最終 [核對器](tools/audit-map-castle.py)及 `castle-prototype-audit-r3.json` 閉合來源、原型、回退與存讀證據，043 升 READY。正式載入器、188 檔候選、實際 GUI Draw 與提升仍待完成；正式 r40 的 183 檔及七程式保持。不再重走海岸、重查 bitmap ABI 或重畫美術。
+
+# 2026-10-25：城堡原子群接入與實際 Draw
+
+- 接續上述 READY，新增 [map_castle.go](internal/eightsword/map_castle.go)及 Engine.Open 呼叫；有界清單、原始 PMAP、六筆來源、PNG 與快取全通過才登錄 ID 60–65。保留原 ByNative、字型、角色與效果，沒有新增 CPU hook 或客體欄位。透明計算沿已審查原型，不重新生成圖片。
+- [匯入工具](tools/prepare-hd-castle.py)兩次乾淨重建同一 188 檔，183 份 r40 舊檔保持；六個獨立快取同 READY 指紋。兩項實際資料測試、十個故障子案例 21.818 秒通過，包含最後一筆來源與 ID 衝突，失敗不留下部分登錄。
+- 三組正式載入器正常續玩各 345 幀、1035 次純度；完整 state `8a0ce7b1…132e`、PCM `4b65bbeb…c1a3`、22 工作檔、輸入及原版事件相同。五份完整 Frame 同獨立 PNG／所有權／字型模型，真壞組全部串流同 r40。收據 `castle-runtime-audit-r1.json` 的 production loader 欄位確認新載入器，沒有用原型安裝函式替代。
+- 正常 GUI 為 `workplace/player/gui/castle-save-r1`，只用普通 Continue 與 XTEST；存前／冷讀各三字型共六份實際 Draw、13824000 像素全同獨立模型，再以幀號、step 及 RGBA 連回完整逐幀串流。兩段 66／36 次原版來源，首六筆各 9600 色碼同原始四平面。345／287 Draw、47／36 次改變及兩張接觸表已看，城堡六塊、主角、F1／F2／F3 取消與左右移動通過。
+- F7 的真正 2987 bytes 同存前及冷讀 RAM 線性 0x9E000，SHA `550875f1af16656afec601932b07a5e5354478f3dda8b7604ea950ced7cd24d9`，read step 10912442；地圖 SHA `b2fac6c7…8908` 保持。存檔段正常 DOS 退出 0，讀回段正常關閉視窗。[GUI 核對器](tools/audit-castle-gui.py)及 `castle-draw-audit-r1.json` 保存完整鏈，沒有快照注入。
+- README 比較圖的初始進度另以最初 Draw 的零步數檢視證實為 `92677580…cb7f`；後續存檔為 `550875f1…24d9`，兩者分欄記錄，沒有把後來的 F7 進度套到較早畫面。比較圖來自原生色碼與同狀態實際中央 Draw，完整原 PNG／提示仍留本機。
+- 正式素材已提升 r41、188 檔；七程式與四份建置紀錄沿 build-castle-r1，91 筆輸入、Go 1.24.13。研究視窗使用另外保存的 50 筆擷取建置，42 份正式套件 Go 檔逐檔相同。043 限定 CONFORMED，只結案這六筆地圖圖塊；其他建築、規則擴充與整體 HD 保持未完成。

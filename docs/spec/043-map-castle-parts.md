@@ -1,6 +1,6 @@
 # 043：地圖城堡六個圖塊
 
-狀態：READY。2026-10-25 完成正常來源、觀測隔離、透明全景原型、獨立完整 Frame、故障及真正存退續玩審查，授權依下列契約實作。正式素材仍為 r40，尚未接入本組；實際視窗驗收通過後才可限定 CONFORMED。沒有改地圖、座標、亂數、戰鬥或存檔。
+狀態：限定 CONFORMED。2026-10-25 完成正常來源、READY 審查、正式原子群、獨立完整 Frame、故障、實際視窗與真正存退讀。正式素材為 r41，共 188 檔；範圍限 PMAP 59–64 六個地圖圖塊。沒有改地圖、座標、亂數、戰鬥或存檔。先前 READY 與原型收據保留於下文，正式驗收見末節。
 
 研究工作區沿 `workplace/probe-20261023/graphics-first/map-interaction-r1/`。承接 [004](004-hd-bitmap-presentation.md)及 [006](006-static-map-objects-and-sand.md)的 PMAP、雙頁與所有權機制，不重查已驗繪圖 ABI。完整續玩輸入沿 [042 的伴隨地圖勘誤](042-friendly-man21-battle-poses.md#存讀探針的伴隨地圖勘誤)。
 
@@ -100,3 +100,19 @@ python3 /project/tools/audit-map-castle.py --original /orig \
 ```
 
 映像與資源限制沿 AGENTS 的 Docker 契約，Pillow 映像為 `sc-cht-hdtools:pillow11.3.0-r1`。預設不帶原型參數時只做來源與觀測隔離，標準庫即可；完整模型模式需 Pillow，沿 [既有模型](../../tools/audit-encounter-gui.py)，不能用原型自身快取當期望值。
+
+## 正式提升與限定驗收
+
+[載入器](../../internal/eightsword/map_castle.go)依上述契約接入 Engine.Open，只增加六份 Materials，不新增 ByNative、角色、效果或 CPU hook。獨立 `map_castle_error` 記錄失敗；缺清單沿 r40，真壞 PNG 整組回退。[匯入工具](../../tools/prepare-hd-castle.py)從固定原圖、兩份完整提示與 r40 重建 188 檔，另產生六個獨立快取。候選及 `assets-castle-rebuild-r1` 全檔相同，183 舊檔保持；提升後 `assets-painted-r41` 再逐檔相同。
+
+[兩項實際資料測試](../../internal/eightsword/map_castle_test.go)及十個故障子案例 21.818 秒通過，包含末筆記錄、原始來源、壞圖、缺圖、未知／尾隨／超長清單、缺草地及 ID 衝突。所有失敗均未留下部分登錄，也未改既有快取、字型、來源與角色。此為載入器內部驗證，不代替原版玩家路徑。
+
+正常短續玩沿已保存的城堡 F7 兩件組及 `castle-short-commands-r3.txt`，新／r40／真壞各 345 幀，共 1035 次 Frame 純度；完整 state `8a0ce7b1fc22f8c6828d14081ff1793b206509381085caf010a9899a96ab132e`、PCM `4b65bbebca72a16cd2b62541c954299e5f4b554bd595ea01bc38b07ca702c1a3`、22 工作檔、輸入與原版事件相同。五份新組完整 Frame 逐像素同獨立 PNG／所有權／字型模型，三字型與 F1／F2 通過；壞組全部串流同 r40。收據 `castle-runtime-audit-r1.json`，核對器加 `--production` 檢查正式錯誤欄位；不再走海岸路線。
+
+實際視窗 `workplace/player/gui/castle-save-r1` 從真正進度普通繼續，由 XTEST 操作地圖三字型、F2／F3 取消、F1、左右移動及 F7 存退，再冷啟動繼續。兩段 345／287 Draw、47／36 次改變與兩張接觸表已獨立解碼檢視。每段 Noto／教育部隸書／草書各取一份完整中央 Draw，六份共 13824000 像素同獨立模型，幀號、step 與 RGBA 逐項連回完整錄影。兩段 66／36 次真正來源返回；首份六筆各 9600 原生色碼，合計 19200 點，符合原 PMAP 四平面。沒有用當下狀態冒充較早的實際 Draw。
+
+[GUI 核對器](../../tools/audit-castle-gui.py)的收據 `castle-draw-audit-r1.json` 驗證上述鏈。2987-byte 真存檔同存前及冷讀 RAM 線性 0x9E000，SHA `550875f1af16656afec601932b07a5e5354478f3dda8b7604ea950ced7cd24d9`；原版 read step 10912442，伴隨地圖仍同 `b2fac6c7…8908`。存檔段正常 DOS 退出碼 0，讀回段正常關閉視窗。沒有快照載入、座標注入、規則修改或重新挑選種子。
+
+正式七程式與四份建置紀錄已從 `workplace/player/build-castle-r1` 原子提升，Go 1.24.13，共 91 筆建置輸入。研究視窗使用 `castle-validation-build-r2` 的 50 筆獨立來源，正式 42 份套件 Go 檔逐檔相同，僅另加只讀來源／Draw 擷取與 XTEST 操作器。初版擷取操作器有未使用的 bytes import，保留失敗快照；同映像移除該 import 後重建 r2，沒有修改產品或調整測試結果。
+
+[README 比較圖](../images/map-castle-original-hd-r1.png)、[來源紀錄](../images/map-castle-original-hd-r1.json)及[重生工具](../../tools/prepare-readme-castle-overview.py)只保存使用者要求的成果比較。原 PNG、兩份完整提示、真正存檔、原生資料與完整素材留本機。城內服務、其他地圖、其他建築與全遊戲 HD 保持未完成；本切片不再重做來源、美術或已驗路段。

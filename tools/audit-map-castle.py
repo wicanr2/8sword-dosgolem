@@ -106,6 +106,8 @@ def prototype(args, source, scratch):
         assert source["normal_input_replay"]
     final = read(args.prototype / "final.json")
     assert not final["prototype_castle_error"]
+    if args.production:
+        assert not final["map_castle_error"] and not source["map_castle_error"]
     assert final["recorded_frames"] == final["frame_pure_count"] == source["recorded_frames"]
     assert final["graphics_materials"] == source["graphics_materials"] + 6
     assert not final["guest_injection"] and not final["snapshot_loaded"]
@@ -128,7 +130,8 @@ def prototype(args, source, scratch):
     fault = None
     if args.broken:
         failed = read(args.broken / "final.json")
-        assert failed["prototype_castle_error"] == "castle image hash"
+        reason = failed["map_castle_error"] if args.production else failed["prototype_castle_error"]
+        assert reason == ("城堡圖片 SHA-256 不符" if args.production else "castle image hash")
         assert failed["graphics_materials"] == source["graphics_materials"]
         for name in ("final.state", "audio.pcm", "commands.jsonl", "frames.jsonl",
                      "presentation.frames.gz"):
@@ -137,10 +140,11 @@ def prototype(args, source, scratch):
         assert inventory(args.broken / "scratch") == scratch
         for path in reference.glob("*.png"):
             assert sha(path) == sha(args.broken / path.name), path.name
-        fault = dict(reason=failed["prototype_castle_error"],
+        fault = dict(reason=reason,
                      frames=failed["recorded_frames"], all_frames_equal_to_control=True,
                      all_six_unregistered=True)
-    return dict(scope="disposable prototype; headless full Frame only; GUI pending",
+    return dict(scope=("production loader; headless full Frame only; GUI pending" if args.production
+                       else "disposable prototype; headless full Frame only; GUI pending"),
                 image_sha256=image_sha, alpha_variant=alpha_variant, tiles=tiles, frames=results,
                 state_sha256=sha(args.prototype / "final.state"),
                 pcm_sha256=sha(args.prototype / "audio.pcm"),
@@ -156,6 +160,7 @@ def main():
     for name in ("prototype", "image", "assets", "continuation-control", "broken",
                  "saved-inspection", "cold-inspection"):
         parser.add_argument("--" + name, type=Path)
+    parser.add_argument("--production", action="store_true", help="核對正式載入器及其獨立回退錯誤")
     args = parser.parse_args()
     assert not args.out.exists(), "不能覆寫舊收據"
     assert sha(args.original / "PMAP.AY") == PMAP_SHA
