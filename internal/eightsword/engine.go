@@ -119,6 +119,12 @@ func Open(opt Options) (*Engine, error) {
 						if actorErr := loadBattleActors(opt.Assets, opt.Root, art); actorErr != nil {
 							e.BattleActorError = actorErr.Error()
 						}
+						if troopErr := loadTroops(opt.Assets, opt.Root, art); troopErr != nil {
+							if e.BattleActorError != "" {
+								e.BattleActorError += "；"
+							}
+							e.BattleActorError += troopErr.Error()
+						}
 						if effectErr := loadBattleEffects(opt.Assets, opt.Root, art); effectErr != nil {
 							e.BattleEffectError = effectErr.Error()
 						}

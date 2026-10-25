@@ -1,0 +1,5197 @@
+{
+  "schema": 1,
+  "status": "registered-art-with-shared-mechanism-sampling",
+  "source_groups": 25,
+  "source_records": 100,
+  "registered_groups": 25,
+  "registered_records": 100,
+  "newly_generated_groups": 20,
+  "newly_generated_records": 80,
+  "production_changed": true,
+  "excluded": "MAN27 contains four Taiji records; original usage remains unknown",
+  "batch_path": "workplace/probe-20261023/graphics-first/battle-r1/troops-hd-bulk-r1",
+  "catalog_sha256": "c07d1b196eb8e8292d2f3db143775790a802ec91f092da0899eb8763c791d32f",
+  "plan_sha256": "9d449740c150d64fdccb5c93f7be988e224b43a155317e7d56b4c1a6309431d8",
+  "tool_sha256": "16cdba0d28acef2fdf26038da6922ca1ac4af6458ad213110ebacee4d3025b7f",
+  "pillow": "11.3.0",
+  "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "resources": [
+    {
+      "resource": "MAN01.EGG",
+      "source_sha256": "a7e02cf495800fac19c293688043f3af6eb6deaec1a61a581ed3f9d5b8b3e5f1",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "3bb12bd3bf599c53a49456f391b9b33da1ee3fd9e68240be412ca4e683f0f7a0",
+          "decoded_rgba_sha256": "f648a2e3f9ed48f9fd31651ed4d4691db4de3610ce0e13a7dce190552005f1fd"
+        },
+        {
+          "record": 1,
+          "record_sha256": "8cb9dc276d55404f55da90df1dbff5756b12b4aebc91143762143f1dd52c81e9",
+          "decoded_rgba_sha256": "37df549bc89ac4e400edaecd97a1be1fc5d92b4af0dab62f409f179a0bfd3c25"
+        },
+        {
+          "record": 2,
+          "record_sha256": "ee73404c6d570f69cee35791141ebfe5874f99855f868f49b321792b27734f1d",
+          "decoded_rgba_sha256": "ef20507962b583cd54de7fdb3625b93d534fb43a86868c46198232f9cd887707"
+        },
+        {
+          "record": 3,
+          "record_sha256": "efc128b387a8d73c9a842f3e41edeaa626e7cd87e59d90cf8d3725d3e29327a9",
+          "decoded_rgba_sha256": "750f93866d7e9682f9efbb924a41a7004a6023d3e2dced9c1211bb9ef849e27a"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN01.EGG",
+          "record": 0,
+          "image": "militia-painted-r1.png",
+          "image_sha256": "5173125ab4f02b170561b797d6ae043fc3c1c854f3ad61da791c3ba1e8aea620",
+          "transform": "mirror-six-planes"
+        },
+        {
+          "source_file": "MAN01.EGG",
+          "record": 1,
+          "image": "battle-man01-1-r1.png",
+          "image_sha256": "13f78b58f9ffe7e2d931cc5f3244bfb31b0dd3135139d12de7a79dd0333a38dd",
+          "transform": "mirror-six-planes"
+        },
+        {
+          "source_file": "MAN01.EGG",
+          "record": 2,
+          "image": "battle-man01-2-r1.png",
+          "image_sha256": "b0605ced5cfd421a7392e7e16bcde1a6ebbfdda4e79b3e38bc94283d8f05b55d",
+          "transform": "mirror-six-planes"
+        },
+        {
+          "source_file": "MAN01.EGG",
+          "record": 3,
+          "image": "battle-man01-3-r1.png",
+          "image_sha256": "02b5e836909d71c9d20e67bea2aee9d2321d8b05e2a66e69bb2a2b5e929fcb52",
+          "transform": "mirror-six-planes"
+        }
+      ]
+    },
+    {
+      "resource": "MAN02.EGG",
+      "source_sha256": "b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "5e43916ca522b0d6ba92829cd28842da39a7971e6f46ffb7fdcd749427c63a42",
+          "decoded_rgba_sha256": "73fc08316782b1556891c8a436ba48c7541b16ad8d51c1a3b4b0c9af8cb33046"
+        },
+        {
+          "record": 1,
+          "record_sha256": "be10f2a5c53503eaf4bdaa14c12e77ca27028e09151b2300c75e78ccdf7c02e3",
+          "decoded_rgba_sha256": "d105a413ca112e16d4a78ed1376e84b149bbcbf7030efdd08b7fef54baf0f404"
+        },
+        {
+          "record": 2,
+          "record_sha256": "5ac6d20de301aaff58dff08fc9be6afa71005190b50d2b5927d76b38153fa1b0",
+          "decoded_rgba_sha256": "cb817e4f44df96b4c74667430312ed91282542cc6e62af2d9ca9a33714d5ff80"
+        },
+        {
+          "record": 3,
+          "record_sha256": "8e6b01e7b87e0b47e8bc07f4014cdb17ab53cb3e7be2bdf84c92f6e84d599d2c",
+          "decoded_rgba_sha256": "c0a307c6756d5aaa8c60eb1c8d36bc5a0be4bcdb82cd89d42e2cf6a97ab214a1"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man02-hd-atlas-r1.png",
+      "image_sha256": "e81a92099e6e5cf79c5f4a7bfca21f2240583d7d3b1329d292c818cc244e555f",
+      "prompt": "man02-edit-r1.prompt.txt",
+      "prompt_sha256": "caf44641b7304aa1265a204c8d1a365b73388c4385ef9aaf2988862ee9222201",
+      "receipt_sha256": "cf9fbc6aafd797b9812d5664f10ef4b3b52fe8bdb605d9ca764f3cd5a775c2b0",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            21,
+            23,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            39,
+            609,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            15,
+            0,
+            627,
+            577
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            597,
+            603
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man02.json",
+      "runtime_manifest_sha256": "b15702efee32586786d05bdc7e0716f63a8eaecd981141d039aecbcd9c0626cc",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 159,
+            "file": "troop-man02-0-r1.png",
+            "sha256": "3004aa225edb03e05740b658eadbf60417650ab5ff29ee95347cd57ac052713b",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              65,
+              102,
+              554,
+              454
+            ]
+          },
+          "target_rect": [
+            0,
+            30,
+            264,
+            270
+          ],
+          "native_sha256": [
+            "1274a6bbd31a6e85e02687856399f36c165039ca1f7e18d83f0698001e05e7be",
+            "840ba20b0da8d097b1eafa3fc788856906831338746ad36ff5fb1755e844c7f1"
+          ],
+          "record_sha256": [
+            "5e43916ca522b0d6ba92829cd28842da39a7971e6f46ffb7fdcd749427c63a42",
+            "104fef4972cfd2936b41831a9e017753dfa78f62723b6610553d2b2174bee115"
+          ],
+          "cache_sha256": [
+            "74a2343bbfd67871ae9d9854d6055c2469700ee977f9cdddda861775593c6893",
+            "28c88cbba3955f7b2c8c162c08ce03798ae378d2a3d8c0ff38f31187597b2cc8"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 163,
+            "file": "troop-man02-1-r1.png",
+            "sha256": "378197f090045be49375e3492131efbcc828826a081cdd5e31502431263d489d",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              80,
+              111,
+              517,
+              447
+            ]
+          },
+          "target_rect": [
+            9,
+            30,
+            255,
+            270
+          ],
+          "native_sha256": [
+            "f8aa42983d122bf5ffa3369f80b52491c0e080e90835a04615a1d6aab4b89013",
+            "840ae3633201a48fb8d666a7d91a2b9936a73a599b180304c4b03e3020c1a247"
+          ],
+          "record_sha256": [
+            "be10f2a5c53503eaf4bdaa14c12e77ca27028e09151b2300c75e78ccdf7c02e3",
+            "b0f876e825b96dee9f11149b8228d24d8308f084d2c8bbc1d0fa7dfa09a41a3a"
+          ],
+          "cache_sha256": [
+            "418c107e1c0702671f1f8d3988e84e64d37ae7cf89ef47b18acbf32273956a77",
+            "152fb11e1bcb15b01ea274c55c6ef97357e57c34dc6a387c25de27df06e85d47"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 167,
+            "file": "troop-man02-2-r1.png",
+            "sha256": "41eee88f2498f51d6e0591b5d642bf1cd5722b9c225e86124c219e322601576a",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              42,
+              121,
+              581,
+              450
+            ]
+          },
+          "target_rect": [
+            0,
+            30,
+            264,
+            270
+          ],
+          "native_sha256": [
+            "50af0b5a7ab8f661651455d9a88f416c2d22f1274cc606ddebb317b9475051a2",
+            "93c068d8c334bdb7dff2a990274721495b15d43f884b1fe68f20ce03d33200e1"
+          ],
+          "record_sha256": [
+            "5ac6d20de301aaff58dff08fc9be6afa71005190b50d2b5927d76b38153fa1b0",
+            "c938fc45fdfd065f64d5954d45a5cda664131a52f144fa69a7477866559cb421"
+          ],
+          "cache_sha256": [
+            "33cee50449788766281ef8ac5a39e326c355ac92edf312bfa6f1516694e5ecde",
+            "6263ac912836bdb76df874eea8bc88f36c47176e15f8aad403bf4c1c1022250d"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 171,
+            "file": "troop-man02-3-r1.png",
+            "sha256": "a32e2d9307d183d233a32af480ddb6748ba1db954bb7dab96cae8efc59008bb7",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              131,
+              52,
+              463,
+              522
+            ]
+          },
+          "target_rect": [
+            33,
+            0,
+            231,
+            300
+          ],
+          "native_sha256": [
+            "449ae9a8021ed66ec52063ba17030f1db82d7e78470180eba9f4797d874b4925",
+            "ea4da1e74955893210658d5093f26f51ca0c4cd7a3d46b1263ec44ac0d21e7f1"
+          ],
+          "record_sha256": [
+            "8e6b01e7b87e0b47e8bc07f4014cdb17ab53cb3e7be2bdf84c92f6e84d599d2c",
+            "b14118e700ae3a2d34c556b0abf7e561993a059012e0306e81a06ca6a9b21adb"
+          ],
+          "cache_sha256": [
+            "9c0140316416461a589b461231d91808cfa8ba010c2396868b016545e1387e71",
+            "8c211c96a54c295c0d337dd69e54f0b833b03411ea5eeefbcdeea72a55ef26e6"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN03.EGG",
+      "source_sha256": "8cf371cfa83169148d22c844d03a0e59815a975e0d04067e89c153502799bb85",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "7f731be5a92039f788e38c7db48c5364a4b18755887e3786f1030a9aadca5fd9",
+          "decoded_rgba_sha256": "db9dec7d182f318541850f72ba54963e36417a76cb52255d37a935a298538791"
+        },
+        {
+          "record": 1,
+          "record_sha256": "887dfbad551502e5d17271eed4dfef51da46753736034cd1834569e9ec998abd",
+          "decoded_rgba_sha256": "d2f567fa32b401a641a59cabc27aba655dbc2dd56de937f2634b579c9f3012ca"
+        },
+        {
+          "record": 2,
+          "record_sha256": "109d5a930fa888b9a2f8644cb92c40a3117db349d17e805ce94786ded092ee41",
+          "decoded_rgba_sha256": "c8d9738be6fb606d5eaa154d543fb4900d5b824b34fcfb8714ce8a89e2363d22"
+        },
+        {
+          "record": 3,
+          "record_sha256": "2db6d8e2645d80cd1a05459de73089e58416f58e02777554099a64d667ee3738",
+          "decoded_rgba_sha256": "7b42004c1657d5e406295c629e71516fd48cf0fd1f2c170634f12905062abc95"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man03-hd-atlas-r1.png",
+      "image_sha256": "a8ad6fd9d883dfa28eae5318ba4c5a6ef5073614a11c4b397f31be35afd1a6da",
+      "prompt": "man03-r1.prompt.txt",
+      "prompt_sha256": "e3cf49a341e79596e8b4b26e9706f86c515d19829adc4cb5ecfe2eb495904ceb",
+      "receipt_sha256": "8d749b6ffbdef039a606710b9c7cd3278f57b3f466c110afdc3e231c49e90114",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            19,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            14,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            615,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man03.json",
+      "runtime_manifest_sha256": "9d184cef9119fecd3a863ab65477d943f683ebca0ecae43b5699713683a58504",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 175,
+            "file": "troop-man03-0-r1.png",
+            "sha256": "9ca44e40ff3d16de18e8588153783c1fa62bd4dc5d106c7fb1867a65aafaa7e4",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              66,
+              31,
+              553,
+              546
+            ]
+          },
+          "target_rect": [
+            0,
+            12,
+            264,
+            288
+          ],
+          "native_sha256": [
+            "98bbc9eb1a3ec59b90cb6f73023a903bdcc392da5e137564c3901fa31906dc35",
+            "9a7d2a58732145430c44dea312010091c020d6296366efe6fc3dac6a5600b563"
+          ],
+          "record_sha256": [
+            "7f731be5a92039f788e38c7db48c5364a4b18755887e3786f1030a9aadca5fd9",
+            "210d96c607f6d1a82bfd0cd73b6163c4ab0dc7a3445e31bc122fb01bf0a82219"
+          ],
+          "cache_sha256": [
+            "0ef14291634d7b0e21554176285f7a3dc8325b658dfbd7a0303cc12943ad842f",
+            "60c4092a8ea1b58f77c7df8deaf6c5d61e399c85b3bde7503ae66582ea985931"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 179,
+            "file": "troop-man03-1-r1.png",
+            "sha256": "20ef2609cc979272a4b2f0d8331327cde3229caa9905614fa947b659dabe8ea7",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              125,
+              16,
+              494,
+              565
+            ]
+          },
+          "target_rect": [
+            27,
+            6,
+            237,
+            294
+          ],
+          "native_sha256": [
+            "301fe932aa40852067be4b50806e0bfc9519463db63ed130db6ddc3cf8f2e87b",
+            "6caf85f37892d688d998ec7108db40d2ecdb024761927ca7e5bdc307c0c4a43a"
+          ],
+          "record_sha256": [
+            "887dfbad551502e5d17271eed4dfef51da46753736034cd1834569e9ec998abd",
+            "ffd71905da3a383f2c76ed5e327d7ee049b2e16d081eb667b003ba2e6d57872c"
+          ],
+          "cache_sha256": [
+            "535e1b86c87ba21e6038cfd61d4939ebf537ff24056e4d1c0e53a12e09e6ff78",
+            "e8893e30e766b2768c2126243546715e1d32417fdb96da5f914a8010f15e160c"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 183,
+            "file": "troop-man03-2-r1.png",
+            "sha256": "d6cfe2d95fd206f0773a40e7173ab0d18ed963549a7b4126d55bba2926fbab98",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              130,
+              7,
+              486,
+              568
+            ]
+          },
+          "target_rect": [
+            51,
+            6,
+            213,
+            294
+          ],
+          "native_sha256": [
+            "1df1e6df9562a84274bb98db7ef00fd86771332e5cb46e50917b5d9b9d22f0e0",
+            "84114e0ae593a5329150894b09bc5a1897015444e3455c499eb0c3cd5298ce6a"
+          ],
+          "record_sha256": [
+            "109d5a930fa888b9a2f8644cb92c40a3117db349d17e805ce94786ded092ee41",
+            "532aada95bc0bcb9b54d9d32ed07bf8bc3285b90672b379020cc5e789f656815"
+          ],
+          "cache_sha256": [
+            "40259af5f28235d8cf94b90d6fb67acce7fc5e6f2fa38b81690946ab5f31da02",
+            "cd482ac69b7ce6b876c40e059d862cbbd2420da8c89f350b1abe8d77308a5dfa"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 187,
+            "file": "troop-man03-3-r1.png",
+            "sha256": "0b9113975336282b4c39bda1104aeac828e3941e9cb60f69684677bfd6f396c6",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              59,
+              23,
+              555,
+              550
+            ]
+          },
+          "target_rect": [
+            0,
+            6,
+            264,
+            294
+          ],
+          "native_sha256": [
+            "72c72c553ec6889fd3f81cbc5ed72d61967e1d49a6204a6c65fcfbd19d383b36",
+            "d06385821ba521cb8b6aaaf8db32e26e8f9634072702927cbc332275eb37ce2a"
+          ],
+          "record_sha256": [
+            "2db6d8e2645d80cd1a05459de73089e58416f58e02777554099a64d667ee3738",
+            "efee6df4d8680654c5d64e50dc8178b7c786bd7c89b446bf5286285c97d13570"
+          ],
+          "cache_sha256": [
+            "55584a6a8e15defc42b12597cf24c16544304a94f4131e6a6739a38ab9f3d268",
+            "3e4e3c7908e07986afed0a6a4cb23ca496b61090a0a84657981f7df2a29752d7"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN04.EGG",
+      "source_sha256": "9d25c1975be500c7cab5ddff2d53cb42427e865641d84e33bbf6546c42206507",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "bc82e5571473961d32619b971b41a39fa82de13ed462643b389d740d7144399c",
+          "decoded_rgba_sha256": "7365d91e4fb922404e6cee24499bda118f7233553a61f4f3b9c8f983669f07a5"
+        },
+        {
+          "record": 1,
+          "record_sha256": "25d629830013ff35ab560f22e1bdcf1486b05dbd87a85ceb96f7b1069293d6c3",
+          "decoded_rgba_sha256": "87f68871ef230664a9491263e8452d194e452bbe197f1c0c3670e84ba011c5da"
+        },
+        {
+          "record": 2,
+          "record_sha256": "cc5f2de2006e3c001a1794b170ebbbd0ead2a4a7b0d60a3bf29beaf1d1baa152",
+          "decoded_rgba_sha256": "7ee6eae9c69b5d42a1b92cd32d217e3a2e84ddb56fa84fef15a03bf93e73d974"
+        },
+        {
+          "record": 3,
+          "record_sha256": "a37608628727d09a9ca1a385c7a52a6baca2ca198f754a4d2d3b61b16b5a14b2",
+          "decoded_rgba_sha256": "df160cdab19db75b194697aa6ec3f3c07955ccae1f94a29f9d2a99a3a3a5c335"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man04-hd-atlas-r1.png",
+      "image_sha256": "448473e4f8568e6115a2346cf46b332ebd1480c0af9c3904d50b32a062d5c8bd",
+      "prompt": "man04-r1.prompt.txt",
+      "prompt_sha256": "0ae2e736d0a603d99e91291f96ed5567d98572459c7101705cc0a16fa329c18b",
+      "receipt_sha256": "a127f3383d0de81d0cac01770630b697f45139d2aa59398f3cf5c485c6ca9d74",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            13,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            617,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man04.json",
+      "runtime_manifest_sha256": "291393d0e0f86105a97ffbad48d4fbd85435c8583b5f189a9873e179a35f4040",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 191,
+            "file": "troop-man04-0-r1.png",
+            "sha256": "ec00822af8719fe15a9c7711582e24778739144561007aa8653f78a2231678df",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              57,
+              34,
+              562,
+              561
+            ]
+          },
+          "target_rect": [
+            6,
+            0,
+            258,
+            300
+          ],
+          "native_sha256": [
+            "68c34b4fefffa2864a730f3349d202ff1012c1d0f824162d50ad89b2617f2d2f",
+            "8de5efdfcd5e3b7be6497243894f86c973aff8a73c13cc66db0f2d50defe9ab8"
+          ],
+          "record_sha256": [
+            "bc82e5571473961d32619b971b41a39fa82de13ed462643b389d740d7144399c",
+            "90ef5986b8196128bfe197f57613b6fd121b6b143df547d41c11e58d40a1d9d3"
+          ],
+          "cache_sha256": [
+            "966b3ba60a3c0a9cfacb42b1aee6e59623231ef3930b88929b8fe29dddd60f95",
+            "deb6f523d5e7d92a2eb9001a80a647c8f6b258fbbd6f756d69b2da376bfa945e"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 195,
+            "file": "troop-man04-1-r1.png",
+            "sha256": "f8533d3391eea1a8c7a0424b6994a4283a41f47360d3087d2df2cf6cba0147b0",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              31,
+              42,
+              584,
+              546
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            252,
+            300
+          ],
+          "native_sha256": [
+            "f21159c2d00ac0a1e02516098b60b40853566284ef5158057e0ceca01ea73eb4",
+            "d6eefc4fa702226a87c4749a5da3d498dcd944b1c0a74c686673a3d59dc600c6"
+          ],
+          "record_sha256": [
+            "25d629830013ff35ab560f22e1bdcf1486b05dbd87a85ceb96f7b1069293d6c3",
+            "aff2d97aebeb655ef2efdf5a9a7a3610b51245b8dfc04063ba437beff7d3fdf1"
+          ],
+          "cache_sha256": [
+            "2d895ce0909713bdcfa4ab2f087707896987f57a47f8f8e12fcf6549dc53fd40",
+            "4f3db6359da02b6edf4bb39c86e9af1bc72e7184b95719e9aa299f9d7529ff2b"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 199,
+            "file": "troop-man04-2-r1.png",
+            "sha256": "0a6a18a559b3fb12568a03e6cd77e105fed0bc8e25d48b0e7bbebc043e362b22",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              26,
+              38,
+              597,
+              547
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            300
+          ],
+          "native_sha256": [
+            "c06fcfa2b4e0640bd26182b0abe1dc7d9b9ecbd760991c25c411a3c2d39256af",
+            "52f89148fc3d18211b005c14683040bd6e2820ed0981208999770a204dd17f2e"
+          ],
+          "record_sha256": [
+            "cc5f2de2006e3c001a1794b170ebbbd0ead2a4a7b0d60a3bf29beaf1d1baa152",
+            "87fc8992bc638fd228fc46fe3454dadb3bde3d1b4c561021350d9a45f7df7285"
+          ],
+          "cache_sha256": [
+            "7d4449e39e5e0e0bc5dd32bab9c89d0d1ed7c5802cd3b3c54067140d31494d22",
+            "794f595c11980abd6dee3ca84289ce1e35c01658b39d8f98a75c799b352f48ab"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 203,
+            "file": "troop-man04-3-r1.png",
+            "sha256": "81208d53ec57de78f60967ad7fa4855d31b34bef00398840faead365040de894",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              45,
+              37,
+              566,
+              554
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            252,
+            300
+          ],
+          "native_sha256": [
+            "ac41fdb014815ecd92596818c7de89bdefc3e8b6ca08212475b8f085ed37a0f0",
+            "24b9dbf359da448e3ab529c3ff7b727530138ff4f185de1b6ebc32c6c871ee49"
+          ],
+          "record_sha256": [
+            "a37608628727d09a9ca1a385c7a52a6baca2ca198f754a4d2d3b61b16b5a14b2",
+            "a2d1151ff983808759d440ef5adfa8573a8cf2718fd9a25270da58297fa812af"
+          ],
+          "cache_sha256": [
+            "9ed779eb5354373ead0d20f7a6d146aaace21c63c7c414d60534666677bbdc2c",
+            "064c632c836cbd208fbc035c32304f07224ecb622f7ee45c3e5d0494d9494af5"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN05.EGG",
+      "source_sha256": "3a07ad1144f283fb75494872ccab3796e75afaa04c1ff1a0ae101541f8d99c71",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "ddd791b049a951eda958bb48a9396c72b7e6d95011714927b65e7afd6b415178",
+          "decoded_rgba_sha256": "b3afcc97c8d165f5958d661145a3f365077a50bffeca4e0c41ba8ee92c7b70f1"
+        },
+        {
+          "record": 1,
+          "record_sha256": "6f6e133829568f8c13b1c5cc3588fbd82e104a7a9970acda656e359f8e47152d",
+          "decoded_rgba_sha256": "6a8f64a899b4856106248e068321acc29314831392879af057bbe21530f08fb7"
+        },
+        {
+          "record": 2,
+          "record_sha256": "cea0ff422b45994c124887fc31f76fe0488d5b27306a6333a28c5c76c17f1cc4",
+          "decoded_rgba_sha256": "fa5f29b3dcdf98967c1341f72e81551d4a1fe49494352a2218f6d68477a330ab"
+        },
+        {
+          "record": 3,
+          "record_sha256": "4111626f451f18e36de7414302e16d71076ee1dd60907034dbeff1aff0456baf",
+          "decoded_rgba_sha256": "b22ee00c17c70d33f8e26097268b9f88b4b71b0e9414e15a0352eb6658aa3c13"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man05-hd-atlas-r1.png",
+      "image_sha256": "575131227ff51f4a04236c37cc999630b6dbba17e85798dc3b3c69a063858b77",
+      "prompt": "man05-r1.prompt.txt",
+      "prompt_sha256": "34916233567d189304c6ff93d51f91e0e9ed27fc40274ba3f5f744c077147acf",
+      "receipt_sha256": "1a0f523aaa02c42954dd7f20da6ba41e1ebeebee1e790d9a798e44a69c9c82c7",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            9,
+            615,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man05.json",
+      "runtime_manifest_sha256": "5a8c8d2004e05fa9876ce79be1d1eb64c825b435488bbcdc29cea4b17a992e72",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 207,
+            "file": "troop-man05-0-r1.png",
+            "sha256": "7ffe82bdca1268f5e4379c81597b1c223ddb4cff31e7201cd24b202558e5d90b",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              170,
+              44,
+              410,
+              535
+            ]
+          },
+          "target_rect": [
+            78,
+            0,
+            186,
+            300
+          ],
+          "native_sha256": [
+            "ddb0ea17165fce76b14bee73df4c2338c3f780131557918fc5041ce98bb1c9ec",
+            "c0fe9653d1d780873fb1bd12da611197cfe4139791945838977a7bbe5fe16124"
+          ],
+          "record_sha256": [
+            "ddd791b049a951eda958bb48a9396c72b7e6d95011714927b65e7afd6b415178",
+            "78166070fa232a9770a01a303edbdaaa343cef2b69bd2143600affd0cf073314"
+          ],
+          "cache_sha256": [
+            "99a9025309e7c1044b4fe704aab3e74208146969d02671fcbfa3bae3d91065d6",
+            "cfb8ad1dff756896782b92c4d68d8acad680060935a5fdbc07b2afbdb1fc9148"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 211,
+            "file": "troop-man05-1-r1.png",
+            "sha256": "e52d8310996a0ca9a2c7db7ecd057874e0bc4b792470f707c2daa9369a13401f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              148,
+              44,
+              447,
+              536
+            ]
+          },
+          "target_rect": [
+            78,
+            0,
+            186,
+            300
+          ],
+          "native_sha256": [
+            "4d536f34a935baf82cb85f863d488620031e14321b73f132d214ebf485a658fd",
+            "52d5ab48c23a5c30da136883f0ca02f3b82e1c04a648b42d6f01a75c9f87e109"
+          ],
+          "record_sha256": [
+            "6f6e133829568f8c13b1c5cc3588fbd82e104a7a9970acda656e359f8e47152d",
+            "2d44fb28df4129b4838ca8fa42752245a63e37aabbba61c419ef21838f30564c"
+          ],
+          "cache_sha256": [
+            "39f3797adf58b85c437f747c0aa70c44da936c38777b212b73dafa96c8968507",
+            "57f027f8285e85379a0b647f4eef78bb8b0aa07ee5bb2e2a40d4969ac22d6092"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 215,
+            "file": "troop-man05-2-r1.png",
+            "sha256": "0e5dcf696e7e4f3e8c077e9d0161b68cd075c06fd681e06fdf5c160912d0e7e5",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              177,
+              17,
+              450,
+              546
+            ]
+          },
+          "target_rect": [
+            78,
+            0,
+            186,
+            300
+          ],
+          "native_sha256": [
+            "ac60156429321e71d69fd1b7a40df117fa609a2dad7b67830a30891d4103454d",
+            "bdc8b816c566281fc8c5a12f1bfa7764206d82252627c65f0752ad07e3c2dfd0"
+          ],
+          "record_sha256": [
+            "cea0ff422b45994c124887fc31f76fe0488d5b27306a6333a28c5c76c17f1cc4",
+            "60fa6442dee9af9e224786a8fa3dc48fa4d98a0282d80a85237956bedf7b2e30"
+          ],
+          "cache_sha256": [
+            "5313d5e0cc9671a5b654ebfc6429ab89ff8c813c493ac6f1176dd5b2669cc76a",
+            "50bee1cdc6edf78ada510ceab8b3ddf074ab7eed61c686e0c6c06f243e40b7ea"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 219,
+            "file": "troop-man05-3-r1.png",
+            "sha256": "2b963fcab1c12eb8a0ff37c45948092fab3b55ce96c40ec5693df5df65701b4f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              18,
+              600,
+              549
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            300
+          ],
+          "native_sha256": [
+            "3c303f72f0ee4b5110ee736288c65d8e15346a8156cac17b3e30683958cff5fa",
+            "c8fb523b401fe85434646d10d538849e100c01bfd6feb12e81f542f8b378d9ea"
+          ],
+          "record_sha256": [
+            "4111626f451f18e36de7414302e16d71076ee1dd60907034dbeff1aff0456baf",
+            "54e516fd3284f03df039c96a1942208037dae95eb02433b6d37e02be014032ad"
+          ],
+          "cache_sha256": [
+            "a80fc4a3376c75dff74b608dc05e294b0cc716c326f43e73ae83df7d655270f1",
+            "3bcfcd6ec8d57875c629515f528a358ba9605c26dd3fe5a652a3d4bdc037f92d"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN06.EGG",
+      "source_sha256": "97be211dd9289538aaa46f01b2340bcac9ce0a7c8e44ed9d3c4e9abdac873579",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "26912dfd61615c79153fdce658ef87e8c7a91033b8b696b1944671ebf12a9191",
+          "decoded_rgba_sha256": "ff5ce4d4fe9c90c1e6664e9b8f32d072b9cb2180a55d30ba8746220d7b2efd8f"
+        },
+        {
+          "record": 1,
+          "record_sha256": "665bac29b8c8d54912a52da5eda20ae44ed9c81c3d6fcd8b039a9317a066c022",
+          "decoded_rgba_sha256": "3a64abee9b449507e5e268ca7501d58788cd4b1c6084d68aeb023fdb7f95326b"
+        },
+        {
+          "record": 2,
+          "record_sha256": "feb0565d9333a288d5e8f89d37cdfbfa1804cc4d33183810120ba3f74e77c9a7",
+          "decoded_rgba_sha256": "1a75e7d203614e9887a8676c376fa07aded6d467d9fe3c739766d670ebf45436"
+        },
+        {
+          "record": 3,
+          "record_sha256": "8ce14e5fa82252dd91b698803e3738ab2b6ce3f3e3f3f22ec1b7b4c1f03f1b00",
+          "decoded_rgba_sha256": "4c3b501af14cbe34196d2d30ea7702825b78275241be9a8642e59b88e2cf68a6"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN06.EGG",
+          "record": 0,
+          "image": "battle-man06-0-r1.png",
+          "image_sha256": "ab571977babe4b7fdffd23ae3a88ac2ee1449ea0a74b5a0301692e03daa5d789",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN06.EGG",
+          "record": 1,
+          "image": "battle-man06-1-r1.png",
+          "image_sha256": "d4e0f66020db4750594ee7d6aecbc0f15aba2d81b85eba17386496c749daa4f3",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN06.EGG",
+          "record": 2,
+          "image": "battle-man06-2-r1.png",
+          "image_sha256": "86b4a07704069de292b0fa4f9eebc4d6f4462d79e51ff3b1d89e5959a377375f",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN06.EGG",
+          "record": 3,
+          "image": "battle-man06-3-r1.png",
+          "image_sha256": "b9ffc6df5c03db70480cfb894b7789c583e0390f0fec0368de337efea8e74e52",
+          "transform": "identity"
+        }
+      ]
+    },
+    {
+      "resource": "MAN07.EGG",
+      "source_sha256": "559db8b16febe5a48509a91a3823342c68d0f70ac7dca5c62dc909bb340236c3",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "2a0f60f92d9546cff46fd6c2da5a879de9e9baad147d7150ea09db5d0e3d1eea",
+          "decoded_rgba_sha256": "00572fcb995811d265c9320ab8e79320223954c77d45626fce2ab5b299be3814"
+        },
+        {
+          "record": 1,
+          "record_sha256": "4f9b319ab04b497714f4c45145fb5b7abf4ea5190711e9847f2c29c10a4fb360",
+          "decoded_rgba_sha256": "5a75bdbb506b8d38c8e50ac3b3e574069a0a4735b0ac72d8a22904385f141dad"
+        },
+        {
+          "record": 2,
+          "record_sha256": "452f16a6be326a7a2b80dfb98bc6b26c5ff4c189d32fa7e118e5f0353b60623f",
+          "decoded_rgba_sha256": "ccd35a04d0670d15313e038e1c06ba51778dcbf314693aac5fa837a19aa6705a"
+        },
+        {
+          "record": 3,
+          "record_sha256": "941c125c6e1782f1f147df98e12eae049fb51870d06b1e9d67e7b98634f0eb65",
+          "decoded_rgba_sha256": "06329d8872a7085193ce35965717bab71b9c24d5a8c2cc4ce859503d11c20a02"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man07-hd-atlas-r1.png",
+      "image_sha256": "f34704cc651dcf74079d9240dbbebac3afe5fddc73fe6943635cb871a7806196",
+      "prompt": "man07-r1.prompt.txt",
+      "prompt_sha256": "73688d437422a212e048554343067f3bd7491010116ef554393cad1a3f63d847",
+      "receipt_sha256": "95d0ce8062d2d55a20b1b1c940a9ac52e34dd47b62a986f2ca8e5498c60d1c99",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            16,
+            613,
+            625
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man07.json",
+      "runtime_manifest_sha256": "2477b5c7611450ef74db1a1c1f7a8fdbfb96546344bd36ae8c49384f06f82582",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 223,
+            "file": "troop-man07-0-r1.png",
+            "sha256": "b4fc5377171910edf2b3d5403d26f9d3cf7e72a530bf4f1c6d402c3d36fa6b91",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              98,
+              44,
+              512,
+              540
+            ]
+          },
+          "target_rect": [
+            72,
+            0,
+            192,
+            300
+          ],
+          "native_sha256": [
+            "d8fa0fc33b69ec0b869bafbf180f33c8ae15ff94a8cd6362f185fd8d4040fa62",
+            "ae141fef5173bc1e09a027cb81add98c93bec2ff141092535e05bc86fafdd6dc"
+          ],
+          "record_sha256": [
+            "2a0f60f92d9546cff46fd6c2da5a879de9e9baad147d7150ea09db5d0e3d1eea",
+            "873a044daf1b240ee44159a93da3fb03ffb2848904b4191914d98d15bcf5dbfa"
+          ],
+          "cache_sha256": [
+            "4ae92aed476cafdcad57129cd8da56f2057049412b7895a03b0b335b6dede82d",
+            "da3a2d32bc0c980e2c0e86d286c6d486752e0d39ba8cd726f2ccb6260d0a6595"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 227,
+            "file": "troop-man07-1-r1.png",
+            "sha256": "96b47f2dd941dcaac6713169a8603218554d84ab8190118b490ec2fecc45febd",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              122,
+              42,
+              451,
+              541
+            ]
+          },
+          "target_rect": [
+            69,
+            0,
+            195,
+            300
+          ],
+          "native_sha256": [
+            "853a1c47a7505fdebbced4c10eedd89821538c76a47e28f4db644f87e1fed5fd",
+            "60bd017c45d7664c02513515f07db9dcc442c25ef739ac38a31af4cee48378c2"
+          ],
+          "record_sha256": [
+            "4f9b319ab04b497714f4c45145fb5b7abf4ea5190711e9847f2c29c10a4fb360",
+            "d2ba515a0d767845561eb00189a095da48a2573eae2ca61da4ddd36d36fdc9d4"
+          ],
+          "cache_sha256": [
+            "32b5b7629006e6b0a2b6c097fbac63295075bc81f3e35d74019f1d469589776d",
+            "033e084e3aa9033b568547e4009efb26e5d4ebb335ffbf6d1b18d55b51d2d8aa"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 231,
+            "file": "troop-man07-2-r1.png",
+            "sha256": "dda6a0c0285a2107077c6feadd1c2c06ab92cb89b0f340182567c273c76193c1",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              148,
+              40,
+              468,
+              551
+            ]
+          },
+          "target_rect": [
+            0,
+            6,
+            258,
+            294
+          ],
+          "native_sha256": [
+            "5e1c651be25c74bfb1b577afa91f9be65534e8993b62dc01c4441ab169df0ee1",
+            "34728c5391126716837e1d526f48a842774907827a2a10125fb505ba2fd0d56c"
+          ],
+          "record_sha256": [
+            "452f16a6be326a7a2b80dfb98bc6b26c5ff4c189d32fa7e118e5f0353b60623f",
+            "0fbb02bb461e0d2724fb67a709d0b29abe2a895817f8292ce1600c373d9759de"
+          ],
+          "cache_sha256": [
+            "6a5ba541f35a0dd9c8e0c9000a4c0f304d679d41265d10912217491ea43e739e",
+            "69bb049a79e64cb395b5b889b2ded1aeaf5802e3947ff100de5c7a87b26f4d08"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 235,
+            "file": "troop-man07-3-r1.png",
+            "sha256": "6509847ea91b2b5f8b0c75bee03af1f294ccc1b4ca90d8f8d5a34ba3e6886fc7",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              148,
+              50,
+              434,
+              535
+            ]
+          },
+          "target_rect": [
+            72,
+            0,
+            192,
+            300
+          ],
+          "native_sha256": [
+            "89b1b055d91ee828de2065287c7bd4a3d672a9fe8d36215807903535d339795d",
+            "04ccc3256f93903b22f4f356d1202874dad5f3c3ea153c3fde1188896cb9b371"
+          ],
+          "record_sha256": [
+            "941c125c6e1782f1f147df98e12eae049fb51870d06b1e9d67e7b98634f0eb65",
+            "976b3e099ab09e248c00ed2f61e68cc039f8347763e617a1e354e4f6431291d5"
+          ],
+          "cache_sha256": [
+            "1205fc13d39f993f519fcad5b00896fed1c827c81d3de1fbba8f131742b023d5",
+            "94d9b98fbcd718fd412d539f0c46f55bf80368d771768c93eb3a9631c0b91c33"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN08.EGG",
+      "source_sha256": "e1b199444ee808a1f54b716e47740c9b995733e4383b51bb9f0e638387a83fa0",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "bf2d552bc536e319aed309164ba9fd972522b2d668e45a2d4700e77df907ba43",
+          "decoded_rgba_sha256": "259005f1530892c6c17527a0b2a5e025c25dea962c0de67ecfdd4d2a9b80568d"
+        },
+        {
+          "record": 1,
+          "record_sha256": "82993c6b9aeb4223140fffb434da3c108b0c5105b2ff6eb103d361d5f67c41f9",
+          "decoded_rgba_sha256": "4b433f7918606168db620e87a0d9701afa8dadbdc55acd947ddad419bc3ff2c9"
+        },
+        {
+          "record": 2,
+          "record_sha256": "fedea711a3f1aa314b414eea826ba08212534fa3799b7b787539a9153d9dc549",
+          "decoded_rgba_sha256": "a3f1491839d66705891681abceb8f985ecf61d6ed4fc992a0b4392da9188155b"
+        },
+        {
+          "record": 3,
+          "record_sha256": "39355413f05798d83d6917ba41f4cf6b8fbfe6a59b821fb27eb53d1768aa1e26",
+          "decoded_rgba_sha256": "93426c2b8ca6b270d37c47c11cd138eb6766eed0bdaf6f2ff8408b3e3dce8adc"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man08-hd-atlas-r1.png",
+      "image_sha256": "745bfd1d0f5540e109fc5621a47fd1ebefcaf6a970d87de3dbe3a4cfe24bedcc",
+      "prompt": "man08-r1.prompt.txt",
+      "prompt_sha256": "bce098f901bf1a9eaffd8e1077647d27b610f3799123dab33d6196cad44c8326",
+      "receipt_sha256": "e36d7480a745ea2f46ea73a37309a5635600c3a4668fa933c22aaa9d58bc31fc",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            51,
+            9,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            30,
+            617,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            627,
+            601
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            615,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man08.json",
+      "runtime_manifest_sha256": "910e5d46655bb7512d97f892754042fc8c3e0eb60086ca5cbce9c1aa7320f0b4",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 239,
+            "file": "troop-man08-0-r1.png",
+            "sha256": "16b231ee069db2d59169311824d8ae954f584be1ed62d4571aa4cdb66834711f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              91,
+              54,
+              536,
+              550
+            ]
+          },
+          "target_rect": [
+            27,
+            24,
+            231,
+            234
+          ],
+          "native_sha256": [
+            "287608f5e475f111bf33b6bf4e62430c788fc3b35cc37b3b73d15571f918a8d8",
+            "adfbe8f4112d065ade364827a3a27ef65a4f3f1db4edd94a912fd028f0cb22d0"
+          ],
+          "record_sha256": [
+            "bf2d552bc536e319aed309164ba9fd972522b2d668e45a2d4700e77df907ba43",
+            "882be43b97015e988e779e6dd0f8f2ab3c9abaefb0552fd6ddc5502d755eee5d"
+          ],
+          "cache_sha256": [
+            "3369f761bca67105217f9adf8a35500d31d8555aed271556ad29c77d68c3777e",
+            "46c9a8b371bea940d5c5a672a764f4b7e1fc2b798f3c6e6b89e9544bbda012f6"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 243,
+            "file": "troop-man08-1-r1.png",
+            "sha256": "5ae47bb26146f30f8b9f01dc90013aae47ba674f08cf8235722434774c3f5a82",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              31,
+              616,
+              579
+            ]
+          },
+          "target_rect": [
+            27,
+            6,
+            231,
+            252
+          ],
+          "native_sha256": [
+            "243ad782e1ac8c90799830778ba784fe983efb6fdb488d1d02a16734c625bf9c",
+            "aa08b79ca7ffcb70024bfce53e7a0cea9c8087a85910fea4a99453c381970d1c"
+          ],
+          "record_sha256": [
+            "82993c6b9aeb4223140fffb434da3c108b0c5105b2ff6eb103d361d5f67c41f9",
+            "48892191c9151c8165caa71b0cf423e90558451092a2ce908e3c48b01c102eef"
+          ],
+          "cache_sha256": [
+            "ee32595df571ad5328f8fdef3b2efec44f759d838fe22c95efb83d6af0faa624",
+            "f86091e55591d3d13763a4e7d89dda5ba2e4c6e5aae2a7c41cb3e2e2b8e1fee5"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 247,
+            "file": "troop-man08-2-r1.png",
+            "sha256": "550c455c3cb166f3163f09f0452bd32108179066687d99db9c9049fce92fd9c1",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              92,
+              32,
+              535,
+              552
+            ]
+          },
+          "target_rect": [
+            27,
+            24,
+            231,
+            234
+          ],
+          "native_sha256": [
+            "ad9eba5b6c08f1cd1016e8318dbe1240dcd090a3e61d8bcb975c3c7b8e31dc19",
+            "a5a3df10d540831d560061b3f72c20c7cb58a05f64bcf2f4c934a74ac65b57ec"
+          ],
+          "record_sha256": [
+            "fedea711a3f1aa314b414eea826ba08212534fa3799b7b787539a9153d9dc549",
+            "c5dc822b539c202ed6ab9cd9da926830b71a6f6a2ab798a0203f667aad3e112e"
+          ],
+          "cache_sha256": [
+            "32ddd9c724e92b26a69ec52fccce317b407b524b1e37a4b858861e7f4b5d3fea",
+            "f6f92faea4c5558910c0c6c87e40df71a51a7dd67afb80d69bc62dbb5185b4aa"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 251,
+            "file": "troop-man08-3-r1.png",
+            "sha256": "da58a29681c55072f067b30d65c66228c44f51776aa6469d58d5934ee0fe52f5",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              34,
+              607,
+              550
+            ]
+          },
+          "target_rect": [
+            0,
+            24,
+            258,
+            234
+          ],
+          "native_sha256": [
+            "ecba8266aec07149543233145ce5cc1d9241a967c471765b2eb88bd8074768c9",
+            "0d1dc0db36628fd8b4d9bfea6a3f8ec18c120fb52666e35bd4b34525e059b1c3"
+          ],
+          "record_sha256": [
+            "39355413f05798d83d6917ba41f4cf6b8fbfe6a59b821fb27eb53d1768aa1e26",
+            "681ff6a06452e0fc71f6eb923beb4bbca9ce7a3437c64907ad9d224c69e51e6c"
+          ],
+          "cache_sha256": [
+            "0b3883d496a6c24a4f855a4870365e0a9cde22993fb921ea6f79d827fc041856",
+            "f51cb159b3a32c35e80a5692d6d1c7ec86143e3ec0bd7a5a724303edf8f968ba"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN09.EGG",
+      "source_sha256": "cbdb54928507ca620725c006044025c51d6a22d59151bf0b27b3c57bd9e87211",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "e271017da2f5380596e593bd9ff03f2e6c7f052ab7a20d90fccaee24c500ea2b",
+          "decoded_rgba_sha256": "d6a0243e46fabe7ec242579a2f7465d281774ff4130fa3f4a37c063a411ef762"
+        },
+        {
+          "record": 1,
+          "record_sha256": "453e03911723bb56cfadc202c876e697487659343d1b2e81c5dc10cd277a3bd2",
+          "decoded_rgba_sha256": "a33309bcba492c2622ccd7afb91ffb0a15f2b142848992c83f845551085134c3"
+        },
+        {
+          "record": 2,
+          "record_sha256": "f385c4559931445f8f5f912fcd553b11bb714451f94ad6e7360f289ed47771b6",
+          "decoded_rgba_sha256": "2b033eb31686c0006f3d3f1adea4ce09b6c2ca4a1cde95573f5611a3520bce9b"
+        },
+        {
+          "record": 3,
+          "record_sha256": "865b0a523a46661a79f83ba867148f55493019644f42cffafa9d62cd23857b6f",
+          "decoded_rgba_sha256": "b4ce7ab9457a95645d779c30084aade6001c8cd0aa17f1240d8b109e7904dd14"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man09-hd-atlas-r1.png",
+      "image_sha256": "96b35589a9b00b003df162fb0064eb3adcff4a6d1d2aad5e5c0a0eb573b1e8de",
+      "prompt": "man09-r1.prompt.txt",
+      "prompt_sha256": "456bd64ad3bbcb50b07b64787c446aa4a805d58d5ab31b6bb47a073aa608478a",
+      "receipt_sha256": "3fc317e9159c8d7214090c80dbeb1aca9e7113221d0eca35955ce76f7c80063a",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            4,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            1,
+            8,
+            595,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            609
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            615,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man09.json",
+      "runtime_manifest_sha256": "de77e9d201357bb7bb3687778aeae30dfe6d7309fc8d9fcd23d85efa08f3173c",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 255,
+            "file": "troop-man09-0-r1.png",
+            "sha256": "9cf8de925207f6c556ffb9b9a383484524e3dfe9d1c1eafca730eba2ecff5c21",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              109,
+              18,
+              475,
+              577
+            ]
+          },
+          "target_rect": [
+            60,
+            0,
+            198,
+            300
+          ],
+          "native_sha256": [
+            "c0e12e968e39a24a1bfc49b243467be643e16f6b226428420528353fc24e4a73",
+            "53995723301df16ee721a6822b3397aa02e1ee416a8ff21b90c01d66863d4efa"
+          ],
+          "record_sha256": [
+            "e271017da2f5380596e593bd9ff03f2e6c7f052ab7a20d90fccaee24c500ea2b",
+            "01dacf35dd516948f8346fd7311f7924da69b5c653a1616d76df7892e1ca5dae"
+          ],
+          "cache_sha256": [
+            "6f71e0eb8e6170e4cea4f5f63daee0e59bf3f094056d2a4e00827073184549b8",
+            "7c31c240894220d7aeab469375410797906a67c2ab618521c63b3df2621ba28c"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 259,
+            "file": "troop-man09-1-r1.png",
+            "sha256": "a9e254d0486f5703ccc1128e5b1d02b180e5f58efde4e7371a35db74be9c6a59",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              114,
+              10,
+              452,
+              586
+            ]
+          },
+          "target_rect": [
+            63,
+            0,
+            201,
+            300
+          ],
+          "native_sha256": [
+            "0cc5b6ad3f8384235d11690677efd2822065d92fe06e1e86c7edbe16140840cf",
+            "beed9d0d0e09cd8b2e6a6a139e885e75c3305f747a0a8ccd9d4b3541f2c54e6e"
+          ],
+          "record_sha256": [
+            "453e03911723bb56cfadc202c876e697487659343d1b2e81c5dc10cd277a3bd2",
+            "76158c36a940b6fa41add80c26cbcd74d2d9c32227d7bed1fda0905ab495c3c5"
+          ],
+          "cache_sha256": [
+            "17001f4b1e878c87a8157c349b9909791b2be0dde58e32f4c9572539d9ba73d4",
+            "1496cf4fca1983663009a4cc22eef2c594e0c1dca2db7c6d37981b56908a88b7"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 263,
+            "file": "troop-man09-2-r1.png",
+            "sha256": "bfd99e5f1fbcf8dacd974df9ebcabe21b45b26adaea090c8df831b9a4dd4a3ed",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              64,
+              10,
+              537,
+              574
+            ]
+          },
+          "target_rect": [
+            24,
+            0,
+            234,
+            300
+          ],
+          "native_sha256": [
+            "923b682b9162000d18dc70791ee83d9143068a137291fe1a6abc02b87a4b92d1",
+            "17cb970e22167d70f838bbb188bd9f0b95a734e8cd391e0f53477e37229ebf6b"
+          ],
+          "record_sha256": [
+            "f385c4559931445f8f5f912fcd553b11bb714451f94ad6e7360f289ed47771b6",
+            "72602466a96b81551c8c87701677a84026dc6c905d96dce1883673ee2b001441"
+          ],
+          "cache_sha256": [
+            "c1bfc08843b390994cb9c795c37cf64269f55531464373594af922c25747efc2",
+            "d3a5d098abc0f33d4cc902f7c4e585d4d5b90780a2c23a8f567e62b90101e797"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 267,
+            "file": "troop-man09-3-r1.png",
+            "sha256": "0596d258193c92f593feac9973c7f52d7ef915ca4df70823d77003787bde6365",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              47,
+              3,
+              555,
+              589
+            ]
+          },
+          "target_rect": [
+            24,
+            0,
+            240,
+            300
+          ],
+          "native_sha256": [
+            "3a7210da6ed60775764325b746ff8ceeb310bf40b17572560bd749207611ff62",
+            "ccdd03644a1b452e5e4a05066a7fa6ccad4adfd78465b0e02c19c3631f025892"
+          ],
+          "record_sha256": [
+            "865b0a523a46661a79f83ba867148f55493019644f42cffafa9d62cd23857b6f",
+            "4d9cd69e5af9fb0cc57719235e96d2d5e02cc4b7fc15a31500c16965287bedfc"
+          ],
+          "cache_sha256": [
+            "0df02040b2246e9ff6777b032b6e0d8a7c32685aef66b450dda85352dd35b40f",
+            "8e7432d129f8e8c147a65b8e147f02573c0eb97e037776cd8a3fa4141bc3791c"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN10.EGG",
+      "source_sha256": "3891eda7763a2d0b82816ab03d021ab7f602047dbebb396b4a22b3abf9ccf250",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "9c8020a4efd19172b047719d527da4980aca9c8c53b7b1500157ea29337d5e49",
+          "decoded_rgba_sha256": "be03da7bae909db05d3932fabe1af40c99c39803f65075bb2995c2a0f9b04481"
+        },
+        {
+          "record": 1,
+          "record_sha256": "5bb0e350182c6542f5e816c68e4cb4065a191c846a4c18dad8345071f5515a5a",
+          "decoded_rgba_sha256": "6b6ccd9829c5dba9f3a3178a763a122738863f2e7960547cbb66c1e889326183"
+        },
+        {
+          "record": 2,
+          "record_sha256": "febd05109154c43c6ed1cf8b084472bd6f988132f93c092efcd7a8d2d2764000",
+          "decoded_rgba_sha256": "8bb243d527fe8b55bc2b6cee6d06b022bd75d8a1ca3602470ead6efcbc348878"
+        },
+        {
+          "record": 3,
+          "record_sha256": "be5f0873bceb9733a575da0fe136041b9e0cafc72700643fe3dd5038faf25bbd",
+          "decoded_rgba_sha256": "8a681181dfa5183bf8ad222901bade24c36821467c907fd8c34e8071c80e2abe"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man10-hd-atlas-r1.png",
+      "image_sha256": "e7546d8f2b2b867dc7008d9b79fedbd972275e4c094715b430a618e39b5fb08a",
+      "prompt": "man10-r1.prompt.txt",
+      "prompt_sha256": "73a402652f71a112e1ec392b81fd32253d6edb0c2473ef60e15b689774b20725",
+      "receipt_sha256": "c43158290a1e651a5b462e617b82996d44eb3f6ccd46b2e94120587f0f6a69b2",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            35,
+            12,
+            627,
+            589
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            15,
+            593,
+            625
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            31,
+            0,
+            627,
+            595
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            616,
+            611
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man10.json",
+      "runtime_manifest_sha256": "885e04d916bf081a506addacffdb16280dd1c89ac0c53dc195cdeb71b937c3d2",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 271,
+            "file": "troop-man10-0-r1.png",
+            "sha256": "c0746d5c57e216dedab7fede77ada3e28612a7fd794993b3a7725353bf6c292e",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              53,
+              14,
+              572,
+              541
+            ]
+          },
+          "target_rect": [
+            15,
+            6,
+            249,
+            294
+          ],
+          "native_sha256": [
+            "8f7401c2723be28d8a4a257995b25c6ab7fc5be8023c42bbe221a917e88189cb",
+            "fbf335db649238bc24849e65175e3fde5addab53ecd3a395d6459a41ce47415f"
+          ],
+          "record_sha256": [
+            "9c8020a4efd19172b047719d527da4980aca9c8c53b7b1500157ea29337d5e49",
+            "537893efea70314e7728081da90ca9b7af5366b793df9280e07ddb9502ed11c1"
+          ],
+          "cache_sha256": [
+            "849ce485f9510bf3451e014298a9ab1422c8da0032ef263d0acca37cdbdb9830",
+            "f592685ec9faac13e78614266b006e7f95a67fdf4216129158c0d44874ed02ca"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 275,
+            "file": "troop-man10-1-r1.png",
+            "sha256": "0b0694e7f9696ef1dd270404887ac904e930e997b8f299f46b32db66801a46bd",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              85,
+              17,
+              501,
+              541
+            ]
+          },
+          "target_rect": [
+            42,
+            6,
+            222,
+            294
+          ],
+          "native_sha256": [
+            "3838baabf065c4161a3d1b62a56baddf67c4dfd00e7d09082ee472deee8123da",
+            "3024ff0e54a26d3ed0c4928ab7e69fffe5ff6677312819e0be7faa2a4b1a2e37"
+          ],
+          "record_sha256": [
+            "5bb0e350182c6542f5e816c68e4cb4065a191c846a4c18dad8345071f5515a5a",
+            "346fe8a8937948a43088bb01ed8b2ff06418837da02bcebf2c56ded2334bb44b"
+          ],
+          "cache_sha256": [
+            "e68c3f954468f3c536a11ce75f7eab062697969068f90ef2bacd88cd0afd184a",
+            "644887f5a7b8608d013f5b990c17f9bcaafced3b2225f35b8221662730b07bed"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 279,
+            "file": "troop-man10-2-r1.png",
+            "sha256": "e561319e48b4f2278c23b134ee598963168b0cf20050d8ebc3a4754388c29095",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              111,
+              6,
+              516,
+              521
+            ]
+          },
+          "target_rect": [
+            42,
+            24,
+            222,
+            276
+          ],
+          "native_sha256": [
+            "17982fc1d95d9fed46f7da35394f2c691cdddb16c8d452b3547a91ed8dd0df35",
+            "56935ff02185016c32c8be65dd93296ee4fd5c026156db1834db8015b113d255"
+          ],
+          "record_sha256": [
+            "febd05109154c43c6ed1cf8b084472bd6f988132f93c092efcd7a8d2d2764000",
+            "6ef3259b4c8bbdbc1d5686361e997c905190a58c54d4a4ed53312b97d5defa27"
+          ],
+          "cache_sha256": [
+            "015ffba3c52bcb1e04b7432c10c115bd08eb07fd4259db62491cd2b0cf59f5f5",
+            "cdebcc5483678a14e026e4500a6052430952ffe0e587a738675f8ac0fec948cf"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 283,
+            "file": "troop-man10-3-r1.png",
+            "sha256": "6e5d7cb11e5583594f3228969b834b5a5c0f9517ededbf3238e65d49d13ac7d2",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              6,
+              614,
+              520
+            ]
+          },
+          "target_rect": [
+            42,
+            24,
+            222,
+            276
+          ],
+          "native_sha256": [
+            "5cf815dfa601af0c59a3fac005f845ac1956c08376bb5113d0b447fbd7a15b32",
+            "148ed67dd3255d7ead3ae137df1e863a502c5592d88bb020b94b385c41c0e50c"
+          ],
+          "record_sha256": [
+            "be5f0873bceb9733a575da0fe136041b9e0cafc72700643fe3dd5038faf25bbd",
+            "11f277e3749b3ebe667735293bc70510c2d45981dba161bbe8ed2fd91f8b5807"
+          ],
+          "cache_sha256": [
+            "5403bba6469308d280f7d7b22cc75d9c42958e91f98d626d1415a3660a9fcf5d",
+            "41537b35fbd5311c82933e2a147dc7d26b2a29fc64c283e42917865358de3aaf"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN11.EGG",
+      "source_sha256": "860ab98a7165f25fe2007dd597ddf6fc698c9d2f048701eec955a1a0cd65f832",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "6da1d9280af54d9f30da94fd6da26c6c61149dc2e8a615affbd497a0a0b43d5d",
+          "decoded_rgba_sha256": "6ec5a7f6f9bb9a48c8664eb08329b08b185aab25267fcc48ca4aa3d56d1d74a0"
+        },
+        {
+          "record": 1,
+          "record_sha256": "87c1811812b52903da1e84d28097f2aa36bf2dbffdda733499ee09140bfacadf",
+          "decoded_rgba_sha256": "bfb82132fab14cb29e6d9192d5cff6932d3e5f6f7e2f307a5b54efe80027da18"
+        },
+        {
+          "record": 2,
+          "record_sha256": "8b62cd1556331c561f8e83d1b1afc8b5cb08d059a4c1c085b339679a8babcf96",
+          "decoded_rgba_sha256": "068ccda5abf7cc15ed3a7299896ca9c1523f6c2d44ca9f143d81ca53e92a79c9"
+        },
+        {
+          "record": 3,
+          "record_sha256": "5ce96cf4662823aada52459ae9d1a2a933f9b45d844a128defbf10dd6b300693",
+          "decoded_rgba_sha256": "d699cde49f41a694602a14b0ccd679e819b075ba69251cb39c9b794d334abc45"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN11.EGG",
+          "record": 0,
+          "image": "battle-man11-0-r1.png",
+          "image_sha256": "1657bfc58772177d2b2819f30c01b198ed1702f0d64f3fa10662d6e5aa1452ef",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN11.EGG",
+          "record": 1,
+          "image": "battle-man11-1-r1.png",
+          "image_sha256": "e0cb5749c13db0ac91f526941bff6168eb94bbe2b4c034c5e47de3b58e3c86a0",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN11.EGG",
+          "record": 2,
+          "image": "battle-man11-2-r1.png",
+          "image_sha256": "49366f236e47db052009a52d4572fb4286dbc4767fff6e0d49067820aa2cca66",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN11.EGG",
+          "record": 3,
+          "image": "battle-man11-3-r1.png",
+          "image_sha256": "e0a50aa7717689827abae19de62335ae65ea8b760aa6169c368336f7bbc89eba",
+          "transform": "identity"
+        }
+      ]
+    },
+    {
+      "resource": "MAN12.EGG",
+      "source_sha256": "bca2b7d5f05ae7ac23972e6ea8f5308ac22a243c78acd5970690d93c8a827632",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "92e33f348b6d532d82897afd28ad9d0f99a5d8026eb51d7d387a08dd804bd8f0",
+          "decoded_rgba_sha256": "c2a99dadab1ec40ccf6c574d5f59a400ff8307d657b7ef883b08adac2dc5af6b"
+        },
+        {
+          "record": 1,
+          "record_sha256": "e77676c02ab2f77f36e7e4946b59f2d636cf5d133d2073f9d027987ed22b1b8a",
+          "decoded_rgba_sha256": "3a74084b3df6329ba28232be857dace7bfdb07f68e0e1b024b889aab9f307b46"
+        },
+        {
+          "record": 2,
+          "record_sha256": "ae33f722d546aa1818865db129baf55f6713e6a0f8867eba56ca08e75a83a2e6",
+          "decoded_rgba_sha256": "2d5c1b88101e39fddf52d50d5bafec91bc6a58e81ad679b3131bd9beb04916eb"
+        },
+        {
+          "record": 3,
+          "record_sha256": "6e813e7a4d57d4b4cd00895be9dfe63f1258b5c6cf26d1b3303302f23e1568c3",
+          "decoded_rgba_sha256": "93364e14187cde4f1e22e626528e6ec5dfefa0276cc5c9705bf607b35b1f3eb8"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man12-hd-atlas-r1.png",
+      "image_sha256": "8ab8512c68deb095bfe5edfa58b6afe19cbc1112f07e048edf1d182437af0a7f",
+      "prompt": "man12-r1.prompt.txt",
+      "prompt_sha256": "ca256ad937916e40e9672c75064a5161ab1593d5d714a176b1fe4f5e78cb0e07",
+      "receipt_sha256": "b8145a3ca95235b1b20b9d8562a1d9fb0711e45e9f3ce96bad4f74d1a694116f",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            25,
+            0,
+            623,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            616,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            15,
+            0,
+            627,
+            565
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            587
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man12.json",
+      "runtime_manifest_sha256": "c19d823b44e8fcc76a6c3011b21f5b7cfcd24ca1fbfa49aab67ef993d8632c8e",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 287,
+            "file": "troop-man12-0-r1.png",
+            "sha256": "8344415f6bc14f0c1819e93f38e3907cc8be8ee5c9f2dd773683f2f0d8fed8ee",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              74,
+              0,
+              533,
+              627
+            ]
+          },
+          "target_rect": [
+            42,
+            0,
+            222,
+            300
+          ],
+          "native_sha256": [
+            "9e6803464513efd83a21cea10ce25012c313fa411440bb2402a69f8f81fb642a",
+            "e6475c6868d1a52f3ca3798040223b31ed2f3a5cca834a45613a18291a26922f"
+          ],
+          "record_sha256": [
+            "92e33f348b6d532d82897afd28ad9d0f99a5d8026eb51d7d387a08dd804bd8f0",
+            "8e9eda4ab9ae3f7174ac7f77752a60ef6d21421a5939eab9cfa7ebc8a777bf66"
+          ],
+          "cache_sha256": [
+            "2bbe4770e3c6d9cdcfeb8998de23f6fe19b86b1a5929301845806447a22cbed3",
+            "3d7fdbb42aa3c5b5f4368b7cede92562098b6365a7f95609a41c9facecb18796"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 291,
+            "file": "troop-man12-1-r1.png",
+            "sha256": "78092198e6ef246e8d1fdded72a4b108e2b9eabc6e964875abf72c1f4d104150",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              27,
+              0,
+              586,
+              627
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            300
+          ],
+          "native_sha256": [
+            "a5b27ba6f489f7c8de1d2d9ed0f1d4a5ff4970a3a25c130e2de9811881371e8b",
+            "f21d11f793b19af79a111be37b6c85343bb2bfc689bcb0d16420a6e06497ffa1"
+          ],
+          "record_sha256": [
+            "e77676c02ab2f77f36e7e4946b59f2d636cf5d133d2073f9d027987ed22b1b8a",
+            "137b10b25a39d5b56cf22c01aba9eb0cf8748cce9f9ff14260419e926f6d28a5"
+          ],
+          "cache_sha256": [
+            "b855af8dc73ccc13b8115024f9d98cd7bf2ec5f1ea4f8f1996514c69f4db1f08",
+            "c2216e1e73c7b985b3a6b271feb6065efb44408498fb4bb52520bf282020a7c2"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 295,
+            "file": "troop-man12-2-r1.png",
+            "sha256": "5cf3f5296a6bda5f2644ad075b78e8771576b566835d461f0c6d538a0152c1fc",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              21,
+              0,
+              606,
+              547
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            300
+          ],
+          "native_sha256": [
+            "35d9f39dfa4d34d5d946c4128e1a71346c59f1fbaef38fb3b608b7700f5aa225",
+            "12f2638e8a19fdca8605d30208555779e4d7a5c732327ea403b07d69015c4812"
+          ],
+          "record_sha256": [
+            "ae33f722d546aa1818865db129baf55f6713e6a0f8867eba56ca08e75a83a2e6",
+            "84bc90ba4560aa62f2f0cb35f60c6848d245105c8f5bfbfd5bd5983a233617cd"
+          ],
+          "cache_sha256": [
+            "40d3abf05bc77fe8642e95c5bf8cd0f695c9e9e491b1ae8d2e0ae25bcf4347ca",
+            "7a477bb56f636991f9a78b6b294803d69f963e85f6cf805995c0b94f8fa4ef00"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 299,
+            "file": "troop-man12-3-r1.png",
+            "sha256": "89131cc60945ccfdf7104cc5017cbc40071d2bd34f835dd86bfc180627aa015b",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              0,
+              621,
+              549
+            ]
+          },
+          "target_rect": [
+            33,
+            0,
+            231,
+            300
+          ],
+          "native_sha256": [
+            "ac5a98f8959e21b9b0e3749ef403a67aef8c02ed33426f8e72ebbbe749f3d2f4",
+            "e4de10dc3b882c8661aa811694610d703b634336d9f27fcba7fc8ee3de85ce83"
+          ],
+          "record_sha256": [
+            "6e813e7a4d57d4b4cd00895be9dfe63f1258b5c6cf26d1b3303302f23e1568c3",
+            "bf8d531682af8bb03d01ee4d829005ee14a4d02878c96a2b8e288ba116b29dc4"
+          ],
+          "cache_sha256": [
+            "7aadf73d9450695b04098b646b54db3d8b728a9d689579534c18f3208b9c5d3d",
+            "e1193309d8b3e4befc6b772fcec00a1dde7d88bf25647b2ec0c235c074412e9f"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN13.EGG",
+      "source_sha256": "834530fe217c0cb63b57598096ae37e8acbdbe8cb565ffbee5d7622901624bfa",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "2ee6813e0c1df2f0543c9d45679a7f0a60cf41af1fe45d6d19b1963d88a21e64",
+          "decoded_rgba_sha256": "429aca2e3a628471001bebf726f8552ece13c39969a9de32eda35b0f1719324e"
+        },
+        {
+          "record": 1,
+          "record_sha256": "76f32398a5d0f92a5699ee807cb344d9e0a120f5f1b121117e621da2d60c8504",
+          "decoded_rgba_sha256": "915869326fd82b69afd5ab3e1cdda253fa274174dcc73d18ecb248e99d5c537a"
+        },
+        {
+          "record": 2,
+          "record_sha256": "6ad580dd2ed5512fff1a1d002560e28542008d5ab604b02eff4762e473205de4",
+          "decoded_rgba_sha256": "8c4815f5ca311c68e273f8c23ad86ee8a68472aa9374cd8de87c5de403a70571"
+        },
+        {
+          "record": 3,
+          "record_sha256": "2939e5f89d201dd63c98230a8c1e5218f50e2461bb23dfdab07344745f6d9180",
+          "decoded_rgba_sha256": "caf1fac3a8812a7ea2687d6a58e5a68e1f3d908e9cdb11fcf5b78ecf7318221b"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man13-hd-atlas-r1.png",
+      "image_sha256": "538d94b1328695613ab1d34753374245c75ee96c4d2ae5d974bec98f6ef6c872",
+      "prompt": "man13-r1.prompt.txt",
+      "prompt_sha256": "5bd0aed0f8bca245383721b43843ce2dc00691f2fbf0385f2665ad1ff9573c9b",
+      "receipt_sha256": "f0df7f26a094c5de9f0147d3140e46f51ba661326dc0b56d01d4e5b70ba52e34",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            31,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            33,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man13.json",
+      "runtime_manifest_sha256": "3cf6b3221188f0abc9709e07b92fa40eeccbac68ff8a520474c99c4b8a881781",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 303,
+            "file": "troop-man13-0-r1.png",
+            "sha256": "57a8a7dd156b40ae7bd36e6bc607ade3984cef0241bc59ca3ecb03a53fcd4ef9",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              132,
+              32,
+              495,
+              575
+            ]
+          },
+          "target_rect": [
+            87,
+            30,
+            171,
+            222
+          ],
+          "native_sha256": [
+            "d0c7162cdb423e145d27c41a06ed9552bea6924c52feeaccd79d3cdc867b2a8c",
+            "6b06f0a48402585529b6264faa22cd9a25d811472ea656039aa3b3f22960cb9c"
+          ],
+          "record_sha256": [
+            "2ee6813e0c1df2f0543c9d45679a7f0a60cf41af1fe45d6d19b1963d88a21e64",
+            "668480a9f7122c88d52bb3f66074a86732d26b1922860d4d9853cbfc9b122dac"
+          ],
+          "cache_sha256": [
+            "879978b619834dc20c44149f45e0e3c5a8eb38715637d3736d45b61941c684bb",
+            "78f0b6124496428c03196265eeb4f204a5057ceb17306c57f1477f2dbd680d3e"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 307,
+            "file": "troop-man13-1-r1.png",
+            "sha256": "f63be96f9e06f190eaffac4f83276ddca76f039d0909de086ed05dccfe5b652c",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              36,
+              606,
+              554
+            ]
+          },
+          "target_rect": [
+            96,
+            30,
+            159,
+            216
+          ],
+          "native_sha256": [
+            "8bacde12f9ddebe3b93da511b728f95009dd654d92d7744e171c88c951d84029",
+            "803633d71cdf9987691def2a2682b4feb338489698c78a4f951ef1144bbc5a1c"
+          ],
+          "record_sha256": [
+            "76f32398a5d0f92a5699ee807cb344d9e0a120f5f1b121117e621da2d60c8504",
+            "03114c88a6c60fd8cad2ad1fad5b1c789d322296cf6b73b962d1eec051c49fba"
+          ],
+          "cache_sha256": [
+            "eb9274ba40640ca3d5b66c1eba1ee4f9e5d599c9024ad2c727727551b9423875",
+            "e047844b1ebcc83982e8889b963ced3b5e6dd42af6c78611527631d739230657"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 311,
+            "file": "troop-man13-2-r1.png",
+            "sha256": "5c2c4835201c5cdf23e169c914e228334696292664b82936133f76238f77a1b6",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              5,
+              29,
+              622,
+              554
+            ]
+          },
+          "target_rect": [
+            3,
+            30,
+            255,
+            228
+          ],
+          "native_sha256": [
+            "14eefcd3b87d844fa27dd053cb2e85ea2a4b953ada3596a7dd33ff8543e57fa3",
+            "7a647d8eca4ab2b099db73f71645d1b4b9b24cfd4437dbfc52ced3def003f72f"
+          ],
+          "record_sha256": [
+            "6ad580dd2ed5512fff1a1d002560e28542008d5ab604b02eff4762e473205de4",
+            "aa89c9a852b3918dec670a1430735e3c1d2a749f7f7fc3b31edaf9d063112525"
+          ],
+          "cache_sha256": [
+            "334a80eb9f596bd9952fcdd2b550d95acaeefeaedcfc2a860e0a1542aa96807f",
+            "cb33881dd2963993d4b6bc7a187f1f3405ec08d2040163de4e689ddfda8dde40"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 315,
+            "file": "troop-man13-3-r1.png",
+            "sha256": "340a2b030421ae76c036e513e2f17ca81014ea0c56c5376b53b8a3edb0ccb239",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              32,
+              618,
+              551
+            ]
+          },
+          "target_rect": [
+            0,
+            30,
+            258,
+            228
+          ],
+          "native_sha256": [
+            "d9fd603f79557a5e07a760cec396467fff2d5a9e82539769b0d2f8a90fe11c4e",
+            "0a0824f0759d717a38147ef742e1379ca98dec684dcd39655b6c629c511eb268"
+          ],
+          "record_sha256": [
+            "2939e5f89d201dd63c98230a8c1e5218f50e2461bb23dfdab07344745f6d9180",
+            "5c7b75cb0591c43f712456de8ced5f7464ca579b8e49593e9d7e649560783bb9"
+          ],
+          "cache_sha256": [
+            "0b2b4b0352a55edfc9b51b86e4659148bfe42dfb90fa9f0b39e3ebb306b7d1cb",
+            "c500f75e830852a814be3c63bc614983540595888834ea67f728e9a3ab9962b1"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN14.EGG",
+      "source_sha256": "fcd414c4a50816fe435b9cf15a39026cbb57b25fab3954f2fddaca0e81882c82",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "519a1938831f505743620a48def68bd848bf4a9fcd8e3af0e72b64a97f5f6584",
+          "decoded_rgba_sha256": "8cb4eacc1c4a9b220fd65f34a48cac1efaae5f9559250c37bc674648a2ccc962"
+        },
+        {
+          "record": 1,
+          "record_sha256": "abb4aad37e6b82c825f7f3fcca1d90deab7f2e1328b986e5057048bffd86868a",
+          "decoded_rgba_sha256": "b52fa01652953716b2898bc44347852c1e8a92e3a56bb024c3bad4adad6372d9"
+        },
+        {
+          "record": 2,
+          "record_sha256": "0621773e60fb56dcf8c0fd88a3c45007626a6c1455366edaeeb5f1d91a0d8bef",
+          "decoded_rgba_sha256": "8326b1fd1ae0d06a0f0466eaf73a3d146db5c23e76f5f7d65cb67917960b4442"
+        },
+        {
+          "record": 3,
+          "record_sha256": "01259f1d90a46cd4d248fa6da6beebd63313d8726edad84c9c4685c0b44d65a7",
+          "decoded_rgba_sha256": "dfdc0bc07e74a132fab84b20240d57723af23b8cb1c7c095b2421fcdbd88c11f"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man14-hd-atlas-r1.png",
+      "image_sha256": "a1bd993265dd859fd18fb1ae96224c3fb2e19ce8083e02586270aca6c4109703",
+      "prompt": "man14-r1.prompt.txt",
+      "prompt_sha256": "2c3bfd2d3b1be06463fba8ab4015da273de3d49d6460a94d8c5de4d2df234286",
+      "receipt_sha256": "50d91136934cab444316748d1fed1ddd65b5e2e8db3f984ca0ebee797076faf1",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            39,
+            15,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            15,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            43,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            623,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man14.json",
+      "runtime_manifest_sha256": "424e7aaefead34a7cdd80e447b29f081518e6d963eae01151be741ba5eb6fd46",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 319,
+            "file": "troop-man14-0-r1.png",
+            "sha256": "5b3a62cdc44cbe660a415e5b291041abca859d87f71ff264e76af4d0a760fe2d",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              161,
+              25,
+              444,
+              488
+            ]
+          },
+          "target_rect": [
+            78,
+            6,
+            183,
+            174
+          ],
+          "native_sha256": [
+            "a9c80c239560b10b8d83ddcdd976412e5e9686e5814fc30cffc52236e770a823",
+            "11e774a871dca95e67bf316c5fe216084de9c0685a3ecfd163a718d218df5622"
+          ],
+          "record_sha256": [
+            "519a1938831f505743620a48def68bd848bf4a9fcd8e3af0e72b64a97f5f6584",
+            "5e40ce2eb503e8804d2efb3b8f4759fa4183c877c05643137a9ff2c063711479"
+          ],
+          "cache_sha256": [
+            "d29bc5764d7dcb4260a2141779b3cb607376e10421a7c4d850fd245492b3152b",
+            "c5dcf7e75cb9339a9dc549fd2ac18299b22bf5781b59a3e9d4b0d1413452cdcb"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 323,
+            "file": "troop-man14-1-r1.png",
+            "sha256": "fc69fb56723a188bfc75ab0b7bc71560fb63839088db3ffc8fa4f32101d05cab",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              88,
+              18,
+              504,
+              533
+            ]
+          },
+          "target_rect": [
+            42,
+            0,
+            198,
+            204
+          ],
+          "native_sha256": [
+            "6fe437e4bac540a6355d143dc9ecbada2e86a1a309623062fefd53b39508a483",
+            "6925fc2610b86e99b8acef09263bc431904adcdf352663ae9080c41856501ca3"
+          ],
+          "record_sha256": [
+            "abb4aad37e6b82c825f7f3fcca1d90deab7f2e1328b986e5057048bffd86868a",
+            "a1df04c325619c2ab79e42b1c0840359fd70634bbc1426fc9089df0121971b5e"
+          ],
+          "cache_sha256": [
+            "4e4b05942ae1a0a319314fd6fd2f3bf40affc360cc818740dded68fad90d96a8",
+            "3da23fc666097ee76407aa6f88dfb260d157a8656db0c5ffe1b1d9b5e7bcb047"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 327,
+            "file": "troop-man14-2-r1.png",
+            "sha256": "cff4fa23b19a70bddac0af066e3d4734e1d3a77a25479031df63977953f3eded",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              46,
+              68,
+              547,
+              456
+            ]
+          },
+          "target_rect": [
+            33,
+            12,
+            189,
+            180
+          ],
+          "native_sha256": [
+            "80ce78efe4d35de4282c2af98cf96a51f19a35e15a91a18fdd3ef27d81cedf39",
+            "46a8c7f160072567a7bd2886cd1ab7f590f5f576434ad7430e98e4a286bcd6e1"
+          ],
+          "record_sha256": [
+            "0621773e60fb56dcf8c0fd88a3c45007626a6c1455366edaeeb5f1d91a0d8bef",
+            "ad1acf2e143657584b094dcad80d7280d4ec47d12f4a80d48128f1e784baa790"
+          ],
+          "cache_sha256": [
+            "ed7666d00025524baf2c5f9a12eb9120ad4c7f99cdcb0e19e69b86115bfccc14",
+            "0594f7d16e7c0aa619d0ad18ea587781c32ecd96664ab239debbcbf66944f0cb"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 331,
+            "file": "troop-man14-3-r1.png",
+            "sha256": "fda3e559c5b3ff9a41e2edae9b8588a94b879fd40b513f26dbd9613a556dc06f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              136,
+              26,
+              458,
+              553
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            252,
+            216
+          ],
+          "native_sha256": [
+            "6fb9da33a9c77b90d2bfc5c4cf018b9f09dc2a1f3fdf65217adcc3ec9ac37fa9",
+            "f87d780132e19efae3dfc4320babe9306eed30e131b0b294f97b3bb3fda775f9"
+          ],
+          "record_sha256": [
+            "01259f1d90a46cd4d248fa6da6beebd63313d8726edad84c9c4685c0b44d65a7",
+            "2e1e0c038b4242e3dede8e7e1184b176cf1e42f70c00b2cbea34762c763d437c"
+          ],
+          "cache_sha256": [
+            "638353d2fd7dbefa0977e9ae94063e86e561b9f393273192a3c01824d0a7ea95",
+            "cd99dfe0cc3ac81e0a417bceff702f87d07130a561af732e980ec5c834797b97"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN15.EGG",
+      "source_sha256": "16efb34ad279d3e13aa70b0242c73a4c756d11c55d7a45f6f96d38483c51ede8",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "eafa83f9bdd104e92fe64bb7cbc18e0a94f238e24c5392791a936be24805075e",
+          "decoded_rgba_sha256": "02f4660f5b0b1cb417c9e5eb7790c343f1bcc71964c592fe39320b91baacfb52"
+        },
+        {
+          "record": 1,
+          "record_sha256": "823bef6681d24cc1878009ee7c3134f69e86da5207c2050b80d4527d9611b12b",
+          "decoded_rgba_sha256": "cf2a0620bd668b14d4a0b18fb3b8501c5ebf6778f44dd3346f779cb0c441ba27"
+        },
+        {
+          "record": 2,
+          "record_sha256": "8f775946ddcb4fa9accb187eeae466d47ae8ba7fa3a8a505fe332d3c8442bf89",
+          "decoded_rgba_sha256": "f673f91163d92d02ec9fc6a592f736215ac4ec5d3b3d6b0d8c691e6fc8742ca0"
+        },
+        {
+          "record": 3,
+          "record_sha256": "c3382aaf68f9d3b085aa6131ce4f852f149de4a7c604106def511f22f09f1054",
+          "decoded_rgba_sha256": "7e1452c80052760654bb8d8345484b8a5a899dcf71ed9545c9a240999a5eca08"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man15-hd-atlas-r1.png",
+      "image_sha256": "ee0a8bd5435ac29cb332463ae5372de8397c863b1b5dbc48e7236d773771eb80",
+      "prompt": "man15-r1.prompt.txt",
+      "prompt_sha256": "91bcc64fa861f4440933eae687188feb6f75064ac62a40f43381a3549cb9e091",
+      "receipt_sha256": "afabd20807c502b7e5b440fa8823593644c43b62b3315eeec42ffc93aa7dcd0e",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            15,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            9,
+            617,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            623,
+            607
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man15.json",
+      "runtime_manifest_sha256": "4f49b51e19e9b1a2d09a7d1498ab229bc545c3c5bd6f881edf1339281fbbae94",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 335,
+            "file": "troop-man15-0-r1.png",
+            "sha256": "7915365730c55624d830ecaec9eb8c5488f263096912d4559c95baf43fec8100",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              125,
+              46,
+              482,
+              526
+            ]
+          },
+          "target_rect": [
+            24,
+            12,
+            237,
+            288
+          ],
+          "native_sha256": [
+            "0c8abce5e264fe8990237e62a9bc9b0f723920f84bd7e6fefb694acb3a09983f",
+            "1b89509e77963084d8dade32a4410c1bf13e22d9c7cc0a5ba6da27d17fd0856b"
+          ],
+          "record_sha256": [
+            "eafa83f9bdd104e92fe64bb7cbc18e0a94f238e24c5392791a936be24805075e",
+            "d5c2d744c602ad4e39bcf6eef3ddc09622c206ac7290657cccf227fa3c336d69"
+          ],
+          "cache_sha256": [
+            "4b3da8ffc679a306048e19a668d0aef785f43a3d76691991d3faec21a0495575",
+            "a5ccc52cbad1e2abed35dd1011de921862fdf8f6c88c6601438defe16f4d02da"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 339,
+            "file": "troop-man15-1-r1.png",
+            "sha256": "19b98ec431a45f8934edddc8d237daab83fa4fa97a68f2cf6c73636014a50e5a",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              132,
+              84,
+              434,
+              489
+            ]
+          },
+          "target_rect": [
+            66,
+            12,
+            195,
+            288
+          ],
+          "native_sha256": [
+            "c046cebd5df71775213dd17c78d138a7f0d48b84c4e9c1889b5b9972251c9faa",
+            "2cbeaaaeff29bb2e26ba6b7e500b445f0dae9e437ea96a7bd5f883e1ce61cf8f"
+          ],
+          "record_sha256": [
+            "823bef6681d24cc1878009ee7c3134f69e86da5207c2050b80d4527d9611b12b",
+            "2f61d2f54abaf34e2c98839d0a64a5e89129f7c514db8bb829d46a435ce92d02"
+          ],
+          "cache_sha256": [
+            "7b3c7526c60a902f2cf2da24e9ef82f1b91b0440e52abbfd531ba51acae0e63c",
+            "35e14af38f04efe0eb9954d0959bbf931d1220e2533b099b39da491bded5b78b"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 343,
+            "file": "troop-man15-2-r1.png",
+            "sha256": "ee0e234ccb559cd6586bd1563a3ab810df0a73e13e16a4fb0771e8e57555eb98",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              73,
+              51,
+              553,
+              494
+            ]
+          },
+          "target_rect": [
+            3,
+            12,
+            258,
+            288
+          ],
+          "native_sha256": [
+            "4f7204b23c5c170bc5b0c69b2b333fd6d2fe592261a2d9ae372782cade1a22d6",
+            "6b24aa96251d22abc3e9be3da50e8eabfd243b460c1c2b3f7f6bec6a1854a8ea"
+          ],
+          "record_sha256": [
+            "8f775946ddcb4fa9accb187eeae466d47ae8ba7fa3a8a505fe332d3c8442bf89",
+            "12699f5fe89025649546bd7106e3b94e5b6fb01dd5f0bbba709f478dc8cf6db1"
+          ],
+          "cache_sha256": [
+            "93a420789a45c6e6167d078bd698260273b17028f5786e42bc979030d51639af",
+            "269c7d2a176162768fbccbd5d76c1e453c3bded04f4ce96ecaf31d37fccfdc05"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 347,
+            "file": "troop-man15-3-r1.png",
+            "sha256": "5254c765fb415d58916d5d0c8c210d705c6fd5e431f31b433940a23ffcf3385e",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              23,
+              46,
+              570,
+              513
+            ]
+          },
+          "target_rect": [
+            15,
+            12,
+            246,
+            288
+          ],
+          "native_sha256": [
+            "af17e1db56e605daa5a1fba0968ed4a5a12caebc8d15d7442f95b21eebef8261",
+            "536beab4703c1ad568e1b1300279d0553964e5f70a1d830ba09ed7f8b56615f1"
+          ],
+          "record_sha256": [
+            "c3382aaf68f9d3b085aa6131ce4f852f149de4a7c604106def511f22f09f1054",
+            "5c3c69ad5d4e56ee3cfc299f0d11076ec5833b23cb3d9341393c0f05f995a11a"
+          ],
+          "cache_sha256": [
+            "7556eecd99693c4e1d7b79836dfdb620ba757dff05a71d8364cf2183bf679d5c",
+            "edf94ff5be5f82f9c3c556f6b9a619308f1f371a6b50b601f66cea3b24ea4aeb"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN16.EGG",
+      "source_sha256": "d4acf7c58c199c1776ffde6c86afa3c9b0ae3b132e4cc59973e1e0d5c2011d6a",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "6f63681e789a462164c7213774c2cac6367cb820ad661665aad541d0cfc6250d",
+          "decoded_rgba_sha256": "bd84e68f9a7cc3ab5ee675ebfb118f80e9ea9aaeccce9b1a0a2e1eda7420a290"
+        },
+        {
+          "record": 1,
+          "record_sha256": "821286f200de68b303d4ecaa11791b6d54b1dfe922f098b17fd35707d1673b3a",
+          "decoded_rgba_sha256": "cdf6dc6782aea5903ce64744cb3ee2ae2110ec69488784392c0a71b191cffda6"
+        },
+        {
+          "record": 2,
+          "record_sha256": "e00d323c14f7ecb4d4b871ce06cd8d35efc278ad8bb9810908007bed4781307b",
+          "decoded_rgba_sha256": "dbee6751e88187be949d36d208de119cb5b3302c272dc22099dede9889dcacef"
+        },
+        {
+          "record": 3,
+          "record_sha256": "e36b6be555cca76fe43a6c38d830d1277bce3e0d6a6ba3802cbf56cf6fd5c2d3",
+          "decoded_rgba_sha256": "4633d9299dfd8dea8451014bca0fcc1b4eb596163d3050cd003bc76d4a959ac7"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN16.EGG",
+          "record": 0,
+          "image": "battle-man16-0-r1.png",
+          "image_sha256": "53a599a6db8f10cf76d08de389fbf07b72b6f3c8f9fdf6647256c440809300ad",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN16.EGG",
+          "record": 1,
+          "image": "battle-man16-1-r1.png",
+          "image_sha256": "276b05c40e6a728411d8fa4fd37cd2e7d01c1605435eb73e673dff6da9a22c97",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN16.EGG",
+          "record": 2,
+          "image": "battle-man16-2-r1.png",
+          "image_sha256": "72674401cf1e6d9963cf06c0916950998b39fb99628f299ea752724135402c9f",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN16.EGG",
+          "record": 3,
+          "image": "battle-man16-3-r1.png",
+          "image_sha256": "1721160832e226599e1799b396ad1be15f76f87304fc7eb5a1775fea80eb40e0",
+          "transform": "identity"
+        }
+      ]
+    },
+    {
+      "resource": "MAN17.EGG",
+      "source_sha256": "01d5fcc69a2968ad4cdaa3c95fcae59888f4c2697d6c328364a5083a8bbe13b0",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "73e334e0dc7d59f3449e772be87a63ac83f071c2c0e3ed3f353c81b5cdfc9ed9",
+          "decoded_rgba_sha256": "5ff1d7c47d62b2a2487672b138c08905267c59042c5e839632c511308333ce1c"
+        },
+        {
+          "record": 1,
+          "record_sha256": "e37dd382be225f1d73b91ab72fb023a1dc26e07a1fab5bade8f2739b18f55b5c",
+          "decoded_rgba_sha256": "275f2b84829ec10fa4c26f7bb524089b67de8045c167b300447403c095770b56"
+        },
+        {
+          "record": 2,
+          "record_sha256": "6c91405311e6a5c7536756a2c4f65aef0d72f90ec0c9739a0434c1ea1c1518c2",
+          "decoded_rgba_sha256": "cefe074a8e5d977c807feaa66c127cbb8a3a899d0410a783b87bfc40578d1b46"
+        },
+        {
+          "record": 3,
+          "record_sha256": "e7b7dfceb172cd6b8c7f627360e573a464b0b5323e98d525f0d2e452011c772b",
+          "decoded_rgba_sha256": "3e168d33e6c01741022180de13e43272a446c59f1c8dc7be14f96ac7b3d6314c"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man17-hd-atlas-r1.png",
+      "image_sha256": "73f3b46666bd5b3d106aec17e297a9f87ddcf747cb0562d47f186ccd9643fbab",
+      "prompt": "man17-r1.prompt.txt",
+      "prompt_sha256": "78b88b63f9a54819c2b1f9628b258dc25952b17ba4d53a6ed5b5fb4e50bee519",
+      "receipt_sha256": "b5dc3b26c92870f29ac48c9ca871fdc2fa42935436a4bffe7bf82c6aeb61ca27",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            9,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            7,
+            7,
+            605,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            17,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            14,
+            613,
+            607
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man17.json",
+      "runtime_manifest_sha256": "162f460641e23dab694b1236f7f1cbbb741103f1a49f4fb1dc84e31ad075deff",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 351,
+            "file": "troop-man17-0-r1.png",
+            "sha256": "3f9c3d35810fce2b83c3276c7a1fe4cf3fa349e719685d0ce2122e576a721765",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              100,
+              64,
+              506,
+              533
+            ]
+          },
+          "target_rect": [
+            51,
+            42,
+            204,
+            222
+          ],
+          "native_sha256": [
+            "53bad1bf403c33815901c7fce558808392a2a5976ecdbf109e29f43f2bc326fa",
+            "0b253fb6d1547bf4fb1015c03098a36eb2293123804a7c5081e0aed37d52f01c"
+          ],
+          "record_sha256": [
+            "73e334e0dc7d59f3449e772be87a63ac83f071c2c0e3ed3f353c81b5cdfc9ed9",
+            "c8368d2c94cb75abba08f2b766baa9b512b7b223222595b73b1b406fba159388"
+          ],
+          "cache_sha256": [
+            "87b48575d5e6af610fd627bc6e8aa07b0ab646553d5de5c2eb9cbd5e5820bdd0",
+            "0f7a038cb823554c2d6429858081577a51e5f6884486a347aad135f836063dd8"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 355,
+            "file": "troop-man17-1-r1.png",
+            "sha256": "4d1aed7bd8ef2bf77c69441f8c2d64b511e37f845faa733de7141dffa7d4453c",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              103,
+              92,
+              500,
+              506
+            ]
+          },
+          "target_rect": [
+            39,
+            60,
+            216,
+            204
+          ],
+          "native_sha256": [
+            "af1ee04cda1415a8d15aeb80b6a3bd6b07e5682cace3103649d802d50d62d329",
+            "47d77ab460168aa5cc617a0c2f1baf350ed401850782e059d685c2a5026f24c4"
+          ],
+          "record_sha256": [
+            "e37dd382be225f1d73b91ab72fb023a1dc26e07a1fab5bade8f2739b18f55b5c",
+            "6cb2bab8b6d1ea6ad947c9bfab218f28800a0afec1059bd3e61beb9bbe02245f"
+          ],
+          "cache_sha256": [
+            "4d9dbbc901f4c8ee29bf8bae3a8bae83965924779e57ba96171d4e8661d1a28d",
+            "76d476f96c2fed613645dbd890243f7b60cc7590914c850b73e5494f9d65ce55"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 359,
+            "file": "troop-man17-2-r1.png",
+            "sha256": "f510cbf374799305d04422e902f0c45d69cedde9b86c850775480be3dfc9ad01",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              95,
+              28,
+              513,
+              565
+            ]
+          },
+          "target_rect": [
+            51,
+            12,
+            204,
+            252
+          ],
+          "native_sha256": [
+            "a5d064bad35cf4e7ad74dce99dce2ac35dc1dc913812ff9a0b2a52a25ce3fe8a",
+            "01bc0f27fb31d9e3d1164bfc26a14f8c24bc8b5978398149ff32d45318c7831d"
+          ],
+          "record_sha256": [
+            "6c91405311e6a5c7536756a2c4f65aef0d72f90ec0c9739a0434c1ea1c1518c2",
+            "96dc0701a4d9a920196e6e88493312ee2b04b89103cf23822a13b14bd75b854a"
+          ],
+          "cache_sha256": [
+            "d7710a6c00f87fd0712e11e16500524c818a05fd2593479896cb3aeb2d6fd95c",
+            "d1778202939d1a266e65a4449e431a14517db04886e3d91a68f94b335bdca090"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 363,
+            "file": "troop-man17-3-r1.png",
+            "sha256": "c99d17be5c1adb1f8f620b12658408f4591ea6488881c8b1c997864991d07f1e",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              61,
+              84,
+              546,
+              513
+            ]
+          },
+          "target_rect": [
+            6,
+            42,
+            249,
+            228
+          ],
+          "native_sha256": [
+            "ddebe82d3507d1892b07c68e9407bfa4b5532f296c02397fc8cf56b3d0560cdc",
+            "04626811e54d19568ad4983cd4313e20965e23ec0c4392acc41829784b74d3bd"
+          ],
+          "record_sha256": [
+            "e7b7dfceb172cd6b8c7f627360e573a464b0b5323e98d525f0d2e452011c772b",
+            "e82498b4674a0cf35ee63946129c6986e9f48ed1e0dc09653cd8d1b8e119b301"
+          ],
+          "cache_sha256": [
+            "dd4a2a98ef7d9846c0813bfba6b735068f3a8bcc6d3c871a78ad3ca639ad2773",
+            "b36ab7cb24292d35bd8b557df6f9fc04f1b01b704221d3289444993e24cc3897"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN18.EGG",
+      "source_sha256": "3621110448141e861f93fc4f6f0a885dd36fabdff393bbae953b5ecedb454215",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "9674130785d992d463daf5ef247a6c53741a192ab89ddb063b62f19f29572f95",
+          "decoded_rgba_sha256": "b6048972fac79f2b95fe2700719afa6d2bf9f26d1aa00fc57aa5d2a565939aa2"
+        },
+        {
+          "record": 1,
+          "record_sha256": "ce4bc185c95e181ba4d0a295ff316015c64d5ff4c4aefdd291cc460750479073",
+          "decoded_rgba_sha256": "390cf8fc9c76c73c00b5d0db35f82d5728d202f1672769b01afc056a6920527d"
+        },
+        {
+          "record": 2,
+          "record_sha256": "d6050460025cb22e5fa9884fdd0b71470f52a5e22699a0191fa2111f799526ab",
+          "decoded_rgba_sha256": "18ac613b7dbf9bd8d79ddb366ecda7bfbae459232be3303190027f4750717e6c"
+        },
+        {
+          "record": 3,
+          "record_sha256": "d389a893a6caef8a75d53ba8c5f4cba8721e234595d218eeb24eed1483bda275",
+          "decoded_rgba_sha256": "f9f346b29b2fc51f79a9156734c5fd6cff3a7ff2b285d9c69f0a8e082db43486"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man18-hd-atlas-r1.png",
+      "image_sha256": "f956b2d52140d61b6f09f20d2e3cdca0694d5e0d03f2a24804ee3059d5205fc1",
+      "prompt": "man18-r1.prompt.txt",
+      "prompt_sha256": "8a3dc0e7af87d1af00cd8ca184086e89a053d7795345327bcf51e8b51871c0b0",
+      "receipt_sha256": "32b1378d7e46ff24b65637582823d8e28e13d1758071f628ad977eb262a92649",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            3,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            25,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man18.json",
+      "runtime_manifest_sha256": "7aa5313db66e1a8c544aa499ac42601f7be7cc619357666930b35c7027b3bf94",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 367,
+            "file": "troop-man18-0-r1.png",
+            "sha256": "7a82aff1e56be1e48d08d6782451a85639d70cffe8ff199ff21851b58e67d32f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              91,
+              46,
+              525,
+              528
+            ]
+          },
+          "target_rect": [
+            48,
+            42,
+            216,
+            174
+          ],
+          "native_sha256": [
+            "0ec4381e3f777aab2ffabec662e219425acec5f14cf869c01ccefbcd529ed9a3",
+            "d96268b9f468a21907b0ab365c887cd673d4de8f0680aa2724b02175cedeb08f"
+          ],
+          "record_sha256": [
+            "9674130785d992d463daf5ef247a6c53741a192ab89ddb063b62f19f29572f95",
+            "b9ab50c85452b2e654fcf0643a9e6b3a7d818d2d695c343abcc4217e4972885e"
+          ],
+          "cache_sha256": [
+            "b069925f21421c3ff1b4843eecc7d0e1368b637b8e1fa6420a717cb279743c53",
+            "5c249ad5a1e53ce728a59acc13dfe987a09c8fcd856006ba4d1b091cbced86c7"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 371,
+            "file": "troop-man18-1-r1.png",
+            "sha256": "010f3ae5d6a3c3b35dd145c125823aed4fb99f6e49d2da77f5fc3007d6bb2ff5",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              46,
+              104,
+              562,
+              452
+            ]
+          },
+          "target_rect": [
+            45,
+            54,
+            219,
+            150
+          ],
+          "native_sha256": [
+            "bca100bb605a44f378ad29e031af279842cc1f914e72339ca59ab2d6ccbb66df",
+            "8a88c2639bf9c4e740e9211f1cd947a77fb247f3b92e17e496b2c22c0ab342f7"
+          ],
+          "record_sha256": [
+            "ce4bc185c95e181ba4d0a295ff316015c64d5ff4c4aefdd291cc460750479073",
+            "071c1615a4a0b1a5b983ec7e8bbb27cb1e99b34a4e2d59b8dac751c6c609b8ab"
+          ],
+          "cache_sha256": [
+            "3966c446f8f2e277ad4ef81560a2c6cf8a8ee964c093e6c89219edc0952008f5",
+            "db72e03b7e75f44d98ac7ab5cfc19c5a93da2c59c4db84fed7f947b060b2ae53"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 375,
+            "file": "troop-man18-2-r1.png",
+            "sha256": "b82367593dc19ec3b51fe1fe11620c95ad030786a6f2cc0413cba876eddb6306",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              90,
+              66,
+              459,
+              462
+            ]
+          },
+          "target_rect": [
+            48,
+            48,
+            174,
+            156
+          ],
+          "native_sha256": [
+            "d41bed942cf45dc7fc2f84f4f8b2627f14025e53fe226c04a00c2df9c40af220",
+            "78e54a1cead75a0b5ef74bbdc1b649417df45e73f7a06cc66e48e62f1ff260ef"
+          ],
+          "record_sha256": [
+            "d6050460025cb22e5fa9884fdd0b71470f52a5e22699a0191fa2111f799526ab",
+            "011cc0e378fa2d9ffdd8de788e93e20782c28f9bcd70809ca87d038c1299354b"
+          ],
+          "cache_sha256": [
+            "09d94aafed4773173ba60ad278d0fd5ce833628698633ea18a18fe2be9f692ab",
+            "dead80f6da3ce21524a21ff80451d0763da4b82380cfbe163a366ddab817be5f"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 379,
+            "file": "troop-man18-3-r1.png",
+            "sha256": "1eb6ebcdfd206f969054922dc1f9af4e6a63b9cf53b91d2da8cce014f0e18ea8",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              42,
+              10,
+              564,
+              527
+            ]
+          },
+          "target_rect": [
+            45,
+            30,
+            216,
+            174
+          ],
+          "native_sha256": [
+            "279a41a0ecfe5ca0c92b2a09fe9b0bd506061d4f68b8ee6da5a9d8ed7fae5cd9",
+            "69d1513f9bed437c757d7cd99aa7244e563f3e653aa244a1a820b34ff076db89"
+          ],
+          "record_sha256": [
+            "d389a893a6caef8a75d53ba8c5f4cba8721e234595d218eeb24eed1483bda275",
+            "8857de2dd286c9f4655586e825a902eb49fe685ee97ce8bb6e1ba89b69177964"
+          ],
+          "cache_sha256": [
+            "cb1f4b5b8192d4716aed4c06bca32d35eb2daf59b33775f59ac798fd75d30539",
+            "f33d598b9a0032820b92006a5000d5cca6a9d6c79b2d10ddc7f595a186dc1f74"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN19.EGG",
+      "source_sha256": "de0ec47e4f146a249b8e5196c184099dd008b45243150a47c022db76e1549e4c",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "258c205fca85320f06f6cd8e743526745634bd689b0f8b3b42a216877a263f77",
+          "decoded_rgba_sha256": "f88dca3425341b0d74f301a40b5be65a4759b1ff955b3d03adfd9f0d68148392"
+        },
+        {
+          "record": 1,
+          "record_sha256": "6e6a6590e4bf9885fa4d619117d88fe80dc31e4c83a9c54d620b48eaa69eba2f",
+          "decoded_rgba_sha256": "55724827d23a9f9770b5d9ff85495551c2d092231a1e956e3139e7f60c3d1d34"
+        },
+        {
+          "record": 2,
+          "record_sha256": "81f391ffb9eb9f37152c8c10964e51cabef7e9366161dabf1d0208a147db5ffb",
+          "decoded_rgba_sha256": "e0075300a5deb63f7506b7607b7161ee10e2cba594b1e6b4db4953073f0b70d9"
+        },
+        {
+          "record": 3,
+          "record_sha256": "aab5cf9e9f07eea07e4a0484245ee1629c562e9da66b2044a640199d1cfd0231",
+          "decoded_rgba_sha256": "73fcfab46f6c6a3f3de81d447a88e145ac831974597586f790737723a3bc80e6"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man19-hd-atlas-r1.png",
+      "image_sha256": "a26ae390f5216f11ac1a374083968c7db7169b0874b2ac0678a7311fb701786c",
+      "prompt": "man19-r1.prompt.txt",
+      "prompt_sha256": "3078d599f82eb1e723e66b4bd9517f54b38e489add863e77f30cc8f8f3e79b1b",
+      "receipt_sha256": "55d9a6563d61df4298e24c19c823653173f57c0bdac6e305aaed028ee21d0aff",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            8,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man19.json",
+      "runtime_manifest_sha256": "be651678fcc63a5b6aa04440f37f415e024721450ca8424ed75d1e983ba37664",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 383,
+            "file": "troop-man19-0-r1.png",
+            "sha256": "51566b5f59e8e3e5eb2c9c1774d1fd4be6c0937e804e32e662bd3376387b5f68",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              14,
+              144,
+              613,
+              446
+            ]
+          },
+          "target_rect": [
+            12,
+            90,
+            249,
+            210
+          ],
+          "native_sha256": [
+            "96cb4e6b0d82ad80fffadbcb6227c15ea744747a5583a58c90c35122e6e2a09c",
+            "83c24409fbdaeef6ec8fda2547117a61d091a344a3acf8d849b87c3a62f47c35"
+          ],
+          "record_sha256": [
+            "258c205fca85320f06f6cd8e743526745634bd689b0f8b3b42a216877a263f77",
+            "3a40b80162369a77f5c495cc73865820a777be4cf2914e182d38a68580ca903a"
+          ],
+          "cache_sha256": [
+            "bd59a226b771e5e48afacc43054c5fd196be85605842f5b4e14fbf966d30b97e",
+            "7afcf0a6c969e5c049a2ee30da230abd5165cec73f3f1ca00fd021c83d5429fc"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 387,
+            "file": "troop-man19-1-r1.png",
+            "sha256": "36d3469ee70100c545395ceb08b8916c80312f6202833cb5517d1dbbc5f7074f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              27,
+              614,
+              564
+            ]
+          },
+          "target_rect": [
+            39,
+            30,
+            213,
+            270
+          ],
+          "native_sha256": [
+            "f52a10962632ffdd2b089d613d2af3e6a75a13f4988bfb53a2fc837b398ef548",
+            "347c88752fd7c8a9a4d152d2c4fceec494753b5faddd0ef7131d0fb482d09b30"
+          ],
+          "record_sha256": [
+            "6e6a6590e4bf9885fa4d619117d88fe80dc31e4c83a9c54d620b48eaa69eba2f",
+            "6e5b370e72465f78d4acf36f45d3f4d22acb3c711c000f4e50c16812728ed807"
+          ],
+          "cache_sha256": [
+            "94877b0ebabce731512b239893b28a445170353176295d8e88fadf40bfcc7805",
+            "ecd5f7f1a0fa4ffe31bc8dff095449afb70da479b911733bf64e43e2d927012b"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 391,
+            "file": "troop-man19-2-r1.png",
+            "sha256": "c692af29e9f0793b3ea44827575e7cc9376ee4ed9e4aab9f2f6757b54e3fd48f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              81,
+              26,
+              538,
+              557
+            ]
+          },
+          "target_rect": [
+            42,
+            30,
+            213,
+            270
+          ],
+          "native_sha256": [
+            "ff3fe48f1a849b1001b3a56aafd5633c7d944b019f28afe8c4a0071c27259972",
+            "6dfbe2e8f4bc3217f6efca80da1b96dafd46a4fa01543478593ad6e12ce2475f"
+          ],
+          "record_sha256": [
+            "81f391ffb9eb9f37152c8c10964e51cabef7e9366161dabf1d0208a147db5ffb",
+            "53464f8852e1560d3ed8923bbafe4383179733cb2afed526e5247ad886dd369b"
+          ],
+          "cache_sha256": [
+            "677de6c6ece07f3be2f722ac72fb4685100f57e8efa5ff630f630a194b69d166",
+            "3a4471db6333321efc6263f412d34232ba23c34b0db072c08d3f6f189692179d"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 395,
+            "file": "troop-man19-3-r1.png",
+            "sha256": "451e6c3dc34d4b7c80c2b305b822dece475cf97a78e308b995d931165dc44951",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              19,
+              111,
+              597,
+              463
+            ]
+          },
+          "target_rect": [
+            18,
+            66,
+            237,
+            234
+          ],
+          "native_sha256": [
+            "6baf4a5e27c0f35a100f3ce58fa210a1972261613c771cf052683d2a035888f2",
+            "56e11fb2edc00ece5c26a31f840dc5f52cd90a45a57897c43d75ce22d1e6fc1b"
+          ],
+          "record_sha256": [
+            "aab5cf9e9f07eea07e4a0484245ee1629c562e9da66b2044a640199d1cfd0231",
+            "ca08d1e2599ce7ee1b048f3f2694cc6809646767562ccb6222fa2e7d8c158dfb"
+          ],
+          "cache_sha256": [
+            "5f3de538d28b798e31318eb1c154e363bec57fad316417bb8a88f0d80f9a5763",
+            "dbb8c27adeaae2ceb23f8cbee0d7cb7687d392c2975cf4878679e9c22b796e94"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN20.EGG",
+      "source_sha256": "8d797ae688960fbc63bdc74372a4b7c775e99be38989dd47ba0e5d3ca0ae508f",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "c0a732c7e1a61b648bb82e96af11c7bdff6bf300c773b81dfb2f74dae0f156e5",
+          "decoded_rgba_sha256": "addc0d023b03626109838a20d199bb3e4f40b280365054a6326b41e09b0de833"
+        },
+        {
+          "record": 1,
+          "record_sha256": "0dfc06d251c43ebf4ccee82c4b9357bc22dc2c066bb50ec15f153133e4c84e4c",
+          "decoded_rgba_sha256": "4955acaa12ba8b1df7c74120cb3c6fc1b7bbd276dea7a87e7c38e3dd6836879e"
+        },
+        {
+          "record": 2,
+          "record_sha256": "fd4bc09ede624933390f6a336972293e9e39cccf9bcb401f869fdf0807c0577d",
+          "decoded_rgba_sha256": "51be9f8b8a86a4c7b526e3d220eb1a8c9e2e30b7106d676e5a74ab1e629662dc"
+        },
+        {
+          "record": 3,
+          "record_sha256": "280ebbba9317986b398b9becf9385044e42f7792e820b224192b3063162ce10d",
+          "decoded_rgba_sha256": "cd8c2804a534dc07744c638e2f63eb06cbfdb270b817d1dcc62442f464ff4b23"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man20-hd-atlas-r1.png",
+      "image_sha256": "8d24a8a28681801c245ffcb0ece2c4a993e6ac023afcd3d15666f74da5244ec1",
+      "prompt": "man20-r1.prompt.txt",
+      "prompt_sha256": "45261fc7a398ef16cb07b577ed63bac4d80d6ff8414d172fc229582038996ac9",
+      "receipt_sha256": "463dbbacc956e48b2432d83910b81ad65aef7ec38e7f38db29f469a019075d3a",
+      "width": 1176,
+      "height": 1337,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            588,
+            668
+          ],
+          "alpha_bbox": [
+            0,
+            15,
+            588,
+            668
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            588,
+            0,
+            1176,
+            668
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            588,
+            668
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            668,
+            588,
+            1337
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            588,
+            669
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            588,
+            668,
+            1176,
+            1337
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            588,
+            669
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man20.json",
+      "runtime_manifest_sha256": "9fe471d9bbb861255320e3b8c1a518931e92fc92517c718897071732f6b3588c",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 399,
+            "file": "troop-man20-0-r1.png",
+            "sha256": "4c8f5c7754f7fa1b022fe1339ecbfc07cd57b43eb90d73d66a87e79a6bd4e2d0",
+            "width": 588,
+            "height": 668,
+            "sampling": "bitmap",
+            "source_rect": [
+              13,
+              17,
+              570,
+              651
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            258
+          ],
+          "native_sha256": [
+            "c8ead12236161a3f5fa8fa43018213dea6fa686c71b7305efcc553b876006648",
+            "ddd3237797c5b41b47a79232f694fbff28d715d20ccb6781e84d3175867f150b"
+          ],
+          "record_sha256": [
+            "c0a732c7e1a61b648bb82e96af11c7bdff6bf300c773b81dfb2f74dae0f156e5",
+            "3c31db4a596f5f963cfc4c86ad41890cb3ee7bf6a436ba2caf803e705a8a0c85"
+          ],
+          "cache_sha256": [
+            "49906621a833359383ba6d83cb8a5a13b908aa3387c60dc8c095abb02b276bad",
+            "42469f7e377ea89a02fd7dfd3c5aa843bf8824151812e98459ddea6e51f956e8"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 403,
+            "file": "troop-man20-1-r1.png",
+            "sha256": "061c95ee35c40e19b1fc776aaa0d4113c3729b92784a401614fb49548de65169",
+            "width": 588,
+            "height": 668,
+            "sampling": "bitmap",
+            "source_rect": [
+              30,
+              26,
+              547,
+              642
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            246
+          ],
+          "native_sha256": [
+            "887319c3924c3226c10cc4858f2fd372d3cb5f55c5be431687b825825bb88c81",
+            "ac55d4ae7be419daf58ef2d4a7382ac9f2d20d683e09980cf9fec9bff862191f"
+          ],
+          "record_sha256": [
+            "0dfc06d251c43ebf4ccee82c4b9357bc22dc2c066bb50ec15f153133e4c84e4c",
+            "aa61b16226afca3eb740ebe00856bc4d341facaf3ac2655cfac30079e9674377"
+          ],
+          "cache_sha256": [
+            "7df520b4cff1b114dd7e1fdc55c05871e6e0ed51f6fd49088037206448edaf93",
+            "db95440d907ad40e60fe8d03349b9103741402fac29d96835cefa7cb1db45452"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 407,
+            "file": "troop-man20-2-r1.png",
+            "sha256": "949f29d26a23c05ffb2f1d09036d0aca12d75d66d74ab64182fbda5de694eaea",
+            "width": 588,
+            "height": 669,
+            "sampling": "bitmap",
+            "source_rect": [
+              10,
+              0,
+              574,
+              539
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            258,
+            240
+          ],
+          "native_sha256": [
+            "eade7de429b2e07be3d4ca447b92cbb10439bc6e03c90d0a45302c8f2f463946",
+            "b057a68dcd2bb6759b8d2cd70a5036393208bfdaacfc0ac6614c450954af3a43"
+          ],
+          "record_sha256": [
+            "fd4bc09ede624933390f6a336972293e9e39cccf9bcb401f869fdf0807c0577d",
+            "65683887aae30f7febe13f846b211f335ede69dca839db0059ce029d19a4eb6d"
+          ],
+          "cache_sha256": [
+            "d536d0eebf050030f0e7c15cd917a680d890d38dd3d29cc2f33f0f4d6974df30",
+            "00e94dc2dcf2a7296265fb4a9f7163819656b3901a3c59d9fe2990efe802d45d"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 411,
+            "file": "troop-man20-3-r1.png",
+            "sha256": "3da741dec62ce40a001832be6bc4f44cdd33029a75da1a7451afb8571e0b0604",
+            "width": 588,
+            "height": 669,
+            "sampling": "bitmap",
+            "source_rect": [
+              10,
+              0,
+              578,
+              572
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            258
+          ],
+          "native_sha256": [
+            "96d7cc98d885ae0fedbd0edc46492f8aade3841af3ccd9cc55d37b8a1531aa04",
+            "6d5f43922cda89c7511b6fdc719397e3dc7096cad1517a1b4c1801949fa7f8d3"
+          ],
+          "record_sha256": [
+            "280ebbba9317986b398b9becf9385044e42f7792e820b224192b3063162ce10d",
+            "c0b3c52825aa60bd4d7fa6e53547057c5d906af68c8f51e8cde6b7a6cbd4c518"
+          ],
+          "cache_sha256": [
+            "5fa2ccdda94715a8c719f6114a8a467c21b438ff4e03bdd31808e882f46c803e",
+            "5c5d5581e855d4df9ee98a7035095d7d8e88a7f29e66eea5a164c6d06a65f549"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN21.EGG",
+      "source_sha256": "47cc484319abeba53551c20b7cf4b9b2c6061f2da3b6cda14155b3598f10982c",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "60692a5484c93406ec70ae7316e0a905d09ce9a9d1f8cce5b051692dbcc64164",
+          "decoded_rgba_sha256": "e8e1d19ea9c64fd465a7aad6a696f2a28fbc970cf9c3fda1770fd609dd60b7ff"
+        },
+        {
+          "record": 1,
+          "record_sha256": "0426c60e7ab8b5ea3dbcf184b7372beb3a520406e730c4527b666ab2bc56777f",
+          "decoded_rgba_sha256": "6b0ff65cb85e2450fde04ff28006730d443fe8d18b2520e0ce3e1151f545b032"
+        },
+        {
+          "record": 2,
+          "record_sha256": "547205ea9d571c29e718c0a94f2633902270c2139aa2a8939c6dbd006746b146",
+          "decoded_rgba_sha256": "cdc73b81217b199ada76159fb1e7321ae63852448f30f8a1b31e1ece0e68717e"
+        },
+        {
+          "record": 3,
+          "record_sha256": "549d51ea698bcd20116cdc3e552d5a47826a077ce13bf7debd5086e6f38d6051",
+          "decoded_rgba_sha256": "4479f3be72033722252e5e3823ce2dbdb124603a54e6705c8b0583d6799401ad"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN21.EGG",
+          "record": 0,
+          "image": "battle-man21-0-r1.png",
+          "image_sha256": "e710379542cf1c4279ce1703b17ed9d3a839a2e831add705d0f93a370cbf8122",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN21.EGG",
+          "record": 1,
+          "image": "battle-man21-1-r1.png",
+          "image_sha256": "5e6b3a90ad34fef1914e42c6d9bee491df0596102f7dc134376d420d8c34c80a",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN21.EGG",
+          "record": 2,
+          "image": "battle-man21-2-r1.png",
+          "image_sha256": "483573cabb50b4ae6ecb2ac9b6a68c776398d37f847c2f36a45556862ade48c7",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN21.EGG",
+          "record": 3,
+          "image": "battle-man21-3-r1.png",
+          "image_sha256": "1c079c414df24d03ae56e93990a17fa850782a10c796087dc403ec0b10be192d",
+          "transform": "identity"
+        }
+      ]
+    },
+    {
+      "resource": "MAN22.EGG",
+      "source_sha256": "2b29ec53671ced2f114a040ebd27521393ab65e106ed85d17624b0d1272775e0",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "7d8baa2a868f606dd707a0ac872e10dcc8dcef7d0ec4f6c2cb2f08ba53988510",
+          "decoded_rgba_sha256": "ad1f2d4f24f9b5f56f3feebc852b37c4cd230365ab1c4734b76cafd94bf3bb47"
+        },
+        {
+          "record": 1,
+          "record_sha256": "06c41a9ff23c2ca21687bb47b308d5e05d0cece9639088cf65401104255e9b55",
+          "decoded_rgba_sha256": "2c44e89a912735131752709878323633a39d69a6fa31d9463a4f850bdfeed3e1"
+        },
+        {
+          "record": 2,
+          "record_sha256": "3cc5ac1e188cc908747aa90a0385c3101d06184c3c8fa700cadc76966439b9de",
+          "decoded_rgba_sha256": "7c5b19d49ae7887c9a6c8cda6deecc48776c021b04060af2b3f5250457eb7c18"
+        },
+        {
+          "record": 3,
+          "record_sha256": "06ecb127c56a2a9947955adc9e28b1baa528508cb66ed3042c2ecd04010b6af6",
+          "decoded_rgba_sha256": "401702c2e829443c272efd5a0947141cd58da0b01019a86dc3785b8e2a057517"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man22-hd-atlas-r1.png",
+      "image_sha256": "2d3626a299580d17f61c15ce5beaf5f2c9bbbd2c01f3e1f6e25759fd8fb2068e",
+      "prompt": "man22-r1.prompt.txt",
+      "prompt_sha256": "bdd4875ec5f9618ea36e5d7236cf116cd588e1449586932e842b9b71abca42e8",
+      "receipt_sha256": "cf4ca74de4b06092f871f457a9b0f4ed75136c31d5ecfb6f9927a3f55e30c264",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            37,
+            6,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            11,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            13,
+            1,
+            627,
+            589
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            626,
+            597
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man22.json",
+      "runtime_manifest_sha256": "99c602f8f2fc4c4424c8b7d1eb396c54bbd52e6fb61d9c65b47bc61e4024134f",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 415,
+            "file": "troop-man22-0-r1.png",
+            "sha256": "ca16500f2593c66f4e15d320dc19aa61a6180565548572a9484123d83789a2c9",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              240,
+              8,
+              387,
+              577
+            ]
+          },
+          "target_rect": [
+            81,
+            0,
+            183,
+            300
+          ],
+          "native_sha256": [
+            "12b8b8af813a8089822b260364289ca1b7c17f3c60f7eda8a8829ba55a36147c",
+            "80902f6b7c61316ab62a4c5e7b7ec51ff24ede3a0af6bd112670d9b28548354e"
+          ],
+          "record_sha256": [
+            "7d8baa2a868f606dd707a0ac872e10dcc8dcef7d0ec4f6c2cb2f08ba53988510",
+            "48cefb390576dbf92882212936b1f4eba7e8546f3f0d460abf4afd2867abf07a"
+          ],
+          "cache_sha256": [
+            "6721afdf88741fcc0689c192bf03d21f7319ac3491869104a48fbbd127f4a73a",
+            "846a6a4b9f1bdf0774c147e3ef7e59eff552cb27fe9b4530bac0a0047e5ea72c"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 419,
+            "file": "troop-man22-1-r1.png",
+            "sha256": "5e19421694a665db25c084b4b96c97933bd011dc8c67193e4dfef140276e4bbe",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              12,
+              608,
+              615
+            ]
+          },
+          "target_rect": [
+            69,
+            0,
+            195,
+            300
+          ],
+          "native_sha256": [
+            "8912d711f95e161d644376437ea1c5daeda5d52690dad44140e808c8635ad9eb",
+            "c418141848a01ba6719de506d28c833fad604332873491a7a6fa6756412b5a63"
+          ],
+          "record_sha256": [
+            "06c41a9ff23c2ca21687bb47b308d5e05d0cece9639088cf65401104255e9b55",
+            "fb9204efa925bfd6bc5a20d1d6ab515b47f38533bf7df1f6175967df5db8b2b5"
+          ],
+          "cache_sha256": [
+            "12cc9bd79623ccc7eaabb32549f3683038b3b037153e9575693fdfcc8c6d026a",
+            "786bc62a8811daa5db81aef6a8d1ba054606eb63133c7c36b77220e80d8cdb9d"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 423,
+            "file": "troop-man22-2-r1.png",
+            "sha256": "4838d2c304a2e287ef520ca55c991c92964257f1690fe0181469ce5511d1ff0b",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              28,
+              17,
+              599,
+              561
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            300
+          ],
+          "native_sha256": [
+            "45a998ea888f2d8713ab9a448092aab9342d47d78ff0c262a2565bd72706aeb6",
+            "a6d25666ca0f9d713a91f3f257f24e436164420c6e117186a95f6f3857013335"
+          ],
+          "record_sha256": [
+            "3cc5ac1e188cc908747aa90a0385c3101d06184c3c8fa700cadc76966439b9de",
+            "4308935ed9e742d69b5ca1d4ef6843949f1c6d1a14211ad8546e157d4d7dd7e1"
+          ],
+          "cache_sha256": [
+            "cfbe54371ef01142f08060f8c298d93fd65dc2f00b4dde023c85ff6a856be9d5",
+            "b45f598e3407be2f0b9f3e8d53709bdd57213c4134ce1b7e47b3bd765737afa8"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 427,
+            "file": "troop-man22-3-r1.png",
+            "sha256": "37aae068f3d39c3bc5158224ab52ddff735622f508a151d6538d632193b46937",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              0,
+              617,
+              595
+            ]
+          },
+          "target_rect": [
+            15,
+            0,
+            249,
+            300
+          ],
+          "native_sha256": [
+            "52c87ed8d84cbaa40e978afd6285c74fcc7774d75af9d28b48769fc21f66c36d",
+            "a9b47997b2c8bb7d12286c83af1479857515a056fb993c5fb06a6b7113df6865"
+          ],
+          "record_sha256": [
+            "06ecb127c56a2a9947955adc9e28b1baa528508cb66ed3042c2ecd04010b6af6",
+            "d35f3b3e90a76f2f2fa1147c7d69bcb953ae78ddb3881894fa65c44a70a37912"
+          ],
+          "cache_sha256": [
+            "2decff33dac23f9fbc8d51d36d1a65455d4089c903e5b966e425ae544f39ebb7",
+            "3739ad84b32d0d33c91dd14a1cf64b771199b55501cab4bb8bd752d02d53bbeb"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN23.EGG",
+      "source_sha256": "381e7bdbda9cf0a68cc1a7587ed98828a5aed594d26dc9771d709258a60bf1cf",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "1b82ecc84697f3821e6d8c96c715eb1b107426a01e6746662da94b8ed9fc250f",
+          "decoded_rgba_sha256": "7f63fdc4cf14c931cfc0cc0388e9f595d1dfe920bbc31b742e31b9734be4ca1d"
+        },
+        {
+          "record": 1,
+          "record_sha256": "8229ad42a3938b8359d7ddf196b6d87381444e0c4967f16d1e7de0b23b399cb2",
+          "decoded_rgba_sha256": "030d607df9d82195ee1fd478e1248972e47bcafb675ce76dd607e5516bcdcb41"
+        },
+        {
+          "record": 2,
+          "record_sha256": "077abdb99af5c2824a8f206ba3761c782db4235283c9872dfa87b6a6a074dc63",
+          "decoded_rgba_sha256": "9e4317a16228f7530e9fe596c1baa601ec30d21a00c6e6aebb2668d14be00bd8"
+        },
+        {
+          "record": 3,
+          "record_sha256": "91c5f04d16671223f6ae28887096c5c9996ea4d2b1266f9657e708eed711dc42",
+          "decoded_rgba_sha256": "9f3da56a7d260d58eca6ba1cb5fd5e6430fa1ce11b65d671f4cc209d239c1f53"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man23-hd-atlas-r1.png",
+      "image_sha256": "1f50350aa88252403765a0e2585b98e785fd7ce202831bb3973b8e8ae44f139b",
+      "prompt": "man23-r1.prompt.txt",
+      "prompt_sha256": "87b374d633ebb87018d108bb8d5f184dad44b8ed0d50f5cbc712506cbb62388f",
+      "receipt_sha256": "5d54725bd731cc4fc652951773d31d22e88b7df28e913b743b146326bc3d6e26",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            12,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            19,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            573
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man23.json",
+      "runtime_manifest_sha256": "831e1c0f17da2c786940bc0faff8e1d0e45e71d423afd9bd0c2d6ce0ea9c7c57",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 431,
+            "file": "troop-man23-0-r1.png",
+            "sha256": "9851b0015a0c691d321fdf48ab8b300f18ca258a6dad34db12151aa1640c8927",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              36,
+              13,
+              591,
+              580
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            300
+          ],
+          "native_sha256": [
+            "37b1623e43fcded7c4c812fa7d2d3900960f5104cf3455fc59441430f276f3f5",
+            "95f75aa767e60b91839738444d7bceff2ba1540e332f31eeebbd72f38fc956cb"
+          ],
+          "record_sha256": [
+            "1b82ecc84697f3821e6d8c96c715eb1b107426a01e6746662da94b8ed9fc250f",
+            "38b6663c1fc97c922d02520835c3205a4c2a9853d7c178cc6b0f0b666b5b4d06"
+          ],
+          "cache_sha256": [
+            "6bdbdca85e2295f1a39fb12a895d87886af44bb4d014a55e8d1ab9e6e795fc69",
+            "3e8c0291619bd51e37636c7724a54439f4436b1089fd5ff11ebd2c1977911237"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 435,
+            "file": "troop-man23-1-r1.png",
+            "sha256": "56601313633e30b6c54fa9cbfdadf23a364127e5a1713eb3ef238ffa310be63f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              21,
+              611,
+              574
+            ]
+          },
+          "target_rect": [
+            12,
+            0,
+            252,
+            300
+          ],
+          "native_sha256": [
+            "8be15d4f17fef8c66dc7f9aae2480a503800d160da893cf13c9ea043bb01608a",
+            "53e17f1bb9f6157b17881ca672f6316f694cedef1c76093495cf36f2a2d884c7"
+          ],
+          "record_sha256": [
+            "8229ad42a3938b8359d7ddf196b6d87381444e0c4967f16d1e7de0b23b399cb2",
+            "27223dfd6035b1f32812d6debf153c2cb022618a025f32ad2ba5d446791dccc7"
+          ],
+          "cache_sha256": [
+            "715289a3e2dd8481881277dbab3c0048c9188594d4d5c59824922f20ec33c7cc",
+            "e0bc822fca843a12fee1ce107215ba6815969cf4976b8681c6925a7000ec1d6b"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 439,
+            "file": "troop-man23-2-r1.png",
+            "sha256": "64624a138cd027c4700c59e35dd5742bc80fc81964d64b7d4ab9e1342896ee63",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              8,
+              19,
+              619,
+              533
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            300
+          ],
+          "native_sha256": [
+            "e978825de612f97dc6bb99e0c6b9bbe9c219da402a3eecf8d573e52bb47154b8",
+            "33e9d9e3d01323c3ccf39888890bff4c63ed4c87035343431817f6a1125f4a3d"
+          ],
+          "record_sha256": [
+            "077abdb99af5c2824a8f206ba3761c782db4235283c9872dfa87b6a6a074dc63",
+            "b3fce2d2366422a8047d6fbfa731ae96f6a6048c25b3dd9f6733cfcf651ce71c"
+          ],
+          "cache_sha256": [
+            "f187923ad7d83b80ec254553b4c7f894089b37bb41243a70cf266c878b8f6fc7",
+            "c0e97ed6524c2772d849bcc593d77e40985caa5b5e3744c005e2d8515b92808a"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 443,
+            "file": "troop-man23-3-r1.png",
+            "sha256": "8900cdafefea084d834e44c87b16f18ba9dce274e8c41153a1a9f6c78d1a1e72",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              0,
+              23,
+              618,
+              538
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            264,
+            300
+          ],
+          "native_sha256": [
+            "38aecc8275a0eaa288a46c057564653073e4c91843443c5c51c6f9aeeb57ae3b",
+            "27846abf37ec005003123734ddbe9fa03b642ea142cf3f443d947a6bdd9c995f"
+          ],
+          "record_sha256": [
+            "91c5f04d16671223f6ae28887096c5c9996ea4d2b1266f9657e708eed711dc42",
+            "6a763c99afc2bc5bf9182867d38fd1168947303fea7e982332d178e3ede187f9"
+          ],
+          "cache_sha256": [
+            "045fe6a46b167e218c49fad2d749355d2b265ad1dd90c8df22d04ce4bd72750f",
+            "e4b382af3cb16cf980b9bf2459e1ed13ff81c55627281b36a477951757d26f21"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN24.EGG",
+      "source_sha256": "e9f19e9bda935d96721452bddbd17009d88f61bdc4903ea3abf3735017c31b87",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "b3b91a6d890dee328d6e1aace6127d3ab1c7fcd951e79639b34a6ff39892acbc",
+          "decoded_rgba_sha256": "71671a0df82b9393738b3bfe85993e4f339deba9cc60cd1df20ac3dd442f9c8e"
+        },
+        {
+          "record": 1,
+          "record_sha256": "ea0be3b36ad8d55d01c5b2f50120578db47b42dbdf44a8adcc6db5fdcb72e0f4",
+          "decoded_rgba_sha256": "86ea2d412b544653938d45c7a195d45eb965dfd19388c250159286b8bb7c9b3f"
+        },
+        {
+          "record": 2,
+          "record_sha256": "cea194e7615abd8953708df4bb888f0708228354f46ff8701044344f7ce79992",
+          "decoded_rgba_sha256": "d46dc70f95b5a243856dec857afa0a0a53e05e05827380cd4b4adb5d4f724da2"
+        },
+        {
+          "record": 3,
+          "record_sha256": "39760e5d9cfc771df3412cbed4bb4348654f6c6ff7b809ee95da0c847def0b2e",
+          "decoded_rgba_sha256": "df56add9c5388d5e6577c1ec58ec93c622babb2b94238600c7240c1cc765fa6d"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man24-hd-atlas-r1.png",
+      "image_sha256": "bfb0721fa13dca0f4e613330f0bee54e4204b66272d6067cec2fca7df759e859",
+      "prompt": "man24-r1.prompt.txt",
+      "prompt_sha256": "72a05966484559fa903c56a091b3845e464ef2adfb69fa049f5de932a45fd2d9",
+      "receipt_sha256": "4975888e11e3620b1e23bc671da4bbd06f0c45ba6f246d7163214af6ac76df53",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            12,
+            627,
+            619
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            1,
+            38,
+            627,
+            595
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            7,
+            618,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            9,
+            0,
+            627,
+            595
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man24.json",
+      "runtime_manifest_sha256": "4a89f0968f5a3f59657374ef3ca5e9a1d625025b45f21d06aebeb45306c4deec",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 447,
+            "file": "troop-man24-0-r1.png",
+            "sha256": "1875eb8ed11488a51b3c377e9223936f1ccb2ed7c9dfe62b447cfaa8744445a7",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              108,
+              15,
+              492,
+              563
+            ]
+          },
+          "target_rect": [
+            69,
+            6,
+            180,
+            216
+          ],
+          "native_sha256": [
+            "45f6868ff8eb5c8e7670fef4e85be89728849a4f8ce62de81ae4316dafa6435b",
+            "ee85f8eb633ae07a04ada8f91b52905b36743b28f22f89895c4676ed391fcca4"
+          ],
+          "record_sha256": [
+            "b3b91a6d890dee328d6e1aace6127d3ab1c7fcd951e79639b34a6ff39892acbc",
+            "e13474808978edbcf117331289e3a8d0c85ea881ac22302d7c29852b81e8b9a4"
+          ],
+          "cache_sha256": [
+            "09a49890556d2f4b21d2f265ec4eea33922abbf2786e6dd9402f4d5888b82b2f",
+            "5b2c7e836d357c0b2eee9c95676dd376c7c847e834723accc76c25754577fa3b"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 451,
+            "file": "troop-man24-1-r1.png",
+            "sha256": "2929e64e8ff2bfda278edf1c2cc5a1ec8795e2512e44092bab306aec8eba9967",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              154,
+              40,
+              472,
+              540
+            ]
+          },
+          "target_rect": [
+            0,
+            12,
+            264,
+            210
+          ],
+          "native_sha256": [
+            "27b18a7aa1f1f0bb82de354cf7b1febb1f8ed56642c137b60495c1f4aa45d98b",
+            "29f7fa7325222c7cb2d1cb2e0d14dd1149376984821ee99d8faf3e26d256864c"
+          ],
+          "record_sha256": [
+            "ea0be3b36ad8d55d01c5b2f50120578db47b42dbdf44a8adcc6db5fdcb72e0f4",
+            "a0242996e8897f96c269521db14856b583ee3d53d008d76613025cadaa4ed3c0"
+          ],
+          "cache_sha256": [
+            "14b9a01938b1482ba0359020bf036f514cc1b390c793276068cc2c0b3908c5de",
+            "eac9b26357e0ad9c4bc8b963208505149c7bea8b7e8ecbfa9fccba6bd23b107c"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 455,
+            "file": "troop-man24-2-r1.png",
+            "sha256": "9dd772f2db4aaa8d8d84f2145579aafd34abcc22e46f8579610f86fec445904f",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              110,
+              18,
+              506,
+              568
+            ]
+          },
+          "target_rect": [
+            63,
+            0,
+            177,
+            222
+          ],
+          "native_sha256": [
+            "a1449330acf52a11ce7127d893f09cc42841ea4859363b363a5ad61ed41b45dd",
+            "c0a81ae762097e9b5f856557245848b0bf20f2194897b8dba8ea8afc17c7fce1"
+          ],
+          "record_sha256": [
+            "cea194e7615abd8953708df4bb888f0708228354f46ff8701044344f7ce79992",
+            "8b5178d553689529797e134af7974ced1fd9a3da0df50d381fd796adf0fc00d0"
+          ],
+          "cache_sha256": [
+            "46411c4829f251dc958d67201961b7fd1964f1e3376a07398f7a63c4cf48f89a",
+            "b9e9002f1402fbb1c5de1e2e571f8020711cef5db18d62035504ea407e6b880d"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 459,
+            "file": "troop-man24-3-r1.png",
+            "sha256": "043e5a72344a7d125e502bf9ca0ad43ffa9babeb508e9572589504f5c560c85b",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              36,
+              50,
+              591,
+              535
+            ]
+          },
+          "target_rect": [
+            3,
+            12,
+            261,
+            210
+          ],
+          "native_sha256": [
+            "394c80d7272753ff64d863ff80c4ee4fcfe56edd22c5ac0d6ed08a1dbd1b01b7",
+            "ea6a02384cc846ceb1bbbb127eb7812371bd3898c4d2f4da525471717503b8d7"
+          ],
+          "record_sha256": [
+            "39760e5d9cfc771df3412cbed4bb4348654f6c6ff7b809ee95da0c847def0b2e",
+            "dd5692716eef8663cd023e2a8c3684578f803b991ea9813e4bbc27cf417bfc5c"
+          ],
+          "cache_sha256": [
+            "794e23fe87adb78569e7b58938adf50d565845897f19c092ff3f9c4bf6124f2b",
+            "795eaa11148c2e18c4256310d712efe77d99e0b6f90661274d974b7357e38258"
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "MAN25.EGG",
+      "source_sha256": "96589d7667217f365259aa23a7056bec63ec3460d978a33bf4837eb9419c1ab7",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "93919eed236eb78e66945731ab4608bb4716f0c77329be355af0ef1e9ca266bb",
+          "decoded_rgba_sha256": "2e42572a9d5f6c9ef4e6ed7d6692d6f411b8ba2756faf965e54488b4493f9db0"
+        },
+        {
+          "record": 1,
+          "record_sha256": "33cdb500e49b6028449e729b703e83c50c80c521a81ef2b52f1a9c88a85c9215",
+          "decoded_rgba_sha256": "827d4c835b778c59d403225743a760957499a4bad177ee6021d3752d6e9837bc"
+        },
+        {
+          "record": 2,
+          "record_sha256": "fcd122a74ed3f4dbf7d869a835870a7f1a4bd925e1ca2b353af9c0d834cfdf00",
+          "decoded_rgba_sha256": "440c75210d514a823f07766ef877b77b949a0cc5b965679931c941ce66d18ebd"
+        },
+        {
+          "record": 3,
+          "record_sha256": "2cef1127d356f7fe36a3b2d005449bc85de453b96394342dc5fd1e635aed1394",
+          "decoded_rgba_sha256": "8787349571fb266e47cf51d7db0655b10ec8df72fd1de22db76029263299ff44"
+        }
+      ],
+      "status": "registered-batch",
+      "image": "man25-hd-atlas-r1.png",
+      "image_sha256": "8829df500ca1a1d62f87a50dc78f283d67424ffd63eeb9093527ccfc98e05db2",
+      "prompt": "man25-r1.prompt.txt",
+      "prompt_sha256": "224f4775ee6c5403834c1f9bc86c7a578cf1d628a0df28e44ed73dd8d3f0f803",
+      "receipt_sha256": "ae6c8341fd7af56a1d51d357433e910c8852cb7e86ffbd48f30f677ae2eae140",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            31,
+            21,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            1,
+            23,
+            581,
+            619
+          ],
+          "touches_quadrant_edge": false
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            623,
+            595
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            7,
+            1,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ],
+      "runtime_manifest": "troop-man25.json",
+      "runtime_manifest_sha256": "6fb03a8bada7cb2bd19dacca291b8a2ad780424d85daef374631e917caa9ed5f",
+      "runtime_frames": [
+        {
+          "record": 0,
+          "image": {
+            "source_index": 463,
+            "file": "troop-man25-0-r1.png",
+            "sha256": "9e8d4aa214de6dd901b1676340230fb4aa4771f0b13143dc95e6e038858db085",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              59,
+              47,
+              532,
+              541
+            ]
+          },
+          "target_rect": [
+            12,
+            0,
+            249,
+            300
+          ],
+          "native_sha256": [
+            "34efdfc741e090796c509585a69f3d6727e605203ca6b44b0687306f54a98fe5",
+            "21fa222f566e0c0fe9b654b3129263ded5bd464f3c1282ca116722368580a5e1"
+          ],
+          "record_sha256": [
+            "93919eed236eb78e66945731ab4608bb4716f0c77329be355af0ef1e9ca266bb",
+            "e859e90dc79418fc7c83c624cb381e4a71b2dd997fa6870997a3c80cd6a6eeb6"
+          ],
+          "cache_sha256": [
+            "fc48b8ac26859b7d41b6f797b4eec7390c5be4eea8e3151f460412b5e6656dc5",
+            "e61c436fe77ad03eefcaac5d0c0f8b839c606269abc1af9bf13cce8968f4eb44"
+          ]
+        },
+        {
+          "record": 1,
+          "image": {
+            "source_index": 467,
+            "file": "troop-man25-1-r1.png",
+            "sha256": "8dd6ef5e59053850c76c22f70b3449aedf6bbaffa15967c71dc73e3a0d042cdc",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              56,
+              41,
+              516,
+              544
+            ]
+          },
+          "target_rect": [
+            15,
+            0,
+            231,
+            300
+          ],
+          "native_sha256": [
+            "ac43ab08eccc42a47d22b95263c0d8e2641b4d30702e4875cc041df21561c629",
+            "515c4917b28e3aa81f5750fd7d7dfbbb4d175c4a4d3fab7b006f407670abb90f"
+          ],
+          "record_sha256": [
+            "33cdb500e49b6028449e729b703e83c50c80c521a81ef2b52f1a9c88a85c9215",
+            "0920f3574034818f2b12cd798c5729c8a0b0989d4ea0033952fdd20b045e6ab5"
+          ],
+          "cache_sha256": [
+            "97d8b8b0d8311e28afc4c4eaf82bd9dae1e34e837d8ac7182f6aae1adb221b74",
+            "01a74566bc77250a00ccae01508fc0f1b784172ca9d4a70eaba485c35d3824fb"
+          ]
+        },
+        {
+          "record": 2,
+          "image": {
+            "source_index": 471,
+            "file": "troop-man25-2-r1.png",
+            "sha256": "5e35d1a321be9fd9009c472fba8752d85420f5a240b2eedb704df8d67188800b",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              58,
+              39,
+              528,
+              546
+            ]
+          },
+          "target_rect": [
+            9,
+            0,
+            237,
+            300
+          ],
+          "native_sha256": [
+            "122e3e648beac09bcdef3dada7510825e2b2c851a25e2eb63e50b87b3fda7df2",
+            "49cf90e8c73c97fc938ae7688c78f4799220c3cd84dfdbff859bca5f28413311"
+          ],
+          "record_sha256": [
+            "fcd122a74ed3f4dbf7d869a835870a7f1a4bd925e1ca2b353af9c0d834cfdf00",
+            "ab4293b0c60101fb8a9e2c68bfd165c44968a285c80aebb6da6fd9f5f0864a7a"
+          ],
+          "cache_sha256": [
+            "10fe5402e871662fd61944ddc4cdb0fa8e1bacaf0f38d73678481dc3b24463dd",
+            "c7d3d5999ebf810f8854203741225f8e4424c8ee1f22fdce42c29ae65baa3d21"
+          ]
+        },
+        {
+          "record": 3,
+          "image": {
+            "source_index": 475,
+            "file": "troop-man25-3-r1.png",
+            "sha256": "ac05b0b8d4223566b58bb4039c58ef69e32313a3f99daf7fd8a3b562242004fa",
+            "width": 627,
+            "height": 627,
+            "sampling": "bitmap",
+            "source_rect": [
+              16,
+              40,
+              579,
+              545
+            ]
+          },
+          "target_rect": [
+            0,
+            0,
+            246,
+            300
+          ],
+          "native_sha256": [
+            "358234d6238b3456af2fc9b546c120db74bef2e05803ea3e0049583f064ae650",
+            "0da9d687436936bb7fa4ac118b416c732d10be3274612944e418f0aa5146b096"
+          ],
+          "record_sha256": [
+            "2cef1127d356f7fe36a3b2d005449bc85de453b96394342dc5fd1e635aed1394",
+            "52d99723cf7d281c418d041b0b78a4fa0709699776195e706a62bdf6dd111876"
+          ],
+          "cache_sha256": [
+            "0ec291a59e7fd48453bad5f4416dfe945592f7cef27f17012f6fdb68b0707e00",
+            "0b3f70da29d9851dcd577918a00e765e57fa90e237a49cb68ffa60e935ec94d5"
+          ]
+        }
+      ]
+    }
+  ],
+  "outputs": {
+    "troops-new-hd-all-poses-r2.png": "a7e22104cefbd0059d3a368aca1a6fbab77f7b5494cb015c1b4b892094e44197",
+    "troops-all-original-hd-r3.png": "ef22eb7ac6673fe4e4e7d1c4c7b4126fb4c3e03e3b53116ab41b5a1be056c70e"
+  },
+  "rights": "User-requested comparison documentation in existing private repository; full assets remain local.",
+  "limits": [
+    "Static art sheets, not same-state battle screenshots.",
+    "Runtime uses the reviewed sampled cache.",
+    "Shared rendering uses representative sampling; per-creature gameplay checks waived by user.",
+    "Controlled memory states are authorized for presentation checks only."
+  ],
+  "runtime_audit_sha256": "61df62a482e52edfbe0456e2815d6393eb7b6aa9a637695f2eb7cfa54bbabf0d"
+}

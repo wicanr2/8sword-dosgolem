@@ -34,10 +34,21 @@ def main():
     parser.add_argument('--project', type=Path, required=True)
     parser.add_argument('--batch', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--registered-assets', type=Path)
+    parser.add_argument('--runtime-audit', type=Path)
     args = parser.parse_args()
     p, batch, out = args.project, args.batch, args.out
     assert Path('/.dockerenv').is_file() and os.getuid() == 1000 and __version__ == '11.3.0'
     assert not out.exists() and out.parent.stat().st_uid == 1000
+    assert bool(args.registered_assets) == bool(args.runtime_audit)
+    registered_batch = bool(args.registered_assets)
+    runtime = None
+    if registered_batch:
+        runtime = json.loads(args.runtime_audit.read_text())
+        assert runtime['status'] == 'PASS-scoped-048-batch-import-and-sampled-presentation'
+        assert runtime['groups'] == 20 and runtime['poses'] == 80
+        for name, digest in runtime['asset_hashes'].items():
+            assert sha((args.registered_assets / name).read_bytes()) == digest
     catalog_path = p / 'workplace/probe-20261023/graphics-first/all-graphics-catalog-r4/catalog.json'
     catalog = json.loads(catalog_path.read_text())
     plan = json.loads((batch / 'manifest.json').read_text())
@@ -54,9 +65,11 @@ def main():
     poses = Image.new('RGB', (2000, 1900), background)
     draw, pd = ImageDraw.Draw(sheet), ImageDraw.Draw(poses)
     draw.text((24, 14), '神州八劍：25 組原版／HD 部隊與怪物', font=fonts[36], fill=gold)
-    draw.text((24, 66), '每組第 0 筆。5 組已接入，20 組新圖待匯入；素材對照，非同狀態戰場截圖。', font=fonts[24], fill=text_color)
+    draw.text((24, 66), ('每組第 0 筆。25 組、100 姿勢已登錄；素材對照，非同狀態戰場截圖。' if registered_batch else
+                         '每組第 0 筆。5 組已接入，20 組新圖待匯入；素材對照，非同狀態戰場截圖。'), font=fonts[24], fill=text_color)
     pd.text((24, 14), '新增 20 組 HD 圖集：共 80 個姿勢', font=fonts[36], fill=gold)
-    pd.text((24, 66), '每格依左上、右上、左下、右下對應原版 0／1／2／3。已繪製，尚未正式匯入。', font=fonts[24], fill=text_color)
+    pd.text((24, 66), ('每格依左上、右上、左下、右下對應原版 0／1／2／3。已接入，圖集顯示原始美術。' if registered_batch else
+                       '每格依左上、右上、左下、右下對應原版 0／1／2／3。已繪製，尚未正式匯入。'), font=fonts[24], fill=text_color)
     report_rows, generated, drawn_poses = [], [], 0
     for number in range(1, 26):
         name = f'MAN{number:02}.EGG'
@@ -113,24 +126,35 @@ def main():
                        image_sha256=receipt['image_sha256'], prompt=receipt['prompt'],
                        prompt_sha256=receipt['prompt_sha256'], receipt_sha256=sha(receipt_path.read_bytes()),
                        width=atlas.width, height=atlas.height, poses=receipt['poses'])
+            if registered_batch:
+                stem = name.lower().removesuffix('.egg')
+                manifest_path = args.registered_assets / ('troop-' + stem + '.json')
+                manifest = json.loads(manifest_path.read_text())
+                assert manifest['source_sha256'] == row['source_sha256']
+                cache = p / runtime['registration_path'] / f'troop-{stem}-0-0.rgba'
+                assert sha(cache.read_bytes()) == manifest['frames'][0]['cache_sha256'][0]
+                hd = Image.frombytes('RGBa', (264, 300), cache.read_bytes()).convert('RGBA')
+                row.update(status='registered-batch', runtime_manifest=manifest_path.name,
+                           runtime_manifest_sha256=sha(manifest_path.read_bytes()),
+                           runtime_frames=manifest['frames'])
             index = len(generated)
             xx, yy = (index % 5) * 400, 110 + (index // 5) * 446
             pd.text((xx + 14, yy), name + '  0 / 1 / 2 / 3', font=fonts[20], fill=gold)
             fit(poses, atlas, (xx + 8, yy + 34, xx + 392, yy + 430))
             generated.append(row)
             drawn_poses += 4
-            status, color = '已繪製，待匯入', '#d9b789'
+            status, color = ('已接入', '#a8d5b1') if registered_batch else ('已繪製，待匯入', '#d9b789')
         fit(sheet, native, (x + 12, y + 66, x + 182, y + 248), native=True)
         fit(sheet, hd, (x + 204, y + 66, x + 388, y + 248))
         draw.text((x + 170, y + 254), status, font=fonts[17], fill=color)
         report_rows.append(row)
     assert len(generated) == 20 and drawn_poses == 80
     out.mkdir()
-    sheet.save(out / 'troops-all-original-hd-r2.png')
-    poses.save(out / 'troops-new-hd-all-poses-r1.png')
-    report = dict(schema=1, status='generated-art-inventory-not-gameplay-validation',
-                  source_groups=25, source_records=100, registered_groups=5, registered_records=20,
-                  newly_generated_groups=20, newly_generated_records=80, production_changed=False,
+    sheet.save(out / ('troops-all-original-hd-r3.png' if registered_batch else 'troops-all-original-hd-r2.png'))
+    poses.save(out / ('troops-new-hd-all-poses-r2.png' if registered_batch else 'troops-new-hd-all-poses-r1.png'))
+    report = dict(schema=1, status='registered-art-with-shared-mechanism-sampling' if registered_batch else 'generated-art-inventory-not-gameplay-validation',
+                  source_groups=25, source_records=100, registered_groups=25 if registered_batch else 5, registered_records=100 if registered_batch else 20,
+                  newly_generated_groups=20, newly_generated_records=80, production_changed=registered_batch,
                   excluded='MAN27 contains four Taiji records; original usage remains unknown',
                   batch_path=str(batch.relative_to(p)), catalog_sha256=sha(catalog_path.read_bytes()),
                   plan_sha256=sha((batch / 'manifest.json').read_bytes()),
@@ -139,10 +163,12 @@ def main():
                   outputs={f.name: sha(f.read_bytes()) for f in out.glob('*.png')},
                   rights='User-requested comparison documentation in existing private repository; full assets remain local.',
                   limits=['Static art sheets, not same-state battle screenshots.',
-                          'Generated art is not yet registered in the formal runtime.',
+                          'Runtime uses the reviewed sampled cache.' if registered_batch else 'Generated art is not yet registered in the formal runtime.',
                           'Shared rendering uses representative sampling; per-creature gameplay checks waived by user.',
                           'Controlled memory states are authorized for presentation checks only.'])
-    (out / 'troops-hd-batch-r1.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    if registered_batch:
+        report['runtime_audit_sha256'] = sha(args.runtime_audit.read_bytes())
+    (out / ('troops-hd-batch-r2.json' if registered_batch else 'troops-hd-batch-r1.json')).write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps({k: report[k] for k in ['status', 'source_groups', 'source_records',
                                           'newly_generated_groups', 'newly_generated_records', 'outputs']}))
 

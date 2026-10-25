@@ -21,9 +21,11 @@ def main():
     assert a.out.parent.stat().st_uid == 1000
     registered = {}
     manifests = []
-    # These are the runtime loaders' six current battle-unit entrypoints.
-    for name in ["battle-actors.json", "battle-man06.json", "battle-man11.json",
-                 "battle-man21.json", "battle-man01.json", "battle-militia.json"]:
+    # Legacy groups plus spec 048's optional, independently committed groups.
+    names = ["battle-actors.json", "battle-man06.json", "battle-man11.json",
+             "battle-man21.json", "battle-man01.json", "battle-militia.json"]
+    names += [p.name for p in sorted(a.assets.glob('troop-man[0-9][0-9].json'))]
+    for name in names:
         f = a.assets/name
         m = json.loads(f.read_text())
         source = m["source_file"]
@@ -39,6 +41,8 @@ def main():
             assert (source, record) not in registered
             registered[source, record] = dict(manifest=name, image=image["file"], image_sha256=image["sha256"],
                                              transform=m.get("transform", "identity"))
+            if name.startswith('troop-man'):
+                registered[source, record]['directions'] = ['identity', 'mirror-six-planes']
     files = sorted(f for f in a.original.iterdir() if re.fullmatch(r"MAN\d{2}\.EGG", f.name))
     assert files
     records = []
@@ -58,15 +62,19 @@ def main():
                                 formal_name_mapping="not evaluated by this catalog"))
     keys = {(r["source_file"], r["record"]) for r in records}
     assert set(registered) <= keys
+    troop_keys = {key for key in keys if key[0] != 'MAN27.EGG'}
     result = dict(schema=1, status="verified-fixed-record-inventory-and-HD-registration", source_files=len(files),
                   source_records=len(records), hd_registered_records=len(registered),
                   remaining_unregistered_records=len(records)-len(registered), input_manifests=manifests,
+                  troop_records=len(troop_keys), hd_registered_troop_records=len(set(registered) & troop_keys),
+                  remaining_unregistered_troop_records=len(troop_keys-set(registered)),
+                  special_marker_records=len(keys-troop_keys),
                   records=records, tool_sha256=sha(Path(__file__).read_bytes()),
                   evidence_level="proven file bytes, record geometry, manifest/image identity; not runtime path coverage",
                   limitation="excludes CHOI/PON effects, MAN.AY hero, ENEMY.AY encounters, army-page routing and other non-EGG art; counts are not whole-game HD completion percentages",
                   rights="local-only original-derived metadata; no public distribution grant")
     a.out.write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n")
-    print(json.dumps({k: result[k] for k in ["source_files", "source_records", "hd_registered_records", "remaining_unregistered_records"]}))
+    print(json.dumps({k: result[k] for k in ["source_files", "source_records", "hd_registered_records", "remaining_unregistered_records", "troop_records", "remaining_unregistered_troop_records", "special_marker_records"]}))
 
 
 if __name__ == "__main__":

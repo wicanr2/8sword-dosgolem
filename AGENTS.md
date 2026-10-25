@@ -2,7 +2,13 @@
 
 部隊／怪物批次HD依[048](docs/spec/048-troop-hd-batch.md)與[準備工具](tools/prepare-troop-hd-batch.py)。使用者於2026-10-26明確放寬逐隻驗收：相同機制採已成功的代表抽驗，未接入的先完成圖片；需要時允許受控記憶體呈現驗證。這項最新指示優先於舊的逐隻正常遭遇待辦，不重走地圖或反覆等待遭遇；正式玩法不變，受控測試不冒稱自然玩家路徑。
 
-批次圖以[保存工具](tools/save-troop-hd-generation.py)保留原始 PNG、完整提示與每組收據，不覆寫既有圖片。[總覽工具](tools/prepare-troop-hd-overview.py)在固定 Pillow 容器使用`--project <唯讀專案> --batch <批次圖目錄> --out <新研究目錄>`，核對20組來源、圖像、提示與透明度，再產生README的25組對照、80姿勢圖及[清單](docs/images/troops-hd-batch-r1.json)。完整圖留本機，生成與正式匯入分開列示。
+批次圖以[保存工具](tools/save-troop-hd-generation.py)保留原始 PNG、完整提示與每組收據，不覆寫既有圖片。[總覽工具](tools/prepare-troop-hd-overview.py)在固定 Pillow 容器使用`--project <唯讀專案> --batch <批次圖目錄> --out <新研究目錄>`，核對20組來源、圖像、提示與透明度；正式總覽再加`--registered-assets <r49目錄> --runtime-audit <048核對JSON>`，產生README的25組對照、80姿勢圖及[正式清單](docs/images/troops-hd-batch-r2.json)。完整圖留本機，生成與正式匯入分開列示。
+
+批次匯入與定位由[prepare-hd-troops.py](tools/prepare-hd-troops.py)在固定Pillow容器執行，參數與兩向／軍隊頁／戰場識別契約見[048接入契約](docs/spec/048-troop-hd-batch.md#批次接入契約)。原圖留本機，先審查來源與定位，再沿共用機制抽驗，不新增逐隻玩家路徑閘門。
+
+048正式載入器為[troops.go](internal/eightsword/troops.go)，[針對測試](internal/eightsword/troops_test.go)以`EIGHTSWORD_TEST_TROOPS_ASSETS`、`EIGHTSWORD_TEST_TROOPS_BASE`、`EIGHTSWORD_TEST_ORIG`及`EIGHTSWORD_TEST_TROOPS_CACHE`選定本機候選、r48、原版與獨立快取。固定Go容器執行`go test ./internal/eightsword -run '^TestTroops'`，受控原版繪圖另需新的`EIGHTSWORD_TEST_TROOPS_OUT`。受控測試明示RAM緩衝區與原版入口，不當作自然遭遇或規則對拍，正常選單與真正存讀另抽樣。
+
+048的[完整性與抽樣核對器](tools/audit-troops.py)在固定Pillow容器使用`--project`、`--assets`、`--registration`、`--controlled`、`--build`、`--gui`及`--out`，核對80筆來源、160份兩向獨立快取、受控原版繪圖、實際視窗三字型及真正存退冷讀。原版繪圖fixture由既有`prepare-hd-intro.py`的decode解開固定GRO02，方法與SHA存研究目錄draw-fixture.json，不改原圖或核心。
 
 內建image_gen的素材用[保存工具](tools/save-troop-hd-generation.py)在Pillow容器從唯讀生成目錄複製至批次研究目錄，附實際提示、來源與輸出SHA。只核對圖片與透明圖格，不新增逐隻GUI閘門；完整圖片留本機，製作完成與正式接入分開記錄。
 
@@ -73,7 +79,7 @@
 
 [城堡 README 比較圖工具](tools/prepare-readme-castle-overview.py)在固定 Pillow Docker 使用 `--project`、`--gui`、`--font`、`--out`，只接受已通過 Draw 與真正存讀核對的收據，不將完整原圖或遊戲檔加入 Git。
 
-後續部隊姿勢入口：[040：持劍兵四姿勢](docs/spec/040-battle-swordsman-poses.md)，目前 DRAFT；來源、取樣原型及正常招募／戰場證據依該規格收斂。
+MAN02早期姿勢原型：[040](docs/spec/040-battle-swordsman-poses.md)已SUPERSEDED；原稿及來源限制保留。正式接入改依[048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，代表機制與受控呈現已通過，不再等待逐隻自然遭遇。
 
 軍隊頁圖像入口：[041：MAN21 圖像](docs/spec/041-army-man21-image.md)，沿現有 HD 快取與正常招募來源；現況以 CONTEXT 為準。
 
@@ -144,7 +150,7 @@ Ogg 解碼器的版本與原始 MIT 授權見[第三方授權紀錄](docs/THIRD-
 
 地圖遭遇第 7 筆：[039：粉紅咧嘴角色](docs/spec/039-map-encounter-pink-creature.md)，依已錄製的正常來源補圖，不借用其他角色造型；實作閘門見該規格。
 
-戰場素材範圍核對：[全部 MAN*.EGG 與 HD 登錄盤點工具](tools/catalog-battle-coverage.py)。執行 `bash tools/player.sh battle-coverage <新報告名稱> [painted-r38]`，由既有 `sc-cht-hdtools:pillow11.3.0-r1` Docker 核對，JSON 存在 `workplace/probe-20261023/graphics-first/battle-r1/<新報告名稱>.json`；只證明記錄及素材登錄，不代替正常路徑或全遊戲完成驗收。
+戰場素材範圍核對：[全部 MAN*.EGG 與 HD 登錄盤點工具](tools/catalog-battle-coverage.py)。執行 `bash tools/player.sh battle-coverage <新報告名稱> [painted-r49]`，由既有 `sc-cht-hdtools:pillow11.3.0-r1` Docker 核對，JSON 存在 `workplace/probe-20261023/graphics-first/battle-r1/<新報告名稱>.json`；只證明記錄及素材登錄，不代替正常路徑或全遊戲完成驗收。
 
 募兵建築追加：[034：募兵建築的手繪背景](docs/spec/034-recruitment-building.md)，定稿及正常路徑證據由此索引；READY 與完成狀態以該規格為準。
 

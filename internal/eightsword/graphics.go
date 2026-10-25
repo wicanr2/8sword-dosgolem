@@ -185,6 +185,9 @@ func (g *Graphics) beginSource(kind int, background bool) {
 	if background && id == 150 && g.assets.BattleActors[152] {
 		id = 152
 	}
+	if background && g.assets.BattleAliases[id] != 0 {
+		id = g.assets.BattleAliases[id]
+	}
 	effectSource := id
 	if id != 0 {
 		g.Stats.SourceMatches++

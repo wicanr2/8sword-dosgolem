@@ -13,6 +13,25 @@ test "$(docker image inspect "$task_go" --format '{{.Id}}')" = sha256:8ed6bdee2b
 test "$(docker image inspect "$task_py" --format '{{.Id}}')" = sha256:44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48
 valid_name(){ [[ "$1" =~ ^[a-zA-Z0-9_-]+$ ]]; }
 case "${1:-}" in
+  troops-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    task_base="${3:-painted-r48}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_batch="$task_work/probe-20261023/graphics-first/battle-r1/troops-hd-bulk-r1"
+    task_battle="$task_work/probe-20261023/graphics-first/battle-r1"
+    test -d "$task_player/assets-$task_base"; test -d "$task_batch"; test -d "$task_battle"
+    test ! -e "$task_player/assets-$task_name"
+    test ! -e "$task_battle/troops-registration-$task_name"
+    exec timeout -k 5s 300s docker run --rm --init --name "8sword-troops-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 1g --cpus 2 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_player,dst=/player" \
+      --mount "type=bind,src=$task_battle,dst=/battle" \
+      --entrypoint python3 "$task_py" /project/tools/prepare-hd-troops.py \
+      --project /project --base "/player/assets-$task_base" \
+      --batch /project/workplace/probe-20261023/graphics-first/battle-r1/troops-hd-bulk-r1 \
+      --out "/player/assets-$task_name" --review "/battle/troops-registration-$task_name"
+    ;;
   dependencies)
     test -f "$task_root/go.mod"; test -f "$task_root/go.sum"
     mkdir -p "$task_work/gomodcache" "$task_work/gocache"
@@ -173,7 +192,7 @@ case "${1:-}" in
     ;;
   battle-coverage)
     task_name="${2:?指定新的報告名稱}"
-    task_base="${3:-painted-r38}"
+    task_base="${3:-painted-r49}"
     valid_name "$task_name"; valid_name "$task_base"
     task_art="$task_work/probe-20261023/graphics-first/battle-r1"
     test -d "$task_player/assets-$task_base"; test -d "$task_orig"; test -d "$task_art"
@@ -923,5 +942,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|encounter-assets <名稱> [基底名稱]|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-man01-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palace-assets <名稱> [基底名稱]|friendly-man21-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|recruitment-assets <名稱> [基底名稱]|bamboo-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|troops-assets <名稱> [painted-r48]|encounter-assets <名稱> [基底名稱]|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-man01-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palace-assets <名稱> [基底名稱]|friendly-man21-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|recruitment-assets <名稱> [基底名稱]|bamboo-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac
