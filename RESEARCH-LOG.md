@@ -1330,3 +1330,14 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 - F7 的真正 2987 bytes 同存前及冷讀 RAM 線性 0x9E000，SHA `550875f1af16656afec601932b07a5e5354478f3dda8b7604ea950ced7cd24d9`，read step 10912442；地圖 SHA `b2fac6c7…8908` 保持。存檔段正常 DOS 退出 0，讀回段正常關閉視窗。[GUI 核對器](tools/audit-castle-gui.py)及 `castle-draw-audit-r1.json` 保存完整鏈，沒有快照注入。
 - README 比較圖的初始進度另以最初 Draw 的零步數檢視證實為 `92677580…cb7f`；後續存檔為 `550875f1…24d9`，兩者分欄記錄，沒有把後來的 F7 進度套到較早畫面。比較圖來自原生色碼與同狀態實際中央 Draw，完整原 PNG／提示仍留本機。
 - 正式素材已提升 r41、188 檔；七程式與四份建置紀錄沿 build-castle-r1，91 筆輸入、Go 1.24.13。研究視窗使用另外保存的 50 筆擷取建置，42 份正式套件 Go 檔逐檔相同。043 限定 CONFORMED，只結案這六筆地圖圖塊；其他建築、規則擴充與整體 HD 保持未完成。
+
+# 2026-10-25：PMAP 58 寶箱來源與透明原型
+
+- 入口為 [044](docs/spec/044-map-object-58.md)，研究區沿既有 `graphics-first/map-interaction-r1`。原 PAM、PMAP、MAP1 及 IDA DB 的完整 SHA、工具版本與各位址空間集中該規格；未修改原 DB、外部核心或正式程式。
+- 已證實：從 043 真正兩件存檔普通續玩，43 次方向鍵到 F5 的 20,8，右側可見第 58 筆。右移受阻；F6 顯示腳下空地。原版手冊說明八方向與原地搜尋，沒有給這張圖的名稱；不能以手冊或外觀單獨證實身分。
+- `map-object-source-build-r1` 保存 45 筆輸入，Go 1.24.13／既有固定 dosgolem 核心。十次 PMAP 58 繪圖呼叫及首筆 1600 返回色碼通過；觀測／控制各 1084 幀、2168 次純度、77 命令、14 checkpoint、22 工作檔、完整 state、PCM、串流及事件相同。F1／F2 截圖已看，原版 F7 保存、DOS 退出 0。這是正常無頭輸入證據，未新增 GUI 聲明。
+- 已證實靜態資料流：原 `sub_13AEC` 的字元減 48，連到原 `sub_12446` 的 13 項跳表；互動值 59 選 `0x25E4`，呼叫原 `sub_120B0`，使用 DS 偏移 `0x43EE` 的「你得到一個寶箱」。PAM 檔案位置為 `0x22FDE`，與 IDA MZ 線性位址分列。兩份唯讀 IDA 9.4 查詢的 2396 bytes 按原 MZ relocation 與 IDA 基準 `0x1000` 全同。來源核對器另驗地格取值呼叫、局部變數寫讀、跳表 opcode、near call 目標及字串繪圖 far call，不以 IDA 猜名代替原 bytes。
+- 身分已足以支援呈現，停止深入箱內獎勵或通行規則。尚未實際站上該地格或開箱，不聲稱取得道具，也不修改跳躍、飛行或行走。新保存兩檔為 `map-object-normal-r1/scratch`，後續直接普通 Continue。
+- built-in image_gen 生成 r1，再依原圖縮窄水平比例為透明 r2。完整原 PNG、各自提示、原生參考及 provenance 已複製到 `map-object-58-art-r1`，原預設生成檔仍保留。PNG SHA `cbdafc80…ae85`，1419×1108 RGBA；全圖覆既有草地的獨立快取 SHA `549d61ae…2919`。沒有裁剪主體、將第五平面當 alpha 或新增客體掛點。
+- `chest-prototype-build-r2` 有 47 筆輸入，42 份正式套件來源保持。原型／舊組／真壞各 395 幀、1185 次純度，五份全幅 Frame 與三字型獨立重建相同；人物／軍隊、移動後原圖退場、原版 F7 與 DOS 退出通過。完整 state 84a414ce…babb、PCM 4c6f0809…4646、22 工作檔及事件相同；真壞組全串流同舊組。收據 `chest-prototype-audit-r2.json`。同狀態完整比較與細節已看。
+- 044 已達 READY，列出獨立材質 59、清單／PNG 邊界、固定來源與快取、原子回退及正式驗收。正式 r41 的 188 檔、七程式與原型安裝函式界線保持；尚未實作正式載入器、實際 Draw 或本項 RAM／冷讀驗收，整體 HD 仍未完成。
