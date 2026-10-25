@@ -1,5 +1,16 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+正式來源呈現依[047限定CONFORMED契約](docs/spec/047-hd-scene-renderer.md#正式接入契約與證據審查)接入。[場景適配器](internal/eightsword/source_scene.go)、[純矩形呈現](internal/eightsword/source_render.go)、[開場](internal/eightsword/source_intro.go)、[直接呼叫](internal/eightsword/source_direct.go)、[六平面](internal/eightsword/source_masked.go)、[逐列](internal/eightsword/source_masked_rows.go)、[錯誤邊界](internal/eightsword/source_guard.go)、[募兵交易](internal/eightsword/source_recruitment.go)及[實際Frame資訊](internal/eightsword/source_presentation.go)不含研究RGB診斷。正式提升與現況以CONTEXT為準，不由檔案存在推論完成。
+
+[正式核心準備器](tools/prepare-player-runtime.py)在固定Pillow容器使用`--project <唯讀專案> --out <player內新runtime目錄>`，核對[固定來源樹與13份變更](tools/player-runtime-source.json)，重用已驗準備工具，輸出獨立919檔核心；不修改固定基底與共用dosgolem。`bash tools/player.sh build <新候選名稱>`使用此核心保存來源與七程式，拒絕覆寫候選；尚未驗收時不提升播放器。
+
+正式回歸沿[原生四／五平面](internal/eightsword/source_direct_runtime_test.go)、[六平面](internal/eightsword/source_direct_masked_test.go)、[逐列](internal/eightsword/source_direct_masked_rows_test.go)、[批次圖層](internal/eightsword/source_owned_render_test.go)與[固定純量參考](internal/eightsword/source_render_reference_test.go)。固定Go容器以`go test ./internal/eightsword -run '^TestSource'`執行，原始測試資料變數沿測試檔；缺資料明示跳過，不能當作已驗。
+
+[正式來源呈現核對](tools/audit-source-player.py)在固定Pillow容器使用`--project`、`--build`、`--gui`、`--toolbar`與新`--out`，核對七程式、舊合成器零次、實際Draw完整圖、三字型、自然開場與真正F7。允許GUI後只修改測試檔，但七個程式必須逐位元組相同；不據此放寬正式來源變更。[來源整合及受控故障測試](internal/eightsword/source_runtime_test.go)對照原生CPU完整state／PCM與Frame純度，受控INT10另標測試條件。[舊疊圖參考測試](internal/eightsword/overlay_reference_test.go)只保留舊美術與生命週期的獨立模型，不能當作047正式玩家路徑。
+
+[本機提升工具](tools/promote-source-player.py)在固定Pillow容器使用`--player`、`--candidate <已驗候選名稱>`、`--previous <已保存的上一組名稱>`、`--audit <通過收據>`及新`--receipt`。先核對候選七程式與上一組完整保存，再逐檔原子替換；不改素材、原始資料、共用核心或Release。正式來源候選為`workplace/player/source-candidate-r4`，舊七程式在`build-troops-r1`，現行素材仍r49／344檔。
+
+
 募兵的[整頁與數字編輯交易](tools/research-owned-recruitment.go)依[047 DRAFT](docs/spec/047-hd-scene-renderer.md#募兵整頁與數字編輯的交易研究)。場景準備器在既有Go Docker沿r42加`--recruitment-menus --source-guards`，只接私有副本；`EIGHTSWORD_RESEARCH_RECRUIT_CONTROL=1`只停用新增交易作同建置控制。正常無頭重播沿既有`battle-r1/owned-hire-commands-r1.txt`，GUI沿既有募兵輸入流程，不改數量、規則、原版存檔或已選城門美術。
 
 募兵的[獨立核對器](tools/audit-owned-recruitment.py)在固定Pillow Docker使用`--project <唯讀專案> --out <新JSON>`，核對r43、同建置611幀與交易差異；`--gui`另核對14份真實數字輸入、三字型城門及真正存退讀。游標等待維持原版動畫，首次游標前完成擷取不冒稱同一次Draw；Noto整頁以同狀態原版合成作參考，游標欄另用字型字墨模型核對。

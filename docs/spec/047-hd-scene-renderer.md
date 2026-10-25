@@ -1,6 +1,6 @@
 # 047：由HD呈現器控制完整繪圖流程
 
-狀態：DRAFT。使用者已於2026-10-25授權此架構方向，並指定按功能類型抽樣。先證明場景可從來源命令直接生成，再接正式流程；不以僅延遲既有合成圖宣稱完成。
+狀態：限定CONFORMED。正式契約見末節「正式接入契約與證據審查」。下列DRAFT與研究限制保留各輪原始範圍。使用者已於2026-10-25授權此架構方向，並指定按功能類型抽樣。先證明場景可從來源命令直接生成，再接正式流程；不以僅延遲既有合成圖宣稱完成。
 
 ## 方向與範圍
 
@@ -552,3 +552,60 @@ Advance／AdvanceCycles在下一個既有分段邊界返回具體錯誤，最多
 重生使用場景準備器沿r42選項加`--recruitment-menus --source-guards --build`；無頭探針以`-commands <既有owned-hire-commands-r1.txt>`正常執行，控制環境為`EIGHTSWORD_RESEARCH_RECRUIT_CONTROL=1`，候選為0。GUI沿`EIGHTSWORD_GUI_FLOW=save-cycle`、`EIGHTSWORD_GUI_ARMY_CHECK=1`及`EIGHTSWORD_GUI_RECRUITMENT_HIRE_CHECK=1`，原版與素材唯讀，獨立可寫輸出不覆寫。
 
 募兵這組整頁與編輯交易已有最小充分證據。047整體仍DRAFT，下一步進入正式接入審查，移除研究診斷依賴並整理已驗來源／錯誤契約；不再擴張相同機制的逐項抽驗或重走本路線。
+
+
+## 正式接入契約與證據審查
+
+2026-10-26：READY，限本節的來源呈現協定與已抽驗路徑。使用者已授權接管繪圖、攔截像素迴圈及受控RAM呈現驗證；相同機制採代表抽驗，不追加逐隻正常遭遇閘門。此狀態不代表所有HD美術、音樂、法術或全遊戲完成。
+
+### 審查結論與適用輸入
+
+- 已證實：前述r22自然開場、r23／24 Esc與故事故障、r33正常募兵／真正攻城、r39可選圖像失效、r40基底字型失效、r42未知來源及r43募兵交易已閉合本節的呈現契約。沿用各節固定PAM／PREDELLA雜湊、IDA9.4原名與位址基準、Go1.24.13及其不可變收據，不重寫歷史結果。
+- 已證實：`core-direct-r6/runtime-manifest.json`的910份基底檔與13份變更、雙軸事件預算、原版RETF邊界及索引平面讀回已與原生執行比較。正式核心另建可重現副本；固定`workplace/dosgolem`、共用dosgolem與mm3唯讀。
+- 已證實：來源繪圖與玩法分離的證據包含完整客體state、PCM、命令、工作檔與真正F7存退冷讀。seed未受控的路段只證明呈現隔離，不聲稱亂數規則parity。
+- 未知：未經正常路徑取樣的施法、結局及未分類資產的玩家可見行為。其來源若符合已驗協定可由相同適配器處理，不能因此聲稱這些路徑已驗收。新協定不猜補。
+
+### 正式資料流與狀態
+
+| 層 | 輸入、轉移與輸出 |
+|---|---|
+| 適配器 | 固定程式版本、經bytes與返回點核對的入口、來源記憶體、幾何、頁面、字碼及色盤。保留既有原始定位，不改函式名或遊戲資料 |
+| PAM場景 | 四／五／六平面、文字／整串、清頁、單點、保存／還原／換頁及透明效果更新自有索引像素與圖層。來源圖未有HD時直接解碼來源資料 |
+| 開場場景 | 來源圖像、文字、頁面與逐點揭圖形成自有場景，沿原版順序及Esc。不可讀原版完整Frame或VGA像素作底圖 |
+| 完整交易 | 人物、軍隊、其他選單、確認框、主選單、地圖重畫及募兵按已驗開始／完成點提交。未完成時保留前一不可變場景；刻意游標及逐點動畫依原版更新 |
+| 純呈現器 | 只收自有場景、已驗材質／字型／色盤，產生完整1920×1200 RGBA。矩形批次保持圖層遮擋、透明及字墨。無Oracle或VGA存取介面 |
+| 前端 | 有效HD直接取自有Frame，一次更新texture。字型、場景與開場metadata跟隨實際提交的Frame；不依賴舊合成器的副作用 |
+| 直接呼叫 | 僅接已驗四／五平面前綴與六平面整筆／逐列。bytes、寄存器、界限、重疊或事件配額不符時保留原生執行。成功時更新相容平面、寄存器、旗標、步數／週期，保留原版返回指令與中斷順序 |
+
+### 邊界與失敗
+
+- 可選HD圖像失效時，保留有效Noto與來源解碼。基底字型失效則依003明示HD關閉，原版模式仍可用。
+- HD有效時禁止`Tracker.Compose()`、`Screen()`或`ScreenRGB()`成為Frame底圖。原版索引平面可供客體讀回與既有觀測器，不能回送純呈現器。
+- 未知寫入、未支援模式、來源ABI／幾何失敗及交易逾500萬客體步數轉為有定位的`OwnedRenderFault`。第一錯誤後停來源更新及新直接計畫，Advance於目前最多50000步／週期分段結束回報，後續Advance不再前進。Frame保留最後自有圖，未有完成圖時使用不透明黑圖。一般Go panic仍上拋。
+- Close解除呈現訂閱並關閉Oracle／音樂。正式程式不建立研究JSON、PNG、舊RGB參考或研究環境變數控制分支。
+- 玩法、AI、傷害、輸入、亂數、原版存檔及伴隨MAP檔維持。前端偏好檔與客體存檔分離。
+
+### 正式驗證矩陣與停止線
+
+1. 建置使用固定Docker與可重現核心，保存來源／程式雜湊。保留舊核心、正式程式與歷史收據。
+2. 沿已驗直接前綴、逐列、配額／拒絕、圖層及有界故障測試，核對正式適配器；這證明實作契約，不獨立宣稱正常玩家完成。
+3. 新正式程式最小抽樣正常自然開場、選單／F1／F2、工具列三字型與真正F7存退冷讀。完成圖連回實際Draw，交易中維持完整場景。
+4. 正式Frame與來源模型獨立比較，確認有效HD不經原版RGB。代表部隊需要定位時允許受控RAM呼叫，標明受控條件，不冒稱自然遭遇。
+5. 僅上述範圍通過才標限定CONFORMED。無GPU、SIMD、整體FPS、硬體逐週期或所有閃爍完成的擴張聲明。原版素材與完整生成圖維持本機；本契約不新增公開散布授權。
+
+
+## 正式提升與限定驗收
+
+2026-10-26：本節限定CONFORMED。正式七程式已切換來源呈現，資產仍r49／344檔。沒有改玩法、資料或原始核心。
+
+- 正式實作：[PAM場景](../../internal/eightsword/source_scene.go)、[純呈現器](../../internal/eightsword/source_render.go)、[開場來源](../../internal/eightsword/source_intro.go)、[直接計畫](../../internal/eightsword/source_direct.go)、[六平面](../../internal/eightsword/source_masked.go)、[逐列](../../internal/eightsword/source_masked_rows.go)、[錯誤邊界](../../internal/eightsword/source_guard.go)、[募兵交易](../../internal/eightsword/source_recruitment.go)及[實際Frame資訊](../../internal/eightsword/source_presentation.go)。有效HD在Engine.Frame的來源分支返回，沒有研究PNG／JSON、原版RGB參考或環境控制分支。
+- [核心準備器](../../tools/prepare-player-runtime.py)以[固定來源](../../tools/player-runtime-source.json)重建919檔核心。910基底、13變更及patch均同已驗core-direct-r6，另存player/runtime-direct-r1，不修改固定或共用核心。`bash tools/player.sh build <新名稱>`保存獨立候選與來源，省略名稱時預設source-candidate-r1，但已存在即拒絕。候選GUI設定EIGHTSWORD_GUI_BUILD。
+- `source-unit-r1.log`全部來源測試25.310秒通過，包含60逐列、十四拒絕與雙軸配額、24六平面、16四／五平面及兩組批次圖層。新的[整合測試](../../internal/eightsword/source_runtime_test.go)以原生CPU為控制，普通啟動／新遊戲／F1／F2的完整state、PCM、Frame相同，Frame不改客體；受控INT10切13h另驗有界停止及最後完整圖，沒有冒稱自然玩家路徑。
+- `source-core-unit-r1.log`原版事件邊界／HostCall、`source-vet-r1.log`靜態檢查通過。舊Intro測試依賴原合成器計數，改用[明示舊參考fixture](../../internal/eightsword/overlay_reference_test.go)，保留美術與生命週期測試；正式玩家證據另由新整合測試及GUI取得。缺本機原始資料的測試會明示跳過，跳過不作成功案例。
+- `source-save-r1`正常GUI自然走完整開場及真正存退冷讀，336／232 Draw、113／104改變，721／471來源Frame與2171／1228直接計畫，Tracker舊合成器為0。四組製作名單、五故事頁、博物館左右／美女／光束與前導皆連回實際Draw。九種完成場景逐像素同已驗來源參考，未把參考圖送入正式呈現器。
+- `source-toolbar-r1`正常點選工具列為229／26 Draw、52／7改變，532／30來源Frame、1227／3直接計畫，舊合成器0。三種字型在實際主選單各驗1235／261／416個不透明墨點，教育部隸書與海報偏好恢復。已抽看完整自然開場接觸表、Noto主選單與教育部隸書人物頁。
+- 真正F7存檔與存後／冷讀RAM皆2987 bytes、SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`；DOS退出0，冷讀step202978329。快照只用零步檢視記憶體，沒有作玩家讀檔或場景注入。
+- [獨立核對器](../../tools/audit-source-player.py)使用`--project`、`--build`、`--gui`、`--toolbar`及新`--out`，固定Pillow11.3.0。統一收據`battle-r1/source-player-audit-r3.json`，SHA `c7bab70fc8c6d2b58c5f8d13fab5fb2d96892a21ec9a05e5df8787cc72c7cd50`。第一版核對器誤把主選單字型取樣放在側選單，屬核對腳本定位錯誤；改依來源218的(208,83)字串，沒有修改產品或重跑GUI。
+- 最新候選source-candidate-r4保存129輸入與七程式。r2的GUI之後只維護測試fixture；七個程式與r4逐位元組相同，核對器逐項確認，不以測試名稱或版本參數推論相同。[提升工具](../../tools/promote-source-player.py)核對完整收據及上一組七程式保存後，以新檔替換現行入口。`source-promotion-r1.json`記錄提升；舊七程式保持在player/build-troops-r1，原版158檔與344素材不變。
+
+本次完成來源呈現協定與代表玩家路徑的正式提升。未驗施法、結局與其他素材不算完成；CPU接管的事件邊界仍可能執行原版指令，不作全指令略過、GPU、SIMD、整體FPS或所有閃爍已修復聲明。既有主程式錯誤結束仍用log.Fatal，未追加故障GUI清理測試；正常Close與受控Engine故障已驗。

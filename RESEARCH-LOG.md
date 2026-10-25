@@ -1792,3 +1792,14 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 - GUI412／115 Draw、67／18變化，兩個募兵交易中Draw保持，14份真實數字欄、三字型城門與Noto全頁核對通過。首次游標前完成PNG未跨Draw，實際全頁以欄外同狀態參考及欄內字型／游標模型完整覆蓋。存前兩軍隊／四人物、冷讀兩軍隊／三人物的字墨為31／31與499。
 - 真正F7存退冷讀2987 bytes同兩側RAM `4009c81e9e83ecb7777ebc55fff334754e1d826a3f32e791c0e24ec241ef2abe`，read41783939、DOS退出0。來源857／207、PAM舊RGB0、無型別故障；三實窗與三總覽已看。
 - 統一owned-recruit-audit-r3.json SHA `a47fbd904f01a1ccc52f7c430ee6ce9df5d67ebadc73447d1c982988f5822a28`。正式r49保持，047仍DRAFT；本組停止擴張同機制驗證，接續正式接入審查與移除診斷依賴。
+
+
+## 2026-10-26：047正式提升的證據審查
+
+推論等級：已證實，限047正式協定及代表路徑。原始PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；其餘來源、IDA9.4原名、runtime與檔案偏移沿047既有定位，不改寫原DB。Go1.24.13與Pillow11.3.0固定Docker。控制組為原生CPU；候選的四／五／六平面與逐列直接計畫保留原版返回及雙軸事件邊界。
+
+正式來源整合測試對普通啟動／新遊戲／F1／F2逐階比較完整state／PCM／Frame及Frame純度。受控RAM 8000:0000寫入`B8 13 00 CD 10 EB FE`，以CallNear執行真正INT10切13h；PAM未支援此模式，OwnedRenderFault於分段結束回報，最後來源圖保持，後續Advance／AdvanceCycles不前進。這是呈現故障測試，不是自然玩家路徑或亂數規則證據。
+
+來源測試統一source-unit-r1.log，SHA `41f70a64b7b715846066fb25112fc6d8b109b102918226119404492951d1489d`。正式GUI完整自然片頭、三字型工具列與真正F7存退冷讀由tools/audit-source-player.py獨立核對；source-player-audit-r3.json SHA `c7bab70fc8c6d2b58c5f8d13fab5fb2d96892a21ec9a05e5df8787cc72c7cd50`。舊合成器ComposedFrames／CachedFrames均0；純來源檔另拒絕Screen／ScreenRGB／Compose與研究環境控制。九種完整場景在實際Draw逐像素同不可變r42參考，參考僅作事後核對。
+
+結論：足以正式提升047的來源呈現協定。未驗施法、結局、未知素材仍不外推；其餘HD音樂及美術未完成。沒有新增玩法或RAM常駐修改。

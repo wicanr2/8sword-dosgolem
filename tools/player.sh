@@ -50,16 +50,26 @@ case "${1:-}" in
     task_timeout=420
     if [[ "$task_action" != build ]]; then task_timeout=1020; fi
     bash "$task_root/tools/research.sh" build-probe
+    test -d "$task_player"; test -d "$task_work/dosgolem"
+    timeout -k 5s 60s docker run --rm --network none --user "$task_uid:$task_gid" \
+      --memory 768m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_player,dst=/player" \
+      "$task_py" python /project/tools/prepare-player-runtime.py \
+      --project /project --out /player/runtime-direct-r1
+    task_build_name="${2:-source-candidate-r1}"
+    valid_name "$task_build_name"
+    test "$task_action" != build || test ! -e "$task_player/$task_build_name"
     test -d "$task_work/gocache"; test -d "$task_work/gomodcache"
     mkdir -p "$task_player"
     exec timeout -k 10s "${task_timeout}s" docker run --rm --init --name "8sword-player-$task_action" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
       --mount "type=bind,src=$task_root,dst=/project,readonly" \
-      --mount "type=bind,src=$task_work/dosgolem,dst=/dosgolem,readonly" \
+      --mount "type=bind,src=$task_player/runtime-direct-r1/src,dst=/dosgolem,readonly" \
       --mount "type=bind,src=$task_work/gocache,dst=/gocache" \
       --mount "type=bind,src=$task_work/gomodcache,dst=/gomodcache,readonly" \
       --mount "type=bind,src=$task_player,dst=/out" \
-      -w /tmp -e GOCACHE=/gocache -e GOMODCACHE=/gomodcache -e GOMAXPROCS=2 \
+      -e EIGHTSWORD_BUILD_NAME="$task_build_name" -w /tmp -e GOCACHE=/gocache -e GOMODCACHE=/gomodcache -e GOMAXPROCS=2 \
       "$task_go" bash -c '
         set -e
         printf "go 1.24.0\nuse (\n /project\n /dosgolem\n)\n" > /tmp/go.work
@@ -80,6 +90,9 @@ case "${1:-}" in
             intro_assets=/out/assets-painted-r10
           fi
           EIGHTSWORD_TEST_ORIG=/project/workplace/intake-20261023/sources/game/8sword \
+            EIGHTSWORD_TEST_ORIGINAL=/project/workplace/intake-20261023/sources/game/8sword \
+            EIGHTSWORD_TEST_DIRECT_FIXTURES=/project/workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r3 \
+            EIGHTSWORD_TEST_SOURCE_ASSETS=/out/assets-painted-r49 \
             EIGHTSWORD_TEST_ASSETS=/out/assets EIGHTSWORD_TEST_GRAPHICS_ASSETS="$art_assets" \
             EIGHTSWORD_TEST_MUSIC_ASSETS="$music_assets" \
             EIGHTSWORD_TEST_INTRO_ASSETS="$intro_assets" \
@@ -161,19 +174,24 @@ case "${1:-}" in
             go test -mod=readonly ./oracle ./internal/machine ./internal/dos ./internal/state
           fi
         else
+          target="/out/$EIGHTSWORD_BUILD_NAME"
+          test ! -e "$target"
+          mkdir "$target"
+          mkdir "$target/src" "$target/src/tools"
+          cp -a /project/internal /project/cmd /project/go.mod /project/go.sum "$target/src/"
+          cp /project/tools/gui-check.go /project/tools/music-check.go /project/tools/heroine-check.go /project/tools/museum-check.go /project/tools/story-prelude-check.go "$target/src/tools/"
           find /project/internal /project/cmd -type f -name "*.go" -print0 \
-            | sort -z | xargs -0 sha256sum > /out/build-inputs.sha256
-          sha256sum /project/go.mod /project/go.sum /project/tools/gui-check.go /project/tools/music-check.go /project/tools/heroine-check.go /project/tools/museum-check.go /project/tools/story-prelude-check.go >> /out/build-inputs.sha256
-          go build -mod=readonly -o /out/8sword /project/cmd/8sword
-          go build -mod=readonly -o /out/8sword-replay /project/cmd/8sword-replay
-          go build -mod=readonly -o /out/gui-check /project/tools/gui-check.go
-          go build -mod=readonly -o /out/music-check /project/tools/music-check.go
-          go build -mod=readonly -o /out/heroine-check /project/tools/heroine-check.go
-          go build -mod=readonly -o /out/museum-check /project/tools/museum-check.go
-          go build -mod=readonly -o /out/story-prelude-check /project/tools/story-prelude-check.go
-          sha256sum -c /out/build-inputs.sha256 > /out/build-source-checks.log
-          go version > /out/build-go-version.txt
-          sha256sum /out/8sword /out/8sword-replay /out/gui-check /out/music-check /out/heroine-check /out/museum-check /out/story-prelude-check > /out/build-outputs.sha256
+            | sort -z | xargs -0 sha256sum > "$target/build-inputs.sha256"
+          sha256sum /project/go.mod /project/go.sum /project/tools/gui-check.go /project/tools/music-check.go /project/tools/heroine-check.go /project/tools/museum-check.go /project/tools/story-prelude-check.go >> "$target/build-inputs.sha256"
+          go build -mod=readonly -o "$target/8sword" /project/cmd/8sword
+          go build -mod=readonly -o "$target/8sword-replay" /project/cmd/8sword-replay
+          for tool in gui-check music-check heroine-check museum-check story-prelude-check; do
+            go build -mod=readonly -o "$target/$tool" "/project/tools/$tool.go"
+          done
+          sha256sum -c "$target/build-inputs.sha256" > "$target/build-source-checks.log"
+          go version > "$target/build-go-version.txt"
+          sha256sum "$target/8sword" "$target/8sword-replay" "$target/gui-check" "$target/music-check" "$target/heroine-check" "$target/museum-check" "$target/story-prelude-check" > "$target/build-outputs.sha256"
+          cp /out/runtime-direct-r1/player-runtime.json "$target/runtime.json"
         fi' build "$task_action"
     ;;
   assets)
@@ -902,7 +920,12 @@ case "${1:-}" in
   gui-check)
     task_name="${2:?指定新的 GUI 收據名稱}"
     valid_name "$task_name"
-    test -f "$task_player/8sword"; test -f "$task_player/gui-check"
+    task_bin="$task_player"
+    if [[ -n "${EIGHTSWORD_GUI_BUILD:-}" ]]; then
+      valid_name "$EIGHTSWORD_GUI_BUILD"
+      task_bin="$task_player/$EIGHTSWORD_GUI_BUILD"
+    fi
+    test -f "$task_bin/8sword"; test -f "$task_bin/gui-check"
     test -d "$task_player/assets"; test -d "$task_orig"
     task_out="$task_player/gui/$task_name"
     test ! -e "$task_out"; mkdir -p "$task_out"
@@ -913,7 +936,8 @@ case "${1:-}" in
     if [[ "${EIGHTSWORD_GUI_SHOW_MUSEUM:-0}" == 1 ]]; then task_limit=1000s; fi
     exec timeout "$task_limit" docker run --rm --init --name "8sword-gui-$task_name" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
-      --mount "type=bind,src=$task_player,dst=/bin-player,readonly" \
+      --mount "type=bind,src=$task_bin,dst=/bin-player,readonly" \
+      --mount "type=bind,src=$task_player,dst=/player,readonly" \
       --mount "type=bind,src=$task_player/assets,dst=/assets,readonly" \
       --mount "type=bind,src=$task_orig,dst=/orig,readonly" \
       --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \

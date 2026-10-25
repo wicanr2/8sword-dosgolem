@@ -25,7 +25,7 @@
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
 
-目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#六平面逐列研究契約)已在研究版接通四／五平面圖片與六平面角色入口，由 CPU 矩形批次直接繪製來源材質、角色與文字。六平面採逐列接管，在事件邊界保留必要的原版指令。正常選單、Noto人物／軍隊頁、攻城與真正存退讀已抽驗，客體狀態與 PCM 同控制；既有代表場景的繪製耗時約為先前十分之一，整體遊戲幀率仍待量測。正式入口尚未切換，未知命令與素材故障處理、HD 音樂及全遊戲驗收仍未完成。
+目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
 開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；驗收見 [014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。發行商中央圖案亦已採 B 柔和漸層，三字型、正常交接、存退讀與故障回退的範圍見 [016](docs/spec/016-publisher-wordmarks.md#b-圖案正式追加驗收)。其他音畫與整體 HD 尚未完成。完整執行期素材組留本機。
 
@@ -215,7 +215,7 @@ Noto 前端的建置與驗證入口：
 ```bash
 bash tools/player.sh dependencies
 bash tools/player.sh assets
-bash tools/player.sh build
+bash tools/player.sh build my-hd-build
 bash tools/player.sh test
 EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false bash tools/player.sh gui-check noto-check
 ```
@@ -283,7 +283,7 @@ PON 火花另見 [027](docs/spec/027-battle-pon-effects.md)。備齊本機 r21�
 
 ```bash
 bash tools/player.sh intro-assets painted-r10 painted-r9
-bash tools/player.sh build
+bash tools/player.sh build my-hd-build
 EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r10 \
   EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false \
   EIGHTSWORD_GUI_FLOW=intro bash tools/player.sh gui-check title-window-check
@@ -295,7 +295,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r10 \
 
 ```bash
 bash tools/player.sh story-assets painted-r11 painted-r10
-bash tools/player.sh build
+bash tools/player.sh build my-hd-build
 EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r11 \
   EIGHTSWORD_GUI_CYCLES=3000 EIGHTSWORD_GUI_FLOW=story \
   bash tools/player.sh gui-check story-window-check
@@ -315,6 +315,8 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r11 \
 
 博物館左右展間、十個人物動作、畫作近景與光束已正式接入，保留原版劇情與播放順序。素材、動態對照與限定驗收見 [開場 HD 規格](docs/spec/017-intro-museum-art.md)。鏡中美人的概念圖另作美術參考。
 
+建置指令`bash tools/player.sh build <新候選名稱>`會保存獨立來源與七程式，拒絕覆寫。測候選版時，設定`EIGHTSWORD_GUI_BUILD=<候選名稱>`再使用`gui-check`；省略時使用已驗收的本機播放器。正式來源核心的重建、核對與提升入口見[047](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)，建置本身不代表驗收通過。
+
 ## 字型設定與故事背景
 
 預設為 Noto Sans CJK TC Black 900。載入可選字型組後，可按 **F10** 循環切換 Noto、隸書風 UnYetgul、劉建毛草。視窗標題顯示目前字型；主選單、人物頁、片頭標題、故事與製作名單同步切換。原文、字色與位置保持。英數與標點沿用 Noto Black，替代字型的中文缺字用 Noto 宋體補足，不把繁體換成簡體。
@@ -332,7 +334,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r11 \
 ```bash
 bash tools/player.sh story-background-assets painted-r12 painted-r11
 bash tools/player.sh font-choices-assets painted-r14 painted-r12
-bash tools/player.sh build
+bash tools/player.sh build my-hd-build
 EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r14 \
   EIGHTSWORD_GUI_CYCLES=3000 EIGHTSWORD_GUI_FLOW=save-cycle \
   EIGHTSWORD_GUI_FONT_CYCLE=1 EIGHTSWORD_GUI_SHOW_STORY=1 \
@@ -351,7 +353,7 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r14 \
 
 ```bash
 bash tools/player.sh music-assets painted-r9 painted-r8
-bash tools/player.sh build
+bash tools/player.sh build my-hd-build
 bash tools/player.sh music-check music-hd-check painted-r9
 EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
   EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false \

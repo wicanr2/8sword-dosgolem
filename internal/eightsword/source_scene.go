@@ -1,0 +1,680 @@
+// Spec 047 READY: source-command adaptation and immutable scene transactions.
+// The renderer below has no Oracle, framebuffer, or VGA ownership input.
+package eightsword
+
+import (
+	"bytes"
+	"encoding/binary"
+	"image"
+
+	"github.com/wicanr2/dosgolem/oracle"
+)
+
+type ownedPixel struct {
+	Color           uint8
+	Material, Actor graphicCell
+	Effect          graphicCell
+	EffectBase      uint8
+	Text            cell
+}
+type ownedScene struct {
+	Pixels   []ownedPixel
+	Glyphs   map[uint32]*glyph
+	Next     uint32
+	Revision uint64
+	Start    int
+	Effects  map[uint16]*image.RGBA
+}
+type ownedPanel struct {
+	Kind  string
+	Start uint64
+}
+type sourceAdapter struct {
+	e             *Engine
+	scene         *ownedScene
+	bound         bool
+	counts        map[string]uint64
+	active        int
+	cached        *image.RGBA
+	revision      uint64
+	fontID        string
+	stringActive  bool
+	stringSP      uint16
+	stringGlyphs  []func()
+	unsubscribe   func()
+	panel         *ownedPanel
+	presented     *ownedScene
+	cachedScene   *ownedScene
+	cachedSources map[uint16]bool
+	sourceOnlyArt GraphicsAssets
+}
+
+// Source decoding must not depend on an optional HD graphics group. A nil-map
+// registry selects source pixels without inventing materials or changing Tracker.
+func (p *sourceAdapter) graphicsAssets() *GraphicsAssets {
+	if t := p.e.Tracker; t != nil && t.graphics != nil && t.graphics.assets != nil {
+		return t.graphics.assets
+	}
+	return &p.sourceOnlyArt
+}
+
+func cloneOwnedScene(s *ownedScene) *ownedScene {
+	copyScene := *s
+	copyScene.Pixels = append([]ownedPixel(nil), s.Pixels...)
+	copyScene.Glyphs = make(map[uint32]*glyph, len(s.Glyphs))
+	for id, g := range s.Glyphs {
+		copyScene.Glyphs[id] = g
+	}
+	copyScene.Effects = make(map[uint16]*image.RGBA, len(s.Effects))
+	for id, f := range s.Effects {
+		copyScene.Effects[id] = f
+	}
+	return &copyScene
+}
+
+// Pure scene rendering. Source-command adaptation is kept below this function.
+func (e *Engine) newSourcePAM() (func(), func() *image.RGBA, func()) {
+	p := &sourceAdapter{e: e, scene: &ownedScene{Pixels: make([]ownedPixel, 65536*8), Glyphs: map[uint32]*glyph{}, Effects: map[uint16]*image.RGBA{}}, counts: map[string]uint64{}}
+	install := func() { p.bind() }
+	frame := func() *image.RGBA {
+		if !p.bound {
+			return nil
+		}
+		state := p.scene
+		if p.panel != nil {
+			if e.Oracle.Steps()-p.panel.Start > 5000000 {
+				p.reject("research owned panel exceeded bounded completion contract")
+			}
+			p.counts["panel-staged-frames"]++
+			state = p.presented
+		}
+		if p.cached == nil || p.cachedScene != state || p.revision != state.Revision || p.fontID != e.FontID() {
+			p.cached = renderOwnedScene(state, e.Tracker.assets, p.graphicsAssets(), e.Tracker.palette)
+			p.cachedSources = map[uint16]bool{}
+			for _, pixel := range state.Pixels[state.Start : state.Start+16000*8] {
+				if g := state.Glyphs[pixel.Text.ID]; g != nil {
+					p.cachedSources[g.Source] = true
+				}
+			}
+			p.revision = state.Revision
+			p.cachedScene = state
+			p.fontID = e.FontID()
+			if p.panel == nil {
+				p.presented = cloneOwnedScene(p.scene)
+			}
+		}
+		// Scene metadata follows the actually presented source scene, including
+		// a held panel, without depending on legacy RGB composition side effects.
+		e.Tracker.visibleSources = p.cachedSources
+		e.Tracker.VisibleScene = visibleScene(p.cachedSources)
+		return p.cached
+	}
+	return install, frame, func() {
+		if p.unsubscribe != nil {
+			p.unsubscribe()
+		}
+	}
+}
+func (p *sourceAdapter) record(kind string, _ map[string]any) { p.counts[kind]++ }
+func (p *sourceAdapter) bind() {
+	t := p.e.Tracker
+	if p.bound || t == nil || t.loadSegment == 0 {
+		return
+	}
+	p.bound = true
+	art := p.graphicsAssets()
+	o := p.e.Oracle
+	seg := t.stringSeg
+	p.bindPanels()
+	p.bindRecruitmentPanels()
+	for _, site := range []struct {
+		seg, entry, ret uint16
+		base            int
+	}{{seg, 0x274, 0x322, 0x15090}, {seg, 0x19c, 0x1a9, 0x15090}, {seg, 0xae3, 0xb41, 0x15090}, {seg, 0xd3e, 0xd74, 0x15090}, {seg, 0x33d, 0x371, 0x15090}, {seg, 0x3b0, 0x3e4, 0x15090}, {seg, 0x4f2, 0x625, 0x15090}, {seg, 0x626, 0x76e, 0x15090}, {seg, 0x76f, 0x854, 0x15090}, {seg, 0x99c, 0xa6f, 0x15090}, {seg, 0x423, 0x4f1, 0x15090}, {seg, 0xb86, 0xc85, 0x15090}, {t.fontSeg, 0x4a98, 0x4bf7, 0xadf0}} {
+		if !bytes.Equal(o.Bytes(oracle.Addr{Seg: site.seg, Off: site.entry}, 16), t.pam[site.base+int(site.entry):site.base+int(site.entry)+16]) || o.Byte(oracle.Addr{Seg: site.seg, Off: site.ret}) != 0xcb {
+			p.reject("owned primitive ABI differs")
+		}
+	}
+	var page uint16
+	p.onCall(oracle.Addr{Seg: seg, Off: 0x19c}, func(*oracle.Oracle) { page = o.Arg(0) & 255 })
+	p.onCall(oracle.Addr{Seg: seg, Off: 0x1a9}, func(*oracle.Oracle) {
+		if page > 3 {
+			p.reject("owned page out of range")
+		}
+		p.scene.Start = int(page) * 0x4000 * 8
+		p.scene.Revision++
+		p.record("select-page", map[string]any{"page": page, "caller": nil})
+	})
+	p.onCall(oracle.Addr{Seg: seg, Off: 0xae3}, func(*oracle.Oracle) {
+		if p.stringActive && p.stringSP == o.Regs().SP {
+			return
+		}
+		if p.stringActive {
+			p.reject("owned string reentry")
+		}
+		p.stringActive = true
+		p.stringSP = o.Regs().SP
+		p.stringGlyphs = nil
+		p.active++
+	})
+	p.onCall(oracle.Addr{Seg: seg, Off: 0xb41}, func(*oracle.Oracle) {
+		if !p.stringActive {
+			return
+		}
+		for _, apply := range p.stringGlyphs {
+			apply()
+		}
+		p.record("string", map[string]any{"glyphs": len(p.stringGlyphs)})
+		p.stringGlyphs = nil
+		p.stringActive = false
+		p.active--
+	})
+	var clearApply func()
+	p.onCall(oracle.Addr{Seg: seg, Off: 0xd3e}, func(*oracle.Oracle) {
+		ds := o.Regs().DS
+		dest := o.Word(oracle.Addr{Seg: ds, Off: 0x748a})
+		mode := o.Word(oracle.Addr{Seg: ds, Off: 0x7484})
+		mask := o.Byte(oracle.Addr{Seg: ds, Off: 0x748c})
+		if (dest != 0xa000 && dest != 0xa400) || mode != 1 {
+			p.counts["rejected-clear"]++
+			p.reject("source-command-rejected")
+			return
+		}
+		first := int(dest-0xa000) * 16 * 8
+		if clearApply != nil {
+			return
+		}
+		p.active++
+		clearApply = func() {
+			for i := first; i < first+0x4000*8; i++ {
+				p.scene.Pixels[i] = ownedPixel{Color: p.scene.Pixels[i].Color & ^mask}
+			}
+			p.scene.Revision++
+			p.record("clear-page", map[string]any{"dest": dest, "plane_mask": mask})
+		}
+	})
+	p.onCall(oracle.Addr{Seg: seg, Off: 0xd74}, func(*oracle.Oracle) {
+		if clearApply != nil {
+			clearApply()
+			clearApply = nil
+			p.active--
+		}
+	})
+	var plotApply func()
+	p.onCall(oracle.Addr{Seg: seg, Off: 0x274}, func(*oracle.Oracle) {
+		if plotApply != nil {
+			return
+		}
+		ds := o.Regs().DS
+		x, y := int(o.Arg(0)), int(o.Arg(1))
+		dest := o.Word(oracle.Addr{Seg: ds, Off: 0x748a})
+		mode := o.Word(oracle.Addr{Seg: ds, Off: 0x7484})
+		fg := o.Byte(oracle.Addr{Seg: ds, Off: 0x748c})
+		if x >= 640 || y >= 200 || (dest != 0xa000 && dest != 0xa400) || mode != 1 || fg > 15 {
+			p.counts["rejected-plot"]++
+			p.reject("source-command-rejected")
+			return
+		}
+		at := int(dest-0xa000)*16*8 + y*640 + x
+		p.active++
+		plotApply = func() {
+			p.scene.Pixels[at] = ownedPixel{Color: fg}
+			p.scene.Revision++
+			p.counts["plot"]++
+			if p.counts["plot"] <= 32 {
+				p.record("plot-sample", map[string]any{"x": x, "y": y, "dest": dest, "fg": fg})
+			}
+		}
+	})
+	p.onCall(oracle.Addr{Seg: seg, Off: 0x322}, func(*oracle.Oracle) {
+		if plotApply != nil {
+			plotApply()
+			plotApply = nil
+			p.active--
+		}
+	})
+	// Video writes are diagnostic counts only. None are scene render inputs.
+	p.unsubscribe = p.observe(PresentationObserver{Write: func(w PresentationWrite) {
+		if p.active == 0 {
+			p.counts["writes-outside-command"]++
+			p.e.sourceRejectAt("pam", "unclassified-video-write", w.Step, w.CS, w.IP, p.e.Oracle.VideoMode())
+		}
+
+	}})
+	for _, c := range []struct {
+		entry, ret uint16
+		kind       int
+	}{{0x4f2, 0x625, 6}, {0x626, 0x76e, 6}, {0x76f, 0x854, 5}, {0x99c, 0xa6f, 4}, {0x423, 0x4f1, 0}} {
+		c := c
+		if o.Byte(oracle.Addr{Seg: seg, Off: c.ret}) != 0xcb {
+			p.reject("owned bitmap return bytes differ")
+		}
+		var apply func()
+		var sp uint16
+		p.onCall(oracle.Addr{Seg: seg, Off: c.entry}, func(o *oracle.Oracle) {
+			if apply != nil && sp == o.Regs().SP {
+				return
+			}
+			if apply != nil {
+				p.reject("owned bitmap reentry")
+			}
+			sp = o.Regs().SP
+			ptr := oracle.Addr{Seg: o.Arg(1), Off: o.Arg(0)}
+			if !bitmapSourceInRAM(ptr, 4) {
+				p.counts["rejected-bitmap"]++
+				p.reject("source-command-rejected")
+				return
+			}
+			head := o.Bytes(ptr, 4)
+			w, h := int(binary.LittleEndian.Uint16(head)), int(binary.LittleEndian.Uint16(head[2:]))
+			x, y := int(o.Arg(2)), int(o.Arg(3))
+			ds := o.Regs().DS
+			dest := o.Word(oracle.Addr{Seg: ds, Off: 0x748a})
+			mode := o.Word(oracle.Addr{Seg: ds, Off: 0x7484})
+			if w < 1 || w > 80 || h < 1 || h > 200 || x+w > 80 || y+h > 200 || (dest != 0xa000 && dest != 0xa400) || mode != 1 || !bitmapSourceInRAM(ptr, 4+w*h*c.kind) {
+				p.counts["rejected-bitmap"]++
+				p.reject("source-command-rejected")
+				return
+			}
+			raw := o.Bytes(ptr, 4+w*h*c.kind)
+			first := int(dest-0xa000)*16*8 + y*640 + x*8
+			for row := 0; row < h; row++ {
+				if o.Word(oracle.Addr{Seg: seg, Off: uint16(6 + (y+row)*2)}) != uint16((y+row)*80) {
+					p.reject("owned bitmap pitch")
+				}
+			}
+			id, actor := uint16(0), uint16(0)
+			if c.kind > 0 {
+				id = art.ByNative[hash(raw[:4+w*h*4])]
+				if c.entry == 0x626 {
+					if id == 85 {
+						id = 107
+					}
+					if id == 150 {
+						id = 152
+					}
+					if alias := art.BattleAliases[id]; alias != 0 {
+						id = alias
+					}
+				}
+				if art.ActorSHA[id] == hash(raw) {
+					actor = id
+				}
+			}
+			// Reuse the existing validated eligibility contract, using our scene.
+			if actor != 0 {
+				background := c.entry == 0x626
+				known := true
+				base := first
+				if background {
+					base += 0x4000 * 8
+				}
+				for row := 0; row < h && known; row++ {
+					for col := 0; col < w*8; col++ {
+						v := p.scene.Pixels[base+row*640+col].Material
+						m := art.Materials[v.ID]
+						if m == nil || v.Local >= uint32(m.NativeWidth*m.NativeHeight) {
+							known = false
+							break
+						}
+					}
+				}
+				if !known || background != art.BattleActors[actor] {
+					actor = 0
+				}
+			}
+			effect := uint16(0)
+			if c.entry == 0x4f2 && w == 11 && h == 50 && dest == 0xa000 && art.EffectSHA[id] == hash(raw) && art.Effects[id] != nil {
+				valid := true
+				for row := 0; row < h && valid; row++ {
+					for col := 0; col < w*8; col++ {
+						v := p.scene.Pixels[first+row*640+col]
+						if v.Text.ID != 0 || (isChoiSource(id) && v.Effect.ID != 0) || art.Materials[v.Material.ID] == nil {
+							valid = false
+							break
+						}
+					}
+				}
+				if valid {
+					effect = id
+				}
+			}
+			entryStep := o.Steps()
+			p.active++
+			apply = func() {
+				area := w * h
+				fxID := uint16(0)
+				if effect != 0 {
+					fxID = p.effectFrame(first, art.Effects[effect].Tile)
+				}
+				for row := 0; row < h; row++ {
+					for col := 0; col < w*8; col++ {
+						at := first + row*640 + col
+						local := row*w*8 + col
+						if c.kind == 0 || c.entry == 0x626 {
+							p.scene.Pixels[at] = p.scene.Pixels[at+0x4000*8]
+						}
+						if c.kind == 0 {
+							continue
+						}
+						pix := &p.scene.Pixels[at]
+						bit := uint(7 - local%8)
+						mask := c.kind != 6 || (raw[4+5*area+local/8]>>bit)&1 != 0
+						if fxID != 0 {
+							base := pix.Color
+							if pix.Effect.ID != 0 {
+								base = pix.EffectBase
+							}
+							pix.Effect = graphicCell{fxID, uint32(local)}
+							pix.EffectBase = base
+						} else if mask {
+							pix.Effect = graphicCell{}
+						}
+						if fxID == 0 {
+							if actor != 0 {
+								pix.Actor = graphicCell{actor, uint32(local)}
+							} else if mask {
+								pix.Actor = graphicCell{}
+							}
+						}
+						if !mask {
+							continue
+						}
+						color := uint8(0)
+						for plane := 0; plane < 4; plane++ {
+							color |= ((raw[4+plane*area+local/8] >> bit) & 1) << uint(plane)
+						}
+						pix.Color = color
+						pix.Text = cell{}
+						if actor == 0 && fxID == 0 {
+							pix.Material = graphicCell{id, uint32(local)}
+						}
+					}
+				}
+				p.scene.Revision++
+				p.record("bitmap", map[string]any{"entry": c.entry, "entry_step": entryStep, "width_bytes": w, "height": h, "x_byte": x, "y": y, "dest": dest, "source_sha256": hash(raw), "material": id, "actor": actor, "effect": effect, "caller": nil})
+			}
+		})
+		p.onCall(oracle.Addr{Seg: seg, Off: c.ret}, func(*oracle.Oracle) {
+			if apply != nil {
+				apply()
+				apply = nil
+				p.active--
+			}
+		})
+	}
+	for _, c := range []struct {
+		entry, ret uint16
+		to, from   int
+	}{{0x33d, 0x371, 0x4000 * 8, 0}, {0x3b0, 0x3e4, 0, 0x4000 * 8}} {
+		c := c
+		pending := false
+		p.onCall(oracle.Addr{Seg: seg, Off: c.entry}, func(*oracle.Oracle) {
+			if !pending {
+				pending = true
+				p.active++
+			}
+		})
+		p.onCall(oracle.Addr{Seg: seg, Off: c.ret}, func(*oracle.Oracle) {
+			if pending {
+				copy(p.scene.Pixels[c.to:c.to+16000*8], p.scene.Pixels[c.from:c.from+16000*8])
+				p.scene.Revision++
+				p.record("page-copy", map[string]any{"entry": c.entry, "from": c.from, "to": c.to, "bytes": 16000})
+				pending = false
+				p.active--
+			}
+		})
+	}
+	for _, c := range []struct {
+		seg, entry, ret uint16
+		full            bool
+	}{{t.fontSeg, 0x4a98, 0x4bf7, true}, {seg, 0xb86, 0xc85, false}} {
+		c := c
+		var pending *glyph
+		var sp uint16
+		p.onCall(oracle.Addr{Seg: c.seg, Off: c.entry}, func(*oracle.Oracle) {
+			if pending != nil && sp == o.Regs().SP {
+				return
+			}
+			if pending != nil {
+				p.reject("owned glyph reentry")
+			}
+			sp = o.Regs().SP
+			g := t.active
+			if g == nil {
+				return
+			}
+			cp := glyph{Rune: g.Rune, Source: g.Source, Width: g.Width, FG: g.FG, BG: g.BG, Rows: g.Rows}
+			pending = &cp
+			p.active++
+		})
+		p.onCall(oracle.Addr{Seg: c.seg, Off: c.ret}, func(*oracle.Oracle) {
+			if pending == nil {
+				return
+			}
+			g := pending
+			apply := func() {
+				p.scene.Next++
+				g.ID = p.scene.Next
+				p.scene.Glyphs[g.ID] = g
+				for y := 0; y < 15; y++ {
+					for x := 0; x < g.Width; x++ {
+						at := int(g.Rows[y])*8 + x
+						if at >= len(p.scene.Pixels) {
+							p.reject("owned glyph bounds")
+						}
+						v := &p.scene.Pixels[at]
+						v.Effect = graphicCell{}
+						if g.BG != 255 {
+							v.Color = g.BG
+							v.Material = graphicCell{}
+							v.Actor = graphicCell{}
+						}
+						v.Text = cell{ID: g.ID, Local: uint16(y*g.Width + x)}
+					}
+				}
+				p.scene.Revision++
+				p.record("glyph", map[string]any{"rune": string(g.Rune), "source": g.Source, "rows": g.Rows, "width": g.Width, "fg": g.FG, "bg": g.BG})
+			}
+			if p.stringActive {
+				p.stringGlyphs = append(p.stringGlyphs, apply)
+			} else {
+				apply()
+			}
+			pending = nil
+			p.active--
+		})
+	}
+}
+
+// Spec 047 DRAFT: these boundaries come from fixed-PAM IDA functions and the
+// normal F1/F2 trace. The staging state contains our scene, never VGA or a
+// screenshot. Source commands continue to update the working scene while the
+// completed scene remains available to the pure renderer.
+func (p *sourceAdapter) bindPanels() {
+	o, t := p.e.Oracle, p.e.Tracker
+	load := t.loadSegment
+	header := int(binary.LittleEndian.Uint16(t.pam[8:10])) * 16
+	relocated := append([]byte(nil), t.pam[header:]...)
+	table, count := int(binary.LittleEndian.Uint16(t.pam[24:26])), int(binary.LittleEndian.Uint16(t.pam[6:8]))
+	for i := 0; i < count; i++ {
+		entry := table + i*4
+		at := int(binary.LittleEndian.Uint16(t.pam[entry:])) + int(binary.LittleEndian.Uint16(t.pam[entry+2:]))*16
+		if at+2 > len(relocated) {
+			p.reject("owned PAM relocation bounds")
+		}
+		binary.LittleEndian.PutUint16(relocated[at:], binary.LittleEndian.Uint16(relocated[at:])+load)
+	}
+	for _, site := range []struct {
+		off uint16
+		ret bool
+	}{{0x3df0, false}, {0x3e92, false}, {0x73f0, false}, {0x7512, false}, {0x844c, false}, {0x3e4a, false}, {0x3e91, true}, {0x3d62, false}, {0x3d72, true},
+		{0x779e, false}, {0x77a3, false}, {0x67ac, false}, {0x67b1, false}, {0x6888, false}, {0x8412, false},
+		{0x3fe0, false}, {0x3fe5, false}, {0x414e, false}, {0x430e, false}, {0x436c, false}, {0x4371, false}, {0x4440, true},
+		{0x4a6, false}, {0x55a, false}, {0x55f, false}, {0x60f, false}, {0x622, false}, {0x6b7, false},
+		{0x90c, false}, {0x9b0, false}, {0x9b5, false}, {0xb0e, false}, {0xb38, false}, {0xb62, false}, {0xbc7, false}, {0xbcf, false},
+		{0x3c18, false}, {0x3c79, false}, {0x3c7e, false}, {0x3d0d, false}} {
+		at := int(site.off)
+		if !bytes.Equal(o.Bytes(oracle.Addr{Seg: load, Off: site.off}, 16), relocated[at:at+16]) || site.ret && relocated[at] != 0xcb {
+			p.reject("owned panel ABI differs")
+		}
+	}
+	selection := func() uint16 { return o.Word(oracle.Addr{Seg: o.Regs().DS, Off: 0x56bc}) }
+	panelNames := []string{"character", "army", "arrange", "spells", "minimap", "items", "system"}
+	beginSelected := func(*oracle.Oracle) {
+		if selected := selection(); int(selected) < len(panelNames) {
+			p.beginPanel(panelNames[selected])
+		}
+	}
+	p.onCall(oracle.Addr{Seg: load, Off: 0x3df0}, beginSelected)
+	p.onCall(oracle.Addr{Seg: load, Off: 0x3e92}, beginSelected)
+	p.onCall(oracle.Addr{Seg: load, Off: 0x73f0}, func(*oracle.Oracle) { p.beginPanel("character") })
+	p.onCall(oracle.Addr{Seg: load, Off: 0x7512}, func(*oracle.Oracle) {
+		if p.panel != nil && p.panel.Kind == "character" {
+			p.finishPanel()
+		}
+	})
+	p.onCall(oracle.Addr{Seg: load, Off: 0x844c}, func(*oracle.Oracle) {
+		if p.panel != nil {
+			switch p.panel.Kind {
+			case "character", "army", "spells", "minimap", "items":
+				p.finishPanel()
+			}
+		}
+	})
+	// Initial pages and key-driven redraws finish before their original input
+	// calls. The minimap commits before its intentional blinking-marker loop.
+	for _, site := range []struct {
+		off  uint16
+		kind string
+	}{{0x779e, "arrange"}, {0x67ac, "spells"}, {0x6888, "spells"}, {0x8412, "minimap"}, {0x3fe0, "system"}, {0x414e, "system"}, {0x436c, "confirm"}, {0x4440, "confirm"}} {
+		site := site
+		p.onCall(oracle.Addr{Seg: load, Off: site.off}, func(*oracle.Oracle) {
+			if p.panel != nil && p.panel.Kind == site.kind {
+				p.finishPanel()
+			}
+		})
+	}
+	for _, site := range []struct {
+		off  uint16
+		kind string
+	}{{0x77a3, "arrange"}, {0x67b1, "spells"}, {0x3fe5, "system"}, {0x4371, "confirm"}} {
+		site := site
+		p.onCall(oracle.Addr{Seg: load, Off: site.off}, func(*oracle.Oracle) {
+			// Escape exits arrange/spells/system without a redraw. The yes/no
+			// helper does redraw its No selection before returning on Escape.
+			if o.Regs().AX != 0x011b || site.kind == "confirm" {
+				p.beginPanel(site.kind)
+			}
+		})
+	}
+	p.onCall(oracle.Addr{Seg: load, Off: 0x430e}, func(*oracle.Oracle) { p.beginPanel("confirm") })
+	// Main menu, music catalogue, initial map and the normal map redraw loop.
+	// sub_10B38 is the game loop, so its first complete map commits before the
+	// loop at 0B62, rather than waiting for this function to return.
+	for _, site := range []struct {
+		off  uint16
+		kind string
+	}{{0x4a6, "main-menu"}, {0x55f, "main-menu"}, {0x622, "new-game-confirm"}, {0x6b7, "main-menu-restore"},
+		{0x90c, "music-menu"}, {0x9b5, "music-menu"}, {0xb38, "first-map"}, {0xbc7, "map-refresh"},
+		{0x3c18, "side-menu"}, {0x3c7e, "side-menu"}} {
+		site := site
+		p.onCall(oracle.Addr{Seg: load, Off: site.off}, func(*oracle.Oracle) { p.beginPanel(site.kind) })
+	}
+	for _, site := range []struct {
+		off  uint16
+		kind string
+	}{{0x55a, "main-menu"}, {0x55a, "main-menu-restore"}, {0x60f, "main-menu"}, {0x436c, "new-game-confirm"},
+		{0x9b0, "music-menu"}, {0xb0e, "music-menu"}, {0xb62, "first-map"}, {0xbcf, "map-refresh"},
+		{0x3c79, "side-menu"}, {0x3d0d, "side-menu"}} {
+		site := site
+		p.onCall(oracle.Addr{Seg: load, Off: site.off}, func(*oracle.Oracle) {
+			if p.panel != nil && p.panel.Kind == site.kind {
+				p.finishPanel()
+			}
+		})
+	}
+	for _, off := range []uint16{0x3e4a, 0x3d62} {
+		p.onCall(oracle.Addr{Seg: load, Off: off}, func(*oracle.Oracle) {
+			if int(selection()) < len(panelNames) {
+				p.beginPanel("return-map")
+			}
+		})
+	}
+	for _, off := range []uint16{0x3e91, 0x3d72} {
+		p.onCall(oracle.Addr{Seg: load, Off: off}, func(*oracle.Oracle) {
+			if p.panel != nil && p.panel.Kind == "return-map" {
+				p.finishPanel()
+			}
+		})
+	}
+}
+
+func (p *sourceAdapter) beginPanel(kind string) {
+	if p.panel != nil {
+		if p.panel.Kind != kind {
+			p.reject("overlapping owned panel boundaries")
+		}
+		return
+	}
+	if p.presented == nil {
+		p.presented = cloneOwnedScene(p.scene)
+	}
+	p.panel = &ownedPanel{Kind: kind, Start: p.e.Oracle.Steps()}
+	p.record("panel-begin", map[string]any{"kind": kind, "working_revision": p.scene.Revision, "presented_revision": p.presented.Revision})
+}
+
+func (p *sourceAdapter) finishPanel() {
+	kind, start := p.panel.Kind, p.panel.Start
+	p.panel = nil
+	p.record("panel-commit", map[string]any{"kind": kind, "start_step": start, "working_revision": p.scene.Revision, "primitive_pending": p.active})
+	if p.active != 0 {
+		p.reject("owned panel committed an incomplete primitive")
+	}
+}
+
+func (p *sourceAdapter) effectFrame(first int, source *image.RGBA) uint16 {
+	used := map[uint16]bool{}
+	for _, v := range p.scene.Pixels {
+		used[v.Effect.ID] = true
+	}
+	id := uint16(0)
+	for n := uint16(1); n <= 64; n++ {
+		if !used[n] {
+			id = n
+			break
+		}
+	}
+	if id == 0 {
+		p.counts["effect-slot-rejected"]++
+		return 0
+	}
+	for n := range p.scene.Effects {
+		if !used[n] {
+			delete(p.scene.Effects, n)
+		}
+	}
+	f := image.NewRGBA(image.Rect(0, 0, 264, 300))
+	for y := 0; y < 50; y++ {
+		for x := 0; x < 88; x++ {
+			c := p.scene.Pixels[first+y*640+x].Effect
+			prior := p.scene.Effects[c.ID]
+			if prior == nil {
+				continue
+			}
+			sx, sy := int(c.Local)%88, int(c.Local)/88
+			for dy := 0; dy < 6; dy++ {
+				dst, src := (y*6+dy)*f.Stride+x*12, (sy*6+dy)*prior.Stride+sx*12
+				copy(f.Pix[dst:dst+12], prior.Pix[src:src+12])
+			}
+		}
+	}
+	for at := 0; at < len(f.Pix); at += 4 {
+		a := uint32(source.Pix[at+3])
+		for c := 0; c < 4; c++ {
+			f.Pix[at+c] = uint8(min(255, uint32(source.Pix[at+c])+(uint32(f.Pix[at+c])*(255-a)+127)/255))
+		}
+	}
+	p.scene.Effects[id] = f
+	return id
+}

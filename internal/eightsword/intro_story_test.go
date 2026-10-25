@@ -16,7 +16,7 @@ func storyEngine(t *testing.T, assets string) *Engine {
 	if _, err := os.Stat(filepath.Join(assets, "story.json")); err != nil {
 		t.Skip("story assets not prepared")
 	}
-	e, err := Open(Options{Root: root, Assets: assets, Saves: t.TempDir(), HD: true})
+	e, err := openOverlayReference(Options{Root: root, Assets: assets, Saves: t.TempDir(), HD: true})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -138,7 +138,7 @@ func TestIntroStoryCorruptAtlasPreservesOtherHD(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	fallback, err := Open(Options{Root: os.Getenv("EIGHTSWORD_TEST_ORIG"), Assets: bad, Saves: t.TempDir(), HD: true})
+	fallback, err := openOverlayReference(Options{Root: os.Getenv("EIGHTSWORD_TEST_ORIG"), Assets: bad, Saves: t.TempDir(), HD: true})
 	if err != nil {
 		t.Fatal(err)
 	}

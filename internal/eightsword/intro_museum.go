@@ -104,6 +104,9 @@ func loadIntroMuseum(e *Engine, dir, root string) (*IntroMuseum, error) {
 	if err = m.loadMuseumGroup(dir, root); err != nil {
 		return nil, err
 	}
+	if e.sourceEnabled {
+		return m, nil
+	}
 	m.stopObserving = e.ObservePresentation(PresentationObserver{Write: m.observeMuseumWrite, ModeChange: m.observeMuseumMode})
 	m.o.OnCall(oracle.Far(0, 0x1be2), func(o *oracle.Oracle) {
 		if m.retired || len(o.Overlays()) != 0 {

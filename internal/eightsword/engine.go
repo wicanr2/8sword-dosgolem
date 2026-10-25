@@ -16,6 +16,17 @@ type Options struct {
 	HD                  bool
 }
 type Engine struct {
+	sourceEnabled     bool
+	sourceInstall     func()
+	sourceRender      func() *image.RGBA
+	sourceClose       func()
+	renderFault       *OwnedRenderFault
+	sourceHeldFrame   *image.RGBA
+	sourceHeldFrames  uint64
+	sourceDirectCalls uint64
+	sourceFrames      uint64
+	sourceMetadata    sourceFrameMetadata
+
 	Oracle                   *oracle.Oracle
 	Tracker                  *Tracker
 	Assets                   *Assets
@@ -181,6 +192,7 @@ func Open(opt Options) (*Engine, error) {
 			e.Tracker.palette = palette
 		}
 	}
+	e.sourceEnabled = e.HD
 	e.Music = newMusic(o, pam, opt.Assets, e.HD)
 	if e.HD {
 		e.Intro, err = loadIntroTitle(o, opt.Assets, opt.Root)
@@ -209,9 +221,15 @@ func Open(opt Options) (*Engine, error) {
 	}
 	e.loadFontChoices(opt.Assets)
 	e.syncPresentationObservers()
+	if e.sourceEnabled {
+		e.initSourceRenderer()
+	}
 	return e, nil
 }
 func (e *Engine) Close() {
+	if e.sourceClose != nil {
+		e.sourceClose()
+	}
 	if e.Story != nil && e.Story.prelude != nil {
 		e.Story.prelude.stop("close", false)
 	}
@@ -232,6 +250,9 @@ func (e *Engine) RenderAudio() []int16 {
 }
 func (e *Engine) EnableLiveClock(perMS uint64) { e.Oracle.SetDOSBoxCycles(perMS) }
 func (e *Engine) AdvanceCycles(n uint64) error {
+	if e.renderFault != nil {
+		return e.renderFault
+	}
 	for n > 0 && !e.Exited {
 		count := n
 		if count > 50000 {
@@ -257,30 +278,40 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		if e.Music != nil {
 			e.Music.Bind()
 		}
-		if e.Intro != nil {
-			e.Intro.Bind()
+		if e.sourceInstall != nil {
+			e.sourceGuardCall(e.sourceInstall)
+		} else {
+			if e.Intro != nil {
+				e.Intro.Bind()
+			}
+			if e.Publisher != nil {
+				e.Publisher.Bind()
+			}
+			if e.Story != nil {
+				e.Story.Bind()
+				e.Story.Tick()
+			}
+			if e.Captions != nil {
+				e.Captions.Bind()
+			}
+			if e.Heroine != nil {
+				e.Heroine.Tick()
+			}
+			if e.Museum != nil {
+				e.Museum.Tick()
+			}
 		}
-		if e.Publisher != nil {
-			e.Publisher.Bind()
-		}
-		if e.Story != nil {
-			e.Story.Bind()
-			e.Story.Tick()
-		}
-		if e.Captions != nil {
-			e.Captions.Bind()
-		}
-		if e.Heroine != nil {
-			e.Heroine.Tick()
-		}
-		if e.Museum != nil {
-			e.Museum.Tick()
+		if e.renderFault != nil {
+			return e.renderFault
 		}
 		n -= count
 	}
 	return nil
 }
 func (e *Engine) Advance(n uint64) error {
+	if e.renderFault != nil {
+		return e.renderFault
+	}
 	for n > 0 && !e.Exited {
 		count := n
 		if count > 50000 {
@@ -307,24 +338,31 @@ func (e *Engine) Advance(n uint64) error {
 		if e.Music != nil {
 			e.Music.Bind()
 		}
-		if e.Intro != nil {
-			e.Intro.Bind()
+		if e.sourceInstall != nil {
+			e.sourceGuardCall(e.sourceInstall)
+		} else {
+			if e.Intro != nil {
+				e.Intro.Bind()
+			}
+			if e.Publisher != nil {
+				e.Publisher.Bind()
+			}
+			if e.Story != nil {
+				e.Story.Bind()
+				e.Story.Tick()
+			}
+			if e.Captions != nil {
+				e.Captions.Bind()
+			}
+			if e.Heroine != nil {
+				e.Heroine.Tick()
+			}
+			if e.Museum != nil {
+				e.Museum.Tick()
+			}
 		}
-		if e.Publisher != nil {
-			e.Publisher.Bind()
-		}
-		if e.Story != nil {
-			e.Story.Bind()
-			e.Story.Tick()
-		}
-		if e.Captions != nil {
-			e.Captions.Bind()
-		}
-		if e.Heroine != nil {
-			e.Heroine.Tick()
-		}
-		if e.Museum != nil {
-			e.Museum.Tick()
+		if e.renderFault != nil {
+			return e.renderFault
 		}
 		n -= count
 	}
@@ -373,6 +411,20 @@ func (e *Engine) ReleaseAll() {
 	}
 }
 func (e *Engine) Frame() *image.RGBA {
+	if e.sourceEnabled {
+		if e.Oracle.VideoMode() == 3 && e.renderFault == nil {
+			return e.consoleFrame()
+		}
+		e.sourceFrames++
+		return e.sourceGuardFrame(func() *image.RGBA {
+			if im := e.sourceRender(); im != nil {
+				return im
+			}
+			e.sourceReject("dispatch", "missing-source-frame")
+			return nil
+		})
+	}
+
 	if e.Tracker != nil {
 		if im := e.Tracker.Compose(); im != nil {
 			return e.presentIntro(im)
@@ -450,6 +502,13 @@ func (e *Engine) IntroStage() string {
 	return ""
 }
 func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
+	if e.sourceEnabled {
+		if e.sourceMetadata.Frame == frame {
+			return e.sourceMetadata.Intro
+		}
+		return ""
+	}
+
 	if e.Story != nil && e.HD && e.Story.prelude != nil {
 		if stage := e.Story.prelude.FrameStage(frame); stage != "" {
 			return stage
@@ -477,6 +536,11 @@ func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
 }
 func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
+	out["source_renderer"] = e.sourceEnabled
+	out["source_frames"] = e.sourceFrames
+	out["direct_calls"] = e.sourceDirectCalls
+	out["owned_render_fault"] = e.renderFault
+	out["source_frame_kind"] = e.sourceMetadata.Kind
 	out["font_id"], out["font_name"], out["font_error"], out["font_choices"] = e.FontID(), e.FontName(), e.FontError, e.FontChoices()
 	out["battle_background_error"] = e.BattleBackgroundError
 	out["recruitment_building_error"] = e.RecruitmentBuildingError

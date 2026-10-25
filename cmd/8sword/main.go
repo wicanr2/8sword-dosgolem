@@ -293,29 +293,13 @@ func (g *game) Update() error {
 		g.frameFontID = g.engine.FontID()
 	}
 	g.frameConsole = g.engine.ConsoleStage()
-	g.frameIntro = g.engine.IntroFrameStage(g.frame)
-	g.framePreludeInfo = nil
-	if g.engine.Story != nil {
-		g.framePreludeInfo = g.engine.Story.PreludeStatus()
-	}
-	g.frameMuseumStage = ""
-	g.frameMuseumInfo = nil
-	if g.engine.Museum != nil {
-		g.frameMuseumStage = g.engine.Museum.FrameStage(g.frame)
-		g.frameMuseumInfo = g.engine.Museum.Status()
-	}
-	g.frameHeroinePixels = 0
-	if g.engine.Heroine != nil {
-		g.frameHeroinePixels = g.engine.Heroine.FramePixels(g.frame)
-	}
-	g.frameCaptionSource = 0
-	if g.engine.Captions != nil && g.frameIntro == "captions-noto" {
-		g.frameCaptionSource = g.engine.Captions.FrameSource(g.frame)
-	}
-	g.frameStoryCalls, g.frameStoryPages = 0, 0
-	if g.engine.Story != nil && g.frameIntro != "" {
-		g.frameStoryCalls, g.frameStoryPages = g.engine.Story.FrameInfo(g.frame)
-	}
+	info := g.engine.PresentedFrameInfo(g.frame)
+	g.frameIntro = info.Intro
+	g.framePreludeInfo = info.PreludeInfo
+	g.frameMuseumStage, g.frameMuseumInfo = info.Museum, info.MuseumInfo
+	g.frameHeroinePixels = info.HeroinePixels
+	g.frameCaptionSource = info.CaptionSource
+	g.frameStoryCalls, g.frameStoryPages = info.StoryCalls, info.StoryPages
 	if g.toolbar != nil {
 		g.toolbar.SyncFont(g.engine.FontID())
 		g.frame = g.toolbar.Frame(g.frame, time.Now())

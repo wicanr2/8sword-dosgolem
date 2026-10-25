@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "base_files": 910,
+  "base_tree_sha256": "fe7beb1531dbbcfba8d96ca5c7817d5924d9db090d7c2802bbb2c47c33b0b172",
+  "changed": {
+    "internal/machine/host-work.go": "9d56a37d2ad68225c933c416e30980985f43ee0c24f1e17e95064d28744e8416",
+    "internal/machine/host-work_test.go": "13d3a838f469f5b8d599ef17943da4ab05bc7fe024527190f402c62fa4e02099",
+    "internal/machine/host_planar_read.go": "6c5af4ec0c519c5f8754c1885282473a11e465fa63dc437ba093bea03fc03df4",
+    "internal/machine/host_video_observe.go": "49b2457335f4c77b12867ce9b2767865bc184557edc74d99996c537ee9d525f7",
+    "internal/machine/machine.go": "7a867ae680b4f894c4a0481f76dd444e55de0b51ee1275b58e58eecfa2df54a2",
+    "internal/machine/video_read_observe.go": "92a866274e035ede42a975eabda3e18403543c47ccec468f944a8bb1ce85014b",
+    "oracle/live.go": "7972022fc2ed88303637835d812d89f74b19a671acf9cbe6421411ae9edf8467",
+    "oracle/oracle-host-call.go": "4f11fc2e6b842b778cbb998b0eea27aef7428031843e80f8114d4fd46d88227b",
+    "oracle/oracle-host-call_test.go": "6cce142348aa6597ee637eb98db34547e4aacb74473dbd2d70c165228c1778df",
+    "oracle/oracle.go": "91289b34f1be905ab91d1beadf8b66833cba1b1e5c6ea9ccea0c6faa6593ffcc",
+    "oracle/run.go": "b9a5e311ba31bc61238134df98b147b25f089f59ab59193d85476edad91f807e",
+    "oracle/video_read_observe.go": "87fa471f6c5feaee714cafc88baf8e97f2a7a2b3a2c6c58104d22b5a7935d863",
+    "video_observe.go": "8b6f16535ecbeeacfedb355f29921d34c12b6730f44cc0f4b8828ba27e3daad1"
+  },
+  "reference_patch_sha256": "6cf8b828d91892c47e4db72e431c4ff466f64376fc08ebd430f190757929b49e",
+  "spec": "docs/spec/047-hd-scene-renderer.md"
+}

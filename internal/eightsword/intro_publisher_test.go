@@ -134,7 +134,7 @@ func TestPublisherCorruptLastPNGRejectsWholeGroup(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	e, err := Open(Options{Root: root, Assets: bad, Saves: t.TempDir(), HD: true})
+	e, err := openOverlayReference(Options{Root: root, Assets: bad, Saves: t.TempDir(), HD: true})
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -18,7 +18,7 @@ func introAssets(t *testing.T) (string, string) {
 
 func TestIntroTitleNormalSourceReadOnlyAndEscape(t *testing.T) {
 	root, assets := introAssets(t)
-	e, err := Open(Options{Root: root, Assets: assets, Saves: t.TempDir(), HD: true})
+	e, err := openOverlayReference(Options{Root: root, Assets: assets, Saves: t.TempDir(), HD: true})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -135,7 +135,7 @@ func TestIntroTitleCorruptPNGPreservesOtherHD(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	e, err := Open(Options{Root: root, Assets: bad, Saves: t.TempDir(), HD: true})
+	e, err := openOverlayReference(Options{Root: root, Assets: bad, Saves: t.TempDir(), HD: true})
 	if err != nil {
 		t.Fatal(err)
 	}
