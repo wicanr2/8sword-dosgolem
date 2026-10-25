@@ -1762,3 +1762,12 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 - r39正常控制／候選各兩組，固定原版執行期0110:055A觀測完成主選單，雙側step10647747。普通新遊戲／F1／F2／返回八份畫面共18432000像素同Noto控制，完整state `97999a8d7b046556b9a5a61340c730bf25348b3a70db19d43dfbe77c75196036`、PCM `9f82d2e03eedd2f2eb9d586538678d19937d209012df7ed734388c89ca3ded83`及工作檔相同。每組418筆四／五／六平面命令皆無材質／角色／效果登錄，來源自行解碼；79來源Frame、0舊RGB，沒有受控記憶體或快照載入。
 - 壞PNG實際視窗353／137 Draw、十一／五完成圖同參考並連回Draw，一／兩交易中Draw保持；來源Frame492／187、PAM舊RGB皆0。真正F7存退冷讀的檔案與兩側RAM同2987 bytes、SHA29dd62ae…2359，read step35812815。Noto人物與兩張連續總覽已看，屬故障回退畫面。
 - 統一`owned-fallback-audit-r3.json`記錄124來源／三程式、兩組來源命令與直接接管、全幅像素、state／PCM、回歸測試、實際GUI與真正存讀。正式r49不變。未知繪圖命令、未驗模式與基底字型失效仍未知，不能把本節外推為全遊戲或全部閃爍完成。
+
+## 2026-10-26：HD關閉時不安裝來源掛點
+
+入口：[047字型故障結果](docs/spec/047-hd-scene-renderer.md#基底字型故障的限定結果)、[既有003回退](docs/spec/003-noto-runtime-overlay.md)、[對照測試](tools/research-owned-fallback_test.go)、[核對器](tools/audit-owned-fallback.py)。PAM.AY仍為SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，工具Go1.24.13、Pillow11.3.0、Python3.13.15。沒有新IDA分析或修改原版位元組；唯一執行期觀察點沿既有0110:055A主選單完成位置。
+
+- 已證實，限定r40包裝與003既有回退：基底Noto字圖缺失／SHA失敗使HD=false、Tracker為nil；來源安裝器位於Tracker分支，因此開場與PAM來源、直接接管均未綁定。可選圖片組nil而字型有效的r39修正不改這條分支，不必新增產品修正。
+- owned-base-font-r1四案普通輸入，雙側原版完成step10647747。十份完整1920×1200畫面共23040000像素同明示原版控制，Frame客體保持；state `97999a8d7b046556b9a5a61340c730bf25348b3a70db19d43dfbe77c75196036`、原版PCM `a544524ab42713f0f32ec08d89cb730347c056563918447fd4ec479bedc06abc`、輸入與檔案事件及工作檔相同。兩組各79次原版Frame、0個HD來源Frame，不列為HD來源成功。
+- 真壞PNG實窗24 Draw／八變化，原版主選單同獨立控制並連回Draw串流，原版Frame九次、HD來源0。既有XTEST核對失敗標題，日誌保留SHA原因。關窗正常，主選單與總覽已看；沒有新增F7存讀或HD音訊聲明。
+- 統一owned-base-font-audit-r2.json SHA `368a818795bbeb0554e199757cce0312d83ba2e2d94c4276447b4c9b8a94e55d`。基底字型故障依003既有契約已核對，移除047現況待驗；未知命令／模式仍未閉合，整體047保持DRAFT，正式r49不變。

@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+基底字型故障依[047原版模式](docs/spec/047-hd-scene-renderer.md#基底字型故障的原版模式)，沿同一故障工具加`--font-failures`建立新素材複本，同一對照檔的`TestResearchOwnedBaseFontFailure`比較要求HD但真正字圖失效與明示原版模式。以`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`及新`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`指定輸入；原版模式可用原版Frame，不能記為HD直接呈現。核對器加`--base-font`固定檢查r40，`--gui`另驗真壞字圖視窗。四個正常子案例、十份全幅Frame與真實視窗已通過，不改正式入口或重跑本組。
+
 圖像組失效研究使用[固定故障素材準備](tools/prepare-owned-fallback-assets.py)、[來源呈現對照](tools/research-owned-fallback_test.go)及[獨立核對](tools/audit-owned-fallback.py)，範圍見[047故障契約](docs/spec/047-hd-scene-renderer.md#基底圖像組失效的來源呈現)。準備器在既有Pillow Docker以`--project`與新`--out`複製r49，分別移除清單或破壞草地PNG，不改原組。場景準備器加`--fallback-checks`只複製研究測試。測試以`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`、`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`及既有原版變數指定輸入，`EIGHTSWORD_TEST_OWNED_FALLBACK_CONTROL=1`用原版合成作對照；不把故障資料接正式入口。核對器在Pillow Docker以`--project`與新`--out`核對固定r39，`--gui`另驗壞PNG的實際視窗。
 
 六平面逐列研究入口：[計畫](tools/research-direct-masked-rows.go)、[原版逐列對照](tools/research-direct-masked-rows_test.go)及[核對器](tools/audit-direct-masked-rows.py)。場景準備器在既有Go Docker沿047加`--masked-planar --masked-rows`，只接新研究副本；核心沿core-direct-r6。r33的60組原版／剩餘列對照、正常募兵542幀與攻城557幀、Noto實際視窗及真正存退讀已驗。核對器在Pillow Docker以`--project`與新`--out`固定核對r33，加`--gui`核對direct-rows-save-r1。輸入、事件邊界、測試環境變數與限制見[047逐列DRAFT](docs/spec/047-hd-scene-renderer.md#六平面逐列研究契約)，正式r49未切換。

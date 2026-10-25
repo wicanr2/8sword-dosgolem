@@ -450,4 +450,33 @@ PAM主選單、人物／軍隊、確認、地圖與返回，以及PREDELLA自然
 - 在Go1.24.13私有來源執行`go test -count=1 -v ./internal/eightsword -run '^TestResearchOwnedGraphicsGroupFailure$'`，指定`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`、不存在的`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`；控制組加`EIGHTSWORD_TEST_OWNED_FALLBACK_CONTROL=1`。現行成功收據為`owned-fallback-control-r2`及`owned-fallback-fixed-r2`，兩組各兩子案例通過。
 - [獨立核對器](../../tools/audit-owned-fallback.py)在Pillow Docker使用`--project`與新`--out`，`--gui`追加上述固定視窗。統一收據為`battle-r1/owned-fallback-audit-r3.json`，包含60組逐列、十四拒絕、24組整筆、16組四／五平面及兩個批次圖層回歸測試。
 
-此結果只閉合「字型有效、可選基底圖像組失效」。未登錄圖像識別碼已有正常來源證據；未知繪圖命令、未驗模式與基底字型失效仍另待契約。沒有正式切換、全遊戲HD或所有閃爍已修復的聲明。
+此結果只閉合「字型有效、可選基底圖像組失效」。未登錄圖像識別碼已有正常來源證據；基底字型另見下節，未知繪圖命令與未驗模式仍待契約。沒有正式切換、全遊戲HD或所有閃爍已修復的聲明。
+
+### 基底字型故障的原版模式
+
+本節為DRAFT驗證，沿003既有故障回退，不新增玩家選項或修改原文。`Engine.Open`在固定Noto清單或字圖失效時記錄AssetError、設定HD=false，不建立Tracker、片頭HD或HD音樂；原版仍正常執行。這個明示的原版模式可以使用原版Frame，不能登記為HD自有來源呈現。
+
+來源：目前`internal/eightsword/assets.go`、`engine.go`及003的實際壞PNG視窗收據。固定原版及PAM SHA沿前節，沒有新的逆向位址。新研究r40沿r39包裝，核對HD已關閉時是否仍安裝來源或直接繪圖掛點。故障工具加`--font-failures`建立新目錄的四組複本，另兩組只移除font.png或在該檔附加零byte；不覆寫前節的兩組素材。
+
+使用同一正常鍵序，控制組明示HD=false，候選要求HD但真正載入失敗。兩側等待原版主選單完成位置0110:055A，走新遊戲、F1／F2、返回，逐項比較全幅Frame、完整state、PCM及工作檔。來源探針應保持未綁定、圖像／字型／直接接管計數為0；錯誤原因須可見，不能把缺字圖當成可選美術或建立假字型。實際視窗回退依003既有入口抽驗，正常字型及美術路徑不重跑。
+
+#### 基底字型故障的限定結果
+
+2026-10-26已核對，這條路徑沒有新缺陷，不修改Engine、來源場景、核心或正式r49。r40保存124來源／三程式，只在r39相同包裝加入研究測試。`owned-base-font-assets-r1`另存兩份圖像故障與兩份字型故障素材，不覆寫r39的輸入。
+
+[同一對照檔](../../tools/research-owned-fallback_test.go)的`TestResearchOwnedBaseFontFailure`四子案例在Go1.24.13 Docker通過，26.874秒。缺font.png及真正font.png SHA失敗各與明示HD=false控制比較：
+
+- 兩側原版主選單完成step10647747；片頭Esc前、主選單、F1、F2與返回共十張完整畫面，23040000像素同值。Frame前後客體保持，沒有注入記憶體或載入快照。
+- 每組完整state SHA `97999a8d7b046556b9a5a61340c730bf25348b3a70db19d43dfbe77c75196036`，PCM SHA `a544524ab42713f0f32ec08d89cb730347c056563918447fd4ec479bedc06abc`；工作檔、原版輸入、檔案I/O與覆蓋載入相同。此處音訊是原版模式，不與HD音樂的PCM混稱相同。
+- 兩組HD皆false、Tracker與HD美術／片頭未建立；來源／直接接管未綁定、命令計數皆0。每組79次PAM原版Frame是預期回退，HD來源Frame為0，不能把這份結果登記為直接HD呈現。
+- 缺檔組回報真實font.png缺失，壞圖組回報`字型圖片 SHA-256 不符`。不改用其他字型、不建立假字圖，也不覆蓋原版或正常素材。
+
+實際視窗`player/gui/owned-base-font-fallback-r1/fallback`沿r40、真壞字圖與既有`fallback`流程。24個Draw、八次變化，片頭普通Esc後進原版主選單；完整主選單同獨立原版控制PNG，該畫面也出現在無損Draw串流。XTEST既有檢查確認標題包含「HD 字型載入失敗」，日誌保留SHA原因，關窗正常完成。來源掛點未綁定、HD來源Frame為0、PAM原版Frame九次。已抽看主選單及連續總覽；這條GUI沒有新增F7存讀或HD字型成功聲明。
+
+重生方式：
+
+- 素材工具使用`--project <唯讀專案> --out <新目錄> --font-failures`；場景準備仍沿前節r39的選項，包含`--fallback-checks --build`。
+- 新研究來源用`go test -count=1 -v ./internal/eightsword -run '^TestResearchOwnedBaseFontFailure$'`，指定`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`及新`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`，由測試各自設定要求HD／原版控制，不用前節的CONTROL變數。
+- [核對器](../../tools/audit-owned-fallback.py)使用`--project`、新`--out`及`--base-font`，固定檢查r40及本節收據；加`--gui`核對上述視窗。統一結果`battle-r1/owned-base-font-audit-r2.json`，SHA `368a818795bbeb0554e199757cce0312d83ba2e2d94c4276447b4c9b8a94e55d`。
+
+基底字型故障依003既有原版模式的驗證已閉合，不再列為未知或重跑相同路徑。047整體仍DRAFT，下一步處理未知繪圖命令及未驗模式的有界失敗，才審查正式切換；有效HD畫面仍禁止以原版VGA作底圖。

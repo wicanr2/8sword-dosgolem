@@ -9,6 +9,7 @@ import (
 	"image/png"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/wicanr2/dosgolem/oracle"
@@ -163,5 +164,153 @@ func TestResearchOwnedGraphicsGroupFailure(t *testing.T) {
 				t.Fatalf("graphics group loss disabled source renderer: source=%d legacy=%d", e.researchDirectSourceFrames, e.researchDirectLegacyFrames)
 			}
 		})
+	}
+}
+
+// Spec003's base-font failure disables HD as a whole. The source-rendering
+// wrapper must preserve that native mode, including ordinary keyboard routing.
+func TestResearchOwnedBaseFontFailure(t *testing.T) {
+	root := os.Getenv("EIGHTSWORD_TEST_ORIG")
+	assets, out := os.Getenv("EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS"), os.Getenv("EIGHTSWORD_TEST_OWNED_FALLBACK_OUT")
+	if root == "" || assets == "" || out == "" {
+		t.Fatal("explicit original, fixed failure assets and new output required")
+	}
+	if err := os.Mkdir(out, 0755); err != nil {
+		t.Fatal(err)
+	}
+	for _, kind := range []string{"font-missing", "font-corrupt"} {
+		for _, control := range []bool{true, false} {
+			label := "candidate"
+			if control {
+				label = "control"
+			}
+			t.Run(kind+"/"+label, func(t *testing.T) {
+				q := filepath.Join(out, kind, label)
+				if err := os.MkdirAll(q, 0755); err != nil {
+					t.Fatal(err)
+				}
+				owned := filepath.Join(q, "owned")
+				if err := os.Mkdir(owned, 0755); err != nil {
+					t.Fatal(err)
+				}
+				t.Setenv("EIGHTSWORD_RESEARCH_OWNED", "")
+				if !control {
+					t.Setenv("EIGHTSWORD_RESEARCH_OWNED", owned)
+				}
+				e, err := Open(Options{Root: root, Assets: filepath.Join(assets, kind), Saves: filepath.Join(q, "scratch"), HD: !control})
+				if err != nil {
+					t.Fatal(err)
+				}
+				t.Cleanup(e.Close)
+				if e.HD || e.Assets != nil || e.Tracker != nil || e.Intro != nil || e.Story != nil || e.Museum != nil {
+					t.Fatal("base-font fault must select original mode", e.Status())
+				}
+				if control && e.AssetError != "" {
+					t.Fatal("explicit original mode attempted HD load", e.AssetError)
+				}
+				if !control && ((kind == "font-corrupt" && e.AssetError != "字型圖片 SHA-256 不符") ||
+					(kind == "font-missing" && !strings.Contains(e.AssetError, "/font.png: no such file"))) {
+					t.Fatal("genuine base-font failure absent", e.AssetError)
+				}
+				e.Oracle.SetClock(12, 0, 0, 0)
+				e.EnableLiveClock(3000)
+				ready, readyStep := false, uint64(0)
+				e.Oracle.OnCall(oracle.Addr{Seg: 0x110, Off: 0x55a}, func(*oracle.Oracle) {
+					if !ready && e.PAMLoaded {
+						ready, readyStep = true, e.Oracle.Steps()
+					}
+				})
+				pcm, err := os.OpenFile(filepath.Join(q, "audio.pcm"), os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0644)
+				if err != nil {
+					t.Fatal(err)
+				}
+				t.Cleanup(func() {
+					if err := pcm.Close(); err != nil {
+						t.Error(err)
+					}
+				})
+				advance := func(ms int) {
+					for i := 0; i < ms; i += 10 {
+						if err := e.AdvanceCycles(30000); err != nil {
+							t.Fatal(err)
+						}
+						if err := binary.Write(pcm, binary.LittleEndian, e.RenderAudio()); err != nil {
+							t.Fatal(err)
+						}
+						if i%100 == 0 {
+							e.Frame()
+						}
+					}
+				}
+				press := func(scan byte, hold, gap int) {
+					if err := e.Key(scan, true); err != nil {
+						t.Fatal(err)
+					}
+					advance(hold)
+					if err := e.Key(scan, false); err != nil {
+						t.Fatal(err)
+					}
+					advance(gap)
+				}
+				captures := []map[string]any{}
+				shot := func(name string) {
+					before := observerGuestState(t, e)
+					im := e.Frame()
+					if !bytes.Equal(before, observerGuestState(t, e)) {
+						t.Fatal("native fallback Frame changed guest")
+					}
+					f, err := os.OpenFile(filepath.Join(q, name+".png"), os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0644)
+					if err != nil {
+						t.Fatal(err)
+					}
+					if err := png.Encode(f, im); err != nil {
+						t.Fatal(err)
+					}
+					if err := f.Close(); err != nil {
+						t.Fatal(err)
+					}
+					captures = append(captures, map[string]any{"name": name, "step": e.Oracle.Steps(), "rgba_sha256": hash(im.Pix), "frame_pure": true})
+				}
+				advance(1000)
+				press(2, 100, 100)
+				press(2, 100, 100)
+				advance(1000)
+				shot("00-before-escape")
+				press(1, 100, 1000)
+				for n := 0; !ready && n < 2000; n++ {
+					advance(10)
+				}
+				if !ready {
+					t.Fatal("original completed main-menu marker absent")
+				}
+				shot("01-main-menu")
+				press(0x50, 100, 300)
+				press(0x1c, 100, 500)
+				press(0x1c, 100, 1400)
+				press(0x3b, 100, 700)
+				shot("02-character")
+				press(1, 100, 400)
+				press(0x3c, 100, 700)
+				shot("03-army")
+				press(1, 100, 400)
+				shot("04-return-map")
+				if err := e.Oracle.SaveStateFile(filepath.Join(q, "final.state")); err != nil {
+					t.Fatal(err)
+				}
+				if e.researchDirectSourceFrames != 0 {
+					t.Fatal("disabled HD rendered a source frame")
+				}
+				report := map[string]any{"case": kind, "control": control, "status": e.Status(), "captures": captures,
+					"main_menu_ready_step": readyStep, "pam_source_frames": e.researchDirectSourceFrames, "pam_original_frames": e.researchDirectLegacyFrames,
+					"method": "ordinary original-mode flow; requested HD genuinely fails; no memory injection or emulator snapshot loading"}
+				data, err := json.MarshalIndent(report, "", "  ")
+				if err != nil {
+					t.Fatal(err)
+				}
+				if err := os.WriteFile(filepath.Join(q, "receipt.json"), append(data, 10), 0644); err != nil {
+					t.Fatal(err)
+				}
+			})
+		}
 	}
 }

@@ -16,6 +16,7 @@ def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--project',type=Path,required=True)
     ap.add_argument('--out',type=Path,required=True)
+    ap.add_argument('--font-failures',action='store_true',help='另加基底字圖缺失與真正SHA失敗的獨立副本')
     a=ap.parse_args()
     assert Path('/.dockerenv').is_file() and os.getuid()==1000
     assert not a.out.exists() and a.out.parent.stat().st_uid==1000
@@ -25,15 +26,17 @@ def main():
     for name,sha in expected.items():assert digest(source/name)==sha,name
     a.out.mkdir()
     cases={}
-    for name in ('missing','corrupt'):
+    names=['missing','corrupt']
+    if a.font_failures:names+=['font-missing','font-corrupt']
+    for name in names:
         target=a.out/name
         target.mkdir()
         for file in source.iterdir():shutil.copy2(file,target/file.name)
-        if name=='missing':
-            changed='terrain.json'
+        if name in ('missing','font-missing'):
+            changed='font.png' if name=='font-missing' else 'terrain.json'
             (target/changed).unlink()
         else:
-            changed='grass-painted-r1.png'
+            changed='font.png' if name=='font-corrupt' else 'grass-painted-r1.png'
             with (target/changed).open('ab') as f:f.write(b'\x00')
         actual={f.name:digest(f) for f in target.iterdir()}
         for file,sha in expected.items():
@@ -41,7 +44,7 @@ def main():
         assert all(f.stat().st_uid==1000 for f in target.iterdir())
         cases[name]=dict(files=actual,changed=changed)
     result=dict(schema=1,production=False,base='assets-painted-r49',base_hashes=expected,cases=cases,
-                tool_sha256=digest(Path(__file__)),scope='graphics group failure only; fonts/music unchanged')
+                tool_sha256=digest(Path(__file__)),scope='independent graphics and optional base-font failure fixtures; original unchanged')
     (a.out/'fixtures.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(dict(out=str(a.out),cases={k:dict(files=len(v['files']),changed=v['changed']) for k,v in cases.items()})))
 
