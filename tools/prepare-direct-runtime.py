@@ -13,6 +13,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--project', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--masked-planar', action='store_true', help='只在新研究核心加入六平面角色的原生latch讀取介面')
     args = parser.parse_args()
     root, out = args.project, args.out
     assert Path('/.dockerenv').is_file() and os.getuid() == 1000
@@ -59,6 +60,10 @@ func (m *Machine) NotifyHostVideoWrite(w VideoWrite) {
 	if m.onVideoWrite!=nil {m.onVideoWrite(w)}
 }
 ''')
+    if args.masked_planar:
+        data = (root/'tools/research-host-planar-read.go').read_text()
+        assert data.startswith('//go:build ignore\n')
+        (core/'internal/machine/host_planar_read.go').write_text(data.replace('//go:build ignore\n', '', 1))
     manifest = json.loads((out/'source-manifest.json').read_text())
     changed = {}
     patch = []

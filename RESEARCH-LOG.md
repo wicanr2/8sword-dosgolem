@@ -1733,3 +1733,13 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 [統一核對](tools/audit-troops.py)輸出`troops-runtime-audit-r1.json`，SHA `61df62a482e52edfbe0456e2815d6393eb7b6aa9a637695f2eb7cfa54bbabf0d`。`troops-promotion-r1.json`將344檔提升r49，保留r48全部223檔；113輸入、52份正式套件來源與七程式提升至本機入口，採原子替換以保留舊硬連結建置。後續完整盤點`battle-coverage-troops-r1.json`為100部隊姿勢全登錄，另4筆MAN27太極用途未知。舊r48回歸仍為20／100，兩者不混用。預定盤點名r3已存在而被工具拒絕，保留原檔改用本輪新名稱。
 
 040的舊正常遭遇閘門已追加SUPERSEDED回鏈，舊原圖／定位／限制不改；本次由048的新圖與使用者抽樣政策閉合正式接入，不宣稱舊040的自然來源或未知動作語意已解。README新圖為正式25組對照及80姿勢圖，來源見`docs/images/troops-hd-batch-r2.json`。047直接繪圖仍為獨立研究，不將本批素材提升當作完整閃爍修復或全遊戲HD完成。
+
+## 2026-10-26：六平面角色前綴與受控自有場景
+
+入口：[047六平面角色的受控接管](docs/spec/047-hd-scene-renderer.md#六平面角色的受控接管)、[計畫](tools/research-direct-masked.go)、[對照](tools/research-direct-masked_test.go)、[獨立核對](tools/audit-direct-masked.py)。沿既有IDA9.4／PAM.AY及PAM.i64固定輸入，完整來源雜湊與位址基準列於047；沒有修改原始名稱或資料庫。
+
+- 已證實：IDA sub_24112／sub_24246分別對應mode1目前頁及背景頁的六平面遮罩常式。完整常式SHA為cc7f7579…6de4及c1cd7da0…ec40e，原始檔案偏移與執行期CS:IP分開記錄。IDA三處省略NOP由原檔逐byte確認，核對器只接受明列90，收據保留位置。
+- 已證實，限定固定執行器：原版前綴成本為4*h*(9*w+7)+111或4*h*(12*w+7)+111步，週期再加4*w*h；38條前導、13條收尾、四組15條平面控制。masked-native-trace-r3.json為八案未替換原版追蹤，masked-prefix-r2.log為24組完整前綴／RETF狀態、有序讀寫對照與拒絕測試。
+- r31／core-direct-r6為DRAFT研究。normal兩側542幀的state、PCM、串流及30工作檔相同。十二筆六平面都被已收窄的預算拒絕，不能由受控成功宣稱正常接管，也不由兩組牆鐘時間推論加速。
+- masked-controlled-troops-r1與masked-controlled-owned-r1為受控呈現，固定8000:0000緩衝區、DS:7484／748A與CS:0196設定。三種部隊、兩向、兩入口12案，全部27648000像素同獨立模型與先前正式結果，來源命令逐筆對應戰場別名。32次PAM Frame原版RGB入口0。任意停止條件的CallBudget仍走原版指令，這份證據只驗自有呈現，不驗CPU略過、自然遭遇或戰鬥規則。
+- direct-masked-audit-r2.json為本輪統一收據；完整來源、圖像與執行檔留本機研究區，不進Git。正式r49保持，後續只需縮小六平面工作單位及整合其餘呈現邊界，不重做本批美術或逐隻遇敵。

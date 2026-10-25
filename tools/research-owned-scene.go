@@ -457,6 +457,9 @@ func (p *ownedProbe) bind() {
 					if id == 150 {
 						id = 152
 					}
+					if alias := t.graphics.assets.BattleAliases[id]; alias != 0 {
+						id = alias
+					}
 				}
 				if t.graphics.assets.ActorSHA[id] == hash(raw) {
 					actor = id

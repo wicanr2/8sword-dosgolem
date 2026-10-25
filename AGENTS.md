@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+六平面角色的[來源計畫](tools/research-direct-masked.go)、[原生讀回介面](tools/research-host-planar-read.go)與[獨立核對](tools/audit-direct-masked.py)只屬[047 DRAFT研究](docs/spec/047-hd-scene-renderer.md#六平面角色的受控接管)。兩個準備器加`--masked-planar`，核心與場景各用新輸出；既有Go Docker、原版唯讀掛載及快取沿047。核對器在Pillow Docker使用`--project`與`--out`，固定核對r31／core-direct-r6，加`--controlled`核對12案自有場景部隊全幅與別名。24組受控原版前綴通過；正常542幀中的12筆六平面仍因預算拒絕，不稱正常路徑已略過。正式r49保持。
+
 部隊／怪物批次HD依[048](docs/spec/048-troop-hd-batch.md)與[準備工具](tools/prepare-troop-hd-batch.py)。使用者於2026-10-26明確放寬逐隻驗收：相同機制採已成功的代表抽驗，未接入的先完成圖片；需要時允許受控記憶體呈現驗證。這項最新指示優先於舊的逐隻正常遭遇待辦，不重走地圖或反覆等待遭遇；正式玩法不變，受控測試不冒稱自然玩家路徑。
 
 批次圖以[保存工具](tools/save-troop-hd-generation.py)保留原始 PNG、完整提示與每組收據，不覆寫既有圖片。[總覽工具](tools/prepare-troop-hd-overview.py)在固定 Pillow 容器使用`--project <唯讀專案> --batch <批次圖目錄> --out <新研究目錄>`，核對20組來源、圖像、提示與透明度；正式總覽再加`--registered-assets <r49目錄> --runtime-audit <048核對JSON>`，產生README的25組對照、80姿勢圖及[正式清單](docs/images/troops-hd-batch-r2.json)。完整圖留本機，生成與正式匯入分開列示。
@@ -17,6 +19,8 @@
 批次後端的[圖層與封包測試](tools/research-owned-render_test.go)比較固定舊畫法，包含遮擋、透明角色、效果、不同來源頁及錯誤矩形。工具只在上述私有副本以`go test ./internal/eightsword -run '^TestResearchOwnedBatch'`執行，不代替正常玩家畫面驗收。
 
 正常路徑直接攔截研究：[隔離核心準備](tools/prepare-direct-runtime.py)、[Oracle呼叫控制](tools/research-oracle-host-call.go)與[配額／返回測試](tools/research-oracle-host-call_test.go)、[四／五平面來源計畫](tools/research-direct-runtime.go)與[原版／非零堆疊對照](tools/research-direct-runtime_test.go)。場景準備器的`--direct-render`只接研究副本，原版返回指令保留；範圍、事件預算及來源RGB路徑見[047](docs/spec/047-hd-scene-renderer.md#正常路徑直接攔截的研究契約)。047整體仍DRAFT，工具不接正式入口。
+
+六平面直接攔截的[原版追蹤與對照測試](tools/research-direct-masked_test.go)只在047私有副本執行，沿現有`directRuntimeFixture`、固定原版及`EIGHTSWORD_MASKED_TRACE`新輸出路徑，核對讀回、遮罩、堆疊及步數。不進正式套件，不把受控常式追蹤稱為自然戰場。
 
 正常攔截與批次呈現的[獨立核對器](tools/audit-direct-runtime.py)以`--project <唯讀專案> --out <新JSON>`核對來源命令、全客體、PCM、逐幀、實際Draw及真正存退讀，另報同容器三組繪製耗時。固定Pillow容器執行，原始資料／存檔的只讀快照檢視用既有`workplace/player/eightsword-inspect -until 0 -save-buffer`，不以快照還原代替正常玩家路徑。
 

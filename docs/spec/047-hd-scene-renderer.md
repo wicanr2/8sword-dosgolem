@@ -328,3 +328,49 @@ PAM主選單、人物／軍隊、確認、地圖與返回，以及PREDELLA自然
 `player/gui/direct-source-save-r3`真正視窗以Noto Black 900走音樂選單、新遊戲取消／重進、人物／軍隊往返及F7存退冷讀。380／164次Draw、23／9份交易中畫面保持，十一／五份首次完成圖全部連回實際Draw；接管1363／705次。2987-byte人物檔與兩側零步檢視的RAM均同SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`。存前DOS退出0，冷讀返回地圖。Noto人物頁實窗已抽看。前一r27視窗另驗工具列三字型與草書人物頁，不冒稱同一建置的全部字型GUI覆蓋；r28正常542幀本身包含三字型，完整像素同控制。
 
 [統一核對器](../../tools/audit-direct-runtime.py)結果為`battle-r1/direct-runtime-audit-r1.json`。重生使用場景準備器`--intro --gui --natural-intro --main-menu --vga-read-trace --direct-render --batch-render --build`，核心沿`prepare-direct-runtime.py`的新研究輸出；無頭量測另設`EIGHTSWORD_RESEARCH_RENDER_BENCH=1`。正式r48保持，其他原版繪圖常式仍有像素迴圈，未知／故障與整體正式切換仍待處理。部隊補圖改依使用者最新的[048抽驗政策](048-troop-hd-batch.md)，不再逐隻等待正常遭遇。
+
+### 六平面角色的受控接管
+
+2026-10-26追加研究，047仍為DRAFT，正式r49與共用核心保持。使用者允許修改記憶體作呈現抽驗，因此部隊呈現不再依賴逐隻自然遭遇。此處保留受控呼叫、正常輸入與正式接入的分別。
+
+證據為既有`graphics-first/ida-graphics-inventory-r4.json`，工具IDA9.4、輸入`PAM.AY` SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、資料庫`text-first/PAM.i64` SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。來源與資料庫保持唯讀。下列端點除RETF欄外均不含結尾。
+
+| 原名 | IDA MZ線性範圍 | PAM檔案偏移 | 固定載入的執行期入口／RETF | 完整常式SHA-256 |
+|---|---|---|---|---|
+| sub_24112 | 0x24112至0x24246 | 0x15582至0x156B6，308 bytes | 14D2:04F2／0625 | cc7f7579b3ace806dfb714752b00731f675c415f699ef7047648814eb95d6de4 |
+| sub_24246 | 0x24246至0x2438F | 0x156B6至0x157FF，329 bytes | 14D2:0626／076E | c1cd7da0c0b84fd8e6ac44c073c6a9e653e5d2ab04a3bbd72f577c9324cec40e |
+
+已證實：mode1使用前四區塊色碼與第六區塊遮罩，第五區塊未在此分支消費。04F2先讀目前目的頁，0626切換ES讀取`CS:0196`所指背景頁，再寫回目的頁。讀取會載入四個VGA暫存值，不能省掉；只有最終HD畫面與原版RGB分開。
+
+[來源計畫](../../tools/research-direct-masked.go)限定BIOS0Eh、mode1、固定程式SHA、RAM來源、合法尺寸及原版列距。一般角色接受A000／A400；背景入口只接受目的A000、來源A400。堆疊與來源、程式／列距表、DS控制資料重疊時拒絕。未驗模式、VGA寫入設定、事件或剩餘配額保留原版。
+
+原版前綴與實測追蹤核對的成本如下。`w`是每列byte數，`h`是列數；這是固定dosgolem的計費契約，沒有硬體逐週期聲明。
+
+| 項目 | 04F2 | 0626 |
+|---|---|---|
+| 每byte指令數 | 9 | 12 |
+| RETF前步數 | `4*h*(9*w+7)+111` | `4*h*(12*w+7)+111` |
+| RETF前週期 | 步數加`4*w*h` | 步數加`4*w*h` |
+| 第一讀取相對步數／位置 | 57，14D2:057A | 59，14D2:06B4 |
+| 寫入相對讀取延遲／位置 | 1，14D2:057D | 2，14D2:06B8 |
+
+每列另七條、每平面另十五條控制指令；前導38條與收尾13條合為51，四平面控制共60，合為常數111。計畫保留36 bytes死堆疊、`[bp-6]`高byte、最終旗標、GC遮罩FF、序列器平面8與最後一次讀取留下的四個暫存值。RETF維持原生執行，返回觀測照常發生。
+
+[原生讀回介面](../../tools/research-host-planar-read.go)在私有核心`core-direct-r6`沿`Read8`相同順序呼叫背板準備、唯讀觀測及真正`VGA.Read`，明示原始Step／CS:IP，不改CPU的OpAddr冒充位置。索引色平面供原版讀回；HD只消費來源命令。r49新部隊的戰場別名也接入自有場景的來源辨識，固定r27參考繪圖函式保持。
+
+重生入口：
+
+- 在固定Go1.24.13 Docker執行`python3 tools/prepare-direct-runtime.py --project <唯讀專案> --out <新核心研究目錄> --masked-planar`。掛入唯讀原版、可寫Go建置快取與唯讀模組快取，將新核心的`src`掛至`/dosgolem`。
+- 場景準備器沿前節參數追加`--masked-planar --build`。r31保存121份來源及三程式雜湊；r30是先行測試副本，不當作r31的建置收據。
+- 在新場景`src`用Go workspace指向該核心，執行`go test -count=1 -v ./internal/eightsword -run '^TestResearch(DirectMasked|HostPlanarRead|DirectRuntime|OwnedBatch)'`。設定`EIGHTSWORD_TEST_ORIGINAL`、既有`EIGHTSWORD_TEST_DIRECT_FIXTURES`及不存在的`EIGHTSWORD_MASKED_TRACE`輸出檔。核心沿前節的三個`TestResearchHostCall`。
+- [獨立核對器](../../tools/audit-direct-masked.py)在固定Pillow Docker使用`--project <唯讀專案> --out <既有研究目錄內新JSON>`，固定檢查r31、core-direct-r6及本節收據。不能拿此核對器驗其他未登錄建置。
+
+`masked-prefix-r2.log`通過24組六平面對照：MAN02、主角、變化遮罩與單byte，涵蓋兩頁、兩入口及兩種非零堆疊。CPU、全部RAM、四平面、控制／暫存值、每筆有序讀寫、原生RETF後完整序列化狀態同原版。另通過十種拒絕條件、兩軸配額不足與讀回準備正對照；既有16組四／五平面及兩項批次圖層測試也通過。`masked-native-trace-r3.json`記錄八組未替換原版追蹤。
+
+正常新遊戲、搜尋、募兵、三字型、F1／F2及返回由r31兩組普通輸入重跑，共542幀。`masked-hire-r1`與`masked-hire-control-r1`的完整state、PCM、逐幀串流、來源／讀取事件及30工作檔相同；state仍為`c4aa051f…a401`。四／五平面接管1113次，548次PAM Frame均走自有場景，舊RGB入口0。這條路線的12筆六平面呼叫都因已收窄的配額不足而保留原版，沒有正常六平面略過成果，也沒有新增GUI或存退讀聲明。
+
+統一結果為`battle-r1/direct-masked-audit-r1.json`。首次獨立核對發現IDA匯出省略三個分支邊界的單byte NOP，並非程式不符。核對器逐項記下原檔位置及`90`，只接受這種已核對的間隔，完整常式SHA仍涵蓋全部bytes。下一步須在原版事件與停止邊界內縮小六平面工作單位，取得正常接管證據；不放寬預算、跳過IRQ或修改遊戲速度來通過。
+
+同r31另執行既有`TestTroopsControlledOriginalDraw`，沿048的344素材與獨立快取。設定`EIGHTSWORD_RESEARCH_OWNED=<新且已建立的輸出目錄>`，其餘`EIGHTSWORD_TEST_TROOPS_*`依048，`EIGHTSWORD_TEST_ORIG`為唯讀原版。普通啟動、新遊戲、F1／F2後，僅將8000:0000暫存來源與既有繪圖控制字設為明示案例。MAN02／08／20各兩向、兩入口共12案，27648000像素全幅同背景／角色獨立模型；Frame客體狀態保持。新場景的12筆來源命令分別提交正確角色／戰場別名，與先前正式048的12張完整畫面逐像素相同。32次PAM Frame均走自有場景，舊RGB入口0，持刀兵鏡射與龍形圖已抽看。
+
+結果保存在`masked-controlled-troops-r1`、`masked-controlled-owned-r1`與`masked-controlled-troops-r1.log`。核對器追加`--controlled`產生`direct-masked-audit-r2.json`。這份受控案例使用任意停止條件的CallBudget，原版像素指令仍執行；它證明自有呈現與新別名，沒有證明CPU略過、正常遭遇或戰鬥規則。原圖與完整成果留本機，不增加逐隻GUI閘門。

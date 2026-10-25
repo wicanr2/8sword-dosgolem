@@ -26,7 +26,11 @@ type runtimePlanarPlan struct {
 	segments                         [4]uint16
 	flags                            uint16
 	stack                            []uint16
+	commitExtra                      func(*dg.Machine, oracle.HostWorkLimits) error
 }
+
+var runtimeDirectEntries = []uint16{0x99c, 0x76f}
+var runtimePlanarExtra func(*dg.Machine, oracle.HostWorkLimits) (*runtimePlanarPlan, string)
 
 func runtimePlanarPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePlanarPlan, string) {
 	if !m.CycleClock || !m.CPU.DOSBoxCost {
@@ -46,6 +50,9 @@ func runtimePlanarPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePlana
 		ret, writeSite, planes = 0x854, 0x7cf, 5
 		want = "49285f927aa83c57fce4d990102e6fda59e61581d8b571bb8c8d9ebc5e255419"
 	default:
+		if runtimePlanarExtra != nil {
+			return runtimePlanarExtra(m, b)
+		}
 		return nil, "entry-mode"
 	}
 	code := uint32(s[dg.CS]) * 16
@@ -111,6 +118,9 @@ func runtimePlanarPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePlana
 }
 
 func (p *runtimePlanarPlan) commit(m *dg.Machine, b oracle.HostWorkLimits) error {
+	if p.commitExtra != nil {
+		return p.commitExtra(m, b)
+	}
 	start := m.Steps
 	ss, sp := uint32(p.segments[dg.SS])*16, p.registers[dg.SP]
 	for i, v := range p.stack {
@@ -161,7 +171,7 @@ func (e *Engine) ResearchDirectRuntime(out string) (func(), func() error) {
 		if control {
 			return
 		}
-		for _, entry := range []uint16{0x99c, 0x76f} {
+		for _, entry := range runtimeDirectEntries {
 			e.Oracle.OnHostCall(oracle.Addr{Seg: t.stringSeg, Off: entry}, func(o *oracle.Oracle, m *dg.Machine, b oracle.HostWorkLimits) (bool, error) {
 				counts["attempts"]++
 				plan, reason := runtimePlanarPrepare(m, b)
@@ -186,7 +196,7 @@ func (e *Engine) ResearchDirectRuntime(out string) (func(), func() error) {
 		}
 	}
 	finish := func() error {
-		stats := map[string]any{"schema": 1, "production": false, "control": control, "bound": bound, "counts": counts, "scope": "PAM four/five-plane mode 1, DOSBox-cost cycle clock, event-free call prefix; native RETF remains", "compatibility": "eager indexed planes for readback and observer ownership; no original RGB", "remaining": "other primitives, overlaps outside admitted inputs, modes and failures require further validation"}
+		stats := map[string]any{"schema": 1, "production": false, "control": control, "bound": bound, "counts": counts, "entries": runtimeDirectEntries, "scope": "PAM admitted planar mode 1, DOSBox-cost cycle clock, event-free call prefix; native RETF remains", "compatibility": "eager indexed planes for readback and observer ownership; no original RGB", "remaining": "other primitives, overlaps outside admitted inputs, modes and failures require further validation"}
 		stats["pam_source_frames"] = e.researchDirectSourceFrames
 		stats["pam_legacy_rgb_frames"] = e.researchDirectLegacyFrames
 		raw, err := json.MarshalIndent(stats, "", "  ")
