@@ -352,3 +352,7 @@ HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-ref
 其餘地圖第 49／54 筆的普通步行、只讀來源、狀態隔離、真正存讀與位置原型由[路線核對器](tools/audit-map-landmark-route.py)驗證，契約及來源見 [045 的來源與正式契約](docs/spec/045-map-landmarks.md#第-49-與-54-筆正式提升)。原型不當成正式 Draw 收據。
 
 第 49／54 筆正式素材工具：[獨立匯入](tools/prepare-hd-landmarks.py)、[正常三組核對](tools/audit-landmarks-runtime.py)、[實際 Draw 與存讀核對](tools/audit-landmarks-gui.py)。載入器為 [49](internal/eightsword/map_landmark49.go)／[54](internal/eightsword/map_landmark54.go)，測試為 [49](internal/eightsword/map_landmark49_test.go)／[54](internal/eightsword/map_landmark54_test.go)及[多筆獨立回退](internal/eightsword/map_landmarks_test.go)。匯入命令為 `tools/player.sh landmarks-assets <新名稱> painted-r43`；契約與狀態見 045 及 CONTEXT。
+
+地圖 52／56 的[正常來源與存讀核對器](tools/audit-map-landmark-pending.py)沿固定 PMAP／PAM，驗同狀態及透明位置原型；入口見 [045 的 52／56 契約](docs/spec/045-map-landmarks.md#第-52-與-56-筆呈現-ready-契約)。月報前導不作目標收據，來源與停止線依該節。
+
+52／56 的正式載入器為 [52](internal/eightsword/map_landmark52.go)／[56](internal/eightsword/map_landmark56.go)，測試為 [52](internal/eightsword/map_landmark52_test.go)／[56](internal/eightsword/map_landmark56_test.go)及[新舊群獨立回退](internal/eightsword/map_landmark_pending_test.go)。沿既有匯入與核對器，重建命令 `tools/player.sh landmarks-assets <新名稱> painted-r44 52-56`；正常三組與 GUI 核對器用 `--record 52` 或 `--record 56`。[正式提升與限定驗收](docs/spec/045-map-landmarks.md#第-52-與-56-筆正式提升)保存收據入口；現況見 CONTEXT。

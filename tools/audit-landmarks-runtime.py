@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""045：核對第49／54筆正式呈現、原版來源、狀態隔離與獨立完整畫面。Docker only。"""
+"""045：核對第49／52／54／56筆正式呈現、原版來源、狀態隔離與獨立完整畫面。Docker only。"""
 import argparse
 import hashlib
 import importlib.util
@@ -46,8 +46,9 @@ def verify(args):
     helper.register_static_materials(model,args.assets,module)
     assert hashlib.sha256(tile).hexdigest()==entry["cache"]
     reference, candidate, broken = [read(p / "final.json") for p in (args.control, args.hd, args.broken)]
-    assert reference["graphics_materials"] == 65 and broken["graphics_materials"] == 66
-    assert candidate["graphics_materials"] == 67
+    baseline=65 if args.record in (49,54) else 67
+    assert reference["graphics_materials"] == baseline and broken["graphics_materials"] == baseline+1
+    assert candidate["graphics_materials"] == baseline+2
     error_key = "map_landmark_error"
     assert not reference[error_key] and not candidate[error_key]
     assert broken[error_key] == f"地圖物件{args.record}圖片 SHA-256 不符"
@@ -88,7 +89,7 @@ def verify(args):
     assert len(shots) == 6
     for path in shots:
         assert sha(args.hd / path.name) == sha(args.broken / path.name) == sha(path)
-    for name in (("07-F1-hd.png", "08-F2-hd.png") if args.record==49 else ("05-west-hd.png", "07-F1-hd.png", "08-F2-hd.png")):
+    for name in (("07-F1-hd.png", "08-F2-hd.png") if args.record in (49,56) else ("05-west-hd.png", "07-F1-hd.png", "08-F2-hd.png")):
         assert sha(args.control / name) == sha(args.hd / name) == sha(args.broken / name), name
     for path in args.control.glob("*.png"):
         assert sha(path) == sha(args.broken / path.name), path.name
@@ -111,7 +112,7 @@ def verify(args):
         digest, name = line.split("  ", 1)
         assert sha(args.build / "src" / name) == digest
         build_inputs += 1
-    assert build_inputs == 54
+    assert build_inputs == (54 if args.record in (49,54) else 56)
     outputs = {}
     for line in (args.build / "build-outputs.sha256").read_text().splitlines():
         digest, name = line.split()
@@ -131,7 +132,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ("assets","original","image","control","hd","broken","build","out"):
         p.add_argument("--"+name,type=Path,required=True)
-    p.add_argument("--record",type=int,choices=[49,54],required=True)
+    p.add_argument("--record",type=int,choices=[49,52,54,56],required=True)
     a=p.parse_args()
     assert not a.out.exists()
     result=verify(a)

@@ -1,6 +1,6 @@
 # 045：其餘地圖圖像
 
-狀態：第 49／54／55 筆呈現限定 CONFORMED，第 48／51／52／56 筆 DRAFT。沿 043／044 已證實的 PMAP 格式與繪圖 ABI，批次處理其餘圖像，不重開已完成物件。正式 r44 已接入第 49／54／55 筆，其餘樣稿尚未接入。
+狀態：第 49／52／54／55／56 筆呈現限定 CONFORMED，第 48／51 筆 DRAFT。沿 043／044 已證實的 PMAP 格式與繪圖 ABI，批次處理其餘圖像，不重開已完成物件。正式 r45 已接入上述五筆，整體 HD 未完成。
 
 [盤點工具](../../tools/catalog-map-pending.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--out`，核對正式素材清單與固定 PMAP／MAP1，輸出七筆原生參考及普通步行規劃。輸出目錄必須不存在。工作區為 `workplace/probe-20261023/graphics-first/map-interaction-r1/map-landmarks-r1/`，不進 Git。
 
@@ -14,18 +14,18 @@
 
 ## 目前素材與來源
 
-`catalog.json` 從正式 r42 的清單盤點主地圖 65 筆，當時有 58 筆登錄，剩餘七筆；r43 接入第 55 筆後為 59 筆；現行 r44 接入第 49／54 筆後為 61 筆，尚餘四筆。這個分母不含其他圖片族、戰場或音樂。原始參考依真正 3×6 像素比例顯示，沒有將方形像素放大圖誤作本作比例。
+`catalog.json` 從正式 r42 的清單盤點主地圖 65 筆，當時有 58 筆登錄；r43 為 59 筆，r44 為 61 筆，現行 r45 接入第 52／56 筆後為 63 筆，尚餘 48／51。這個分母不含其他圖片族、戰場或音樂。原始參考依真正 3×6 像素比例顯示，沒有將方形像素放大圖誤作本作比例。
 
 使用 built-in image_gen 一筆一張，四張原 PNG、各自完整提示、`generation-prompts-r1.json`、`art-provenance-r1.json`、四份獨立 RGBA 快取及 `art-comparison-r1.png` 均存入本節工作區。每張為 1419×1108 RGBA、真正透明；取樣沿既有草地，沒有修改生成圖的 alpha 或裁切主體。城堡 PNG SHA `744a39bb04c869803c0583604ac3c5c0481e174ad3153c4a8489f1219ad50a97` 只作既定 B 畫風參考，配色與布局沿各自原圖。沒有聲稱使用者已個別批准這四張圖。
 
 | 筆數 | PNG SHA-256 | 192×150 RGBA 快取 SHA-256 | 閘門 |
 |---|---|---|---|
-| 52 | `bfa21fb69c92918d2a27380077153377dbba5d5d84f1a3d1dac6c7ab85fc7e83` | `8147efffe2e0f26f26295391bdd1b2a3e5db621539ee55cc65ed2b48c9e2a6c8` | 有樣稿，正常來源未取得 |
+| 52 | `bfa21fb69c92918d2a27380077153377dbba5d5d84f1a3d1dac6c7ab85fc7e83` | `8147efffe2e0f26f26295391bdd1b2a3e5db621539ee55cc65ed2b48c9e2a6c8` | 正式 r45，限定 CONFORMED，範圍見後節 |
 | 54 | `328c5a99cf1758062778c7381742129f4a755af5bb0d35693084a78c7c35d7b5` | `79b142d453644177050a596082bcbc2607e9e48b3dfebb07e9f7981e686e7706` | 正式 r44，限定 CONFORMED，範圍見後節 |
 | 55 | `55e20818bf365b1d892ecce5ec2bf7eadaffba952635f890cc94c0bf2a107cdc` | `2a4f23af0710c6e95ed002000f79dc612d312d74346f00452d5c0e4c0b4f322a` | 正式 r43，限定 CONFORMED，範圍見下節 |
-| 56 | `7188d67ebf710df40d2adfcaa520d21c1f9781008748a214a497629c2b0a542d` | `412af4cb89b40adc1b0b56b2b5605fd016918b51712a081a4cea01938d0e9fd4` | 有樣稿，正常來源未取得 |
+| 56 | `7188d67ebf710df40d2adfcaa520d21c1f9781008748a214a497629c2b0a542d` | `412af4cb89b40adc1b0b56b2b5605fd016918b51712a081a4cea01938d0e9fd4` | 正式 r45，限定 CONFORMED，範圍見後節 |
 
-48、51 尚未生成，也未取得正常來源；49 已依後節完成。MAP1 上 52、56 沒有找到目前已知草地通行範圍內的四方向觀看路線；這不證明原版永遠到不了，只是不以跳躍、飛行或未證實通行規則補洞。
+48、51 尚未生成，也未取得正常來源；49、52、56 已依後節完成。最初的保守步行集合未找到 52／56 路線，後續普通操作已證實兩筆可見；規劃集合不代表原版完整通行規則。
 
 ## 第 55 筆正常來源與停止線
 
@@ -105,7 +105,7 @@ READY 契約要求：真實來源及獨立快取測試、來源／JSON／PNG／�
 4. 從 r43 的 197 檔乾淨匯入兩筆，共 205 檔，每筆各新增 PNG、完整提示、清單與 provenance。197 舊檔逐 SHA 保持，獨立重建須相同；未通過下列驗收前不提升正式組。
 5. 正式驗收分別走普通 Continue、三字型、人物／軍隊頁與 F3 取消、進退／遮擋、實際 Draw 與連續錄影、真正 F7 存退及冷讀 RAM。新／舊／真壞三組完整 state／PCM／事件保持，畫面差異只限各自物件。壞圖只回退該群，並驗多筆同時故障的錯誤保留。來源與位置原型不能取代新素材的實際 Draw。
 
-第 55 筆既有驗收保持。第 48／51／52／56 筆仍 DRAFT，不能隨本次兩筆一併接入；整體 HD 未完成。
+第 55 筆既有驗收保持。本次 49／54 READY 審查時，其餘四筆未隨同接入；52／56 的後續審查與驗收另見下節，48／51 維持 DRAFT，整體 HD 未完成。
 
 ## 第 49 與 54 筆正式提升
 
@@ -125,3 +125,51 @@ READY 契約要求：真實來源及獨立快取測試、來源／JSON／PNG／�
 [三組核對器](../../tools/audit-landmarks-runtime.py)、[實際 Draw 核對器](../../tools/audit-landmarks-gui.py)及[匯入器](../../tools/prepare-hd-landmarks.py)保存重查入口。工作區收據為 `landmarks-{49,54}-runtime-audit-r1.json`、`landmarks-{49,54}-draw-audit-r2.json`、`landmarks-promotion-r1.json` 與 `landmarks-formal-integrity-r2.json`。
 
 路線規劃集合只作保守導覽，不代表原版完整通行規則。第 49 筆正常方向鍵的原生 x byte 為 25 → 33 → 25，不能因西側圖塊不在該集合就宣稱受阻。其餘四筆的可達性仍須由普通操作查證。物件正式名稱、用途、觸發及獎勵保持未知；不重做已完成來源、美術或相同驗收。完整圖與存檔留本機，本項不外推全遊戲 HD、音訊裝置或其他平台。
+
+## 第 52 與 56 筆呈現 READY 契約
+
+本節沿本規格既有 PMAP／PAM SHA 與 `14D2:076F → 14D2:0854` 的 230-byte ABI。來源建置為 `landmark-source-build-r3`，Go 1.24.13、49 筆輸入及完整來源快照，46 份套件來源同 r44；探針 SHA `52a0fbac932823964279b3cb32d99e4e39d61bb6044ad93caa21df83cdaadaa1`。既有 Go／Pillow 固定映像不變，獨立取樣為 Pillow 11.3.0。執行前時鐘 12:00:00.00、3000 cycles/ms；原版 seed 未知，沒有重設、挑選或注入位置。
+
+### 正常來源與審查
+
+- 已證實：第 52 筆從真正 20,8 兩件存檔普通 Continue，直接東／北各一試仍為 20,8；改走 29 步到 F5 實際 27,10，觀看世界 30,7。岸邊實際 24,14 另有 F5。來源／控制均正常人物、軍隊、F3 取消及 F7 存退，兩側退出 0；來源未重畫。
+- 已證實：第 56 筆前導 75 方向鍵途中出現每月收支統計表，主機文字觀測事件 Source=11388，step 157816269。粗略 scene=map 不能證明對話已關閉，該前導只見 49，沒有 56。前導／控制各 1466 幀、2932 次純度，完整狀態、音訊與影像串流相同；真正人物檔同存後／冷讀 RAM，SHA `6039dcb26469864bc3fd11f579670975326ff2e4e957922ebfcb48096c1c6a19`，冷讀 F5 為 37,61。`landmark56-preparation-audit-r1.json` 只作前導證據，不冒稱已到目標。
+- 已證實：直接沿該 37,61 原版存檔續玩，再 13 步到 F5 實際 33,70，觀看世界 32,73，取得第 56 筆。沒有重走 75 步、讀模擬器快照或跳過月報；探針後續遇月報會停下，以普通按鍵與畫面確認後才繼續。
+- 兩筆各八次來源，首筆各 1600 返回色碼同各自前四平面，正常實景的 192×150 矩形再次核對。原 PNG、完整提示與透明快取沿本節之前的四張圖，不重畫、不修改 alpha。兩份 `normal-scene-prototype-{52,56}-r1.png` 已看，只作可丟棄的矩形位置合成，不是新素材的實際 Draw。
+- [來源核對器](../../tools/audit-map-landmark-pending.py)保存完整影像串流、輸入／文字／檔案／EXEC 事件、所有 checkpoint 及 22 工作檔同值。每筆另普通冷讀 312 幀，F5／F1／F2 與正常退出 0，2987 bytes 同存後及讀後 RAM 線性 0x9E000；零步數診斷只核對 RAM。
+
+| 筆數／材質 | 原生與完整記錄 SHA | 圖片／提示／快取 SHA | 正常來源、隔離及存讀 |
+|---|---|---|---|
+| 52／53 | native `e6b6adc005119cfcdf87cfe55cfe601f967a22b4f8796232c33733a65cd3f146`；record `28988f39adf2e0b5835163e413b63fc1f550dcfdc3097538143e028f5424018d` | PNG `bfa21fb69c92918d2a27380077153377dbba5d5d84f1a3d1dac6c7ab85fc7e83`；prompt `e20995cda826aa2192c23e9f6666e061d3d678ffd8f5ce18ade488258da1765d`；cache `8147efffe2e0f26f26295391bdd1b2a3e5db621539ee55cc65ed2b48c9e2a6c8` | `7000:52208`，A400、mode 1、x byte 49、y 12、實體 byte 17393；step 121003802 → 121004683。兩側各 1034 幀、2068 次純度、15 checkpoint；state `949e3a2b312e5bb1330b64976c426b05a7c94ca6440c87e08e6bac07d26f329e`；PCM `ed53c074615364d20950d81fac7a160adde6e26f0c04374a4e303071178fe03f`。人物檔 `0a19a2be886d90dde452744684f6cda2a58569538f2a5f74300549f5e918ee63`；地圖 `6985136825e625de4a9857871f8d215281a34f23799790e0102b48e3fef662dd`；read step 22839250 |
+| 56／57 | native `c94b51a07f43d19768b4bc6b0d6c1ef57154f1be4d0024470bc8dc3755e420b6`；record `74d93a7872784953e405930f6046b04e326939dc9e0b8be488936f82a7ea218d` | PNG `7188d67ebf710df40d2adfcaa520d21c1f9781008748a214a497629c2b0a542d`；prompt `26e77d40d3b0759102cb961146c23f01d00f55677ef2daae03a56802265ecd52`；cache `412af4cb89b40adc1b0b56b2b5605fd016918b51712a081a4cea01938d0e9fd4` | `7000:56224`，A400、mode 1、x byte 17、y 162、實體 byte 29361；step 56860315 → 56861196。兩側各 598 幀、1196 次純度、7 checkpoint；state `e7b37427e22ba73a7813fe2ab98b0541fcb2965477fdcc6c85b29ba8705067ca`；PCM `dea0f8ad975c3514e7c6a8c86aead8dadabc99f762442f05112bca8b2cee31f5`。人物檔 `2866c060903ff9a028a1e4ed2d9be4d29a39571bf293d9a4f505426432db33ce`；地圖 `00202fd5f809d20111e9f3ac50e382cefaecc91f7a51cd4ceb4b7b9ac95bb0c0`；read step 22839250 |
+
+### 正式接入與停止線
+
+1. 每筆沿前述可選清單契約，名稱為 `map-landmark-52.json`／`map-landmark-56.json`，圖片固定 `map-landmark-52-r1.png`／`map-landmark-56-r1.png`、1419×1108。Schema 1、PMAP／風格 SHA、grass_source=0、sampling=bilinear-full-alpha-over-grass、16 KiB 清單與 8 MiB PNG 上限維持；native／record／image／cache 各用上表值，拒絕未知欄位、尾隨 JSON 與任意路徑。
+2. 分別核對 Native[52]／Native[56]、8×25、完整 PMAP／原生／記錄 SHA 與既有 ByNative 值 53／57，不新增別名或客體掛點。材質／角色／效果 ID 衝突時拒絕該筆。沿完整 192×150 草地及 `compositeStaticObject`，第五平面不作 alpha。
+3. 每筆全部檢查通過才登錄材質 53／57。清單缺少時相容舊組；錯誤各自回退，既有 49／54／55、其他圖像、字型與原版規則保持。`map_landmark_error` 必須完整保留多筆錯誤，包括新舊群同時失敗。
+4. 從 r44 的 205 檔乾淨匯入，每筆各加 PNG、完整提示、清單及 provenance，共 213 檔。205 舊檔逐 SHA 保持，獨立重建相同。匯入工具可新增 `--group 52-56`，既有預設 49-54 的輸出與使用方式保持。
+5. 正式驗收各走普通 Continue、三字型、人物／軍隊頁、F3 取消、移動與遮擋、實際 Draw／連續錄影及真正 F7 存退冷讀 RAM。新／舊／真壞完整 state／PCM／事件保持，影像差異限實際原版來源矩形；某筆壞圖只回退自己，多筆錯誤不能互相覆蓋。前導月報畫面及位置合成都不能代替新素材的實際 Draw。
+
+來源收據為 `landmark52-source-art-audit-r1.json`／`landmark56-source-art-audit-r2.json`。後續直接用 `landmark52-normal-r1/scratch` 的 27,10 兩件存檔及 `landmark56-normal-r2/scratch` 的 33,70 兩件存檔，不重跑已驗路線或生成圖片。兩物件正式名稱、用途、獎勵保持未知，不阻塞純呈現，RE 到此停止。第 48／51 筆及整體 HD 未完成，完整圖與存檔留本機。
+
+## 第 52 與 56 筆正式提升
+
+[52 載入器](../../internal/eightsword/map_landmark52.go)與[56 載入器](../../internal/eightsword/map_landmark56.go)沿既有原生映射，各自登錄材質 53／57。兩次乾淨匯入各 213 檔完全相同，r44 的 205 檔逐 SHA 保持，原 PNG 與完整提示不變。既有預設 49-54 另外重建，205 檔與 r44 完全相同。正式七程式與三份建置紀錄已提升；`build-pending-landmarks-r3` 保存 105 筆輸入、Go 1.24.13 及完整來源快照。
+
+- [52 測試](../../internal/eightsword/map_landmark52_test.go)、[56 測試](../../internal/eightsword/map_landmark56_test.go)及[多群獨立回退](../../internal/eightsword/map_landmark_pending_test.go)共五個父測試、24 個子案例，95.066 秒通過。真壞圖、來源、清單、草地及 ID 衝突均拒絕；同時損壞 52／56 或舊 55／新 52 時，各筆錯誤完整保留，其他材質、角色、效果與字型保持。
+- 每筆新／舊／真壞各 395 幀，合計 2370 次 Frame 純度。完整 state、PCM、22 工作檔及輸入／文字／檔案／EXEC 事件同值。十份完整 Frame 同獨立 PNG／草地／圖層／字型模型；真壞組全串流同 r44。三字型、F1／F2／F3 取消、左右移動、F6 返回及原版 F7 存退通過。
+- `landmark52-save-r1` 與 `landmark56-save-r1` 分開執行正常視窗。存前／冷讀各三字型，共十二份完整實際 Draw、27648000 像素同獨立模型及錄影；四張接觸表與兩個 Noto 視窗已看。兩段首筆各 1600 原生返回色碼相符，F2／F3 取消、F1、左右移動及真正 F7 存退讀通過。
+
+| 筆數 | 完整客體／PCM SHA 與差異範圍 | 實際視窗及來源 | 真正人物檔與冷讀 |
+|---|---|---|---|
+| 52 | state `83817d03cbfd071bddb30f54d0d37fbb1a5a4e56009336dd277b5dc0c6b425df`；PCM `f34f1db427d4d2ff3d80ad3adc65e7b2f07241cc7a40dfd06f9f22ffd6b320e8`；158 差異幀限 `(1176,72)-(1368,222)` | 305／228 Draw，48／32 次改變，來源 10／6 次 | 2987 bytes 同存後／讀後 RAM `0x9E000`，SHA `7ad5cd4550386efb0ceeeb58b0ba5861e9f51cca381c23f8daf2c95cd45236da`；read step 11712415；伴隨地圖 `225ddbd29f3e1295dc5131a95bbe5220fc3d7dc390b2d41c10ad80d7dce697ac` |
+| 56 | state `2eb005e2e54579711f5ffa7754d65cbcbd5fb247ac625ce66d742cda68a9d693`；PCM `73e8c6355a2d38fe217678f3ece46b96c927526def8f6d8330104e74e02b2b41`；108 差異幀限實際來源 `(408,972)-(600,1122)`、`(600,972)-(792,1122)` | 308／297 Draw，40／37 次改變，來源 11／6 次 | 2987 bytes 同存後／讀後 RAM `0x9E000`，SHA `2c5c306c57a2d1b54a33b5d5a9c7753811e2d73e105aa0d0ae19a5ba44692866`；read step 11412415；伴隨地圖 `075c004cbc5410b25fafba1fdf62a21411f2bd8b473a7a3c99aebe8a37621601` |
+
+正常無頭使用 `pending-landmarks-validation-build-r2`，視窗使用 r3，各保存 56 筆研究輸入、三程式及完整來源快照；48 份正式套件來源均與正式建置相同，不含原型安裝函式。r3 只改第 52 筆研究操作腳本的等候條件。較早的 F2 圖只畫完第一列，當時誤認只有民兵；實際視窗顯示民兵 31／矮人 69，已更正。`pending-landmarks-52-army-rows-r1.json` 另驗存前／冷讀共十二份 F2／F3 三字型紀錄的兩列均可見，不以早期截圖推定編成。正式程式與存檔未作此變更。
+
+收尾修正兩個故障測試的清理編號，並明確要求缺草地案例進入草地失敗分支。正式建置 r3 重跑全部五個父測試與 24 個子案例通過；105 筆輸入只有兩份測試檔與 r2 不同，48 份正式套件、213 份素材及既有 GUI 收據保持。`pending-landmarks-build-correction-r1.json` 保存此對照及七程式提升結果，初版測試不單獨證明草地故障分支。
+
+重查入口沿[正常三組核對器](../../tools/audit-landmarks-runtime.py)、[實際 Draw 核對器](../../tools/audit-landmarks-gui.py)及[匯入器](../../tools/prepare-hd-landmarks.py)，使用 `--record 52` 或 `--record 56`。本節工作區收據為 `pending-landmarks-{52,56}-runtime-audit-r2.json`、`pending-landmarks-{52,56}-draw-audit-r1.json`、`pending-landmarks-promotion-r1.json`、`landmarks-default-compat-r1.json` 及 `pending-landmarks-formal-integrity-r2.json`。
+
+本項僅呈現限定 CONFORMED。現行主地圖 65 筆已登錄 63 筆，48／51 仍 DRAFT；這不是全遊戲完成率。物件名稱、用途與獎勵保持未知，沒有改規則或解鎖玩家地圖。沿用八份核心、既有字型與配色，完整素材及存檔留本機。Linux Xvfb 靜音驗收不外推裝置音訊、其他平台或整體 HD。

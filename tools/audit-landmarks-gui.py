@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""045：獨立重建第49／54筆圖像實際 Draw，連回正常來源、錄影及真正存讀。Docker only。"""
+"""045：獨立重建第49／52／54／56筆圖像實際 Draw，連回正常來源、錄影及真正存讀。Docker only。"""
 import argparse
 import hashlib
 import importlib.util
@@ -29,7 +29,7 @@ def main():
         parser.add_argument("--"+name,type=Path,required=True)
     parser.add_argument("--saved-inspection",type=Path,required=True)
     parser.add_argument("--loaded-inspection",type=Path,required=True)
-    parser.add_argument("--record",type=int,choices=[49,54],required=True)
+    parser.add_argument("--record",type=int,choices=[49,52,54,56],required=True)
     a = parser.parse_args()
     assert not a.out.exists()
     sampling = module("landmarks_gui_sampling","audit-encounter-gui.py")
@@ -51,7 +51,7 @@ def main():
         root = a.gui/phase
         final = read(root/"gui-final.json")
         assert final["closed"] and final["recorded_frames"] == final["presented_frames"]
-        assert final["graphics_materials"] == 67
+        assert final["graphics_materials"] == (67 if a.record in (49,54) else 69)
         for key in ("asset_error","graphics_error","map_chest_error","map_landmark_error","map_castle_error","font_error","palette_error",
                     "army_man21_error","battle_actor_error","battle_marker_error"):
             assert not final[key],(phase,key)

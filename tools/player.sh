@@ -96,6 +96,12 @@ case "${1:-}" in
             EIGHTSWORD_TEST_CASTLE_ASSETS=/out/assets-castle-candidate-r1 \
             EIGHTSWORD_TEST_CASTLE_BASE=/out/assets-painted-r40 \
             EIGHTSWORD_TEST_CASTLE_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/castle-cache-r1 \
+            EIGHTSWORD_TEST_LANDMARK52_ASSETS=/out/assets-pending-landmarks-candidate-r1 \
+            EIGHTSWORD_TEST_LANDMARK52_BASE=/out/assets-painted-r44 \
+            EIGHTSWORD_TEST_LANDMARK52_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/pending-landmarks-cache-r1 \
+            EIGHTSWORD_TEST_LANDMARK56_ASSETS=/out/assets-pending-landmarks-candidate-r1 \
+            EIGHTSWORD_TEST_LANDMARK56_BASE=/out/assets-painted-r44 \
+            EIGHTSWORD_TEST_LANDMARK56_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/pending-landmarks-cache-r1 \
             EIGHTSWORD_TEST_LANDMARK49_ASSETS=/out/assets-landmarks-candidate-r1 \
             EIGHTSWORD_TEST_LANDMARK49_BASE=/out/assets-painted-r43 \
             EIGHTSWORD_TEST_LANDMARK49_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/landmarks-cache-r1 \
@@ -172,13 +178,15 @@ case "${1:-}" in
         --assets "/project/workplace/player/assets-$task_base" --out "/out/$task_name.json"
     ;;
   landmarks-assets)
-    task_name="${2:?指定新的第49／54筆素材組名稱}"
+    task_name="${2:?指定新的地圖物件素材組名稱}"
     task_base="${3:-painted-r43}"
+    task_group="${4:-49-54}"
+    case "$task_group" in 49-54) task_indices="49 54";; 52-56) task_indices="52 56";; *) exit 2;; esac
     valid_name "$task_name"; valid_name "$task_base"
     task_art="$task_work/probe-20261023/graphics-first/map-interaction-r1/map-landmarks-r1"
     test -d "$task_player"; test -d "$task_player/assets-$task_base"
     test -d "$task_orig"; test -d "$task_art"
-    for task_index in 49 54; do
+    for task_index in $task_indices; do
       test -f "$task_art/pmap-$task_index-painted-r1.png"
       test -f "$task_art/pmap-$task_index-painted-r1.prompt.txt"
     done
@@ -189,7 +197,7 @@ case "${1:-}" in
       --mount "type=bind,src=$task_art,dst=/art,readonly" \
       --mount "type=bind,src=$task_player,dst=/out" \
       "$task_py" python /project/tools/prepare-hd-landmarks.py \
-        --base "/out/assets-$task_base" --original /project/workplace/intake-20261023/sources/game/8sword \
+        --group "$task_group" --base "/out/assets-$task_base" --original /project/workplace/intake-20261023/sources/game/8sword \
         --art /art --out "/out/assets-$task_name" --cache-out "/out/landmarks-cache-$task_name"
     ;;
   landmark55-assets)

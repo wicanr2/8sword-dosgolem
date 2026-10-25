@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""045：從 r43 匯入第49／54筆，完整保留基底並獨立核對草地合成。Docker only。"""
+"""045：匯入第49／54或52／56筆，保留基底並獨立核對草地合成。Docker only。"""
 import argparse
 import hashlib
 import importlib.util
@@ -12,6 +12,8 @@ STYLE_SHA = "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6"
 RECORDS = {
     49: dict(native="5af28dbd172be266d77a5d07af241ee6488b1f97d7e5d08ba29df2ae1f842667", record="d8858e3a2f3006a4813c4ba4cc28b4c633b85f072adad416f2f4842f179f4e39", image="347e485c9450754b28bb5f1db743a8d6aea83d51836ae8a1298e7f45919cd303", prompt="7b17151cf823ea36f0e1d6e138c622c11993656eb7c6625052f9b12f363dea94", cache="210fd08b77ac192c962a3e41e3bfd522e7f144f64b4ac4ecbbb6f85934375870"),
     54: dict(native="f57a3908342e7c2a8a5986374d745f749af596306e3d310b7633533b7909e602", record="023ad63010f68e3cb8ea140b69c8870301a787ab739f2425a53d0fd7d10cb0fc", image="328c5a99cf1758062778c7381742129f4a755af5bb0d35693084a78c7c35d7b5", prompt="5d4050ebc5704301ed88acdf271cf708b3c2773a0a4222f93f9c544c1dbfff22", cache="79b142d453644177050a596082bcbc2607e9e48b3dfebb07e9f7981e686e7706"),
+    52: dict(native='e6b6adc005119cfcdf87cfe55cfe601f967a22b4f8796232c33733a65cd3f146', record='28988f39adf2e0b5835163e413b63fc1f550dcfdc3097538143e028f5424018d', image='bfa21fb69c92918d2a27380077153377dbba5d5d84f1a3d1dac6c7ab85fc7e83', prompt='e20995cda826aa2192c23e9f6666e061d3d678ffd8f5ce18ade488258da1765d', cache='8147efffe2e0f26f26295391bdd1b2a3e5db621539ee55cc65ed2b48c9e2a6c8'),
+    56: dict(native='c94b51a07f43d19768b4bc6b0d6c1ef57154f1be4d0024470bc8dc3755e420b6', record='74d93a7872784953e405930f6046b04e326939dc9e0b8be488936f82a7ea218d', image='7188d67ebf710df40d2adfcaa520d21c1f9781008748a214a497629c2b0a542d', prompt='26e77d40d3b0759102cb961146c23f01d00f55677ef2daae03a56802265ecd52', cache='412af4cb89b40adc1b0b56b2b5605fd016918b51712a081a4cea01938d0e9fd4'),
 }
 
 
@@ -23,10 +25,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("base", "original", "art", "out", "cache-out"):
         parser.add_argument("--"+name, type=Path, required=True)
+    parser.add_argument("--group",choices=["49-54","52-56"],default="49-54")
     a = parser.parse_args()
+    indices, base_count = ([49,54],197) if a.group=="49-54" else ([52,56],205)
     assert not a.out.exists() and not a.cache_out.exists()
     base = {p.name: sha(p) for p in a.base.iterdir() if p.is_file()}
-    assert len(base) == len(list(a.base.iterdir())) == 197
+    assert len(base) == len(list(a.base.iterdir())) == base_count
     raw = (a.original/"PMAP.AY").read_bytes()
     assert hashlib.sha256(raw).hexdigest() == PMAP_SHA
     spec = importlib.util.spec_from_file_location("landmarks_sampling", Path(__file__).with_name("audit-encounter-gui.py"))
@@ -34,7 +38,8 @@ def main():
     spec.loader.exec_module(sampling)
     model = sampling.Model(a.base, a.original, a.cache_out)
     prepared = []
-    for index, source in RECORDS.items():
+    for index in indices:
+        source=RECORDS[index]
         record = raw[index*1004:(index+1)*1004]
         assert hashlib.sha256(record).hexdigest() == source["record"]
         assert hashlib.sha256(record[:804]).hexdigest() == source["native"]
@@ -64,9 +69,9 @@ def main():
         for name, value in [(f"map-landmark-{index}.json", manifest), (f"map-landmark-{index}-provenance.json", provenance)]:
             (a.out/name).write_text(json.dumps(value, ensure_ascii=False, indent=2)+"\n")
         (a.cache_out/f"landmark-{index}.rgba").write_bytes(tile)
-    assert len(list(a.out.iterdir())) == 205
+    assert len(list(a.out.iterdir())) == base_count+4*len(indices)
     assert all(sha(a.out/name) == digest for name, digest in base.items())
-    print(json.dumps(dict(files=205, base_files_preserved=197, independent_caches=2)))
+    print(json.dumps(dict(files=base_count+4*len(indices), base_files_preserved=base_count, independent_caches=len(indices))))
 
 
 if __name__ == "__main__":
