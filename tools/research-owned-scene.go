@@ -40,6 +40,10 @@ type ownedWriter struct {
 	Registers any
 	Stack     []uint16
 }
+type ownedPanel struct {
+	Kind  string
+	Start uint64
+}
 type ownedProbe struct {
 	e            *Engine
 	scene        *ownedScene
@@ -58,6 +62,23 @@ type ownedProbe struct {
 	out          string
 	captures     map[string]bool
 	unsubscribe  func()
+	panel        *ownedPanel
+	presented    *ownedScene
+	cachedScene  *ownedScene
+}
+
+func cloneOwnedScene(s *ownedScene) *ownedScene {
+	copyScene := *s
+	copyScene.Pixels = append([]ownedPixel(nil), s.Pixels...)
+	copyScene.Glyphs = make(map[uint32]*glyph, len(s.Glyphs))
+	for id, g := range s.Glyphs {
+		copyScene.Glyphs[id] = g
+	}
+	copyScene.Effects = make(map[uint16]*image.RGBA, len(s.Effects))
+	for id, f := range s.Effects {
+		copyScene.Effects[id] = f
+	}
+	return &copyScene
 }
 
 // Pure scene rendering. Source-command adaptation is kept below this function.
@@ -175,10 +196,22 @@ func (e *Engine) ResearchOwnedScene(out string) (func(), func() *image.RGBA, fun
 		if !p.bound {
 			return nil
 		}
-		if p.cached == nil || p.revision != p.scene.Revision || p.fontID != e.FontID() {
-			p.cached = renderOwnedScene(p.scene, e.Tracker.assets, e.Tracker.graphics.assets, e.Tracker.palette)
-			p.revision = p.scene.Revision
+		state := p.scene
+		if p.panel != nil {
+			if e.Oracle.Steps()-p.panel.Start > 5000000 {
+				panic("research owned panel exceeded bounded completion contract")
+			}
+			p.counts["panel-staged-frames"]++
+			state = p.presented
+		}
+		if p.cached == nil || p.cachedScene != state || p.revision != state.Revision || p.fontID != e.FontID() {
+			p.cached = renderOwnedScene(state, e.Tracker.assets, e.Tracker.graphics.assets, e.Tracker.palette)
+			p.revision = state.Revision
+			p.cachedScene = state
 			p.fontID = e.FontID()
+			if p.panel == nil {
+				p.presented = cloneOwnedScene(p.scene)
+			}
 		}
 		return p.cached
 	}
@@ -186,7 +219,7 @@ func (e *Engine) ResearchOwnedScene(out string) (func(), func() *image.RGBA, fun
 		if p.unsubscribe != nil {
 			p.unsubscribe()
 		}
-		d := map[string]any{"schema": "8sword-owned-live-prototype-r1", "commands": p.counts, "writers": p.writers, "active_at_end": p.active, "scene_revision": p.scene.Revision, "renderer_inputs": []string{"owned scene", "source decoded bitmaps", "validated HD art", "font atlas", "approved palette"}, "renderer_reads_vga": false, "production": false, "known_gap": "unknown raster primitives and effect accumulation are evidence gaps; no framebuffer fallback inside scene"}
+		d := map[string]any{"schema": "8sword-owned-live-prototype-r1", "commands": p.counts, "writers": p.writers, "active_at_end": p.active, "panel_at_end": p.panel, "scene_revision": p.scene.Revision, "renderer_inputs": []string{"owned scene", "source decoded bitmaps", "validated HD art", "font atlas", "approved palette"}, "renderer_reads_vga": false, "production": false, "known_gap": "only verified character/army panel and map-return boundaries are atomic; opening, other modal dialogs, mode changes and failure recovery remain research gaps"}
 		raw, err := json.MarshalIndent(d, "", "  ")
 		if err != nil {
 			return err
@@ -206,6 +239,31 @@ func (p *ownedProbe) record(kind string, values map[string]any) {
 		panic(err)
 	}
 }
+
+// Read-only raw stack evidence. Frame words retain their original positions;
+// they are not assigned guessed field names or function semantics.
+func ownedCaller(o *oracle.Oracle) map[string]any {
+	r := o.Regs()
+	stack := make([]uint16, 16)
+	for i := range stack {
+		stack[i] = o.Word(oracle.Addr{Seg: r.SS, Off: r.SP + uint16(i*2)})
+	}
+	frames := []map[string]any{}
+	bp := r.BP
+	for n := 0; n < 4 && bp != 0 && bp < 65520; n++ {
+		words := make([]uint16, 8)
+		for i := range words {
+			words[i] = o.Word(oracle.Addr{Seg: r.SS, Off: bp + uint16(i*2)})
+		}
+		frames = append(frames, map[string]any{"bp": bp, "words": words})
+		next := words[0] & 0xfffe
+		if next <= bp {
+			break
+		}
+		bp = next
+	}
+	return map[string]any{"ss": r.SS, "sp": r.SP, "bp": r.BP, "stack": stack, "frames": frames}
+}
 func (p *ownedProbe) bind() {
 	t := p.e.Tracker
 	if p.bound || t == nil || t.loadSegment == 0 || t.graphics == nil {
@@ -214,6 +272,7 @@ func (p *ownedProbe) bind() {
 	p.bound = true
 	o := p.e.Oracle
 	seg := t.stringSeg
+	p.bindPanels()
 	for _, site := range []struct {
 		seg, entry, ret uint16
 		base            int
@@ -223,14 +282,15 @@ func (p *ownedProbe) bind() {
 		}
 	}
 	var page uint16
-	o.OnCall(oracle.Addr{Seg: seg, Off: 0x19c}, func(*oracle.Oracle) { page = o.Arg(0) & 255 })
+	var pageCaller map[string]any
+	o.OnCall(oracle.Addr{Seg: seg, Off: 0x19c}, func(*oracle.Oracle) { page = o.Arg(0) & 255; pageCaller = ownedCaller(o) })
 	o.OnCall(oracle.Addr{Seg: seg, Off: 0x1a9}, func(*oracle.Oracle) {
 		if page > 3 {
 			panic("owned page out of range")
 		}
 		p.scene.Start = int(page) * 0x4000 * 8
 		p.scene.Revision++
-		p.record("select-page", map[string]any{"page": page})
+		p.record("select-page", map[string]any{"page": page, "caller": pageCaller})
 	})
 	o.OnCall(oracle.Addr{Seg: seg, Off: 0xae3}, func(*oracle.Oracle) {
 		if p.stringActive && p.stringSP == o.Regs().SP {
@@ -430,6 +490,7 @@ func (p *ownedProbe) bind() {
 				}
 			}
 			entryStep := o.Steps()
+			caller := ownedCaller(o)
 			p.active++
 			apply = func() {
 				area := w * h
@@ -482,7 +543,7 @@ func (p *ownedProbe) bind() {
 					}
 				}
 				p.scene.Revision++
-				p.record("bitmap", map[string]any{"entry": c.entry, "entry_step": entryStep, "width_bytes": w, "height": h, "x_byte": x, "y": y, "dest": dest, "source_sha256": hash(raw), "material": id, "actor": actor, "effect": effect})
+				p.record("bitmap", map[string]any{"entry": c.entry, "entry_step": entryStep, "width_bytes": w, "height": h, "x_byte": x, "y": y, "dest": dest, "source_sha256": hash(raw), "material": id, "actor": actor, "effect": effect, "caller": caller})
 				if int(dest-0xa000)*16*8 == p.scene.Start {
 					kind := ""
 					if actor == 150 {
@@ -590,6 +651,95 @@ func (p *ownedProbe) bind() {
 			p.active--
 		})
 	}
+}
+
+// Spec 047 DRAFT: these boundaries come from fixed-PAM IDA functions and the
+// normal F1/F2 trace. The staging state contains our scene, never VGA or a
+// screenshot. Source commands continue to update the working scene while the
+// completed scene remains available to the pure renderer.
+func (p *ownedProbe) bindPanels() {
+	o, t := p.e.Oracle, p.e.Tracker
+	load := t.loadSegment
+	header := int(binary.LittleEndian.Uint16(t.pam[8:10])) * 16
+	relocated := append([]byte(nil), t.pam[header:]...)
+	table, count := int(binary.LittleEndian.Uint16(t.pam[24:26])), int(binary.LittleEndian.Uint16(t.pam[6:8]))
+	for i := 0; i < count; i++ {
+		entry := table + i*4
+		at := int(binary.LittleEndian.Uint16(t.pam[entry:])) + int(binary.LittleEndian.Uint16(t.pam[entry+2:]))*16
+		if at+2 > len(relocated) {
+			panic("owned PAM relocation bounds")
+		}
+		binary.LittleEndian.PutUint16(relocated[at:], binary.LittleEndian.Uint16(relocated[at:])+load)
+	}
+	for _, site := range []struct {
+		off uint16
+		ret bool
+	}{{0x3df0, false}, {0x3e92, false}, {0x73f0, false}, {0x7512, false}, {0x844c, false}, {0x3e4a, false}, {0x3e91, true}, {0x3d62, false}, {0x3d72, true}} {
+		at := int(site.off)
+		if !bytes.Equal(o.Bytes(oracle.Addr{Seg: load, Off: site.off}, 16), relocated[at:at+16]) || site.ret && relocated[at] != 0xcb {
+			panic("owned panel ABI differs")
+		}
+	}
+	selection := func() uint16 { return o.Word(oracle.Addr{Seg: o.Regs().DS, Off: 0x56bc}) }
+	beginSelected := func(*oracle.Oracle) {
+		switch selection() {
+		case 0:
+			p.beginPanel("character")
+		case 1:
+			p.beginPanel("army")
+		}
+	}
+	o.OnCall(oracle.Addr{Seg: load, Off: 0x3df0}, beginSelected)
+	o.OnCall(oracle.Addr{Seg: load, Off: 0x3e92}, beginSelected)
+	o.OnCall(oracle.Addr{Seg: load, Off: 0x73f0}, func(*oracle.Oracle) { p.beginPanel("character") })
+	o.OnCall(oracle.Addr{Seg: load, Off: 0x7512}, func(*oracle.Oracle) {
+		if p.panel != nil && p.panel.Kind == "character" {
+			p.finishPanel()
+		}
+	})
+	o.OnCall(oracle.Addr{Seg: load, Off: 0x844c}, func(*oracle.Oracle) {
+		if p.panel != nil && (p.panel.Kind == "character" || p.panel.Kind == "army") {
+			p.finishPanel()
+		}
+	})
+	for _, off := range []uint16{0x3e4a, 0x3d62} {
+		o.OnCall(oracle.Addr{Seg: load, Off: off}, func(*oracle.Oracle) {
+			if selection() <= 1 {
+				p.beginPanel("return-map")
+			}
+		})
+	}
+	for _, off := range []uint16{0x3e91, 0x3d72} {
+		o.OnCall(oracle.Addr{Seg: load, Off: off}, func(*oracle.Oracle) {
+			if p.panel != nil && p.panel.Kind == "return-map" {
+				p.finishPanel()
+			}
+		})
+	}
+}
+
+func (p *ownedProbe) beginPanel(kind string) {
+	if p.panel != nil {
+		if p.panel.Kind != kind {
+			panic("overlapping owned panel boundaries")
+		}
+		return
+	}
+	if p.presented == nil {
+		p.presented = cloneOwnedScene(p.scene)
+	}
+	p.panel = &ownedPanel{Kind: kind, Start: p.e.Oracle.Steps()}
+	p.record("panel-begin", map[string]any{"kind": kind, "working_revision": p.scene.Revision, "presented_revision": p.presented.Revision})
+}
+
+func (p *ownedProbe) finishPanel() {
+	kind, start := p.panel.Kind, p.panel.Start
+	p.panel = nil
+	p.record("panel-commit", map[string]any{"kind": kind, "start_step": start, "working_revision": p.scene.Revision, "primitive_pending": p.active})
+	if p.active != 0 {
+		panic("owned panel committed an incomplete primitive")
+	}
+	p.capture("panel-" + kind + "-complete")
 }
 
 func (p *ownedProbe) effectFrame(first int, source *image.RGBA) uint16 {

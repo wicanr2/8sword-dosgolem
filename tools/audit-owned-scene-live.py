@@ -101,7 +101,10 @@ def main():
     report['gui'] = {'root': str(gui.relative_to(root)), 'save_draws': read(gui / 'save/gui-final.json')['recorded_frames'],
                      'reload_draws': read(gui / 'reload/gui-final.json')['recorded_frames'],
                      'save_sha256': sha(gui / 'scratch/gamedata.ay')}
-    source = (root / 'tools/research-owned-scene.go').read_text()
+    # Verify the immutable source that produced these receipts. Later research
+    # revisions must not rewrite this historical gate as their own validation.
+    verified_source = battle / 'owned-live-build-r8/src/internal/eightsword/research_owned_scene.go'
+    source = verified_source.read_text()
     pure = source[source.index('func renderOwnedScene('):source.index('func (e *Engine) ResearchOwnedScene(')]
     for forbidden in ['Oracle', '.Screen(', '.ScreenRGB(', 'PlanarBytePixels', '.Before', '.owners']:
         assert forbidden not in pure, forbidden
@@ -111,9 +114,9 @@ def main():
     assert read(battle / 'owned-observer-audit-r8.json')['status'] == 'PASS-shared-observer-same-run'
     for name in ['final.state', 'audio.pcm', 'presentation.frames.gz']:
         assert sha(battle / 'owned-menus-r8' / name) == sha(menus / name)
-    private_source = (battle / 'owned-live-build-r8/src/internal/eightsword/research_owned_scene.go').read_text()
-    assert source.replace('//go:build ignore\n', '', 1).strip() == private_source.strip()
     assert '.ObserveVideoWrites(' not in source
+    report['verified_source_sha256'] = sha(verified_source)
+    report['verified_source_revision'] = 'owned-live-build-r8; later research source is not covered by these receipts'
     report['shared_observer_revision'] = 'r8 uses ObservePresentation and unsubscribes at close; same guest state, PCM and full lossless stream as r7'
     report['limits'] = ['整個面板跨命令仍逐塊重建；須補完整場景交易，不能宣稱全面消除閃爍。',
                         '尚非正式路徑；正式r48程式與素材保持。', '開場、未知繪圖操作與故障回退尚未全面接管。',

@@ -2,6 +2,14 @@
 
 完整HD場景接管研究見[047](docs/spec/047-hd-scene-renderer.md)，即時探針為[自有場景](tools/research-owned-scene.go)、[隔離準備器](tools/prepare-owned-scene-probe.py)與[代表案例核對](tools/audit-owned-scene-live.py)。DRAFT只在既有研究區建立私有副本，不進正式程式。
 
+[面板交易核對器](tools/audit-owned-panel.py)在固定Pillow11.3.0容器核對人物／軍隊／返回地圖的完整逐幀畫面、完成狀態與真正存退讀。以`--project`指定唯讀專案、`--out`指定既有研究目錄中的新收據；適用範圍與位址契約見047，不外推其他對話框。
+
+全圖形素材與載入線索由[IDA素材索引匯出](tools/export-graphics-inventory-ida.py)核對，結果與限制追加於RESEARCH-LOG。正式PAM.i64及來源唯讀，僅在容器/tmp副本查詢。IDA技能的可用原始入口為`/home/anr2/ida_94_official/skills/use-ida-pro-9-4/SKILL.md`；先讀該專案README與knowledge-base/ida-94-tools.md，沿用已驗py312-v1映像，不因安裝副本缺失另建工具鏈。
+
+[全圖形盤點與圖集](tools/catalog-all-graphics.py)在固定Pillow容器解碼來源、記錄全部檔案與未分類項，並產生26份MAN／104記錄與其他圖像總覽。盤點不等於HD完成或正常路徑驗收；來源檔與完整解碼素材留既有workplace研究區。
+
+[全圖形核對器](tools/audit-graphics-inventory.py)核對158檔、記錄邊界、既有六平面解碼器、13份README圖集及兩份IDA來源。MAN27為四筆太極圖，原版用途未證實；不能把26份MAN檔直接解讀為26種部隊。
+
 第48筆接入入口：[獨立載入器](internal/eightsword/map_landmark48.go)、[來源與回退測試](internal/eightsword/map_landmark48_test.go)、[匯入工具](tools/prepare-hd-landmarks.py)。在既有Pillow Docker使用 `--group 48 --base <r45目錄> --original <固定原版目錄> --art <map-landmarks-r1> --out <新候選目錄> --cache-out <新快取目錄>`；只接受045固定來源與已選r2。正式r46已通過[限定驗收](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收)，不重做來源、美術或相同玩家路徑。
 
 後續地圖圖像：[045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收)，48／49／52／54／55／56 已限定 CONFORMED，本組提升時 r46，主地圖登錄64／65；51維持DRAFT。續玩可直接使用 `map-interaction-r1/landmark48-normal-r1/scratch` 的真正人物檔與MAP01／MAP02，或已驗的 `player/gui/landmark48-save-r1/scratch`，兩者人物檔同e46d4af1…811a。不重走來源路線或重畫已選r2。[盤點工具](tools/catalog-map-pending.py)在既有Pillow Docker使用 `--assets`、`--original`、`--out` 核對目前素材缺口；權威現況看CONTEXT，不據舊r42紀錄重新開工。

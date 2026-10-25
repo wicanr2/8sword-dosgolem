@@ -53,13 +53,44 @@
 
 已有本機 r26 及固定字型來源時，使用 `bash tools/player.sh moe-lishu-assets <新名稱> [基底名稱]` 製作教育部隸書組，再用 `bash tools/player.sh poster-toolbar-assets <另一個新名稱> <前一步名稱>` 加入海報。兩者都由 Docker 執行，拒絕覆寫輸出。前端參數 `-font noto|lishu|caoshu`、`-poster wings|cover|off` 可指定初始選擇；未指定便讀取使用者偏好。舊素材組的視窗尺寸保持原樣。
 
-### 原版／HD 怪物總覽
+### 原版圖像完整盤點與 HD 覆蓋
+
+![全部26份MAN圖像來源與HD覆蓋](docs/images/troops-all-original-hd-r1.png)
+
+上圖列出全部 26 份 `MAN*.EGG`，每份取第 0 筆原版記錄，並展示已正式登錄的 HD 來源圖。完整 104 筆記錄可看[全部原版姿勢圖](docs/images/troops-all-poses-original-r1.png)。空白表示尚未正式接入，包含已出概念稿但仍待驗收的項目；這是素材圖集，沒有宣稱同狀態戰場對拍。
+
+`MAN01` 至 `MAN25` 共 100 筆角色／部隊圖，另有 `MAN27` 的四筆太極圖，其原版用途尚未證實。因此不能把 26 個檔名直接當成 26 種怪物。這 104 筆 MAN 記錄中，正式 HD 已登錄 20 筆，包含四組敵方部隊與民兵，其餘 84 筆尚未登錄。
+
+![ENEMY.AY全部14筆原版地圖遭遇圖](docs/images/original-map-encounters-r1.png)
+
+地圖遭遇另存於 `ENEMY.AY`，共有 14 筆，不包含在上面的 MAN 圖集中。原版檔名、記錄號與來源雜湊均保存在[圖形盤點清單](docs/images/graphics-inventory-r1.json)。
+
+目前已逐檔盤點 158 個來源檔，解出其中 104 個圖形檔案、333 筆圖像記錄。下列數量包含動畫幀、原版變體及編輯圖集，不代表怪物種類或 HD 完成比例。此數量不含程式內字模及執行期生成的介面。尚有 `A.A` 與六份 `.RIL` 未完成分類，未宣稱已窮盡所有圖形。
+
+| 類別 | 圖像記錄 | 完整原版圖集 |
+|---|---:|---|
+| MAN 角色／部隊來源 | 100 | [四筆逐組展開](docs/images/troops-all-poses-original-r1.png) |
+| MAN27 太極圖，原版用途未證實 | 4 | [四筆來源](docs/images/original-special-markers-r1.png) |
+| 地圖遭遇 | 14 | [ENEMY.AY](docs/images/original-map-encounters-r1.png) |
+| 主角與圖示 | 29 | [MAN.AY 全部記錄](docs/images/original-hero-and-icons-r1.png) |
+| 戰場效果 | 8 | [PON／CHOI](docs/images/original-effects-r1.png) |
+| 地圖圖塊 | 68 | [PMAP.AY](docs/images/original-map-tiles-r1.png) |
+| 戰場背景與原版變體 | 10 | [GRO01 至 GRO05](docs/images/original-battle-backgrounds-r1.png) |
+| 建築與原版變體 | 12 | [LIVE1 至 LIVE6](docs/images/original-buildings-r1.png) |
+| 開場圖像 | 26 | [TIT 系列](docs/images/original-opening-r1.png) |
+| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png) |
+| 介面圖像 | 6 | [CUBE／BUMBOO／MSGBOX](docs/images/original-ui-r1.png) |
+| 原版編輯圖集與插畫 | 19 | [X 系列 ILBM](docs/images/original-illustrations-r1.png) |
+
+盤點由[全圖形工具](tools/catalog-all-graphics.py)重生，並以 IDA Pro 9.4 核對 PAM 與開場程式的載入線索。圖集使用原始資料解碼，保留檔名與記錄號；檔名帶 `H` 代表來源變體，不能一律視為單色圖，也不是本專案的 HD。方法、位址基準與尚未證實項目見[圖形盤點研究](RESEARCH-LOG.md#全圖形來源盤點與-ida-載入線索)。
+
+### 已接入的 HD 怪物樣本
 
 ![原版與 HD 怪物及敵方部隊總覽](docs/images/monsters-original-hd-r1.png)
 
 四組敵方部隊，共十六筆已接入來源。每格左側為原版六塊資料解碼，右側為遊戲實際使用的 HD 快取；保留原版顯示比例。檔名與記錄編號供核對，不推定兵種名稱或動作語意。範圍見 [023](docs/spec/023-battle-man16-actors.md)至 [026](docs/spec/026-battle-man21-actors.md)，其餘怪物仍待處理。點圖可看原尺寸。
 
-完整來源共有 26 份 `MAN*.EGG`，合計 104 個姿勢。正式 HD 已登錄其中 20 個，包含上列 16 筆與民兵 4 筆；其餘 84 個尚未正式登錄。這個數量不包含地圖遭遇、主角與特效，也不代表全遊戲完成比例。[盤點工具](tools/catalog-battle-coverage.py)可核對來源記錄、素材清單及圖檔雜湊，[研究紀錄](RESEARCH-LOG.md#戰場部隊完整資料範圍)記錄證據範圍。
+全部來源及未接入項目見前面的完整圖集；原[MAN 記錄盤點工具](tools/catalog-battle-coverage.py)仍保留檔案與 HD 登錄核對，不能單憑檔名推定兵種語意。
 
 ### 原版／HD 戰場總覽
 
@@ -67,7 +98,11 @@
 
 左側為 dosgolem 實際原生 VGA 索引與當時色盤重建，右側為相同客體狀態的 HD 畫面，包含手繪背景、敵方部隊、民兵及火花。兩列分別抽樣戰場兵力與交戰火花，不代表全遊戲已完成。來源及對拍見 [022](docs/spec/022-battle-bitmap-transactions.md)、[027](docs/spec/027-battle-pon-effects.md)與 [028](docs/spec/028-battle-militia-image.md)。
 
-上述兩張比較圖依使用者要求收錄於既有私人倉庫。原始遊戲檔與完整素材組仍留本機。[來源與輸出雜湊](docs/images/overviews-r1.json)及[重生工具](tools/prepare-readme-overviews.py)隨圖保存；在固定 Pillow Docker 內指定 `--project` 與空白輸出位置即可重生，不以生成圖冒充原版。
+![五份彩色戰場背景及其五份原版變體](docs/images/original-battle-backgrounds-r1.png)
+
+原版共有五份彩色 GRO 戰場背景及其五份原版單色變體。上圖全部列出；目前手繪接入範圍為 GRO01／GRO02，其他背景尚待處理。
+
+同狀態戰場與舊怪物比較圖的[來源與輸出雜湊](docs/images/overviews-r1.json)及[重生工具](tools/prepare-readme-overviews.py)隨圖保存；新增完整原版圖集另由前述全圖形工具重生。比較文件依使用者要求收錄於既有私人倉庫，原始遊戲檔與完整素材組仍留本機。
 
 ### 原版／HD 攻城戰場
 

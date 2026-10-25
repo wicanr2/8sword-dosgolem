@@ -1516,3 +1516,39 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 - 尚未完成：接觸表可見人物／軍隊背景由多個命令逐塊重建。必須再定位整個面板的開始、完成與返回邊界，讓受管理場景一次提交。開場、未知命令、模式切換及故障回退也未全面接管。正式r48保持，047維持DRAFT，不宣稱全面消除閃爍。
 
 主核對收據為battle-r1/owned-live-audit-r1.json，共用觀測修正為owned-observer-audit-r8.json，真正存退讀為player/gui/owned-scene-save-r2/save-cycle-audit.json。只依新契約抽樣，不重跑已結案042四姿勢來源與素材驗收。
+
+## 全圖形來源盤點與 IDA 載入線索
+
+使用者指出README僅展示少數怪物，要求檢視原版圖檔，並建議用IDA先確認圖形素材。本次保留既有十六筆HD比較樣本，另列全部來源與缺口，不把已完成樣本當作完整圖集。
+
+### 工具與來源
+
+- 固定遊戲根目錄`workplace/intake-20261023/sources/game/8sword`共158個檔案；每檔長度與SHA均保存在[圖形清單](docs/images/graphics-inventory-r1.json)。PAM SHA為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`。
+- IDA技能安裝副本缺失，已在原始專案`/home/anr2/ida_94_official/skills/use-ida-pro-9-4/SKILL.md`找到並讀取，連同該專案README與工具契約使用。優先locked-v1不在本機；沿用本案已驗image `4ac62de8…06ab`、UID1000、HOME=/home/ubuntu、IDA9.4。未建新image，未搬出授權。
+- 正式PAM.i64、開場runtime.i64與原始資料唯讀，資料庫先複製至容器/tmp查詢。最小輸出分別核對521／185函式、輸入與DB完整SHA，原DB保持。原名、原運算元、IDA載入位元組與原檔偏移分列保存，未改名或回寫。
+- `graphics-first/ida-graphics-inventory-r2.json`為PAM，位址空間為IDA MZ loader線性；保存125筆檔名出現與88個相對位移operand候選。`ida-intro-graphics-inventory-r1.json`為解壓後PREDELLA的合成MZ，保存31筆檔名出現與32個候選；其位址是runtime-linear，file offset屬analysis wrapper，不映射回packed EXE。已讀consumer及圖形／面板函式，未逐行翻譯整個程式。
+- 檔名多以相對資料段偏移傳入。直接xref為空不表示未使用。operand候選保留為候選，不能只憑數值相同升為語意已證實；圖像結構、來源bytes及正常路徑另行分級。
+
+### 靜態圖像與數量勘誤
+
+已證實：104個圖形檔可完整解碼為333筆圖像記錄。壓縮圖沿已驗Huffman資料樹；四平面／五塊／六塊資料須從首byte到檔尾取得唯一完整記錄鏈。`MAN.AY`實際有29筆，包含前十二筆已接入主角動畫、較小圖示及其他圖像，不能把12筆HD動畫當成整檔內容。`ENEMY.AY`有14筆地圖遭遇，獨立於MAN戰場檔。類別與各筆來源／解碼／像素SHA見清單。
+
+追加勘誤：較早「完整戰場部隊資料範圍」以MAN檔名統計26檔／104筆，bytes與幾何盤點仍成立，但語意過廣。此次全部圖像顯示MAN01–25有100筆角色／部隊圖，MAN27另四筆太極圖。PAM的固定檔名表列MAN01–25、PON與CHOI，沒有由此證實MAN27的使用角色。MAN27與CHOI的完整SHA也不同，不稱重複檔或未使用檔。其原版用途維持未知，README與CONTEXT已修正，不把26檔稱26種怪物。
+
+已證實：X系列十九份檔案在既有Huffman解壓後是IFF ILBM，包含BMHD／CMAP／BODY、多個CRNG及TINY編輯預覽塊。依[AmigaOS的ILBM格式規格](https://wiki.amigaos.net/wiki/ILBM_IFF_Interleaved_Bitmap)解析word對齊、逐列ByteRun1及獨立mask，保留重複CRNG。這些圖含編輯圖集與插畫，不能把每個矩形再當作已辨識的新角色。H檔名亦不是一律單色，ILBM變體仍有四個色彩平面。
+
+已證實：YANG1／YANG2各僅五個ASCII bytes，分別為YANG1／YANG2，列為五byte標記檔。A.A與六份RIL仍未完成分類；A.A在現有來源及已解壓圖像中沒有取得prefix對應，這不構成未使用或非圖像的證明。RIL有檔案讀取及間接driver呼叫線索，未為圖形盤點深挖硬體時序，保留未知。333是已解碼記錄數，包含變體、重複與編輯圖集，不是獨立圖像或全遊戲HD完成百分比。
+
+### README圖集與核對
+
+`catalog-all-graphics.py`在固定Pillow11.3.0產出十三份比較／原版圖集，合計約2MB，包含全部26份MAN代表對照、104筆原始記錄、14筆遭遇，以及主角／圖示、地圖、背景、建築、效果、開場、結局與ILBM圖集。使用者已要求將原版／HD總覽放README，本次擴展同一私人倉庫的比較文件；原版EXE、壓縮圖檔與完整解碼素材仍留本機。
+
+`graphics-first/graphics-inventory-audit-r1.json`通過158檔、104圖形檔、333筆來源邊界與SHA、138筆由既有解碼器核對的六平面記錄、三個真實破損輸入拒絕、十三PNG完整性及兩份IDA資料庫保持。ENEMY第4筆的完全透明像素RGB在舊解碼器被清零，新盤點保留來源色bits；核對改驗完全相同的alpha與可見合成，兩者顯示無差異，未藉此改遊戲圖像。r2／r3／r4比較PNG保持相同，r4另補字型與全部HD來源圖／清單雜湊。
+
+唯一目前清單為`graphics-first/all-graphics-catalog-r4/catalog.json`，README副本為docs/images/graphics-inventory-r1.json。這是靜態解碼與文件核對，不替代每個圖像的正常遊戲呼叫，也不宣稱全部HD已接入。七份未分類檔與MAN27用途持續明列。
+
+### 人物／軍隊的場景提交邊界
+
+已證實：同一PAM.i64的追加匯出`ida-graphics-inventory-r4.json`，以及正常呼叫堆疊與完成點收據，確認F1由`sub_17242`在IDA MZ線性17512讀取按鍵，F2由`sub_175C6`繪圖後進`sub_1844C`。它們不能共用單一等候入口判定所有面板完成。返回地圖則經`sub_13E4A`或`sub_13C18`中的`sub_11F60`與頁切換鏈。原函式名及位址保持，精確入口／返回與MZ重定位核對見[047面板交易](docs/spec/047-hd-scene-renderer.md#人物軍隊面板的完整場景交易)。
+
+研究r11由自有場景暫存背景、角色與文字，完成後提交；呈現函式沒有原版畫面輸入。`battle-r1/owned-panel-audit-r11.json`核對249幀正常續玩、完整state／PCM／22工作檔同r9，以及人物／軍隊／返回的完整像素。真正視窗`owned-panel-save-r4`為319／170 Draw，三種完成場景分別連回實際Draw，交易期間25份完整中央畫面保持上一完成狀態；兩張接觸表已看。F7存退冷讀2987-byte人物檔同零步檢視的RAM，read step12212433。這是限定面板的證據，不取代開場、其他對話框、模式變化與故障回退；047維持DRAFT，正式r48保持。
