@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+完整HD場景接管研究見[047](docs/spec/047-hd-scene-renderer.md)，即時探針為[自有場景](tools/research-owned-scene.go)、[隔離準備器](tools/prepare-owned-scene-probe.py)與[代表案例核對](tools/audit-owned-scene-live.py)。DRAFT只在既有研究區建立私有副本，不進正式程式。
+
 第48筆接入入口：[獨立載入器](internal/eightsword/map_landmark48.go)、[來源與回退測試](internal/eightsword/map_landmark48_test.go)、[匯入工具](tools/prepare-hd-landmarks.py)。在既有Pillow Docker使用 `--group 48 --base <r45目錄> --original <固定原版目錄> --art <map-landmarks-r1> --out <新候選目錄> --cache-out <新快取目錄>`；只接受045固定來源與已選r2。正式r46已通過[限定驗收](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收)，不重做來源、美術或相同玩家路徑。
 
 後續地圖圖像：[045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收)，48／49／52／54／55／56 已限定 CONFORMED，本組提升時 r46，主地圖登錄64／65；51維持DRAFT。續玩可直接使用 `map-interaction-r1/landmark48-normal-r1/scratch` 的真正人物檔與MAP01／MAP02，或已驗的 `player/gui/landmark48-save-r1/scratch`，兩者人物檔同e46d4af1…811a。不重走來源路線或重畫已選r2。[盤點工具](tools/catalog-map-pending.py)在既有Pillow Docker使用 `--assets`、`--original`、`--out` 核對目前素材缺口；權威現況看CONTEXT，不據舊r42紀錄重新開工。
