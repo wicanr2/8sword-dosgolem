@@ -266,21 +266,31 @@ func (p *ownedIntroProbe) art() ownedIntroArt {
 	a := ownedIntroArt{}
 	if e.Story != nil {
 		a.Font = e.Story.font
-		a.Story = e.Story.art
-		if e.Story.prelude != nil {
+		if e.Story.art != nil {
+			a.Story = e.Story.art
+		}
+		if e.Story.prelude != nil && e.Story.prelude.art != nil {
 			a.Prelude = e.Story.prelude.art
 		}
 	}
-	if e.Intro != nil {
+	if e.Intro != nil && e.Intro.ink != nil {
 		a.Title = e.Intro.ink
 	}
 	if e.Publisher != nil {
-		a.PublisherInk = e.Publisher.ink
+		if e.Publisher.ink != nil {
+			a.PublisherInk = e.Publisher.ink
+		}
 		if e.Publisher.publisher != nil {
-			a.PublisherErase = e.Publisher.publisher.erase
+			if e.Publisher.publisher.erase != nil {
+				a.PublisherErase = e.Publisher.publisher.erase
+			}
 			if i := e.Publisher.publisher.icon; i != nil {
-				a.IconArt = i.art
-				a.IconErase = i.erase
+				if i.art != nil {
+					a.IconArt = i.art
+				}
+				if i.erase != nil {
+					a.IconErase = i.erase
+				}
 			}
 		}
 	}

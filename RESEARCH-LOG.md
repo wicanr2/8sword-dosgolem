@@ -1596,3 +1596,24 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 已證實：`battle-r1/owned-intro-audit-r1.json`通過。r22正常自然開場、新遊戲、F1與返回共561幀、561次Frame純度核對。219圖、1054字、893串、五次頁面複製、三次清頁及64000個揭圖點；116次自有原生像素核對零差異，17份完成HD圖各2304000像素同既有完成呈現。圖形模式425次開場及115次PAM來源場景，回退24次僅限03h啟動文字。state SHA `cfcaf70329a52fb9f5418d3daef8e066dbfdddd0bc01baa30e3f109ac3310b2e`、PCM SHA `347e9bdfd04beed81e9ca64068ecac663f900718e1d4ae27308257b5ff19a2b8`及31工作檔與停用開場來源掛點的r19控制同值。兩側探針、Engine包裝、PAM來源與正式輸入雜湊相同，沒有重跑控制組。RND未知，只證明呈現隔離。
 
 真正GUI `owned-intro-save-r2`兩次完整自然開場與正常存退冷讀為665／499 Draw、206／193變化幀。各164次自有原生核對零差異，各17份完成擷取同既有HD，各13份連回實際Draw。其他首次PNG沒有實際Draw同值取樣，不能外推已顯示。已抽看存前第1／3／4及冷讀第4接觸表，三字型、音樂目錄、新遊戲取消、人物頁及F7正常。2987 bytes同零步檢視RAM，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`、read70209967、DOS退出0；3158差異像素限主角動畫區，不宣稱整幀相同。047仍DRAFT，正式r48未切換，提早Escape、其他對話框、施法及未知／故障契約仍待補。
+
+### 開場Esc與真實背景故障
+
+已證實：沿上節固定原始檔、IDA定位與dosgolem核心，研究r23僅追加普通輸入排程與GUI來源等待。`-intro-escape-step`在指定客體步數之後的有界批次送普通Esc，記錄要求／實際步數及模擬ms；GUI依來源擷取事件及其後兩次Draw再送XTEST Esc。控制組停用開場來源掛點，仍使用相同二進位與輸入，不載入快照或改寫客體。RND未知，只驗呈現隔離。
+
+| 抽樣 | 原始收據與已證實結果 |
+|---|---|
+| 近景Esc | `battle-r1/owned-intro-escape-museum-{control,candidate}-r1`各304幀。要求26000000，實際26000168，9610模擬ms；state `0716eed35b489847411eb115c5382a12c39d1c307d342487953ae13c72c459da`、PCM `8f883b4d52ba242530a49c4b857fe144eee2219e5031a41360af93e2e43e58fe`及29工作檔同值，五份完成圖同既有HD |
+| 揭圖中Esc | `owned-intro-escape-prelude-{control,candidate}-r1`各458幀。要求44000000，實際44002764，15720模擬ms；state `7df819d868ae4a580b6624215e4da42c0b8ce30afb27eb32d71c9b8862c7d414`、PCM `e28303e2c29216e787fe7dd92be75bd5489d98687a433ad62e8bd95c9823ca2d`及31工作檔同值，八份完成圖同既有HD。原版先完成64000點再跳過故事，沒有擅自中斷揭圖 |
+
+兩組實際Esc點、原版檔案I/O、輸入、overlay載入、步數、中斷及後續字串同值。來源場景無命令外寫入、缺字、未完成交易或圖形模式原版Frame回退；不用固定等待時間掩蓋交接。
+
+已證實：只在`assets-painted-r48`副本的`story-background.png`附加零位元組，清單保持，其他223份正式檔案中的222份同值。故障來源與前後SHA另存`owned-intro-story-background-bad-r1/research-fault.json`。r23完整自然開場在故事開始後崩潰，`owned-intro-background-bad-r1.log`保留`image.(*RGBA).Bounds`及空指標堆疊，沒有完成收據。真因是nil的`*image.RGBA`被放入`image.Image`後介面不等於nil，不是原版DOS或圖片解析器崩潰。
+
+研究r24僅在`ownedIntroProbe.art()`確認可選指標非空才傳入圖片介面；純呈現函式、來源掛點及其他探針保持。r23／r24編譯來源、三程式及工具版本各自凍結，正式111輸入、七程式及r48不變。第一次故障GUI r1停止保留，修正版在新的r2輸出重跑，不覆寫失敗證據。
+
+`owned-intro-background-bad-r2`完整561幀與116次自有原生核對零差異，17份完成圖同故障條件下的既有呈現。故事改由來源命令重建原版背景，Noto金字保持；其他圖及前導同正常r22。完整state `cfcaf70329a52fb9f5418d3daef8e066dbfdddd0bc01baa30e3f109ac3310b2e`、PCM `347e9bdfd04beed81e9ca64068ecac663f900718e1d4ae27308257b5ff19a2b8`、31工作檔及原版事件同既有r19控制。不重跑正常完整開場，不把本例外推成所有素材故障已通過。
+
+`owned-intro-lifecycle-audit-r1.json`已通過原始資料、完成PNG、獨立逐幀串流、實際Draw、原版事件及客體隔離。GUI近景Esc的454／204 Draw、65／41變化幀，各五份完成圖連回Draw；故障故事Esc的742／541 Draw、139／112變化幀，各十份完成圖連回Draw，69／68次自有原生核對零差異。抽看兩張Esc前實窗、近景存前第2及故障存前第2接觸表，人物位置與存讀鏡頭符合。
+
+兩組三字型、人物頁及真正F7存退讀通過，2987-byte檔案同零步檢視RAM，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，read32081155／54227524、DOS退出0。各3158差異像素限主角動畫區。r23早期Esc來源同已驗r22，r24只改可選圖片交接，其餘來源／GUI／Engine包裝同r23。047仍DRAFT，正式r48未切換；後續接其他對話框、施法、未知操作與其餘素材故障，不重開本例。

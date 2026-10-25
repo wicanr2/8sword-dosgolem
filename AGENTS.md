@@ -12,6 +12,9 @@
 
 [開場場景核對器](tools/audit-owned-intro.py)在Pillow Docker核對自然開場、來源命令、完成圖、實際Draw、客體隔離與真正存退讀；用法為`--project /project --out <既有研究目錄內的新JSON路徑>`。只驗本機047研究副本，不代表正式切換或全遊戲完成。
 
+開場生命週期抽樣沿同一核對器加`--lifecycle`。研究探針的`-intro-escape-step <客體步數>`送正常Esc，GUI用`EIGHTSWORD_RESEARCH_INTRO_ESCAPE_STAGE=museum-portrait`或`story-1-text`等待來源及後續Draw再送XTEST Esc。兩者皆記錄實際輸入點，不注入場景；用途與限度見[047開場Esc與背景故障](docs/spec/047-hd-scene-renderer.md#開場esc與背景故障)。
+核對器預設驗固定r22自然開場歷史副本，`--lifecycle`驗r23／r24的Esc及背景故障副本。各自核對不可變建置清單，不把目前工具來源冒稱為歷史執行來源。
+
 全圖形素材與載入線索由[IDA素材索引匯出](tools/export-graphics-inventory-ida.py)核對，結果與限制追加於RESEARCH-LOG。正式PAM.i64及來源唯讀，僅在容器/tmp副本查詢。IDA技能的可用原始入口為`/home/anr2/ida_94_official/skills/use-ida-pro-9-4/SKILL.md`；先讀該專案README與knowledge-base/ida-94-tools.md，沿用已驗py312-v1映像，不因安裝副本缺失另建工具鏈。
 
 [全圖形盤點與圖集](tools/catalog-all-graphics.py)在固定Pillow容器解碼來源、記錄全部檔案與未分類項，並產生26份MAN／104記錄與其他圖像總覽。盤點不等於HD完成或正常路徑驗收；來源檔與完整解碼素材留既有workplace研究區。

@@ -54,10 +54,26 @@ def main():
                           'write("-hd", e.Frame())\n\t\twrite("-owned", ownedFrame())')
     if args.intro:
         probe = probe.replace('e.ResearchOwnedScene(*out)', 'e.ResearchOwnedEverything(*out)')
+        marker = '\tpreload := flag.String("commands", "", "ordinary command prefix, then continue reading stdin")'
+        assert probe.count(marker) == 1
+        probe = probe.replace(marker, marker + '\n\tintroEscapeStep := flag.Uint64("intro-escape-step", 0, "ordinary Escape after this guest step; zero waits naturally")')
     if args.natural_intro:
         marker='\tadvance(3000)\n\tpress(1, 100, 100)\n\twait("main-menu")'
         assert probe.count(marker)==1
-        probe=probe.replace(marker,'\tfor i:=0;e.Tracker.VisibleScene!="main-menu" && i<10000;i++ {advance(10)}\n\twait("main-menu")')
+        loop = '\tfor i:=0;e.Tracker.VisibleScene!="main-menu" && i<10000;i++ {advance(10)}\n\twait("main-menu")'
+        if args.intro:
+            loop = '''
+	for i:=0;e.Tracker.VisibleScene!="main-menu" && i<10000;i++ {
+		advance(10)
+		if *introEscapeStep != 0 && e.Oracle.Steps() >= *introEscapeStep {
+			raw,err:=json.MarshalIndent(map[string]any{"requested_step":*introEscapeStep,"actual_step":e.Oracle.Steps(),"elapsed_ms":elapsed,"method":"ordinary keyboard Escape; no guest writes or snapshot loading"},"","  ");must(err)
+			must(os.WriteFile(filepath.Join(*out,"intro-escape.json"),append(raw,10),0644))
+			press(1,100,100)
+			*introEscapeStep=0
+		}
+	}
+	wait("main-menu")'''
+        probe=probe.replace(marker,loop)
     if args.main_menu:
         start = probe.index('\tif *gameSave == "" {', probe.index('\twait("main-menu")'))
         end = probe.index('\treply("ready")', start)
@@ -75,7 +91,24 @@ def main():
         if args.natural_intro:
             marker = '\tif *flow != "story" && *flow != "captions" && !*showHeroine && !*showMuseum {\n\t\td.press(9)\n\t} // 原版 Esc，未直接進入 PAM。'
             assert gui_driver.count(marker) == 1
-            gui_driver = gui_driver.replace(marker, '\td.wait("研究開場自然結束", 300, func(s map[string]any) bool { return s["presented_scene"] == "main-menu" })')
+            gui_driver = gui_driver.replace(marker, '''
+	if stage:=os.Getenv("EIGHTSWORD_RESEARCH_INTRO_ESCAPE_STAGE");stage!="" {
+		d.wait("研究開場來源完成 "+stage,180,func(s map[string]any)bool{
+			raw,err:=os.ReadFile(filepath.Join(d.out,"owned-intro-commands.jsonl"));if err!=nil{return false}
+			for _,line:=range bytes.Split(raw,[]byte{'\\n'}) {
+				var event struct {Command,Kind string}
+				if json.Unmarshal(line,&event)==nil && event.Command=="capture" && event.Kind==stage {return true}
+			}
+			return false
+		})
+		first:=d.status()["presented_frames"].(float64)
+		d.wait("研究開場完成來源後的實際Draw",20,func(s map[string]any)bool{return s["presented_frames"].(float64)>=first+2})
+		d.shot("owned-intro-before-escape")
+		raw,err:=json.MarshalIndent(map[string]any{"stage":stage,"status":d.status(),"method":"XTEST Escape after source event and later Draw; actual image independently checked"},"","  ");check(err)
+		check(os.WriteFile(filepath.Join(d.out,"owned-intro-escape-request.json"),append(raw,10),0644))
+		d.press(9)
+	}
+	d.wait("研究開場自然結束或Escape交接",300,func(s map[string]any)bool{return s["presented_scene"]=="main-menu"})''')
         if args.modal_menus:
             marker = '\tif *flow == "menus" {\n\t\t// Fixed new-game pages'
             assert gui_driver.count(marker) == 1
