@@ -1351,3 +1351,13 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 - 真正視窗為 `workplace/player/gui/chest-save-r1`。普通 Continue、三字型、F1／F2／F3 取消、左右行走、原版 F7 保存、DOS 退出及冷啟動 Continue 通過。存前／冷讀共六份完整實際 Draw，13824000 像素同 PNG／草地／字型模型，按幀號與 step 連回錄影。兩段十次／六次原版來源，首筆各 1600 返回點同四平面。388／272 Draw、45／33 次改變，兩張接觸表及 Noto 地圖已檢視，未見本寶箱的殘圖或草地矩形。
 - 原版保存 2987 bytes 的 SHA `069dc1b88e641b36f8b0d51a9e2c6fc22d3b3bfefc93cf31198a256410f78799`，同存後及普通冷讀 RAM 線性 `0x9E000`，read step 12212420。MAP01 伴隨檔 SHA `4d3eba2de2083d1f6f99cc7b5f1cd127d0ffeb8930e335ed835a39813bd5f83b` 保持；零步數傾印只作讀後核對，不代替原版讀取。[GUI 核對器](tools/audit-chest-gui.py)及 `chest-draw-audit-r1.json` 保存證據。
 - 全部必要閘門通過後提升 r42 的 193 檔與七程式，原始來源快照留 `build-chest-r1`，歷史 r41 保留。044 限定 CONFORMED，README／CONTEXT／AGENTS 同步。未實際開箱、未驗獎勵，亦未完成其餘地圖、部隊、音樂或全遊戲 HD。
+
+# 2026-10-25：其餘地圖圖像批次樣稿與 PMAP 55 來源
+
+- 入口為 [045](docs/spec/045-map-landmarks.md)。從現行 r42 的主地圖清單核對 65 筆，未登錄 48、49、51、52、54、55、56。新盤點工具另認可已驗來源的可選 landmark 清單；以目前 r42 重生九個盤點／原生參考檔，byte 與初版相同。這是清單覆蓋，不是全遊戲完成率。
+- built-in image_gen 依各自原生參考與既定 B 城堡風格，分別產生 52、54、55、56 四張透明手繪圖。1419×1108 RGBA，各自原 PNG、完整提示、來源、四份獨立快取與比較圖保存於 `map-landmarks-r1`；完整 SHA 與取樣界線見 045，不改既定配色。四圖及草地取樣比較已看，沒有正式登錄。
+- 沿真正 044 存檔普通 Continue，F5 起點 20,8，以 69 次方向鍵到 53,22。取得右上世界位置 56,19 的第 55 筆兩次正常呼叫，首筆 `7000:55220`、A400／mode 1／x byte 49／y 12／實體 byte 17393；runtime `14D2:076F → 0854` 與 PAM file+0x157FF 的 230 bytes 分列。首筆 1600 返回色碼同原始四平面，record SHA 18f01693…4069、native SHA 6f7b4596…3f87。沒有分析正式名稱或物件玩法。
+- `landmark-source-build-r1` 保存 Go 1.24.13、46 筆輸入、完整來源及探針 SHA a7503ea5…fb8f，43 份正式套件保持。來源組前綴 84 命令、1230 幀後因 CLI stdin EOF 結束，原版尚未退出；控制組用開啟 stdin 的會話，在同一前綴暫停並核對副本，才追加 F1／F2／F3 取消與 F7。沒有為改結果重選 seed、時鐘或路線。
+- 已證實：兩側前綴完整 state 408a8a98…9183、PCM 099a7c0a…4052、逐幀串流、輸入、檔案事件、20 工作檔及十二 checkpoint 狀態相同。控制尾程總 1382 幀，原版 DOS 退出 0；尾程未與來源組配對。host 文字歷史只保留 32 筆，尾程會淘汰前綴，故只聲稱十二 checkpoint 列表相同，不將最終滾動列表當作完整事件史。
+- 真正存檔人物 SHA 62bc6fc9…4e75、地圖伴隨檔 d2bdbccc…4277。另以完整兩檔普通冷讀，312 幀、F5 仍 53,22、F1／F2 與正常 DOS 退出通過；人物檔同存後／讀後 RAM 0x9E000，原版 read step 22839250，兩份 DOS read 有證。核心寫入函式使用 `DOS.Wrote`，未在 `FileOps` 記 write；未更動核心，改用實際檔案改變、普通冷讀及 RAM 驗證成功保存。
+- 新核對器 `audit-map-landmarks.py` 與 `landmark-source-art-audit-r1.json` 連回上述範圍及四張圖的獨立快取。第 55 筆正常矩形先核對所有原生像素，再放入選定快取製作可丟棄場景，已看；那張圖是排版合成，不是新素材的實際 Draw。55 呈現已達 READY，其餘六筆維持 DRAFT，正式 r42 與七程式保持。下一步直接用真正進度 53,22 接入，不重走 69 步或重做美術。

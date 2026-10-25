@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+後續地圖圖像：[045](docs/spec/045-map-landmarks.md#第-55-筆呈現-ready-契約)，第 55 筆已達 READY，其餘六筆保持 DRAFT。52／54／55／56 四張樣稿及獨立快取已保存；第 55 筆正常來源、幾何與原版存退冷讀已驗，下一步直接在真正進度 53,22 接入，不重走 69 步或重新生成。[盤點工具](tools/catalog-map-pending.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--out`，盤點剩餘七筆及原生參考。正式 r42 保持，本批尚未正式登錄。
+
+[地圖批次來源與取樣核對](tools/audit-map-landmarks.py)在既有 Pillow Docker 使用 `--original`、`--assets`、`--art`、`--source`、`--control`、`--prefix-control`、`--build`、`--reload`、`--saved-inspection`、`--loaded-inspection`、`--out`；核對 045 的 PMAP 55 正常來源、84 命令控制前綴、四筆美術及原版 F7／冷讀。產生的場景圖是可丟棄排版原型，不是已執行新圖的實際 Draw。
+
 寶箱正式實作入口：[獨立載入器](internal/eightsword/map_chest.go)、[素材匯入](tools/prepare-hd-chest.py)、[真實來源與回退測試](internal/eightsword/map_chest_test.go)。匯入工具在既有 Pillow Docker 使用 `--base`、`--original`、`--image`、`--prompt`、`--first-prompt`、`--out`、`--cache-out`，只接受 044 固定來源，候選驗收前不提升正式組。
 
 [寶箱實際 Draw 核對](tools/audit-chest-gui.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--cache`、`--gui`、`--saved-inspection`、`--loaded-inspection`、`--out`，獨立重建三字型畫面並連回來源、錄影及存讀 RAM；只支援 044 的呈現驗收，不證實開箱規則。
