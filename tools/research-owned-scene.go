@@ -676,7 +676,10 @@ func (p *ownedProbe) bindPanels() {
 		ret bool
 	}{{0x3df0, false}, {0x3e92, false}, {0x73f0, false}, {0x7512, false}, {0x844c, false}, {0x3e4a, false}, {0x3e91, true}, {0x3d62, false}, {0x3d72, true},
 		{0x779e, false}, {0x77a3, false}, {0x67ac, false}, {0x67b1, false}, {0x6888, false}, {0x8412, false},
-		{0x3fe0, false}, {0x3fe5, false}, {0x414e, false}, {0x430e, false}, {0x436c, false}, {0x4371, false}, {0x4440, true}} {
+		{0x3fe0, false}, {0x3fe5, false}, {0x414e, false}, {0x430e, false}, {0x436c, false}, {0x4371, false}, {0x4440, true},
+		{0x4a6, false}, {0x55a, false}, {0x55f, false}, {0x60f, false}, {0x622, false}, {0x6b7, false},
+		{0x90c, false}, {0x9b0, false}, {0x9b5, false}, {0xb0e, false}, {0xb38, false}, {0xb62, false}, {0xbc7, false}, {0xbcf, false},
+		{0x3c18, false}, {0x3c79, false}, {0x3c7e, false}, {0x3d0d, false}} {
 		at := int(site.off)
 		if !bytes.Equal(o.Bytes(oracle.Addr{Seg: load, Off: site.off}, 16), relocated[at:at+16]) || site.ret && relocated[at] != 0xcb {
 			panic("owned panel ABI differs")
@@ -732,6 +735,31 @@ func (p *ownedProbe) bindPanels() {
 		})
 	}
 	o.OnCall(oracle.Addr{Seg: load, Off: 0x430e}, func(*oracle.Oracle) { p.beginPanel("confirm") })
+	// Main menu, music catalogue, initial map and the normal map redraw loop.
+	// sub_10B38 is the game loop, so its first complete map commits before the
+	// loop at 0B62, rather than waiting for this function to return.
+	for _, site := range []struct {
+		off  uint16
+		kind string
+	}{{0x4a6, "main-menu"}, {0x55f, "main-menu"}, {0x622, "new-game-confirm"}, {0x6b7, "main-menu-restore"},
+		{0x90c, "music-menu"}, {0x9b5, "music-menu"}, {0xb38, "first-map"}, {0xbc7, "map-refresh"},
+		{0x3c18, "side-menu"}, {0x3c7e, "side-menu"}} {
+		site := site
+		o.OnCall(oracle.Addr{Seg: load, Off: site.off}, func(*oracle.Oracle) { p.beginPanel(site.kind) })
+	}
+	for _, site := range []struct {
+		off  uint16
+		kind string
+	}{{0x55a, "main-menu"}, {0x55a, "main-menu-restore"}, {0x60f, "main-menu"}, {0x436c, "new-game-confirm"},
+		{0x9b0, "music-menu"}, {0xb0e, "music-menu"}, {0xb62, "first-map"}, {0xbcf, "map-refresh"},
+		{0x3c79, "side-menu"}, {0x3d0d, "side-menu"}} {
+		site := site
+		o.OnCall(oracle.Addr{Seg: load, Off: site.off}, func(*oracle.Oracle) {
+			if p.panel != nil && p.panel.Kind == site.kind {
+				p.finishPanel()
+			}
+		})
+	}
 	for _, off := range []uint16{0x3e4a, 0x3d62} {
 		o.OnCall(oracle.Addr{Seg: load, Off: off}, func(*oracle.Oracle) {
 			if int(selection()) < len(panelNames) {
