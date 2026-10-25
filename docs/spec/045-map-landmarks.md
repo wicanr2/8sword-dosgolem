@@ -1,6 +1,6 @@
 # 045：其餘地圖圖像
 
-狀態：第 49／52／54／55／56 筆呈現限定 CONFORMED，第 48／51 筆 DRAFT。沿 043／044 已證實的 PMAP 格式與繪圖 ABI，批次處理其餘圖像，不重開已完成物件。正式 r45 已接入上述五筆；第 49 筆的普通轉區用途已由末節補證，整體 HD 未完成。
+狀態：第 49／52／54／55／56 筆呈現限定 CONFORMED，第 48 筆呈現 READY，第 51 筆 DRAFT。沿 043／044 已證實的 PMAP 格式與繪圖 ABI，批次處理其餘圖像，不重開已完成物件。正式 r45 已接入上述五筆；第 49 筆的普通轉區用途已補證，第 48 筆正常來源、美術及接入契約見末節。整體 HD 未完成。
 
 [盤點工具](../../tools/catalog-map-pending.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--out`，核對正式素材清單與固定 PMAP／MAP1，輸出七筆原生參考及普通步行規劃。輸出目錄必須不存在。工作區為 `workplace/probe-20261023/graphics-first/map-interaction-r1/map-landmarks-r1/`，不進 Git。
 
@@ -25,7 +25,7 @@
 | 55 | `55e20818bf365b1d892ecce5ec2bf7eadaffba952635f890cc94c0bf2a107cdc` | `2a4f23af0710c6e95ed002000f79dc612d312d74346f00452d5c0e4c0b4f322a` | 正式 r43，限定 CONFORMED，範圍見下節 |
 | 56 | `7188d67ebf710df40d2adfcaa520d21c1f9781008748a214a497629c2b0a542d` | `412af4cb89b40adc1b0b56b2b5605fd016918b51712a081a4cea01938d0e9fd4` | 正式 r45，限定 CONFORMED，範圍見後節 |
 
-48、51 尚未生成，也未取得正常來源；49、52、56 已依後節完成。最初的保守步行集合未找到 52／56 路線，後續普通操作已證實兩筆可見；規劃集合不代表原版完整通行規則。
+第 48 筆已有正常來源、手繪 r2 與 READY 契約，見末節；第 51 筆尚未生成，也未取得正常來源。49、52、56 已依後節完成。最初的保守步行集合未找到 52／56 路線，後續普通操作已證實兩筆可見；規劃集合不代表原版完整通行規則。
 
 ## 第 55 筆正常來源與停止線
 
@@ -105,7 +105,7 @@ READY 契約要求：真實來源及獨立快取測試、來源／JSON／PNG／�
 4. 從 r43 的 197 檔乾淨匯入兩筆，共 205 檔，每筆各新增 PNG、完整提示、清單與 provenance。197 舊檔逐 SHA 保持，獨立重建須相同；未通過下列驗收前不提升正式組。
 5. 正式驗收分別走普通 Continue、三字型、人物／軍隊頁與 F3 取消、進退／遮擋、實際 Draw 與連續錄影、真正 F7 存退及冷讀 RAM。新／舊／真壞三組完整 state／PCM／事件保持，畫面差異只限各自物件。壞圖只回退該群，並驗多筆同時故障的錯誤保留。來源與位置原型不能取代新素材的實際 Draw。
 
-第 55 筆既有驗收保持。本次 49／54 READY 審查時，其餘四筆未隨同接入；52／56 的後續審查與驗收另見下節，48／51 維持 DRAFT，整體 HD 未完成。
+第 55 筆既有驗收保持。本次 49／54 READY 審查時，其餘四筆未隨同接入；52／56 的後續審查與驗收另見下節，48 的 READY 追加見末節，51 維持 DRAFT，整體 HD 未完成。
 
 ## 第 49 與 54 筆正式提升
 
@@ -172,7 +172,7 @@ READY 契約要求：真實來源及獨立快取測試、來源／JSON／PNG／�
 
 重查入口沿[正常三組核對器](../../tools/audit-landmarks-runtime.py)、[實際 Draw 核對器](../../tools/audit-landmarks-gui.py)及[匯入器](../../tools/prepare-hd-landmarks.py)，使用 `--record 52` 或 `--record 56`。本節工作區收據為 `pending-landmarks-{52,56}-runtime-audit-r2.json`、`pending-landmarks-{52,56}-draw-audit-r1.json`、`pending-landmarks-promotion-r1.json`、`landmarks-default-compat-r1.json` 及 `pending-landmarks-formal-integrity-r2.json`。
 
-本項僅呈現限定 CONFORMED。現行主地圖 65 筆已登錄 63 筆，48／51 仍 DRAFT；這不是全遊戲完成率。物件名稱、用途與獎勵保持未知，沒有改規則或解鎖玩家地圖。沿用八份核心、既有字型與配色，完整素材及存檔留本機。Linux Xvfb 靜音驗收不外推裝置音訊、其他平台或整體 HD。
+本項僅呈現限定 CONFORMED。現行主地圖 65 筆已登錄 63 筆，48 的 READY 追加見末節，51 維持 DRAFT；這不是全遊戲完成率。物件名稱、用途與獎勵保持未知，沒有改規則或解鎖玩家地圖。沿用八份核心、既有字型與配色，完整素材及存檔留本機。Linux Xvfb 靜音驗收不外推裝置音訊、其他平台或整體 HD。
 
 ## 普通步行轉區
 
@@ -215,3 +215,38 @@ READY 契約要求：真實來源及獨立快取測試、來源／JSON／PNG／�
 ```
 
 接著用標準輸入送既有 `key`、`shot`、`font`、`quit` 命令，或用 `-commands <普通命令檔>`。這是原版 F7 檔案匯入，不讀模擬器快照或注入 RAM。`world-map2-headless-reload-r1` 已普通冷讀 321 幀，F5 36,36、F1／F2、原版 DOS 退出 0；兩份伴隨檔正名匯入，人物檔同讀後 RAM。read step 為人物檔 22839250、MAP2 22858763、MAP02 23411459。後續從此入口接續，不重走南側路線。
+
+## 第 48 筆正常來源與呈現 READY
+
+本節於 2026-10-25 補證。前文普通轉區階段沒有本筆來源的紀錄保持為歷史；本節只將第 48 筆純呈現升為 READY。正式 r45 仍為 213 檔，第 51 筆維持 DRAFT，整體 HD 未完成。
+
+### 正常來源與真正冷讀
+
+- 已證實：從 `world-map2-save-r1/scratch` 的真正人物檔與 MAP01／MAP02 普通 Continue，沿研究路線靠近世界 60,76。預定 64 步不作實際位置證據；第 16 段 F5 為 35,42，普通南行五次校正到 35,47；第 32 段 F5 為 39,61，普通北行兩次校正到 39,59。第 48／64 段實際為 52,62／57,73，最後太極圖在右下可見。這些校正只送原版方向鍵，沒有注入或更換 seed，不推論按鍵相位或完整通行規則。
+- 已證實：`landmark48-normal-r1` 與關閉觀測的 `landmark48-control-r1` 各 1719 幀，共 3438 次 Frame 純度，17 份 checkpoint、22 工作檔、完整 state／PCM／影像串流與輸入／文字／檔案／EXEC 事件相同。兩側普通 F1／F2／F3 取消及真正 F7 儲存、回 DOS，原版退出 0。state SHA `69e498425f9dca783b937e8d6537f11b2b1af7ca2b7c2cb73a2c4ad580787667`，PCM SHA `93cd24e1aa3a50282ee1a839de216587a7d1c4f656794cb0dc6b79e5e0445569`。
+- 已證實：八次第 48 筆來源，既有 dosgolem 執行期 `14D2:076F → 14D2:0854`、230 bytes 同固定 PAM 檔案 `+0x157FF`。首筆來源 `7000:48192`，A400、mode 1、x byte 49、y 162、實體 byte 29393，step 222647073 → 222647967。1004 bytes 同 PMAP 本筆，1600 返回色碼同獨立四平面公式。原始定位不因太極外觀而改名，也不把第五平面當 alpha。
+- 已證實：真正人物檔為 2987 bytes，SHA `e46d4af1a82ad816ce75f70f3cc820ad47dbc6a3f1d1135f64fd87e56b1c811a`，同存後及讀後 RAM 線性 `0x9E000`。普通冷啟動 `landmark48-cold-r1` 共 323 幀，F5 仍為 57,73，人物／軍隊頁與 DOS 退出 0。MAP01 SHA `783448e3418182847a42aea1422799692c58ef5c049e49c815cdf80298c621f3`，MAP02 SHA `48a2ccae665604df128ff20c604670a9ec646574d5629b49c472b632832d3693`，兩件各 5761 bytes，匯入前後保持。實際 read step：人物檔 22839250、MAP2 22858763、MAP02 23411459。零步數快照檢視僅核對 RAM，沒有作為進場方式。
+
+研究沿 `world-source-build-r2/probe` 的 51 筆輸入及完整來源快照，48 份正式套件保持。Go 1.24.13、既有 Go 映像 `8ed6bdee…0581`；執行前 12:00:00.00、3000 cycles/ms，原版 seed 未知，未重設或挑選。獨立美術取樣使用 Python 3.13.15／Pillow 11.3.0 及映像 `44d0742c…c48`，完整映像 SHA 沿本規格前節。
+
+[來源核對器](../../tools/audit-world-map-sources.py)使用 `--require-records 48`，結果為 `landmark48-source-audit-r1.json`。`audit-landmark48-preparation-r1.py` 及 `landmark48-preparation-audit-r1.json` 再核對真正存檔、冷讀 RAM、伴隨檔、美術、105 筆正式輸入、七程式、來源 archive、213 素材及八份核心。以上研究檔位於本規格既有 `map-interaction-r1` 工作區，留本機。
+
+### 美術與接入契約
+
+使用 built-in image_gen 生成 r1，再以同工具修整位置得到 r2。選用 `map-landmarks-r1/pmap-48-painted-r2.png`，原 PNG 為 1419×1108 RGBA，完整 bytes 與 alpha 保持。`pmap-48-prompts-complete-r2.txt` 保存初次生成及位置修整的完整提示，SHA `6017520959477aa58a8695f468a8bb10cc39d1f56f25b022da94a1a324ad6f45`；兩輪原圖與各自提示均保留。原生參考定布局與黑白方向，既有第 49 筆手繪只定石材及 B 畫風，沒有帶入其八面旗。
+
+`pmap-48-art-provenance-r2.json`、完整實景原型 `normal-scene-prototype-48-r2.png` 及左右對照 `pmap-48-comparison-r2.png` 已檢視。原型先逐像素核對實景 `(1176,972)-(1368,1122)` 的 1600 原生來源，再以完整 192×150 快取替換。白左黑右、兩眼、橢圓形及外圍留白保持，石紋、薄邊與近似輪廓屬刻意美化，不稱原版像素幾何一致。原型沒有執行新材質，不能冒稱 actual Draw 或正式存讀已驗。
+
+| 契約 | 固定內容 |
+|---|---|
+| 原生 | 索引 48，獨立材質 ID 49。既有 PMAP SHA 保持；前 804 bytes 的 native SHA 為 `8faa16d2679f1bad38deefebd4615cb1491b7ae17f8cc472ee5e38562ac587a4`，完整 record SHA 為 `e0b751a64138af9343d01b6831271bf328e854ac761491bb00000e1f1570d975`。1600 色碼 SHA `58a95271a0709d103fe2c315930c84394e80b6d7b5132249ff7b98dba5a5f61a` 是另一種資料，不與 native 指紋混用 |
+| 清單 | 可選 `map-landmark-48.json`，schema 1，16 KiB 有界 JSON。固定來源、既有 `ApprovedStyleSHA`、source_index 48、native／record／cache SHA、grass_source 0、sampling `bilinear-full-alpha-over-grass`；拒絕未知欄位及尾隨 JSON |
+| 圖片 | 固定 `map-landmark-48-r2.png`，SHA `d5f29bde62da0724e2a486f0b5f61dfd676c26e6fcf3751a17d679bca412ffc1`；8 MiB 有界普通檔案，先核 SHA／PNG config，再解碼1419×1108 RGBA，不裁切或改 alpha |
+| 原始映射與衝突 | 核對完整 PMAP、Native[48] 的8 bytes×25、原生指紋及 ByNative 指向49。材質／角色／效果ID49任一衝突均拒絕新群；不加原生別名或 CPU 掛點 |
+| 合成 | 完整草地材質1、192×150 RGBA，沿 `compositeStaticObject` 的全圖預乘 alpha 雙線性與 alpha≤3 略過。獨立快取SHA `62d3072d49922f2a73f9cdce83f91f53e1f65b8f38aa51e5eacb9f1309102d49`，通過後才原子登錄材質49 |
+| 失敗 | 缺清單相容舊組；其他錯誤只拒絕此群並加入既有 `map_landmark_error`，保留其他物件、字型、角色、效果與配色。不能關閉全HD或留下部分登錄 |
+| 候選與權利 | 從r45的213檔乾淨建立217檔候選，只加PNG、完整提示、清單與provenance，舊檔逐SHA保持；兩次獨立重建相同。完整原圖、提示鏈、原版與存檔留本機，不新增上傳授權 |
+
+實作後須驗：真實來源與獨立快取、JSON／來源／PNG／草地／ID衝突原子回退、與舊群混合故障、正常新／舊／真壞三組完整 state／PCM／串流／DOS寫入、差異只限實際來源矩形、三字型及 F1／F2／F3 返回、實際 Draw 與錄影、真正 F7 存退冷讀及 RAM。缺少這些證據時保持 READY，不宣稱 CONFORMED。
+
+下一輪直接用 `landmark48-normal-r1/scratch/gamedata.ay` 加同目錄的 MAP01／MAP02 普通 Continue。已取得的來源、幾何與美術不重做；正式名稱、用途、觸發與獎勵保持未知，純呈現沒有依賴，不另開玩法逆向。
