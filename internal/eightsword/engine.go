@@ -146,6 +146,12 @@ func Open(opt Options) (*Engine, error) {
 						if armyErr := loadArmyMan21(opt.Assets, opt.Root, art); armyErr != nil {
 							e.ArmyMan21Error = armyErr.Error()
 						}
+						if friendlyErr := loadFriendlyMan21(opt.Assets, opt.Root, art); friendlyErr != nil {
+							if e.BattleActorError != "" {
+								e.BattleActorError += "；"
+							}
+							e.BattleActorError += "友軍矮人: " + friendlyErr.Error()
+						}
 						if castleErr := loadMapCastle(opt.Assets, pmap, art); castleErr != nil {
 							e.MapCastleError = castleErr.Error()
 						}

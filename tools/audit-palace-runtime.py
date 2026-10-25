@@ -26,10 +26,11 @@ def sha(data):
 
 
 class PalaceModel:
-    def __init__(self, assets, original, battle):
+    def __init__(self, assets, original, battle, friendly=False):
         self.common = module('audit-encounter-gui')
         self.model = self.common.Model(assets, original, battle)
         self.battle, self.assets = battle, assets
+        self.friendly = friendly
         data = self.common.sample(assets / 'battle-palace-background-r1.png', 1920, 1200)
         assert sha(data) == 'ee95cca6642a98ed4bdcb14415e19553d6efbb558b4fbf375ca2ba119abd9955'
         self.model.materials[151] = data, 640, 200
@@ -55,6 +56,16 @@ class PalaceModel:
         raw = (original / 'MAN01.EGG').read_bytes()[:3304]
         reverse = bytes(int(f'{v:08b}'[::-1], 2) for v in range(256))
         self.raw[107] = raw[:4] + b''.join(raw[i:i + 11][::-1].translate(reverse) for i in range(4, 3304, 11))
+        if friendly:
+            entries = read(battle / 'ally21-mirror-prototype-r1/registration.json')['entries']
+            for i, entry in enumerate(entries):
+                data = self.model.actors[99+i][0]
+                mirrored = b''.join(data[(y*264+x)*4:(y*264+x+1)*4] for y in range(300) for x in range(263, -1, -1))
+                assert sha(mirrored) == entry['cache_sha256']
+                self.model.actors[152+i] = mirrored, 88, 50
+                raw = self.raw[99+i]
+                self.raw[152+i] = raw[:4] + b''.join(raw[j:j+11][::-1].translate(reverse) for j in range(4, 3304, 11))
+                assert sha(self.raw[152+i]) == entry['six_plane_sha256']
         self.native_bg = (battle / 'gro01-art-r1/gro01-decoded.idx').read_bytes()
 
     def frame(self, stem):
@@ -70,7 +81,7 @@ class PalaceModel:
         glyphs = {int(k): v for k, v in read(path('-glyphs.json')).items()}
         assert len(native) == len(owners) == len(actors) == len(effects) == len(text) == 128000
         assert {ident for ident, local in owners if ident} == {151}
-        assert not any(152 <= ident <= 155 for ident, local in actors)
+        assert self.friendly or not any(152 <= ident <= 155 for ident, local in actors)
         fx_info = read(path('-layers.json'))['effects']
         fx_cache = {}
         base = path('-effect-base.idx').read_bytes()

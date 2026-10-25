@@ -105,6 +105,9 @@ case "${1:-}" in
             EIGHTSWORD_TEST_PALACE_ASSETS=/out/assets-palace-candidate-r1 \
             EIGHTSWORD_TEST_PALACE_BASE=/out/assets-painted-r46 \
             EIGHTSWORD_TEST_PALACE_CACHE=/out/palace-cache-r1 \
+            EIGHTSWORD_TEST_FRIENDLY_ASSETS=/out/assets-friendly21-candidate-r1 \
+            EIGHTSWORD_TEST_FRIENDLY_BASE=/out/assets-painted-r47 \
+            EIGHTSWORD_TEST_FRIENDLY_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/ally21-mirror-prototype-r1 \
             EIGHTSWORD_TEST_LANDMARK56_ASSETS=/out/assets-pending-landmarks-candidate-r1 \
             EIGHTSWORD_TEST_LANDMARK56_BASE=/out/assets-painted-r44 \
             EIGHTSWORD_TEST_LANDMARK56_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/pending-landmarks-cache-r1 \
@@ -182,6 +185,21 @@ case "${1:-}" in
       "$task_py" python /project/tools/catalog-battle-coverage.py \
         --original /project/workplace/intake-20261023/sources/game/8sword \
         --assets "/project/workplace/player/assets-$task_base" --out "/out/$task_name.json"
+    ;;
+  friendly-man21-assets)
+    task_name="${2:?需要輸出名稱}"; task_base="${3:-painted-r47}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_art="$task_work/probe-20261023/graphics-first/battle-r1/ally21-mirror-prototype-r1"
+    test -d "$task_player/assets-$task_base"; test -d "$task_orig"; test -d "$task_art"
+    test -f "$task_art/registration.json"; test ! -e "$task_player/assets-$task_name"
+    exec timeout 60s docker run --rm --name "8sword-friendly-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 512m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_player,dst=/out" \
+      "$task_go" python3 /project/tools/prepare-hd-friendly-man21.py \
+        --base "/out/assets-$task_base" --original "/project/workplace/intake-20261023/sources/game/8sword" \
+        --prototype "/project/workplace/probe-20261023/graphics-first/battle-r1/ally21-mirror-prototype-r1" \
+        --out "/out/assets-$task_name"
     ;;
   palace-assets)
     task_name="${2:?需要輸出名稱}"; task_base="${3:-painted-r46}"
@@ -905,5 +923,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|encounter-assets <名稱> [基底名稱]|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-man01-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palace-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|recruitment-assets <名稱> [基底名稱]|bamboo-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|encounter-assets <名稱> [基底名稱]|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-man01-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palace-assets <名稱> [基底名稱]|friendly-man21-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|recruitment-assets <名稱> [基底名稱]|bamboo-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "clock": "ordinary GUI clock and RNG uncontrolled; 3000 cycles/ms",
+  "scenario": "normal Continue from genuine MAP2 43,54 save, then castle battle",
+  "initial_save_sha256": "80f3840390b317940ebb099d20ba2daed49808367959971cb37f8f7ebaf6146e",
+  "scope": "four paired same-state original/HD actual Draw crops; each column has its own guest state",
+  "image_sha256": "351344a66a6207911f1cd7b4bbbb70662c206929db2dcaf734ffc608b3ecf621",
+  "records": [
+    {
+      "record": 0,
+      "actual_draw": 137,
+      "runtime_step": 29357954,
+      "native_rect": [
+        184,
+        100,
+        88,
+        50
+      ],
+      "native_sha256": "d1949dc1e0cdebcc79116e19287a11bb48cdb12bfa27310248c58c58a567eda4",
+      "actual_png_sha256": "fc878d0d274bbb998cd06358439e3115722feeb7405d9de37717cc483ee4e74a",
+      "state_sha256": "41acc7f6335a47e070472b3a44e3f52ddd492e97f83e4c276e232dff9d5e545e"
+    },
+    {
+      "record": 1,
+      "actual_draw": 565,
+      "runtime_step": 115612001,
+      "native_rect": [
+        272,
+        100,
+        88,
+        50
+      ],
+      "native_sha256": "5afc1081e1a4591f7306ed667d088db9d9b15b05d6c9dd824aa2aa1ef0cd0d5e",
+      "actual_png_sha256": "ed19d62840f13920ca459cf71aaa40ce1114c70d44bac670cd23585e7e230d57",
+      "state_sha256": "75a009d00c34fc65e355debbfc30dba5bcc11831dc81002e726a271db7d41b83"
+    },
+    {
+      "record": 2,
+      "actual_draw": 550,
+      "runtime_step": 112476618,
+      "native_rect": [
+        272,
+        100,
+        88,
+        50
+      ],
+      "native_sha256": "2ac4db5f085cc686608461fa0ef034e1a927df1a2de80d5ec30f8f3fddfe8f94",
+      "actual_png_sha256": "59532a4eb173514d6fbce765a761e6908c34065c0a648c629f8b1e52b72883ee",
+      "state_sha256": "e3cde8169035165d4eb099f613f8b8ae50843019bbf9d6300f9aaf180ca65b0d"
+    },
+    {
+      "record": 3,
+      "actual_draw": 552,
+      "runtime_step": 112674418,
+      "native_rect": [
+        272,
+        100,
+        88,
+        50
+      ],
+      "native_sha256": "4ee556ccb3634962171be5d9352e9001a540f4ea7120fce3e8024266d54b4478",
+      "actual_png_sha256": "fd87c6818a39ebc25fbdffe3cea6a965df779b3a9e227f3879a1c992381a14cf",
+      "state_sha256": "fe027ab96fc6e3d0842f1da7886e7ba51344b3543e32810aaa504782be4a7bd8"
+    }
+  ],
+  "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "audit_sha256": "7ccd33bf36bf3d0b66749fccb03e4865bb3b9566bc8f77a88b0d5640421db73f",
+  "source": "workplace/player/gui/friendly21-save-r3/save/research-friendly-draws",
+  "rights": "user-requested comparison only in existing private repository; full artwork and original data remain local"
+}

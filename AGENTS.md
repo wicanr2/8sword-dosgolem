@@ -2,7 +2,7 @@
 
 第48筆接入入口：[獨立載入器](internal/eightsword/map_landmark48.go)、[來源與回退測試](internal/eightsword/map_landmark48_test.go)、[匯入工具](tools/prepare-hd-landmarks.py)。在既有Pillow Docker使用 `--group 48 --base <r45目錄> --original <固定原版目錄> --art <map-landmarks-r1> --out <新候選目錄> --cache-out <新快取目錄>`；只接受045固定來源與已選r2。正式r46已通過[限定驗收](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收)，不重做來源、美術或相同玩家路徑。
 
-後續地圖圖像：[045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收)，48／49／52／54／55／56 已限定 CONFORMED，現行 r46，主地圖登錄64／65；51維持DRAFT。續玩可直接使用 `map-interaction-r1/landmark48-normal-r1/scratch` 的真正人物檔與MAP01／MAP02，或已驗的 `player/gui/landmark48-save-r1/scratch`，兩者人物檔同e46d4af1…811a。不重走來源路線或重畫已選r2。[盤點工具](tools/catalog-map-pending.py)在既有Pillow Docker使用 `--assets`、`--original`、`--out` 核對目前素材缺口；權威現況看CONTEXT，不據舊r42紀錄重新開工。
+後續地圖圖像：[045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收)，48／49／52／54／55／56 已限定 CONFORMED，本組提升時 r46，主地圖登錄64／65；51維持DRAFT。續玩可直接使用 `map-interaction-r1/landmark48-normal-r1/scratch` 的真正人物檔與MAP01／MAP02，或已驗的 `player/gui/landmark48-save-r1/scratch`，兩者人物檔同e46d4af1…811a。不重走來源路線或重畫已選r2。[盤點工具](tools/catalog-map-pending.py)在既有Pillow Docker使用 `--assets`、`--original`、`--out` 核對目前素材缺口；權威現況看CONTEXT，不據舊r42紀錄重新開工。
 
 八張初始地圖的圖像編號由[世界地圖盤點器](tools/catalog-world-map-graphics.py)核對。在既有 Pillow Docker 使用 `--original` 合法固定來源及 `--out` 不存在的 JSON 檔。只解析 MAP1–MAP8 的初始資料，不解析 MAP00–MAP08 的其他格式，也不把靜態缺項當成執行期不可達或未使用的證明。用途見 006／045。
 
@@ -37,8 +37,11 @@
 軍隊頁圖像入口：[041：MAN21 圖像](docs/spec/041-army-man21-image.md)，沿現有 HD 快取與正常招募來源；現況以 CONTEXT 為準。
 
 友軍戰場方向入口：[042：MAN21 四姿勢](docs/spec/042-friendly-man21-battle-poses.md)，從真正招募與自然戰鬥取證，不以軍隊頁或原向快取代替正常動作驗收。研究工具為[鏡射原型](tools/prepare-battle-mirror-prototype.py)及[來源與續玩核對](tools/audit-friendly-man21.py)。以真正 F7 存檔建立冷讀時，同時盤點客體保存的伴隨檔；042 已證實 MAP01 需要 `gamedata.ay` 與 `map01.ay`，匯入方式及其他地圖的支援邊界見該規格。
-正常攻城的四筆友軍來源與[獨立核對工具](tools/audit-castle-source.py)見 [042 攻城來源](docs/spec/042-friendly-man21-battle-poses.md#正常攻城的四筆友軍來源)。研究輸入保留真正人物檔及 MAP01／MAP02。這條路徑使用 GRO01，背景已依046接入；四筆友軍鏡射尚未正式載入，來源齊全不等於四筆 HD 已接入，不重走長途路線或改種子取證。
-攻城背景接入入口：[046：GRO01 背景](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)，限定CONFORMED。正式r47／221檔，151背景組、三組隔離、六份完整畫面、正常GUI及真正存退冷讀已驗，來源與原圖不重做。042友軍鏡射載入仍DRAFT，152–155未正式登錄。成果見[同狀態比較](docs/images/battle-palace-original-hd-r1.png)與[圖像紀錄](docs/images/battle-palace-original-hd-r1.json)。
+042已完成[載入契約與限定驗收](docs/spec/042-friendly-man21-battle-poses.md#正式鏡射組載入契約)。實作入口為[獨立載入器](internal/eightsword/battle_friendly_man21.go)、[來源與整組回退測試](internal/eightsword/battle_friendly_man21_test.go)及[素材匯入](tools/prepare-hd-friendly-man21.py)。匯入在既有Go或Pillow Docker使用 `--base` r47、`--original` 固定原版、`--prototype` 已驗ally21-mirror-prototype-r1及 `--out` 新輸出目錄；只加清單與來源紀錄，預期223檔。測試變數為 `EIGHTSWORD_TEST_FRIENDLY_ASSETS`、`EIGHTSWORD_TEST_FRIENDLY_BASE`、`EIGHTSWORD_TEST_FRIENDLY_CACHE` 及既有原版變數。已提升正式r48／223檔，221舊檔保持，完整原圖不重做。
+[友軍正式呈現核對](tools/audit-friendly-runtime.py)在既有Pillow Docker使用 `--original`、`--assets` 候選組、`--battle` battle-r1及 `--out` 新收據；`--gui` 可核對四姿勢實際Draw、三字型人物頁、F2及真正存退冷讀。四份鏡射均由原PNG獨立取樣再鏡射，來源六平面及返回色碼另驗，不以原型代替正式程式。
+[友軍四姿勢成果圖](docs/images/friendly-man21-poses-original-hd-r1.png)與[圖像紀錄](docs/images/friendly-man21-poses-original-hd-r1.json)已收README。[友軍README總覽工具](tools/prepare-readme-friendly-overview.py)在既有Pillow Docker使用 `--gui`、`--audit` 完整正式驗收收據、`--font` Noto字型及 `--out` 新研究輸出目錄。每欄配對同一客體狀態的原生色碼與實際Draw，只收使用者要求的成果比較，完整原圖留本機。
+正常攻城的四筆友軍來源與[獨立核對工具](tools/audit-castle-source.py)見 [042 攻城來源](docs/spec/042-friendly-man21-battle-poses.md#正常攻城的四筆友軍來源)。研究輸入保留真正人物檔及 MAP01／MAP02。這條路徑使用 GRO01，背景已依046接入；四筆友軍鏡射已依042正式載入，來源與正式驗收分別保留，不重走長途路線或改種子取證。
+攻城背景接入入口：[046：GRO01 背景](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)，限定CONFORMED。正式r47／221檔，151背景組、三組隔離、六份完整畫面、正常GUI及真正存退冷讀已驗，來源與原圖不重做。042友軍鏡射已限定CONFORMED，152–155正式登錄於r48。成果見[同狀態比較](docs/images/battle-palace-original-hd-r1.png)與[圖像紀錄](docs/images/battle-palace-original-hd-r1.json)。
 攻城背景實作：[獨立載入器](internal/eightsword/battle_palace_background.go)、[來源與故障測試](internal/eightsword/battle_palace_background_test.go)、[素材匯入](tools/prepare-hd-palace-background.py)。在既有Pillow Docker使用 `--base` r46、`--original` 固定原版、`--art` gro01-art-r1、`--out` 與 `--cache-out` 不存在的輸出路徑；候選221檔，經046限定驗收後提升r47，重建時仍用新輸出名稱。測試使用 `EIGHTSWORD_TEST_PALACE_ASSETS`、`EIGHTSWORD_TEST_PALACE_BASE`、`EIGHTSWORD_TEST_PALACE_CACHE` 及既有原版變數，缺輸入須明示跳過。
 [攻城背景核對工具](tools/audit-castle-background.py)在既有Pillow Docker使用 `--original`、`--assets`、`--battle`、`--art`、`--out`，可加 `--prototype` 核對四張完整正常Frame。支援046固定來源與研究建置，包含背景頁、陰陽標記底色及客體隔離，不把原型當作正式載入或GUI驗收。
 [攻城正式呈現核對](tools/audit-palace-runtime.py)在既有Pillow Docker使用 `--original`、`--assets` 候選組、`--battle` battle-r1、`--out` 新收據，可加 `--gui` 正常視窗收據根目錄。核對三組客體與真壞回退、三字型完整戰場Frame及實際Draw；真正存讀另沿[存讀核對](tools/audit-save-cycle.py)。
@@ -275,6 +278,14 @@ mm3 的使用者批准、素材、字型、平台、公開範圍及完成標記�
 - 曲目製作與遊戲觸發分開驗收。至少查可解碼、非靜音、削波、長度、循環接點及人耳聽感；短版試聽批准不等於長循環全部通過。
 - 模擬吞吐量、呈現幀率與音訊時鐘分別量測。提高 CPU 配額或倍率不能讓音樂加速；步數換秒依固定 dosgolem 版本的實際時基，不搬用別作常數。
 - DAC、PIT、DMA、OPL 等標準硬體時序依公開規格與成熟模擬器契約，記錄公式、來源與近似等級。只剩硬體時序差異時停止深入 driver，不宣稱逐週期或逐波形一致。
+
+## 使用者追加：抽樣驗證與HD繪圖控制
+
+使用者於2026-10-25指定「抽樣檢查即可」。後續按繪圖路徑、素材格式及玩家狀態轉移選代表案例；同一已驗契約的素材不逐張、逐姿勢重跑完整GUI。來源與清單完整性仍自動核對。新失敗或新類型才擴大抽樣，沒有抽到的部分不宣稱逐項實測。
+
+使用者同輪授權徹底解決HD疊圖閃爍，要求我們控制完整可見繪圖流程，取代以原版即時畫面為底再疊HD的做法。原版繼續負責玩法、事件與存檔；HD呈現器控制畫面生成與提交。接入須先查目前原生底圖、圖層、交易及前端提交的實際關係，再建立規格與原型，不把固定等待或提高CPU當成解法。
+
+入口：[047：HD場景呈現器](docs/spec/047-hd-scene-renderer.md)，目前DRAFT。[來源命令直接繪圖原型](tools/prototype-owned-battle-scene.py)在既有Pillow Docker使用 `--original`、`--assets` r48、`--source` 正常來源收據目錄、`--target` 無文字／效果的完整Frame前綴及 `--out` 新研究輸出目錄。原型不讀VGA／所有權作繪圖輸入，只抽代表戰場，不當作即時閃爍已修復。
 
 ## 9. 驗收與停止線
 

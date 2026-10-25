@@ -1,6 +1,6 @@
 # 042：MAN21 友軍戰場方向
 
-狀態：DRAFT。承接 [026](026-battle-man21-actors.md)的四個原向快取、[041](041-army-man21-image.md)的正常招募與軍隊頁鏡射，以及 [028](028-battle-militia-image.md)的背景分支別名。初稿時正式素材為 r40，目前為 r47，友軍戰場鏡射仍未正式登錄。正常攻城已取得四筆來源，見末節；背景已依046限定CONFORMED，鏡射仍待載入契約審查，不由 F2 來源推定全部動作已驗。
+狀態：限定CONFORMED。正式r48經正常三組、四份完整Frame／四份實際Draw及真正存退冷讀驗證，見末節。承接 [026](026-battle-man21-actors.md)的四個原向快取、[041](041-army-man21-image.md)的正常招募與軍隊頁鏡射，以及 [028](028-battle-militia-image.md)的背景分支別名。初稿時正式素材為 r40，目前為 r48，四筆鏡射正式登錄152–155。正常攻城來源、背景及嚴格載入契約均已核對，不由 F2 來源推定全部動作已驗。
 
 ## 玩家範圍與已知資料
 
@@ -148,3 +148,31 @@
 ### BATTLE-GRO01-PRODUCTION-RESOLVED
 
 前段「正式背景載入仍待實作」已由 [046 正式接入](046-castle-battle-background.md#正式接入與限定驗收)解決。正式r47的材質151經正常三組、實際Draw、F1三字型與真正存退冷讀驗證。042仍DRAFT，正式背景不登錄152–155；目前缺口只剩本規格四筆鏡射的嚴格清單、識別與整組回退契約及其正式驗收。既有四筆正常來源與鏡射快取保持，不重做RE或生成圖。
+
+## 正式鏡射組載入契約
+
+本節於2026-10-25審查後達READY。依 `battle-r1/friendly-man21-ready-r1.json`，四筆正常六平面／17600返回色碼、原型與獨立重建四快取皆相符；046背景已限定CONFORMED。既有DRAFT歷史與當時production_ready=false保留，不把舊收據改成正式驗收。
+
+1. 新增可選 `battle-friendly-man21.json`，schema1。固定來源MAN21.EGG及上述完整來源SHA、PAM SHA、B-bright-painted-r1與既有ApprovedStyleSHA，transform為mirror-six-planes。frames必須恰四筆、record順序0–3、source_id99–102、target_id152–155。每筆固定native_sha256、record_sha256、original_cache_sha256、cache_sha256，沿上方已驗鏡射原型值；沒有新PNG或取樣矩形。
+2. 清單只接受普通檔案，最多16KiB，拒絕未知欄位、尾隨JSON、重複／缺失／亂序筆。原MAN21須普通檔案、恰13216 bytes且SHA相符。逐筆按原11-byte列鏡射全部六塊，核對3304 bytes與前2204 bytes指紋，第五塊不作alpha。來源與原版控制流不改。
+3. 原向99–102須是已驗88×50人物、264×300／stride1056完整快取、來源及四個original_cache_sha256全符，原向ByNative與ActorSHA及BattleActors旗標保持。F2的150須已由041載入，原生來源映射150、六塊SHA及鏡射首筆快取相符，BattleActors為false。不能因本組缺少150就重新分類F2。
+4. 152–155逐筆檢查Materials、Actors、Effects、ActorSHA、EffectSHA、BattleActors及所有ByNative值，均不得有衝突。第0筆的全域鏡射native鍵必須仍映射150；其餘三鍵未登錄。先由99–102建立四份獨立完整水平鏡射快取並核對固定SHA，最後才一次登錄Actors／ActorSHA／BattleActors四筆及第1–3筆ByNative。不得修改原向或F2快取。
+5. 既有背景遮罩分支只將150轉152，前提是152已在BattleActors。全域首筆仍為150，F2／F3目的保留分支不轉換；其餘三筆沿精確來源鍵及既有battleActor判斷。88×50背景完整性沿046，來源全六塊核對沿既有heroRecordMatches。任何未驗背景、來源或模式保持原版，不新增CPU掛點。
+6. 缺清單保持r47；本組任一步失敗不登錄任何四筆，不清空原向99–102、F2的150、其他部隊、背景、字型或音樂。錯誤附既有BattleActorError，無新的玩家設定或存檔欄位。實際損壞基底PNG時，基底原向組依原規格回退，本組也拒絕，不能假裝壞PNG仍可用。
+7. 匯入只複製221基底並加入此清單及來源紀錄兩檔，預期223檔；不新增PNG、改原圖或加入原型二進位快取。兩次乾淨重建相同。候選與正式提升分開，通過來源、錯誤隔離、正常同狀態及實際GUI後才提升。
+8. 必要驗收：正常相同69命令的四姿勢新／舊／真壞組、全部客體／PCM／輸入／事件與工作檔、四個完整返回Frame、至少各姿勢一份實際Draw與來源連結、Noto／隸書／草書人物頁、F2往返與真正F7存退冷讀。未知敵人保持原版；原104筆目錄不因鏡射增加為108筆。GUI遇原版遭遇或戰術分支時依普通操作處理，不注入軍隊、位置或選勝負，不改種子、時間或反覆重試湊來源。
+
+載入器、匯入與驗收工具同次掛AGENTS索引。正常來源與原PNG至此足夠，停止相同RE／生圖；只做嚴格載入與正常玩家路徑，整體HD仍未完成。
+
+## 正式接入與限定驗收
+
+已證實：[載入器](../../internal/eightsword/battle_friendly_man21.go)按READY契約驗證全部來源與快取，再一次登錄四筆；[背景分支](../../internal/eightsword/graphics.go)只將150轉152。F2／F3的150、原向99–102及全部原PNG保持。素材只加兩份清單／來源紀錄，沒有新圖或改客體程式。
+
+- 兩次乾淨匯入各223檔完全相同，221基底保持。三父測試與16故障子案例28.868秒通過，包含末筆真壞清單、末筆原快取破壞、缺F2、來源衝突及原GRO02正常撤退回歸。正式建置111輸入、51套件、七程式與完整archive；八核心保持。
+- 正常新／舊／真壞各1324幀、3972次Frame純度、相同69命令、32工作檔及原版輸入／字串／I/O／音樂／來源事件相同。完整state `580b2f8ff4cbf6d351538e09c24f5e194bd932a17aec98de54190b95ccb7e7fa`、PCM `5c527113a8cdf28d6373801ddb23b48b0ebe325c0027935a603e826e8fa74627`，與原來源控制一致。810差異幀ordinal341–1150，逐幀差異只限實際友軍88×50矩形，返回後保持；壞清單全串流同r47。
+- [獨立核對器](../../tools/audit-friendly-runtime.py)由原PNG、既有取樣矩形、完整水平鏡射、原版色碼／所有權與陰陽效果重建四張完整Frame及四張實際Draw，共18432000像素全同並連回錄影。無頭四張ordinal345／907／908／909。GUI四筆Draw為137／565／550／552，實際取樣順序0／2／3／1；第1筆首次穩定Draw來自稍後同姿勢返回，不偽稱第一次原版返回即被擷取。
+- 正常GUI `friendly21-save-r3` 有934／163 Draw、464／19變化幀，九張接觸表、四姿勢及Noto F2／隸書F1已看。來源四筆各4400返回像素獨立核對，共17600，GUI次數287／6／6／6。普通攻城、目標選擇、攻擊、撤退、結果關閉、F1三字型及F2兩次往返完成。戰後民兵全滅、首列為65名矮人，沿原版結果驗證，不補兵或換編成。
+- 真正F7存退冷讀通過，人物檔2987 bytes同存後／讀後RAM `d01dee7866b65da189180c5bb58bdf97e752d7d2828e5dc077a2e69c142a20c3`，冷讀step12312405、DOS退出0。MAP01保持，MAP02存後為 `3a8c05deda60cc3b8d787e6099a5533450806bc24d659c0cef5584be65ac777f`。存讀視窗3158差異像素限主角動畫，不稱整幀parity。
+- 本機正式素材提升為 `assets-painted-r48`，七程式以獨立暫存檔／原子替換提升，r47及純字型基底保持。收據位於既有battle-r1的 `friendly21-runtime-audit-r2.json`、`friendly21-promotion-r1.json`；[README比較圖](../../docs/images/friendly-man21-poses-original-hd-r1.png)與[圖像紀錄](../../docs/images/friendly-man21-poses-original-hd-r1.json)收錄私人倉庫，完整美術及原版資料留本機。
+
+原四個記錄的鏡射不增加104筆來源目錄的數量。其他兵種及整體HD仍未完成。使用者後續指定按功能類型抽樣，本次已完成的完整檢查保留，不要求後續同契約素材逐張重跑。

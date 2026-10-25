@@ -20,12 +20,12 @@
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
-| HD 圖像 | 已接入 B 古風地表、地圖建築與六塊城堡、布旗與無旗太極圖、十二張主角動作、人物頁、F2／F3 與戰場民兵四姿勢、金玉介面、五頁深藍故事背景、夕照山谷與朱柱山景攻城戰場背景、四組敵方部隊共十六筆姿勢、累積火花效果與四姿態陰陽圖案。正常移動、頁面往返及真正存退讀已抽驗；友軍矮人戰場動畫、沙地實景與其他圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[018](docs/spec/018-army-militia-image.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)、[025](docs/spec/025-battle-man11-actors.md)、[026](docs/spec/026-battle-man21-actors.md)、[027](docs/spec/027-battle-pon-effects.md)及 [029](docs/spec/029-battle-choi-markers.md)；民兵追加見 [036](docs/spec/036-battle-militia-poses.md)，友軍方向見 [042](docs/spec/042-friendly-man21-battle-poses.md)，太極圖與其餘地圖範圍見 [045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收) |
+| HD 圖像 | 已接入 B 古風地表、地圖建築與六塊城堡、布旗與無旗太極圖、十二張主角動作、人物頁、F2／F3 與戰場民兵四姿勢、金玉介面、五頁深藍故事背景、夕照山谷與朱柱山景攻城戰場背景、四組敵方部隊共十六筆姿勢及友軍矮人四個鏡射姿勢、累積火花效果與四姿態陰陽圖案。正常移動、頁面往返及真正存退讀已抽驗；沙地實景與其他圖像仍待處理。範圍見 [014](docs/spec/014-intro-story-background.md)、[018](docs/spec/018-army-militia-image.md)、[021](docs/spec/021-battle-background-pages.md)、[023](docs/spec/023-battle-man16-actors.md)、[024](docs/spec/024-battle-man06-actors.md)、[025](docs/spec/025-battle-man11-actors.md)、[026](docs/spec/026-battle-man21-actors.md)、[027](docs/spec/027-battle-pon-effects.md)及 [029](docs/spec/029-battle-choi-markers.md)；民兵追加見 [036](docs/spec/036-battle-militia-poses.md)，友軍方向見 [042](docs/spec/042-friendly-man21-battle-poses.md)，太極圖與其餘地圖範圍見 [045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
 
-目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
+目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。HD繪圖流程正依 [047](docs/spec/047-hd-scene-renderer.md)改為由呈現器直接管理場景，尚未完成全面切換。文字接入的驗證限於列出的路段；HD 美術、HD 音樂及全遊戲驗收尚未完成。
 
 開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；驗收見 [014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。發行商中央圖案亦已採 B 柔和漸層，三字型、正常交接、存退讀與故障回退的範圍見 [016](docs/spec/016-publisher-wordmarks.md#b-圖案正式追加驗收)。其他音畫與整體 HD 尚未完成。完整執行期素材組留本機。
 
@@ -73,7 +73,13 @@
 
 ![相同狀態的原版與 HD 攻城戰場](docs/images/battle-palace-original-hd-r1.png)
 
-左側為 dosgolem 原生畫面，右側為同一客體狀態的實際視窗畫面。背景保留原版朱柱、金色山景與紫藍地板。攻城、撤退、三字型人物頁及真正存退讀已抽驗，範圍見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。圖中仍有原版部隊，友軍矮人的戰場鏡射動畫另依 [042](docs/spec/042-friendly-man21-battle-poses.md)處理。[圖像紀錄](docs/images/battle-palace-original-hd-r1.json)及[重生工具](tools/prepare-readme-palace-overview.py)隨圖保存，完整美術留本機。
+左側為 dosgolem 原生畫面，右側為同一客體狀態的實際視窗畫面。背景保留原版朱柱、金色山景與紫藍地板。攻城、撤退、三字型人物頁及真正存退讀已抽驗，範圍見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。圖中仍有原版部隊，友軍矮人的戰場鏡射動畫已依 [042](docs/spec/042-friendly-man21-battle-poses.md#正式接入與限定驗收)接入。[圖像紀錄](docs/images/battle-palace-original-hd-r1.json)及[重生工具](tools/prepare-readme-palace-overview.py)隨圖保存，完整美術留本機。
+
+### 友軍矮人四個戰場姿勢
+
+![原版與HD友軍矮人四姿勢](docs/images/friendly-man21-poses-original-hd-r1.png)
+
+每欄上方是原版，下方是同一客體狀態的實際HD視窗圖。四個姿勢共用既有手繪素材，依原版來源鏡射，保留動作順序與位置；軍隊頁也維持已驗圖像。正常攻擊、撤退、Noto／隸書／草書及真正存退讀已抽驗，範圍見 [042](docs/spec/042-friendly-man21-battle-poses.md#正式接入與限定驗收)。[圖像紀錄](docs/images/friendly-man21-poses-original-hd-r1.json)與[重生工具](tools/prepare-readme-friendly-overview.py)隨圖保存，其他部隊尚未全部完成。
 
 ### 民兵三個戰場動作
 
@@ -220,7 +226,9 @@ F3 解雇頁亦使用同一張 HD 民兵，保留原版黑底與選取文字。[
 
 人物頁主角已改為中國武將美男子，採束髮金冠、深色甲冑與紅披風，保持原版肖像位置及人物資料。來源、限定對拍與存退讀見 [004 的武將肖像更新](docs/spec/004-hd-bitmap-presentation.md#主角武將肖像更新)。已有本機 r23 與規格所列原圖／生成紀錄後，用 `bash tools/player.sh hero-redesign-assets <新名稱>` 建立新組；肖像原圖留本機。
 
-攻城背景使用 `bash tools/player.sh palace-assets <新名稱> [基底名稱]` 匯入，預設基底 r46；需要已記錄的本機手繪圖、完整提示與固定原版。現行本機圖像組為 `workplace/player/assets-painted-r47`，以前端 `-assets` 選用。原 `workplace/player/assets` 保留純字型基底。攻城背景與山谷背景各自驗證、各自回退，契約及核對入口見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。
+友軍矮人鏡射使用 `bash tools/player.sh friendly-man21-assets <新名稱> [基底名稱]` 匯入，預設基底r47。只加固定對應清單，不複製新PNG；四姿勢整組驗證，失敗保留原向與軍隊頁圖像。[契約與驗收](docs/spec/042-friendly-man21-battle-poses.md#正式接入與限定驗收)不改部隊或AI規則。
+
+攻城背景使用 `bash tools/player.sh palace-assets <新名稱> [基底名稱]` 匯入，預設基底 r46；需要已記錄的本機手繪圖、完整提示與固定原版。現行本機圖像組為 `workplace/player/assets-painted-r48`，以前端 `-assets` 選用。原 `workplace/player/assets` 保留純字型基底。攻城背景與山谷背景各自驗證、各自回退，契約及核對入口見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。
 
 視窗支援原版戰鬥的 V 與左右 Ctrl，兵力及撤退結果沿用 Noto；結果訊息需由玩家普通按鍵關閉。正常遭遇、撤退、結果關閉及後續存退讀範圍見 [020](docs/spec/020-battle-result-presentation.md)。驗證時可在 `save-cycle` 另設 `EIGHTSWORD_GUI_BATTLE_CHECK=1`。[手繪戰場背景](docs/spec/021-battle-background-pages.md)以[完整幀與返回點快取](docs/spec/022-battle-bitmap-transactions.md)避免呈現尚未寫完的平面；首組敵方部隊 MAN16 的四筆圖像亦已接入，正常呈現、Noto、故障、隔離及存退讀範圍見 [023](docs/spec/023-battle-man16-actors.md)。其餘部隊與戰鬥美術仍依 [019](docs/spec/019-normal-encounter-battle-presentation.md)接續。
 

@@ -181,6 +181,10 @@ func (g *Graphics) beginSource(kind int, background bool) {
 	if background && id == 85 && g.assets.BattleActors[battleMilitiaID] {
 		id = battleMilitiaID
 	}
+	// Spec 042: keep F2's global source at 150; only battle uses 152.
+	if background && id == 150 && g.assets.BattleActors[152] {
+		id = 152
+	}
 	effectSource := id
 	if id != 0 {
 		g.Stats.SourceMatches++
