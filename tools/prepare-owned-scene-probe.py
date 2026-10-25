@@ -16,10 +16,13 @@ def main():
     parser.add_argument('--modal-menus', action='store_true', help='研究GUI的存前路徑追加F2至F6取消抽樣')
     parser.add_argument('--main-menu', action='store_true', help='無頭探針停在主選單，由普通命令繼續；GUI追加音樂與取消確認抽樣')
     parser.add_argument('--build', action='store_true', help='在固定Go Docker內編譯並保存全部私有來源與程式雜湊')
+    parser.add_argument('--intro', action='store_true', help='研究版接PREDELLA來源場景；須搭配--gui以提供診斷Frame參考')
+    parser.add_argument('--natural-intro', action='store_true', help='無頭探針與研究視窗等待開場自然結束，不按Escape')
     args = parser.parse_args()
     root, out = args.project, args.out
     assert os.getuid() == 1000
     assert not args.modal_menus or args.gui
+    assert not args.intro or args.gui
     assert root.is_dir() and not out.exists()
     assert out.parent.stat().st_uid == root.stat().st_uid == 1000
     seed = root / 'workplace/probe-20261023/graphics-first/battle-r1/friendly21-validation-build-r2/src'
@@ -37,6 +40,10 @@ def main():
     data = (root / 'tools/research-owned-scene.go').read_text()
     assert data.startswith('//go:build ignore\n')
     (source / 'internal/eightsword/research_owned_scene.go').write_text(data.replace('//go:build ignore\n', '', 1))
+    if args.intro:
+        data = (root/'tools/research-owned-intro.go').read_text()
+        assert data.startswith('//go:build ignore\n')
+        (source/'internal/eightsword/research_owned_intro.go').write_text(data.replace('//go:build ignore\n', '', 1))
     probe = (seed / 'tools/probe-friendly.go').read_text()
     probe = probe.replace('install := func() { installMap(); installBattle(); installPalace() }',
                           'installOwned, ownedFrame, finishOwned := e.ResearchOwnedScene(*out)\n'
@@ -45,6 +52,12 @@ def main():
     probe = probe.replace('im := e.Frame()', 'im := e.Frame()\n\t\tif own:=ownedFrame();own!=nil {im=own}')
     probe = probe.replace('write("-hd", e.Frame())',
                           'write("-hd", e.Frame())\n\t\twrite("-owned", ownedFrame())')
+    if args.intro:
+        probe = probe.replace('e.ResearchOwnedScene(*out)', 'e.ResearchOwnedEverything(*out)')
+    if args.natural_intro:
+        marker='\tadvance(3000)\n\tpress(1, 100, 100)\n\twait("main-menu")'
+        assert probe.count(marker)==1
+        probe=probe.replace(marker,'\tfor i:=0;e.Tracker.VisibleScene!="main-menu" && i<10000;i++ {advance(10)}\n\twait("main-menu")')
     if args.main_menu:
         start = probe.index('\tif *gameSave == "" {', probe.index('\twait("main-menu")'))
         end = probe.index('\treply("ready")', start)
@@ -59,6 +72,10 @@ def main():
             dest.write_bytes(p.read_bytes())
             hashes[str(p.relative_to(root))] = hashlib.sha256(p.read_bytes()).hexdigest()
         gui_driver = (root / 'tools/gui-check.go').read_text()
+        if args.natural_intro:
+            marker = '\tif *flow != "story" && *flow != "captions" && !*showHeroine && !*showMuseum {\n\t\td.press(9)\n\t} // 原版 Esc，未直接進入 PAM。'
+            assert gui_driver.count(marker) == 1
+            gui_driver = gui_driver.replace(marker, '\td.wait("研究開場自然結束", 300, func(s map[string]any) bool { return s["presented_scene"] == "main-menu" })')
         if args.modal_menus:
             marker = '\tif *flow == "menus" {\n\t\t// Fixed new-game pages'
             assert gui_driver.count(marker) == 1
@@ -114,6 +131,8 @@ def main():
                                 '\tresearchOwnedInstall func()\n'
                                 '\tresearchOwnedRender func()*image.RGBA\n'
                                 '\tresearchOwnedClose func()error\n')
+        if args.intro:
+            engine=engine.replace('type Engine struct {','type Engine struct {\n\tresearchOwnedReference *image.RGBA\n')
         engine = engine.replace('\te.syncPresentationObservers()\n\treturn e, nil',
                                 '\te.syncPresentationObservers()\n'
                                 '\tif dir:=os.Getenv("EIGHTSWORD_RESEARCH_OWNED");dir!="" {\n'
@@ -127,6 +146,10 @@ def main():
         engine = engine.replace('func (e *Engine) Frame() *image.RGBA {',
                                 'func (e *Engine) Frame() (result *image.RGBA) {\n'
                                 '\tif e.researchOwnedRender!=nil {defer func(){if own:=e.researchOwnedRender();own!=nil {result=own}}()}')
+        if args.intro:
+            engine=engine.replace('e.ResearchOwnedScene(dir)','e.ResearchOwnedEverything(dir)')
+            engine=engine.replace('if e.researchOwnedRender!=nil {defer func(){if own:=e.researchOwnedRender();own!=nil {result=own}}()}',
+                'defer func(){e.researchOwnedReference=result;if e.researchOwnedRender!=nil {if own:=e.researchOwnedRender();own!=nil {result=own}}}()')
         assert engine.count('e.researchOwnedInstall()') == 2
         path.write_text(engine)
     (out / 'source-inputs.json').write_text(json.dumps(hashes, indent=2) + '\n')
@@ -159,6 +182,8 @@ quit
                         source/'tools/probe-owned.go']
         if args.gui:
             format_paths.append(source/'tools/gui-check.go')
+        if args.intro:
+            format_paths.append(source/'internal/eightsword/research_owned_intro.go')
         subprocess.run(['gofmt', '-w', *map(str, format_paths)], check=True, timeout=30)
         targets = [('probe', './tools/probe-owned.go')]
         if args.gui:

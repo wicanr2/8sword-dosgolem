@@ -25,7 +25,9 @@ source = Path('/source/PREDELLA-runtime-analysis.exe') if intro else Path('/game
 database = Path('/source/PREDELLA-runtime.i64') if intro else Path('/source/PAM.i64')
 revision = os.environ.get('EIGHTSWORD_IDA_GRAPHICS_REV', 'r2')
 assert revision in ('r2', 'r3', 'r4', 'r5', 'r6', 'r7', 'r8')
-slug = 'intro-graphics-inventory-r1' if intro else 'graphics-inventory-' + revision
+intro_revision = os.environ.get('EIGHTSWORD_IDA_INTRO_REV', 'r1')
+assert intro_revision in ('r1', 'r2', 'r3')
+slug = 'intro-graphics-inventory-' + intro_revision if intro else 'graphics-inventory-' + revision
 report = dict(schema='8sword-graphics-inventory-ida-r1', tool='IDA ' + idaapi.get_kernel_version(),
               uid=os.getuid(), source_file='PAM.AY', source_sha256=sha(source), database_sha256=sha(database),
               function_count=len(list(idautils.Functions())),
@@ -67,6 +69,11 @@ for match in pattern.finditer(raw):
 queries = [] if intro else [0x24112, 0x24246, 0x2438f, 0x245bc, 0x2495e,
                             0x171ab, 0x17266, 0x17d02, 0x13eae, 0x13ebf, 0x11f5b,
                             0x175c6, 0x1844c, 0x24c14, 0x24c58]
+if intro and intro_revision in ('r2','r3'):
+    queries = [0x576a, 0x52c0, 0x5b0c, 0x510b, 0x517e, 0x5d76, 0x5d9c,
+               0x58b1, 0x6258, 0x5954, 0x583e, 0xa3d0, 0xa450]
+if intro and intro_revision == 'r3':
+    queries += [0x4c74, 0x5910, 0x5d50, 0xa451]
 if not intro and revision in ('r3','r4','r5','r6','r7','r8'):
     queries += [0x13c18,0x13d74,0x11f60,0x268aa,0x26b1f]
 if not intro and revision in ('r4','r5','r6','r7','r8'):

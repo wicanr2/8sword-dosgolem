@@ -1572,3 +1572,27 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 真正GUI `owned-main-save-r1`為278／84 Draw、35／8變化幀；36／5交易中各三份中央完整畫面保持，十種／四種首次完成場景分別逐像素連回Draw。兩接觸表、音樂目錄及取消主選單已看。F7真正人物檔同零步冷讀RAM，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，read13012447、DOS退出0。來源、場景、串流及存讀核對合於`battle-r1/owned-main-audit-r1.json`。
 
 下一個未完成依賴已確認：正式`intro_title.go`在publisher開始可呼叫`introNativeFrame`，開場其他Compose亦接收原版底圖。PAM的自有場景不能據此外推PREDELLA已接管；後續須從既有已驗開場來源命令建立自有狀態，不重製或重驗相同美術。047仍DRAFT，正式r48不變。
+
+### PREDELLA來源命令與自有開場場景
+
+已證實：IDA Pro 9.4在既有非root隔離映像中讀取唯讀DB副本，追加`graphics-first/ida-intro-graphics-inventory-r2.json`與`r3.json`。輸出SHA分別為`72405b4e80793450fa4356992fa53baa57f107a67457b2acb70c1dc555cfa461`、`61392cc4073c8caf4d68a4fece0b76147306dbcfc10f56440a06f3c7eafc96c8`。185函式、原名及來源／DB保持。
+
+| 輸入或定位 | 證據與邊界 |
+|---|---|
+| 分析輸入 | `music-first/intro-events-r1/PREDELLA-runtime-analysis.exe`，SHA `28dbc38d4ef65326ee281b684bf3a7a304ea41c00bfc00410076bce31b1b247a` |
+| 原DB | 同目錄`PREDELLA-runtime.i64`，SHA `dccb45c43ec22165a50422e6dbb46bf0c9f8ce7005c570000b29b8f296614616` |
+| 位址基準 | IDA以`-b110`映射解包後runtime-linear。下列數字均為此線性位址，與dosgolem實體線性相同。分析wrapper檔案偏移為`32 + linear - 0x1100`，不是原始壓縮EXE的偏移 |
+| 576A→583D、52C0→53F3 | 四平面不透明圖及六平面遮罩圖，參數為來源遠指標、byte橫座標與列；第六平面是mask，第五平面不作alpha |
+| 5B0C→5B42、510B→513F、517E→51B2 | 依D20A平面遮罩清頁，及A000／A400背景頁完整複製；自有場景同步複製像素、字格及館景metadata |
+| 58B1→590F、4C74→4DD3、5954→5A53 | 整串交易、16×15中文字、8×15 ASCII；D20A／D20B為前景／背景，D208目的頁，D202顯示分支。6258為解碼器，不能當繪字入口 |
+| A3D0→A450、A451→A49E內A486 | 彩圖前導及逐點store。從6000:0000讀768-byte色盤及64000來源點，A633的3200-byte表決定揭圖順序。命令保留SI位置及來源色值，視訊寫入metadata只確認該store已執行，不提供繪圖像素 |
+
+已證實：固定dosgolem的`oracle/run.go` SHA `5a1b5dcc799bf2cd67a189a739addc5bde9b1faea6a144a1dc3380d739ea97eb`，在`Machine.Step()`前觸發OnCall。`internal/machine/machine.go` SHA `4b52b42007485e2b464bc47ada00146186ad6f88379af03be397cb051d677f6c`，Step可先派送IRQ，再執行當前CPU指令。因此同一A486來源命令可在ISR返回後再次觸發，步數不同但SI／AX／ES／DS／BX／SP／SS相同。r17提前提交來源點而失敗；r19雖延至store完成，仍錯用相同步數去重。r20改依尚未完成命令與完整來源運算元去重，觀測15次重入，前八次收據均相隔13步，64000命令各只提交一次。未修改客體或核心，也未深挖ISR硬體時序。
+
+研究呈現器`renderOwnedIntro`只收自有場景及不可變資產。圖像、字模及背景頁由來源命令生成，Noto直接依字格所有權繪製。館景重用純圖層合成，沒有Oracle或舊Frame參數。原版`Screen()`及舊HD圖只供診斷比較，不能回流為呈現輸入。既有批准美術與正式r48不變。
+
+勘誤：r20完整自然重播的最後兩次同模式設定誤將前導標記帶回，`prelude-handoff`完整圖有2303980差異像素。前17份完成圖同值，仍不足以驗收整段交接；r20保留作負對照。r22將保留條件限於舊場景確為13h前導、64000點完成且新模式為0Eh，後續同模式清頁不重啟前導。GUI r1在發現此問題後停止，不作通過證據。
+
+已證實：`battle-r1/owned-intro-audit-r1.json`通過。r22正常自然開場、新遊戲、F1與返回共561幀、561次Frame純度核對。219圖、1054字、893串、五次頁面複製、三次清頁及64000個揭圖點；116次自有原生像素核對零差異，17份完成HD圖各2304000像素同既有完成呈現。圖形模式425次開場及115次PAM來源場景，回退24次僅限03h啟動文字。state SHA `cfcaf70329a52fb9f5418d3daef8e066dbfdddd0bc01baa30e3f109ac3310b2e`、PCM SHA `347e9bdfd04beed81e9ca64068ecac663f900718e1d4ae27308257b5ff19a2b8`及31工作檔與停用開場來源掛點的r19控制同值。兩側探針、Engine包裝、PAM來源與正式輸入雜湊相同，沒有重跑控制組。RND未知，只證明呈現隔離。
+
+真正GUI `owned-intro-save-r2`兩次完整自然開場與正常存退冷讀為665／499 Draw、206／193變化幀。各164次自有原生核對零差異，各17份完成擷取同既有HD，各13份連回實際Draw。其他首次PNG沒有實際Draw同值取樣，不能外推已顯示。已抽看存前第1／3／4及冷讀第4接觸表，三字型、音樂目錄、新遊戲取消、人物頁及F7正常。2987 bytes同零步檢視RAM，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`、read70209967、DOS退出0；3158差異像素限主角動畫區，不宣稱整幀相同。047仍DRAFT，正式r48未切換，提早Escape、其他對話框、施法及未知／故障契約仍待補。

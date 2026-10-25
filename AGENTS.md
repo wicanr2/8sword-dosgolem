@@ -8,6 +8,10 @@
 
 [主選單交接核對器](tools/audit-owned-main-menu.py)在固定Pillow容器核對主選單、新遊戲取消／開始、音樂欣賞、側選單及地圖重畫。使用`--project`與`--out`。隔離準備器的`--main-menu`讓無頭探針停在主選單；搭配`--gui`只在私有GUI追加音樂與取消確認。`--build`限Go1.24.13的既有Docker內使用，需唯讀`/dosgolem`及可寫`GOCACHE`／`GOMODCACHE`，輸出完整私有來源與程式雜湊；不在主機編譯。範圍與收據見047，PREDELLA仍待接管。
 
+[開場來源場景研究](tools/research-owned-intro.go)是047的DRAFT探針；準備器加`--intro --gui --natural-intro --build`建立私有場景與診斷參考，普通輸入等待開場結束。`EIGHTSWORD_RESEARCH_INTRO_CONTROL=1`只供同建置的舊呈現控制組；來源命令、原生像素比較與研究限制另存既有workplace，不將原版畫面送入自有呈現器。
+
+[開場場景核對器](tools/audit-owned-intro.py)在Pillow Docker核對自然開場、來源命令、完成圖、實際Draw、客體隔離與真正存退讀；用法為`--project /project --out <既有研究目錄內的新JSON路徑>`。只驗本機047研究副本，不代表正式切換或全遊戲完成。
+
 全圖形素材與載入線索由[IDA素材索引匯出](tools/export-graphics-inventory-ida.py)核對，結果與限制追加於RESEARCH-LOG。正式PAM.i64及來源唯讀，僅在容器/tmp副本查詢。IDA技能的可用原始入口為`/home/anr2/ida_94_official/skills/use-ida-pro-9-4/SKILL.md`；先讀該專案README與knowledge-base/ida-94-tools.md，沿用已驗py312-v1映像，不因安裝副本缺失另建工具鏈。
 
 [全圖形盤點與圖集](tools/catalog-all-graphics.py)在固定Pillow容器解碼來源、記錄全部檔案與未分類項，並產生26份MAN／104記錄與其他圖像總覽。盤點不等於HD完成或正常路徑驗收；來源檔與完整解碼素材留既有workplace研究區。
