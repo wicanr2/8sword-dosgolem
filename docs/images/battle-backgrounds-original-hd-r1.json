@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "spec": "050",
+  "status": "registered-asset-overview-not-natural-combat-screenshots",
+  "image": "battle-backgrounds-original-hd-r1.png",
+  "image_sha256": "33cbcea261c53438bbb802d4cf2e6db67c2ebb3910c811174dfb2d4c11feb8f1",
+  "registered_color_backgrounds": 5,
+  "groups": [
+    {
+      "number": 3,
+      "manifest_sha256": "ce5e0a0f70684f58c4c84182bf211a0e776b0a5778cd8fe994e5cab2a7af8767",
+      "config": {
+        "schema": 1,
+        "source_file": "GRO03.EG",
+        "source_sha256": "aa86e444c75e3daad0a4591ca98fa9e68f871dbc5fbc0e632a1014936164a067",
+        "native_sha256": "e3361d72f32e0c5b4de129fc061dfc7b69fbf2df35692bd20abc2acdc66b7b4d",
+        "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+        "style": "B-bright-painted-r1",
+        "style_reference_sha256": "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6",
+        "image": {
+          "source_index": 843,
+          "file": "gro03-hd-r1.png",
+          "sha256": "973360089af5767c829e4f154cabe17191507ff26141549adc2790e2d7a1e68b",
+          "width": 1586,
+          "height": 992,
+          "sampling": "bitmap"
+        },
+        "prompt_file": "gro03-hd-r1.prompt.txt",
+        "prompt_sha256": "adbe2f46fba066a4b81e4a813832c3a767a4c644163a770e7fefab7903abfebb",
+        "cache_sha256": "5c5f6c89d9def03d0cc78ddf229ec0905f6ac0eb0ef29eff0d521ca794bd42d2"
+      }
+    },
+    {
+      "number": 4,
+      "manifest_sha256": "dc653e132a4a2994b30f9c14e7ea14d3f729a63851b7597144683b2422fe5539",
+      "config": {
+        "schema": 1,
+        "source_file": "GRO04.EG",
+        "source_sha256": "f308fe3d711996673d0012daec158383ccf1a86cf9ed0d78779d551e1cd8c9d9",
+        "native_sha256": "c5499a5b60c3fae44a732faf771f84a8b1cb10018a0277e96e3b489a2bf76790",
+        "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+        "style": "B-bright-painted-r1",
+        "style_reference_sha256": "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6",
+        "image": {
+          "source_index": 844,
+          "file": "gro04-hd-r1.png",
+          "sha256": "e2c8d6ca306125befd983a2312453e90168fc92230dd76597d693609147c00e3",
+          "width": 1586,
+          "height": 992,
+          "sampling": "bitmap"
+        },
+        "prompt_file": "gro04-hd-r1.prompt.txt",
+        "prompt_sha256": "101d3f12ac62d0cdecc9d0cb88308130b4a9a46c83c5a3c52647ddeeb79ac533",
+        "cache_sha256": "dba78458172c30155a25663c01097cdaa6b122b7afac4d2e81c06a73d207b051"
+      }
+    },
+    {
+      "number": 5,
+      "manifest_sha256": "308f9e66fc3954086045c4ecc04de836168ba19311b354535f0f70d8ba0b911c",
+      "config": {
+        "schema": 1,
+        "source_file": "GRO05.EG",
+        "source_sha256": "85a48e6b0a46d0b9f267634295982afca639828b09f6abb4fb13bb583c8f9626",
+        "native_sha256": "27d43c2e1aa3cbd08b9bfea555c5378d72ecb841566c81c97c73fe4a351e9d6e",
+        "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+        "style": "B-bright-painted-r1",
+        "style_reference_sha256": "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6",
+        "image": {
+          "source_index": 845,
+          "file": "gro05-hd-r1.png",
+          "sha256": "2a21f55d78716feed8fc31fa15ee658a15e34904c871763c0cb0ad49fa68b2a3",
+          "width": 1586,
+          "height": 992,
+          "sampling": "bitmap"
+        },
+        "prompt_file": "gro05-hd-r1.prompt.txt",
+        "prompt_sha256": "59d3a3751188f37477555f26fa1c6e85fb7b6678a0bffeb1776146d67301c6d4",
+        "cache_sha256": "ef08c3fec90aced4e586612e279ef70a9423c5ec4f788d01b812f502846854bf"
+      }
+    }
+  ],
+  "existing_backgrounds": [
+    "GRO01.EG",
+    "GRO02.EG"
+  ],
+  "registration_sha256": "5d6e86061e30a01c32bfdda8538a1f4ee9ce38aa5e1e67ebba2fe5734c6a80c8",
+  "audit_sha256": "5d257a75d87e40b3efa4b997848d3a6413d00c2e5757c4748da6c7eb5020083f",
+  "promotion_sha256": "59966b0136c8bddf7e7b539206509661e9650d7e8894fb3f7fdb01ccc0b33b52",
+  "tool_sha256": "9b11cdbdaea33840b0eaaddc4cc19aa1f2e2919732d07dadb326134cbbc233da",
+  "rights": "user-requested compact comparison in existing private repository only; full assets stay local"
+}

@@ -7,7 +7,7 @@ import (
 )
 
 // Spec 022: presentation can retain a complete frame while DOS continues.
-// Only a verified GRO02/GRO01-backed rectangle is eligible. Native fallback groups
+// Only a verified 021/046/050 background rectangle is eligible. Native fallback groups
 // and the existing map/army paths do not acquire this transaction.
 type battleBitmapTransaction struct {
 	Entry, Writer uint16

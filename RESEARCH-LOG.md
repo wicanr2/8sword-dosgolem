@@ -1826,3 +1826,15 @@ hd-music-batch-audit-r1.json SHA `8fde615ca253f248121d7c028e5d2502b74cde0eec080d
 受控測試先走普通啟動／新遊戲／F1／F2，再於可丟棄RAM `8000:0000`放64004-byte背景或六平面來源，明示DS=`0AA8`及`DS:7484`、`DS:748A`、`14D2:0196`。真正背景`14D2:099C`、透明繪圖`14D2:04F2`均為dosgolem執行期段位址，沿既有037／048定位；沒有修改原始EXE或DB。兩側完整客體保持，結束後原RAM／DS／欄位逐項恢復。原DS、欄位數值及緩衝SHA保存在encounters-controlled-r2/receipt.json。
 
 第5／8／9筆兩向、13／25高度十二案，27648000像素完整Frame同獨立PythonPNG取樣與背景模型，Frame客體保持，直接計畫830、舊合成器0。encounters-runtime-audit-r1.json SHA `762dc84b3f321901b09399b7af65adbf50156a284656ab5edb1911d471923192`；提升收據SHA `3dedfc198f37c7a916b84aa04f53f67bdaf9948bb7e425fd71e6a95684f2f260`。這些只證明受控呈現及資料登錄，不宣稱自然遭遇、戰鬥規則、RNG或整體HD。正常GUI／真正存讀沿047／048既有收據分開保存，本輪沒有重複相同玩家路徑。
+
+## 2026-10-26：GRO03至05全幅背景與受控還原
+
+入口：[050](docs/spec/050-battle-background-batch.md)、[固定來源載入器](internal/eightsword/battle_background_batch.go)、[獨立核對與提升](tools/finish-battle-background-batch.py)。工具為固定Pillow11.3.0、Go1.24.13與原有Huffman decoder，沒有新增IDA語意。來源定位為GRO03.EG、GRO04.EG、GRO05.EG各自解碼偏移0，64004 bytes，四平面80-byte寬、200高。
+
+已證實：三份解碼SHA依序為`e3361d72f32e0c5b4de129fc061dfc7b69fbf2df35692bd20abc2acdc66b7b4d`、`c5499a5b60c3fae44a732faf771f84a8b1cb10018a0277e96e3b489a2bf76790`、`27d43c2e1aa3cbd08b9bfea555c5378d72ecb841566c81c97c73fe4a351e9d6e`。壓縮輸入SHA同158檔盤點並固定於載入器；來源與解碼圖均逐檔核對。三份新PNG由內建image_gen依原圖及已選GRO02風格參考生成，各1586×992且全不透明，完整提示與兩參考SHA留battle-backgrounds-batch-r1。紅岩／森林／海面只描述可見造型，不推論原版地形選擇條件。
+
+READY審查收據battle-backgrounds-registration-r1/registration.json SHA `5d6e86061e30a01c32bfdda8538a1f4ee9ce38aa5e1e67ebba2fe5734c6a80c8`。三份1920×1200快取由獨立Python取樣，各9216000 bytes，Go載入器逐byte相同。每組固定來源、清單、PNG、提示與快取後才提交，七種缺失／故障抽樣不留下部分材質。
+
+受控RAM與位址沿049：`8000:0000`為來源緩衝，DS=`0AA8`，明示`DS:7484`、`DS:748A`、`14D2:0196`，呼叫真正`14D2:099C`全幅、`14D2:0626`透明兵與`14D2:0423`還原。這些為dosgolem執行期段位址，不與IDA線性混用。先走普通啟動／新遊戲／F1／F2，配對客體及PCM同值；受控三背景各空景／部隊／還原共九案，20736000像素完整Frame同獨立模型，Frame純讀、兩側客體同值，RAM／DS／欄位逐項恢復。直接計畫830次、舊合成器0。
+
+統一核對SHA `5d257a75d87e40b3efa4b997848d3a6413d00c2e5757c4748da6c7eb5020083f`，提升收據SHA `59966b0136c8bddf7e7b539206509661e9650d7e8894fb3f7fdb01ccc0b33b52`。正式r51／377檔保留367舊檔，133來源及七程式已提升，核心保持。結論限五幅彩色背景登錄及代表受控呈現，不宣稱自然戰鬥、地形規則、H單色新模式、新GUI／存讀或整體HD完成。

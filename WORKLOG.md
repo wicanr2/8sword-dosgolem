@@ -1458,3 +1458,15 @@ hd-music-batch-audit-r1.json獨立解析實際MIDI，6680筆旋律訊息與三�
 encounters-runtime-audit-r1.json與encounters-promotion-r1.json通過。正式七程式來自source-candidate-encounters-r1，上一組source-candidate-r4／129輸入與七程式保持，核心仍runtime-direct-r1。049限定CONFORMED，038舊逐隻GUI閘門明示由本次使用者授權取代。047／048原有GUI與存讀收據只作共用機制證據，本輪不聲稱新GUI、自然遇敵、規則或RNG對拍。README收十四筆縮小原版／HD總覽與來源，完整原圖／提示留本機。九曲音樂候選仍待回覆，批准後須以r50合併，不能覆蓋回舊354檔圖像組。
 
 收尾encounters-final-integrity-r1.json通過131來源、七現行／七舊程式、367正式素材與344保留檔、158原版、919核心、四份生成圖／提示及1284本機連結。五份Python語法與Docker內bash語法通過，沒有root-owned檔案或偽md目錄。本案容器均已結束移除，沿用既有映像。候選與正式組中逐byte相同的檔案改共用硬連結；首輪在r1獨有清單停止，補足保留差異後完成，沒有刪圖、來源或收據。後一輪已確認釋放269463168 bytes，前一輪釋放量不列入。主機gh認證與PRIVATE倉庫已核對，提交並推送十八份明列程式／文件／縮小總覽至既有origin/main，遠端以push後回讀核對。
+
+## 2026-10-26：補齊其餘三幅彩色戰場背景
+
+上一輪十四筆遭遇圖已接入並推送，這輪轉向README明列未完成的GRO03至05。載入現況、復古重製與圖片生成入口，沿固定Pillow11.3.0、Go1.24.13及runtime-direct-r1。先由完整圖形盤點核對來源與既有Huffman解碼，產生640×400原版顯示參考；050先DRAFT，沒有新增IDA分析或等待自然地形。
+
+內建image_gen各畫一張紅岩原野、林間空地與海面，保留原版構圖及主要配色。三張1586×992原始不透明PNG、完整實際提示、參考與SHA收據留battle-backgrounds-batch-r1。GRO01／02已選圖不重畫。五幅原版／HD總覽已看，來源與三份獨立1920×1200快取核對後審查050為READY，再實作三個可選載入組。候選377檔以不可變硬連結保留367舊檔，沒有再複製整組。
+
+四項父測試、七種缺失／故障與既有兩背景資格回歸58.710秒通過，go vet與七程式建置通過。材質844至846只接固定完整來源，缺失或損壞單組回退；混合、越界或沒有快取的背景被拒絕。正常啟動／新遊戲／F1／F2逐段完整客體與PCM保持，再於可丟棄RAM呼叫真正背景、MAN02透明兵及還原。三背景各空景／部隊／還原共九案20736000像素，完整Frame同獨立Python模型，Frame純讀、兩側完整客體相同；直接計畫830、舊合成器0。原DS、欄位與64004-byte緩衝保存並逐項恢復。林間持刀兵完整畫面已抽看。
+
+battle-backgrounds-runtime-audit-r1.json與promotion-r1通過後，提升正式r51／377檔及source-candidate-backgrounds-r1／133輸入的七程式；上一組source-candidate-encounters-r1／131輸入與七程式保持。050限定CONFORMED，五幅彩色背景都已登錄。H單色來源、自然地形選擇、新GUI／存讀及整體HD不外推；既有047／048正常GUI與真正存讀收據分開保留，不重複逐地形等待。README收五幅縮小總覽與來源，完整PNG與原版不入Git。九曲音樂仍待使用者確認，須在r51合併，不能覆蓋回舊素材組。
+
+收尾battle-backgrounds-final-integrity-r1.json通過133來源、七現行／七舊程式、377素材／367保留檔、158原版、919核心、三份生成圖與提示及1302本機連結。三份Python工具與Docker內bash語法通過，沒有root-owned檔案或偽md目錄；本案容器均已結束移除，未新增映像。新候選與正式組共用不可變硬連結，保留全部舊輸入與收據。主機gh認證及PRIVATE倉庫已核對，僅提交十七份明列程式／文件／縮小總覽，推送既有origin/main後回讀遠端SHA核對。

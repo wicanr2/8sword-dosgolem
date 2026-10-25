@@ -1,5 +1,12 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+其餘三幅彩色戰場背景沿[050](docs/spec/050-battle-background-batch.md)。[來源與提示準備器](tools/prepare-battle-background-batch.py)在固定Pillow容器用`--project`唯讀專案及`--out`新研究目錄，核對GRO03至05、解碼／顯示比例及已選GRO02風格參考。完整PNG與提示留既有battle-r1研究區，不重畫GRO01／02，不以受控背景呈現冒稱自然戰鬥。
+[背景批次保存與匯入](tools/import-battle-background-batch.py)在同一Pillow容器以`save --project --batch --number --image`保存原始生成PNG及提示來源收據；以`prepare --project --batch --base <r50> --out <新候選> --review <新研究目錄>`產生三份獨立快取及五幅原版／HD總覽。原始PNG與既有素材不覆寫，相同基底可共用不可變硬連結。
+[其餘背景載入器](internal/eightsword/battle_background_batch.go)沿050 READY，三組獨立核對及回退；844至846只有固定來源可載入。既有背景資格檢查保留完整矩形、尺寸與遮擋契約，不改正式來源呈現器或CPU掛點。
+[背景批次測試](internal/eightsword/battle_background_batch_test.go)在既有Go容器以正式獨立核心執行`go test ./internal/eightsword -run '^TestBackgroundBatch'`。`EIGHTSWORD_TEST_BACKGROUNDS_ASSETS`、`EIGHTSWORD_TEST_BACKGROUNDS_BASE`、`EIGHTSWORD_TEST_BACKGROUNDS_CACHE`分別指定候選／r50／獨立快取，原版沿`EIGHTSWORD_TEST_ORIG`，受控輸出用新的`EIGHTSWORD_TEST_BACKGROUNDS_OUT`。抽驗完整背景、透明兵及原版還原；RAM逐項恢復，不稱自然戰鬥。
+[背景批次收尾工具](tools/finish-battle-background-batch.py)在Pillow容器依序用`audit --project --battle --out <新收據>`獨立重建全幅，`promote --player --audit --out <新提升收據>`保留舊版並加入r51，`overview --battle --audit --promotion --out <README圖像目錄>`只保存縮小五幅對照與清單。audit不改正式組，提升須先有完整通過收據。
+050已限定CONFORMED，正式r51／377檔、五幅彩色背景已登錄；新三幅空景／部隊／還原九案與RAM恢復已驗，不再逐地形等待戰鬥。重建使用`bash tools/player.sh battle-background-batch-assets <新名稱>`，固定從r50及已完成原圖建立新候選，不覆寫正式組。五份H單色變體仍屬原版來源，不稱新HD顯示模式。
+
 地圖遭遇批次圖片與接入契約見[049](docs/spec/049-map-encounter-batch.md)。沿十四筆ENEMY.AY與既有透明角色呈現，使用者允許代表抽驗及受控RAM，不逐隻等自然遭遇；圖片完成、候選登錄與正式提升分開記錄。
 單張生成結果以[遭遇圖保存工具](tools/save-encounter-hd-generation.py)在固定Pillow容器指定`--project`唯讀專案、`--out`既有研究目錄、`--image`唯讀生成PNG及`--request`實際提示／兩張參考JSON，保留原始PNG、完整提示與逐檔SHA，不覆寫既有圖。
 十四筆[候選準備工具](tools/prepare-hd-encounters.py)在同一Pillow容器使用`--project`、`--base` r49、`--batch` encounter-batch-r1、`--out`新候選、`--review`新研究目錄，產生兩向獨立快取與縮小對照。來源唯一性涵蓋全部十四筆、兩向與十三高度；總覽不冒稱自然遭遇。

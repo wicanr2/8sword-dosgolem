@@ -27,49 +27,50 @@ type Engine struct {
 	sourceFrames      uint64
 	sourceMetadata    sourceFrameMetadata
 
-	Oracle                   *oracle.Oracle
-	Tracker                  *Tracker
-	Assets                   *Assets
-	PAM                      []byte
-	HD                       bool
-	AssetError               string
-	GraphicsError            string
-	BattleBackgroundError    string
-	RecruitmentBuildingError string
-	MapEncounterError        string
-	MapEncounter10Error      string
-	MapEncounter7Error       string
-	MapEncounterBatchError   string
-	ArmyMan21Error           string
-	MapCastleError           string
-	MapChestError            string
-	MapLandmarkError         string
-	BattleActorError         string
-	BattleEffectError        string
-	BattleMarkerError        string
-	PaletteError             string
-	Exited                   bool
-	ExitCode                 uint8
-	PAMLoaded                bool
-	InputEvents              []InputEvent
-	Sound                    *oracle.Audio
-	Music                    *Music
-	Intro                    *IntroTitle
-	IntroError               string
-	Publisher                *IntroTitle
-	PublisherError           string
-	Story                    *IntroStory
-	StoryError               string
-	Captions                 *IntroCaptions
-	Heroine                  *IntroHeroine
-	HeroineError             string
-	Museum                   *IntroMuseum
-	MuseumError              string
-	fonts                    *fontChoices
-	FontError                string
-	presentationObservers    []*presentationSubscription
-	presentationDispatch     int
-	presentationSweep        bool
+	Oracle                     *oracle.Oracle
+	Tracker                    *Tracker
+	Assets                     *Assets
+	PAM                        []byte
+	HD                         bool
+	AssetError                 string
+	GraphicsError              string
+	BattleBackgroundError      string
+	BattleBackgroundBatchError string
+	RecruitmentBuildingError   string
+	MapEncounterError          string
+	MapEncounter10Error        string
+	MapEncounter7Error         string
+	MapEncounterBatchError     string
+	ArmyMan21Error             string
+	MapCastleError             string
+	MapChestError              string
+	MapLandmarkError           string
+	BattleActorError           string
+	BattleEffectError          string
+	BattleMarkerError          string
+	PaletteError               string
+	Exited                     bool
+	ExitCode                   uint8
+	PAMLoaded                  bool
+	InputEvents                []InputEvent
+	Sound                      *oracle.Audio
+	Music                      *Music
+	Intro                      *IntroTitle
+	IntroError                 string
+	Publisher                  *IntroTitle
+	PublisherError             string
+	Story                      *IntroStory
+	StoryError                 string
+	Captions                   *IntroCaptions
+	Heroine                    *IntroHeroine
+	HeroineError               string
+	Museum                     *IntroMuseum
+	MuseumError                string
+	fonts                      *fontChoices
+	FontError                  string
+	presentationObservers      []*presentationSubscription
+	presentationDispatch       int
+	presentationSweep          bool
 }
 type InputEvent struct {
 	Step  uint64
@@ -163,6 +164,9 @@ func Open(opt Options) (*Engine, error) {
 						}
 						if encounterErr := loadEncounterBatch(opt.Assets, opt.Root, art); encounterErr != nil {
 							e.MapEncounterBatchError = encounterErr.Error()
+						}
+						if backgroundErr := loadBattleBackgroundBatch(opt.Assets, opt.Root, art); backgroundErr != nil {
+							e.BattleBackgroundBatchError = backgroundErr.Error()
 						}
 						if armyErr := loadArmyMan21(opt.Assets, opt.Root, art); armyErr != nil {
 							e.ArmyMan21Error = armyErr.Error()
@@ -547,6 +551,7 @@ func (e *Engine) Status() map[string]any {
 	out["source_frame_kind"] = e.sourceMetadata.Kind
 	out["font_id"], out["font_name"], out["font_error"], out["font_choices"] = e.FontID(), e.FontName(), e.FontError, e.FontChoices()
 	out["battle_background_error"] = e.BattleBackgroundError
+	out["battle_background_batch_error"] = e.BattleBackgroundBatchError
 	out["recruitment_building_error"] = e.RecruitmentBuildingError
 	out["map_encounter_error"] = e.MapEncounterError
 	out["map_encounter_10_error"] = e.MapEncounter10Error

@@ -111,7 +111,7 @@ func (g *Graphics) battleBackgroundKnown(first uint32, width, height int) bool {
 		return false
 	}
 	id := g.owners[first*8].ID
-	if id != battleBackgroundID && id != battlePalaceID {
+	if !isBattleBackgroundMaterial(id) {
 		return false
 	}
 	m := g.assets.Materials[id]
