@@ -110,6 +110,12 @@ func Open(opt Options) (*Engine, error) {
 						if battleErr := loadBattleBackground(opt.Assets, opt.Root, art); battleErr != nil {
 							e.BattleBackgroundError = battleErr.Error()
 						}
+						if palaceErr := loadBattlePalaceBackground(opt.Assets, opt.Root, art); palaceErr != nil {
+							if e.BattleBackgroundError != "" {
+								e.BattleBackgroundError += "；"
+							}
+							e.BattleBackgroundError += "攻城背景: " + palaceErr.Error()
+						}
 						if actorErr := loadBattleActors(opt.Assets, opt.Root, art); actorErr != nil {
 							e.BattleActorError = actorErr.Error()
 						}

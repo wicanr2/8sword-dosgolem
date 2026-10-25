@@ -7,7 +7,7 @@ import (
 )
 
 // Spec 022: presentation can retain a complete frame while DOS continues.
-// Only a verified GRO02-backed rectangle is eligible. Native fallback groups
+// Only a verified GRO02/GRO01-backed rectangle is eligible. Native fallback groups
 // and the existing map/army paths do not acquire this transaction.
 type battleBitmapTransaction struct {
 	Entry, Writer uint16
@@ -41,17 +41,8 @@ func (g *Graphics) startBattleTransaction(entry uint16, first uint32, w, h int, 
 	if !ok || p.Width != 640 || p.Height != 200 || p.Start != 0 || p.Pitch != 80 || p.LineCompare < 199 || p.Palette != canonicalEGA {
 		return
 	}
-	m := g.assets.Materials[battleBackgroundID]
-	if m == nil || m.NativeWidth != 640 || m.NativeHeight != 200 {
+	if !g.battleBackgroundKnown(first+0x4000, w*8, h) {
 		return
-	}
-	for y := 0; y < h; y++ {
-		for x := 0; x < w*8; x++ {
-			c := g.owners[(first+0x4000+uint32(y*80+x/8))*8+uint32(x%8)]
-			if c.ID != battleBackgroundID || c.Local >= 640*200 {
-				return
-			}
-		}
 	}
 	writer, want := uint16(0), uint64(w*h*4)
 	switch entry {

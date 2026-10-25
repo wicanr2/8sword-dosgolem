@@ -1477,3 +1477,17 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 - 已證實：三字型人物頁及F7保存退出均循正常命令；本輪未新增GUI實際Draw或冷讀收據。`gro01-background-audit-r3.json` 保存完整建置archive、Go1.24.13、Python3.13.15、Pillow11.3.0與驗證器SHA。首輪核對器遇容器掛載路徑錯誤，改由原民兵PNG獨立取樣，未改遊戲、圖像或預期像素。
 
 046已READY，只授權151背景組與必要的同一背景矩形檢查。正常正式新／舊／真壞、GUI及存退冷讀尚未完成；042四筆鏡射的嚴格載入契約仍DRAFT。下一步回正式接入，不重做同一來源、兩頁或手繪圖；整體HD仍未完成。
+
+## GRO01正式背景與存退冷讀
+
+入口：[046正式接入與限定驗收](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)、[獨立呈現核對器](tools/audit-palace-runtime.py)、[README比較圖重生](tools/prepare-readme-palace-overview.py)。本節只記本次正式範圍，前輪原型與來源結論保留。
+
+- 已證實：原 `GRO01.EG` SHA `4e5c5c6569cc6fc9f1e585b7048c099228f787da041d46ded685e034b7594103`、PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`保持。Go1.24.13、Pillow11.3.0及八檔核心固定。IDA／檔案／執行期定位沿046，不新增推測性名稱。
+- 已證實：正式無頭新／舊／真壞各595幀、44命令，從相同真正43,54三件存檔普通繼續。完整state `567c738f7ffa8e3ac8a4acf947da5acbd557fcf4452a87a3dc906e53ab892709`、PCM `7c28b1bab9666a1cca729adccca3fb1a1b68bb1571d3db7ffb2c91901d888e39`及32工作檔、輸入／檔案／音樂／原版文字事件相同。106變化幀只在攻城期間；真壞PNG全串流同舊素材。
+- 已證實：三張兵力Frame ordinal389／390／391，step57071990，圖層無待完成交易。獨立取樣原PNG、16舊部隊快取、民兵、原生色碼、所有權及字型墨點，三張各2304000像素相同。原full-07-battle-ready在pending交易期間，保留但排除當前圖層重建，沒有改等待或期望圖湊過。
+- 已證實：正常GUI `palace-save-r3` 的完整GRO01來源於 dosgolem runtime `14D2:099C` step26078433進入，step26085096從 `14D2:0A6F`返回。212 ABI bytes及64004來源相符，來源／A000返回／第一筆部隊前A000與A400皆全頁相同。GUI Draw106／110／115，step30284380／30853581／31705183各全幅2304000像素同獨立模型，陰陽來源110／109／108原生底色沿原六平面重建；連回實際錄製串流。
+- 已證實：GUI戰場切Noto／教育部隸書／草書，F1亦取得三字型中文字畫面。V／Ctrl、撤退結果、F2兩次往返及F7存退冷讀完成。真正人物檔2987 bytes與存後／冷讀RAM均 `b894cb5ec5cc37721f8b83a049d4492e2866242e207421d1c145f228d86afe2e`，冷讀step15012406，DOS退出0。MAP02存後SHA為 `3a8c05deda60cc3b8d787e6099a5533450806bc24d659c0cef5584be65ac777f`，此伴隨檔是正常流程產物，未稱同初始資料。
+- 已證實：兩次匯入221檔完全相同，217舊檔保持；正式109輸入／50套件／七程式及來源archive通過提升前核對。r47用明確-assets選取，兩檔assets/純字型基底保持。收據位於既有battle-r1的 `palace-runtime-audit-r4.json`、`palace-promotion-r1.json`，GUI收據在player/gui/palace-save-r3；比較圖與來源紀錄已掛README。
+- 刻意美化：手繪山景、柱飾、柔化地板與已驗部隊／效果不同於原像素。其他仍原版兵種及042鏡射未接入，不以混合畫面稱全戰場HD完成。GUI時鐘與亂數未控，無頭沿既有12:00／3000條件但RND seed未知，不延伸為亂數parity或規則改動。
+
+來源、兩頁及正式呈現到此足夠。下一步按042已知四筆來源補嚴格鏡射載入契約，不重做GRO01 RE、圖像生成或等待隨機遭遇。

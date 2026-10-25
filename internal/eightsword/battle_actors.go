@@ -244,13 +244,5 @@ func (g *Graphics) battleActorBackgroundKnown(first uint32, width, height int) b
 	if width != 88 || height != 50 || len(g.actors) == 0 {
 		return false
 	}
-	for y := 0; y < height; y++ {
-		for x := 0; x < width; x++ {
-			c := g.owners[(first+uint32(y*80+x/8))*8+uint32(x%8)]
-			if c.ID != battleBackgroundID || c.Local >= 640*200 {
-				return false
-			}
-		}
-	}
-	return true
+	return g.battleBackgroundKnown(first, width, height)
 }

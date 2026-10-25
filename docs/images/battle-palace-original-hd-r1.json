@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "scope": "046 GRO01 background; same-state native VGA and verified actual central Draw; remaining native units are visible",
+  "image_sha256": "f1cfca79248e65e9da673afce889a383c4c763a21588bbcaa6b103de4c82280e",
+  "actual_draw": 106,
+  "runtime_step": 30284380,
+  "native_index_sha256": "280216e809abff441fc570b760f0df29cbfd3b6c9dfd9378693c3abdf9b47acb",
+  "actual_png_sha256": "8a199c1d467a3804c9ace662a87faf3c6c737683968a386e57121c84c87952df",
+  "state_sha256": "88ebb6a82a7ad88b7912dc13a148ad7b27a68d24a085bdf8fcaae4b16e2f94f7",
+  "audit_sha256": "12f02a92358f721f1dc4a25a9b43c31f03185d0739945868469a85cc58ccb00a",
+  "audit_source": "/battle/palace-runtime-audit-r4.json",
+  "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "clock": "ordinary GUI runtime; 3000 cycles/ms; original clock and RNG uncontrolled",
+  "source": "workplace/player/gui/palace-save-r3/save/research-palace-draws/font-noto-first-draw",
+  "rights": "user-requested comparison only in existing private repository; full artwork and original game remain local"
+}

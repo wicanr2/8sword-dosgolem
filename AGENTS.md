@@ -37,9 +37,12 @@
 軍隊頁圖像入口：[041：MAN21 圖像](docs/spec/041-army-man21-image.md)，沿現有 HD 快取與正常招募來源；現況以 CONTEXT 為準。
 
 友軍戰場方向入口：[042：MAN21 四姿勢](docs/spec/042-friendly-man21-battle-poses.md)，從真正招募與自然戰鬥取證，不以軍隊頁或原向快取代替正常動作驗收。研究工具為[鏡射原型](tools/prepare-battle-mirror-prototype.py)及[來源與續玩核對](tools/audit-friendly-man21.py)。以真正 F7 存檔建立冷讀時，同時盤點客體保存的伴隨檔；042 已證實 MAP01 需要 `gamedata.ay` 與 `map01.ay`，匯入方式及其他地圖的支援邊界見該規格。
-正常攻城的四筆友軍來源與[獨立核對工具](tools/audit-castle-source.py)見 [042 攻城來源](docs/spec/042-friendly-man21-battle-poses.md#正常攻城的四筆友軍來源)。研究輸入保留真正人物檔及 MAP01／MAP02。這條路徑使用 GRO01，既有正式戰場呈現只支援已驗 GRO02；來源齊全不等於四筆 HD 已接入，不重走長途路線或改種子取證。
-攻城背景接入入口：[046：GRO01 背景](docs/spec/046-castle-battle-background.md)，已READY。完整來源、A000／A400兩頁、獨立快取與四張正常原型Frame已核對。下一步接151背景組；正式r46保持，實際GUI及正式提升未完成，不再重做相同RE或生成原圖。042友軍鏡射載入另依其規格，不把GRO02夕照山谷套到攻城場景。
+正常攻城的四筆友軍來源與[獨立核對工具](tools/audit-castle-source.py)見 [042 攻城來源](docs/spec/042-friendly-man21-battle-poses.md#正常攻城的四筆友軍來源)。研究輸入保留真正人物檔及 MAP01／MAP02。這條路徑使用 GRO01，背景已依046接入；四筆友軍鏡射尚未正式載入，來源齊全不等於四筆 HD 已接入，不重走長途路線或改種子取證。
+攻城背景接入入口：[046：GRO01 背景](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)，限定CONFORMED。正式r47／221檔，151背景組、三組隔離、六份完整畫面、正常GUI及真正存退冷讀已驗，來源與原圖不重做。042友軍鏡射載入仍DRAFT，152–155未正式登錄。成果見[同狀態比較](docs/images/battle-palace-original-hd-r1.png)與[圖像紀錄](docs/images/battle-palace-original-hd-r1.json)。
+攻城背景實作：[獨立載入器](internal/eightsword/battle_palace_background.go)、[來源與故障測試](internal/eightsword/battle_palace_background_test.go)、[素材匯入](tools/prepare-hd-palace-background.py)。在既有Pillow Docker使用 `--base` r46、`--original` 固定原版、`--art` gro01-art-r1、`--out` 與 `--cache-out` 不存在的輸出路徑；候選221檔，經046限定驗收後提升r47，重建時仍用新輸出名稱。測試使用 `EIGHTSWORD_TEST_PALACE_ASSETS`、`EIGHTSWORD_TEST_PALACE_BASE`、`EIGHTSWORD_TEST_PALACE_CACHE` 及既有原版變數，缺輸入須明示跳過。
 [攻城背景核對工具](tools/audit-castle-background.py)在既有Pillow Docker使用 `--original`、`--assets`、`--battle`、`--art`、`--out`，可加 `--prototype` 核對四張完整正常Frame。支援046固定來源與研究建置，包含背景頁、陰陽標記底色及客體隔離，不把原型當作正式載入或GUI驗收。
+[攻城正式呈現核對](tools/audit-palace-runtime.py)在既有Pillow Docker使用 `--original`、`--assets` 候選組、`--battle` battle-r1、`--out` 新收據，可加 `--gui` 正常視窗收據根目錄。核對三組客體與真壞回退、三字型完整戰場Frame及實際Draw；真正存讀另沿[存讀核對](tools/audit-save-cycle.py)。
+[攻城 README 比較圖工具](tools/prepare-readme-palace-overview.py)在既有Pillow Docker使用 `--gui`、`--audit` 正式呈現收據、`--font` Noto字型及 `--out` 新研究輸出目錄，只接受已驗實際Draw與真正存讀的結果。比較圖收錄既有私人倉庫，完整美術留本機。
 
 正常遭遇的研究掛點與[核對工具](tools/audit-encounter-gate.py)見 [042 的窄定位](docs/spec/042-friendly-man21-battle-poses.md#正常遭遇前置的窄定位)。已核對原始定位及有界等待的觀測隔離，沒有取得本輪戰場來源。不得將研究掛點視為正式遭遇率、AI 或玩法修改授權，也不繼續追加等待次數湊姿勢。
 
