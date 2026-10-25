@@ -16,6 +16,10 @@ import (
 )
 
 type runtimePlanarPlan struct {
+	Primitive                        string `json:",omitempty"`
+	SourceEntry                      uint16 `json:",omitempty"`
+	Plane, Row, Column               int    `json:",omitempty"`
+	CompatibilityBytes               uint64 `json:",omitempty"`
 	SourceSHA256                     string
 	Entry, ReturnBoundary, WriteSite uint16
 	XByte, Y, WidthBytes, Height     int
@@ -31,6 +35,14 @@ type runtimePlanarPlan struct {
 
 var runtimeDirectEntries = []uint16{0x99c, 0x76f}
 var runtimePlanarExtra func(*dg.Machine, oracle.HostWorkLimits) (*runtimePlanarPlan, string)
+var runtimePlanarRowExtra func(*dg.Machine, oracle.HostWorkLimits) (*runtimePlanarPlan, string)
+
+func (p *runtimePlanarPlan) compatibilityBytes() uint64 {
+	if p.CompatibilityBytes != 0 {
+		return p.CompatibilityBytes
+	}
+	return uint64(p.WidthBytes * p.Height * 4)
+}
 
 func runtimePlanarPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePlanarPlan, string) {
 	if !m.CycleClock || !m.CPU.DOSBoxCost {
@@ -186,7 +198,12 @@ func (e *Engine) ResearchDirectRuntime(out string) (func(), func() error) {
 				counts["accepted"]++
 				counts["virtual-instructions"] += plan.Steps
 				counts[fmt.Sprintf("accepted-%04x", plan.Entry)]++
-				counts["compatibility-plane-bytes"] += uint64(plan.WidthBytes * plan.Height * 4)
+				counts["compatibility-plane-bytes"] += plan.compatibilityBytes()
+				if plan.Primitive == "masked-row" {
+					counts["masked-row-batches"]++
+					counts["masked-row-bytes"] += plan.CompatibilityBytes
+					counts["masked-row-virtual-instructions"] += plan.Steps
+				}
 				counts["virtual-cycles"] += plan.Cycles
 				if err := enc.Encode(map[string]any{"entry_step": entry, "return_boundary_step": o.Steps(), "scene": t.VisibleScene, "plan": plan, "original_pixel_instructions_executed": 0, "compatibility": "indexed planar bytes and legacy metadata; no RGB"}); err != nil {
 					return false, err

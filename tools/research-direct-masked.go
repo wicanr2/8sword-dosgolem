@@ -27,6 +27,9 @@ func runtimeMaskedPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePlana
 		ret, readSite, writeSite = 0x76e, 0x6b4, 0x6b8
 		want = "c1cd7da0c0b84fd8e6ac44c073c6a9e653e5d2ab04a3bbd72f577c9324cec40e"
 	} else if entry != 0x4f2 {
+		if runtimePlanarRowExtra != nil {
+			return runtimePlanarRowExtra(m, b)
+		}
 		return nil, "entry-mode"
 	}
 	code := uint32(s[dg.CS]) * 16

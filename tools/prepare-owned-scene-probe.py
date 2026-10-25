@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--direct-render', action='store_true', help='研究核心受控替換四／五平面呼叫，PAM直接繪製自有場景')
     parser.add_argument('--batch-render', action='store_true', help='自有場景改用紋理矩形批次，保留凍結的舊畫法作診斷')
     parser.add_argument('--masked-planar', action='store_true', help='研究核心須有ReadHostPlanar；追加六平面角色入口')
+    parser.add_argument('--masked-rows', action='store_true', help='六平面剩餘列在原版內圈入口接管，保留事件邊界')
     args = parser.parse_args()
     root, out = args.project, args.out
     assert os.getuid() == 1000
@@ -30,6 +31,7 @@ def main():
     assert not args.direct_render or (args.intro and args.gui)
     assert not args.batch_render or args.direct_render
     assert not args.masked_planar or args.direct_render
+    assert not args.masked_rows or args.masked_planar
     assert root.is_dir() and not out.exists()
     assert out.parent.stat().st_uid == root.stat().st_uid == 1000
     seed = root / 'workplace/probe-20261023/graphics-first/battle-r1/friendly21-validation-build-r2/src'
@@ -80,6 +82,11 @@ def main():
             (source/'internal/eightsword'/name.replace('-', '_')).write_text(data.replace('//go:build ignore\n', '', 1))
     if args.masked_planar:
         for name in ('research-direct-masked.go', 'research-direct-masked_test.go'):
+            data = (root/'tools'/name).read_text()
+            assert data.startswith('//go:build ignore\n')
+            (source/'internal/eightsword'/name.replace('-', '_')).write_text(data.replace('//go:build ignore\n', '', 1))
+    if args.masked_rows:
+        for name in ('research-direct-masked-rows.go', 'research-direct-masked-rows_test.go'):
             data = (root/'tools'/name).read_text()
             assert data.startswith('//go:build ignore\n')
             (source/'internal/eightsword'/name.replace('-', '_')).write_text(data.replace('//go:build ignore\n', '', 1))
@@ -303,6 +310,9 @@ quit
         if args.masked_planar:
             format_paths.extend([source/'internal/eightsword/research_direct_masked.go',
                                  source/'internal/eightsword/research_direct_masked_test.go'])
+        if args.masked_rows:
+            format_paths.extend([source/'internal/eightsword/research_direct_masked_rows.go',
+                                 source/'internal/eightsword/research_direct_masked_rows_test.go'])
         subprocess.run(['gofmt', '-w', *map(str, format_paths)], check=True, timeout=30)
         targets = [('probe', './tools/probe-owned.go')]
         if args.gui:

@@ -1,6 +1,8 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
-六平面角色的[來源計畫](tools/research-direct-masked.go)、[原生讀回介面](tools/research-host-planar-read.go)與[獨立核對](tools/audit-direct-masked.py)只屬[047 DRAFT研究](docs/spec/047-hd-scene-renderer.md#六平面角色的受控接管)。兩個準備器加`--masked-planar`，核心與場景各用新輸出；既有Go Docker、原版唯讀掛載及快取沿047。核對器在Pillow Docker使用`--project`與`--out`，固定核對r31／core-direct-r6，加`--controlled`核對12案自有場景部隊全幅與別名。24組受控原版前綴通過；正常542幀中的12筆六平面仍因預算拒絕，不稱正常路徑已略過。正式r49保持。
+六平面逐列研究入口：[計畫](tools/research-direct-masked-rows.go)、[原版逐列對照](tools/research-direct-masked-rows_test.go)及[核對器](tools/audit-direct-masked-rows.py)。場景準備器在既有Go Docker沿047加`--masked-planar --masked-rows`，只接新研究副本；核心沿core-direct-r6。r33的60組原版／剩餘列對照、正常募兵542幀與攻城557幀、Noto實際視窗及真正存退讀已驗。核對器在Pillow Docker以`--project`與新`--out`固定核對r33，加`--gui`核對direct-rows-save-r1。輸入、事件邊界、測試環境變數與限制見[047逐列DRAFT](docs/spec/047-hd-scene-renderer.md#六平面逐列研究契約)，正式r49未切換。
+
+六平面角色的[整筆來源計畫](tools/research-direct-masked.go)、[原生讀回介面](tools/research-host-planar-read.go)與[歷史基線核對](tools/audit-direct-masked.py)只屬[047 DRAFT研究](docs/spec/047-hd-scene-renderer.md#六平面角色的受控接管)。兩個準備器加`--masked-planar`，核心與場景各用新輸出；既有Go Docker、原版唯讀掛載及快取沿047。歷史核對器在Pillow Docker使用`--project`與`--out`，固定核對r31／core-direct-r6，加`--controlled`核對12案自有場景部隊全幅與別名。r31的24組受控原版前綴通過，當時正常12筆全因配額拒絕；此缺口已由上列r33逐列研究補足，舊收據不覆寫。正式r49保持。
 
 部隊／怪物批次HD依[048](docs/spec/048-troop-hd-batch.md)與[準備工具](tools/prepare-troop-hd-batch.py)。使用者於2026-10-26明確放寬逐隻驗收：相同機制採已成功的代表抽驗，未接入的先完成圖片；需要時允許受控記憶體呈現驗證。這項最新指示優先於舊的逐隻正常遭遇待辦，不重走地圖或反覆等待遭遇；正式玩法不變，受控測試不冒稱自然玩家路徑。
 

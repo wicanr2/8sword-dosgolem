@@ -1743,3 +1743,13 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 - r31／core-direct-r6為DRAFT研究。normal兩側542幀的state、PCM、串流及30工作檔相同。十二筆六平面都被已收窄的預算拒絕，不能由受控成功宣稱正常接管，也不由兩組牆鐘時間推論加速。
 - masked-controlled-troops-r1與masked-controlled-owned-r1為受控呈現，固定8000:0000緩衝區、DS:7484／748A與CS:0196設定。三種部隊、兩向、兩入口12案，全部27648000像素同獨立模型與先前正式結果，來源命令逐筆對應戰場別名。32次PAM Frame原版RGB入口0。任意停止條件的CallBudget仍走原版指令，這份證據只驗自有呈現，不驗CPU略過、自然遭遇或戰鬥規則。
 - direct-masked-audit-r2.json為本輪統一收據；完整來源、圖像與執行檔留本機研究區，不進Git。正式r49保持，後續只需縮小六平面工作單位及整合其餘呈現邊界，不重做本批美術或逐隻遇敵。
+
+## 2026-10-26：六平面逐列與剩餘列的正常接管
+
+入口：[047逐列研究](docs/spec/047-hd-scene-renderer.md#六平面逐列研究契約)、[計畫](tools/research-direct-masked-rows.go)、[原版對照](tools/research-direct-masked-rows_test.go)、[獨立核對](tools/audit-direct-masked-rows.py)。輸入仍為PAM.AY SHA 83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0與原PAM.i64／IDA9.4匯出，工具Go1.24.13、Pillow11.3.0。來源／資料庫、工具版本與地址基準由統一收據完整記錄。
+
+- 已證實：原名sub_24112的IDA線性2418F至241A0、PAM file+155FF至15610，固定執行期14D2:056F至0580；sub_24246的IDA線性242C3至242DB、PAM file+15733至1574B，固定執行期14D2:06A3至06BB。端點不含列尾。17／24 bytes SHA為cbba0f85…6ef8d／d93aaf29…ce8c4，不混用線性、檔案與執行期基準。
+- 已證實，固定執行器限定：剩餘n個byte成本9*n／12*n步，週期10*n／13*n。AX高byte保留真正讀取值，最後INC決定旗標但保留CF；SI／DI增加n，CX歸零，遮罩指標與死堆疊逐項同原版。60組完整／半列、兩頁、兩入口、讀平面2、非零堆疊及來源尾端回繞，逐批與原生RETF後狀態同原版；十四拒絕與兩軸配額不改狀態。
+- r33／core-direct-r6只在私有研究副本接管。正常募兵masked-rows-hire-r1共542幀，12來源全有接管，1298批，10909 byte自有／91原版。普通43,54續玩攻城masked-rows-palace-r1共557幀，238來源全有接管，46283批，498951／7849 byte；背景頁入口24738批。兩側控制的完整state、PCM、串流、原版事件與全部工作檔均相同，沒有以調整IRQ或速度湊成功。
+- 實際視窗direct-rows-save-r1為501／357 Draw，十一／五完成圖全幅同既有模型並出現在真正Draw，兩側各三份交易中Draw保持；Noto人物及兩份連續總覽已看。原生F7存退冷讀2987 bytes同存後／冷讀後RAM，29dd62ae…2359，read196978341。偏好檔缺省是015的Noto正常分支，不冒稱已測新的字型切換。
+- 統一direct-masked-rows-audit-r2.json包含123建置輸入、三程式、60逐列案、全部來源／列與事件配額記帳、兩條正常流程及真正視窗。舊r31十二筆全拒絕是歷史基線，已由新證據補足；不覆寫舊收據。殘留原版byte限於預算與事件邊界，索引色相容資料仍供原版讀回，PAM可見RGB全走自有來源場景。沒有宣稱全遊戲、其他模式、故障覆蓋或整體FPS完成。

@@ -374,3 +374,43 @@ PAM主選單、人物／軍隊、確認、地圖與返回，以及PREDELLA自然
 同r31另執行既有`TestTroopsControlledOriginalDraw`，沿048的344素材與獨立快取。設定`EIGHTSWORD_RESEARCH_OWNED=<新且已建立的輸出目錄>`，其餘`EIGHTSWORD_TEST_TROOPS_*`依048，`EIGHTSWORD_TEST_ORIG`為唯讀原版。普通啟動、新遊戲、F1／F2後，僅將8000:0000暫存來源與既有繪圖控制字設為明示案例。MAN02／08／20各兩向、兩入口共12案，27648000像素全幅同背景／角色獨立模型；Frame客體狀態保持。新場景的12筆來源命令分別提交正確角色／戰場別名，與先前正式048的12張完整畫面逐像素相同。32次PAM Frame均走自有場景，舊RGB入口0，持刀兵鏡射與龍形圖已抽看。
 
 結果保存在`masked-controlled-troops-r1`、`masked-controlled-owned-r1`與`masked-controlled-troops-r1.log`。核對器追加`--controlled`產生`direct-masked-audit-r2.json`。這份受控案例使用任意停止條件的CallBudget，原版像素指令仍執行；它證明自有呈現與新別名，沒有證明CPU略過、正常遭遇或戰鬥規則。原圖與完整成果留本機，不增加逐隻GUI閘門。
+
+### 六平面逐列研究契約
+
+本節DRAFT沿前節相同PAM、IDA9.4及來源SHA。整筆前綴放不進事件預算時，改在原版內圈入口嘗試處理目前列的剩餘byte。原版序言、列間控制、平面切換、IRQ與RETF仍執行，不放寬配額。
+
+已證實的原始定位如下，端點不含列尾。IDA依既有r4匯出，執行期仍是固定14D2段。
+
+| 來源常式 | IDA線性內圈 | PAM檔案偏移 | 執行期入口／列尾 | 每byte指令／週期 |
+|---|---|---|---|---|
+| sub_24112 | 0x2418F至0x241A0 | 0x155FF至0x15610 | 14D2:056F／0580 | 9／10 |
+| sub_24246 | 0x242C3至0x242DB | 0x15733至0x1574B | 14D2:06A3／06BB | 12／13 |
+
+候選計畫由真正CPU寄存器與原版堆疊推導列、欄與平面，核對目前CX、SI、DI、BX、SP／BP、第六區塊遮罩指標及序列器平面；不以外部場景猜測。只接受前節已驗mode1、固定常式bytes、RAM來源與兩頁契約。剩餘n個byte的成本為9*n／12*n步及10*n／13*n週期，完整工作放不進預算就保留原版。原版先執行一個byte後仍可再次嘗試剩餘列。
+
+候選輸出須保留AX高byte的最後讀值、SI／DI增量、CX歸零、遮罩指標、INC旗標與CF、死堆疊最後一次PUSH內容、四個VGA暫存值、GC遮罩及逐筆讀寫位置。原生列尾控制在返回後繼續。驗收先比較每次接管後的CPU／RAM／平面／事件，最後比較原生RETF後的完整序列化狀態；再用普通選單、募兵、三字型與F1／F2核對整段state、PCM、逐幀與工作檔，確認正常六平面確有接管。此節尚未授權提升正式入口。
+
+#### 逐列限定結果
+
+2026-10-26，研究r33保存123份來源與三程式、Go1.24.13；core-direct-r6保持。上表兩段內圈的17／24 bytes SHA分別為`cbba0f85900ed3cc573fbd23133c3153c410e669b63ddda5f4fb64db3463ef8d`及`d93aaf29d34d326f8bcaa4364aaf95cdfe1eaa00a44fdc39833cc455daece8c4`。不修改原名、程式、IRQ週期或正常更新速度。
+
+[逐列對照](../../tools/research-direct-masked-rows_test.go)通過60案：MAN02、主角、變化遮罩、單byte與來源尾端，涵蓋兩頁、兩入口、兩種堆疊及原版先做一byte再續接剩餘列。每批後CPU／RAM／平面／VGA控制與有序讀寫相同，原生RETF後完整序列化狀態同原版。來源尾端另驗遮罩指標FFFFh回繞、INC旗標及CF保持。十四種拒絕與兩軸配額不足均不改狀態；原有24組整筆、16組四／五平面及兩項批次圖層測試亦通過，見`masked-rows-prefix-r2.log`與`masked-rows-prefix-r2.json`。
+
+正常路徑由同一r33作原版指令控制／候選兩組，沒有注入軍隊、位置、戰鬥觸發條件或載入模擬器快照：
+
+| 路徑 | 幀數 | 六平面呼叫／有接管的呼叫 | 逐列批次 | 自有處理／原版保留的byte | 略過的內圈指令 |
+|---|---:|---:|---:|---:|---:|
+| 新遊戲、搜尋、募兵、三字型、F1／F2 | 542 | 12／12 | 1298 | 10909／91 | 98181 |
+| 真正F7續玩、普通攻城、三字型、撤退、F1／F2、F7退出 | 557 | 238／238 | 46283 | 498951／7849 | 5294706 |
+
+攻城背景頁入口06A3接管24738批，目前頁入口056F接管21545批。每筆計畫連回同次原版完整來源、平面、列、剩餘欄與返回邊界；沒有重複計入相同列。因剩餘配額不足的byte仍由原版執行，下一列或下一內圈位置再試，沒有把整筆工作跨過事件。
+
+兩組完整state、PCM、逐幀串流、來源／讀取事件、一般命令與全部工作檔均同控制。募兵30工作檔，state仍為`c4aa051f…a401`；攻城29檔，state為`dc45e5b1a45ecef92252cccac469cf4409984b7c6d091aba4a01d449ee5d3dab`，PCM為`a1c00c2b3cc374d27111e89b21c2a150c2989f211585c29765ceb83f343fb5ab`。兩路PAM舊RGB入口皆0。攻城從042已驗43,54人物檔與MAP01／MAP02普通「繼續」，不重走39步；實際新前綴另存`masked-rows-palace-commands-r1.txt`，不將新路線當作舊595幀收據。
+
+真正視窗`player/gui/direct-rows-save-r1`沿預設Noto，不傳`-font`強制覆寫偏好。存前／冷讀為501／357 Draw、159／141變化幀，十一／五份完成圖連回實際Draw，兩側各三份交易中畫面保持。056F分別接管500／600批，04F2整筆另有11／4次正常接管；PAM舊RGB入口皆0。普通主選單、音樂、新遊戲取消重進、人物／軍隊往返及真正F7存退冷讀通過；2987-byte檔案同兩側零步只讀RAM，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，冷讀實際read step為196978341。Noto人物頁與兩側第3份連續畫面總覽已抽看。
+
+核對初版錯把偏好檔當必要輸出。015與固定`LoadFontPreference`證實未選字型時缺檔即使用Noto，前端只在顯式指定或切換時寫檔。本輪兩側實際Noto、存讀及畫面皆正常；核對器改記`absent-default-noto`，沒有建立假設定檔、改玩家程式或重跑GUI湊檔案。無頭重播與視窗皆有PNG、逐幀及狀態壓縮負擔，這輪不以總牆鐘時間宣稱加速倍率或FPS。
+
+重生沿前節的核心／場景命令，再加`--masked-rows --build`。測試增加`EIGHTSWORD_MASKED_ROWS_RECEIPT=<不存在的新JSON>`及`-run '^TestResearch(DirectMasked|HostPlanarRead|DirectRuntime|OwnedBatch)'`；r32是先行測試，正式研究建置以r33的來源清單為準。[逐列核對器](../../tools/audit-direct-masked-rows.py)在Pillow Docker指定`--project`與新`--out`，固定核對r33兩條正常路徑；追加`--gui`核對上述視窗、實際Draw與真正存讀。統一結果為`battle-r1/direct-masked-rows-audit-r2.json`。
+
+047整體仍DRAFT，正式r49保持。下一步補齊未知繪圖命令與素材失效的處理，再審查正式切換；已驗部隊、美術與正常路段不重做。
