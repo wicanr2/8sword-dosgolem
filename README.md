@@ -25,7 +25,7 @@
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘曲目仍為原版，音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
 
-目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有HD場景呈現器](docs/spec/047-hd-scene-renderer.md)已在研究版視窗繪製來源圖像、文字、背景頁與戰場效果，並抽驗面板更新、開場、背景故障及真正存退讀。目前正將已驗的 DOS 繪圖入口直接換成來源命令，省去原版像素迴圈；單常式原型已通過，正常玩家流程的直接攔截尚未接入。現行程式尚未全面切換，HD 美術、HD 音樂及全遊戲驗收仍未完成。
+目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正常攔截與cpu矩形批次的限定結果)已在研究版接通原版繪圖入口，省去已驗四／五平面圖片的逐像素迴圈，再由 CPU 矩形批次直接繪製來源材質、角色與文字。正常選單、人物／軍隊頁及真正存退讀已抽驗，客體狀態與 PCM 同控制；代表場景的繪製耗時約縮短至原先的十分之一，這不是全遊戲幀率。正式入口尚未切換，其他繪圖路徑、HD 音樂及全遊戲驗收仍未完成。
 
 開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；驗收見 [014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。發行商中央圖案亦已採 B 柔和漸層，三字型、正常交接、存退讀與故障回退的範圍見 [016](docs/spec/016-publisher-wordmarks.md#b-圖案正式追加驗收)。其他音畫與整體 HD 尚未完成。完整執行期素材組留本機。
 
@@ -55,11 +55,11 @@
 
 ### 原版圖像完整盤點與 HD 覆蓋
 
-![全部26份MAN圖像來源與HD覆蓋](docs/images/troops-all-original-hd-r1.png)
+![全部25組部隊與怪物的原版及HD圖片](docs/images/troops-all-original-hd-r2.png)
 
-上圖列出全部 26 份 `MAN*.EGG`，每份取第 0 筆原版記錄，並展示已正式登錄的 HD 來源圖。完整 104 筆記錄可看[全部原版姿勢圖](docs/images/troops-all-poses-original-r1.png)。空白表示尚未正式接入，包含已出概念稿但仍待驗收的項目；這是素材圖集，沒有宣稱同狀態戰場對拍。
+上圖列出 `MAN01` 至 `MAN25` 的全部 25 組，每組左側為第 0 筆原版，右側為 HD 圖片。既有 5 組已接入，新增 20 組共 80 個姿勢已繪製、待匯入。新增圖的四姿勢全貌可看[80 個姿勢總覽](docs/images/troops-new-hd-all-poses-r1.png)，完整原版另見[104 筆原版姿勢圖](docs/images/troops-all-poses-original-r1.png)。這些是素材圖集，沒有宣稱同狀態戰場對拍。
 
-`MAN01` 至 `MAN25` 共 100 筆角色／部隊圖，另有 `MAN27` 的四筆太極圖，其原版用途尚未證實。因此不能把 26 個檔名直接當成 26 種怪物。這 104 筆 MAN 記錄中，正式 HD 已登錄 20 筆，包含四組敵方部隊與民兵，其餘 84 筆尚未登錄。
+`MAN01` 至 `MAN25` 共 100 筆角色／部隊圖，均已有對應 HD 圖片，其中 20 筆正式登錄。另有 `MAN27` 的四筆太極圖，其原版用途尚未證實，分開列入盤點。新圖沿已驗的共用機制抽樣，不再逐隻等待自然遭遇；必要時以受控記憶體狀態驗證呈現。素材、提示與來源雜湊見[批次清單](docs/images/troops-hd-batch-r1.json)、[製作契約](docs/spec/048-troop-hd-batch.md)及[總覽工具](tools/prepare-troop-hd-overview.py)。完整 PNG 與提示留本機。
 
 ![ENEMY.AY全部14筆原版地圖遭遇圖](docs/images/original-map-encounters-r1.png)
 

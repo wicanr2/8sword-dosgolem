@@ -1,0 +1,2316 @@
+{
+  "schema": 1,
+  "status": "generated-art-inventory-not-gameplay-validation",
+  "source_groups": 25,
+  "source_records": 100,
+  "registered_groups": 5,
+  "registered_records": 20,
+  "newly_generated_groups": 20,
+  "newly_generated_records": 80,
+  "production_changed": false,
+  "excluded": "MAN27 contains four Taiji records; original usage remains unknown",
+  "batch_path": "workplace/probe-20261023/graphics-first/battle-r1/troops-hd-bulk-r1",
+  "catalog_sha256": "c07d1b196eb8e8292d2f3db143775790a802ec91f092da0899eb8763c791d32f",
+  "plan_sha256": "9d449740c150d64fdccb5c93f7be988e224b43a155317e7d56b4c1a6309431d8",
+  "tool_sha256": "254d45f954c1cb4872f0825d1d77c33358191ea92f64b981d6b27945d62d0929",
+  "pillow": "11.3.0",
+  "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "resources": [
+    {
+      "resource": "MAN01.EGG",
+      "source_sha256": "a7e02cf495800fac19c293688043f3af6eb6deaec1a61a581ed3f9d5b8b3e5f1",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "3bb12bd3bf599c53a49456f391b9b33da1ee3fd9e68240be412ca4e683f0f7a0",
+          "decoded_rgba_sha256": "f648a2e3f9ed48f9fd31651ed4d4691db4de3610ce0e13a7dce190552005f1fd"
+        },
+        {
+          "record": 1,
+          "record_sha256": "8cb9dc276d55404f55da90df1dbff5756b12b4aebc91143762143f1dd52c81e9",
+          "decoded_rgba_sha256": "37df549bc89ac4e400edaecd97a1be1fc5d92b4af0dab62f409f179a0bfd3c25"
+        },
+        {
+          "record": 2,
+          "record_sha256": "ee73404c6d570f69cee35791141ebfe5874f99855f868f49b321792b27734f1d",
+          "decoded_rgba_sha256": "ef20507962b583cd54de7fdb3625b93d534fb43a86868c46198232f9cd887707"
+        },
+        {
+          "record": 3,
+          "record_sha256": "efc128b387a8d73c9a842f3e41edeaa626e7cd87e59d90cf8d3725d3e29327a9",
+          "decoded_rgba_sha256": "750f93866d7e9682f9efbb924a41a7004a6023d3e2dced9c1211bb9ef849e27a"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN01.EGG",
+          "record": 0,
+          "image": "militia-painted-r1.png",
+          "image_sha256": "5173125ab4f02b170561b797d6ae043fc3c1c854f3ad61da791c3ba1e8aea620",
+          "transform": "mirror-six-planes"
+        },
+        {
+          "source_file": "MAN01.EGG",
+          "record": 1,
+          "image": "battle-man01-1-r1.png",
+          "image_sha256": "13f78b58f9ffe7e2d931cc5f3244bfb31b0dd3135139d12de7a79dd0333a38dd",
+          "transform": "mirror-six-planes"
+        },
+        {
+          "source_file": "MAN01.EGG",
+          "record": 2,
+          "image": "battle-man01-2-r1.png",
+          "image_sha256": "b0605ced5cfd421a7392e7e16bcde1a6ebbfdda4e79b3e38bc94283d8f05b55d",
+          "transform": "mirror-six-planes"
+        },
+        {
+          "source_file": "MAN01.EGG",
+          "record": 3,
+          "image": "battle-man01-3-r1.png",
+          "image_sha256": "02b5e836909d71c9d20e67bea2aee9d2321d8b05e2a66e69bb2a2b5e929fcb52",
+          "transform": "mirror-six-planes"
+        }
+      ]
+    },
+    {
+      "resource": "MAN02.EGG",
+      "source_sha256": "b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "5e43916ca522b0d6ba92829cd28842da39a7971e6f46ffb7fdcd749427c63a42",
+          "decoded_rgba_sha256": "73fc08316782b1556891c8a436ba48c7541b16ad8d51c1a3b4b0c9af8cb33046"
+        },
+        {
+          "record": 1,
+          "record_sha256": "be10f2a5c53503eaf4bdaa14c12e77ca27028e09151b2300c75e78ccdf7c02e3",
+          "decoded_rgba_sha256": "d105a413ca112e16d4a78ed1376e84b149bbcbf7030efdd08b7fef54baf0f404"
+        },
+        {
+          "record": 2,
+          "record_sha256": "5ac6d20de301aaff58dff08fc9be6afa71005190b50d2b5927d76b38153fa1b0",
+          "decoded_rgba_sha256": "cb817e4f44df96b4c74667430312ed91282542cc6e62af2d9ca9a33714d5ff80"
+        },
+        {
+          "record": 3,
+          "record_sha256": "8e6b01e7b87e0b47e8bc07f4014cdb17ab53cb3e7be2bdf84c92f6e84d599d2c",
+          "decoded_rgba_sha256": "c0a307c6756d5aaa8c60eb1c8d36bc5a0be4bcdb82cd89d42e2cf6a97ab214a1"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man02-hd-atlas-r1.png",
+      "image_sha256": "e81a92099e6e5cf79c5f4a7bfca21f2240583d7d3b1329d292c818cc244e555f",
+      "prompt": "man02-edit-r1.prompt.txt",
+      "prompt_sha256": "caf44641b7304aa1265a204c8d1a365b73388c4385ef9aaf2988862ee9222201",
+      "receipt_sha256": "cf9fbc6aafd797b9812d5664f10ef4b3b52fe8bdb605d9ca764f3cd5a775c2b0",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            21,
+            23,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            39,
+            609,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            15,
+            0,
+            627,
+            577
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            597,
+            603
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN03.EGG",
+      "source_sha256": "8cf371cfa83169148d22c844d03a0e59815a975e0d04067e89c153502799bb85",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "7f731be5a92039f788e38c7db48c5364a4b18755887e3786f1030a9aadca5fd9",
+          "decoded_rgba_sha256": "db9dec7d182f318541850f72ba54963e36417a76cb52255d37a935a298538791"
+        },
+        {
+          "record": 1,
+          "record_sha256": "887dfbad551502e5d17271eed4dfef51da46753736034cd1834569e9ec998abd",
+          "decoded_rgba_sha256": "d2f567fa32b401a641a59cabc27aba655dbc2dd56de937f2634b579c9f3012ca"
+        },
+        {
+          "record": 2,
+          "record_sha256": "109d5a930fa888b9a2f8644cb92c40a3117db349d17e805ce94786ded092ee41",
+          "decoded_rgba_sha256": "c8d9738be6fb606d5eaa154d543fb4900d5b824b34fcfb8714ce8a89e2363d22"
+        },
+        {
+          "record": 3,
+          "record_sha256": "2db6d8e2645d80cd1a05459de73089e58416f58e02777554099a64d667ee3738",
+          "decoded_rgba_sha256": "7b42004c1657d5e406295c629e71516fd48cf0fd1f2c170634f12905062abc95"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man03-hd-atlas-r1.png",
+      "image_sha256": "a8ad6fd9d883dfa28eae5318ba4c5a6ef5073614a11c4b397f31be35afd1a6da",
+      "prompt": "man03-r1.prompt.txt",
+      "prompt_sha256": "e3cf49a341e79596e8b4b26e9706f86c515d19829adc4cb5ecfe2eb495904ceb",
+      "receipt_sha256": "8d749b6ffbdef039a606710b9c7cd3278f57b3f466c110afdc3e231c49e90114",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            19,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            14,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            615,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN04.EGG",
+      "source_sha256": "9d25c1975be500c7cab5ddff2d53cb42427e865641d84e33bbf6546c42206507",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "bc82e5571473961d32619b971b41a39fa82de13ed462643b389d740d7144399c",
+          "decoded_rgba_sha256": "7365d91e4fb922404e6cee24499bda118f7233553a61f4f3b9c8f983669f07a5"
+        },
+        {
+          "record": 1,
+          "record_sha256": "25d629830013ff35ab560f22e1bdcf1486b05dbd87a85ceb96f7b1069293d6c3",
+          "decoded_rgba_sha256": "87f68871ef230664a9491263e8452d194e452bbe197f1c0c3670e84ba011c5da"
+        },
+        {
+          "record": 2,
+          "record_sha256": "cc5f2de2006e3c001a1794b170ebbbd0ead2a4a7b0d60a3bf29beaf1d1baa152",
+          "decoded_rgba_sha256": "7ee6eae9c69b5d42a1b92cd32d217e3a2e84ddb56fa84fef15a03bf93e73d974"
+        },
+        {
+          "record": 3,
+          "record_sha256": "a37608628727d09a9ca1a385c7a52a6baca2ca198f754a4d2d3b61b16b5a14b2",
+          "decoded_rgba_sha256": "df160cdab19db75b194697aa6ec3f3c07955ccae1f94a29f9d2a99a3a3a5c335"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man04-hd-atlas-r1.png",
+      "image_sha256": "448473e4f8568e6115a2346cf46b332ebd1480c0af9c3904d50b32a062d5c8bd",
+      "prompt": "man04-r1.prompt.txt",
+      "prompt_sha256": "0ae2e736d0a603d99e91291f96ed5567d98572459c7101705cc0a16fa329c18b",
+      "receipt_sha256": "a127f3383d0de81d0cac01770630b697f45139d2aa59398f3cf5c485c6ca9d74",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            13,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            617,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN05.EGG",
+      "source_sha256": "3a07ad1144f283fb75494872ccab3796e75afaa04c1ff1a0ae101541f8d99c71",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "ddd791b049a951eda958bb48a9396c72b7e6d95011714927b65e7afd6b415178",
+          "decoded_rgba_sha256": "b3afcc97c8d165f5958d661145a3f365077a50bffeca4e0c41ba8ee92c7b70f1"
+        },
+        {
+          "record": 1,
+          "record_sha256": "6f6e133829568f8c13b1c5cc3588fbd82e104a7a9970acda656e359f8e47152d",
+          "decoded_rgba_sha256": "6a8f64a899b4856106248e068321acc29314831392879af057bbe21530f08fb7"
+        },
+        {
+          "record": 2,
+          "record_sha256": "cea0ff422b45994c124887fc31f76fe0488d5b27306a6333a28c5c76c17f1cc4",
+          "decoded_rgba_sha256": "fa5f29b3dcdf98967c1341f72e81551d4a1fe49494352a2218f6d68477a330ab"
+        },
+        {
+          "record": 3,
+          "record_sha256": "4111626f451f18e36de7414302e16d71076ee1dd60907034dbeff1aff0456baf",
+          "decoded_rgba_sha256": "b22ee00c17c70d33f8e26097268b9f88b4b71b0e9414e15a0352eb6658aa3c13"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man05-hd-atlas-r1.png",
+      "image_sha256": "575131227ff51f4a04236c37cc999630b6dbba17e85798dc3b3c69a063858b77",
+      "prompt": "man05-r1.prompt.txt",
+      "prompt_sha256": "34916233567d189304c6ff93d51f91e0e9ed27fc40274ba3f5f744c077147acf",
+      "receipt_sha256": "1a0f523aaa02c42954dd7f20da6ba41e1ebeebee1e790d9a798e44a69c9c82c7",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            9,
+            615,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN06.EGG",
+      "source_sha256": "97be211dd9289538aaa46f01b2340bcac9ce0a7c8e44ed9d3c4e9abdac873579",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "26912dfd61615c79153fdce658ef87e8c7a91033b8b696b1944671ebf12a9191",
+          "decoded_rgba_sha256": "ff5ce4d4fe9c90c1e6664e9b8f32d072b9cb2180a55d30ba8746220d7b2efd8f"
+        },
+        {
+          "record": 1,
+          "record_sha256": "665bac29b8c8d54912a52da5eda20ae44ed9c81c3d6fcd8b039a9317a066c022",
+          "decoded_rgba_sha256": "3a64abee9b449507e5e268ca7501d58788cd4b1c6084d68aeb023fdb7f95326b"
+        },
+        {
+          "record": 2,
+          "record_sha256": "feb0565d9333a288d5e8f89d37cdfbfa1804cc4d33183810120ba3f74e77c9a7",
+          "decoded_rgba_sha256": "1a75e7d203614e9887a8676c376fa07aded6d467d9fe3c739766d670ebf45436"
+        },
+        {
+          "record": 3,
+          "record_sha256": "8ce14e5fa82252dd91b698803e3738ab2b6ce3f3e3f3f22ec1b7b4c1f03f1b00",
+          "decoded_rgba_sha256": "4c3b501af14cbe34196d2d30ea7702825b78275241be9a8642e59b88e2cf68a6"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN06.EGG",
+          "record": 0,
+          "image": "battle-man06-0-r1.png",
+          "image_sha256": "ab571977babe4b7fdffd23ae3a88ac2ee1449ea0a74b5a0301692e03daa5d789",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN06.EGG",
+          "record": 1,
+          "image": "battle-man06-1-r1.png",
+          "image_sha256": "d4e0f66020db4750594ee7d6aecbc0f15aba2d81b85eba17386496c749daa4f3",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN06.EGG",
+          "record": 2,
+          "image": "battle-man06-2-r1.png",
+          "image_sha256": "86b4a07704069de292b0fa4f9eebc4d6f4462d79e51ff3b1d89e5959a377375f",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN06.EGG",
+          "record": 3,
+          "image": "battle-man06-3-r1.png",
+          "image_sha256": "b9ffc6df5c03db70480cfb894b7789c583e0390f0fec0368de337efea8e74e52",
+          "transform": "identity"
+        }
+      ]
+    },
+    {
+      "resource": "MAN07.EGG",
+      "source_sha256": "559db8b16febe5a48509a91a3823342c68d0f70ac7dca5c62dc909bb340236c3",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "2a0f60f92d9546cff46fd6c2da5a879de9e9baad147d7150ea09db5d0e3d1eea",
+          "decoded_rgba_sha256": "00572fcb995811d265c9320ab8e79320223954c77d45626fce2ab5b299be3814"
+        },
+        {
+          "record": 1,
+          "record_sha256": "4f9b319ab04b497714f4c45145fb5b7abf4ea5190711e9847f2c29c10a4fb360",
+          "decoded_rgba_sha256": "5a75bdbb506b8d38c8e50ac3b3e574069a0a4735b0ac72d8a22904385f141dad"
+        },
+        {
+          "record": 2,
+          "record_sha256": "452f16a6be326a7a2b80dfb98bc6b26c5ff4c189d32fa7e118e5f0353b60623f",
+          "decoded_rgba_sha256": "ccd35a04d0670d15313e038e1c06ba51778dcbf314693aac5fa837a19aa6705a"
+        },
+        {
+          "record": 3,
+          "record_sha256": "941c125c6e1782f1f147df98e12eae049fb51870d06b1e9d67e7b98634f0eb65",
+          "decoded_rgba_sha256": "06329d8872a7085193ce35965717bab71b9c24d5a8c2cc4ce859503d11c20a02"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man07-hd-atlas-r1.png",
+      "image_sha256": "f34704cc651dcf74079d9240dbbebac3afe5fddc73fe6943635cb871a7806196",
+      "prompt": "man07-r1.prompt.txt",
+      "prompt_sha256": "73688d437422a212e048554343067f3bd7491010116ef554393cad1a3f63d847",
+      "receipt_sha256": "95d0ce8062d2d55a20b1b1c940a9ac52e34dd47b62a986f2ca8e5498c60d1c99",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            16,
+            613,
+            625
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN08.EGG",
+      "source_sha256": "e1b199444ee808a1f54b716e47740c9b995733e4383b51bb9f0e638387a83fa0",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "bf2d552bc536e319aed309164ba9fd972522b2d668e45a2d4700e77df907ba43",
+          "decoded_rgba_sha256": "259005f1530892c6c17527a0b2a5e025c25dea962c0de67ecfdd4d2a9b80568d"
+        },
+        {
+          "record": 1,
+          "record_sha256": "82993c6b9aeb4223140fffb434da3c108b0c5105b2ff6eb103d361d5f67c41f9",
+          "decoded_rgba_sha256": "4b433f7918606168db620e87a0d9701afa8dadbdc55acd947ddad419bc3ff2c9"
+        },
+        {
+          "record": 2,
+          "record_sha256": "fedea711a3f1aa314b414eea826ba08212534fa3799b7b787539a9153d9dc549",
+          "decoded_rgba_sha256": "a3f1491839d66705891681abceb8f985ecf61d6ed4fc992a0b4392da9188155b"
+        },
+        {
+          "record": 3,
+          "record_sha256": "39355413f05798d83d6917ba41f4cf6b8fbfe6a59b821fb27eb53d1768aa1e26",
+          "decoded_rgba_sha256": "93426c2b8ca6b270d37c47c11cd138eb6766eed0bdaf6f2ff8408b3e3dce8adc"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man08-hd-atlas-r1.png",
+      "image_sha256": "745bfd1d0f5540e109fc5621a47fd1ebefcaf6a970d87de3dbe3a4cfe24bedcc",
+      "prompt": "man08-r1.prompt.txt",
+      "prompt_sha256": "bce098f901bf1a9eaffd8e1077647d27b610f3799123dab33d6196cad44c8326",
+      "receipt_sha256": "e36d7480a745ea2f46ea73a37309a5635600c3a4668fa933c22aaa9d58bc31fc",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            51,
+            9,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            30,
+            617,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            627,
+            601
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            615,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN09.EGG",
+      "source_sha256": "cbdb54928507ca620725c006044025c51d6a22d59151bf0b27b3c57bd9e87211",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "e271017da2f5380596e593bd9ff03f2e6c7f052ab7a20d90fccaee24c500ea2b",
+          "decoded_rgba_sha256": "d6a0243e46fabe7ec242579a2f7465d281774ff4130fa3f4a37c063a411ef762"
+        },
+        {
+          "record": 1,
+          "record_sha256": "453e03911723bb56cfadc202c876e697487659343d1b2e81c5dc10cd277a3bd2",
+          "decoded_rgba_sha256": "a33309bcba492c2622ccd7afb91ffb0a15f2b142848992c83f845551085134c3"
+        },
+        {
+          "record": 2,
+          "record_sha256": "f385c4559931445f8f5f912fcd553b11bb714451f94ad6e7360f289ed47771b6",
+          "decoded_rgba_sha256": "2b033eb31686c0006f3d3f1adea4ce09b6c2ca4a1cde95573f5611a3520bce9b"
+        },
+        {
+          "record": 3,
+          "record_sha256": "865b0a523a46661a79f83ba867148f55493019644f42cffafa9d62cd23857b6f",
+          "decoded_rgba_sha256": "b4ce7ab9457a95645d779c30084aade6001c8cd0aa17f1240d8b109e7904dd14"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man09-hd-atlas-r1.png",
+      "image_sha256": "96b35589a9b00b003df162fb0064eb3adcff4a6d1d2aad5e5c0a0eb573b1e8de",
+      "prompt": "man09-r1.prompt.txt",
+      "prompt_sha256": "456bd64ad3bbcb50b07b64787c446aa4a805d58d5ab31b6bb47a073aa608478a",
+      "receipt_sha256": "3fc317e9159c8d7214090c80dbeb1aca9e7113221d0eca35955ce76f7c80063a",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            4,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            1,
+            8,
+            595,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            609
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            615,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN10.EGG",
+      "source_sha256": "3891eda7763a2d0b82816ab03d021ab7f602047dbebb396b4a22b3abf9ccf250",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "9c8020a4efd19172b047719d527da4980aca9c8c53b7b1500157ea29337d5e49",
+          "decoded_rgba_sha256": "be03da7bae909db05d3932fabe1af40c99c39803f65075bb2995c2a0f9b04481"
+        },
+        {
+          "record": 1,
+          "record_sha256": "5bb0e350182c6542f5e816c68e4cb4065a191c846a4c18dad8345071f5515a5a",
+          "decoded_rgba_sha256": "6b6ccd9829c5dba9f3a3178a763a122738863f2e7960547cbb66c1e889326183"
+        },
+        {
+          "record": 2,
+          "record_sha256": "febd05109154c43c6ed1cf8b084472bd6f988132f93c092efcd7a8d2d2764000",
+          "decoded_rgba_sha256": "8bb243d527fe8b55bc2b6cee6d06b022bd75d8a1ca3602470ead6efcbc348878"
+        },
+        {
+          "record": 3,
+          "record_sha256": "be5f0873bceb9733a575da0fe136041b9e0cafc72700643fe3dd5038faf25bbd",
+          "decoded_rgba_sha256": "8a681181dfa5183bf8ad222901bade24c36821467c907fd8c34e8071c80e2abe"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man10-hd-atlas-r1.png",
+      "image_sha256": "e7546d8f2b2b867dc7008d9b79fedbd972275e4c094715b430a618e39b5fb08a",
+      "prompt": "man10-r1.prompt.txt",
+      "prompt_sha256": "73a402652f71a112e1ec392b81fd32253d6edb0c2473ef60e15b689774b20725",
+      "receipt_sha256": "c43158290a1e651a5b462e617b82996d44eb3f6ccd46b2e94120587f0f6a69b2",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            35,
+            12,
+            627,
+            589
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            15,
+            593,
+            625
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            31,
+            0,
+            627,
+            595
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            616,
+            611
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN11.EGG",
+      "source_sha256": "860ab98a7165f25fe2007dd597ddf6fc698c9d2f048701eec955a1a0cd65f832",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "6da1d9280af54d9f30da94fd6da26c6c61149dc2e8a615affbd497a0a0b43d5d",
+          "decoded_rgba_sha256": "6ec5a7f6f9bb9a48c8664eb08329b08b185aab25267fcc48ca4aa3d56d1d74a0"
+        },
+        {
+          "record": 1,
+          "record_sha256": "87c1811812b52903da1e84d28097f2aa36bf2dbffdda733499ee09140bfacadf",
+          "decoded_rgba_sha256": "bfb82132fab14cb29e6d9192d5cff6932d3e5f6f7e2f307a5b54efe80027da18"
+        },
+        {
+          "record": 2,
+          "record_sha256": "8b62cd1556331c561f8e83d1b1afc8b5cb08d059a4c1c085b339679a8babcf96",
+          "decoded_rgba_sha256": "068ccda5abf7cc15ed3a7299896ca9c1523f6c2d44ca9f143d81ca53e92a79c9"
+        },
+        {
+          "record": 3,
+          "record_sha256": "5ce96cf4662823aada52459ae9d1a2a933f9b45d844a128defbf10dd6b300693",
+          "decoded_rgba_sha256": "d699cde49f41a694602a14b0ccd679e819b075ba69251cb39c9b794d334abc45"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN11.EGG",
+          "record": 0,
+          "image": "battle-man11-0-r1.png",
+          "image_sha256": "1657bfc58772177d2b2819f30c01b198ed1702f0d64f3fa10662d6e5aa1452ef",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN11.EGG",
+          "record": 1,
+          "image": "battle-man11-1-r1.png",
+          "image_sha256": "e0cb5749c13db0ac91f526941bff6168eb94bbe2b4c034c5e47de3b58e3c86a0",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN11.EGG",
+          "record": 2,
+          "image": "battle-man11-2-r1.png",
+          "image_sha256": "49366f236e47db052009a52d4572fb4286dbc4767fff6e0d49067820aa2cca66",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN11.EGG",
+          "record": 3,
+          "image": "battle-man11-3-r1.png",
+          "image_sha256": "e0a50aa7717689827abae19de62335ae65ea8b760aa6169c368336f7bbc89eba",
+          "transform": "identity"
+        }
+      ]
+    },
+    {
+      "resource": "MAN12.EGG",
+      "source_sha256": "bca2b7d5f05ae7ac23972e6ea8f5308ac22a243c78acd5970690d93c8a827632",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "92e33f348b6d532d82897afd28ad9d0f99a5d8026eb51d7d387a08dd804bd8f0",
+          "decoded_rgba_sha256": "c2a99dadab1ec40ccf6c574d5f59a400ff8307d657b7ef883b08adac2dc5af6b"
+        },
+        {
+          "record": 1,
+          "record_sha256": "e77676c02ab2f77f36e7e4946b59f2d636cf5d133d2073f9d027987ed22b1b8a",
+          "decoded_rgba_sha256": "3a74084b3df6329ba28232be857dace7bfdb07f68e0e1b024b889aab9f307b46"
+        },
+        {
+          "record": 2,
+          "record_sha256": "ae33f722d546aa1818865db129baf55f6713e6a0f8867eba56ca08e75a83a2e6",
+          "decoded_rgba_sha256": "2d5c1b88101e39fddf52d50d5bafec91bc6a58e81ad679b3131bd9beb04916eb"
+        },
+        {
+          "record": 3,
+          "record_sha256": "6e813e7a4d57d4b4cd00895be9dfe63f1258b5c6cf26d1b3303302f23e1568c3",
+          "decoded_rgba_sha256": "93364e14187cde4f1e22e626528e6ec5dfefa0276cc5c9705bf607b35b1f3eb8"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man12-hd-atlas-r1.png",
+      "image_sha256": "8ab8512c68deb095bfe5edfa58b6afe19cbc1112f07e048edf1d182437af0a7f",
+      "prompt": "man12-r1.prompt.txt",
+      "prompt_sha256": "ca256ad937916e40e9672c75064a5161ab1593d5d714a176b1fe4f5e78cb0e07",
+      "receipt_sha256": "b8145a3ca95235b1b20b9d8562a1d9fb0711e45e9f3ce96bad4f74d1a694116f",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            25,
+            0,
+            623,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            616,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            15,
+            0,
+            627,
+            565
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            587
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN13.EGG",
+      "source_sha256": "834530fe217c0cb63b57598096ae37e8acbdbe8cb565ffbee5d7622901624bfa",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "2ee6813e0c1df2f0543c9d45679a7f0a60cf41af1fe45d6d19b1963d88a21e64",
+          "decoded_rgba_sha256": "429aca2e3a628471001bebf726f8552ece13c39969a9de32eda35b0f1719324e"
+        },
+        {
+          "record": 1,
+          "record_sha256": "76f32398a5d0f92a5699ee807cb344d9e0a120f5f1b121117e621da2d60c8504",
+          "decoded_rgba_sha256": "915869326fd82b69afd5ab3e1cdda253fa274174dcc73d18ecb248e99d5c537a"
+        },
+        {
+          "record": 2,
+          "record_sha256": "6ad580dd2ed5512fff1a1d002560e28542008d5ab604b02eff4762e473205de4",
+          "decoded_rgba_sha256": "8c4815f5ca311c68e273f8c23ad86ee8a68472aa9374cd8de87c5de403a70571"
+        },
+        {
+          "record": 3,
+          "record_sha256": "2939e5f89d201dd63c98230a8c1e5218f50e2461bb23dfdab07344745f6d9180",
+          "decoded_rgba_sha256": "caf1fac3a8812a7ea2687d6a58e5a68e1f3d908e9cdb11fcf5b78ecf7318221b"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man13-hd-atlas-r1.png",
+      "image_sha256": "538d94b1328695613ab1d34753374245c75ee96c4d2ae5d974bec98f6ef6c872",
+      "prompt": "man13-r1.prompt.txt",
+      "prompt_sha256": "5bd0aed0f8bca245383721b43843ce2dc00691f2fbf0385f2665ad1ff9573c9b",
+      "receipt_sha256": "f0df7f26a094c5de9f0147d3140e46f51ba661326dc0b56d01d4e5b70ba52e34",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            31,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            33,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            1,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN14.EGG",
+      "source_sha256": "fcd414c4a50816fe435b9cf15a39026cbb57b25fab3954f2fddaca0e81882c82",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "519a1938831f505743620a48def68bd848bf4a9fcd8e3af0e72b64a97f5f6584",
+          "decoded_rgba_sha256": "8cb4eacc1c4a9b220fd65f34a48cac1efaae5f9559250c37bc674648a2ccc962"
+        },
+        {
+          "record": 1,
+          "record_sha256": "abb4aad37e6b82c825f7f3fcca1d90deab7f2e1328b986e5057048bffd86868a",
+          "decoded_rgba_sha256": "b52fa01652953716b2898bc44347852c1e8a92e3a56bb024c3bad4adad6372d9"
+        },
+        {
+          "record": 2,
+          "record_sha256": "0621773e60fb56dcf8c0fd88a3c45007626a6c1455366edaeeb5f1d91a0d8bef",
+          "decoded_rgba_sha256": "8326b1fd1ae0d06a0f0466eaf73a3d146db5c23e76f5f7d65cb67917960b4442"
+        },
+        {
+          "record": 3,
+          "record_sha256": "01259f1d90a46cd4d248fa6da6beebd63313d8726edad84c9c4685c0b44d65a7",
+          "decoded_rgba_sha256": "dfdc0bc07e74a132fab84b20240d57723af23b8cb1c7c095b2421fcdbd88c11f"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man14-hd-atlas-r1.png",
+      "image_sha256": "a1bd993265dd859fd18fb1ae96224c3fb2e19ce8083e02586270aca6c4109703",
+      "prompt": "man14-r1.prompt.txt",
+      "prompt_sha256": "2c3bfd2d3b1be06463fba8ab4015da273de3d49d6460a94d8c5de4d2df234286",
+      "receipt_sha256": "50d91136934cab444316748d1fed1ddd65b5e2e8db3f984ca0ebee797076faf1",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            39,
+            15,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            15,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            43,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            623,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN15.EGG",
+      "source_sha256": "16efb34ad279d3e13aa70b0242c73a4c756d11c55d7a45f6f96d38483c51ede8",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "eafa83f9bdd104e92fe64bb7cbc18e0a94f238e24c5392791a936be24805075e",
+          "decoded_rgba_sha256": "02f4660f5b0b1cb417c9e5eb7790c343f1bcc71964c592fe39320b91baacfb52"
+        },
+        {
+          "record": 1,
+          "record_sha256": "823bef6681d24cc1878009ee7c3134f69e86da5207c2050b80d4527d9611b12b",
+          "decoded_rgba_sha256": "cf2a0620bd668b14d4a0b18fb3b8501c5ebf6778f44dd3346f779cb0c441ba27"
+        },
+        {
+          "record": 2,
+          "record_sha256": "8f775946ddcb4fa9accb187eeae466d47ae8ba7fa3a8a505fe332d3c8442bf89",
+          "decoded_rgba_sha256": "f673f91163d92d02ec9fc6a592f736215ac4ec5d3b3d6b0d8c691e6fc8742ca0"
+        },
+        {
+          "record": 3,
+          "record_sha256": "c3382aaf68f9d3b085aa6131ce4f852f149de4a7c604106def511f22f09f1054",
+          "decoded_rgba_sha256": "7e1452c80052760654bb8d8345484b8a5a899dcf71ed9545c9a240999a5eca08"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man15-hd-atlas-r1.png",
+      "image_sha256": "ee0a8bd5435ac29cb332463ae5372de8397c863b1b5dbc48e7236d773771eb80",
+      "prompt": "man15-r1.prompt.txt",
+      "prompt_sha256": "91bcc64fa861f4440933eae687188feb6f75064ac62a40f43381a3549cb9e091",
+      "receipt_sha256": "afabd20807c502b7e5b440fa8823593644c43b62b3315eeec42ffc93aa7dcd0e",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            15,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            9,
+            617,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            623,
+            607
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN16.EGG",
+      "source_sha256": "d4acf7c58c199c1776ffde6c86afa3c9b0ae3b132e4cc59973e1e0d5c2011d6a",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "6f63681e789a462164c7213774c2cac6367cb820ad661665aad541d0cfc6250d",
+          "decoded_rgba_sha256": "bd84e68f9a7cc3ab5ee675ebfb118f80e9ea9aaeccce9b1a0a2e1eda7420a290"
+        },
+        {
+          "record": 1,
+          "record_sha256": "821286f200de68b303d4ecaa11791b6d54b1dfe922f098b17fd35707d1673b3a",
+          "decoded_rgba_sha256": "cdf6dc6782aea5903ce64744cb3ee2ae2110ec69488784392c0a71b191cffda6"
+        },
+        {
+          "record": 2,
+          "record_sha256": "e00d323c14f7ecb4d4b871ce06cd8d35efc278ad8bb9810908007bed4781307b",
+          "decoded_rgba_sha256": "dbee6751e88187be949d36d208de119cb5b3302c272dc22099dede9889dcacef"
+        },
+        {
+          "record": 3,
+          "record_sha256": "e36b6be555cca76fe43a6c38d830d1277bce3e0d6a6ba3802cbf56cf6fd5c2d3",
+          "decoded_rgba_sha256": "4633d9299dfd8dea8451014bca0fcc1b4eb596163d3050cd003bc76d4a959ac7"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN16.EGG",
+          "record": 0,
+          "image": "battle-man16-0-r1.png",
+          "image_sha256": "53a599a6db8f10cf76d08de389fbf07b72b6f3c8f9fdf6647256c440809300ad",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN16.EGG",
+          "record": 1,
+          "image": "battle-man16-1-r1.png",
+          "image_sha256": "276b05c40e6a728411d8fa4fd37cd2e7d01c1605435eb73e673dff6da9a22c97",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN16.EGG",
+          "record": 2,
+          "image": "battle-man16-2-r1.png",
+          "image_sha256": "72674401cf1e6d9963cf06c0916950998b39fb99628f299ea752724135402c9f",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN16.EGG",
+          "record": 3,
+          "image": "battle-man16-3-r1.png",
+          "image_sha256": "1721160832e226599e1799b396ad1be15f76f87304fc7eb5a1775fea80eb40e0",
+          "transform": "identity"
+        }
+      ]
+    },
+    {
+      "resource": "MAN17.EGG",
+      "source_sha256": "01d5fcc69a2968ad4cdaa3c95fcae59888f4c2697d6c328364a5083a8bbe13b0",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "73e334e0dc7d59f3449e772be87a63ac83f071c2c0e3ed3f353c81b5cdfc9ed9",
+          "decoded_rgba_sha256": "5ff1d7c47d62b2a2487672b138c08905267c59042c5e839632c511308333ce1c"
+        },
+        {
+          "record": 1,
+          "record_sha256": "e37dd382be225f1d73b91ab72fb023a1dc26e07a1fab5bade8f2739b18f55b5c",
+          "decoded_rgba_sha256": "275f2b84829ec10fa4c26f7bb524089b67de8045c167b300447403c095770b56"
+        },
+        {
+          "record": 2,
+          "record_sha256": "6c91405311e6a5c7536756a2c4f65aef0d72f90ec0c9739a0434c1ea1c1518c2",
+          "decoded_rgba_sha256": "cefe074a8e5d977c807feaa66c127cbb8a3a899d0410a783b87bfc40578d1b46"
+        },
+        {
+          "record": 3,
+          "record_sha256": "e7b7dfceb172cd6b8c7f627360e573a464b0b5323e98d525f0d2e452011c772b",
+          "decoded_rgba_sha256": "3e168d33e6c01741022180de13e43272a446c59f1c8dc7be14f96ac7b3d6314c"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man17-hd-atlas-r1.png",
+      "image_sha256": "73f3b46666bd5b3d106aec17e297a9f87ddcf747cb0562d47f186ccd9643fbab",
+      "prompt": "man17-r1.prompt.txt",
+      "prompt_sha256": "78b88b63f9a54819c2b1f9628b258dc25952b17ba4d53a6ed5b5fb4e50bee519",
+      "receipt_sha256": "b5dc3b26c92870f29ac48c9ca871fdc2fa42935436a4bffe7bf82c6aeb61ca27",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            9,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            7,
+            7,
+            605,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            17,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            14,
+            613,
+            607
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN18.EGG",
+      "source_sha256": "3621110448141e861f93fc4f6f0a885dd36fabdff393bbae953b5ecedb454215",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "9674130785d992d463daf5ef247a6c53741a192ab89ddb063b62f19f29572f95",
+          "decoded_rgba_sha256": "b6048972fac79f2b95fe2700719afa6d2bf9f26d1aa00fc57aa5d2a565939aa2"
+        },
+        {
+          "record": 1,
+          "record_sha256": "ce4bc185c95e181ba4d0a295ff316015c64d5ff4c4aefdd291cc460750479073",
+          "decoded_rgba_sha256": "390cf8fc9c76c73c00b5d0db35f82d5728d202f1672769b01afc056a6920527d"
+        },
+        {
+          "record": 2,
+          "record_sha256": "d6050460025cb22e5fa9884fdd0b71470f52a5e22699a0191fa2111f799526ab",
+          "decoded_rgba_sha256": "18ac613b7dbf9bd8d79ddb366ecda7bfbae459232be3303190027f4750717e6c"
+        },
+        {
+          "record": 3,
+          "record_sha256": "d389a893a6caef8a75d53ba8c5f4cba8721e234595d218eeb24eed1483bda275",
+          "decoded_rgba_sha256": "f9f346b29b2fc51f79a9156734c5fd6cff3a7ff2b285d9c69f0a8e082db43486"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man18-hd-atlas-r1.png",
+      "image_sha256": "f956b2d52140d61b6f09f20d2e3cdca0694d5e0d03f2a24804ee3059d5205fc1",
+      "prompt": "man18-r1.prompt.txt",
+      "prompt_sha256": "8a3dc0e7af87d1af00cd8ca184086e89a053d7795345327bcf51e8b51871c0b0",
+      "receipt_sha256": "32b1378d7e46ff24b65637582823d8e28e13d1758071f628ad977eb262a92649",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            3,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            25,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN19.EGG",
+      "source_sha256": "de0ec47e4f146a249b8e5196c184099dd008b45243150a47c022db76e1549e4c",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "258c205fca85320f06f6cd8e743526745634bd689b0f8b3b42a216877a263f77",
+          "decoded_rgba_sha256": "f88dca3425341b0d74f301a40b5be65a4759b1ff955b3d03adfd9f0d68148392"
+        },
+        {
+          "record": 1,
+          "record_sha256": "6e6a6590e4bf9885fa4d619117d88fe80dc31e4c83a9c54d620b48eaa69eba2f",
+          "decoded_rgba_sha256": "55724827d23a9f9770b5d9ff85495551c2d092231a1e956e3139e7f60c3d1d34"
+        },
+        {
+          "record": 2,
+          "record_sha256": "81f391ffb9eb9f37152c8c10964e51cabef7e9366161dabf1d0208a147db5ffb",
+          "decoded_rgba_sha256": "e0075300a5deb63f7506b7607b7161ee10e2cba594b1e6b4db4953073f0b70d9"
+        },
+        {
+          "record": 3,
+          "record_sha256": "aab5cf9e9f07eea07e4a0484245ee1629c562e9da66b2044a640199d1cfd0231",
+          "decoded_rgba_sha256": "73fcfab46f6c6a3f3de81d447a88e145ac831974597586f790737723a3bc80e6"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man19-hd-atlas-r1.png",
+      "image_sha256": "a26ae390f5216f11ac1a374083968c7db7169b0874b2ac0678a7311fb701786c",
+      "prompt": "man19-r1.prompt.txt",
+      "prompt_sha256": "3078d599f82eb1e723e66b4bd9517f54b38e489add863e77f30cc8f8f3e79b1b",
+      "receipt_sha256": "55d9a6563d61df4298e24c19c823653173f57c0bdac6e305aaed028ee21d0aff",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            8,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            626,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN20.EGG",
+      "source_sha256": "8d797ae688960fbc63bdc74372a4b7c775e99be38989dd47ba0e5d3ca0ae508f",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "c0a732c7e1a61b648bb82e96af11c7bdff6bf300c773b81dfb2f74dae0f156e5",
+          "decoded_rgba_sha256": "addc0d023b03626109838a20d199bb3e4f40b280365054a6326b41e09b0de833"
+        },
+        {
+          "record": 1,
+          "record_sha256": "0dfc06d251c43ebf4ccee82c4b9357bc22dc2c066bb50ec15f153133e4c84e4c",
+          "decoded_rgba_sha256": "4955acaa12ba8b1df7c74120cb3c6fc1b7bbd276dea7a87e7c38e3dd6836879e"
+        },
+        {
+          "record": 2,
+          "record_sha256": "fd4bc09ede624933390f6a336972293e9e39cccf9bcb401f869fdf0807c0577d",
+          "decoded_rgba_sha256": "51be9f8b8a86a4c7b526e3d220eb1a8c9e2e30b7106d676e5a74ab1e629662dc"
+        },
+        {
+          "record": 3,
+          "record_sha256": "280ebbba9317986b398b9becf9385044e42f7792e820b224192b3063162ce10d",
+          "decoded_rgba_sha256": "cd8c2804a534dc07744c638e2f63eb06cbfdb270b817d1dcc62442f464ff4b23"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man20-hd-atlas-r1.png",
+      "image_sha256": "8d24a8a28681801c245ffcb0ece2c4a993e6ac023afcd3d15666f74da5244ec1",
+      "prompt": "man20-r1.prompt.txt",
+      "prompt_sha256": "45261fc7a398ef16cb07b577ed63bac4d80d6ff8414d172fc229582038996ac9",
+      "receipt_sha256": "463dbbacc956e48b2432d83910b81ad65aef7ec38e7f38db29f469a019075d3a",
+      "width": 1176,
+      "height": 1337,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            588,
+            668
+          ],
+          "alpha_bbox": [
+            0,
+            15,
+            588,
+            668
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            588,
+            0,
+            1176,
+            668
+          ],
+          "alpha_bbox": [
+            0,
+            17,
+            588,
+            668
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            668,
+            588,
+            1337
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            588,
+            669
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            588,
+            668,
+            1176,
+            1337
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            588,
+            669
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN21.EGG",
+      "source_sha256": "47cc484319abeba53551c20b7cf4b9b2c6061f2da3b6cda14155b3598f10982c",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "60692a5484c93406ec70ae7316e0a905d09ce9a9d1f8cce5b051692dbcc64164",
+          "decoded_rgba_sha256": "e8e1d19ea9c64fd465a7aad6a696f2a28fbc970cf9c3fda1770fd609dd60b7ff"
+        },
+        {
+          "record": 1,
+          "record_sha256": "0426c60e7ab8b5ea3dbcf184b7372beb3a520406e730c4527b666ab2bc56777f",
+          "decoded_rgba_sha256": "6b0ff65cb85e2450fde04ff28006730d443fe8d18b2520e0ce3e1151f545b032"
+        },
+        {
+          "record": 2,
+          "record_sha256": "547205ea9d571c29e718c0a94f2633902270c2139aa2a8939c6dbd006746b146",
+          "decoded_rgba_sha256": "cdc73b81217b199ada76159fb1e7321ae63852448f30f8a1b31e1ece0e68717e"
+        },
+        {
+          "record": 3,
+          "record_sha256": "549d51ea698bcd20116cdc3e552d5a47826a077ce13bf7debd5086e6f38d6051",
+          "decoded_rgba_sha256": "4479f3be72033722252e5e3823ce2dbdb124603a54e6705c8b0583d6799401ad"
+        }
+      ],
+      "status": "registered",
+      "hd_records": [
+        {
+          "source_file": "MAN21.EGG",
+          "record": 0,
+          "image": "battle-man21-0-r1.png",
+          "image_sha256": "e710379542cf1c4279ce1703b17ed9d3a839a2e831add705d0f93a370cbf8122",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN21.EGG",
+          "record": 1,
+          "image": "battle-man21-1-r1.png",
+          "image_sha256": "5e6b3a90ad34fef1914e42c6d9bee491df0596102f7dc134376d420d8c34c80a",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN21.EGG",
+          "record": 2,
+          "image": "battle-man21-2-r1.png",
+          "image_sha256": "483573cabb50b4ae6ecb2ac9b6a68c776398d37f847c2f36a45556862ade48c7",
+          "transform": "identity"
+        },
+        {
+          "source_file": "MAN21.EGG",
+          "record": 3,
+          "image": "battle-man21-3-r1.png",
+          "image_sha256": "1c079c414df24d03ae56e93990a17fa850782a10c796087dc403ec0b10be192d",
+          "transform": "identity"
+        }
+      ]
+    },
+    {
+      "resource": "MAN22.EGG",
+      "source_sha256": "2b29ec53671ced2f114a040ebd27521393ab65e106ed85d17624b0d1272775e0",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "7d8baa2a868f606dd707a0ac872e10dcc8dcef7d0ec4f6c2cb2f08ba53988510",
+          "decoded_rgba_sha256": "ad1f2d4f24f9b5f56f3feebc852b37c4cd230365ab1c4734b76cafd94bf3bb47"
+        },
+        {
+          "record": 1,
+          "record_sha256": "06c41a9ff23c2ca21687bb47b308d5e05d0cece9639088cf65401104255e9b55",
+          "decoded_rgba_sha256": "2c44e89a912735131752709878323633a39d69a6fa31d9463a4f850bdfeed3e1"
+        },
+        {
+          "record": 2,
+          "record_sha256": "3cc5ac1e188cc908747aa90a0385c3101d06184c3c8fa700cadc76966439b9de",
+          "decoded_rgba_sha256": "7c5b19d49ae7887c9a6c8cda6deecc48776c021b04060af2b3f5250457eb7c18"
+        },
+        {
+          "record": 3,
+          "record_sha256": "06ecb127c56a2a9947955adc9e28b1baa528508cb66ed3042c2ecd04010b6af6",
+          "decoded_rgba_sha256": "401702c2e829443c272efd5a0947141cd58da0b01019a86dc3785b8e2a057517"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man22-hd-atlas-r1.png",
+      "image_sha256": "2d3626a299580d17f61c15ce5beaf5f2c9bbbd2c01f3e1f6e25759fd8fb2068e",
+      "prompt": "man22-r1.prompt.txt",
+      "prompt_sha256": "bdd4875ec5f9618ea36e5d7236cf116cd588e1449586932e842b9b71abca42e8",
+      "receipt_sha256": "cf4ca74de4b06092f871f457a9b0f4ed75136c31d5ecfb6f9927a3f55e30c264",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            37,
+            6,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            11,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            13,
+            1,
+            627,
+            589
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            626,
+            597
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN23.EGG",
+      "source_sha256": "381e7bdbda9cf0a68cc1a7587ed98828a5aed594d26dc9771d709258a60bf1cf",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "1b82ecc84697f3821e6d8c96c715eb1b107426a01e6746662da94b8ed9fc250f",
+          "decoded_rgba_sha256": "7f63fdc4cf14c931cfc0cc0388e9f595d1dfe920bbc31b742e31b9734be4ca1d"
+        },
+        {
+          "record": 1,
+          "record_sha256": "8229ad42a3938b8359d7ddf196b6d87381444e0c4967f16d1e7de0b23b399cb2",
+          "decoded_rgba_sha256": "030d607df9d82195ee1fd478e1248972e47bcafb675ce76dd607e5516bcdcb41"
+        },
+        {
+          "record": 2,
+          "record_sha256": "077abdb99af5c2824a8f206ba3761c782db4235283c9872dfa87b6a6a074dc63",
+          "decoded_rgba_sha256": "9e4317a16228f7530e9fe596c1baa601ec30d21a00c6e6aebb2668d14be00bd8"
+        },
+        {
+          "record": 3,
+          "record_sha256": "91c5f04d16671223f6ae28887096c5c9996ea4d2b1266f9657e708eed711dc42",
+          "decoded_rgba_sha256": "9f3da56a7d260d58eca6ba1cb5fd5e6430fa1ce11b65d671f4cc209d239c1f53"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man23-hd-atlas-r1.png",
+      "image_sha256": "1f50350aa88252403765a0e2585b98e785fd7ce202831bb3973b8e8ae44f139b",
+      "prompt": "man23-r1.prompt.txt",
+      "prompt_sha256": "87b374d633ebb87018d108bb8d5f184dad44b8ed0d50f5cbc712506cbb62388f",
+      "receipt_sha256": "5d54725bd731cc4fc652951773d31d22e88b7df28e913b743b146326bc3d6e26",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            12,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            19,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            627,
+            573
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN24.EGG",
+      "source_sha256": "e9f19e9bda935d96721452bddbd17009d88f61bdc4903ea3abf3735017c31b87",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "b3b91a6d890dee328d6e1aace6127d3ab1c7fcd951e79639b34a6ff39892acbc",
+          "decoded_rgba_sha256": "71671a0df82b9393738b3bfe85993e4f339deba9cc60cd1df20ac3dd442f9c8e"
+        },
+        {
+          "record": 1,
+          "record_sha256": "ea0be3b36ad8d55d01c5b2f50120578db47b42dbdf44a8adcc6db5fdcb72e0f4",
+          "decoded_rgba_sha256": "86ea2d412b544653938d45c7a195d45eb965dfd19388c250159286b8bb7c9b3f"
+        },
+        {
+          "record": 2,
+          "record_sha256": "cea194e7615abd8953708df4bb888f0708228354f46ff8701044344f7ce79992",
+          "decoded_rgba_sha256": "d46dc70f95b5a243856dec857afa0a0a53e05e05827380cd4b4adb5d4f724da2"
+        },
+        {
+          "record": 3,
+          "record_sha256": "39760e5d9cfc771df3412cbed4bb4348654f6c6ff7b809ee95da0c847def0b2e",
+          "decoded_rgba_sha256": "df56add9c5388d5e6577c1ec58ec93c622babb2b94238600c7240c1cc765fa6d"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man24-hd-atlas-r1.png",
+      "image_sha256": "bfb0721fa13dca0f4e613330f0bee54e4204b66272d6067cec2fca7df759e859",
+      "prompt": "man24-r1.prompt.txt",
+      "prompt_sha256": "72a05966484559fa903c56a091b3845e464ef2adfb69fa049f5de932a45fd2d9",
+      "receipt_sha256": "4975888e11e3620b1e23bc671da4bbd06f0c45ba6f246d7163214af6ac76df53",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            0,
+            12,
+            627,
+            619
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            1,
+            38,
+            627,
+            595
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            7,
+            618,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            9,
+            0,
+            627,
+            595
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    },
+    {
+      "resource": "MAN25.EGG",
+      "source_sha256": "96589d7667217f365259aa23a7056bec63ec3460d978a33bf4837eb9419c1ab7",
+      "records": [
+        {
+          "record": 0,
+          "record_sha256": "93919eed236eb78e66945731ab4608bb4716f0c77329be355af0ef1e9ca266bb",
+          "decoded_rgba_sha256": "2e42572a9d5f6c9ef4e6ed7d6692d6f411b8ba2756faf965e54488b4493f9db0"
+        },
+        {
+          "record": 1,
+          "record_sha256": "33cdb500e49b6028449e729b703e83c50c80c521a81ef2b52f1a9c88a85c9215",
+          "decoded_rgba_sha256": "827d4c835b778c59d403225743a760957499a4bad177ee6021d3752d6e9837bc"
+        },
+        {
+          "record": 2,
+          "record_sha256": "fcd122a74ed3f4dbf7d869a835870a7f1a4bd925e1ca2b353af9c0d834cfdf00",
+          "decoded_rgba_sha256": "440c75210d514a823f07766ef877b77b949a0cc5b965679931c941ce66d18ebd"
+        },
+        {
+          "record": 3,
+          "record_sha256": "2cef1127d356f7fe36a3b2d005449bc85de453b96394342dc5fd1e635aed1394",
+          "decoded_rgba_sha256": "8787349571fb266e47cf51d7db0655b10ec8df72fd1de22db76029263299ff44"
+        }
+      ],
+      "status": "generated-not-registered",
+      "image": "man25-hd-atlas-r1.png",
+      "image_sha256": "8829df500ca1a1d62f87a50dc78f283d67424ffd63eeb9093527ccfc98e05db2",
+      "prompt": "man25-r1.prompt.txt",
+      "prompt_sha256": "224f4775ee6c5403834c1f9bc86c7a578cf1d628a0df28e44ed73dd8d3f0f803",
+      "receipt_sha256": "ae6c8341fd7af56a1d51d357433e910c8852cb7e86ffbd48f30f677ae2eae140",
+      "width": 1254,
+      "height": 1254,
+      "poses": [
+        {
+          "record": 0,
+          "quadrant": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "alpha_bbox": [
+            31,
+            21,
+            627,
+            627
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 1,
+          "quadrant": [
+            627,
+            0,
+            1254,
+            627
+          ],
+          "alpha_bbox": [
+            1,
+            23,
+            581,
+            619
+          ],
+          "touches_quadrant_edge": false
+        },
+        {
+          "record": 2,
+          "quadrant": [
+            0,
+            627,
+            627,
+            1254
+          ],
+          "alpha_bbox": [
+            0,
+            0,
+            623,
+            595
+          ],
+          "touches_quadrant_edge": true
+        },
+        {
+          "record": 3,
+          "quadrant": [
+            627,
+            627,
+            1254,
+            1254
+          ],
+          "alpha_bbox": [
+            7,
+            1,
+            613,
+            627
+          ],
+          "touches_quadrant_edge": true
+        }
+      ]
+    }
+  ],
+  "outputs": {
+    "troops-new-hd-all-poses-r1.png": "d59fee98aa6b907d7f8d7a8b102df6f234c38b92fcf7aaf4e723b9bc571ba516",
+    "troops-all-original-hd-r2.png": "f08fa5a08f0affe56f17de4a72a6c86f93592254eb4d17c2eb7788e9e7456f2b"
+  },
+  "rights": "User-requested comparison documentation in existing private repository; full assets remain local.",
+  "limits": [
+    "Static art sheets, not same-state battle screenshots.",
+    "Generated art is not yet registered in the formal runtime.",
+    "Shared rendering uses representative sampling; per-creature gameplay checks waived by user.",
+    "Controlled memory states are authorized for presentation checks only."
+  ]
+}

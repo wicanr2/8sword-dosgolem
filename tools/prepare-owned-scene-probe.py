@@ -19,11 +19,15 @@ def main():
     parser.add_argument('--intro', action='store_true', help='研究版接PREDELLA來源場景；須搭配--gui以提供診斷Frame參考')
     parser.add_argument('--natural-intro', action='store_true', help='無頭探針與研究視窗等待開場自然結束，不按Escape')
     parser.add_argument('--vga-read-trace', action='store_true', help='研究核心須有VGA讀取前觀測；只記位置，不替換繪圖')
+    parser.add_argument('--direct-render', action='store_true', help='研究核心受控替換四／五平面呼叫，PAM直接繪製自有場景')
+    parser.add_argument('--batch-render', action='store_true', help='自有場景改用紋理矩形批次，保留凍結的舊畫法作診斷')
     args = parser.parse_args()
     root, out = args.project, args.out
     assert os.getuid() == 1000
     assert not args.modal_menus or args.gui
     assert not args.intro or args.gui
+    assert not args.direct_render or (args.intro and args.gui)
+    assert not args.batch_render or args.direct_render
     assert root.is_dir() and not out.exists()
     assert out.parent.stat().st_uid == root.stat().st_uid == 1000
     seed = root / 'workplace/probe-20261023/graphics-first/battle-r1/friendly21-validation-build-r2/src'
@@ -40,7 +44,25 @@ def main():
         (source / 'internal/eightsword' / p.name).write_bytes(p.read_bytes())
     data = (root / 'tools/research-owned-scene.go').read_text()
     assert data.startswith('//go:build ignore\n')
+    if args.batch_render:
+        start = data.index('func renderOwnedScene(')
+        end = data.index('\nfunc (e *Engine) ResearchOwnedScene(', start)
+        reference = data[start:end]
+        frozen = (root/'workplace/probe-20261023/graphics-first/battle-r1/owned-live-build-r27/src/internal/eightsword/research_owned_scene.go').read_text()
+        a = frozen.index('func renderOwnedScene(')
+        z = frozen.index('\nfunc (e *Engine) ResearchOwnedScene(', a)
+        assert reference == frozen[a:z], 'reference renderer must stay frozen'
+        (out/'render-reference.sha256').write_text(hashlib.sha256(reference.encode()).hexdigest()+'\n')
+        data = data.replace('func renderOwnedScene(', 'func renderOwnedSceneReference(', 1)
+        marker = '\tp.captures[kind] = true'
+        assert data.count(marker) == 1
+        data = data.replace(marker, marker+'\n\tp.auditOwnedRenderer(kind)')
     (source / 'internal/eightsword/research_owned_scene.go').write_text(data.replace('//go:build ignore\n', '', 1))
+    if args.batch_render:
+        for name in ('research-owned-render.go', 'research-owned-render_test.go'):
+            data = (root/'tools'/name).read_text()
+            assert data.startswith('//go:build ignore\n')
+            (source/'internal/eightsword'/name.replace('-', '_')).write_text(data.replace('//go:build ignore\n', '', 1))
     if args.intro:
         data = (root/'tools/research-owned-intro.go').read_text()
         assert data.startswith('//go:build ignore\n')
@@ -49,6 +71,11 @@ def main():
         data = (root/'tools/research-vga-reads.go').read_text()
         assert data.startswith('//go:build ignore\n')
         (source/'internal/eightsword/research_vga_reads.go').write_text(data.replace('//go:build ignore\n', '', 1))
+    if args.direct_render:
+        for name in ('research-direct-runtime.go', 'research-direct-runtime_test.go'):
+            data = (root/'tools'/name).read_text()
+            assert data.startswith('//go:build ignore\n')
+            (source/'internal/eightsword'/name.replace('-', '_')).write_text(data.replace('//go:build ignore\n', '', 1))
     probe = (seed / 'tools/probe-friendly.go').read_text()
     if args.vga_read_trace:
         marker = '\te.EnableLiveClock(3000)'
@@ -88,6 +115,15 @@ def main():
         end = probe.index('\treply("ready")', start)
         assert 'shot("01-continued-map")' in probe[start:end]
         probe = probe[:start] + '\tadvance(500)\n\tphase = "main-menu"\n\tshot("00-main-menu")\n\n' + probe[end:]
+    if args.direct_render:
+        marker = '\tinstall := func() { installMap(); installBattle(); installPalace(); installOwned() }'
+        assert probe.count(marker) == 1
+        probe = probe.replace(marker, '''
+	e.ResearchDirectUseFrame(ownedFrame)
+	installDirect,finishDirect:=e.ResearchDirectRuntime(*out)
+	defer func(){must(finishDirect())}()
+	install := func() { installMap(); installBattle(); installPalace(); installOwned(); installDirect() }
+''')
     (source / 'tools').mkdir()
     (source / 'tools/probe-owned.go').write_text(probe)
     if args.gui:
@@ -193,6 +229,29 @@ def main():
             engine=engine.replace('if e.researchOwnedRender!=nil {defer func(){if own:=e.researchOwnedRender();own!=nil {result=own}}()}',
                 'defer func(){e.researchOwnedReference=result;if e.researchOwnedRender!=nil {if own:=e.researchOwnedRender();own!=nil {result=own}}}()')
         assert engine.count('e.researchOwnedInstall()') == 2
+        if args.direct_render:
+            engine = engine.replace('type Engine struct {', '''type Engine struct {
+	researchDirectSourceFrames uint64
+	researchDirectLegacyFrames uint64
+''')
+            marker = '\treturn e, nil'
+            assert engine.count(marker) == 1
+            engine = engine.replace(marker, '''
+	if dir:=os.Getenv("EIGHTSWORD_RESEARCH_OWNED");dir!="" {
+		installDirect,finishDirect:=e.ResearchDirectRuntime(dir)
+		installOwned,finishOwned:=e.researchOwnedInstall,e.researchOwnedClose
+		e.researchOwnedInstall=func(){installOwned();installDirect()}
+		e.researchOwnedClose=func()error{if err:=finishDirect();err!=nil{return err};return finishOwned()}
+	}
+''' + marker)
+            marker = '\tif e.Tracker != nil {\n\t\tif im := e.Tracker.Compose(); im != nil {'
+            assert engine.count(marker) == 1
+            engine = engine.replace(marker, '''
+	if e.PAMLoaded && e.researchOwnedRender!=nil {
+		if own:=e.researchOwnedRender();own!=nil {e.researchDirectSourceFrames++;return own}
+		e.researchDirectLegacyFrames++
+	}
+''' + marker)
         path.write_text(engine)
     (out / 'source-inputs.json').write_text(json.dumps(hashes, indent=2) + '\n')
     commands = '''key 0x3b 100 700
@@ -228,6 +287,12 @@ quit
             format_paths.append(source/'internal/eightsword/research_owned_intro.go')
         if args.vga_read_trace:
             format_paths.append(source/'internal/eightsword/research_vga_reads.go')
+        if args.direct_render:
+            format_paths.extend([source/'internal/eightsword/research_direct_runtime.go',
+                                 source/'internal/eightsword/research_direct_runtime_test.go'])
+        if args.batch_render:
+            format_paths.extend([source/'internal/eightsword/research_owned_render.go',
+                                 source/'internal/eightsword/research_owned_render_test.go'])
         subprocess.run(['gofmt', '-w', *map(str, format_paths)], check=True, timeout=30)
         targets = [('probe', './tools/probe-owned.go')]
         if args.gui:

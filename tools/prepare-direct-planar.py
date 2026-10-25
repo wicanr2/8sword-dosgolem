@@ -17,6 +17,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--project', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--include-five-plane', action='store_true', help='另保留PMAP真實第五區塊，驗證076F的mode1路徑')
     args = parser.parse_args()
     p, out = args.project, args.out
     assert Path('/.dockerenv').is_file() and os.getuid() == 1000
@@ -43,6 +44,14 @@ def main():
         fixtures.append(dict(name=name, file=filename, sha256=sha(planar), source_sha256=sha(raw),
                              record_sha256=sha(item), width_bytes=w, height=h,
                              note='first four planes; fifth PMAP block is not alpha'))
+        if args.include_five_plane and name == 'PMAP.AY':
+            assert record['planes'] == 5 and len(item) == 4+5*w*h
+            filename = 'pmap-ay-five.bin'
+            (out/filename).write_bytes(item)
+            fixtures.append(dict(name='PMAP.AY five-plane', file=filename, sha256=sha(item),
+                                 entry=0x76f, source_sha256=sha(raw), record_sha256=sha(item),
+                                 width_bytes=w, height=h,
+                                 note='real five-block record; mode1 copies its first four blocks'))
     manifest = dict(schema=1, production=False, normal_player_route=False, fixtures=fixtures,
                     pam_sha256=sha((original/'PAM.AY').read_bytes()),
                     huffman_script_sha256=sha((p/'tools/prepare-hd-intro.py').read_bytes()))

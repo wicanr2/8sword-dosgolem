@@ -1,5 +1,19 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+部隊／怪物批次HD依[048](docs/spec/048-troop-hd-batch.md)與[準備工具](tools/prepare-troop-hd-batch.py)。使用者於2026-10-26明確放寬逐隻驗收：相同機制採已成功的代表抽驗，未接入的先完成圖片；需要時允許受控記憶體呈現驗證。這項最新指示優先於舊的逐隻正常遭遇待辦，不重走地圖或反覆等待遭遇；正式玩法不變，受控測試不冒稱自然玩家路徑。
+
+批次圖以[保存工具](tools/save-troop-hd-generation.py)保留原始 PNG、完整提示與每組收據，不覆寫既有圖片。[總覽工具](tools/prepare-troop-hd-overview.py)在固定 Pillow 容器使用`--project <唯讀專案> --batch <批次圖目錄> --out <新研究目錄>`，核對20組來源、圖像、提示與透明度，再產生README的25組對照、80姿勢圖及[清單](docs/images/troops-hd-batch-r1.json)。完整圖留本機，生成與正式匯入分開列示。
+
+內建image_gen的素材用[保存工具](tools/save-troop-hd-generation.py)在Pillow容器從唯讀生成目錄複製至批次研究目錄，附實際提示、來源與輸出SHA。只核對圖片與透明圖格，不新增逐隻GUI閘門；完整圖片留本機，製作完成與正式接入分開記錄。
+
+來源場景的[CPU矩形批次後端](tools/research-owned-render.go)依mm3的`docs/re/direct-render-methodology.md`建立，只收紋理、矩形與顏色。研究準備器以`--direct-render --batch-render`接入，保留固定r27畫法作逐像素參考；`EIGHTSWORD_RESEARCH_RENDER_BENCH=1`只在正常無頭重播的完成場景量測三組成對繪製耗時。這是047的DRAFT研究，不宣稱GPU、SIMD或整體FPS。
+
+批次後端的[圖層與封包測試](tools/research-owned-render_test.go)比較固定舊畫法，包含遮擋、透明角色、效果、不同來源頁及錯誤矩形。工具只在上述私有副本以`go test ./internal/eightsword -run '^TestResearchOwnedBatch'`執行，不代替正常玩家畫面驗收。
+
+正常路徑直接攔截研究：[隔離核心準備](tools/prepare-direct-runtime.py)、[Oracle呼叫控制](tools/research-oracle-host-call.go)與[配額／返回測試](tools/research-oracle-host-call_test.go)、[四／五平面來源計畫](tools/research-direct-runtime.go)與[原版／非零堆疊對照](tools/research-direct-runtime_test.go)。場景準備器的`--direct-render`只接研究副本，原版返回指令保留；範圍、事件預算及來源RGB路徑見[047](docs/spec/047-hd-scene-renderer.md#正常路徑直接攔截的研究契約)。047整體仍DRAFT，工具不接正式入口。
+
+正常攔截與批次呈現的[獨立核對器](tools/audit-direct-runtime.py)以`--project <唯讀專案> --out <新JSON>`核對來源命令、全客體、PCM、逐幀、實際Draw及真正存退讀，另報同容器三組繪製耗時。固定Pillow容器執行，原始資料／存檔的只讀快照檢視用既有`workplace/player/eightsword-inspect -until 0 -save-buffer`，不以快照還原代替正常玩家路徑。
+
 直接攔截研究工具：[獨立核心與 VGA 讀取前掛點](tools/prepare-vga-read-probe.py)、[按需背板與原版搬移驗證](tools/probe-vga-shadow.go)、[正常玩家讀回位置觀測](tools/research-vga-reads.go)、[背板與客體隔離核對](tools/audit-vga-read-probe.py)。只用於 [047 DRAFT](docs/spec/047-hd-scene-renderer.md#直接攔截原版繪圖入口)，用法及限制見該節；不改正式核心。舊四平面探針的一般記憶體讀取零計數不涵蓋 VGA，不能作為沒有圖形讀回的動態證據。
 
 直接攔截的[雙重事件預算](tools/research-host-work.go)及[原版邊界對照](tools/research-host-work_test.go)由上述準備器的`--event-budget`只接研究核心。本作正常週期時鐘與mm3不同，分開限制步數與週期；mm3最新075及方法紀錄快照、來源、用法與限定驗證見047，原參考專案保持唯讀。

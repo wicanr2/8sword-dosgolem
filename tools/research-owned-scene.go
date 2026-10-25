@@ -45,26 +45,27 @@ type ownedPanel struct {
 	Start uint64
 }
 type ownedProbe struct {
-	e            *Engine
-	scene        *ownedScene
-	bound        bool
-	commands     *json.Encoder
-	file         *os.File
-	counts       map[string]uint64
-	writers      map[string]*ownedWriter
-	active       int
-	cached       *image.RGBA
-	revision     uint64
-	fontID       string
-	stringActive bool
-	stringSP     uint16
-	stringGlyphs []func()
-	out          string
-	captures     map[string]bool
-	unsubscribe  func()
-	panel        *ownedPanel
-	presented    *ownedScene
-	cachedScene  *ownedScene
+	e             *Engine
+	scene         *ownedScene
+	bound         bool
+	commands      *json.Encoder
+	file          *os.File
+	counts        map[string]uint64
+	writers       map[string]*ownedWriter
+	active        int
+	cached        *image.RGBA
+	revision      uint64
+	fontID        string
+	stringActive  bool
+	stringSP      uint16
+	stringGlyphs  []func()
+	out           string
+	captures      map[string]bool
+	unsubscribe   func()
+	panel         *ownedPanel
+	presented     *ownedScene
+	cachedScene   *ownedScene
+	cachedSources map[uint16]bool
 }
 
 func cloneOwnedScene(s *ownedScene) *ownedScene {
@@ -206,6 +207,12 @@ func (e *Engine) ResearchOwnedScene(out string) (func(), func() *image.RGBA, fun
 		}
 		if p.cached == nil || p.cachedScene != state || p.revision != state.Revision || p.fontID != e.FontID() {
 			p.cached = renderOwnedScene(state, e.Tracker.assets, e.Tracker.graphics.assets, e.Tracker.palette)
+			p.cachedSources = map[uint16]bool{}
+			for _, pixel := range state.Pixels[state.Start : state.Start+16000*8] {
+				if g := state.Glyphs[pixel.Text.ID]; g != nil {
+					p.cachedSources[g.Source] = true
+				}
+			}
 			p.revision = state.Revision
 			p.cachedScene = state
 			p.fontID = e.FontID()
@@ -213,6 +220,10 @@ func (e *Engine) ResearchOwnedScene(out string) (func(), func() *image.RGBA, fun
 				p.presented = cloneOwnedScene(p.scene)
 			}
 		}
+		// Scene metadata follows the actually presented source scene, including
+		// a held panel, without depending on legacy RGB composition side effects.
+		e.Tracker.visibleSources = p.cachedSources
+		e.Tracker.VisibleScene = visibleScene(p.cachedSources)
 		return p.cached
 	}
 	finish := func() error {

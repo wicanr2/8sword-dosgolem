@@ -95,7 +95,8 @@ func replace(m *dg.Machine) directCommand {
 	raw := append([]byte(nil), m.Mem[ptr:ptr+uint32(4+w*h*4)]...)
 	command := directCommand{digest(raw), x, y, w, h, dest, raw}
 	// Preserve the original dead-stack bytes as well as live registers/flags.
-	stack := []uint16{r[dg.BP], uint16(w), uint16(h), 16, uint16(w * h), r[dg.AX], r[dg.BX], r[dg.CX], r[dg.DX], r[dg.SI], r[dg.DI], seg[dg.DS], seg[dg.ES], uint16(h), uint16(y * 2)}
+	planeSlot := m.Read16(ss+uint32(sp)-8)&0xff00 | 0x10
+	stack := []uint16{r[dg.BP], uint16(w), uint16(h), planeSlot, uint16(w * h), r[dg.AX], r[dg.BX], r[dg.CX], r[dg.DX], r[dg.SI], r[dg.DI], seg[dg.DS], seg[dg.ES], uint16(h), uint16(y * 2)}
 	for i, v := range stack {
 		m.Write16(ss+uint32(sp-uint16((i+1)*2)), v)
 	}

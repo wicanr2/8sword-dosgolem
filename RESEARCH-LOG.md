@@ -1685,3 +1685,33 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 統一[核對器](tools/audit-vga-read-probe.py)產生`vga-read-clock-audit-r1.json`。正常路線本輪只觀測，仍執行原版繪圖；直接略過與計時僅限上述單常式案例。Oracle受控替換、返回掛點、重疊命令、模式切換及遮罩消費端尚未閉合，047維持DRAFT。不將兩份不同路徑證據合併聲稱正常玩家已直接接管。正式111輸入、七程式、六份固定核心與r48素材由收尾完整性另核對。
 
 後續介面整理：`core-direct-r4`將相容背板的資料準備分離到明確可寫的`PreparePlanarAccess`，先於只讀VideoRead／VideoWrite觀測執行，保留既有觀測契約。`shadow-contract-r3`同一不可變程式重生20組未計時與20組計時案例，原版讀寫正對照另外確認觀測時已完成資料準備。三父測試／12事件邊界再次通過。現行統一核對器讀這份新收據，輸出`vga-read-clock-audit-r2.json`；早先收據不覆寫，也沒有為此重跑542幀正常路線。
+
+## 正常繪圖攔截與矩形批次呈現
+
+2026-10-26。已證實，範圍限[047的正常攔截收據](docs/spec/047-hd-scene-renderer.md#正常攔截與cpu矩形批次的限定結果)。輸入PAM、開場runtime、兩份IDA資料庫及固定核心沿前節雜湊；Go1.24.13與Pillow11.3.0在既有固定Docker執行。位址分開記錄：IDA原名`sub_2438F`；dosgolem執行期`14D2:076F..0854`；PAM檔案偏移`0x157FF..0x158E4`，230 bytes SHA `49285f927aa83c57fce4d990102e6fda59e61581d8b571bb8c8d9ebc5e255419`。四平面常式沿原`sub_245BC`與前節212 bytes。五區塊來源的mode1只寫前四平面，其他模式不接管。
+
+研究核心`core-direct-r5`保存910份基底輸入、12份變動及可重生patch。Oracle於既有入口觀測後決定是否接管，限定可計算剩餘配額的Run／RunCycles。計畫略過像素前綴，原生RETF保留，返回掛點與返回指令讀取仍正常執行。事件或配額不足、別名、程式不符及未驗VGA模式均保留原版。相容平面採即時索引寫入，供原版讀回；最終RGB由來源命令繪製，不以相容背板作底。
+
+`direct-runtime-prefix-r2.log`的16組真實四／五平面來源、雙頁、非零堆疊及既有VGA資料，比較完整SaveState與每筆有序VideoWrite，同原版。七項負條件不寫狀態，三個Oracle測試涵蓋入口、返回、執行配額及拒絕條件。追加勘誤：原版對`[bp-6]`只寫低byte，舊零堆疊探針無法證明高byte保持；計畫與現行探針已保留高byte。舊收據不覆寫。
+
+正常`direct-hire-r3`使用`owned-live-build-r28`、既有47命令與固定12:00／3000 cycles/ms，原版掛載路徑同控制`/orig`。542幀、30工作檔、完整state／PCM／來源命令／讀回紀錄及解壓畫面串流同`owned-hire-vga-read-r2`。state SHA `c4aa051f5487544f3a07193519ac484a41776adc88d1ed8784c93641d5a0a401`；PCM SHA `a0c4b7fe987c57883a82d08001f5cacc2438f0ea6c67551a2608d844b4942c3b`；畫面串流SHA `1793c8fcdaae13719f3ff7cb54eca5e2c38a87d4110aa33aa25b679f34544a56`。實際接管1113次，其中人物頁68、軍隊頁33；計入579177條虛擬指令，PAM舊RGB入口為0。這是受控正常輸入的呈現驗證，不是亂數規則對拍。
+
+依使用者指定重讀mm3方法論，SHA `cef2b2245c04a947037fb3ecf59e1ccc244dfde6e2f968fdf6d61e8267116131`。CPU後端只收紋理、矩形與顏色。材質區先分流，免去原色預填，再按既有順序處理角色、效果與字型。兩項圖層／錯誤封包測試及十個正常完成場景全幅同固定r27參考。成對三次中位數人物頁198.346→15.079ms、初次地圖247.783→18.444ms。這是同容器繪圖成本，未測GPU／SIMD，不換算全遊戲FPS。
+
+首次GUI `direct-source-save-r1`在音樂返回後停住，原因為可見場景標記依賴舊Compose副作用。改由實際來源場景更新標記，保留原失敗，不改原版輸入或放寬等待條件。r28的`player/gui/direct-source-save-r3`普通主選單、音樂、取消重進、Noto人物／軍隊頁及真正F7存退冷讀通過。380／164次Draw，十一／五份首次完成圖連回錄影，實際接管1363／705次。2987-byte人物檔與存後／冷讀RAM同SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`；零步快照檢視只驗RAM，不當作讀檔。已抽看Noto人物實窗。統一收據`battle-r1/direct-runtime-audit-r1.json`，入口[核對器](tools/audit-direct-runtime.py)。047整體仍DRAFT，正式r48未切換。
+
+## 部隊與怪物的批次 HD 圖片
+
+2026-10-26。依使用者最新要求，未正式接入的圖片先繪製，共用機制以前幾組已成功的抽驗為準，必要時允許受控記憶體狀態驗證呈現。這項政策取代逐隻等待自然遭遇的待辦，不改正式玩法、存檔或亂數，也不把受控狀態稱為自然玩家路徑。製作契約見[048](docs/spec/048-troop-hd-batch.md)。
+
+已證實的素材盤點：沿`all-graphics-catalog-r4/catalog.json`，MAN01至25為25組100姿勢，MAN27另四筆太極圖，原版用途未知。既有5組20姿勢保持，新增20組80姿勢均由內建image_gen依原版四姿勢及既有MAN11風格參考製作。風格圖SHA `1657bfc58772177d2b2819f30c01b198ed1702f0d64f3fa10662d6e5aa1452ef`。每組原檔與解碼記錄雜湊、參考、實際提示、輸出PNG及alpha格位保存於`battle-r1/troops-hd-bulk-r1`的獨立收據，20張PNG共31116016 bytes。MAN02第一次將EGA抖色畫成面部格紋，只定向修改一次，選用稿與修改提示保留；不覆寫舊圖。
+
+[總覽工具](tools/prepare-troop-hd-overview.py)在Pillow11.3.0核對20組原檔、80筆原始解碼、PNG、提示、來源與四格非空透明圖像。輸出`battle-r1/troops-hd-overview-r1`，另將縮圖與清單保存至README引用的`docs/images/`：
+
+| 文件 | SHA-256 |
+|---|---|
+| `troops-all-original-hd-r2.png` | `f08fa5a08f0affe56f17de4a72a6c86f93592254eb4d17c2eb7788e9e7456f2b` |
+| `troops-new-hd-all-poses-r1.png` | `d59fee98aa6b907d7f8d7a8b102df6f234c38b92fcf7aaf4e723b9bc571ba516` |
+| `troops-hd-batch-r1.json` | `cdfdc3cf57553d0b448a16fda2374a113bb2b69eb957643d61bf6e4df4b3df4c` |
+
+兩張整體圖已抽看。這是素材製作完成，不是全部正式接入或逐姿勢遊玩驗收。正式r48仍登錄原有20筆；下一步沿共用遮罩／定位契約批次匯入，不重畫本批素材，不再等待各別自然遭遇。完整生成圖留本機，僅依已授權範圍同步私人倉庫的比較文件。
