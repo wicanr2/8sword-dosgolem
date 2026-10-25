@@ -4,6 +4,8 @@
 
 [面板交易核對器](tools/audit-owned-panel.py)在固定Pillow11.3.0容器核對人物／軍隊／返回地圖的完整逐幀畫面、完成狀態與真正存退讀。以`--project`指定唯讀專案、`--out`指定既有研究目錄中的新收據；適用範圍與位址契約見047，不外推其他對話框。
 
+[其他選單交易核對器](tools/audit-owned-modal.py)延伸核對F3至F7、共用確認框及F5刻意閃動標記。固定Pillow容器使用`--project`與`--out`；[隔離準備器](tools/prepare-owned-scene-probe.py)加`--gui --modal-menus`只在研究副本的存前流程追加F2至F6取消抽樣，不改正式GUI工具或原版規則。完整邊界、首次確認框擷取與未驗分支見047。
+
 全圖形素材與載入線索由[IDA素材索引匯出](tools/export-graphics-inventory-ida.py)核對，結果與限制追加於RESEARCH-LOG。正式PAM.i64及來源唯讀，僅在容器/tmp副本查詢。IDA技能的可用原始入口為`/home/anr2/ida_94_official/skills/use-ida-pro-9-4/SKILL.md`；先讀該專案README與knowledge-base/ida-94-tools.md，沿用已驗py312-v1映像，不因安裝副本缺失另建工具鏈。
 
 [全圖形盤點與圖集](tools/catalog-all-graphics.py)在固定Pillow容器解碼來源、記錄全部檔案與未分類項，並產生26份MAN／104記錄與其他圖像總覽。盤點不等於HD完成或正常路徑驗收；來源檔與完整解碼素材留既有workplace研究區。

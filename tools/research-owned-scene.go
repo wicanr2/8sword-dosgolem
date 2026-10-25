@@ -219,7 +219,7 @@ func (e *Engine) ResearchOwnedScene(out string) (func(), func() *image.RGBA, fun
 		if p.unsubscribe != nil {
 			p.unsubscribe()
 		}
-		d := map[string]any{"schema": "8sword-owned-live-prototype-r1", "commands": p.counts, "writers": p.writers, "active_at_end": p.active, "panel_at_end": p.panel, "scene_revision": p.scene.Revision, "renderer_inputs": []string{"owned scene", "source decoded bitmaps", "validated HD art", "font atlas", "approved palette"}, "renderer_reads_vga": false, "production": false, "known_gap": "only verified character/army panel and map-return boundaries are atomic; opening, other modal dialogs, mode changes and failure recovery remain research gaps"}
+		d := map[string]any{"schema": "8sword-owned-live-prototype-r1", "commands": p.counts, "writers": p.writers, "active_at_end": p.active, "panel_at_end": p.panel, "scene_revision": p.scene.Revision, "renderer_inputs": []string{"owned scene", "source decoded bitmaps", "validated HD art", "font atlas", "approved palette"}, "renderer_reads_vga": false, "production": false, "known_gap": "selected PAM panel and system confirmation boundaries only; opening, other modal dialogs, spell casting, mode changes and failure recovery remain research gaps"}
 		raw, err := json.MarshalIndent(d, "", "  ")
 		if err != nil {
 			return err
@@ -674,19 +674,19 @@ func (p *ownedProbe) bindPanels() {
 	for _, site := range []struct {
 		off uint16
 		ret bool
-	}{{0x3df0, false}, {0x3e92, false}, {0x73f0, false}, {0x7512, false}, {0x844c, false}, {0x3e4a, false}, {0x3e91, true}, {0x3d62, false}, {0x3d72, true}} {
+	}{{0x3df0, false}, {0x3e92, false}, {0x73f0, false}, {0x7512, false}, {0x844c, false}, {0x3e4a, false}, {0x3e91, true}, {0x3d62, false}, {0x3d72, true},
+		{0x779e, false}, {0x77a3, false}, {0x67ac, false}, {0x67b1, false}, {0x6888, false}, {0x8412, false},
+		{0x3fe0, false}, {0x3fe5, false}, {0x414e, false}, {0x430e, false}, {0x436c, false}, {0x4371, false}, {0x4440, true}} {
 		at := int(site.off)
 		if !bytes.Equal(o.Bytes(oracle.Addr{Seg: load, Off: site.off}, 16), relocated[at:at+16]) || site.ret && relocated[at] != 0xcb {
 			panic("owned panel ABI differs")
 		}
 	}
 	selection := func() uint16 { return o.Word(oracle.Addr{Seg: o.Regs().DS, Off: 0x56bc}) }
+	panelNames := []string{"character", "army", "arrange", "spells", "minimap", "items", "system"}
 	beginSelected := func(*oracle.Oracle) {
-		switch selection() {
-		case 0:
-			p.beginPanel("character")
-		case 1:
-			p.beginPanel("army")
+		if selected := selection(); int(selected) < len(panelNames) {
+			p.beginPanel(panelNames[selected])
 		}
 	}
 	o.OnCall(oracle.Addr{Seg: load, Off: 0x3df0}, beginSelected)
@@ -698,13 +698,43 @@ func (p *ownedProbe) bindPanels() {
 		}
 	})
 	o.OnCall(oracle.Addr{Seg: load, Off: 0x844c}, func(*oracle.Oracle) {
-		if p.panel != nil && (p.panel.Kind == "character" || p.panel.Kind == "army") {
-			p.finishPanel()
+		if p.panel != nil {
+			switch p.panel.Kind {
+			case "character", "army", "spells", "minimap", "items":
+				p.finishPanel()
+			}
 		}
 	})
+	// Initial pages and key-driven redraws finish before their original input
+	// calls. The minimap commits before its intentional blinking-marker loop.
+	for _, site := range []struct {
+		off  uint16
+		kind string
+	}{{0x779e, "arrange"}, {0x67ac, "spells"}, {0x6888, "spells"}, {0x8412, "minimap"}, {0x3fe0, "system"}, {0x414e, "system"}, {0x436c, "confirm"}, {0x4440, "confirm"}} {
+		site := site
+		o.OnCall(oracle.Addr{Seg: load, Off: site.off}, func(*oracle.Oracle) {
+			if p.panel != nil && p.panel.Kind == site.kind {
+				p.finishPanel()
+			}
+		})
+	}
+	for _, site := range []struct {
+		off  uint16
+		kind string
+	}{{0x77a3, "arrange"}, {0x67b1, "spells"}, {0x3fe5, "system"}, {0x4371, "confirm"}} {
+		site := site
+		o.OnCall(oracle.Addr{Seg: load, Off: site.off}, func(*oracle.Oracle) {
+			// Escape exits arrange/spells/system without a redraw. The yes/no
+			// helper does redraw its No selection before returning on Escape.
+			if o.Regs().AX != 0x011b || site.kind == "confirm" {
+				p.beginPanel(site.kind)
+			}
+		})
+	}
+	o.OnCall(oracle.Addr{Seg: load, Off: 0x430e}, func(*oracle.Oracle) { p.beginPanel("confirm") })
 	for _, off := range []uint16{0x3e4a, 0x3d62} {
 		o.OnCall(oracle.Addr{Seg: load, Off: off}, func(*oracle.Oracle) {
-			if selection() <= 1 {
+			if int(selection()) < len(panelNames) {
 				p.beginPanel("return-map")
 			}
 		})

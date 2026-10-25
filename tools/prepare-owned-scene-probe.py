@@ -11,8 +11,10 @@ def main():
     parser.add_argument('--project', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--gui', action='store_true', help='只在研究副本接入實際視窗，不改正式入口')
+    parser.add_argument('--modal-menus', action='store_true', help='研究GUI的存前路徑追加F2至F6取消抽樣')
     args = parser.parse_args()
     root, out = args.project, args.out
+    assert not args.modal_menus or args.gui
     assert root.is_dir() and not out.exists()
     assert out.parent.stat().st_uid == root.stat().st_uid == 1000
     seed = root / 'workplace/probe-20261023/graphics-first/battle-r1/friendly21-validation-build-r2/src'
@@ -46,7 +48,15 @@ def main():
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(p.read_bytes())
             hashes[str(p.relative_to(root))] = hashlib.sha256(p.read_bytes()).hexdigest()
-        (source / 'tools/gui-check.go').write_bytes((root / 'tools/gui-check.go').read_bytes())
+        gui_driver = (root / 'tools/gui-check.go').read_text()
+        if args.modal_menus:
+            marker = '\tif *flow == "menus" {\n\t\t// Fixed new-game pages'
+            assert gui_driver.count(marker) == 1
+            gui_driver = gui_driver.replace(marker, '\tif *flow == "menus" || *flow == "save" {\n\t\t// Fixed new-game pages')
+            marker = '\t\t\t{"f5-map", 71, 1070, []float64{1278, 1304}},'
+            assert gui_driver.count(marker) == 1
+            gui_driver = gui_driver.replace(marker, marker + '\n\t\t\t{"f6-search", 72, 1090, []float64{9690}},')
+        (source / 'tools/gui-check.go').write_text(gui_driver)
         gui_script = (root / 'tools/gui-check.sh').read_text()
         gui_script = gui_script.replace('  /bin-player/8sword -root',
                                         '  EIGHTSWORD_RESEARCH_OWNED="$phase_out" /bin-player/8sword -root')
