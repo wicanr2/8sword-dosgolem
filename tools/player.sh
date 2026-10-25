@@ -96,6 +96,9 @@ case "${1:-}" in
             EIGHTSWORD_TEST_CASTLE_ASSETS=/out/assets-castle-candidate-r1 \
             EIGHTSWORD_TEST_CASTLE_BASE=/out/assets-painted-r40 \
             EIGHTSWORD_TEST_CASTLE_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/castle-cache-r1 \
+            EIGHTSWORD_TEST_CHEST_ASSETS=/out/assets-chest-candidate-r1 \
+            EIGHTSWORD_TEST_CHEST_BASE=/out/assets-painted-r41 \
+            EIGHTSWORD_TEST_CHEST_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/chest-cache-r1 \
             EIGHTSWORD_TEST_PON_ASSETS=/out/assets-painted-r22 \
             EIGHTSWORD_TEST_PON_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/pon-art-r1 \
             EIGHTSWORD_TEST_BATTLE_MILITIA_ASSETS=/out/assets-painted-r23 \
@@ -158,6 +161,27 @@ case "${1:-}" in
       "$task_py" python /project/tools/catalog-battle-coverage.py \
         --original /project/workplace/intake-20261023/sources/game/8sword \
         --assets "/project/workplace/player/assets-$task_base" --out "/out/$task_name.json"
+    ;;
+  chest-assets)
+    task_name="${2:?指定新的寶箱素材組名稱}"
+    task_base="${3:-painted-r41}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_art="$task_work/probe-20261023/graphics-first/map-interaction-r1/map-object-58-art-r1"
+    test -d "$task_player"; test -d "$task_player/assets-$task_base"
+    test -d "$task_orig"; test -d "$task_art"
+    test -f "$task_art/chest-painted-r2.png"
+    test -f "$task_art/chest-painted-r2.prompt.txt"; test -f "$task_art/chest-painted-r1.prompt.txt"
+    test ! -e "$task_player/assets-$task_name"; test ! -e "$task_player/chest-cache-$task_name"
+    exec timeout 90s docker run --rm --name "8sword-chest-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 800m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_art,dst=/art,readonly" \
+      --mount "type=bind,src=$task_player,dst=/out" \
+      "$task_py" python /project/tools/prepare-hd-chest.py \
+        --base "/out/assets-$task_base" --original /project/workplace/intake-20261023/sources/game/8sword \
+        --image /art/chest-painted-r2.png --prompt /art/chest-painted-r2.prompt.txt \
+        --first-prompt /art/chest-painted-r1.prompt.txt \
+        --out "/out/assets-$task_name" --cache-out "/out/chest-cache-$task_name"
     ;;
   castle-assets)
     task_name="${2:?指定新的城堡素材組名稱}"

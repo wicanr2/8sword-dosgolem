@@ -1,6 +1,6 @@
 # 044：PMAP 第 58 筆地圖寶箱
 
-狀態：READY。目標是 PMAP 第 58 筆的 HD 呈現。原版靜態資料流已確認它是寶箱，正常續玩亦已取得來源及返回；尚未實際走到箱上、開箱或驗證獎勵。來源與透明原型審查通過，授權依下列契約實作。正式 r41 保持，尚未接入新寶箱。
+狀態：限定 CONFORMED。PMAP 第 58 筆寶箱已接正式 r42，來源、原子回退、三字型、實際視窗與真正存退讀通過，範圍見下方正式驗收。原版靜態資料流已確認它是寶箱；尚未實際走到箱上、開箱或驗證獎勵，不據此改動玩法。
 
 沿 [043](043-map-castle-parts.md)已證實的地形解碼、雙頁繪圖 ABI、只讀觀測與完整兩檔續玩，不重開相同 helper 逆向。研究工作區仍為 `workplace/probe-20261023/graphics-first/map-interaction-r1/`。
 
@@ -78,7 +78,19 @@
 3. 實際 GUI 普通 Continue、三字型、行走、F1／F2／F3 返回，至少各字型一份真正 Draw 連回來源返回與錄影。連續畫面另看殘圖、背景接縫及原生圖短暫外露。
 4. 原版 F7 保存、正常退出、冷啟動 Continue，核對人物 RAM 與完整兩件存檔；實際讀回時至少再取一份含寶箱 Draw。不以寫出檔案或現有原型代替。
 
-以上正式驗收仍未完成，因此不標 CONFORMED，也不新增 README 正式成果聲明。下輪直接依此實作及驗視窗，不重走 43 步、重查身分或重新生成圖。
+以上為原型審查時的 READY 契約，當時尚未實作；正式結果如下。不重走 43 步、重查身分或重新生成圖。
+
+## 正式提升與限定驗收
+
+- 正式入口為 [map_chest.go](../../internal/eightsword/map_chest.go) 及 `Engine.MapChestError`／`map_chest_error`，沿原規格嚴格載入。沒有新增 CPU 掛點或改寫客體來源；ID 59 及既有 `ByNative` 沿用，全部驗過才增加一個快取。
+- [匯入工具](../../tools/prepare-hd-chest.py)從 r41 乾淨重建兩次，兩組各 193 檔與獨立快取相同，188 舊檔保持。完整圖、兩提示、provenance、清單及獨立快取都留本機。`bash tools/player.sh chest-assets <新名稱> [painted-r41]` 可在固定 Pillow Docker 重建，拒絕覆寫輸出。
+- [測試](../../internal/eightsword/map_chest_test.go)使用真正來源及獨立快取。兩個父測試、十個故障子案例共 23.957 秒通過，包含來源、未知欄位、尾隨 JSON、容量、圖片、草地及 ID 衝突；舊材質、字型、角色、效果、原生表與別名保持。
+- `workplace/player/build-chest-r1` 保存 93 筆正式輸入、七程式、Go 1.24.13 與完整來源快照。GUI／來源擷取另為 `chest-validation-build-r1`，51 筆輸入；其中 43 份正式套件檔與正式建置逐檔相同，不包含 `ResearchInstallChest`。觀測只讀，普通 Continue 仍由原版選單執行。
+- 正式新／r41／真壞三組各 395 幀、1185 次 Frame 純度，沿相同短命令正常續玩；完整 state、PCM、輸入、事件及 22 工作檔相同。五份完整 Frame、三字型與移動後返回同獨立 PNG／草地／字型模型，真壞組全部串流同 r41。收據為 `chest-runtime-audit-r1.json`，使用[核對器](../../tools/audit-map-object58.py)的 `--production` 模式。
+- 真正視窗為 `workplace/player/gui/chest-save-r1`。存前／冷讀各三字型共六份實際中央 Draw，13824000 像素全同獨立模型，並按幀號、step 與 RGBA 連回完整錄影。兩段原版來源分別十次／六次，首筆各 1600 返回色碼同原始四平面，共 3200 點。[GUI 核對器](../../tools/audit-chest-gui.py)與 `chest-draw-audit-r1.json` 保存完整鏈。
+- 連續錄影為 388／272 Draw、45／33 次改變，兩張接觸表與實際 Noto 地圖已檢視。F2／F3 取消、F1 往返、左移離場與右移返回正常，未見寶箱殘圖或額外草地矩形。兩側海報及字型工具列仍沿已驗機制，沒有新介面取捨。
+- F7 真正人物存檔 2987 bytes，SHA `069dc1b88e641b36f8b0d51a9e2c6fc22d3b3bfefc93cf31198a256410f78799`，同存後及普通冷讀的 RAM 線性 `0x9E000`；零步數檢視不代替原版讀取。讀回 step 12212420，地圖伴隨檔 SHA `4d3eba2de2083d1f6f99cc7b5f1cd127d0ffeb8930e335ed835a39813bd5f83b` 保持。存檔段正常 DOS 退出 0，讀回段正常關窗。
+- 所有必要驗收通過後，193 檔提升為 `workplace/player/assets-painted-r42`，七程式與三份現行建置紀錄原子替換；完整來源快照保留在 `build-chest-r1`。`chest-promotion-r1.json` 保存舊／新程式指紋、素材與兩側收據。舊 r41 保留，本節限定 CONFORMED，不擴稱其他物件、開箱規則、所有存檔或整體 HD 完成。
 
 ## 閘門
 

@@ -1341,3 +1341,13 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 - built-in image_gen 生成 r1，再依原圖縮窄水平比例為透明 r2。完整原 PNG、各自提示、原生參考及 provenance 已複製到 `map-object-58-art-r1`，原預設生成檔仍保留。PNG SHA `cbdafc80…ae85`，1419×1108 RGBA；全圖覆既有草地的獨立快取 SHA `549d61ae…2919`。沒有裁剪主體、將第五平面當 alpha 或新增客體掛點。
 - `chest-prototype-build-r2` 有 47 筆輸入，42 份正式套件來源保持。原型／舊組／真壞各 395 幀、1185 次純度，五份全幅 Frame 與三字型獨立重建相同；人物／軍隊、移動後原圖退場、原版 F7 與 DOS 退出通過。完整 state 84a414ce…babb、PCM 4c6f0809…4646、22 工作檔及事件相同；真壞組全串流同舊組。收據 `chest-prototype-audit-r2.json`。同狀態完整比較與細節已看。
 - 044 已達 READY，列出獨立材質 59、清單／PNG 邊界、固定來源與快取、原子回退及正式驗收。正式 r41 的 188 檔、七程式與原型安裝函式界線保持；尚未實作正式載入器、實際 Draw 或本項 RAM／冷讀驗收，整體 HD 仍未完成。
+
+# 2026-10-25：寶箱正式載入與正常視窗驗收
+
+- 依 [044 READY 契約](docs/spec/044-map-object-58.md#原型審查與-ready-契約)實作獨立載入器，只登錄材質 59。沿原生指紋與既有繪圖觀測，不新增客體掛點，不重開來源、物件身分或美術研究。來源仍為固定 PAM／PMAP；Go 1.24.13、dosgolem 八檔補丁及 Pillow 11.3.0 的 image 指紋同前輪。
+- 兩次乾淨匯入各 193 檔，188 舊檔保持，完整 PNG、兩提示、清單、provenance 及獨立快取相同。兩個真實來源／快取測試與十個故障子案例 23.957 秒通過。清單／圖片驗證失敗不留材質，不改字型、既有別名、角色、效果或其他材質。
+- 正式建置 `build-chest-r1` 保存 93 筆輸入、七程式及完整來源。研究建置 `chest-validation-build-r1` 有 51 筆輸入與完整快照，其中 43 份正式套件來源相同；只追加來源、返回及實際 Draw 的唯讀記錄，沒有 `ResearchInstallChest`。
+- 正式新／舊／真壞各 395 幀，共 1185 次 Frame 純度，完整 state SHA `84a414ce5528351240d968c7a4853ca95960676ff9d0d578a35e65675f1cbabb`、PCM SHA `4c6f0809936c01a700e4cc07cb9d331140837381e537f535f563bfb60eae4646`、22 工作檔及事件相同。五份完整 Frame 同獨立模型；壞圖全串流同 r41。收據 `chest-runtime-audit-r1.json`。
+- 真正視窗為 `workplace/player/gui/chest-save-r1`。普通 Continue、三字型、F1／F2／F3 取消、左右行走、原版 F7 保存、DOS 退出及冷啟動 Continue 通過。存前／冷讀共六份完整實際 Draw，13824000 像素同 PNG／草地／字型模型，按幀號與 step 連回錄影。兩段十次／六次原版來源，首筆各 1600 返回點同四平面。388／272 Draw、45／33 次改變，兩張接觸表及 Noto 地圖已檢視，未見本寶箱的殘圖或草地矩形。
+- 原版保存 2987 bytes 的 SHA `069dc1b88e641b36f8b0d51a9e2c6fc22d3b3bfefc93cf31198a256410f78799`，同存後及普通冷讀 RAM 線性 `0x9E000`，read step 12212420。MAP01 伴隨檔 SHA `4d3eba2de2083d1f6f99cc7b5f1cd127d0ffeb8930e335ed835a39813bd5f83b` 保持；零步數傾印只作讀後核對，不代替原版讀取。[GUI 核對器](tools/audit-chest-gui.py)及 `chest-draw-audit-r1.json` 保存證據。
+- 全部必要閘門通過後提升 r42 的 193 檔與七程式，原始來源快照留 `build-chest-r1`，歷史 r41 保留。044 限定 CONFORMED，README／CONTEXT／AGENTS 同步。未實際開箱、未驗獎勵，亦未完成其餘地圖、部隊、音樂或全遊戲 HD。

@@ -43,8 +43,9 @@ def prototype(args):
     reference, candidate, broken = [read(p / "final.json") for p in (args.short_control, args.prototype, args.broken)]
     assert reference["graphics_materials"] == broken["graphics_materials"] == 63
     assert candidate["graphics_materials"] == 64
-    assert not reference["prototype_chest_error"] and not candidate["prototype_chest_error"]
-    assert broken["prototype_chest_error"] == "chest image hash"
+    error_key = "map_chest_error" if args.production else "prototype_chest_error"
+    assert not reference[error_key] and not candidate[error_key]
+    assert broken[error_key] == ("寶箱圖片 SHA-256 不符" if args.production else "chest image hash")
     for data in (reference, candidate, broken):
         assert data["recorded_frames"] == data["frame_pure_count"] == 395
         assert data["normal_input_replay"] and not data["snapshot_loaded"] and not data["guest_injection"]
@@ -88,11 +89,17 @@ def prototype(args):
         digest, name = line.split("  ", 1)
         assert sha(args.prototype_build / "src" / name) == digest
         build_inputs += 1
-    assert build_inputs == 47
-    digest, name = (args.prototype_build / "build-outputs.sha256").read_text().split()
-    assert name == "probe" and sha(args.prototype_build / name) == digest
-    return dict(status="passed-disposable-prototype", frames_each=395, total_frame_purity=1185,
-                build_inputs=47, probe_sha256=digest, cache_sha256=hashlib.sha256(tile).hexdigest(),
+    assert build_inputs == (51 if args.production else 47)
+    outputs = {}
+    for line in (args.prototype_build / "build-outputs.sha256").read_text().splitlines():
+        digest, name = line.split()
+        assert sha(args.prototype_build / name) == digest
+        outputs[name] = digest
+    assert len(outputs) == (3 if args.production else 1) and "probe" in outputs
+    if args.production:
+        assert not any("ResearchInstallChest" in p.read_text() for p in (args.prototype_build / "src").rglob("*.go"))
+    return dict(status="passed-production-loader" if args.production else "passed-disposable-prototype", frames_each=395, total_frame_purity=1185,
+                build_inputs=build_inputs, probe_sha256=outputs["probe"], cache_sha256=hashlib.sha256(tile).hexdigest(),
                 full_frames=results, equal=equal, scratch_sha256=scratch,
                 broken_stream_equal=True, unaffected_pages_equal=True,
                 limitation="headless normal Continue, original source, independent PNG/font reconstruction and original F7 save; GUI and saved RAM/cold reload remain unverified")
@@ -104,6 +111,7 @@ def main():
         parser.add_argument("--" + name, type=Path, required=True)
     for name in ("prototype", "short-control", "broken", "assets", "image", "prototype-build"):
         parser.add_argument("--" + name, type=Path)
+    parser.add_argument("--production", action="store_true", help="verify the formal loader and absence of the research installer")
     args = parser.parse_args()
     assert not args.out.exists()
     pam = (args.original / "PAM.AY").read_bytes()

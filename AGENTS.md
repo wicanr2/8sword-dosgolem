@@ -1,10 +1,16 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
-下一個地圖圖像：[044：PMAP 58 寶箱](docs/spec/044-map-object-58.md#原型審查與-ready-契約)，目前 READY。正常來源、寶箱靜態身分、紅金箱體與藍色內蓋透明原型已驗；直接依規格實作獨立材質 59，不重走路線或重做美術。尚未實際開箱，不以樣稿或靜態文字推論獎勵，正式 r41 保持。
+寶箱正式實作入口：[獨立載入器](internal/eightsword/map_chest.go)、[素材匯入](tools/prepare-hd-chest.py)、[真實來源與回退測試](internal/eightsword/map_chest_test.go)。匯入工具在既有 Pillow Docker 使用 `--base`、`--original`、`--image`、`--prompt`、`--first-prompt`、`--out`、`--cache-out`，只接受 044 固定來源，候選驗收前不提升正式組。
+
+[寶箱實際 Draw 核對](tools/audit-chest-gui.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--cache`、`--gui`、`--saved-inspection`、`--loaded-inspection`、`--out`，獨立重建三字型畫面並連回來源、錄影及存讀 RAM；只支援 044 的呈現驗收，不證實開箱規則。
+
+地圖寶箱：[044：PMAP 58](docs/spec/044-map-object-58.md#正式提升與限定驗收)限定 CONFORMED，已接正式 r42。獨立材質 59、回退、正常三字型、六份實際 Draw 與真正存退讀通過，不重做來源、美術或已驗路段。尚未實際開箱，不以靜態文字推論獎勵；其他圖像與整體 HD 仍待完成。
 
 [PMAP 58 來源核對器](tools/audit-map-object58.py)在 Docker 內使用 `--original`、`--source`、`--control`、`--build`、`--ida-query`、`--ida-map-query`、`--database`、`--out`，核對原版返回、觀測隔離與寶箱文字靜態分派；不代表已實際開箱或驗證獎勵。
 
 該工具另可在既有 Pillow Docker 加 `--prototype`、`--short-control`、`--broken`、`--assets`、`--image`、`--prototype-build`，核對 044 的可丟棄原型、五份完整 Frame、三字型與真正壞圖；此模式不代表正式載入器、實際 GUI 或冷讀驗收。
+
+正式載入器沿相同參數再加 `--production`，核對正常三組與研究建置未含原型安裝函式。`bash tools/player.sh chest-assets <新名稱> [painted-r41]` 可在 Docker 重建素材，拒絕覆寫既有輸出。
 
 地圖城堡入口：[043：PMAP 六塊城堡](docs/spec/043-map-castle-parts.md#正式提升與限定驗收)限定 CONFORMED，已提升正式 r41。透明全景接既有草地，完整取樣後分六塊，不改原版資料。[核對工具](tools/audit-map-castle.py)保留來源／原型審查，正式載入器使用 `--production` 核對三組正常續玩、完整 Frame 與回退；實際 Draw 見下方 GUI 核對器。其他建築與整體 HD 仍待完成。
 
