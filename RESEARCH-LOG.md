@@ -1771,3 +1771,13 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 - owned-base-font-r1四案普通輸入，雙側原版完成step10647747。十份完整1920×1200畫面共23040000像素同明示原版控制，Frame客體保持；state `97999a8d7b046556b9a5a61340c730bf25348b3a70db19d43dfbe77c75196036`、原版PCM `a544524ab42713f0f32ec08d89cb730347c056563918447fd4ec479bedc06abc`、輸入與檔案事件及工作檔相同。兩組各79次原版Frame、0個HD來源Frame，不列為HD來源成功。
 - 真壞PNG實窗24 Draw／八變化，原版主選單同獨立控制並連回Draw串流，原版Frame九次、HD來源0。既有XTEST核對失敗標題，日誌保留SHA原因。關窗正常，主選單與總覽已看；沒有新增F7存讀或HD音訊聲明。
 - 統一owned-base-font-audit-r2.json SHA `368a818795bbeb0554e199757cce0312d83ba2e2d94c4276447b4c9b8a94e55d`。基底字型故障依003既有契約已核對，移除047現況待驗；未知命令／模式仍未閉合，整體047保持DRAFT，正式r49不變。
+
+## 2026-10-26：來源拒絕的型別錯誤與50000分段停止
+
+入口：[047有界失敗](docs/spec/047-hd-scene-renderer.md#未知來源錯誤的限定結果)、[保護層](tools/research-owned-guard.go)、[受控對照](tools/research-owned-guard_test.go)、[核對器](tools/audit-owned-guard.py)。PAM.AY仍為SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，Go1.24.13、Pillow11.3.0，core-direct-r6與原資料庫保持，沒有新IDA分析。受控程式hex與SHA各留receipt.json，不把它稱為原版遊戲程式。
+
+- 已證實，限定研究r42：先普通啟動、新遊戲、F1／F2至step25405015，再寫RAM8000:0000並由CallNear加入合成near返回字與執行位置。第一案實際VGA mode2寫入，metadata執行期8000:001F、step25405030；第二案INT10切13h，通知step25405017、當下寄存器8000:0005，受控INT10指令位於+3。兩種IP來源明確分開，沒有把通知位置冒稱為中斷指令。
+- 控制組執行50000週期，保護組要求100000但在首個50000分段返回OwnedRenderFault；兩組的Native均實際改變，保護版保留最後自有圖並回報，後續Advance／AdvanceCycles不前進。八份全幅18432000像素與Frame客體保持，控制只是同建置停用保護，不當作重現所有歷史panic。
+- 第一案完整state `9a10d9eb85f80fd26b0896d130b92e3a679253368442466d29d082700e165314`，第二案 `91f0deaff52ee76dd3a82ca7c96f55cce1042b0c0eb4903c383a108fff2611ac`，各同其控制。PCM均為 `f8ddf02bb8ccd1776374f7bdbdb28bbdfe921b357e2f296e447917a07016b231`，全部工作檔同值。這是呈現隔離，沒有自然觸發、RNG規則或硬體逐週期聲明。
+- 同r42正常GUI的主選單／音樂／取消／人物／軍隊與真正F7存退讀通過，261／113 Draw、十一／五完成圖連回Draw，沒有型別故障或原版RGB回退。2987-byte檔案與兩側RAM同29dd62ae…2359，read38450609。Noto人物與兩總覽已看，正常GUI不能代替故障GUI聲明。
+- 統一owned-guard-audit-r3.json記126來源／三程式、四案與既有前綴／批次回歸、正常GUI與真存讀。047仍DRAFT，原版／正式r49不變；有界停止已取得代表證據，未知操作後的自動恢復仍未宣稱，下一步回到其餘完整場景交易及正式整合。

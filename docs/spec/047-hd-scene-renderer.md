@@ -479,4 +479,41 @@ PAM主選單、人物／軍隊、確認、地圖與返回，以及PREDELLA自然
 - 新研究來源用`go test -count=1 -v ./internal/eightsword -run '^TestResearchOwnedBaseFontFailure$'`，指定`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`及新`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`，由測試各自設定要求HD／原版控制，不用前節的CONTROL變數。
 - [核對器](../../tools/audit-owned-fallback.py)使用`--project`、新`--out`及`--base-font`，固定檢查r40及本節收據；加`--gui`核對上述視窗。統一結果`battle-r1/owned-base-font-audit-r2.json`，SHA `368a818795bbeb0554e199757cce0312d83ba2e2d94c4276447b4c9b8a94e55d`。
 
-基底字型故障依003既有原版模式的驗證已閉合，不再列為未知或重跑相同路徑。047整體仍DRAFT，下一步處理未知繪圖命令及未驗模式的有界失敗，才審查正式切換；有效HD畫面仍禁止以原版VGA作底圖。
+基底字型故障依003既有原版模式的驗證已閉合，不再列為未知或重跑相同路徑。047整體仍DRAFT，未知繪圖命令及未驗模式的有界失敗見下節；有效HD畫面仍禁止以原版VGA作底圖。
+
+### 未知來源的有界錯誤研究
+
+本節DRAFT只定義可撤回研究，不接正式入口。既有PAM與開場探針在命令外視訊寫入時只計數；部分來源拒絕只返回，其他ABI／幾何／交易異常直接panic。這些情況不能當成可呈現的完整場景。正常已驗來源、圖像識別碼缺圖與原版模式的契約保持。
+
+候選研究把已識別的來源拒絕轉成具型別錯誤，記錄第一筆原因、原始執行期CS:IP、Step、顯示模式與來源階段。來源回呼在第一錯誤後停止更新場景，直接繪圖計畫也停止接新工作；原版CPU、相容平面與其他唯讀觀測不因回呼修改。通用Go panic仍視為程式缺陷，不吞掉。
+
+Advance／AdvanceCycles在下一個既有分段邊界返回具體錯誤，最多完成目前50000步／週期分段，不繼續等待未知場景完成。Frame只能返回最後已呈現的不可變自有圖；尚無完成圖時回不透明黑畫布，下一個Update沿既有錯誤通道結束。錯誤後不讀VGA補畫，不把停止或舊場景當成正常HD成功，不猜測重新同步。正式錯誤介面的提升另待審查，本研究不自行切換回原版模式或變更已選美術。
+
+驗證先普通冷啟動至完整地圖，再依使用者授權，以受控RAM小程式執行命令外VGA寫入與合法但尚未接管的PAM顯示模式切換。來源保護開／關兩組用同一程式與輸入，比較原版完整state與實際視訊變化；候選須保留最後自有圖、提供可辨識錯誤，下一次Advance不得再前進。另用已驗普通選單／人物／軍隊／真正存退讀抽驗無錯誤路徑，不逐隻等待遭遇。
+
+#### 未知來源錯誤的限定結果
+
+2026-10-26，研究r42保存126份來源與三程式，Go1.24.13、Pillow11.3.0。正式r49／344素材、原版及core-direct-r6不變。[保護層](../../tools/research-owned-guard.go)只捕捉`OwnedRenderFault`，停止後續來源回呼與新直接繪圖計畫；其他Go panic仍向外拋出。Frame保留自有呈現器的最後不可變圖，沒有讀VGA或擷取原版Frame補底。
+
+普通啟動、新遊戲、F1／F2及返回先走完，注入點均為step25405015。受控程式寫至執行期`8000:0000`，經Oracle.CallNear進入，包含一個合成near返回堆疊字，結尾以JMP原地循環。這是明示的客體RAM／CPU測試準備，不是自然遭遇或正常失敗路徑。保護組要求100000週期，控制組只執行第一個50000週期分段：
+
+| 受控操作 | 第一錯誤 | 時間與位置的基準 | 兩側第一分段後完整state SHA-256 |
+|---|---|---|---|
+| 原版VGA mode2實際寫入ES:0 | unclassified-video-write | 視訊metadata step25405030，原始store執行期8000:001F | 9a10d9eb85f80fd26b0896d130b92e3a679253368442466d29d082700e165314 |
+| BIOS INT10切換13h | unhandled-display-mode | 模式通知step25405017，回呼當下寄存器8000:0005；INT10指令位於受控程式+3，兩者不混稱 | 91f0deaff52ee76dd3a82ca7c96f55cce1042b0c0eb4903c383a108fff2611ac |
+
+第一案確實改變原生像素，第二案由640×200轉為320×200。控制組沒有錯誤，仍顯示舊自有場景；保護組回傳具體型別錯誤，也保留最後完成圖，不把它稱為正常更新。兩案都只完成50000步／週期的第一分段，後續Advance及AdvanceCycles立即返回同一錯誤，客體不再前進。每案兩側完整state、PCM與工作檔相同；PCM SHA均為`f8ddf02bb8ccd1776374f7bdbdb28bbdfe921b357e2f296e447917a07016b231`。八份注入前／後完整圖共18432000像素皆同最後完成場景，Frame客體保持。這是呈現隔離與失敗邊界，沒有亂數規則對拍聲明。
+
+四個受控子案例57.54秒通過；另驗通用panic不被吞掉。60組逐列、十四拒絕、24組整筆、16組四／五平面與兩項批次圖層測試同次通過，總59.605秒。r41先行建置因同一檔案重複傳入gofmt導致平行寫入衝突而中止，移除重複項後由新r42乾淨建置；保留r41，不把它當作程式缺陷或完成建置。
+
+正常GUI `player/gui/owned-guard-save-r1`沿r42、正常r49素材、預設Noto，沒有故障注入。主選單、音樂、取消重進、F1／F2與真正F7存退冷讀通過。存前／冷讀261／113 Draw、40／18變化，十一／五份完成圖同既有參考並連回實際Draw，兩側各兩份交易中Draw保持。來源Frame539／196、PAM舊RGB入口皆0；故障欄位為nil、保護留圖計數0。056F逐列799／499批，整筆04F2為九／四次。
+
+2987-byte人物檔同存後／冷讀零步只讀RAM，SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，真正檔案read step38450609、DOS退出0。Noto人物實窗與兩張連續總覽已抽看。此GUI證明正常路徑沒有誤報，不宣稱在視窗注入過上述兩種故障。
+
+重生入口：
+
+- 沿前節準備器的r39選項，在固定Go Docker加`--source-guards --build`；需要`--intro --gui --direct-render --batch-render`，可沿用`--masked-planar --masked-rows --fallback-checks`。不修改正式Engine或共用核心。
+- 執行`go test -count=1 -v ./internal/eightsword -run '^TestResearch(Owned(SourceGuard|GuardDoesNotSwallowRuntimePanic|Batch)|DirectMasked|DirectRuntime|HostPlanarRead)'`。新案例使用`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_GUARD_ASSETS`及新`EIGHTSWORD_TEST_OWNED_GUARD_OUT`；舊原版、逐列與追蹤變數沿前節。測試各自設定`EIGHTSWORD_RESEARCH_GUARD_CONTROL`，只對照這兩種失敗，不宣稱重現所有歷史panic。
+- [獨立核對器](../../tools/audit-owned-guard.py)在Pillow Docker使用`--project <唯讀專案> --out <新JSON>`，固定檢查r42與上述兩案；`--gui`追加正常視窗、實際Draw與真正存讀。統一結果為`battle-r1/owned-guard-audit-r3.json`。
+
+已識別的來源拒絕、命令外寫入及未接管模式已有可診斷的有界停止，不再把這兩種故障列為無處理。尚未證明未知操作可以恢復，沒有自動猜測同步或轉回原版模式。047整體仍DRAFT，接續審查募兵等其餘整頁交易與正式整合，已驗部隊及本輪代表抽樣不重做。

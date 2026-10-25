@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+未知來源的[有界錯誤研究](tools/research-owned-guard.go)與[受控對照](tools/research-owned-guard_test.go)依[047 DRAFT](docs/spec/047-hd-scene-renderer.md#未知來源的有界錯誤研究)。場景準備器在既有Go Docker加`--source-guards`，須同時使用`--intro --gui --direct-render --batch-render`，只修改私有副本。測試使用`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_GUARD_ASSETS`及新`EIGHTSWORD_TEST_OWNED_GUARD_OUT`，以`go test ./internal/eightsword -run '^TestResearchOwned(SourceGuard|GuardDoesNotSwallowRuntimePanic)$'`執行。`EIGHTSWORD_RESEARCH_GUARD_CONTROL=1`只停用研究保護作對照，不接正式入口或猜測重新同步。
+
+該研究的[獨立核對器](tools/audit-owned-guard.py)在固定Pillow Docker以`--project <唯讀專案> --out <新JSON>`核對r42、受控兩種失敗與原版客體同值；`--gui`另驗正常Noto人物／軍隊與真正存退讀。顯示模式通知的CS:IP是回呼當下寄存器，與視訊寫入metadata的原始store位置分開記錄。
+
 基底字型故障依[047原版模式](docs/spec/047-hd-scene-renderer.md#基底字型故障的原版模式)，沿同一故障工具加`--font-failures`建立新素材複本，同一對照檔的`TestResearchOwnedBaseFontFailure`比較要求HD但真正字圖失效與明示原版模式。以`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`及新`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`指定輸入；原版模式可用原版Frame，不能記為HD直接呈現。核對器加`--base-font`固定檢查r40，`--gui`另驗真壞字圖視窗。四個正常子案例、十份全幅Frame與真實視窗已通過，不改正式入口或重跑本組。
 
 圖像組失效研究使用[固定故障素材準備](tools/prepare-owned-fallback-assets.py)、[來源呈現對照](tools/research-owned-fallback_test.go)及[獨立核對](tools/audit-owned-fallback.py)，範圍見[047故障契約](docs/spec/047-hd-scene-renderer.md#基底圖像組失效的來源呈現)。準備器在既有Pillow Docker以`--project`與新`--out`複製r49，分別移除清單或破壞草地PNG，不改原組。場景準備器加`--fallback-checks`只複製研究測試。測試以`EIGHTSWORD_TEST_OWNED_FALLBACK_ASSETS`、`EIGHTSWORD_TEST_OWNED_FALLBACK_OUT`及既有原版變數指定輸入，`EIGHTSWORD_TEST_OWNED_FALLBACK_CONTROL=1`用原版合成作對照；不把故障資料接正式入口。核對器在Pillow Docker以`--project`與新`--out`核對固定r39，`--gui`另驗壞PNG的實際視窗。

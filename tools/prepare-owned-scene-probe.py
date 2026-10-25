@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--masked-planar', action='store_true', help='研究核心須有ReadHostPlanar；追加六平面角色入口')
     parser.add_argument('--masked-rows', action='store_true', help='六平面剩餘列在原版內圈入口接管，保留事件邊界')
     parser.add_argument('--fallback-checks', action='store_true', help='複製圖像組失效的研究對照，不改正式套件')
+    parser.add_argument('--source-guards', action='store_true', help='隔離研究：來源拒絕返回型別錯誤並保留最後完整自有圖')
     args = parser.parse_args()
     root, out = args.project, args.out
     assert os.getuid() == 1000
@@ -34,6 +35,7 @@ def main():
     assert not args.masked_planar or args.direct_render
     assert not args.masked_rows or args.masked_planar
     assert not args.fallback_checks or args.direct_render
+    assert not args.source_guards or (args.intro and args.gui and args.direct_render and args.batch_render)
     assert root.is_dir() and not out.exists()
     assert out.parent.stat().st_uid == root.stat().st_uid == 1000
     seed = root / 'workplace/probe-20261023/graphics-first/battle-r1/friendly21-validation-build-r2/src'
@@ -96,6 +98,29 @@ def main():
         data = (root/'tools/research-owned-fallback_test.go').read_text()
         assert data.startswith('//go:build ignore\n')
         (source/'internal/eightsword/research_owned_fallback_test.go').write_text(data.replace('//go:build ignore\n', '', 1))
+    if args.source_guards:
+        for name in ('research-owned-guard.go', 'research-owned-guard_test.go'):
+            data = (root/'tools'/name).read_text()
+            assert data.startswith('//go:build ignore\n')
+            (source/'internal/eightsword'/name.replace('-', '_')).write_text(data.replace('//go:build ignore\n', '', 1))
+        import re
+        for name,phase,var in [('research_owned_scene.go','pam','w'), ('research_owned_intro.go','intro','v')]:
+            path = source/'internal/eightsword'/name
+            data = path.read_text()
+            data = data.replace('o.OnCall(', 'p.onCall(')
+            data = data.replace('p.e.ObservePresentation(', 'p.observe(')
+            data = re.sub(r'panic\("((?:owned |overlapping owned |research owned panel )[^"\n]*)"\)', r'p.reject("\1")', data)
+            data = re.sub(r'(p.counts\["rejected-[^"\n]+"\]\+\+)', r'\1\n\t\t\tp.reject("source-command-rejected")', data)
+            marker = 'p.counts["writes-outside-command"]++'
+            assert data.count(marker) == 1
+            data = data.replace(marker, marker+f'\n p.e.researchRejectAt("{phase}", "unclassified-video-write", {var}.Step, {var}.CS, {var}.IP, p.e.Oracle.VideoMode())')
+            path.write_text(data)
+        path = source/'internal/eightsword/research_direct_runtime.go'
+        data = path.read_text()
+        marker = '\t\t\t\tcounts["attempts"]++'
+        assert data.count(marker) == 1
+        data = data.replace(marker, '\t\t\t\tif e.researchRenderFault!=nil {return false,nil}\n'+marker)
+        path.write_text(data)
     probe = (seed / 'tools/probe-friendly.go').read_text()
     if args.vga_read_trace:
         marker = '\te.EnableLiveClock(3000)'
@@ -273,6 +298,35 @@ def main():
 		e.researchDirectLegacyFrames++
 	}
 ''' + marker)
+        if args.source_guards:
+            engine = engine.replace('type Engine struct {', '''type Engine struct {
+	researchRenderFault *OwnedRenderFault
+	researchGuardHeld *image.RGBA
+	researchGuardHeldFrames uint64
+''', 1)
+            for method in ('Advance', 'AdvanceCycles'):
+                marker = f'func (e *Engine) {method}(n uint64) error {{'
+                assert engine.count(marker) == 1
+                engine = engine.replace(marker, marker+'\n if e.researchRenderFault!=nil{return e.researchRenderFault}')
+            marker = '\t\tn -= count'
+            assert engine.count(marker) == 2
+            engine = engine.replace(marker, '\t\tif e.researchRenderFault!=nil{return e.researchRenderFault}\n'+marker)
+            engine = engine.replace('e.researchOwnedRender()', 'e.researchGuardFrame(e.researchOwnedRender)')
+            marker = '\treturn e, nil'
+            assert engine.count(marker) == 1
+            engine = engine.replace(marker, '''
+	if dir:=os.Getenv("EIGHTSWORD_RESEARCH_OWNED");dir!="" {
+		install,finish:=e.researchOwnedInstall,e.researchOwnedClose
+		e.researchOwnedInstall=func(){e.researchGuardCall(install)}
+		e.researchOwnedClose=func()error{
+			err:=finish();guardErr:=e.researchGuardFinish(dir)
+			if err!=nil{return err};return guardErr
+		}
+	}
+''' + marker)
+            marker = '\tout["font_id"], out["font_name"], out["font_error"], out["font_choices"]'
+            assert engine.count(marker) == 1
+            engine = engine.replace(marker, '\tout["owned_render_fault"] = e.researchRenderFault\n'+marker)
         path.write_text(engine)
     (out / 'source-inputs.json').write_text(json.dumps(hashes, indent=2) + '\n')
     commands = '''key 0x3b 100 700
@@ -322,6 +376,9 @@ quit
                                  source/'internal/eightsword/research_direct_masked_rows_test.go'])
         if args.fallback_checks:
             format_paths.append(source/'internal/eightsword/research_owned_fallback_test.go')
+        if args.source_guards:
+            format_paths.extend([source/'internal/eightsword/research_owned_guard.go',
+                                 source/'internal/eightsword/research_owned_guard_test.go'])
         subprocess.run(['gofmt', '-w', *map(str, format_paths)], check=True, timeout=30)
         targets = [('probe', './tools/probe-owned.go')]
         if args.gui:
