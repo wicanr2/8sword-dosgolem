@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""045：獨立重建第49／52／54／56筆圖像實際 Draw，連回正常來源、錄影及真正存讀。Docker only。"""
+"""045：獨立重建第48／49／52／54／56筆圖像實際 Draw，連回正常來源、錄影及真正存讀。Docker only。"""
 import argparse
 import hashlib
 import importlib.util
@@ -29,7 +29,7 @@ def main():
         parser.add_argument("--"+name,type=Path,required=True)
     parser.add_argument("--saved-inspection",type=Path,required=True)
     parser.add_argument("--loaded-inspection",type=Path,required=True)
-    parser.add_argument("--record",type=int,choices=[49,52,54,56],required=True)
+    parser.add_argument("--record",type=int,choices=[48,49,52,54,56],required=True)
     a = parser.parse_args()
     assert not a.out.exists()
     sampling = module("landmarks_gui_sampling","audit-encounter-gui.py")
@@ -37,7 +37,7 @@ def main():
     streaming = module("landmarks_gui_stream","audit-army-dismiss.py")
     model = sampling.Model(a.assets,a.original,a.cache)
     entry=constants.RECORDS[a.record]
-    image = a.assets/f"map-landmark-{a.record}-r1.png"
+    image = a.assets/f"map-landmark-{a.record}-r{2 if a.record == 48 else 1}.png"
     assert sha(image) == entry["image"]
     tile = sampling.sample(image,192,150,actor=True,background=model.material(1)[0])
     assert hashlib.sha256(tile).hexdigest() == entry["cache"]
@@ -51,7 +51,7 @@ def main():
         root = a.gui/phase
         final = read(root/"gui-final.json")
         assert final["closed"] and final["recorded_frames"] == final["presented_frames"]
-        assert final["graphics_materials"] == (67 if a.record in (49,54) else 69)
+        assert final["graphics_materials"] == (70 if a.record == 48 else 67 if a.record in (49,54) else 69)
         for key in ("asset_error","graphics_error","map_chest_error","map_landmark_error","map_castle_error","font_error","palette_error",
                     "army_man21_error","battle_actor_error","battle_marker_error"):
             assert not final[key],(phase,key)
@@ -93,11 +93,26 @@ def main():
     loaded = read(a.gui/"reload/gui-final.json")
     reads = [op for op in loaded["file_ops"] if op["Op"] == "read" and op["Name"].lower() == "gamedata.ay" and op["Len"] == 2987 and not op["Failed"]]
     assert reads
+    companions={"map01.ay":sha(a.gui/"scratch/map01.ay")}
+    save_open_steps={}
+    if a.record == 48:
+        assert (a.gui/"scratch/map02.ay").stat().st_size == 5761
+        companions["map02.ay"]=sha(a.gui/"scratch/map02.ay")
+        for name,length in (("map2.ay",2133),("map02.ay",5761)):
+            assert any(op["Op"] == "read" and op["Name"].lower() == name and op["Len"] == length and not op["Failed"] for op in loaded["file_ops"])
+        # The GUI starts with a genuine existing save. Verify a fresh ordinary F7
+        # save-path open before its saved checkpoint, rather than file existence alone.
+        initial_reads=[op["Step"] for op in final["file_ops"] if op["Op"] == "read" and op["Name"].lower() in ("gamedata.ay","map02.ay")]
+        assert initial_reads
+        for name in ("gamedata.ay","map02.ay"):
+            operations=[op for op in final["file_ops"] if op["Op"] == "open" and op["Name"].lower() == name and not op["Failed"] and max(initial_reads) < op["Step"] <= saved["status"]["steps"]]
+            assert len(operations) == 1
+            save_open_steps[name]=operations[0]["Step"]
     for inspection in (a.saved_inspection,a.loaded_inspection):
         assert sha(inspection/"save-buffer-9e000.bin") == saved["sha256"]
     result = dict(status="passed-independent-landmarks-actual-Draws",record=a.record,phases=phases,actual_stream_link=True,
                   three_fonts=True,save_bytes=2987,save_sha256=saved["sha256"],map_sha256=sha(a.gui/"scratch/map01.ay"),
-                  original_read_step=reads[0]["Step"],saved_loaded_ram_equal=True,
+                  original_read_step=reads[0]["Step"],saved_loaded_ram_equal=True,map_companions_sha256=companions,save_path_open_steps=save_open_steps,
                   scope=f"PMAP {a.record} rendering, normal Continue, XTEST menus, F7 save/quit/cold Continue; no landmark identity or reward claim")
     a.out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
     print(json.dumps({k:result[k] for k in ("status","save_sha256","original_read_step","saved_loaded_ram_equal")}))

@@ -1,6 +1,6 @@
 # 045：其餘地圖圖像
 
-狀態：第 49／52／54／55／56 筆呈現限定 CONFORMED，第 48 筆呈現 READY，第 51 筆 DRAFT。沿 043／044 已證實的 PMAP 格式與繪圖 ABI，批次處理其餘圖像，不重開已完成物件。正式 r45 已接入上述五筆；第 49 筆的普通轉區用途已補證，第 48 筆正常來源、美術及接入契約見末節。整體 HD 未完成。
+狀態：第48／49／52／54／55／56筆呈現限定CONFORMED，第51筆DRAFT。沿043／044已證實的PMAP格式與繪圖ABI處理其餘圖像，不重開已完成物件。正式r46已接入上述六筆；第49筆普通轉區用途與第48筆來源、美術、接入及限定驗收見後節。整體HD未完成。
 
 [盤點工具](../../tools/catalog-map-pending.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--out`，核對正式素材清單與固定 PMAP／MAP1，輸出七筆原生參考及普通步行規劃。輸出目錄必須不存在。工作區為 `workplace/probe-20261023/graphics-first/map-interaction-r1/map-landmarks-r1/`，不進 Git。
 
@@ -25,7 +25,7 @@
 | 55 | `55e20818bf365b1d892ecce5ec2bf7eadaffba952635f890cc94c0bf2a107cdc` | `2a4f23af0710c6e95ed002000f79dc612d312d74346f00452d5c0e4c0b4f322a` | 正式 r43，限定 CONFORMED，範圍見下節 |
 | 56 | `7188d67ebf710df40d2adfcaa520d21c1f9781008748a214a497629c2b0a542d` | `412af4cb89b40adc1b0b56b2b5605fd016918b51712a081a4cea01938d0e9fd4` | 正式 r45，限定 CONFORMED，範圍見後節 |
 
-第 48 筆已有正常來源、手繪 r2 與 READY 契約，見末節；第 51 筆尚未生成，也未取得正常來源。49、52、56 已依後節完成。最初的保守步行集合未找到 52／56 路線，後續普通操作已證實兩筆可見；規劃集合不代表原版完整通行規則。
+第48筆已有正常來源、手繪r2及正式r46限定驗收，見末節；第51筆尚未生成，也未取得正常來源。49、52、56已依後節完成。最初的保守步行集合未找到52／56路線，後續普通操作已證實兩筆可見；規劃集合不代表原版完整通行規則。
 
 ## 第 55 筆正常來源與停止線
 
@@ -172,7 +172,7 @@ READY 契約要求：真實來源及獨立快取測試、來源／JSON／PNG／�
 
 重查入口沿[正常三組核對器](../../tools/audit-landmarks-runtime.py)、[實際 Draw 核對器](../../tools/audit-landmarks-gui.py)及[匯入器](../../tools/prepare-hd-landmarks.py)，使用 `--record 52` 或 `--record 56`。本節工作區收據為 `pending-landmarks-{52,56}-runtime-audit-r2.json`、`pending-landmarks-{52,56}-draw-audit-r1.json`、`pending-landmarks-promotion-r1.json`、`landmarks-default-compat-r1.json` 及 `pending-landmarks-formal-integrity-r2.json`。
 
-本項僅呈現限定 CONFORMED。現行主地圖 65 筆已登錄 63 筆，48 的 READY 追加見末節，51 維持 DRAFT；這不是全遊戲完成率。物件名稱、用途與獎勵保持未知，沒有改規則或解鎖玩家地圖。沿用八份核心、既有字型與配色，完整素材及存檔留本機。Linux Xvfb 靜音驗收不外推裝置音訊、其他平台或整體 HD。
+本項僅呈現限定 CONFORMED。此組提升時主地圖65筆已登錄63筆；第48筆後續限定驗收見末節，現行64筆，51維持DRAFT；這不是全遊戲完成率。物件名稱、用途與獎勵保持未知，沒有改規則或解鎖玩家地圖。沿用八份核心、既有字型與配色，完整素材及存檔留本機。Linux Xvfb 靜音驗收不外推裝置音訊、其他平台或整體 HD。
 
 ## 普通步行轉區
 
@@ -250,3 +250,24 @@ READY 契約要求：真實來源及獨立快取測試、來源／JSON／PNG／�
 實作後須驗：真實來源與獨立快取、JSON／來源／PNG／草地／ID衝突原子回退、與舊群混合故障、正常新／舊／真壞三組完整 state／PCM／串流／DOS寫入、差異只限實際來源矩形、三字型及 F1／F2／F3 返回、實際 Draw 與錄影、真正 F7 存退冷讀及 RAM。缺少這些證據時保持 READY，不宣稱 CONFORMED。
 
 下一輪直接用 `landmark48-normal-r1/scratch/gamedata.ay` 加同目錄的 MAP01／MAP02 普通 Continue。已取得的來源、幾何與美術不重做；正式名稱、用途、觸發與獎勵保持未知，純呈現沒有依賴，不另開玩法逆向。
+
+## 第 48 筆正式提升與限定驗收
+
+本節閉合上一節的READY呈現契約。正式r46共217檔，只新增第48筆的PNG、完整提示鏈、清單及provenance；r45的213檔逐SHA保持，兩次乾淨匯入相同。舊預設49／54匯入也另行重建，逐檔同r44。原PNG及alpha保持，不重新生成或裁切；完整素材、來源與存檔留本機。
+
+[載入器](../../internal/eightsword/map_landmark48.go)只原子增加材質49，沿既有來源及圖像所有權，不增加原生別名或CPU掛點。[測試](../../internal/eightsword/map_landmark48_test.go)與[匯入器](../../tools/prepare-hd-landmarks.py)已接通。`build-landmark48-r1`保存107筆建置輸入、49份正式套件、Go1.24.13、七程式及完整來源archive，七程式與三份建置紀錄已提升至`workplace/player`。
+
+| 驗收 | 證據與限定範圍 |
+|---|---|
+| 載入與故障 | 三個父測試、十三個子案例60.581秒通過。來源／快取與舊素材保持，十種故障包含缺清單、未知欄位、尾隨／過大JSON、錯record／PMAP、真壞／缺PNG、ID衝突及缺草地；另驗48壞、55壞及兩者皆壞，只有對應群回退 |
+| 正常三組 | 新／舊／真壞各394幀，共1182次Frame純度。完整state SHA `9f9b9a63ffc7b6ed4baa25a1e8eac8a1559c552b5d92ad3f143d0cd36f6467bd`、PCM SHA `d6f6e533db823f997d77cc06239d23fec2842368be57fd8ffa7760b051611b54`、22工作檔、輸入／文字／檔案／EXEC事件相同，三組原版DOS退出0。人物檔SHA `280727f064a313dd33b27fa40a33a286e756b22c4343013cc9c7969d6a69ed5f` 與續玩輸入不同，三組真正保存結果相同 |
+| 完整畫面與回退 | 五份完整Frame符合獨立PNG／草地／字型模型，三字型及返回皆含材質49。94個差異幀全限原版來源矩形 `(1176,972)-(1368,1122)`，西移及F1／F2等非目標頁相同；真壞圖完整串流同r45。三組首筆各1600原版返回色碼同PMAP，固定ABI及mode通過 |
+| 實際視窗 | `landmark48-save-r1`存前／冷讀為503／310 Draw、77／67個變化幀，四張接觸表、實際人物頁與Noto太極圖已看。存前／讀回三字型共六份完整Draw、13824000像素逐點同獨立模型及錄影；來源10／7次，首筆各1600色碼、來源返回步數與實際Draw對應通過 |
+| 真正存讀 | 正常Continue、F2／F3取消、F1、三字型、F5及F7存退後冷啟動Continue。人物檔2987 bytes，同存後及讀後RAM線性0x9E000，SHA `e46d4af1a82ad816ce75f70f3cc820ad47dbc6a3f1d1135f64fd87e56b1c811a`，read step12012416；MAP01／MAP02皆保持並確實讀MAP2與MAP02。普通F7的兩次新開檔步數為人物60977700、MAP02 61024135，均在真正保存checkpoint之前。存前與冷讀F5皆57,73；冷讀最後關閉視窗，不冒稱該段亦回DOS |
+| 可重查入口 | [正常三組核對](../../tools/audit-landmarks-runtime.py)及[實際Draw核對](../../tools/audit-landmarks-gui.py)均支援 `--record 48`。工作區收據為 `landmark48-runtime-audit-r1.json`、`landmark48-draw-audit-r2.json`、`landmark48-promotion-r1.json`；獨立PNG取樣由[共用靜態模型](../../tools/audit-map-landmark-route.py)登錄本筆 |
+
+這份MAP2進度的普通冷啟動為8550ms，與舊MAP1案例不同；計數沿實際 `elapsed_ms/50 + font命令數`，本例19550/50+3=394。沒有補等待湊舊395幀。已完成的52案例另由擴充後核對器重驗通過，該案仍395幀。
+
+研究驗收建置`landmark48-validation-build-r1`共57輸入，49份正式套件逐SHA同目前來源。額外程式只作唯讀來源、完整Frame及actual Draw擷取；沒有原型安裝函式或客體注入。零步數快照檢查只用於RAM核對，零步數`Wrote()`診斷回null，不能據此推論沒有保存；實際流程、保存開檔、存檔bytes與普通冷讀分開核對。
+
+本項限定CONFORMED。主地圖65筆登錄64筆，只剩51未登錄；這不是全遊戲完成率。物件正式名稱、用途、觸發與獎勵保持未知。Linux Xvfb靜音視窗不外推裝置音訊或其他平台；其餘部隊、曲目與整體HD未完成。後續從真正MAP2進度先查普通攻城入口，補友軍戰場來源，不重走第48筆路線、重生美術或以重複等待湊遭遇。

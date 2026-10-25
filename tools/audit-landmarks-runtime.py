@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""045：核對第49／52／54／56筆正式呈現、原版來源、狀態隔離與獨立完整畫面。Docker only。"""
+"""045：核對第48／49／52／54／56筆正式呈現、原版來源、狀態隔離與獨立完整畫面。Docker only。"""
 import argparse
 import hashlib
 import importlib.util
@@ -46,14 +46,17 @@ def verify(args):
     helper.register_static_materials(model,args.assets,module)
     assert hashlib.sha256(tile).hexdigest()==entry["cache"]
     reference, candidate, broken = [read(p / "final.json") for p in (args.control, args.hd, args.broken)]
-    baseline=65 if args.record in (49,54) else 67
-    assert reference["graphics_materials"] == baseline and broken["graphics_materials"] == baseline+1
-    assert candidate["graphics_materials"] == baseline+2
+    commands=[json.loads(line)["command"] for line in (args.control/"commands.jsonl").read_text().splitlines()]
+    expected_frames=reference["elapsed_ms"]//50+sum(command.startswith("font ") for command in commands)
+    baseline=69 if args.record == 48 else 65 if args.record in (49,54) else 67
+    additions=1 if args.record == 48 else 2
+    assert reference["graphics_materials"] == baseline and broken["graphics_materials"] == baseline+additions-1
+    assert candidate["graphics_materials"] == baseline+additions
     error_key = "map_landmark_error"
     assert not reference[error_key] and not candidate[error_key]
     assert broken[error_key] == f"地圖物件{args.record}圖片 SHA-256 不符"
     for data in (reference, candidate, broken):
-        assert data["recorded_frames"] == data["frame_pure_count"] == 395
+        assert data["recorded_frames"] == data["frame_pure_count"] == expected_frames > 0
         assert data["normal_input_replay"] and not data["snapshot_loaded"] and not data["guest_injection"]
         assert data["exited"] and data["exit_code"] == 0
         for key in ("steps", "exit_code", "exited", "input_events", "file_ops", "exec_log",
@@ -102,6 +105,7 @@ def verify(args):
     for data, root in ((reference, args.control), (candidate, args.hd), (broken, args.broken)):
         calls = [json.loads(line) for line in (root / "map-object-calls.jsonl").read_text().splitlines()]
         assert calls and all(c["raw_sha256"] == entry["record"] for c in calls)
+        assert all((c["segment"],c["entry"],c["return"],c["abi_bytes_matched"],c["mode"]) == (0x14D2,0x76F,0x854,230,1) and c["return_step"] > c["entry_step"] for c in calls)
         raw = (root / f"map-object-first-{args.record}-source.bin").read_bytes()
         assert hashlib.sha256(raw).hexdigest() == entry["record"]
         expected = bytes(sum(((raw[4 + q * 200 + p // 8] >> (7-p%8)) & 1) << q
@@ -112,7 +116,7 @@ def verify(args):
         digest, name = line.split("  ", 1)
         assert sha(args.build / "src" / name) == digest
         build_inputs += 1
-    assert build_inputs == (54 if args.record in (49,54) else 56)
+    assert build_inputs == (57 if args.record == 48 else 54 if args.record in (49,54) else 56)
     outputs = {}
     for line in (args.build / "build-outputs.sha256").read_text().splitlines():
         digest, name = line.split()
@@ -120,7 +124,7 @@ def verify(args):
         outputs[name] = digest
     assert len(outputs) == 3 and "probe" in outputs
     assert not any("ResearchInstall" in p.read_text() for p in (args.build / "src").rglob("*.go"))
-    return dict(status="passed-production-loader",record=args.record, frames_each=395, total_frame_purity=1185,
+    return dict(status="passed-production-loader",record=args.record, frames_each=expected_frames, total_frame_purity=expected_frames*3,
                 build_inputs=build_inputs, probe_sha256=outputs["probe"], cache_sha256=hashlib.sha256(tile).hexdigest(),
                 full_frames=results, equal=equal, scratch_sha256=scratch,
                 broken_stream_equal=True, unaffected_pages_equal=True, changed_frames=changed,
@@ -132,7 +136,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ("assets","original","image","control","hd","broken","build","out"):
         p.add_argument("--"+name,type=Path,required=True)
-    p.add_argument("--record",type=int,choices=[49,52,54,56],required=True)
+    p.add_argument("--record",type=int,choices=[48,49,52,54,56],required=True)
     a=p.parse_args()
     assert not a.out.exists()
     result=verify(a)

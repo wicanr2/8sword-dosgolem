@@ -96,6 +96,9 @@ case "${1:-}" in
             EIGHTSWORD_TEST_CASTLE_ASSETS=/out/assets-castle-candidate-r1 \
             EIGHTSWORD_TEST_CASTLE_BASE=/out/assets-painted-r40 \
             EIGHTSWORD_TEST_CASTLE_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/castle-cache-r1 \
+            EIGHTSWORD_TEST_LANDMARK48_ASSETS=/out/assets-landmark48-candidate-r1 \
+            EIGHTSWORD_TEST_LANDMARK48_BASE=/out/assets-painted-r45 \
+            EIGHTSWORD_TEST_LANDMARK48_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/landmark48-cache-r1 \
             EIGHTSWORD_TEST_LANDMARK52_ASSETS=/out/assets-pending-landmarks-candidate-r1 \
             EIGHTSWORD_TEST_LANDMARK52_BASE=/out/assets-painted-r44 \
             EIGHTSWORD_TEST_LANDMARK52_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/pending-landmarks-cache-r1 \

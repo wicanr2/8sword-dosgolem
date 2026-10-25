@@ -33,7 +33,7 @@ def register_static_materials(model, assets, sampling):
         path=assets/("map-chest.json" if index==58 else f"map-landmark-{index}.json")
         if not path.exists():continue
         manifest=read(path)
-        filename="map-chest-r2.png" if index==58 else f"map-landmark-{index}-r1.png"
+        filename="map-chest-r2.png" if index==58 else f"map-landmark-{index}-r{2 if index == 48 else 1}.png"
         assert manifest["source_index"]==index and manifest["source_sha256"]==PMAP_SHA
         assert manifest["image"]["file"]==filename and manifest["image"]["sha256"]==expected["image"]
         image=assets/filename;assert sha(image)==expected["image"]
