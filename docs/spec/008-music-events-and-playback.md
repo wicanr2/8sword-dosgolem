@@ -88,3 +88,44 @@ READY 審查：`state-trace` 五次初始化完成時 active 都為 1，前兩�
 - 適配：正常冷啟動選曲、同曲重啟、反白不重啟、換到缺 HD 曲目、Esc 停止；未辨識 OPL 寫入者回原版。比較完整原版狀態、DOS 工作檔與輸入事件，不能只比自製事件清單。
 - UI：實際 XTEST 視窗的原版選單與人物頁；聽到 HD、保留音效、取消／返回／關閉及真正存退讀，另記音訊佇列、欠載、模型時間與實際時間。
 - 採樣：每段音訊確認 codec、長度、峰值、非靜音與人工聽感。單元測試不替代真正音源與播放器驗收，〈幻〉通過不等於整套 HD 音樂完成。
+
+
+## 其餘九曲的本機候選
+
+2026-10-26，DRAFT配器候選，既有播放／資產契約仍READY。使用者先前批准範圍為〈幻〉，不由該次試聽推論其他九曲已獲批准。正式素材與七程式保持，這裡只記製作及測試事實。
+
+### 來源與配器
+
+[原曲解碼器](../../tools/decode-adlib-music.py)沿已核對的MUS／SND byte parser保存，沒有引入AdPlug實作。十項來源及雜湊沿`music_sources.go`與`hd-audition-r1/menu-source-map.json`。MFIG仍未映射，不私自新增第十一個請求。工具在既有`kol-music:timidity2.14-fluid3.1-r1`執行，映像SHA `9520e9a4f3341495b3bcb6108cd2e6d7ba835647aaf349381c60a921ae7b927b`；TiMidity++2.14.0、FFmpeg5.1.9及固定FluidR3來源不變。
+
+[製作器](../../tools/prepare-music-batch.py)使用`--original <唯讀原版>`、`--research <既有hd-audition-r1>`、`--out <music-first內新目錄>`。各曲的原樂器名稱、提案GM映射、七音起句、完整命令及音源授權保存於`music-first/hd-music-batch-r1/candidates.json`與`generation-record.json`。它們是原曲衍生取樣配器，不是真正古箏／竹笛實錄，不稱未公開的原版配樂。
+
+| 曲目 | 候選完整循環秒數 | 配器提案 |
+|---|---:|---|
+| 遨遊 | 80.000 | 低弦襯底、撥弦行進、長笛主句 |
+| 刀祭 | 54.857 | 撥弦重複音、長笛雙線、原節奏鼓點 |
+| 怡唱 | 16.000 | 柔和撥弦、箏類和聲及低弦 |
+| 馳騁 | 16.000 | 箏類與長笛交疊、低弦與琶音 |
+| 幽 | 32.000 | 長笛、氣息管音與撥弦和聲 |
+| 靈之舞 | 28.800 | 低撥弦、細鐘音、長笛及柔弦 |
+| 悚慄 | 32.000 | 低弦、暗色長音及氣息管音 |
+| 法域 | 19.200 | 鐘音、木質節拍、箏類及高長笛 |
+| 黎明 | 94.928 | 長笛敘句轉柔弦、撥弦收束 |
+
+保留原旋律音高、起落時刻、速度、滑音與音量事件。MIDI速度以整數微秒表示，與原格式有小於1毫秒的量化差，仍標hardware-spec approximation。節奏模式的五聲部轉GM固定鼓音，來源A0音量換算起音力度；鼓音的音高、包絡與OPL不稱相同。連續合成三輪取中間輪，完整主檔不加淡出或休止，批准〈幻〉的Ogg未重製。
+
+### 技術驗證及隔離載入
+
+[獨立核對器](../../tools/audit-music-batch.py)使用`--project`、`--original`、`--batch`及新`--out`。它解析實際MIDI，不只相信製作器計數；九曲6680筆旋律起落訊息、三輪鼓聲、配器、音量、滑音及tempo均符合來源／提案。完整Ogg逐首核對精確frames、非靜音、有限值、峰值與接點。上游PCM亦先檢查無削波後才轉檔，PCM中間檔完成核對即清除。正式循環的精確frames標準沒有放寬。
+
+`hd-music-batch-audit-r1.json`通過，SHA `8fde615ca253f248121d7c028e5d2502b74cde0eec080db8b7b1ba71f5cc7704`。最大全幅接點取樣跳變0.013775，最終真峰值−9.50至−3.18 dBTP。短試聽採Vorbis時間戳裁切，實測29.984至30秒，總覽107.953333秒，因此頁面標「約30秒／約108秒」，不把試聽片段的標稱時間當完整循環長度。
+
+[候選匯入器](../../tools/prepare-hd-music-batch.py)以`--base` r49、`--batch`、`--audit`及新`--out`輸出`assets-music-batch-candidate-r1`。354檔、十曲、343個舊檔保持，只替換music.json並增加九首Ogg與來源紀錄；批准〈幻〉音檔保持。總int16解碼88202596 bytes，小於既有256MiB上限。候選狀態明示未批准，不提升正式組。
+
+[正常播放工具](../../tools/music-batch-check.go)以正式Engine、Go1.24.13及正式獨立核心，普通冷啟動後逐一按鍵選十曲，沒有RAM注入、快照載入或直接進入。控制使用正式r49，候選使用十曲組。十四檢查點的完整客體state、畫面、Frame純度、輸入與I/O一致；〈幽〉另驗完整循環、同曲重播，反白不重啟，Esc回原音訊。結束完整state SHA `72c4fc3df155d2bce8c3ffd1625a78f194f9be00a3c2ab03d6cd7ef0d5ea1300`。
+
+[實際PCM核對器](../../tools/audit-music-batch-runtime.py)使用`--project`、`--run`、`--assets`、`--build`與新`--out`，獨立解碼Ogg並逐首比較實際主機混音的4800個雙聲道frames，十曲RMS誤差0至0.020413個int16單位，校準偏移皆0。Esc後48000 frames與控制的原版音訊逐取樣相同。`hd-music-runtime-audit-r1.json`通過，SHA `f97f6fc5c2301d2f622d49e4d93836aec47cb0e56b18c68e576d9e3f6ed6cb31`。這是十曲選單的技術驗證，未新增真正存讀／GUI／玩法觸發或人耳批准聲明。
+
+### 待確認
+
+本機`hd-music-batch-r1/index.html`提供逐曲試聽與完整循環，`nine-cues-preview-108s.ogg`提供約108秒總覽。已向使用者提出一個配器確認問題，先前〈幻〉維持。人耳聽感、三輪疲勞及這九曲的採用仍待確認；不以解碼、MIDI核對或未回覆代替批准。原曲、所有Ogg、完整音源與本機素材組不加入Git或公開發行。

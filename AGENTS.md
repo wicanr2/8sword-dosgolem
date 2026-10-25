@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+其餘九曲的本機候選見[008候選批次](docs/spec/008-music-events-and-playback.md#其餘九曲的本機候選)。[原曲解碼](tools/decode-adlib-music.py)、[配器製作](tools/prepare-music-batch.py)與[獨立MIDI／Ogg核對](tools/audit-music-batch.py)在既有`kol-music:timidity2.14-fluid3.1-r1`容器執行。製作以`--original`、`--research`既有hd-audition-r1及新`--out`指定唯讀輸入與新輸出；核對以`--project`、`--original`、`--batch`及新`--out`。工具輸出候選，不自動延伸〈幻〉的美術／配器批准或公開權利。
+
+[十曲候選匯入](tools/prepare-hd-music-batch.py)在固定Pillow容器使用`--base` r49、`--batch`、`--audit`及新`--out`，輸出名稱須含candidate；保留343舊檔，只替換music.json並增加九首Ogg與來源紀錄，不提升正式組。[正常十曲播放工具](tools/music-batch-check.go)在既有Go1.24.13／正式獨立核心以`go build ./tools/music-batch-check.go`建置，使用`-root`、`-base`、`-assets`、新`-out`；從普通冷啟動逐首按鍵，不注入RAM或載入快照。[實際PCM核對](tools/audit-music-batch-runtime.py)在音訊容器使用`--project`、`--run`、`--assets`、`--build`與新`--out`。批准狀態看CONTEXT；目前九曲未切正式，聽感待使用者確認。
+
 正式來源呈現依[047限定CONFORMED契約](docs/spec/047-hd-scene-renderer.md#正式接入契約與證據審查)接入。[場景適配器](internal/eightsword/source_scene.go)、[純矩形呈現](internal/eightsword/source_render.go)、[開場](internal/eightsword/source_intro.go)、[直接呼叫](internal/eightsword/source_direct.go)、[六平面](internal/eightsword/source_masked.go)、[逐列](internal/eightsword/source_masked_rows.go)、[錯誤邊界](internal/eightsword/source_guard.go)、[募兵交易](internal/eightsword/source_recruitment.go)及[實際Frame資訊](internal/eightsword/source_presentation.go)不含研究RGB診斷。正式提升與現況以CONTEXT為準，不由檔案存在推論完成。
 
 [正式核心準備器](tools/prepare-player-runtime.py)在固定Pillow容器使用`--project <唯讀專案> --out <player內新runtime目錄>`，核對[固定來源樹與13份變更](tools/player-runtime-source.json)，重用已驗準備工具，輸出獨立919檔核心；不修改固定基底與共用dosgolem。`bash tools/player.sh build <新候選名稱>`使用此核心保存來源與七程式，拒絕覆寫候選；尚未驗收時不提升播放器。

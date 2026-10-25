@@ -1803,3 +1803,14 @@ mm3參考為唯讀`docs/spec/074-render-routine-control.md`，SHA `272ddf08ade48
 來源測試統一source-unit-r1.log，SHA `41f70a64b7b715846066fb25112fc6d8b109b102918226119404492951d1489d`。正式GUI完整自然片頭、三字型工具列與真正F7存退冷讀由tools/audit-source-player.py獨立核對；source-player-audit-r3.json SHA `c7bab70fc8c6d2b58c5f8d13fab5fb2d96892a21ec9a05e5df8787cc72c7cd50`。舊合成器ComposedFrames／CachedFrames均0；純來源檔另拒絕Screen／ScreenRGB／Compose與研究環境控制。九種完整場景在實際Draw逐像素同不可變r42參考，參考僅作事後核對。
 
 結論：足以正式提升047的來源呈現協定。未驗施法、結局、未知素材仍不外推；其餘HD音樂及美術未完成。沒有新增玩法或RAM常駐修改。
+
+
+## 2026-10-26：九曲配器候選的事件與PCM證據
+
+已證實，限技術層：固定MUS／SND來源與十項正常選單映射沿008。原始獨立byte parser保存為tools/decode-adlib-music.py，九曲重新解碼與既有事件JSON完整相同。MIDI實際bytes再獨立解析，保留6680筆旋律起落、速度、滑音、音量；節奏五聲部另以固定GM鼓音與A0力度換算，明示音色／包絡近似。未解釋MFIG用途，未改原始程式、音樂請求或存檔。
+
+TiMidity++2.14.0、FFmpeg5.1.9及FluidR3固定映像9520e9a4…927b；音源SHA74594e8f…1cb0與既有MIT聲明保持。完整候選、三輪MIDI、原始／修正約數標示的試聽頁、生成簡報與工具快照留music-first/hd-music-batch-r1。無外部音樂生成服務、模型或新作曲者署名；原曲衍生權利限本機。
+
+hd-music-batch-audit-r1.json SHA `8fde615ca253f248121d7c028e5d2502b74cde0eec080db8b7b1ba71f5cc7704`。hd-music-runtime-audit-r1.json SHA `f97f6fc5c2301d2f622d49e4d93836aec47cb0e56b18c68e576d9e3f6ed6cb31`：普通冷啟動與按鍵逐首十曲，十四點完整客體state、畫面、Frame純度、輸入與I/O相同，state72c4fc3d…1300；十曲實際混音的4800雙聲道frames逐首同獨立Ogg，誤差≤0.021 int16、校準偏移0，Esc後48000 frames原音訊相同。固定12:00:00只作可重播時鐘，不宣稱亂數規則或實機逐週期parity。
+
+技術通過不等於聽感批准。九曲提案已交使用者選型，正式音樂仍僅〈幻〉HD。這份候選不新增公開權利、正常施法／戰鬥音效或完整音樂完成聲明。

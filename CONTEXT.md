@@ -4,6 +4,7 @@
 
 | 面向 | 現況與證據 |
 |---|---|
+| 其餘九曲HD配器候選 | [008候選批次](docs/spec/008-music-events-and-playback.md#其餘九曲的本機候選)。九首完整Ogg及約108秒總覽已完成，沿原音符／滑音／速度與撥弦、長笛、柔弦方向；鼓聲另作GM重配。獨立解析實際MIDI，6680筆旋律訊息與三輪事件相符；九首完整主檔frames精確、非靜音且無削波。候選assets-music-batch-candidate-r1為354檔／十曲，343舊檔及批准〈幻〉保持，解碼88202596 bytes。普通冷啟動逐首選曲、〈幽〉完整循環／同曲重播、反白不重啟與Esc共14點，完整state 72c4fc3d…1300、畫面／輸入／I/O相同；十首各4800幀實際PCM同獨立Ogg，RMS≤0.021個int16單位，Esc後48000幀原音訊逐取樣相同。hd-music-batch-audit-r1.json及hd-music-runtime-audit-r1.json通過。音色待使用者對已提出的單一問題確認，正式r49／七程式維持，不將技術通過稱為聽感批准；MFIG仍未映射 |
 | 正式完整來源呈現 | [047](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)限定CONFORMED，已提升七程式；目前來源候選source-candidate-r4／129輸入，正式素材仍r49／344檔。有效HD由自有場景直接產生Frame，不以原版RGB墊底。四／五平面與六平面整筆／逐列沿事件配額接管，索引平面保留讀回；來源故障有界停止。獨立核心runtime-direct-r1共919檔、910基底／13變更固定；原workplace/dosgolem與共用核心不變。舊正式七程式保存在build-troops-r1 |
 | 正式呈現驗收 | 原生CPU與直接計畫的正常啟動／新遊戲／F1／F2完整state、PCM、Frame及Frame純度通過；受控INT10模式故障保留最後完整圖、後續Advance不前進。全部來源測試25.310秒，原生事件邊界及go vet通過。正常GUI source-save-r1自然完整開場、選單、人物／軍隊及真正F7存退讀為336／232 Draw，721／471來源Frame、2171／1228直接計畫，舊合成器0。九種完整場景連回實際Draw，F7及兩側RAM皆2987 bytes、29dd62ae…2359，read202978329，DOS退出0。工具列source-toolbar-r1為229／26 Draw，三字型墨點與隸書偏好冷啟恢復通過。統一source-player-audit-r3.json，提升source-promotion-r1.json；自然開場接觸表及真正教育部隸書人物頁已抽看 |
 | 呈現範圍與停止線 | 相同機制採使用者批准的代表抽驗，允許受控RAM呈現，不逐隻等遭遇。r22–r43歷史研究、故障與交易證據沿047及WORKLOG保留，不重新開工。可選圖像壞掉保留來源解碼與Noto；基底字型壞掉依003關HD。未抽到的施法、結局與未分類資產仍是原版oracle未知，不冒稱全遊戲已驗。舊Intro／圖像合成計數只描述舊參考呈現，正式驗證使用source_renderer／source_frames／direct_calls及實際Frame資訊。主程式的既有log.Fatal錯誤結束尚未另作GUI故障清理測試，列可選收尾，不阻塞本次正常呈現；整體HD美術與其餘音樂未完成 |
