@@ -1470,3 +1470,15 @@ encounters-runtime-audit-r1.json與encounters-promotion-r1.json通過。正式�
 battle-backgrounds-runtime-audit-r1.json與promotion-r1通過後，提升正式r51／377檔及source-candidate-backgrounds-r1／133輸入的七程式；上一組source-candidate-encounters-r1／131輸入與七程式保持。050限定CONFORMED，五幅彩色背景都已登錄。H單色來源、自然地形選擇、新GUI／存讀及整體HD不外推；既有047／048正常GUI與真正存讀收據分開保留，不重複逐地形等待。README收五幅縮小總覽與來源，完整PNG與原版不入Git。九曲音樂仍待使用者確認，須在r51合併，不能覆蓋回舊素材組。
 
 收尾battle-backgrounds-final-integrity-r1.json通過133來源、七現行／七舊程式、377素材／367保留檔、158原版、919核心、三份生成圖與提示及1302本機連結。三份Python工具與Docker內bash語法通過，沒有root-owned檔案或偽md目錄；本案容器均已結束移除，未新增映像。新候選與正式組共用不可變硬連結，保留全部舊輸入與收據。主機gh認證及PRIVATE倉庫已核對，僅提交十七份明列程式／文件／縮小總覽，推送既有origin/main後回讀遠端SHA核對。
+
+## 2026-10-26：村落、小屋與山洞HD
+
+上一輪五幅彩色背景已完成並推送，本輪沿034／035、完整來源盤點與圖片生成入口，處理建築缺圖。先建051 DRAFT，四份來源各解碼22404 bytes、448×100四平面，另產生原版顯示參考。LIVE4主碑刻痕另看原始放大圖與字模目錄，尚無可靠文字對應，不由模型猜寫。LIVE6已有樣稿待選，維持035，不重畫或繞過決定。原版圖像保留，沒有新增IDA推測。
+
+內建image_gen完成LIVE1村落、LIVE3林間小屋、LIVE5山洞，原PNG、實際完整提示、兩份參考SHA與收據留map-interaction-r1/buildings-hd-batch-r1。前兩張1877×838，山洞1876×838，全不透明。六份來源與四份HD總覽已看；LIVE4／6只列原圖與待辦，不上傳未選樣稿或假碑文。三組來源、圖片與1344×600獨立快取審查後達READY，才實作載入器。
+
+三項父測試與七種缺失／故障54.689秒、go vet及七程式建置通過。材質847／848／850逐組核對後提交，849／851與LIVE4／6來源別名保持未登錄。三份快取同獨立Python，原有材質、角色、效果及字型保持。普通啟動／新遊戲／F1／F2客體與PCM相同，再用受控RAM呼叫真正四平面與還原。三建築各繪製／還原共六案13824000像素，完整Frame同獨立模型，矩形外保持、Frame純讀、兩側客體同值，RAM／DS／欄位逐項恢復。普通前導直接計畫830、舊合成器0，林間小屋受控全幅已看。
+
+buildings-runtime-audit-r1.json與buildings-promotion-r1.json通過後，提升正式r52／387檔與source-candidate-buildings-r1／135輸入的七程式，377舊檔以不可變硬連結保持。舊133輸入與七程式留source-candidate-backgrounds-r1，獨立核心仍runtime-direct-r1。051只對三組限定CONFORMED，LIVE4仍DRAFT，LIVE6依035待選；README明列四份HD與兩份原圖保留。既有正常GUI與真正存讀證據分開保存，本輪不聲稱新GUI／存讀、自然招募或RNG規則。九曲待選音樂若批准，須合併到r52，不覆蓋回舊組。
+
+收尾buildings-final-integrity-r1.json通過135來源、七現行／七舊程式、387素材／377保留檔、158原版、919核心、三份生成圖與提示及1320本機連結。三份Python工具與Docker內bash語法通過，沒有root-owned檔案或偽md目錄；本案容器均已結束移除，未新增映像。LIVE4沒有生成PNG，LIVE4／6沒有正式清單，待辦狀態與實際素材一致。主機gh認證與PRIVATE倉庫核對後，只提交十五份明列程式／文件／縮小總覽，推送既有origin/main後回讀遠端SHA核對。

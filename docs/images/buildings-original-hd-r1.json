@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "spec": "051",
+  "status": "registered-asset-overview-not-natural-recruitment-screenshots",
+  "image": "buildings-original-hd-r1.png",
+  "image_sha256": "b6cb8b931b5cade78391ec2e0b65658f573bc2cc3a0666973081f0b927f4b1da",
+  "registered_buildings": 4,
+  "deferred": [
+    4,
+    6
+  ],
+  "groups": [
+    {
+      "number": 1,
+      "material_id": 847,
+      "manifest_sha256": "4908cc83a254ba5260d38d1b915cf1ef0278b0f4d59a5524e6d32a63cbcb2c5c",
+      "config": {
+        "schema": 1,
+        "source_file": "LIVE1.AY",
+        "source_sha256": "dcd4da950f5bc32455c3fefae00c18d258d38017b1c8685772af38cc01b9fda6",
+        "native_sha256": "5c5e549514cc287c747ad075ebd7572cc265a4529f7af26325d74fc891202a4b",
+        "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+        "style": "B-bright-painted-r1",
+        "style_reference_sha256": "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6",
+        "image": {
+          "source_index": 846,
+          "file": "live1-hd-r1.png",
+          "sha256": "a5012d0f66c0c55522df74865b4d9ca5fcaebd174967dd03d3b9adb3afbbb06c",
+          "width": 1877,
+          "height": 838,
+          "sampling": "bitmap"
+        },
+        "prompt_file": "live1-hd-r1.prompt.txt",
+        "prompt_sha256": "c0a0d1203b36e2c09e4acbe8804f4fb93cc3b1742ba16e85d6ac5a774491f7e6",
+        "cache_sha256": "118c22a201ffe72c5894d14828ac4eba488a8f5d2368553889341f9def7513db"
+      }
+    },
+    {
+      "number": 3,
+      "material_id": 848,
+      "manifest_sha256": "a817f6258bbe6193ee917a358b1c6be13f88aa860aa31e39f77a9b2841da126b",
+      "config": {
+        "schema": 1,
+        "source_file": "LIVE3.AY",
+        "source_sha256": "624763a2922ecf16f88790970d9f536f8fa97a5371d7193332c87aa2cf4eeb00",
+        "native_sha256": "abc3df024aae9f21f829a549fa383e8f7f32ceb7031de8c938786a51a76d807b",
+        "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+        "style": "B-bright-painted-r1",
+        "style_reference_sha256": "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6",
+        "image": {
+          "source_index": 847,
+          "file": "live3-hd-r1.png",
+          "sha256": "675564ddfabb864c621e0a43cf97811f72c982755f53f9bade64925b4751ad88",
+          "width": 1877,
+          "height": 838,
+          "sampling": "bitmap"
+        },
+        "prompt_file": "live3-hd-r1.prompt.txt",
+        "prompt_sha256": "17c00c8e52dc763f15db24ad1a5a1c7acce54a40f624bfcb38169dd75dcd1643",
+        "cache_sha256": "71dd89e6b6e4bec0cbb0e79ba790cedef61ef5766fef871dcd85b23404a5af42"
+      }
+    },
+    {
+      "number": 5,
+      "material_id": 850,
+      "manifest_sha256": "c83d2043884ecc27f9bab5858685599c6ebc5f9b901ad11bcd22fabdc555006d",
+      "config": {
+        "schema": 1,
+        "source_file": "LIVE5.AY",
+        "source_sha256": "d98c76c44e3baeb5bcc4dc7a501a54990893043bd239dcebf1bb9a96667916ca",
+        "native_sha256": "aaa7766defa4fa81aebeec4a50d6d9f34f40fdc89f21a88f22450c83bc195845",
+        "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+        "style": "B-bright-painted-r1",
+        "style_reference_sha256": "2a88912c229f226d99ca3f8f6c643137b731eed943585f991ecc631af3b0dad6",
+        "image": {
+          "source_index": 849,
+          "file": "live5-hd-r1.png",
+          "sha256": "a5d67bda093c73186768822d28a46a4d2dd3f69cda9e05afa134f527ecb183a7",
+          "width": 1876,
+          "height": 838,
+          "sampling": "bitmap"
+        },
+        "prompt_file": "live5-hd-r1.prompt.txt",
+        "prompt_sha256": "617e6ccc5561eba0ae20044666f0ae762b51d40ed56aa2a551ead7618627ec03",
+        "cache_sha256": "a82530351dff19289bea48a0091dfaa25232c2089ad865d62de68fb570b8c58b"
+      }
+    }
+  ],
+  "existing_buildings": [
+    "LIVE2.AY"
+  ],
+  "registration_sha256": "626a02c7ff83c2bf858d047306e27763ef95aa4202a3eed44fb70c6e0a6f97ce",
+  "audit_sha256": "0c07fd2ad642fb37a1f56d6791d2cdbbdb83bda8a393c60a66207efd81fe8c4c",
+  "promotion_sha256": "bf14c372356370967f9317ec3e73def887e61217473f5e1098750e0d2690628d",
+  "tool_sha256": "acc1b0c13abbf187ebca449f1321f1030b66824ee42f9906271a4c9024436c2d",
+  "rights": "user-requested compact comparison in existing private repository only; full assets stay local"
+}

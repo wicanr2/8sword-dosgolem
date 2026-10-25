@@ -1,5 +1,12 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+其餘建築圖依[051](docs/spec/051-building-hd-batch.md)及[來源準備器](tools/prepare-building-hd-batch.py)，在固定Pillow容器以`--project`唯讀專案、`--out`既有map-interaction-r1內的新研究目錄核對LIVE1／3／4／5並產生參考與提示。LIVE4碑文先核對，不由模型猜寫；LIVE2不重畫，LIVE6仍依035待選樣稿，不繞過既有決定。
+[建築圖片保存／匯入](tools/import-building-hd-batch.py)在同一Pillow容器用`save --project --batch --number --image`保存LIVE1／3／5原始PNG與實際提示收據；用`prepare --project --batch --base <r51> --out <新候選> --review <新研究目錄>`產生三份獨立快取及六份來源總覽。LIVE4／6只列原版與待辦，不把未核對文字或未選稿複製進正式組。
+[建築批次載入器](internal/eightsword/buildings.go)只接051的LIVE1／3／5 READY組，固定材質847／848／850，逐組完整核對後提交；LIVE4／6未登錄，缺失或損壞保留來源圖與字型，不增加CPU掛點或招募規則。
+[建築批次測試](internal/eightsword/buildings_test.go)以`EIGHTSWORD_TEST_BUILDINGS_ASSETS`、`EIGHTSWORD_TEST_BUILDINGS_BASE`、`EIGHTSWORD_TEST_BUILDINGS_CACHE`與既有`EIGHTSWORD_TEST_ORIG`指定候選／r51／獨立快取／原版；`EIGHTSWORD_TEST_BUILDINGS_OUT`指定新受控收據。固定Go容器及正式獨立核心執行`go test ./internal/eightsword -run '^TestBuildings'`，核對全幅、矩形外保持及原版還原，不稱自然招募。
+[建築批次收尾](tools/finish-building-hd-batch.py)在Pillow容器使用`audit --project --research <map-interaction-r1> --out <新收據>`獨立重建全幅；`promote --player --audit --out <新提升收據>`加入r52並保留舊版；`overview --research --audit --promotion --out <README圖像目錄>`只保存縮小總覽及來源。各階段不覆寫既有輸出，LIVE4／6保持原版。
+051的LIVE1／3／5已限定CONFORMED，正式r52／387檔、135輸入與七程式；六張受控全幅及RAM恢復已核對，不逐建築重走。重建入口`bash tools/player.sh building-batch-assets <新名稱>`，固定從r51與既有生成圖建立新候選；LIVE4碑文與LIVE6待選分支仍不完成，不重畫LIVE2。
+
 其餘三幅彩色戰場背景沿[050](docs/spec/050-battle-background-batch.md)。[來源與提示準備器](tools/prepare-battle-background-batch.py)在固定Pillow容器用`--project`唯讀專案及`--out`新研究目錄，核對GRO03至05、解碼／顯示比例及已選GRO02風格參考。完整PNG與提示留既有battle-r1研究區，不重畫GRO01／02，不以受控背景呈現冒稱自然戰鬥。
 [背景批次保存與匯入](tools/import-battle-background-batch.py)在同一Pillow容器以`save --project --batch --number --image`保存原始生成PNG及提示來源收據；以`prepare --project --batch --base <r50> --out <新候選> --review <新研究目錄>`產生三份獨立快取及五幅原版／HD總覽。原始PNG與既有素材不覆寫，相同基底可共用不可變硬連結。
 [其餘背景載入器](internal/eightsword/battle_background_batch.go)沿050 READY，三組獨立核對及回退；844至846只有固定來源可載入。既有背景資格檢查保留完整矩形、尺寸與遮擋契約，不改正式來源呈現器或CPU掛點。
