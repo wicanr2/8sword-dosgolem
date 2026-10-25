@@ -1412,3 +1412,19 @@ MAN02.EGG SHA `b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad`
 `pending-landmarks-{52,56}-runtime-audit-r2.json` 與 `pending-landmarks-{52,56}-draw-audit-r1.json` 為通過收據。第一次來源索引誤用材質 ID 的 r1 失敗測試及中止重播保留，不作驗收。原 PNG／提示、核心、原 DB、玩法與正式字型保持，完整素材不進 Git。
 
 收尾的故障測試清理編號已修正，缺草地案例另斷言實際分支，最終五父測試及 24 子案例 95.066 秒通過。`pending-landmarks-build-correction-r1.json` 證明正式 r3 的 105 輸入只有兩份測試檔不同，48 份正式套件、213 份素材與原版輸入保持，正常 GUI／存讀證據沿用。最終完整性以 `pending-landmarks-formal-integrity-r2.json` 為準。
+
+## 2026-10-25：八張初始地圖與正常轉區
+
+依 [006 的來源追加](docs/spec/006-static-map-objects-and-sand.md#八張初始地圖與選圖來源)及 [045 的普通轉區](docs/spec/045-map-landmarks.md#普通步行轉區)接續 HD，沒有重開已完成圖像。固定 PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PMAP SHA `9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02`、PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac` 保持。工具為 Go 1.24.13、Python 3.13.15／Pillow 11.3.0、IDA 9.4，映像分別為 `sha256:8ed6bdee2bce1f32f804e888f942b25bbf62f2165a43344bb4587f3371de0581`、`sha256:44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48`、`sha256:4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab`。
+
+- 已證實：MAP1–MAP8 各解碼為 70×80 格、5761 bytes，44800 格中沒有儲存 native index 30–44 或 51；48 只在 MAP2–MAP7 各一格。`world-map-source-catalog-r3.json` 保存八份來源／解碼 SHA、直方圖、位置與工具 SHA。較早 r1／r2 保留，地圖內容相同，r3 補齊目前工具身分與支援邊界。
+- 已證實：IDA MZ 線性 `sub_13AEC`／PAM file+0x4F5C 從 `es:dword_2D72A` 讀格值減 0x30；`sub_11F20`／PAM file+0x3390 以 1004×ID−1004 選來源。`sub_11F60` 與 `sub_12014` 的位置及原始 bytes 見 006，分別負責已查的逐格選圖及第 58 筆特殊處理。正式 DB 唯讀，最小輸出確認 UID 1000、521 函式與固定 SHA，再於 /tmp 副本匯出；沒有改原名或 operand。
+- 未知：初始地圖缺少的圖像是否會由後期事件改寫格子而出現。未窮盡間接寫入，不稱資產未使用、沙地不可達或 51 不存在。沙地仍 READY，沒有觀測到 30–44，不將盤點當成呈現完成。
+- 已證實：北側普通南行停在 F5 3,62，搜尋沒有入口；另沿真正 33,70 進度走南側 52 步，途中攻城選「否」、布旗文字用 Enter 關閉，F5 逐段核對。進入世界 3,64 的太極圖後，原版自行讀 MAP2，實際位置變為 36,36。原文與 Noto 的布旗文字已並列檢視，不改寫文句。
+- 已證實：來源／控制各 1407 幀、2814 次 Frame 純度、22 checkpoint、24 工作檔、完整 state／PCM／串流與事件同值。state SHA `be5a6e633530e4e90a823f5b0dc42267ae494e3bac4d840f2ab06ece7eb6504a`，PCM SHA `51c4f25e15a801e72ac49b51d74ed0496ca647838c2040aaeaa5014bc4c1b0d3`。五次第 49 筆來源、首筆 1600 返回色碼通過；沒有 30–44／48／51。三次字型命令各另記一幀。兩份 gzip 串流完整解析，不能只憑 final.json 或檔案存在判定完整。
+- 已證實：正式 GUI 存前／冷讀為 472／475 Draw、78／79 次改變，四張接觸表、兩個 F5 36,36 及教育部隸書視窗已看。三字型、F1／F2／F3、F5、F7 真存退冷讀通過，人物檔 SHA `3b0631286b8a4b50f60bad6b2ff7508447972f4ce0ac50511c6ae3cdeaa8c766` 同來源、GUI 存後與讀後 RAM。MAP01／MAP02 也全程保持，冷讀確實讀 MAP2／MAP02；完整 SHA 與 read step 見 045。
+- 已證實：研究續玩 r2 增加真正伴隨檔目錄匯入，保持 48 份正式套件，51 輸入另存完整快照。MAP01／MAP02 正名匯入後普通冷讀 321 幀、F5 36,36、F1／F2 與原版退出 0，人物檔同讀後 RAM。原版 read step 為人物 22839250、MAP2 22858763、MAP02 23411459；不把 MAP02 塞進舊 `-game-map` 的 MAP01 位置。
+
+來源互動探針在人工檢視暫停後碰外層 600 秒上限，但原版已退出 0、錄影已關閉，final.state／final.json 完整。`world-entry-source-audit-r1.json` 再核對自動控制組的全部狀態、串流與工作檔，控制正常結束 0；沒有重走路線挑結果。`world-map2-gui-audit-r1.json` 只證明從真正 MAP2 進度冷讀及視窗操作，不冒稱 GUI 也走過 52 步，或新增了未見來源的 HD 素材。
+
+新工具已掛 AGENTS，原圖、存檔、來源快照與收據留本機。現行 r45／213 檔、七程式、八檔核心與正式字型均保持。下一步直接沿 MAP2 真正進度接續，不再重走已驗路線或於 MAP1 尋找初始資料沒有的沙地。

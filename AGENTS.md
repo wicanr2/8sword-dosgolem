@@ -1,6 +1,12 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
-後續地圖圖像：[045](docs/spec/045-map-landmarks.md#第-55-筆呈現-ready-契約)，第 55 筆已達 READY，其餘六筆保持 DRAFT。52／54／55／56 四張樣稿及獨立快取已保存；第 55 筆正常來源、幾何與原版存退冷讀已驗，下一步直接在真正進度 53,22 接入，不重走 69 步或重新生成。[盤點工具](tools/catalog-map-pending.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--out`，盤點剩餘七筆及原生參考。正式 r42 保持，本批尚未正式登錄。
+後續地圖圖像：[045](docs/spec/045-map-landmarks.md#第-52-與-56-筆正式提升)，49／52／54／55／56 已限定 CONFORMED，現行 r45，主地圖登錄 63／65；48／51 仍 DRAFT。來源、美術與已驗路段不重做。[盤點工具](tools/catalog-map-pending.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--out` 核對目前素材缺口；權威現況看 CONTEXT，不據舊 r42 紀錄重新開工。
+
+八張初始地圖的圖像編號由[世界地圖盤點器](tools/catalog-world-map-graphics.py)核對。在既有 Pillow Docker 使用 `--original` 合法固定來源及 `--out` 不存在的 JSON 檔。只解析 MAP1–MAP8 的初始資料，不解析 MAP00–MAP08 的其他格式，也不把靜態缺項當成執行期不可達或未使用的證明。用途見 006／045。
+
+[世界探索來源核對器](tools/audit-world-map-sources.py)在既有 Pillow Docker 使用 `--original`、`--source`、`--control`、`--build`、`--require-records` 及 `--out`，驗普通續玩、全客體／PCM／串流與工作檔、來源首筆返回色碼及 51 輸入研究快照。只核對 30–44／48／49／51 的只讀來源，不代替新圖 actual Draw 或冷讀驗收。
+
+後續 MAP2 續玩使用 [045 的研究匯入入口](docs/spec/045-map-landmarks.md#後續研究匯入入口)。本機 `world-source-build-r2/probe` 支援 `-game-save` 加 `-game-companions`，已驗真正 MAP01／MAP02 與普通冷讀 RAM；舊 `-game-map` 仍只匯入 MAP01。正常轉區與正式 GUI 已驗，來源與停止線見 [045](docs/spec/045-map-landmarks.md#普通步行轉區)，不重走 52 步。
 
 [地圖批次來源與取樣核對](tools/audit-map-landmarks.py)在既有 Pillow Docker 使用 `--original`、`--assets`、`--art`、`--source`、`--control`、`--prefix-control`、`--build`、`--reload`、`--saved-inspection`、`--loaded-inspection`、`--out`；核對 045 的 PMAP 55 正常來源、84 命令控制前綴、四筆美術及原版 F7／冷讀。產生的場景圖是可丟棄排版原型，不是已執行新圖的實際 Draw。
 
@@ -325,11 +331,11 @@ HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-ref
 
 ## 11. 下一條工作鏈
 
-1. 使用已核對的 Docker 研究映像，盤點兩份封包及版本差異；工具環境與使用限制見 `CONTEXT.md`。
-2. 固定原版來源與 dosgolem 提交，走到第一個可操作畫面，保存重播及能力缺口。
-3. 定位一條實際文字／圖像路徑與一條實際音樂事件，分別建立原版證據。
-4. 展示代表 HD 畫面與原曲音色提升試聽，完成必要取捨及 READY 規格。
-5. 在正常前端接通顯示、輸入、HD 音樂及真正存讀檔，再擴展素材與曲目。
+1. 先讀 `CONTEXT.md` 的現行建置、真正進度與停止線，不據歷史入口重開已完成項目。
+2. 沿已保存的原版 F7 進度接續未驗玩家路段。跨區伴隨檔依 045 的研究匯入入口，不用快照或座標注入替代。
+3. 新文字、圖像或音樂依對應規格補足最小原版證據，完成 DRAFT／審查／READY 後才接正式程式或素材。
+4. 畫風、字型及音色沿已確認決定；新取捨依第 3 節路由，未選定分支不混入正式組。
+5. 用正常前端核對實際呈現、故障回退與真正存退讀，更新限定驗收、唯一現況及工作歷程，再接續其餘圖像、文字與曲目。
 
 博物館背景已選 A 紫藍手繪，女主角保持 033。[批准原圖](docs/images/museum-a-approved-r1.png)、[完整提示](docs/images/museum-a-approved-r1.prompt.txt)與[來源／決定](docs/images/museum-a-approved-r1.json)保存於私人倉庫；原始生成 PNG 不改。[017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)已限定 CONFORMED，完整組由單一呈現器接入；缺組／壞組保留 033。故事原版淡入與其餘開場圖像另待處理。
 

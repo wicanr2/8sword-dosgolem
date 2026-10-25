@@ -76,3 +76,16 @@ READY 前核對上述偏移、來源指紋、色碼集合、透明 PNG、取樣�
 - 同輪 `save-cycle-audit.json`：真正 2987-byte 存檔與讀回 RAM 的 SHA 同為 `06a337e5de21ca6082b0bd2b62b3c1c6a900957f77cd2a28f00661deab94d21f`，read step 12079256，正常 DOS 退出碼 0。兩張視窗圖只有 3158 個差異像素，限主角動畫框；未宣稱動畫相位或玩法亂數 parity。
 
 原始圖、提示、原版與視窗圖仍留本機，沒有新增 PNG 上傳。整份 006 的沙地狀態仍為 READY；本追加不完成沙地、其餘建築、全遊戲 HD 或音樂。
+
+## 八張初始地圖與選圖來源
+
+[世界地圖盤點器](../../tools/catalog-world-map-graphics.py)在固定 Pillow Docker 使用 `--original`、`--out`，只接受既有固定 PAM／PMAP，解析實際 MAP1–MAP8。每張解碼為 5761 bytes、70×80 格、每列 CRLF 及最後 0x1A；八張共 44800 格。逐檔來源／解碼 SHA、直方圖、工具 SHA、Python 版本保存於 `map-interaction-r1/world-map-source-catalog-r3.json`。MAP00–MAP08 的其他格式不送進此解析器。
+
+- 已證實：八張初始地圖都沒有儲存 native index 30–44 或 51。第 48 筆只在 MAP2–MAP7，各一格，位置分別為 60,76、31,26、10,69、10,25、11,43、58,38；MAP1／MAP8 沒有。本結論只限初始資料，不證明資產未使用或原版永遠不能到達。
+- 已證實：IDA MZ 線性 `sub_13AEC` 位於 `0x13AEC`，PAM 檔案偏移 `+0x4F5C`。它經 `es:dword_2D72A` 讀格值，再減 `0x30`。`sub_11F20` 位於 IDA `0x11F20`、PAM `+0x3390`，以 `1004×ID-1004` 定位 PMAP，所以一般格的 native index 為原 ASCII 值減 49。原名、運算元與 bytes 保持。
+- 已證實：`sub_11F60` 的 IDA 位址為 `0x11F60`、PAM `+0x33D0`，逐格呼叫上述選圖；第 58 筆寶箱另經 `sub_12014`，IDA `0x12014`、PAM `+0x3484`，依既有狀態回傳草地或寶箱。這條鏈沒有可用來猜補沙地的固定加 30 操作。
+- 未知：完整流程中的其他圖格改寫、30–44／51 的後期使用方式。沒有查完間接寫入，不因直接交叉參照不足或初始圖無索引，就宣稱不存在。
+
+IDA 9.4 使用既有 `ida-pro-9.4-idapython:py312-v1`，正式 PAM.i64 唯讀，查詢對 `/tmp` 副本進行。`ida-world-min-r1.json` 核對 UID 1000、521 函式與固定來源／資料庫 SHA；`ida-world-select-r1.json` 至 r3 保存定位及原始指令。來源與工具身分見[研究紀錄](../../RESEARCH-LOG.md#2026-10-25八張初始地圖與正常轉區)。這些都是 IDA MZ 線性位址，不與 dosgolem 執行期段位址混用。
+
+沙地維持 READY，尚無正常 30–44 來源或實際 Draw。已知初始地圖沒有該索引後，不再在 MAP1 反覆尋找靜態沙地路線。正常轉區已依 [045](045-map-landmarks.md#普通步行轉區)進入 MAP2，後續由真正進度接續其餘 HD 與玩家路徑。

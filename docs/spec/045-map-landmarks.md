@@ -1,6 +1,6 @@
 # 045：其餘地圖圖像
 
-狀態：第 49／52／54／55／56 筆呈現限定 CONFORMED，第 48／51 筆 DRAFT。沿 043／044 已證實的 PMAP 格式與繪圖 ABI，批次處理其餘圖像，不重開已完成物件。正式 r45 已接入上述五筆，整體 HD 未完成。
+狀態：第 49／52／54／55／56 筆呈現限定 CONFORMED，第 48／51 筆 DRAFT。沿 043／044 已證實的 PMAP 格式與繪圖 ABI，批次處理其餘圖像，不重開已完成物件。正式 r45 已接入上述五筆；第 49 筆的普通轉區用途已由末節補證，整體 HD 未完成。
 
 [盤點工具](../../tools/catalog-map-pending.py)在既有 Pillow Docker 使用 `--assets`、`--original`、`--out`，核對正式素材清單與固定 PMAP／MAP1，輸出七筆原生參考及普通步行規劃。輸出目錄必須不存在。工作區為 `workplace/probe-20261023/graphics-first/map-interaction-r1/map-landmarks-r1/`，不進 Git。
 
@@ -173,3 +173,45 @@ READY 契約要求：真實來源及獨立快取測試、來源／JSON／PNG／�
 重查入口沿[正常三組核對器](../../tools/audit-landmarks-runtime.py)、[實際 Draw 核對器](../../tools/audit-landmarks-gui.py)及[匯入器](../../tools/prepare-hd-landmarks.py)，使用 `--record 52` 或 `--record 56`。本節工作區收據為 `pending-landmarks-{52,56}-runtime-audit-r2.json`、`pending-landmarks-{52,56}-draw-audit-r1.json`、`pending-landmarks-promotion-r1.json`、`landmarks-default-compat-r1.json` 及 `pending-landmarks-formal-integrity-r2.json`。
 
 本項僅呈現限定 CONFORMED。現行主地圖 65 筆已登錄 63 筆，48／51 仍 DRAFT；這不是全遊戲完成率。物件名稱、用途與獎勵保持未知，沒有改規則或解鎖玩家地圖。沿用八份核心、既有字型與配色，完整素材及存檔留本機。Linux Xvfb 靜音驗收不外推裝置音訊、其他平台或整體 HD。
+
+## 普通步行轉區
+
+本節追加第 49 筆的正常互動證據，不重做其已完成的圖像驗收，也不推論所有太極圖共用同一規則。現行正式程式、r45、核心與字型保持。第 48 筆在 MAP2–MAP7 的初始位置已由 [006 的八圖盤點](006-static-map-objects-and-sand.md#八張初始地圖與選圖來源)核對；第 51 筆在八張初始圖都未出現，仍待執行期來源。
+
+- 已證實：從 3,61 的真正進度向南，F5 停在 3,62，前方原圖為山形地表；搜尋原文為「這裡什麼也沒有」。`world-entry-normal-r2` 有 434 次 Frame 純度及原版 F7 存退、退出 0，但沒有轉區，不作正向入口證據，也不據此建立完整通行規則。
+- 已證實：沿真正 33,70 進度走南側 52 次普通方向鍵，F5 依序核對 28,75、12,75、9,73、3,68。途中原版詢問「要攻城嗎」，以方向鍵選「否」及 Enter 返回，實際仍在 9,73；布旗的原文「跋長風而遠颺」以 Enter 關閉。沒有注入座標或跳過事件。
+- 已證實：走入世界 3,64 的第 49 筆後，原版自行載入 MAP2.AY，F5 實際變為 36,36，探索地圖僅有新區域附近格子。實際 read step 170643100、2133 bytes；隨後處理 MAP01／MAP02 伴隨檔。這是正常轉區，不是測試直接進入地圖。
+- 已證實：`world-entry-normal-r3` 與關閉觀測的控制組，各 1407 次 Frame 純度、完整 state／PCM／影像串流、工作檔、所有 checkpoint 及事件相同。三次字型命令各另記一幀，不能只以模擬時間除 50 計數。第 49 筆五次來源，首筆 1600 返回色碼通過；本路段沒有觀測到 30–44／48／51。
+
+[世界探索核對器](../../tools/audit-world-map-sources.py)的 `--require-records 49` 驗證上述觀測隔離、完整 gzip 串流與 51 輸入來源快照。收據為 `world-entry-source-audit-r1.json`，原版人物檔 SHA `3b0631286b8a4b50f60bad6b2ff7508447972f4ce0ac50511c6ae3cdeaa8c766`，2987 bytes；人物、軍隊與新區域三字型圖已保存。只代表正常來源與新進度，不替代新的 HD 實際 Draw 或冷讀驗收。
+
+互動探針的 600 秒外層上限包含人工檢視暫停，最後回報 124。原版在此之前已 F7 存退、退出 0，並關閉錄影、寫完 final.state／final.json。上述完整收據保留，再以無人工暫停的控制組核對所有 bytes；控制組正常結束 0。沒有為掩蓋逾時重走 52 步、修改速度或重選亂數。
+
+下一條來源直接沿新區域真正人物檔及 MAP01／MAP02 續玩，不重走已驗南側路線。第 49 筆轉區功能已確認；正式名稱、其他物件用途、後續地圖與整體 HD 仍未完成。
+
+### MAP2 正式前端存退冷讀
+
+`workplace/player/gui/world-map2-save-r1` 直接使用未改的正式 r45 程式與 213 檔素材，初始只複製真正人物檔、MAP01 及 MAP02。XTEST 操作原版 Continue、三種 F10 字型、F1／F2／F3 取消、F5 與 F7 存退，再冷啟動 Continue。跨區的 52 步由前述正常 dosgolem 路段證明，此視窗不冒稱再次走過轉區。
+
+- 472／475 個實際 Draw 已完整解碼，78／79 次改變、四張接觸表與隸書實際視窗已看。存前／冷讀的 F5 均為 36,36，三種地圖字型及十二份 F2／F3 字型紀錄正確，民兵／矮人兩列皆可見，缺字數零。教育部隸書名稱與既有素材一致。
+- 真正人物檔保持 `3b0631286b8a4b50f60bad6b2ff7508447972f4ce0ac50511c6ae3cdeaa8c766`，同來源進度及兩側 RAM 線性 `0x9E000`、2987 bytes。儲存段原版退出 0，冷讀段正常關閉視窗；後者不宣稱經原版 DOS 退出。
+- 兩段均實際讀入 MAP2 的 2133 bytes 與 MAP02 的 5761 bytes；冷讀人物檔 read step 11012417、MAP2 step 11031930、MAP02 step 11584626。MAP01 SHA `783448e3418182847a42aea1422799692c58ef5c049e49c815cdf80298c621f3`、MAP02 SHA `ec76e6a00c84a3e2451d6092e6e89977b6f7709b0e8c09fcb169702cbbeef646` 全程保持，沒有只保存人物檔而丟失探索進度。
+
+收據為 `world-map2-gui-audit-r1.json`。研究操作器另存 `world-gui-input-build-r2` 的四項輸入、兩程式及來源快照，正式遊戲執行檔逐 SHA 同 `workplace/player/8sword`。它只送 XTEST 按鍵，不加入研究呈現器或客體掛點。本輪沒有改正式 Go、規則、地圖、字型或素材；也沒有新增尚未取得來源的 48／51 圖像。
+
+### 後續研究匯入入口
+
+`world-source-build-r2/probe` 是保存於本節研究工作區的 51 輸入探針，48 份正式套件與 r45 相同；Go 1.24.13、既有八檔核心、時鐘 12:00 與 3000 cycles/ms。新 `-game-companions <目錄>` 在普通 Continue 前，將該目錄實際存在的 `map00.ay` 至 `map08.ay` 複製到獨立工作層，各檔須為 5761 bytes，並保存來源／SHA。它必須與 `-game-save` 同用，與舊 `-game-map` 互斥；舊參數仍只寫入 MAP01，不能用來匯入 MAP02。已驗 MAP01／MAP02，其餘名稱只具形狀檢查，不稱已走過其他區域。
+
+在既有 Go Docker 中，唯讀掛載 `/project`，本節研究工作區掛 `/map` 可寫。下例輸出目錄須不存在：
+
+```bash
+/map/world-source-build-r2/probe \
+  -root /project/workplace/intake-20261023/sources/game/8sword \
+  -assets /project/workplace/player/assets-painted-r45 \
+  -out /map/world-next-r1 \
+  -game-save /project/workplace/player/gui/world-map2-save-r1/scratch/gamedata.ay \
+  -game-companions /project/workplace/player/gui/world-map2-save-r1/scratch
+```
+
+接著用標準輸入送既有 `key`、`shot`、`font`、`quit` 命令，或用 `-commands <普通命令檔>`。這是原版 F7 檔案匯入，不讀模擬器快照或注入 RAM。`world-map2-headless-reload-r1` 已普通冷讀 321 幀，F5 36,36、F1／F2、原版 DOS 退出 0；兩份伴隨檔正名匯入，人物檔同讀後 RAM。read step 為人物檔 22839250、MAP2 22858763、MAP02 23411459。後續從此入口接續，不重走南側路線。
