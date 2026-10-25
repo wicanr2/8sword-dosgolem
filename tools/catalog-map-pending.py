@@ -42,6 +42,8 @@ def main():
     covered.add(chest["source_index"])
     # Optional later groups use the same source/index/image contract as 045.
     for path in sorted(a.assets.glob("map-landmark-*.json")):
+        if not path.stem.removeprefix("map-landmark-").isdecimal():
+            continue  # Provenance is metadata, not a material manifest.
         entry = read(path)
         index = entry["source_index"]
         assert 0 <= index < 65 and path.name == f"map-landmark-{index}.json"

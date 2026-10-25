@@ -96,6 +96,12 @@ case "${1:-}" in
             EIGHTSWORD_TEST_CASTLE_ASSETS=/out/assets-castle-candidate-r1 \
             EIGHTSWORD_TEST_CASTLE_BASE=/out/assets-painted-r40 \
             EIGHTSWORD_TEST_CASTLE_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/castle-cache-r1 \
+            EIGHTSWORD_TEST_LANDMARK49_ASSETS=/out/assets-landmarks-candidate-r1 \
+            EIGHTSWORD_TEST_LANDMARK49_BASE=/out/assets-painted-r43 \
+            EIGHTSWORD_TEST_LANDMARK49_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/landmarks-cache-r1 \
+            EIGHTSWORD_TEST_LANDMARK54_ASSETS=/out/assets-landmarks-candidate-r1 \
+            EIGHTSWORD_TEST_LANDMARK54_BASE=/out/assets-painted-r43 \
+            EIGHTSWORD_TEST_LANDMARK54_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/landmarks-cache-r1 \
             EIGHTSWORD_TEST_LANDMARK55_ASSETS=/out/assets-landmark55-candidate-r1 \
             EIGHTSWORD_TEST_LANDMARK55_BASE=/out/assets-painted-r42 \
             EIGHTSWORD_TEST_LANDMARK55_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/landmark55-cache-r1 \
@@ -164,6 +170,27 @@ case "${1:-}" in
       "$task_py" python /project/tools/catalog-battle-coverage.py \
         --original /project/workplace/intake-20261023/sources/game/8sword \
         --assets "/project/workplace/player/assets-$task_base" --out "/out/$task_name.json"
+    ;;
+  landmarks-assets)
+    task_name="${2:?指定新的第49／54筆素材組名稱}"
+    task_base="${3:-painted-r43}"
+    valid_name "$task_name"; valid_name "$task_base"
+    task_art="$task_work/probe-20261023/graphics-first/map-interaction-r1/map-landmarks-r1"
+    test -d "$task_player"; test -d "$task_player/assets-$task_base"
+    test -d "$task_orig"; test -d "$task_art"
+    for task_index in 49 54; do
+      test -f "$task_art/pmap-$task_index-painted-r1.png"
+      test -f "$task_art/pmap-$task_index-painted-r1.prompt.txt"
+    done
+    test ! -e "$task_player/assets-$task_name"; test ! -e "$task_player/landmarks-cache-$task_name"
+    exec timeout 90s docker run --rm --name "8sword-landmarks-assets-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 1g --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_art,dst=/art,readonly" \
+      --mount "type=bind,src=$task_player,dst=/out" \
+      "$task_py" python /project/tools/prepare-hd-landmarks.py \
+        --base "/out/assets-$task_base" --original /project/workplace/intake-20261023/sources/game/8sword \
+        --art /art --out "/out/assets-$task_name" --cache-out "/out/landmarks-cache-$task_name"
     ;;
   landmark55-assets)
     task_name="${2:?指定新的地圖物件55素材組名稱}"

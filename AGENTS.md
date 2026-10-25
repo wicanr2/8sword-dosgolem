@@ -348,3 +348,7 @@ HD 修色：[031：原概念圖配色的 HD 修色](docs/spec/031-hd-palette-ref
 017 普通 Esc 驗證：[audit-museum-escape.py](tools/audit-museum-escape.py)，輸入真正近景後送 Esc 的 HD／舊組正常收據，核對完整 state／PCM／事件、PAM、離場後每幀及 Frame 純度。它不注入原版狀態。
 
 第 55 筆地圖圖像依 [045](docs/spec/045-map-landmarks.md)接入：[獨立載入器](internal/eightsword/map_landmark55.go)、[來源與回退測試](internal/eightsword/map_landmark55_test.go)、[素材匯入](tools/prepare-hd-landmark55.py)、[正常三組核對](tools/audit-landmark55.py)、[實際 Draw 與存讀核對](tools/audit-landmark55-gui.py)。匯入用 `tools/player.sh landmark55-assets <新名稱> painted-r42`；完整圖及收據留本機，狀態看 CONTEXT。
+
+其餘地圖第 49／54 筆的普通步行、只讀來源、狀態隔離、真正存讀與位置原型由[路線核對器](tools/audit-map-landmark-route.py)驗證，契約及來源見 [045 的來源與正式契約](docs/spec/045-map-landmarks.md#第-49-與-54-筆正式提升)。原型不當成正式 Draw 收據。
+
+第 49／54 筆正式素材工具：[獨立匯入](tools/prepare-hd-landmarks.py)、[正常三組核對](tools/audit-landmarks-runtime.py)、[實際 Draw 與存讀核對](tools/audit-landmarks-gui.py)。載入器為 [49](internal/eightsword/map_landmark49.go)／[54](internal/eightsword/map_landmark54.go)，測試為 [49](internal/eightsword/map_landmark49_test.go)／[54](internal/eightsword/map_landmark54_test.go)及[多筆獨立回退](internal/eightsword/map_landmarks_test.go)。匯入命令為 `tools/player.sh landmarks-assets <新名稱> painted-r43`；契約與狀態見 045 及 CONTEXT。
