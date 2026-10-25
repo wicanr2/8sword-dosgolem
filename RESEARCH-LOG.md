@@ -1814,3 +1814,15 @@ TiMidity++2.14.0、FFmpeg5.1.9及FluidR3固定映像9520e9a4…927b；音源SHA7
 hd-music-batch-audit-r1.json SHA `8fde615ca253f248121d7c028e5d2502b74cde0eec080db8b7b1ba71f5cc7704`。hd-music-runtime-audit-r1.json SHA `f97f6fc5c2301d2f622d49e4d93836aec47cb0e56b18c68e576d9e3f6ed6cb31`：普通冷啟動與按鍵逐首十曲，十四點完整客體state、畫面、Frame純度、輸入與I/O相同，state72c4fc3d…1300；十曲實際混音的4800雙聲道frames逐首同獨立Ogg，誤差≤0.021 int16、校準偏移0，Esc後48000 frames原音訊相同。固定12:00:00只作可重播時鐘，不宣稱亂數規則或實機逐週期parity。
 
 技術通過不等於聽感批准。九曲提案已交使用者選型，正式音樂仍僅〈幻〉HD。這份候選不新增公開權利、正常施法／戰鬥音效或完整音樂完成聲明。
+
+## 2026-10-26：十四筆遭遇圖的來源與受控呈現
+
+入口：[049](docs/spec/049-map-encounter-batch.md)、[載入器](internal/eightsword/map_encounter_batch.go)、[獨立核對器](tools/audit-encounters.py)。Pillow11.3.0、Go1.24.13及既有正式獨立核心固定。`ENEMY.AY`為16856 bytes，SHA `0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd`，每筆1204 bytes，寬8 bytes、高25，六平面。記錄的原始定位為檔案偏移`record*1204`，不是IDA線性位址。
+
+已證實：鏡射按每列byte逆序及位元反轉，奇數前綴逐平面截取。十四筆、兩向、十三高度共364筆，321筆新增唯一來源，7／13原有21筆保持，22筆歧義前綴保留來源解碼。MAN造型對應只屬強推論，官方兵種映射未知；沒有新增單位、規則或存檔欄位。三筆新姿勢與藍披風清理稿用內建image_gen，四份原PNG、提示、參考與透明度收據留encounter-batch-r1，舊圖全部保留。
+
+審查收據encounters-registration-r2/registration.json SHA `77dfef9139811bb22de5ed9e1790da3d8789d5b8913e9392fae61bc6f51c34d3`。十四筆總覽已看，28份預乘快取由獨立Python產生，正式Go所有321筆前綴同值。六種故障抽驗不留下部分識別，其他組保持。
+
+受控測試先走普通啟動／新遊戲／F1／F2，再於可丟棄RAM `8000:0000`放64004-byte背景或六平面來源，明示DS=`0AA8`及`DS:7484`、`DS:748A`、`14D2:0196`。真正背景`14D2:099C`、透明繪圖`14D2:04F2`均為dosgolem執行期段位址，沿既有037／048定位；沒有修改原始EXE或DB。兩側完整客體保持，結束後原RAM／DS／欄位逐項恢復。原DS、欄位數值及緩衝SHA保存在encounters-controlled-r2/receipt.json。
+
+第5／8／9筆兩向、13／25高度十二案，27648000像素完整Frame同獨立PythonPNG取樣與背景模型，Frame客體保持，直接計畫830、舊合成器0。encounters-runtime-audit-r1.json SHA `762dc84b3f321901b09399b7af65adbf50156a284656ab5edb1911d471923192`；提升收據SHA `3dedfc198f37c7a916b84aa04f53f67bdaf9948bb7e425fd71e6a95684f2f260`。這些只證明受控呈現及資料登錄，不宣稱自然遭遇、戰鬥規則、RNG或整體HD。正常GUI／真正存讀沿047／048既有收據分開保存，本輪沒有重複相同玩家路徑。

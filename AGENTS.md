@@ -1,5 +1,13 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+地圖遭遇批次圖片與接入契約見[049](docs/spec/049-map-encounter-batch.md)。沿十四筆ENEMY.AY與既有透明角色呈現，使用者允許代表抽驗及受控RAM，不逐隻等自然遭遇；圖片完成、候選登錄與正式提升分開記錄。
+單張生成結果以[遭遇圖保存工具](tools/save-encounter-hd-generation.py)在固定Pillow容器指定`--project`唯讀專案、`--out`既有研究目錄、`--image`唯讀生成PNG及`--request`實際提示／兩張參考JSON，保留原始PNG、完整提示與逐檔SHA，不覆寫既有圖。
+十四筆[候選準備工具](tools/prepare-hd-encounters.py)在同一Pillow容器使用`--project`、`--base` r49、`--batch` encounter-batch-r1、`--out`新候選、`--review`新研究目錄，產生兩向獨立快取與縮小對照。來源唯一性涵蓋全部十四筆、兩向與十三高度；總覽不冒稱自然遭遇。
+[批次遭遇載入器](internal/eightsword/map_encounter_batch.go)依049 READY只加固定來源別名與透明快取，單組先完整核對再提交；缺失或損壞保留來源解碼。第7／13筆原有鏡射組保持，正式提升另驗，不因圖片完成就自動切換。
+[批次遭遇測試](internal/eightsword/map_encounter_batch_test.go)以`EIGHTSWORD_TEST_ENCOUNTERS_ASSETS`、`EIGHTSWORD_TEST_ENCOUNTERS_BASE`、`EIGHTSWORD_TEST_ENCOUNTERS_CACHE`及既有`EIGHTSWORD_TEST_ORIG`設定候選／r49／獨立快取／原版，`EIGHTSWORD_TEST_ENCOUNTERS_OUT`指定全新受控輸出。固定Go容器在正式獨立核心執行`go test ./internal/eightsword -run '^TestEncounterBatch'`；[獨立核對器](tools/audit-encounters.py)在Pillow容器指定`--project`、`--assets`、`--registration`、`--controlled`、`--build`及新`--out`，重建十二張完整Frame，不以受控測試冒稱自然遭遇。
+049的[本機提升器](tools/promote-encounters.py)在Pillow容器指定`--player`、`--audit`及新`--receipt`，先保留r49與source-candidate-r4，核對後加入r50及七程式。[README總覽工具](tools/prepare-readme-encounters.py)使用`--registration`、`--audit`、`--promotion`與`--out`圖像目錄，只收縮小總覽與來源清單，完整PNG／提示留本機。
+049已限定CONFORMED，正式r50／367檔、十四筆兩向與321新前綴；完整Frame與受控RAM恢復核對見該規格，不重跑逐隻GUI。重建入口為`bash tools/player.sh encounter-batch-assets <新名稱>`，固定從r49與既有生成目錄產生新候選／研究收據，不覆寫正式組。
+
 其餘九曲的本機候選見[008候選批次](docs/spec/008-music-events-and-playback.md#其餘九曲的本機候選)。[原曲解碼](tools/decode-adlib-music.py)、[配器製作](tools/prepare-music-batch.py)與[獨立MIDI／Ogg核對](tools/audit-music-batch.py)在既有`kol-music:timidity2.14-fluid3.1-r1`容器執行。製作以`--original`、`--research`既有hd-audition-r1及新`--out`指定唯讀輸入與新輸出；核對以`--project`、`--original`、`--batch`及新`--out`。工具輸出候選，不自動延伸〈幻〉的美術／配器批准或公開權利。
 
 [十曲候選匯入](tools/prepare-hd-music-batch.py)在固定Pillow容器使用`--base` r49、`--batch`、`--audit`及新`--out`，輸出名稱須含candidate；保留343舊檔，只替換music.json並增加九首Ogg與來源紀錄，不提升正式組。[正常十曲播放工具](tools/music-batch-check.go)在既有Go1.24.13／正式獨立核心以`go build ./tools/music-batch-check.go`建置，使用`-root`、`-base`、`-assets`、新`-out`；從普通冷啟動逐首按鍵，不注入RAM或載入快照。[實際PCM核對](tools/audit-music-batch-runtime.py)在音訊容器使用`--project`、`--run`、`--assets`、`--build`與新`--out`。批准狀態看CONTEXT；目前九曲未切正式，聽感待使用者確認。

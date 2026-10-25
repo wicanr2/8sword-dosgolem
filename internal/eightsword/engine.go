@@ -39,6 +39,7 @@ type Engine struct {
 	MapEncounterError        string
 	MapEncounter10Error      string
 	MapEncounter7Error       string
+	MapEncounterBatchError   string
 	ArmyMan21Error           string
 	MapCastleError           string
 	MapChestError            string
@@ -159,6 +160,9 @@ func Open(opt Options) (*Engine, error) {
 						}
 						if encounterErr := loadMapEncounter7(opt.Assets, opt.Root, art); encounterErr != nil {
 							e.MapEncounter7Error = encounterErr.Error()
+						}
+						if encounterErr := loadEncounterBatch(opt.Assets, opt.Root, art); encounterErr != nil {
+							e.MapEncounterBatchError = encounterErr.Error()
 						}
 						if armyErr := loadArmyMan21(opt.Assets, opt.Root, art); armyErr != nil {
 							e.ArmyMan21Error = armyErr.Error()
@@ -547,6 +551,7 @@ func (e *Engine) Status() map[string]any {
 	out["map_encounter_error"] = e.MapEncounterError
 	out["map_encounter_10_error"] = e.MapEncounter10Error
 	out["map_encounter_7_error"] = e.MapEncounter7Error
+	out["map_encounter_batch_error"] = e.MapEncounterBatchError
 	out["army_man21_error"] = e.ArmyMan21Error
 	out["map_castle_error"] = e.MapCastleError
 	out["map_chest_error"] = e.MapChestError

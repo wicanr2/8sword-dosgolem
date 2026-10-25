@@ -1,6 +1,6 @@
 # 038：地圖遭遇第 10 筆紅身蓬尾角色
 
-狀態：READY。下列來源、造型與前綴審查已完成，授權實作。承接 [037](037-map-encounter-actor.md)的來源與圖層機制，只處理 `ENEMY.AY` 零起算第 10 筆。研究入口為 `workplace/probe-20261023/graphics-first/battle-r1/encounter-10-art-r1/`。未完成正常路徑及實際視窗前，不提升正式素材或宣稱 CONFORMED。
+狀態：SUPERSEDED，接入閘門由[049批次接入](049-map-encounter-batch.md#正式接入與限定驗收)取代。使用者於2026-10-26允許共用機制代表抽驗及受控RAM，第10筆已隨r50限定CONFORMED，不再等待逐隻自然遭遇GUI。下列來源、造型與歷史候選證據保留，沒有改寫為已走自然玩家路徑。原研究入口仍為`workplace/probe-20261023/graphics-first/battle-r1/encounter-10-art-r1/`，原圖不重畫。
 
 ## 來源與造型
 

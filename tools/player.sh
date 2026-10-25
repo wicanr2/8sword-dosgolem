@@ -13,6 +13,24 @@ test "$(docker image inspect "$task_go" --format '{{.Id}}')" = sha256:8ed6bdee2b
 test "$(docker image inspect "$task_py" --format '{{.Id}}')" = sha256:44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48
 valid_name(){ [[ "$1" =~ ^[a-zA-Z0-9_-]+$ ]]; }
 case "${1:-}" in
+  encounter-batch-assets)
+    task_name="${2:?指定新的素材組名稱}"
+    valid_name "$task_name"
+    task_battle="$task_work/probe-20261023/graphics-first/battle-r1"
+    task_batch="$task_battle/encounter-batch-r1"
+    test -d "$task_player/assets-painted-r49"; test -d "$task_batch"; test -d "$task_battle"
+    test ! -e "$task_player/assets-$task_name"
+    test ! -e "$task_battle/encounters-registration-$task_name"
+    exec timeout -k 5s 90s docker run --rm --init --name "8sword-encounter-batch-$task_name" --network none \
+      --user "$task_uid:$task_gid" --memory 1g --cpus 2 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_player,dst=/player" \
+      --mount "type=bind,src=$task_battle,dst=/battle" \
+      "$task_py" python /project/tools/prepare-hd-encounters.py --project /project \
+      --base /project/workplace/player/assets-painted-r49 \
+      --batch /project/workplace/probe-20261023/graphics-first/battle-r1/encounter-batch-r1 \
+      --out "/player/assets-$task_name" --review "/battle/encounters-registration-$task_name"
+    ;;
   troops-assets)
     task_name="${2:?指定新的素材組名稱}"
     task_base="${3:-painted-r48}"
@@ -92,7 +110,10 @@ case "${1:-}" in
           EIGHTSWORD_TEST_ORIG=/project/workplace/intake-20261023/sources/game/8sword \
             EIGHTSWORD_TEST_ORIGINAL=/project/workplace/intake-20261023/sources/game/8sword \
             EIGHTSWORD_TEST_DIRECT_FIXTURES=/project/workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r3 \
-            EIGHTSWORD_TEST_SOURCE_ASSETS=/out/assets-painted-r49 \
+            EIGHTSWORD_TEST_SOURCE_ASSETS=/out/assets-painted-r50 \
+            EIGHTSWORD_TEST_ENCOUNTERS_ASSETS=/out/assets-painted-r50 \
+            EIGHTSWORD_TEST_ENCOUNTERS_BASE=/out/assets-painted-r49 \
+            EIGHTSWORD_TEST_ENCOUNTERS_CACHE=/project/workplace/probe-20261023/graphics-first/battle-r1/encounters-registration-r2 \
             EIGHTSWORD_TEST_ASSETS=/out/assets EIGHTSWORD_TEST_GRAPHICS_ASSETS="$art_assets" \
             EIGHTSWORD_TEST_MUSIC_ASSETS="$music_assets" \
             EIGHTSWORD_TEST_INTRO_ASSETS="$intro_assets" \
@@ -966,5 +987,5 @@ case "${1:-}" in
       -e EIGHTSWORD_GUI_NATIVE_FRAME="${EIGHTSWORD_GUI_NATIVE_FRAME:-}" \
       "$task_go" bash /tools/gui-check.sh
     ;;
-  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|troops-assets <名稱> [painted-r48]|encounter-assets <名稱> [基底名稱]|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-man01-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palace-assets <名稱> [基底名稱]|friendly-man21-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|recruitment-assets <名稱> [基底名稱]|bamboo-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
+  *) printf '%s\n' '用法：bash tools/player.sh dependencies|build|test|test-player|assets|troops-assets <名稱> [painted-r48]|encounter-batch-assets <名稱>|encounter-assets <名稱> [基底名稱]|graphics-assets <名稱>|battle-assets <名稱> [基底名稱]|battle-actor-assets <名稱> [基底名稱]|battle-man06-assets <名稱> [基底名稱]|battle-man11-assets <名稱> [基底名稱]|battle-man21-assets <名稱> [基底名稱]|battle-man01-assets <名稱> [基底名稱]|battle-pon-assets <名稱> [基底名稱]|battle-militia-assets <名稱> [基底名稱]|battle-choi-assets <名稱> [基底名稱]|palace-assets <名稱> [基底名稱]|friendly-man21-assets <名稱> [基底名稱]|palette-assets <名稱> [基底名稱]|hero-redesign-assets <名稱> [基底名稱]|music-assets <名稱> [基底名稱]|intro-assets <名稱> [基底名稱]|story-assets <名稱> [基底名稱]|story-background-assets <名稱> [基底名稱]|font-choices-assets <名稱> [基底名稱]|recruitment-assets <名稱> [基底名稱]|bamboo-assets <名稱> [基底名稱]|publisher-assets <名稱> [基底名稱]|music-check <名稱> [素材組] [虛擬毫秒]|museum-assets <名稱> [基底名稱]|museum-check <名稱> [素材組] [普通Esc毫秒] [字型]|replay hd|native <名稱> [參數]|gui-check <名稱>' >&2; exit 2;;
 esac

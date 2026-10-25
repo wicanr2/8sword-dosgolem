@@ -1,0 +1,348 @@
+{
+  "schema": 1,
+  "status": "registered-asset-overview-not-natural-encounter-screenshots",
+  "image": "map-encounters-original-hd-r1.png",
+  "image_sha256": "bca55ead602892e986435f5137c3aa3e20639ad9049236c835999b2af3f6f8f5",
+  "source": "ENEMY.AY",
+  "source_sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+  "records": 14,
+  "groups": [
+    {
+      "record": 0,
+      "manifest_sha256": "411712ea8388b464e53f5bf323a61460e6ae3ba9654ba3e6fc138b45515d83bb",
+      "image": {
+        "source_index": 479,
+        "file": "battle-man11-2-r1.png",
+        "sha256": "49366f236e47db052009a52d4572fb4286dbc4767fff6e0d49067820aa2cca66",
+        "width": 1176,
+        "height": 1337,
+        "sampling": "bitmap",
+        "source_rect": [
+          102,
+          25,
+          1044,
+          1299
+        ]
+      },
+      "origin": {
+        "kind": "reused-approved-art",
+        "appearance_correspondence": "strong inference; no unit or rule identity claim",
+        "resource": "MAN11.EGG",
+        "record": 2,
+        "manifest_sha256": "4f340862045bdf0fd8700958365e8a03277d2ee8595e977c286d9a3921cc6c53"
+      }
+    },
+    {
+      "record": 1,
+      "manifest_sha256": "631d75caa81200edde2dc0091badb72652f11059c567fe558fb92aa22c8c0f57",
+      "image": {
+        "source_index": 505,
+        "file": "battle-man06-2-r1.png",
+        "sha256": "86b4a07704069de292b0fa4f9eebc4d6f4462d79e51ff3b1d89e5959a377375f",
+        "width": 1176,
+        "height": 1337,
+        "sampling": "bitmap",
+        "source_rect": [
+          272,
+          63,
+          859,
+          900
+        ]
+      },
+      "origin": {
+        "kind": "reused-approved-art",
+        "appearance_correspondence": "strong inference; no unit or rule identity claim",
+        "resource": "MAN06.EGG",
+        "record": 2,
+        "manifest_sha256": "0de77aac88bd9c5d04b72e7f11aa0afd05d29f13ef9e9d38a6d8767f1604c133"
+      }
+    },
+    {
+      "record": 2,
+      "manifest_sha256": "22e3a2a35acd926bebab23b907fd0f822c99ce75390d7cdc4ad6ec3452122f88",
+      "image": {
+        "source_index": 531,
+        "file": "troop-man23-0-r1.png",
+        "sha256": "9851b0015a0c691d321fdf48ab8b300f18ca258a6dad34db12151aa1640c8927",
+        "width": 627,
+        "height": 627,
+        "sampling": "bitmap",
+        "source_rect": [
+          36,
+          13,
+          591,
+          580
+        ]
+      },
+      "origin": {
+        "kind": "reused-approved-art",
+        "appearance_correspondence": "strong inference; no unit or rule identity claim",
+        "resource": "MAN23.EGG",
+        "record": 0,
+        "manifest_sha256": "831e1c0f17da2c786940bc0faff8e1d0e45e71d423afd9bd0c2d6ce0ea9c7c57"
+      }
+    },
+    {
+      "record": 3,
+      "manifest_sha256": "2a003a359455107046fcf8ce4c45ebb75527407873900718f8c4faabfb983509",
+      "image": {
+        "source_index": 557,
+        "file": "troop-man18-0-r1.png",
+        "sha256": "7a82aff1e56be1e48d08d6782451a85639d70cffe8ff199ff21851b58e67d32f",
+        "width": 627,
+        "height": 627,
+        "sampling": "bitmap",
+        "source_rect": [
+          91,
+          46,
+          525,
+          528
+        ]
+      },
+      "origin": {
+        "kind": "reused-approved-art",
+        "appearance_correspondence": "strong inference; no unit or rule identity claim",
+        "resource": "MAN18.EGG",
+        "record": 0,
+        "manifest_sha256": "7aa5313db66e1a8c544aa499ac42601f7be7cc619357666930b35c7027b3bf94"
+      }
+    },
+    {
+      "record": 4,
+      "manifest_sha256": "246e4b1da66eda3fadcfa7b26b2687c86ff9661fefe2b02809087e22ccd1d1da",
+      "image": {
+        "file": "encounter-04-hd-r1.png",
+        "sha256": "a7703a7ee7b74759fcaa2c98cf5e234f9b4bc326dc567bf3f0b16d22a3c17370",
+        "width": 1254,
+        "height": 1254,
+        "sampling": "bitmap",
+        "source_rect": [
+          172,
+          22,
+          1021,
+          1184
+        ],
+        "source_index": 583
+      },
+      "origin": {
+        "kind": "new-map-pose",
+        "receipt_sha256": "d28b22572fdfa692a08106283c300959bafb0db9fda7777f481a5fecc9611318"
+      }
+    },
+    {
+      "record": 5,
+      "manifest_sha256": "3d90da58b29ebec7104c76ba7f5fc6ea91435c2d3c6f3573fa92e686c1d3be77",
+      "image": {
+        "file": "encounter-05-hd-r1.png",
+        "sha256": "2bee9c4cc05dbe92b4150401cf837fc5bce6fc116a2f673b2816e35aa5a6c1c1",
+        "width": 1419,
+        "height": 1108,
+        "sampling": "bitmap",
+        "source_rect": [
+          83,
+          27,
+          1252,
+          1028
+        ],
+        "source_index": 609
+      },
+      "origin": {
+        "kind": "new-map-pose",
+        "receipt_sha256": "c1ea625df60a8cf3e390430eef27238de2ba4a22bb704f896550cbe81c342896"
+      }
+    },
+    {
+      "record": 6,
+      "manifest_sha256": "3cfb00a1cea67b7f3251673307d0c7e33638c91f5d2826201c44666abca6ad87",
+      "image": {
+        "source_index": 635,
+        "file": "troop-man13-0-r1.png",
+        "sha256": "57a8a7dd156b40ae7bd36e6bc607ade3984cef0241bc59ca3ecb03a53fcd4ef9",
+        "width": 627,
+        "height": 627,
+        "sampling": "bitmap",
+        "source_rect": [
+          132,
+          32,
+          495,
+          575
+        ]
+      },
+      "origin": {
+        "kind": "reused-approved-art",
+        "appearance_correspondence": "strong inference; no unit or rule identity claim",
+        "resource": "MAN13.EGG",
+        "record": 0,
+        "manifest_sha256": "3cf6b3221188f0abc9709e07b92fa40eeccbac68ff8a520474c99c4b8a881781"
+      }
+    },
+    {
+      "record": 7,
+      "manifest_sha256": "f5afc029d4736d4cef7f0bada5a081adbcca661f29fa8d19bed2c2d66e44a95a",
+      "image": {
+        "source_index": 661,
+        "file": "map-encounter-7-r1.png",
+        "sha256": "b5f71a301064ed1d2a050588d400b0fe9113289e9baa2e5bb39c4e66def4e1b0",
+        "width": 1419,
+        "height": 1108,
+        "sampling": "bitmap",
+        "source_rect": [
+          62,
+          54,
+          1298,
+          991
+        ]
+      },
+      "origin": {
+        "kind": "preserved-map-art",
+        "manifest_sha256": "2039df8c343d8ead3b633240778329d4add9311ee8483a8cb7a5fc69ff5f519f"
+      }
+    },
+    {
+      "record": 8,
+      "manifest_sha256": "8a350f0d0d620129e9e42c81570ae0cf9d1e2b1e04f34d261ed7a2f02ff9110d",
+      "image": {
+        "file": "encounter-08-hd-r1.png",
+        "sha256": "044787d8e9e6aba68aeb1ac41cfc7de9580ec5a5e7111395140af53b8045d53c",
+        "width": 1420,
+        "height": 1108,
+        "sampling": "bitmap",
+        "source_rect": [
+          115,
+          19,
+          1272,
+          1065
+        ],
+        "source_index": 687
+      },
+      "origin": {
+        "kind": "new-map-pose",
+        "receipt_sha256": "986059c7ee8bef10e82a1f482adf709d1e1ab87567643de696a9dccaab6729e8"
+      }
+    },
+    {
+      "record": 9,
+      "manifest_sha256": "7d9194c4fc285c904dec42744da7a4706a2fac7f237c7e5d97f896bf5f48ed5f",
+      "image": {
+        "file": "encounter-09-hd-r1.png",
+        "sha256": "79ccde81e2c15298dcdc29a063465b0bc357b9b53d4289ee56804d70138eb163",
+        "width": 1419,
+        "height": 1108,
+        "sampling": "bitmap",
+        "source_rect": [
+          98,
+          68,
+          1302,
+          985
+        ],
+        "source_index": 713
+      },
+      "origin": {
+        "kind": "new-map-pose",
+        "receipt_sha256": "2fde2960e588509b24985f8e0afc063aef0f66b40430abb62f07ef9b612678b6"
+      }
+    },
+    {
+      "record": 10,
+      "manifest_sha256": "7c46d56608ea5b32b50f31a41b4e204e0550718a2213541486cc07f599006ae8",
+      "image": {
+        "source_index": 739,
+        "file": "battle-man16-0-r1.png",
+        "sha256": "53a599a6db8f10cf76d08de389fbf07b72b6f3c8f9fdf6647256c440809300ad",
+        "width": 1176,
+        "height": 1337,
+        "sampling": "bitmap",
+        "source_rect": [
+          123,
+          311,
+          1052,
+          902
+        ]
+      },
+      "origin": {
+        "kind": "reused-approved-art",
+        "appearance_correspondence": "strong inference; no unit or rule identity claim",
+        "resource": "MAN16.EGG",
+        "record": 0,
+        "manifest_sha256": "cb882d7a169e853e3ebd8e8d2bbbb4763268edecc8efc11158d1fffdeee37c89"
+      }
+    },
+    {
+      "record": 11,
+      "manifest_sha256": "3a4d5b3f63418919b9d6f2edef16a2bd9f0fc71845e32f867354d264e70b1c53",
+      "image": {
+        "source_index": 765,
+        "file": "troop-man24-0-r1.png",
+        "sha256": "1875eb8ed11488a51b3c377e9223936f1ccb2ed7c9dfe62b447cfaa8744445a7",
+        "width": 627,
+        "height": 627,
+        "sampling": "bitmap",
+        "source_rect": [
+          108,
+          15,
+          492,
+          563
+        ]
+      },
+      "origin": {
+        "kind": "reused-approved-art",
+        "appearance_correspondence": "strong inference; no unit or rule identity claim",
+        "resource": "MAN24.EGG",
+        "record": 0,
+        "manifest_sha256": "4a89f0968f5a3f59657374ef3ca5e9a1d625025b45f21d06aebeb45306c4deec"
+      }
+    },
+    {
+      "record": 12,
+      "manifest_sha256": "b1ac3f54e8a3654f41c2ec28419237eaa523ebbbf75abd96e8322fb67ed9dae7",
+      "image": {
+        "source_index": 791,
+        "file": "troop-man22-0-r1.png",
+        "sha256": "ca16500f2593c66f4e15d320dc19aa61a6180565548572a9484123d83789a2c9",
+        "width": 627,
+        "height": 627,
+        "sampling": "bitmap",
+        "source_rect": [
+          240,
+          8,
+          387,
+          577
+        ]
+      },
+      "origin": {
+        "kind": "reused-approved-art",
+        "appearance_correspondence": "strong inference; no unit or rule identity claim",
+        "resource": "MAN22.EGG",
+        "record": 0,
+        "manifest_sha256": "99c602f8f2fc4c4424c8b7d1eb396c54bbd52e6fb61d9c65b47bc61e4024134f"
+      }
+    },
+    {
+      "record": 13,
+      "manifest_sha256": "2f14b11a01b431eb5560ffe604981a6b80ad73c6f7db68aed0c0266c116d04e4",
+      "image": {
+        "source_index": 817,
+        "file": "map-encounter-13-r1.png",
+        "sha256": "81f72e1ad3e1363c38c49eed75fcd906302a74818f21845e073310026954e146",
+        "width": 1419,
+        "height": 1108,
+        "sampling": "bitmap",
+        "source_rect": [
+          11,
+          72,
+          1397,
+          1006
+        ]
+      },
+      "origin": {
+        "kind": "preserved-map-art",
+        "manifest_sha256": "ce4bfe1e5796011213ef0895ba6608e719fd8c6a910905f801b5eec3eb87636a"
+      }
+    }
+  ],
+  "audit_sha256": "762dc84b3f321901b09399b7af65adbf50156a284656ab5edb1911d471923192",
+  "promotion_sha256": "3dedfc198f37c7a916b84aa04f53f67bdaf9948bb7e425fd71e6a95684f2f260",
+  "registration_sha256": "77dfef9139811bb22de5ed9e1790da3d8789d5b8913e9392fae61bc6f51c34d3",
+  "tool_sha256": "4570346f5b4c4d83914e2677ca64c1675a1d46ec26588ff7643e98b5b4e25ecc",
+  "rights": "user-requested compact comparison in existing private repository only; full assets remain local"
+}
