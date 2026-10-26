@@ -37,6 +37,7 @@ func main() {
 	e, err := eightsword.Open(eightsword.Options{Root: *root, Assets: *assets, Saves: filepath.Join(*out, "scratch"), HD: true})
 	mustPrelude(err)
 	defer e.Close()
+	e.Oracle.SetClock(12, 0, 0, 0)
 	e.EnableLiveClock(3000)
 	mustPrelude(e.SetFont(*font))
 	frames, err := eightsword.NewFrameRecorder(filepath.Join(*out, "presentation.frames.gz"), 1920, 1200)
@@ -75,6 +76,11 @@ func main() {
 			prelude = e.Story.PreludeStatus()
 			calls, pages = e.Story.FrameInfo(im)
 		}
+		info := e.PresentedFrameInfo(im)
+		if info.PreludeInfo != nil {
+			prelude = info.PreludeInfo
+		}
+		calls, pages = info.StoryCalls, info.StoryPages
 		if e.Oracle.VideoMode() == 0x13 {
 			_, _, idx := e.Oracle.Screen()
 			mustPrelude(os.WriteFile(filepath.Join(*out, fmt.Sprintf("native-%04d.idx", frames.Frames)), idx, 0644))

@@ -1,5 +1,8 @@
 # 014：深藍手繪故事背景與彩色前導
 
+最新人物勘誤：使用者於2026-10-26指出彩色前導把女主角誤畫成白馬，並更正握劍手與女主角回頭方向。r1美術批准保留歷史；現行人物修正依本頁末節，五頁深藍文字背景保持。
+
+
 狀態：限定 CONFORMED。五頁深藍背景與後續追加的 A 彩色前導，都經原型、使用者確認、READY 契約、正式實作與正常驗收。文字、順序、位置、字色及 Esc 沿用原版；前導跟隨真正逐點寫入，第一頁交易保留完整 HD。前導結果見[正式追加驗收](#彩色前導正式追加驗收)，下文 DRAFT／READY 保留決策與審查歷史。其他片頭圖像、裝置音訊及全遊戲 HD 未由本項宣稱完成。
 
 ## 證據與批准
@@ -141,3 +144,27 @@
 - 最後只追加測試，現行七程式 byte 同正式 GUI 封存，見 `prelude-final-build-audit-r1.json`。早期來源研究的穩定重跑入口為 `story-art-r1/audit-fade-source-r2.py`／`source-audit-fade-r2.json`，從修改前 tar 核對 74 筆來源，避免把現行 Go 冒充研究時版本。原 r1 來源收據保留。
 
 只關閉彩色前導及已列交接、回退、正常存讀範圍。發行商中央圖案、其他圖像／曲目、後期玩家流程、戰術增強與整體 HD 仍待接續。
+
+
+## 彩色前導人物勘誤READY
+
+狀態：限定CONFORMED。使用者提供原畫，明確要求男主角背影持劍，女主角站在旁邊抬手遮擋。r2已移除白馬，但握劍手反向，女主角未回頭。依再次更正，r3修為自然閉合握劍、女主角身體朝龍而回頭向觀眾露臉，手臂仍抬起遮擋。兩份修正原PNG、完整實際提示、參考與收據留story-art-r1/heroine-correction-r2，失敗姿態不提升。
+
+r3圖片已檢視，原PNG1585×992、SHA `7d4fcc5e4fde78ca0694010705b052f763fb5be4efd9b1b4b6e9543764161c4c`，透明度全255。遊戲畫布只作Pillow11.3.0 LANCZOS全幅1920×1200規格化，PNG SHA `0066726f553f88b8e9cb6df9697132e8e73a133d554f4ad8a74c7e34506ca9a5`，RGBA SHA `972297efc356d2c7e8f44f4261a554beb5e412cabae897753ea38fca47b3ac34`。完整原圖未改，保留龍、虎、原畫配色與既有手繪風格。使用者原畫SHA `aba12761f6254702334500c6a4a5404467e4219d61645cd6ce70c863df37205d`，只留本機。
+
+載入器只新增本組raw／canvas固定SHA配對，舊r1配對保持相容；不接受交叉混用，仍沿原檔名、尺寸、原版TIT6V來源、容量、JSON與不透明度檢查。候選assets-prelude-corrected-r3共425檔，只替換story-prelude.png、story-prelude.json及story-prelude-import.json，r54其餘422檔保持。審查收據registration-r3.json SHA `9903e54ecf0cb3bb0183ae0ac3c2b620adf0aa102b495ad6877d0bc1eb879831`。
+
+只改美術及載入配對，不改逐點順序、事件、文字、CPU、音樂或存檔。驗證採新／舊配對與錯誤原子回退，普通冷啟動沿正式來源呈現器抽揭圖、完整圖、交接及故事第一頁，核對完整客體與PCM、Frame純讀及新圖實際出現。正常GUI／存讀沿既有014／047證據，不重走無關玩家路徑；正式提升後README改指向修正r3，舊圖只作歷史。
+
+
+## 人物勘誤正式替換與限定驗收
+
+使用者指出r1把女主角畫成白馬，r2仍有反向握劍手與女主角未回頭的問題。r3依原畫修正這三處，完整圖已檢視並在正常開場實際揭出。README現用[人物修正版](../images/story-prelude-color-corrected-r3.png)與[實際提示及來源](../images/story-prelude-color-corrected-r3.json)，原r1批准與r2失敗圖只保留歷史，不作現行構圖。
+
+本機正式r55／425檔，只替換前導PNG、清單及匯入紀錄，r54其餘422檔保持。七程式來自source-candidate-prelude-r3／140輸入，舊139來源及七程式留source-candidate-items-r2，獨立核心919檔保持。載入器接受兩組固定raw／canvas配對，拒絕混用；舊素材組可讀，現行組用r3。新舊配對、兩種交叉拒絕及十一項原子故障檢查49.567秒、go vet及七程式建置通過。
+
+以12:00:00.00固定時鐘、3000 cycles/ms普通冷啟動，兩次只送原版VGA／音效選項，沒有跳轉、座標或記憶體注入。新／舊各548幀、共1096次Frame純讀，完整final.state、PCM、輸入、I/O及工作檔相同。23幀逐點揭圖、27幀完整圖、2幀交接，由原版固定排列與新／舊PNG分別獨立重建；原生320×200色碼亦同固定來源與排列。前導以外496幀完全相同，包含深藍故事與Noto。正式來源幀524、舊圖像合成CompositedFrames0，不使用原版RGB畫面墊底。
+
+[修正核對器](../../tools/audit-story-prelude-correction.py)收據runtime-audit-r3.json SHA `7f7d2d4be4cd96c76fa54c3ea4b9283064fc6758f5cc29cfd6e7dce835ae08b0`，提升收據SHA `9730a7f2d810acdfe7cb35a059ef2e00d138efadd6a2f1175098b3c003cededa`。核對器的首輪末端使用錯誤欄名ComposedFrames，修為實際CompositedFrames後以同一份正常收據乾淨重核，沒有改遊戲或重跑挑結果。工具讀PresentedFrameInfo取得正式來源metadata，不把停用的舊前導合成器計數當成實際揭圖。
+
+本次只修人物美術與固定載入配對，逐點順序、文字、音樂、故事背景、玩法、CPU及存檔保持。正常GUI／存讀沿既有014／047代表證據，未追加本次GUI或F7聲明。後續不重做已驗正常開場；如果使用者再更正姿態，另存下一版與追加證據。

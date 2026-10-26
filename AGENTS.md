@@ -1,5 +1,11 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+014彩色前導的人物修正依使用者2026-10-26原畫與手勢勘誤：移除誤畫白馬，男主角背影持劍，女主角在旁抬手遮擋並回頭露臉。研究留story-art-r1/heroine-correction-r2。[逐輪保存器](tools/save-story-prelude-correction.py)在固定Pillow容器以`--project`唯讀專案、`--batch`研究目錄、`--image`生成PNG、`--request`實際提示／兩份輸入JSON及`--variant`保存原PNG與完整收據。失敗姿態保留，現行正式狀態見014末節。
+[前導修正匯入](tools/prepare-story-prelude-correction.py)在固定Pillow容器以`--project`唯讀專案、`--batch`上述研究目錄、`--base`r54、`--out`新候選及`--images`docs/images保存r3原圖與完整提示；只替換前導PNG／清單／匯入紀錄三檔，422舊檔保持。完整生成圖不改，1920×1200只作遊戲畫布規格化；正式提升前核對014。
+[新舊前導配對測試](internal/eightsword/story_prelude_correction_test.go)使用`EIGHTSWORD_TEST_PRELUDE_CORRECTION_ASSETS`新候選、`EIGHTSWORD_TEST_PRELUDE_CORRECTION_BASE`r54與既有原版變數，在Go容器執行`go test ./internal/eightsword -run '^TestStoryPreludeCorrectionPairs$'`。正常前導核對工具改讀`PresentedFrameInfo`，正式來源路徑不再借用舊合成器的metadata；實際繪圖與輸入不變。
+[前導修正核對器](tools/audit-story-prelude-correction.py)在固定Pillow容器以`--project`唯讀專案、`--research`人物修正研究目錄與`--out`新JSON，從固定原版排列重建新舊逐點畫面，核對完整原版state、PCM、揭圖外畫面、完成圖與交接。只支援本次正常無頭開場，不冒稱新GUI／存讀或全遊戲。
+同一核對器在通過後加`--promote --player <可寫本機程式根> --audit <通過JSON> --out <新提升收據>`才提升。本次r55／425檔、140來源及七程式已正式接r3人物修正，548幀正常開場與獨立重建通過；只替換前導三檔，422舊檔保持。README用修正r3，誤畫白馬r1及反向手r2只留歷史；五頁深藍背景不改。
+
 MAN器物與武器圖示依[052](docs/spec/052-man-item-icons.md)，[參考準備器](tools/prepare-man-icons.py)在固定Pillow容器使用`--project`唯讀專案與`--out`既有graphics-first內新目錄，核對MAN.AY的16筆32×16六平面圖示，逐張保存原圖參考與完整提示。第0–11主角及20肖像不重畫，不由圖形猜劍名或能力；圖片審查與正式接入分開。
 [圖示保存工具](tools/save-man-icon.py)在相同Pillow容器使用`--batch <man-icons-r1>`、`--image <唯讀生成PNG>`、`--index <原版記錄>`與`--variant <1或2>`，保存完整PNG、實際提示與來源SHA。首稿不覆寫；劍刃消除像素階梯的提示修訂另存r2，原版刻意的彎曲與分叉保留，不把低解析階梯畫成鋸齒。
 [器物候選匯入](tools/import-man-icons.py)在固定Pillow容器用`--project`唯讀專案、`--batch`圖像目錄、`--base`r53、`--out`新候選與`--review`新研究目錄，核對16份生成收據，產生96×96獨立快取及原版／HD對照。425檔保留391舊檔，圖片與正式登錄分開。

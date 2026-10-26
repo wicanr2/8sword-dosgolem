@@ -15,6 +15,8 @@ import (
 const preludeSourceSHA = "9aadec77cf59adb1f444d47891526af7da888bebecc648a3fa16a6f0adcd6dfe"
 const preludeApprovedSHA = "12aed4841ed37026e91547dce49a4696fc3c20b511de5983dd4ed43c5a3340e8"
 const preludeImageSHA = "93879b591e694968c7b777a0b89bdc60f2e3965718ddd520491ebdb2b198eb7c"
+const preludeCorrectedSHA = "7d4fcc5e4fde78ca0694010705b052f763fb5be4efd9b1b4b6e9543764161c4c"
+const preludeCorrectedImageSHA = "0066726f553f88b8e9cb6df9697132e8e73a133d554f4ad8a74c7e34506ca9a5"
 
 func preludeFile(dir, name string, limit int64) ([]byte, error) {
 	f := filepath.Join(dir, name)
@@ -54,14 +56,20 @@ func loadStoryPrelude(t *IntroStory, dir string) (*StoryPrelude, error) {
 	if d.Decode(new(any)) != io.EOF {
 		return nil, fmt.Errorf("前導清單包含尾隨資料")
 	}
-	if m.Schema != 1 || m.SourceSHA != preludeSourceSHA || m.ApprovedSHA != preludeApprovedSHA || m.Image != "story-prelude.png" || m.ImageSHA != preludeImageSHA || m.Width != 1920 || m.Height != 1200 || m.Rights == "" {
+	imageSHA := preludeImageSHA
+	if m.ApprovedSHA == preludeCorrectedSHA {
+		imageSHA = preludeCorrectedImageSHA
+	} else if m.ApprovedSHA != preludeApprovedSHA {
+		return nil, fmt.Errorf("前導圖像版本不符")
+	}
+	if m.Schema != 1 || m.SourceSHA != preludeSourceSHA || m.Image != "story-prelude.png" || m.ImageSHA != imageSHA || m.Width != 1920 || m.Height != 1200 || m.Rights == "" {
 		return nil, fmt.Errorf("前導來源／形狀不符")
 	}
 	data, err := preludeFile(dir, m.Image, 8*1024*1024)
 	if err != nil {
 		return nil, err
 	}
-	if hash(data) != m.ImageSHA {
+	if hash(data) != imageSHA {
 		return nil, fmt.Errorf("前導圖片 SHA-256 不符")
 	}
 	cfg, err := png.DecodeConfig(bytes.NewReader(data))

@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "user-requested-composition-correction",
+  "file": "story-prelude-color-corrected-r3.png",
+  "sha256": "7d4fcc5e4fde78ca0694010705b052f763fb5be4efd9b1b4b6e9543764161c4c",
+  "size": [
+    1585,
+    992
+  ],
+  "prompt": "story-prelude-color-corrected-r3.prompt.txt",
+  "prompt_sha256": "c38789de6b03eb27ab2e5fc5e58f2f2344b5eb50812e057472138bd7e59b42ed",
+  "method": "built-in image_gen edit",
+  "supersedes": "story-prelude-color-approved-r1.png",
+  "user_correction": "男主角背影、自然握劍；女主角在旁抬手遮擋並回頭露臉；移除白馬",
+  "reference_sha256": "aba12761f6254702334500c6a4a5404467e4219d61645cd6ce70c863df37205d",
+  "generation_receipt_sha256": "2f83a4d752db50c6688b9add697760b61670018aaa5a9837e65a734aea1f57ca",
+  "rights": "corrected art in existing private repository; original reference stays local"
+}
