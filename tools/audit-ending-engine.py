@@ -19,6 +19,11 @@ def read(path):
 def verify_rendering(batch, run, inputs_dir):
     """新週期時鐘的來源畫面獨立重建，不把舊指令時鐘動畫當同狀態。"""
     data = read(inputs_dir/'ending.json')
+    portraits = {}
+    if (inputs_dir/'ending-portrait.json').exists():
+        for record in read(inputs_dir/'ending-portrait.json')['records']:
+            assert sha(inputs_dir/record['file']) == record['sha256']
+            portraits[record['source_sha256']] = Image.open(inputs_dir/record['file']).convert('RGBA')
     ega = [(0,0,0),(0,0,170),(0,170,0),(0,170,170),(170,0,0),(170,0,170),(170,85,0),(170,170,170),
            (85,85,85),(85,85,255),(85,255,85),(85,255,255),(255,85,85),(255,85,255),(255,255,85),(255,255,255)]
     rgb_to_index = {rgb: i for i, rgb in enumerate(ega)}
@@ -71,7 +76,9 @@ def verify_rendering(batch, run, inputs_dir):
             for op in snap['ops']:
                 x,y,w,h = op['X']*3,op['Y']*6,op['W']*3,op['H']*6
                 if op['kind'] == 'bitmap':
-                    if op['SourceFile'] == 'END7.AY':
+                    if op['SourceSHA'] in portraits:
+                        out.paste(portraits[op['SourceSHA']],(x,y))
+                    elif op['SourceFile'] == 'END7.AY':
                         out.paste(end7,(x,y))
                     elif op['SourceFile'] == 'END8.AY':
                         out.paste(title_rgb,(x,y))
@@ -104,6 +111,8 @@ def main():
     parser.add_argument('--sources', default='engine-build-r3')
     parser.add_argument('--binary', default='ending-engine-tests-r3')
     parser.add_argument('--assets', default='assets-candidate-r3')
+    parser.add_argument('--portrait', action='store_true', help='verify the separate five-texture END5 group')
+    parser.add_argument('--additional-tests-log', type=Path, help='separately completed asset-fault job using the identical test binary')
     args = parser.parse_args()
     assert Path('/.dockerenv').is_file() and os.getuid() == 1000 and __version__ == '11.3.0'
     assert not args.out.exists() and args.out.parent.stat().st_uid == 1000
@@ -119,7 +128,13 @@ def main():
     formal = read(p/'workplace/probe-20261023/graphics-first/story-art-r1/blue-person-correction-r4/runtime-audit-r4.json')
     for name, digest in formal['asset_hashes'].items():
         assert not (assets/name).is_symlink() and (assets/name).is_file() and sha(assets/name) == digest
-    assert len(list(assets.iterdir())) == 433
+    assert len(list(assets.iterdir())) == (439 if args.portrait else 433)
+    if args.portrait:
+        assert sha(assets/'ending-portrait.json') == '384bc2ecb1e280dd487ce3ed6fb3981d2e28da0c98031cd132ccefce4519eb80'
+        previous = read(b/'ending-promotion-audit-r1.json')['asset_hashes']
+        assert len(previous) == 433
+        for name,digest in previous.items():
+            assert sha(assets/name) == digest
     core = read(b/'runtime-input-r1/runtime-input.json')
     assert len(core['base_inputs']) == 919 and len(core['added']) == 2
     for name, digest in {**core['base_inputs'], **core['added']}.items():
@@ -147,9 +162,24 @@ def main():
         assert runs[name]['ending']['error'] == '' and runs[name]['ending']['pending'] == 0
         for sample in runs[name]['snapshots']:
             assert (run/name/(sample['prefix']+'-before.state')).read_bytes() == (run/name/(sample['prefix']+'-after.state')).read_bytes()
+    if args.portrait:
+        assert runs['hd']['ending']['portrait'] == dict(loaded=True,textures=5,error='')
+        assert len(runs['hd']['portrait_snapshots']) >= 3
     log = (b/(args.runtime+'.log')).read_text()
+    test_logs = [log]
+    if args.additional_tests_log:
+        extra = args.additional_tests_log
+        assert extra.with_name(extra.stem+'-exit.txt').read_text().strip() == 'passed'
+        digest, executable = extra.with_name(extra.stem+'-binary.sha256').read_text().split()
+        assert digest == sha(b/args.binary) and Path(executable).name == args.binary
+        supplemental = extra.read_text()
+        assert supplemental.endswith('PASS\n') and '--- FAIL:' not in supplemental
+        test_logs.append(supplemental)
     for test in ['TestEndingSourceRuntime', 'TestEndingInputHandoffGuard', 'TestEndingAssetsFaults']:
-        assert '--- PASS: '+test in log
+        assert any('--- PASS: '+test in text for text in test_logs)
+    assert not any('--- FAIL:' in text for text in test_logs)
+    if args.portrait:
+        assert '--- PASS: TestEndingPortraitLoadAndAtomicFallback' in log
     native_go = (p/'internal/eightsword/ending_scene.go').read_text()
     assert 'oracle' not in native_go and 'ScreenRGB' not in native_go and 'EGAPlane' not in native_go
     for name in ['ending_direct.go', 'ending_masked.go', 'ending_glyphs.go']:
@@ -163,8 +193,8 @@ def main():
                   tool_sha256=sha(Path(__file__)), binary_sha256=sha(b/args.binary),
                   source_manifest_sha256=sha(b/args.sources/'sources.json'),
                   core_manifest_sha256=sha(b/'runtime-input-r1/runtime-input.json'),
-                  asset_manifest_sha256=sha(assets/'ending.json'), total_assets=433,
-                  unchanged_base_assets=425, original_core_preserved=919, private_core_inputs=921,
+                  asset_manifest_sha256=sha(assets/'ending.json'), total_assets=439 if args.portrait else 433,
+                  unchanged_base_assets=433 if args.portrait else 425, original_core_preserved=919, private_core_inputs=921,
                   complete_steps=138507913, escape_steps=100264740, frames=frames, escape_frames=escaped,
                   guest_state_sha256=runs['hd']['state_sha256'], native_pcm_sha256=runs['hd']['native_pcm_sha256'],
                   escape_state_sha256=runs['hd-escape']['state_sha256'], escape_pcm_sha256=runs['hd-escape']['native_pcm_sha256'],
@@ -172,9 +202,15 @@ def main():
                   run_receipts={n: sha(run/n/'runtime.json') for n in runs},
                   limits=['Actual original overlay follows controlled cleanup branch, not natural victory.',
                           'Headless Engine Frame evidence, not GUI Draw or new save/reload acceptance.',
-                          'END7 uses corrected r2. Other unconverted art remains source pixels rendered by Go.',
-                          'Candidate uses ordinary files; formal r56 remains unchanged.',
+                          'END7 uses corrected r2; optional END5 uses five source-identified textures. Other unconverted art remains source pixels rendered by Go.',
+                          'Candidate uses ordinary files; this read-only audit does not promote formal assets.',
                           'Native Go admits batches under existing event limits; boundary/clear/copy loops remain native.'])
+    if args.portrait:
+        result['portrait_manifest_sha256'] = sha(assets/'ending-portrait.json')
+        result['portrait_representatives'] = runs['hd']['portrait_snapshots']
+    if args.additional_tests_log:
+        result['separate_asset_tests_sha256'] = sha(args.additional_tests_log)
+        result['aggregate_deadline_exceeded'] = 'panic: test timed out' in log
     with args.out.open('x') as handle:
         handle.write(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
     print(json.dumps(dict(frames=len(frames), escape_frames=len(escaped), skipped_x86=52940401, sha256=sha(args.out))))

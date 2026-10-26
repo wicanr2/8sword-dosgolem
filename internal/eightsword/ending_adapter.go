@@ -118,7 +118,11 @@ func (e *Engine) EndingStatus() map[string]any {
 	for k, v := range p.counts {
 		counts[k] = v
 	}
-	return map[string]any{"input_api": e.endingInputSupported, "input_step": e.endingInputStep, "input_discarded": e.endingInputDropped, "direct": p.directCounts, "bound": p.bound, "active": e.inEndingPhase(), "load_segment": p.load, "stage": stage, "pending": p.active, "counts": counts, "error": e.EndingError}
+	portrait := map[string]any{"loaded": false, "textures": 0, "error": ""}
+	if p.assets != nil {
+		portrait = map[string]any{"loaded": len(p.assets.art.portraits) == 5, "textures": len(p.assets.art.portraits), "error": p.assets.portraitError}
+	}
+	return map[string]any{"input_api": e.endingInputSupported, "input_step": e.endingInputStep, "input_discarded": e.endingInputDropped, "direct": p.directCounts, "bound": p.bound, "active": e.inEndingPhase(), "load_segment": p.load, "stage": stage, "pending": p.active, "counts": counts, "error": e.EndingError, "portrait": portrait}
 }
 func (p *endingAdapter) bind() {
 	load, active := endingOverlay(p.e.Oracle)

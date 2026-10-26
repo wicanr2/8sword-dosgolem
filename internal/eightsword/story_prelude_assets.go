@@ -17,6 +17,8 @@ const preludeApprovedSHA = "12aed4841ed37026e91547dce49a4696fc3c20b511de5983dd4e
 const preludeImageSHA = "93879b591e694968c7b777a0b89bdc60f2e3965718ddd520491ebdb2b198eb7c"
 const preludeCorrectedSHA = "7d4fcc5e4fde78ca0694010705b052f763fb5be4efd9b1b4b6e9543764161c4c"
 const preludeCorrectedImageSHA = "0066726f553f88b8e9cb6df9697132e8e73a133d554f4ad8a74c7e34506ca9a5"
+const preludePosterPoseSHA = "92c27b8030dfa335883483b06e8b81a1beeca846a150d92940da044baf35476e"
+const preludePosterPoseImageSHA = "8fda0573047dfbcc8373e921d09ff175befc7daada5bba01e9d4ec9a7c705541"
 
 func preludeFile(dir, name string, limit int64) ([]byte, error) {
 	f := filepath.Join(dir, name)
@@ -57,7 +59,9 @@ func loadStoryPrelude(t *IntroStory, dir string) (*StoryPrelude, error) {
 		return nil, fmt.Errorf("前導清單包含尾隨資料")
 	}
 	imageSHA := preludeImageSHA
-	if m.ApprovedSHA == preludeCorrectedSHA {
+	if m.ApprovedSHA == preludePosterPoseSHA {
+		imageSHA = preludePosterPoseImageSHA
+	} else if m.ApprovedSHA == preludeCorrectedSHA {
 		imageSHA = preludeCorrectedImageSHA
 	} else if m.ApprovedSHA != preludeApprovedSHA {
 		return nil, fmt.Errorf("前導圖像版本不符")

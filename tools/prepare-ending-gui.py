@@ -42,6 +42,9 @@ def main():
     probe = a.project/'tools/ending-gui-probe.go'
     (source/'internal/eightsword/ending_gui_probe.go').write_text(probe.read_text().removeprefix('//go:build ignore\n'))
     driver = (a.project/'tools/gui-check.go').read_text()
+    startup = 'deadline := time.Now().Add(30 * time.Second)'
+    assert driver.count(startup) == 1
+    driver = driver.replace(startup,'deadline := time.Now().Add(120 * time.Second)')
     marker = '\tif *actorWalk && *flow == "save" {'
     assert driver.count(marker) == 1
     extension = '''

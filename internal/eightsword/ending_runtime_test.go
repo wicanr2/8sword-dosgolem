@@ -55,6 +55,9 @@ func TestEndingSourceRuntime(t *testing.T) {
 			t.Fatalf("asset errors: %s / %s", e.EndingError, e.AssetError)
 		}
 		if hd {
+			if os.Getenv("EIGHTSWORD_TEST_ENDING_REQUIRE_PORTRAIT") == "1" && (len(e.endingAssets.art.portraits) != 5 || e.endingAssets.portraitError != "") {
+				t.Fatal("required END5 portrait group not loaded")
+			}
 			for key, value := range e.Status() {
 				if message, ok := value.(string); ok && strings.HasSuffix(key, "_error") && message != "" {
 					t.Fatalf("candidate silently lost HD group %s: %s", key, message)
@@ -75,6 +78,8 @@ func TestEndingSourceRuntime(t *testing.T) {
 		var scene string
 		bound := false
 		endingSamples := map[string]bool{}
+		portraitSamples := map[string]bool{}
+		var portraitSnapshots []map[string]any
 		var snapshots []map[string]any
 		var mutations []map[string]any
 		var escaped bool
@@ -99,6 +104,42 @@ func TestEndingSourceRuntime(t *testing.T) {
 			p := e.ending
 			page := p.scene.pages[p.scene.active]
 			stage := page.stage
+			if stage == "END5.AY" && len(p.assets.art.portraits) == 5 && page.glyphs > 0 {
+				eye, mouth := 1, 4
+				for _, command := range page.ops {
+					if command.Kind != "bitmap" || command.SourceFile != "END5.AY" {
+						continue
+					}
+					for i, source := range endingPortraitSources {
+						if command.SourceSHA != source {
+							continue
+						}
+						switch i {
+						case 0:
+							eye, mouth = 1, 4
+						case 1, 2:
+							eye = i
+						case 3, 4:
+							mouth = i
+						}
+					}
+				}
+				key := fmt.Sprintf("eye-%d-mouth-%d", eye, mouth)
+				if !portraitSamples[key] {
+					before := observerGuestState(t, e)
+					saveFrame("portrait-" + key + ".png")
+					if !bytes.Equal(before, observerGuestState(t, e)) {
+						t.Fatal("portrait Frame changed guest")
+					}
+					display, ok := e.Oracle.PlanarDisplay()
+					if !ok {
+						t.Fatal("portrait display absent")
+					}
+					endingTestWrite(t, filepath.Join(dir, "portrait-"+key+".json"), map[string]any{"stage": stage, "pose": key, "font": e.FontID(), "step": e.Oracle.Steps(), "palette": display.Palette, "ops": page.ops, "pure": true})
+					portraitSamples[key] = true
+					portraitSnapshots = append(portraitSnapshots, map[string]any{"pose": key, "step": e.Oracle.Steps()})
+				}
+			}
 			if stage != "END5.AY" && stage != "END7.AY" && stage != "END8.AY" && stage != "END9.AY" {
 				return
 			}
@@ -289,6 +330,9 @@ func TestEndingSourceRuntime(t *testing.T) {
 		if hd && !escape && len(endingSamples) != 4 {
 			t.Fatalf("ending samples missing %v", endingSamples)
 		}
+		if hd && !escape && os.Getenv("EIGHTSWORD_TEST_ENDING_REQUIRE_PORTRAIT") == "1" && len(portraitSamples) < 3 {
+			t.Fatalf("END5 representative states absent: %v", portraitSamples)
+		}
 		if escape && !escaped {
 			t.Fatal("Esc not sent")
 		}
@@ -304,7 +348,7 @@ func TestEndingSourceRuntime(t *testing.T) {
 		must(e.Oracle.SaveStateFile(stateFile))
 		state, er := os.ReadFile(stateFile)
 		must(er)
-		endingTestWrite(t, filepath.Join(dir, "runtime.json"), map[string]any{"hd": hd, "escape": escape, "steps": e.Oracle.Steps(), "state_sha256": hash(state), "native_pcm_sha256": fmt.Sprintf("%x", pcm.Sum(nil)), "mutations": mutations, "snapshots": snapshots, "ending": e.EndingStatus(), "inputs": e.InputEvents, "overlays": e.Oracle.Overlays(), "file_ops": e.Oracle.FileOps(), "music": e.Music.Status(), "unimplemented": e.Oracle.Unimplemented()})
+		endingTestWrite(t, filepath.Join(dir, "runtime.json"), map[string]any{"hd": hd, "escape": escape, "steps": e.Oracle.Steps(), "state_sha256": hash(state), "native_pcm_sha256": fmt.Sprintf("%x", pcm.Sum(nil)), "mutations": mutations, "snapshots": snapshots, "portrait_snapshots": portraitSnapshots, "ending": e.EndingStatus(), "inputs": e.InputEvents, "overlays": e.Oracle.Overlays(), "file_ops": e.Oracle.FileOps(), "music": e.Music.Status(), "unimplemented": e.Oracle.Unimplemented()})
 		return result{state: state, pcm: fmt.Sprintf("%x", pcm.Sum(nil)), steps: e.Oracle.Steps(), files: e.Oracle.FileOps()}
 	}
 	native := run("native", false, false)

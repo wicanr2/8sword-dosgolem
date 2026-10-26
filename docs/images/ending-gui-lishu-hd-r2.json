@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "image": "ending-gui-lishu-hd-r2.png",
+  "image_sha256": "4419abd3bbc60bdc4022d5f3a4cfcbfe949d48ad2408e67bec358f9748c068e2",
+  "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/gui-end5-full-r1/ending-full/ending-font-lishu.png",
+  "gui_audit_sha256": "4c2ce4a6b22a10c8442d2560ccf3808f0ae7561a92afd9fdec0f934c606c3f83",
+  "gui_sample": {
+    "key": "END5.AY-lishu",
+    "draw": 497,
+    "step": 90735570,
+    "central_sha256": "fd7c2b4c37d270790e61a4486e9768d2ea41d88bdb0932ccfac6c472895ae288",
+    "metadata_sha256": "ac6d6c62caf832a6622c4d181d0798c28e2d6ca8d8000d03e65e8a4e2ef60364"
+  },
+  "scope": "Actual GUI Draw: source-driven END5 HD heroine and Ministry of Education Lishu. Controlled original ending branch, no natural-victory claim."
+}

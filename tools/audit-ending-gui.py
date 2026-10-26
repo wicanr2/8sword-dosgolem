@@ -30,10 +30,17 @@ def reconstruct(meta, assets, sources):
                 c=c.convert('I'), a=title.getchannel('A').convert('I')) for c in title.split()[:3]]
     title = Image.merge('RGB',channels).convert('RGBA')
     out = Image.new('RGBA',(1920,1200),(0,0,0,255))
+    portraits = {}
+    if (assets/'ending-portrait.json').exists():
+        for record in read(assets/'ending-portrait.json')['records']:
+            assert sha(assets/record['file']) == record['sha256']
+            portraits[record['source_sha256']] = Image.open(assets/record['file']).convert('RGBA')
     for op in meta['ops']:
         x,y,w,h = op['X']*3,op['Y']*6,op['W']*3,op['H']*6
         if op['kind'] == 'bitmap':
-            if op['SourceFile'] == 'END7.AY':
+            if op['SourceSHA'] in portraits:
+                out.paste(portraits[op['SourceSHA']],(x,y))
+            elif op['SourceFile'] == 'END7.AY':
                 out.paste(Image.open(assets/'ending-end7-r2.png').convert('RGBA'),(x,y))
             elif op['SourceFile'] == 'END8.AY':
                 out.paste(title,(x,y))
@@ -78,6 +85,8 @@ def main():
     assert not st['music']['load_error']
     assert st['toolbar_error'] == '' and st['presentation_size'] == [2944,1264]
     assert st['ending']['error'] == '' and st['ending']['input_api'] is True and st['ending']['input_discarded'] == [0,1,0]
+    if (a.assets/'ending-portrait.json').exists():
+        assert st['ending']['portrait'] == dict(loaded=True,textures=5,error='')
     assert st['ending']['counts']['unclassified-writes'] == 0 if 'unclassified-writes' in st['ending']['counts'] else True
     direct = st['ending']['direct']
     assert direct['direct-skipped-x86-instructions'] > 0 and direct['masked-skipped-x86'] > 0 and direct['glyph-skipped-x86'] > 0
@@ -93,7 +102,8 @@ def main():
     for name,digest in preparation['diagnostic_files'].items():
         assert sha(a.build/'src'/name) == digest
     for name,digest in preparation['binaries'].items():
-        assert sha(root/name) == digest
+        binary = a.project/name if name.startswith('workplace/') else root/name
+        assert sha(binary) == digest
     records = read(root/'source.json')['records']
     sources = {}
     for record in records:
@@ -138,6 +148,9 @@ def main():
                   'Actual Ebiten Draw and recorded CPU texture; X11 screenshots retained separately.',
                   'END7 corrected r2 and three text fonts; remaining ending art still source pixels.',
                   'Linux software graphics and muted device; no physical GPU or listening claim.'])
+    if (a.assets/'ending-portrait.json').exists():
+        result['portrait_manifest_sha256'] = sha(a.assets/'ending-portrait.json')
+        result['portrait_loaded'] = st['ending']['portrait']['loaded']
     a.out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(dict(status=result['status'],draws=count,samples=len(results))))
 

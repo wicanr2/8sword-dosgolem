@@ -35,6 +35,8 @@ def main():
     entries = []
     stages = ['END5.AY', 'END7.AY', 'END8.AY', 'END9.AY']
     labels = ['對話，人物圖仍用原版來源', '人物構圖修正 r2', '標題', '製作名單，捲動中畫格']
+    if report.get('portrait_manifest_sha256'):
+        labels[0] = 'HD人物，眼與嘴由原版呼叫控制'
     for row, stage in enumerate(stages):
         sample = next(x['sample'] for x in report['frames'] if x['stage'] == stage)
         top = 48+row*316

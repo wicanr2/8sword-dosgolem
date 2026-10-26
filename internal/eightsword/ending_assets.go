@@ -14,9 +14,10 @@ const endingPAESHA = "8ae11b4c89f0361ed0a2d5b1859bbb4750047d37f0e26885e6903e4feb
 const endingManifestSHA = "f66ddeebfecd728ccca16e4c958e386046f2383ecf83a662b280582785ffbd7b"
 
 type endingAssets struct {
-	manifest  endingInputManifest
-	art       endingArtSet
-	fallbacks []string
+	manifest      endingInputManifest
+	art           endingArtSet
+	fallbacks     []string
+	portraitError string
 }
 
 func (a *endingAssets) profile(id string) *endingFontProfile {
@@ -117,6 +118,11 @@ func loadEndingAssets(dir, root string) (*endingAssets, error) {
 		if err != nil {
 			a.fallbacks = append(a.fallbacks, err.Error())
 		}
+	}
+	a.art.portraits, err = loadEndingPortrait(dir, root)
+	if err != nil {
+		a.portraitError = err.Error()
+		a.fallbacks = append(a.fallbacks, err.Error())
 	}
 	return a, nil
 }

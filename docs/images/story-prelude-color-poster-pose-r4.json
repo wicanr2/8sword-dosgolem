@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "spec": "014",
+  "production": false,
+  "status": "user-requested-poster-pose-runtime-integrated-r59",
+  "tool": "built-in image_gen",
+  "image": "story-prelude-color-poster-pose-r4.png",
+  "image_sha256": "92c27b8030dfa335883483b06e8b81a1beeca846a150d92940da044baf35476e",
+  "size": [
+    1586,
+    992
+  ],
+  "transparent_background": false,
+  "prompt": "story-prelude-color-poster-pose-r4.prompt.txt",
+  "prompt_sha256": "ddb3f37e10fe924e8185ac76560dfe893d15f6b5ddcfa366a4ed920c16e9cea1",
+  "actual_prompt": "Use case: precise-object-edit, Chinese hand-painted wuxia game remake.\n\nIMAGE 1 IS THE EDIT TARGET: the approved landscape story prelude showing a blue dragon above a red-armoured male hero, a yellow-robed heroine, and a tiger.\nIMAGE 2 IS A POSE, HANDEDNESS, AND COSTUME REFERENCE FOR THE MALE HERO ONLY: the approved vertical poster.\n\nRepaint ONLY the male hero in image 1 so his actual pose matches the hero in image 2. Copy the poster hero's body rotation, shoulder angle, arm bends, pelvis, grounded foot placement, and sword grip. Use the poster's three-quarter body view and handsome adult Chinese male profile looking upward to the left. This deliberately replaces the current male hero's back-facing rotation. Do not mirror the poster pose. His anatomical RIGHT hand is the raised sword hand on the left side of the picture, gripping one sword hilt naturally; his anatomical LEFT arm is lowered at his other side as in the poster. Follow the poster's wrist orientation and fingers exactly, with a natural thumb opposing four fingers and no twisted or backward hand. The blade rises diagonally upward to the right from the sword hand toward the dragon. One sword, two arms, two hands, two legs, no extra limbs. Keep the red, black and gold Chinese warrior armour, pale sleeves, red scarf and long black hair consistent with the poster.\n\nFit this corrected male pose into the same centre-left foreground area of image 1, standing on its existing rocks just in front of the heroine. Preserve his scale in the group and his relationship to her. Use image 1's richly coloured hand-painted gouache style and lighting, rather than changing the style of the entire illustration.\n\nCRITICAL INVARIANTS: Keep the heroine from IMAGE 1 unchanged: adult Chinese classical beauty, yellow robe with white sleeves and pink sash, one arm lifted to shield herself, head turned back toward the viewer, same face, hair, expression, and position. Do NOT copy the poster heroine's pose. Keep the blue dragon, its composition and expression, the tiger, storm clouds, lightning, flames, rocks, background colours and overall framing from IMAGE 1. Confine changes to the male hero and the tiny contact-shadow areas needed to fit his feet. No horse, no new character or object. No lettering, logo, border or watermark. Return the full landscape painting at the same approximately 1.6:1 aspect ratio, with no added margins or white padding.\n",
+  "references": [
+    {
+      "path": "docs/images/story-prelude-color-corrected-r3.png",
+      "sha256": "7d4fcc5e4fde78ca0694010705b052f763fb5be4efd9b1b4b6e9543764161c4c"
+    },
+    {
+      "path": "docs/images/poster-cover-approved-r1.png",
+      "sha256": "2d666efbb2b1fc714e92b82f078c3fd4139b7c690fce794b95c99c8b2725c55d"
+    }
+  ],
+  "decision": "User explicitly selected dragon-confrontation prelude and requested male pose aligned to approved poster.",
+  "visual_review": "Poster-aligned body rotation, single raised sword hand, lowered other arm; heroine remains turned back with shielding hand. Other composition retained.",
+  "rights": "Existing private repository only; original game and full runtime asset pack remain local.",
+  "file": "story-prelude-color-poster-pose-r4.png",
+  "supersedes": "story-prelude-color-corrected-r3.png",
+  "registration_sha256": "51804a43c8996b0cf706e65673fdcdb28954632cc074fe8aaf923d089035382b",
+  "generation_status": "generated-reviewed-not-runtime",
+  "generation_receipt_sha256": "6e051e25523b3bb38a2314bd3c7f3cfa230745fa38e14d939379340fb4162287",
+  "runtime_audit_sha256": "173e4ead5c85b2d55691fe6daef5324e469d62af9dc7762e27ea64de064df2b9",
+  "runtime_scope": "014 scoped normal opening, 548 Frames; no new GUI/save claim"
+}
