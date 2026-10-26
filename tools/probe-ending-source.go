@@ -25,11 +25,11 @@ func check(err error) {
 func main() {
 	root := flag.String("root", "", "read-only original directory")
 	out := flag.String("out", "", "new research receipt directory")
-	steps := flag.Uint64("steps", 2000000, "bounded startup steps, maximum 20000000")
+	steps := flag.Uint64("steps", 2000000, "bounded absolute steps, maximum 200000000")
 	cmdline := flag.String("cmdline", "", "explicit research command tail, not a normal PAM handoff")
 	state := flag.String("state", "", "resume this exact diagnostic snapshot; does not prove a natural player path")
 	flag.Parse()
-	if *root == "" || *out == "" || *steps == 0 || *steps > 20000000 {
+	if *root == "" || *out == "" || *steps == 0 || *steps > 200000000 {
 		panic("invalid bounded ending probe arguments")
 	}
 	exe := filepath.Join(*root, "PAE.AY")
@@ -51,7 +51,7 @@ func main() {
 	o.SetScratch(filepath.Join(*out, "scratch"))
 	var rows []map[string]any
 	var runError string
-	for _, target := range []uint64{1000, 100000, 1000000, 2000000, 5000000, 10000000, 20000000} {
+	for _, target := range []uint64{1000, 100000, 1000000, 2000000, 5000000, 10000000, 20000000, 40000000, 60000000, 80000000, 100000000, 160000000, 200000000} {
 		if target > *steps {
 			break
 		}

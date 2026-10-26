@@ -80,7 +80,7 @@
 | 戰場背景與原版變體 | 10 | [GRO01 至 GRO05](docs/images/original-battle-backgrounds-r1.png) |
 | 建築與原版變體 | 12 | [LIVE1 至 LIVE6](docs/images/original-buildings-r1.png) |
 | 開場圖像 | 26 | [TIT 系列](docs/images/original-opening-r1.png) |
-| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[HD候選與三字型樣張](docs/images/ending-candidates-r1.png)尚未接入 |
+| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[HD候選與標題字圖](docs/images/ending-candidates-r1.png)、[128字文字樣張](docs/images/ending-text-specimen-r1.png)，均尚未接入 |
 | 介面圖像 | 6 | [CUBE／BUMBOO／MSGBOX](docs/images/original-ui-r1.png) |
 | 原版編輯圖集與插畫 | 19 | [X 系列 ILBM](docs/images/original-illustrations-r1.png) |
 

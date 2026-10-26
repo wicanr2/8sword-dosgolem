@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "status": "candidate-text-not-runtime",
+  "production": false,
+  "spec": "053",
+  "image": "ending-text-specimen-r1.png",
+  "image_sha256": "cd6d0f8f8c5d121f14d5ab7ca6acab3ea1aedc287633010bd9b462b2c40f4c1f",
+  "characters": 128,
+  "observed_calls": 1134,
+  "missing_from_previous_union": "們做健傷先吧展屬我敢更正當算萬謝辰陰難須",
+  "profiles": [
+    {
+      "id": "noto",
+      "serif_fallback_count": 0
+    },
+    {
+      "id": "lishu",
+      "serif_fallback_count": 0
+    },
+    {
+      "id": "caoshu",
+      "serif_fallback_count": 35
+    }
+  ],
+  "font_manifest_sha256": "4c6666ed06da4f839e8b37f46f0f17e762d0919c87b68c4b9337e194ea83c800",
+  "source_audit_sha256": "a4abcd23512b867171aa0d42316ff9d0f4a6f4e4bdb4d327070b5c6ce2dd5ae9",
+  "rights": "rendered font specimen in existing private repository; original fonts and full candidate caches stay local",
+  "limits": [
+    "Original Big5 text and spaces preserved; not an in-game HD screenshot or implemented ending font selector."
+  ]
+}
