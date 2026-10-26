@@ -1622,3 +1622,23 @@ final-integrity-r6.json通過425正式素材、141輸入七程式、158原版、
 下一步將已驗Go結局來源場景與三字型接回Engine，PAE覆蓋時退役PAM來源及舊音樂掛點，改用BIOS輸入；正式完整Frame、隔離與正常選單／人物頁回歸仍待完成。全HD美術、其他配樂與開場CPU接管繼續沿原範圍，Goal保持進行。
 
 final-integrity-r7.json通過425正式素材、141輸入七程式、158原版、919核心與正式PAM.i64保持，19份Python語法、1454本機連結及三個已解定位回填護欄通過。最新r3亦通過go vet；root-owned／偽md目錄與專案殘留容器檢查為零，未新增映像。KeyStalls及事件配額的輸入殘留風險另標強推論，未冒稱已量交接後Go接管。完整原圖、IDB、原版與研究程式留本機；只提交自有工具及文件，提交與遠端核對存ending-hd-r1/publication-r5.json。
+
+## 2026-10-26：結局來源場景與三字型接入Engine候選
+
+上一輪原版覆蓋交接、完整播放及BIOS Esc證據已提交e93336f並遠端讀回，屬實際進度。本輪沿規格閘門，將既有來源／字模／平面及生命週期證據整理為053的局部READY契約，再接Engine候選，沒有繼續重查同一原版收尾或等待自然通關。
+
+新增ending_assets／ending_scene／ending_adapter，原PAE覆蓋後停用PAM舊呈現與音樂事件，輸入切回BIOS。純Go呈現器只收來源命令、色盤及紋理，不取原版RGB；中文字、ASCII及來源頁面完整返回後提交，FontID沿既有三字型。END7使用正確人物r2；其他未完成結局美術仍用來源像素。候選433項以425舊檔相對連結節省空間，正式提升前才實體化。首輪準備器從/out別名計算連結而無法解析，保留r1工具及收據後改r2，以/project位置計算，全部項目可讀。
+
+先以原919檔核心完成原版／HD完整演出與HD Esc，r1首次通過。接著將已驗Go圖片／遮罩／字模計畫接入，另建runtime-input-r1核心，只新增兩份輸入API成921檔。PAE交接後INT09h為預設stub時，記錄並丟棄一筆無接收者的舊定時放開碼；不修改客體、BIOS佇列或時鐘，有客體IRQ1時拒絕且不變佇列。相同政策套兩側，原版最終state仍與未清理r1控制相同。沒有放寬HostWorkBudget。
+
+r2加入完整／Esc兩組成對測試與實際接管要求，三父測試及四個壞圖案例通過。收尾確認選配圖應沿既有003／015回來源及Noto，修正初版將它們視為必要資料的處理；r3五個真壞子案涵蓋清單、Noto、END7、隸書標題與隸書atlas。必要清單／Noto拒絕，選配圖回來源、選配字型回Noto，PAM基底HD保持。r3三父測試／五子案約72.64秒、go vet通過。各輪來源及r2／r3測試二進位分開封存，未覆寫原資料或歷史工具。
+
+同一冷啟動、選單、新遊戲、F1／F2往返與原版F7退出前綴，再用既有一筆RAM選擇原版結局分支。完整原版／HD各138507913步，完整state 40df5e6d…ff6a、原生PCM dedaf49a…2b4c、I/O／輸入／覆蓋事件同值；BIOS Esc兩側各100264740步，輸入前state及結尾state eb72865d…af8ff、PCM 2d49b382…4b1e同值。實際Go略過圖片3086215、遮罩38659302、字模11194884，合計52940401條x86；舊獨立PAE數字不當本路徑成績。
+
+獨立Pillow從原始解碼、字模及新atlas重建四場景三字型12Frame與Esc前三Frame，全幅通過。核對器首輪誤用三位數sample檔名，修正後相同收據乾淨重核，沒有改遊戲或排除Frame。engine-audit-r2.json SHA3bddcb1b…a10b1，engine-r3-provenance.json SHA771583e2…bef6。README改最新實際候選Frame，四行已目視，END7補回人物；舊r1只留研究區，未將完整原圖或遊戲檔加入Git。
+
+正式r56／425素材、141份凍結來源七程式及原919核心保持。下一步GUI actual Draw、來源故障有界停機、正常存讀抽樣與原子提升，尚未宣稱正式結局、自然通關、裝置音訊或全HD完成。提交／遠端讀回收據存ending-hd-r1/publication-r6.json，Goal保持進行。
+
+收尾final-integrity-r10.json通過正式425素材、141份凍結source-candidate-story-blue-r4來源七程式、158原版、原919核心與正式PAM.i64保持；候選144份模組來源、921私有核心、433素材、15Frame及23份Python語法、1476本機連結亦通過。r8核對誤從可寫別名讀取候選相對連結，r9改為全部研究輸入從/project唯讀別名讀，r10另明分END7候選登錄與正式未提升，沒有修改舊收據。資料夾UID／GID均1000／1000，無root-owned、偽md目錄或殘留專案容器，未新增映像。完整原圖、字型、原版、IDB及研究程式留本機，只提交自有程式、工具、文件與縮小成果圖。
+
+收尾核對器只移除檔尾多餘空行，沿相同不可變輸入重核為engine-audit-r3.json，SHA2892a91d…f8a1；現行來源索引engine-r3-provenance-r2.json SHA640f8f38…0423，final-integrity-r11.json通過。README圖與來源紀錄改r3，PNG像素保持，未重跑或修改Go執行來源。使用者另要求確認實際Go繪圖；已查正式source_render的copy／填色／透明混合與結局ending_scene的Go貼圖，053及CONTEXT明列HD畫布與相容層界線。仍有逐byte通知與原生邊界，沒有宣稱整體FPS提升。補文件後final-integrity-r12.json通過，1482本機連結有效，擁有權與偽md目錄檢查為零。

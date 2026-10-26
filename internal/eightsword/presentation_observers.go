@@ -83,7 +83,7 @@ func (e *Engine) finishPresentationDispatch() {
 }
 
 func (e *Engine) observePresentationWrite(v oracle.VideoWrite) {
-	if e.Tracker != nil {
+	if e.Tracker != nil && !e.inEndingPhase() {
 		e.Tracker.write(v)
 	}
 	if e.Publisher != nil {

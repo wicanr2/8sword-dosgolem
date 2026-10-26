@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "production": false,
+  "tool_sha256": "10aef71a03ad34674787326d018f624a0d02faf0a26368906e72fb5d08f3dc0b",
+  "audit_sha256": "2892a91db1bd7cb647d3e8a598feeeed963c267a8de356c7696dce869779f8a1",
+  "comparison_sha256": "58f977d57d30357b536948e0e2313d0dc29d3365f4320e8450c53b4df059c2b2",
+  "entries": [
+    {
+      "stage": "END5.AY",
+      "profile": "native",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-01-native.png",
+      "sha256": "79111599638effa732e91e977ededbd33acdbe63da21c2ccf98d3c2e3f399c21"
+    },
+    {
+      "stage": "END5.AY",
+      "profile": "noto",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-01-noto.png",
+      "sha256": "6f04a6bd61dcf926b66f36f790fb0d31f7f786a2792d4847c7b7e3f2eaf0cfe8"
+    },
+    {
+      "stage": "END5.AY",
+      "profile": "lishu",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-01-lishu.png",
+      "sha256": "f93690edc781599fc663f04133a6af38ddb18cacaa200795025ffcb7ffebc024"
+    },
+    {
+      "stage": "END5.AY",
+      "profile": "caoshu",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-01-caoshu.png",
+      "sha256": "782103aea53e00c9c4553ff9c2bb7cfa2cc740d6f7997be7b955928b36b59f5d"
+    },
+    {
+      "stage": "END7.AY",
+      "profile": "native",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-02-native.png",
+      "sha256": "dff8cf1cc8abaf95d03629cd30a273b3bf081054e4d0449e2d9f77af617a0a35"
+    },
+    {
+      "stage": "END7.AY",
+      "profile": "noto",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-02-noto.png",
+      "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+    },
+    {
+      "stage": "END7.AY",
+      "profile": "lishu",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-02-lishu.png",
+      "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+    },
+    {
+      "stage": "END7.AY",
+      "profile": "caoshu",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-02-caoshu.png",
+      "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+    },
+    {
+      "stage": "END8.AY",
+      "profile": "native",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-03-native.png",
+      "sha256": "915713d9071c8a4278728b36c549c51de180c822e7f1fadeb03e7b23911c7b04"
+    },
+    {
+      "stage": "END8.AY",
+      "profile": "noto",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-03-noto.png",
+      "sha256": "132571e2c5c46e83e4c39cfb0f4867ee49dc126f1b19573ea8f6d9a4305aa938"
+    },
+    {
+      "stage": "END8.AY",
+      "profile": "lishu",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-03-lishu.png",
+      "sha256": "87276c7f516332ac864f82d3cf3b1eee3501a493aa1d85df6e454a8e5ed9d181"
+    },
+    {
+      "stage": "END8.AY",
+      "profile": "caoshu",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-03-caoshu.png",
+      "sha256": "1f2f36f2a4f494b46d4032d269427fa765f35d7cb24158e2ccc52b63334dacc3"
+    },
+    {
+      "stage": "END9.AY",
+      "profile": "native",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-04-native.png",
+      "sha256": "923a29252309b27670f92549046d0a0a66f010a0d1ef351185e053fb0651a84d"
+    },
+    {
+      "stage": "END9.AY",
+      "profile": "noto",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-04-noto.png",
+      "sha256": "ddc954fbb02cab9e754b1510b7727102093a5a7ffbb27b6e3d491723efa8bf65"
+    },
+    {
+      "stage": "END9.AY",
+      "profile": "lishu",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-04-lishu.png",
+      "sha256": "0287613a1d244cc1071de6cedc83d691ff9f3422ddbf30428f3a41b5a24f138b"
+    },
+    {
+      "stage": "END9.AY",
+      "profile": "caoshu",
+      "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-r3/hd/sample-04-caoshu.png",
+      "sha256": "15f062a20bc0cdadb696c7169294a9db6a17a23d10967deee3834d4301ca2761"
+    }
+  ],
+  "scope": "Engine candidate Frames. Native column is independently reconstructed source checked against original RGB; other columns are actual candidate Frames. No GUI Draw or release claim."
+}

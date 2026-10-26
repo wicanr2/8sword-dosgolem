@@ -19,6 +19,7 @@ type MusicEvent struct {
 
 // Music observes the fixed PAM version. It never replaces guest instructions.
 type Music struct {
+	endingRetired                                      bool
 	oplMuted                                           bool
 	nextHD                                             bool
 	blocked                                            bool
@@ -62,10 +63,22 @@ func (m *Music) record(event MusicEvent) {
 	}
 }
 func (m *Music) event(kind string, cue int, valid bool, reason string) {
+	if _, ending := endingOverlay(m.o); ending && kind != "handoff" {
+		return
+	}
 	m.record(MusicEvent{kind, cue, m.o.Steps(), m.o.Cycles(), valid, reason})
 }
 
 func (m *Music) Bind() {
+	if _, ending := endingOverlay(m.o); ending {
+		if !m.endingRetired {
+			m.endingRetired = true
+			m.bound = false
+			m.introBound = false
+			m.event("handoff", 0, true, "PAE.AY")
+		}
+		return
+	}
 	m.bindIntro()
 	if m.bound || m.BindingError != "" {
 		return

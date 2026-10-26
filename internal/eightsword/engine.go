@@ -16,16 +16,23 @@ type Options struct {
 	HD                  bool
 }
 type Engine struct {
-	sourceEnabled     bool
-	sourceInstall     func()
-	sourceRender      func() *image.RGBA
-	sourceClose       func()
-	renderFault       *OwnedRenderFault
-	sourceHeldFrame   *image.RGBA
-	sourceHeldFrames  uint64
-	sourceDirectCalls uint64
-	sourceFrames      uint64
-	sourceMetadata    sourceFrameMetadata
+	endingAssets         *endingAssets
+	ending               *endingAdapter
+	EndingError          string
+	endingInputRetired   bool
+	endingInputSupported bool
+	endingInputDropped   [3]int
+	endingInputStep      uint64
+	sourceEnabled        bool
+	sourceInstall        func()
+	sourceRender         func() *image.RGBA
+	sourceClose          func()
+	renderFault          *OwnedRenderFault
+	sourceHeldFrame      *image.RGBA
+	sourceHeldFrames     uint64
+	sourceDirectCalls    uint64
+	sourceFrames         uint64
+	sourceMetadata       sourceFrameMetadata
 
 	Oracle                     *oracle.Oracle
 	Tracker                    *Tracker
@@ -209,6 +216,14 @@ func Open(opt Options) (*Engine, error) {
 		}
 	}
 	e.sourceEnabled = e.HD
+	if e.sourceEnabled {
+		e.endingAssets, err = loadEndingAssets(opt.Assets, opt.Root)
+		if err != nil {
+			e.EndingError = err.Error()
+		} else if len(e.endingAssets.fallbacks) > 0 {
+			e.EndingError = strings.Join(e.endingAssets.fallbacks, "；")
+		}
+	}
 	e.Music = newMusic(o, pam, opt.Assets, e.HD)
 	if e.HD {
 		e.Intro, err = loadIntroTitle(o, opt.Assets, opt.Root)
@@ -288,6 +303,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 				e.PAMLoaded = true
 			}
 		}
+		if err := e.syncEndingInput(); err != nil {
+			return err
+		}
 		if e.Tracker != nil {
 			e.Tracker.Bind()
 		}
@@ -348,6 +366,9 @@ func (e *Engine) Advance(n uint64) error {
 				e.PAMLoaded = true
 			}
 		}
+		if err := e.syncEndingInput(); err != nil {
+			return err
+		}
 		if e.Tracker != nil {
 			e.Tracker.Bind()
 		}
@@ -386,11 +407,11 @@ func (e *Engine) Advance(n uint64) error {
 }
 func (e *Engine) Key(scan uint8, down bool) error {
 	route := "bios"
-	if e.PAMLoaded {
+	if e.PAMLoaded && !e.inEndingPhase() {
 		route = "irq1"
 	}
 	e.InputEvents = append(e.InputEvents, InputEvent{e.Oracle.Steps(), scan, down, route})
-	if e.PAMLoaded {
+	if route == "irq1" {
 		if down {
 			e.Oracle.KeyDown(scan)
 		} else {

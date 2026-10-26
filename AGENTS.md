@@ -1,5 +1,11 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+結局正式候選依[053 READY契約](docs/spec/053-ending-hd.md#來源場景與三字型正式接入契約)。[素材載入](internal/eightsword/ending_assets.go)、[純Go場景](internal/eightsword/ending_scene.go)、[來源介接](internal/eightsword/ending_adapter.go)與[輸入轉移](internal/eightsword/ending_input.go)接Engine，PAE階段停用PAM舊來源／音樂觀測，三字型沿FontID。候選已通過完整演出與Esc成對客體／PCM及15份獨立Frame；正式r56保持，GUI Draw及原子提升待做，不把候選當已發行。
+[候選素材準備](tools/prepare-hd-ending.py)在固定Pillow容器以`--project <唯讀專案> --out <ending-hd-r1內新目錄>`核對原425檔、三字型、37來源及END7正確r2，產生433項候選。425舊檔使用相對唯讀連結，須透過`/project`別名讀取；正式提升前實體化，不當獨立交付包。現行assets-candidate-r2；r1別名錯誤保留歷史，不重用。
+[私有核心準備](tools/prepare-ending-input-core.py)用相同`--project`與`--out <新核心revision>`，核對原919檔後只加入[Machine輸入轉移](tools/ending-input-machine.go)與[Oracle API](tools/ending-input-oracle.go)，共921檔。只在原版PAE交接後且INT09h為0080:0024時丟棄無接收者的舊硬體鍵／定時鍵／held集合，不改CPU、記憶體或BIOS鍵；其他向量拒絕。原runtime-direct-r1不改，不繞過事件配額。
+[結局直接Go圖片](internal/eightsword/ending_direct.go)、[遮罩](internal/eightsword/ending_masked.go)與[字模](internal/eightsword/ending_glyphs.go)沿已驗原始ABI及雙配額接管；[Engine測試](internal/eightsword/ending_runtime_test.go)在Go1.24.13及上述私有核心用`EIGHTSWORD_TEST_ORIGINAL`、`EIGHTSWORD_TEST_ENDING_ASSETS`、`EIGHTSWORD_TEST_ENDING_OUT`執行`go test ./internal/eightsword -run '^TestEnding'`。加`EIGHTSWORD_TEST_ENDING_REQUIRE_DIRECT=1`要求實際圖片／遮罩／字模都有接管；`EIGHTSWORD_TEST_ENDING_OLD_CONTROL`可核對先前未清理控制state，缺輸入明確Skip。
+[Engine獨立核對](tools/audit-ending-engine.py)在固定Pillow容器用`--project <唯讀專案> --out <新JSON>`預設核對runtime-r3四條成對流程，`--runtime`／`--sources`／`--binary`可明列其他不可變建置、921私有核心、433候選與原425檔，從原始解碼／字圖重建15張完整Frame。[README候選比較工具](tools/prepare-ending-engine-overview.py)用`--project`、`--audit <已通過收據>`、`--out <新PNG>`整理四場景三字型；原版欄是已與原版RGB核對的來源重建，其他為實際Engine Frame，未冒稱GUI Draw。
+
 [原版結局交接探針](tools/probe-ending-handoff.go)在既有Go1.24.13容器、唯讀runtime-direct-r1核心建置，使用`--root <唯讀原版> --out <新研究目錄>`走普通冷啟動／新遊戲／退出。`--force-ending`只在原版收尾入口改DS相對56E2h為1，再讓原版自行覆蓋載入PAE；不冒稱自然通關。`--follow --catalog <ending-hd-r1>`跟到DOS退出，`--escape-stage END5.AY --escape-route bios`驗真正BIOS Esc；irq1選項只作失敗輸入路由的診斷。[生命週期核對](tools/audit-ending-lifecycle.py)在固定Pillow容器用`--project <唯讀專案> --out <新JSON>`核對三份不可變建置、五條原版流程、原版遠指標與完整來源。範圍與下一步見[053](docs/spec/053-ending-hd.md#原版覆蓋交接與bios-esc的動態證據)，不改正式r56。
 
 [PAE字模Go接管](tools/research-ending-glyphs.go)沿053 DRAFT，以原生Go位元混合批次處理中文字及ASCII列，保留相容平面、latch與原版呼叫效果。[呼叫核對](tools/probe-ending-glyphs.go)在既有Go1.24.13容器與唯讀runtime-direct-r1核心合併建置，用`--project <唯讀專案> --out <新JSON>`驗24案；不在主機執行。[準備器](tools/prepare-ending-glyphs.py)在固定Pillow容器用`--project`與`--out <新研究目錄>`從封存masked-build-r1建立私有來源；[獨立核對](tools/audit-ending-glyphs.py)用相同參數核對完整成對演出與來源重建。只驗已列字模及事件配額，未接正式r56；位址、公式與限制見[053](docs/spec/053-ending-hd.md#字模go列批次研究)。
@@ -21,7 +27,7 @@
 
 結局素材入口：[053](docs/spec/053-ending-hd.md)。[來源準備器](tools/prepare-ending-hd.py)在固定Pillow容器用`--project <唯讀專案> --out <既有graphics-first內新目錄>`核對33筆彩色與4筆單色來源，完整保留原像素及顯示比例參考。先處理全幅END7，原圖、完整提示與收據留本機；生成與正式接入分開，不能將受控呈現稱為自然通關。
 [結局美術保存與標題核對](tools/prepare-ending-hd-art.py)在相同容器用`--project <唯讀專案> --batch <ending-hd-r1> --image <唯讀生成PNG> --out <新候選目錄>`，保留END7完整PNG與提示，核對END8／TIT2逐byte相同並沿用三種字圖。比較圖只是候選素材，不冒稱結局端已接入。
-END7原r1漏畫兩名人物，已依[構圖勘誤](docs/spec/053-ending-hd.md#end7人物構圖勘誤)拒絕提升；修正r2原PNG與完整提示另存ending-hd-r1，尚未接入。owned-inputs-r1及舊執行收據保留技術歷史，不把它們提升為正確美術。README改用排除錯稿的研究對照及新人物候選。
+END7原r1漏畫兩名人物，已依[構圖勘誤](docs/spec/053-ending-hd.md#end7人物構圖勘誤)拒絕提升；修正r2原PNG與完整提示另存ending-hd-r1，已接上列Engine候選，正式r56尚未提升。owned-inputs-r1及舊執行收據保留技術歷史，不把它們提升為正確美術。README現行Engine候選對照使用正確r2，舊漏人錯稿只保留歷史。
 [結局啟動探針](tools/probe-ending-source.go)只在固定Go容器與唯讀`workplace/player/runtime-direct-r1/src`核心建置，以`--root <唯讀原版> --out <新研究目錄> --steps <最多200000000>`記錄PAE.AY的有界獨立啟動、原生畫面與本機RAM。研究參數用`--cmdline`明列，`--state`只續跑同一診斷快照。沒有HD、按鍵或客體補丁，直接啟動不冒稱自然通關；來源與限制見053。
 
 五頁共用的深藍故事背景同步修正依[014](docs/spec/014-intro-story-background.md#深藍故事頁人物同步修正)，研究留story-art-r1/blue-person-correction-r4。只沿已更正的人物、自然握劍與女主角回頭方向修正白馬誤畫，保持既有深藍／金字；海報已有人物，不重畫。生成原PNG沿既有前導逐輪保存器的`--variant 4`與`--request request-r4.json`保存，圖片審查與正式接入分開。

@@ -40,10 +40,22 @@ func sourceIntroStage(kind string) string {
 func (e *Engine) initSourceRenderer() {
 	pamInstall, pamFrame, pamClose := e.newSourcePAM()
 	introInstall, introFrame, introClose := e.newSourceIntro()
+	endingInstall, endingFrame, endingClose := e.newSourceEnding()
 	directInstall := e.sourceDirectInstall()
-	e.sourceInstall = func() { introInstall(); pamInstall(); directInstall() }
-	e.sourceClose = func() { introClose(); pamClose() }
+	e.sourceInstall = func() {
+		if e.inEndingPhase() {
+			endingInstall()
+			return
+		}
+		introInstall()
+		pamInstall()
+		directInstall()
+	}
+	e.sourceClose = func() { introClose(); pamClose(); endingClose() }
 	e.sourceRender = func() *image.RGBA {
+		if e.inEndingPhase() {
+			return endingFrame()
+		}
 		if im := pamFrame(); im != nil {
 			e.sourceMetadata = sourceFrameMetadata{Frame: im, Kind: "pam"}
 			return im

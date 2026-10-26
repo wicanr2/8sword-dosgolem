@@ -52,7 +52,11 @@ func (p *sourceAdapter) reject(reason string)      { p.e.sourceReject("pam", rea
 func (p *sourceIntroAdapter) reject(reason string) { p.e.sourceReject("intro", reason) }
 
 func (p *sourceAdapter) onCall(at oracle.Addr, fn func(*oracle.Oracle)) {
-	p.e.Oracle.OnCall(at, func(o *oracle.Oracle) { p.e.sourceGuardCall(func() { fn(o) }) })
+	p.e.Oracle.OnCall(at, func(o *oracle.Oracle) {
+		if !p.e.inEndingPhase() {
+			p.e.sourceGuardCall(func() { fn(o) })
+		}
+	})
 }
 func (p *sourceIntroAdapter) onCall(at oracle.Addr, fn func(*oracle.Oracle)) {
 	p.e.Oracle.OnCall(at, func(o *oracle.Oracle) { p.e.sourceGuardCall(func() { fn(o) }) })
@@ -85,7 +89,20 @@ func (e *Engine) sourceGuardObserver(ob PresentationObserver) func() {
 	})
 }
 
-func (p *sourceAdapter) observe(ob PresentationObserver) func() { return p.e.sourceGuardObserver(ob) }
+func (p *sourceAdapter) observe(ob PresentationObserver) func() {
+	return p.e.sourceGuardObserver(PresentationObserver{
+		Write: func(v PresentationWrite) {
+			if !p.e.inEndingPhase() && ob.Write != nil {
+				ob.Write(v)
+			}
+		},
+		ModeChange: func(v PresentationModeChange) {
+			if !p.e.inEndingPhase() && ob.ModeChange != nil {
+				ob.ModeChange(v)
+			}
+		},
+	})
+}
 func (p *sourceIntroAdapter) observe(ob PresentationObserver) func() {
 	return p.e.sourceGuardObserver(ob)
 }
