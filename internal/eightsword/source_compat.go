@@ -81,7 +81,7 @@ func compatEndingLayouts() []compatRasterLayout {
 }
 
 func compatRasterInstruction(m *dg.Machine, l compatRasterLayout, site compatRasterSite) (bool, string) {
-	if m.CPU.Halted || !m.CycleClock || !m.CPU.DOSBoxCost || m.VideoMode() != 0x0e || m.CPU.Flags&0x100 != 0 {
+	if m.CPU.Halted || !sourceAtomicClockReady(m) || m.VideoMode() != 0x0e || m.CPU.Flags&0x100 != 0 {
 		return false, "clock-or-mode"
 	}
 	if (site.Kind == compatSourceInk || site.Kind == compatRestoreRow) && m.CPU.Flags&dg.DF != 0 {
@@ -114,7 +114,7 @@ func compatRasterInstruction(m *dg.Machine, l compatRasterLayout, site compatRas
 		m.CPU.R[dg.DI] += n
 		m.CPU.R[dg.CX] = 0
 		m.CPU.IP += 2
-		m.CPU.Cycles += 1 + uint64(n)
+		m.CPU.Cycles += sourceAtomicCycles(m, 1+uint64(n), 3+5*uint64(n))
 		return true, ""
 	}
 	if site.Kind == compatLatchRead {
@@ -124,7 +124,7 @@ func compatRasterInstruction(m *dg.Machine, l compatRasterLayout, site compatRas
 		value := m.ReadHostPlanar(dg.VideoRead{Step: m.Steps, CS: m.CPU.Seg[dg.CS], IP: m.CPU.IP, Offset: at})
 		m.CPU.R[dg.AX] = m.CPU.R[dg.AX]&255 | uint16(value)<<8
 		m.CPU.IP += 3
-		m.CPU.Cycles++
+		m.CPU.Cycles += sourceAtomicCycles(m, 1, 7)
 		return true, ""
 	}
 	if gc[3]&31 != 0 || gc[5]&3 != 0 {
@@ -179,7 +179,7 @@ func compatRasterInstruction(m *dg.Machine, l compatRasterLayout, site compatRas
 		m.CPU.R[dg.DI]++
 	}
 	m.CPU.IP += size
-	m.CPU.Cycles += cycles
+	m.CPU.Cycles += sourceAtomicCycles(m, cycles, 7)
 	return true, ""
 }
 
@@ -250,4 +250,18 @@ func (e *Engine) sourceCompatInstall() func() {
 			intro = true
 		}
 	}
+}
+
+// Only the two established clock/cost pairs are admitted. Batch plans still
+// require the live clock; step replay uses these atomic Go operations.
+func sourceAtomicClockReady(m *dg.Machine) bool {
+	return m.CycleClock == m.CPU.DOSBoxCost
+}
+
+// Fixed dosgolem category costs, not a hardware timing model or opcode decoder.
+func sourceAtomicCycles(m *dg.Machine, live, instruction uint64) uint64 {
+	if m.CPU.DOSBoxCost {
+		return live
+	}
+	return instruction
 }

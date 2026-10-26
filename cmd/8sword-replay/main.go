@@ -27,7 +27,7 @@ func main() {
 	root := flag.String("root", "", "read-only original game root")
 	assets := flag.String("assets", "", "prepared HD assets")
 	out := flag.String("out", "", "new receipt directory")
-	hd := flag.Bool("hd", true, "enable the production Noto compositor")
+	hd := flag.Bool("hd", true, "enable the native Go source renderer")
 	until := flag.Uint64("until", 250000000, "absolute final instruction")
 	frameEvery := flag.Uint64("frame-every", 1000000, "continuous compositor sampling interval")
 	flag.Parse()
@@ -35,6 +35,12 @@ func main() {
 	engine, err := eightsword.Open(eightsword.Options{Root: *root, Assets: *assets, Saves: filepath.Join(*out, "scratch"), HD: *hd})
 	check(err)
 	defer engine.Close()
+	var nativePixelWrites uint64
+	defer engine.ObservePresentation(eightsword.PresentationObserver{Write: func(w eightsword.PresentationWrite) {
+		if w.Step == engine.Oracle.Steps() {
+			nativePixelWrites++
+		}
+	}})()
 	if engine.AssetError != "" {
 		fmt.Fprintln(os.Stderr, "HD fallback:", engine.AssetError)
 	}
@@ -92,6 +98,8 @@ func main() {
 	report["sampled_frames"] = frames
 	report["normal_input_replay"] = true
 	report["snapshot_loaded"] = false
+	report["clock_mode"] = "instruction"
+	report["native_pixel_writes"] = nativePixelWrites
 	b, err := json.MarshalIndent(report, "", "  ")
 	check(err)
 	check(os.WriteFile(filepath.Join(*out, "receipt.json"), append(b, '\n'), 0644))

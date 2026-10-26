@@ -160,7 +160,7 @@ func (p *sourceRevealPoint) commit(m *dg.Machine, b oracle.HostWorkLimits) error
 // same typed pixel; the x86 video-store instruction is never executed.
 func sourceRevealPixelInstruction(m *dg.Machine) (sourceRevealPixel, bool) {
 	r, s := m.CPU.R, m.CPU.Seg
-	if m.CPU.Halted || !m.CycleClock || !m.CPU.DOSBoxCost || m.VideoMode() != 0x13 || s[dg.CS] != 0xa3d || m.CPU.IP != 0xb6 || s[dg.ES] != 0xa000 || s[dg.DS] != 0x6000 || r[dg.BX] != 768 || r[dg.SI] >= 64000 {
+	if m.CPU.Halted || !sourceAtomicClockReady(m) || m.VideoMode() != 0x13 || s[dg.CS] != 0xa3d || m.CPU.IP != 0xb6 || s[dg.ES] != 0xa000 || s[dg.DS] != 0x6000 || r[dg.BX] != 768 || r[dg.SI] >= 64000 {
 		return sourceRevealPixel{}, false
 	}
 	if fmt.Sprintf("%x", sha256.Sum256(m.Mem[0xa3d0:0xa49f])) != sourceRevealCodeSHA || byte(r[dg.AX]) != m.Mem[0x60300+uint32(r[dg.SI])] {
@@ -169,7 +169,7 @@ func sourceRevealPixelInstruction(m *dg.Machine) (sourceRevealPixel, bool) {
 	pixel := sourceRevealPixel{int(r[dg.SI]), byte(r[dg.AX])}
 	m.Mem[0xa0000+pixel.At] = pixel.Color
 	m.CPU.IP += 3
-	m.CPU.Cycles++
+	m.CPU.Cycles += sourceAtomicCycles(m, 1, 7)
 	return pixel, true
 }
 

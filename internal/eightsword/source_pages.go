@@ -50,7 +50,7 @@ func (l sourcePageLayout) rep() oracle.Addr {
 // The admitted REP performs native array clear/copy; no x86 Step is called.
 // Source adapters apply their already typed page command at the original RETF.
 func sourcePageInstruction(m *dg.Machine, l sourcePageLayout) (bool, error) {
-	if m.CPU.Halted || !m.CycleClock || !m.CPU.DOSBoxCost || m.VideoMode() != 0x0e || m.CPU.Flags&(dg.DF|0x100) != 0 {
+	if m.CPU.Halted || !sourceAtomicClockReady(m) || m.VideoMode() != 0x0e || m.CPU.Flags&(dg.DF|0x100) != 0 {
 		return false, nil
 	}
 	if uint32(m.CPU.Seg[dg.CS])*16+uint32(m.CPU.IP) != l.rep().Linear() {
@@ -98,7 +98,7 @@ func sourcePageInstruction(m *dg.Machine, l sourcePageLayout) (bool, error) {
 	m.CPU.R[dg.DI] += count
 	m.CPU.R[dg.CX] = 0
 	m.CPU.IP += 2
-	m.CPU.Cycles += 1 + uint64(count)
+	m.CPU.Cycles += sourceAtomicCycles(m, 1+uint64(count), 3+5*uint64(count))
 	return true, nil
 }
 

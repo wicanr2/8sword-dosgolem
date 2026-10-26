@@ -1746,3 +1746,17 @@ README只更新模式與原生接管範圍，歷程留本檔，詳細位址與�
 compat-render-audit-r1與compat-render-promotion-r1通過後，正式七程式提升source-candidate-compat-r2／170輸入。render-r5及compat-r1完整來源／程式保持，923／921／919核心、r62的455素材與158原版檔不變。README改列相容像素已接管與抽驗界線，CONTEXT更新唯一現況，AGENTS索引正式入口與核對工具。其他音畫與未驗玩家分支維持原範圍，不宣稱所有閃爍消失、整體FPS或新發行版。
 
 本輪最終完整性、工具快照與清理記compat-final-integrity-r1.json，提交及遠端讀回記compat-publication-r1.json。所有工作均在有界非root Docker內，沒有建立新映像或清理其他專案。完整素材及原始遊戲留本機。
+
+## 2026-10-26：舊步數時鐘重播支援Go HD
+
+使用者要求舊8sword-replay支援同一HD路徑。命中規格閘門、逆向技能與文件分工，從compat-r2／170輸入、923核心及r62／455素材接續。CONTEXT先列唯一續作現況。查固定核心的分類週期與單指令事件順序，047先DRAFT研究，經165原版控制與250M步來源重播後升READY，才接正式來源。
+
+原生Go像素操作增加分類成本選擇，保留舊步數時鐘、原固定輸入與每次Machine.Step的事件順序。沒有切換成即時時鐘，沒有改核心、原語bytes、規則或素材。多指令批次仍只用原本即時時鐘；步數模式由Go單指令處理實際像素。CLI新增時鐘及原版像素寫入診斷，原版模式保留原途徑。
+
+私有研究165原語22.736秒、來源重播64.91秒通過。正式候選含PCM比較後，步數原語與250M步重播89.699秒、即時回歸57.722秒及vet通過，無跳過。250來源Frame與25完整state檢查點同原版CPU，混音PCM成對相同。實際HD／原版CLI各250M步，完整state同7b24c87a…e677，原版像素寫入4194129／0；249取樣加最後Frame，10張HD PNG保留，人物／地圖代表已看。
+
+初稿的CLI驗收清單含F2，查原固定輸入後確認只有F1、F7取消及移動，已修正契約與現況，不加按鍵改變舊序列。軍隊、真正存讀、完整結局及GUI沿上一輪各自收據，不冒稱本輪新驗。研究準備器保留已執行版本，現行版本能沿已接正式來源建立新副本，避免再次注入同一helper。
+
+step-clock-audit-r1及step-clock-promotion-r1通過後，正式七程式提升source-candidate-step-clock-r1／171輸入。compat-r2來源／七程式、923／921／919核心、原版158檔與455素材保持。README加入舊Docker重播入口，047記限定CONFORMED與兩種時鐘範圍，AGENTS索引準備、控制與獨立核對工具，CONTEXT更新目前真相。沒有新增失敗重跑或Docker映像。
+
+最終來源、擁有權、文件入口與工具封存記step-clock-final-integrity-r1.json；提交與遠端讀回記step-clock-publication-r1.json。所有本專案工作容器有界結束，其他專案容器與資源不動。未宣稱整體FPS、自然通關或全HD完成，接續其他音畫與未驗玩家分支。

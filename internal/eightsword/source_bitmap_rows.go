@@ -39,7 +39,7 @@ func (l sourceBitmapRowLayout) rep() oracle.Addr {
 }
 
 func sourceBitmapRowInstruction(m *dg.Machine, l sourceBitmapRowLayout) (bool, error) {
-	if m.CPU.Halted || !m.CycleClock || !m.CPU.DOSBoxCost || m.VideoMode() != 0x0e || m.CPU.Flags&(dg.DF|0x100) != 0 {
+	if m.CPU.Halted || !sourceAtomicClockReady(m) || m.VideoMode() != 0x0e || m.CPU.Flags&(dg.DF|0x100) != 0 {
 		return false, nil
 	}
 	if uint32(m.CPU.Seg[dg.CS])*16+uint32(m.CPU.IP) != l.rep().Linear() {
@@ -83,7 +83,7 @@ func sourceBitmapRowInstruction(m *dg.Machine, l sourceBitmapRowLayout) (bool, e
 	m.CPU.R[dg.DI] += count
 	m.CPU.R[dg.CX] = 0
 	m.CPU.IP += 2
-	m.CPU.Cycles += 1 + uint64(count)
+	m.CPU.Cycles += sourceAtomicCycles(m, 1+uint64(count), 3+5*uint64(count))
 	return true, nil
 }
 

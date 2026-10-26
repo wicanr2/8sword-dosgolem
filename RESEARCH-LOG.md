@@ -2071,3 +2071,17 @@ PAM輸入為PAM.AY，SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e
 正常原版CPU控制與正式HD候選，逐段Frame、完整狀態與PCM相同；像素寫入542662／0，HD另有158次Go相容寫入。候選r1完整結局及Esc的state／PCM與前版相同，34個PNG逐RGBA相同。候選r2只加來源角色提交計數及GUI觀測，四份來源差異由獨立核對器限制，像素演算法、核心及結局來源相同；r2正常對照與實際GUI存讀另驗。結局收尾仍是經原版入口設定收尾旗標的受控案例，不稱自然勝利。
 
 `compat-render-audit-r1.json` SHA `66b211f4e717d613ed49127471cb7ca15f1c78beae5a0810e979d45dfd372306`與`compat-render-promotion-r1.json` SHA `84cd59ac30414e590ebb7397fa0adbdb8845ab814f5b08e87e39d25f767a4b99`為本次提升依據。正式source-candidate-compat-r2／170輸入與923核心、455素材均保持可重建。未推論全部分支可達性、整體FPS或自然通關。
+
+## 2026-10-26：步數時鐘沿用Go HD像素操作
+
+使用者要求解除舊重播工具限制。現行契約與固定核心來源SHA見[047步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。核心仍是runtime-render-r1的923檔，原始遊戲、原語bytes與素材來源沿前輪保持；本輪沒有新IDA分析或修改資料庫。工具為Go1.24.13及Pillow11.3.0，資料均在Docker唯讀掛載。
+
+已證實：固定核心CPU的分類成本由ops.go、cycles.go、modrm.go及string.go直接定義。已識別的段前綴記憶體byte操作與MOVSB均為7，REP為3+5N；原即時時鐘仍為1、2與1+N。Machine.Step的tick／輸入與Steps增加在單指令掛點之前，Go補週期不改Steps，因此步數IRQ及固定鍵盤輸入保持原邊界。精確度限固定dosgolem執行契約，未驗實機硬體精確度。
+
+已證實：step-clock-r1的165組原版控制通過，包含64清屏／搬頁、20圖像列、36字形、14遮罩、28單點／還原及3前導單點；每個Go操作與原生返回後的完整序列化狀態相同。測試用縮短的原步數IRQ間隔。多指令批次仍拒絕步數時鐘，Go單指令操作接管實際像素，保留原版非像素控制迴圈。研究執行來源以executed-inputs.json保存格式化後SHA，原準備器另存私有副本，不把後續工具修改冒稱當時來源。
+
+正式候選沿舊固定輸入250000000步，250份來源Frame、25個完整state檢查點及取樣混音PCM全同原版CPU控制。固定DOS時刻12:00，PCM SHA fab71e1e329faa8d7e122850d3a79b3f2e8f8a85d64ed122b089fb102687c762；候選原語與重播89.699秒通過。即時時鐘及原版模式回歸57.722秒、vet通過。兩個已驗時鐘／成本組合以外仍拒絕，不猜補混用設定。
+
+兩組真正CLI保留原預設時鐘及固定輸入，各250000000步，完整state SHA同為7b24c87ad0fbbf5c9695794710c4db1d2f37e2d56ed093d056d44c78b081e677，輸入、EXEC及檔案操作相同。原版CPU像素寫入4194129／0；HD有513065次Go相容操作、4清屏、16搬頁、81128圖像列及64000揭圖點。每側249次週期取樣另加最後Frame；HD保留10張PNG，人物與地圖已看。原固定序列沒有F2，本輪不稱新軍隊頁或存讀驗收。
+
+step-clock-audit-r1.json SHA 6e7cef38f948a52d66650025ca4d57fa6228e193cf57a1d6ecda07bcc0eddfa3及step-clock-promotion-r1.json SHA 42090cf88d3a98d9c577a93a2e635dd21900f78e14f1049cc1cc198e27084722通過，正式提升171輸入七程式。這項新證據解除前輪步數工具的HD限制；原版繪圖、完整素材、舊程式與核心保持。未延伸為新戰鬥、結局、GUI、整體FPS或全遊戲分支聲明。

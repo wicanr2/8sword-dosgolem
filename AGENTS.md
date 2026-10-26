@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+步數時鐘Go HD已依[047限定驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)正式提升171輸入七程式，沿923核心與r62／455素材。[隔離準備器](tools/prepare-step-clock.py)仍以`--project <唯讀專案> --out <既有render-takeover-r1內新目錄>`建立研究副本；[研究控制](tools/research-step-clock_test.go)保留舊CLI固定輸入，不切換即時時鐘。在Go1.24.13容器設`EIGHTSWORD_GLYPH_PROJECT`、原版與素材變數、`EIGHTSWORD_TEST_STEP_CLOCK=1`，執行165個原語控制；重播另設`EIGHTSWORD_STEP_CLOCK_OUT`。正常入口為`bash tools/player.sh replay hd <新名稱> -assets /player/assets-painted-r62`，原版改`replay native`。
+
+[步數時鐘獨立核對](tools/audit-step-clock.py)在固定Pillow容器以`--project <唯讀專案> --out <既有render-takeover-r1內新JSON>`核對171固定輸入、923核心、165原版控制、250M步重播、原版／HD CLI及即時時鐘回歸。[正式重播控制](internal/eightsword/source_step_clock_test.go)同時核對來源Frame、完整state與PCM；正式提升另交既有promote-render-takeover.py，不改素材或前版。
+
 HD相容像素依[047 READY契約](docs/spec/047-hd-scene-renderer.md#hd相容像素操作的ready契約)，[正式Go操作](internal/eightsword/source_compat.go)與[原版控制](internal/eightsword/source_compat_test.go)在923檔核心執行。Go處理字形、遮罩、單點與隱藏頁矩形還原，事件邊界不借原版像素指令；原版模式不裝掛點。設`EIGHTSWORD_GLYPH_PROJECT`、`EIGHTSWORD_TEST_ORIG`及`EIGHTSWORD_TEST_SOURCE_ASSETS`後測`TestSourceCompatNative`。正式提升另依限定驗收。
 
 [相容像素獨立核對](tools/audit-render-compat.py)在固定Pillow容器以`--project <唯讀專案> --out <既有render-takeover-r1內的新JSON>`核對候選170輸入、923核心、455素材、78原版控制、零原版像素寫入、完整結局／Esc與真正視窗存讀。[原子提升](tools/promote-render-takeover.py)沿核對收據提升七程式，不改前版或素材；具體候選與收據見047。

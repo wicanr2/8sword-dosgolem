@@ -16,6 +16,11 @@ func sourcePageFixture(t *testing.T, project, phase string, l sourcePageLayout, 
 	m := dg.New()
 	m.SetVideoMode(0x0e)
 	m.SetDOSBoxCycles(3000)
+	if os.Getenv("EIGHTSWORD_TEST_STEP_CLOCK") == "1" {
+		m.SetDOSBoxCycles(0)
+		m.IRQ0Base = 128
+		m.SetDOSBoxCycles(0)
+	}
 	m.CPU.Cycles = 164000 // REP crosses the first cycle-clock IRQ deadline.
 	m.VGAFrameEvery = 3
 	cs, ds := uint16(0x14d2), uint16(0x1e88)
