@@ -12,6 +12,7 @@ import (
 
 type ownedPixel struct {
 	Color           uint8
+	ActorBase       uint8
 	Material, Actor graphicCell
 	Effect          graphicCell
 	EffectBase      uint8
@@ -319,7 +320,7 @@ func (p *sourceAdapter) bind() {
 						}
 					}
 				}
-				if !known || background != art.BattleActors[actor] {
+				if (!known && !itemIconSource(actor, c.entry, w, h)) || background != art.BattleActors[actor] {
 					actor = 0
 				}
 			}
@@ -372,6 +373,9 @@ func (p *sourceAdapter) bind() {
 						}
 						if fxID == 0 {
 							if actor != 0 {
+								if itemIconID(actor) && !itemIconID(pix.Actor.ID) {
+									pix.ActorBase = pix.Color
+								}
 								pix.Actor = graphicCell{actor, uint32(local)}
 							} else if mask {
 								pix.Actor = graphicCell{}

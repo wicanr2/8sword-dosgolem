@@ -122,11 +122,16 @@ func prepareOwnedBatch(s *ownedScene, art *GraphicsAssets, palette *presentation
 	}
 	baseColor := func(c ownedPixel, x, y int) [3]uint8 {
 		color := canonicalEGA[c.Color&15]
+		paletteIndex := c.Color & 15
 		if c.Effect.ID != 0 {
 			color = canonicalEGA[c.EffectBase&15]
 		}
+		if itemIconID(c.Actor.ID) && valid(c.Actor, actors) != nil {
+			paletteIndex = c.ActorBase & 15
+			color = canonicalEGA[paletteIndex]
+		}
 		if palette != nil && sidebar {
-			if next, ok := palette.backdrop(c.Color&15, x, y, c.Text, s.Glyphs[c.Text.ID], true); ok {
+			if next, ok := palette.backdrop(paletteIndex, x, y, c.Text, s.Glyphs[c.Text.ID], true); ok {
 				color = next
 			}
 		}

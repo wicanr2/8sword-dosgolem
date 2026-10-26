@@ -61,7 +61,7 @@ func sampleActor(source image.Image) (*image.RGBA, error) {
 }
 
 func sampleActorSize(source image.Image, nativeWidth, nativeHeight int) (*image.RGBA, error) {
-	if !((nativeWidth == 64 && nativeHeight == 25) || (nativeWidth == 88 && nativeHeight == 50)) {
+	if !((nativeWidth == 64 && nativeHeight == 25) || (nativeWidth == 88 && nativeHeight == 50) || (nativeWidth == 32 && nativeHeight == 16)) {
 		return nil, fmt.Errorf("HD 人物尺寸未驗證")
 	}
 	width, height := nativeWidth*3, nativeHeight*6

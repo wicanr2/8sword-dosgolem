@@ -37,6 +37,7 @@ type Engine struct {
 	BattleBackgroundError      string
 	BattleBackgroundBatchError string
 	BuildingsError             string
+	ItemIconsError             string
 	RecruitmentBuildingError   string
 	MapEncounterError          string
 	MapEncounter10Error        string
@@ -171,6 +172,9 @@ func Open(opt Options) (*Engine, error) {
 						}
 						if buildingErr := loadBuildings(opt.Assets, opt.Root, art); buildingErr != nil {
 							e.BuildingsError = buildingErr.Error()
+						}
+						if itemErr := loadItemIcons(opt.Assets, opt.Root, art); itemErr != nil {
+							e.ItemIconsError = itemErr.Error()
 						}
 						if armyErr := loadArmyMan21(opt.Assets, opt.Root, art); armyErr != nil {
 							e.ArmyMan21Error = armyErr.Error()
@@ -557,6 +561,7 @@ func (e *Engine) Status() map[string]any {
 	out["battle_background_error"] = e.BattleBackgroundError
 	out["battle_background_batch_error"] = e.BattleBackgroundBatchError
 	out["buildings_error"] = e.BuildingsError
+	out["item_icons_error"] = e.ItemIconsError
 	out["recruitment_building_error"] = e.RecruitmentBuildingError
 	out["map_encounter_error"] = e.MapEncounterError
 	out["map_encounter_10_error"] = e.MapEncounter10Error

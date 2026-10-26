@@ -1,5 +1,12 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+MAN器物與武器圖示依[052](docs/spec/052-man-item-icons.md)，[參考準備器](tools/prepare-man-icons.py)在固定Pillow容器使用`--project`唯讀專案與`--out`既有graphics-first內新目錄，核對MAN.AY的16筆32×16六平面圖示，逐張保存原圖參考與完整提示。第0–11主角及20肖像不重畫，不由圖形猜劍名或能力；圖片審查與正式接入分開。
+[圖示保存工具](tools/save-man-icon.py)在相同Pillow容器使用`--batch <man-icons-r1>`、`--image <唯讀生成PNG>`、`--index <原版記錄>`與`--variant <1或2>`，保存完整PNG、實際提示與來源SHA。首稿不覆寫；劍刃消除像素階梯的提示修訂另存r2，原版刻意的彎曲與分叉保留，不把低解析階梯畫成鋸齒。
+[器物候選匯入](tools/import-man-icons.py)在固定Pillow容器用`--project`唯讀專案、`--batch`圖像目錄、`--base`r53、`--out`新候選與`--review`新研究目錄，核對16份生成收據，產生96×96獨立快取及原版／HD對照。425檔保留391舊檔，圖片與正式登錄分開。
+[器物載入器](internal/eightsword/item_icons.go)與[抽驗](internal/eightsword/item_icons_test.go)依052 READY接固定ID852–867。Go容器使用`EIGHTSWORD_TEST_ITEMS_ASSETS`候選、`EIGHTSWORD_TEST_ITEMS_BASE`r53、`EIGHTSWORD_TEST_ITEMS_CACHE`man-icons-registration-r2及既有`EIGHTSWORD_TEST_ORIG`；`EIGHTSWORD_TEST_ITEMS_OUT`為新受控輸出目錄。執行`go test ./internal/eightsword -run '^TestItems' -timeout=480s -count=1`，核對器物與劍形在材質／自有純色底、還原及RAM恢復，不等自然取得。原版繪圖來源必須整筆相符，只對本組32×16圖示允許Color底，不放寬其他角色。
+[器物收尾](tools/finish-man-icons.py)在固定Pillow容器使用`audit --project --research <graphics-first> --out <新收據>`獨立重建八張全幅；`promote --player --audit --out <新提升收據>`在通過後才提升r54；`overview --research --audit --promotion --out <docs/images>`保存縮小比較及來源JSON。完整原圖留本機，原始玩法與其餘待選分支保持。
+052已限定CONFORMED，r54／425檔與139份來源的七程式正式提升，MAN29筆均已登錄；不重畫或逐物品等待。原版名稱／能力／取得仍未知。純色底以ActorBase保存來源色碼前態，詳052追加；本組八張完整受控圖及兩項既有圖層／封包回歸通過，其他角色資格保持。
+
 第51筆格紋沿[045受控呈現](docs/spec/045-map-landmarks.md#第51筆紅金格紋的受控呈現追加)，[可選載入器](internal/eightsword/map_landmark51.go)與[測試](internal/eightsword/map_landmark51_test.go)只新增材質52。使用者授權受控RAM驗證，不等待本筆自然出現。[收尾工具](tools/finish-map51-hd.py)在固定Pillow容器提供audit／promote／overview，參數為`--project`唯讀專案、`--research`既有map-interaction-r1、`--out`新收據；提升另用`--player`可寫本機程式根與`--audit`已通過收據，總覽另加`--promotion`。主地圖65筆只代表實際材質快取，不代表全遊戲HD或自然可達性。
 本筆測試在固定Go容器及runtime-direct-r1核心，以`EIGHTSWORD_TEST_MAP51_ASSETS`指定r53、`EIGHTSWORD_TEST_MAP51_BASE`指定r52、`EIGHTSWORD_TEST_MAP51_CACHE`指定map51-registration-r1，並沿用`EIGHTSWORD_TEST_ORIG`。`EIGHTSWORD_TEST_MAP51_OUT`與`EIGHTSWORD_TEST_MAP51_EXPORT`各指定不存在的新目錄，執行`go test ./internal/eightsword -run '^TestMap51' -timeout=360s -count=1`；輸出受控全幅與65筆快取，不代替自然地圖路徑。
 
