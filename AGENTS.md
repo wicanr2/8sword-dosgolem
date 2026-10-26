@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+[原版結局交接探針](tools/probe-ending-handoff.go)在既有Go1.24.13容器、唯讀runtime-direct-r1核心建置，使用`--root <唯讀原版> --out <新研究目錄>`走普通冷啟動／新遊戲／退出。`--force-ending`只在原版收尾入口改DS相對56E2h為1，再讓原版自行覆蓋載入PAE；不冒稱自然通關。`--follow --catalog <ending-hd-r1>`跟到DOS退出，`--escape-stage END5.AY --escape-route bios`驗真正BIOS Esc；irq1選項只作失敗輸入路由的診斷。[生命週期核對](tools/audit-ending-lifecycle.py)在固定Pillow容器用`--project <唯讀專案> --out <新JSON>`核對三份不可變建置、五條原版流程、原版遠指標與完整來源。範圍與下一步見[053](docs/spec/053-ending-hd.md#原版覆蓋交接與bios-esc的動態證據)，不改正式r56。
+
 [PAE字模Go接管](tools/research-ending-glyphs.go)沿053 DRAFT，以原生Go位元混合批次處理中文字及ASCII列，保留相容平面、latch與原版呼叫效果。[呼叫核對](tools/probe-ending-glyphs.go)在既有Go1.24.13容器與唯讀runtime-direct-r1核心合併建置，用`--project <唯讀專案> --out <新JSON>`驗24案；不在主機執行。[準備器](tools/prepare-ending-glyphs.py)在固定Pillow容器用`--project`與`--out <新研究目錄>`從封存masked-build-r1建立私有來源；[獨立核對](tools/audit-ending-glyphs.py)用相同參數核對完整成對演出與來源重建。只驗已列字模及事件配額，未接正式r56；位址、公式與限制見[053](docs/spec/053-ending-hd.md#字模go列批次研究)。
 [PAM結局交接窄查](tools/export-ending-handoff-ida.py)在既有IDA9.4／py312-v1非root容器，將正式PAM.i64唯讀複製到tmp查詢；`/source/PAM.i64`及`/game/PAM.AY`核對固定SHA，輸出`/out/ida-handoff-r1.json`。保留原名、原bytes及兩種位址基準，不改正式DB；靜態呼叫線索不證明實際載入段或自然通關，沿053補動態證據。
 [交接靜態核對](tools/audit-ending-handoff.py)在固定Pillow容器用`--project <唯讀專案> --out <handoff-ida-r1內新JSON>`，按原始MZ的1301筆重定位還原IDA載入bytes，核對2512行與六組原始遠指標參數。命令尾已有靜態來源證據，實際PAE載入段、欄位語意與正常玩家交接仍未知，不跳過動態驗證。

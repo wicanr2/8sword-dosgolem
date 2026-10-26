@@ -1955,3 +1955,17 @@ Go1.24.13／兩CPU／UID1000／唯讀原版與核心，END2第0筆、END3第1筆
 另已證實靜態來源：PAM.AY SHA83e32f13…d6c0及PAM.i64 SHAa9089db0…21ac，IDA9.4／521函式。原名sub_1020E的六組遠指標呼叫到IDA MZ-linear 29C1Eh，目標_execl原指令再將SS:BP+0Ah的argv列交給_execve。原file bytes 9AAE338716經MZ重定位後為IDA bytes 9AAE338726。六組命令尾依次為v a／h a／v r／h r／v q／h q，各後接y a n g；path與argv[0]均pae.ay。因此先前v a y a n g由強推論提升為有原版靜態呼叫支持，仍未證實實際PAM執行或自然通關。
 
 獨立原MZ核對header1470h、1301重定位及IDA image base10000h，2512行含89行重定位差異全部吻合，原始DB與binary保持。匯出SHA17e54ee95e37c87f70458950e501c70f6c75f36dc46613920032a66bcb12080a，核對SHA6327d0de8bb6acab0328ff5d8b8e48e5c01548a2e9afa84bd254d2034360f5b5。DS相對[56D0h]語意與實際EXEC／PSP／PAE載入基址仍未知；不猜通關旗標、不將獨立0110h載入段套到正式交接。053仍DRAFT，正式r56未改。
+
+## 2026-10-26：PAE覆蓋載入與BIOS輸入的動態解項
+
+已證實：固定原版PREDELLA／PAM／PAE及唯讀核心、Go1.24.13、3000 cycles/ms、執行前12:00:00.00。普通冷啟動到新遊戲／F7／退出，PAM原名sub_1020E在25749241步以0110:020E、DS=1E88h進入；DS相對[56E2h]為0，25752629步退出0，不載PAE。受控同入口只將該word改為1，原版在31822359步走0110:02C0，實際遠指標為pae.ay、argv[0] pae.ay、v a y a n g及空指標。這證實此收尾分支與參數，不證明欄位完整玩法語意或自然勝利。
+
+已證實：原版在31824856步以AH4B03載PAE，OverlayLoad的Seg／Reloc皆0110h、Size20494、CallCS:CallIP=9FE5:0004；ExecRecord同時登錄PSP0110h。這是覆蓋載入，不是AH4B00子行程。解包後圖形段0393h與DS07E4h同既有獨立研究，現在有原版實際交接證據，先前未知已閉合至此受控路徑。
+
+完整原版自冷啟動128097768步退出0，3735筆／30種來源涵蓋END1至END9，所有SHA在37筆來源盤點內，未知服務零。END7只有來源、沒有BIOS換頁，不以八份換頁樣本缺它稱未使用。現有Go自有場景仍須沿正式Engine接線；原生四幅抽樣已看，不稱新HD成果。
+
+Esc勘誤：第一組IRQ1輸入結果同控制，不能當作原版忽略。PAE階段INT09h向量是0080:0024，Machine.timedKeyTick遇預設stub保留事件；目前Engine的歷史PAMLoaded仍導向IRQ1，因此正式交接須切輸入路由。相同89817177步輸入前完整state改送BIOS Esc，BIOS佇列0→1→0，IRQ1已送數皆13，原版89860581步退出0；1929筆來源為完整控制前綴。已證實END5代表路段的原生Esc結束流程，不外推每一開場／結局階段。
+
+核對lifecycle-audit-r1.json SHA5e1a3b75de8fe9d2225321fd8d512bd53c5bb10d3ab8729200c6fe3090746c09，來源索引SHA5d4838458374c23a0ec101752097755678ee25b87dcde0e85a42a49a85c99633。完整state為59215e1b…32fc，BIOS Esc為b0525dde…6ccf，兩者本就有不同原版結果，不要求跨輸入相等。最新工具r3與既有r1／r2實際來源分開保留。正式r56、425素材、141輸入七程式及919核心不改；結局Go／Noto正式整合是下一步，不再深挖同一載入基址或收尾旗標。
+
+強推論：END5送鍵前KeyStalls已63650397，且原版已將INT09h還原預設stub，交接後有未送出的硬體事件。私有核心internal/machine/host-work.go明列keyQueue／timedKeys非空時不接批次，因此實際PAM交接後可能受輸入殘留阻擋。這還不是實測Go接管為零；本輪沒有在這條交接後裝原生Go計畫，下一個正式候選須量自己的接管計數，不借用獨立PAE研究成績。
