@@ -1,5 +1,12 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+053的[字模窄查](tools/export-ending-glyphs-ida.py)在既有IDA9.4／py312-v1非root容器，將PAE研究DB唯讀複製到tmp，以`/source/PAE-runtime-analysis.exe`核對來源，結果只寫`/out/ida-glyphs-r1.json`。查原字模與前景／背景欄位，不改函式名稱或正式DB；與自有結局場景的限制見053。
+[結局場景輸入準備](tools/prepare-ending-owned.py)在固定Pillow容器用`--project <唯讀專案> --out <ending-hd-r1內新目錄>`核對127筆原字碼／字模、256筆ASCII、三種128字候選與END7／END8紋理，原圖保持。輸入只供053的DRAFT自有場景研究，不進正式r56。
+[結局自有場景研究](tools/research-ending-owned.go)在固定Go容器及唯讀核心建置，使用`--root <原版> --batch <ending-hd-r1> --inputs <owned-inputs-r1> --out <新研究目錄>`，只從來源命令／字模與色彩產生畫面；原版索引僅作繪製後核對。原型不進正式入口，不宣稱已略過DOS像素迴圈或自然通關。
+[結局場景獨立核對](tools/audit-ending-owned.py)在固定Pillow11.3.0容器用`--project <唯讀專案> --out <ending-hd-r1內新JSON>`核對r3不可變研究來源、完整客體與I/O，獨立重建41張原生來源及四場景三字型的12張HD完整畫面。[成果比較工具](tools/prepare-ending-owned-overview.py)使用相同`--project`、`--audit <核對JSON>`及`--out <新研究目錄>`，只收已驗實際研究輸出；README明列未正式接入，不冒稱GUI或正常通關。範圍見053。
+[結局原生Go接管](tools/research-ending-direct.go)依053的DRAFT，只替換已驗PAE四／五平面呼叫，直接Go批次複製並保留索引讀回、ABI及事件預算，不逐條解譯像素指令。[成對呼叫核對](tools/probe-ending-direct.go)與前者在固定Go容器、唯讀runtime-direct-r1核心合併建置，使用`--project <唯讀專案> --out <新JSON>`驗20案及三組成對呼叫耗時。[場景準備器](tools/prepare-ending-direct.py)在Pillow容器用`--project`與`--out <新研究目錄>`從封存r3建立私有來源，建置讀唯讀project別名；`-direct`只切研究接管，控制組保持原版繪圖，兩組皆3000 cycles/ms。不改正式入口，不把單次呼叫倍率當整體FPS。
+[Go接管獨立核對](tools/audit-ending-direct.py)在固定Pillow容器用`--project <唯讀專案> --out <新JSON>`核對20次整呼叫、24次列批次、真正配額拒絕及完整結局成對輸出。大圖以原生Go列批次容納事件預算，另留原版ABI效果；接管函式內沒有x86步進迴圈。使用者於2026-10-26再次要求真正Go加速，後續須區分HD繪製後端、像素迴圈實際略過與尚未接管入口；正式實作見[source_direct](internal/eightsword/source_direct.go)、[source_masked](internal/eightsword/source_masked.go)與[source_render](internal/eightsword/source_render.go)，研究範圍見053，不把Go寫成的x86解譯器本身稱為繪圖接管。
+
 053的[執行期分析準備](tools/prepare-ending-runtime.py)在固定Pillow容器使用`--project <唯讀專案> --out <ending-hd-r1內新目錄>`，只從已封存兩千萬步RAM建立IDA分析包裝，不執行或散布包裝檔。[IDA匯出](tools/export-ending-runtime-ida.py)在既有py312-v1／UID1000／HOME=/home/ubuntu容器，以`-b110`讀`/source/PAE-runtime-analysis.exe`並寫`/out`，保留原名、bytes、xref及位址基準；正式程式與資料庫不改。
 [結局來源觀測](tools/observe-ending-source.go)在固定Go容器及同一唯讀核心建置，使用`--root <原版> --catalog <ending-hd-r1> --out <新研究目錄>`記錄PAE四／五／六平面參數、原始來源與字串。固定命令尾只作獨立診斷，最多兩億步；返回抽驗寫入的原生色碼，透明保留區與正常通關不外推。
 [結局字集候選](tools/prepare-ending-text.py)在固定Pillow容器用`--project <唯讀專案> --out <ending-hd-r1內新目錄>`，從已封存1134次原版文字呼叫保留Big5原bytes與空格，製作128字的Noto／教育部隸書／草書字圖。原字型不改，缺字沿015宋體回退；只建候選，不改正式字型契約或宣稱結局已接入。

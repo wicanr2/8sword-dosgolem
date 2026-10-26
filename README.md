@@ -27,6 +27,16 @@
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
+Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
+
+| 路徑 | 原生Go接管範圍 | 尚待處理 |
+|---|---|---|
+| 正式PAM主程式 | 四／五平面圖片、六平面角色整筆及列批次；Go後端提交紋理與矩形 | 字模等其他入口及事件邊界回退 |
+| 正式開場 | Go自有場景產生HD畫面 | 原版CPU像素迴圈尚未接管 |
+| PAE結局研究 | 四／五平面圖片以Go批次複製，成對機器狀態與畫面已驗 | 六平面角色、字模等入口及正式接入，見[053](docs/spec/053-ending-hd.md#原生go入口接管研究) |
+
+接管函式直接執行Go的批次複製與透明混合，不逐條解譯x86繪圖指令。相容索引資料與原版呼叫效果仍需保留；單次呼叫加速不等於整體FPS提升。
+
 開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；驗收見 [014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。發行商中央圖案亦已採 B 柔和漸層，三字型、正常交接、存退讀與故障回退的範圍見 [016](docs/spec/016-publisher-wordmarks.md#b-圖案正式追加驗收)。其他音畫與整體 HD 尚未完成。完整執行期素材組留本機。
 
 已有本機固定美術與合法原版資料時，可用 `bash tools/player.sh heroine-assets <新名稱> [基底名稱]` 製作特寫素材組，預設基底為 r28；正常原版收據使用 `bash tools/player.sh heroine-check <新收據名稱> [素材組]`。來源、輸出指紋與故障回退契約均見 033。
@@ -80,11 +90,15 @@
 | 戰場背景與原版變體 | 10 | [GRO01 至 GRO05](docs/images/original-battle-backgrounds-r1.png) |
 | 建築與原版變體 | 12 | [LIVE1 至 LIVE6](docs/images/original-buildings-r1.png) |
 | 開場圖像 | 26 | [TIT 系列](docs/images/original-opening-r1.png) |
-| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[HD候選與標題字圖](docs/images/ending-candidates-r1.png)、[128字文字樣張](docs/images/ending-text-specimen-r1.png)，均尚未接入 |
+| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[HD候選與標題字圖](docs/images/ending-candidates-r1.png)、[三字型實際研究畫面](docs/images/ending-owned-scenes-r1.png)，尚未正式接入 |
 | 介面圖像 | 6 | [CUBE／BUMBOO／MSGBOX](docs/images/original-ui-r1.png) |
 | 原版編輯圖集與插畫 | 19 | [X 系列 ILBM](docs/images/original-illustrations-r1.png) |
 
 盤點由[全圖形工具](tools/catalog-all-graphics.py)重生，並以 IDA Pro 9.4 核對 PAM 與開場程式的載入線索。圖集使用原始資料解碼，保留檔名與記錄號；檔名帶 `H` 代表來源變體，不能一律視為單色圖，也不是本專案的 HD。方法、位址基準與尚未證實項目見[圖形盤點研究](RESEARCH-LOG.md#全圖形來源盤點與-ida-載入線索)。
+
+![結局原版與三字型實際研究呈現](docs/images/ending-owned-scenes-r1.png)
+
+每列為相同獨立PAE演出狀態的原版來源、Noto Black 900、教育部隸書與草書。Go自有場景從來源命令產生對話、八劍插畫、標題與捲動名單，未用原版RGB畫面墊底。人物等其餘結局美術仍保留原圖，這組研究尚未正式接入，也未證明正常PAM交接或自然通關。[來源及比較紀錄](docs/images/ending-owned-scenes-r1.json)、[053限定核對](docs/spec/053-ending-hd.md#自有場景與結局字型研究結果)保留完整範圍。
 
 ### 已接入的 HD 怪物樣本
 
