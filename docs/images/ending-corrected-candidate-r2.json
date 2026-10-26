@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "production": false,
+  "status": "corrected-art-candidate-not-runtime",
+  "comparison": "ending-corrected-candidate-r2.png",
+  "comparison_sha256": "7eb7a0e774b32ad5a00b67e54246e7c945c812b0fab97be258fcec2783a3b801",
+  "image_sha256": "50dc8cfd675457526810c709a0e5197bcb46eff7aef1fdc0d12a6b7774fdde27",
+  "generation_receipt_sha256": "be04a8fa8d5ed6f5188fc82e363d2b860bfd766bd046e61a74c5f9463ba5e3bb",
+  "actual_prompt": "Use case: illustration-story. Asset type: corrected HD ending illustration for 神州八劍, END7.AY. The previous candidate was WRONG because it omitted the TWO PEOPLE and mistakenly turned them into ornamental objects. Do NOT repeat that error.\nInput image 1 is the STRICT source composition: it clearly contains TWO adult human protagonists emerging together from an ornate ancient picture/scroll, NOT a pile of swords. Input image 2 supplies only the established classical-Chinese facial identities, refined hand-painted beauty and general illustration finish of the two protagonists; do not import its dragon, tiger, fire, clouds or battle pose.\nRedraw image 1 as a beautiful detailed hand-painted classical Chinese fantasy illustration, opaque landscape 1920x1200. Preserve the source scene and placement carefully. There are EXACTLY TWO HUMAN FIGURES: at upper-left, a handsome young adult Chinese male hero with long black hair wearing flowing WHITE sleeves and pale blue-white robes with a warm GOLD/RED patterned vest and jade-green belt. He faces outward/upward toward the left and reaches one arm high above his head toward the upper border, while his other arm extends down toward the lower-left. He is emerging upward from the picture. At centre-right beside and below him, the young adult Chinese heroine wears a richly patterned GOLDEN/YELLOW hanfu with PINK ribbons, a GREEN waist accent, long black hair flowing right. Her body leans diagonally back over the picture, her visible FACE turns left/up toward the male hero. Her torso and folded flowing skirt occupy the centre-right, following the source silhouette. Preserve their close relationship and the direction of both faces. Faces are clearly HUMAN, delicately painted, with precise natural hands, wrists and anatomically valid five-fingered hands. Make the heroine an ethereal classical Chinese beauty, the hero a refined handsome Chinese warrior gentleman in the ending's white robes.\nPreserve the unusual large SILVERY WHITE flowing shapes/curves framing and surrounding the couple from image 1, the red-gold arched fabric behind them, the ornate red/gold rectangular picture frame tilted diagonally beneath their feet, and the green, turquoise and grey painted landscape visible inside the picture. Those shapes must remain around/behind the actual two human figures, never replace their bodies. Keep the source's dark blue-black background, silver-white ribbons, jade greens, gold/yellow garment and red/pink accents. Painted brushwork and detailed fabric, not pixel art, not photorealism. Keep the composition faithful rather than redesigning it. No dragon, no tiger, no fire, no additional people. NO detached swords, no weapons still-life, no lettering, no title, no logo, no UI, no watermark.",
+  "prompt_sha256": "70898d33a070c5b07efeada9ec6477b26ec72a22ec6d5b8c0b257e75eab82447",
+  "references": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end7-ay-00-reference.png",
+      "sha256": "2ae4d14322fdd5f73250a6a10b7365dad3aa98423d9514938a8a370d650cc9fa"
+    },
+    {
+      "path": "docs/images/story-prelude-color-corrected-r3.png",
+      "sha256": "7d4fcc5e4fde78ca0694010705b052f763fb5be4efd9b1b4b6e9543764161c4c"
+    }
+  ],
+  "rejected_prior_sha256": "99f4c89edff85d47cff3b44029174ea0b65019a219883c7f192b5d596b6f4068",
+  "correction": "END7 has two human protagonists; previous r1 omitted them",
+  "pillow": "11.3.0",
+  "rights": "compact comparison in existing private repository; full art local only"
+}

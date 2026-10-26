@@ -90,15 +90,17 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 | 戰場背景與原版變體 | 10 | [GRO01 至 GRO05](docs/images/original-battle-backgrounds-r1.png) |
 | 建築與原版變體 | 12 | [LIVE1 至 LIVE6](docs/images/original-buildings-r1.png) |
 | 開場圖像 | 26 | [TIT 系列](docs/images/original-opening-r1.png) |
-| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[HD候選與標題字圖](docs/images/ending-candidates-r1.png)、[三字型實際研究畫面](docs/images/ending-owned-scenes-r1.png)，尚未正式接入 |
+| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[人物構圖修正候選](docs/images/ending-corrected-candidate-r2.png)、[三字型實際研究畫面](docs/images/ending-owned-scenes-r2.png)，尚未正式接入 |
 | 介面圖像 | 6 | [CUBE／BUMBOO／MSGBOX](docs/images/original-ui-r1.png) |
 | 原版編輯圖集與插畫 | 19 | [X 系列 ILBM](docs/images/original-illustrations-r1.png) |
 
 盤點由[全圖形工具](tools/catalog-all-graphics.py)重生，並以 IDA Pro 9.4 核對 PAM 與開場程式的載入線索。圖集使用原始資料解碼，保留檔名與記錄號；檔名帶 `H` 代表來源變體，不能一律視為單色圖，也不是本專案的 HD。方法、位址基準與尚未證實項目見[圖形盤點研究](RESEARCH-LOG.md#全圖形來源盤點與-ida-載入線索)。
 
-![結局原版與三字型實際研究呈現](docs/images/ending-owned-scenes-r1.png)
+![結局原版與三字型實際研究呈現](docs/images/ending-owned-scenes-r2.png)
 
-每列為相同獨立PAE演出狀態的原版來源、Noto Black 900、教育部隸書與草書。Go自有場景從來源命令產生對話、八劍插畫、標題與捲動名單，未用原版RGB畫面墊底。人物等其餘結局美術仍保留原圖，這組研究尚未正式接入，也未證明正常PAM交接或自然通關。[來源及比較紀錄](docs/images/ending-owned-scenes-r1.json)、[053限定核對](docs/spec/053-ending-hd.md#自有場景與結局字型研究結果)保留完整範圍。
+每列為相同獨立PAE演出狀態的原版來源、Noto Black 900、教育部隸書與草書。Go自有場景從來源命令產生對話、標題與捲動名單，未用原版RGB畫面墊底。人物等其餘結局美術仍保留原圖，這組研究尚未正式接入，也未證明正常PAM交接或自然通關。[來源及比較紀錄](docs/images/ending-owned-scenes-r2.json)、[053限定核對](docs/spec/053-ending-hd.md#自有場景與結局字型研究結果)保留完整範圍。
+
+END7已重新依原圖補回男女主角，見[構圖修正候選](docs/images/ending-corrected-candidate-r2.png)及[完整提示與來源](docs/images/ending-corrected-candidate-r2.json)。本稿尚未接入；原本漏畫兩人的r1為錯稿，不作正式素材。
 
 ### 已接入的 HD 怪物樣本
 

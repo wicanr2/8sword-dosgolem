@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "status": "actual-research-render-comparison",
+  "production": false,
+  "comparison": "ending-owned-scenes-r2.png",
+  "comparison_sha256": "c2257137596b7b87b859a7739c478859ca9a4021d9f96734081c0c142c774748",
+  "audit_sha256": "fa8a7b92a45067d592442713efe430af5c6352deb2eeb970a7b1b69c582228dd",
+  "tool_sha256": "a31a3f206c51fe6371ad68f172f0d9ba70e70bab11e89629ceafc4f0951fded9",
+  "original_source_sha256": "8ae11b4c89f0361ed0a2d5b1859bbb4750047d37f0e26885e6903e4feb721a0c",
+  "painter_provenance_sha256": "bb8db655b9b7f3764d9e60b3ab3de87b1c47821628eac3640d33fdda2f9c519f",
+  "clock": "12:00:00.00",
+  "command_tail": "v a y a n g",
+  "build": "ending-owned-r3 / Go1.24.13 / Linux Docker",
+  "entries": [
+    {
+      "stage": "END5.AY",
+      "sample": 21,
+      "step": 94093903,
+      "page": 1,
+      "profile": "source-native",
+      "image_sha256": "f27d7d655d2de741281041dd2d3f48123f3b57d78c7ce7ef3f5743023ef51ea4"
+    },
+    {
+      "stage": "END5.AY",
+      "sample": 21,
+      "step": 94093903,
+      "page": 1,
+      "profile": "noto",
+      "image_sha256": "87dfd1531327c945f64441de8adfc9a74bf308532a33866cfe6e4c1cf28a9b4e"
+    },
+    {
+      "stage": "END5.AY",
+      "sample": 21,
+      "step": 94093903,
+      "page": 1,
+      "profile": "lishu",
+      "image_sha256": "614692ecd1b70cbeac61138accd9b993a9833c9f48d92c91d7a2c3476c2841da"
+    },
+    {
+      "stage": "END5.AY",
+      "sample": 21,
+      "step": 94093903,
+      "page": 1,
+      "profile": "caoshu",
+      "image_sha256": "33bd956da34f62c4ef6193960b22946f034ce043c47ea30fa7652c0365b25d33"
+    },
+    {
+      "stage": "END8.AY",
+      "sample": 30,
+      "step": 119208171,
+      "page": 1,
+      "profile": "source-native",
+      "image_sha256": "915713d9071c8a4278728b36c549c51de180c822e7f1fadeb03e7b23911c7b04"
+    },
+    {
+      "stage": "END8.AY",
+      "sample": 30,
+      "step": 119208171,
+      "page": 1,
+      "profile": "noto",
+      "image_sha256": "132571e2c5c46e83e4c39cfb0f4867ee49dc126f1b19573ea8f6d9a4305aa938"
+    },
+    {
+      "stage": "END8.AY",
+      "sample": 30,
+      "step": 119208171,
+      "page": 1,
+      "profile": "lishu",
+      "image_sha256": "87276c7f516332ac864f82d3cf3b1eee3501a493aa1d85df6e454a8e5ed9d181"
+    },
+    {
+      "stage": "END8.AY",
+      "sample": 30,
+      "step": 119208171,
+      "page": 1,
+      "profile": "caoshu",
+      "image_sha256": "1f2f36f2a4f494b46d4032d269427fa765f35d7cb24158e2ccc52b63334dacc3"
+    },
+    {
+      "stage": "END9.AY",
+      "sample": 37,
+      "step": 132271907,
+      "page": 1,
+      "profile": "source-native",
+      "image_sha256": "bf6c5aeb574ff558eda84502df8c87faa8cf3ee8077b503e6a779b2bbe395e20"
+    },
+    {
+      "stage": "END9.AY",
+      "sample": 37,
+      "step": 132271907,
+      "page": 1,
+      "profile": "noto",
+      "image_sha256": "81482e05ade6023f5f8f9f32d50462ea08e373ec48947a8a0550acd3aeadfcf6"
+    },
+    {
+      "stage": "END9.AY",
+      "sample": 37,
+      "step": 132271907,
+      "page": 1,
+      "profile": "lishu",
+      "image_sha256": "ebdcebaf324b177018bad17f9039379d8e9dbd04e47c7c8de6d1953dd379d30b"
+    },
+    {
+      "stage": "END9.AY",
+      "sample": 37,
+      "step": 132271907,
+      "page": 1,
+      "profile": "caoshu",
+      "image_sha256": "c9bbbd53e63e3d11be8feb3ba6287efa8e9e22f1cc083ce1a6d50e5f7474c6f9"
+    }
+  ],
+  "state_relation": "same standalone diagnostic state and source commands; deliberate visual modernization",
+  "rejected_art": "END7 r1 omitted both human protagonists; excluded from this overview, not approved",
+  "pillow": "11.3.0",
+  "rights": "compact comparison in existing private repository; full art and originals local only",
+  "limits": [
+    "Standalone PAE diagnostic; no normal PAM handoff or natural completion.",
+    "Original CPU pixel loops still execute; this proves source-only rendering, not direct loop replacement.",
+    "Only ending text, END7 and END8 use new HD assets. Other ending art remains source pixels.",
+    "No production promotion, GUI, save/reload or overall HD completion claim."
+  ]
+}
