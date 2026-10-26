@@ -1594,3 +1594,17 @@ prepare-ending-masked.py從固定direct-build-r3建立三份新私有Go來源，
 正式r56、425素材、141來源七程式不改。凍結owned-inputs-r1只作CPU／場景oracle，不把其中已拒絕END7 r1當美術通過，沒有再生成或發布錯稿。END7正確r2及END5三表情仍待接圖；字模、清頁／搬移、外層控制／邊界殘段、正常PAM交接及開場CPU接管仍未完成。053保持DRAFT，不新增GUI／存讀、音訊聽感或自然通關聲明。
 
 final-integrity-r5.json通過正式425素材、141輸入七程式、158原版與919核心保持，14份Python語法、1433本機連結與新Go格式／go vet通過。無root-owned檔或偽md目錄，全部專案一次性容器已移除，未新增映像。主機gh認證及PRIVATE倉庫已核對；提交與遠端讀回收據存ending-hd-r1/publication-r3.json，Goal保持進行。
+
+## 2026-10-26：中文字與ASCII原生Go列批次
+
+沿知識路由的規格閘門、專案053及先前IDA字模原bytes，新增research-ending-glyphs.go。Go直接以位元混合處理字模列，保留原版透明／不透明底、相容索引、latch與呼叫效果，不在接管函式內逐指令解譯x86。原版邊界與控制邏輯照常保留，正式r56不改。
+
+probe-ending-glyphs.go的24受控案例首次通過，涵蓋中文字模／逗號、ASCII空白／A、兩頁、原點／右下邊界、黑字與三組前背景。整字／單列／兩列批次之後的完整機器與順序讀寫同原版，短配額拒絕無副作用，最後原生返回相同。prepare-ending-glyphs.py沿封存masked-build-r1建立四份私有Go來源，以唯讀project與核心建置，go vet與gofmt通過。
+
+同一3000 cycles/ms冷演出兩側各96283141步退出0，Go新增23055批、317721列，其中中文115921列、ASCII 201800列，新增略過11211126條x86指令。原圖片／角色計數保持，合計52968523條；1959列字模留原版事件邊界。audit-ending-glyphs.py核對292份輸出、164PNG、完整state／I/O同控制及先前原版，再由已封存Pillow模型重建41來源／12HD。來源與二進位封存glyph-r1-provenance.json，核對glyph-runtime-audit-r1.json SHA9dabba50…7267。未量字模或整體FPS，不把歷史END7錯稿當美術通過。
+
+另沿既有IDA9.4／py312-v1技能，用正式PAM.i64的tmp副本窄查PAE交接。原名sub_1020E內六組遠呼叫均指向pae.ay，既有命令尾v a y a n g有原版靜態支持。第一次file bytes直比因IDA的MZ重定位而拒絕，按原1301筆重定位與image base 10000h重建後，2512行含89行重定位差異全同。沒有修改DB、原檔或猜名DS相對[56D0h]。收據handoff-ida-r1/handoff-audit-r1.json SHA6327d0de…0f5b5。正式Engine缺PAE交接生命週期，實際EXEC／PSP／載入段待補，未冒稱自然通關。
+
+下一步清頁／搬移、事件邊界及正式交接，另待END5／正確END7接圖與開場CPU接管。053仍DRAFT；正式425素材、141輸入七程式與原版核心沿現行r56。主機gh認證及PRIVATE倉庫已核對；提交與遠端讀回另存ending-hd-r1/publication-r4.json，Goal繼續。
+
+final-integrity-r6.json通過425正式素材、141輸入七程式、158原版、919核心及正式PAM.i64保持，18份Python語法與1448本機連結有效。Go格式與既有本輪go vet通過；無root-owned檔、偽md目錄或殘留專案容器，未新增映像。完整原圖、原版、IDB、研究二進位及收據留本機，只提交自有工具與文件。

@@ -181,3 +181,57 @@ PAE的CS列偏移表從0起，與PAM從6起不同。四／五平面原始入口0
 三來源的單次完整呼叫各三組8次，在同容器、兩CPU、GOMAXPROCS=2交替先後順序量測，包含來源檢查、相容混合與讀回。中位native／Go約6.81／6.48／6.84，只適用受控呼叫，不推全遊戲FPS或即時戰鬥倍率。原始ns保存在masked-call-audit-r1.json。
 
 剩餘：字模、清頁、搬移、原生列／平面外層與事件邊界殘段，以及正常PAM交接、普通Esc與正式生命週期。正式開場CPU像素迴圈亦未由本節處理。053維持DRAFT，不宣稱全流程已純Go或結局正式HD完成。
+
+## 字模Go列批次研究
+
+狀態DRAFT。沿前節同一PAE、IDA分析包裝及唯讀核心，只擴充獨立研究程式。正式r56不變。固定研究載入段不能直接套到正常PAM交接；正式載入位置仍須另證實。
+
+已證實：中文字模原名sub_37D0，IDA runtime-linear 0x37D0至0x392F，dosgolem為028E:0EF0至104F；ASCII原名sub_44B0，IDA runtime-linear 0x44B0至0x45AF，dosgolem為0393:0B80至0C7F。這些是解包後執行期位址，不是packed PAE檔案偏移。兩段程式SHA分別為dc3197283e3434f6ca35e71592b0c604bc035efef450ed50afffff1309f01739及5631f527e7a205f772c3c0f0b1c6521781a1264b669d487346dfa1671a5c1692。
+
+| 已驗來源與邊界 | Go批次契約 |
+|---|---|
+| 中文028E:0F7F至1047 | 每字兩byte、15列；原來源CS:000E加index×30，127個字模。列偏移表CS:1050h；來源、索引及全部可讀範圍先驗 |
+| ASCII 0393:0C16至0C78 | 每字一byte、15列；來源DS:0548h加code×15，code為0至255。列偏移表CS:0000h |
+| 色彩與目的頁 | 保留原DS相對[177Ah]／[1780h]及[1782h]／[1783h]。彩色模式1、目的A000h或A400h；前景0至15，背景FFh透明或0至15不透明 |
+| 透明／不透明混合 | Go直接逐平面清除字模遮罩後寫入前景；不透明模式先填滿背景byte。ReadHostPlanar與順序通知保留原版latch及讀寫觀測效果，沒有Step／Run或opcode dispatch |
+| 配額與返回 | 中文每列透明55步、不透明85步，最後一列少1步，cycles為steps加每列2；ASCII每列透明24步、不透明39步，cycles為steps加每列1。批次只收完整列，不能容納一列則不改狀態 |
+| 呼叫效果 | 保留原暫存器、旗標、SI／DI／BX／CX、VGA設定與中文字模暫存堆疊殘值。尚有列便回原列入口，否則到原生epilogue；原生RETF不替換 |
+
+[Go工具](../../tools/research-ending-glyphs.go)另驗固定程式SHA、DF、模式、堆疊深度、來源與堆疊別名、列偏移表及事件雙配額。這些相容效果由Go直接提交，沒有逐條解譯繪圖ASM。
+
+[受控呼叫核對](../../tools/probe-ending-glyphs.go)使用中文字模第0筆、逗號及ASCII空白／A，搭配兩目的頁與原點／右下邊界、三組前／背景色，共24案。包含黑字、黑底、透明底與彩色底，分整字、單列及兩列批次。每批完整CPU／RAM／VGA／latch／步數／週期、有序讀寫及最後原生返回全同控制；步數與週期均限1的短配額皆拒絕且狀態保持。這是受控呈現，不稱自然玩家路徑。
+
+[準備器](../../tools/prepare-ending-glyphs.py)從固定masked-build-r1建立四份新來源，只有-direct決定是否安裝原生Go接管。Go1.24.13、3000 cycles/ms、12:00:00.00及原研究命令尾相同，原始資料與輸入唯讀。
+
+| 完整成對演出 | 結果 |
+|---|---|
+| 原版／Go | 各96283141步退出0，1049次換頁、1050次索引核對、41次Frame純讀；未知服務與未分類寫入零 |
+| 字模實際接管 | 23055批、317721列，其中中文115921列、ASCII 201800列；新增略過11211126條x86指令。1959列位於不足整列配額的事件邊界，仍由原版執行 |
+| 圖片／角色保持 | 先前四／五平面與六平面接管計數不變，合計略過52968523條x86指令 |
+| 完整比較 | 292份輸出、164PNG、完整state及I/O／EXEC同控制，亦同先前原版。final.state仍6ba949eba04aacfe090837dced381e1caaaeab341cda974aaff53410b7f46919 |
+| 獨立重建 | 已封存Pillow重建器再驗41張來源及四場景三字型12張HD。歷史END7錯稿只作技術輸入，不代表美術批准 |
+
+[獨立核對器](../../tools/audit-ending-glyphs.py)收據glyph-runtime-audit-r1.json SHA 9dabba50f19dfd4eb398ba3f5007af4ddaf21370ea54cbc2f9ac9ebb419a7267。原始碼、建置與輸出SHA另存glyph-r1-provenance.json，SHA 8f70d452481e8e66a022ee37d34cb10a2aff3dce8413b70a19d318a7be855d31。完整演出實際使用透明底；不透明底只在24受控案例驗證。本輪未量字模耗時或整體FPS。
+
+剩餘為清頁／搬移、外層與事件邊界殘段、正常PAM交接、Esc及正式生命週期。正式開場CPU與PAM字模不在本節範圍；不把研究版接管稱為正式全流程完成。
+
+## PAM至PAE的靜態交接證據
+
+已證實的靜態範圍：原PAM.AY SHA 83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，正式PAM.i64 SHA a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。既有IDA9.4／py312-v1／UID1000沿唯讀來源及tmp資料庫副本匯出，521個函式，未改名稱或bytes。
+
+[窄查工具](../../tools/export-ending-handoff-ida.py)查出原名sub_1020E內六次遠呼叫，目標IDA MZ-linear 0x29C1E。原始file bytes為9A AE 33 87 16；MZ重定位後IDA顯示9A AE 33 87 26。目標原名_execl，原指令以SS:BP+0Ah傳參數列到_execve；語意依原始push／指標與目標資料流，不只依自動函式名。
+
+| IDA MZ-linear呼叫位置 | 原檔偏移 | DS相對[7484h]／[7486h]條件 | 原始命令尾 |
+|---|---|---|---|
+| 0x102C0 | 0x1730 | 1／1 | v a y a n g |
+| 0x10302 | 0x1772 | 3／1 | h a y a n g |
+| 0x10344 | 0x17B4 | 1／2 | v r y a n g |
+| 0x10386 | 0x17F6 | 3／2 | h r y a n g |
+| 0x103C8 | 0x1838 | 1／3 | v q y a n g |
+| 0x1040A | 0x187A | 3／3 | h q y a n g |
+
+六次的path及argv[0]都指向pae.ay，另有空遠指標結尾。這補強先前研究命令尾v a y a n g的來源；只證實原版有這條靜態呼叫，不證明本次實際走到或自然通關。DS相對[56D0h]會影響呼叫前的[7486h]，語意尚未確認，保留原operand，不猜名為通關旗標。
+
+[獨立核對](../../tools/audit-ending-handoff.py)從原MZ頭1470h、1301筆重定位與IDA image base 10000h還原載入bytes，2512行全部吻合，含89行重定位差異。首輪直接拿未重定位的file bytes比較被拒絕，補上原始MZ表後乾淨通過，沒有修改DB或原版。每列分開保存IDA線性與原檔偏移。
+
+匯出ida-handoff-r1.json SHA 17e54ee95e37c87f70458950e501c70f6c75f36dc46613920032a66bcb12080a；核對handoff-audit-r1.json SHA 6327d0de8bb6acab0328ff5d8b8e48e5c01548a2e9afa84bd254d2034360f5b5。正式Engine目前只識別PAM覆蓋載入，尚無PAE場景生命週期。下一步記錄原版實際EXEC、PSP與載入位置，再建立相對入口；禁止將獨立PAE的0110h基址當成正式交接基址。

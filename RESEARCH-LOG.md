@@ -1943,3 +1943,15 @@ Go1.24.13獨立取樣16份96×96快取逐byte同Pillow11.3.0。三項器物父�
 Go1.24.13／兩CPU／UID1000／唯讀原版與核心，END2第0筆、END3第1筆及END6第1筆共12整呼叫與12批次首次通過。兩頁、邊界位置、非零stack／latch及read-map2、平面0／3、列中起點與部分返回皆有代表。完整機器與有序讀寫事件同未接管原版；12次不足byte配額拒絕不改狀態。完整成對結局各96283141步退出0，292輸出、164PNG、1050索引與41次純讀相同；完整state仍6ba949eb…6919。獨立Pillow再重建41來源／12HD。
 
 實際Go六平面處理4296701相容byte、290354批，其中6614局部列，略過38670309條x86指令；與先前圖片計畫合計41757397。6388次事件邊界拒絕仍走原版，不把它們隱藏或宣稱全流程純Go。新收據masked-runtime-audit-r1.json SHA514a516607670b9114287216bd1ef7efc3e556c659004136ae55c7d06d176ea7，來源／程式索引masked-r1-provenance.json。字模、清頁／搬移、正常交接與正式生命週期仍未完成，053維持DRAFT。封存END7錯稿只作技術輸入，不代表美術批准。
+
+## 2026-10-26：PAE原生Go字模列與PAM靜態交接
+
+已證實：沿固定PAE SHA8ae11b4c…21a0c及分析包裝1896b5b2…ff1a，CJK原名sub_37D0、IDA runtime-linear 37D0h至392Fh，dosgolem為028E:0EF0至104F；ASCII原名sub_44B0、IDA runtime-linear 44B0h至45AFh，dosgolem為0393:0B80至0C7F。原始字模列入口分別0F7F／0C16，epilogue1047／0C78；相對operand與程式SHA見[053字模契約](docs/spec/053-ending-hd.md#字模go列批次研究)，不當成packed檔案偏移。
+
+已證實：Go直接以字模遮罩清除與寫入前景，背景FFh保留原平面，0至15先填背景。保留原始有序讀寫通知、latch、暫存器、旗標與CJK堆疊殘值。中文字每列透明55／不透明85步，最後列少1步；ASCII為24／39步，cycles另加每列來源byte數。批次不跨完整列配額，不呼叫Step／Run。24受控完整呼叫與所有批次機器狀態、順序事件同原版，短配額拒絕無副作用。
+
+同一Go1.24.13／3000 cycles/ms／12:00:00.00完整成對研究各96283141步退出0，字模Go處理317721列、23055批，新增略過11211126條x86指令，所有接管合計52968523條。1959列留原生事件邊界；外層、清頁與搬移仍未接管。292輸出含164PNG及完整state 6ba949eb…6919、I/O皆同控制。獨立重建41來源／12HD再次相符。核對SHA9dabba50f19dfd4eb398ba3f5007af4ddaf21370ea54cbc2f9ac9ebb419a7267，封存索引SHA8f70d452481e8e66a022ee37d34cb10a2aff3dce8413b70a19d318a7be855d31。實際演出只有透明底，不透明底僅受控驗證，未量字模耗時或FPS。
+
+另已證實靜態來源：PAM.AY SHA83e32f13…d6c0及PAM.i64 SHAa9089db0…21ac，IDA9.4／521函式。原名sub_1020E的六組遠指標呼叫到IDA MZ-linear 29C1Eh，目標_execl原指令再將SS:BP+0Ah的argv列交給_execve。原file bytes 9AAE338716經MZ重定位後為IDA bytes 9AAE338726。六組命令尾依次為v a／h a／v r／h r／v q／h q，各後接y a n g；path與argv[0]均pae.ay。因此先前v a y a n g由強推論提升為有原版靜態呼叫支持，仍未證實實際PAM執行或自然通關。
+
+獨立原MZ核對header1470h、1301重定位及IDA image base10000h，2512行含89行重定位差異全部吻合，原始DB與binary保持。匯出SHA17e54ee95e37c87f70458950e501c70f6c75f36dc46613920032a66bcb12080a，核對SHA6327d0de8bb6acab0328ff5d8b8e48e5c01548a2e9afa84bd254d2034360f5b5。DS相對[56D0h]語意與實際EXEC／PSP／PAE載入基址仍未知；不猜通關旗標、不將獨立0110h載入段套到正式交接。053仍DRAFT，正式r56未改。
