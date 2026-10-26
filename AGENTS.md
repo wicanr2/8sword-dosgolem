@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+結局素材入口：[053](docs/spec/053-ending-hd.md)。[來源準備器](tools/prepare-ending-hd.py)在固定Pillow容器用`--project <唯讀專案> --out <既有graphics-first內新目錄>`核對33筆彩色與4筆單色來源，完整保留原像素及顯示比例參考。先處理全幅END7，原圖、完整提示與收據留本機；生成與正式接入分開，不能將受控呈現稱為自然通關。
+[結局美術保存與標題核對](tools/prepare-ending-hd-art.py)在相同容器用`--project <唯讀專案> --batch <ending-hd-r1> --image <唯讀生成PNG> --out <新候選目錄>`，保留END7完整PNG與提示，核對END8／TIT2逐byte相同並沿用三種字圖。比較圖只是候選素材，不冒稱結局端已接入。
+[結局啟動探針](tools/probe-ending-source.go)只在固定Go容器與唯讀`workplace/player/runtime-direct-r1/src`核心建置，以`--root <唯讀原版> --out <新研究目錄> --steps <最多20000000>`記錄PAE.AY的有界獨立啟動、原生畫面與本機RAM。研究參數用`--cmdline`明列，`--state`只續跑同一診斷快照。沒有HD、按鍵或客體補丁，直接啟動不冒稱自然通關；來源與限制見053。
+
 五頁共用的深藍故事背景同步修正依[014](docs/spec/014-intro-story-background.md#深藍故事頁人物同步修正)，研究留story-art-r1/blue-person-correction-r4。只沿已更正的人物、自然握劍與女主角回頭方向修正白馬誤畫，保持既有深藍／金字；海報已有人物，不重畫。生成原PNG沿既有前導逐輪保存器的`--variant 4`與`--request request-r4.json`保存，圖片審查與正式接入分開。
 [深藍人物修正匯入](tools/prepare-story-background-correction.py)在固定Pillow容器使用`--project`唯讀專案、`--batch`上述研究目錄、`--base`r55、`--out`新候選與`--images`docs/images。只替換故事背景PNG、清單與匯入紀錄三檔，422舊檔保持；原PNG不改，遊戲畫布沿1920×1200規格化。
 [深藍新舊配對測試](internal/eightsword/story_background_correction_test.go)在Go容器以`EIGHTSWORD_TEST_BLUE_CORRECTION_ASSETS`新候選、`EIGHTSWORD_TEST_BLUE_CORRECTION_BASE`r55及既有原版變數核對新圖與交叉拒絕。`EIGHTSWORD_TEST_STORY_BACKGROUND_ASSETS`沿本候選回歸原有故障回退；只改故事背景載入SHA，不改Noto或來源呈現器。

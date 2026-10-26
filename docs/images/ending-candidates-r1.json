@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "status": "candidate-art-not-runtime",
+  "spec": "053",
+  "production": false,
+  "image": "ending-candidates-r1.png",
+  "image_sha256": "ad56c827b3e63171ff11ca5cfcef7c09bb365a3ef32c6ba386f927b8f046707b",
+  "color_source_records": 33,
+  "monochrome_source_records": 4,
+  "generated": [
+    {
+      "source": "END7.AY",
+      "raw_image": "workplace/probe-20261023/graphics-first/ending-hd-r1/end7-r1.png",
+      "raw_sha256": "99f4c89edff85d47cff3b44029174ea0b65019a219883c7f192b5d596b6f4068",
+      "actual_prompt": "workplace/probe-20261023/graphics-first/ending-hd-r1/end7-r1.prompt.txt",
+      "prompt_sha256": "5e405211730e5df58ab006de0c7023584ded35a4bb270a2784170b33dc7ea1d2",
+      "generation_receipt_sha256": "bd6448e089ef3928e78843d5410a8a95a4b4ce1063c15978451489d64b47f8c6"
+    }
+  ],
+  "reused_title": {
+    "source": "END8.AY",
+    "identical_to": "TIT2.AY",
+    "packed_sha256": "ff31a0a4916ee1b27a56f2f7da32ec06df3716b42f831b547ed5518586f64060",
+    "profiles": [
+      "noto",
+      "lishu",
+      "caoshu"
+    ],
+    "new_rasterization": false
+  },
+  "source_receipt_sha256": "6b30b1d4d9fd70045cb4842dd6c0301d0fb7bd899f65c3934ed5d1baf88c3cc8",
+  "art_receipt_sha256": "f91b5a77b683ea401350334df81d4e37841148ed46bcc50ef1edf28a583234fb",
+  "limits": [
+    "Candidate illustration and existing title artwork only; not hooked into ending playback.",
+    "Native PAE direct-entry research is separate from normal player completion."
+  ],
+  "rights": "compact comparison in existing private repository; full art and original game stay local"
+}
