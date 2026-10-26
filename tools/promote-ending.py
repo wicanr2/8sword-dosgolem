@@ -27,10 +27,11 @@ def main():
         'PASS-scoped-053-ending-duel': ('r61',443,441,156,921),
         'PASS-scoped-053-ending-effects': ('r62',455,443,158,921),
         'PASS-scoped-053-ending-pair': ('r63',460,455,173,923),
+        'PASS-scoped-053-ending-ring': ('r64',462,460,175,923),
     }
     assert audit['status'] in variants
     version, count, preserved, inputs, previous_core = variants[audit['status']]
-    core_count = 923 if audit['status'] == 'PASS-scoped-053-ending-pair' else 921
+    core_count = 923 if audit['status'] in {'PASS-scoped-053-ending-pair','PASS-scoped-053-ending-ring'} else 921
     candidate = a.player/audit['candidate']
     previous = a.player/audit['previous']
     assets = a.project/'workplace/probe-20261023/graphics-first/ending-hd-r1'/audit['assets']

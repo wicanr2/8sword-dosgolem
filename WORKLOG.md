@@ -1772,3 +1772,13 @@ step-clock-audit-r1及step-clock-promotion-r1通過後，正式七程式提升so
 pair-audit-r1與pair-promotion-r1通過後，正式七程式提升source-candidate-pair-r1／173輸入，素材r63／460保留原r62的455檔，923核心保持。完整雙人Frame與四筆總覽已看。README收原版／HD縮小圖與完整提示JSON，原PNG及完整執行素材留本機；CONTEXT更新最上列唯一現況，AGENTS索引新工具，053限定CONFORMED。
 
 本輪沒有新測試失敗或工具鏈重建，不新增逐姿勢GUI或自然通關要求。最終擁有權、來源、文件與工具封存見pair-final-integrity-r1.json，提交及遠端讀回見pair-publication-r1.json。本專案容器須全部結束，其他專案資源保持。其他結局美術與其餘音樂仍待後續處理，不宣稱全HD完成。
+
+## 2026-10-27：END3紅金光環正式接入
+
+- 沿已授權古風與原版配色，內建image_gen製作一張透明紅粉圓環與中央金光。原PNG、完整提示、來源及生成收據留ending-hd-r1/end3-ring-art-r1；固定Pillow11.3.0只正規化696×630。
+- 新增可選載入及Go透明貼圖，舊組缺清單保持相容，壞圖只回本筆來源。r64共462素材，r63全460檔保留；七程式來自source-candidate-ring-r3／175輸入，原173輸入與程式、923核心及原版158檔不變。
+- r1／r2各有四父測試通過，來源重播缺代表失敗。先核對原呼叫時間，再以ring-diagnostic-r1私有來源每10毫秒觀測，定位100毫秒取樣錯過短暫穩定換頁。未改演出或等待時間；原始失敗、推論勘誤與22.687秒診斷保留。r3只在光環測試模式每10毫秒檢查可見來源。
+- 五父測試、六回退子案69.706秒及go vet乾淨通過。兩側89060489步state c863af8c…2564、原生PCM 3b9e8d69…e606同值且同既有原版控制，四張普通玩家畫面同r63。64221661步三字型完整Frame同獨立模型，Frame純讀，差異限光環命令矩形；完整畫面與縮小總覽已看。
+- ring-audit-r1與ring-promotion-r1通過；README新增原版／HD素材及同狀態畫面，完整提示保存在比較圖JSON。CONTEXT、AGENTS及053同步限定CONFORMED；白色人影、其他人物／掛畫與光臺仍待補。不稱自然勝利、新完整結局／Esc／GUI／存讀或全HD完成。
+- 最終175來源、七程式、462素材、460舊檔、923核心、五Python語法與本機文件連結核對保存在ring-final-integrity-r1.json；工具副本留ring-tools-final-r1。首次完整性收據誤寫唯讀/project路徑，所有檢查已過，修正為/out後同條件乾淨重跑通過，屬輸出腳本問題。
+- 主機gh已核對PRIVATE；本次程式、文件及縮小成果一併提交main與推送，實際commit／remote／工作樹與容器結果保存在本機ring-publication-r1.json。Docker工作皆--rm、UID1000，收尾無本案容器；全專案root-owned與偽.md目錄掃描無輸出，未建立或替換工具image。

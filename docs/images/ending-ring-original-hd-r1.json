@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "image": "ending-ring-original-hd-r1.png",
+  "image_sha256": "6557e3f77ba2c1763a407b3e2f5b7399cdec3b49b7fdc2e93494bc69013687d6",
+  "audit_sha256": "132b83232f1f22a59123328e8ad5c53275b784ec2a853505e21ad199b5db37f6",
+  "entries": [
+    {
+      "kind": "原版來源",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/end3-ay-01-native.png",
+      "sha256": "514d9722523d653dcb1e1e9fcc40989b0cf2d5d6042b8ed2fdc6a97bdfe80c10"
+    },
+    {
+      "kind": "HD透明手繪",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-ring-candidate-r1/ending-ring.png",
+      "sha256": "7ce7c980224a37fb88d5badd0d2bd13310e7928098654afa8e9571fac4d95299"
+    },
+    {
+      "kind": "相同狀態／原版來源重建",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-ring-r3/hd/sample-01-native.png",
+      "sha256": "f366e12019f440008fc5059bb39b92c19ffab3f576c38ceea823d30fa7b9c669"
+    },
+    {
+      "kind": "相同狀態／實際Go HD畫布",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-ring-r3/hd/sample-01-noto.png",
+      "sha256": "f19149185d9bdbbb53502c485b703fb8d5b4066bcaddbb62ed07d23201f2da58"
+    }
+  ],
+  "generation": {
+    "schema": 1,
+    "tool": "built-in image_gen",
+    "mode": "edit",
+    "image": "ring-r1.png",
+    "image_sha256": "a630bfb7dcbdccaa6cf4f5e7944f502c8632e12e31265fc534c472fe5cb93adc",
+    "prompt": "ring-r1.prompt.txt",
+    "prompt_sha256": "0433e5857a83a117a3234194b32525a4be5b7a360d30bfa4c6535c8022f4efd8",
+    "reference": "../end3-ay-01-reference.png",
+    "reference_sha256": "f400f93d39ee559a32807766c16eba169b2a78b468de81e212a93f99da74002f",
+    "original_location": "/generated/exec-124c696d-7245-458b-bf58-9f1b993f6c8c.png",
+    "size": [
+      1318,
+      1193
+    ],
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "prompt_text": "Use case: style-transfer. Asset type: a single transparent HD spell-effect sprite for the Chinese fantasy DOS game 神州八劍. Reference image is the original END3 record 1, used ONLY to lock composition, silhouette and color placement. Repaint it in elegant hand-painted Chinese fantasy game illustration style, with fine flowing luminous brushwork and smooth translucent edges instead of pixel dithering. Preserve the original almost circular, slightly wide shape: a thick vermilion outer rim, vivid rose-pink and magenta inner ring, a clear transparent annular gap inside this ring, and a separate small brilliant golden-yellow central light with ivory-white hot core. The outer ring should feel like smooth swirling magical radiance with subtle painted wisps contained within its round silhouette, not flames shooting outside. Central yellow orb approximately one third of total diameter. Front-facing symmetrical circular effect, centered on canvas, entire effect visible with small equal transparent margins, no perspective. Real transparent alpha background, including corners and the dark annular gap from the source; soft radiant transparency rather than opaque black. No black background, checkerboard drawing, scenery, characters, swords, emblems, calligraphy, text, runes, decorative border, extra objects or additional sprites. Keep original red-pink-yellow palette; avoid blue/cyan. One sprite only."
+  },
+  "tool_sha256": "0abd0f3bf521b674abe4801e5d8eda86c344286b413f23a082535de387acc80e",
+  "scope": "One registered ring texture and one verified END3 Engine frame. Controlled ending branch, no new GUI/save or natural victory claim. Full PNG remains local."
+}

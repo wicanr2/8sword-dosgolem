@@ -34,10 +34,11 @@ func endingTestPaths(t *testing.T) (string, string, string) {
 }
 
 func TestEndingSourceRuntime(t *testing.T) {
+	ringOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_RING_PREFIX") == "1"
 	pairRequired := os.Getenv("EIGHTSWORD_TEST_ENDING_REQUIRE_PAIR") == "1"
 	effectsOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_EFFECTS_PREFIX") == "1"
 	duelOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_DUEL_PREFIX") == "1" || effectsOnly
-	swordsOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_SWORDS_PREFIX") == "1" || duelOnly
+	swordsOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_SWORDS_PREFIX") == "1" || duelOnly || ringOnly
 	root, assets, out := endingTestPaths(t)
 	type result struct {
 		state []byte
@@ -154,7 +155,18 @@ func TestEndingSourceRuntime(t *testing.T) {
 						found = true
 					}
 				}
-				if effectsOnly && stage == "END2.AY" {
+				if ringOnly {
+					found = false
+					for _, command := range page.ops {
+						found = found || command.SourceSHA == endingRingSource
+					}
+					if !found || len(endingSamples) != 0 {
+						return
+					}
+					if p.assets.art.ring == nil || p.assets.ringError != "" {
+						t.Fatal("紅金光環候選未載入")
+					}
+				} else if effectsOnly && stage == "END2.AY" {
 					found = false
 					for _, command := range page.ops {
 						if command.SourceSHA == endingEffectsSources[7] {
@@ -317,6 +329,9 @@ func TestEndingSourceRuntime(t *testing.T) {
 				}
 				pcm.Write(raw)
 				tick++
+				if hd && ringOnly {
+					sample()
+				}
 				if tick%10 == 0 && hd {
 					_ = e.Frame()
 					if e.renderFault != nil {

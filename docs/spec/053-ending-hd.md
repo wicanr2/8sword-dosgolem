@@ -518,3 +518,37 @@ duel-audit-r1.json SHAa8dea75ad15484f345ada239bcc338f19f273ba68d0cf3ba468b0d5d72
 - Go畫布直接混合HD效果，原始索引相容面、遮罩與累積順序保持。圖片／遮罩前綴接管仍846801／22269024條，沒有字模或整體FPS的新聲明。正常路段及九Frame首次通過，未重跑已驗完整結局／Esc／GUI／存讀。
 
 effects-audit-r1.json SHA8c24328eaa77ab0566ad19b56f739f496a785f8c1a3a74a237d68136c1dd79dc；effects-promotion-r1.json SHA609582357d2c5fb6f5eb90d4b38e1c86b4546212c3bf5d21a055e9acd1e0689b，位於既有ending-hd-r1。火焰與連續爆光的完整Frame、[11筆原版／HD總覽](../images/ending-effects-original-hd-r1.png)已抽看，[完整提示與來源](../images/ending-effects-original-hd-r1.json)收私人倉庫。此處不新增自然勝利、傷害規則、GUI／存讀或全HD完成聲明。
+
+## END3紅金光環準備
+
+本節 DRAFT。沿既有來源清單與原版結局命令，END3.AY第1筆為232×105六平面，解碼偏移9244、18274 bytes，記錄SHAf63c6b90c58db6f1bdc596c0c6dc565ecd47b6e8540fcb99cf2d76cbbe2c6f4a；原檔SHAcb56acd3b5652223083b6c41036b4df821f2310a097224613ddaf56ca599f9ff。Pillow11.3.0已核對原RGBA SHA與來源遮罩，可見bbox為(1,1)-(230,104)，沒有明示黑色寫入。
+
+只製作一張透明紅金光環，保留外紅內粉圓環、透明環隙與黃色光心。原始PNG、完整提示與生成收據保存在既有ending-hd-r1/end3-ring-art-r1，不改八劍、白色人影或原版演出。核對定稿後才列READY契約及正式匯入；玩法、頁面、時鐘與輸入不變。
+
+## END3紅金光環接入契約
+
+本節 READY。前節來源已核對，透明原PNG與灰底預覽已抽看。內建image_gen原PNG為1318×1193，SHAa630bfb7dcbdccaa6cf4f5e7944f502c8632e12e31265fc534c472fe5cb93adc，alpha範圍0–254；完整畫布以固定Pillow11.3.0 LANCZOS正規化696×630，不以程式去背、改色或繪製美術。
+
+- 新增ending-ring.json及ending-ring.png，r63全部460檔保持；固定清單SHA40ade60742046cf04effb6153b7c6bc6c792386b5e2025a7e311965cbf6443db。可選載入核對原始END3、清單及PNG雜湊、一般檔案與尺寸。舊組缺清單保持相容；錯誤只回本筆來源像素，其他結局HD保持。
+- 僅完整來源SHA相符且原始232×105、固定色盤的bitmap命令以Go draw.Over貼圖。來源沒有黑色清除遮罩，透明環隙保留下層HD。相同來源最後相交寫入的冪等規則沿八劍，其他相交命令後照序重畫。原版模式仍使用原像素路徑。
+- 抽驗可選載入、缺圖、真壞、連結、錯來源及透明重播；沿普通啟動／選單／新遊戲／F1／F2與既有受控原版收尾，停於END4首段。從實際含光環的END3來源命令抽三字型完整Frame，與獨立來源／PNG模型逐像素比對。兩側完整state、PCM、輸入與I/O保持既有前綴，差異只限光環來源矩形。
+- 通過後另存r64的462素材及七程式，保留r63與923核心。只聲明本筆光環接入；同機制完整結局／Esc／GUI／存讀沿既有代表，不重跑、不稱自然通關或全HD完成。
+
+工具入口：[素材準備](../../tools/prepare-ending-ring.py)、[可選載入](../../internal/eightsword/ending_ring.go)、[回退與透明測試](../../internal/eightsword/ending_ring_test.go)、[獨立核對](../../tools/audit-ending-ring.py)、[README比較圖製作](../../tools/prepare-ending-ring-overview.py)。準備器在既有Pillow容器指定`--project`唯讀專案與`--out`新候選目錄；核對器與總覽工具均指定`--project`及`--out`，總覽另需`--audit`通過收據。完整原圖留end3-ring-art-r1。
+
+### 光環抽樣條件勘誤
+
+首輪候選source-candidate-ring-r1的五項測試有四項通過，來源重播因未取得代表而失敗，紀錄保留runtime-ring-r1.log。既有handoff-complete-r2/handoff.json的第598筆已證實光環在首次END4前繪於後頁16,0、232×105。後續END1／END2命令可改變頁面的最後stage，仍保留光環來源，故只以stage等於END3判斷含光環畫面並不充分。抽樣改為檢查當前可見頁的完整光環來源SHA，並只保存首個符合者；不修改原版演出或停止時間。r2另建不可變候選，首輪不作原版或產品缺陷。
+
+第二輪仍未取到代表，runtime-ring-r2.log保留。前項stage判斷是可能漏樣條件，尚不足以解釋本次失敗。依連續失敗停止線重讀驗收入口，以唯讀r2來源另建ring-diagnostic-r1私有副本，僅增加每10毫秒的頁面／交易觀測。診斷22.687秒通過：61678895步光環在可見第1頁但active=1；61770896步已換到第0頁；64221661步第0頁可見且active=0，取得完整三字型畫面。這證實100毫秒取樣會漏過穩定交易邊界。r3只在光環抽樣模式每10毫秒呼叫既有純讀抽樣器；原生執行配額、正常HD及原版時間均不變。診斷來源、雜湊與log保存ring-diagnostic-r1，不作正式新建置來源。
+
+## END3紅金光環正式提升與限定驗收
+
+2026-10-27：本筆光環限定 CONFORMED。正式r64共462素材，r63全部460檔逐SHA保持。七程式來自source-candidate-ring-r3／175固定輸入，保留原173輸入與七程式；923核心及原版158檔保持。透明定稿沿外紅內粉、透明環隙與中央金光，由原生Go直接貼圖，不使用原版RGB底圖。
+
+- 五父測試及六項載入／回退子案69.706秒、go vet通過。缺清單支援舊組；壞清單、缺圖、真壞、連結及錯原始來源均拒絕本筆，其他HD保持。透明冪等、相交重畫及既有八劍／效果累積回歸通過。
+- 普通啟動、選單、新遊戲、F1／F2後，沿既有受控原版收尾到END4首段。兩側各89060489步，完整state SHAc863af8c6c7b33686fa01855946a31bbc0e32588f1c02b4890301f0e1e912564、原生PCM SHA3b9e8d69127314c64272fd383ac719d353efa6165791ceffc2418263891ee606及輸入／I/O同值，也同先前不可變effects原版控制。四張普通玩家HD畫面與r63相同。
+- 在64221661步的可見END3完整畫面抽三字型。原生來源另與Oracle RGB逐像素核對，Frame前後state相同。三張HD全幅同獨立原始解碼、PNG及Go16-bit透明公式重建；相對r63差異只限光環原命令矩形聯集。完整光環、八劍、人物與火焰同畫面及總覽已抽看。
+- 首兩輪為取樣條件及頻率問題，失敗log與私有診斷保持。r3每10毫秒只在測試模式檢查完整來源，不增加正式計時、輸入或玩法；沒有重跑完整結局、Esc、GUI或存讀，沿相同機制既有代表。圖片／遮罩前綴接管不變，不推定FPS。
+
+ring-audit-r1.json SHA132b83232f1f22a59123328e8ad5c53275b784ec2a853505e21ad199b5db37f6；ring-promotion-r1.json SHAb094fcae6af754de5fcf7fe08ba7f2f28084f454004fc6fd3544bf8223b95df3，均在既有ending-hd-r1。[README比較圖](../images/ending-ring-original-hd-r1.png)及[完整提示與來源](../images/ending-ring-original-hd-r1.json)只收縮小成果，完整PNG及生成紀錄留end3-ring-art-r1。白色人影、END4人物／掛畫與光臺、END6空白掛畫仍待補，本規格整體DRAFT保持；不冒稱自然通關或全HD完成。

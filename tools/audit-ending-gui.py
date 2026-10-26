@@ -62,6 +62,10 @@ def reconstruct(meta, assets, sources):
         for pair in read(assets/'ending-pair.json')['records']:
             assert sha(assets/pair['image']) == pair['image_sha256']
             pairs[pair['source_sha256']] = Image.open(assets/pair['image']).convert('RGBA')
+    if (assets/'ending-ring.json').exists():
+        ring = read(assets/'ending-ring.json')
+        assert sha(assets/ring['image']) == ring['image_sha256']
+        effects[ring['source_sha256']] = Image.open(assets/ring['image']).convert('RGBA')
     if (assets/'ending-effects.json').exists():
         for effect in read(assets/'ending-effects.json')['records']:
             assert sha(assets/effect['image']) == effect['image_sha256']

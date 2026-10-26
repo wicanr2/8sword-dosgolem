@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+END3紅金光環已依[053限定驗收](docs/spec/053-ending-hd.md#end3紅金光環正式提升與限定驗收)接入r64／462素材與175輸入七程式，923核心保持。原圖與提示留`ending-hd-r1/end3-ring-art-r1`。[可選載入](internal/eightsword/ending_ring.go)、[回退及透明測試](internal/eightsword/ending_ring_test.go)只處理第1筆光環；原版規則及時鐘不改。Go1.24.13容器設`EIGHTSWORD_TEST_ENDING_RING_PREFIX=1`沿原版前綴，測試每10毫秒檢查實際來源SHA，不以最後stage或100毫秒取樣判斷短暫效果。
+
+[匯入器](tools/prepare-ending-ring.py)在固定Pillow11.3.0容器使用`--project <唯讀專案> --out <既有ending-hd-r1內新候選>`，保留r63全460檔。[獨立核對](tools/audit-ending-ring.py)以相同`--project --out <新JSON>`核對來源、三字型完整畫面、狀態及音訊；[總覽](tools/prepare-ending-ring-overview.py)另設`--audit <通過收據> --out <新PNG>`。完整圖留本機，README縮小比較與提示沿私人倉庫紀錄；首兩輪漏樣與隔離診斷見053，不重開逆向或逐項GUI。
+
 END6雙人縮小動畫已依[053限定驗收](docs/spec/053-ending-hd.md#end6雙人正式提升與限定驗收)正式提升r63／460素材與173輸入七程式，保留r62／455素材及171輸入前版。原圖／完整提示與兩輪收據留`ending-hd-r1/end6-pair-art-r1`。[匯入器](tools/prepare-ending-pair.py)在既有Pillow11.3.0容器使用`--project <唯讀專案> --out <既有ending-hd-r1內新候選>`，核對四筆原始bbox與黑色寫入，只加四材質及清單。原版空白掛畫不改，完整結局／Esc及共用機制抽樣通過，不重跑逐張GUI。
 
 [END6原子載入及黑色遮罩](internal/eightsword/ending_pair.go)與[真實來源／透明回退測試](internal/eightsword/ending_pair_test.go)依[READY契約](docs/spec/053-ending-hd.md#end6雙人材質ready契約)。沿既有Go1.24.13容器及923核心設`EIGHTSWORD_TEST_ENDING_REQUIRE_PAIR=1`，完整結局抽一份END6三字型；`EIGHTSWORD_TEST_PAIR_OUT`另存四筆受控畫面。原版命令、時鐘與存檔不改，不要求逐姿勢GUI。

@@ -22,6 +22,7 @@ type endingAssets struct {
 	duelError     string
 	effectsError  string
 	pairError     string
+	ringError     string
 }
 
 func (a *endingAssets) profile(id string) *endingFontProfile {
@@ -146,6 +147,11 @@ func loadEndingAssets(dir, root string) (*endingAssets, error) {
 	a.art.pair, err = loadEndingPair(dir, root)
 	if err != nil {
 		a.pairError = err.Error()
+		a.fallbacks = append(a.fallbacks, err.Error())
+	}
+	a.art.ring, err = loadEndingRing(dir, root)
+	if err != nil {
+		a.ringError = err.Error()
 		a.fallbacks = append(a.fallbacks, err.Error())
 	}
 	return a, nil

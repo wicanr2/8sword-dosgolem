@@ -27,11 +27,11 @@
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
-本機完整HD素材入口為`workplace/player/assets-painted-r63`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r63`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
+本機完整HD素材入口為`workplace/player/assets-painted-r64`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r64`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 HD模式固定由Go來源呈現器產生畫面，已移除原版RGB疊圖退路。相容像素操作也由Go處理，事件邊界不再退回原版像素寫入。使用`-hd=false`時保留原版繪圖途徑，不安裝HD繪圖掛點。未接管的HD寫入會記錄位置、保留最後完整畫面並停止。模式分流與抽驗範圍見[047限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。
 
-舊步數時鐘重播工具也已支援這條Go HD路徑，保留原本固定輸入與步數排程。有本機原版及完整素材時，可用`bash tools/player.sh replay hd step-hd-check -assets /player/assets-painted-r63`執行；收據名稱須尚未使用。工具在Docker內運行，預設重播2.5億步，抽驗範圍見[步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。
+舊步數時鐘重播工具也已支援這條Go HD路徑，保留原本固定輸入與步數排程。有本機原版及完整素材時，可用`bash tools/player.sh replay hd step-hd-check -assets /player/assets-painted-r64`執行；收據名稱須尚未使用。工具在Docker內運行，預設重播2.5億步，抽驗範圍見[步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。
 
 Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
@@ -118,6 +118,10 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
 ![結局法術效果11筆原版與HD總覽](docs/images/ending-effects-original-hd-r1.png)
 腳下火焰、曲線光流與爆光共11張已製作並載入，沿原版命令由Go透明混合。下排配對相同狀態的原版來源與實際HD爆光畫面；曲線光流三張尚未取得正常使用證據。[完整提示與來源](docs/images/ending-effects-original-hd-r1.json)及[限定驗收](docs/spec/053-ending-hd.md#end2法術效果正式接入與限定驗收)可回查。
+
+![結局紅金光環原版與HD比較](docs/images/ending-ring-original-hd-r1.png)
+
+紅金光環保留原版外紅內粉、透明環隙與中央金光，已接入Go畫布。下排是相同客體狀態的原版來源重建與實際HD畫面；三字型畫面、原版狀態與音訊已抽驗。[完整提示與來源](docs/images/ending-ring-original-hd-r1.json)及[限定驗收](docs/spec/053-ending-hd.md#end3紅金光環正式提升與限定驗收)可回查。
 
 ![結局雙人縮小動畫原版與HD比較](docs/images/ending-pair-original-hd-r1.png)
 雙人四張縮小圖已使用同一張古風手繪定稿，保留原版站位、紫披風與金黃服色，依原位置及比例由Go透明貼圖。下排配對相同客體狀態的原版來源重建與實際HD畫布；完整結局及Esc的狀態、音訊保持。[完整提示與來源](docs/images/ending-pair-original-hd-r1.json)及[限定驗收](docs/spec/053-ending-hd.md#end6雙人正式提升與限定驗收)可回查，沒有新增自然通關或GUI存讀聲明。
