@@ -34,11 +34,11 @@ def main():
         assert sha(base/name) == digest
     assert sha(batch/'end7-r2.png') == '50dc8cfd675457526810c709a0e5197bcb46eff7aef1fdc0d12a6b7774fdde27'
     args.out.mkdir()
-    # Candidate view only. Relative links resolve through read-only /project;
-    # a promoted standalone group must materialize these unchanged base files.
+    # Runtime loaders deliberately require ordinary files and contained paths.
+    # Preserve bytes while materializing the group; links can hide HD fallbacks.
     for path in base.iterdir():
         target = args.out/path.name
-        target.symlink_to(os.path.relpath(path, batch/args.out.name))
+        shutil.copyfile(path, target)
     files = {}
     for name in source['files']:
         if name == 'end7.png':
@@ -61,9 +61,9 @@ def main():
     assert len(list(args.out.iterdir())) == 433
     receipt = dict(schema=1, spec='053', production=False, tool_sha256=sha(Path(__file__)),
                    manifest_sha256=sha(args.out/'ending.json'), files=files, unchanged_base_files=425,
-                   candidate_entries=433, base_links=True,
+                   candidate_entries=433, base_links=False,
                    inputs_sha256=sha(old/'inputs.json'), corrected_art_sha256=manifest['art_source_sha256'],
-                   limits=['Candidate view uses relative links; read via project alias, not writable output alias.',
+                   limits=['All 433 entries are ordinary files; 425 base files preserve their hashes.',
                            'Original files, full art and fonts remain local. Unconverted ending art uses source commands.'])
     with (args.out.parent/(args.out.name+'-preparation.json')).open('x') as handle:
         handle.write(json.dumps(receipt, ensure_ascii=False, indent=2)+'\n')

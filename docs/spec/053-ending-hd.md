@@ -2,9 +2,9 @@
 
 狀態：DRAFT。工作入口見[AGENTS](../../AGENTS.md)，目前程式與素材見[CONTEXT](../../CONTEXT.md)。
 
-正式來源場景與三字型依末節READY契約進入候選實作；全套結局美術與直接CPU接管的擴充仍分別驗收，不能由局部通過宣稱整體完成。
+正式來源場景與三字型已依末節契約提升r57並限定CONFORMED；全套結局美術與直接CPU接管的擴充仍分別驗收，不能由局部通過宣稱整體完成。
 
-目前原版交接、載入段及END5代表Esc已由[動態證據](#原版覆蓋交接與bios-esc的動態證據)補齊。下文各研究階段的「未知／待補」保留歷史，由末節列出的勘誤對照核對；不重開已解項。來源場景已接候選Engine，GUI及正式提升與其他美術仍未完成。
+目前原版交接、載入段及END5代表Esc已由[動態證據](#原版覆蓋交接與bios-esc的動態證據)補齊。下文各研究階段的「未知／待補」保留歷史，由末節列出的勘誤對照核對；不重開已解項。來源場景已正式接入Engine並通過GUI與存讀，其他結局美術仍未完成。
 
 ## 範圍與來源
 
@@ -330,3 +330,45 @@ r3於相同END5來源與實際BIOS換頁後，89817177步送一次普通BIOS Esc
 [README對照](../images/ending-engine-scenes-r3.png)與[來源紀錄](../images/ending-engine-scenes-r3.json)使用最新r3實際Engine Frame。左欄是已與原版RGB核對的來源重建，其他三欄是候選實際Frame；END7使用正確r2，對話人物與其他未完成美術仍是來源像素。不是GUI截圖，沒有新增自然通關、音訊裝置聽感或真正存退讀聲明。
 
 下一步為實際GUI Draw、來源故障的有界停機及正式素材／七程式原子提升，抽樣正常存退讀。來源與三字型、輸入轉移、完整播放與Esc不再重新考古。其餘結局HD美術、開場CPU接管及其他曲目沿原範圍繼續；整體HD未完成。
+
+## 素材實體化與提升契約
+
+本節READY，延續前述接入範圍。GUI發現assets-candidate-r2的符號連結會被部分正式載入器拒絕，不能把433個可讀項目當成433個已成功載入項目。舊15Frame與客體對照仍是結局來源呈現證據，舊候選的其他HD素材共存聲明不成立。
+
+- [素材準備器](../../tools/prepare-hd-ending.py)改為433個一般檔案，425份r56基底逐檔保留SHA，不放寬路徑／檔案類型檢查。新候選assets-candidate-r3；舊r1／r2及其實際工具、收據保留。
+- [正常整合測試](../../internal/eightsword/ending_runtime_test.go)增加全部素材錯誤、音樂及海報載入檢查。故障案例也用真正一般檔案，只損壞指定檔；不能讓整份基底因符號連結失效而誤稱局部回退成功。
+- [來源故障測試](../../internal/eightsword/ending_fault_test.go)驗不支援顯示模式、未登錄來源及真壞Noto。必須回ending階段的明確錯誤，保留最後完整畫面，後續六次Advance／AdvanceCycles均拒絕且完整客體狀態保持。受控測試不當自然玩家路徑。
+- [GUI準備器](../../tools/prepare-ending-gui.py)只在凍結候選副本加入[診斷探針](../../tools/ending-gui-probe.go)，完整保留基底輸入與差異清單。受控結局分支與Draw取樣不進正式module。[執行器](../../tools/check-ending-gui.sh)在有界Docker／Xvfb跑ending-full、ending-escape或save-cycle，XTEST輸入不直接呼叫遊戲函式。
+- [GUI核對](../../tools/audit-ending-gui.py)用原始解碼／新字圖獨立重建，核對中央畫布、含海報的完整畫面及對應的實際Draw串流。[正常存讀核對](../../tools/audit-ending-save.py)另驗未含研究掛點的正式候選二進位、三字型墨點、F1／F2、真正F7存檔與冷讀。兩個GUI程序結束後的快照只執行零指令檢視。
+- [核心準備器](../../tools/prepare-ending-input-core.py)可核對既有921檔revision後重用，不覆寫來源；新增兩API以外的原919檔保持。`bash tools/player.sh build <新名稱>`沿此核心建立七程式，保存完整來源、工具、Go版本與輸出SHA。
+- [提升核對](../../tools/audit-ending-promotion.py)收以上獨立收據、三故障、433素材、150份輸入、七程式及158原版檔案。達標後由[提升工具](../../tools/promote-ending.py)建立assets-painted-r57並替換本機七程式；r56、舊919核心與前版完整程式保持，不建立或移動Release／tag。
+
+上述Python工具均在固定Pillow11.3.0容器執行；提升核對使用`--project <唯讀專案> --save-audit <已驗正式候選存讀JSON> --out <新JSON>`。提升工具使用`--project <唯讀專案> --player <可寫播放器目錄> --audit <前項通過收據> --receipt <新JSON>`。既有範圍外的結局美術、開場CPU與其餘曲目另處理，不能因本節通過而宣稱整體HD完成。
+
+
+## r57正式提升與限定驗收
+
+2026-10-26：本節限定CONFORMED。結局來源呈現、Noto／教育部隸書／草書、正確END7 r2及原版PAE輸入交接已接本機正式七程式。全套結局HD美術與整體HD仍未完成，053整體維持DRAFT。
+
+| 驗收 | 證據與限定結果 |
+|---|---|
+| 素材 | assets-candidate-r3實體化為433個一般檔案；r56的425檔逐SHA保持。正式assets-painted-r57另存，不修改r56，未放寬任何載入器 |
+| 建置 | source-candidate-ending-r1保存150輸入、七程式與Go1.24.13。正式921核心僅比原919核心加兩份輸入API；原核心及原版158檔保持。正式程式沒有研究掛點 |
+| 測試 | runtime-r5五父測試、三停機子案與五真壞素材子案約254.76秒通過，go vet通過；正常整合另要求全部素材錯誤為空、音樂及海報確實載入 |
+| 同狀態 | 完整演出各138507913步，state40df5e6d…ff6a、原生PCM dedaf49a…2b4c及輸入／I/O相同；BIOS Esc各100264740步，輸入前state、結尾state eb72865d…af8ff與PCM 2d49b382…4b1e相同。完整控制亦同舊未清理控制 |
+| Go接管 | 同一實際原版覆蓋交接後略過52940401條x86指令，圖片／遮罩／字模仍為3086215／38659302／11194884。外層、事件邊界、清頁及搬移仍有原版工作，不推定FPS |
+| 停機 | 不支援mode13h、未登錄8×1來源與真壞Noto均回ending階段的明確故障；保留最後完整Frame，六次後續Advance拒絕且完整客體不再前進。控制呼叫只在測試，不編入玩家程式 |
+| 結局實際GUI | 完整演出729 Draw，END5三字型及END7／8／9共六份代表；普通BIOS Esc 501 Draw、一份代表，均由Pillow獨立重建並連回完整錄製串流。中央畫面與含海報畫面的中央矩形逐像素相同 |
+| 正常玩家路徑 | 未含研究掛點的同一七程式候選，以XTEST走主選單、F1／F2往返、移動、真正F7存檔、回DOS、冷啟動繼續。230／126 Draw、471／204來源Frame、2276／1228直接計畫，舊合成器0；Noto／隸書／草書分別1235／261／416個不透明墨點相符 |
+| 真正存讀 | 2987 bytes SHA29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359，與兩側GUI結束後RAM一致，冷讀原版DOS讀取2987 bytes；快照僅零指令檢視。草書偏好在冷啟動恢復 |
+| 視覺抽樣 | 已看實際隸書結局視窗、正確END7完整Frame、正式候選人物頁及冷讀接觸表；END5人物仍是原版來源，沒有冒稱全人物HD |
+
+獨立收據均在既有ending-hd-r1：
+- engine-audit-r5.json SHA0fd392285d2b45c6df800cf415f3deac95ba37b263f73c810be083e8425d21f8。
+- gui-full-audit-r2.json SHAeefea6e42bca781aecb0622a59e4dfe0112c7f54a3879756c81896d6f2e9b8a3；gui-escape-audit-r1.json SHA698658bf46f2bad07984a93187d8264939138a8494bd9541669602680ea79563。
+- gui-formal-save-audit-r1.json SHAf1477bf870e38225fb893f2c9c0e9faa256062b7a379089dcb04f1621e14f175，明確核對實際執行8sword與gui-check SHA，不以相同來源代替二進位身分。
+- ending-promotion-audit-r1.json SHAf771694c3c0028abcaaf53dedc1d9eedd7bb4dd8bcc3b91cdc101a5fcdb06a7a；ending-promotion-r1.json SHAde74bf474cf1d10efcea68fc871ca622b68b9c47da0dd7d6b10e1ce96ca18bd0。
+
+舊候選連結問題的勘誤適用於整組HD共存與局部回退的舊聲明。舊來源呈現及15Frame證據保留，但不再用r2符號連結組作執行期素材。r4診斷亦保留；r5改用一般檔案與更強的全部載入檢查後乾淨重跑。存讀核對器首版誤讀文字計數名稱，改用既有ComposedFrames／CachedFrames及圖像CompositedFrames欄位，以相同GUI收據重核，未重跑或放寬玩家結果。
+
+下一步補END5等其餘結局人物與動畫HD，沿既有來源、三字型與Go呈現機制，不重查已解字碼、載入基址或重等自然通關。PAM字模與開場CPU接管、其他音畫及九曲待確認方向維持原範圍。此處未驗自然勝利、實體GPU、裝置聽感、其他平台或全遊戲規則。

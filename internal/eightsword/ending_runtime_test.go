@@ -8,6 +8,7 @@ import (
 	"image/png"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/wicanr2/dosgolem/oracle"
@@ -52,6 +53,20 @@ func TestEndingSourceRuntime(t *testing.T) {
 		defer e.Close()
 		if hd && (e.EndingError != "" || e.AssetError != "") {
 			t.Fatalf("asset errors: %s / %s", e.EndingError, e.AssetError)
+		}
+		if hd {
+			for key, value := range e.Status() {
+				if message, ok := value.(string); ok && strings.HasSuffix(key, "_error") && message != "" {
+					t.Fatalf("candidate silently lost HD group %s: %s", key, message)
+				}
+			}
+			if e.Music.LoadError != "" {
+				t.Fatal(e.Music.LoadError)
+			}
+			toolbar, err := LoadPosterToolbar(assets, e.FontChoices())
+			if err != nil || toolbar == nil || toolbar.Error != "" {
+				t.Fatalf("poster group unavailable: %v / %v", toolbar, err)
+			}
 		}
 		e.Oracle.SetClock(12, 0, 0, 0)
 		e.EnableLiveClock(3000)
@@ -356,7 +371,11 @@ func TestEndingAssetsFaults(t *testing.T) {
 				t.Fatal(err)
 			}
 			for _, entry := range entries {
-				if err = os.Symlink(filepath.Join(assets, entry.Name()), filepath.Join(dir, entry.Name())); err != nil {
+				data, readErr := os.ReadFile(filepath.Join(assets, entry.Name()))
+				if readErr != nil {
+					t.Fatal(readErr)
+				}
+				if err = os.WriteFile(filepath.Join(dir, entry.Name()), data, 0644); err != nil {
 					t.Fatal(err)
 				}
 			}

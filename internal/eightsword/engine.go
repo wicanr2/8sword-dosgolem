@@ -578,6 +578,7 @@ func (e *Engine) Status() map[string]any {
 	out["direct_calls"] = e.sourceDirectCalls
 	out["owned_render_fault"] = e.renderFault
 	out["source_frame_kind"] = e.sourceMetadata.Kind
+	out["ending"] = e.EndingStatus()
 	out["font_id"], out["font_name"], out["font_error"], out["font_choices"] = e.FontID(), e.FontName(), e.FontError, e.FontChoices()
 	out["battle_background_error"] = e.BattleBackgroundError
 	out["battle_background_batch_error"] = e.BattleBackgroundBatchError

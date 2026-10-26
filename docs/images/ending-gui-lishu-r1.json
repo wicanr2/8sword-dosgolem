@@ -1,0 +1,9 @@
+{
+  "spec": "053",
+  "image_sha256": "f21491e9d771ad1bc05379db1b9cfbffe0e46978ed1209ae0a8285478c8fad07",
+  "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/gui-full-r2/ending-full/ending-font-lishu.png",
+  "source_sha256": "f21491e9d771ad1bc05379db1b9cfbffe0e46978ed1209ae0a8285478c8fad07",
+  "method": "XTEST X11 GetImage of actual Ebiten window; controlled original ending branch",
+  "gui_audit_sha256": "eefea6e42bca781aecb0622a59e4dfe0112c7f54a3879756c81896d6f2e9b8a3",
+  "scope": "True MOE lishu text and posters; END5 portrait still original source pixels; Linux muted device"
+}

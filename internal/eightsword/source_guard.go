@@ -77,6 +77,9 @@ func (e *Engine) sourceGuardObserver(ob PresentationObserver) func() {
 				if e.PAMLoaded {
 					phase, admitted = "pam", v.Mode == 3 || v.Mode == 0x0e
 				}
+				if e.inEndingPhase() {
+					phase, admitted = "ending", v.Mode == 3 || v.Mode == 0x0e
+				}
 				if !admitted {
 					r := e.Oracle.Regs()
 					e.sourceRejectAt(phase, "unhandled-display-mode", v.Step, r.CS, r.IP, v.Mode)

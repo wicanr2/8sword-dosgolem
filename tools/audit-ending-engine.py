@@ -103,13 +103,14 @@ def main():
     parser.add_argument('--runtime', default='runtime-r3')
     parser.add_argument('--sources', default='engine-build-r3')
     parser.add_argument('--binary', default='ending-engine-tests-r3')
+    parser.add_argument('--assets', default='assets-candidate-r3')
     args = parser.parse_args()
     assert Path('/.dockerenv').is_file() and os.getuid() == 1000 and __version__ == '11.3.0'
     assert not args.out.exists() and args.out.parent.stat().st_uid == 1000
     p = args.project
     b = p/'workplace/probe-20261023/graphics-first/ending-hd-r1'
     run = b/args.runtime
-    assets = b/'assets-candidate-r2'
+    assets = b/args.assets
     assert sha(assets/'ending.json') == 'f66ddeebfecd728ccca16e4c958e386046f2383ecf83a662b280582785ffbd7b'
     manifest = read(assets/'ending.json')
     for name, digest in manifest['files'].items():
@@ -117,7 +118,7 @@ def main():
     assert manifest['art_source_sha256'] == '50dc8cfd675457526810c709a0e5197bcb46eff7aef1fdc0d12a6b7774fdde27'
     formal = read(p/'workplace/probe-20261023/graphics-first/story-art-r1/blue-person-correction-r4/runtime-audit-r4.json')
     for name, digest in formal['asset_hashes'].items():
-        assert (assets/name).is_symlink() and sha(assets/name) == digest
+        assert not (assets/name).is_symlink() and (assets/name).is_file() and sha(assets/name) == digest
     assert len(list(assets.iterdir())) == 433
     core = read(b/'runtime-input-r1/runtime-input.json')
     assert len(core['base_inputs']) == 919 and len(core['added']) == 2
@@ -172,7 +173,7 @@ def main():
                   limits=['Actual original overlay follows controlled cleanup branch, not natural victory.',
                           'Headless Engine Frame evidence, not GUI Draw or new save/reload acceptance.',
                           'END7 uses corrected r2. Other unconverted art remains source pixels rendered by Go.',
-                          'Candidate base uses relative links; formal r56 remains unchanged.',
+                          'Candidate uses ordinary files; formal r56 remains unchanged.',
                           'Native Go admits batches under existing event limits; boundary/clear/copy loops remain native.'])
     with args.out.open('x') as handle:
         handle.write(json.dumps(result, ensure_ascii=False, indent=2)+'\n')

@@ -27,17 +27,19 @@
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
+本機完整HD素材入口為`workplace/player/assets-painted-r57`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r57`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
+
 Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
 | 路徑 | 原生Go接管範圍 | 尚待處理 |
 |---|---|---|
 | 正式PAM主程式 | 四／五平面圖片、六平面角色整筆及列批次；Go後端提交紋理與矩形 | 字模等其他入口及事件邊界回退 |
 | 正式開場 | Go自有場景產生HD畫面 | 原版CPU像素迴圈尚未接管 |
-| PAE結局候選 | 四／五平面圖片、六平面角色與中英文字模，以Go複製及位元混合批次處理，已沿實際原版交接驗客體與完整Frame | GUI與正式提升、清頁／搬移及事件邊界殘段，見[053](docs/spec/053-ending-hd.md#來源場景候選的無頭驗收) |
+| 正式PAE結局 | 四／五平面圖片、六平面角色與中英文字模，以Go複製及位元混合批次處理，已沿實際原版交接驗客體與完整Frame | 清頁／搬移及事件邊界殘段；來源呈現與三字型已驗實際視窗及存讀，見[053](docs/spec/053-ending-hd.md#r57正式提升與限定驗收) |
 
 接管函式直接執行Go的批次複製與透明混合，不逐條解譯x86繪圖指令。相容索引資料與原版呼叫效果仍需保留；單次呼叫加速不等於整體FPS提升。
 
-結局已有原版覆蓋載入、完整播放與 BIOS Esc 的[受控驗證](docs/spec/053-ending-hd.md#原版覆蓋交接與bios-esc的動態證據)，尚未接入正式 HD。受控案例只選擇原版收尾分支，沒有宣稱自然通關。
+結局已有原版覆蓋載入、完整播放與 BIOS Esc 的[受控驗證](docs/spec/053-ending-hd.md#原版覆蓋交接與bios-esc的動態證據)，來源呈現、Noto／教育部隸書／草書及修正END7已接入本機r57。實際Draw、來源故障停機與正常存退讀已抽驗；其他結局美術仍待補。受控案例只選擇原版收尾分支，沒有宣稱自然通關。
 
 開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；驗收見 [014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。發行商中央圖案亦已採 B 柔和漸層，三字型、正常交接、存退讀與故障回退的範圍見 [016](docs/spec/016-publisher-wordmarks.md#b-圖案正式追加驗收)。其他音畫與整體 HD 尚未完成。完整執行期素材組留本機。
 
@@ -92,7 +94,7 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 | 戰場背景與原版變體 | 10 | [GRO01 至 GRO05](docs/images/original-battle-backgrounds-r1.png) |
 | 建築與原版變體 | 12 | [LIVE1 至 LIVE6](docs/images/original-buildings-r1.png) |
 | 開場圖像 | 26 | [TIT 系列](docs/images/original-opening-r1.png) |
-| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[Engine三字型候選畫面](docs/images/ending-engine-scenes-r3.png)，已接候選引擎，正式提升待驗 |
+| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[Engine三字型候選畫面](docs/images/ending-engine-scenes-r3.png)，來源呈現與三字型已正式接入，其他結局美術待補 |
 | 介面圖像 | 6 | [CUBE／BUMBOO／MSGBOX](docs/images/original-ui-r1.png) |
 | 原版編輯圖集與插畫 | 19 | [X 系列 ILBM](docs/images/original-illustrations-r1.png) |
 
@@ -100,7 +102,9 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
 ![結局原版來源重建與候選引擎三字型Frame](docs/images/ending-engine-scenes-r3.png)
 
-每列配對相同客體狀態的原版來源重建、Noto Black 900、教育部隸書與草書。左欄已與原版RGB核對，其餘為候選Engine實際回傳的Frame。Go直接從來源命令產生畫面；END7已換入補回男女主角的r2，END5人物圖等未完成美術仍使用原版來源。完整播放與BIOS Esc的客體／原生音訊對照、十五張完整Frame獨立重建已通過；GUI Draw與正式素材提升仍待完成，沒有宣稱自然通關。[來源紀錄](docs/images/ending-engine-scenes-r3.json)及[候選驗收範圍](docs/spec/053-ending-hd.md#來源場景候選的無頭驗收)可回查。
+每列配對相同客體狀態的原版來源重建、Noto Black 900、教育部隸書與草書。左欄已與原版RGB核對，其餘為已驗Engine實際回傳的Frame。Go直接從來源命令產生畫面；END7已換入補回男女主角的r2，END5人物圖等未完成美術仍使用原版來源。完整播放與BIOS Esc的客體／原生音訊對照、十五張完整Frame獨立重建已通過；實際GUI Draw與正式r57提升亦已完成限定驗收，沒有宣稱自然通關。[來源紀錄](docs/images/ending-engine-scenes-r3.json)及[正式驗收範圍](docs/spec/053-ending-hd.md#r57正式提升與限定驗收)可回查。
+
+[結局實際隸書視窗](docs/images/ending-gui-lishu-r1.png)可查看工具列、海報與結局文字共存，附[來源紀錄](docs/images/ending-gui-lishu-r1.json)。圖中END5人物仍為原版來源像素，後續另補HD人物。
 
 END7的[構圖比較](docs/images/ending-corrected-candidate-r2.png)與[完整提示及來源](docs/images/ending-corrected-candidate-r2.json)保留原PNG與人物修正紀錄。上方候選畫面已使用r2，原本漏畫兩人的r1保留歷史並拒絕提升。
 
