@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "image": "ending-swords-original-hd-r1.png",
+  "image_sha256": "44aca67c0b1e38b78761b6929f768ed4ec6cdff267823a8f45d68647790b12e7",
+  "audit_sha256": "25e5d590012278ede15432d357c9ce7fc7861e1dc6f2d306fcb1c28305b25fcb",
+  "source_sha256": "1076452c5a3ee02585c509ec5bc142c976dbba39882fc6fb8cd760bcdbfb5493",
+  "runtime_frames": {
+    "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-swords-r1/hd/sample-01-native.png": "2798be5d4ab65197e9d214003c8f5dc3783b7adc5bbc5e90f8a341c61db2142f",
+    "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-swords-r1/hd/sample-01-noto.png": "0728bcaf83918fbcf0e37bab18239e726ae6db14ccbe46ba274c2367542a43c1"
+  },
+  "generation": {
+    "schema": 1,
+    "spec": "053",
+    "tool": "built-in image_gen",
+    "status": "generated-reviewed-not-runtime",
+    "image": "end3-swords-clean-r2.png",
+    "image_sha256": "d3d83dc3d23207934976a47145e06ea321321f62658a19071920a363311bc91f",
+    "size": [
+      1407,
+      1118
+    ],
+    "prompt": "cleanup-r2.prompt.txt",
+    "prompt_sha256": "4a365418c140371b466390dd21d38441b0019b32a359a3e2e9f23297d4b8e53d",
+    "reference": "end3-swords-r1.png",
+    "reference_sha256": "5efe6860d31eb1f594c9d3d9968903e94b2bbf08a1ff779ed75b802eb25ec98a",
+    "transparent_background": true,
+    "visual_review": "Eight weapons, same radial arrangement; imagegen removed faint central residue.",
+    "rights": "local original-derived HD; private repository comparison only"
+  },
+  "initial_prompt": "Use case: style-transfer.\nAsset type: transparent HD game texture for the original Chinese DOS wuxia RPG Shen Zhou Ba Jian, END3 record 0.\nInput image 1 is the exact layout, orientation, silhouette and colour reference. Redraw these EXACTLY EIGHT separate ancient Chinese magical weapons in a richly detailed hand-painted wuxia style, with polished silver steel, subtle engraved metal, and saturated coloured grips matching the original. The shapes include both straight jian blades and forked/pronged ceremonial weapons; do not turn them all into identical modern swords.\nPreserve the eight radial locations with a large EMPTY TRANSPARENT centre: 12 o'clock silver straight sword pointing UP with blue/cyan grip near centre; 1:30 forked silver weapon pointing UPPER RIGHT with red/pink grip; 3 o'clock silver straight sword pointing RIGHT with blue/cyan grip; 4:30 short silver weapon pointing LOWER RIGHT with blue/green grip; 6 o'clock broad silver sword pointing DOWN with green grip; 7:30 forked silver weapon pointing LOWER LEFT with pink/yellow grip; 9 o'clock golden straight sword pointing LEFT with pink grip; 10:30 forked silver weapon pointing UPPER LEFT with green grip.\nAll tips face outward, all grips face inward. Exactly eight weapons, one per position, no ninth sword. Keep every weapon separate, fully visible and naturally proportioned. Keep the original roughly 1.257:1 overall landscape framing, generous small transparent outer padding and a large transparent centre. Fine readable contours and restrained decorative details suitable at a 528 by 420 game texture, not photographic, not pixel art. No connecting ring, no energy sphere, no beams, no shared central ornament, no characters, no scenery, no writing, no logo, no watermark, no shadow plane or coloured backdrop. The entire background, gaps and centre must be genuinely transparent alpha, not white or a painted checkerboard. Preserve the exact composition from the source.",
+  "cleanup_prompt": "Use case: background-extraction. Edit this exact eight-weapon transparent game texture. Preserve all eight weapons, their positions, sizes, colours, hand-painted detail and soft antialiased contours unchanged. Remove ONLY the nearly invisible black background residue from the empty gaps, corners and LARGE EMPTY CENTRAL AREA. Those empty areas must have alpha EXACTLY 0, fully clear, including the exact centre pixel and the central 20 percent rectangle. Keep antialiasing only at actual weapon contours. No shadows or glow in empty space, no backdrop, no checkerboard pixels. Do not add, remove, move, crop or redesign any weapon. Return the entire same landscape canvas with genuinely transparent background.",
+  "tool_sha256": "09304e00140aff4893778b81fbb0ce2e3af4371c04f4d4af1784608844f3ead5",
+  "scope": "Verified source/HD textures and same-state Engine Frame. Other characters remain source pixels; no new GUI or natural-victory claim."
+}

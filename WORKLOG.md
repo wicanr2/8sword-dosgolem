@@ -1675,3 +1675,14 @@ runtime-audit-r4及promotion-r4通過後，提升r59／439素材及source-candid
 工作收尾核對原版158檔、919／921核心、三版程式與素材SHA、文件入口及擁有權；正式結果寫入ending-hd-r1/final-integrity-r15.json，提交與遠端讀回寫入publication-r8.json。Docker使用有界非root容器，相關容器須全部結束；其他專案容器不動。其餘結局美術、PAM字模與開場CPU接管、未批准九曲及整體HD繼續依原範圍處理。
 
 收尾勘誤：首次完整性腳本發現舊前導提升器將候選runtime.json的研究標記帶入正式說明。七程式及921核心未變。保留當時核對器與首次完整性腳本，修正提升器，另以受限修復模式核對已提升程式及全部核心SHA後補正式標記；runtime-metadata-repair-r1.json保存前後說明與雜湊。最終腳本改用實際已執行的舊核對器SHA，不將修正後工具冒稱當時版本。
+## 2026-10-26：END3八劍透明HD
+
+接續r59，補結局END3第0筆八劍。沿既有來源及中國古風方向，內建image_gen保留八把兵器的放射排列與原配色。首稿有alpha1的極淡中央殘影，保留原圖後以同工具清理成r2；原始PNG、兩份完整提示與SHA留swords-art-r1。只由Pillow作完整畫布尺寸正規化，不以程式編修生成圖。
+
+先寫053 READY契約，再接獨立可選載入器與Go透明貼圖。相同來源的最後相交命令是同一矩形時，HD不重複混合抗鋸齒邊緣；有其他相交寫入就重畫，客體原始命令與索引面保持。三父測試及六種載入／回退子案32.241秒、go vet通過。普通啟動、選單、新遊戲、F1／F2及受控原版收尾到END4前綴，兩側state／PCM／輸入／I/O相同；END3三字型完整Frame與獨立16-bit混合模型相同，差異限八劍矩形。原生來源另與Oracle RGB核對，沒有自然勝利或新完整結局／GUI／存讀聲明。
+
+兩次素材準備失敗分別是跨Docker掛載不能硬連結，以及首稿中央alpha1。改用一般檔案複製及image_gen清理稿，未放寬透明度斷言。已核對的失敗重複輸出可清除，原始生成圖與來源不刪。獨立核對器兩次誤用完整演出的狀態假設，依原始狀態與前綴停止點修正後，以相同收據通過；不重跑或更改遊戲。
+
+swords-audit-r1及swords-promotion-r1通過後提升r60／441素材，r59的439檔全保留。七程式來自source-candidate-swords-r1／154輸入；舊152輸入及七程式、921核心與158原版檔保持。README加入原版／HD材質與同狀態完整Frame比較，完整原圖留本機。最終完整性、工具與來源封存、清理及提交讀回分別記swords-final-integrity-r1.json、swords-provenance-r1.json、swords-cleanup-r1.json與swords-publication-r1.json。
+
+本輪不建立新Docker映像；所有8sword工作容器均須有界結束並刪除。其他專案容器保持。正式結局其餘人物、效果及PAM／開場CPU等原範圍仍待處理，053整體DRAFT保持。

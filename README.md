@@ -27,7 +27,7 @@
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
-本機完整HD素材入口為`workplace/player/assets-painted-r59`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r59`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
+本機完整HD素材入口為`workplace/player/assets-painted-r60`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r60`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
@@ -105,6 +105,10 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 每列配對相同客體狀態的原版來源重建、Noto Black 900、教育部隸書與草書。左欄已與原版RGB核對，其餘為已驗Engine實際回傳的Frame。Go直接從來源命令產生畫面；END7已換入補回男女主角的r2，END5已換入HD人物，眨眼與嘴型由原版呼叫控制。其餘未完成美術保留來源圖。完整播放與BIOS Esc的客體／原生音訊對照、十五張完整Frame獨立重建已通過；實際GUI Draw與END5正式提升亦已完成限定驗收，沒有宣稱自然通關。[來源紀錄](docs/images/ending-engine-end5-scenes-r2.json)及[正式驗收範圍](docs/spec/053-ending-hd.md#r58正式提升與限定驗收)可回查。
 
 [結局實際隸書視窗](docs/images/ending-gui-lishu-hd-r2.png)可查看工具列、海報與結局文字共存，附[來源紀錄](docs/images/ending-gui-lishu-hd-r2.json)。圖中END5已使用HD人物，保留原版動作與文字流程。
+
+![結局八劍原版與HD比較](docs/images/ending-swords-original-hd-r1.png)
+八劍已保留原版排列、方向與主要配色，由Go畫布直接繪製。上排是素材比較，下排是相同狀態的原版來源重建與實際HD Frame；其餘人物仍使用來源像素。[完整提示與來源](docs/images/ending-swords-original-hd-r1.json)及[抽樣驗收範圍](docs/spec/053-ending-hd.md#end3八劍正式接入與限定驗收)可回查。
+
 
 END7的[構圖比較](docs/images/ending-corrected-candidate-r2.png)與[完整提示及來源](docs/images/ending-corrected-candidate-r2.json)保留原PNG與人物修正紀錄。上方候選畫面已使用r2，原本漏畫兩人的r1保留歷史並拒絕提升。
 

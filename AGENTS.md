@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+END3八劍依[053追加契約](docs/spec/053-ending-hd.md#end3八劍材質追加契約)，原PNG／提示／來源留ending-hd-r1/swords-art-r1。[匯入器](tools/prepare-ending-swords.py)在固定Pillow11.3.0 Docker用`--project <唯讀專案> --out <既有ending-hd-r1內新候選>`正規化透明圖，保留r59全部439檔，另加兩檔；未驗候選不直接提升正式。
+[載入與冪等繪圖](internal/eightsword/ending_swords.go)及[測試](internal/eightsword/ending_swords_test.go)依同節READY；既有整合測試加`EIGHTSWORD_TEST_ENDING_SWORDS_PREFIX=1`只驗正常玩家前綴至END4。[獨立核對](tools/audit-ending-swords.py)在Pillow容器用`--project --out`核對441檔、154輸入、兩側state／PCM與三字型完整Frame；通過收據再交既有promote-ending.py，限制見053。
+[README八劍比較工具](tools/prepare-ending-swords-overview.py)在同一Pillow容器用`--project --audit <通過收據> --out <新PNG>`保留原版／HD材質與同狀態完整Frame。完整生成圖留本機，來源／完整提示收同名JSON。
+
 海報姿態前導圖依[014追加契約](docs/spec/014-intro-story-background.md#海報姿態前導圖追加契約)，使用者已確認目標為彩色迎戰龍前導圖。[匯入工具](tools/prepare-story-prelude-poster.py)在既有Pillow11.3.0 Docker使用`--project --batch --base --out --images`，基底固定r58／439檔；只換三檔，436檔保持。完整原PNG與提示另存r4，舊r3不覆寫。
 [獨立核對與提升工具](tools/audit-story-prelude-poster.py)在同容器使用`--project --research --out`核對548幀普通開場及固定來源；通過後另加`--promote --player --audit`建立r59並提升七程式。範圍限014，不重跑同機制的逐隻GUI或原版路線。
 該工具的`--repair-runtime-metadata --player --audit <promotion-r4.json>`只修正舊提升器帶入的研究標記，須先核對已提升七程式及921核心；原始說明保存於新收據，不修改程式或核心。歷史核對使用hero-poster-pose-r4/audit-story-prelude-poster-r4-at-run.py，當時工具SHA保留。

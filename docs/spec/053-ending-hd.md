@@ -412,3 +412,25 @@ r3於相同END5來源與實際BIOS換頁後，89817177步送一次普通BIOS Esc
 獨立收據位於既有ending-hd-r1：engine-end5-audit-r7.json、end5-portrait-audit-r7.json、gui-end5-audit-r1.json、end5-promotion-audit-r1.json及end5-promotion-r1.json。runtime-r7-assets.log與二進位SHA／退出檔補齊同建置的分批測試。首次畫布核對用的工具另保留在gui-build-r4/at-run-audit-ending-portrait.py，不把後加提升模式的工具冒稱當時版本。
 
 [原版／HD三字型總覽](../images/ending-engine-end5-scenes-r2.png)及[來源](../images/ending-engine-end5-scenes-r2.json)使用已驗Engine Frame；[實際隸書視窗](../images/ending-gui-lishu-hd-r2.png)及[來源](../images/ending-gui-lishu-hd-r2.json)另連回GUI。其餘結局美術、開場CPU及全遊戲HD仍未完成，053整體DRAFT保持。
+## END3八劍材質追加契約
+
+本節 READY。原始END3.AY SHAcb56acd3b5652223083b6c41036b4df821f2310a097224613ddaf56ca599f9ff，第0筆解碼偏移0、9244 bytes、176×70、六平面，記錄SHAb13caa558e7e0d93aec2023eedd21fec0f3b6980178770444395c0913e9cc687。來源格式與正常結局命令已依本規格證實，不重開來源逆向。
+
+- 原圖八件兵器保留向外放射的排列、銀色／金色劍身及綠、青藍、紅、粉柄。image_gen透明原PNG SHA5efe6860d31eb1f594c9d3d9968903e94b2bbf08a1ff779ed75b802eb25ec98a，1407×1118，已抽看八件與透明中央；固定Pillow11.3.0完整正規化為528×420，不改原PNG。
+- 新增可選ending-swords.json及一張透明PNG，r59的439檔全部保持。清單、來源檔、記錄SHA、尺寸及圖片SHA核對後才載入；缺席支援舊組，有清單但真壞／缺圖／連結／來源錯誤只回八劍來源像素，其他結局HD保持。
+- 原生Go畫布只在完整來源SHA相符的bitmap命令用draw.Over貼圖。原版索引面、來源遮罩、清頁、頁搬移、動畫、文字、按鍵與音訊保持；不以原版RGB作HD底圖。原生參考profile=nil仍畫來源像素。
+- 重複的相同圖像／位置在原版是冪等。只當最後一筆相交命令是完全相同來源及矩形時略過重複HD混合，避免半透明邊緣累積；有其他相交寫入時必須重畫。此規則不刪原始命令或更改客體索引面。
+- 抽樣驗載入／局部回退、重複透明邊緣、非相交命令與相交恢復。普通冷啟動、選單、新遊戲、F1／F2及受控原版收尾分支後，原版／HD兩側走到END4第一段，以相同state、PCM、輸入及I/O核對前綴。END3三字型完整Frame從原始解碼及新PNG獨立重建，Frame純讀。
+- 本組完成聲明限END3第0筆八劍與已抽前綴。原版受控收尾不稱自然勝利，不重跑完整結局／Esc／GUI／存讀同機制；沿r57／r58已有證據，其他END3效果仍是來源素材。
+
+## END3八劍正式接入與限定驗收
+
+2026-10-26：本節限定 CONFORMED。八劍保留原版排列、方向與主要配色，已由原生Go透明貼圖接入正式r60。原始PNG、完整提示及生成收據留本機swords-art-r1，不覆寫初稿。首稿中央有alpha1的極淡殘影；內建image_gen另存清理r2，原PNG SHAd3d83dc3d23207934976a47145e06ea321321f62658a19071920a363311bc91f，中央點alpha0。規格化528×420後RGBA SHA9c6269de7e4d081027c5a22b96f74e7d8add3afc2bc59b84b77c2509cf3af23e，沒有以程式重畫或清除原PNG的alpha。
+
+- 本機正式r60共441檔，r59全部439檔保持；只新增ending-swords.json與ending-swords.png。七程式來自source-candidate-swords-r1的154輸入，舊152輸入與七程式留source-candidate-prelude-poster-r4。921核心及原版158檔保持。
+- 三父測試、六種載入／回退子案及透明重繪測試32.241秒通過，go vet通過。新舊組、缺圖、壞圖、連結及錯來源都按契約處理；相同來源的半透明邊緣不累積，有其他相交寫入則重畫，非相交命令不破壞冪等。
+- 普通冷啟動、原選項、主選單、新遊戲、F1／F2與退出確認後，沿已驗受控原版收尾分支走至END4首段。原版／HD各89060489步，完整state SHAc863af8c6c7b33686fa01855946a31bbc0e32588f1c02b4890301f0e1e912564、原生PCM SHA3b9e8d69127314c64272fd383ac719d353efa6165791ceffc2418263891ee606及輸入／I/O相同。END3代表55138590步，三字型完整Frame純讀，原生來源另與Oracle RGB逐像素核對。
+- 獨立Pillow模型從原始來源、字型與新PNG重建三張完整Frame，逐像素相同；相對舊組的差異只限八劍矩形。透明混合採Go1.24的16-bit整數公式，不用Pillow近似四捨五入。該前綴只有圖片與遮罩接管，分別略過846801與22269024條x86指令；尚未到結局文字，不借用完整演出的字模計數或推定FPS。
+- swords-audit-r1.json SHA25e5d590012278ede15432d357c9ce7fc7861e1dc6f2d306fcb1c28305b25fcb；swords-promotion-r1.json SHA7888a0656220368eb4e1d78b81a9d5b57187c4c6ae766a197430a8cf3e2433d3。核對器首版誤要求未開HD控制組的active欄位及前綴尚未出現的字模計數，依真實狀態與停止邊界修正後重核相同收據，不重跑或改遊戲。
+
+[README比較圖](../images/ending-swords-original-hd-r1.png)與[來源及完整提示](../images/ending-swords-original-hd-r1.json)保存原版／HD素材及同狀態Engine Frame，已抽看完整畫面。圖中其他人物與效果仍是來源像素。本組不新增完整結局、Esc、GUI、存讀或自然勝利聲明，沿r57／r58已驗機制；其餘結局美術與整體HD繼續處理。

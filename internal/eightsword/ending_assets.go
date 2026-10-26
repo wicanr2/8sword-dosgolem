@@ -18,6 +18,7 @@ type endingAssets struct {
 	art           endingArtSet
 	fallbacks     []string
 	portraitError string
+	swordsError   string
 }
 
 func (a *endingAssets) profile(id string) *endingFontProfile {
@@ -122,6 +123,11 @@ func loadEndingAssets(dir, root string) (*endingAssets, error) {
 	a.art.portraits, err = loadEndingPortrait(dir, root)
 	if err != nil {
 		a.portraitError = err.Error()
+		a.fallbacks = append(a.fallbacks, err.Error())
+	}
+	a.art.swords, err = loadEndingSwords(dir, root)
+	if err != nil {
+		a.swordsError = err.Error()
 		a.fallbacks = append(a.fallbacks, err.Error())
 	}
 	return a, nil

@@ -17,6 +17,22 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def swords_over(out, texture, x, y):
+    """Independent Go1.24 image/draw NRGBA-over arithmetic, opaque destination."""
+    w, h = texture.size
+    source = texture.tobytes()
+    data = bytearray(out.crop((x,y,x+w,y+h)).tobytes())
+    for at in range(0,len(source),4):
+        sa = source[at+3]*257
+        if sa == 0:
+            continue
+        a = (65535-sa)*257
+        for channel in range(3):
+            data[at+channel] = (data[at+channel]*a//65535+source[at+channel]*sa//255)>>8
+        data[at+3] = 255
+    out.paste(Image.frombytes('RGBA',(w,h),bytes(data)),(x,y))
+
+
 def reconstruct(meta, assets, sources):
     data = read(assets/'ending.json')
     ega = [(0,0,0),(0,0,170),(0,170,0),(0,170,170),(170,0,0),(170,0,170),(170,85,0),(170,170,170),
@@ -35,10 +51,24 @@ def reconstruct(meta, assets, sources):
         for record in read(assets/'ending-portrait.json')['records']:
             assert sha(assets/record['file']) == record['sha256']
             portraits[record['source_sha256']] = Image.open(assets/record['file']).convert('RGBA')
-    for op in meta['ops']:
+    swords = None
+    if (assets/'ending-swords.json').exists():
+        manifest = read(assets/'ending-swords.json')
+        assert sha(assets/manifest['image']) == manifest['image_sha256']
+        swords = Image.open(assets/manifest['image']).convert('RGBA')
+    for index, op in enumerate(meta['ops']):
         x,y,w,h = op['X']*3,op['Y']*6,op['W']*3,op['H']*6
         if op['kind'] == 'bitmap':
-            if op['SourceSHA'] in portraits:
+            if swords is not None and op['SourceSHA'] == manifest['source_sha256']:
+                repeated = False
+                for prior in reversed(meta['ops'][:index]):
+                    if op['X'] >= prior['X']+prior['W'] or prior['X'] >= op['X']+op['W'] or op['Y'] >= prior['Y']+prior['H'] or prior['Y'] >= op['Y']+op['H']:
+                        continue
+                    repeated = all(prior[k] == op[k] for k in ['kind','SourceSHA','X','Y','W','H'])
+                    break
+                if not repeated:
+                    swords_over(out,swords,x,y)
+            elif op['SourceSHA'] in portraits:
                 out.paste(portraits[op['SourceSHA']],(x,y))
             elif op['SourceFile'] == 'END7.AY':
                 out.paste(Image.open(assets/'ending-end7-r2.png').convert('RGBA'),(x,y))

@@ -34,6 +34,7 @@ func endingTestPaths(t *testing.T) (string, string, string) {
 }
 
 func TestEndingSourceRuntime(t *testing.T) {
+	swordsOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_SWORDS_PREFIX") == "1"
 	root, assets, out := endingTestPaths(t)
 	type result struct {
 		state []byte
@@ -140,7 +141,20 @@ func TestEndingSourceRuntime(t *testing.T) {
 					portraitSnapshots = append(portraitSnapshots, map[string]any{"pose": key, "step": e.Oracle.Steps()})
 				}
 			}
-			if stage != "END5.AY" && stage != "END7.AY" && stage != "END8.AY" && stage != "END9.AY" {
+			if swordsOnly {
+				found := false
+				for _, command := range page.ops {
+					if command.SourceSHA == endingSwordsSource {
+						found = true
+					}
+				}
+				if stage != "END3.AY" || !found {
+					return
+				}
+				if p.assets.art.swords == nil || p.assets.swordsError != "" {
+					t.Fatal("八劍候選未載入")
+				}
+			} else if stage != "END5.AY" && stage != "END7.AY" && stage != "END8.AY" && stage != "END9.AY" {
 				return
 			}
 			if endingSamples[stage] || ((stage == "END5.AY" || stage == "END9.AY") && page.glyphs == 0) {
@@ -321,16 +335,22 @@ func TestEndingSourceRuntime(t *testing.T) {
 		press(0x1c)
 		advance(500)
 		press(0x1c)
-		for n := 0; n < 12000 && !e.Exited; n++ {
+		for n := 0; n < 12000 && !e.Exited && !(swordsOnly && visibleStage == "END4.AY"); n++ {
 			advance(10)
 		}
-		if !e.Exited || e.ExitCode != 0 {
+		if !swordsOnly && (!e.Exited || e.ExitCode != 0) {
 			t.Fatal("original ending did not exit zero")
 		}
-		if hd && !escape && len(endingSamples) != 4 {
+		if hd && swordsOnly && len(endingSamples) != 1 {
+			t.Fatal("八劍代表缺席")
+		}
+		if swordsOnly && visibleStage != "END4.AY" {
+			t.Fatal("未到前綴停止邊界")
+		}
+		if hd && !swordsOnly && !escape && len(endingSamples) != 4 {
 			t.Fatalf("ending samples missing %v", endingSamples)
 		}
-		if hd && !escape && os.Getenv("EIGHTSWORD_TEST_ENDING_REQUIRE_PORTRAIT") == "1" && len(portraitSamples) < 3 {
+		if hd && !swordsOnly && !escape && os.Getenv("EIGHTSWORD_TEST_ENDING_REQUIRE_PORTRAIT") == "1" && len(portraitSamples) < 3 {
 			t.Fatalf("END5 representative states absent: %v", portraitSamples)
 		}
 		if escape && !escaped {
@@ -364,6 +384,9 @@ func TestEndingSourceRuntime(t *testing.T) {
 		if !bytes.Equal(previous, native.state) {
 			t.Fatal("input retirement changed original guest state")
 		}
+	}
+	if swordsOnly {
+		return
 	}
 	nativeEsc := run("native-escape", false, true)
 	hdEsc := run("hd-escape", true, true)

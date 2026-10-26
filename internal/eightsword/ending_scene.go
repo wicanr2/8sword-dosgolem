@@ -57,6 +57,7 @@ type endingArtSet struct {
 	end7      image.Image
 	titles    map[string]image.Image
 	portraits map[string]image.Image
+	swords    image.Image
 }
 
 func newEndingScene() *endingScene {
@@ -147,8 +148,17 @@ func endingFill(out *image.RGBA, r image.Rectangle, c [3]uint8) {
 func renderEndingPage(p *endingPage, palette [16][3]uint8, art endingArtSet, profile *endingFontProfile) *image.RGBA {
 	out := image.NewRGBA(image.Rect(0, 0, 1920, 1200))
 	endingFill(out, out.Bounds(), palette[0])
-	for _, c := range p.ops {
+	for i, c := range p.ops {
 		r := image.Rect(c.X*3, c.Y*6, (c.X+c.W)*3, (c.Y+c.H)*6)
+		if profile != nil && c.Kind == "bitmap" && c.SourceSHA == endingSwordsSource && art.swords != nil {
+			if palette != endingPalette || art.swords.Bounds().Size() != r.Size() {
+				panic("unreviewed END3 sword geometry or palette")
+			}
+			if !endingSwordsRepeat(p.ops, i) {
+				draw.Draw(out, r, art.swords, art.swords.Bounds().Min, draw.Over)
+			}
+			continue
+		}
 		if profile != nil && c.Kind == "bitmap" {
 			if texture := art.portraits[c.SourceSHA]; texture != nil {
 				if palette != endingPalette || texture.Bounds().Size() != r.Size() {

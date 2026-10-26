@@ -20,14 +20,17 @@ def main():
     assert Path('/.dockerenv').is_file() and os.getuid() == 1000
     assert a.player.stat().st_uid == 1000 and not a.receipt.exists()
     audit = json.loads(a.audit.read_text())
-    assert audit['status'] in ('PASS-scoped-053-ending-engine','PASS-scoped-053-ending-portrait')
+    assert audit['status'] in ('PASS-scoped-053-ending-engine','PASS-scoped-053-ending-portrait','PASS-scoped-053-ending-swords')
     portrait = audit['status'] == 'PASS-scoped-053-ending-portrait'
+    swords = audit['status'] == 'PASS-scoped-053-ending-swords'
     count, preserved, inputs = (439,433,152) if portrait else (433,425,150)
+    if swords:
+        count, preserved, inputs = 441,439,154
     candidate = a.player/audit['candidate']
     previous = a.player/audit['previous']
     assets = a.project/'workplace/probe-20261023/graphics-first/ending-hd-r1'/audit['assets']
     target = a.player/audit['target_assets']
-    assert target.name == ('assets-painted-r58' if portrait else 'assets-painted-r57') and not target.exists()
+    assert target.name == ('assets-painted-r60' if swords else 'assets-painted-r58' if portrait else 'assets-painted-r57') and not target.exists()
     assert sha(candidate/'build-inputs.sha256') == audit['build_inputs_sha256']
     for name,digest in audit['programs'].items():
         assert Path(name).name == name and sha(candidate/name) == digest
@@ -35,7 +38,7 @@ def main():
         assert (a.player/name).stat().st_uid == (candidate/name).stat().st_uid == 1000
     for name,digest in audit['asset_hashes'].items():
         assert Path(name).name == name and not (assets/name).is_symlink() and sha(assets/name) == digest
-    stage = a.player/('.ending-assets-r58.tmp' if portrait else '.ending-assets-r57.tmp')
+    stage = a.player/('.ending-assets-r60.tmp' if swords else '.ending-assets-r58.tmp' if portrait else '.ending-assets-r57.tmp')
     assert not stage.exists()
     stage.mkdir()
     for name,digest in audit['asset_hashes'].items():
@@ -67,9 +70,9 @@ def main():
             if temp.exists(): temp.unlink()
     for name,digest in audit['programs'].items():
         assert sha(a.player/name) == digest and sha(previous/name) == audit['previous_programs'][name]
-    report = dict(schema=1,status='promoted-scoped-053-ending-portrait' if portrait else 'promoted-scoped-053-ending-engine',assets=target.name,files=count,preserved_files=preserved,
+    report = dict(schema=1,status='promoted-scoped-053-ending-swords' if swords else 'promoted-scoped-053-ending-portrait' if portrait else 'promoted-scoped-053-ending-engine',assets=target.name,files=count,preserved_files=preserved,
                   candidate=candidate.name,previous=previous.name,programs=audit['programs'],previous_programs=audit['previous_programs'],
-                  audit_sha256=sha(a.audit),source_inputs=inputs,core_files=921,previous_core_files=921 if portrait else 919,
+                  audit_sha256=sha(a.audit),source_inputs=inputs,core_files=921,previous_core_files=921 if portrait or swords else 919,
                   prior_assets_unchanged=True,prior_core_unchanged=True,preparer_sha256=sha(Path(__file__)))
     with a.receipt.open('x') as f:
         f.write(json.dumps(report,indent=2)+'\n')
