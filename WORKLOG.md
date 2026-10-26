@@ -1782,3 +1782,15 @@ pair-audit-r1與pair-promotion-r1通過後，正式七程式提升source-candida
 - ring-audit-r1與ring-promotion-r1通過；README新增原版／HD素材及同狀態畫面，完整提示保存在比較圖JSON。CONTEXT、AGENTS及053同步限定CONFORMED；白色人影、其他人物／掛畫與光臺仍待補。不稱自然勝利、新完整結局／Esc／GUI／存讀或全HD完成。
 - 最終175來源、七程式、462素材、460舊檔、923核心、五Python語法與本機文件連結核對保存在ring-final-integrity-r1.json；工具副本留ring-tools-final-r1。首次完整性收據誤寫唯讀/project路徑，所有檢查已過，修正為/out後同條件乾淨重跑通過，屬輸出腳本問題。
 - 主機gh已核對PRIVATE；本次程式、文件及縮小成果一併提交main與推送，實際commit／remote／工作樹與容器結果保存在本機ring-publication-r1.json。Docker工作皆--rm、UID1000，收尾無本案容器；全專案root-owned與偽.md目錄掃描無輸出，未建立或替換工具image。
+
+## 2026-10-27：定稿原圖移出可清理研究區
+
+使用者明確表示會刪除workplace節省空間，要求已確定的完整原圖不可只放其中。現有根目錄沒有永久美術來源目錄，docs/images負責比較與參考圖，dist-all是發行包，均不適合作為完整原圖主檔。故建立artwork/approved，保存定稿與正式採用原圖、提示、來源收據及現行圖像匯入資料；研究副本保持供既有收據回查。來源不經重新編碼、不使用指回workplace的連結。索引、核對與Git結果接續記於本條後段。
+
+已完成保存：132份美術主檔、175完整提示、127生成／來源收據、82參考輸入、231正式圖像及227相關輸入，共974檔、450810751 bytes。原圖與原提示按位元組複製，移出研究區的主檔由manifest.json逐SHA定位。workplace研究副本未刪，過去收據不改；完整原圖的現行入口改為artwork/README.md。
+
+首次盤點遇到JSON頂層list及不存在的猜測metadata檔名，已按實際形狀／檔名修正盤點，沒有影響來源或正式檔案。正式保存工具一次通過，所有輸出為UID1000並與研究輸入不同inode。完全不掛載workplace的Docker逐SHA與PNG形狀核對974檔通過，收據artwork/verification-detached-r1.json。沒有更動遊戲或素材內容，未重跑Go／GUI同機制測試。
+
+README、AGENTS及CONTEXT已新增永久圖庫入口，並明列其他程式、音樂與存檔尚未搬移。新定稿先存永久目錄再清研究副本；完整PNG維持本機保存，索引／清單／工具及核對收據一併提交私人倉庫。新建白色人影與光臺暫未製作，先完成使用者較新的資料保全要求。提交、推送與Docker收尾結果見artwork/publication-r1.json。
+
+同一固定計畫重跑保存工具通過，既有檔案未覆寫、清單SHA保持daaca39e…e7e1。Python語法與1681個本機文件連結通過；全專案root-owned／偽.md目錄掃描無輸出，無本案殘留容器，沿用既有Pillow映像。主機gh已核對倉庫PRIVATE，完整PNG與原版衍生圖像留本機永久目錄，Git僅加入計畫、清單、核對收據、說明與工具。

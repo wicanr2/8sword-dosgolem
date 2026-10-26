@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+使用者於2026-10-27要求已確定的完整原圖不可只放workplace，因其會刪除研究區節省空間。這項新指示優先於本檔及舊規格「完整原圖留workplace」的歷史位置：[永久圖庫](artwork/README.md)位於`artwork/approved/masters/`，完整提示／來源收據在`artwork/approved/provenance/`。新圖確認或正式採用後，先保存原PNG與提示至此處的新版本路徑，更新[逐檔清單](artwork/manifest.json)並核對，才把研究副本視為可清理。不可只存縮圖、只留生成工具預設目錄，或用連回workplace的符號連結。
+
+[永久原圖保存工具](tools/archive-approved-art.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --plan <固定計畫> --archive <可寫artwork目錄>`作逐SHA複製，拒絕覆寫不同檔案；相同計畫可重跑。只核對時用`--archive <唯讀artwork> --verify`，不需要workplace。首次計畫為[archive-plan-r1.json](artwork/archive-plan-r1.json)，974檔／132主檔的[獨立核對](artwork/verification-detached-r1.json)已通過；其他研究、程式、音樂與存檔沒有因此全部搬移。完整PNG沿既有本機權利分類排除Git，索引與核對資訊加入倉庫。
+
 END3紅金光環已依[053限定驗收](docs/spec/053-ending-hd.md#end3紅金光環正式提升與限定驗收)接入r64／462素材與175輸入七程式，923核心保持。原圖與提示留`ending-hd-r1/end3-ring-art-r1`。[可選載入](internal/eightsword/ending_ring.go)、[回退及透明測試](internal/eightsword/ending_ring_test.go)只處理第1筆光環；原版規則及時鐘不改。Go1.24.13容器設`EIGHTSWORD_TEST_ENDING_RING_PREFIX=1`沿原版前綴，測試每10毫秒檢查實際來源SHA，不以最後stage或100毫秒取樣判斷短暫效果。
 
 [匯入器](tools/prepare-ending-ring.py)在固定Pillow11.3.0容器使用`--project <唯讀專案> --out <既有ending-hd-r1內新候選>`，保留r63全460檔。[獨立核對](tools/audit-ending-ring.py)以相同`--project --out <新JSON>`核對來源、三字型完整畫面、狀態及音訊；[總覽](tools/prepare-ending-ring-overview.py)另設`--audit <通過收據> --out <新PNG>`。完整圖留本機，README縮小比較與提示沿私人倉庫紀錄；首兩輪漏樣與隔離診斷見053，不重開逆向或逐項GUI。

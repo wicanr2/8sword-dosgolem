@@ -7,3 +7,7 @@
 /dist-all/
 /build/
 /dist/
+
+# 完整定稿原圖與素材另存專案永久目錄，清單與工具加入Git。
+/artwork/approved/
+/artwork/publication-*.json
