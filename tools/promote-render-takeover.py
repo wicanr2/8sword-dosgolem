@@ -19,7 +19,8 @@ def main():
     assert Path('/.dockerenv').is_file() and os.getuid() == a.player.stat().st_uid == 1000
     assert not a.receipt.exists()
     audit = json.loads(a.audit.read_text())
-    assert audit['status'] == 'PASS-scoped-047-native-render' and audit['source_input_count'] == 168 and audit['core_files'] == 923
+    expected_inputs = {'PASS-scoped-047-native-render':168, 'PASS-scoped-047-go-compatibility':170}
+    assert audit['status'] in expected_inputs and audit['source_input_count'] == expected_inputs[audit['status']] and audit['core_files'] == 923
     candidate,previous = a.player/audit['candidate'],a.player/audit['previous']
     assert sha(candidate/'build-inputs.sha256') == audit['build_inputs_sha256'] and sha(candidate/'runtime.json') == audit['runtime_sha256']
     for name,digest in audit['programs'].items():
@@ -54,8 +55,9 @@ def main():
             if tmp.exists():tmp.unlink()
     for name,digest in audit['programs'].items():
         assert sha(a.player/name) == digest and sha(previous/name) == audit['previous_programs'][name]
-    result = dict(schema=1,status='promoted-scoped-047-native-render',candidate=candidate.name,previous=previous.name,
-        programs=audit['programs'],previous_programs=audit['previous_programs'],source_inputs=168,core_files=923,
+    status = 'promoted-scoped-047-go-compatibility' if audit['status'] == 'PASS-scoped-047-go-compatibility' else 'promoted-scoped-047-native-render'
+    result = dict(schema=1,status=status,candidate=candidate.name,previous=previous.name,
+        programs=audit['programs'],previous_programs=audit['previous_programs'],source_inputs=audit['source_input_count'],core_files=923,
         preserved_core_files=921,assets=audit['assets'],asset_files=455,audit_sha256=sha(a.audit),tool_sha256=sha(Path(__file__)))
     a.receipt.write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(dict(status=result['status'],programs=7,core_files=923,assets=455)))

@@ -2053,3 +2053,21 @@ PAM輸入為PAM.AY，SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e
 目前正式七程式為source-candidate-render-r5／168輸入，runtime-render-r1／923檔核心，r62全部455素材、原版158檔、舊921／919核心及前版七程式保持。候選套件227.162秒、vet及13張前版完整RGBA比較通過。正式視窗自然開場、完整揭圖、故事、三字型與真正F7存退讀336／191幀，三張接觸表已看；存檔與只讀RAM均SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，3158差異點限主角動畫。收據`native-render-audit-r1.json` SHA `2aa9211f907db99705bb738a9a87448b0becdaf08522ffb848d5dccda62f87e0`及`native-render-promotion-r1.json` SHA `66f6f5c2e8cb138c469df52c67c2ef1e7dd1d0ebe5655ce9dff580c0b96da64d`均在render-takeover-r1。
 
 參考使用者指定的mm3直接繪圖方法，唯讀來源commit `a505ac777cdcf0b2a2b6b3b4774a320ec73a4257`、文件SHA `cbdaa5d67dc2f6eb40ee7644576b9f6c76a65dad4c8b23ea21c3dba4af6430a1`，完整副本及22份工具／參考檔封存`tools-final-r1`。不沿用mm3位址或效能數字。未驗PAM其他點圖／讀回及遮罩、字形事件邊界的相容殘段；不稱全CPU繪圖略過、全遊戲、GPU／SIMD、整體FPS或自然勝利。
+
+# 2026-10-26：HD事件邊界的Go相容像素接管
+
+現行驗收入口為[047相容像素限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。本節追加新證據，保留先前「點圖／讀回與相容殘段待處理」的歷史紀錄。
+
+固定原始輸入：PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，PREDELLA.EXE SHA `b9c7abdac7849711b68b6b6fd5861052e6f3d025b25af5f96d4605bf673cadaa`，PAE.AY SHA `8ae11b4c89f0361ed0a2d5b1859bbb4750047d37f0e26885e6903e4feb721a0c`。沿用IDA Pro9.4既有資料庫匯出與開場wrapper，不修改原DB。本次執行器為Go1.24.13、dosgolem固定923檔核心；獨立核對使用Pillow11.3.0。證據留`workplace/probe-20261023/graphics-first/render-takeover-r1`。
+
+**已證實：**自然開場至主選單、新遊戲、F1／F2與四向移動共88509680步，仍有17個CPU像素寫入位置，分布於PAM與開場字形、六平面遮罩。觀測以固定核心的當前Step辨別真正CPU寫入；既有多指令Go批次在提交前發出的未來Step通知另記，不把它們算成CPU執行證據。`compat-writes-r1.json`保存位置、原始bytes與首次步數，`compat-native-writes-r3.json`相同路徑為零。此觀測不涵蓋任意其他主機批次版本或全遊戲分支。
+
+**已證實：**PAM IDA MZ loader linear `sub_24043`對應dosgolem執行期stringSeg:0423，在入口+5C的REP搬移中，DS來自CS:0196的隱藏VGA頁，ES來自DS:748A，SI=DI。這是隱藏頁至目的頁的矩形還原，沒有擷取至RAM。前輪籠統的「讀回入口」待辦由此收斂；不能再以該名稱推論RAM影像擷取。連續常式SHA `59130f647d8ce03b190ce6f3b514a9d4f951a4d1851d4ceafc70dd5034887dec`，來源為`ida-final-r1/ida-render-primitives-r1.json`及原始bytes。四個原版控制案例涵蓋1／80-byte寬、兩目的頁、底端四列，完整機器狀態與最後latches相同。
+
+**已證實：**PAM IDA `sub_23E94`對應stringSeg:0274，以GC bit mask先清除再填入前景平面。24個原版控制案例覆蓋x=0／7／8／639、三色、兩頁與y=199，保留原旗標，沒有將不含字串操作的此常式強加DF=0。其餘36字形及14遮罩案例沿三階段原始常式SHA核對，共78案。每次Go像素操作後、原生返回及之後30步都比較完整序列化狀態；原版控制確有像素寫入，Go組為零。7種不符契約輸入拒絕且不改客體。
+
+[正式Go相容操作](internal/eightsword/source_compat.go)只以來源byte、bit mask與四份平面slice產生相容資料。其程式沒有CPU.Step、CPU.Run或x86解碼器。事件邊界保留原版非像素控制；像素讀寫及矩形copy由Go處理。HD來源畫布仍從typed來源命令產生，不讀相容VGA RGB。已註冊位置不符契約時先停機，未分類原版寫入的額外防線在首次通知時停止，並非事前攔截所有未知程式的證明。
+
+正常原版CPU控制與正式HD候選，逐段Frame、完整狀態與PCM相同；像素寫入542662／0，HD另有158次Go相容寫入。候選r1完整結局及Esc的state／PCM與前版相同，34個PNG逐RGBA相同。候選r2只加來源角色提交計數及GUI觀測，四份來源差異由獨立核對器限制，像素演算法、核心及結局來源相同；r2正常對照與實際GUI存讀另驗。結局收尾仍是經原版入口設定收尾旗標的受控案例，不稱自然勝利。
+
+`compat-render-audit-r1.json` SHA `66b211f4e717d613ed49127471cb7ca15f1c78beae5a0810e979d45dfd372306`與`compat-render-promotion-r1.json` SHA `84cd59ac30414e590ebb7397fa0adbdb8845ab814f5b08e87e39d25f767a4b99`為本次提升依據。正式source-candidate-compat-r2／170輸入與923核心、455素材均保持可重建。未推論全部分支可達性、整體FPS或自然通關。

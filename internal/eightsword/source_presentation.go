@@ -46,7 +46,9 @@ func (e *Engine) initSourceRenderer() {
 	pageInstall := e.sourcePageInstall()
 	introMaskedInstall := e.sourceIntroMaskedInstall()
 	revealInstall := e.sourceRevealInstall()
+	compatInstall := e.sourceCompatInstall()
 	e.sourceInstall = func() {
+		compatInstall()
 		revealInstall()
 		introMaskedInstall()
 		pageInstall()

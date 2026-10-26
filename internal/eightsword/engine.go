@@ -31,6 +31,10 @@ type Engine struct {
 	sourceHeldFrame      *image.RGBA
 	sourceHeldFrames     uint64
 	sourceDirectCalls    uint64
+	sourceCompatReads    uint64
+	sourceCompatWrites   uint64
+	sourceCompatRestores uint64
+	sourceActorCommits   uint64
 	sourceRevealSubmit   func([]sourceRevealPixel)
 	sourceRevealTiles    uint64
 	sourceRevealPoints   uint64
@@ -596,6 +600,10 @@ func (e *Engine) Status() map[string]any {
 	out["source_renderer"] = e.sourceEnabled
 	out["source_frames"] = e.sourceFrames
 	out["direct_calls"] = e.sourceDirectCalls
+	out["go_compat_reads"] = e.sourceCompatReads
+	out["go_compat_writes"] = e.sourceCompatWrites
+	out["go_compat_restore_rows"] = e.sourceCompatRestores
+	out["source_actor_commits"] = e.sourceActorCommits
 	out["go_reveal_tiles"] = e.sourceRevealTiles
 	out["go_reveal_point_batches"] = e.sourceRevealPoints
 	out["go_reveal_atomic_stores"] = e.sourceRevealAtomic

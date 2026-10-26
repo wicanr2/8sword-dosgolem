@@ -224,6 +224,7 @@ func TestOriginalModeDoesNotInstallRenderTakeover(t *testing.T) {
 	e.sourcePageInstall()()
 	e.sourceIntroMaskedInstall()()
 	e.sourceRevealInstall()()
+	e.sourceCompatInstall()()
 	e.installSourceBitmapRows(introBitmapRows())
 	e.EnableLiveClock(3000)
 	if err := e.AdvanceCycles(300000); err != nil {
@@ -233,7 +234,7 @@ func TestOriginalModeDoesNotInstallRenderTakeover(t *testing.T) {
 		t.Fatal("original mode enabled rendering takeover", e.Status())
 	}
 	before := observerGuestState(t, e)
-	if e.sourceRevealSubmit != nil || e.sourceRevealPixels != 0 {
+	if e.sourceRevealSubmit != nil || e.sourceRevealPixels != 0 || e.sourceCompatReads != 0 || e.sourceCompatWrites != 0 || e.sourceCompatRestores != 0 {
 		t.Fatal("original mode installed native reveal")
 	}
 	im := e.Frame()

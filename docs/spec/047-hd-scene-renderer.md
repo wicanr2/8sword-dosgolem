@@ -1,8 +1,52 @@
 # 047：由HD呈現器控制完整繪圖流程
 
-狀態：來源呈現與已列原語限定CONFORMED；所有CPU繪圖迴圈略過仍為DRAFT。本輪交付見「本輪原生Go接管與限定驗收」，原正式契約與歷史研究保留。
+狀態：來源呈現與已列像素原語限定CONFORMED，包含HD事件邊界相容操作。現行交付見「相容像素正式提升與限定驗收」。原版非像素控制仍由DOS執行，未抽驗分支保留限制；原正式契約與歷史研究保留。
 
 ## HD與原版模式分流追加契約
+
+### HD相容像素迴圈續作
+
+本節DRAFT。2026-10-26使用者再指定HD的相容像素迴圈也交由Go，不能在配額不足時繼續執行原版像素寫入。原版模式不變。先使用[唯讀原版寫入觀測](../../tools/research-compat-pixels_test.go)從正常開場、選單、人物／軍隊及移動取得剩餘位置與原始bytes。
+
+現有多指令Go批次在CommitHostWork之前發出未來Step的相容觀測；真正CPU寫入的事件Step等於當前Oracle.Steps。探針只以此分類現有固定版本的寫入，另記所有位置及類別總數，不套用到任意未驗主機批次。新單指令Go操作不得偽造原版逐像素事件。原版／Go的控制實驗及完整狀態核對仍是提升閘門。
+
+研究準備器加`--compat-probe`，在既有render-takeover-r1內建立新私有副本。使用923檔核心及固定Go1.24.13容器，環境變數`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_SOURCE_ASSETS`、`EIGHTSWORD_COMPAT_PROBE_OUT`，執行`go test ./internal/eightsword -run TestResearchCompatibilityPixelInventory`。不改遊戲記憶體，不新增逐隻遭遇等待。
+
+### HD相容像素操作的READY契約
+
+本小節READY，前節保留研究歷程。`compat-writes-r1.json`的自然開場、選單、F1／F2與四向移動共88509680步，找到17個真正CPU寫入位置。`compat-native-r1.log`以原版指令為控制，通過78組完整機器狀態對照；`compat-native-r3.log`補齊7組不改客體的拒絕測試、未分類寫入的停機測試與相同正常路徑零原版像素寫入。r2故障測試在啟動呈現生命週期前注入程式，未裝觀測器的結果不作產品缺陷；r3先呼叫既有安裝入口再注入。
+
+沿用前述PAM.AY與開場wrapper的固定來源SHA，以及053的PAE來源。IDA9.4的PAM定位採MZ loader linear，開場採runtime-linear，PAE執行期段址另列。證據為既有素材索引、`ida-final-r1/ida-render-primitives-r1.json`及[研究原語](../../tools/research-compat-native.go)內的連續常式SHA，不採反編譯器名稱推定語意。
+
+| 已證實來源 | 接管範圍 |
+|---|---|
+| PAM IDA sub_1E418、sub_247A6；開場linear4C74／5954；PAE 028E:0EF0／0393:0B80 | 中英文字形的背景、清除與字模byte；原始VGA latch讀取 |
+| PAM IDA sub_24112／sub_24246；開場linear52C0；PAE 0393:04EC | 六平面遮罩在事件邊界剩餘的讀取與像素byte寫入 |
+| PAM IDA sub_23E94，執行期stringSeg:0274 | 單點的bit遮罩清除與前景寫入 |
+| PAM IDA sub_24043，執行期stringSeg:0423 | 隱藏顯示頁至前頁的矩形還原，每列REP於入口+5C；不是擷取至RAM |
+
+僅在923檔核心的`OnHostInstruction`內執行，位置在正常tick／輸入與Steps增加後。Go依來源byte、bit遮罩及四份平面slice運算，不呼叫CPU.Step、不解碼或模擬x86繪圖指令。批次配額不足仍可執行原版非像素控制，實際讀寫由Go單指令操作接手。成功更新已證實的暫存器、IP及週期，保留旗標與latches；不發出偽造的逐像素寫入通知。
+
+每次核對完整常式SHA、實際PC、mode0E、週期時鐘、無單步旗標、合法A000／A400頁及DI小於16000。來源寫入另核對DF=0、RAM界線與VGA控制；背景、清除、填滿各有獨立set/reset契約。矩形還原要求四平面、mode11h、SI=DI及每列1–80byte，Go copy後保留最後來源讀取的latches。78案涵蓋三階段字形、兩頁、前背景與透明背景，以及遮罩、單點bit邊界、底端列與整列還原。每次Go操作、原生RETF及後30步均比較完整序列化狀態，Go組原版像素寫入為零。
+
+HD已註冊位置不符契約時，在原版指令執行前產生具型別繪圖錯誤。額外觀測器攔下未分類的原版mode0E寫入，保留最後完整Go畫面並停止；此防線是在首次未知寫入通知時觸發，不宣稱事前阻擋任意未知程式。原版模式不裝掛點及防線。正式提升仍須抽驗正常玩家路徑、結局／Esc、實際視窗與真正存退讀，不改玩法、素材格式或存檔。
+
+### 相容像素正式提升與限定驗收
+
+本節限定CONFORMED。`compat-render-audit-r1.json`及`compat-render-promotion-r1.json`已通過，正式七程式提升至`workplace/player/source-candidate-compat-r2`的170個固定輸入。核心仍為`runtime-render-r1`923檔，素材仍為r62的455檔。前版render-r5、舊核心、所有原版158檔及素材SHA保持。
+
+- 候選r1九個父測試341.811秒通過，無跳過；包含78組像素原語、7組拒絕、故障停機、原版模式、一般操作及完整結局／Esc，vet通過。
+- 一般玩家操作中，原版控制有542662次像素寫入，HD為零；Go事件邊界另處理158次寫入與104次讀取。兩側逐段Frame、完整機器狀態及音訊相同。自然開場至四向移動的獨立觀測共88509680步，17個殘留寫入位置降為零。單點與矩形還原另有受控原版原語對照，不冒稱自然路徑抽到。
+- 完整結局兩側138507913步，state SHA `40df5e6d6bd3d6fcaa883895f8317d1010ce5167ce91c7dc67e413c82ce0ff6a`、PCM SHA `dedaf49acc1c65c1fbaa31d132717d8814c218fb69a344dcfd54df7799832b4c`相同。Esc分支100264740步，state `eb72865dc7d9d038960469b617cda47812630b4104517679c772b269827af8ff`、PCM `2d49b382e6cd41be23ae6548e88492890bc46f3bee3197884a6a89a36a4d4b1e`相同；34張PNG逐RGBA同前版完整演出。結局入口仍為普通玩家前綴後選擇原版收尾的受控案例，不稱自然通關。
+- 視窗r1的四向抽查腳本等待舊Tracker逐像素計數而逾時。r2只增加Go來源角色提交計數、更新觀測腳本與其正常路徑斷言。核對器逐檔確認只有四份輸入改變，engine與scene差異只增加計數；像素演算法、核心及結局來源未變。r2正常路徑與原版模式67.739秒、vet通過，完整結局與78案證據明列來自r1。
+- 正常視窗`compat-pixels-save-r2`三字型、人物／軍隊、四向與F7存退冷讀通過。381／118實際Draw、48／18次畫面改變，兩份接觸表與教育部隸書畫面已看。Go相容寫入172／61次，來源角色提交23／8次，來源故障為零。
+- 真正2987-byte存檔同冷讀RAM SHA `6f1689c2def9a129f89f8d055e4dc1e7532f5df01b6a656c592cde66623bfc2e`。正常退出0，冷讀DOS read step36479090；3158差異像素限主角動畫框，不稱動畫同相位。
+
+[獨立核對器](../../tools/audit-render-compat.py)在固定Pillow容器使用`--project /project --out <既有研究目錄中的新JSON>`。核對收據SHA為`66b211f4e717d613ed49127471cb7ca15f1c78beae5a0810e979d45dfd372306`，提升收據SHA為`84cd59ac30414e590ebb7397fa0adbdb8845ab814f5b08e87e39d25f767a4b99`。正式程式入口為[Go相容像素](../../internal/eightsword/source_compat.go)，原版控制入口為[測試](../../internal/eightsword/source_compat_test.go)。來源角色提交計數供正常GUI觀測，不作遊戲狀態或存檔欄位。
+
+已識別入口的實際像素運算由Go完成，包含批次配額不足的事件邊界；原版非像素控制、解析與虛擬時間保留。未知HD寫入會停止，不悄悄回原版像素路徑。本節不宣稱所有玩家分支已走過、所有閃爍皆消失、整體FPS提升或新平台完成。
+
+時鐘範圍沿正式播放器及音畫驗證工具的`EnableLiveClock(3000)`。舊`8sword-replay`只用步數時鐘，沒有啟用這份單指令契約；HD遇不符時鐘的像素入口會明確拒絕，不退回CPU。該舊工具不作本節正常玩家驗收入口，原版模式仍保留原時鐘及繪圖途徑。
 
 2026-10-26使用者明確授權HD全部繪圖交給Go，原版模式保留原途徑。本節全範圍為DRAFT；既有下列限定CONFORMED不代表所有CPU繪圖迴圈已略過。
 

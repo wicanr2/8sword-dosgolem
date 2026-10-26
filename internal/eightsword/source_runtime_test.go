@@ -43,6 +43,14 @@ func TestSourceRuntimeNormalAndControlledFault(t *testing.T) {
 		return introFrame()
 	}
 	control.sourceClose = func() { introClose(); pamClose() }
+	nativeWrites := [2]uint64{}
+	for i, e := range engines {
+		t.Cleanup(e.ObservePresentation(PresentationObserver{Write: func(w PresentationWrite) {
+			if w.Step == e.Oracle.Steps() {
+				nativeWrites[i]++
+			}
+		}}))
+	}
 	advance := func(ms int) {
 		t.Helper()
 		for elapsed := 0; elapsed < ms; elapsed += 10 {
@@ -119,6 +127,10 @@ func TestSourceRuntimeNormalAndControlledFault(t *testing.T) {
 		t.Fatal("normal Go planar row copies absent", e.Status())
 	}
 	t.Logf("normal HD route Go bitmap rows=%d plane bytes=%d", e.sourceBitmapRows, e.sourceBitmapBytes)
+	if nativeWrites[0] == 0 || nativeWrites[1] != 0 || e.sourceCompatWrites == 0 || control.sourceCompatWrites != 0 || e.sourceActorCommits == 0 {
+		t.Fatal("native pixel delegation absent", nativeWrites, e.Status())
+	}
+	t.Logf("native pixel writes=%v Go compatibility writes=%d reads=%d restore rows=%d", nativeWrites, e.sourceCompatWrites, e.sourceCompatReads, e.sourceCompatRestores)
 	// Controlled memory is authorized for presentation tests. This genuine INT10
 	// changes to a mode unsupported by PAM; it is not a natural player route.
 	before := append([]byte(nil), e.Frame().Pix...)

@@ -1,5 +1,13 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+HD相容像素依[047 READY契約](docs/spec/047-hd-scene-renderer.md#hd相容像素操作的ready契約)，[正式Go操作](internal/eightsword/source_compat.go)與[原版控制](internal/eightsword/source_compat_test.go)在923檔核心執行。Go處理字形、遮罩、單點與隱藏頁矩形還原，事件邊界不借原版像素指令；原版模式不裝掛點。設`EIGHTSWORD_GLYPH_PROJECT`、`EIGHTSWORD_TEST_ORIG`及`EIGHTSWORD_TEST_SOURCE_ASSETS`後測`TestSourceCompatNative`。正式提升另依限定驗收。
+
+[相容像素獨立核對](tools/audit-render-compat.py)在固定Pillow容器以`--project <唯讀專案> --out <既有render-takeover-r1內的新JSON>`核對候選170輸入、923核心、455素材、78原版控制、零原版像素寫入、完整結局／Esc與真正視窗存讀。[原子提升](tools/promote-render-takeover.py)沿核對收據提升七程式，不改前版或素材；具體候選與收據見047。
+
+[唯讀觀測](tools/research-compat-pixels_test.go)由研究準備器加`--compat-probe`建立私有副本。在923核心Go容器設原版、正式素材及新`EIGHTSWORD_COMPAT_PROBE_OUT`，跑`TestResearchCompatibilityPixelInventory`。區分當前CPU寫入與既有批次的未來Step觀測，不改記憶體或逐隻等待。
+
+[Go相容像素原語](tools/research-compat-native.go)與[原版控制](tools/research-compat-native_test.go)由同一準備器加`--compat-native`建立新研究副本，測試`TestResearchCompatNative`，沿923檔核心。涵蓋字形、遮罩、單點與隱藏頁矩形還原的原生位元混合／copy，事件邊界不借CPU解譯像素指令；契約未READY前不進正式路徑。
+
 HD全繪圖接管以[047模式分流追加](docs/spec/047-hd-scene-renderer.md#hd與原版模式分流追加契約)為入口。使用者於2026-10-26指定原版模式保留原途徑、HD由Go全接管；剩餘像素迴圈須獨立列明。窄查工具[export-render-primitives-ida.py](tools/export-render-primitives-ida.py)沿正式PAM.i64唯讀副本及既有IDA9.4容器匯出字形、清屏、頁面搬移與圖形原語；用法與研究輸出位置見047，不把DRAFT工具接正式程式。
 
 字形接管研究由[獨立準備器](tools/prepare-render-takeover.py)在Pillow容器用`--project <唯讀專案> --out <既有研究區內的新目錄>`複製內部來源，接[Go列批次](tools/research-render-glyphs.go)及[原版指令對照](tools/research-render-glyphs_test.go)。在Go1.24.13容器以既有921檔核心執行`EIGHTSWORD_GLYPH_PROJECT=/project go test ./internal/eightsword -run TestResearchSourceGlyphOracle`。DRAFT僅限研究，正式模式維持。

@@ -18,6 +18,8 @@ def main():
     p.add_argument('--out', required=True, type=Path)
     p.add_argument('--intro-masked', action='store_true')
     p.add_argument('--reveal', action='store_true')
+    p.add_argument('--compat-probe', action='store_true')
+    p.add_argument('--compat-native', action='store_true')
     a = p.parse_args()
     assert Path('/.dockerenv').is_file() and os.getuid() == 1000
     assert not a.out.exists() and a.out.parent.stat().st_uid == 1000
@@ -100,6 +102,26 @@ def main():
         old = '\te.sourceInstall = func() {\n'
         assert text.count(old) == 1
         target.write_text(text.replace(old,'\trevealInstall := e.sourceRevealInstall()\n'+old+'\t\trevealInstall()\n'))
+    if a.compat_probe or a.compat_native:
+        src = a.project/'tools/research-compat-pixels_test.go'
+        text = src.read_text()
+        assert text.startswith('//go:build ignore\n\n')
+        (a.out/'internal/eightsword/compat-pixels_test.go').write_text(text.removeprefix('//go:build ignore\n\n'))
+    if a.compat_native and not (a.project/'internal/eightsword/source_compat.go').is_file():
+        for name in ['research-compat-native.go', 'research-compat-native_test.go']:
+            text = (a.project/'tools'/name).read_text()
+            assert text.startswith('//go:build ignore\n\n')
+            (a.out/'internal/eightsword'/name.removeprefix('research-')).write_text(text.removeprefix('//go:build ignore\n\n'))
+        target = a.out/'internal/eightsword/engine.go'
+        text = target.read_text()
+        old = 'type Engine struct {\n'
+        assert text.count(old) == 1
+        target.write_text(text.replace(old,old+'\tsourceCompatReads, sourceCompatWrites, sourceCompatRestores uint64\n'))
+        target = a.out/'internal/eightsword/source_presentation.go'
+        text = target.read_text()
+        old = '\te.sourceInstall = func() {\n'
+        assert text.count(old) == 1
+        target.write_text(text.replace(old,'\tcompatInstall := e.sourceCompatInstall()\n'+old+'\t\tcompatInstall()\n'))
     result = dict(schema=1, spec='047', production=False, tool_sha256=sha(Path(__file__)),
                   files={str(p.relative_to(a.out)):sha(p) for p in a.out.rglob('*') if p.is_file()})
     (a.out/'preparation.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')

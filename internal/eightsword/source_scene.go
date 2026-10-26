@@ -396,6 +396,9 @@ func (p *sourceAdapter) bind() {
 					}
 				}
 				p.scene.Revision++
+				if actor != 0 {
+					p.e.sourceActorCommits++
+				}
 				p.record("bitmap", map[string]any{"entry": c.entry, "entry_step": entryStep, "width_bytes": w, "height": h, "x_byte": x, "y": y, "dest": dest, "source_sha256": hash(raw), "material": id, "actor": actor, "effect": effect, "caller": nil})
 			}
 		})
