@@ -1,5 +1,10 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+END1對峙人物依[053追加契約](docs/spec/053-ending-hd.md#end1對峙人物追加契約)，完整原PNG／提示留ending-hd-r1/end1-art-r1。[匯入工具](tools/prepare-ending-duel.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --out <既有ending-hd-r1內新候選>`核對固定幾何與來源，保留r60全部441檔後另加兩檔；未驗候選不提升正式。
+[人物載入器](internal/eightsword/ending_duel.go)與[新舊／故障測試](internal/eightsword/ending_duel_test.go)沿同節READY，Go畫布只替換完整來源SHA相符的四平面圖。既有整合測試加`EIGHTSWORD_TEST_ENDING_DUEL_PREFIX=1`，抽END1與END3各三字型，原版控制及HD皆沿同一玩家前綴停在END4。
+[獨立核對器](tools/audit-ending-duel.py)在Pillow容器以`--project --out`核對443檔、156輸入、六張完整Frame及原r60的普通選單／人物／軍隊畫面；正常存讀與完整結局沿既有驗收，不重跑同機制。通過收據才交既有promote-ending.py提升本機r61。
+[README人物比較工具](tools/prepare-ending-duel-overview.py)在同容器用`--project --audit <已通過收據> --out <新PNG>`產生素材及初始／八劍階段的同狀態比較，另附完整提示及來源SHA。完整生成PNG留本機。
+
 END3八劍依[053追加契約](docs/spec/053-ending-hd.md#end3八劍材質追加契約)，原PNG／提示／來源留ending-hd-r1/swords-art-r1。[匯入器](tools/prepare-ending-swords.py)在固定Pillow11.3.0 Docker用`--project <唯讀專案> --out <既有ending-hd-r1內新候選>`正規化透明圖，保留r59全部439檔，另加兩檔；未驗候選不直接提升正式。
 [載入與冪等繪圖](internal/eightsword/ending_swords.go)及[測試](internal/eightsword/ending_swords_test.go)依同節READY；既有整合測試加`EIGHTSWORD_TEST_ENDING_SWORDS_PREFIX=1`只驗正常玩家前綴至END4。[獨立核對](tools/audit-ending-swords.py)在Pillow容器用`--project --out`核對441檔、154輸入、兩側state／PCM與三字型完整Frame；通過收據再交既有promote-ending.py，限制見053。
 [README八劍比較工具](tools/prepare-ending-swords-overview.py)在同一Pillow容器用`--project --audit <通過收據> --out <新PNG>`保留原版／HD材質與同狀態完整Frame。完整生成圖留本機，來源／完整提示收同名JSON。
@@ -13,7 +18,7 @@ END5人物材質的[幾何準備器](tools/prepare-ending-portrait.py)沿[053候
 [人物整組載入](internal/eightsword/ending_portrait.go)與[真壞／舊組測試](internal/eightsword/ending_portrait_test.go)沿上述契約，五張全驗才接Go來源畫布。沿既有結局整合測試加`EIGHTSWORD_TEST_ENDING_REQUIRE_PORTRAIT=1`，要求439檔候選確實載入並擷取實際眼／嘴狀態；缺輸入仍明確Skip，未驗候選不提升正式。
 [END5獨立核對](tools/audit-ending-portrait.py)在固定Pillow容器使用`--project --out`，預設runtime-r6與assets-end5-candidate-r1；亦可明列`--runtime`／`--assets`。核對固定幾何取樣、五來源、實際眼嘴完整Frame、其餘九張場景圖保持與對話區外邊界；GUI與正式提升另見053；加`--promotion --engine-audit --gui-audit`可聚合完整收據，正常存讀引用r57既有驗收，不稱新r58存讀。
 
-結局來源場景與三字型已在r57限定CONFORMED，依[053 READY契約](docs/spec/053-ending-hd.md#來源場景與三字型正式接入契約)。[素材載入](internal/eightsword/ending_assets.go)、[純Go場景](internal/eightsword/ending_scene.go)、[來源介接](internal/eightsword/ending_adapter.go)與[輸入轉移](internal/eightsword/ending_input.go)接Engine，PAE階段停用PAM舊來源／音樂觀測，三字型沿FontID。完整／Esc成對客體與PCM、15Frame、實際GUI及真正存退讀已驗；當時七程式與433素材已提升；現行r59與END5追加見CONTEXT最上列，不代表全美術或公開發行。
+結局來源場景與三字型已在r57限定CONFORMED，依[053 READY契約](docs/spec/053-ending-hd.md#來源場景與三字型正式接入契約)。[素材載入](internal/eightsword/ending_assets.go)、[純Go場景](internal/eightsword/ending_scene.go)、[來源介接](internal/eightsword/ending_adapter.go)與[輸入轉移](internal/eightsword/ending_input.go)接Engine，PAE階段停用PAM舊來源／音樂觀測，三字型沿FontID。完整／Esc成對客體與PCM、15Frame、實際GUI及真正存退讀已驗；當時七程式與433素材已提升；現行版本與後續追加見CONTEXT最上列，不代表全美術或公開發行。
 [候選素材準備](tools/prepare-hd-ending.py)在固定Pillow容器以`--project <唯讀專案> --out <ending-hd-r1內新目錄>`核對原425檔、三字型、37來源及END7正確r2，產生433項候選。433項均須一般檔案，425舊檔SHA保持。正式assets-painted-r57來自assets-candidate-r3；r2連結會令部分載入器回退，只保留歷史，不重用。
 [私有核心準備](tools/prepare-ending-input-core.py)用相同`--project`與`--out <新核心revision>`，核對原919檔後只加入[Machine輸入轉移](tools/ending-input-machine.go)與[Oracle API](tools/ending-input-oracle.go)，共921檔。只在原版PAE交接後且INT09h為0080:0024時丟棄無接收者的舊硬體鍵／定時鍵／held集合，不改CPU、記憶體或BIOS鍵；其他向量拒絕。原runtime-direct-r1不改，不繞過事件配額。
 [結局直接Go圖片](internal/eightsword/ending_direct.go)、[遮罩](internal/eightsword/ending_masked.go)與[字模](internal/eightsword/ending_glyphs.go)沿已驗原始ABI及雙配額接管；[Engine測試](internal/eightsword/ending_runtime_test.go)在Go1.24.13及上述私有核心用`EIGHTSWORD_TEST_ORIGINAL`、`EIGHTSWORD_TEST_ENDING_ASSETS`、`EIGHTSWORD_TEST_ENDING_OUT`執行`go test ./internal/eightsword -run '^TestEnding'`。加`EIGHTSWORD_TEST_ENDING_REQUIRE_DIRECT=1`要求實際圖片／遮罩／字模都有接管；`EIGHTSWORD_TEST_ENDING_OLD_CONTROL`可核對先前未清理控制state，缺輸入明確Skip。

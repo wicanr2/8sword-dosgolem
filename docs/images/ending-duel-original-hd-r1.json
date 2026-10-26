@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "image": "ending-duel-original-hd-r1.png",
+  "image_sha256": "ddcff12a57d44a3bdc8f8a3df86f43dbcae74bc53ecf7d53b4a3b1df20f78e5e",
+  "audit_sha256": "a8dea75ad15484f345ada239bcc338f19f273ba68d0cf3ba468b0d5d7299cead",
+  "entries": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end1-ay-00-reference.png",
+      "sha256": "610f9a117717e24d0c40a902ab777d1b4e04d34e2f2aeaa8010cd36752a9faf4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-duel-candidate-r1/ending-duel.png",
+      "sha256": "fb385fd014378dd7d9281702f6dd0a808fd9354c1cbb1ba50dda959ceea4011d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-duel-r1/hd/sample-01-native.png",
+      "sha256": "ea95dcea72ed2702454af7c664f290ff65be3ab03e094e2e9ba8fd0bb3f8d309"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-duel-r1/hd/sample-01-noto.png",
+      "sha256": "40a25a8faf038f7190b0840fe42ce31b11f89135c8f930a42ec3de36a429f3c3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-duel-r1/hd/sample-02-native.png",
+      "sha256": "2798be5d4ab65197e9d214003c8f5dc3783b7adc5bbc5e90f8a341c61db2142f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-duel-r1/hd/sample-02-noto.png",
+      "sha256": "eb8ea8250a751831cb0dfa5a4135be705828a0a7d0e32334fd58cee0f2f072ad"
+    }
+  ],
+  "generation": {
+    "schema": 1,
+    "spec": "053",
+    "tool": "built-in image_gen",
+    "status": "generated-reviewed-not-runtime",
+    "image": "end1-duel-r1.png",
+    "image_sha256": "40851c0c267d190ea25242a24aad7177ef15c668ecf448a3688a8210156e6210",
+    "size": [
+      2169,
+      725
+    ],
+    "prompt": "actual.prompt.txt",
+    "prompt_sha256": "68d1fe7a99fb9b8b7909baa9c14ce7e6bb9777655b7bf8eda8d112535caefde0",
+    "reference": "end1-ay-00-reference.png",
+    "reference_sha256": "610f9a117717e24d0c40a902ab777d1b4e04d34e2f2aeaa8010cd36752a9faf4",
+    "transparent_background": false,
+    "visual_review": "Two profile figures, purple cape swordsman, green/white spellcaster, same original poses and separated light platforms.",
+    "rights": "local-only original-derived HD; private repository comparison only"
+  },
+  "prompt": "Use case: style-transfer.\nAsset type: HD background/character plate for a Chinese wuxia DOS game remake, END1 record0.\nInput image 1 is the exact composition, pose, scale and colour reference. Redraw the entire image as finely painted Chinese fantasy game art with readable classical Chinese faces and flowing fabric. Keep EXACTLY TWO human figures, their unequal sizes, locations, poses, wardrobe colours and separate oval light platforms. Do not add a third figure.\nIMPORTANT FRAMING: This is a VERY WIDE 3.413:1 black strip, not a full scenic poster. Match image1's enormous pure-black gap between the two people. Black also fills the entire background. Preserve full heads, weapons, sleeves, capes and foot platforms without cropping.\nLEFT FIGURE: a smaller, handsome adult Chinese male swordsman in right-facing profile at about 17 percent of the full width. Long blue-black hair and a blue/yellow head ornament, a vivid purple long cape trailing down and left, a white long-sleeved tunic and trousers, blue boots. Standing upright, feet down on the left oval platform. One visible sword arm extends down-right, naturally gripping ONE thin straight silver jian angled down to the right. Follow the source pose and silhouette, do not raise the sword or turn him toward the viewer. His figure height is around two thirds of the right figure's height, with his head around 30 percent of strip height. Preserve the cape, not red armour.\nRIGHT FIGURE: a much taller adult Chinese male spellcaster in left-facing profile near 82 percent of width, wearing flowing white robe with blue edging, a green central skirt and green shoulder piece, a blue headpiece and red cape streaming toward the lower right. One forward arm raised with OPEN PALM to the upper-left, exactly following the original hand/forearm silhouette, the other arm down by the body. Long sleeves curve naturally. Keep both feet low on the right oval platform, no staff, sword, new beard or added prop. Follow the original profile and avoid an invented villain expression.\nBoth oval platforms remain thin, low, perspective ellipses with brilliant warm yellow/white centres and red/green edges as in the source; no tall fire, no added particle effects. Feet align to the same lower baseline, around 92 percent of image height. Keep the left platform near x=17 percent, right near x=82 percent. Leave the middle 35 percent of the strip completely empty solid #000000.\nStyle: detailed hand-painted Chinese wuxia illustration, controlled brushwork, sharp readable contours, natural anatomy and hands, rich original purple/green/blue/red clothing colours, gentle directional highlights. No pixel art, no 3D render, no modern costume, no Western armour. No landscape, palace, stars, dragon, tiger, lettering, frame, border or watermark. All remaining space must be opaque pure black, with no atmospheric haze or shadow texture. Return the whole wide plate, retaining the reference composition.",
+  "tool_sha256": "4796e89f67af0343f733b33911bda4f1ae3c89bdf8553de6b77e99afeabf2cac",
+  "scope": "Source/HD textures and same-state Engine Frames. Original branch is controlled, not natural victory. No new GUI/save claim. END2 spell effects remain source pixels."
+}

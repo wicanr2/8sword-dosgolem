@@ -58,6 +58,7 @@ type endingArtSet struct {
 	titles    map[string]image.Image
 	portraits map[string]image.Image
 	swords    image.Image
+	duel      image.Image
 }
 
 func newEndingScene() *endingScene {
@@ -150,6 +151,13 @@ func renderEndingPage(p *endingPage, palette [16][3]uint8, art endingArtSet, pro
 	endingFill(out, out.Bounds(), palette[0])
 	for i, c := range p.ops {
 		r := image.Rect(c.X*3, c.Y*6, (c.X+c.W)*3, (c.Y+c.H)*6)
+		if profile != nil && c.Kind == "bitmap" && c.SourceSHA == endingDuelSource && art.duel != nil {
+			if palette != endingPalette || art.duel.Bounds().Size() != r.Size() {
+				panic("unreviewed END1 duel geometry or palette")
+			}
+			draw.Draw(out, r, art.duel, art.duel.Bounds().Min, draw.Src)
+			continue
+		}
 		if profile != nil && c.Kind == "bitmap" && c.SourceSHA == endingSwordsSource && art.swords != nil {
 			if palette != endingPalette || art.swords.Bounds().Size() != r.Size() {
 				panic("unreviewed END3 sword geometry or palette")

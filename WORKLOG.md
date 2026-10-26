@@ -1686,3 +1686,14 @@ runtime-audit-r4及promotion-r4通過後，提升r59／439素材及source-candid
 swords-audit-r1及swords-promotion-r1通過後提升r60／441素材，r59的439檔全保留。七程式來自source-candidate-swords-r1／154輸入；舊152輸入及七程式、921核心與158原版檔保持。README加入原版／HD材質與同狀態完整Frame比較，完整原圖留本機。最終完整性、工具與來源封存、清理及提交讀回分別記swords-final-integrity-r1.json、swords-provenance-r1.json、swords-cleanup-r1.json與swords-publication-r1.json。
 
 本輪不建立新Docker映像；所有8sword工作容器均須有界結束並刪除。其他專案容器保持。正式結局其餘人物、效果及PAM／開場CPU等原範圍仍待處理，053整體DRAFT保持。
+## 2026-10-26：END1對峙人物HD
+
+沿r60現況補結局兩名對峙人物。先看原版512×75圖，沿紫披風持劍者、綠白長袍施法者及兩處光圈，以內建image_gen繪製完整黑底圖。原PNG、完整提示、原版參考SHA與生成收據保存於end1-art-r1；人物身分不由圖像猜測。固定裁取上下多餘黑帶後規格化1536×450，原PNG保持。
+
+053先補READY契約，再接獨立可選載入與Go不透明貼圖。r60的441檔全部保持，只加ending-duel.json與PNG。四父測試、人物及八劍共12回退子案、透明冪等抽驗53.639秒及go vet首次通過。正常啟動、選單、新遊戲、F1／F2後，沿受控原版收尾分支到END4首段；原版／HD各89060489步，state、原生PCM、輸入及I/O同值，亦同r60原版控制。四張既有普通玩家HD PNG保持。
+
+END1初段與END3八劍各三字型，共六張完整Frame純讀，同獨立原始來源／PNG／字型模型。原生來源另與Oracle RGB逐像素核對。差異限END1原始命令矩形聯集；初段包含多次上下移位，保留原順序，不固定成單一位置。完整畫面已看，原版腳下法術仍是來源像素，後續再補。
+
+duel-audit-r1及duel-promotion-r1通過後，提升本機r61／443素材及source-candidate-duel-r1七程式，共156輸入；舊154輸入及七程式、921核心與158原版檔保持。README收原版／HD及相同狀態對照與完整提示，完整原圖留本機。提升工具以固定版次表替代逐層條件，舊r57／58／60契約保持。
+
+本輪沒有失敗重跑或新Docker映像。最終來源、原版、核心、擁有權與文件完整性記duel-final-integrity-r1.json，工具與收據封存記duel-provenance-r1.json，Git提交／遠端讀回記duel-publication-r1.json。所有本專案容器須結束並移除，其他專案容器不動。未新增自然勝利、完整結局／Esc、GUI、存讀或其他平台聲明；其餘HD原範圍繼續。

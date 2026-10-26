@@ -34,7 +34,8 @@ func endingTestPaths(t *testing.T) (string, string, string) {
 }
 
 func TestEndingSourceRuntime(t *testing.T) {
-	swordsOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_SWORDS_PREFIX") == "1"
+	duelOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_DUEL_PREFIX") == "1"
+	swordsOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_SWORDS_PREFIX") == "1" || duelOnly
 	root, assets, out := endingTestPaths(t)
 	type result struct {
 		state []byte
@@ -148,7 +149,17 @@ func TestEndingSourceRuntime(t *testing.T) {
 						found = true
 					}
 				}
-				if stage != "END3.AY" || !found {
+				if duelOnly && stage == "END1.AY" {
+					found = false
+					for _, command := range page.ops {
+						if command.SourceSHA == endingDuelSource {
+							found = true
+						}
+					}
+					if !found || p.assets.art.duel == nil || p.assets.duelError != "" {
+						t.Fatal("對峙人物候選未載入")
+					}
+				} else if stage != "END3.AY" || !found {
 					return
 				}
 				if p.assets.art.swords == nil || p.assets.swordsError != "" {
@@ -341,7 +352,11 @@ func TestEndingSourceRuntime(t *testing.T) {
 		if !swordsOnly && (!e.Exited || e.ExitCode != 0) {
 			t.Fatal("original ending did not exit zero")
 		}
-		if hd && swordsOnly && len(endingSamples) != 1 {
+		expectedPrefixSamples := 1
+		if duelOnly {
+			expectedPrefixSamples = 2
+		}
+		if hd && swordsOnly && len(endingSamples) != expectedPrefixSamples {
 			t.Fatal("八劍代表缺席")
 		}
 		if swordsOnly && visibleStage != "END4.AY" {

@@ -51,6 +51,10 @@ def reconstruct(meta, assets, sources):
         for record in read(assets/'ending-portrait.json')['records']:
             assert sha(assets/record['file']) == record['sha256']
             portraits[record['source_sha256']] = Image.open(assets/record['file']).convert('RGBA')
+    if (assets/'ending-duel.json').exists():
+        duel = read(assets/'ending-duel.json')
+        assert sha(assets/duel['image']) == duel['image_sha256']
+        portraits[duel['source_sha256']] = Image.open(assets/duel['image']).convert('RGBA')
     swords = None
     if (assets/'ending-swords.json').exists():
         manifest = read(assets/'ending-swords.json')
