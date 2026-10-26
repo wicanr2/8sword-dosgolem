@@ -146,7 +146,7 @@ case "${1:-}" in
           EIGHTSWORD_TEST_ORIG=/project/workplace/intake-20261023/sources/game/8sword \
             EIGHTSWORD_TEST_ORIGINAL=/project/workplace/intake-20261023/sources/game/8sword \
             EIGHTSWORD_TEST_DIRECT_FIXTURES=/project/workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r3 \
-            EIGHTSWORD_TEST_SOURCE_ASSETS=/out/assets-painted-r55 \
+            EIGHTSWORD_TEST_SOURCE_ASSETS=/out/assets-painted-r56 \
             EIGHTSWORD_TEST_BUILDINGS_ASSETS=/out/assets-painted-r52 \
             EIGHTSWORD_TEST_BUILDINGS_BASE=/out/assets-painted-r51 \
             EIGHTSWORD_TEST_BUILDINGS_CACHE=/project/workplace/probe-20261023/graphics-first/map-interaction-r1/buildings-registration-r1 \

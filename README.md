@@ -43,6 +43,8 @@
 
 彩色前導已依原畫修正：男主角背影持劍，女主角站在旁邊抬手遮擋並回頭露臉，移除誤畫的白馬。逐點揭圖、完整圖及故事頁交接已由正常開場核對，五頁文字仍用深藍背景。[修正與完整提示](docs/images/story-prelude-color-corrected-r3.json)及[限定驗收](docs/spec/014-intro-story-background.md#人物勘誤正式替換與限定驗收)可回查。
 
+深藍故事背景已同步更正人物，女主角站在男主角旁，抬手遮擋並回頭露臉。[深藍修正版](docs/images/story-background-corrected-r4.png)及[五頁驗收](docs/spec/014-intro-story-background.md#深藍人物修正正式接入與限定驗收)可回查。
+
 ### 兩側海報與字型工具列
 
 ![正式前端的經典封面海報與教育部隸書](docs/images/poster-toolbar-runtime-r1.png)
@@ -281,7 +283,7 @@ F3 解雇頁亦使用同一張 HD 民兵，保留原版黑底與選取文字。[
 
 友軍矮人鏡射使用 `bash tools/player.sh friendly-man21-assets <新名稱> [基底名稱]` 匯入，預設基底r47。只加固定對應清單，不複製新PNG；四姿勢整組驗證，失敗保留原向與軍隊頁圖像。[契約與驗收](docs/spec/042-friendly-man21-battle-poses.md#正式接入與限定驗收)不改部隊或AI規則。
 
-攻城背景使用 `bash tools/player.sh palace-assets <新名稱> [基底名稱]` 匯入，預設基底 r46；需要已記錄的本機手繪圖、完整提示與固定原版。現行本機圖像組為 `workplace/player/assets-painted-r55`，以前端 `-assets` 選用。原 `workplace/player/assets` 保留純字型基底。攻城背景與山谷背景各自驗證、各自回退，契約及核對入口見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。
+攻城背景使用 `bash tools/player.sh palace-assets <新名稱> [基底名稱]` 匯入，預設基底 r46；需要已記錄的本機手繪圖、完整提示與固定原版。現行本機圖像組為 `workplace/player/assets-painted-r56`，以前端 `-assets` 選用。原 `workplace/player/assets` 保留純字型基底。攻城背景與山谷背景各自驗證、各自回退，契約及核對入口見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。
 
 新增部隊使用 `bash tools/player.sh troops-assets <新名稱> painted-r48` 批次重建，保留 r48 的 223 份素材，再加入 20 組四姿勢。須具備本機固定圖集與提示；工具拒絕覆寫既有輸出。來源、兩向、軍隊／戰場對應、各組回退及受控抽驗範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，完整性核對入口為 [audit-troops.py](tools/audit-troops.py)。
 

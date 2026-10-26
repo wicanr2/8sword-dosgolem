@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "status": "user-requested-composition-correction",
+  "file": "story-background-corrected-r4.png",
+  "sha256": "9c26111247a7bf3606798c6ffb0708312bd939ecbec29db351ce1fc828e760d2",
+  "size": [
+    1585,
+    992
+  ],
+  "prompt": "story-background-corrected-r4.prompt.txt",
+  "prompt_sha256": "20e08386655440767c358df7abded9e7afe7265eb6084cf35f3305c2e5f6e2f8",
+  "method": "built-in image_gen edit",
+  "supersedes": "workplace/player/assets-painted-r55/story-background.png",
+  "user_correction": "男主角背影、自然握劍；女主角在旁抬手遮擋並回頭露臉；移除白馬",
+  "reference_sha256": "734df8241381d2d016bb6c7421d8ce38b3dec2f7f91bdb0f7589b7d45b58ecbf",
+  "generation_receipt_sha256": "3154533d89a24d26350c99de71ce53558b713ed3b1193fdf966b8243aa998a98",
+  "rights": "corrected art in existing private repository; original reference stays local",
+  "supersedes_sha256": "734df8241381d2d016bb6c7421d8ce38b3dec2f7f91bdb0f7589b7d45b58ecbf"
+}
