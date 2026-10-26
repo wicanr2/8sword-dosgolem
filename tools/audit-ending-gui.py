@@ -57,6 +57,11 @@ def reconstruct(meta, assets, sources):
         portraits[duel['source_sha256']] = Image.open(assets/duel['image']).convert('RGBA')
     swords = None
     effects = {}
+    pairs = {}
+    if (assets/'ending-pair.json').exists():
+        for pair in read(assets/'ending-pair.json')['records']:
+            assert sha(assets/pair['image']) == pair['image_sha256']
+            pairs[pair['source_sha256']] = Image.open(assets/pair['image']).convert('RGBA')
     if (assets/'ending-effects.json').exists():
         for effect in read(assets/'ending-effects.json')['records']:
             assert sha(assets/effect['image']) == effect['image_sha256']
@@ -68,7 +73,20 @@ def reconstruct(meta, assets, sources):
     for index, op in enumerate(meta['ops']):
         x,y,w,h = op['X']*3,op['Y']*6,op['W']*3,op['H']*6
         if op['kind'] == 'bitmap':
-            if op['SourceSHA'] in effects:
+            if op['SourceSHA'] in pairs:
+                repeated = False
+                for prior in reversed(meta['ops'][:index]):
+                    if op['X'] >= prior['X']+prior['W'] or prior['X'] >= op['X']+op['W'] or op['Y'] >= prior['Y']+prior['H'] or prior['Y'] >= op['Y']+op['H']:
+                        continue
+                    repeated = all(prior[k] == op[k] for k in ['kind','SourceSHA','X','Y','W','H'])
+                    break
+                if not repeated:
+                    native = sources[op['SourceSHA']]
+                    black = Image.new('L',native.size)
+                    black.putdata([255 if c[3] and c[:3] == (0,0,0) else 0 for c in native.getdata()])
+                    out.paste((0,0,0,255),(x,y,x+w,y+h),black.resize((w,h),Image.Resampling.NEAREST))
+                    swords_over(out,pairs[op['SourceSHA']],x,y)
+            elif op['SourceSHA'] in effects:
                 repeated = False
                 for prior in reversed(meta['ops'][:index]):
                     if op['X'] >= prior['X']+prior['W'] or prior['X'] >= op['X']+op['W'] or op['Y'] >= prior['Y']+prior['H'] or prior['Y'] >= op['Y']+op['H']:

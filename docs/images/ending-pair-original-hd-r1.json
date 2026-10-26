@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "image": "ending-pair-original-hd-r1.png",
+  "image_sha256": "a28e740d2ad538f07000867300e2f6c9f836f7c368b57d20a93bcb76abb7e277",
+  "audit_sha256": "30e8423f519b93816df97b7579719136606ac34f3b2851eaab7d757a3625483a",
+  "entries": [
+    {
+      "record": 1,
+      "kind": "原版",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/end6-ay-01-native.png",
+      "sha256": "1bccf1a4164ef08f10667046b9e2b8f99f3140c628163474af5cadd5d9e5c226"
+    },
+    {
+      "record": 1,
+      "kind": "HD",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-pair-candidate-r1/ending-pair-01.png",
+      "sha256": "a4a6df7dce9c258533d0a6ec88c69c91e53fc191420b2aeac0a897841af1dbd8"
+    },
+    {
+      "record": 2,
+      "kind": "原版",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/end6-ay-02-native.png",
+      "sha256": "4012ea3a75a1dfb9c3599afb60ab14d772c70c913dca3f369cb49047e7f45067"
+    },
+    {
+      "record": 2,
+      "kind": "HD",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-pair-candidate-r1/ending-pair-02.png",
+      "sha256": "9898b34ce6a5ccf8e8f53df5860822d0cc41e7d47bb94897a151389060125c0a"
+    },
+    {
+      "record": 3,
+      "kind": "原版",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/end6-ay-03-native.png",
+      "sha256": "c93be73d89006bbc7c4f5bd0d762476024b7bba45f795dc23dac0b4b73f5c265"
+    },
+    {
+      "record": 3,
+      "kind": "HD",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-pair-candidate-r1/ending-pair-03.png",
+      "sha256": "325f43c4493aede9221b99a10fab1df3f7b9e7af46a7432ab2ec0715cde63684"
+    },
+    {
+      "record": 4,
+      "kind": "原版",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/end6-ay-04-native.png",
+      "sha256": "2b4abbb43d2408b5d6759f048dd1005b52eae2939c9b1363cd78a432e6764709"
+    },
+    {
+      "record": 4,
+      "kind": "HD",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-pair-candidate-r1/ending-pair-04.png",
+      "sha256": "04063df47a542fbda399f667d9fcd1633643c325242d8d54f5b1cfc6fbf60268"
+    },
+    {
+      "kind": "相同狀態／原版來源重建",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-pair-r1/hd/sample-02-native.png",
+      "sha256": "a5db4853eec79d0777394dc2aaef8ab76d7778e8153079eeb4c2f62f006e2368"
+    },
+    {
+      "kind": "Go實際畫布／雙人HD",
+      "image": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-pair-r1/hd/sample-02-noto.png",
+      "sha256": "c039bb95ff4df4dee8c4c3e38b91c2d2cd0ea8103343d869641c9663a48a9000"
+    }
+  ],
+  "generations": {
+    "r1": {
+      "schema": 1,
+      "spec": "053",
+      "status": "generated-not-promoted",
+      "tool": "built-in image_gen",
+      "mode": "generate",
+      "image": "pair-r1.png",
+      "image_sha256": "73895ba05fd52f61b2c3a2460dda2a0b678a6b32aadb7b92e7c44d87d75fb766",
+      "prompt": "pair-r1.prompt.txt",
+      "prompt_sha256": "264e3f23c261a275e102f440dfe5d59d0d800700541bbf076e8fe2584fd02e55",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_bbox": [
+        0,
+        0,
+        1526,
+        1024
+      ],
+      "references": [
+        {
+          "path": "/project/workplace/probe-20261023/graphics-first/ending-hd-r1/end6-ay-01-reference.png",
+          "sha256": "e2eee37d75b3134a1f1973a6f4dbc19728dfc7487f09cba238907b8531ff997e"
+        },
+        {
+          "path": "/project/workplace/player/assets-painted-r62/ending-end7-r2.png",
+          "sha256": "834b0aa26424222972cc05be8c00245b63a33809f5332eb08259064e777ba0c7"
+        }
+      ],
+      "prompt_text": "Use case: illustration-story.\nAsset type: one transparent full-body two-character sprite for a Chinese DOS fantasy RPG HD remake. This single cutout will be reused at four diminishing scales.\nReference image 1 is the original low-resolution END6 pair: use it for STRICT pose, staging, costume colors, relative heights and silhouette. Reference image 2 is approved existing HD art: use ONLY its refined hand-painted brushwork and Chinese facial aesthetics, NOT its action pose or scenery.\nPaint exactly two Chinese adults, a handsome young wuxia hero standing on the LEFT facing RIGHT, and an ethereal classical Chinese princess on the RIGHT facing LEFT. They stand at the same ground baseline and look gently at each other, with one natural visible hand from each person meeting at waist level. Follow the original side and three-quarter orientations. Full heads, hands, long robes, hems, shoes and cape are entirely visible. The man is slightly taller. His clothing follows reference 1: ivory-white robe and sleeves, blue trousers and boots, a long rich purple cape sweeping left, long dark blue-black hair and a small gold head ornament, restrained gold/red trim. The princess follows reference 1: flowing golden-yellow gown with red inner pleats, pink silk sash and ribbons, long black hair with a gold floral ornament; refined facial features and calm expression. Both are adults. Keep each person's anatomy natural, fingers and thumbs correctly oriented. No weapon or raised hands.\nStyle: elegant detailed Chinese fantasy book-cover painting, delicate ink-defined contours, soft painterly silk folds, modest gold embroidery and natural skin shading. Match the finish of approved reference 2, but use the original purple, ivory, blue, gold, red and pink costume palette.\nComposition: a compact horizontal pair, their bodies centered together; broad trailing purple cape on the left balances the princess's yellow and red skirt on the right. Both full bodies share the same visual plane and baseline. Maintain generous completely transparent outer margins on all sides; no cropped cape or robes. Clean silhouette suitable for small game sprites. Prefer a landscape 3:2 canvas.\nBackground: actual transparent alpha outside the two people. No painted background, no floor, no cast shadow, no aura, no smoke, no particles, no scroll, no frame, no sky, no animals, no dragon, no horse, no extra person. No text, title, labels, watermark, grids or color swatches. Do not imitate pixel art; render detailed original hand-painted HD artwork.\n"
+    },
+    "r2": {
+      "schema": 1,
+      "spec": "053",
+      "tool": "built-in image_gen",
+      "mode": "edit",
+      "image": "pair-r2.png",
+      "image_sha256": "510742d5838478747a8f3c0bb8c017fed6319071d7564c93718689b144e24a8b",
+      "prompt": "pair-r2.prompt.txt",
+      "prompt_sha256": "1cb446569ff4380ab3dfc417828aa86d9dd2c0920aa5b4c61b81bc22617bae7e",
+      "reference": "pair-r1.png",
+      "reference_sha256": "73895ba05fd52f61b2c3a2460dda2a0b678a6b32aadb7b92e7c44d87d75fb766",
+      "status": "generated-not-promoted",
+      "prompt_text": "Edit the supplied two-person illustration into a clean production sprite cutout. Preserve the same exact two characters, faces, hands, costume colors, pose, relative scale, detailed brushwork and silhouettes. Remove ALL colored background glow, blurred haze, purple/pink/brown halos, smoke, floor effects and cast shadows. Outside the actual hair, clothing, ribbons and bodies must be perfectly empty transparent alpha 0, not a translucent painted backdrop. Interior skin and fabric must be fully opaque alpha 255; only real garment/hair edges can have antialias transparency. Keep delicate real hair and silk ribbon edges. Both full bodies, shoes, hems, cape and hair ornament must be completely visible with at least 64 pixels of entirely transparent outer margin on every side; fit the whole pair slightly smaller on the same landscape canvas to create those margins. No cropped hair ornament or cloth. Keep the natural single joined pair of hands exactly as they are. Do not add or change scenery, text, weapons, people, objects or lighting. Return only these two standing figures on a genuinely transparent background, with no gradient backdrop or decorative aura."
+    }
+  },
+  "selected": "r2",
+  "tool_sha256": "e86bc1c834260243e6bcc96e06745a5c7787082cf0246a960c3f0ce33e976481",
+  "scope": "Four registered textures plus one verified END6 Engine frame. Controlled original ending branch; no new GUI/save or natural victory claim. Full generated PNGs remain local."
+}

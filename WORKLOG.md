@@ -1760,3 +1760,15 @@ compat-render-audit-r1與compat-render-promotion-r1通過後，正式七程式�
 step-clock-audit-r1及step-clock-promotion-r1通過後，正式七程式提升source-candidate-step-clock-r1／171輸入。compat-r2來源／七程式、923／921／919核心、原版158檔與455素材保持。README加入舊Docker重播入口，047記限定CONFORMED與兩種時鐘範圍，AGENTS索引準備、控制與獨立核對工具，CONTEXT更新目前真相。沒有新增失敗重跑或Docker映像。
 
 最終來源、擁有權、文件入口與工具封存記step-clock-final-integrity-r1.json；提交與遠端讀回記step-clock-publication-r1.json。所有本專案工作容器有界結束，其他專案容器與資源不動。未宣稱整體FPS、自然通關或全HD完成，接續其他音畫與未驗玩家分支。
+
+## 2026-10-26：補END6雙人縮小動畫HD
+
+接續一般「繼續」指示，先核對唯一現況與既有規格；Go繪圖及兩種時鐘已驗收，不重新開工。命中復古重製規格路由與imagegen技能，選下一組未完成END6雙人四張。九曲聽感與其他待選稿保持原決策，不以普通繼續當成新批准。
+
+核對原版四筆136×50來源、bbox、縮小順序及7／14／10／4個黑色寫入。先寫053 DRAFT，保存透明人物與參考，再依來源、幾何及回退契約升READY。內建image_gen沿紫披風白衣男子、金黃粉帶女子的原站位生成一張雙人，另作r2透明清理，原圖與兩輪提示／SHA不覆寫。灰底透明預覽已看，僅按原bbox取樣成四張；沒有用Python去背或改畫。
+
+新增可選整組載入器、Go黑色遮罩及透明貼圖。舊素材缺組保持原來源，任何一張壞掉整組回退。六父測試及17個故障／來源子案例92.510秒、vet通過，沒有跳過。原版完整結局／Esc的state及PCM保持前版；四筆受控新舊八畫面、END6等五場景與Esc三字型共18Frame同獨立模型，差異只限雙人矩形。普通主選單、地圖、人物與軍隊畫面保持，沒有更改規則、時鐘、輸入或存檔。
+
+pair-audit-r1與pair-promotion-r1通過後，正式七程式提升source-candidate-pair-r1／173輸入，素材r63／460保留原r62的455檔，923核心保持。完整雙人Frame與四筆總覽已看。README收原版／HD縮小圖與完整提示JSON，原PNG及完整執行素材留本機；CONTEXT更新最上列唯一現況，AGENTS索引新工具，053限定CONFORMED。
+
+本輪沒有新測試失敗或工具鏈重建，不新增逐姿勢GUI或自然通關要求。最終擁有權、來源、文件與工具封存見pair-final-integrity-r1.json，提交及遠端讀回見pair-publication-r1.json。本專案容器須全部結束，其他專案資源保持。其他結局美術與其餘音樂仍待後續處理，不宣稱全HD完成。

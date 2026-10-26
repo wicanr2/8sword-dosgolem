@@ -60,6 +60,7 @@ type endingArtSet struct {
 	swords    image.Image
 	duel      image.Image
 	effects   map[string]image.Image
+	pair      map[string]image.Image
 }
 
 func newEndingScene() *endingScene {
@@ -153,6 +154,16 @@ func renderEndingPage(p *endingPage, palette [16][3]uint8, art endingArtSet, pro
 	for i, c := range p.ops {
 		r := image.Rect(c.X*3, c.Y*6, (c.X+c.W)*3, (c.Y+c.H)*6)
 		if profile != nil && c.Kind == "bitmap" {
+			if texture := art.pair[c.SourceSHA]; texture != nil {
+				if palette != endingPalette || c.W != 136 || c.H != 50 || texture.Bounds().Size() != r.Size() {
+					panic("unreviewed END6 pair geometry or palette")
+				}
+				if !endingSwordsRepeat(p.ops, i) {
+					endingPairBlackBase(out, c)
+					draw.Draw(out, r, texture, texture.Bounds().Min, draw.Over)
+				}
+				continue
+			}
 			if texture := art.effects[c.SourceSHA]; texture != nil {
 				if palette != endingPalette || texture.Bounds().Size() != r.Size() {
 					panic("unreviewed END2 effect geometry or palette")

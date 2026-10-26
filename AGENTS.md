@@ -1,5 +1,13 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+END6雙人縮小動畫已依[053限定驗收](docs/spec/053-ending-hd.md#end6雙人正式提升與限定驗收)正式提升r63／460素材與173輸入七程式，保留r62／455素材及171輸入前版。原圖／完整提示與兩輪收據留`ending-hd-r1/end6-pair-art-r1`。[匯入器](tools/prepare-ending-pair.py)在既有Pillow11.3.0容器使用`--project <唯讀專案> --out <既有ending-hd-r1內新候選>`，核對四筆原始bbox與黑色寫入，只加四材質及清單。原版空白掛畫不改，完整結局／Esc及共用機制抽樣通過，不重跑逐張GUI。
+
+[END6原子載入及黑色遮罩](internal/eightsword/ending_pair.go)與[真實來源／透明回退測試](internal/eightsword/ending_pair_test.go)依[READY契約](docs/spec/053-ending-hd.md#end6雙人材質ready契約)。沿既有Go1.24.13容器及923核心設`EIGHTSWORD_TEST_ENDING_REQUIRE_PAIR=1`，完整結局抽一份END6三字型；`EIGHTSWORD_TEST_PAIR_OUT`另存四筆受控畫面。原版命令、時鐘與存檔不改，不要求逐姿勢GUI。
+
+[END6獨立核對](tools/audit-ending-pair.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --out <既有ending-hd-r1內新JSON>`核對460素材、173來源、四筆黑點／透明重建與完整結局代表。模型沿audit-ending-gui.py的獨立原始RGBA／PNG運算，不將Go模型冒稱獨立核對。收據通過後沿promote-ending.py提升，保持923核心及r62素材。
+
+[END6 README總覽](tools/prepare-ending-pair-overview.py)在同容器使用`--project --audit <通過收據> --out <新PNG>`產生四筆對照及原版來源／Go完整Frame，JSON保存完整提示與來源SHA。完整原圖留本機，縮小成果沿既有私人倉庫範圍記錄。
+
 步數時鐘Go HD已依[047限定驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)正式提升171輸入七程式，沿923核心與r62／455素材。[隔離準備器](tools/prepare-step-clock.py)仍以`--project <唯讀專案> --out <既有render-takeover-r1內新目錄>`建立研究副本；[研究控制](tools/research-step-clock_test.go)保留舊CLI固定輸入，不切換即時時鐘。在Go1.24.13容器設`EIGHTSWORD_GLYPH_PROJECT`、原版與素材變數、`EIGHTSWORD_TEST_STEP_CLOCK=1`，執行165個原語控制；重播另設`EIGHTSWORD_STEP_CLOCK_OUT`。正常入口為`bash tools/player.sh replay hd <新名稱> -assets /player/assets-painted-r62`，原版改`replay native`。
 
 [步數時鐘獨立核對](tools/audit-step-clock.py)在固定Pillow容器以`--project <唯讀專案> --out <既有render-takeover-r1內新JSON>`核對171固定輸入、923核心、165原版控制、250M步重播、原版／HD CLI及即時時鐘回歸。[正式重播控制](internal/eightsword/source_step_clock_test.go)同時核對來源Frame、完整state與PCM；正式提升另交既有promote-render-takeover.py，不改素材或前版。

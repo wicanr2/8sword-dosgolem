@@ -34,6 +34,7 @@ func endingTestPaths(t *testing.T) (string, string, string) {
 }
 
 func TestEndingSourceRuntime(t *testing.T) {
+	pairRequired := os.Getenv("EIGHTSWORD_TEST_ENDING_REQUIRE_PAIR") == "1"
 	effectsOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_EFFECTS_PREFIX") == "1"
 	duelOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_DUEL_PREFIX") == "1" || effectsOnly
 	swordsOnly := os.Getenv("EIGHTSWORD_TEST_ENDING_SWORDS_PREFIX") == "1" || duelOnly
@@ -58,6 +59,9 @@ func TestEndingSourceRuntime(t *testing.T) {
 			t.Fatalf("asset errors: %s / %s", e.EndingError, e.AssetError)
 		}
 		if hd {
+			if pairRequired && (len(e.endingAssets.art.pair) != 4 || e.endingAssets.pairError != "") {
+				t.Fatal("required END6 pair group not loaded")
+			}
 			if os.Getenv("EIGHTSWORD_TEST_ENDING_REQUIRE_PORTRAIT") == "1" && (len(e.endingAssets.art.portraits) != 5 || e.endingAssets.portraitError != "") {
 				t.Fatal("required END5 portrait group not loaded")
 			}
@@ -179,8 +183,17 @@ func TestEndingSourceRuntime(t *testing.T) {
 				if p.assets.art.swords == nil || p.assets.swordsError != "" {
 					t.Fatal("八劍候選未載入")
 				}
-			} else if stage != "END5.AY" && stage != "END7.AY" && stage != "END8.AY" && stage != "END9.AY" {
+			} else if stage != "END5.AY" && stage != "END7.AY" && stage != "END8.AY" && stage != "END9.AY" && !(pairRequired && stage == "END6.AY") {
 				return
+			}
+			if stage == "END6.AY" {
+				found := false
+				for _, command := range page.ops {
+					found = found || p.assets.art.pair[command.SourceSHA] != nil
+				}
+				if !found {
+					return
+				}
 			}
 			if endingSamples[stage] || ((stage == "END5.AY" || stage == "END9.AY") && page.glyphs == 0) {
 				return
@@ -379,7 +392,11 @@ func TestEndingSourceRuntime(t *testing.T) {
 		if swordsOnly && visibleStage != "END4.AY" {
 			t.Fatal("未到前綴停止邊界")
 		}
-		if hd && !swordsOnly && !escape && len(endingSamples) != 4 {
+		expectedSamples := 4
+		if pairRequired {
+			expectedSamples = 5
+		}
+		if hd && !swordsOnly && !escape && len(endingSamples) != expectedSamples {
 			t.Fatalf("ending samples missing %v", endingSamples)
 		}
 		if hd && !swordsOnly && !escape && os.Getenv("EIGHTSWORD_TEST_ENDING_REQUIRE_PORTRAIT") == "1" && len(portraitSamples) < 3 {

@@ -26,9 +26,11 @@ def main():
         'PASS-scoped-053-ending-swords': ('r60',441,439,154,921),
         'PASS-scoped-053-ending-duel': ('r61',443,441,156,921),
         'PASS-scoped-053-ending-effects': ('r62',455,443,158,921),
+        'PASS-scoped-053-ending-pair': ('r63',460,455,173,923),
     }
     assert audit['status'] in variants
     version, count, preserved, inputs, previous_core = variants[audit['status']]
+    core_count = 923 if audit['status'] == 'PASS-scoped-053-ending-pair' else 921
     candidate = a.player/audit['candidate']
     previous = a.player/audit['previous']
     assets = a.project/'workplace/probe-20261023/graphics-first/ending-hd-r1'/audit['assets']
@@ -58,7 +60,7 @@ def main():
             staged[name] = temp
         metadata = {name:(candidate/name).read_bytes() for name in ['build-inputs.sha256','build-source-checks.log','build-go-version.txt']}
         runtime = json.loads((candidate/'runtime.json').read_text())
-        runtime.update(production=True,spec='docs/spec/053-ending-hd.md',core_files=921,source_preparation_sha256=audit['runtime_sha256'])
+        runtime.update(production=True,spec='docs/spec/053-ending-hd.md',core_files=core_count,source_preparation_sha256=audit['runtime_sha256'])
         metadata['runtime.json'] = (json.dumps(runtime,indent=2)+'\n').encode()
         metadata['build-outputs.sha256'] = ''.join(f'{digest}  /out/{name}\n' for name,digest in audit['programs'].items()).encode()
         for name,data in metadata.items():
@@ -75,7 +77,7 @@ def main():
         assert sha(a.player/name) == digest and sha(previous/name) == audit['previous_programs'][name]
     report = dict(schema=1,status=audit['status'].replace('PASS-','promoted-',1),assets=target.name,files=count,preserved_files=preserved,
                   candidate=candidate.name,previous=previous.name,programs=audit['programs'],previous_programs=audit['previous_programs'],
-                  audit_sha256=sha(a.audit),source_inputs=inputs,core_files=921,previous_core_files=previous_core,
+                  audit_sha256=sha(a.audit),source_inputs=inputs,core_files=core_count,previous_core_files=previous_core,
                   prior_assets_unchanged=True,prior_core_unchanged=True,preparer_sha256=sha(Path(__file__)))
     with a.receipt.open('x') as f:
         f.write(json.dumps(report,indent=2)+'\n')
