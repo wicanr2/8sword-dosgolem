@@ -1710,3 +1710,21 @@ END1、END3及含第7筆的END2爆光各三字型，共九張完整Frame純讀�
 effects-audit-r1及effects-promotion-r1通過後提升r62／455素材，保留r61全部443檔。七程式來自source-candidate-effects-r1／158輸入，舊156來源及七程式、921核心及158原版檔保持。README收11筆對照及完整提示，完整原PNG留本機。最終完整性與工具封存記effects-final-integrity-r1.json／effects-provenance-r1.json，提交及遠端讀回記effects-publication-r1.json。
 
 沒有測試失敗重跑或新Docker映像。核對期間的Docker stats遇到已由--rm刪除的核對容器，只是完成後的狀態查詢，不是產品失敗；不重跑核對。所有本專案容器須結束，其他專案容器不動。未新增完整結局／Esc、GUI、存讀、傷害規則或自然勝利聲明，其他結局素材及全HD仍待完成。
+
+## 2026-10-26：HD固定Go來源呈現，原版保留原途徑
+
+使用者明確指定原版模式維持原路徑、HD由Go接管。先命中復古遊戲規格路由，讀本機spec工作流、逆向技能、IDA9.4技能與指定mm3方法。從r62／455素材、158輸入七程式及921核心接續，不重做美術或逐隻遭遇。新增唯一現況列於CONTEXT，研究沿既有workplace。
+
+047依證據分別升READY後實作：PAM與開場中英文字模、三階段清屏／頁面搬移、四／五平面列複製、開場六平面，以及前導Go圖格／單點批次／事件邊界寫入。新923檔核心從921版獨立建立，在正常Step內接單指令掛點，保留tick、輸入與REP原子性。HD出口移除Tracker.Compose與原版RGB疊圖退路，缺來源時沿型別故障保留完整畫面並停；原版模式不安裝掛點。原始遊戲與規則未改。
+
+研究中修正三類問題，原收據保留：IDA指令串SHA不包含padding，改核對連續bytes；PAM中文列位置表依原運算元修為CS:A2A6；Machine獨立IRQ fixture補真正IRET，未把Oracle BIOS stub當作Machine可直接執行的處理器。候選測試第一次缺輸出父目錄，另一次把完整結局glyph要求套到END4前綴，均屬腳本／範圍錯置。修正後同映像乾淨重跑，完整結局要求保持原斷言，沒有放寬產品驗收。
+
+來源原語的原版對照包括字形72案、頁面64案、四／五平面列20案、開場遮罩12案與揭圖14案；每批或返回後完整機器狀態及適用的有序讀寫相同。候選r5套件227.162秒、沒有跳過，vet通過；既有PAM四／五／六平面、背景、逐列尾端及拒絕條件回歸。普通玩家路徑的Go字形7073列、清屏2次、搬移10次、圖像9012列，Frame／state／PCM同控制。
+
+普通自然揭圖完整64000點由Go處理，獨立原版video-store為64000／0；967圖格、24818單點與502事件邊界寫入後，step45742764與原版完整state、逐段Frame及PCM相同。正常GUI另自然走完博物館、前導、故事，再普通Esc、新遊戲、F1／F2、三字型與F7存退冷讀。336／191無損幀及三份接觸表已看，兩次Go揭圖皆64000點，零來源故障；2987 bytes同只讀RAM SHA29dd62ae…2359，3158差異點限主角動畫框。
+
+R5原版收尾前綴89060489步state c863af8c…2564／PCM 3b9e8d69…6606保持，四張普通玩家Frame與三場景×三字型共13張RGBA同r62。R1同923核心另驗完整結局及BIOS Esc，138507913步完整播放兩側state 40df5e6d…ff6a及PCM dedaf49a…b4c相同，沒有冒稱R5重跑完整結局或自然勝利。
+
+native-render-audit-r1及native-render-promotion-r1通過後，正式七程式提升source-candidate-render-r5／168輸入，核心runtime-render-r1／923檔。r62全部455素材、158原版檔、舊921／919核心與前版七程式保持。工具及mm3唯讀方法封存tools-final-r1，IDA最終來源重生於ida-final-r1，521函式、七查詢及執行工具SHA核對通過。1621個本機連結與git whitespace檢查通過。
+
+README只更新模式與原生接管範圍，歷程留本檔，詳細位址與推論留RESEARCH-LOG及047。所有CPU繪圖略過仍DRAFT，後續只追PAM其他點圖／讀回與事件邊界相容殘段；不重走已驗素材或相同玩家路線，不宣稱全部閃爍消失或整體FPS提升。本專案Docker已結束，其他專案未動，空間約192 GiB可用，沒有全域清理或刪除證據。提交與遠端讀回另存render-publication-r1.json。

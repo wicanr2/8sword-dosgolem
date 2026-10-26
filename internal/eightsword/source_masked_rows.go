@@ -22,8 +22,14 @@ func runtimeMaskedRowPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePl
 	sourceEntry, sourceEnd, end, readSite, writeSite := uint16(0x4f2), uint16(0x625), uint16(0x580), uint16(0x57a), uint16(0x57d)
 	byteSteps, firstRead, writeDelay := uint64(9), uint64(7), uint64(1)
 	want := "cc7f7579b3ace806dfb714752b00731f675c415f699ef7047648814eb95d6de4"
+	modeOff, destOff, rowTable := uint32(0x7484), uint32(0x748a), uint32(6)
 	background := entry == 0x6a3
-	if background {
+	if uint32(s[dg.CS])*16+uint32(entry) == 0x533d {
+		sourceEntry, sourceEnd = entry-0x7d, entry-0x7d+0x133
+		end, readSite, writeSite = entry+0x11, entry+0xb, entry+0xe
+		want = introMaskedCodeSHA
+		modeOff, destOff, rowTable = 0x1ef2, 0x1ef8, 4
+	} else if background {
 		sourceEntry, sourceEnd, end, readSite, writeSite = 0x626, 0x76e, 0x6bb, 0x6b4, 0x6b8
 		byteSteps, firstRead, writeDelay = 12, 9, 2
 		want = "c1cd7da0c0b84fd8e6ac44c073c6a9e653e5d2ab04a3bbd72f577c9324cec40e"
@@ -81,14 +87,14 @@ func runtimeMaskedRowPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePl
 		int(maskOff) != int(maskStart)+row*w+col ||
 		int(r[dg.SI]) != int(sourceOff)+4+plane*area+row*w+col ||
 		int(r[dg.DI]) != (y+row)*80+x+col ||
-		m.Read16(code+6+uint32((y+row)*2)) != uint16((y+row)*80) {
+		m.Read16(code+rowTable+uint32((y+row)*2)) != uint16((y+row)*80) {
 		return nil, "row-pointers"
 	}
 	control := uint32(word(-24)) * 16
-	if control+0x748c > 0xa0000 || m.Read16(control+0x7484) != 1 {
+	if control+destOff+2 > 0xa0000 || m.Read16(control+modeOff) != 1 {
 		return nil, "row-display-mode"
 	}
-	dest := m.Read16(control + 0x748a)
+	dest := m.Read16(control + destOff)
 	if (dest != 0xa000 && dest != 0xa400) || s[dg.ES] != dest {
 		return nil, "row-destination"
 	}
@@ -97,7 +103,7 @@ func runtimeMaskedRowPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePl
 	}
 	lo, hi := ss+uint32(bp)-34, ss+uint32(bp)+14
 	overlaps := func(a, z uint32) bool { return a < hi && lo < z }
-	if overlaps(ptr, ptr+uint32(size)) || overlaps(code, code+uint32(sourceEnd)+1) || overlaps(control+0x7484, control+0x748c) {
+	if overlaps(ptr, ptr+uint32(size)) || overlaps(code, code+uint32(sourceEnd)+1) || overlaps(control+modeOff, control+destOff+2) {
 		return nil, "row-alias"
 	}
 	steps, cycles := byteSteps*uint64(n), (byteSteps+1)*uint64(n)

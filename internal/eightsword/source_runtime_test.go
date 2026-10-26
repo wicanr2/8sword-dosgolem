@@ -107,9 +107,18 @@ func TestSourceRuntimeNormalAndControlledFault(t *testing.T) {
 	press(0x3c, 100, 700)
 	press(1, 100, 400)
 	e := engines[1]
-	if e.Tracker.VisibleScene != "map" || e.sourceDirectCalls == 0 || control.sourceDirectCalls != 0 {
+	if e.Tracker.VisibleScene != "map" || e.sourceDirectCalls == 0 || control.sourceDirectCalls != 0 || e.sourceGlyphRows == 0 || e.sourceGlyphSteps == 0 || control.sourceGlyphRows != 0 {
 		t.Fatal("representative route or direct plans absent", e.Status())
 	}
+	t.Logf("normal HD route Go glyph rows=%d skipped x86=%d", e.sourceGlyphRows, e.sourceGlyphSteps)
+	if e.sourcePageClears == 0 || e.sourcePageCopies == 0 || control.sourcePageClears != 0 || control.sourcePageCopies != 0 {
+		t.Fatal("normal Go clear/copy path absent", e.Status())
+	}
+	t.Logf("normal HD route Go page clears=%d copies=%d", e.sourcePageClears, e.sourcePageCopies)
+	if e.sourceBitmapRows == 0 || e.sourceBitmapBytes == 0 || control.sourceBitmapRows != 0 {
+		t.Fatal("normal Go planar row copies absent", e.Status())
+	}
+	t.Logf("normal HD route Go bitmap rows=%d plane bytes=%d", e.sourceBitmapRows, e.sourceBitmapBytes)
 	// Controlled memory is authorized for presentation tests. This genuine INT10
 	// changes to a mode unsupported by PAM; it is not a natural player route.
 	before := append([]byte(nil), e.Frame().Pix...)

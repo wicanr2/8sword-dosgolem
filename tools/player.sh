@@ -117,6 +117,12 @@ case "${1:-}" in
       --mount "type=bind,src=$task_player,dst=/player" \
       "$task_py" python /project/tools/prepare-ending-input-core.py \
       --project /project --out /player/runtime-input-r1
+    timeout -k 5s 60s docker run --rm --network none --user "$task_uid:$task_gid" \
+      --memory 768m --cpus 1 --pids-limit 64 \
+      --mount "type=bind,src=$task_root,dst=/project,readonly" \
+      --mount "type=bind,src=$task_player,dst=/player" \
+      "$task_py" python /project/tools/prepare-render-core.py \
+      --project /project --out /player/runtime-render-r1
     task_build_name="${2:-source-candidate-r1}"
     valid_name "$task_build_name"
     test "$task_action" != build || test ! -e "$task_player/$task_build_name"
@@ -125,7 +131,7 @@ case "${1:-}" in
     exec timeout -k 10s "${task_timeout}s" docker run --rm --init --name "8sword-player-$task_action" --network none \
       --user "$task_uid:$task_gid" --memory 1800m --cpus 2 --pids-limit 128 \
       --mount "type=bind,src=$task_root,dst=/project,readonly" \
-      --mount "type=bind,src=$task_player/runtime-input-r1/src,dst=/dosgolem,readonly" \
+      --mount "type=bind,src=$task_player/runtime-render-r1/src,dst=/dosgolem,readonly" \
       --mount "type=bind,src=$task_work/gocache,dst=/gocache" \
       --mount "type=bind,src=$task_work/gomodcache,dst=/gomodcache,readonly" \
       --mount "type=bind,src=$task_player,dst=/out" \
@@ -260,7 +266,7 @@ case "${1:-}" in
           sha256sum -c "$target/build-inputs.sha256" > "$target/build-source-checks.log"
           go version > "$target/build-go-version.txt"
           sha256sum "$target/8sword" "$target/8sword-replay" "$target/gui-check" "$target/music-check" "$target/heroine-check" "$target/museum-check" "$target/story-prelude-check" > "$target/build-outputs.sha256"
-          cp /out/runtime-input-r1/runtime-input.json "$target/runtime.json"
+          cp /out/runtime-render-r1/render-core.json "$target/runtime.json"
         fi' build "$task_action"
     ;;
   assets)

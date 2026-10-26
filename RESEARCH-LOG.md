@@ -2033,3 +2033,23 @@ duel-audit-r1.json SHAa8dea75a…cead及duel-promotion-r1.json SHAf1fffe07…d63
 Go1.24.13／921核心下，正常玩家前綴及受控原版收尾到END4各89060489步，state SHAc863af8c6c7b33686fa01855946a31bbc0e32588f1c02b4890301f0e1e912564及原生PCM SHA3b9e8d69127314c64272fd383ac719d353efa6165791ceffc2418263891ee606保持，亦同r61控制。END1／END3／END2在49757178／55138590／76008416步各三字型，共九完整Frame同獨立模型且純讀；代表命令含0／7／8／9／10。首段人物與四張普通玩家HD畫面保持，其餘差異限END2矩形聯集。
 
 effects-audit-r1.json SHA8c24328e…d79dc及effects-promotion-r1.json SHA60958235…0689b連回正式r62／455素材及158輸入七程式。r61全部443素材、156來源與七程式保持；原版158檔與921核心未改。此處只驗本組效果及前綴，沒有新增完整結局、Esc、GUI、存讀、自然勝利或全HD聲明。
+
+## 2026-10-26：原版／HD分流與Go字形、頁面及揭圖
+
+已證實，HD素材成功載入時`Engine.Open`建立來源呈現器；原版模式不建立Tracker或繪圖替換。正式Frame已移除Tracker.Compose的疊圖退路，HD出口不存在時保留最後完整圖並停止。原版模式仍使用原版顯示頁及色碼。這是呈現出口契約，不把相容CPU寫入一併稱為全部略過。
+
+PAM輸入為PAM.AY，SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，正式PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4的MZ loader linear與原檔偏移分列，原名、運算元及bytes不改。最終匯出位於`graphics-first/render-takeover-r1/ida-final-r1`，最小521函式、七筆查詢與完整常式SHA已獨立核對，執行來源SHA同封存工具；資料庫只在容器/tmp副本查詢。
+
+開場依既有`ida-intro-graphics-inventory-r3.json`，位址是合成wrapper的runtime-linear，不是封裝PREDELLA檔案偏移。wrapper SHA `28dbc38d4ef65326ee281b684bf3a7a304ea41c00bfc00410076bce31b1b247a`。本輪沿IDA技能使用既有py312-v1映像，ID `4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab`；Go1.24.13及Pillow11.3.0使用原有固定容器，不新增映像。所有輸入唯讀、輸出UID1000。
+
+已證實，PAM中文及ASCII字形對應IDA `sub_1E418`／`sub_247A6`，中文列位置表實際使用CS:A2A6，共用stringSeg:0006；不能猜成函式尾。開場字形與PAM的列內流程相同，只參數化已證實的定位、來源控制、字模與列位置表。完整連續常式含IDA未列為指令的padding，不能用指令列bytes串接SHA替代。初版兩項推論被原始bytes與運算元否定，失敗收據保留；正式常式SHA與72案完整state／有序讀寫控制均通過。
+
+清屏與頁面搬移須保留原版REP原子性。923檔核心只在正常Machine.Step的tick／輸入之後加稀疏單指令掛點，原生指令數與週期按原契約處理。Go直接clear／copy四平面陣列，搬移保留最後來源read的VGA latches；不發假逐byte寫圖通知。PAM／開場／PAE共64案、跨IRQ與RETF後狀態通過。四／五平面原生列複製再通過20案，補齊整筆配額不接受的REP。
+
+開場六平面常式runtime linear 52C0–53F3，連續SHA `c7c0315ee13ef29e26ea2b35098c3cae6453e4f4e5fcd34da6cee81ae57c4dd3`。沿已驗的Go遮罩整筆／逐列計畫，12案及普通開場7061次Go批次在step21256200與原版CPU控制的完整state、Frame及PCM相同。PAM覆蓋後拒絕舊掛點，沒有改動動作規則。
+
+前導TIT6V解碼SHA `9aadec77cf59adb1f444d47891526af7da888bebecc648a3fa16a6f0adcd6dfe`、固定1600筆順序表SHA `607a192b8ed9cf7dcb8f5c83cb5b43b83e9f5dd473f68e91db5fda5a1c4055a6`。Go按每圖格8欄×5列建立typed來源點陣，圖格2107步／週期，單點40步／週期，另以原子Go寫入處理事件邊界。完整常式、CPU／堆疊／旗標及點序的14案原版對照通過。普通自然揭圖完成step45742764，967圖格、24818單點批次、502原子寫入共64000點；原版真正video-store觀測為64000／0，逐段Frame、完整state與PCM相同。typed點陣直接交給自有場景，不讀原版RGB，不偽造逐點寫圖觀測。
+
+目前正式七程式為source-candidate-render-r5／168輸入，runtime-render-r1／923檔核心，r62全部455素材、原版158檔、舊921／919核心及前版七程式保持。候選套件227.162秒、vet及13張前版完整RGBA比較通過。正式視窗自然開場、完整揭圖、故事、三字型與真正F7存退讀336／191幀，三張接觸表已看；存檔與只讀RAM均SHA `29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`，3158差異點限主角動畫。收據`native-render-audit-r1.json` SHA `2aa9211f907db99705bb738a9a87448b0becdaf08522ffb848d5dccda62f87e0`及`native-render-promotion-r1.json` SHA `66f6f5c2e8cb138c469df52c67c2ef1e7dd1d0ebe5655ce9dff580c0b96da64d`均在render-takeover-r1。
+
+參考使用者指定的mm3直接繪圖方法，唯讀來源commit `a505ac777cdcf0b2a2b6b3b4774a320ec73a4257`、文件SHA `cbdaa5d67dc2f6eb40ee7644576b9f6c76a65dad4c8b23ea21c3dba4af6430a1`，完整副本及22份工具／參考檔封存`tools-final-r1`。不沿用mm3位址或效能數字。未驗PAM其他點圖／讀回及遮罩、字形事件邊界的相容殘段；不稱全CPU繪圖略過、全遊戲、GPU／SIMD、整體FPS或自然勝利。

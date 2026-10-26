@@ -1,5 +1,31 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+HD全繪圖接管以[047模式分流追加](docs/spec/047-hd-scene-renderer.md#hd與原版模式分流追加契約)為入口。使用者於2026-10-26指定原版模式保留原途徑、HD由Go全接管；剩餘像素迴圈須獨立列明。窄查工具[export-render-primitives-ida.py](tools/export-render-primitives-ida.py)沿正式PAM.i64唯讀副本及既有IDA9.4容器匯出字形、清屏、頁面搬移與圖形原語；用法與研究輸出位置見047，不把DRAFT工具接正式程式。
+
+字形接管研究由[獨立準備器](tools/prepare-render-takeover.py)在Pillow容器用`--project <唯讀專案> --out <既有研究區內的新目錄>`複製內部來源，接[Go列批次](tools/research-render-glyphs.go)及[原版指令對照](tools/research-render-glyphs_test.go)。在Go1.24.13容器以既有921檔核心執行`EIGHTSWORD_GLYPH_PROJECT=/project go test ./internal/eightsword -run TestResearchSourceGlyphOracle`。DRAFT僅限研究，正式模式維持。
+
+PAM／開場字形批次依[047 READY](docs/spec/047-hd-scene-renderer.md#pam與開場字形批次的ready契約)接[來源字模載入與Go列批次](internal/eightsword/source_glyphs.go)，[原版控制測試](internal/eightsword/source_glyphs_test.go)使用相同唯讀來源與Go容器變數。正式接入只沿HD生命週期，原版模式不安裝；研究與正式驗收分開。
+
+清屏／頁面搬移的[單指令核心研究](docs/spec/047-hd-scene-renderer.md#清屏與頁面搬移的單指令研究)由[準備工具](tools/prepare-render-core.py)建立獨立923檔核心，只加[Machine掛點](tools/research-atomic-draw-machine.go)與[Oracle入口](tools/research-atomic-draw-oracle.go)，保留正常事件邊界。DRAFT不得接正式player.sh，原有921檔來源保持。
+
+[頁面Go陣列操作](tools/research-render-pages.go)及[原版REP控制](tools/research-render-pages_test.go)沿同一研究準備器建立新副本，在923檔核心的Go容器執行`EIGHTSWORD_GLYPH_PROJECT=/project go test ./internal/eightsword -run TestResearchSourcePageOracle`。涵蓋PAM／開場／PAE清屏與兩頁搬移，不發出逐byte假畫圖通知；來源場景在原版返回點提交typed頁命令。仍為047 DRAFT。
+
+[047頁面READY契約](docs/spec/047-hd-scene-renderer.md#清屏與頁面搬移的ready契約)授權[正式Go頁操作](internal/eightsword/source_pages.go)與[原版控制測試](internal/eightsword/source_pages_test.go)。`player.sh build <新名稱>`建立runtime-render-r1／923檔核心與七程式候選；既有runtime-input-r1／921檔及runtime-direct-r1／919檔保持。只有HD註冊單指令繪圖掛點，測試原版模式及正常Go清屏／搬移計數。
+
+四／五平面圖像的[Go列複製](tools/research-render-bitmap-rows.go)及[原版控制](tools/research-render-bitmap-rows_test.go)沿[047 DRAFT](docs/spec/047-hd-scene-renderer.md#四五平面圖像的原生列複製研究)使用同一準備器及923檔核心，測試入口`TestResearchSourceBitmapRowsOracle`。不重建新核心，不接未READY的正式路徑。
+
+[047列複製READY](docs/spec/047-hd-scene-renderer.md#四五平面列複製的ready契約)接[正式列複製](internal/eightsword/source_bitmap_rows.go)與[原版REP控制](internal/eightsword/source_bitmap_rows_test.go)，沿923檔核心及HD頁面生命週期註冊。正常狀態輸出包含`go_bitmap_row_copies`與`go_bitmap_plane_bytes`，不把六平面或開場揭圖算入完成。
+
+開場六平面沿[047 DRAFT](docs/spec/047-hd-scene-renderer.md#開場六平面遮罩接管研究)由同一準備器加`--intro-masked`，使用[隔離掛點](tools/research-intro-masked.go)與[原版完整對照](tools/research-intro-masked_test.go)。不重走素材生成，PAM覆蓋後停用舊掛點；未驗不進正式入口。
+
+[047開場六平面READY](docs/spec/047-hd-scene-renderer.md#開場六平面遮罩的ready契約)接[正式掛點](internal/eightsword/source_intro_masked.go)及[原版／普通開場測試](internal/eightsword/source_intro_masked_test.go)。共享遮罩計畫只參數化已證實的入口、SHA、來源欄位與列位置表；PAM控制仍需回歸。原版模式不註冊，PAM覆蓋後拒絕舊掛點，狀態另列Go批次與略過指令。
+
+前導揭圖的[Go來源圖格](tools/research-reveal-native.go)與[原版對照](tools/research-reveal-native_test.go)沿[047 DRAFT](docs/spec/047-hd-scene-renderer.md#彩色前導揭圖的go來源圖格研究)，由研究準備器加`--reveal`建立新副本，測試入口`TestResearchSourceRevealTileOracle`。不發假逐像素觀測，不把相容索引資料當HD底圖；尚未正式接入。
+
+[047揭圖READY](docs/spec/047-hd-scene-renderer.md#彩色前導揭圖的ready契約)接[正式Go圖格／點批次／事件邊界寫入](internal/eightsword/source_reveal.go)與[原版及完整自然揭圖測試](internal/eightsword/source_reveal_test.go)。三層只提交typed來源點陣，狀態含`go_reveal_pixels`；原版模式不安裝，PAM覆蓋後拒絕舊掛點。零原版video-store的證據限前導64000點，不代表全遊戲已全部略過。
+
+本輪[獨立核對](tools/audit-render-takeover.py)在固定Pillow容器用`--project <唯讀專案> --out <既有render-takeover-r1內新JSON>`核對168輸入、923核心、原版158檔、455素材、正常路徑、前導零原版寫圖、結局前綴、13張前版Frame及真正GUI存讀。[提升工具](tools/promote-render-takeover.py)另用`--project --player <可寫player> --audit --receipt <新JSON>`只提升七程式與建置metadata，前版與素材保持；全CPU繪圖略過仍不得宣稱完成。
+
 END2法術效果沿[053](docs/spec/053-ending-hd.md#end2法術效果準備)；[準備工具](tools/prepare-ending-effects.py)在固定Pillow11.3.0 Docker用`references --project --out <既有ending-hd-r1內新目錄>`核對11來源並排三組透明參考。`import`模式另將三份內建image_gen圖按固定格子正規化，保留r61全部443檔；來源、累積與回退契約達READY並通過抽驗才提升。
 [11筆原子載入](internal/eightsword/ending_effects.go)及[回退／累積測試](internal/eightsword/ending_effects_test.go)依[READY契約](docs/spec/053-ending-hd.md#end2法術效果接入契約)。整合測試加`EIGHTSWORD_TEST_ENDING_EFFECTS_PREFIX=1`，正常前綴抽END1、含第7筆爆光的END2及END3，各三字型；原版規則、索引面與播放順序保持。
 [效果獨立核對](tools/audit-ending-effects.py)在固定Pillow容器以`--project --out`核對455素材、158來源、11張幾何取樣、九張完整Frame及普通玩家回歸；第3–5筆僅列素材／載入，不稱自然使用。通過收據才交既有promote-ending.py提升r62，完整結局與存讀不重跑。

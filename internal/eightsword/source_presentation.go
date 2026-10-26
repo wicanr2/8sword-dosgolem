@@ -42,7 +42,14 @@ func (e *Engine) initSourceRenderer() {
 	introInstall, introFrame, introClose := e.newSourceIntro()
 	endingInstall, endingFrame, endingClose := e.newSourceEnding()
 	directInstall := e.sourceDirectInstall()
+	glyphInstall := e.sourceGlyphInstall()
+	pageInstall := e.sourcePageInstall()
+	introMaskedInstall := e.sourceIntroMaskedInstall()
+	revealInstall := e.sourceRevealInstall()
 	e.sourceInstall = func() {
+		revealInstall()
+		introMaskedInstall()
+		pageInstall()
 		if e.inEndingPhase() {
 			endingInstall()
 			return
@@ -50,6 +57,7 @@ func (e *Engine) initSourceRenderer() {
 		introInstall()
 		pamInstall()
 		directInstall()
+		glyphInstall()
 	}
 	e.sourceClose = func() { introClose(); pamClose(); endingClose() }
 	e.sourceRender = func() *image.RGBA {

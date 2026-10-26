@@ -1,6 +1,125 @@
 # 047：由HD呈現器控制完整繪圖流程
 
-狀態：限定CONFORMED。正式契約見末節「正式接入契約與證據審查」。下列DRAFT與研究限制保留各輪原始範圍。使用者已於2026-10-25授權此架構方向，並指定按功能類型抽樣。先證明場景可從來源命令直接生成，再接正式流程；不以僅延遲既有合成圖宣稱完成。
+狀態：來源呈現與已列原語限定CONFORMED；所有CPU繪圖迴圈略過仍為DRAFT。本輪交付見「本輪原生Go接管與限定驗收」，原正式契約與歷史研究保留。
+
+## HD與原版模式分流追加契約
+
+2026-10-26使用者明確授權HD全部繪圖交給Go，原版模式保留原途徑。本節全範圍為DRAFT；既有下列限定CONFORMED不代表所有CPU繪圖迴圈已略過。
+
+- 原版模式以`-hd=false`啟動，不安裝來源呈現器與`OnHostCall`繪圖替換。啟動選項由`cmd/8sword/main.go`傳入`Engine.Open`，目前沒有執行中HD切換。
+- HD畫面只消費來源圖像、文字、色盤與圖層命令，由Go生成。相容平面只供原版讀回，不作HD背景畫面來源。
+- 補齊PAM、PREDELLA與PAE的字形、清屏、頁面搬移及其他圖形入口。每類先保留原始bytes與IDA定位，取得同狀態證據，再升READY並接入。
+- Go批次不得以執行x86像素指令推導輸出。CPU、堆疊、原版時間與讀回相容資料依已證實契約獨立更新。
+- 驗證原版模式未安裝替換、HD代表入口確實略過像素迴圈、正常操作畫面與完整客體／PCM隔離。事件邊界仍執行原版像素指令的入口單列缺口，不能聲稱全接管。
+
+窄查入口為[IDA繪圖原語匯出](../../tools/export-render-primitives-ida.py)，對唯讀正式PAM.i64的容器內副本執行，輸出至既有`workplace/probe-20261023/graphics-first/render-takeover-r1`。輸出保留原名、原位址、運算元、bytes、來源與資料庫SHA；不修改正式資料庫。
+
+### 畫面出口分流的READY契約
+
+本小節READY。`Engine.Open`只在HD素材載入成功時設`sourceEnabled`，並建立來源呈現器；`-hd=false`不建立Tracker、來源呈現器或繪圖替換。這是目前程式的可查證生命週期，不依場景推測。CLI目前只在啟動時選模式，不增加執行中模式切換。
+
+`Engine.Frame`的HD出口只可使用Go來源呈現器及已存在的DOS文字呈現器。移除正式Frame中未使用的Tracker.Compose疊圖退路。HD卻沒有來源呈現器時，沿既有具型別錯誤機制保留最後完整Go畫面並停止；不能悄悄讀原版RGB，亦不能以nil函式panic結束。原版模式仍從原版顯示頁與原生色碼產生畫面，沒有HD覆繪。
+
+此分流保證HD沒有「原版RGB底圖再覆蓋」的出口，不代表原版CPU對相容資料的所有寫入已略過。後者依本規格各原語收據列示。需驗原版無接管、HD遺失出口的受控故障、Frame純度，以及既有正常玩家路徑。
+
+### PAM與開場字形批次的READY契約
+
+本小節READY，全繪圖追加仍DRAFT。證據為`render-takeover-r1/ida-render-primitives-r1.json`、既有`ida-intro-graphics-inventory-r3.json`及`glyph-oracle-r4.log`。來源PAM.AY SHA為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；開場分析wrapper SHA為`28dbc38d4ef65326ee281b684bf3a7a304ea41c00bfc00410076bce31b1b247a`。IDA9.4以MZ loader linear匯出PAM，開場wrapper採runtime-linear，不混用基準。Go1.24.13／dosgolem921檔核心作執行控制。
+
+| 已證實定位 | 執行期入口與列入口 | 固定輸入與邊界 |
+|---|---|---|
+| PAM IDA sub_1E418，檔案F888 | load+0998:4A98／4B27 | 636筆30-byte字模，CS:0010；共享列位置表CS:A2A6，不是函式尾 |
+| PAM IDA sub_247A6，檔案15C16 | load+13C2:0B86／0C1C | ASCII DS:5F48，列位置表CS:0006 |
+| 開場IDA sub_4C74 | runtime linear 4C74／4D03 | 353筆30-byte字模，CS:0006；列位置表CS:2AC4 |
+| 開場IDA sub_5954 | runtime linear 5954／59EA | ASCII DS:0CC0，列位置表CS:0004 |
+
+每次接管須核對連續完整常式SHA、mode0E、mode1來源、DF、四個VGA控制條件、真正BP／SP／CX／BX／SI、來源與堆疊不別名、640×200界線及兩個頁面。PAM來源欄位DS:7484／748A／748C，開場為1EF2／1EF8／1EFA。前景0–15、背景0–15或FF。中文每列55步，ASCII24步；不透明背景每byte加15步，中文最後列少1步，週期再加每列byte數。按雙軸事件預算選完整列，零列不改狀態。保留原生入口及列外控制、返回與事件邊界。
+
+Go直接按字模bits更新相容平面，經已驗字模讀回介面保留VGA latch、寄存器與有序觀測。HD仍只接來源字形命令，沒有讀回原版RGB。不能把相容平面當作HD產圖，亦不能聲稱列外原版指令全部略過。
+
+獨立原版控制通過72組：兩階段、中文／ASCII、首／中／末字模、兩頁與三種顏色／批量。每批後與RETF後完整序列化狀態及有序讀寫全同，短配額拒絕不改客體。PAM的共享列位置表是原版啟動建立的受控輸入，不稱自然玩家證據。初版把IDA指令列串接SHA誤當連續常式SHA，並猜錯中文列位置表；r1–r3失敗保留，r4依原始bytes及運算元修正。
+
+正式驗收須另跑普通啟動、選單、新遊戲、F1／F2與開場代表路段，對照未安裝批次的原版CPU；比較Frame、完整state及PCM，並確認`-hd=false`沒有來源呈現器與替換掛點。原版存檔資料與正式玩法不變，不新增字型或素材格式。
+
+### 清屏與頁面搬移的單指令研究
+
+本節DRAFT。原版dosgolem把整道REP作為一個不可分割指令，`Machine.Step`先處理tick與輸入，增加一步並記錄insnCS/IP，再執行REP；週期跨過IRQ截止點時，下一步才處理。不能把清屏或搬移拆成可插入IRQ的小批，否則改變原版客體時序。
+
+研究核心由[prepare-render-core.py](../../tools/prepare-render-core.py)從固定921檔來源建立923檔副本，以`--project <唯讀專案> --out <既有研究區內的新目錄>`在Pillow容器執行。新增的[Machine單指令掛點](../../tools/research-atomic-draw-machine.go)位於正常Step的tick與輸入之後，使用稀疏位址索引；[Oracle入口](../../tools/research-atomic-draw-oracle.go)只註冊指令替換，不更動一般HostWorkBudget。拒絕不得改客體；成功只計一個原版指令及其完整週期。記憶體監看、覆蓋率與除錯追蹤保留原路徑。
+
+此處研究的是固定dosgolem契約，不是DOS硬體逐週期宣稱。原版模式不註冊掛點。需以原版REP完整機器狀態、回呼／IRQ邊界、正常玩家來源與PCM核對後才可READY，不能把新核心用於正式入口。
+
+### 清屏與頁面搬移的READY契約
+
+本小節READY，前節保留研究歷程。`source-pages-r3`搭配`core-r1`通過64組原版REP對照及正常啟動／新遊戲／F1／F2，完整state、PCM與Frame相同，見`pages-oracle-r3.log`。單例含真正IRET處理器，讓REP跨IRQ週期界線，並比較原生返回與後續30步。Machine獨立測試不透過Oracle BIOS stub，r1／r2不適用的IRQ fixture與指令列SHA失敗保留。
+
+已證實的PAM定位為IDA `sub_2495E`清屏、`sub_23F5D`與`sub_23FD0`兩向搬移，執行期stringSeg:D3E／33D／3B0；開場為runtime linear 5B0C／510B／517E；PAE沿053的0393:D38／3AA。原始常式完整連續bytes SHA及型別來源保留於[Go頁操作](../../tools/research-render-pages.go)，不採只串接IDA指令列的SHA。
+
+只替換常式內原始REP：清屏入口+2F，搬移入口+27。清屏須AX=0、CX=4000h、DI=0、ES=A000或A400、DF=0與正常寫入控制；Go依序列器遮罩清除四平面的對應區間。搬移須CX=16000、SI=DI=0、GC mode11h、全平面寫入及兩個不同的合法頁；Go以四份陣列copy搬移，最後一次來源讀取保留VGA latches。兩者更新SI／DI／CX／IP，保留旗標，週期為1+原版byte數。原生序言、尾聲與RETF保持。越界、改碼或控制條件不符不改資料。
+
+不再逐byte發出原版寫圖通知。來源場景在原本返回點提交已識別的清屏／搬移命令，HD不讀原版RGB。相容平面和VGA latches只服務原版讀回。舊Tracker像素所有權不作此呈現器的輸入，禁止以它合成混合底圖。
+
+授權建立`workplace/player/runtime-render-r1`不可變核心revision，保留921／919檔前版。正式候選仍須重跑64案、原版模式、正常路徑與字形對照，並確認實際Go清屏／搬移計數非零，才可提升七程式。本節不涵蓋尚未接管的開場圖像與揭圖像素迴圈，不宣稱全繪圖完成。
+
+### 四／五平面圖像的原生列複製研究
+
+本節DRAFT。[Go列複製](../../tools/research-render-bitmap-rows.go)使用同一923檔核心，在完整常式entry+60h的REP邊界直接copy來源byte至指定平面，不以x86步進產圖，保留原生外層解析、列與平面控制。範圍為PAM與PAE四／五平面、開場已識別四平面。完整常式SHA、GC與序列器、DF、CX／SI／DI、RAM及頁面界線不符時拒絕。
+
+[原版控制](../../tools/research-render-bitmap-rows_test.go)由相同準備器加入新副本，在Go容器執行`EIGHTSWORD_GLYPH_PROJECT=/project go test ./internal/eightsword -run TestResearchSourceBitmapRowsOracle`。逐批與原生返回後比較完整狀態，另驗REP跨IRQ時間點。此研究尚未接正式入口。
+
+### 四／五平面列複製的READY契約
+
+本小節READY。研究`source-bitmap-rows-r1`／`bitmap-rows-oracle-r1.log`通過20案：PAM四／五平面、開場四平面、PAE四／五平面，兩頁、寬1與80、底端四列。每個REP後、RETF與之後30步完整機器狀態同原版，原生控制、Go複製皆16列，含真正IRET與跨IRQ期限。
+
+沿同一單指令核心及上述五份連續常式SHA，在entry+60h原始REP處核對640×200、mode0E、DF=0、正常GC、單平面序列器、CX=1–80、SI不回繞、來源RAM< A0000、DI+CX不超過16000與合法ES。Go直接把RAM slice複製至該平面，更新SI／DI／CX／IP及1+CX週期，旗標與VGA latches保持。原版模式不註冊，診斷監看時回原路徑。回退只保留未證實條件，正式正常來源計數須非零。
+
+正式入口為`internal/eightsword/source_bitmap_rows.go`及其原版控制測試。沿頁面生命週期註冊，原有整筆來源計畫仍可優先接管；此列複製補齊整筆計畫未接受的原始REP，並不宣稱外層解析、遮罩逐byte或開場揭圖已全部略過。正常路徑與真正結局呼叫仍須另抽樣核對，不把受控原語測試冒充全遊戲完成。
+
+### 開場六平面遮罩接管研究
+
+本節DRAFT。開場runtime linear 52C0–53F3與IDA來源已保留。連續常式SHA為`c7c0315ee13ef29e26ea2b35098c3cae6453e4f4e5fcd34da6cee81ae57c4dd3`，入口與列入口為52C0／533D；來源控制DS:1EF2／1EF8，列位置表CS:0004。研究準備器加`--intro-masked`在私有副本把已驗PAM六平面整筆／列計畫的常式定位、SHA、來源控制與列位置表改成顯式變數，其餘演算法保持。
+
+[開場掛點](../../tools/research-intro-masked.go)只在HD且PAM尚未覆蓋時安裝；[原版對照](../../tools/research-intro-masked_test.go)使用同一Go容器執行`EIGHTSWORD_GLYPH_PROJECT=/project go test ./internal/eightsword -run TestResearchIntroMaskedOracle`，比較整筆／分列與原生控制、完整機器狀態及有序讀寫。事件邊界仍可能執行原版像素指令，未驗部分不稱全接管。
+
+### 開場六平面遮罩的READY契約
+
+本小節READY。`source-intro-masked-r1`的12案及`source-intro-masked-r2`正常開場測試已通過，見`intro-masked-oracle-r1.log`與`intro-masked-normal-r1.log`。涵蓋兩頁、寬1／4、三列、整筆配額與兩種小批量；每批、原生RETF後的完整state與有序讀寫相同。普通選項輸入後自然開場於step21256200確實執行7061次Go遮罩批次，對照沒有任何繪圖替換的控制組，Frame／完整客體／PCM相同。未送Esc、未修改角色或場景記憶體。
+
+授權將已驗私有副本的`source_masked.go`與`source_masked_rows.go`之定位與來源欄位參數化接入。PAM既有常式與控制欄位保持，新增分支只接受上述開場連續SHA及線性入口。沿原有六平面整筆與逐列Go位元混合、讀回及雙軸預算契約，不推導新的動作或動畫時序。正式入口`source_intro_masked.go`在PAM覆蓋後拒絕舊掛點，原版模式不安裝。正式候選須重跑既有PAM／背景六平面控制，及正常開場／人物頁。
+
+### 彩色前導揭圖的Go來源圖格研究
+
+本節DRAFT。既有IDA開場`sub_A3D0`以1600筆原始順序表，逐圖格展開8欄×5列，共64000個來源點；`sub_A451`為單點矩形寫入。研究從runtime linear A400的一個完整圖格建立40點typed來源命令，直接寫相容索引緩衝區並提交Go場景，不執行其中x86畫點指令，也不發假逐像素寫圖事件。
+
+[Go來源圖格](../../tools/research-reveal-native.go)與[原版完整控制](../../tools/research-reveal-native_test.go)由同一準備器加`--reveal`接獨立副本，使用原始TIT6V解碼及固定順序表。測試入口`TestResearchSourceRevealTileOracle`。完整CPU、堆疊殘值、記憶體、旗標、週期及40個點的順序仍待原版對照；配額或事件界線不容納圖格時保留原路徑，未驗不得接正式入口。
+
+### 彩色前導揭圖的READY契約
+
+本小節READY。`source-reveal-r1`通過8組圖格原版對照；`source-reveal-r3`通過8組圖格、6組單點／事件邊界寫入，以及普通自然開場完整64000點對照，見`reveal-normal-r2.log`。控制組實際原版寫圖64000次，Go組零次；Go使用967個40點圖格、24818個單點批次及502個事件邊界相容寫入，合計64000點。完成step45742764，逐段完整客體、Frame及PCM相同。沒有Esc或記憶體注入。
+
+固定證據為IDA開場runtime-linear `sub_A3D0`／`sub_A451`及分析wrapper SHA `28dbc38d4ef65326ee281b684bf3a7a304ea41c00bfc00410076bce31b1b247a`。A3D0–A49E連續SHA為`88798f6778b00b0e11a9d49a6035f03f85a0eb5c499593dc4ef1b2f77c6bc537`。TIT6V解碼64768 bytes SHA `9aadec77cf59adb1f444d47891526af7da888bebecc648a3fa16a6f0adcd6dfe`；順序表A633／3200 bytes SHA `607a192b8ed9cf7dcb8f5c83cb5b43b83e9f5dd473f68e91db5fda5a1c4055a6`。原檔、解碼與資料庫保持本機唯讀。
+
+Go依原始1600筆順序表、8欄×5列及320-byte pitch建立typed點陣。圖格入口A400，每格2107步／週期，保存真正BP／SP、16個最後堆疊字與原生末端旗標，來源與堆疊別名即拒絕。雙軸事件預算不足時使用A451的40步／週期單點批次；只有原始單點矩形x0=x1、y0=y1可接受。餘下原生控制可繼續執行，但A486的原版video-store由923核心的單指令掛點接管，保持原本中斷、輸入與寫入時點。
+
+三層均直接寫Go索引緩衝區，並向自有場景提交來源點陣；HD繪圖只使用來源、順序、Reveal遮罩與選定美術。`submitRevealSpan`先核對整組順序與顏色再提交，不讀原版RGB，不發偽造逐像素寫圖事件。原版模式沒有這些掛點或typed提交器。除錯監看與未證實的常式／來源仍回原路徑，不能外推成其他場景的零原版繪圖證據。
+
+正式入口為`internal/eightsword/source_reveal.go`及原版控制測試。PAM覆蓋後停用開場掛點；正式候選須重跑完整自然揭圖、原版模式、人物頁及原有六平面控制。Go組零原版寫圖的結論限這段前導，整個遊戲尚有其他繪圖原語待核對。
+
+## 本輪原生Go接管與限定驗收
+
+本節限定CONFORMED。前述READY契約已通過正式候選及視窗抽驗並提升；全CPU繪圖略過的追加範圍仍DRAFT。使用者於2026-10-25授權來源呈現及功能抽樣，2026-10-26明確指定原版模式維持原途徑、HD全交Go。
+
+- 正式七程式來自`workplace/player/source-candidate-render-r5`，168份輸入，Go1.24.13；新核心`runtime-render-r1`共923檔，舊921／919檔核心、前版七程式及全部158檔原始遊戲保持。素材沿`assets-painted-r62`，455檔逐SHA相同，沒有重新生成美術。
+- HD出口只使用Go來源呈現；缺少來源呈現器的兩種受控故障均保留最後完整圖並停止。原版模式與明示安裝函式誤呼叫都未啟用接管，Frame純讀。
+- 字形72案、頁面64案、四／五平面列20案、開場六平面12案、前導圖格8案與單點／事件邊界6案通過原版完整狀態控制。既有PAM四／五、六平面與背景、逐列尾端及錯誤條件亦回歸，候選套件`candidate-tests-r5.log`為227.162秒，沒有跳過，vet通過。
+- 普通選單、新遊戲、F1／F2及地圖同原版CPU控制的Frame、完整state與PCM；實際Go字形7073列／273286道略過指令、清屏2次、搬移10次、圖像9012列／164392平面bytes。自然開場另驗六平面7061次Go批次。
+- 普通完整前導在step45742764通過，Go處理64000點。獨立原版寫入觀測為64000／0，967個40點圖格、24818個單點批次、502個事件邊界相容寫入；所有逐段Frame、完整客體與PCM相同。沒有Esc或場景／角色注入。
+- R5正常玩家前綴後受控原版收尾至END4，原版／HD各89060489步，state `c863af8c6c7b33686fa01855946a31bbc0e32588f1c02b4890301f0e1e912564`、原生PCM `3b9e8d69127314c64272fd383ac719d353efa6165791ceffc2418263891ee606`相同。四張普通玩家Frame及三場景×三字型，共13張完整RGBA與前版r62相同。R1同核心另驗完整結局及BIOS Esc，138507913步完整播放state `40df5e6d6bd3d6fcaa883895f8317d1010ce5167ce91c7dc67e413c82ce0ff6a`、PCM `dedaf49acc1c65c1fbaa31d132717d8814c218fb69a344dcfd54df7799832b4c`兩側相同；不冒稱R5重跑完整結局或自然勝利。
+- 正式GUI `render-takeover-r5-story-save-r1`普通自然開場、完整揭圖、故事後Esc、新遊戲、F1／F2、三字型與真正F7存退冷讀通過。336／191幀無損串流及三張接觸表已檢視。兩次實際Go揭圖皆64000點，清屏各4次、搬移26／11次、列複製42344／38244次，零來源故障。2987 bytes的存檔與只讀RAM SHA均為`29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359`；讀取step111390027。3158差異像素限主角動畫框，沒有宣稱動畫相位相同。
+
+[獨立核對](../../tools/audit-render-takeover.py)產生`render-takeover-r1/native-render-audit-r1.json`，SHA `2aa9211f907db99705bb738a9a87448b0becdaf08522ffb848d5dccda62f87e0`；[提升](../../tools/promote-render-takeover.py)收據`native-render-promotion-r1.json` SHA `66f6f5c2e8cb138c469df52c67c2ef1e7dd1d0ebe5655ce9dff580c0b96da64d`。兩者只在既有Pillow容器按AGENTS入口執行，不改原始遊戲與素材。
+
+限制：PAM其他點圖／讀回及遮罩、字形在事件邊界的相容殘段仍需核對；HD全Go產圖不等於所有DOS相容指令均已略過。不宣稱全遊戲完成、全部閃爍消失、GPU／SIMD或整體FPS提升。不重走素材、已完成前導或相同GUI路線。
 
 ## 方向與範圍
 

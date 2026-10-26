@@ -158,13 +158,13 @@ func (e *Engine) sourceDirectInstall() func() {
 	bound := false
 	return func() {
 		t := e.Tracker
-		if bound || t == nil || t.loadSegment == 0 {
+		if !e.sourceEnabled || !e.HD || bound || t == nil || t.loadSegment == 0 {
 			return
 		}
 		bound = true
 		for _, entry := range runtimeDirectEntries {
 			e.Oracle.OnHostCall(oracle.Addr{Seg: t.stringSeg, Off: entry}, func(o *oracle.Oracle, m *dg.Machine, b oracle.HostWorkLimits) (bool, error) {
-				if e.renderFault != nil {
+				if !e.sourceEnabled || !e.HD || e.renderFault != nil {
 					return false, nil
 				}
 				plan, _ := runtimePlanarPrepare(m, b)

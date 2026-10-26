@@ -20,8 +20,13 @@ func runtimeMaskedPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePlana
 	entry := m.CPU.IP
 	ret, readSite, writeSite := uint16(0x625), uint16(0x57a), uint16(0x57d)
 	want := "cc7f7579b3ace806dfb714752b00731f675c415f699ef7047648814eb95d6de4"
+	modeOff, destOff, rowTable := uint32(0x7484), uint32(0x748a), uint32(6)
 	background := entry == 0x626
-	if background {
+	if uint32(s[dg.CS])*16+uint32(entry) == 0x52c0 {
+		ret, readSite, writeSite = entry+0x133, entry+0x88, entry+0x8b
+		want = introMaskedCodeSHA
+		modeOff, destOff, rowTable = 0x1ef2, 0x1ef8, 4
+	} else if background {
 		ret, readSite, writeSite = 0x76e, 0x6b4, 0x6b8
 		want = "c1cd7da0c0b84fd8e6ac44c073c6a9e653e5d2ab04a3bbd72f577c9324cec40e"
 	} else if entry != 0x4f2 {
@@ -58,10 +63,10 @@ func runtimeMaskedPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePlana
 		return nil, "source-bounds"
 	}
 	ds := uint32(s[dg.DS]) * 16
-	if ds+0x748c > 0xa0000 || m.Read16(ds+0x7484) != 1 {
+	if ds+destOff+2 > 0xa0000 || m.Read16(ds+modeOff) != 1 {
 		return nil, "display-mode"
 	}
-	dest := m.Read16(ds + 0x748a)
+	dest := m.Read16(ds + destOff)
 	if dest != 0xa000 && dest != 0xa400 {
 		return nil, "destination"
 	}
@@ -70,11 +75,11 @@ func runtimeMaskedPrepare(m *dg.Machine, b oracle.HostWorkLimits) (*runtimePlana
 	}
 	lo, hi := ss+uint32(sp)-36, ss+uint32(sp)+12
 	overlaps := func(a, z uint32) bool { return a < hi && lo < z }
-	if overlaps(ptr, ptr+uint32(size)) || overlaps(code, code+uint32(ret)+1) || overlaps(ds+0x7484, ds+0x748c) {
+	if overlaps(ptr, ptr+uint32(size)) || overlaps(code, code+uint32(ret)+1) || overlaps(ds+modeOff, ds+destOff+2) {
 		return nil, "stack-alias"
 	}
 	for row := 0; row < h; row++ {
-		if m.Read16(code+6+uint32((y+row)*2)) != uint16((y+row)*80) {
+		if m.Read16(code+rowTable+uint32((y+row)*2)) != uint16((y+row)*80) {
 			return nil, "row-table"
 		}
 	}

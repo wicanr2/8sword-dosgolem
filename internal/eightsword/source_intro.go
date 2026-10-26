@@ -305,6 +305,7 @@ func (p *sourceIntroAdapter) bind() {
 		}
 	}
 	p.bound = true
+	p.e.sourceRevealSubmit = p.submitRevealSpan
 	p.unsubscribe = p.observe(PresentationObserver{Write: func(v PresentationWrite) {
 		if p.retired {
 			return

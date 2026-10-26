@@ -31,6 +31,19 @@ type Engine struct {
 	sourceHeldFrame      *image.RGBA
 	sourceHeldFrames     uint64
 	sourceDirectCalls    uint64
+	sourceRevealSubmit   func([]sourceRevealPixel)
+	sourceRevealTiles    uint64
+	sourceRevealPoints   uint64
+	sourceRevealAtomic   uint64
+	sourceRevealPixels   uint64
+	sourceIntroMaskCalls uint64
+	sourceIntroMaskSteps uint64
+	sourceGlyphRows      uint64
+	sourceGlyphSteps     uint64
+	sourcePageClears     uint64
+	sourcePageCopies     uint64
+	sourceBitmapRows     uint64
+	sourceBitmapBytes    uint64
 	sourceFrames         uint64
 	sourceMetadata       sourceFrameMetadata
 
@@ -448,7 +461,19 @@ func (e *Engine) ReleaseAll() {
 	}
 }
 func (e *Engine) Frame() *image.RGBA {
+	if e.HD && !e.sourceEnabled {
+		return e.sourceGuardFrame(func() *image.RGBA {
+			e.sourceReject("dispatch", "HD-source-renderer-unavailable")
+			return nil
+		})
+	}
 	if e.sourceEnabled {
+		if e.sourceRender == nil {
+			return e.sourceGuardFrame(func() *image.RGBA {
+				e.sourceReject("dispatch", "missing-source-renderer")
+				return nil
+			})
+		}
 		if e.Oracle.VideoMode() == 3 && e.renderFault == nil {
 			return e.consoleFrame()
 		}
@@ -462,11 +487,6 @@ func (e *Engine) Frame() *image.RGBA {
 		})
 	}
 
-	if e.Tracker != nil {
-		if im := e.Tracker.Compose(); im != nil {
-			return e.presentIntro(im)
-		}
-	}
 	if e.Oracle.VideoMode() == 3 {
 		return e.consoleFrame()
 	}
@@ -485,7 +505,7 @@ func (e *Engine) Frame() *image.RGBA {
 			out.Pix[dst+3] = 255
 		}
 	}
-	return e.presentIntro(out)
+	return out
 }
 func (e *Engine) presentIntro(frame *image.RGBA) *image.RGBA {
 	if !e.HD || (e.IntroStage() == "" && e.Heroine == nil && e.Museum == nil) {
@@ -576,6 +596,18 @@ func (e *Engine) Status() map[string]any {
 	out["source_renderer"] = e.sourceEnabled
 	out["source_frames"] = e.sourceFrames
 	out["direct_calls"] = e.sourceDirectCalls
+	out["go_reveal_tiles"] = e.sourceRevealTiles
+	out["go_reveal_point_batches"] = e.sourceRevealPoints
+	out["go_reveal_atomic_stores"] = e.sourceRevealAtomic
+	out["go_reveal_pixels"] = e.sourceRevealPixels
+	out["go_intro_mask_batches"] = e.sourceIntroMaskCalls
+	out["go_intro_mask_skipped_x86"] = e.sourceIntroMaskSteps
+	out["go_glyph_rows"] = e.sourceGlyphRows
+	out["go_glyph_skipped_x86"] = e.sourceGlyphSteps
+	out["go_page_clears"] = e.sourcePageClears
+	out["go_page_copies"] = e.sourcePageCopies
+	out["go_bitmap_row_copies"] = e.sourceBitmapRows
+	out["go_bitmap_plane_bytes"] = e.sourceBitmapBytes
 	out["owned_render_fault"] = e.renderFault
 	out["source_frame_kind"] = e.sourceMetadata.Kind
 	out["ending"] = e.EndingStatus()
