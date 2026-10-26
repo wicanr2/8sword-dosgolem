@@ -1,5 +1,10 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+END2法術效果沿[053](docs/spec/053-ending-hd.md#end2法術效果準備)；[準備工具](tools/prepare-ending-effects.py)在固定Pillow11.3.0 Docker用`references --project --out <既有ending-hd-r1內新目錄>`核對11來源並排三組透明參考。`import`模式另將三份內建image_gen圖按固定格子正規化，保留r61全部443檔；來源、累積與回退契約達READY並通過抽驗才提升。
+[11筆原子載入](internal/eightsword/ending_effects.go)及[回退／累積測試](internal/eightsword/ending_effects_test.go)依[READY契約](docs/spec/053-ending-hd.md#end2法術效果接入契約)。整合測試加`EIGHTSWORD_TEST_ENDING_EFFECTS_PREFIX=1`，正常前綴抽END1、含第7筆爆光的END2及END3，各三字型；原版規則、索引面與播放順序保持。
+[效果獨立核對](tools/audit-ending-effects.py)在固定Pillow容器以`--project --out`核對455素材、158來源、11張幾何取樣、九張完整Frame及普通玩家回歸；第3–5筆僅列素材／載入，不稱自然使用。通過收據才交既有promote-ending.py提升r62，完整結局與存讀不重跑。
+[README效果總覽](tools/prepare-ending-effects-overview.py)在同容器用`--project --audit <通過收據> --out <新PNG>`整理11筆原版／HD與正常爆光代表；同名JSON保存完整提示及生成歷程，完整原PNG留本機。
+
 END1對峙人物依[053追加契約](docs/spec/053-ending-hd.md#end1對峙人物追加契約)，完整原PNG／提示留ending-hd-r1/end1-art-r1。[匯入工具](tools/prepare-ending-duel.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --out <既有ending-hd-r1內新候選>`核對固定幾何與來源，保留r60全部441檔後另加兩檔；未驗候選不提升正式。
 [人物載入器](internal/eightsword/ending_duel.go)與[新舊／故障測試](internal/eightsword/ending_duel_test.go)沿同節READY，Go畫布只替換完整來源SHA相符的四平面圖。既有整合測試加`EIGHTSWORD_TEST_ENDING_DUEL_PREFIX=1`，抽END1與END3各三字型，原版控制及HD皆沿同一玩家前綴停在END4。
 [獨立核對器](tools/audit-ending-duel.py)在Pillow容器以`--project --out`核對443檔、156輸入、六張完整Frame及原r60的普通選單／人物／軍隊畫面；正常存讀與完整結局沿既有驗收，不重跑同機制。通過收據才交既有promote-ending.py提升本機r61。

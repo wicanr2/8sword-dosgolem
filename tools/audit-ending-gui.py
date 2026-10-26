@@ -56,6 +56,11 @@ def reconstruct(meta, assets, sources):
         assert sha(assets/duel['image']) == duel['image_sha256']
         portraits[duel['source_sha256']] = Image.open(assets/duel['image']).convert('RGBA')
     swords = None
+    effects = {}
+    if (assets/'ending-effects.json').exists():
+        for effect in read(assets/'ending-effects.json')['records']:
+            assert sha(assets/effect['image']) == effect['image_sha256']
+            effects[effect['source_sha256']] = Image.open(assets/effect['image']).convert('RGBA')
     if (assets/'ending-swords.json').exists():
         manifest = read(assets/'ending-swords.json')
         assert sha(assets/manifest['image']) == manifest['image_sha256']
@@ -63,7 +68,16 @@ def reconstruct(meta, assets, sources):
     for index, op in enumerate(meta['ops']):
         x,y,w,h = op['X']*3,op['Y']*6,op['W']*3,op['H']*6
         if op['kind'] == 'bitmap':
-            if swords is not None and op['SourceSHA'] == manifest['source_sha256']:
+            if op['SourceSHA'] in effects:
+                repeated = False
+                for prior in reversed(meta['ops'][:index]):
+                    if op['X'] >= prior['X']+prior['W'] or prior['X'] >= op['X']+op['W'] or op['Y'] >= prior['Y']+prior['H'] or prior['Y'] >= op['Y']+op['H']:
+                        continue
+                    repeated = all(prior[k] == op[k] for k in ['kind','SourceSHA','X','Y','W','H'])
+                    break
+                if not repeated:
+                    swords_over(out,effects[op['SourceSHA']],x,y)
+            elif swords is not None and op['SourceSHA'] == manifest['source_sha256']:
                 repeated = False
                 for prior in reversed(meta['ops'][:index]):
                     if op['X'] >= prior['X']+prior['W'] or prior['X'] >= op['X']+op['W'] or op['Y'] >= prior['Y']+prior['H'] or prior['Y'] >= op['Y']+op['H']:

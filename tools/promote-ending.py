@@ -25,6 +25,7 @@ def main():
         'PASS-scoped-053-ending-portrait': ('r58',439,433,152,921),
         'PASS-scoped-053-ending-swords': ('r60',441,439,154,921),
         'PASS-scoped-053-ending-duel': ('r61',443,441,156,921),
+        'PASS-scoped-053-ending-effects': ('r62',455,443,158,921),
     }
     assert audit['status'] in variants
     version, count, preserved, inputs, previous_core = variants[audit['status']]

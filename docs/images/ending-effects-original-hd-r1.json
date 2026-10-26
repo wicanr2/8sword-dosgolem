@@ -1,0 +1,252 @@
+{
+  "schema": 1,
+  "spec": "053",
+  "image": "ending-effects-original-hd-r1.png",
+  "image_sha256": "bbd35ca88a50dca1ffa73998519f995930175ace38a8aa88d9a78217ac13920f",
+  "audit_sha256": "8c24328eaa77ab0566ad19b56f739f496a785f8c1a3a74a237d68136c1dd79dc",
+  "entries": [
+    {
+      "record": 0,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-00-native.png",
+      "sha256": "2062f65630aa636b63e3b69968bb2ab4193043e3a45deadc33825bd9fba7bcaf"
+    },
+    {
+      "record": 0,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-00.png",
+      "sha256": "3075f7500af019f5dea714447819c0d752e9408858ec6c6f46f98fed9512d6d1"
+    },
+    {
+      "record": 1,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-01-native.png",
+      "sha256": "84cea8bc60ba07aea30792bfc32b17fd6b905085b783407f398875cbc9c90b44"
+    },
+    {
+      "record": 1,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-01.png",
+      "sha256": "9c45bf51fd115df919d624df64d2ea0bcbbfabb55c56525b8614c9223eba550b"
+    },
+    {
+      "record": 2,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-02-native.png",
+      "sha256": "465ab50cf5f99c3a924c8b0068eb4428d80110998a653f33a380360b43cbdbac"
+    },
+    {
+      "record": 2,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-02.png",
+      "sha256": "720041b99b3b36fff0b2095a50e29c67950b2b78b6aec0854b602a4d0c89bb39"
+    },
+    {
+      "record": 3,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-03-native.png",
+      "sha256": "26cea1cf14d849ca9b89ec768669cad4428f9e4c7d4efd8ce873d6dd8a4ee758"
+    },
+    {
+      "record": 3,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-03.png",
+      "sha256": "aabb20a89d44375fedb1ff4305000b3f6ab8f55f11a5d6c7dbf08caea8154f46"
+    },
+    {
+      "record": 4,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-04-native.png",
+      "sha256": "52bf4f2b78f826d984be5fd2fa0c7163d13e91d64488c3e28dc046385a45f044"
+    },
+    {
+      "record": 4,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-04.png",
+      "sha256": "9a456ae3c199991b28f3d958e8b37ef5ad661c098283eaf33a7895177c935e4a"
+    },
+    {
+      "record": 5,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-05-native.png",
+      "sha256": "cc19848837114b2637d9fac39b0a0882f015f53ea11999de1493b991c5986aef"
+    },
+    {
+      "record": 5,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-05.png",
+      "sha256": "c27d186ed1afb1c352d81e01394ab3858c66396ebb1878472e9156c547a0fd07"
+    },
+    {
+      "record": 6,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-06-native.png",
+      "sha256": "0b024182f4cfc3e3515aa6e939ae61abfeb4831a40c6bed77bd5b6d71f19ccf3"
+    },
+    {
+      "record": 6,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-06.png",
+      "sha256": "6b01e14375f8af35be400ee5857c427ecca7cd1072dba5e8c36b2526977fdcbd"
+    },
+    {
+      "record": 7,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-07-native.png",
+      "sha256": "5989b5281b3105e447bcef909baba566a76c799eef3a84e86e31256b1402112a"
+    },
+    {
+      "record": 7,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-07.png",
+      "sha256": "da1d20ec7fcc01e097f2659d64ff9d40d6b6bcc3fdcc668c5693f4e0504a0298"
+    },
+    {
+      "record": 8,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-08-native.png",
+      "sha256": "7ec57d141ca119590b073651195e13a4f14663ac8b173a53cc8dd2ad90289af8"
+    },
+    {
+      "record": 8,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-08.png",
+      "sha256": "7a4bf5af4b7256e6de345524807834d879495e4fa1e2dbae7287e83ad92e2478"
+    },
+    {
+      "record": 9,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-09-native.png",
+      "sha256": "23a7d6a3b4266343fd44d0ee54f8c9490d40edded02ca4c29231b32a98c30926"
+    },
+    {
+      "record": 9,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-09.png",
+      "sha256": "70a5a57b00cc6062d227e11c304fd0b2e979da28820a28066878ff5a35afd2ad"
+    },
+    {
+      "record": 10,
+      "kind": "原版",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/end2-ay-10-native.png",
+      "sha256": "0044a5644589990eefa1f585ff15b1df45361e3a31642225cb5c92eccdc26dd8"
+    },
+    {
+      "record": 10,
+      "kind": "HD",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/assets-effects-candidate-r1/ending-effect-10.png",
+      "sha256": "4fb5cc53a4c64b434ff833876d91a21863e71a61c700a8c7875abd69213cf65a"
+    },
+    {
+      "kind": "相同狀態／原版來源重建",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-effects-r1/hd/sample-03-native.png",
+      "sha256": "68b76b929722fe9e1649dbb2b1d7269d294244395b47d6eb9ab4993d2a4af07d"
+    },
+    {
+      "kind": "Go實際畫布／依原版順序累積",
+      "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/runtime-effects-r1/hd/sample-03-noto.png",
+      "sha256": "e817821ae535e7ebcfee6c5ae8ba36769be3ada0405be3f13cbecc6bedd7f3c0"
+    }
+  ],
+  "generations": {
+    "ground-r1": {
+      "schema": 1,
+      "spec": "053",
+      "tool": "built-in image_gen",
+      "status": "generated-not-runtime",
+      "image": "ground-painted-r1.png",
+      "image_sha256": "8462f07af5e0dd65a85326d995d8ce38614a3d7259f4947473ab11f776fefb70",
+      "size": [
+        1127,
+        1396
+      ],
+      "prompt": "ground-r1.prompt.txt",
+      "prompt_sha256": "5b822608a9223a71068edf12410e85add01f7d0e355bb4c1466294814746412b",
+      "reference": "ground-reference.png",
+      "reference_sha256": "01cdc2633743d915911a1a0c6019ef7b365085fd45a86f857b80ed23f899d75c",
+      "transparent_background": true,
+      "rights": "local original-derived HD; private repository comparison only",
+      "prompt_text": "Use case: style-transfer.\nAsset type: transparent hand-painted animation sprite sheet, three ground-flame phases for a Chinese wuxia game.\nInput image 1 is the EXACT layout and occupied-area reference. Replace pixel marks with finely painted magical flames. Preserve all three separate phases, their silhouettes, local placement and red/pink/yellow palette.\nLAYOUT: ONE COLUMN, THREE EQUAL ROWS. Full sheet aspect ratio 480:594. Each row is one wide shallow sprite with aspect ratio 480:198, occupying precisely its own third of the canvas. No gaps, margins or gutters added between rows. Do not combine rows or draw flames crossing a row boundary.\nIn each row retain the reference's low, broad, irregular band of red and coral flame filaments, with bright gold/yellow tips and a few vivid magenta accents. Match the different taller tongues and sparse gaps in each reference row. These are weightless Chinese magical fire/sparks, NOT smoke, a solid wall, an ellipse/ring, or a ground platform. Make clean tapered brush-stroke fire, readable hot highlights, fine sparks and soft antialiased edges. Keep many genuinely clear gaps so the game character remains visible through it. No dark or opaque backing behind the flames.\nExactly three frames, top to bottom. Respect their original proportions and positions within each cell. No characters, scenery, spell symbols, text, labels, borders, watermark, drop shadows or painted checkerboard. All empty space and sprite surroundings must be truly alpha transparent. Hand-painted Chinese fantasy game illustration, not pixel art, not photoreal fire, not 3D. Return the complete sprite sheet with all three phases."
+    },
+    "flow-r1": {
+      "schema": 1,
+      "spec": "053",
+      "tool": "built-in image_gen",
+      "status": "generated-not-runtime",
+      "image": "flow-painted-r1.png",
+      "image_sha256": "fda542afe1d3388d27f8b626f3dd2832bb4675aac2246b452ae9c5bbf59fb38d",
+      "size": [
+        1740,
+        904
+      ],
+      "prompt": "flow-r1.prompt.txt",
+      "prompt_sha256": "745297bdff8753da40ec695d46ac5a10dc6dae6e18f3f985206156147f9f6283",
+      "reference": "flow-reference.png",
+      "reference_sha256": "e156e20bbed1db687fdfc3d71bc42a62d3ba0ddb6ea04d08599b7674113771bf",
+      "transparent_background": true,
+      "rights": "local original-derived HD; private repository comparison only",
+      "prompt_text": "Use case: style-transfer.\nAsset type: transparent three-frame magical energy-flow sprite sheet for a Chinese wuxia game.\nInput image 1 is the exact composition, silhouettes, placement and red/pink/yellow colour reference.\nLAYOUT: THREE EQUAL COLUMNS in ONE ROW; overall aspect ratio 648:336, each local cell aspect ratio 216:336. Exactly one slender S-shaped rising magical filament per cell. Keep each sprite entirely in its own third of the sheet. Retain the different bends, leaning directions and local occupied bounds of the original three frames. Do not recenter, add spacing, merge the three sprites or add gutters.\nTransform the dotted pixel trails into detailed hand-painted glowing Chinese qi/fire ribbons: fine coral-red threads, tiny gold and yellow-hot highlights, a few magenta curls, softly antialiased tips and small sparks. Keep them narrow and airy with lots of clear transparent space around and inside the curves, not a fat plume or a vertical wall. All three have similar strength but distinct source-matched shapes. No circular aura, spell symbol, lightning bolt, character, prop, smoke, landscape, lettering, labels, border, watermark or shadow plane. Genuine alpha transparency in all empty areas and gaps, not opaque black or a checkerboard. No extra fourth sprite. Return the complete three-column sheet, preserving the source arrangement."
+    },
+    "burst-r1": {
+      "schema": 1,
+      "spec": "053",
+      "tool": "built-in image_gen",
+      "status": "generated-not-runtime",
+      "image": "burst-painted-r1.png",
+      "image_sha256": "23baf8655d30f4085e3f3afee77ad74a643d6655b580aa9e2f899d32f1b0a117",
+      "size": [
+        1681,
+        936
+      ],
+      "prompt": "burst-r1.prompt.txt",
+      "prompt_sha256": "69f86276c4ea9805f1d1b3a9cd94fc4003cf32f971a52a712c40f1dd8df0adf2",
+      "reference": "burst-reference.png",
+      "reference_sha256": "fb84c6a3b6c7ba0626f7e5ce0d83ca358e81d959b7cbcb4d165c2da4cef0c21f",
+      "transparent_background": true,
+      "rights": "local original-derived HD; private repository comparison only",
+      "prompt_text": "Use case: style-transfer.\nAsset type: five-phase transparent magical impact flash sprite sheet for a Chinese wuxia game.\nInput image 1 is the exact sprite-grid, positions, occupied bounds and scale reference.\nLAYOUT: THREE COLUMNS by TWO ROWS, exactly six equal cells. Overall aspect ratio 864:480. Each cell has aspect ratio 288:240.\nThe first FIVE cells, read left-to-right then top-to-bottom, contain the five source phases. The SIXTH cell at bottom-right MUST BE ENTIRELY EMPTY TRANSPARENT. Do not create a sixth flash.\nPreserve local placement and size from the reference, do NOT centre or enlarge each sprite to fill its cell:\n1 top-left: the small compact white/yellow orb at the UPPER LEFT of its cell, with warm red/orange rim.\n2 top-middle: the LARGEST nearly circular explosive flash centred in its cell, with a brilliant white/yellow heart and long irregular red/coral rays almost reaching its cell edges.\n3 top-right: a somewhat smaller ragged explosive star, shifted toward the upper-left of its cell as in the source, with white-hot yellow core and warm red sparks.\n4 bottom-left: a small to medium flash in the upper-left of that cell, short irregular yellow/red rays.\n5 bottom-middle: the smallest fading spark near the upper-left of that cell, few short warm red rays and yellow-white centre.\n6 bottom-right: no sprite, no residual glow, fully transparent.\nPaint crisp, detailed Chinese fantasy magical fire/light brushwork with soft antialiased contours, not pixels, not photoreal smoke. Keep the original white/yellow/red palette with restrained magenta accents. Different strengths and sizes must remain obvious. All sprite surroundings, gaps, and unused cell must be genuinely alpha-transparent. No backing circles or rectangles, no opaque backdrop, no checkerboard pixels, no shadow plane, no labels, text, borders, characters, scenery or watermark. Keep sprites isolated within their own exact cells and return the whole sheet."
+    },
+    "burst-r2": {
+      "schema": 1,
+      "spec": "053",
+      "tool": "built-in image_gen",
+      "status": "generated-reviewed-not-runtime",
+      "image": "burst-painted-r2.png",
+      "image_sha256": "395416406bd84c5240d3e5b2414a8305d26153c8b2da063c9e7e96b980aa139b",
+      "size": [
+        1681,
+        936
+      ],
+      "prompt": "burst-r2.prompt.txt",
+      "prompt_sha256": "1e3bb04a47b4d13cb90eda17fbf01cadd9e8e960078715f6d2e9be6ec802fbdd",
+      "reference": "burst-painted-r1.png",
+      "reference_sha256": "23baf8655d30f4085e3f3afee77ad74a643d6655b580aa9e2f899d32f1b0a117",
+      "transparent_background": true,
+      "request_reference_mode": "local referenced image",
+      "rights": "local original-derived HD; private repository comparison only",
+      "prompt_text": "Use case: precise-object-edit.\nEdit this transparent five-flash sprite sheet. Preserve all artwork and positions EXCEPT the LARGE EXPLOSION IN THE TOP-MIDDLE CELL.\nThe sheet is an exact THREE-COLUMN, TWO-ROW grid, so top-middle is x=one-third to two-thirds and y=0 to one-half of the full image.\nShrink ONLY that largest top-middle explosion to about 78 percent of its current width and height and reposition it at the centre of that top-middle cell, with at least 4 percent of that cell's width and height as EMPTY TRANSPARENT padding on every side. Its ENTIRE glow, rays and sparks must fit in that cell. In particular no part may extend into the second row or a neighbouring column. Preserve its bright white/yellow core, coral-red irregular rays and the hand-painted look. Do not clip off its tips.\nKeep the other FOUR flashes exactly unchanged in their current positions and sizes. Keep the sixth bottom-right cell completely empty transparent. Exactly five flashes total. No added text, grids, borders, backgrounds or checkerboard pixels. All empty space must stay genuinely alpha transparent. Return the entire same complete sprite sheet."
+    },
+    "burst-r3": {
+      "schema": 1,
+      "spec": "053",
+      "tool": "built-in image_gen",
+      "status": "generated-reviewed-not-runtime",
+      "image": "burst-painted-r3.png",
+      "image_sha256": "7a85877e5007bcfdeb1b75ad084103319317e8c55fc9f6a2abf28c8945df3048",
+      "size": [
+        1681,
+        936
+      ],
+      "prompt": "burst-r3.prompt.txt",
+      "prompt_sha256": "2792477abddce766b560ec62753e361eb412f4a6d1b386f67f01d572bb7392b0",
+      "reference": "burst-painted-r2.png",
+      "reference_sha256": "395416406bd84c5240d3e5b2414a8305d26153c8b2da063c9e7e96b980aa139b",
+      "transparent_background": true,
+      "request_reference_mode": "recent conversation image",
+      "rights": "local original-derived HD; private repository comparison only",
+      "prompt_text": "Use case: precise-object-edit.\nMake one targeted change to this transparent three-column, two-row five-flash sprite sheet: shrink ONLY the TOP-RIGHT FLASH to 70 percent of its current width and height, keeping its white-hot core at the same local centre and retaining its exact appearance. Its full rays and glow must remain inside that top-right grid cell.\nDo not change the TOP-MIDDLE flash: it must now remain clearly the LARGEST of all five phases, as in the original game's animation. Do not change the small top-left orb, bottom-left flash or bottom-middle fading spark. The sixth bottom-right cell stays completely empty transparent. Preserve the whole canvas, grid, colour palette, five sprites, positions of their centres, transparent background and hand-painted style. No text, grid lines, borders, shadows or new objects. Return the entire same sprite sheet."
+    }
+  },
+  "tool_sha256": "31fca5e4f49a166d642428baa99050a9bf1405ba6a1e5c760c346291015f25a2",
+  "scope": "Eleven textures plus one verified source/HD Engine Frame. Records3-5 have no normal-use claim. Controlled original ending branch; no new GUI/save or natural-victory claim."
+}

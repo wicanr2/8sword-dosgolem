@@ -27,7 +27,7 @@
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
-本機完整HD素材入口為`workplace/player/assets-painted-r61`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r61`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
+本機完整HD素材入口為`workplace/player/assets-painted-r62`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r62`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
@@ -111,6 +111,9 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
 ![結局對峙人物原版與HD比較](docs/images/ending-duel-original-hd-r1.png)
 結局對峙人物已保留原版紫披風、綠白長袍、站姿與腳下光圈，接入Go畫布。對照包含原版／HD素材、初始對峙與八劍出現後的相同狀態畫面；法術效果仍用原版來源。[完整提示與來源](docs/images/ending-duel-original-hd-r1.json)及[限定驗收](docs/spec/053-ending-hd.md#end1對峙人物正式接入與限定驗收)可回查。
+
+![結局法術效果11筆原版與HD總覽](docs/images/ending-effects-original-hd-r1.png)
+腳下火焰、曲線光流與爆光共11張已製作並載入，沿原版命令由Go透明混合。下排配對相同狀態的原版來源與實際HD爆光畫面；曲線光流三張尚未取得正常使用證據。[完整提示與來源](docs/images/ending-effects-original-hd-r1.json)及[限定驗收](docs/spec/053-ending-hd.md#end2法術效果正式接入與限定驗收)可回查。
 
 
 END7的[構圖比較](docs/images/ending-corrected-candidate-r2.png)與[完整提示及來源](docs/images/ending-corrected-candidate-r2.json)保留原PNG與人物修正紀錄。上方候選畫面已使用r2，原本漏畫兩人的r1保留歷史並拒絕提升。
