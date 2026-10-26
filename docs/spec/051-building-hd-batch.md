@@ -2,6 +2,12 @@
 
 狀態：LIVE1／3／5限定CONFORMED；LIVE4為DRAFT。沿034的完整四平面材質與047的來源呈現，補其餘建築圖片。LIVE2已完成，不重畫；LIVE6仍依035的既有樣稿選擇閘門，不將未選樣稿接入正式組。
 
+## LIVE4碑文的有界比對
+
+2026-10-26以[字模比對工具](../../tools/probe-building-inscription.py)核對固定LIVE4與PAM的636字。六個研究裁切，各以暗色、暗色加亮邊兩種遮罩，四種縮放及完整／裁邊字模比對，十二列均無像素完全相同的候選。`buildings-hd-batch-r1/inscription-match-r1/candidates.json` SHA為`a17da941534aaa9e857973202162078a9f82de8c4d026a0ec0d252bba1363a14`，並保留原裁切及比較圖，Pillow11.3.0。
+
+已證實的範圍只是這組裁切與取樣法沒有完全匹配。相似度排序不是碑文解碼，也不能證明刻痕沒有文字。原始字串、字界與縮放方式仍未知，不從候選拼句、不生成假碑文。本筆保持DRAFT並停止追加參數，後續只有新的可靠原圖或文字證據才重開。
+
 ## 來源與圖像
 
 四份來源由158檔圖形盤點核對，沿既有Huffman解碼器各解出22404 bytes，表頭寬56 bytes、高100，四平面。來源邏輯為448×100，顯示參考448×200，材質快取沿034為1344×600。圖形替換只跟隨來源命令的實際位置，不推論建築用途、兵種或招募規則。
@@ -23,7 +29,7 @@
 
 ## 三組正式接入與限定驗收
 
-本機正式組為`workplace/player/assets-painted-r52`，387檔，保留r51全部377檔。LIVE1／2／3／5四份彩色建築均已登錄；LIVE4碑文未知與LIVE6既有待選分支保留原圖，未加入素材或來源別名。三張原始生成PNG與完整提示留`buildings-hd-batch-r1`，使用內建image_gen；未重畫LIVE2或生成假碑文。
+本組提升時的本機素材為`workplace/player/assets-painted-r52`，387檔，保留r51全部377檔。LIVE1／2／3／5四份彩色建築均已登錄；LIVE4碑文未知與LIVE6既有待選分支保留原圖，未加入素材或來源別名。三張原始生成PNG與完整提示留`buildings-hd-batch-r1`，使用內建image_gen；未重畫LIVE2或生成假碑文。
 
 [載入器](../../internal/eightsword/buildings.go)沿固定全幅材質清單，三組先完整核對來源、PNG、提示、快取與識別後才提交。[測試](../../internal/eightsword/buildings_test.go)三項父案例與七種缺失／故障抽樣54.689秒通過，三份快取逐byte同獨立Python；所有原有材質、角色、效果、字型及來源保持，未接入849／851或LIVE4／6。go vet與七程式建置通過。
 

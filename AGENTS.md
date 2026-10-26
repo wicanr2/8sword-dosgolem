@@ -1,6 +1,13 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+第51筆格紋沿[045受控呈現](docs/spec/045-map-landmarks.md#第51筆紅金格紋的受控呈現追加)，[可選載入器](internal/eightsword/map_landmark51.go)與[測試](internal/eightsword/map_landmark51_test.go)只新增材質52。使用者授權受控RAM驗證，不等待本筆自然出現。[收尾工具](tools/finish-map51-hd.py)在固定Pillow容器提供audit／promote／overview，參數為`--project`唯讀專案、`--research`既有map-interaction-r1、`--out`新收據；提升另用`--player`可寫本機程式根與`--audit`已通過收據，總覽另加`--promotion`。主地圖65筆只代表實際材質快取，不代表全遊戲HD或自然可達性。
+本筆測試在固定Go容器及runtime-direct-r1核心，以`EIGHTSWORD_TEST_MAP51_ASSETS`指定r53、`EIGHTSWORD_TEST_MAP51_BASE`指定r52、`EIGHTSWORD_TEST_MAP51_CACHE`指定map51-registration-r1，並沿用`EIGHTSWORD_TEST_ORIG`。`EIGHTSWORD_TEST_MAP51_OUT`與`EIGHTSWORD_TEST_MAP51_EXPORT`各指定不存在的新目錄，執行`go test ./internal/eightsword -run '^TestMap51' -timeout=360s -count=1`；輸出受控全幅與65筆快取，不代替自然地圖路徑。
+
+PMAP第51筆依[045](docs/spec/045-map-landmarks.md)補紅金格紋。[來源與提示準備](tools/prepare-map51-hd.py)在固定Pillow容器以`--project`唯讀專案、`--out`既有map-interaction-r1內新研究目錄核對1004-byte五平面記錄與原版顯示比例；只補原圖紋理，不猜用途，不新增地圖規則。受控呈現沿最新使用者抽驗授權，正常來源未知仍分開列示。
+[格紋保存與候選匯入](tools/import-map51-hd.py)在同一Pillow容器用`save --project --art <map51-hd-r1> --image <生成PNG>`保存原圖與收據，再用`prepare --project --art --base <r52> --out <新候選> --review <新研究目錄>`核對來源並產生192×150獨立不透明快取。保留387舊檔，不把第五平面猜成透明遮罩。
+
 其餘建築圖依[051](docs/spec/051-building-hd-batch.md)及[來源準備器](tools/prepare-building-hd-batch.py)，在固定Pillow容器以`--project`唯讀專案、`--out`既有map-interaction-r1內的新研究目錄核對LIVE1／3／4／5並產生參考與提示。LIVE4碑文先核對，不由模型猜寫；LIVE2不重畫，LIVE6仍依035待選樣稿，不繞過既有決定。
+[碑文候選探針](tools/probe-building-inscription.py)在固定Pillow容器用`--project`唯讀專案及`--out`既有建築研究目錄中的新輸出，對六個刻痕區與636份PAM字模作固定四種取樣比較，只輸出幾何候選與原像素，不把排名當碑文。範圍與停止線見051；沒有完整回查證據不改正式文字。
 [建築圖片保存／匯入](tools/import-building-hd-batch.py)在同一Pillow容器用`save --project --batch --number --image`保存LIVE1／3／5原始PNG與實際提示收據；用`prepare --project --batch --base <r51> --out <新候選> --review <新研究目錄>`產生三份獨立快取及六份來源總覽。LIVE4／6只列原版與待辦，不把未核對文字或未選稿複製進正式組。
 [建築批次載入器](internal/eightsword/buildings.go)只接051的LIVE1／3／5 READY組，固定材質847／848／850，逐組完整核對後提交；LIVE4／6未登錄，缺失或損壞保留來源圖與字型，不增加CPU掛點或招募規則。
 [建築批次測試](internal/eightsword/buildings_test.go)以`EIGHTSWORD_TEST_BUILDINGS_ASSETS`、`EIGHTSWORD_TEST_BUILDINGS_BASE`、`EIGHTSWORD_TEST_BUILDINGS_CACHE`與既有`EIGHTSWORD_TEST_ORIG`指定候選／r51／獨立快取／原版；`EIGHTSWORD_TEST_BUILDINGS_OUT`指定新受控收據。固定Go容器及正式獨立核心執行`go test ./internal/eightsword -run '^TestBuildings'`，核對全幅、矩形外保持及原版還原，不稱自然招募。

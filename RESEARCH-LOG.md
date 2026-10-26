@@ -1850,3 +1850,13 @@ READY審查收據battle-backgrounds-registration-r1/registration.json SHA `5d6e8
 受控RAM沿049／050的`8000:0000`、DS=`0AA8`、`DS:7484`、`DS:748A`及`14D2:0196`。原版`14D2:099C`繪圖、`14D2:0423`還原，均為dosgolem執行期段位址。先走普通啟動／新遊戲／F1／F2，再以固定GRO02背板與x byte=1、y=12驗三圖片。HD XYWH為`[24,72,1344,600]`，六案13824000像素全幅同獨立模型，矩形外保持、還原完整，Frame純讀，兩側完整客體同值，原RAM／DS／欄位逐項恢復。此為受控材質呈現，不是自然建築或招募規則證據。
 
 統一核對SHA `0c07fd2ad642fb37a1f56d6791d2cdbbdb83bda8a393c60a66207efd81fe8c4c`，提升收據SHA `bf14c372356370967f9317ec3e73def887e61217473f5e1098750e0d2690628d`。正式r52／387檔保留377舊檔，135來源及七程式已提升，核心保持。範圍只含三組圖片與代表受控機制；四份建築HD不等於六份全部完成，也不推論兵種、費用、RNG或新GUI／存讀。
+
+## 2026-10-26：LIVE4碑文比對與PMAP51呈現契約
+
+命中路由的字模反查與READY閘門入口。`probe-building-inscription.py`核對LIVE4解碼SHA `c249b6f8707a004789b20b8fac594a0cceaaad2ab601e0ba8aa9440d5b384590`、PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`與636筆字模目錄SHA `ac7363125cff4b2bb57ca73177a6aaeef3b18bdf00b220b98cf9da7b50190e15`。已證實：六裁切、兩遮罩、四取樣及字模完整／裁邊的十二列無像素完全匹配。Pillow11.3.0收據`inscription-match-r1/candidates.json` SHA `a17da941534aaa9e857973202162078a9f82de8c4d026a0ec0d252bba1363a14`。未知：實際文字、字界與原取樣法。排序不足以認字，也不證明不存在文字。停止追加參數，LIVE4保持DRAFT。
+
+已證實：固定PMAP.AY SHA `9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02`，檔案偏移51204處第51筆1004 bytes，表頭8×25，完整SHA `4220e310282bdb93b5e26bbe65e89c8709606afaad00abd9a8889889f45c79e1`，首804 bytes SHA `8c63efa0f99d6c3bdc7b6ddd681aab690ffec992f6493404604dfaaee6dd21c4`。此處是檔案偏移，不與執行期段位址混用。紅金格紋與灰色橫條可直接取自原圖，正式用途與自然可達性未知。
+
+內建image_gen依原圖重畫1419×1109不透明PNG，SHA `5cf5e88a13f889f7d3c5d0f2b9e520da6f9de890e182a6aef8503fb3f660b185`。完整提示SHA `9a7b73e602e0f72f8ab9d614a9aa39be645bd52a2cb449d05f4a12de1237e3a3`，不給圖形附會新物件語意。原PNG／參考／提示與生成收據留`map51-hd-r1`。Pillow11.3.0獨立192×150取樣SHA `a68863856899744c1078c5d80e85f80ea00f097c61e10622a41734fd70f03174`，比較圖已看，審查後045本筆才達READY。既有ByNative指向52，只需增加缺少的材質，不增加規則或來源別名。
+
+已證實的受控呈現：普通選單／F1／F2前導的完整客體與PCM保持，之後明示RAM呼叫dosgolem執行期14D2:076F與14D2:0423，前後頁、搬移與還原四案9216000像素，全幅同獨立模型。測試位置x byte=12、y=60，HD XYWH=[288,360,192,150]；RAM／DS／欄位恢復逐項核對。完整state同值、Frame純讀、舊合成器0；830直接計畫屬普通前導，不由受控呼叫外推效能。三父測試／八回退253.889秒乾淨重跑與go vet通過。原版自然用途與可達性仍未知，沒有改玩法、RNG或存檔。核對SHA `2e55752db31cd3eabbe0a4f64483606145b44885fc5571bf2ea15e48947b8a05`，提升SHA `7f530de445ed57f11b6c475694a4fb41e3087e093549239e28c56517739cbbae`。正式r53／391檔、137來源與七程式，舊387素材、135來源及七程式保持。主地圖65筆實際快取均已核對存在，第51筆取樣獨立重建；其餘沿既有驗證，README只收素材圖集，不外推新GUI／存讀或全遊戲完成。

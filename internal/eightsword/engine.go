@@ -187,7 +187,7 @@ func Open(opt Options) (*Engine, error) {
 						if chestErr := loadMapChest(opt.Assets, pmap, art); chestErr != nil {
 							e.MapChestError = chestErr.Error()
 						}
-						if landmarkErr := errors.Join(loadMapLandmark55(opt.Assets, pmap, art), loadMapLandmark49(opt.Assets, pmap, art), loadMapLandmark54(opt.Assets, pmap, art), loadMapLandmark52(opt.Assets, pmap, art), loadMapLandmark56(opt.Assets, pmap, art), loadMapLandmark48(opt.Assets, pmap, art)); landmarkErr != nil {
+						if landmarkErr := errors.Join(loadMapLandmark55(opt.Assets, pmap, art), loadMapLandmark49(opt.Assets, pmap, art), loadMapLandmark54(opt.Assets, pmap, art), loadMapLandmark52(opt.Assets, pmap, art), loadMapLandmark56(opt.Assets, pmap, art), loadMapLandmark48(opt.Assets, pmap, art), loadMapLandmark51(opt.Assets, pmap, art)); landmarkErr != nil {
 							e.MapLandmarkError = landmarkErr.Error()
 						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)

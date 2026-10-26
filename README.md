@@ -154,6 +154,12 @@
 
 紅頂建築群與紅黃山形物件也已接入手繪圖，保留原版配置並銜接草地。正常續玩、三字型、人物／軍隊頁往返、故障回退及真正存退讀已驗；範圍見 [045](docs/spec/045-map-landmarks.md#第-52-與-56-筆正式提升)。這兩筆只改善呈現，正式名稱與互動用途仍待查證。
 
+### 主地圖原版／HD 總覽
+
+![65筆主地圖原版與HD素材快取](docs/images/world-map-original-hd-r1.png)
+
+主地圖的65筆圖像均已接入HD材質，每格左側為原版、右側為實際載入的HD快取。保留原配色與構圖，包含最後補齊的紅金格紋。這是素材圖集，不是自然遊戲截圖，也不是全遊戲完成率。第51筆沿共用機制，以受控記憶體核對前後頁、搬移與背景還原，四張完整畫面通過；正常GUI與存讀沿既有代表驗證。來源與範圍見[045](docs/spec/045-map-landmarks.md#第51筆正式提升與限定驗收)及[圖集清單](docs/images/world-map-original-hd-r1.json)。
+
 ### 建築原版／HD 總覽
 
 ![六份建築來源與四份HD素材對照](docs/images/buildings-original-hd-r1.png)
@@ -269,7 +275,7 @@ F3 解雇頁亦使用同一張 HD 民兵，保留原版黑底與選取文字。[
 
 友軍矮人鏡射使用 `bash tools/player.sh friendly-man21-assets <新名稱> [基底名稱]` 匯入，預設基底r47。只加固定對應清單，不複製新PNG；四姿勢整組驗證，失敗保留原向與軍隊頁圖像。[契約與驗收](docs/spec/042-friendly-man21-battle-poses.md#正式接入與限定驗收)不改部隊或AI規則。
 
-攻城背景使用 `bash tools/player.sh palace-assets <新名稱> [基底名稱]` 匯入，預設基底 r46；需要已記錄的本機手繪圖、完整提示與固定原版。現行本機圖像組為 `workplace/player/assets-painted-r52`，以前端 `-assets` 選用。原 `workplace/player/assets` 保留純字型基底。攻城背景與山谷背景各自驗證、各自回退，契約及核對入口見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。
+攻城背景使用 `bash tools/player.sh palace-assets <新名稱> [基底名稱]` 匯入，預設基底 r46；需要已記錄的本機手繪圖、完整提示與固定原版。現行本機圖像組為 `workplace/player/assets-painted-r53`，以前端 `-assets` 選用。原 `workplace/player/assets` 保留純字型基底。攻城背景與山谷背景各自驗證、各自回退，契約及核對入口見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。
 
 新增部隊使用 `bash tools/player.sh troops-assets <新名稱> painted-r48` 批次重建，保留 r48 的 223 份素材，再加入 20 組四姿勢。須具備本機固定圖集與提示；工具拒絕覆寫既有輸出。來源、兩向、軍隊／戰場對應、各組回退及受控抽驗範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，完整性核對入口為 [audit-troops.py](tools/audit-troops.py)。
 
