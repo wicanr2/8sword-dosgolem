@@ -42,6 +42,8 @@ type PosterToolbar struct {
 	from, target                 *image.RGBA
 	started                      time.Time
 	font                         string
+	battleAI                     string
+	aiChinese                    bool
 	choices                      []FontChoice
 	frame, lastGame              *image.RGBA
 	dirty                        bool
@@ -107,7 +109,9 @@ func LoadPosterToolbar(dir string, choices []FontChoice) (*PosterToolbar, error)
 		}
 		return nil, err
 	}
-	if m.Schema != 1 || m.SourceSHA != "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151" || m.AtlasSHA != "34009f2ab958e1cf34436b8d10950cc173e834c8c18631e123b1b26601d32657" || len(m.Glyphs) != 123 {
+	legacy := m.Schema == 1 && m.AtlasSHA == "34009f2ab958e1cf34436b8d10950cc173e834c8c18631e123b1b26601d32657" && len(m.Glyphs) == 123
+	withAI := m.Schema == 2 && m.AtlasSHA == "4ad93d657be8db62c2f04206828d345d52982e824a1a3facc09005bdf4e8ab79" && len(m.Glyphs) == 127
+	if m.SourceSHA != NotoSHA || (!legacy && !withAI) {
 		return nil, fmt.Errorf("工具列字集來源不符")
 	}
 	if len(choices) == 0 || len(choices) > 3 {
@@ -117,7 +121,7 @@ func LoadPosterToolbar(dir string, choices []FontChoice) (*PosterToolbar, error)
 	if err != nil {
 		return nil, err
 	}
-	v := &PosterToolbar{ID: "wings", atlas: atlas, glyphs: map[rune][4]int{}, panels: map[string]*image.RGBA{}, choices: append([]FontChoice(nil), choices...), dirty: true}
+	v := &PosterToolbar{ID: "wings", battleAI: "native", aiChinese: withAI, atlas: atlas, glyphs: map[rune][4]int{}, panels: map[string]*image.RGBA{}, choices: append([]FontChoice(nil), choices...), dirty: true}
 	for _, g := range m.Glyphs {
 		r := []rune(g.Character)
 		box := image.Rect(g.Ink[0], g.Ink[1], g.Ink[0]+g.Ink[2], g.Ink[1]+g.Ink[3])
@@ -132,6 +136,13 @@ func LoadPosterToolbar(dir string, choices []FontChoice) (*PosterToolbar, error)
 	for _, r := range "神州八劍字型海報Noto Black 900隸書風草書龍虎延展經典封面關閉" {
 		if _, ok := v.glyphs[r]; !ok {
 			return nil, fmt.Errorf("工具列缺字 %U", r)
+		}
+	}
+	if withAI {
+		for _, r := range "原版策略" {
+			if _, ok := v.glyphs[r]; !ok {
+				return nil, fmt.Errorf("AI工具列缺字 %U", r)
+			}
 		}
 	}
 	v.panels["off"] = image.NewRGBA(image.Rect(0, 0, 1024, 1200))
@@ -230,6 +241,12 @@ func (v *PosterToolbar) SyncFont(id string) {
 		v.dirty = true
 	}
 }
+func (v *PosterToolbar) SyncBattleAI(mode string) {
+	if v.battleAI != mode {
+		v.battleAI = mode
+		v.dirty = true
+	}
+}
 func (v *PosterToolbar) CloseMenu() {
 	if v.Menu != "" {
 		v.Menu = ""
@@ -238,8 +255,18 @@ func (v *PosterToolbar) CloseMenu() {
 }
 
 type ToolbarAction struct {
-	Font, Poster string
-	Consumed     bool
+	Font, Poster, BattleAI string
+	Consumed               bool
+}
+
+func (v *PosterToolbar) menuBounds() (int, int) {
+	switch v.Menu {
+	case "poster":
+		return 1194, 1536
+	case "ai":
+		return 1700, 2076
+	}
+	return 596, 1012
 }
 
 // Input receives only edges, so held menu keys cannot become guest key-downs.
@@ -251,11 +278,10 @@ func (v *PosterToolbar) Input(x, y int, click bool, key string) ToolbarAction {
 			v.Menu = "font"
 		} else if y >= 8 && y < 56 && x >= 1194 && x < 1536 {
 			v.Menu = "poster"
+		} else if y >= 8 && y < 56 && x >= 1700 && x < 2076 {
+			v.Menu = "ai"
 		} else if v.Menu != "" {
-			x0, x1 := 596, 1012
-			if v.Menu == "poster" {
-				x0, x1 = 1194, 1536
-			}
+			x0, x1 := v.menuBounds()
 			n := v.menuLen()
 			if x >= x0 && x < x1 && y >= 64 && y < 64+n*56 {
 				v.Selected = (y - 64) / 56
@@ -269,6 +295,9 @@ func (v *PosterToolbar) Input(x, y int, click bool, key string) ToolbarAction {
 		}
 		if old != v.Menu && v.Menu != "" {
 			v.Selected = 0
+			if v.Menu == "ai" && v.battleAI == "target" {
+				v.Selected = 1
+			}
 			v.dirty = true
 		}
 	}
@@ -287,6 +316,8 @@ func (v *PosterToolbar) Input(x, y int, click bool, key string) ToolbarAction {
 		case "enter":
 			if v.Menu == "font" {
 				a.Font = v.choices[v.Selected].ID
+			} else if v.Menu == "ai" {
+				a.BattleAI = []string{"native", "target"}[v.Selected]
 			} else {
 				a.Poster = []string{"wings", "cover", "off"}[v.Selected]
 			}
@@ -299,7 +330,19 @@ func (v *PosterToolbar) menuLen() int {
 	if v.Menu == "font" {
 		return len(v.choices)
 	}
+	if v.Menu == "ai" {
+		return 2
+	}
 	return 3
+}
+func (v *PosterToolbar) battleAILabel(mode string) string {
+	if !v.aiChinese {
+		return "AI " + mode
+	}
+	if mode == "target" {
+		return "策略 AI"
+	}
+	return "原版 AI"
 }
 func (v *PosterToolbar) fontLabel(id string) string {
 	if id == "lishu" {
@@ -354,11 +397,12 @@ func (v *PosterToolbar) Frame(game *image.RGBA, now time.Time) *image.RGBA {
 	v.text(out, "海報", 1110, 12)
 	button(image.Rect(1194, 8, 1536, 56))
 	v.text(out, posterLabel(v.ID)+"  v", 1220, 12)
+	v.text(out, "AI", 1620, 12)
+	button(image.Rect(1700, 8, 2076, 56))
+	v.text(out, v.battleAILabel(v.battleAI)+"  v", 1720, 12)
 	if v.Menu != "" {
-		x, w := 596, 416
-		if v.Menu == "poster" {
-			x, w = 1194, 342
-		}
+		x, x1 := v.menuBounds()
+		w := x1 - x
 		for i := 0; i < v.menuLen(); i++ {
 			r := image.Rect(x, 64+i*56, x+w, 120+i*56)
 			button(r)
@@ -368,6 +412,8 @@ func (v *PosterToolbar) Frame(game *image.RGBA, now time.Time) *image.RGBA {
 			label := ""
 			if v.Menu == "font" {
 				label = v.fontLabel(v.choices[i].ID)
+			} else if v.Menu == "ai" {
+				label = v.battleAILabel([]string{"native", "target"}[i])
 			} else {
 				label = posterLabel([]string{"wings", "cover", "off"}[i])
 			}

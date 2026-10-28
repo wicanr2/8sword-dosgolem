@@ -2,6 +2,14 @@
 
 本目錄保存程式、固定來源、音樂、字型、存檔與研究證據。完整定稿美術仍由[artwork](../artwork/README.md)管理。初批r64保存清單維持不變，後續r65另存追加批次；九首待確認音樂的批准狀態保持。
 
+## AI工具列保存
+
+現行AI工具列的[核對](ai-toolbar-audit-r1.json)、[提升](ai-toolbar-promotion-r1.json)、[保存清單](ai-toolbar-r1.json)及[捕獲](ai-toolbar-capture-r1.json)記錄181來源七程式、923核心依賴、r66新增字圖與正常GUI。296檔去重280物件，壓縮67404209 bytes；完整程式、GUI快照與PNG存在本機`ai-toolbar-r1/`，不加入Git。r66只換兩份工具列檔，其餘523份美術使用r65保存資料，沒有新生成定稿美術。
+
+[保存器](../tools/archive-ai-toolbar.py)在固定Pillow11.3.0容器用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；只掛preserved與工具，加`--verify`可核對，另加`--restore <空白可寫目錄>`還原原相對路徑。[獨立核對](ai-toolbar-verification-r1.json)及[還原結果](ai-toolbar-restore-r1.json)未掛原workplace，全部296檔通過；還原七程式、181來源、兩份字圖及重播CLI參數已驗，未聲明還原後跑過遊戲。原版、923核心、Go模組與r65其餘523素材須沿初批／r65 catalog還原，再覆蓋此批兩份字圖。
+
+[文件與來源核對](ai-toolbar-integrity-r1.json)另驗現行程式、181來源、525素材、核心與文件入口。[030](../docs/spec/030-battle-expansion-proposal.md#ai工具列正式接入與限定驗收)記錄限定範圍，正常存讀仍沿前輪AI收據。本輪沒有新錄影或全遊戲對拍。
+
 ## 可選目標策略AI正式接入保存
 
 [現行核對](ai-engine-audit-r1.json)、[提升](ai-engine-promotion-r1.json)、[永久清單](ai-engine-r1.json)、[捕獲](ai-engine-capture-r1.json)及[獨立核對](ai-engine-verification-r1.json)保存181固定輸入七程式、五輪來源與診斷、16份原版／改選完整控制、正常GUI截圖／狀態／輸入、存退與冷讀。1350檔去重成401物件，壓縮93784723 bytes；完整二進位、RAM與PNG留本機`ai-engine-r1/`物件，不加入Git。本輪沒有錄逐幀視訊。正式程式預設native，可選target，仍使用r65的525素材與923核心。

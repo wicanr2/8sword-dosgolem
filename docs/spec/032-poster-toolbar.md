@@ -2,6 +2,8 @@
 
 狀態：限定 CONFORMED。使用者已選擇「採用目前排版」，批准 `poster-art-r1/layout-preview-r1.html` 的中央遊戲、兩側海報、工具列及漸淡銜接。入口：[AGENTS](../../AGENTS.md)、[目前狀態](../../CONTEXT.md)。
 
+AI工具列追加：使用者於2026-10-28明確要求AI也可切換。現行r66在海報右側新增「原版 AI／策略 AI」，沿[030 READY及限定驗收](030-battle-expansion-proposal.md#ai工具列追加契約)，可切換既有Engine政策。下列原契約第7項的「所有選項只呈現」限原字型／海報，AI選項依030於下一次選敵生效；仍不新增存檔或偏好欄位。schema2於既有字圖空格補四字，其餘123筆字墨及所有美術保持；schema1仍可用ASCII標籤操作AI。實際視窗見[成果](../images/ai-toolbar-runtime-r1.png)。
+
 ## 已確認的畫面
 
 研究工作區前綴為 `workplace/probe-20261023/graphics-first/`。以下檔案留在該工作區，圖片原始 byte 不變。

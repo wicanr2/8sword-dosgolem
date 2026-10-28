@@ -308,3 +308,28 @@ AI 驗收局面包括：保護後排、挑選能擊殺的威脅、避免無效�
 提升前／後獨立核對、完整GUI及存讀見[現行收據](../../preserved/ai-engine-audit-r1.json)；[提升收據](../../preserved/ai-engine-promotion-r1.json)保留前核對SHA。原先GUI步行路線在募兵後重進建築，以及多送Esc轉到指令列，均為XTEST路線問題；最後路線以正常方向鍵離開建築，不改正式程式、記憶體或亂數。啟動視窗標題早於第一份狀態檔時，初始mode欄可為null，模式另由同一程序的完整最終狀態核對。
 
 本次只完成可選目標策略，不稱全戰術增強。反擊交換、跨法術策略、部隊特性、新兵種及增強存檔仍待後續契約；完整結局、其他平台與裝置音訊未在本次重跑。資料已[永久保存](../../preserved/README.md#可選目標策略ai正式接入保存)，中間失敗診斷與五輪來源保持，不重開已解掛點。
+
+## AI工具列追加契約
+
+2026-10-28使用者明確要求AI可由工具列切換。本節READY，沿已驗SetBattleAI、923核心及首版選敵政策，不新增戰術規則或原版逆向。原PAM SHA及掛點契約沿上節。
+
+- 在既有HD工具列海報右側加入AI下拉選單，按鈕為`[1700,8,2076,56)`，兩列沿56像素列高。「原版 AI／策略 AI」顯示目前模式，開啟時選中目前值。滑鼠、上下鍵、Enter與取消沿032獨占輸入，仍按住的鍵須放開才可送進客體。中央遊戲矩形及既有字型／海報按鈕保持。
+- 在同一Update的模擬執行緒呼叫SetBattleAI，於下一次選敵生效，已結算傷害不重算。切換不重建Engine、不改亂數、不存模式偏好、不改原版進度。重啟仍由`-battle-ai`選擇，預設native。來源／掛點錯誤沿既有具名錯誤停止，不偷偷回退。
+- 標題與工具列都讀Engine實際模式，F10或字型下拉不得覆蓋AI標示。現有工具列依HD啟用，原版顯示仍可沿命令列選AI；不另造原版模式工具列。
+- 舊工具列schema1／123字保持相容。schema2只在原1024×512字圖最後五格的四格追加「原版策略」Noto Black 900字墨，既有123筆及其像素保持，來源字型SHA沿NotoSHA。新素材組保留r65共525檔，只換工具列PNG／JSON，其餘523檔逐SHA保持。舊組用既有ASCII字墨顯示`AI native／AI target`，仍可操作且不丟字；schema2缺字或錯SHA拒用工具列。
+
+驗收：真正字圖的兩模式標籤及文字邊界、點選／鍵盤／取消／目前選項與中央像素保持；既有字型／海報回歸；正常XTEST視窗從native切target再切native，取消不改值，切回target後實際戰鬥有新決策，F10後模式及標題仍一致。存讀沿上一節既有驗收，不因純前端入口再重跑全流程。正式候選與素材、GUI收據及必要原圖先永久保存，再提升。工具入口為[準備與核對](../../tools/ai-toolbar.py)，正式實作沿[工具列](../../internal/eightsword/poster_toolbar.go)及[視窗入口](../../cmd/8sword/main.go)，不新增存檔格式。
+
+準備器在固定Pillow11.3.0容器用`assets|freeze|gui --project <唯讀專案> --player <player> --out <新路徑>`，分別追加字圖、凍結181來源或建立隔離XTEST helper。字圖直接讀永久catalog的原Noto，不依賴已清理字型副本。[視窗驗證](../../tools/check-ai-toolbar.sh)在既有Go／Xvfb容器傳入候選目錄、helper、唯讀原版、r66素材及新輸出，外層設資源配額與逾時。helper只送正常XTEST輸入，不在播放器加研究分支。
+
+### AI工具列正式接入與限定驗收
+
+本節限定CONFORMED。source-candidate-ai-toolbar-r1／181來源七程式已提升，r66／525素材只換poster-toolbar-font.png及poster-toolbar.json，r65全部保留。新字圖SHA為`4ad93d657be8db62c2f04206828d345d52982e824a1a3facc09005bdf4e8ab79`；123筆舊字及其像素保持，四個新字逐筆同原Noto。923核心及AI政策來源保持。
+
+- r65／r66各四個工具列父測試通過，包含快取、淡入、字型／海報輸入與偏好、真壞素材及新AI標示／選擇。閉合選單切換模式的像素差異限AI按鈕。模式／三故障回歸、vet與七程式建置通過，沒有跳過。
+- 真正視窗冷啟動、新遊戲、募兵及自然戰鬥。在戰鬥中開啟AI選單，以方向鍵選擇後取消、滑鼠改target、鍵盤改native，再改target；客體input_events前後均64筆，沒有選單按鍵洩漏。F10改草書後AI與標題仍為target，之後兩次選敵成功。此局Changed=0，不稱自然改選或勝率提升。
+- [截圖](../images/ai-toolbar-runtime-r1.png)為實際X11視窗，已目視中文字墨與位置。GUI以前端Ctrl+Q結束，不稱本輪原版DOS退出或新存讀驗收。既有策略模式存退／native冷讀沿上一節。
+
+[獨立核對](../../tools/audit-ai-toolbar.py)在Pillow容器以`--project <唯讀專案> --out <新JSON>`重驗181來源、舊七程式、923核心、兩組素材、字圖及GUI。核對通過並完成永久保存後，另加`--player <可寫player> --promote --audit <通過JSON>`提升七程式與metadata，r65與前版候選保持。[核對收據](../../preserved/ai-toolbar-audit-r1.json)及[提升收據](../../preserved/ai-toolbar-promotion-r1.json)為入口。
+
+[保存器](../../tools/archive-ai-toolbar.py)在同容器用`--project --archive <可寫preserved> --out <新JSON>`保留候選、字圖、GUI與工具；不掛workplace時用`--verify --archive <唯讀preserved> --out`，或加`--restore <空白目錄>`還原。296檔／280物件共67404209 bytes，隔離核對及還原全部通過。原版、核心、模組及其餘523素材沿既有永久catalog，不重複保存；[入口及限制](../../preserved/README.md#ai工具列保存)集中記錄。本輪不新增戰術規則、新兵種或跨平台驗收。

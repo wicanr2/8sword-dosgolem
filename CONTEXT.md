@@ -2,10 +2,11 @@
 
 核對日期：2026-10-28。各項版本記錄驗收當時的來源；現行素材與程式以最上列為準。工作規則：[AGENTS.md](AGENTS.md)。歷程：[WORKLOG.md](WORKLOG.md)。
 
-333筆已辨識圖形的HD素材已備妥，現行程式以最上列可選目標策略AI為準，圖像素材仍為r65。預設原版AI；Go繪圖架構、音樂與原版結算保持。過期研究副本及快取已依授權清理，完整原圖與必要資料仍在永久保存目錄。反組譯重製方向尚未定案。
+333筆已辨識圖形的HD素材已備妥，現行程式以最上列AI工具列為準，素材r66只追加四個工具列字形，遊戲美術仍沿r65。預設原版AI；Go繪圖架構、音樂與原版結算保持。過期研究副本及快取已依授權清理，完整原圖與必要資料仍在永久保存目錄。反組譯重製方向尚未定案。
 
 | 面向 | 現況與證據 |
 |---|---|
+| AI工具列正式接入 | [030限定驗收](docs/spec/030-battle-expansion-proposal.md#ai工具列正式接入與限定驗收)：source-candidate-ai-toolbar-r1／181來源七程式與r66／525素材已提升，923核心不改。HD工具列可在戰鬥中切換原版／策略AI，下一個選敵點生效；不記偏好或原版存檔。r65全部保持，r66只換工具列PNG／JSON，其餘523檔保持。舊schema1用ASCII標籤相容。新舊素材各四父測試、AI模式／三故障、vet及七程式建置通過。正常冷啟動／募兵／自然戰鬥中以滑鼠及鍵盤切換、取消、F10抽驗，選單前後客體輸入數同64；target後取得兩筆決策，本局改選0，不稱策略收益。存讀沿前輪，不重新聲明。[核對](preserved/ai-toolbar-audit-r1.json)、[提升](preserved/ai-toolbar-promotion-r1.json)、[實際視窗](docs/images/ai-toolbar-runtime-r1.png)與[永久保存](preserved/README.md#ai工具列保存)為現行入口。後續仍為兵種／特性／跨法術契約，普通繼續不批准未知數值。 |
 | 首版可選目標策略AI正式接入 | [030限定CONFORMED](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)：source-candidate-ai-r5／181輸入七程式已提升，923核心及r65／525素材保持。`-battle-ai native`為預設，`target`啟用全滅／減員比例選敵，支援普通、遠程及特殊0／2／5，與HD獨立且視窗標題明示。16份正式Engine完整state同原版／已驗改選；三純候選父測試、模式／三故障、vet與7程式通過。預設native4M步同舊r65狀態及畫面。正常視窗募兵遇敵做兩次策略選敵，本局未改選，不稱自然策略收益；真正存退後以native冷讀，2987 bytes同a5ce28cb…9e2，模式不入原版存檔。[核對](preserved/ai-engine-audit-r1.json)、[提升](preserved/ai-engine-promotion-r1.json)及[永久保存](preserved/README.md#可選目標策略ai正式接入保存)為現行入口。其餘特性／兵種／跨法術仍DRAFT，不重查已驗掛點。 |
 | Go合法候選與策略掛點 | [030策略對照](docs/spec/030-battle-expansion-proposal.md#合法候選與實際策略比較結果)：八固定局面、24次執行，八組只讀完整state／DOS／OPL／I/O同控制；五案改選、15次有效效果同Go預測。射手改全滅10人隊，普通正對限制保持，特殊5避開空隊後31→20。特殊5掛點前移到原版存DX之前，只有DX改值；其他改選只改目標word。純Go不呼叫helper、不查RNG，16決策可離線重生，三父測試及vet通過。[核對](preserved/ai-policy-audit-r1.json)及[永久保存](preserved/README.md#ai候選與策略研究追加)為入口。正式r65／525素材／177來源／923核心保持；首版目標策略已依最上列接入，其他戰術擴充仍DRAFT，不稱整體AI或勝率完成。 |
 | AI其餘特殊分派 | [030限定研究](docs/spec/030-battle-expansion-proposal.md#其餘特殊分派的限定研究結果)：13種局面、17次成對執行，Go重現12次減員與1組行動旗標。分派2類型條件、3的0／4判定、4旗標加1、5錯位存活檢查及7減員已抽驗；分派5空目標與非空目標均保留原行為。各案停首個特殊返回，不稱完整回合、自然遇敵、全法術或正式策略。原版完整state／DOS／OPL／I/O成對同值，正式r65與923核心保持。[核對](preserved/ai-specials-audit-r1.json)及[永久保存](preserved/README.md#ai特殊分派研究追加)為入口；候選與評分追加見最上列，後續整理可選增強AI契約，不重做已驗圖像與分派。 |

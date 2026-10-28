@@ -214,6 +214,12 @@ func (g *game) Update() error {
 			if a.Font != "" {
 				g.selectFont(a.Font)
 			}
+			if a.BattleAI != "" {
+				if err := g.engine.SetBattleAI(a.BattleAI); err != nil {
+					return err
+				}
+				g.updateTitle()
+			}
 			if a.Poster != "" {
 				if err := g.toolbar.SetPoster(a.Poster, time.Now()); err != nil {
 					log.Print(err)
@@ -231,7 +237,7 @@ func (g *game) Update() error {
 					break
 				}
 			}
-			ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型" + g.titleSuffix)
+			g.updateTitle()
 		}
 		for _, k := range keys {
 			if g.blocked[k.key] {
@@ -302,6 +308,7 @@ func (g *game) Update() error {
 	g.frameStoryCalls, g.frameStoryPages = info.StoryCalls, info.StoryPages
 	if g.toolbar != nil {
 		g.toolbar.SyncFont(g.engine.FontID())
+		g.toolbar.SyncBattleAI(g.engine.BattleAIMode())
 		g.frame = g.toolbar.Frame(g.frame, time.Now())
 	}
 	composed := time.Now()
@@ -398,7 +405,14 @@ func (g *game) selectFont(id string) {
 	} else if err = eightsword.SaveFontPreference(g.settings, id); err != nil {
 		log.Printf("字型偏好未儲存：%s", err)
 	}
-	ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型" + g.titleSuffix)
+	g.updateTitle()
+}
+func (g *game) updateTitle() {
+	ai := "原版 AI"
+	if g.engine.BattleAIMode() == "target" {
+		ai = "策略 AI"
+	}
+	ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型 · " + ai + g.titleSuffix)
 }
 func (g *game) Layout(int, int) (int, int) {
 	if g.toolbar != nil {
@@ -541,11 +555,10 @@ func main() {
 	if engine.BattleAIMode() == "target" {
 		aiTitle = " · 策略 AI"
 	}
-	suffix := aiTitle
+	suffix := ""
 	if i := strings.IndexRune(title, '（'); i >= 0 {
-		suffix = aiTitle + title[i:]
+		suffix = title[i:]
 	}
-	title += aiTitle
 	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit, settings: *settings, titleSuffix: suffix}
 	if engine.HD {
 		g.toolbar, err = eightsword.LoadPosterToolbar(*assets, engine.FontChoices())
@@ -578,8 +591,9 @@ func main() {
 		}
 	}
 	if i := strings.IndexRune(title, '（'); i >= 0 {
-		g.titleSuffix = aiTitle + title[i:]
+		g.titleSuffix = title[i:]
 	}
+	title += aiTitle
 	if *capture != "" {
 		g.introDraw, err = os.Create(filepath.Join(*capture, "intro-draw.jsonl"))
 		if err != nil {

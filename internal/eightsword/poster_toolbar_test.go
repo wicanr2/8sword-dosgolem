@@ -144,3 +144,59 @@ func TestPosterRealCorruptionAndLegacyAssets(t *testing.T) {
 		t.Fatal("舊素材組不相容")
 	}
 }
+
+func TestPosterBattleAISelectionAndPixels(t *testing.T) {
+	v := testToolbar(t)
+	im := image.NewRGBA(image.Rect(0, 0, 1920, 1200))
+	base := v.Frame(im, time.Unix(1000, 0))
+	v.SyncBattleAI("target")
+	changed := v.Frame(im, time.Unix(1000, 0))
+	if base == changed {
+		t.Fatal("AI模式標示沒有更新")
+	}
+	for y := 0; y < PosterHeight; y++ {
+		for x := 0; x < PosterWidth; x++ {
+			if !image.Pt(x, y).In(image.Rect(1700, 8, 2076, 56)) && base.RGBAAt(x, y) != changed.RGBAAt(x, y) {
+				t.Fatal("切換標示改到AI按鈕外", x, y)
+			}
+		}
+	}
+	if a := v.Input(1800, 24, true, ""); !a.Consumed || v.Menu != "ai" || v.Selected != 1 {
+		t.Fatal("開啟未選中目前策略AI", a)
+	}
+	v.Input(0, 0, false, "down")
+	if v.Selected != 0 {
+		t.Fatal("兩選項循環越界")
+	}
+	a := v.Input(0, 0, false, "enter")
+	if !a.Consumed || a.BattleAI != "native" || a.Font != "" || a.Poster != "" || v.Menu != "" {
+		t.Fatal("確認未單獨輸出AI模式", a)
+	}
+	v.SyncBattleAI("native")
+	v.Input(1800, 24, true, "")
+	v.Input(0, 0, false, "down")
+	if a := v.Input(0, 0, false, "escape"); !a.Consumed || a.BattleAI != "" || v.battleAI != "native" {
+		t.Fatal("取消改動AI", a)
+	}
+	v.Input(1800, 24, true, "")
+	if a := v.Input(1800, 140, true, ""); !a.Consumed || a.BattleAI != "target" {
+		t.Fatal("滑鼠第二列未選中策略AI", a)
+	}
+	for _, mode := range []string{"native", "target"} {
+		label := v.battleAILabel(mode) + "  v"
+		x := 1720
+		for _, c := range label {
+			if _, ok := v.glyphs[c]; !ok {
+				t.Fatalf("缺字 %q", c)
+			}
+			if c < 128 {
+				x += 20
+			} else {
+				x += 34
+			}
+		}
+		if x > 2076-20 {
+			t.Fatal("AI標籤超出按鈕", mode)
+		}
+	}
+}

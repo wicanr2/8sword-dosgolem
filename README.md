@@ -32,7 +32,7 @@
 
 部隊特性、策略 AI 與法術動畫的擴充方案見[戰術增強提案](docs/spec/030-battle-expansion-proposal.md)。已確認保留原版規則並新增獨立戰術增強模式，尚未接入新玩法；AI 從原版判斷掛點切入。HD 配色與規則模式分開，採保留玉綠、金框、黑底與朱紅的[原概念圖修色](docs/spec/031-hd-palette-refinement.md)。
 
-已接入首版可選 Go 目標策略 AI：先選可全滅的部隊，再比較減員比例，同分保留原目標。容器內播放器加上 `-battle-ai target` 啟用，預設為 `-battle-ai native`；與 HD 顯示分開，視窗標題標示模式。普通前排限制保持，射手可比較前後排，特殊分派0／2／5可改選有效目標，其餘沿原版。八種受控局面、正常募兵遇敵及策略模式存退後由原版模式讀檔已抽驗；範圍見[正式接入與限制](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)。新兵種、特性與跨法術策略尚未接入。
+已接入首版可選 Go 目標策略 AI：先選可全滅的部隊，再比較減員比例，同分保留原目標。HD工具列可切換「原版 AI／策略 AI」，戰鬥中切換於下一次選敵生效；視窗標題同步顯示，重啟預設仍為原版AI。也可用 `-battle-ai target` 指定啟動模式，預設為 `-battle-ai native`；AI與HD顯示分開。普通前排限制保持，射手可比較前後排，特殊分派0／2／5可改選有效目標，其餘沿原版。八種受控局面、正常募兵遇敵及策略模式存退後由原版模式讀檔已抽驗；範圍見[正式接入與限制](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)及[工具列驗收](docs/spec/030-battle-expansion-proposal.md#ai工具列正式接入與限定驗收)。新兵種、特性與跨法術策略尚未接入。
 
 
 | 面向 | 目前狀態 |
@@ -83,6 +83,10 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 深藍故事背景已同步更正人物，女主角站在男主角旁，抬手遮擋並回頭露臉。[深藍修正版](docs/images/story-background-corrected-r4.png)及[五頁驗收](docs/spec/014-intro-story-background.md#深藍人物修正正式接入與限定驗收)可回查。
 
 ### 兩側海報與字型工具列
+
+![戰鬥中的AI切換工具列](docs/images/ai-toolbar-runtime-r1.png)
+
+這是正常遇敵後的實際視窗。工具列支援字型、海報及AI切換，選單按鍵不送入遊戲。r66字圖補齊「原版策略」，其餘美術沿r65；[截圖來源](docs/images/ai-toolbar-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#ai工具列正式接入與限定驗收)可回查。AI選擇只對本次執行有效，不寫入原版存檔。
 
 ![正式前端的經典封面海報與教育部隸書](docs/images/poster-toolbar-runtime-r1.png)
 

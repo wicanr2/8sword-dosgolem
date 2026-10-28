@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "files": 296,
+  "objects": 280,
+  "workplace_required": false,
+  "restored": true,
+  "index_sha256": "9d2625de4384744c570a8365444f69eb54354dc9b74700c3d29b798c8e804c1b",
+  "source_inputs_verified": 181,
+  "programs_verified": 7,
+  "new_assets_verified": 2,
+  "restored_cli_help": true,
+  "game_execution": false
+}

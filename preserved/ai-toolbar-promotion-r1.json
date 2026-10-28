@@ -1,0 +1,17 @@
+{
+  "status": "promoted-scoped-ai-toolbar",
+  "audit_sha256": "787b382bf0848ba913caf9e08eb3bc9e780a37a4863b2a8ac744f9ce3ba4a742",
+  "programs": {
+    "8sword": "47d6c07bfbad5a1aa8dd43cbb1c16950d94a0bc1bf0b95b41037e8afb5331afe",
+    "8sword-replay": "aa15334550c5d615cec147fd7b6f24aa00d827867cc86a408d8bf0dd9d9beb1e",
+    "gui-check": "c421517afa2f1c4edde613d72350b80e3ae0f1816669176f01ddefd94e296d1a",
+    "music-check": "35c48a876b2de043e50176dfb36c836abdd1cd09aa9f3eba6cfb80e72b4f0b72",
+    "heroine-check": "68d3f1ef209b499afbb962e5cd3ffca238ce95995ef73bed614fdc3500aa2fb0",
+    "museum-check": "b1f325a19809b1c4b1fa8c626b1423c23e38dd376425dbcc7d3132dc74f46385",
+    "story-prelude-check": "e3445a764e63498995a6dc9f6b54bad28b37d557f42db0848ed8fe9a62d805a6"
+  },
+  "assets": "assets-painted-r66",
+  "asset_files": 525,
+  "source_count": 181,
+  "core_files": 923
+}

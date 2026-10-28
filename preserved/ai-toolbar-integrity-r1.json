@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "source_inputs": 181,
+  "production_programs": 7,
+  "previous_ai_programs_preserved": 7,
+  "assets": 525,
+  "unchanged_r65_assets": 523,
+  "r65_preserved": 525,
+  "core_files": 923,
+  "markdown_links": 1981,
+  "resolution_backlinks": 23,
+  "missing_correction_cases_rejected": 4,
+  "python_syntax": true,
+  "shell_syntax": true,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0,
+  "detached_archive_verification": true
+}

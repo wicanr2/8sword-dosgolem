@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "source": "Normal cold boot, new game, recruit and natural encounter; XTEST menu only.",
+  "source_path": "workplace/probe-20261023/graphics-first/battle-r1/ai-toolbar-r1/gui-r1/ai-toolbar-menu.png",
+  "sha256": "0288a3e953cc42cff30946f7d03914634689b1be7e64713178cbc7ea1eebbe7d",
+  "audit_sha256": "787b382bf0848ba913caf9e08eb3bc9e780a37a4863b2a8ac744f9ce3ba4a742",
+  "note": "Actual 1600x687 X11 window; AI menu open during battle, before first target-mode selection. No RAM injection or forced encounter."
+}
