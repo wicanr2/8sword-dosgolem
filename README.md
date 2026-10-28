@@ -34,6 +34,8 @@
 
 已接入首版可選 Go 目標策略 AI：先選可全滅的部隊，再比較減員比例，同分保留原目標。HD工具列可切換「原版 AI／策略 AI」，戰鬥中切換於下一次選敵生效；視窗標題同步顯示，重啟預設仍為原版AI。也可用 `-battle-ai target` 指定啟動模式，預設為 `-battle-ai native`；AI與HD顯示分開。普通前排限制保持，射手可比較前後排，特殊分派0／2／5可改選有效目標，其餘沿原版。八種受控局面、正常募兵遇敵及策略模式存退後由原版模式讀檔已抽驗；範圍見[正式接入與限制](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)及[工具列驗收](docs/spec/030-battle-expansion-proposal.md#ai工具列正式接入與限定驗收)。新兵種、特性與跨法術策略尚未接入。
 
+首項部隊特性已確認20%民兵結陣試作，可用[互動試算](docs/images/formation-prototype-r1.html)比較配陣與整數門檻，或看[規則／AI分開的工具列原型](docs/images/formation-toolbar-prototype-r1.html)。兩側傷害函式的受控接入已驗，正式戰鬥與規則工具列仍待接入；[研究範圍](docs/spec/030-battle-expansion-proposal.md#已批准結陣的傷害掛點窄查)列出證據與缺口。
+
 
 | 面向 | 目前狀態 |
 |---|---|

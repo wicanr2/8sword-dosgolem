@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "browser": "Chrome/141.0.7390.37",
+  "node": "v22.20.0",
+  "cases": 19,
+  "default_loss": [
+    16,
+    12
+  ],
+  "ten_percent_loss": 14,
+  "rear_support_loss": 16,
+  "two_person_threshold": [
+    2,
+    0
+  ],
+  "mobile_horizontal_overflow": false,
+  "game_executed": false
+}

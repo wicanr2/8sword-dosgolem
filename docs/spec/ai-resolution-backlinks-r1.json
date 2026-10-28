@@ -345,6 +345,51 @@
       "required_correction": "候選與目標交接勘誤：2026-10-28",
       "scope": "Eight controlled scenarios, 24 executions, read-only policy and target handoff; first executor return",
       "not_closed": "Full multi-turn strategy, traits, new troops, cross-spell policy and extended save remain open; optional target-only AI is production in spec030."
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1FB02",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1FB02",
+      "original_name": "sub_1FB02",
+      "meaning": "讀玩家部隊、原版係數與敵方生命，原版函式受控返回減員編碼並扣敵方總生命；係數的遊戲語意未知",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "結陣傷害掛點勘誤：2026-10-28",
+      "scope": "36 isolated original helper calls; 12 read-only pairs and four controlled AX changes; no natural battle claim",
+      "not_closed": "Normal player attack/ranged caller, full battle losses, rule-mode lifecycle, toolbar integration and save marker remain DRAFT."
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1FAD0",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1FAD0",
+      "original_name": "0x1FAD0",
+      "meaning": "sub_1FAA2的傷害量存局部欄前，AX可交20%結陣候選，原版繼續除生命係數及扣總生命",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "結陣傷害掛點勘誤：2026-10-28",
+      "scope": "36 isolated original helper calls; 12 read-only pairs and four controlled AX changes; no natural battle claim",
+      "not_closed": "Normal player attack/ranged caller, full battle losses, rule-mode lifecycle, toolbar integration and save marker remain DRAFT."
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1FB3A",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1FB3A",
+      "original_name": "0x1FB3A",
+      "meaning": "sub_1FB02的原版第二倍率乘算後、傷害量存局部欄前，AX可交相同結陣候選；係數語意未知",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "結陣傷害掛點勘誤：2026-10-28",
+      "scope": "36 isolated original helper calls; 12 read-only pairs and four controlled AX changes; no natural battle claim",
+      "not_closed": "Normal player attack/ranged caller, full battle losses, rule-mode lifecycle, toolbar integration and save marker remain DRAFT."
     }
   ]
 }

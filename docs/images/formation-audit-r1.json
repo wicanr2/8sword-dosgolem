@@ -1,0 +1,19 @@
+{
+  "status": "passed-offline-DRAFT",
+  "cases": 19,
+  "results": 76,
+  "original_trace_controls": 5,
+  "synthetic_cases": 14,
+  "production_programs_unchanged": 7,
+  "source_inputs_unchanged": 181,
+  "assets_unchanged": 525,
+  "core_unchanged": 923,
+  "inputs_sha256": "42aba9510d54f4f4d6c8b3cde0f89dc67fa6fccdf4498a8be345d47aeff696f4",
+  "results_sha256": "c38f0d8d6e6b40a51b714997d9bda57f809eb62da22debd86aaeff72bf4b759e",
+  "catalog_sha256": "4dcaf72cc2903d0c314b1c2800e1130f86b34de8fbeaafc9b6ee5198bd2bc412",
+  "html_sha256": "fa5ebcbec51da2a3e06e6821ba319f6c99c72ac3b77ec5a45f127903bb346196",
+  "limits": [
+    "Not connected to game; 20 percent is a proposed value.",
+    "No new IDA, normal player path, save schema or rule-mode validation."
+  ]
+}

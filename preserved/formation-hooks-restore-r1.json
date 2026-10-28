@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "files": 180,
+  "objects": 122,
+  "workplace_required": false,
+  "restored": true,
+  "index_sha256": "e2ce6ca58194ad935e869b6a2ca3cb3307bb69bc6b392b1e973f96b11031be0b",
+  "states_redecoded": 84,
+  "index_byte_equal": true,
+  "game_execution": false
+}

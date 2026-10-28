@@ -1,0 +1,11 @@
+{
+  "status": "passed-interactions-only",
+  "browser": "Chrome/141.0.7390.37",
+  "original_loss": 16,
+  "formation_loss": 12,
+  "rules_locked_during_battle": true,
+  "ai_independent": true,
+  "mobile_horizontal_overflow": false,
+  "screenshot_capture": "unresolved CDP capture timeout; not included in acceptance",
+  "game_executed": false
+}

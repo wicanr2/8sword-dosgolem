@@ -1,0 +1,18 @@
+{
+  "status": "passed-scoped-DRAFT",
+  "production_programs_unchanged": 7,
+  "production_sources_unchanged": 181,
+  "assets_unchanged": 525,
+  "core_unchanged": 923,
+  "helper_calls": 36,
+  "states_redecoded": 84,
+  "resolution_backlinks": 26,
+  "missing_correction_cases_rejected": 5,
+  "markdown_links": 2055,
+  "python_syntax": true,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0,
+  "rule_approved": "formation 20 percent",
+  "production_rule_integration": false
+}

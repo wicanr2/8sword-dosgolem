@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "files": 30,
+  "objects": 29,
+  "workplace_required": false,
+  "restored": true,
+  "index_sha256": "376e66e6a8a414117cb206d832b48a98f5149527d8564a4155769cc9385b9c09",
+  "offline_results_replayed": 76,
+  "replay_sha256": "c38f0d8d6e6b40a51b714997d9bda57f809eb62da22debd86aaeff72bf4b759e",
+  "original_game_required": false
+}

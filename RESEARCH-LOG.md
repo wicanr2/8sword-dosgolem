@@ -2272,3 +2272,52 @@ Go離線模型依已記錄目標與rand餘數重建12次減員與1組旗標，�
 GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建築，多送Esc又切到指令列。最後沿正常方向鍵離開建築，不改正式遊戲、記憶體或RNG。X11標題早於首份狀態JSON時，啟動mode欄可能null，模式以同一程序最終狀態核對。核對器首稿誤要求冷讀以DOS退出，已依實際Ctrl+Q語意修正，未重跑已通過的玩家輸入。
 
 提升前核對SHA `4544f490b8cd355fced05ac658bbf59515c20f4b5021ec6aa51b0e0c85b2355e`，提升SHA `9f9fb3f90f815fab3bb42cdfcda785ce02ff189a272bec55ff193574f2bb6d6d`，提升後核對SHA `59244aa73017604b242f46512d4c95735dc8a43946acce9afa3b78b3af50342f`。現行181輸入七程式已提升，r65舊七程式、525素材與923核心保持。完整資料已[永久保存](preserved/README.md#可選目標策略ai正式接入保存)，入口為[030限定驗收](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)。範圍只到首版可選目標策略；跨法術、反擊交換、部隊特性與新兵種仍未完成，本輪沒有重跑完整結局或其他平台。
+
+## openKB特性consumer與民兵結陣離線原型
+
+2026-10-28。沿使用者要求的部隊特性與openKB參考，先核對固定提交f67208e1aeedaefd737a860f66c9635305ad9376；該工作樹只有既有未追蹤src/tools/dump_md，未修改來源。新原型未接正式程式。來源檔SHA如下，定位均為C來源行號，不是IDA或執行期位址。
+
+| 檔案 | SHA-256 | 已證實的來源範圍 |
+|---|---|---|
+| data/free/troops.ini | d7059047d3ab529cd390f806702b0a4db0332d50141dbf3d66a6ebda38017573 | 25筆中文兵種及資料標記，非本作新兵種ID |
+| src/bounty.h | d5f0c1e03389344a63c12e5efcdb9c80444811c512974053c6b5e6f242e7d5e7 | 203至210行的八種能力bit，與KBunit的count／injury欄分開 |
+| src/play.c | 86a4ad42f05a70ab23ec2247b6e01a6499558a233eb7ad1b34763e20cfb79bdc | reset_turn 1215至1237行的REGEN只清injury，不增加count；deal_damage 1470至1614行消費MAGIC／IMMUNE、ABSORB及LEECH，吸血有max_count上限 |
+| src/game.c | ab13945fdbfb8a646f2286451a53c796c295be33ce339e53f84b7982f88ff551 | damage_army 4083至4097行先篩亡靈與魔法免疫，再送外部傷害 |
+
+以上為source-proven，沒有宣稱本輪執行openKB戰鬥。既有提案的「再生」只確認過標記，本輪補consumer後在030加勘誤，不能解讀成參考作補回陣亡兵數。洞穴巨人的本作再生、亡靈治療與灼燒仍是新增設計，未批准倍率或正式接入。
+
+本作PAM.AY SHA仍83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0。於檔案偏移0x21472加表序乘10，讀表序1至25的Big5定長字串，保存原bytes、名稱、檔案偏移與來源SHA。民兵字串在0x2147c、弓箭手0x21490、骷髏0x21508、飛龍0x2153a、矮人0x21544。這些是已證實的靜態內容，沒有新增consumer／執行期ID連結證明，不把完整名稱表升為所有部隊規則。原版已辨識素材及先前民兵樣本沿舊證據；新ID容量、招募配置與存讀擴充仍未知，沒有覆蓋其他兵種ID。
+
+純Go形成結陣候選：前排民兵有另一隊存活同袍時，普通／遠程amount乘80%再向下取整，沿原版減員編碼；不疊加、敵我對稱、特殊效果不適用。20%與「同前排」是DRAFT設計，與原版行為／openKB能力分開。只讀五份既有ai-policy-r1原版trace，重新算出相同減員；其餘14局面是合成typed陣位，沒有新RAM寫入、遊戲執行、亂數或normal-player-path證據。
+
+19案各算0／10／20／30%，共76結果同獨立Python。31人、amount400／HP25的普通樣本，原版減16，20%候選減12；2人、amount25時，原版編碼全滅2，10%或20%候選皆不減員。這保留既有整數門檻，沒有在新特性原型偷偷修原版算式，也不把減傷20%稱為兵損少20%。Go1.24.13兩父測試涵蓋輸入不變、敵我對稱、條件排除、非疊加、越界及0至65535傷害值的多組邊界，vet通過；不稱正式遊戲平衡完成。
+
+互動頁只顯示Go預算結果，不在JavaScript另寫傷害公式。既有Playwright1.56.1映像SHA f1e7e01021efd65dd1a2c56064be399f3e4de00fd021ac561325f2bfbb2b837a，沿Chromium1194與Node內建DevTools pipe抽驗19選項、倍率切換、後排排除、兩人門檻及390像素手機寬度；桌面圖已目視。既有Go及Pillow11.3.0映像保持，沒有下載套件或新建映像。實際瀏覽器版本另見[收據](docs/images/formation-browser-r1.json)。
+
+[原型及證據](docs/spec/030-battle-expansion-proposal.md#原型研究結果與停止線)與[永久保存](preserved/README.md#部隊特性原型保存)保存30檔／29物件；隔離還原後重播76份JSON逐byte相同，沒有掛原workplace或原版。正式七程式、181來源、923核心及r66／525素材逐SHA保持。本輪僅完成候選研究，20%與條件待確認；玩家傷害掛點、規則模式、UI與真正存讀尚未完成。
+
+## 結陣批准後的兩側傷害接入實證
+
+2026-10-28追加。使用者已明確選20%結陣，另要求工具列切規則。這是本作新增規則批准，不是原版行為；接入仍DRAFT。規則工具列與既有AI獨立，沿原提案戰鬥外切、本場固定，正式UI與規則存檔標記未接。前節的待確認只記當時狀態，由本節與CONTEXT更新。
+
+先載入IDA技能及其正式工具知識；技能安裝連結指向/home/anr2/ida_94_official/skills/use-ida-pro-9-4，容器以該正式目錄唯讀載入。沿專案指定ida-pro-9.4-idapython:py312-v1，image SHA 4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab，UID1000／HOME=/home/ubuntu，正式PAM.i64唯讀複製tmp後查詢，沒有改名或補丁。來源PAM SHA保持83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0；DB SHA a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。
+
+首輪範圍列舉包含了跨起點的舊特殊函式，且終點未含1FB02；只作導覽保留，不解讀為傷害helper。第二輪直接查sub_1FA2A、sub_1FAA2、sub_1FB02及直接caller，521函式與1917行原bytes經MZ1301重定位獨立核對。sub_1FA2A將兩側總生命初始化，僅分類，不繼續深挖非必要路徑。sub_1FB02有直接caller sub_217B0、call於0x21846；靜態xref不等於本輪自然玩家呼叫已驗。
+
+| IDA MZ loader線性 | PAM檔案偏移 | 固定0110h載入的dosgolem段位址 | 已驗受控語意 |
+|---|---|---|---|
+| sub_1FAA2內0x1FAD0 | 0x10F40 | 0F67:1560 | AX是敵方原除式得到的傷害量，即將存SS:[BP-4] |
+| sub_1FB02起點0x1FB02 | 0x10F72 | 0F67:1592 | 讀56E8h／56EAh的攻擊隊，5700h的防守隊及70D0h生命係數 |
+| sub_1FB02內0x1FB3A | 0x10FAA | 0F67:15CA | 原第二倍率mul之後，AX即將存SS:[BP-4] |
+
+原始資料運算元與stack欄保留。sub_1FB02先以低16位攻擊乘兵數除以`5-[DS:26B2h]`，再乘`[DS:26B8h]+1`的低16位，除防守生命係數後回編碼加1，並從`[bx-71A0h]`扣amount。兩個係數的遊戲語意仍unknown，不推定英雄、技能或法術；受控呼叫將兩者固定0並逐項保存，沒有修改正式能力。敵方helper則從`[bx-735Ch]`扣相同型態總生命。
+
+以固定原multi-ready快照SHA 88f21ef185d597fee43972aec1d14e9a6811ea072a443aa6be04fe6de999b5bf建立隔離呼叫。兩側各六局面為前排同袍、獨隊、只有後排同袍、後排受擊、非民兵、兩同袍，各baseline／observe／formation三模式，共36次。受控欄為兩側部隊／陣位、係數、總生命及專用呼叫stack／返回哨點；不改RNG或反覆重擲。每次最多10000步，停helper真正far return，不執行正常caller或戰場動畫。
+
+12組baseline／observe的完整state相同；四組formation只在傷害量點改AX400→320，原版helper回AX編碼17→13，總生命少扣80，兩側相同。八組不適用的formation最終state與baseline全同。沒有直接改部隊兵數，helper返回時兵數仍31；不能稱已看到實際減員16→12或完整戰鬥通過。三模式OPL／ports／DOS trace同值。
+
+獨立reader直接解84份gzip／gob，型別來自固定923核心的machine/state.go，不呼叫Machine.LoadState、CPU或預測器。除AX外的所有序列化機器欄及DOS原section在控制器前後同值，RAM全同。Python再從原RAM獨立讀陣位／count、判資格、算原amount與20%候選、核對原碼與總生命扣除，不依賴Go序列化的Eligible標記。[核對](preserved/formation-hooks-audit-r1.json)通過，來源與核心不改。
+
+探針首版誤用不存在的Machine.RAM，編譯即拒絕，未執行；依實際Mem欄修正後原命令乾淨重跑，失敗來源保留。規則工具列HTML原型則有一次CDP全域const名稱碰撞；修正後兩次截圖逾時，診斷停在Page.captureScreenshot，原因未明。依驗證路由分類成擷取工具問題，未改頁面規則或遊戲；最後只驗操作／戰鬥鎖定／手機寬度，明列不含新截圖驗收。初批數值頁的真實桌面／手機截圖與核對保持。
+
+三個新固定定位回填030與台帳，共26筆，不改原名稱。對稱helper與AX掛點已在受控範圍proven，正常玩家／射手caller、實際兵損、Engine規則生命週期、正式工具列、存檔標記仍unknown／DRAFT。新來源與完整state另作[永久保存](preserved/README.md#結陣接入研究保存)，正式七程式、181來源、923核心及r66素材525份保持。

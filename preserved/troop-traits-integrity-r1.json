@@ -1,0 +1,20 @@
+{
+  "status": "passed-DRAFT",
+  "production_programs_unchanged": 7,
+  "production_source_inputs_unchanged": 181,
+  "assets_unchanged": 525,
+  "core_unchanged": 923,
+  "openkb_source_hashes_verified": 4,
+  "native_name_rows_verified": 25,
+  "go_research_source_matches_tested": true,
+  "prototype_results": 76,
+  "detached_replay": true,
+  "markdown_links": 2020,
+  "ai_resolution_backlinks": 23,
+  "missing_correction_cases_rejected": 4,
+  "regen_correction_present": true,
+  "python_syntax": true,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0
+}

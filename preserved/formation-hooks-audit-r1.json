@@ -1,0 +1,107 @@
+{
+  "status": "passed-scoped-original-helper-controls",
+  "ida_lines": 1917,
+  "ida_sha256": "f93a38536acb9f865897f1568e9cf55c74ac967cacd0ba4cf5776f00e3ff20be",
+  "original_calls": 36,
+  "decoded_states": 84,
+  "read_only_pairs": 12,
+  "mitigated_pairs": 4,
+  "unaffected_pairs": 8,
+  "callback_changes": "AX only; full serialized machine state excluding AX and DOS section equal",
+  "production_programs_unchanged": 7,
+  "production_source_inputs_unchanged": 181,
+  "production_assets_unchanged": 525,
+  "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "database_sha256": "a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac",
+  "pairs": [
+    {
+      "side": "player",
+      "case": "front-ally",
+      "eligible": true,
+      "amount": 400,
+      "formation_amount": 320
+    },
+    {
+      "side": "player",
+      "case": "alone",
+      "eligible": false,
+      "amount": 400,
+      "formation_amount": 400
+    },
+    {
+      "side": "player",
+      "case": "rear-ally",
+      "eligible": false,
+      "amount": 400,
+      "formation_amount": 400
+    },
+    {
+      "side": "player",
+      "case": "rear-target",
+      "eligible": false,
+      "amount": 400,
+      "formation_amount": 400
+    },
+    {
+      "side": "player",
+      "case": "other-kind",
+      "eligible": false,
+      "amount": 400,
+      "formation_amount": 400
+    },
+    {
+      "side": "player",
+      "case": "two-allies",
+      "eligible": true,
+      "amount": 400,
+      "formation_amount": 320
+    },
+    {
+      "side": "enemy",
+      "case": "front-ally",
+      "eligible": true,
+      "amount": 400,
+      "formation_amount": 320
+    },
+    {
+      "side": "enemy",
+      "case": "alone",
+      "eligible": false,
+      "amount": 400,
+      "formation_amount": 400
+    },
+    {
+      "side": "enemy",
+      "case": "rear-ally",
+      "eligible": false,
+      "amount": 400,
+      "formation_amount": 400
+    },
+    {
+      "side": "enemy",
+      "case": "rear-target",
+      "eligible": false,
+      "amount": 400,
+      "formation_amount": 400
+    },
+    {
+      "side": "enemy",
+      "case": "other-kind",
+      "eligible": false,
+      "amount": 400,
+      "formation_amount": 400
+    },
+    {
+      "side": "enemy",
+      "case": "two-allies",
+      "eligible": true,
+      "amount": 400,
+      "formation_amount": 320
+    }
+  ],
+  "limits": [
+    "Isolated helper calls with controlled arguments and fields; no normal battle or final unit-count acceptance.",
+    "Toolbar is HTML interaction prototype; its screenshot capture timeout remains outside acceptance.",
+    "Rule mode/save lifecycle still DRAFT; no production promotion."
+  ]
+}

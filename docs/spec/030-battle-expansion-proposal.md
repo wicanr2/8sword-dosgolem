@@ -55,6 +55,8 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 現有民兵先試「結陣」：相鄰同袍提供有限防護，使廉價部隊有配陣價值。是否有可用的相鄰與移動語意，先依本作原版陣位查證；不照搬 openKB 的 6×5 棋盤、五隊上限或自由走格。
 
+openKB再生勘誤：2026-10-28。上表的再生是新增設計方向，不能解讀成參考作會補回兵數。固定提交的`src/play.c`之`reset_turn`第1215至1237行只對REGEN清除injury，沒有補回count。傷害consumer及原始來源SHA見[來源索引](../images/troop-traits-reference-r1.json)。本作名稱表已有骷髏、飛龍及矮人，新增候選不得只按相近名字覆蓋；兵種ID容量與實際新增路徑仍未知。
+
 引入新兵種需完整走過招募／遭遇配置、編隊、數值與特性、戰鬥、UI、存讀。只畫新怪或改部隊名稱不算完成。先查本作 ID、資料表及存檔容量，再選用原有可擴充欄位或明確的擴充資料包；不覆蓋其他兵種 ID 湊效果。
 
 ## AI 從原版判斷掛點切入
@@ -333,3 +335,46 @@ AI 驗收局面包括：保護後排、挑選能擊殺的威脅、避免無效�
 [獨立核對](../../tools/audit-ai-toolbar.py)在Pillow容器以`--project <唯讀專案> --out <新JSON>`重驗181來源、舊七程式、923核心、兩組素材、字圖及GUI。核對通過並完成永久保存後，另加`--player <可寫player> --promote --audit <通過JSON>`提升七程式與metadata，r65與前版候選保持。[核對收據](../../preserved/ai-toolbar-audit-r1.json)及[提升收據](../../preserved/ai-toolbar-promotion-r1.json)為入口。
 
 [保存器](../../tools/archive-ai-toolbar.py)在同容器用`--project --archive <可寫preserved> --out <新JSON>`保留候選、字圖、GUI與工具；不掛workplace時用`--verify --archive <唯讀preserved> --out`，或加`--restore <空白目錄>`還原。296檔／280物件共67404209 bytes，隔離核對及還原全部通過。原版、核心、模組及其餘523素材沿既有永久catalog，不重複保存；[入口及限制](../../preserved/README.md#ai工具列保存)集中記錄。本輪不新增戰術規則、新兵種或跨平台驗收。
+
+## 首項部隊特性的可撤回研究
+
+狀態DRAFT。使用者於2026-10-28接續要求go。這只授權沿既有部隊特性方向查證及製作原型，不把未確認倍率提升正式規則。正式AI工具列、181來源七程式、923核心及r66／525素材保持。
+
+先研究民兵「結陣」。可撤回候選為：受擊民兵在前排三陣位之一，且同前排另有活躍同袍時，自身承受的普通／遠程傷害量乘80%，向下取整，再沿已驗原版減員編碼；兩位同袍不疊加。後排、空隊、非民兵、法術／特殊減員不適用。敵我共用候選規則。這裡的同前排是陣位0至2，不聲稱有棋盤距離或自由移位；舊「相鄰」仍待具體操作語意查證。20%及條件是待決設計，不是原版行為，尚未接到遊戲。
+
+原型只消費既有固定trace與合成typed陣位，不寫RAM、不跑原版動作、不讀亂數。至少核對既有普通／遠程原版減員，另列無同袍、前排同袍、只有後排同袍、同袍全滅、非民兵、特殊效果、兩位同袍及敵我對稱。用0／10／20／30%比較，顯示原版整數門檻，不能把傷害減20%稱為兵損必定少20%。新兵種ID容量、玩家攻擊的對稱掛點、規則模式與存檔契約未達READY。
+
+來源入口為[準備與原型](../../tools/prepare-troop-traits.py)、[純Go算式](../../tools/research-formation.go)及[研究測試](../../tools/research-formation_test.go)，研究目錄沿既有battle-r1下的troop-traits-r1。openKB只讀固定提交f67208e1aeedaefd737a860f66c9635305ad9376的資料與實際consumer；本作原名表保留PAM檔案偏移與原Big5 bytes，不拿名稱推導未驗能力。互動頁及完整收據驗後另掛此處，不將候選放入正式Engine。
+
+[瀏覽器抽驗](../../tools/check-formation-page.js)只在既有Playwright1.56.1 Docker執行，傳入研究目錄，沿固定Chromium1194的DevTools pipe驗證切局面、0／10／20／30%及手機版寬度。使用Node內建模組，不安裝套件或開網路，不啟動遊戲。這只驗計算頁，不替代正式戰場驗收。
+
+### 原型研究結果與停止線
+
+[互動原型](../images/formation-prototype-r1.html)已完成，可切換19種局面及四個倍率。五份既有原版trace同原版減員，另14份合成局面只驗候選條件，共76份結果同獨立Python；Go兩父測試涵蓋整數邊界、無副作用、敵我對稱及拒絕輸入，vet通過。[數值收據](../images/formation-audit-r1.json)與[瀏覽器收據](../images/formation-browser-r1.json)分開，不當正式遊戲驗收。
+
+31人民兵承受400點傷害、生命係數25時，原版減16人。20%候選把傷害量改為320，減12人；10%則減14人。只有2人、傷害量25時，原版的編碼門檻會全滅2人，10%或20%候選均變為零減員。這是既有算式加候選數值的結果，不聲明原版已執行結陣，也不將少量兵數的效果當成整體平衡已定案。
+
+本作名稱表的定位是PAM檔案偏移`0x21472 + 表序×10`，表序1至25；保存每列原Big5 bytes及來源SHA。全表的執行期ID連結沒有新增證明，不能藉靜態字串推導隱藏特性。民兵與弓箭手分支沿既有已驗資料；沒有新IDA分析或新PAM函式定位。
+
+使用者已確認20%結陣試作，並要求工具列可切換規則。這批准此候選的後續接入研究，不自動將整份戰術擴充提案變成READY。工具列須另設「規則：原版規則／結陣試作」，與AI模式分開。玩家傷害掛點、切換時機、規則狀態保存、UI說明與存讀仍須補足，達READY後才正式實作。正式AI工具列及全部程式／素材保持，未開新兵種ID或修改存檔。
+
+[永久保存](../../preserved/README.md#部隊特性原型保存)已收30檔／29物件，2153063 bytes。沒有原workplace或遊戲資料的容器可完整還原並重播76份結果，逐byte相同。[保存器](../../tools/archive-troop-traits.py)在Pillow容器使用`--project --archive <可寫preserved> --out <新JSON>`；獨立核對用`--verify --archive <唯讀preserved> --out`，還原另加`--restore <空白目錄>`。正式來源仍181份，核心923檔，r66素材525份。
+
+### 已批准結陣的傷害掛點窄查
+
+DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-formation-hooks-ida.py)只查原傷害helper及對稱候選、直接caller與原bytes。正式DB、函式名稱及資料欄保持，輸出沿既有battle-r1內formation-hooks-r1。已驗敵方sub_1FAA2不能直接外推玩家攻擊；先確認玩家是否有不同helper、傷害量在減員編碼前的暫存位置及呼叫路徑，再做有界受控實證。不改正式Engine，不把靜態推論提升為正常玩家路徑完成。
+
+結陣傷害掛點勘誤：2026-10-28。原「玩家傷害掛點未驗」已補到隔離helper層級：`sub_1FB02`於IDA MZ線性`0x1FB02`讀玩家部隊數量、兩個原版係數及敵方生命；`0x1FAD0`及`0x1FB3A`在傷害量存局部欄之前，分別可只改AX交回原版繼續除生命係數及扣總生命。DS相對26B2h、26B8h的算式已驗，遊戲語意仍未知，不推定是英雄能力或特定法術。自然玩家／射手caller、整場減員與規則生命週期仍未驗，不由這批直接稱正式結陣完成。[回填索引](ai-resolution-backlinks-r1.json)追加三定位，共26筆。
+
+| 原始定位，IDA MZ線性 | 原PAM檔案偏移 | 固定0110h載入的dosgolem段位址 | 已驗範圍 |
+|---|---|---|---|
+| sub_1FAA2內0x1FAD0 | 0x10F40 | 0F67:1560 | 敵方原傷害除式後，AX為承受的傷害量 |
+| sub_1FB02內0x1FB3A | 0x10FAA | 0F67:15CA | 玩家傷害的原版第二倍率乘算後，AX為承受的傷害量 |
+
+[有界探針](../../tools/probe-formation-hooks.go)在Go1.24.13容器的923核心tmp副本建置，傳`-root <唯讀原版> -state <固定multi-ready-before.state> -out <新目錄>`。它直接呼叫兩個原版helper，各六種受控陣位／部隊條件、三模式，共36次。這不是正常攻擊caller或完整戰鬥。12組只讀對照的完整state相同；四組結陣改值把400改320，原版helper回傳編碼17改13，總生命由扣400改扣320；其他八組formation與原版完整state相同。函式沒有直接扣兵數，不能把編碼13冒稱此輪已觀測到實際損失12人。
+
+[獨立快照讀取器](../../tools/inspect-formation-states.go)不載入Machine或執行CPU，只以std-only gob讀取保存的84份state；型別依固定923核心的machine/state.go，完整reader-src已保存，可於獨立Go模組重建。它輸出原RAM及除AX外的完整機器欄位雜湊；[獨立核對](../../tools/audit-formation-hooks.py)在Pillow容器用`--project <唯讀專案> --out <新JSON>`重建MZ的IDA1000h及runtime0110h重定位，逐指令驗1917行、從原RAM另算結陣資格、傷害量及生命扣除，確認回呼只改AX且DOS保持。核對見[收據](../../preserved/formation-hooks-audit-r1.json)，正式181來源七程式與r66素材保持。
+
+另有[規則／AI分開的工具列操作原型](../images/formation-toolbar-prototype-r1.html)。沿原提案在戰鬥外切「原版規則／結陣試作」，本場固定，AI另可切換。瀏覽器的獨立選擇、戰鬥鎖定、結束解鎖及手機寬度已驗，見[操作收據](../images/formation-toolbar-browser-r1.json)；新頁的CDP截圖兩次逾時，原因未明，未計入視覺驗收。原型仍非正式遊戲工具列，存檔標記與正常玩家路徑未接。
+
+[掛點保存器](../../tools/archive-formation-hooks.py)在固定Pillow容器用`--project --archive <可寫preserved> --out <新JSON>`保存本批；只掛preserved與工具，加`--verify`可核對，加`--restore <空白目錄>`可還原。入口由[永久保存](../../preserved/README.md#結陣接入研究保存)維護，初批離線原型的固定清單不覆寫。

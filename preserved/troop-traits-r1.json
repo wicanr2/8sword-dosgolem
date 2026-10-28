@@ -1,0 +1,334 @@
+{
+  "schema": 1,
+  "status": "preserved-DRAFT",
+  "files": [
+    {
+      "path": "tools/archive-troop-traits.py",
+      "sha256": "1dab4a8a2a878d862cc2467c450f892d66bf68c9c846935cf111f690f5bbf76a",
+      "bytes": 2913,
+      "mode": 436
+    },
+    {
+      "path": "tools/check-formation-page.js",
+      "sha256": "74c066874d2653a3820763d59119581ff16aec18bac52b9d0d48f654ace6c3ea",
+      "bytes": 4611,
+      "mode": 436
+    },
+    {
+      "path": "tools/prepare-troop-traits.py",
+      "sha256": "5ce70b37be75e05eb815c036edb4cd2b938115d5406d9256cfd8d3c94ea14f8f",
+      "bytes": 12512,
+      "mode": 436
+    },
+    {
+      "path": "tools/research-formation.go",
+      "sha256": "16252d98d4659ecc56eeee6bb0c2b58511e7d3bb5aa646378c21055b36f8e86b",
+      "bytes": 2724,
+      "mode": 436
+    },
+    {
+      "path": "tools/research-formation_test.go",
+      "sha256": "c10c8b936f62cfb73dc605df2656dbed1134dd59e023f3f6735ac97aa5a0707c",
+      "bytes": 2376,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/audit-r1.json",
+      "sha256": "b2bb19583e358dfece193af6ef3a6dc5468fbb524ce1edb8ac0f4a8861e41ba6",
+      "bytes": 756,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/browser-r1.json",
+      "sha256": "20137cdd993c98f14b76c03e1f789151f3dd4fa7017039839b7fa4c2eae90c52",
+      "bytes": 303,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/catalog.json",
+      "sha256": "4dcaf72cc2903d0c314b1c2800e1130f86b34de8fbeaafc9b6ee5198bd2bc412",
+      "bytes": 13703,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/formation-desktop-r1.png",
+      "sha256": "c5177d0db5ea80ffc020fbbda2bd6532d04e4b9f044d5703682e80ad482d424e",
+      "bytes": 114849,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/formation-inputs.json",
+      "sha256": "42aba9510d54f4f4d6c8b3cde0f89dc67fa6fccdf4498a8be345d47aeff696f4",
+      "bytes": 11408,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/formation-mobile-r1.png",
+      "sha256": "68253371cd48367694e1398e6ea0f8acb9834252b4bb9844df56db3f69cfd5f6",
+      "bytes": 150702,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/formation-prototype",
+      "sha256": "52c22dc54495a74d5c3a76f24c12df117705be5c4aff5321424f446a8cddb531",
+      "bytes": 3042242,
+      "mode": 493
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/formation-prototype-r1.html",
+      "sha256": "fa5ebcbec51da2a3e06e6821ba319f6c99c72ac3b77ec5a45f127903bb346196",
+      "bytes": 39377,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/formation-results.json",
+      "sha256": "c38f0d8d6e6b40a51b714997d9bda57f809eb62da22debd86aaeff72bf4b759e",
+      "bytes": 30771,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/front-ranged-mixed.json",
+      "sha256": "371846e070f5e820fadbbca90c56efc26aaa90d59f8d45079458bf250e646614",
+      "bytes": 5538,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/normal-choice.json",
+      "sha256": "add363e7e10b525a50dc2709cd88fed94eb4eaa58489b9ae5f03b33d5a85fd83",
+      "bytes": 5393,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/normal-locked.json",
+      "sha256": "f990df77a3fdd5df8ca796e199bd84a6c4a4e73260187d5e669a620715fd6f4f",
+      "bytes": 5252,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/normal-rear-only.json",
+      "sha256": "fc1962ebd26f34b4edf75d86f181c3928f4de81d9b177629e19ff1a57d65c6f4",
+      "bytes": 5676,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/openkb/data/free/troops.ini",
+      "sha256": "d7059047d3ab529cd390f806702b0a4db0332d50141dbf3d66a6ebda38017573",
+      "bytes": 3903,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/openkb/src/bounty.h",
+      "sha256": "d5f0c1e03389344a63c12e5efcdb9c80444811c512974053c6b5e6f242e7d5e7",
+      "bytes": 11180,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/openkb/src/game.c",
+      "sha256": "ab13945fdbfb8a646f2286451a53c796c295be33ce339e53f84b7982f88ff551",
+      "bytes": 177901,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/openkb/src/play.c",
+      "sha256": "86a4ad42f05a70ab23ec2247b6e01a6499558a233eb7ad1b34763e20cfb79bdc",
+      "bytes": 51999,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/inputs/rear-ranged-mixed.json",
+      "sha256": "1e13205b730c41eeeb5b7ecee2f71d905c903099f8bb035c9fcdf5972be4a7db",
+      "bytes": 5540,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/references.json",
+      "sha256": "439351580f2c88229899c06114c501ae32ebc6b2537d6fa4855312e515417aa2",
+      "bytes": 765,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/src/go.mod",
+      "sha256": "6b9ee225a35f4140f4c53983733a5c918e6626b28479f3504cd30fe0a3dbbdf4",
+      "bytes": 38,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/src/research-formation.go",
+      "sha256": "c0b2d06afc3c27996d26db606f3dbe86ac61a3b90afe35a0acfcc3e06e259864",
+      "bytes": 2705,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/src/research-formation_test.go",
+      "sha256": "c10c8b936f62cfb73dc605df2656dbed1134dd59e023f3f6735ac97aa5a0707c",
+      "bytes": 2376,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/tests.log",
+      "sha256": "4b2c10719d3b84a13eb10fa3243cb386066f5b017fe041d72270bbc71a496210",
+      "bytes": 253,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-traits-r1/vet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    }
+  ],
+  "objects": {
+    "1dab4a8a2a878d862cc2467c450f892d66bf68c9c846935cf111f690f5bbf76a": {
+      "file": "1dab4a8a2a878d862cc2467c450f892d66bf68c9c846935cf111f690f5bbf76a.gzip",
+      "stored_sha256": "c21c96d0c7c57db6dc85e65c4011f72ad3b8fff1000ff37da2ef8fbf5a8e795f",
+      "stored_bytes": 1282
+    },
+    "74c066874d2653a3820763d59119581ff16aec18bac52b9d0d48f654ace6c3ea": {
+      "file": "74c066874d2653a3820763d59119581ff16aec18bac52b9d0d48f654ace6c3ea.gzip",
+      "stored_sha256": "5509504185f8f4dd5cb441e912730e3b37d7c7437368a91b18f82c292e75bb0f",
+      "stored_bytes": 1865
+    },
+    "5ce70b37be75e05eb815c036edb4cd2b938115d5406d9256cfd8d3c94ea14f8f": {
+      "file": "5ce70b37be75e05eb815c036edb4cd2b938115d5406d9256cfd8d3c94ea14f8f.gzip",
+      "stored_sha256": "ac12ffeb06de0877436a0f3c4d4be9473dc1b19ac1f135c25eff3d994499de0c",
+      "stored_bytes": 5882
+    },
+    "16252d98d4659ecc56eeee6bb0c2b58511e7d3bb5aa646378c21055b36f8e86b": {
+      "file": "16252d98d4659ecc56eeee6bb0c2b58511e7d3bb5aa646378c21055b36f8e86b.gzip",
+      "stored_sha256": "8ec8de65b436fdeae821b23580dff18bffae24496fbc6635dee4acabda7459e5",
+      "stored_bytes": 1122
+    },
+    "c10c8b936f62cfb73dc605df2656dbed1134dd59e023f3f6735ac97aa5a0707c": {
+      "file": "c10c8b936f62cfb73dc605df2656dbed1134dd59e023f3f6735ac97aa5a0707c.gzip",
+      "stored_sha256": "f0f36e71e8156bc1b413c4d05e431bb890b0241402b914cce22e65d328081c01",
+      "stored_bytes": 906
+    },
+    "b2bb19583e358dfece193af6ef3a6dc5468fbb524ce1edb8ac0f4a8861e41ba6": {
+      "file": "b2bb19583e358dfece193af6ef3a6dc5468fbb524ce1edb8ac0f4a8861e41ba6.gzip",
+      "stored_sha256": "56232bba2f81a6fb6f026569dcc4527542b5957e5c1382a5a49e8247ce105eb5",
+      "stored_bytes": 481
+    },
+    "20137cdd993c98f14b76c03e1f789151f3dd4fa7017039839b7fa4c2eae90c52": {
+      "file": "20137cdd993c98f14b76c03e1f789151f3dd4fa7017039839b7fa4c2eae90c52.gzip",
+      "stored_sha256": "1ab9bafb280289d73d4a1723cc841785e8e17c0ea925a42e39b99193cb9ec4db",
+      "stored_bytes": 211
+    },
+    "4dcaf72cc2903d0c314b1c2800e1130f86b34de8fbeaafc9b6ee5198bd2bc412": {
+      "file": "4dcaf72cc2903d0c314b1c2800e1130f86b34de8fbeaafc9b6ee5198bd2bc412.gzip",
+      "stored_sha256": "6a52b8480cd280a4cb8ed354c01fce8e874625c2951facf86b2a189c1858722d",
+      "stored_bytes": 2401
+    },
+    "c5177d0db5ea80ffc020fbbda2bd6532d04e4b9f044d5703682e80ad482d424e": {
+      "file": "c5177d0db5ea80ffc020fbbda2bd6532d04e4b9f044d5703682e80ad482d424e.gzip",
+      "stored_sha256": "778ab87db6fdef6e291f43d28b0ceb8a04357d22ab2217f64eb3b65e60b85310",
+      "stored_bytes": 107924
+    },
+    "42aba9510d54f4f4d6c8b3cde0f89dc67fa6fccdf4498a8be345d47aeff696f4": {
+      "file": "42aba9510d54f4f4d6c8b3cde0f89dc67fa6fccdf4498a8be345d47aeff696f4.gzip",
+      "stored_sha256": "c3e6fdf4fba28890c4cbbe2f48062778252dd48a28354b1ea130d7b50f833f8e",
+      "stored_bytes": 869
+    },
+    "68253371cd48367694e1398e6ea0f8acb9834252b4bb9844df56db3f69cfd5f6": {
+      "file": "68253371cd48367694e1398e6ea0f8acb9834252b4bb9844df56db3f69cfd5f6.gzip",
+      "stored_sha256": "5bf7f9a608697f01c90a72a387bf48bc33530c6f2fa408705f9138303ae468b5",
+      "stored_bytes": 142185
+    },
+    "52c22dc54495a74d5c3a76f24c12df117705be5c4aff5321424f446a8cddb531": {
+      "file": "52c22dc54495a74d5c3a76f24c12df117705be5c4aff5321424f446a8cddb531.gzip",
+      "stored_sha256": "b8df01b720b099784c1e5510a7788b0d952b1a780d3b698330a17e8681597f7b",
+      "stored_bytes": 1807622
+    },
+    "fa5ebcbec51da2a3e06e6821ba319f6c99c72ac3b77ec5a45f127903bb346196": {
+      "file": "fa5ebcbec51da2a3e06e6821ba319f6c99c72ac3b77ec5a45f127903bb346196.gzip",
+      "stored_sha256": "588096b1bf10d475868716aa8c4f2004fd9f53b4fb032e1a1935f06e15c87bed",
+      "stored_bytes": 3943
+    },
+    "c38f0d8d6e6b40a51b714997d9bda57f809eb62da22debd86aaeff72bf4b759e": {
+      "file": "c38f0d8d6e6b40a51b714997d9bda57f809eb62da22debd86aaeff72bf4b759e.gzip",
+      "stored_sha256": "00c611e888b5f7f933f1b5ae4b5673d902b02cdb87b02f48f8975c8d2cbd8c5d",
+      "stored_bytes": 1293
+    },
+    "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444": {
+      "file": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444.gzip",
+      "stored_sha256": "051d2333b09a0b501f8566ba1233a3770ff32feaa5e59109cffb8d73394918e6",
+      "stored_bytes": 53
+    },
+    "371846e070f5e820fadbbca90c56efc26aaa90d59f8d45079458bf250e646614": {
+      "file": "371846e070f5e820fadbbca90c56efc26aaa90d59f8d45079458bf250e646614.gzip",
+      "stored_sha256": "c96edc0c2b4d4eeb16f60db992d507ae328e879a2ca4dd34bdd4795747d252e5",
+      "stored_bytes": 1267
+    },
+    "add363e7e10b525a50dc2709cd88fed94eb4eaa58489b9ae5f03b33d5a85fd83": {
+      "file": "add363e7e10b525a50dc2709cd88fed94eb4eaa58489b9ae5f03b33d5a85fd83.gzip",
+      "stored_sha256": "5ea90ec56b9175e1e6301abc968233fe19cad8b4d1ec819e73ae43b755a9b718",
+      "stored_bytes": 1247
+    },
+    "f990df77a3fdd5df8ca796e199bd84a6c4a4e73260187d5e669a620715fd6f4f": {
+      "file": "f990df77a3fdd5df8ca796e199bd84a6c4a4e73260187d5e669a620715fd6f4f.gzip",
+      "stored_sha256": "b3151d88aa1a15fba6524f23024f1b64e94cdeaf8836cf6bab479b7db5389f00",
+      "stored_bytes": 1243
+    },
+    "fc1962ebd26f34b4edf75d86f181c3928f4de81d9b177629e19ff1a57d65c6f4": {
+      "file": "fc1962ebd26f34b4edf75d86f181c3928f4de81d9b177629e19ff1a57d65c6f4.gzip",
+      "stored_sha256": "a0830df83f98d3d422afdf81a3d3248edd4225699c189589670d58b86f807cdc",
+      "stored_bytes": 1278
+    },
+    "d7059047d3ab529cd390f806702b0a4db0332d50141dbf3d66a6ebda38017573": {
+      "file": "d7059047d3ab529cd390f806702b0a4db0332d50141dbf3d66a6ebda38017573.gzip",
+      "stored_sha256": "556911cb7745b7df7adc7a1da5aea1e0ee7ecbd81d6d9acbef00074cc470aa44",
+      "stored_bytes": 945
+    },
+    "d5f0c1e03389344a63c12e5efcdb9c80444811c512974053c6b5e6f242e7d5e7": {
+      "file": "d5f0c1e03389344a63c12e5efcdb9c80444811c512974053c6b5e6f242e7d5e7.gzip",
+      "stored_sha256": "4dd40b50a9cb96dbba8132a7c0092e196814474d4d45c67c0fb457b4a3cf0e8f",
+      "stored_bytes": 4280
+    },
+    "ab13945fdbfb8a646f2286451a53c796c295be33ce339e53f84b7982f88ff551": {
+      "file": "ab13945fdbfb8a646f2286451a53c796c295be33ce339e53f84b7982f88ff551.gzip",
+      "stored_sha256": "1bd8ef996e09f37e3dcd8e0a549af9ed456e3aca506249967d1b77e6e7b74292",
+      "stored_bytes": 47937
+    },
+    "86a4ad42f05a70ab23ec2247b6e01a6499558a233eb7ad1b34763e20cfb79bdc": {
+      "file": "86a4ad42f05a70ab23ec2247b6e01a6499558a233eb7ad1b34763e20cfb79bdc.gzip",
+      "stored_sha256": "408c3515ad226810ffef0b738ed07bd0f58ad7e3e3212bdf511374a623a7ad49",
+      "stored_bytes": 13865
+    },
+    "1e13205b730c41eeeb5b7ecee2f71d905c903099f8bb035c9fcdf5972be4a7db": {
+      "file": "1e13205b730c41eeeb5b7ecee2f71d905c903099f8bb035c9fcdf5972be4a7db.gzip",
+      "stored_sha256": "97f243a6d3ad9ce208de18025cee3d0009de79a4261cc7906130fed8d7ab071a",
+      "stored_bytes": 1272
+    },
+    "439351580f2c88229899c06114c501ae32ebc6b2537d6fa4855312e515417aa2": {
+      "file": "439351580f2c88229899c06114c501ae32ebc6b2537d6fa4855312e515417aa2.gzip",
+      "stored_sha256": "95c4ea5a39fc47ac9bf200d9d8c043803798a3ad3e0729618b42183a24f36380",
+      "stored_bytes": 350
+    },
+    "6b9ee225a35f4140f4c53983733a5c918e6626b28479f3504cd30fe0a3dbbdf4": {
+      "file": "6b9ee225a35f4140f4c53983733a5c918e6626b28479f3504cd30fe0a3dbbdf4.gzip",
+      "stored_sha256": "0a855de4e336b55d8b5339af7d8a2034fa08a979becef9c518bbb37d6744448c",
+      "stored_bytes": 58
+    },
+    "c0b2d06afc3c27996d26db606f3dbe86ac61a3b90afe35a0acfcc3e06e259864": {
+      "file": "c0b2d06afc3c27996d26db606f3dbe86ac61a3b90afe35a0acfcc3e06e259864.gzip",
+      "stored_sha256": "1a1f04906121bee9b000063fbd65bbe0cfb07b92aa796b180df4fa1a809820c0",
+      "stored_bytes": 1108
+    },
+    "4b2c10719d3b84a13eb10fa3243cb386066f5b017fe041d72270bbc71a496210": {
+      "file": "4b2c10719d3b84a13eb10fa3243cb386066f5b017fe041d72270bbc71a496210.gzip",
+      "stored_sha256": "0e5eb1437d3de92d2809fd2c6ad3b2cfc70fbd657a7376adfefbdc478c137bce",
+      "stored_bytes": 154
+    },
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
+      "file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.gzip",
+      "stored_sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83",
+      "stored_bytes": 20
+    }
+  },
+  "scope": "Offline proposal only; no production gameplay change."
+}

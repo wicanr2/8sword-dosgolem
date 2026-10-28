@@ -2,6 +2,24 @@
 
 本目錄保存程式、固定來源、音樂、字型、存檔與研究證據。完整定稿美術仍由[artwork](../artwork/README.md)管理。初批r64保存清單維持不變，後續r65另存追加批次；九首待確認音樂的批准狀態保持。
 
+## 結陣接入研究保存
+
+使用者已確認20%及規則工具列，接入仍DRAFT。[獨立核對](formation-hooks-audit-r1.json)、[保存清單](formation-hooks-r1.json)、[捕獲](formation-hooks-capture-r1.json)、[物件核對](formation-hooks-verification-r1.json)及[還原核對](formation-hooks-restore-r1.json)保留兩輪IDA匯出、原始工具、36次原版helper呼叫、84份完整state、獨立gob讀取器與RAM、操作原型及失敗診斷。完整二進位、原state與RAM在本機`formation-hooks-r1/`，不加入Git。
+
+本批180檔去重122物件，壓縮14062183 bytes。沒有掛原workplace或原版的容器逐SHA核對全部檔案，完整還原後再執行state-reader，84份解碼索引逐byte相同。
+
+[保存器](../tools/archive-formation-hooks.py)在固定Pillow容器用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；不掛workplace時加`--verify`核對，另加`--restore <空白可寫目錄>`還原。還原的state-reader可再次讀84份原state；原始固定快照、原版及923核心另依既有catalog，沒有重複保存。這批不代表正常攻擊、完整兵損或正式工具列已完成。[收尾核對](formation-hooks-integrity-r1.json)另驗來源、回填與正式程式保持。
+
+[規則工具列原型](../docs/images/formation-toolbar-prototype-r1.html)及[瀏覽器操作收據](../docs/images/formation-toolbar-browser-r1.json)保存到Git。新頁的截圖逾時仍列診斷，未算入視覺驗收；既有數值原型的桌面／手機截圖則已隨初批保留。當前範圍依[030](../docs/spec/030-battle-expansion-proposal.md#已批准結陣的傷害掛點窄查)，初批候選保存不覆寫。
+
+## 部隊特性原型保存
+
+[保存清單](troop-traits-r1.json)、[捕獲](troop-traits-capture-r1.json)及[核對](troop-traits-verification-r1.json)保留固定openKB四份來源、五份既有原版trace、25筆本作原名表與bytes、19局面、純Go原型及測試、76結果、瀏覽器工具與桌面／手機截圖，共30檔／29物件，2153063 bytes。完整物件在本機`troop-traits-r1/`，不加入Git；候選不屬正式遊戲規則。
+
+[保存器](../tools/archive-troop-traits.py)在固定Pillow11.3.0容器使用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；只掛preserved與工具時加`--verify`核對，加`--restore <空白可寫目錄>`還原。[獨立還原](troop-traits-restore-r1.json)未掛原workplace或原版遊戲，重新執行還原的formation-prototype取得76份逐byte相同結果。這只證明離線研究可重生，沒有新增玩家路徑、存讀或正式特性驗收。
+
+[互動頁](../docs/images/formation-prototype-r1.html)、[來源索引](../docs/images/troop-traits-reference-r1.json)、[獨立數值核對](../docs/images/formation-audit-r1.json)及[瀏覽器核對](../docs/images/formation-browser-r1.json)另進Git。[收尾核對](troop-traits-integrity-r1.json)驗正式程式與素材保持及文件入口。20%與條件的候選狀態依[030](../docs/spec/030-battle-expansion-proposal.md#首項部隊特性的可撤回研究)，不因保存或測試通過就批准。
+
 ## AI工具列保存
 
 現行AI工具列的[核對](ai-toolbar-audit-r1.json)、[提升](ai-toolbar-promotion-r1.json)、[保存清單](ai-toolbar-r1.json)及[捕獲](ai-toolbar-capture-r1.json)記錄181來源七程式、923核心依賴、r66新增字圖與正常GUI。296檔去重280物件，壓縮67404209 bytes；完整程式、GUI快照與PNG存在本機`ai-toolbar-r1/`，不加入Git。r66只換兩份工具列檔，其餘523份美術使用r65保存資料，沒有新生成定稿美術。
