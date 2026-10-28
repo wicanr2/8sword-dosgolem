@@ -1,0 +1,88 @@
+{
+  "status": "PASS-detached-current-restore",
+  "boot_steps": 4000000,
+  "native_hd_state_sha256": "336f22d41f9b8843efa461c17b10e5b104ba11dc322dbaf5c610307bc9564a47",
+  "assets": 462,
+  "originals": 158,
+  "saved_bytes": 2987,
+  "saved_character_sha256": "6f1689c2def9a129f89f8d055e4dc1e7532f5df01b6a656c592cde66623bfc2e",
+  "save_buffers": {
+    "save": "6f1689c2def9a129f89f8d055e4dc1e7532f5df01b6a656c592cde66623bfc2e",
+    "reload": "6f1689c2def9a129f89f8d055e4dc1e7532f5df01b6a656c592cde66623bfc2e"
+  },
+  "commands": [
+    {
+      "name": "boot-native",
+      "args": [
+        "/restored/workplace/player/8sword-replay",
+        "-root",
+        "/restored/workplace/intake-20261023/sources/game/8sword",
+        "-assets",
+        "/restored/workplace/player/assets-painted-r64",
+        "-out",
+        "/checks/run/native",
+        "-hd=false",
+        "-until",
+        "4000000",
+        "-frame-every",
+        "1000000"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "boot-hd",
+      "args": [
+        "/restored/workplace/player/8sword-replay",
+        "-root",
+        "/restored/workplace/intake-20261023/sources/game/8sword",
+        "-assets",
+        "/restored/workplace/player/assets-painted-r64",
+        "-out",
+        "/checks/run/hd",
+        "-hd=true",
+        "-until",
+        "4000000",
+        "-frame-every",
+        "1000000"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "inspect-save",
+      "args": [
+        "/restored/workplace/player/eightsword-inspect",
+        "-state",
+        "/restored/workplace/player/gui/compat-pixels-save-r2/save/gui-final.state",
+        "-root",
+        "/restored/workplace/intake-20261023/sources/game/8sword",
+        "-out",
+        "/checks/run/inspect-save",
+        "-until",
+        "0",
+        "-save-buffer"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "inspect-reload",
+      "args": [
+        "/restored/workplace/player/eightsword-inspect",
+        "-state",
+        "/restored/workplace/player/gui/compat-pixels-save-r2/reload/gui-final.state",
+        "-root",
+        "/restored/workplace/intake-20261023/sources/game/8sword",
+        "-out",
+        "/checks/run/inspect-reload",
+        "-until",
+        "0",
+        "-save-buffer"
+      ],
+      "returncode": 0
+    }
+  ],
+  "tool_sha256": "0258baa36429001449e53249c08239be10adaed3f5a5ae56e6cbf680d5fb2d3c",
+  "limits": [
+    "Existing binaries restored byte-for-byte; boot smoke and read-only save inspection, no new full GUI or gameplay parity claim.",
+    "No old workplace or external project tree mounted."
+  ]
+}

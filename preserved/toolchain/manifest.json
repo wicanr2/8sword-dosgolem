@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "audio_image": "kol-music:timidity2.14-fluid3.1-r1",
+  "audio_image_sha256": "9520e9a4f3341495b3bcb6108cd2e6d7ba835647aaf349381c60a921ae7b927b",
+  "images": {
+    "dosgolem-go-ebiten:1.24-r1": "8ed6bdee2bce1f32f804e888f942b25bbf62f2165a43344bb4587f3371de0581",
+    "sc-cht-hdtools:pillow11.3.0-r1": "44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48"
+  },
+  "files": [
+    {
+      "source": "/usr/share/sounds/sf2/FluidR3_GM.sf2",
+      "path": "audio/FluidR3_GM.sf2",
+      "sha256": "74594e8f4250680adf590507a306655a299935343583256f3b722c48a1bc1cb0",
+      "bytes": 148398306
+    },
+    {
+      "source": "/etc/timidity/timidity.cfg",
+      "path": "audio/timidity.cfg",
+      "sha256": "44d3962698a479ea81a369635b847d5d83a43ac99b982450d551ba1c334adb65",
+      "bytes": 1185
+    },
+    {
+      "source": "/etc/timidity/fluidr3_gm.cfg",
+      "path": "audio/fluidr3_gm.cfg",
+      "sha256": "b21080ec135733924db322ee6f45c51b6474da66e179a12c6e45319015e78006",
+      "bytes": 234909
+    },
+    {
+      "source": "/usr/share/doc/fluid-soundfont-gm/copyright",
+      "path": "audio/copyright",
+      "sha256": "f2f5e6358fc7c1fe62aafc6c8229c4c5898e5afb0d4ce1322b15362a8cbd600e",
+      "bytes": 2132
+    }
+  ],
+  "scope": "Exact SoundFont, configuration and notice copied from already selected audio image. No new sound or palette choice."
+}

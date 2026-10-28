@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem 與 HD 音畫
 
+程式、音樂、字型、存檔與研究來源已另作[永久保存與還原核對](preserved/README.md)，可在沒有原 `workplace/` 的環境核對與還原；清單明列快取及舊錄影等排除項。
+
 完整定稿原圖與提示另存本機永久目錄 `artwork/approved/`，清理 `workplace/` 不會刪到這些複本。分類、逐檔雜湊與獨立核對見[定稿原圖索引](artwork/README.md)。
 
 以 dosgolem 執行原版 DOS 程式，逐步接入 HD 圖像、Noto 粗字與 HD 音樂。玩法、劇情、事件及存檔仍由原版程式控制。

@@ -1,0 +1,25 @@
+{
+  "status": "PASS-byte-exact-restore",
+  "files": 1848,
+  "bytes": 426577779,
+  "prefixes": [
+    "workplace/intake-20261023/sources/game/8sword",
+    "workplace/player/assets-painted-r64",
+    "workplace/player/source-candidate-ring-r3",
+    "workplace/player/runtime-render-r1",
+    "workplace/player/8sword",
+    "workplace/player/8sword-replay",
+    "workplace/player/eightsword-inspect",
+    "workplace/player/gui-check",
+    "workplace/player/music-check",
+    "workplace/player/museum-check",
+    "workplace/player/heroine-check",
+    "workplace/player/story-prelude-check",
+    "workplace/player/gui/compat-pixels-save-r2/scratch",
+    "workplace/player/gui/compat-pixels-save-r2/save/gui-final.state",
+    "workplace/player/gui/compat-pixels-save-r2/reload/gui-final.state",
+    "workplace/probe-20261023/graphics-first/font-settings-r1",
+    "workplace/probe-20261023/music-first/hd-music-batch-r1"
+  ],
+  "symlinks_recreated": 0
+}

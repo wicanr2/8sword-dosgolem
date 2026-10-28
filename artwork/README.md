@@ -43,4 +43,4 @@ timeout 60s docker run --rm --network none \
   /tools/archive-approved-art.py --archive /archive --verify
 ```
 
-本次只保全美術來源及圖像輸入。遊戲程式、原版研究解包、音樂、存檔與其他研究證據仍依專案目前路徑保存；這份收據不代表整個workplace的其他資料已搬移。
+本目錄保存美術。程式、音樂、字型、存檔與其他必要研究資料已於2026-10-28另完成[永久保存與還原核對](../preserved/README.md)，原workplace副本尚未刪除。

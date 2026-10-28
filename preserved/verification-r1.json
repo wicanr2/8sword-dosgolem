@@ -1,0 +1,21 @@
+{
+  "status": "PASS-detached-project-preservation",
+  "files": 181584,
+  "unique_objects": 32561,
+  "symbolic_link_records": 1282,
+  "stored_bytes": 9454222868,
+  "catalog_sha256": "8ab4fd7c02d82e23ac45a475ab2e0bfa7283d0f4ca53f4234525d7796e458b6b",
+  "workplace_required": false,
+  "programs": 7,
+  "assets": 462,
+  "core_files": 923,
+  "build_inputs": 175,
+  "original_files": 158,
+  "font_sources": 4,
+  "soundfont_files": 4,
+  "saved_character_bytes": 2987,
+  "pending_music_cues": 9,
+  "music_approval_unchanged": true,
+  "toolchain_manifest_sha256": "0eed7eff02dce158d0a4d1dd05c77fd7e2545072adcf54976271af67964345a2",
+  "audit_tool_sha256": "24366501ed45d719fd6008d300de73a23e569339d840a6d15d54ad15fd0f2592"
+}

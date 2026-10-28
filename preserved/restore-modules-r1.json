@@ -1,0 +1,9 @@
+{
+  "status": "PASS-byte-exact-restore",
+  "files": 5398,
+  "bytes": 310508011,
+  "prefixes": [
+    "workplace/gomodcache"
+  ],
+  "symlinks_recreated": 0
+}

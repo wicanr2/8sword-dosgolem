@@ -11,3 +11,9 @@
 # 完整定稿原圖與素材另存專案永久目錄，清單與工具加入Git。
 /artwork/approved/
 /artwork/publication-*.json
+
+# 永久保存的本機物件與還原試跑；清單與核對結果加入Git。
+/preserved/objects/
+/preserved/restore-checks/
+/preserved/publication-*.json
+/preserved/toolchain/audio/

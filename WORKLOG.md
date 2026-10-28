@@ -1794,3 +1794,15 @@ pair-audit-r1與pair-promotion-r1通過後，正式七程式提升source-candida
 README、AGENTS及CONTEXT已新增永久圖庫入口，並明列其他程式、音樂與存檔尚未搬移。新定稿先存永久目錄再清研究副本；完整PNG維持本機保存，索引／清單／工具及核對收據一併提交私人倉庫。新建白色人影與光臺暫未製作，先完成使用者較新的資料保全要求。提交、推送與Docker收尾結果見artwork/publication-r1.json。
 
 同一固定計畫重跑保存工具通過，既有檔案未覆寫、清單SHA保持daaca39e…e7e1。Python語法與1681個本機文件連結通過；全專案root-owned／偽.md目錄掃描無輸出，無本案殘留容器，沿用既有Pillow映像。主機gh已核對倉庫PRIVATE，完整PNG與原版衍生圖像留本機永久目錄，Git僅加入計畫、清單、核對收據、說明與工具。
+
+## 2026-10-28：補齊程式、音樂、字型、存檔與研究來源的永久保存
+
+使用者要求「該保存的就保存」。既有artwork只保存美術，故新增preserved保存其他必要本機資料；它是資料保全與還原來源，沒有建立Release或發行版號。既有目錄沒有承載此範圍的永久位置，artwork職責維持美術，workplace仍供可清理研究。保存所有workplace一般檔案，排除Go編譯快取及舊逐幀錄影；另保留最新compat-pixels-save-r2的兩份完整存退讀錄影。所有存檔、來源、資料庫、音樂、字型、模組來源、收據及取樣PNG均納入，內容去重與無損壓縮，已保存美術按SHA引用，不重複佔空間。來源與排除項均不刪除，完成與還原結果接續本條。
+
+保存與獨立核對已通過：181584筆一般檔案、32561內容物件，749物件引用永久美術；邏輯資料56729737458 bytes，新增物件9454222868 bytes。另從既有kol-music映像保存FluidR3_GM.sf2、TiMidity兩設定及授權，148636532 bytes。保留181584個原路徑與權限，1282筆歷史連結只記錄。Go編譯快取及541份舊逐幀錄影排除，錄影共66433150457 bytes；原檔未刪。
+
+全程未掛原workplace的核對已驗七程式、r64全462檔、923核心、175來源、原158檔、四種主要字型、音源、存檔及九首未批准完整音樂。實際還原1848檔／426577779 bytes，另還原模組5398檔／310508011 bytes；原版／HD各400萬步state同336f22d4…4a47。存後與冷讀快照以until0只讀緩衝區，兩者2987 bytes同保存人物檔6f1689c2…23bfc2e。以保存來源／核心／模組及新Go快取，在network none、GOPROXY off、GOSUMDB off、GOTOOLCHAIN local下成功重建無頭程式。沒有將這些保存試跑稱為新完整GUI、自然通關或音樂批准。
+
+結果存preserved的verification-r1、restore-verification-r1、rebuild-verification-r1；README、CONTEXT、AGENTS與artwork入口同步。原始資料不刪除，只有本輪新建且可由已驗物件重生的還原暫存另作收尾。提交與推送、容器清理結果見preserved/publication-r1.json。
+
+保存工具語法與1701個本機連結已核對。僅刪除本輪新建的還原樹和重建二進位，保留小型試跑收據／log；原workplace完全未刪。最終核對見preserved/integrity-r1.json；物件、音源與試跑目錄均按本機分類排除Git。

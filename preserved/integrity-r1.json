@@ -1,0 +1,12 @@
+{
+  "status": "PASS-preservation-final-integrity",
+  "local_links": 1701,
+  "python_ast": 3,
+  "manifest_sha256": "16420e44cf36f89211d5f565ce006565dfb57330ae6d773e2e4a1c61a01d34ae",
+  "catalog_sha256": "8ab4fd7c02d82e23ac45a475ab2e0bfa7283d0f4ca53f4234525d7796e458b6b",
+  "verification_sha256": "9d0d337c76c4833797d28c91243bb3b53cb9eec624d07a2f1cdb9ff6ab6f1678",
+  "restore_sha256": "f6d1ee728019d58f5e67f335e09b73965f157c3b13bb8c66ca609aa4078deba6",
+  "rebuild_sha256": "f4f4399b98e9421edfde43c78d9b3bed1c897d1cbf3f1d4eff27120ef95d5c30",
+  "temporary_restored_tree_removed": true,
+  "old_workplace_deleted": false
+}

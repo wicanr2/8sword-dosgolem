@@ -1,5 +1,9 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+使用者於2026-10-28要求必要資料均應保存。[永久資料入口](preserved/README.md)保存程式、923核心、175固定輸入、完整r64、原版來源、音樂／字型／存檔／研究資料。[核對](preserved/verification-r1.json)、[還原試跑](preserved/restore-verification-r1.json)及[離線重建](preserved/rebuild-verification-r1.json)已通過。新建無法重生的資料或準備清理workplace前，先更新永久保存批次及清單，完成不依賴原workplace的驗證；原圖仍依下節artwork規則。完整本機物件與音源排除Git，權利分類及九首音樂待確認狀態保持。
+
+[保存／核對／還原工具](tools/preserve-project-data.py)在固定Pillow容器使用`--capture --project <唯讀專案> --archive <新可寫preserved批次>`；核對用`--verify --archive <唯讀保存目錄> --artwork <唯讀永久美術>`。還原加`--restore --out <可寫目標專案>`及可選重複`--prefix <原相對路徑>`，遇到不同檔案拒絕覆寫，不自動建立歷史符號連結。[整體核對](tools/audit-preserved-data.py)另核對原始158檔、正式程式／r64、核心／建置輸入、音源及存檔；用法與排除清單見永久入口。Go編譯快取與541份舊大型逐幀錄影未保存，原檔本輪未刪；最新存退讀兩份錄影已保留。
+
 使用者於2026-10-27要求已確定的完整原圖不可只放workplace，因其會刪除研究區節省空間。這項新指示優先於本檔及舊規格「完整原圖留workplace」的歷史位置：[永久圖庫](artwork/README.md)位於`artwork/approved/masters/`，完整提示／來源收據在`artwork/approved/provenance/`。新圖確認或正式採用後，先保存原PNG與提示至此處的新版本路徑，更新[逐檔清單](artwork/manifest.json)並核對，才把研究副本視為可清理。不可只存縮圖、只留生成工具預設目錄，或用連回workplace的符號連結。
 
 [永久原圖保存工具](tools/archive-approved-art.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --plan <固定計畫> --archive <可寫artwork目錄>`作逐SHA複製，拒絕覆寫不同檔案；相同計畫可重跑。只核對時用`--archive <唯讀artwork> --verify`，不需要workplace。首次計畫為[archive-plan-r1.json](artwork/archive-plan-r1.json)，974檔／132主檔的[獨立核對](artwork/verification-detached-r1.json)已通過；其他研究、程式、音樂與存檔沒有因此全部搬移。完整PNG沿既有本機權利分類排除Git，索引與核對資訊加入倉庫。

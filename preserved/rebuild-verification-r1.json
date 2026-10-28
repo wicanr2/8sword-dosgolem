@@ -1,0 +1,17 @@
+{
+  "status": "PASS-offline-restored-rebuild",
+  "go_version": "go version go1.24.13 linux/amd64",
+  "source": "workplace/player/source-candidate-ring-r3/src",
+  "core": "workplace/player/runtime-render-r1/src",
+  "go_cache": "fresh /tmp inside container",
+  "module_sources": "restored workplace/gomodcache",
+  "network": false,
+  "goproxy": "off",
+  "gosumdb": "off",
+  "gotoolchain": "local",
+  "command": "go build -p 2 -trimpath -buildvcs=false -mod=readonly -o /checks/rebuilt-8sword-replay ./cmd/8sword-replay",
+  "binary_sha256": "821a03b2a5bf624b2a3d6b1230b1dab0da9f2afe641f866bb0dd43dd062e931a",
+  "binary_bytes": 6686075,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Headless current command rebuilt successfully from saved source/dependencies. Different build flags may yield a different binary; no bit-identical rebuild claim."
+}

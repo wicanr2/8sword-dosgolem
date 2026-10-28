@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "captured-not-yet-detached-verified",
+  "files": 181584,
+  "symbolic_link_records": 1282,
+  "unique_objects": 32561,
+  "external_artwork_objects": 749,
+  "logical_bytes": 56729737458,
+  "stored_bytes": 9454222868,
+  "categories": {
+    "其他必要輸入": 40543,
+    "收據與文件": 41634,
+    "原始碼與重建工具": 33621,
+    "圖像與取樣畫面": 39259,
+    "字型": 52,
+    "音樂與音源": 672,
+    "存檔與狀態": 25797,
+    "最新存讀錄影": 2,
+    "逆向資料庫": 4
+  },
+  "catalog_sha256": "8ab4fd7c02d82e23ac45a475ab2e0bfa7283d0f4ca53f4234525d7796e458b6b",
+  "exclusions_sha256": "aa092c5a53c2dc36e1dfba3fb3817a63cb96d6bd9d80a71c9f257bd9175698f0",
+  "excluded_stream_files": 541,
+  "excluded_stream_bytes": 66433150457,
+  "artwork_manifest_sha256": "daaca39e8a5a69e169b089b1155c6e71e57675d6be2d6fac327d04fdcd03e7e1",
+  "tool_sha256": "6e9e3c88323d46c56d261b2dd4622e1c35d7c9958dbab402ff4cf752283878fe",
+  "rights": "Local-only originals, derivatives, fonts, source revisions and saves. Objects are not added to Git or public releases."
+}
