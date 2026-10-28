@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "files": 169,
+  "workplace_required": false,
+  "restored": true,
+  "index_sha256": "bddec5eda106fa0949ed839a59217806d376f5e0e094443c9efb9ef092e5b5ef",
+  "offline_shadow_replay_byte_equal": true,
+  "restored_program": "ai-shadow-r2",
+  "replay_expected_sha256": "64244969bbc1eeb13205b8004af3f1ca09a6f5329d0cac5e55206aa6ca581bf1"
+}

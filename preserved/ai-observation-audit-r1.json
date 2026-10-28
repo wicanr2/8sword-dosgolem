@@ -1,0 +1,374 @@
+{
+  "schema": 1,
+  "status": "PASS-scoped-read-only-AI-observation-and-offline-shadow",
+  "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_database_sha256": "a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac",
+  "module_load_paragraph": 272,
+  "core_files": 923,
+  "static_functions": {
+    "sub_1FAA2": {
+      "start": 129698,
+      "end": 129794,
+      "export": "ida-ai-entry-r3.json",
+      "export_sha256": "af32471bdcd9111cdbe818958b7616f22eac56a3d1e8c1b682706e7d5ce2bff2"
+    },
+    "sub_206DA": {
+      "start": 132826,
+      "end": 132899,
+      "export": "ida-ai-entry-r3.json",
+      "export_sha256": "af32471bdcd9111cdbe818958b7616f22eac56a3d1e8c1b682706e7d5ce2bff2"
+    },
+    "sub_22B96": {
+      "start": 142230,
+      "end": 142780,
+      "export": "ida-ai-candidates-r1.json",
+      "export_sha256": "df1747aa1c709fd423af42e7987b214bd1030668ef9175b3052050bc3149becd"
+    },
+    "sub_1FB6C": {
+      "start": 129900,
+      "end": 130843,
+      "export": "ida-ai-parents-r2.json",
+      "export_sha256": "76feaf768b248c99d54c7c3632f898f5199a844895e8312363ea5c6c9af1d7ba"
+    },
+    "sub_22DBC": {
+      "start": 142780,
+      "end": 145986,
+      "export": "ida-ai-parents-r2.json",
+      "export_sha256": "76feaf768b248c99d54c7c3632f898f5199a844895e8312363ea5c6c9af1d7ba"
+    }
+  },
+  "cases": [
+    {
+      "case": "damage-single-r3",
+      "source_sha256": "5f59ebd624bb3603fd381f71699ad43e489d699c090a8805121b79dd7a10945e",
+      "start_step": 75593388,
+      "end_step": 115593388,
+      "round_return_step": 100814052,
+      "events": 40,
+      "writes": 68,
+      "original_actions": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "casualties": [
+        5,
+        3,
+        7
+      ],
+      "state_sha256": "b79b129361f97f3259938e7b76bc7f1d4d9443e2c3480c0ffdb790be68f18982",
+      "trace_sha256": "cc1e684de9e8e1821ed54b9f8fad6ae5263234dae214c6a8a1b0eb4e5407cc56",
+      "shadow_sha256": "563612628e4bceb3db97f3aac617fcca821fb10c975548895e62f463ea96e9d5"
+    },
+    {
+      "case": "damage-multi-r3",
+      "source_sha256": "88f21ef185d597fee43972aec1d14e9a6811ea072a443aa6be04fe6de999b5bf",
+      "start_step": 56792358,
+      "end_step": 96792358,
+      "round_return_step": 79391897,
+      "events": 40,
+      "writes": 64,
+      "original_actions": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "casualties": [
+        16,
+        5,
+        12
+      ],
+      "state_sha256": "c3d7d544eb5ea8409876f8ab36fb3a4b4d432015d71be1ef49b2366d3b1b7f18",
+      "trace_sha256": "b4ad2fba8dd331b358f753ebe0253ee016e201296c29b8f8421d1032eb9fbf46",
+      "shadow_sha256": "64244969bbc1eeb13205b8004af3f1ca09a6f5329d0cac5e55206aa6ca581bf1"
+    }
+  ],
+  "helper_predictions": [
+    {
+      "entry_step": 75770532,
+      "return_step": 75770580,
+      "source_unit": 0,
+      "target_unit": 0,
+      "raw_damage": 128,
+      "returned_value": 6,
+      "opaque_accumulator_before": 750,
+      "opaque_accumulator_after": 622
+    },
+    {
+      "entry_step": 77323227,
+      "return_step": 77323275,
+      "source_unit": 0,
+      "target_unit": 0,
+      "raw_damage": 128,
+      "returned_value": 6,
+      "opaque_accumulator_before": 622,
+      "opaque_accumulator_after": 494
+    },
+    {
+      "entry_step": 81852581,
+      "return_step": 81852629,
+      "source_unit": 1,
+      "target_unit": 0,
+      "raw_damage": 80,
+      "returned_value": 4,
+      "opaque_accumulator_before": 494,
+      "opaque_accumulator_after": 414
+    },
+    {
+      "entry_step": 84179282,
+      "return_step": 84179330,
+      "source_unit": 1,
+      "target_unit": 0,
+      "raw_damage": 80,
+      "returned_value": 4,
+      "opaque_accumulator_before": 414,
+      "opaque_accumulator_after": 334
+    },
+    {
+      "entry_step": 90071714,
+      "return_step": 90071762,
+      "source_unit": 2,
+      "target_unit": 0,
+      "raw_damage": 180,
+      "returned_value": 8,
+      "opaque_accumulator_before": 334,
+      "opaque_accumulator_after": 154
+    },
+    {
+      "entry_step": 93177544,
+      "return_step": 93177592,
+      "source_unit": 2,
+      "target_unit": 0,
+      "raw_damage": 180,
+      "returned_value": 8,
+      "opaque_accumulator_before": 154,
+      "opaque_accumulator_after": 65510
+    },
+    {
+      "entry_step": 58808129,
+      "return_step": 58808177,
+      "source_unit": 0,
+      "target_unit": 0,
+      "raw_damage": 400,
+      "returned_value": 17,
+      "opaque_accumulator_before": 775,
+      "opaque_accumulator_after": 375
+    },
+    {
+      "entry_step": 60360644,
+      "return_step": 60360692,
+      "source_unit": 0,
+      "target_unit": 0,
+      "raw_damage": 400,
+      "returned_value": 17,
+      "opaque_accumulator_before": 375,
+      "opaque_accumulator_after": 65511
+    },
+    {
+      "entry_step": 64894706,
+      "return_step": 64894754,
+      "source_unit": 1,
+      "target_unit": 1,
+      "raw_damage": 150,
+      "returned_value": 6,
+      "opaque_accumulator_before": 2070,
+      "opaque_accumulator_after": 1920
+    },
+    {
+      "entry_step": 66445311,
+      "return_step": 66445359,
+      "source_unit": 1,
+      "target_unit": 1,
+      "raw_damage": 150,
+      "returned_value": 6,
+      "opaque_accumulator_before": 1920,
+      "opaque_accumulator_after": 1770
+    },
+    {
+      "entry_step": 70982580,
+      "return_step": 70982628,
+      "source_unit": 2,
+      "target_unit": 1,
+      "raw_damage": 360,
+      "returned_value": 13,
+      "opaque_accumulator_before": 1770,
+      "opaque_accumulator_after": 1410
+    },
+    {
+      "entry_step": 73307921,
+      "return_step": 73307969,
+      "source_unit": 2,
+      "target_unit": 1,
+      "raw_damage": 360,
+      "returned_value": 13,
+      "opaque_accumulator_before": 1410,
+      "opaque_accumulator_after": 1050
+    }
+  ],
+  "shadow_suggestions": [
+    {
+      "case": "damage-multi-r3",
+      "decision": {
+        "Step": 70982531,
+        "SourceSlot": 2,
+        "SourceUnit": 2,
+        "OriginalSlot": 1,
+        "SuggestedSlot": 0,
+        "ObservedOriginalLoss": 12,
+        "Candidates": [
+          {
+            "Slot": 0,
+            "Unit": 0,
+            "Class": 1,
+            "Count": 15,
+            "RawDamage": 360,
+            "PredictedLoss": 15,
+            "Eliminates": true
+          },
+          {
+            "Slot": 1,
+            "Unit": 1,
+            "Class": 21,
+            "Count": 64,
+            "RawDamage": 360,
+            "PredictedLoss": 12,
+            "Eliminates": false
+          }
+        ],
+        "Reason": "研究排序：先清除整隊，再比較預期減員比例；同分保留原目標"
+      }
+    }
+  ],
+  "controlled_target_experiment": {
+    "before_state_sha256": "5facac45fcd09119681596f531e3caeb1c6e928649038c0469d45c2e1a707cb9",
+    "before_states_equal": true,
+    "controlled_experiment": true,
+    "production_changed": false,
+    "results": {
+      "original": {
+        "controller_writes": [],
+        "decision_after_units": [
+          1,
+          15,
+          21,
+          52,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          50,
+          21,
+          50,
+          11,
+          60,
+          17,
+          50,
+          22,
+          45,
+          7,
+          40
+        ],
+        "decisions": 3,
+        "end_step": 96792358,
+        "final_state_sha256": "c3d7d544eb5ea8409876f8ab36fb3a4b4d432015d71be1ef49b2366d3b1b7f18",
+        "round_returned": true,
+        "start_step": 56792358
+      },
+      "suggested": {
+        "controller_writes": [
+          {
+            "cs": 3943,
+            "ip": 6154,
+            "new": 7,
+            "offset": 38360,
+            "old": 8,
+            "purpose": "controlled third enemy target: slot 1 to slot 0",
+            "segment": 7816,
+            "step": 70982531
+          }
+        ],
+        "decision_after_units": [
+          0,
+          0,
+          21,
+          64,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          50,
+          21,
+          50,
+          11,
+          60,
+          17,
+          50,
+          22,
+          45,
+          7,
+          40
+        ],
+        "decisions": 3,
+        "end_step": 96792358,
+        "final_state_sha256": "3ba647f2caee285d620167da27d6d1eb7f1470380cd9e5b22d164d486e5f8d42",
+        "round_returned": true,
+        "start_step": 56792358
+      }
+    },
+    "schema": 1,
+    "source_sha256": "88f21ef185d597fee43972aec1d14e9a6811ea072a443aa6be04fe6de999b5bf",
+    "spec": "030 DRAFT"
+  },
+  "controlled_target_experiment_sha256": "75d0fc3f0d27944ce365cce6d3fe9f0c8f860fe56dbbce5fabb9bf49aca44496",
+  "production_programs_unchanged": {
+    "8sword": "8f6a34cca0bcb23c0d716b1cab665344d7050f273fdab714283579fe627a131d",
+    "8sword-replay": "7daf34adaeaf99e086c85248a5e3629853bc5bc2a873eb91ac11f92804688d0d",
+    "gui-check": "81f8866b74b04964c3667348d1d3b178b64258f0dc271a30d433f5e678f98309",
+    "music-check": "65bef075e0366c03d1ecc009f12d5f16c3049efbee06d0720c4d6b7fc62dbf8a",
+    "heroine-check": "41df4ba3094830ed03bbea95456124dda371c67e12f23d01b20e39542dab4899",
+    "museum-check": "d729f8e26da2f8789f10b5bb8874d59dc27ef5cb4f8eaf63149305a5f3fa7d71",
+    "story-prelude-check": "7cb2cc20ef83c63219cf5cce9e584f530a5977392226042e906072ff365c214c"
+  },
+  "tools": {
+    "probe-ai-observation.go": "e51d8614a8dd3537c11bc6c0989e08ce545f8644fcf722cada6dd66d3456e804",
+    "prepare-ai-observation.py": "ed6001be9c0150c4d8330372401a7d86437a9955ac167f14e31a9cb4fbce3337",
+    "research-ai-shadow.go": "4add8b917ba3ada9558d7e4236bfee871d743ddf3b10c323002a119f1a669b0c",
+    "probe-ai-target-experiment.go": "7307c7c6a508eb64bdf93bfdb79744038b19a658d1ae2ee2fc0ed0f36ae07ef6",
+    "audit-ai-observation.py": "14c130f93ee62602ad57c127f048c8e1a0ea3e50edbb0260a8dbbbe9319ee976"
+  },
+  "limits": [
+    "Snapshot diagnostics from previously recorded normal paths; no new cold-start claim.",
+    "No AI decision replacement or new rules in production.",
+    "Only sampled front-row selection is evaluated; ranged, rear-row and special actions rejected.",
+    "DS:26AC and DS:8CA4 gameplay meanings remain unknown; arithmetic and writes are confirmed.",
+    "One controlled target substitution confirms the boundary, not a complete AI policy or improved win rate."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "resolution_backlinks": 6,
+  "missing_correction_rejected": true,
+  "markdown_links": 1840,
+  "production_programs_unchanged": 7,
+  "production_assets_unchanged": 525,
+  "production_inputs_unchanged": 177,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0,
+  "python_syntax": true
+}

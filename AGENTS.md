@@ -1,5 +1,8 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+AI續作依[030研究結果](docs/spec/030-battle-expansion-proposal.md#ai觀測與go旁路的限定研究結果)，正式r65保持。兩組完整敵方回合的入口／參數／返回及14前綴已驗；Go純計算重現12次傷害函式回傳、6次減員。單欄位目標實驗由相同state只改`SS:[BP-4]`的8→7，原版執行器確實將15人民兵全滅，原目標64矮人則減12。這是受控研究，不稱正式策略AI或勝率改善。射手、後排及特殊動作仍拒用旁路評分，數值／特性／存檔維持DRAFT。原`sub_1FAA2`會寫DS相對`8CA4h`，候選評估使用[Go旁路](tools/research-ai-shadow.go)，不反覆呼叫原函式。來源、位址、證據層級及限制見[RE追加](RESEARCH-LOG.md#ai敵方回合與go旁路實證)；[核對](preserved/ai-observation-audit-r1.json)與[永久保存／還原](preserved/README.md#ai觀測研究追加)不依賴原workplace。
+
+
 使用者於2026-10-28要求先完成圖片並繼續接入。[054限定驗收](docs/spec/054-all-graphics-hd.md#r65限定驗收-conformed)已提升r65／525檔、source-candidate-completion-r4／177輸入七程式及既有923核心。333筆已辨識圖形中，290筆彩色來源已有正式對應，43筆單色／IFF只入包；本輪新增17筆，另兩筆既有開場補分類。[現行圖庫r2](artwork/all-graphics-hd-gallery-r2.html)、[接入清單](artwork/graphics-integration-r65.json)、[核對](preserved/completion-r65-audit.json)與[提升](preserved/completion-r65-promotion.json)為入口。原版模式、Go繪圖、玩法及音樂保持；PMAP66–68維持Go矩形及031狀態配色，不用固定PNG蓋過後續色碼。47畫面、狀態／PCM、普通視窗及完整結局／Esc已抽驗，不稱自然遭遇、自然通關或新增存退讀。原[美術清單](artwork/all-graphics-hd-coverage-r1.json)保留271／62歷史分類，永久原圖、原974檔manifest與新增美術清單均不覆寫。A.A及六RIL仍未知，架構重製尚未定案。
 
 使用者已授權清理過期workspace及快取。[清理結果](preserved/README.md#已授權清理)已刪舊錄影、Go快取及逐SHA核對的已保存副本；必要資料由[永久保存](preserved/README.md)及[r65追加](preserved/completion-r65.json)還原。[清理器](tools/clean-expired-workspace.py)先以`--project <唯讀專案> --phase quick|archived --plan <新JSON.gz>`固定名單，再掛可寫workplace加`--apply --out <新JSON>`；只刪授權範圍，變動檔保留。新資料清理前先保存及獨立核對，不全域刪其他專案Docker資源。
