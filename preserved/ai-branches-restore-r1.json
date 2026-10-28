@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "files": 134,
+  "objects": 80,
+  "workplace_required": false,
+  "restored": true,
+  "index_sha256": "80786d877c34c212ab07fb5124a3c9dec37a1b72fc07c2810d8506c5abba1515",
+  "offline_shadow_replay_byte_equal": true,
+  "replay_expected_sha256": "2595582a96599666fb8abbd386bc937daad4f1bf61214a80be1d8614298b4880"
+}

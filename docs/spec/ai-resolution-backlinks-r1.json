@@ -14,7 +14,7 @@
       "older_spec": "docs/spec/030-battle-expansion-proposal.md",
       "required_correction": "AI回合觀測勘誤：2026-10-28",
       "scope": "two fixed normal-path snapshots, six normal front-row attacks and one controlled target change",
-      "not_closed": "ranged, rear-row, special actions, general strategy, new rules and save format"
+      "not_closed": "unobserved special selectors, mixed-board reachability, overall strategy, new rules and save format"
     },
     {
       "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1FB6C",
@@ -29,7 +29,7 @@
       "older_spec": "docs/spec/030-battle-expansion-proposal.md",
       "required_correction": "AI回合觀測勘誤：2026-10-28",
       "scope": "two fixed normal-path snapshots, six normal front-row attacks and one controlled target change",
-      "not_closed": "ranged, rear-row, special actions, general strategy, new rules and save format"
+      "not_closed": "unobserved special selectors, mixed-board reachability, overall strategy, new rules and save format"
     },
     {
       "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1FD7A",
@@ -44,7 +44,7 @@
       "older_spec": "docs/spec/030-battle-expansion-proposal.md",
       "required_correction": "AI回合觀測勘誤：2026-10-28",
       "scope": "two fixed normal-path snapshots, six normal front-row attacks and one controlled target change",
-      "not_closed": "ranged, rear-row, special actions, general strategy, new rules and save format"
+      "not_closed": "unobserved special selectors, mixed-board reachability, overall strategy, new rules and save format"
     },
     {
       "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x22DBC",
@@ -59,7 +59,7 @@
       "older_spec": "docs/spec/030-battle-expansion-proposal.md",
       "required_correction": "AI回合觀測勘誤：2026-10-28",
       "scope": "two fixed normal-path snapshots, six normal front-row attacks and one controlled target change",
-      "not_closed": "ranged, rear-row, special actions, general strategy, new rules and save format"
+      "not_closed": "unobserved special selectors, mixed-board reachability, overall strategy, new rules and save format"
     },
     {
       "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x22B96",
@@ -74,7 +74,7 @@
       "older_spec": "docs/spec/030-battle-expansion-proposal.md",
       "required_correction": "AI回合觀測勘誤：2026-10-28",
       "scope": "two fixed normal-path snapshots, six normal front-row attacks and one controlled target change",
-      "not_closed": "ranged, rear-row, special actions, general strategy, new rules and save format"
+      "not_closed": "unobserved special selectors, mixed-board reachability, overall strategy, new rules and save format"
     },
     {
       "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1FAA2",
@@ -89,7 +89,97 @@
       "older_spec": "docs/spec/030-battle-expansion-proposal.md",
       "required_correction": "AI回合觀測勘誤：2026-10-28",
       "scope": "two fixed normal-path snapshots, six normal front-row attacks and one controlled target change",
-      "not_closed": "ranged, rear-row, special actions, general strategy, new rules and save format"
+      "not_closed": "unobserved special selectors, mixed-board reachability, overall strategy, new rules and save format"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1FC57",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1FC57",
+      "original_name": "0x1FC57",
+      "meaning": "前排遠程的目標正規化及六參數交接",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "遠程與特殊動作勘誤：2026-10-28",
+      "scope": "13 controlled branch fixtures and original caller/executor bytes",
+      "not_closed": "special selectors 2/3/4/5/7, mixed board reachability, higher growth tiers, general strategy and save format"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1FEE4",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1FEE4",
+      "original_name": "0x1FEE4",
+      "meaning": "後排遠程的目標正規化及六參數交接",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "遠程與特殊動作勘誤：2026-10-28",
+      "scope": "13 controlled branch fixtures and original caller/executor bytes",
+      "not_closed": "special selectors 2/3/4/5/7, mixed board reachability, higher growth tiers, general strategy and save format"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1F266",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1F266",
+      "original_name": "sub_1F266",
+      "meaning": "特殊分派0/1/6的本輪效果與返回",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "遠程與特殊動作勘誤：2026-10-28",
+      "scope": "13 controlled branch fixtures and original caller/executor bytes",
+      "not_closed": "special selectors 2/3/4/5/7, mixed board reachability, higher growth tiers, general strategy and save format"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1F2F8",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1F2F8",
+      "original_name": "0x1F2F8",
+      "meaning": "此函式BP-4為特殊selector，非選敵函式的目標",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "遠程與特殊動作勘誤：2026-10-28",
+      "scope": "13 controlled branch fixtures and original caller/executor bytes",
+      "not_closed": "special selectors 2/3/4/5/7, mixed board reachability, higher growth tiers, general strategy and save format"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x21C36",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x21C36",
+      "original_name": "sub_21C36",
+      "meaning": "DS:8CB2指定的本輪五次直接減員",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "遠程與特殊動作勘誤：2026-10-28",
+      "scope": "13 controlled branch fixtures and original caller/executor bytes",
+      "not_closed": "special selectors 2/3/4/5/7, mixed board reachability, higher growth tiers, general strategy and save format"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1F641",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1F641",
+      "original_name": "0x1F641",
+      "meaning": "類型10增兵49/50分段的原數量與計算界限",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "遠程與特殊動作勘誤：2026-10-28",
+      "scope": "13 controlled branch fixtures and original caller/executor bytes",
+      "not_closed": "special selectors 2/3/4/5/7, mixed board reachability, higher growth tiers, general strategy and save format"
     }
   ]
 }

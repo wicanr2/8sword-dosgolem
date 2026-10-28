@@ -2,6 +2,12 @@
 
 本目錄保存程式、固定來源、音樂、字型、存檔與研究證據。完整定稿美術仍由[artwork](../artwork/README.md)管理。初批r64保存清單維持不變，後續r65另存追加批次；九首待確認音樂的批准狀態保持。
 
+## AI分支研究追加
+
+[分支清單](ai-branches-r1.json)、[獨立核對](ai-branches-audit-r1.json)、[捕獲結果](ai-branches-capture-r1.json)與[離線核對](ai-branches-verification-r1.json)保存13個受控回合及Go分支旁路。134檔去重成80物件，壓縮佔11558373 bytes；完整state與研究二進位放本機`ai-branches-r1/`，不加入Git。正式r65保持。[文件與回填核對](ai-branches-integrity-r1.json)記錄12筆定位護欄、兩種缺標記負例及正式素材保持結果。
+
+[保存器](../tools/archive-ai-branches.py)在固定Pillow容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；驗證只掛preserved及工具，改用`--verify --archive <唯讀preserved> --out <新JSON>`。另加`--restore <空白可寫目錄>`還原，沒有原workplace也能核對。[還原結果](ai-branches-restore-r1.json)已通過，還原的`ai-branches-shadow-r1 -batch <還原目錄> -out <新JSON>`重生結果逐byte相同。研究範圍與原版資料的還原來源見[030](../docs/spec/030-battle-expansion-proposal.md#遠程後排與特殊動作的追加研究)及初批catalog。
+
 ## AI觀測研究追加
 
 [研究清單](ai-observation-r1.json)、[獨立核對](ai-observation-audit-r1.json)、[捕獲結果](ai-observation-capture-r1.json)及[離線核對](ai-observation-verification-r1.json)保存兩組完整敵方回合、Go旁路試算與單欄位目標實驗。原始state、原生PNG、RAM及研究二進位只放本機`ai-observation-r1/`壓縮物件，不加入Git；正式r65程式與素材保持。[文件與回填護欄](ai-observation-integrity-r1.json)另核對舊規格勘誤、缺標記的拒絕、來源及擁有權。
