@@ -42,6 +42,7 @@ func main(){
    m.CPU.Seg[cpu.CS]=0xf67;m.CPU.Seg[cpu.DS]=ds;m.CPU.Seg[cpu.SS]=ds;m.CPU.IP=entry;m.CPU.R[cpu.SP]=0xe000
    put(0xe000,0xfff0);put(0xe002,0xf67);put(0xe004,0);put(0xe006,0)
    at:=0xe57*16+int(hook);prefix:=make([]byte,24);for i:=range prefix{prefix[i]=m.Read8(0xf67*16+uint32(hook)+uint32(i))};if !bytes.Equal(prefix,code[at:at+24]){panic("hook bytes mismatch")}
+   must(state.Save(filepath.Join(dest,"start-call.state"),m,d))
    start:=m.Steps;seen:=false;eligible:=false;beforeAmount,afterAmount:=uint16(0),uint16(0);var beforeRegs,afterRegs []uint16;beforeRAM,afterRAM:="",""
    for m.Steps<start+10000{
     c:=m.CPU

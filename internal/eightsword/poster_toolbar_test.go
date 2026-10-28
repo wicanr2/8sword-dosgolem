@@ -200,3 +200,51 @@ func TestPosterBattleAISelectionAndPixels(t *testing.T) {
 		}
 	}
 }
+
+func TestPosterRulesSelectionAndBattleLock(t *testing.T) {
+	v := testToolbar(t)
+	v.SyncBattleRules("formation", false)
+	if a := v.Input(2400, 24, true, ""); !a.Consumed || v.Menu != "rules" || v.Selected != 1 {
+		t.Fatal("rules menu", a)
+	}
+	v.Input(0, 0, false, "up")
+	if a := v.Input(0, 0, false, "enter"); !a.Consumed || a.BattleRules != "native" || a.BattleAI != "" {
+		t.Fatal("rules selection", a)
+	}
+	v.Input(2400, 24, true, "")
+	v.SyncBattleRules("formation", true)
+	if v.Menu != "" {
+		t.Fatal("battle start left rules menu open")
+	}
+	if a := v.Input(2400, 24, true, ""); !a.Consumed || v.Menu != "" || a.BattleRules != "" {
+		t.Fatal("locked rules changed", a)
+	}
+	v.Input(1800, 24, true, "")
+	if v.Menu != "ai" {
+		t.Fatal("battle lock blocked independent AI")
+	}
+	v.CloseMenu()
+	v.SyncBattleRules("native", false)
+	v.Input(2400, 24, true, "")
+	if a := v.Input(2400, 140, true, ""); a.BattleRules != "formation" || !a.Consumed {
+		t.Fatal(a)
+	}
+	for _, mode := range []string{"native", "formation"} {
+		for _, locked := range []bool{false, true} {
+			x := 2244
+			for _, c := range v.rulesLabel(mode, locked) + "  v" {
+				if _, ok := v.glyphs[c]; !ok {
+					t.Fatalf("missing rule glyph %q", c)
+				}
+				if c < 128 {
+					x += 20
+				} else {
+					x += 34
+				}
+			}
+			if x > 2852 {
+				t.Fatal("rule label exceeds button", mode, locked)
+			}
+		}
+	}
+}

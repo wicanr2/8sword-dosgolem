@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/binary"
 	"encoding/json"
+	"errors"
 	"flag"
 	"fmt"
 	"image"
@@ -220,6 +221,14 @@ func (g *game) Update() error {
 				}
 				g.updateTitle()
 			}
+			if a.BattleRules != "" {
+				if err := g.engine.SetBattleRules(a.BattleRules); err != nil {
+					if !errors.Is(err, eightsword.ErrBattleRulesLocked) {
+						return err
+					}
+				}
+				g.updateTitle()
+			}
 			if a.Poster != "" {
 				if err := g.toolbar.SetPoster(a.Poster, time.Now()); err != nil {
 					log.Print(err)
@@ -309,6 +318,7 @@ func (g *game) Update() error {
 	if g.toolbar != nil {
 		g.toolbar.SyncFont(g.engine.FontID())
 		g.toolbar.SyncBattleAI(g.engine.BattleAIMode())
+		g.toolbar.SyncBattleRules(g.engine.BattleRulesMode(), g.engine.BattleRulesStatus().Active)
 		g.frame = g.toolbar.Frame(g.frame, time.Now())
 	}
 	composed := time.Now()
@@ -412,7 +422,11 @@ func (g *game) updateTitle() {
 	if g.engine.BattleAIMode() == "target" {
 		ai = "策略 AI"
 	}
-	ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型 · " + ai + g.titleSuffix)
+	rules := "原版規則"
+	if g.engine.BattleRulesMode() == "formation" {
+		rules = "結陣試作"
+	}
+	ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型 · " + ai + " · " + rules + g.titleSuffix)
 }
 func (g *game) Layout(int, int) (int, int) {
 	if g.toolbar != nil {
@@ -425,6 +439,7 @@ func main() {
 	assets := flag.String("assets", "", "HD 字型、圖像與音樂素材目錄")
 	font := flag.String("font", "", "字型：noto、lishu、caoshu；空白沿用偏好")
 	battleAI := flag.String("battle-ai", "native", "敵方AI：native原版；target先全滅再比減員比例")
+	battleRules := flag.String("battle-rules", "auto", "規則：auto沿進度標記，無標記用native；formation結陣試作")
 	poster := flag.String("poster", "", "海報：wings、cover、off；空白沿用偏好")
 	settings := flag.String("settings", "", "字型偏好檔，預設為系統使用者設定目錄")
 	saves := flag.String("saves", "", "可寫存檔目錄")
@@ -457,7 +472,7 @@ func main() {
 		}
 		defer pprof.StopCPUProfile()
 	}
-	engine, err := eightsword.Open(eightsword.Options{Root: *root, Assets: *assets, Saves: *saves, HD: *hd, BattleAI: *battleAI})
+	engine, err := eightsword.Open(eightsword.Options{Root: *root, Assets: *assets, Saves: *saves, HD: *hd, BattleAI: *battleAI, BattleRules: *battleRules})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -594,6 +609,11 @@ func main() {
 		g.titleSuffix = title[i:]
 	}
 	title += aiTitle
+	if engine.BattleRulesMode() == "formation" {
+		title += " · 結陣試作"
+	} else {
+		title += " · 原版規則"
+	}
 	if *capture != "" {
 		g.introDraw, err = os.Create(filepath.Join(*capture, "intro-draw.jsonl"))
 		if err != nil {

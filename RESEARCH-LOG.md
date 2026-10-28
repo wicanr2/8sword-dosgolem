@@ -2321,3 +2321,11 @@ GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建�
 探針首版誤用不存在的Machine.RAM，編譯即拒絕，未執行；依實際Mem欄修正後原命令乾淨重跑，失敗來源保留。規則工具列HTML原型則有一次CDP全域const名稱碰撞；修正後兩次截圖逾時，診斷停在Page.captureScreenshot，原因未明。依驗證路由分類成擷取工具問題，未改頁面規則或遊戲；最後只驗操作／戰鬥鎖定／手機寬度，明列不含新截圖驗收。初批數值頁的真實桌面／手機截圖與核對保持。
 
 三個新固定定位回填030與台帳，共26筆，不改原名稱。對稱helper與AX掛點已在受控範圍proven，正常玩家／射手caller、實際兵損、Engine規則生命週期、正式工具列、存檔標記仍unknown／DRAFT。新來源與完整state另作[永久保存](preserved/README.md#結陣接入研究保存)，正式七程式、181來源、923核心及r66素材525份保持。
+
+## 2026-10-28：結陣的正常生命週期與真正存檔
+
+追加前節後續證據，不重寫隔離helper研究。PAM SHA仍為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0。IDA9.4 MZ線性sub_1E578入口0x1E578及retf 0x1E5B0，在固定0110h載入的dosgolem runtime分別為0F67:0008／0040；原始完整wrapper bytes與唯一直接caller沿formation-hooks-r1的r2匯出。最初生命週期為strong inference，現由一次正常新遊戲／募兵／自然遇敵／撤退結果返回的實際入口與同SS／SP返回，提升為proven-in-one-sampled-battle，不外推所有戰鬥類型。
+
+正式候選source-candidate-formation-r2、Go1.24.13、原923核心走真正XTEST視窗，手冊掃描0007印頁9的游標右移與Enter觸發玩家攻擊，兩側helper共五次；戰鬥期間Active=true，返回後Started=Finished=1。沒有改軍隊、敵軍、座標、時間或亂數；RNG內部seed未受控，本次不是跨流程骰序對拍。此局民兵獨隊，Applied=0；合資格20%傷害結果只由固定快照的24份完整helper對照證明，不宣稱自然兵損或整體平衡。
+
+原版F7寫入gamedata.ay時，923核心Wrote只是意圖且FileOps沒有AH40 write，因此正式標記需同時確認2987-byte意圖、成功close、實際scratch檔與原版runtime linear0x9E000緩衝區相同，才寫規則與SHA。正常存退formation、auto冷讀後改native真正保存、再auto冷讀native，共三份實檔均與零步inspect的2987 bytes一致。原版檔案格式不改，旁置標記不載入客體RAM。各階段SHA、七程式與184來源見[獨立核對](preserved/formation-engine-audit-r1.json)，工具及完整證據由[永久入口](preserved/README.md#結陣規則正式接入保存)保存。

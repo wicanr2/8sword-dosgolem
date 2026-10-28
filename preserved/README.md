@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## 結陣規則正式接入保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#首版結陣正式接入與限定驗收)已提升184來源七程式、r67／525素材，923核心保持。[獨立核對](formation-engine-audit-r1.json)與[提升收據](formation-engine-promotion-r1.json)記錄正式範圍；原版規則／結陣試作可由HD工具列切換，規則標記隨真正存檔恢復，AI獨立。
+
+[保存清單](formation-engine-r1.json)含963檔、490物件，壓縮154995466 bytes，保存兩輪候選、24份受控正式狀態及故障、新原版起點、三階段GUI、存檔／標記、新字圖及當時工具／READY規格。完整物件只留本機`formation-engine-r1/`，Git保存工具、清單、收據與已批准的成果圖。[捕獲收據](formation-engine-preservation-r1.json)及[無workplace完整還原](formation-engine-restoration-r1.json)均通過。驗證用的963份還原副本已逐SHA核對後[清除](formation-engine-restore-cleanup-r1.json)，釋放285660544 bytes，永久物件與現行候選保持。
+
+[保存器](../tools/archive-formation-engine.py)在固定Pillow11.3.0容器使用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲。只掛preserved及工具，用`--verify --archive <唯讀preserved> --out <外部新JSON>`核對，另加`--restore <空白可寫目錄>`還原，不讀原workplace。原版資料、923核心、Go模組與其餘523素材依既有永久catalog及前批r66保存，不重複打包。還原後現行七程式及184來源逐SHA核對見[收尾核對](formation-engine-integrity-r1.json)。
+
+本次自然戰鬥沒有第二支友軍，未觀測合資格減傷；正式政策的有效／無效條件沿受控原版helper對照。沒有新增兵種ID、跨法術策略或整體平衡驗收。首條只休息的GUI與執行器收尾中斷診斷保留，不列為新的遊戲通關證據。
+
 本目錄保存程式、固定來源、音樂、字型、存檔與研究證據。完整定稿美術仍由[artwork](../artwork/README.md)管理。初批r64保存清單維持不變，後續r65另存追加批次；九首待確認音樂的批准狀態保持。
 
 ## 結陣接入研究保存

@@ -378,3 +378,37 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 另有[規則／AI分開的工具列操作原型](../images/formation-toolbar-prototype-r1.html)。沿原提案在戰鬥外切「原版規則／結陣試作」，本場固定，AI另可切換。瀏覽器的獨立選擇、戰鬥鎖定、結束解鎖及手機寬度已驗，見[操作收據](../images/formation-toolbar-browser-r1.json)；新頁的CDP截圖兩次逾時，原因未明，未計入視覺驗收。原型仍非正式遊戲工具列，存檔標記與正常玩家路徑未接。
 
 [掛點保存器](../../tools/archive-formation-hooks.py)在固定Pillow容器用`--project --archive <可寫preserved> --out <新JSON>`保存本批；只掛preserved與工具，加`--verify`可核對，加`--restore <空白目錄>`可還原。入口由[永久保存](../../preserved/README.md#結陣接入研究保存)維護，初批離線原型的固定清單不覆寫。
+
+## 首版結陣規則的READY接入契約
+
+本節READY，範圍只含使用者已確認的20%結陣與規則工具列。原始PAM／DB／923核心及傷害掛點證據沿上節，不要求未知係數的玩法名稱。靜態wrapper sub_1E578只有一個直接caller；入口0x1E578與retf 0x1E5B0分別作本場開始／結束觀測，原bytes及完整函式已驗。其戰鬥生命週期定位為strong inference，正式提升前必須由冷啟動自然戰鬥驗進出各一次，若不符則退回DRAFT，不以固定等待、畫面顏色或場景名稱代替。
+
+- Engine提供BattleRules `auto|native|formation`啟動選項，auto在沒有規則標記時使用native；執行期只允許native／formation。原版畫面與HD共用規則，顯示模式不自動開啟結陣。AI選項獨立。
+- 規則控制器只讀wrapper生命週期，原版模式不改傷害。formation在兩個已驗傷害量點檢查同側六陣位、target單位索引及存活；民兵在前排0至2且另有前排活隊時只改AX為floor(AX×80/100)，原版繼續保存局部量、除生命係數、扣總生命及減員。後排、空隊、非民兵、特殊減員不套。多同袍不疊加；玩家及敵方同一政策。
+- 依實際PAM overlay載入／重定位段綁定，來源SHA、入口bytes、DS／SS、stack與映射不符時在寫入前報具名規則錯誤。兩個原係數只由原版計算，不改其值。控制器不能叫傷害helper來預測、不能讀RNG或改兵數。
+- wrapper入口觀測本場active，retf前在相同SS／SP關閉本場；PAE階段不套PAM規則。戰鬥中SetBattleRules拒絕切換且保留原模式。工具列顯示本場固定，吞掉該按鈕點擊；切換規則不重建Engine、不改已結算效果。
+- 原版gamedata.ay與伴隨地圖格式不變。可寫存檔目錄新增gamedata.ay.rules.json，schema1包含rules、save_sha256及save_bytes。923核心的FileOps不記AH40h write，Wrote也只是寫入意圖，不能冒稱成功；沿本作已驗單一開寫關閉交易，在Wrote有該檔2987-byte要求、成功close且實際scratch檔逐byte同原版0x9E000／2987-byte緩衝區後，才原子寫標記，並以實際SHA綁定。從未開過結陣的原版模式可不產生標記；無標記的舊進度沿native。auto讀有效匹配標記，壞格式／不匹配明確拒用；明列`-battle-rules native|formation`可選擇啟動模式，不修改既有標記直到真正保存。
+- 規則工具列在AI右側，按鈕`[2224,8,2872,56)`，標籤「規則」，選項「原版規則／結陣試作」。本場固定時按鈕明示且不可改選。字型、海報、AI及中央矩形保持。r67只在r66字圖追加「規則結陣試作本場固定」，schema3字圖擴至1024×576、137字；原127字及像素保持，其餘523素材不改。舊schema1／2仍可用ASCII規則標籤。
+
+正式實作入口為[Engine規則](../../internal/eightsword/battle_rules.go)、[規則單元測試](../../internal/eightsword/battle_rules_test.go)及[原版受控接入測試](../../internal/eightsword/battle_rules_runtime_test.go)。驗收依序為純候選及保存標記邊界、12案原版helper完整state對照、原版模式回歸、真正視窗選規則／本場固定／戰鬥後解鎖及兩側helper使用、真正F7保存與auto冷讀規則恢復、切回native後保存及冷讀。未通過前不提升正式七程式；不聲明新兵種、全部策略、正常結陣收益或其他平台已完成。
+
+[準備器](../../tools/prepare-formation-engine.py)在固定Pillow11.3.0容器使用`assets|freeze --project <唯讀專案> --player <player> --out <新路徑>`，追加字圖或凍結184來源。923核心不變。[正常輸入準備器](../../tools/prepare-formation-gui.py)以`--project --out <既有空目錄>`生成隔離XTEST helper，沿既有Go1.24.13容器建置；[視窗驗證](../../tools/check-formation-gui.sh)傳候選目錄、helper、唯讀原版、r67素材及新輸出，外層設定Docker資源配額與逾時，不在正式程式加入測試分支。
+
+[獨立核對及提升器](../../tools/audit-formation-engine.py)在固定Pillow容器用`--project <唯讀專案> --out <新JSON>`核對來源、核心、字圖、原版完整狀態及三階段GUI／存檔。通過後另加`--player <可寫player> --promote --audit <通過收據>`提升七程式與metadata，舊候選及r66保持。[保存器](../../tools/archive-formation-engine.py)以`--project --archive <可寫preserved> --out <新JSON>`保存本輪；只掛唯讀preserved加`--verify`可核對，另加`--restore <空白目錄>`可還原。正式提升前須完成不依賴workplace的還原核對。
+
+### 首版結陣正式接入與限定驗收
+
+本節限定CONFORMED。source-candidate-formation-r2／184固定來源七程式已提升，923核心保持。r67／525素材只換工具列字圖及清單，其餘523檔同r66；舊127字與像素保持，新十字同固定Noto Black 900。原版畫面與HD可用CLI選規則，工具列沿既有HD模式。
+
+- 兩側各六條件、native／formation共24份完整helper狀態，同已驗原版／受控改量逐byte相同。四組合資格把400改320，其餘保持；兵數仍由原版後續執行器處理。新start-call快照在任何Step之前保存，與已封存36份helper返回state全部相同，不以補步修正時鐘相位。
+- 來源bytes、mapping、stack三故障在寫入前停止，完整state保持。標記格式／模式／SHA／長度／檔案形態及auto恢復、明選native取代標記政策通過。r66／r67各五工具列父測試、vet與七程式建置通過；首份r2測試命令誤用素材變數而跳過工具列，另以正確POSTER_ASSETS重跑兩組，全數通過，未將Skip列為驗收。
+- 預設auto、無標記沿native，新舊CLI各4M步的完整state、Frame及前版收據欄位同值。規則與AI獨立，顯示模式不開啟特性。沒有變動原版RNG、傷害係數或進度格式。
+- 正常XTEST冷啟動、新遊戲、募兵十人、自然遇敵，依手冊印頁9游標／Enter攻擊，實際兩側helper共五次；wrapper開始／返回各一次，同SS／SP解除鎖定，限定證明其本場生命週期。戰鬥中規則不可改，AI仍可切native／target；選單鍵沒有送入DOS。此局只有一支友軍，沒有合資格減傷，Applied=0，不冒稱自然結陣收益或整體勝率改善。
+- 真正F7保存及原版DOS退出0後，auto冷啟動恢復formation；正常讀進度及人物頁後改native，真正F7保存，再auto冷讀native。三份實際gamedata.ay各2987 bytes，均與零步唯讀inspect的原版0x9E000緩衝區相同，規則標記SHA與當階段實檔一致。讀後以前端Ctrl+Q關窗，與第一階段原版DOS退出分列。
+- [規則選單](../images/formation-rules-menu-r1.png)、[本場固定](../images/formation-rules-locked-r1.png)及[冷讀原版規則](../images/formation-rules-restored-r1.png)均為實際X11視窗，字墨及位置已目視。狀態與來源見[圖像紀錄](../images/formation-rules-runtime-r1.json)，不是原版／HD同狀態比較。
+
+[獨立核對](../../preserved/formation-engine-audit-r1.json)在提升前逐檔核對全部來源、核心、字圖、受控state與三階段GUI；[提升收據](../../preserved/formation-engine-promotion-r1.json)記錄七程式。963檔／490物件、154995466 bytes已[永久保存](../../preserved/README.md#結陣規則正式接入保存)，沒有workplace的完整還原逐SHA通過後才提升。原候選、r66素材與研究失敗診斷保持。
+
+首條GUI沿舊空白鍵休息路線只觸發敵方傷害，未達雙側操作閘門；正式抽樣改用手冊的正常攻擊，不改兵力、座標、亂數或敵軍。r2存退階段已生成完整closed／DOS0及輸入收據，外層執行器卻在進入冷讀前以130結束，原因未確定；同候選及同一份真實存檔接續兩次正常冷啟動成功，不把收尾中斷寫成產品缺陷或重擲敵軍。執行器第六參數`restore-formation`僅接續已完成save階段，要求原收據及快照存在，使用原實檔，不能以測試快照啟動遊戲。
+
+本次只完成首項已批准結陣。新兵種、其餘特性、跨法術AI與全遊戲平衡仍在原提案範圍內待後續規格；沒有新平台、完整通關或全素材重驗聲明。

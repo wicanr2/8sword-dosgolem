@@ -99,6 +99,8 @@ func (e *Engine) battleAIRun(run func() error) (err error) {
 		if p := recover(); p != nil {
 			if f, ok := p.(*BattleAIFault); ok {
 				err = f
+			} else if f, ok := p.(*BattleRuleFault); ok {
+				err = f
 			} else {
 				panic(p)
 			}

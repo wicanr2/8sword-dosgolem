@@ -4,7 +4,7 @@
 
 完整定稿原圖與提示另存本機永久目錄 `artwork/approved/`，清理 `workplace/` 不會刪到這些複本。分類、逐檔雜湊與獨立核對見[定稿原圖索引](artwork/README.md)。
 
-以 dosgolem 執行原版 DOS 程式，逐步接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI。
+以 dosgolem 執行原版 DOS 程式，逐步接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI 與民兵結陣試作。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
@@ -30,11 +30,15 @@
 
 ## 重製方向與現況
 
-部隊特性、策略 AI 與法術動畫的擴充方案見[戰術增強提案](docs/spec/030-battle-expansion-proposal.md)。已確認保留原版規則並新增獨立戰術增強模式，尚未接入新玩法；AI 從原版判斷掛點切入。HD 配色與規則模式分開，採保留玉綠、金框、黑底與朱紅的[原概念圖修色](docs/spec/031-hd-palette-refinement.md)。
+部隊特性、策略 AI 與法術動畫的擴充方案見[戰術增強提案](docs/spec/030-battle-expansion-proposal.md)。已接入可選目標策略 AI 與首項結陣試作，保留原版規則。HD 配色與規則模式分開，採保留玉綠、金框、黑底與朱紅的[原概念圖修色](docs/spec/031-hd-palette-refinement.md)。
 
-已接入首版可選 Go 目標策略 AI：先選可全滅的部隊，再比較減員比例，同分保留原目標。HD工具列可切換「原版 AI／策略 AI」，戰鬥中切換於下一次選敵生效；視窗標題同步顯示，重啟預設仍為原版AI。也可用 `-battle-ai target` 指定啟動模式，預設為 `-battle-ai native`；AI與HD顯示分開。普通前排限制保持，射手可比較前後排，特殊分派0／2／5可改選有效目標，其餘沿原版。八種受控局面、正常募兵遇敵及策略模式存退後由原版模式讀檔已抽驗；範圍見[正式接入與限制](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)及[工具列驗收](docs/spec/030-battle-expansion-proposal.md#ai工具列正式接入與限定驗收)。新兵種、特性與跨法術策略尚未接入。
+已接入首版可選 Go 目標策略 AI：先選可全滅的部隊，再比較減員比例，同分保留原目標。HD工具列可切換「原版 AI／策略 AI」，戰鬥中切換於下一次選敵生效；視窗標題同步顯示，重啟預設仍為原版AI。也可用 `-battle-ai target` 指定啟動模式，預設為 `-battle-ai native`；AI與HD顯示分開。普通前排限制保持，射手可比較前後排，特殊分派0／2／5可改選有效目標，其餘沿原版。八種受控局面、正常募兵遇敵及策略模式存退後由原版模式讀檔已抽驗；範圍見[正式接入與限制](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)及[工具列驗收](docs/spec/030-battle-expansion-proposal.md#ai工具列正式接入與限定驗收)。新兵種、其餘特性與跨法術策略尚未接入。
 
-首項部隊特性已確認20%民兵結陣試作，可用[互動試算](docs/images/formation-prototype-r1.html)比較配陣與整數門檻，或看[規則／AI分開的工具列原型](docs/images/formation-toolbar-prototype-r1.html)。兩側傷害函式的受控接入已驗，正式戰鬥與規則工具列仍待接入；[研究範圍](docs/spec/030-battle-expansion-proposal.md#已批准結陣的傷害掛點窄查)列出證據與缺口。
+HD 工具列另有「規則」選單，可選原版規則或結陣試作，與 AI 獨立。結陣讓前排且有另一存活前排同袍的民兵，承受的普通／遠程傷害量減20%，向下取整，敵我相同、不疊加，特殊效果不適用。規則在戰鬥外切換，本場固定；真正存檔後會隨進度恢復，沒有規則標記的舊進度使用原版規則。啟動選項為 `-battle-rules auto|native|formation`，預設 auto。原版進度格式保持，規則另存於同目錄的 `gamedata.ay.rules.json`。
+
+![實際遊戲的規則工具列](docs/images/formation-rules-menu-r1.png)
+
+上圖為正常新遊戲的實際視窗。兩側傷害掛點的24份完整狀態、正常遇敵與攻擊、戰鬥鎖定／解鎖及兩次冷啟動存讀已抽驗。自然戰鬥只有一支友軍，沒有觸發減傷；有效結陣的結果由受控原版函式對照證明，不宣稱整體平衡已完成。可看[整數門檻試算](docs/images/formation-prototype-r1.html)、[正式接入範圍](docs/spec/030-battle-expansion-proposal.md#首版結陣正式接入與限定驗收)與[截圖來源](docs/images/formation-rules-runtime-r1.json)。
 
 
 | 面向 | 目前狀態 |
@@ -44,15 +48,15 @@
 | HD 圖像 | 已接入 B 古風地表、四份建築圖片與六塊城堡、布旗與無旗太極圖、十二張主角動作、人物頁、金玉介面、深藍故事背景、五幅彩色戰場背景、25 組部隊／怪物的 100 筆姿勢、十四筆地圖遭遇角色、火花與四姿態陰陽圖案。新增 20 組支援兩向與軍隊／戰場用途，沿共用機制代表抽驗。正常移動、頁面往返及真正存退讀已驗；已辨識的其餘彩色來源已依054補齊；自然使用範圍沿各項限定驗收。部隊範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，其餘範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[027](docs/spec/027-battle-pon-effects.md)、[029](docs/spec/029-battle-choi-markers.md)及 [045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘九曲已完成本機配器候選與正常選曲技術測試，待聽感確認，正式播放仍為原版。音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
-| 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
+| 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、其餘戰鬥規則及完整流程仍待驗，尚無正式交付包 |
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
-本機完整HD素材入口為`workplace/player/assets-painted-r65`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r65`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
+本機完整HD素材入口為`workplace/player/assets-painted-r67`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r67`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 HD模式固定由Go來源呈現器產生畫面，已移除原版RGB疊圖退路。相容像素操作也由Go處理，事件邊界不再退回原版像素寫入。使用`-hd=false`時保留原版繪圖途徑，不安裝HD繪圖掛點。未接管的HD寫入會記錄位置、保留最後完整畫面並停止。模式分流與抽驗範圍見[047限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。
 
-舊步數時鐘重播工具也已支援這條Go HD路徑，保留原本固定輸入與步數排程。有本機原版及完整素材時，可用`bash tools/player.sh replay hd step-hd-check -assets /player/assets-painted-r65`執行；收據名稱須尚未使用。工具在Docker內運行，預設重播2.5億步，抽驗範圍見[步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。
+舊步數時鐘重播工具也已支援這條Go HD路徑，保留原本固定輸入與步數排程。有本機原版及完整素材時，可用`bash tools/player.sh replay hd step-hd-check -assets /player/assets-painted-r67`執行；收據名稱須尚未使用。工具在Docker內運行，預設重播2.5億步，抽驗範圍見[步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。
 
 Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 

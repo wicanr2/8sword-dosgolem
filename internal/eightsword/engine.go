@@ -15,8 +15,10 @@ type Options struct {
 	Root, Assets, Saves string
 	HD                  bool
 	BattleAI            string
+	BattleRules         string
 }
 type Engine struct {
+	rules                *battleRulesController
 	battleAI             *battleAIController
 	completion           *completionAssets
 	CompletionError      string
@@ -110,6 +112,9 @@ type InputEvent struct {
 }
 
 func Open(opt Options) (*Engine, error) {
+	if opt.BattleRules != "" && opt.BattleRules != "auto" && opt.BattleRules != "native" && opt.BattleRules != "formation" {
+		return nil, fmt.Errorf("戰鬥規則無效：%s", opt.BattleRules)
+	}
 	if opt.BattleAI != "" && opt.BattleAI != "native" && opt.BattleAI != "target" {
 		return nil, fmt.Errorf("AI模式無效：%s", opt.BattleAI)
 	}
@@ -294,6 +299,10 @@ func Open(opt Options) (*Engine, error) {
 		e.Close()
 		return nil, err
 	}
+	if err := e.initBattleRules(opt.BattleRules, opt.Saves); err != nil {
+		e.Close()
+		return nil, err
+	}
 	return e, nil
 }
 func (e *Engine) Close() {
@@ -319,7 +328,15 @@ func (e *Engine) RenderAudio() []int16 {
 	return stereoMono(e.Sound.Render())
 }
 func (e *Engine) EnableLiveClock(perMS uint64) { e.Oracle.SetDOSBoxCycles(perMS) }
-func (e *Engine) AdvanceCycles(n uint64) error {
+func (e *Engine) AdvanceCycles(n uint64) (result error) {
+	defer func() {
+		if result == nil {
+			result = e.syncRulesSave()
+		}
+	}()
+	if err := e.syncBattleRules(); err != nil {
+		return err
+	}
 	if err := e.syncBattleAI(); err != nil {
 		return err
 	}
@@ -349,6 +366,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 			return err
 		}
 		if err := e.syncBattleAI(); err != nil {
+			return err
+		}
+		if err := e.syncBattleRules(); err != nil {
 			return err
 		}
 		if e.Tracker != nil {
@@ -387,7 +407,15 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 	}
 	return nil
 }
-func (e *Engine) Advance(n uint64) error {
+func (e *Engine) Advance(n uint64) (result error) {
+	defer func() {
+		if result == nil {
+			result = e.syncRulesSave()
+		}
+	}()
+	if err := e.syncBattleRules(); err != nil {
+		return err
+	}
 	if err := e.syncBattleAI(); err != nil {
 		return err
 	}
@@ -418,6 +446,9 @@ func (e *Engine) Advance(n uint64) error {
 			return err
 		}
 		if err := e.syncBattleAI(); err != nil {
+			return err
+		}
+		if err := e.syncBattleRules(); err != nil {
 			return err
 		}
 		if e.Tracker != nil {
@@ -632,6 +663,7 @@ func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
 func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
 	out["battle_ai"] = e.BattleAIStatus()
+	out["battle_rules"] = e.BattleRulesStatus()
 	out["completion_error"] = e.CompletionError
 	out["completion_assets"] = e.completion.status()
 	out["source_renderer"] = e.sourceEnabled

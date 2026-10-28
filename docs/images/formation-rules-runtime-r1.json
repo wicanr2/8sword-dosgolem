@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "candidate": "source-candidate-formation-r2",
+  "programs": {
+    "8sword": "7f9ce0d74d63b5407b9f1cdb12edcb55599b7184c1fc451797c5bf11f419eb8a",
+    "8sword-replay": "80e7955c294bd9718c30f853e9c63c90dae47a71ba3ea1489b1e0f7d4b1d7355",
+    "gui-check": "b9d0d1ad4fed6e8b2ffc97c5272593a9ae21c68602a041f030e1cc6d020f169d",
+    "music-check": "582eaf97f110d2fa1b77e0cd311691ea9959228f243694434b8f59c5e29898be",
+    "heroine-check": "6b79fc64982bc4bdae34f7b821bcbed70d265e9a1d3f0e46b252a2acd8b1fb32",
+    "museum-check": "7383d65aa7cf316cfcffbf3c6c84a98303faf47934b86b94443c3da2356a1f5f",
+    "story-prelude-check": "3d1417422e5abd67b10eeabdfdd74bc375fe9510b4d6d5a287d0f6e38804855d"
+  },
+  "assets": "assets-painted-r67",
+  "audit_sha256": "b6821e6ab816cb301bf0b49893b44fccd124704f268d2703acd41756a197cb83",
+  "images": [
+    {
+      "image": "formation-rules-menu-r1.png",
+      "sha256": "122acf570acaee98780590a8fef0825c5115df3ffe63952b1c245eaa5afca62d",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/formation-engine-r1/gui-r2/save/rules-menu-formation.png",
+      "status_sha256": "79ee39c9d15040b3f3ecad929f1aee0f931dc2be94f3cb2b8262945e5da2d46a"
+    },
+    {
+      "image": "formation-rules-locked-r1.png",
+      "sha256": "e479169bb1dd211bb97c7e3050a788775a1c84077f129b08f5c41b43920201a5",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/formation-engine-r1/gui-r2/save/rules-battle-locked.png",
+      "status_sha256": "15546ed8ed171e1e4edae5387d6bc6d2e330d41b6371c18696300a33db7d011a"
+    },
+    {
+      "image": "formation-rules-restored-r1.png",
+      "sha256": "822fb43f61bab7cf8afba5739f451d242a535f7f3965a63fddf797e8730daaa5",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/formation-engine-r1/gui-r2/restore-native/rules-restored-map.png",
+      "status_sha256": "b037b553f48377483c4ee8c61efa6e716a5f20567a4bcf90aa18d77800661b94"
+    }
+  ],
+  "method": "Actual X11 window captures; normal XTEST input, no game memory injection; scenes are distinct UI states, not same-state comparisons.",
+  "limits": "Natural battle had one friendly stack and no qualifying reduction; mitigation proven by controlled complete helper states."
+}
