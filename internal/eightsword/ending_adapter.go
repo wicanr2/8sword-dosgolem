@@ -219,7 +219,13 @@ func (p *endingAdapter) bind() {
 			c.X, c.Y = int(o.Arg(2))*8, int(o.Arg(3))
 			page := pageFor(o.Regs().DS)
 			p.counts[fmt.Sprintf("bitmap-%d", spec.kind)]++
-			return func() { page.apply(&c) }
+			return func() {
+				page.apply(&c)
+				if p.assets.art.completion[c.SourceSHA] != nil {
+					p.counts["completion-source-commands"]++
+					p.counts["completion-"+c.SourceSHA]++
+				}
+			}
 		})
 	}
 	for _, spec := range []struct {

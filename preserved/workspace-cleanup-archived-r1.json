@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "status": "completed",
+  "phase": "archived",
+  "removed_files": 148748,
+  "removed_logical_bytes": 50231056357,
+  "free_bytes_before": 323804119040,
+  "free_bytes_after": 361347448832,
+  "changed_files_kept": [],
+  "plan_sha256": "ed4e20c5683512ec7bda0414e4a9611c6638978eb6d517350f9809f9ca3bc534",
+  "catalog_sha256": "8ab4fd7c02d82e23ac45a475ab2e0bfa7283d0f4ca53f4234525d7796e458b6b",
+  "protected": [
+    "workplace/probe-20261023/graphics-first/all-graphics-integration-r1/",
+    "workplace/probe-20261023/graphics-first/ending-hd-r1/",
+    "workplace/player/gui/compat-pixels-save-r2/"
+  ]
+}

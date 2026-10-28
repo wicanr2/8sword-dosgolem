@@ -137,12 +137,20 @@ func prepareOwnedBatch(s *ownedScene, art *GraphicsAssets, palette *presentation
 		}
 		return color
 	}
+	material := func(c ownedPixel) *graphicMaterial {
+		// 054: solid PMAP swatches remain Go rectangles. Later plane writes
+		// can change their color; the 031 status palette also applies here.
+		if c.Material.ID >= 66 && c.Material.ID <= 68 {
+			return nil
+		}
+		return valid(c.Material, materials)
+	}
 	last := map[ownedRenderKey]int{}
 	// Resolve replacement textures before generating any native RGB fill.
 	for y := 0; y < 200; y++ {
 		for x := 0; x < 640; {
 			c := visible[y*640+x]
-			m := valid(c.Material, materials)
+			m := material(c)
 			run := 1
 			if m != nil {
 				sx, sy := int(c.Material.Local)%m.NativeWidth, int(c.Material.Local)/m.NativeWidth
@@ -159,7 +167,7 @@ func prepareOwnedBatch(s *ownedScene, art *GraphicsAssets, palette *presentation
 				color := baseColor(c, x, y)
 				for x+run < 640 {
 					next := visible[y*640+x+run]
-					if valid(next.Material, materials) != nil || baseColor(next, x+run, y) != color {
+					if material(next) != nil || baseColor(next, x+run, y) != color {
 						break
 					}
 					run++

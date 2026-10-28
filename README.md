@@ -18,13 +18,15 @@
 
 ## 全圖形 HD 素材
 
-已辨識的104份圖檔、333筆圖形都已備妥HD圖像，涵蓋100筆部隊／怪物、14筆地圖遭遇，以及介面、場景、建築、器物、結局、單色變體與編輯圖集。可在[完整圖庫](artwork/all-graphics-hd-gallery-r1.html)依分類、原檔名及接入狀態搜尋，或查看[十二類總覽](artwork/README.md#全圖形hd圖庫)。
+已辨識的104份圖檔、333筆圖形都已備妥HD圖像，涵蓋100筆部隊／怪物、14筆地圖遭遇，以及介面、場景、建築、器物、結局、單色變體與編輯圖集。可在[完整圖庫](artwork/all-graphics-hd-gallery-r2.html)依分類、原檔名及接入狀態搜尋，或查看[十二類總覽](artwork/README.md#全圖形hd圖庫)。
 
 ![補齊素材的原版與HD比較](docs/images/all-graphics-hd-new-art-r1.png)
 
-左側為原版解碼，右側為已備妥的HD素材。271筆來源對應沿既有正式素材，62筆尚未正式接入。X圖集含舊版變體，部分格位與單色對應依相鄰圖集推定；原始透明資訊另存，不混稱已驗證的執行期遮罩。A.A與六份RIL仍未分類，不計入333筆。範圍見[逐筆清單](artwork/all-graphics-hd-coverage-r1.json)、[核對收據](artwork/all-graphics-hd-audit-detached-r1.json)及[素材規格](docs/spec/054-all-graphics-hd.md)。
+左側為原版解碼，右側為HD素材。正式r65共525檔，已登錄290筆彩色來源對應，包含本輪新增的17筆；43筆單色與編輯圖集已入包，不新增顯示模式。原版／HD狀態及音訊、47張完整畫面與正常視窗已抽驗。X圖集的部分格位與單色對應保留推論等級；A.A與六份RIL仍未分類，不計入333筆。現況見[接入清單](artwork/graphics-integration-r65.json)及[限定驗收](docs/spec/054-all-graphics-hd.md#r65限定驗收-conformed)，初批[美術清單](artwork/all-graphics-hd-coverage-r1.json)保持歷史。
 
-完整原圖、提示與來源已存本機永久圖庫，清理workplace不會刪到。本輪先完成美術準備；正式程式維持現行版本，反組譯重製方向尚未定案。
+完整原圖、提示、程式與驗收證據已作永久保存；525檔素材可從保存物件獨立還原。過期workspace資料及快取已依授權清理，結果見[保存與清理紀錄](preserved/README.md#已授權清理)。反組譯重製方向尚未定案。
+
+![r65實際視窗與教育部隸書](docs/images/completion-runtime-lishu-r65.png)
 
 ## 重製方向與現況
 
@@ -34,18 +36,18 @@
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
-| HD 圖像 | 已接入 B 古風地表、四份建築圖片與六塊城堡、布旗與無旗太極圖、十二張主角動作、人物頁、金玉介面、深藍故事背景、五幅彩色戰場背景、25 組部隊／怪物的 100 筆姿勢、十四筆地圖遭遇角色、火花與四姿態陰陽圖案。新增 20 組支援兩向與軍隊／戰場用途，沿共用機制代表抽驗。正常移動、頁面往返及真正存退讀已驗；沙地實景與其他圖像仍待處理。部隊範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，其餘範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[027](docs/spec/027-battle-pon-effects.md)、[029](docs/spec/029-battle-choi-markers.md)及 [045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收) |
+| HD 圖像 | 已接入 B 古風地表、四份建築圖片與六塊城堡、布旗與無旗太極圖、十二張主角動作、人物頁、金玉介面、深藍故事背景、五幅彩色戰場背景、25 組部隊／怪物的 100 筆姿勢、十四筆地圖遭遇角色、火花與四姿態陰陽圖案。新增 20 組支援兩向與軍隊／戰場用途，沿共用機制代表抽驗。正常移動、頁面往返及真正存退讀已驗；已辨識的其餘彩色來源已依054補齊；自然使用範圍沿各項限定驗收。部隊範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，其餘範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[027](docs/spec/027-battle-pon-effects.md)、[029](docs/spec/029-battle-choi-markers.md)及 [045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
 | HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘九曲已完成本機配器候選與正常選曲技術測試，待聽感確認，正式播放仍為原版。音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、戰鬥規則及完整流程仍待驗，尚無正式交付包 |
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
-本機完整HD素材入口為`workplace/player/assets-painted-r64`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r64`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
+本機完整HD素材入口為`workplace/player/assets-painted-r65`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r65`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 HD模式固定由Go來源呈現器產生畫面，已移除原版RGB疊圖退路。相容像素操作也由Go處理，事件邊界不再退回原版像素寫入。使用`-hd=false`時保留原版繪圖途徑，不安裝HD繪圖掛點。未接管的HD寫入會記錄位置、保留最後完整畫面並停止。模式分流與抽驗範圍見[047限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。
 
-舊步數時鐘重播工具也已支援這條Go HD路徑，保留原本固定輸入與步數排程。有本機原版及完整素材時，可用`bash tools/player.sh replay hd step-hd-check -assets /player/assets-painted-r64`執行；收據名稱須尚未使用。工具在Docker內運行，預設重播2.5億步，抽驗範圍見[步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。
+舊步數時鐘重播工具也已支援這條Go HD路徑，保留原本固定輸入與步數排程。有本機原版及完整素材時，可用`bash tools/player.sh replay hd step-hd-check -assets /player/assets-painted-r65`執行；收據名稱須尚未使用。工具在Docker內運行，預設重播2.5億步，抽驗範圍見[步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。
 
 Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
@@ -57,7 +59,7 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
 接管函式直接執行Go的批次複製與位元混合，不逐條解譯x86繪圖指令。相容索引資料、原版非像素控制與虛擬時間仍需保留。已抽驗入口不代表全遊戲分支均已走過，也未量測整體FPS提升。
 
-結局已有原版覆蓋載入、完整播放與 BIOS Esc 的[受控驗證](docs/spec/053-ending-hd.md#原版覆蓋交接與bios-esc的動態證據)，來源呈現、Noto／教育部隸書／草書、修正END7及END5五筆人物材質已接入本機素材組。實際Draw、來源故障停機與正常存退讀已抽驗；其他結局美術仍待補。受控案例只選擇原版收尾分支，沒有宣稱自然通關。
+結局已有原版覆蓋載入、完整播放與 BIOS Esc 的[受控驗證](docs/spec/053-ending-hd.md#原版覆蓋交接與bios-esc的動態證據)，來源呈現、Noto／教育部隸書／草書、修正END7及END5五筆人物材質已接入本機素材組。實際Draw、來源故障停機與正常存退讀已抽驗；本輪另補齊其餘已辨識的結局素材。受控案例只選擇原版收尾分支，沒有宣稱自然通關。
 
 開場博物館已接入紫藍手繪左右展間、十個人物動作、中國古典美女特寫與兩色光束，保留原版劇情、切鏡及字幕，範圍見 [017](docs/spec/017-intro-museum-art.md#正式接入與限定驗收)及 [033](docs/spec/033-intro-heroine-closeup.md)。故事前導採彩色手繪，跟隨原版逐點揭圖，再接入深藍故事文字頁；驗收見 [014](docs/spec/014-intro-story-background.md#彩色前導正式追加驗收)。發行商中央圖案亦已採 B 柔和漸層，三字型、正常交接、存退讀與故障回退的範圍見 [016](docs/spec/016-publisher-wordmarks.md#b-圖案正式追加驗收)。其他音畫與整體 HD 尚未完成。完整執行期素材組留本機。
 
@@ -112,7 +114,7 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 | 戰場背景與原版變體 | 10 | [GRO01 至 GRO05](docs/images/original-battle-backgrounds-r1.png) |
 | 建築與原版變體 | 12 | [LIVE1 至 LIVE6](docs/images/original-buildings-r1.png) |
 | 開場圖像 | 26 | [TIT 系列](docs/images/original-opening-r1.png) |
-| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[Engine三字型候選畫面](docs/images/ending-engine-end5-scenes-r2.png)，來源呈現與三字型已正式接入，其他結局美術待補 |
+| 結局圖像 | 37 | [END 系列](docs/images/original-ending-r1.png)，[Engine三字型候選畫面](docs/images/ending-engine-end5-scenes-r2.png)，來源呈現、三字型及已辨識結局美術均已接入，驗收範圍見054 |
 | 介面圖像 | 6 | [CUBE／BUMBOO／MSGBOX](docs/images/original-ui-r1.png) |
 | 原版編輯圖集與插畫 | 19 | [X 系列 ILBM](docs/images/original-illustrations-r1.png) |
 
@@ -149,7 +151,7 @@ END7的[構圖比較](docs/images/ending-corrected-candidate-r2.png)與[完整�
 
 這是早期四組敵方部隊，共十六筆已接入來源。每格左側為原版六塊資料解碼，右側為遊戲實際使用的 HD 快取；保留原版顯示比例。檔名與記錄編號供核對，不推定兵種名稱或動作語意。範圍見 [023](docs/spec/023-battle-man16-actors.md)至 [026](docs/spec/026-battle-man21-actors.md)，全部25組見上方總覽。點圖可看原尺寸。
 
-全部來源及未接入項目見前面的完整圖集；原[MAN 記錄盤點工具](tools/catalog-battle-coverage.py)仍保留檔案與 HD 登錄核對，不能單憑檔名推定兵種語意。
+全部來源及現行接入分類見前面的完整圖集；原[MAN 記錄盤點工具](tools/catalog-battle-coverage.py)仍保留檔案與 HD 登錄核對，不能單憑檔名推定兵種語意。
 
 ### 原版／HD 戰場總覽
 
@@ -340,7 +342,7 @@ F3 解雇頁亦使用同一張 HD 民兵，保留原版黑底與選取文字。[
 
 友軍矮人鏡射使用 `bash tools/player.sh friendly-man21-assets <新名稱> [基底名稱]` 匯入，預設基底r47。只加固定對應清單，不複製新PNG；四姿勢整組驗證，失敗保留原向與軍隊頁圖像。[契約與驗收](docs/spec/042-friendly-man21-battle-poses.md#正式接入與限定驗收)不改部隊或AI規則。
 
-攻城背景使用 `bash tools/player.sh palace-assets <新名稱> [基底名稱]` 匯入，預設基底 r46；需要已記錄的本機手繪圖、完整提示與固定原版。現行本機圖像組為 `workplace/player/assets-painted-r56`，以前端 `-assets` 選用。原 `workplace/player/assets` 保留純字型基底。攻城背景與山谷背景各自驗證、各自回退，契約及核對入口見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。
+攻城背景使用 `bash tools/player.sh palace-assets <新名稱> [基底名稱]` 匯入，預設基底 r46；需要已記錄的本機手繪圖、完整提示與固定原版。現行本機圖像組為 `workplace/player/assets-painted-r65`，以前端 `-assets` 選用。原 `workplace/player/assets` 保留純字型基底。攻城背景與山谷背景各自驗證、各自回退，契約及核對入口見 [046](docs/spec/046-castle-battle-background.md#正式接入與限定驗收)。
 
 新增部隊使用 `bash tools/player.sh troops-assets <新名稱> painted-r48` 批次重建，保留 r48 的 223 份素材，再加入 20 組四姿勢。須具備本機固定圖集與提示；工具拒絕覆寫既有輸出。來源、兩向、軍隊／戰場對應、各組回退及受控抽驗範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，完整性核對入口為 [audit-troops.py](tools/audit-troops.py)。
 

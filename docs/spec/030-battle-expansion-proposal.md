@@ -103,17 +103,17 @@ AI 第一版衡量預期交換損失、能否消滅目標、反擊代價、前�
 | 提示及警示 | 柔和朱紅；正式接入按實際文字來源與狀態定義，不能只靠顏色猜語意 |
 | 地圖與戰場 | 第一個原型保持已驗手繪素材，讓介面先退後；不把草地、部隊及法術共用色碼全幅換色 |
 
-R1 的[歷史對照](../../workplace/probe-20261023/graphics-first/battle-r1/palette-replay-r1/comparison.html)及[收據](../../workplace/probe-20261023/graphics-first/battle-r1/palette-replay-r1/audit.json)留作追溯，不再當作定稿方向。R2 研究原型放在 `workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/`。只改容器內一次性程式的主機呈現，不改正式程式、客體 VGA 色盤、RAM、選取狀態或輸入。
+R1 的[歷史對照（comparison.html，歸檔還原）](../../preserved/README.md#初批保存)及[收據（audit.json，歸檔還原）](../../preserved/README.md#初批保存)留作追溯，不再當作定稿方向。R2 研究原型放在 `workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/`。只改容器內一次性程式的主機呈現，不改正式程式、客體 VGA 色盤、RAM、選取狀態或輸入。
 
 R1 重播 115.69 秒通過狀態隔離，只證明該原型沒有改玩法，不證明其風格適合。R2 沿同一普通玩家路徑重新產生人物頁、軍隊頁、地圖及戰場數字，73.98 秒通過。四點狀態純度、還原畫面、最終完整 state／PCM／35 工作檔及 58 輸入均同控制。地圖內容、人物頁空白玉紙區及肖像矩形逐 byte 保持，不沿用 R1 收據冒充新色已驗。
 
-R2 的[人物頁樣張](../../workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/13-F1-character-proposal.png)、[同畫面對照](../../workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/comparison.html)及[獨立收據](../../workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/audit.json)已備妥。對照頁另放原 B 概念圖下半部，原圖 bytes 及 SHA 保持。R2 是供檢視的保守修色原型，尚未定版或接正式程式。
+R2 的[人物頁樣張（13-F1-character-proposal.png，歸檔還原）](../../preserved/README.md#初批保存)、[同畫面對照（comparison.html，歸檔還原）](../../preserved/README.md#初批保存)及[獨立收據（audit.json，歸檔還原）](../../preserved/README.md#初批保存)已備妥。對照頁另放原 B 概念圖下半部，原圖 bytes 及 SHA 保持。R2 是供檢視的保守修色原型，尚未定版或接正式程式。
 
 正式接入前須確認代表畫面，定義原版來源／狀態到色彩用途的對應，涵蓋訊息框、選取／取消、戰鬥數字及故事文字。保留明暗與選取辨識；未知來源保留原版可辨識呈現。資料與規則模式不受配色切換影響。
 
 ## 字型工具列與隸書
 
-已製作[可切換的工具列原型](../../workplace/probe-20261023/graphics-first/font-settings-r1/toolbar-proposal-r1.html)。三張預覽直接使用既有真實視窗擷取，SHA 與來源記於同目錄 JSON；未接正式遊戲。原型的隸書欄明示過渡版本，沒有假冒新的正式隸書。
+已製作[可切換的工具列原型（toolbar-proposal-r1.html，歸檔還原）](../../preserved/README.md#初批保存)。三張預覽直接使用既有真實視窗擷取，SHA 與來源記於同目錄 JSON；未接正式遊戲。原型的隸書欄明示過渡版本，沒有假冒新的正式隸書。
 
 - 工具列提供 Noto Black 900、隸書、草書；保留 F10，沿用現有字型偏好保存，Noto 仍為目前預設。
 - 工具列放在遊戲畫面外。滑鼠點選及選單鍵盤操作由前端處理，不能穿透送進 DOS。

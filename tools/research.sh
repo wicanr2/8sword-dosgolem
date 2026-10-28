@@ -131,7 +131,7 @@ case "${1:-}" in
     test -f "$task_fonts/NotoSansCJK-Black.ttc"
     test -d "$task_out"
     test -f "$task_work/probe-20261023/new-game-confirm/screen.png"
-    require_image sc-cht-hdtools:pillow11.3.0-r1 sha256:44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48
+    require_image sc-cht-hdtools:pillow11.3.0-r2 sha256:b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831
     exec timeout 40s docker run --rm --name 8sword-font-source \
       --user "$task_uid:$task_gid" --memory 512m --cpus 1 --pids-limit 64 \
       --network none --read-only \
@@ -139,7 +139,7 @@ case "${1:-}" in
       --mount "type=bind,src=$task_work,dst=/work,readonly" \
       --mount "type=bind,src=$task_fonts,dst=/fonts,readonly" \
       --mount "type=bind,src=$task_out,dst=/out" \
-      --entrypoint python3 sc-cht-hdtools:pillow11.3.0-r1 \
+      --entrypoint python3 sc-cht-hdtools:pillow11.3.0-r2 \
       /tools/font-source.py --exe /work/intake-20261023/sources/game/8sword/PAM.AY \
       --reference /work/probe-20261023/new-game-confirm/screen.png \
       --font /fonts/NotoSansCJK-Black.ttc --out /out
@@ -149,7 +149,7 @@ case "${1:-}" in
     test -d "$task_fonts"
     test -f "$task_fonts/NotoSansCJK-Bold.ttc"
     test -f "$task_fonts/NotoSansCJK-Black.ttc"
-    require_image sc-cht-hdtools:pillow11.3.0-r1 sha256:44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48
+    require_image sc-cht-hdtools:pillow11.3.0-r2 sha256:b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831
     task_out="$task_work/probe-20261023"
     test -d "$task_out"
     exec timeout 30s docker run --rm --name 8sword-font-preview \
@@ -158,18 +158,18 @@ case "${1:-}" in
       --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
       --mount "type=bind,src=$task_fonts,dst=/fonts,readonly" \
       --mount "type=bind,src=$task_out,dst=/out" \
-      --entrypoint python3 sc-cht-hdtools:pillow11.3.0-r1 \
+      --entrypoint python3 sc-cht-hdtools:pillow11.3.0-r2 \
       /tools/font-preview.py --fonts /fonts --out /out
     ;;
   audit)
     test -d "$task_work/probe-20261023/validation"
-    require_image sc-cht-hdtools:pillow11.3.0-r1 sha256:44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48
+    require_image sc-cht-hdtools:pillow11.3.0-r2 sha256:b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831
     exec timeout 30s docker run --rm --name 8sword-bootstrap-audit \
       --user "$task_uid:$task_gid" --memory 256m --cpus 1 --pids-limit 64 \
       --network none --read-only \
       --mount "type=bind,src=$task_root,dst=/project,readonly" \
       --mount "type=bind,src=$task_work/probe-20261023/validation,dst=/out" \
-      --entrypoint python3 sc-cht-hdtools:pillow11.3.0-r1 \
+      --entrypoint python3 sc-cht-hdtools:pillow11.3.0-r2 \
       /project/tools/audit.py --out /out/bootstrap-audit.json
     ;;
   *)

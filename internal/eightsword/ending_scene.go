@@ -53,15 +53,16 @@ type endingScene struct {
 	mode   bool
 }
 type endingArtSet struct {
-	profiles  []endingFontProfile
-	end7      image.Image
-	titles    map[string]image.Image
-	portraits map[string]image.Image
-	swords    image.Image
-	duel      image.Image
-	effects   map[string]image.Image
-	pair      map[string]image.Image
-	ring      image.Image
+	completion map[string]image.Image
+	profiles   []endingFontProfile
+	end7       image.Image
+	titles     map[string]image.Image
+	portraits  map[string]image.Image
+	swords     image.Image
+	duel       image.Image
+	effects    map[string]image.Image
+	pair       map[string]image.Image
+	ring       image.Image
 }
 
 func newEndingScene() *endingScene {
@@ -154,6 +155,22 @@ func renderEndingPage(p *endingPage, palette [16][3]uint8, art endingArtSet, pro
 	endingFill(out, out.Bounds(), palette[0])
 	for i, c := range p.ops {
 		r := image.Rect(c.X*3, c.Y*6, (c.X+c.W)*3, (c.Y+c.H)*6)
+		if profile != nil && c.Kind == "bitmap" {
+			if texture := art.completion[c.SourceSHA]; texture != nil {
+				if palette != endingPalette || texture.Bounds().Size() != r.Size() {
+					panic("unreviewed completion geometry or palette")
+				}
+				if !endingSwordsRepeat(p.ops, i) {
+					if c.SourceFile == "END4.AY" && (c.W == 176) || c.SourceFile == "END9.AY" {
+						draw.Draw(out, r, texture, texture.Bounds().Min, draw.Src)
+					} else {
+						endingPairBlackBase(out, c)
+						draw.Draw(out, r, texture, texture.Bounds().Min, draw.Over)
+					}
+				}
+				continue
+			}
+		}
 		if profile != nil && c.Kind == "bitmap" {
 			if texture := art.pair[c.SourceSHA]; texture != nil {
 				if palette != endingPalette || c.W != 136 || c.H != 50 || texture.Bounds().Size() != r.Size() {

@@ -1,0 +1,3355 @@
+{
+  "schema": 1,
+  "assets": "assets-painted-r65",
+  "files": 525,
+  "counts": {
+    "existing-player": 271,
+    "packaged-archive": 43,
+    "added-player": 17,
+    "existing-intro": 2
+  },
+  "player_source_correspondences": 290,
+  "packaged_noncurrent_records": 43,
+  "records": [
+    {
+      "source_file": "BUMBOO.AY",
+      "record": 0,
+      "source_sha256": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb",
+      "category": "ui",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/bumboo-ay-00.png",
+      "hd_sha256": "f2f038abc4b53327165dea60cae2511fbdc6b9ec0498d7cf876a86dbf59d58f1",
+      "runtime_file": null
+    },
+    {
+      "source_file": "BUMBOOH.AY",
+      "record": 0,
+      "source_sha256": "8123cb115d9a260d82af57b1a66f4ce432327679f384265a78b10b188c440731",
+      "category": "ui",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/bumbooh-ay-00.png",
+      "hd_sha256": "beb577c617e85a7f99a04cf566d7f2248f1cee4172ff963ccbfa076986b5ceb2",
+      "runtime_file": "complete-bumbooh-ay-00.png"
+    },
+    {
+      "source_file": "CHOI.EGG",
+      "record": 0,
+      "source_sha256": "6ae3f0c429cc980799719d97891d1dced08127c8ea8912e3ed9c87c0960039da",
+      "category": "effects",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/choi-egg-00.png",
+      "hd_sha256": "c27fad67b6ca43873027b89c02467875786dd86f4e5c242b0a34b99801c193f9",
+      "runtime_file": null
+    },
+    {
+      "source_file": "CHOI.EGG",
+      "record": 1,
+      "source_sha256": "1a3ec6e34fad3c23799e7efda393becedb11ba0aaf3edb320c19bc0adef35a75",
+      "category": "effects",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/choi-egg-01.png",
+      "hd_sha256": "74f02d976e980373fac5e78d2028ab847c2b8e20fbe9dfbfb45d43f775ca7edb",
+      "runtime_file": null
+    },
+    {
+      "source_file": "CHOI.EGG",
+      "record": 2,
+      "source_sha256": "94745eff702f3d979c8b254bb15ca9715fa2d0f6f516a06d0cdd63d1c7d22cbf",
+      "category": "effects",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/choi-egg-02.png",
+      "hd_sha256": "717c9909bd7fde3269e7e12a8ef59e7d37743f9ff66e32d6df76b73ce2a76aa1",
+      "runtime_file": null
+    },
+    {
+      "source_file": "CHOI.EGG",
+      "record": 3,
+      "source_sha256": "efec0c4fb555aa09ff3a8e92add92dc5c4256258edf781ade1a509e1dd20fa6d",
+      "category": "effects",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/choi-egg-03.png",
+      "hd_sha256": "b13cf8e4627964adc69c87c4f1c6ecb308ebc8d775dad768297f54b1a07d9363",
+      "runtime_file": null
+    },
+    {
+      "source_file": "CUBE.AY",
+      "record": 0,
+      "source_sha256": "2df9ede8fd23ba02fbac60f635e81e504f6dd93bc2f143570ff97faccd573530",
+      "category": "ui",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/cube-ay-00.png",
+      "hd_sha256": "4dcbab96e5aa721f093592c0d5d90b2f1bf8ee99cc2f57eaa9794b6a495b85c1",
+      "runtime_file": null
+    },
+    {
+      "source_file": "CUBEH.AY",
+      "record": 0,
+      "source_sha256": "74fbcccbeb7fa6cd5e45b643b21b0a6cd72d4d781b8a6fdec7ed97d4e9bda47a",
+      "category": "ui",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/cubeh-ay-00.png",
+      "hd_sha256": "234950b18ced22813b71def8f8a213d55d16325054acac55cff0790d6701b2be",
+      "runtime_file": "complete-cubeh-ay-00.png"
+    },
+    {
+      "source_file": "END1.AY",
+      "record": 0,
+      "source_sha256": "4a5df66d3efaef4610802b281a9a216116922c914ebe920ecec14af6e94936ae",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end1-ay-00.png",
+      "hd_sha256": "fb385fd014378dd7d9281702f6dd0a808fd9354c1cbb1ba50dda959ceea4011d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END1H.AY",
+      "record": 0,
+      "source_sha256": "aa47c668d6424db4e1fef263099cc42d18bd0c9cd86815ca60713e80bc5b82dd",
+      "category": "ending",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end1h-ay-00.png",
+      "hd_sha256": "7d156d9616e12e43e0759c75859fb3f499d25df0dc2656bc6fc032ded80bdb1c",
+      "runtime_file": "complete-end1h-ay-00.png"
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 0,
+      "source_sha256": "c851736914bdb3c1d2419855d62eb96325e1ed4b4f265dc8b77b10da05dc7445",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-00.png",
+      "hd_sha256": "3075f7500af019f5dea714447819c0d752e9408858ec6c6f46f98fed9512d6d1",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 1,
+      "source_sha256": "62c8e2c52e5e289ab3111b0d6eaf80387026c131e67a39905c430957b39c713f",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-01.png",
+      "hd_sha256": "9c45bf51fd115df919d624df64d2ea0bcbbfabb55c56525b8614c9223eba550b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 2,
+      "source_sha256": "a16c291f6f4d5ac42f17ecf66d1a39891406040f67d2b56bca7423b43dc2e78e",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-02.png",
+      "hd_sha256": "720041b99b3b36fff0b2095a50e29c67950b2b78b6aec0854b602a4d0c89bb39",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 3,
+      "source_sha256": "f605f46227cb14b0212b4b02c5b98d61c8aa67b0fd4e27f34034091e6db449d7",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-03.png",
+      "hd_sha256": "aabb20a89d44375fedb1ff4305000b3f6ab8f55f11a5d6c7dbf08caea8154f46",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 4,
+      "source_sha256": "68bb0605ac105a4bb306bdd363791055524a3c3e1ae5c546d6a5e355ee9a9c6c",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-04.png",
+      "hd_sha256": "9a456ae3c199991b28f3d958e8b37ef5ad661c098283eaf33a7895177c935e4a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 5,
+      "source_sha256": "31e2b9e9eba33118e518b7f5c4aed2f61bf501baa48de633c426732f1b9075f2",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-05.png",
+      "hd_sha256": "c27d186ed1afb1c352d81e01394ab3858c66396ebb1878472e9156c547a0fd07",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 6,
+      "source_sha256": "a888256ee23e810b2b01ed7b51e612cfd5caac46acdd4cd436fc81b3a7a59acd",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-06.png",
+      "hd_sha256": "6b01e14375f8af35be400ee5857c427ecca7cd1072dba5e8c36b2526977fdcbd",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 7,
+      "source_sha256": "b630aca792071a3e8ffeec62e5a526e068338a94441ab1db8de9902e0a9a7397",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-07.png",
+      "hd_sha256": "da1d20ec7fcc01e097f2659d64ff9d40d6b6bcc3fdcc668c5693f4e0504a0298",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 8,
+      "source_sha256": "aec7a1dc1b41c4581f6598f4629127dd22a91315d93c5d1f694042499c0d2417",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-08.png",
+      "hd_sha256": "7a4bf5af4b7256e6de345524807834d879495e4fa1e2dbae7287e83ad92e2478",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 9,
+      "source_sha256": "7c3df1b265fce28b4c5b874995a6e62979f83aba5600a7d9ec079f4501f3bbf3",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-09.png",
+      "hd_sha256": "70a5a57b00cc6062d227e11c304fd0b2e979da28820a28066878ff5a35afd2ad",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END2.AY",
+      "record": 10,
+      "source_sha256": "8087faac315fbb8da657ef1fd22c7c2407fa841d0cceed18341ac0e27fe22f5e",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end2-ay-10.png",
+      "hd_sha256": "4fb5cc53a4c64b434ff833876d91a21863e71a61c700a8c7875abd69213cf65a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END3.AY",
+      "record": 0,
+      "source_sha256": "b13caa558e7e0d93aec2023eedd21fec0f3b6980178770444395c0913e9cc687",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end3-ay-00.png",
+      "hd_sha256": "bd86f7099823d583e2081bf8760efac9a69f3382a6dd00480f22ae678cbcf5c8",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END3.AY",
+      "record": 1,
+      "source_sha256": "f63c6b90c58db6f1bdc596c0c6dc565ecd47b6e8540fcb99cf2d76cbbe2c6f4a",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end3-ay-01.png",
+      "hd_sha256": "7ce7c980224a37fb88d5badd0d2bd13310e7928098654afa8e9571fac4d95299",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END3.AY",
+      "record": 2,
+      "source_sha256": "6480d2c569699aec2b6cc191fa717b9c6dcb4a93672c97fe62a045b7705f0be1",
+      "category": "ending",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end3-ay-02.png",
+      "hd_sha256": "32d37badc4341ceefe3a1694a4c98c0f06ff10498ca5b6b6974f60121cee2763",
+      "runtime_file": "complete-end3-ay-02.png"
+    },
+    {
+      "source_file": "END4.AY",
+      "record": 0,
+      "source_sha256": "be70ceb53af8a47958f991a4e9be9d1e015d44ac4af95db2f7d0ca2ae77d86f1",
+      "category": "ending",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end4-ay-00.png",
+      "hd_sha256": "4ca0939b33871e8a7fea5277892c2bda3f9c82471e1d611190c590a9645a5575",
+      "runtime_file": "complete-end4-ay-00.png"
+    },
+    {
+      "source_file": "END4.AY",
+      "record": 1,
+      "source_sha256": "6a2e8917d08d639e62c9546b957fe3d8494e64056eca76a78d5b92aadf8d4288",
+      "category": "ending",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end4-ay-01.png",
+      "hd_sha256": "c975eb3bc2623b96b4d01c75ed701807b11db23f260deb31c681dab8ef5572d4",
+      "runtime_file": "complete-end4-ay-01.png"
+    },
+    {
+      "source_file": "END4.AY",
+      "record": 2,
+      "source_sha256": "f5f2a075a05d9c47dcbfb05b130d19daab0cff93d669f78ddd465f9ac2bd44e5",
+      "category": "ending",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end4-ay-02.png",
+      "hd_sha256": "2273535a73b863ef80c981b2b36061a9f506ef6f0e79b7c71cd9de383b2de0fd",
+      "runtime_file": "complete-end4-ay-02.png"
+    },
+    {
+      "source_file": "END4.AY",
+      "record": 3,
+      "source_sha256": "12ae9e8f99dab7fb15b9b031b8bf71c99d096821c38b01c60fe0b02a4ef8d633",
+      "category": "ending",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end4-ay-03.png",
+      "hd_sha256": "562ebe7a3f8e625b08b098c283d68f9f5cc4ef053fc472ee5fff2a4ca4293ffc",
+      "runtime_file": "complete-end4-ay-03.png"
+    },
+    {
+      "source_file": "END4.AY",
+      "record": 4,
+      "source_sha256": "86aab2e1faa85111d65c42144286e0991043d0976b3f5a946a1355aa07c2032d",
+      "category": "ending",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end4-ay-04.png",
+      "hd_sha256": "35865bc84f74f3d7e5de06a945d1c6265067457dbfbe99741d607068985f5699",
+      "runtime_file": "complete-end4-ay-04.png"
+    },
+    {
+      "source_file": "END5.AY",
+      "record": 0,
+      "source_sha256": "59cd1728bdd6a31f8a323580a7b57bc34bf309dc342a4028a8aaa06b370824e3",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end5-ay-00.png",
+      "hd_sha256": "8f01eaff373a8be85c44334941584a1fa9cc10dbd50e184fb913828aac1273f9",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END5.AY",
+      "record": 1,
+      "source_sha256": "138e96aa4c707a7e6b8c0cad20957faa5f9bbdee0bc2918198a5830aa9c3d00d",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end5-ay-01.png",
+      "hd_sha256": "d4b6be348896537bd1728df54bc16247aa828418aba9be4c211eac694821033b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END5.AY",
+      "record": 2,
+      "source_sha256": "d985494d828cfc7d1fe20c420276137aa95ec107c2c2bda385539ea36fe0682f",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end5-ay-02.png",
+      "hd_sha256": "943760a350d6a0f8a6b436e234685e2bf86cfa19607d4630fd1c88b05c23713f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END5.AY",
+      "record": 3,
+      "source_sha256": "79c79de9c767a3f0bc4bcc65990da275bb97c1f220fd5bc0ce2ed9565facca85",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end5-ay-03.png",
+      "hd_sha256": "85dc1229e7699b4d36165f3661393102de065bd8fcda3e9e26fad2cf689db333",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END5.AY",
+      "record": 4,
+      "source_sha256": "9ea6391a0b07fa1550989381acf0b295c7ef18e194978a6402cf09405948e685",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end5-ay-04.png",
+      "hd_sha256": "6620737c6622d1adf10093ee086b1b39ea749021ec08adf4b9221267ee56378a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END6.AY",
+      "record": 0,
+      "source_sha256": "309903b77924ec1d2274c5e56d01a076c94b924633e7ec5b44d08ecfed9e67f5",
+      "category": "ending",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-00.png",
+      "hd_sha256": "b5c44cca2014391951ac25fafb0793dba29c1e5a9a5be6ca8f91a356496c98da",
+      "runtime_file": "complete-end6-ay-00.png"
+    },
+    {
+      "source_file": "END6.AY",
+      "record": 1,
+      "source_sha256": "442e361a3e824fe076b7c062ab6f7f0000203bb2cf491aa6822c6a7fe673c9d2",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-01.png",
+      "hd_sha256": "a4a6df7dce9c258533d0a6ec88c69c91e53fc191420b2aeac0a897841af1dbd8",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END6.AY",
+      "record": 2,
+      "source_sha256": "32d0f1629f4f85fda6eb55a7db519b62bd9c7d0574cbb02a3df721eacb0f1aac",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-02.png",
+      "hd_sha256": "9898b34ce6a5ccf8e8f53df5860822d0cc41e7d47bb94897a151389060125c0a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END6.AY",
+      "record": 3,
+      "source_sha256": "a08f07085c14a655fb46eceb95d1ad3bcf2e4dc908881b4b2c09af61eb2a3b90",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-03.png",
+      "hd_sha256": "325f43c4493aede9221b99a10fab1df3f7b9e7af46a7432ab2ec0715cde63684",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END6.AY",
+      "record": 4,
+      "source_sha256": "f808d2a2f8a37439943908b538dc820667967deaba6209ebecb5de25d46682cd",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-04.png",
+      "hd_sha256": "04063df47a542fbda399f667d9fcd1633643c325242d8d54f5b1cfc6fbf60268",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END7.AY",
+      "record": 0,
+      "source_sha256": "72b518d5c458f6865e9f077fb5f0a1ae432406887147e7b1232f6e62b8da38bc",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end7-ay-00.png",
+      "hd_sha256": "834b0aa26424222972cc05be8c00245b63a33809f5332eb08259064e777ba0c7",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END7H.AY",
+      "record": 0,
+      "source_sha256": "9f8978470894e6fbff3fa00fe2cb507362b2c633286c00eff1dd1429385fbee3",
+      "category": "ending",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end7h-ay-00.png",
+      "hd_sha256": "b94a01a7e7a37d3ee842dc895c9a0aba758094101fef719f31f4997d6f49321d",
+      "runtime_file": "complete-end7h-ay-00.png"
+    },
+    {
+      "source_file": "END8.AY",
+      "record": 0,
+      "source_sha256": "5f62f595ac003c069acace22770cd71b99e14d48bdd43db671598f5320c74f65",
+      "category": "ending",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end8-ay-00.png",
+      "hd_sha256": "217f5cb33b2c3f35fefaee019ef0f3c94df6e6ebe65172e90d60f6a978330232",
+      "runtime_file": null
+    },
+    {
+      "source_file": "END8H.AY",
+      "record": 0,
+      "source_sha256": "55ef7f2737b540225725960be878cf5b7b90768582da14aee21bcfca3d85d749",
+      "category": "ending",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end8h-ay-00.png",
+      "hd_sha256": "58223f48ee4eabe6bc908a769a68d27fdcef6137ec17f8fa9e55ed724321a2f4",
+      "runtime_file": "complete-end8h-ay-00.png"
+    },
+    {
+      "source_file": "END9.AY",
+      "record": 0,
+      "source_sha256": "c7f8182ec4359a0aa50a305d922cb457ea46910c002b4a464fc79b6affcdbdde",
+      "category": "ending",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end9-ay-00.png",
+      "hd_sha256": "8daca5cae54340b3a600c501a7fa20b774994336cc8af3709bf2b534e751596a",
+      "runtime_file": "complete-end9-ay-00.png"
+    },
+    {
+      "source_file": "END9H.AY",
+      "record": 0,
+      "source_sha256": "3e6c1519945c0736f4313c0d336eaf97c66521871588cd70465a8591cc79b049",
+      "category": "ending",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end9h-ay-00.png",
+      "hd_sha256": "8daca5cae54340b3a600c501a7fa20b774994336cc8af3709bf2b534e751596a",
+      "runtime_file": "complete-end9h-ay-00.png"
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 0,
+      "source_sha256": "c29187907b384980a4229caea7a4836e0a24400ed5cdba02f3fc09f5c419e784",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-00.png",
+      "hd_sha256": "ce232ae9482df02f4ab020fd88449c2ff0c947e399defadc4aca762d09cd2399",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 1,
+      "source_sha256": "8cdfb464c19dfaaee3a5c8f89745cf44d050020e6d9fb733cfce2e4f2bbbb369",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-01.png",
+      "hd_sha256": "11482a26f8d71246672d101bed21d895a570cb1f9f4846104e2c5280a66a29e4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 2,
+      "source_sha256": "6c6fa884efad6a238b5f54c57e9e2d37301e045fc95cb25601725e8c169f7fbf",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-02.png",
+      "hd_sha256": "965e1da0fbe6ce98ae2df06392aa92da6dcc8ac58db451c92f79d176108ccdd6",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 3,
+      "source_sha256": "69d9456f48b9392872eaf9ad9a387d67326761341e7b4f932f58ae3977dc8b28",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-03.png",
+      "hd_sha256": "61c89d3fc52d0ec59e97e2b5cb61e468fc0628f9a4a318bb7870b51ec7820e8f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 4,
+      "source_sha256": "491e34c5079858b7d8d68567b3bd6423a19cb97dfeda78e43edb2fabcbad9614",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-04.png",
+      "hd_sha256": "8f824933c48ace918e40474afa957869a98e6f617ab156529ff1f3637334eb4f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 5,
+      "source_sha256": "c638c7ae4ad6bec7ee48f628f8d563cf4ab096cebbeccce6ce154ad1bea9f111",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-05.png",
+      "hd_sha256": "895e22503cc5829105e5934e1234739c3125638fcefccba6cbf95f9448047093",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 6,
+      "source_sha256": "305718711f6b1d3b54fa30f0019ce483b2cdbfcec5876b0be8c9507e88573b48",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-06.png",
+      "hd_sha256": "6a80dfc675510e4f00f12fa7407f4a26103605016e47ce26b2f71e7859244b01",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 7,
+      "source_sha256": "7afa7a24c57b2c7747054125614ef598e18316425845ac5799a556ab65e977ba",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-07.png",
+      "hd_sha256": "582c6dbff9e7d094262eb0b9943d8187abc50ae3716031250324704d322b5f83",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 8,
+      "source_sha256": "4306abeec77c49178d59e4eb376260f609882ca629764a952fcfeed6ee400349",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-08.png",
+      "hd_sha256": "e8215bdf393a687da508dbdcc6d2b511654e666f562322d1d48990b4fc13768e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 9,
+      "source_sha256": "fdf8890c976aade03091e865fc3a4f206474e6cb43bd5291fc76fc277affcef6",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-09.png",
+      "hd_sha256": "ff77f2b6148185cea263eeb6aa6a0d547c36467376f26ea1c5f7701bd4fa8194",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 10,
+      "source_sha256": "9449a29497122831ba346c3a620366515edf24e63717245c7a2b1dec0963ba6a",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-10.png",
+      "hd_sha256": "9f06cfabf63a972505d1fc704a8fc4f510fe3ffe0b821a96ec715343f9dbde2e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 11,
+      "source_sha256": "fc4919067b1857fbeced7d92202723e87742e4e53ad4357e013be5e5d7c34553",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-11.png",
+      "hd_sha256": "219cd268bbddc1259b864c71aba5cdfebc7b88011589ef9f2b5bab978d7e0e4e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 12,
+      "source_sha256": "d7ee1e82dc77a7144b7cf5c48712351c89813f5e21e07890cb6e9aa25529b4d5",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-12.png",
+      "hd_sha256": "cb6302b05e50edbdeadf02e05bfe6d5e5c5b8c90e5dd631bb0f708469f38d6cf",
+      "runtime_file": null
+    },
+    {
+      "source_file": "ENEMY.AY",
+      "record": 13,
+      "source_sha256": "e1c6feeaa6b8b8f5dac341e490270791bf1d252a0103c267defbd8a1528f3501",
+      "category": "map-encounters",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-13.png",
+      "hd_sha256": "418f3e2906dbf3b6af6765d4710b7494da865f1438e881649d59de53d6323130",
+      "runtime_file": null
+    },
+    {
+      "source_file": "GRO01.EG",
+      "record": 0,
+      "source_sha256": "79e2c0119edf4ca9f87fb14dbee47de49afca4eee8f8cc2711c4c58c275e7be9",
+      "category": "battle-backgrounds",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro01-eg-00.png",
+      "hd_sha256": "13c001c9157f354d5e5e5b5c185310a405bf3380d51dd7cf7e29173b1bd5f2b3",
+      "runtime_file": null
+    },
+    {
+      "source_file": "GRO01H.EG",
+      "record": 0,
+      "source_sha256": "82686622acd9a3db8f522157ec8db2064346e3fc82dcde14d5c5663c3eef8252",
+      "category": "battle-backgrounds",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro01h-eg-00.png",
+      "hd_sha256": "3415980734b5081414ba764f47a14f3c08525a0e1e3032a7fb89b709505252c2",
+      "runtime_file": "complete-gro01h-eg-00.png"
+    },
+    {
+      "source_file": "GRO02.EG",
+      "record": 0,
+      "source_sha256": "b2262e970d5525826db47e9507787f9f3daddb2e00394934c728dc5d0ee8f763",
+      "category": "battle-backgrounds",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro02-eg-00.png",
+      "hd_sha256": "b1d359b3dfb193167c02b24a8317d00c7c1d4ecd5b5f252985b53d0ed9cd4b95",
+      "runtime_file": null
+    },
+    {
+      "source_file": "GRO02H.EG",
+      "record": 0,
+      "source_sha256": "7d1f825f6cbc8171a0139e24bd75116bc90074c4d48f6cebcf02f2463234465f",
+      "category": "battle-backgrounds",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro02h-eg-00.png",
+      "hd_sha256": "36698ceef6b6df9f0a6c40261ea8beb66a104be269c782d5ac68455e2ed52561",
+      "runtime_file": "complete-gro02h-eg-00.png"
+    },
+    {
+      "source_file": "GRO03.EG",
+      "record": 0,
+      "source_sha256": "e3361d72f32e0c5b4de129fc061dfc7b69fbf2df35692bd20abc2acdc66b7b4d",
+      "category": "battle-backgrounds",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro03-eg-00.png",
+      "hd_sha256": "de6506a06e07acf3a0e14cc60ebed44ede8e1739ff0f1c30f0089bc5b72e8f4b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "GRO03H.EG",
+      "record": 0,
+      "source_sha256": "1f7d4e8c4cb8d070078ad6447ba60eff81dbdac66d28a12501d4202de1e47c05",
+      "category": "battle-backgrounds",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro03h-eg-00.png",
+      "hd_sha256": "26c779bdaec84aa6026562f5b613e06f2b665ed2d9020dadc516cc892c89ff8b",
+      "runtime_file": "complete-gro03h-eg-00.png"
+    },
+    {
+      "source_file": "GRO04.EG",
+      "record": 0,
+      "source_sha256": "c5499a5b60c3fae44a732faf771f84a8b1cb10018a0277e96e3b489a2bf76790",
+      "category": "battle-backgrounds",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro04-eg-00.png",
+      "hd_sha256": "e9203246abe411df0fca652c886bea3ef7276d1e374496a709aca80d8e98ca5c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "GRO04H.EG",
+      "record": 0,
+      "source_sha256": "63821ad7cc33fdd6603409401dd34e6cf0d2f3b04674c72a2e7f5b051e2e950e",
+      "category": "battle-backgrounds",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro04h-eg-00.png",
+      "hd_sha256": "7af96038eec5c22c0b197c100e73e16895359a3db696c2ec4bb60ae8e9b0b401",
+      "runtime_file": "complete-gro04h-eg-00.png"
+    },
+    {
+      "source_file": "GRO05.EG",
+      "record": 0,
+      "source_sha256": "27d43c2e1aa3cbd08b9bfea555c5378d72ecb841566c81c97c73fe4a351e9d6e",
+      "category": "battle-backgrounds",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro05-eg-00.png",
+      "hd_sha256": "45522b1e21eb97c9589589f5d3205bf96674613bf9059fe202f8012776174fbf",
+      "runtime_file": null
+    },
+    {
+      "source_file": "GRO05H.EG",
+      "record": 0,
+      "source_sha256": "62eb874fa0f7ccd09e35a4f0ec2386a4bcedf68f7d6be9eb784e63ed7f07ad89",
+      "category": "battle-backgrounds",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro05h-eg-00.png",
+      "hd_sha256": "6ba554cb9c371fc60117fd3807c4d9e8f0789c632c7d22f9a3b6dae69c3b6eb8",
+      "runtime_file": "complete-gro05h-eg-00.png"
+    },
+    {
+      "source_file": "LIVE1.AY",
+      "record": 0,
+      "source_sha256": "5c5e549514cc287c747ad075ebd7572cc265a4529f7af26325d74fc891202a4b",
+      "category": "buildings",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live1-ay-00.png",
+      "hd_sha256": "02c50f3b1f13f0fdb17d2fbc5bfd0c854e2baf5bc61f76be7ae9d265e979deef",
+      "runtime_file": null
+    },
+    {
+      "source_file": "LIVE1H.AY",
+      "record": 0,
+      "source_sha256": "e6061b151580f4a4ba46c5bf827d0d38909f0a58aae2af99ed5b9f0873a3137c",
+      "category": "buildings",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live1h-ay-00.png",
+      "hd_sha256": "04257f7097e1988fdb882adf18102400f37f54672d5a4978c7bbc14cc16ff203",
+      "runtime_file": "complete-live1h-ay-00.png"
+    },
+    {
+      "source_file": "LIVE2.AY",
+      "record": 0,
+      "source_sha256": "edf6a0cc7dc13fbd054049bcb9bec91e1386c0c8b141174da376499854cb5978",
+      "category": "buildings",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live2-ay-00.png",
+      "hd_sha256": "13299cb4b76f41f2dee783f74fa0909583e371cc2abde387531d941a2efa4519",
+      "runtime_file": null
+    },
+    {
+      "source_file": "LIVE2H.AY",
+      "record": 0,
+      "source_sha256": "a2cb58c58fac6b9f0bd7e8498fb58b125c3a86614b6242735e514fa7f381d605",
+      "category": "buildings",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live2h-ay-00.png",
+      "hd_sha256": "dc96a13ae4716e79883ccad8574b812ee9d3887d28a263f7e2c4969b093a15b9",
+      "runtime_file": "complete-live2h-ay-00.png"
+    },
+    {
+      "source_file": "LIVE3.AY",
+      "record": 0,
+      "source_sha256": "abc3df024aae9f21f829a549fa383e8f7f32ceb7031de8c938786a51a76d807b",
+      "category": "buildings",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live3-ay-00.png",
+      "hd_sha256": "ed68c9b7b8cf8ac8c6408cfe64685e60a1079fa4d6233b246a8b755a4b642ea0",
+      "runtime_file": null
+    },
+    {
+      "source_file": "LIVE3H.AY",
+      "record": 0,
+      "source_sha256": "93cb89165017a468f945807e102895e93e408827d1f6f219a68d4232edd78111",
+      "category": "buildings",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live3h-ay-00.png",
+      "hd_sha256": "8d2574460bdc6ca281bd9a5aa100823221c6a94e2199806a228294a620f47549",
+      "runtime_file": "complete-live3h-ay-00.png"
+    },
+    {
+      "source_file": "LIVE4.AY",
+      "record": 0,
+      "source_sha256": "c249b6f8707a004789b20b8fac594a0cceaaad2ab601e0ba8aa9440d5b384590",
+      "category": "buildings",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live4-ay-00.png",
+      "hd_sha256": "0b582ef2b8b7a2a2351a5c579f875c09c17dc80065a05474f5e478e70d8dbf89",
+      "runtime_file": "complete-live4-ay-00.png"
+    },
+    {
+      "source_file": "LIVE4H.AY",
+      "record": 0,
+      "source_sha256": "0a192d2d5c3f3bdcbb37faa9b8fc2caca7529e66236f1e5e51e7fe043a85bc6e",
+      "category": "buildings",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live4h-ay-00.png",
+      "hd_sha256": "83d03b94e1c8cf333e89ad33c0feacd64f81bfb88456dfa87538fe1fab81c4c5",
+      "runtime_file": "complete-live4h-ay-00.png"
+    },
+    {
+      "source_file": "LIVE5.AY",
+      "record": 0,
+      "source_sha256": "aaa7766defa4fa81aebeec4a50d6d9f34f40fdc89f21a88f22450c83bc195845",
+      "category": "buildings",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live5-ay-00.png",
+      "hd_sha256": "0a6a4a868af2015627d4ed9516ae835fca7e1b154326d5bf2dbd8ca91a04a506",
+      "runtime_file": null
+    },
+    {
+      "source_file": "LIVE5H.AY",
+      "record": 0,
+      "source_sha256": "c0e5d0614908faf5e86a22d24a4c13d7619baabb8cf814b3e75b25f73d32cf0b",
+      "category": "buildings",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live5h-ay-00.png",
+      "hd_sha256": "e037f5e93396b77cb30c525fbc6f48cfa2cd1036498dd2ce3a11c1a484594385",
+      "runtime_file": "complete-live5h-ay-00.png"
+    },
+    {
+      "source_file": "LIVE6.AY",
+      "record": 0,
+      "source_sha256": "4ef8db559801e29c0812f65a32a60067677ae5227bf2a9ca76d458d467d747d1",
+      "category": "buildings",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live6-ay-00.png",
+      "hd_sha256": "786d3816a30f2bfb40735ca6b2ad009a2fc5de5b14c4f3937c08e0ec25e3ef17",
+      "runtime_file": "complete-live6-ay-00.png"
+    },
+    {
+      "source_file": "LIVE6H.AY",
+      "record": 0,
+      "source_sha256": "80ec2a0ae112714ade19fa0f73d92193e548cf4978568cdf97709915b9214153",
+      "category": "buildings",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live6h-ay-00.png",
+      "hd_sha256": "ab166156a0ee0f71158ca201e3c9fbd22fa08c8589dc8aeef191f36f75f33e7a",
+      "runtime_file": "complete-live6h-ay-00.png"
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 0,
+      "source_sha256": "605b2440785c7760dcdcd09f5723126c3542b881a29ff6758afbc8109dcdead0",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-00.png",
+      "hd_sha256": "7e2ae5916fde59c041884b9a2310a1054975b14367d24cb86f70194b85b745eb",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 1,
+      "source_sha256": "49692088d96e38514b0f1b5e12d40d7bf9825241434b4bfe5ab9035803c762f7",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-01.png",
+      "hd_sha256": "1ba370fedcaaa833e829eb5db81630938549f3460ca7ab2639c5d89ad58ebbcd",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 2,
+      "source_sha256": "a648e1f15f22398d726963e2ab24daa8d342d34cd0dcc6d6093f43e28b2ae8a1",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-02.png",
+      "hd_sha256": "ab2733a5cba3bbc97a81e67e2b9de475457e4462dd16383175a16cfaac851fe5",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 3,
+      "source_sha256": "dcc6660b3424dfc78b5e57cca34c077b0220164155b18bb8724bfb667fe23594",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-03.png",
+      "hd_sha256": "1ad93b51ead1738e92e63cabb19de39c0b3eb85f4b3e0e14ab00158862efa75f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 4,
+      "source_sha256": "4c32210b8b10e3fe96cea0873cf1e3e7921bd0d5521616f925c6b3bb80fed5b4",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-04.png",
+      "hd_sha256": "18604be6fa5723ff85d8b76df2b02592efdca67002b6592a489f1e9fe3ad07cb",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 5,
+      "source_sha256": "fc5859952a91c827eedfb5dcfafcb5e542170aec9c86bcf8cc9fb33d8d0c7159",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-05.png",
+      "hd_sha256": "12a2d42df7faeea3902d301ac1cc5e60f152f3b5e0309b45585ed69aa60007de",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 6,
+      "source_sha256": "8dbe5293b925fd95b493ab7416aef323de5c029a295c3ca3674028f9b4f80bbc",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-06.png",
+      "hd_sha256": "ecf3b137590d21e75e86ab1761b93322cb5d0835a47c7d661a97f1dbcef43454",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 7,
+      "source_sha256": "550add966262b8c457200f91759cf97fadb3808f70b8e4e7a862bfc7b0f46436",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-07.png",
+      "hd_sha256": "f750c5297c6af29d5880e40fe29e4f6f1408213293464731a6b94156bd9ac80b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 8,
+      "source_sha256": "2765921a02cefc47a83549540c688240bb435c99685c5916aedd31b4c91e5039",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-08.png",
+      "hd_sha256": "276dcd4b62963b6a7f6ccfbbca8a2a7dd610f292a8bc92da547a36397177d995",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 9,
+      "source_sha256": "4a123a3722005514bafafe0b36b543004b20518f4fa00df8d61698a295158698",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-09.png",
+      "hd_sha256": "8482828c6b6b53a9bebfc386b937f2645943c536294a1ceb193db784d087e42f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 10,
+      "source_sha256": "59eb969deabf701b6f47511778d42ef5b8284afb713bce8cd1a99e9053984094",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-10.png",
+      "hd_sha256": "fe835385abc9f712be04779defab2b7093f28d751859b60749c7fed75e72f710",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 11,
+      "source_sha256": "4c8522d8ec6d2228cd7020f072c82bc1f55d4a5ede5b94fb616dd9232ea435e7",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-11.png",
+      "hd_sha256": "4b512f803f9c0d3b04d4195f6d8d5462c6593100e61b62e01406efb8ebfa7c85",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 12,
+      "source_sha256": "91f28404f2d91e2ec0da36b8d75caed81a85eb522426a7647774419338a7d2b3",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-12.png",
+      "hd_sha256": "5a2433bbf5f55ce4b94ed838c4d1780ec84c53fae4c2d6659a92180763dc5449",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 13,
+      "source_sha256": "45b537846755d95c6ca464bf4a47d18da64d35d1dc2eccead0c068a9226ea438",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-13.png",
+      "hd_sha256": "4a69460d35e72f5e8268d7cb9874a8179b572edbb6caaa66202dff5ecffb8af8",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 14,
+      "source_sha256": "2e52420aa6cc4d24a9d0640f9084166218aa405be5dba868219fedc252a54fbb",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-14.png",
+      "hd_sha256": "858ae7b36b8859725d992ed137d45c26968b8b258a7b6a89a1319d894fc0b182",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 15,
+      "source_sha256": "382c91be3b65d7c827a719d6c1e0caa592c4addc87215400fa9398846c5ad21d",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-15.png",
+      "hd_sha256": "f1bbe00486f68a696bdcb32c5f010cf40d21f55d69eb0250e235f339c14b8c3e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 16,
+      "source_sha256": "e70de510e7c82907bb8c269ad8654e25276966e767474a9569aafd73cd757913",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-16.png",
+      "hd_sha256": "4bbbf1b2c7d502c367d9bb8afda4e88145b746e56d14c4b9628594ef65405beb",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 17,
+      "source_sha256": "b8bc95aed7621aaaa29b93ae6a1c77a004b97726c8d4a5add3d76de40736d778",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-17.png",
+      "hd_sha256": "84e57bbe334e5b2227f57ba48ab25b1b63ccbc9ed6bca7e5f861e9b6914d92b2",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 18,
+      "source_sha256": "c923a356a5d219a5962cba924fe0654ea50ca9b97a47294d6d15741751c8faa3",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-18.png",
+      "hd_sha256": "e4c8b4c3cefa51323ee418c88940868cba3a7e4d6c2925d2dd06eacbf74ad262",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 19,
+      "source_sha256": "a59ca95370ed44c7d4562e40137acfaccb1d2cae500a3e35766dd6cf15b1e95f",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-19.png",
+      "hd_sha256": "c24f74e8523a0bfefc78dd0df173e7e75410b8c612ef6b7ea2c6317ab04c349b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 20,
+      "source_sha256": "61694748e9f443d37427a725c564cfad3ed4df77418c99081729e175e8a7c28a",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-20.png",
+      "hd_sha256": "96597148bb1963b91069f4b7a947a2704b5e5b1bc82feaea1d8677f6a6c6619e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 21,
+      "source_sha256": "6c349a78034e53d1aa7b656aae0b778ef053015964b62496e38a2c31ca97d37b",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-21.png",
+      "hd_sha256": "9f9e078fa21e3dfe69d8ed43255ba38274d4670878323cec61328e69fb8e05aa",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 22,
+      "source_sha256": "e70b0fd290f5ab18335284080e4e26f568cbe09e9c346accbb15a8b59f29127f",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-22.png",
+      "hd_sha256": "1654301f188b122dfed2929dabb17ea58e98d40fbdcce3416e5871cf0285c551",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 23,
+      "source_sha256": "c75b7eec36463cc1d61d614dda91261a9945506a477bcd5e3c7b01c50c02922b",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-23.png",
+      "hd_sha256": "4a113734f5e7649409d4ab9003678da6e157868d845d08680b400daea8695ad0",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 24,
+      "source_sha256": "17b3ebdf2bc913456b917ae3de42eb7cb54c13f3681a5c53cb34f108f41a3243",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-24.png",
+      "hd_sha256": "d3752641cd0e9ba9bac024ea568f2d9cf22c70267b629e4a67b2b6c920780014",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 25,
+      "source_sha256": "c038310d7147b3bd4002ec61d6b3e1dfbe03967fcdc31064cb5d37d356f014ba",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-25.png",
+      "hd_sha256": "f8fa1ecc23a38a6b2f5eeb28f5cf294a0c56ad7a0eab9d7068c716bdc3921592",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 26,
+      "source_sha256": "7d4ee18c565c9f7eca88165301cc6408daead12d2321b1995196ffdc491a065d",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-26.png",
+      "hd_sha256": "64f39c69a35d6c23d4785ead6cd84bf8dd9b90fc0b4633d820dae965e5e85a74",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 27,
+      "source_sha256": "0fee485e19f8175c86bd5bd2789130ac35316c7eace33f781f20d37202dd45cf",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-27.png",
+      "hd_sha256": "4ea5566b1b2c7ded70208e208e682818de6b83b43da70e3e55a6649b78baebe5",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN.AY",
+      "record": 28,
+      "source_sha256": "5a4467be5145be8a82acbf3eaddd8c267a0ba49dd6c8b1a04b63d9246617dbce",
+      "category": "hero-and-icons",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-28.png",
+      "hd_sha256": "68f3ef20d1f0ba7c92af9f74c75790ab795d878be18bd6d382055ddfa8b8c23d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN01.EGG",
+      "record": 0,
+      "source_sha256": "3bb12bd3bf599c53a49456f391b9b33da1ee3fd9e68240be412ca4e683f0f7a0",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man01-egg-00.png",
+      "hd_sha256": "d3defb21ae6cd4ff1518faaaf40d5ea83c5a8842f2cc0a19e81cb619af85bb4e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN01.EGG",
+      "record": 1,
+      "source_sha256": "8cb9dc276d55404f55da90df1dbff5756b12b4aebc91143762143f1dd52c81e9",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man01-egg-01.png",
+      "hd_sha256": "d4478aeb6de52a6ab851bd0fefb523d89101889bd0afb1d1af63ac4ee7fc8f5a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN01.EGG",
+      "record": 2,
+      "source_sha256": "ee73404c6d570f69cee35791141ebfe5874f99855f868f49b321792b27734f1d",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man01-egg-02.png",
+      "hd_sha256": "94a4d3651437844044a00b0ced8268ab8cf8dcd3e762ffa69618e566f03c5ba9",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN01.EGG",
+      "record": 3,
+      "source_sha256": "efc128b387a8d73c9a842f3e41edeaa626e7cd87e59d90cf8d3725d3e29327a9",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man01-egg-03.png",
+      "hd_sha256": "7257e839ef9381bf0599e55e454e1741e79533619926e6ca9629a7baf830fc73",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN02.EGG",
+      "record": 0,
+      "source_sha256": "5e43916ca522b0d6ba92829cd28842da39a7971e6f46ffb7fdcd749427c63a42",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man02-egg-00.png",
+      "hd_sha256": "216fc1cbfa56869824f701ce860bd08d3e9a407d0949319b504b55dd49778a0a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN02.EGG",
+      "record": 1,
+      "source_sha256": "be10f2a5c53503eaf4bdaa14c12e77ca27028e09151b2300c75e78ccdf7c02e3",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man02-egg-01.png",
+      "hd_sha256": "350f90f7566bca884f59b592e8de0360f5163f1234214885b9aad47c72dba58a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN02.EGG",
+      "record": 2,
+      "source_sha256": "5ac6d20de301aaff58dff08fc9be6afa71005190b50d2b5927d76b38153fa1b0",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man02-egg-02.png",
+      "hd_sha256": "e600846a292f651310307e09711cea810eb2f8d0021a2847c66e17f4ec28d601",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN02.EGG",
+      "record": 3,
+      "source_sha256": "8e6b01e7b87e0b47e8bc07f4014cdb17ab53cb3e7be2bdf84c92f6e84d599d2c",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man02-egg-03.png",
+      "hd_sha256": "d1f14296eb29d8852bcd587e559a1d72aae9fba8570e77c8d4583e45808659a8",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN03.EGG",
+      "record": 0,
+      "source_sha256": "7f731be5a92039f788e38c7db48c5364a4b18755887e3786f1030a9aadca5fd9",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man03-egg-00.png",
+      "hd_sha256": "8361cf9107759f45ede81a90837bfbd4c4bc14876aab7e17904931ff7c2dcda6",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN03.EGG",
+      "record": 1,
+      "source_sha256": "887dfbad551502e5d17271eed4dfef51da46753736034cd1834569e9ec998abd",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man03-egg-01.png",
+      "hd_sha256": "2468fbf3472fd2dea78d569521b643ff97c8a642caeccdf72b65efb4eff9b2c2",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN03.EGG",
+      "record": 2,
+      "source_sha256": "109d5a930fa888b9a2f8644cb92c40a3117db349d17e805ce94786ded092ee41",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man03-egg-02.png",
+      "hd_sha256": "c9543ac8f20256834d2a83a4e8ed8cabc74cc00fd4df28ab7976a8a912f90171",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN03.EGG",
+      "record": 3,
+      "source_sha256": "2db6d8e2645d80cd1a05459de73089e58416f58e02777554099a64d667ee3738",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man03-egg-03.png",
+      "hd_sha256": "77bef098d5ab5cd54e0af2847368eb4b71fde54a410ff431f3a5ad50c91b3058",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN04.EGG",
+      "record": 0,
+      "source_sha256": "bc82e5571473961d32619b971b41a39fa82de13ed462643b389d740d7144399c",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man04-egg-00.png",
+      "hd_sha256": "f4c64c7720fc0a2cab22e8d57f996c8ddb3190a02399911b602304110b88cb53",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN04.EGG",
+      "record": 1,
+      "source_sha256": "25d629830013ff35ab560f22e1bdcf1486b05dbd87a85ceb96f7b1069293d6c3",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man04-egg-01.png",
+      "hd_sha256": "896ee23ad0a3e734bd5e38a86f623fb55bb93c7f37bf4e1a2d634417068d96dd",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN04.EGG",
+      "record": 2,
+      "source_sha256": "cc5f2de2006e3c001a1794b170ebbbd0ead2a4a7b0d60a3bf29beaf1d1baa152",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man04-egg-02.png",
+      "hd_sha256": "26562f202a6ef8fc28412044e0d88a0caf54c40d47afb08920de667d7a0dc09c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN04.EGG",
+      "record": 3,
+      "source_sha256": "a37608628727d09a9ca1a385c7a52a6baca2ca198f754a4d2d3b61b16b5a14b2",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man04-egg-03.png",
+      "hd_sha256": "4d7cd37fe8b1cdd39dfab9e1ff631c8709d38b49060831ad60712ff14bf6c6d3",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN05.EGG",
+      "record": 0,
+      "source_sha256": "ddd791b049a951eda958bb48a9396c72b7e6d95011714927b65e7afd6b415178",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man05-egg-00.png",
+      "hd_sha256": "9547761a191b05a4c00e96e6e86df932f2050a1d86a2a8b8f9de24b10be6bec4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN05.EGG",
+      "record": 1,
+      "source_sha256": "6f6e133829568f8c13b1c5cc3588fbd82e104a7a9970acda656e359f8e47152d",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man05-egg-01.png",
+      "hd_sha256": "7a87b3961f7eca91dac039c1d49629d6db3ad430f67e84fa74393579ab78c94b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN05.EGG",
+      "record": 2,
+      "source_sha256": "cea0ff422b45994c124887fc31f76fe0488d5b27306a6333a28c5c76c17f1cc4",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man05-egg-02.png",
+      "hd_sha256": "47137490251e3892d0a73b570fd04007691119be4a28cdeb63b65ae43bf5c3e9",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN05.EGG",
+      "record": 3,
+      "source_sha256": "4111626f451f18e36de7414302e16d71076ee1dd60907034dbeff1aff0456baf",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man05-egg-03.png",
+      "hd_sha256": "6a553e0117d1828cc0465c886c11a04cf9af582f54581c8999f94b9ec7a78998",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN06.EGG",
+      "record": 0,
+      "source_sha256": "26912dfd61615c79153fdce658ef87e8c7a91033b8b696b1944671ebf12a9191",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man06-egg-00.png",
+      "hd_sha256": "bd93c81471a49dbe350662d86eaa914fd7f4b564efa2cc9ff01b21ee2349e77d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN06.EGG",
+      "record": 1,
+      "source_sha256": "665bac29b8c8d54912a52da5eda20ae44ed9c81c3d6fcd8b039a9317a066c022",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man06-egg-01.png",
+      "hd_sha256": "049c7724b50565b901d21a3862425e7ef6317b043adb9b33e6ecbea541955191",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN06.EGG",
+      "record": 2,
+      "source_sha256": "feb0565d9333a288d5e8f89d37cdfbfa1804cc4d33183810120ba3f74e77c9a7",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man06-egg-02.png",
+      "hd_sha256": "beb421281b0304ea9114dbdcaa1fea0e605a6193b74f38f284923f4c38d7bd7c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN06.EGG",
+      "record": 3,
+      "source_sha256": "8ce14e5fa82252dd91b698803e3738ab2b6ce3f3e3f3f22ec1b7b4c1f03f1b00",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man06-egg-03.png",
+      "hd_sha256": "1b0449c8f03e7062f9f273c08d342412501e1068ce07cdbcd9ec7c08f5a232a9",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN07.EGG",
+      "record": 0,
+      "source_sha256": "2a0f60f92d9546cff46fd6c2da5a879de9e9baad147d7150ea09db5d0e3d1eea",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man07-egg-00.png",
+      "hd_sha256": "7f0f8fd5e625cd2b13b1662142b20d8b7133d533c8bd3cf2066573adb6f77429",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN07.EGG",
+      "record": 1,
+      "source_sha256": "4f9b319ab04b497714f4c45145fb5b7abf4ea5190711e9847f2c29c10a4fb360",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man07-egg-01.png",
+      "hd_sha256": "5a3691a183026d2267314fef4fb1b2f804da1838cfdec9e6566e0facfddbe93c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN07.EGG",
+      "record": 2,
+      "source_sha256": "452f16a6be326a7a2b80dfb98bc6b26c5ff4c189d32fa7e118e5f0353b60623f",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man07-egg-02.png",
+      "hd_sha256": "0f2888f18b4e34da325711b08269e8eca75a6af73af8c3e4bcf793d6e776a2bb",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN07.EGG",
+      "record": 3,
+      "source_sha256": "941c125c6e1782f1f147df98e12eae049fb51870d06b1e9d67e7b98634f0eb65",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man07-egg-03.png",
+      "hd_sha256": "04e93a530c4fb73b9825a694e819629713f7b83b36c8b1193b038645bdbb5cbf",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN08.EGG",
+      "record": 0,
+      "source_sha256": "bf2d552bc536e319aed309164ba9fd972522b2d668e45a2d4700e77df907ba43",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man08-egg-00.png",
+      "hd_sha256": "815b551d126c93505762237a00d69bd61f83878a7bbeab05a546c7b9a950b6d2",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN08.EGG",
+      "record": 1,
+      "source_sha256": "82993c6b9aeb4223140fffb434da3c108b0c5105b2ff6eb103d361d5f67c41f9",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man08-egg-01.png",
+      "hd_sha256": "e14e62f49a1a41115a921820c6f1a568ed417aee77869b95947f3537fbc275d9",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN08.EGG",
+      "record": 2,
+      "source_sha256": "fedea711a3f1aa314b414eea826ba08212534fa3799b7b787539a9153d9dc549",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man08-egg-02.png",
+      "hd_sha256": "b77ecf043054753c1b4089387789d5b2165a3718798de1bb1e73d228c7a9573c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN08.EGG",
+      "record": 3,
+      "source_sha256": "39355413f05798d83d6917ba41f4cf6b8fbfe6a59b821fb27eb53d1768aa1e26",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man08-egg-03.png",
+      "hd_sha256": "f4957dbc00b8bf992d2e13f9e0a28c05664301061c7b3795524965fc5444d445",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN09.EGG",
+      "record": 0,
+      "source_sha256": "e271017da2f5380596e593bd9ff03f2e6c7f052ab7a20d90fccaee24c500ea2b",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man09-egg-00.png",
+      "hd_sha256": "eaa147818ead2e1e4deeda8ef4e44757b8a50fa93c810abd49f3158b4e24469b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN09.EGG",
+      "record": 1,
+      "source_sha256": "453e03911723bb56cfadc202c876e697487659343d1b2e81c5dc10cd277a3bd2",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man09-egg-01.png",
+      "hd_sha256": "1cda019cd42956f3ba6acee610ca55a5992b8efb0c905e7ca65aa0237cfb22ca",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN09.EGG",
+      "record": 2,
+      "source_sha256": "f385c4559931445f8f5f912fcd553b11bb714451f94ad6e7360f289ed47771b6",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man09-egg-02.png",
+      "hd_sha256": "b2f3e841fc0beedbe2a49b7205fdd0c4ce76fdee45712c55f5a08083a32db38b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN09.EGG",
+      "record": 3,
+      "source_sha256": "865b0a523a46661a79f83ba867148f55493019644f42cffafa9d62cd23857b6f",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man09-egg-03.png",
+      "hd_sha256": "b20564ed3bd6042915d0a849a91b85de09aa07a4f0d43a79bca6f7adeb2e7772",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN10.EGG",
+      "record": 0,
+      "source_sha256": "9c8020a4efd19172b047719d527da4980aca9c8c53b7b1500157ea29337d5e49",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man10-egg-00.png",
+      "hd_sha256": "6cc042026ecf13d8fea663d705d64b7014e697d71ec9ce4940dc0da6e7566c0d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN10.EGG",
+      "record": 1,
+      "source_sha256": "5bb0e350182c6542f5e816c68e4cb4065a191c846a4c18dad8345071f5515a5a",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man10-egg-01.png",
+      "hd_sha256": "70b6394a1c845d6a331632d2b980bfb92be33aa356b085aff1955975930642a0",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN10.EGG",
+      "record": 2,
+      "source_sha256": "febd05109154c43c6ed1cf8b084472bd6f988132f93c092efcd7a8d2d2764000",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man10-egg-02.png",
+      "hd_sha256": "818f22d04d6bb49a94c023b80d62518ae400ede2bc9488d592f6952f1d399733",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN10.EGG",
+      "record": 3,
+      "source_sha256": "be5f0873bceb9733a575da0fe136041b9e0cafc72700643fe3dd5038faf25bbd",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man10-egg-03.png",
+      "hd_sha256": "dc9aedae24b259ae0547c40ef11768a98306d7db42894a8ed021d41051b6c299",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN11.EGG",
+      "record": 0,
+      "source_sha256": "6da1d9280af54d9f30da94fd6da26c6c61149dc2e8a615affbd497a0a0b43d5d",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man11-egg-00.png",
+      "hd_sha256": "302602674282c40f89d14d2c57f23813ddf0235a21ad98b43955a3faa567e8ef",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN11.EGG",
+      "record": 1,
+      "source_sha256": "87c1811812b52903da1e84d28097f2aa36bf2dbffdda733499ee09140bfacadf",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man11-egg-01.png",
+      "hd_sha256": "3c8901b15e4d767bf01ee60a8e39c3a2569648f68bdfb061a2576ec11307c8e6",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN11.EGG",
+      "record": 2,
+      "source_sha256": "8b62cd1556331c561f8e83d1b1afc8b5cb08d059a4c1c085b339679a8babcf96",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man11-egg-02.png",
+      "hd_sha256": "c4359c630c25a661593c74bb9f9ffe90598180833905274f495cd92115a984a4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN11.EGG",
+      "record": 3,
+      "source_sha256": "5ce96cf4662823aada52459ae9d1a2a933f9b45d844a128defbf10dd6b300693",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man11-egg-03.png",
+      "hd_sha256": "da8c6a7f9ce358d1001b0ac0deca2410c75ac87640c1fabdebe325c36a87d746",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN12.EGG",
+      "record": 0,
+      "source_sha256": "92e33f348b6d532d82897afd28ad9d0f99a5d8026eb51d7d387a08dd804bd8f0",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man12-egg-00.png",
+      "hd_sha256": "869d91f8566212f4afff9025491c4662875155f0a2985533d6af86240ccd0cf4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN12.EGG",
+      "record": 1,
+      "source_sha256": "e77676c02ab2f77f36e7e4946b59f2d636cf5d133d2073f9d027987ed22b1b8a",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man12-egg-01.png",
+      "hd_sha256": "858691cbbbf2a420c584fa4e7e61ec7e1ec250ae834ca23647055fd0e3382e04",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN12.EGG",
+      "record": 2,
+      "source_sha256": "ae33f722d546aa1818865db129baf55f6713e6a0f8867eba56ca08e75a83a2e6",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man12-egg-02.png",
+      "hd_sha256": "7eb19ebf090b13e1e84da317bc7634f6c47b237d2d7d5aba2d4aa4bc7c81b5a4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN12.EGG",
+      "record": 3,
+      "source_sha256": "6e813e7a4d57d4b4cd00895be9dfe63f1258b5c6cf26d1b3303302f23e1568c3",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man12-egg-03.png",
+      "hd_sha256": "83a8ca38014f24184c3d3553f47113b6a4ac1eaa7b29ff35909e61332e3f97ca",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN13.EGG",
+      "record": 0,
+      "source_sha256": "2ee6813e0c1df2f0543c9d45679a7f0a60cf41af1fe45d6d19b1963d88a21e64",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man13-egg-00.png",
+      "hd_sha256": "50243379a2b265f073e1aa65c25b15c28dd797b1629c9123a07f6dbc8a1969fd",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN13.EGG",
+      "record": 1,
+      "source_sha256": "76f32398a5d0f92a5699ee807cb344d9e0a120f5f1b121117e621da2d60c8504",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man13-egg-01.png",
+      "hd_sha256": "b186756aa15b07b9d509141137d13c8feff5a42f2fe9517790d01e0701212d5c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN13.EGG",
+      "record": 2,
+      "source_sha256": "6ad580dd2ed5512fff1a1d002560e28542008d5ab604b02eff4762e473205de4",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man13-egg-02.png",
+      "hd_sha256": "8066a42f6c2aa44a0481edbc0ffae8b358fb220a97d33f4f2a93d10e9564b519",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN13.EGG",
+      "record": 3,
+      "source_sha256": "2939e5f89d201dd63c98230a8c1e5218f50e2461bb23dfdab07344745f6d9180",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man13-egg-03.png",
+      "hd_sha256": "a69375e460b91f9d06d9ee7f20b6fea290c06ea57f867f7dbe036045d112c761",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN14.EGG",
+      "record": 0,
+      "source_sha256": "519a1938831f505743620a48def68bd848bf4a9fcd8e3af0e72b64a97f5f6584",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man14-egg-00.png",
+      "hd_sha256": "22cdc8bd5c69f46a5b7dfd3d8919f6208fcec1ba3d90b5fa1943a5433a424488",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN14.EGG",
+      "record": 1,
+      "source_sha256": "abb4aad37e6b82c825f7f3fcca1d90deab7f2e1328b986e5057048bffd86868a",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man14-egg-01.png",
+      "hd_sha256": "adaa952c5c5bec42f7598037d762336e33adf06ae87e448317888a4acd61b0c1",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN14.EGG",
+      "record": 2,
+      "source_sha256": "0621773e60fb56dcf8c0fd88a3c45007626a6c1455366edaeeb5f1d91a0d8bef",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man14-egg-02.png",
+      "hd_sha256": "b298571b134f3b6176640711b243a41c6a24ccde05daeb21c30f0f0b48935a2b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN14.EGG",
+      "record": 3,
+      "source_sha256": "01259f1d90a46cd4d248fa6da6beebd63313d8726edad84c9c4685c0b44d65a7",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man14-egg-03.png",
+      "hd_sha256": "4f4f4dc795f4b0b6040895fa2aa3b50549c474e883f2f63dc99d8c164be11261",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN15.EGG",
+      "record": 0,
+      "source_sha256": "eafa83f9bdd104e92fe64bb7cbc18e0a94f238e24c5392791a936be24805075e",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man15-egg-00.png",
+      "hd_sha256": "a85ffb25ddd0f7992507e53fd692b928c26374aa5d1808a49fdcf9618e7dda9c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN15.EGG",
+      "record": 1,
+      "source_sha256": "823bef6681d24cc1878009ee7c3134f69e86da5207c2050b80d4527d9611b12b",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man15-egg-01.png",
+      "hd_sha256": "002254c5465bd2f02f0680708fa1fc2581520530d49df66a6dba105b350a6332",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN15.EGG",
+      "record": 2,
+      "source_sha256": "8f775946ddcb4fa9accb187eeae466d47ae8ba7fa3a8a505fe332d3c8442bf89",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man15-egg-02.png",
+      "hd_sha256": "72efa48906df6e4573cab24988bf7d69f38ed578f8ac5153b142d45c949d2cd1",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN15.EGG",
+      "record": 3,
+      "source_sha256": "c3382aaf68f9d3b085aa6131ce4f852f149de4a7c604106def511f22f09f1054",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man15-egg-03.png",
+      "hd_sha256": "27a54fe04aad021fa6aeb5ad90c226728387f9ce9ac0eac606397409311b3fdc",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN16.EGG",
+      "record": 0,
+      "source_sha256": "6f63681e789a462164c7213774c2cac6367cb820ad661665aad541d0cfc6250d",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man16-egg-00.png",
+      "hd_sha256": "9d422bc2543858d020cb529071e3c10fac9ae3090cf4a3ed2c63a3f61ba2e55e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN16.EGG",
+      "record": 1,
+      "source_sha256": "821286f200de68b303d4ecaa11791b6d54b1dfe922f098b17fd35707d1673b3a",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man16-egg-01.png",
+      "hd_sha256": "3b5f1a1353dc05d9c49632b2d613efdd5be17782ef97e86be9b11160fd5eb5ea",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN16.EGG",
+      "record": 2,
+      "source_sha256": "e00d323c14f7ecb4d4b871ce06cd8d35efc278ad8bb9810908007bed4781307b",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man16-egg-02.png",
+      "hd_sha256": "645b351979ac219cd8b3197154474e4f522f97c8c5ff8c2e501cbb9594ae4f33",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN16.EGG",
+      "record": 3,
+      "source_sha256": "e36b6be555cca76fe43a6c38d830d1277bce3e0d6a6ba3802cbf56cf6fd5c2d3",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man16-egg-03.png",
+      "hd_sha256": "fd1f0dcd1bad9521bcc2bed7e9251c626a65415d4f89bf801ca1d69093fec2c9",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN17.EGG",
+      "record": 0,
+      "source_sha256": "73e334e0dc7d59f3449e772be87a63ac83f071c2c0e3ed3f353c81b5cdfc9ed9",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man17-egg-00.png",
+      "hd_sha256": "acf90b531c882cb1dcf81cae632a46565d8d0ea27dcb2118bdfe6042d5f3a1ed",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN17.EGG",
+      "record": 1,
+      "source_sha256": "e37dd382be225f1d73b91ab72fb023a1dc26e07a1fab5bade8f2739b18f55b5c",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man17-egg-01.png",
+      "hd_sha256": "f77f4b4195203ff45cb0ad5793529df225e26f6845624c9da50c836318c9185b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN17.EGG",
+      "record": 2,
+      "source_sha256": "6c91405311e6a5c7536756a2c4f65aef0d72f90ec0c9739a0434c1ea1c1518c2",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man17-egg-02.png",
+      "hd_sha256": "4b6246786f9f5687bd275ef34d664eb5d46e68439917a1ea24c8fb952f532b18",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN17.EGG",
+      "record": 3,
+      "source_sha256": "e7b7dfceb172cd6b8c7f627360e573a464b0b5323e98d525f0d2e452011c772b",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man17-egg-03.png",
+      "hd_sha256": "a01dc23d75b3a9e8aa40d7eb4f7787c3756c4dec7799ec38f6eb19e015d957ee",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN18.EGG",
+      "record": 0,
+      "source_sha256": "9674130785d992d463daf5ef247a6c53741a192ab89ddb063b62f19f29572f95",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man18-egg-00.png",
+      "hd_sha256": "2f6cb8d5938c2b016867f551ae1c96b46661b7ec0edbe63438519c5e1293fe25",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN18.EGG",
+      "record": 1,
+      "source_sha256": "ce4bc185c95e181ba4d0a295ff316015c64d5ff4c4aefdd291cc460750479073",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man18-egg-01.png",
+      "hd_sha256": "459a2923f4735b75323ec81b61b29eb9a3e263993743691e40de1f19ffd26635",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN18.EGG",
+      "record": 2,
+      "source_sha256": "d6050460025cb22e5fa9884fdd0b71470f52a5e22699a0191fa2111f799526ab",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man18-egg-02.png",
+      "hd_sha256": "e39cc0ce4fe4b5a8bdbd5a71a327be5d4bfc832f634b0e00809c48dd7456f353",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN18.EGG",
+      "record": 3,
+      "source_sha256": "d389a893a6caef8a75d53ba8c5f4cba8721e234595d218eeb24eed1483bda275",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man18-egg-03.png",
+      "hd_sha256": "aaa2926e4eb79ea6595d8ec1dc6a2c0166dd144c37d709c92b037c01453459c9",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN19.EGG",
+      "record": 0,
+      "source_sha256": "258c205fca85320f06f6cd8e743526745634bd689b0f8b3b42a216877a263f77",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man19-egg-00.png",
+      "hd_sha256": "d8c3307ef78f5da49138aa7b27ed7583a50254dbd9e7c158aecc0c03252da032",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN19.EGG",
+      "record": 1,
+      "source_sha256": "6e6a6590e4bf9885fa4d619117d88fe80dc31e4c83a9c54d620b48eaa69eba2f",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man19-egg-01.png",
+      "hd_sha256": "70159561ec0f029772da288d486a95d8b54edae88c9934b95f13f5862821bd27",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN19.EGG",
+      "record": 2,
+      "source_sha256": "81f391ffb9eb9f37152c8c10964e51cabef7e9366161dabf1d0208a147db5ffb",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man19-egg-02.png",
+      "hd_sha256": "b30228f1f9d105369f0b6342d8ca14ca8520dfe0ac1e6fba7ab2963fca66fa4b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN19.EGG",
+      "record": 3,
+      "source_sha256": "aab5cf9e9f07eea07e4a0484245ee1629c562e9da66b2044a640199d1cfd0231",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man19-egg-03.png",
+      "hd_sha256": "4ed12e3825313881b4c0e1ce51ef754787a807ed5be045c1497b9495769cef66",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN20.EGG",
+      "record": 0,
+      "source_sha256": "c0a732c7e1a61b648bb82e96af11c7bdff6bf300c773b81dfb2f74dae0f156e5",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man20-egg-00.png",
+      "hd_sha256": "675b2d79d578d9aab162084907f98dd13cdfa5ad9536038e0644e6c4bcc25f3d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN20.EGG",
+      "record": 1,
+      "source_sha256": "0dfc06d251c43ebf4ccee82c4b9357bc22dc2c066bb50ec15f153133e4c84e4c",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man20-egg-01.png",
+      "hd_sha256": "98481c5820d20dfde6263307d813f3f70d0117785adbad81e8b0f18c6e2816f6",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN20.EGG",
+      "record": 2,
+      "source_sha256": "fd4bc09ede624933390f6a336972293e9e39cccf9bcb401f869fdf0807c0577d",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man20-egg-02.png",
+      "hd_sha256": "b65f4cd692bb06b4f768ecbd2f70249a41b4a9a55fa1a12336bd7e5b08d1e96f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN20.EGG",
+      "record": 3,
+      "source_sha256": "280ebbba9317986b398b9becf9385044e42f7792e820b224192b3063162ce10d",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man20-egg-03.png",
+      "hd_sha256": "a7c240292015dc547d06b0024b61daf4ec4f3a23d5ce4961f7950a1293b37717",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN21.EGG",
+      "record": 0,
+      "source_sha256": "60692a5484c93406ec70ae7316e0a905d09ce9a9d1f8cce5b051692dbcc64164",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man21-egg-00.png",
+      "hd_sha256": "c11a125e23909886f84eb2920817448b353f7ac239e809581a719cf6049c65d7",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN21.EGG",
+      "record": 1,
+      "source_sha256": "0426c60e7ab8b5ea3dbcf184b7372beb3a520406e730c4527b666ab2bc56777f",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man21-egg-01.png",
+      "hd_sha256": "9f3e34c32c9253d7df3aa4876916533552344120521f05b2cf74885e9056af12",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN21.EGG",
+      "record": 2,
+      "source_sha256": "547205ea9d571c29e718c0a94f2633902270c2139aa2a8939c6dbd006746b146",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man21-egg-02.png",
+      "hd_sha256": "81556527d24ebb31e6ca019a4c6f7a049857c62287c7170f27097a4da6a35760",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN21.EGG",
+      "record": 3,
+      "source_sha256": "549d51ea698bcd20116cdc3e552d5a47826a077ce13bf7debd5086e6f38d6051",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man21-egg-03.png",
+      "hd_sha256": "3cfb7515ad0959b9569cad13d85eba462f88cce06b38863550518ef6be0f3c16",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN22.EGG",
+      "record": 0,
+      "source_sha256": "7d8baa2a868f606dd707a0ac872e10dcc8dcef7d0ec4f6c2cb2f08ba53988510",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man22-egg-00.png",
+      "hd_sha256": "2f5d72bccc84c8f490d9bea35e42cbd500e94894ea6f4f9cdd7b27a512beae4f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN22.EGG",
+      "record": 1,
+      "source_sha256": "06c41a9ff23c2ca21687bb47b308d5e05d0cece9639088cf65401104255e9b55",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man22-egg-01.png",
+      "hd_sha256": "4af8c9d16775185d4c5128153c600b3923bc2feb800f4a91293fbb429b93e70f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN22.EGG",
+      "record": 2,
+      "source_sha256": "3cc5ac1e188cc908747aa90a0385c3101d06184c3c8fa700cadc76966439b9de",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man22-egg-02.png",
+      "hd_sha256": "27f6b9199beb57b238cbd7d0e6df4bdadbb30751c68e720977457a8ac557ce48",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN22.EGG",
+      "record": 3,
+      "source_sha256": "06ecb127c56a2a9947955adc9e28b1baa528508cb66ed3042c2ecd04010b6af6",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man22-egg-03.png",
+      "hd_sha256": "23081a7e63748091d55b33b0338004d8189cbff122b994d859555e30c5c4934f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN23.EGG",
+      "record": 0,
+      "source_sha256": "1b82ecc84697f3821e6d8c96c715eb1b107426a01e6746662da94b8ed9fc250f",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man23-egg-00.png",
+      "hd_sha256": "786c55e729fc9606f75764c48247d257e40a99ccbfd6a7b3e2bc255642fc35a0",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN23.EGG",
+      "record": 1,
+      "source_sha256": "8229ad42a3938b8359d7ddf196b6d87381444e0c4967f16d1e7de0b23b399cb2",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man23-egg-01.png",
+      "hd_sha256": "d02831a3c1493db095a2cac86dd288fe77104352f3e0332afbd97a4ed517eed4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN23.EGG",
+      "record": 2,
+      "source_sha256": "077abdb99af5c2824a8f206ba3761c782db4235283c9872dfa87b6a6a074dc63",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man23-egg-02.png",
+      "hd_sha256": "25488b73edb95ad9e6d3d6adb986aad16fc997656cd77831e020e81ba666a69a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN23.EGG",
+      "record": 3,
+      "source_sha256": "91c5f04d16671223f6ae28887096c5c9996ea4d2b1266f9657e708eed711dc42",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man23-egg-03.png",
+      "hd_sha256": "df361da72ab926dd13a2004d292d944216fa5c624deb2c8b8589701392d1145d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN24.EGG",
+      "record": 0,
+      "source_sha256": "b3b91a6d890dee328d6e1aace6127d3ab1c7fcd951e79639b34a6ff39892acbc",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man24-egg-00.png",
+      "hd_sha256": "e6aa8cb55c1fbb7a575173f8240dcecf68c9a5b825038913aea0e87f753142c6",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN24.EGG",
+      "record": 1,
+      "source_sha256": "ea0be3b36ad8d55d01c5b2f50120578db47b42dbdf44a8adcc6db5fdcb72e0f4",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man24-egg-01.png",
+      "hd_sha256": "126c71d70937d5f7662f0d359796d64608d96796813ee251e31f56fc17580c8f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN24.EGG",
+      "record": 2,
+      "source_sha256": "cea194e7615abd8953708df4bb888f0708228354f46ff8701044344f7ce79992",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man24-egg-02.png",
+      "hd_sha256": "9d07959855534e21706cc08665d63bc5f26762e883f0633a19b17b67c23c0b4d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN24.EGG",
+      "record": 3,
+      "source_sha256": "39760e5d9cfc771df3412cbed4bb4348654f6c6ff7b809ee95da0c847def0b2e",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man24-egg-03.png",
+      "hd_sha256": "124be914518d2169ac886b0927c65d2f4815ac88879b1802302b6d008f6d7e75",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN25.EGG",
+      "record": 0,
+      "source_sha256": "93919eed236eb78e66945731ab4608bb4716f0c77329be355af0ef1e9ca266bb",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man25-egg-00.png",
+      "hd_sha256": "ddde8487f78772e6873ebf14445de6ac4de14a1d95ea756a54ba94d73a183fd0",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN25.EGG",
+      "record": 1,
+      "source_sha256": "33cdb500e49b6028449e729b703e83c50c80c521a81ef2b52f1a9c88a85c9215",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man25-egg-01.png",
+      "hd_sha256": "a656301490e6d8e06745a7cae92e5fb4d6c2c1f670c1ec27ff868480237137da",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN25.EGG",
+      "record": 2,
+      "source_sha256": "fcd122a74ed3f4dbf7d869a835870a7f1a4bd925e1ca2b353af9c0d834cfdf00",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man25-egg-02.png",
+      "hd_sha256": "570f0d88b0fda2c9282b59e6d81f48a6fba54a824db222ad6b523af122bae61c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN25.EGG",
+      "record": 3,
+      "source_sha256": "2cef1127d356f7fe36a3b2d005449bc85de453b96394342dc5fd1e635aed1394",
+      "category": "troops",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man25-egg-03.png",
+      "hd_sha256": "83c0476da3d0e591a10cc499331cdceda1c44fdadb6ca70fc40a3e67da79ad08",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MAN27.EGG",
+      "record": 0,
+      "source_sha256": "0ef3c3c5d3e19aaf00d25318a0c9a36edbd02cbcd06429e5f30783afb02849f9",
+      "category": "special-markers",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man27-egg-00.png",
+      "hd_sha256": "5915c3844d6d14fd86401df130cb4672e13055b276cb7f03eb5ba7a68078857c",
+      "runtime_file": "complete-man27-egg-00.png"
+    },
+    {
+      "source_file": "MAN27.EGG",
+      "record": 1,
+      "source_sha256": "f76102826d64174623fe0b5724c904f842dcb82b9e4dd2107fa3624fc9cb54d3",
+      "category": "special-markers",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man27-egg-01.png",
+      "hd_sha256": "ed8c2075568ca9138bd06c288a73ed350e376ccbcfb1d8efe39fb7ce5db6cde6",
+      "runtime_file": "complete-man27-egg-01.png"
+    },
+    {
+      "source_file": "MAN27.EGG",
+      "record": 2,
+      "source_sha256": "6433436944164ef253eebfddccc5cada2ec82deceac79a0a8400ef7555335ef1",
+      "category": "special-markers",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man27-egg-02.png",
+      "hd_sha256": "2b3a42108e1a3048d51140b1aa588cb9b5cc4a6fd113ce0cc5ca3a74210553f5",
+      "runtime_file": "complete-man27-egg-02.png"
+    },
+    {
+      "source_file": "MAN27.EGG",
+      "record": 3,
+      "source_sha256": "25c7632e94a9a43d423f1abe468bf5f44150d77a596eba399738da38b59f5968",
+      "category": "special-markers",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man27-egg-03.png",
+      "hd_sha256": "aef8f216fd1c501220858b29c824d3670575e50fdfd9d4a82b3dc52db552d40e",
+      "runtime_file": "complete-man27-egg-03.png"
+    },
+    {
+      "source_file": "MSGBOX.AY",
+      "record": 0,
+      "source_sha256": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791",
+      "category": "ui",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/msgbox-ay-00.png",
+      "hd_sha256": "0f570b627f86a62f2ab7c330e3f74f15dd6ddea524057b635b31ff999a688452",
+      "runtime_file": null
+    },
+    {
+      "source_file": "MSGBOXH.AY",
+      "record": 0,
+      "source_sha256": "e5f3b5175a4b0824944762b76aefb300f68137613c60fe0f71df3689dae7948e",
+      "category": "ui",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/msgboxh-ay-00.png",
+      "hd_sha256": "0eac5d84147d1d959d5e17d02bf2e325502a2b6a94719f81428a45dc089b08dd",
+      "runtime_file": "complete-msgboxh-ay-00.png"
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 0,
+      "source_sha256": "b2781d4c66ded9b731f3343bd87b90af362d484260e9afca0d990c8826557461",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-00.png",
+      "hd_sha256": "853c7c129634f3b2f585ffdb965e0b0e918ea47bc5e2c71dd37ea1587133c136",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 1,
+      "source_sha256": "4d7bc93fa87f1309a8fa0d78d1e90a5bcf18f7124a678056ac39605538a638cf",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-01.png",
+      "hd_sha256": "0515fa6fc1be41e97d2843c2aff7516636c381fc889612eaabaab62a1b3730be",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 2,
+      "source_sha256": "531ee51b4c20ac7ec5846e3f14728816ec3e762741ef2bbf88d92b8c192539cb",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-02.png",
+      "hd_sha256": "69ecff726173c458377a768103cf5e171c77818f4416f0274e8e48fb2825c76a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 3,
+      "source_sha256": "26e32f0e9f2238d5694f20e5eac0d411e2cd51c1dc871e65da812e12daa88a2f",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-03.png",
+      "hd_sha256": "de408408e2f9911c8b96a77e6e9546e19698cf481c84959c39b0250e1d1e119e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 4,
+      "source_sha256": "30f44e33a1197888ca4e840fe67110f6d91f477d2c3f1bb38f2532fe3789d2b5",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-04.png",
+      "hd_sha256": "f745d5957f4753e4edaaaf9f81e38e189b819e0f3dd8e20a6403428abe19eaa8",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 5,
+      "source_sha256": "094996941fa8a72755fadc6cfe1d0fe58f424cb535b77a5074b48d62b0037069",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-05.png",
+      "hd_sha256": "2d42ef1e0b7e50567e4325ef0d46f51a8e3b416e0a6732c671a04cc6c312b2ff",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 6,
+      "source_sha256": "6119fdc12fd2bf95bed9806c023fb8b5f2ea867339bb3317377403dfa0b13c5f",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-06.png",
+      "hd_sha256": "fb1545a7d7a7c1b360ae22f64f346e169319cb06b5747340fd57d30e989191bf",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 7,
+      "source_sha256": "5a16a9e8859ea1cc4a377082857ffbfad43cb86302d9357a98f9af4be0d8fbfa",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-07.png",
+      "hd_sha256": "e4a714b79bf10cd58fbd71b2f595a98eca704e9bba137564c591654bc668ec98",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 8,
+      "source_sha256": "2f7d4e23d48069706472b95c41bff2a2de8429aabda2d30d1d03749d62d453aa",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-08.png",
+      "hd_sha256": "4031ba1a6c428dbf08f49c819dd37699d77314cae10096cba3f0c917271e43b8",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 9,
+      "source_sha256": "7d7115c85d1f952f28c661b0e875a9d748241f9d04a5eac88deb282bb513235f",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-09.png",
+      "hd_sha256": "50f7f96d8c133b87c8d5483993217cc92726d98d40e65fbc4773b0d5345fb469",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 10,
+      "source_sha256": "a6968ff073d8b6164ecca1d08ae28269e872ba4e77f2b99b3b317848e0b7e77c",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-10.png",
+      "hd_sha256": "3cf5d8fc2b11aabd55fef7a6277d299b7f8879308e718b9ec504c8ac71368ffa",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 11,
+      "source_sha256": "c755279026cc739a4618dfe49f8a9aa07e3c4867f768bac22ffaa704fe5e167b",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-11.png",
+      "hd_sha256": "941350ba94283b90c73069ed2c52c7ec9e274c8da85702d3fe65f3d10b68b623",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 12,
+      "source_sha256": "a9e7465dfdea7afa28bb6ac69dff36bca83509044b8a86679af86dd2077324fa",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-12.png",
+      "hd_sha256": "766ece3c079ad60d4a89af070666c117b46b16f41ff72261b21786ac65d30fb3",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 13,
+      "source_sha256": "1595d89d665c4bc524435ec8ffd0e727aea4217547c8182da06c5b25a9255747",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-13.png",
+      "hd_sha256": "dbaec9ae8ce865f08d4c50c202a7736d839d4d97e2823d563f5717d9336290bd",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 14,
+      "source_sha256": "428daaeec3027ef98391451b17bf86183433266bdeca6c7e8c99071fc74db0e0",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-14.png",
+      "hd_sha256": "d7d6136ddcf5dd45676e7192c28b2e0595f259477eef93502ade1205854b94f8",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 15,
+      "source_sha256": "6543ba5d7be9121b81edb790f9dcffa9b662e0c0921d6f810b3f76464b2391ec",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-15.png",
+      "hd_sha256": "d507533ea6fad4799fc609b52a7d513ae41ad089be0e334a629d6f57bdf8fb3b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 16,
+      "source_sha256": "cfcd846c025e5241df95289d27682c8ae29c18475eb5efec697934d4e908927d",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-16.png",
+      "hd_sha256": "834c9a7b25a4377cff650c143cea432b28dc617912154901ddd22990353c27e0",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 17,
+      "source_sha256": "41ce9e704c8d60b4140f85108cf1b69b7a250522beb264eccaa64e9507d943e1",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-17.png",
+      "hd_sha256": "1f0163a1f2ea3b3acae101b20cc80ca2ed908abb7ac151878ef63168e0ed0b70",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 18,
+      "source_sha256": "cadd7a4b5a1fb576b6eccafc50468b105d60a5db042cdb4cccd358ade5d8e28c",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-18.png",
+      "hd_sha256": "022dd491d3ff6698766912a94864afd40b6d47f452657aadd1f4e6b6e742af9d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 19,
+      "source_sha256": "bd9c4ea8616a4ad83589ac3624c6280285ed11d924242901db5cde62e693f655",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-19.png",
+      "hd_sha256": "78b68bb9b26971843a7e5deda8014b232e18db15ad901f5bb99c50f2c1841cfb",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 20,
+      "source_sha256": "735b9d4a6da8d7dad0e4bbb1d0e74c6587feb868afcfb57371f09c0f1156b012",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-20.png",
+      "hd_sha256": "c27bec128d87fb78ea4bb817db0c005c8d26c0988d44d153ef0940da83cdd384",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 21,
+      "source_sha256": "3b3d9a49c816c8efc12b3efc85d44e3ad80f06484076791e538f9f607adab520",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-21.png",
+      "hd_sha256": "75a0ed4bb9f8a225d38a8cc48db1bfc58dd618e4a3cf14a36b09f9609d491a36",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 22,
+      "source_sha256": "ccfce071b5c252e7863b56c222114a0a9c3f1dda8af3693df69b7255932b168a",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-22.png",
+      "hd_sha256": "7122869e9f7da8ccab9b16b07beee435b77c00c2a01d69e9bb71d60a3836b258",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 23,
+      "source_sha256": "36cb273ad232653d069dc651d74ca727d86582262452c27b58edcda7930fbdee",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-23.png",
+      "hd_sha256": "f054aa498b416255959b5a19d87f2e7fdd33b4e02ee61a5d224926432de46537",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 24,
+      "source_sha256": "b16fd65ea79c3fbf514c059e500b55c85e3b4b62b7bd32a8c8b7a8cc7af84b9a",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-24.png",
+      "hd_sha256": "80b352e373cd91c483c9c21657f48ef47885b3ed73249018550baa20a2f3b6c2",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 25,
+      "source_sha256": "45376eb34881584121df0ec8d26e662312149289e704e234dc192e7c4fba95de",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-25.png",
+      "hd_sha256": "1d6251b182f883910968a856a9871b10b7d74e1d9e5868bd8f4b57090fcea060",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 26,
+      "source_sha256": "2784e5ba7a8169faabfb7a2bb895a58c3371ee6a118a85b63d8076ad01bd7237",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-26.png",
+      "hd_sha256": "2fad71dff4a797f2597727ff2607a9e6d88c03c39e1eac094934ffbbfd686fe5",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 27,
+      "source_sha256": "68f46dcf71d533147725cc79946fdf8d6aeeb68f38bb7cde36f0d28e011cbc02",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-27.png",
+      "hd_sha256": "da682fdc54aa4da2c5bc1078d457398e04872c926ab3c166e1fbee189d5db2b8",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 28,
+      "source_sha256": "f733d6276ce70673c377db9d198ae341044eb6251ab555fa1bc199d07c2daf99",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-28.png",
+      "hd_sha256": "2ffd580088b88859823be3c5b10bd3001127f87d5c9a6d9a19a76151fed418cc",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 29,
+      "source_sha256": "c314666900ab27a9ee0e5be2ddcd936b95da5910fef5038ae9bb6efccc2ede14",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-29.png",
+      "hd_sha256": "7720ea490e5ba5254bad5606a67a0dc8c55a606dc3f48305d7d46df151276488",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 30,
+      "source_sha256": "39277bba372ce7e30f328ceb597aeb5b6fc7e958b005e99dfc84ac62a1a32050",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-30.png",
+      "hd_sha256": "adfccb3c398e980ae6b7f00c54a55ef7546e45133545a567992c1aca4e2477a4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 31,
+      "source_sha256": "53d74749abb28f17a435abb597b877d185ffd1fbf1ea4594ac30c97c93d56b50",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-31.png",
+      "hd_sha256": "2d1598400551407101fa6297cac1b6cd321f972f8915643e07d866f16613aed4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 32,
+      "source_sha256": "7968b325bf33e8f974aaeb52631eca93caeb0888f4e54b209a48caad9bce6b75",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-32.png",
+      "hd_sha256": "d950f6c9f0282985e49dc135e7d3410dd2e9f287e8df1502ab1f0a44bba4722f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 33,
+      "source_sha256": "ed7ebb0bcb5cc9e1cfa0c514b16f1dba2baebf14696adfe437aa7e247ab02f77",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-33.png",
+      "hd_sha256": "303d6089eca6fbd6ede8f27af8871bb50e9614f668c40141d3aa03fdd32f0e9d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 34,
+      "source_sha256": "0442384e590df5a6e179d359262c8431755c0a848d68b013b5d607603eb879dc",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-34.png",
+      "hd_sha256": "d0e3b02bcad2c7a3dc80c2dc8dba3a0b130cb616b8c6fb98598a59f1ccbea75b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 35,
+      "source_sha256": "b2bdb0e8c4b64526d2396f5ccbeb1f8c4285ff654f1eca3739516e5f9f31877d",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-35.png",
+      "hd_sha256": "c1256848bdbaf5a53813625253829402897d573eb9530285e57a111414014525",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 36,
+      "source_sha256": "71bf7e2b6cdffafedf3d84bed74a36420fb78501ba8ea1fea62c9fa42004e6d6",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-36.png",
+      "hd_sha256": "abf342d5f8bc4dedbb7469fda9efbb342e6f3111b395eb3163ace687eb0750d4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 37,
+      "source_sha256": "4c5ffaab0c5ee2ff3f6be0808c97e23fb6b72abedd8d6acf6b52b3e20fd23351",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-37.png",
+      "hd_sha256": "d34edfd875b53592377bed899ca7d93f1f4d5b0b5ff06f0a412d48980f6add47",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 38,
+      "source_sha256": "b85f0c79a105b2f2f7f8921c6b3e9c39bc309846eb24b021f67a08964f33431e",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-38.png",
+      "hd_sha256": "04599f1e1e4f76e6d48e9ff7502e34a62be41b3af056369d55a356d5e205f65f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 39,
+      "source_sha256": "1faf323a11c5e151f88af25e9464595f5af83202a925372edb10fcff3bf49b37",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-39.png",
+      "hd_sha256": "7a39a4c158839229cfb454c7a303ab8d91f431c432bbc3e3ce2007e40bd403fe",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 40,
+      "source_sha256": "2184215d4524b95c0b41862c7d4cba44bd806915ba50a8176fefef75ecf4f49e",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-40.png",
+      "hd_sha256": "b76349c85159fec38d95b90734dd7d26faed7166d97274f2e3e1ff1f24087a3e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 41,
+      "source_sha256": "7c27fafc70ed30342cc31dc462c5c349ed73bcfd716e0c5dae0ee2b3f6b5db3c",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-41.png",
+      "hd_sha256": "9fada1fc29b760b6c1470435d172a500e152df52f7ed3668657eb28f852a5628",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 42,
+      "source_sha256": "e24366dd19818583f0b9c6e73def6f08c0963cf06a9552c3b63aea188fa4b5f9",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-42.png",
+      "hd_sha256": "1e1fbfc1e2afd1d355f8f79184310cce555b47331d96241972b6132695210178",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 43,
+      "source_sha256": "917ce9a97194f52dc7580b704ddff14e42b5bfd0dc8e80672b1427dc9ec844a6",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-43.png",
+      "hd_sha256": "e2f84c8e13e7757be182ca6b6b19927b8193e6e9db5740fd1fdb7a0b5e450572",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 44,
+      "source_sha256": "ca227f63e13a3c054fda14607262b3366cd189cb3f6d4fb57ddff9324cde3f3f",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-44.png",
+      "hd_sha256": "b986fe95ca3d33e8b4698ca1c393f473b7e7681e1c77819d0236531a2390a12a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 45,
+      "source_sha256": "fb5ce418cd148e59050d07869bd932ef9ad8a1d26d1971182b00a4ddf55eb88b",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-45.png",
+      "hd_sha256": "2e5b3bdbcc426e0abd0c1b0859cca6f17a6e48c9ae182d4118409aa745980a45",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 46,
+      "source_sha256": "8736b5e3ca1ce94242ed013c6e496a9884ba2b891f0e9f0c226db60ca099fee4",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-46.png",
+      "hd_sha256": "5d313a0ca1a35ba7329cc18a24d4fb40fb5a40fd1a6d8ea157f02282924af18b",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 47,
+      "source_sha256": "a324cf0cd3eb5295e0470d9067ceee03740d5d7ef628af86feaa3a689036f455",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-47.png",
+      "hd_sha256": "07d0788bec4da78d97edca50567cc33ef0ebfbbde518f2c5b3ca3885cf0e3937",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 48,
+      "source_sha256": "e0b751a64138af9343d01b6831271bf328e854ac761491bb00000e1f1570d975",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-48.png",
+      "hd_sha256": "b55ab4da15c9f460c5a602ea6da69a0669e91923bd5bd13a34038d9ffa0f39f7",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 49,
+      "source_sha256": "d8858e3a2f3006a4813c4ba4cc28b4c633b85f072adad416f2f4842f179f4e39",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-49.png",
+      "hd_sha256": "77dbb2afe0a5ba8255e0bdba6539e45dffad33aa97a32267b7731cd0c6d5752d",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 50,
+      "source_sha256": "d8633e8c00066109c66b41d8669efd27f1cc65a8679717017f787d14a506ddd6",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-50.png",
+      "hd_sha256": "e67239473c9e4fe36547aaa8a741e9fdb86da357ed61b684a3cdf11d7705d992",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 51,
+      "source_sha256": "4220e310282bdb93b5e26bbe65e89c8709606afaad00abd9a8889889f45c79e1",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-51.png",
+      "hd_sha256": "799768945648a7b91e22cfcccfa24cfb7154c93dea08f8c3d801ca85f74fb1b2",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 52,
+      "source_sha256": "28988f39adf2e0b5835163e413b63fc1f550dcfdc3097538143e028f5424018d",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-52.png",
+      "hd_sha256": "b7203e545de7abda002e3629a113dbe4f7d264240a659137a0b1fd5b4134f8f3",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 53,
+      "source_sha256": "45a03b7ddb49988f4e66e3011a60c8e8491d7765f60158675487917a3ad69404",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-53.png",
+      "hd_sha256": "d699af64239fe711d986eb70b43b4102f893c23c977a866c6a3590ddf8f838a4",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 54,
+      "source_sha256": "023ad63010f68e3cb8ea140b69c8870301a787ab739f2425a53d0fd7d10cb0fc",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-54.png",
+      "hd_sha256": "67090c19f8d34b772dcb9746cea5f3019eafd2ae32031974a0a122c72d0d7006",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 55,
+      "source_sha256": "18f01693acca18d6f4254c7f3a14bf1d7e9bff0fa4bca45d5c288a1432d94069",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-55.png",
+      "hd_sha256": "5af8dec34e4568809dcf8f317aef10471bac8f8fc7d5ea9e8a60b27f35cad18c",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 56,
+      "source_sha256": "74d93a7872784953e405930f6046b04e326939dc9e0b8be488936f82a7ea218d",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-56.png",
+      "hd_sha256": "8f2817b1849d984d4471cb1046de52ee652e9df5adb28fdb2181f8536b07d435",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 57,
+      "source_sha256": "c3ce0ac69b7f9d38ec585ab47adfcf674a819d2fe9420e37f57d1ef16ac5390f",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-57.png",
+      "hd_sha256": "99ef03fdd65154e14da9a6761a6e8c9a55ce1aac743f834c894fbfcf059e38c5",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 58,
+      "source_sha256": "58a024b3400338bfc12ffba0f8bc5d49c53343ed73ada2a0c41e2a2b19bcb781",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-58.png",
+      "hd_sha256": "330ddf473a48df0fc1aaa790cdcbc5f5cf64cc0c57b930a23d565db7cb11a9c6",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 59,
+      "source_sha256": "6aa6029bcd6e39aa49a447abeb749a0a21cef3df79ef049339cbdb025aca2549",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-59.png",
+      "hd_sha256": "de0f1bdd84c6f06c2d7cdb9587319ca60e586907374d1f52d72adbf76f2bb2cf",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 60,
+      "source_sha256": "43ac0201ad031f4711dc02b68fc91f254ea90cf3f0d525e63d75cec9a8931545",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-60.png",
+      "hd_sha256": "bb504ad4ebb715a0adfecc96c557bf9eb4aae32386e6285391f127a9d16a1659",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 61,
+      "source_sha256": "c6baf40819edea0fdf3f5e168837ac1293860a877d64d8656524d1eba4887fc4",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-61.png",
+      "hd_sha256": "29b6cc006c04bd840e60b795ec4965bbbcfa60f2fbaab8f8b4b8a7afed38420f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 62,
+      "source_sha256": "076654c60eeb60069664242588026975139971f405c7757aac6a0536bc6c4ecf",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-62.png",
+      "hd_sha256": "ad8607050a7cff42d635f6256e12c410c7e364c869db774649b17aa1d21ed757",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 63,
+      "source_sha256": "7d54e41a1270f5635638344ab53bcc0ea544e55ea3e155ab526d63198c0a1204",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-63.png",
+      "hd_sha256": "713227b90f80454b4350b0e6f623d6b447dc226e1da4107df48dcbffc38e74d0",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 64,
+      "source_sha256": "ee488e6ef350b5dfdfb7f51601a93aa500f98b11d086950da840687af518fb5f",
+      "category": "map-tiles",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-64.png",
+      "hd_sha256": "17f440897730576a95f2677d3885d851e0591501e5d74521c3ee7f884d15e4f2",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 65,
+      "source_sha256": "acbfca22a165abe3b908af759cbb85be15483c31e3694ab37c8639a376c01c73",
+      "category": "map-tiles",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-65.png",
+      "hd_sha256": "3fb083a779b3e401753661effc967bc4c211107e7c908549412844bea1c792d0",
+      "runtime_file": "complete-pmap-ay-65.png"
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 66,
+      "source_sha256": "66a5d56b066519eb9ce70de14463d5f8b6c654cd2f0cad227610b10e758cf19a",
+      "category": "map-tiles",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+      "hd_sha256": "cdfe4ddd6f20519003e5885ea2fb09b65ce94cdc88adbf7be5f9edfbff4c8666",
+      "runtime_file": "complete-pmap-ay-66.png"
+    },
+    {
+      "source_file": "PMAP.AY",
+      "record": 67,
+      "source_sha256": "fdc9feb7c69c3bc46bafc588701e896f76e21ef160b23b44ea2fca7b706b4bf5",
+      "category": "map-tiles",
+      "status": "added-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+      "hd_sha256": "eab701fb544530ed778682cdf72be9eaa70b3c2578b5f9e9b7d74960efac3a53",
+      "runtime_file": "complete-pmap-ay-67.png"
+    },
+    {
+      "source_file": "PON.EGG",
+      "record": 0,
+      "source_sha256": "a69fc9dfe79641d9ac4d3eb8d1d543d74c521be9c957e9c926fd0e6c9bcca256",
+      "category": "effects",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pon-egg-00.png",
+      "hd_sha256": "35c05bfecd74fd5a4c446753f264cb64f8138341a94cc354f7d7eaaef047db85",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PON.EGG",
+      "record": 1,
+      "source_sha256": "940308e27b760d7c09c4afae871556192d593682c8bc40a757382be41c9c766d",
+      "category": "effects",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pon-egg-01.png",
+      "hd_sha256": "a955269f8a411fe62a0f6d411c1ebba43df439c2b7892dce2f1748a8a26c2b46",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PON.EGG",
+      "record": 2,
+      "source_sha256": "61a5081819badb113d7f199757a5a81e8a27a6f308f2b7f9952c9cffb744b42d",
+      "category": "effects",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pon-egg-02.png",
+      "hd_sha256": "9e3c3b3bb2327c55a3d096c9b7509d6834c1adf9a9c0995c950ebeda7f8bc9a3",
+      "runtime_file": null
+    },
+    {
+      "source_file": "PON.EGG",
+      "record": 3,
+      "source_sha256": "969a56a413cc4bcb87bf4f4ed4917045168ded8cc0d4237de8ca0fa8d09f82dc",
+      "category": "effects",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pon-egg-03.png",
+      "hd_sha256": "478198eb46510585840a775ee3db4460aff8657adc558a6811991a928321e9de",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT1.AY",
+      "record": 0,
+      "source_sha256": "d0bcfa366f8d8c13745c253fbeef1a04691aad24d4a5718cebd9645c17fc1308",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit1-ay-00.png",
+      "hd_sha256": "4d504f14c604c5688f7fb9dc005d36006b13fd1d0fdf45dbaa136f5887b36713",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT1H.AY",
+      "record": 0,
+      "source_sha256": "28943b739887ce86ff216d7bf8a6e47e826077687c4023ca73e9684f303854f0",
+      "category": "opening",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit1h-ay-00.png",
+      "hd_sha256": "81b68e4354136b1f905a0255b9a57f17adf4ec4112b3d8aea73f0c6f0ec7bd26",
+      "runtime_file": "complete-tit1h-ay-00.png"
+    },
+    {
+      "source_file": "TIT2.AY",
+      "record": 0,
+      "source_sha256": "5f62f595ac003c069acace22770cd71b99e14d48bdd43db671598f5320c74f65",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit2-ay-00.png",
+      "hd_sha256": "217f5cb33b2c3f35fefaee019ef0f3c94df6e6ebe65172e90d60f6a978330232",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT2H.AY",
+      "record": 0,
+      "source_sha256": "55ef7f2737b540225725960be878cf5b7b90768582da14aee21bcfca3d85d749",
+      "category": "opening",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit2h-ay-00.png",
+      "hd_sha256": "58223f48ee4eabe6bc908a769a68d27fdcef6137ec17f8fa9e55ed724321a2f4",
+      "runtime_file": "complete-tit2h-ay-00.png"
+    },
+    {
+      "source_file": "TIT3.AY",
+      "record": 0,
+      "source_sha256": "1fe2232d9767b43e7765e13fda48a7dfe96611945acddc90f0ffb3f31285ae1b",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit3-ay-00.png",
+      "hd_sha256": "b6eff2d96d1a6b95ed633fe0bfc409537cae06463ad6228c9261e6215f309a55",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT3.AY",
+      "record": 1,
+      "source_sha256": "5e0d8510c1bd96647eec5f5791664c82293253c6e09f0c36f95859213007007d",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit3-ay-01.png",
+      "hd_sha256": "740a202e2b5b69b6caf8d49a7f00d323c83600a6547f3d5b48dced200a62b850",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT3H.AY",
+      "record": 0,
+      "source_sha256": "6d2a60df36dbd32e637259b810ca792aa5489d28f68f17d1b805ebcf3e41e204",
+      "category": "opening",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit3h-ay-00.png",
+      "hd_sha256": "fe563dbf725c766c6fb76fa9a2bf19e45ccb8284372c9268b80d2dc319249183",
+      "runtime_file": "complete-tit3h-ay-00.png"
+    },
+    {
+      "source_file": "TIT3H.AY",
+      "record": 1,
+      "source_sha256": "8b238f35119ea34c07f2e4e95846ad18b1a0fb4063480942a0965b7ac44c1ba2",
+      "category": "opening",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit3h-ay-01.png",
+      "hd_sha256": "8fdb21123fff6dfe1f4942b5b0b2ce73e06d4a187b38488c3601230228e81e21",
+      "runtime_file": "complete-tit3h-ay-01.png"
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 0,
+      "source_sha256": "ad11ca076ce75af8a691468f63501858fb6b452d787a6330384ae7f10f8fe3c2",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-00.png",
+      "hd_sha256": "6a8c4a1303b3420fa3a7b4d4aacefc75a0b0c0770ad1ea0222b690fa1f1d657f",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 1,
+      "source_sha256": "9eea36aaa5fcea57bc3c185bb71491c9617c85a38cea31419ba751bdbebc002a",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-01.png",
+      "hd_sha256": "2f8cf1cf7099b0b8a5c102b12e1531edb222437b9cd98b338a049c3256a39d26",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 2,
+      "source_sha256": "adee4da2a9880eac10327c8019a38b38936aecbd19ca1cf60f91c365c7f964e0",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-02.png",
+      "hd_sha256": "ac13be4e734d362a336a352b77a6b3e37642a0c3ac131d8dee530c11c6cd50f1",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 3,
+      "source_sha256": "9bd744e54f463871b60e99588212c182d5a4f7e2496c1bc0767ea9537fdf9f33",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-03.png",
+      "hd_sha256": "4bb382148ce93ed57747e9d22a4c4c9eac685c593eadcf38c0c25c5476b04a63",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 4,
+      "source_sha256": "66cea37693e74bf85450ba671a9ac37c9478b5e4e5a4145a72cee4c96d95a84e",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-04.png",
+      "hd_sha256": "be5bef77e5568eb38273e9287ffa74b366a23bfe29696b4e68b61896926ab482",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 5,
+      "source_sha256": "eb70dc0dd6dc09e2a1d8df230431bde41828dcf9a9e3faaf19923eba19130821",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-05.png",
+      "hd_sha256": "ace6350bf50897d119c729b4fd74bcce8273bd6fc6355f8b3f5d27cd53f84b7e",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 6,
+      "source_sha256": "38f5b857bbf8583189a30e4a7b3e0373496212093eeb9701ac2d7be9e96bbf50",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-06.png",
+      "hd_sha256": "5d770c623c230f5fe5b9d9e33c3749297d09783b9b9d163113691482a97fbbad",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 7,
+      "source_sha256": "31aef832ce5d155e38977ab5c49251737c349b1322acdcc3e8e9180a3aa5cd0d",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-07.png",
+      "hd_sha256": "81642e91eaa305c6fad7b20f4ee0e86539e78aaa80924b4150ab20054b8b1afb",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 8,
+      "source_sha256": "4aba66d8f1cf9d85c78e8dfa45545e125eb83b55017cc14db8779d2a8e4d8e44",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-08.png",
+      "hd_sha256": "f7c23c7d7bdd2bc567512a6153d7f52ba8a127bdf9e604366a234564d5083219",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 9,
+      "source_sha256": "222fb53822fa45e54ba2b22704dd79f3da698c8a09f5f1fdccfc9615cc1e25d5",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-09.png",
+      "hd_sha256": "b79f3e06dd32989989526cd7e21cdfc2700361ceb5cf489fa9ed96be7ee99df0",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 10,
+      "source_sha256": "7871a2930026aaf862d4f8015dfb0a27eaac460b6a2866a905f14cdd6f07a1f2",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-10.png",
+      "hd_sha256": "2da1e87e63184aabe36d7b15b2673899371f095609cd4c858fa450c01ae32e97",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT4.AY",
+      "record": 11,
+      "source_sha256": "84d61875ab3630e8d6fdeb29f2efcc4e124c4c0fbdf2e195161e92187e6b1d3f",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-11.png",
+      "hd_sha256": "93ed2396fb299d4af8556f458d8f7f076b19871b90e83371591df55b958e808a",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT5.AY",
+      "record": 0,
+      "source_sha256": "1ad430667a6d06969e1e71e1fa0b1f57453e65865488bbaa3416f86027e8924b",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit5-ay-00.png",
+      "hd_sha256": "fd4e022c01021564965e918645375f8afbdfddc5630e34c5eea58d9fccbe5187",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT5H.AY",
+      "record": 0,
+      "source_sha256": "f437d7657c941c6deb6b842f1c48b1bf8328af5f58466c85042644294925d4b8",
+      "category": "opening",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit5h-ay-00.png",
+      "hd_sha256": "d4ca776484be4301290f2f1e263e957c715ab3046712a2d5eab7e3f1b9c05ad5",
+      "runtime_file": "complete-tit5h-ay-00.png"
+    },
+    {
+      "source_file": "TIT6.AY",
+      "record": 0,
+      "source_sha256": "6199a07a283e0674b24ff183fd762ffbd7566ae2ca2582cd0bbd412d59727ada",
+      "category": "opening",
+      "status": "existing-player",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit6-ay-00.png",
+      "hd_sha256": "8fda0573047dfbcc8373e921d09ff175befc7daada5bba01e9d4ec9a7c705541",
+      "runtime_file": null
+    },
+    {
+      "source_file": "TIT6H.AY",
+      "record": 0,
+      "source_sha256": "d32d8b89a70bc3f2b75f8629539347fcb3b949e2306a16bcf046371ba42173c4",
+      "category": "opening",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit6h-ay-00.png",
+      "hd_sha256": "2dc84f07c00def00fc6e58d17e96887f352f4344c3689db66e3976d4aa3773a8",
+      "runtime_file": "complete-tit6h-ay-00.png"
+    },
+    {
+      "source_file": "TIT6V.AY",
+      "record": 0,
+      "source_sha256": "9aadec77cf59adb1f444d47891526af7da888bebecc648a3fa16a6f0adcd6dfe",
+      "category": "opening",
+      "status": "existing-intro",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit6v-ay-00-display-r2.png",
+      "hd_sha256": "8fda0573047dfbcc8373e921d09ff175befc7daada5bba01e9d4ec9a7c705541",
+      "runtime_file": "complete-tit6v-ay-00.png"
+    },
+    {
+      "source_file": "TIT6X.AY",
+      "record": 0,
+      "source_sha256": "2df60e86386ebbea78d307fe620f426c6ff9cb8f34551c689a9343c5af13baa2",
+      "category": "opening",
+      "status": "existing-intro",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit6x-ay-00.png",
+      "hd_sha256": "04a0ececcd8c8f7a1f07387a9375a18ccc44098d03a8070c9013737162e8ff6d",
+      "runtime_file": "complete-tit6x-ay-00.png"
+    },
+    {
+      "source_file": "X01.AY",
+      "record": 0,
+      "source_sha256": "0ade6bf9b8dc50214f39ae302ae7d67ffbdfa05db05c7a3359dc3d3233426f0b",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x01-ay-00.png",
+      "hd_sha256": "6036c85b72a3ed7f20cef9a0f900c04a831e1fc552240d8c4019154c5de77f39",
+      "runtime_file": "complete-x01-ay-00.png"
+    },
+    {
+      "source_file": "X01H.AY",
+      "record": 0,
+      "source_sha256": "4387e40d7fe698e34c57244bd8a4e1b9789de4ec9f167215a02dc7c6b6621ed6",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x01h-ay-00.png",
+      "hd_sha256": "26c779bdaec84aa6026562f5b613e06f2b665ed2d9020dadc516cc892c89ff8b",
+      "runtime_file": "complete-x01h-ay-00.png"
+    },
+    {
+      "source_file": "X02.AY",
+      "record": 0,
+      "source_sha256": "10fc6da8e5a18da05f68575cfc590e2af3ebcfac167b6aa417317f2fb456f6bc",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x02-ay-00.png",
+      "hd_sha256": "04d9f947126ad07d15ef153918afd2ab0d72399f793a335fb513fc234579c5ca",
+      "runtime_file": "complete-x02-ay-00.png"
+    },
+    {
+      "source_file": "X02H.AY",
+      "record": 0,
+      "source_sha256": "6b7fe7256b992d608ecaae9ac32412ec85dd669b19752d0b36f119b5aa26ca86",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x02h-ay-00.png",
+      "hd_sha256": "10ffd259851b79348480afec18f1444d6a943f1ba89f2b72369fa11690f8a932",
+      "runtime_file": "complete-x02h-ay-00.png"
+    },
+    {
+      "source_file": "X03.AY",
+      "record": 0,
+      "source_sha256": "b6b688530415a8042a5e9c81a8bbee8dfe78facd1a96ba8bb14d08258ecfde49",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x03-ay-00.png",
+      "hd_sha256": "07b4e979595802de7cda995eede72b03e653933c5a6abeb465e734df8002d208",
+      "runtime_file": "complete-x03-ay-00.png"
+    },
+    {
+      "source_file": "X03H.AY",
+      "record": 0,
+      "source_sha256": "891ac16516da72c3de4cf94718cf22410bfb8868db019969629575fb327760bd",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x03h-ay-00.png",
+      "hd_sha256": "3415980734b5081414ba764f47a14f3c08525a0e1e3032a7fb89b709505252c2",
+      "runtime_file": "complete-x03h-ay-00.png"
+    },
+    {
+      "source_file": "X04.AY",
+      "record": 0,
+      "source_sha256": "96ca6aab030fd1ca6a9a9a4250a5289aa8c7fe447e56166ce66856b12f09be5c",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x04-ay-00.png",
+      "hd_sha256": "e9203246abe411df0fca652c886bea3ef7276d1e374496a709aca80d8e98ca5c",
+      "runtime_file": "complete-x04-ay-00.png"
+    },
+    {
+      "source_file": "X04H.AY",
+      "record": 0,
+      "source_sha256": "e98b0cc877aa706a4e643aa08ec73c1682dd5f6d15cd0ce55d7f0dc22594c48a",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x04h-ay-00.png",
+      "hd_sha256": "57b96ad80aa186e74b550290864cedded736c7fc49e2116ee7b8fec532396d53",
+      "runtime_file": "complete-x04h-ay-00.png"
+    },
+    {
+      "source_file": "X05.AY",
+      "record": 0,
+      "source_sha256": "141e77b11e9845b9ee502a2f2cc2207cf8c84b7c9f87393e798bf65715d45d45",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x05-ay-00.png",
+      "hd_sha256": "482284220972aa9b7938a7a21b2ca35dd5eb55ca8c9837c72033f9df7484085b",
+      "runtime_file": "complete-x05-ay-00.png"
+    },
+    {
+      "source_file": "X05H.AY",
+      "record": 0,
+      "source_sha256": "2927d29651a8bdcba8e2f4b815192c3e86af68936432af1042ab17ffde3baebc",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x05h-ay-00.png",
+      "hd_sha256": "8fda0573047dfbcc8373e921d09ff175befc7daada5bba01e9d4ec9a7c705541",
+      "runtime_file": "complete-x05h-ay-00.png"
+    },
+    {
+      "source_file": "X06.AY",
+      "record": 0,
+      "source_sha256": "a583dbf636db548cbb5dee07783afe6cbbb7524e6615c9ca77b43f7eeed0bfcf",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x06-ay-00.png",
+      "hd_sha256": "a4cf68302d5036cd0a29b0d2a137ac9bbddd8507fd439e213fb46a1980ce2d09",
+      "runtime_file": "complete-x06-ay-00.png"
+    },
+    {
+      "source_file": "X06H.AY",
+      "record": 0,
+      "source_sha256": "7bae2dd7131d3a966179a482222ff7e762aa6ef3025810d16dd1570e9203820b",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x06h-ay-00.png",
+      "hd_sha256": "744ab56dcd0ba06afed833a47a03d727d2bfafc460eab4cab10daa7e3364fc3f",
+      "runtime_file": "complete-x06h-ay-00.png"
+    },
+    {
+      "source_file": "X07.AY",
+      "record": 0,
+      "source_sha256": "82c9e1e4e1e4b8bce763f1945468abc722e4a6bbcbace169b5c7d22e95494ba7",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x07-ay-00.png",
+      "hd_sha256": "fe0556d94dc61041ae0dc02ef041e4328f04907bbb7f78793022f94cd840aaf3",
+      "runtime_file": "complete-x07-ay-00.png"
+    },
+    {
+      "source_file": "X07H.AY",
+      "record": 0,
+      "source_sha256": "63c827ad58363946179c3ff2105d55a8eb148538f87cf4fc196a5dc38b0930d6",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x07h-ay-00.png",
+      "hd_sha256": "834b0aa26424222972cc05be8c00245b63a33809f5332eb08259064e777ba0c7",
+      "runtime_file": "complete-x07h-ay-00.png"
+    },
+    {
+      "source_file": "X08.AY",
+      "record": 0,
+      "source_sha256": "49344080f9e9e77365451c16f0abb050003d44d190b29f10eb27f726f0b88879",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x08-ay-00.png",
+      "hd_sha256": "25f24e94da68c7507b06c12f28975b96113c9f255afc72c81d3cb18055fc1b24",
+      "runtime_file": "complete-x08-ay-00.png"
+    },
+    {
+      "source_file": "X08H.AY",
+      "record": 0,
+      "source_sha256": "96ca6aab030fd1ca6a9a9a4250a5289aa8c7fe447e56166ce66856b12f09be5c",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x08h-ay-00.png",
+      "hd_sha256": "e9203246abe411df0fca652c886bea3ef7276d1e374496a709aca80d8e98ca5c",
+      "runtime_file": "complete-x08h-ay-00.png"
+    },
+    {
+      "source_file": "X09.AY",
+      "record": 0,
+      "source_sha256": "126cdd98374e7e5a3561947de5027995046ac50ba8f7e0ad416925bbc437f951",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x09-ay-00.png",
+      "hd_sha256": "5cb95f0a309172c10bb2ea8d1fa1a2597a08a993fbb9bb59df3eadd50e883a55",
+      "runtime_file": "complete-x09-ay-00.png"
+    },
+    {
+      "source_file": "X09H.AY",
+      "record": 0,
+      "source_sha256": "82c9e1e4e1e4b8bce763f1945468abc722e4a6bbcbace169b5c7d22e95494ba7",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x09h-ay-00.png",
+      "hd_sha256": "fe0556d94dc61041ae0dc02ef041e4328f04907bbb7f78793022f94cd840aaf3",
+      "runtime_file": "complete-x09h-ay-00.png"
+    },
+    {
+      "source_file": "X10.AY",
+      "record": 0,
+      "source_sha256": "e0ae75deab86ca37e09424955c8ead3bd7a784d08ab5b43ba2e1f53cbf795f7d",
+      "category": "illustrations",
+      "status": "packaged-archive",
+      "hd_file": "artwork/approved/registered-textures/all-graphics-hd-r1/editor-final/x10-ay-00.png",
+      "hd_sha256": "15f51d329c398c4f6ce95ad7e3f89dd1451a7f53d9e623dc6c4fda949263b393",
+      "runtime_file": "complete-x10-ay-00.png"
+    }
+  ],
+  "frozen_coverage_sha256": "b7ccc954bcaa6ecc13c0538b716a05a0de9838607eabceb16feb1f9d047ea2c1",
+  "audit_sha256": "9659b40ab7249b4b4c4ecbecc6ecd538290e67ab4f9a4976d48d9ffe55e19c7d",
+  "gallery_sha256": "e2f1d7c68df345a8ad701248892a98d9c47a1c58b7400a4bbbd94c3b5e00929f",
+  "gui_source_sha256": "457a73a2a0a414fe03b25916d1e99a2f203ec16c86442441f83b776ef24d8222",
+  "gui_preview_sha256": "937e2ab1ddcf22a7d3c51b360c279e357e1a38e2496987013f8822c054c0965b",
+  "limits": [
+    "Controlled ending branch, not natural victory.",
+    "PAM geometry is controlled after ordinary menus, not natural encounter.",
+    "Monochrome and IFF archives are packaged, not new game display modes."
+  ]
+}

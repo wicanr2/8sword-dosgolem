@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "markdown_links": 1808,
+  "gallery_entries": 333,
+  "registered_entries": 290,
+  "archive_entries": 43,
+  "filter_script_unchanged": true,
+  "frozen_build_inputs": 177,
+  "original_art_manifest_unchanged": true,
+  "archived_links_fixed": [
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../workplace/probe-20261023/graphics-first/battle-r1/palette-replay-r1/comparison.html"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../workplace/probe-20261023/graphics-first/battle-r1/palette-replay-r1/audit.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/13-F1-character-proposal.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/comparison.html"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../workplace/probe-20261023/graphics-first/battle-r1/palette-refinement-r2/audit.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../workplace/probe-20261023/graphics-first/font-settings-r1/toolbar-proposal-r1.html"
+    ],
+    [
+      "docs/spec/047-hd-scene-renderer.md",
+      "../../workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r2/mm3-spec074-reference.md"
+    ],
+    [
+      "docs/spec/047-hd-scene-renderer.md",
+      "../../workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r2/mm3-spec075-reference.md"
+    ],
+    [
+      "docs/spec/047-hd-scene-renderer.md",
+      "../../workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r2/mm3-direct-render-methodology.md"
+    ]
+  ],
+  "archived_links": []
+}

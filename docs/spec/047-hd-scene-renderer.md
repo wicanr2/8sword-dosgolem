@@ -416,7 +416,7 @@ PAM主選單、人物／軍隊、確認、地圖與返回，以及PREDELLA自然
 
 使用者於2026-10-25再次明確要求攔截繪圖模式，避免先執行原版繪圖再畫HD，並指定參考`/home/anr2/cht/mm3`。本節為DRAFT。前述來源場景已能獨立呈現，但正常研究副本仍執行DOS像素迴圈；其收據不當作直接攔截已完成的證據。
 
-參考mm3的`docs/spec/074-render-routine-control.md`、`mm3display/render_control.go`及`tools/probe_direct_render_skip.go`。參考時的074直接替換分支為DRAFT，現行控制器管理來源與完整返回邊界；空返回的80組負對照顯示必須保存回傳狀態。本作沿此方法驗證自己的常式，不沿用mm3的位址、旗標或時序。參考全文留[本機快照](../../workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r2/mm3-spec074-reference.md)，SHA由同目錄`mm3-reference.json`索引。
+參考mm3的`docs/spec/074-render-routine-control.md`、`mm3display/render_control.go`及`tools/probe_direct_render_skip.go`。參考時的074直接替換分支為DRAFT，現行控制器管理來源與完整返回邊界；空返回的80組負對照顯示必須保存回傳狀態。本作沿此方法驗證自己的常式，不沿用mm3的位址、旗標或時序。參考全文留[本機快照（mm3-spec074-reference.md，歸檔還原）](../../preserved/README.md#初批保存)，SHA由同目錄`mm3-reference.json`索引。
 
 ### 四平面常式的輸出契約原型
 
@@ -447,7 +447,7 @@ PAM主選單、人物／軍隊、確認、地圖與返回，以及PREDELLA自然
 
 ### 最新mm3方法與本作時間模型
 
-後續重新核對mm3的HEAD `366104dabcfdd1750bcbc2cd88993b314858bf69`。其075已達限定CONFORMED，中文普通／鏡像圖片呼叫已由來源命令接管，原版像素迴圈不再執行。074先前的DRAFT及空返回反例保留作歷史。最新[075快照](../../workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r2/mm3-spec075-reference.md)與[方法紀錄](../../workplace/probe-20261023/graphics-first/battle-r1/direct-planar-r2/mm3-direct-render-methodology.md)由`mm3-reference-r2.json`固定雜湊；參考專案維持唯讀。
+後續重新核對mm3的HEAD `366104dabcfdd1750bcbc2cd88993b314858bf69`。其075已達限定CONFORMED，中文普通／鏡像圖片呼叫已由來源命令接管，原版像素迴圈不再執行。074先前的DRAFT及空返回反例保留作歷史。最新[075快照（mm3-spec075-reference.md，歸檔還原）](../../preserved/README.md#初批保存)與[方法紀錄（mm3-direct-render-methodology.md，歸檔還原）](../../preserved/README.md#初批保存)由`mm3-reference-r2.json`固定雜湊；參考專案維持唯讀。
 
 沿用的方法是完整呼叫效果、相容背板、事件預算及單次RGB。mm3的`HostWorkBudget`會拒絕`CycleClock`，本作正常前端則以3000 cycles/ms開啟該模式，不能原樣套用。研究[事件預算](../../tools/research-host-work.go)分別限制步數事件與週期IRQ，另受本次執行配額限制。整筆工作放不進預算就拒絕，恰好到期的事件交由下一次原版Step處理。此API只計入已驗步數與週期，呼叫效果與來源有效性仍須另驗。
 

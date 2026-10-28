@@ -16,6 +16,8 @@ type Options struct {
 	HD                  bool
 }
 type Engine struct {
+	completion           *completionAssets
+	CompletionError      string
 	endingAssets         *endingAssets
 	ending               *endingAdapter
 	EndingError          string
@@ -136,6 +138,10 @@ func Open(opt Options) (*Engine, error) {
 			e.AssetError = err.Error()
 			e.HD = false
 		} else {
+			e.completion, err = loadCompletionAssets(opt.Assets, opt.Root)
+			if err != nil {
+				e.CompletionError = err.Error()
+			}
 			e.Tracker = NewTracker(o, e.Assets, pam)
 			if _, statErr := os.Stat(filepath.Join(opt.Assets, "terrain.json")); !os.IsNotExist(statErr) {
 				pmap, readErr := os.ReadFile(filepath.Join(opt.Root, "PMAP.AY"))
@@ -218,6 +224,10 @@ func Open(opt Options) (*Engine, error) {
 						if landmarkErr := errors.Join(loadMapLandmark55(opt.Assets, pmap, art), loadMapLandmark49(opt.Assets, pmap, art), loadMapLandmark54(opt.Assets, pmap, art), loadMapLandmark52(opt.Assets, pmap, art), loadMapLandmark56(opt.Assets, pmap, art), loadMapLandmark48(opt.Assets, pmap, art), loadMapLandmark51(opt.Assets, pmap, art)); landmarkErr != nil {
 							e.MapLandmarkError = landmarkErr.Error()
 						}
+						if completionErr := e.completion.bindGraphics(art); completionErr != nil {
+							e.CompletionError = completionErr.Error()
+							e.completion = nil
+						}
 						e.Tracker.graphics = newGraphics(e.Tracker, art)
 					}
 				}
@@ -235,6 +245,9 @@ func Open(opt Options) (*Engine, error) {
 	e.sourceEnabled = e.HD
 	if e.sourceEnabled {
 		e.endingAssets, err = loadEndingAssets(opt.Assets, opt.Root)
+		if e.endingAssets != nil && e.completion != nil {
+			e.endingAssets.art.completion = e.completion.ending
+		}
 		if err != nil {
 			e.EndingError = err.Error()
 		} else if len(e.endingAssets.fallbacks) > 0 {
@@ -597,6 +610,8 @@ func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
 }
 func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
+	out["completion_error"] = e.CompletionError
+	out["completion_assets"] = e.completion.status()
 	out["source_renderer"] = e.sourceEnabled
 	out["source_frames"] = e.sourceFrames
 	out["direct_calls"] = e.sourceDirectCalls

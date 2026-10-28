@@ -7,10 +7,10 @@ task_player="$task_work/player"
 task_uid="$(id -u)"
 task_gid="$(id -g)"
 task_go=dosgolem-go-ebiten:1.24-r1
-task_py=sc-cht-hdtools:pillow11.3.0-r1
+task_py=sc-cht-hdtools:pillow11.3.0-r2
 task_orig="$task_work/intake-20261023/sources/game/8sword"
 test "$(docker image inspect "$task_go" --format '{{.Id}}')" = sha256:8ed6bdee2bce1f32f804e888f942b25bbf62f2165a43344bb4587f3371de0581
-test "$(docker image inspect "$task_py" --format '{{.Id}}')" = sha256:44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48
+test "$(docker image inspect "$task_py" --format '{{.Id}}')" = sha256:b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831
 valid_name(){ [[ "$1" =~ ^[a-zA-Z0-9_-]+$ ]]; }
 case "${1:-}" in
   building-batch-assets)

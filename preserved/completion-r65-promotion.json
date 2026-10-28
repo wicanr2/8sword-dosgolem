@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "status": "promoted-scoped-054-completion",
+  "assets": "assets-painted-r65",
+  "files": 525,
+  "programs": {
+    "8sword": "8f6a34cca0bcb23c0d716b1cab665344d7050f273fdab714283579fe627a131d",
+    "8sword-replay": "7daf34adaeaf99e086c85248a5e3629853bc5bc2a873eb91ac11f92804688d0d",
+    "gui-check": "81f8866b74b04964c3667348d1d3b178b64258f0dc271a30d433f5e678f98309",
+    "music-check": "65bef075e0366c03d1ecc009f12d5f16c3049efbee06d0720c4d6b7fc62dbf8a",
+    "heroine-check": "41df4ba3094830ed03bbea95456124dda371c67e12f23d01b20e39542dab4899",
+    "museum-check": "d729f8e26da2f8789f10b5bb8874d59dc27ef5cb4f8eaf63149305a5f3fa7d71",
+    "story-prelude-check": "7cb2cc20ef83c63219cf5cce9e584f530a5977392226042e906072ff365c214c"
+  },
+  "previous_programs": {
+    "8sword": "8ab9ce1d56109da8050a78ec1804ed0a709e4307058d7c88699f8d7f99450169",
+    "8sword-replay": "574dad7771bbfa5ee0d8006b4ea3aba3e7834489f60dd6bd374a206250b88583",
+    "gui-check": "81f8866b74b04964c3667348d1d3b178b64258f0dc271a30d433f5e678f98309",
+    "music-check": "bb496b6ffe790c551f4bfc63a93e3211ae92a6e20c088d41ac2a89c34b85b445",
+    "heroine-check": "9082534e516bbb072860c0de6ee294850b912a3e098b9b166dd103f7b8888f5c",
+    "museum-check": "442cddfc0851f1a0640063a268a683f6f9b1a11f4ab1bf9e076b29ad4a4a017d",
+    "story-prelude-check": "b8f14f56ef8dfb30d4401085f1a0ac1eb03b2d8f0997f4a8f882dbb2cea03c49"
+  },
+  "audit_sha256": "9659b40ab7249b4b4c4ecbecc6ecd538290e67ab4f9a4976d48d9ffe55e19c7d",
+  "core_files": 923,
+  "source_inputs": 177
+}

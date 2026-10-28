@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "reason": "previous shared image absent during cleanup; rebuilt fixed Pillow contract",
+  "replaces": "sc-cht-hdtools:pillow11.3.0-r1",
+  "previous_image_sha256": "44d0742ca1061bcd453440cdce925afa31c5324e115fca1334da0e364f0e2c48",
+  "image": "sc-cht-hdtools:pillow11.3.0-r2",
+  "image_sha256": "b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831",
+  "base": "python:3.13-bookworm@sha256:933b46a028fd786c9c3d426ebabc237e29a15912231ea8de576e95f0e4f41a4c",
+  "pillow": "11.3.0",
+  "dockerfile": "tools/Dockerfile.hdtools",
+  "dockerfile_sha256": "38658f133dfe8c5a543eca7e536f7cdaaf2677f2095c293e4bcb44633ca15ff3"
+}

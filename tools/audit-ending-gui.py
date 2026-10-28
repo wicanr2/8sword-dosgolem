@@ -32,6 +32,17 @@ def swords_over(out, texture, x, y):
         data[at+3] = 255
     out.paste(Image.frombytes('RGBA',(w,h),bytes(data)),(x,y))
 
+def completion_over(out, texture, x, y):
+    """Go1.24 NRGBA→RGBA cache conversion then RGBA-over, independently."""
+    w,h=texture.size;src=texture.tobytes();dst=bytearray(out.crop((x,y,x+w,y+h)).tobytes())
+    for at in range(0,len(src),4):
+        alpha=src[at+3];inv=(65535-alpha*257)*257
+        for k in range(3):
+            premul=(src[at+k]*alpha*257//255)>>8
+            dst[at+k]=(dst[at+k]*inv//65535+premul*257)>>8
+        dst[at+3]=255
+    out.paste(Image.frombytes('RGBA',(w,h),bytes(dst)),(x,y))
+
 
 def reconstruct(meta, assets, sources):
     data = read(assets/'ending.json')
@@ -58,6 +69,12 @@ def reconstruct(meta, assets, sources):
     swords = None
     effects = {}
     pairs = {}
+    completion = {}
+    if (assets/'completion.json').exists():
+        for record in read(assets/'completion.json')['records']:
+            if record['route']=='ending':
+                assert sha(assets/record['image'])==record['image_sha256']
+                completion[record['source_sha256']]=record,Image.open(assets/record['image']).convert('RGBA')
     if (assets/'ending-pair.json').exists():
         for pair in read(assets/'ending-pair.json')['records']:
             assert sha(assets/pair['image']) == pair['image_sha256']
@@ -77,7 +94,17 @@ def reconstruct(meta, assets, sources):
     for index, op in enumerate(meta['ops']):
         x,y,w,h = op['X']*3,op['Y']*6,op['W']*3,op['H']*6
         if op['kind'] == 'bitmap':
-            if op['SourceSHA'] in pairs:
+            if op['SourceSHA'] in completion:
+                record,texture=completion[op['SourceSHA']]
+                repeated=False
+                for prior in reversed(meta['ops'][:index]):
+                    if op['X']>=prior['X']+prior['W'] or prior['X']>=op['X']+op['W'] or op['Y']>=prior['Y']+prior['H'] or prior['Y']>=op['Y']+op['H']:continue
+                    repeated=all(prior[k]==op[k] for k in ['kind','SourceSHA','X','Y','W','H']);break
+                if not repeated:
+                    if record['planes']!=6:out.paste(texture,(x,y))
+                    else:
+                        native=sources[op['SourceSHA']];black=Image.new('L',native.size);black.putdata([255 if c[3] and c[:3]==(0,0,0)else 0 for c in native.getdata()]);out.paste((0,0,0,255),(x,y,x+w,y+h),black.resize((w,h),Image.Resampling.NEAREST));completion_over(out,texture,x,y)
+            elif op['SourceSHA'] in pairs:
                 repeated = False
                 for prior in reversed(meta['ops'][:index]):
                     if op['X'] >= prior['X']+prior['W'] or prior['X'] >= op['X']+op['W'] or op['Y'] >= prior['Y']+prior['H'] or prior['Y'] >= op['Y']+op['H']:

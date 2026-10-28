@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "status": "completed",
+  "removed_files": 160354,
+  "removed_logical_bytes": 119082179062,
+  "docker_build_cache_reclaimed": "236.2 MB",
+  "docker_images_deleted_by_this_task": [],
+  "other_project_containers_untouched": true,
+  "permanent_artwork_retained": true,
+  "original_game_retained": true,
+  "current_assets": "assets-painted-r65",
+  "retained_runtime_core_files": 923,
+  "note": "Logical bytes include duplicate/hardlinked cold data. Shared-host free-space deltas also include other concurrent work.",
+  "final_directory_bytes": {
+    "workplace": 7434326016,
+    "preserved": 10053754880,
+    "artwork": 735408128
+  },
+  "final_go_cache_files": 0,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "markdown_links": 1808
+}
