@@ -2,6 +2,14 @@
 
 本目錄保存程式、固定來源、音樂、字型、存檔與研究證據。完整定稿美術仍由[artwork](../artwork/README.md)管理。初批r64保存清單維持不變，後續r65另存追加批次；九首待確認音樂的批准狀態保持。
 
+## AI候選與策略研究追加
+
+[策略清單](ai-policy-r1.json)、[獨立核對](ai-policy-audit-r1.json)、[捕獲結果](ai-policy-capture-r1.json)及[離線核對](ai-policy-verification-r1.json)保存八個固定局面、24次驗收執行與16份Go決策。245檔去重成103物件，壓縮16500013 bytes；完整RAM、state、三版研究執行檔、當時來源及失敗診斷保存在本機`ai-policy-r1/`物件，不加入Git。正式r65保持。[文件與來源核對](ai-policy-integrity-r1.json)另檢查23筆定位回填及正式素材保持。
+
+[保存器](../tools/archive-ai-policy.py)在固定Pillow11.3.0容器用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；獨立核對只掛preserved與工具，改用`--verify --archive <唯讀preserved> --out <新JSON>`。加`--restore <空白可寫目錄>`還原後，執行`ai-policy-probe-r3 -offline <還原目錄>/ai-policy-r1 -out <新JSON>`可重生16份決策，無需原workplace、原版遊戲或容器內Go編譯器。結果見[還原重播](ai-policy-restore-r1.json)，逐byte同原輸出；未知分派及越界對應負例均拒絕且不輸出JSON。
+
+策略與對照範圍見[030](../docs/spec/030-battle-expansion-proposal.md#合法候選與實際策略比較結果)及[RE追加](../RESEARCH-LOG.md#ai合法候選與實際策略掛點實證)。[候選器測試](../tools/research-ai-policy_test.go)在固定Go1.24.13容器，把候選器／探針／測試複製到923核心的tmp副本cmd/ai-policy，設`EIGHTSWORD_POLICY_TEST_BATCH=<battle-r1>`執行`go test ./cmd/ai-policy -v`及`go vet ./cmd/ai-policy`。它只驗研究契約；不稱完整策略、正常玩家路徑或正式AI已接入。
+
 ## AI特殊分派研究追加
 
 [特殊分派清單](ai-specials-r1.json)、[獨立核對](ai-specials-audit-r1.json)、[捕獲結果](ai-specials-capture-r1.json)與[離線核對](ai-specials-verification-r1.json)保存13種局面、17次成對執行。171檔去重成91物件，壓縮11403468 bytes。完整state、兩版探針、Go旁路、IDA匯出及當時來源保存在本機`ai-specials-r1/`壓縮物件，不加入Git；正式r65保持。[文件與來源核對](ai-specials-integrity-r1.json)另驗定位回填及正式素材保持。

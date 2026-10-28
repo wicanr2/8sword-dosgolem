@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "status": "PASS-scoped-live-policy-shadow-and-targets",
+  "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_export_sha256": "76feaf768b248c99d54c7c3632f898f5199a844895e8312363ea5c6c9af1d7ba",
+  "cases": [
+    {
+      "name": "normal-locked",
+      "directory": "ai-policy-r1",
+      "source": 0,
+      "kind": 6,
+      "selector": -1,
+      "candidate_slots": [
+        0
+      ],
+      "original_slot": 0,
+      "suggested_slot": 0,
+      "original_eligible": true,
+      "original_counts": [
+        15,
+        69
+      ],
+      "suggested_counts": [
+        15,
+        69
+      ],
+      "baseline_state_sha256": "84971fd39ae40992c642b1cfe632029d21b776112c3fd64b668094824e1014f8",
+      "suggested_state_sha256": "84971fd39ae40992c642b1cfe632029d21b776112c3fd64b668094824e1014f8",
+      "before_state_sha256": "0468db51998017832b3978948f7fae01c1112af0e2681735c7044ec66e853aec"
+    },
+    {
+      "name": "normal-choice",
+      "directory": "ai-policy-r1",
+      "source": 2,
+      "kind": 6,
+      "selector": -1,
+      "candidate_slots": [
+        0,
+        1
+      ],
+      "original_slot": 0,
+      "suggested_slot": 0,
+      "original_eligible": true,
+      "original_counts": [
+        0,
+        69
+      ],
+      "suggested_counts": [
+        0,
+        69
+      ],
+      "baseline_state_sha256": "743b45bdb43dbdfbec5e2535bf7ad3323af4633ba1955532e76c9dfabe434c56",
+      "suggested_state_sha256": "743b45bdb43dbdfbec5e2535bf7ad3323af4633ba1955532e76c9dfabe434c56",
+      "before_state_sha256": "0d284a0ddc879927d07f7e6b1d7077355ec514b33dcb9d2bc9eeed8d0342eeaf"
+    },
+    {
+      "name": "normal-rear-only",
+      "directory": "ai-policy-r1",
+      "source": 0,
+      "kind": 6,
+      "selector": -1,
+      "candidate_slots": [
+        3,
+        4
+      ],
+      "original_slot": 3,
+      "suggested_slot": 3,
+      "original_eligible": true,
+      "original_counts": [
+        0,
+        69
+      ],
+      "suggested_counts": [
+        0,
+        69
+      ],
+      "baseline_state_sha256": "409417ebeb10aaac358c55624117a3332270707e030ab8c3f71517aef0e388b8",
+      "suggested_state_sha256": "409417ebeb10aaac358c55624117a3332270707e030ab8c3f71517aef0e388b8",
+      "before_state_sha256": "e9d3171975fb80d87696d7b9b08c4a4f836dafc24783d4239a35d2c7aae39d68"
+    },
+    {
+      "name": "front-ranged-mixed",
+      "directory": "ai-policy-r1",
+      "source": 0,
+      "kind": 3,
+      "selector": -1,
+      "candidate_slots": [
+        0,
+        3
+      ],
+      "original_slot": 3,
+      "suggested_slot": 0,
+      "original_eligible": true,
+      "original_counts": [
+        10,
+        56
+      ],
+      "suggested_counts": [
+        0,
+        69
+      ],
+      "baseline_state_sha256": "3df0d1ed994542e8afa12ef929f2db1ef6261d5161082caef54fe776ab355910",
+      "suggested_state_sha256": "0918636330ce679bca31ac44ee365e36b8528b19833db0ac155490e1b414b1f6",
+      "before_state_sha256": "5a8e46dbd5c5ffe022ba89f270f4f81167d8c4f8bdb4bfba37ef63b1fd0b256d"
+    },
+    {
+      "name": "rear-ranged-mixed",
+      "directory": "ai-policy-r1",
+      "source": 3,
+      "kind": 24,
+      "selector": -1,
+      "candidate_slots": [
+        0,
+        3
+      ],
+      "original_slot": 3,
+      "suggested_slot": 0,
+      "original_eligible": true,
+      "original_counts": [
+        10,
+        56
+      ],
+      "suggested_counts": [
+        0,
+        69
+      ],
+      "baseline_state_sha256": "7137ae26afffb57fe61736411d7a357362ee7625181637832837dc0a05ed4fe1",
+      "suggested_state_sha256": "01c56e8effcf8fdc498e3342b7d66c7bd9a9559d6edf3221632a0906eeb02203",
+      "before_state_sha256": "f24ea22a9087f59fa6933437b8041be541993c6b52e1e814a699a450521ffd5a"
+    },
+    {
+      "name": "special0-choice",
+      "directory": "ai-policy-r1",
+      "source": 3,
+      "kind": 12,
+      "selector": 0,
+      "candidate_slots": [
+        0,
+        1
+      ],
+      "original_slot": 1,
+      "suggested_slot": 0,
+      "original_eligible": true,
+      "original_counts": [
+        31,
+        67
+      ],
+      "suggested_counts": [
+        29,
+        69
+      ],
+      "baseline_state_sha256": "3d211706701e3cc12dc0ad5f3ca5d453c0731ecf925a591289c8bfb424634bb8",
+      "suggested_state_sha256": "c3ab1aa4ad110289ffd9bfd0a8af06bf155beb5680f9ade71837d89927de15fe",
+      "before_state_sha256": "28b702ebf99505395e90cb9a69069e16ce00c8e9d55491568451262ffc9bf3f4"
+    },
+    {
+      "name": "special2-choice",
+      "directory": "ai-policy-r1",
+      "source": 3,
+      "kind": 12,
+      "selector": 2,
+      "candidate_slots": [
+        0,
+        1
+      ],
+      "original_slot": 1,
+      "suggested_slot": 0,
+      "original_eligible": true,
+      "original_counts": [
+        31,
+        63
+      ],
+      "suggested_counts": [
+        25,
+        69
+      ],
+      "baseline_state_sha256": "7c8ff4f243a7056653c221af77ab87d34b136fa911f402a2b23cf558b19ca684",
+      "suggested_state_sha256": "8115104e06a71d09be9ba8ffd06a30817e7fe8ded0cda1a0cd4134978b9bd742",
+      "before_state_sha256": "68dff8715f874caf974f607cb05487404d04a83d861f648c698e7d1f232f57e8"
+    },
+    {
+      "name": "special5-empty-original",
+      "directory": "ai-policy-extra-r2",
+      "source": 3,
+      "kind": 12,
+      "selector": 5,
+      "candidate_slots": [
+        0,
+        1
+      ],
+      "original_slot": 2,
+      "suggested_slot": 0,
+      "original_eligible": false,
+      "original_counts": [
+        31,
+        69
+      ],
+      "suggested_counts": [
+        20,
+        69
+      ],
+      "baseline_state_sha256": "1cea6c9f8602e4a024a7e9592446bd667cb8717a334bc0c71d32d9383fe1c4a9",
+      "suggested_state_sha256": "70a6615e03707211ecea97f0d71afda684a0f71a2f9ec5bf6cd75572a41c2c39",
+      "before_state_sha256": "7eb284a1cb8ab90e5cbd96d5cbd693a16e4657110fb972d70ce24ed950a7d357"
+    }
+  ],
+  "distinct_scenarios": 8,
+  "guest_executions": 24,
+  "changed_targets": 5,
+  "live_effect_predictions": 15,
+  "offline_decisions": 16,
+  "production_programs_unchanged": {
+    "8sword": "8f6a34cca0bcb23c0d716b1cab665344d7050f273fdab714283579fe627a131d",
+    "8sword-replay": "7daf34adaeaf99e086c85248a5e3629853bc5bc2a873eb91ac11f92804688d0d",
+    "gui-check": "81f8866b74b04964c3667348d1d3b178b64258f0dc271a30d433f5e678f98309",
+    "music-check": "65bef075e0366c03d1ecc009f12d5f16c3049efbee06d0720c4d6b7fc62dbf8a",
+    "heroine-check": "41df4ba3094830ed03bbea95456124dda371c67e12f23d01b20e39542dab4899",
+    "museum-check": "d729f8e26da2f8789f10b5bb8874d59dc27ef5cb4f8eaf63149305a5f3fa7d71",
+    "story-prelude-check": "7cb2cc20ef83c63219cf5cce9e584f530a5977392226042e906072ff365c214c"
+  },
+  "core_files_unchanged": 923,
+  "tests_sha256": "cc62d6197bd3cc4bd521ee62f81b3c1a35fd4e2ecd56fd4bee170ab0bf9c016a",
+  "tools": {
+    "probe-ai-policy.go": "4a845442b2bb87ae6c7df324106eb8d052263adb5fa1b019ffc381d7df9531d6",
+    "research-ai-policy.go": "534fbb254fd75e07b5f74004d61c027b495c67f86a4b6eb614e8a3ff9ef4b242",
+    "research-ai-policy_test.go": "422abaf5b506e303495037e8678ae841cf812fe05d37f9419d07c8e33bdfd25b",
+    "audit-ai-policy.py": "5015c049651c3f8e1103391b4c022caf3a83cf225b6b58ec53e104b5e6cf42b5"
+  },
+  "limits": [
+    "Research lexicographic target policy only; no production AI, rules, save or UI changes.",
+    "Normal/ranged and selectors 0/2/5 only; original bad selector5 target excluded deliberately.",
+    "First executor return only, no complete turn, natural encounter, counterattack exchange or win-rate claim.",
+    "Initial selector5 word-only experiment rejected; final sample changes only DX before native target store."
+  ]
+}

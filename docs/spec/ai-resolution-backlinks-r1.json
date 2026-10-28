@@ -285,6 +285,66 @@
       "required_correction": "特殊分派追加勘誤：2026-10-28",
       "scope": "13 controlled scenarios, 17 paired executions; first special return only",
       "not_closed": "full strategy, mixed-board legality, scheduling after the first return, spell names, traits and save format"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1F32D",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1F32D",
+      "original_name": "0x1F32D",
+      "meaning": "特殊0的BP-8目標已選定，amount尚未計算",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "候選與目標交接勘誤：2026-10-28",
+      "scope": "Eight controlled scenarios, 24 executions, read-only policy and target handoff; first executor return",
+      "not_closed": "production strategy, normal player path, complete turns, counterattacks, trait rules, UI and saves"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1F476",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1F476",
+      "original_name": "0x1F476",
+      "meaning": "特殊2的BP-8合格目標已選定，amount尚未計算",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "候選與目標交接勘誤：2026-10-28",
+      "scope": "Eight controlled scenarios, 24 executions, read-only policy and target handoff; first executor return",
+      "not_closed": "production strategy, normal player path, complete turns, counterattacks, trait rules, UI and saves"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1F52B",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1F52B",
+      "original_name": "0x1F52B",
+      "meaning": "特殊5的DX目標即將存入BP-8，可只改DX交給原指令",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "候選與目標交接勘誤：2026-10-28",
+      "scope": "Eight controlled scenarios, 24 executions, read-only policy and target handoff; first executor return",
+      "not_closed": "production strategy, normal player path, complete turns, counterattacks, trait rules, UI and saves"
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1F555",
+      "module": "DOS PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1F555",
+      "original_name": "0x1F555",
+      "meaning": "類型12仍用DX讀目標兵數，故晚改BP-8不足",
+      "level": "proven-in-sampled-scope",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "候選與目標交接勘誤：2026-10-28",
+      "scope": "Eight controlled scenarios, 24 executions, read-only policy and target handoff; first executor return",
+      "not_closed": "production strategy, normal player path, complete turns, counterattacks, trait rules, UI and saves"
     }
   ]
 }
