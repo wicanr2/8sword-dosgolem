@@ -2,6 +2,14 @@
 
 本目錄保存程式、固定來源、音樂、字型、存檔與研究證據。完整定稿美術仍由[artwork](../artwork/README.md)管理。初批r64保存清單維持不變，後續r65另存追加批次；九首待確認音樂的批准狀態保持。
 
+## AI特殊分派研究追加
+
+[特殊分派清單](ai-specials-r1.json)、[獨立核對](ai-specials-audit-r1.json)、[捕獲結果](ai-specials-capture-r1.json)與[離線核對](ai-specials-verification-r1.json)保存13種局面、17次成對執行。171檔去重成91物件，壓縮11403468 bytes。完整state、兩版探針、Go旁路、IDA匯出及當時來源保存在本機`ai-specials-r1/`壓縮物件，不加入Git；正式r65保持。[文件與來源核對](ai-specials-integrity-r1.json)另驗定位回填及正式素材保持。
+
+[保存器](../tools/archive-ai-specials.py)在固定Pillow11.3.0容器使用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲指定批次；驗證只掛preserved及工具，改為`--verify --archive <唯讀preserved> --out <新JSON>`。加`--restore <空白可寫目錄>`可逐SHA還原。還原後執行`ai-specials-shadow-r1 -batch <還原目錄> -out <新JSON>`，無需原workplace或遊戲資料即可重生離線結果。
+
+[還原與重播](ai-specials-restore-r1.json)已通過，Go結果逐byte相同；不支援selector與竄改amount的兩種負例均拒絕且不輸出結果。[IDA窄查工具](../tools/export-ai-specials-ida.py)沿既有IDA9.4 py312-v1／UID1000／HOME=/home/ubuntu容器，原PAM.i64唯讀掛/source、原版唯讀掛/game，只將DB複製到tmp後執行，/out寫`ida-specials-r1.json`；不修改正式DB。輸入SHA、位址基準與限制見[030](../docs/spec/030-battle-expansion-proposal.md#其餘特殊分派的限定研究結果)及[RE追加](../RESEARCH-LOG.md#ai其餘特殊分派實證)。原版與923核心沿初批catalog保存，不在此批重複壓縮。
+
 ## AI分支研究追加
 
 [分支清單](ai-branches-r1.json)、[獨立核對](ai-branches-audit-r1.json)、[捕獲結果](ai-branches-capture-r1.json)與[離線核對](ai-branches-verification-r1.json)保存13個受控回合及Go分支旁路。134檔去重成80物件，壓縮佔11558373 bytes；完整state與研究二進位放本機`ai-branches-r1/`，不加入Git。正式r65保持。[文件與回填核對](ai-branches-integrity-r1.json)記錄12筆定位護欄、兩種缺標記負例及正式素材保持結果。

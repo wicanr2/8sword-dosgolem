@@ -1,0 +1,903 @@
+{
+  "schema": 1,
+  "status": "PASS-scoped-AI-specials-and-Go-shadow",
+  "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_export_sha256": "da15957efc76f1c140685c56d3943bbdd9a0da47f48e105287ad8eaa2aa6c192",
+  "old_ida_export_sha256": "76feaf768b248c99d54c7c3632f898f5199a844895e8312363ea5c6c9af1d7ba",
+  "common_before_fixture_sha256": "9fc8754be129e564ac1852de8b71b667c58017a1db949ac2a9834bb4e5a3b99a",
+  "paired_executions": 17,
+  "distinct_cases": 13,
+  "effect_predictions": 12,
+  "flag_predictions": 1,
+  "cases": [
+    {
+      "name": "special-12-case2-kind6",
+      "directory": "ai-specials-extra-r2",
+      "selector": 2,
+      "kind": 12,
+      "trace_sha256": "fbcdeb1356bdc87246fa0311f9e1bef074b29fff5285aa45a4568438a9d67d8b",
+      "state_sha256": "2e108e40ab5a02f7136dd84990ad40fb98f9baca61956a32da28c14998e59eee",
+      "step_count": 6745276,
+      "counts": [
+        25,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 6,
+          "after": 25
+        }
+      ]
+    },
+    {
+      "name": "special-10-case2-kind15",
+      "directory": "ai-specials-extra-r2",
+      "selector": 2,
+      "kind": 10,
+      "trace_sha256": "869e99eb47ec1bd505a6ac7a47916f307784260af9d26859264eddb2263737b1",
+      "state_sha256": "e1bd806917f4ad7953272bc25f4270c29a4ef64bc98baaec95cebb07a6da0756",
+      "step_count": 6745274,
+      "counts": [
+        16,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 15,
+          "after": 16
+        }
+      ]
+    },
+    {
+      "name": "special-12-case2-none",
+      "directory": "ai-specials-extra-r2",
+      "selector": 2,
+      "kind": 12,
+      "trace_sha256": "cd95bd0eec401d27410a2d1e69976816766e30f30c20edf515bb7ddc6eb1b88a",
+      "state_sha256": "d9649d280150cab58e8514371452d257a94ee4c3c7626a5283b2d2197944a4a3",
+      "step_count": 3567912,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": []
+    },
+    {
+      "name": "special-12-case3-gate0",
+      "directory": "ai-specials-r1",
+      "selector": 3,
+      "kind": 12,
+      "trace_sha256": "1cfe15032f29515c46757f6cfb8cedd4c1cdb068af6eedda966e1ead7966cf62",
+      "state_sha256": "bf46cbebee3dd20709a8932c0ba8b46adf6ea14d7556428829151c59422405f0",
+      "step_count": 3568063,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": []
+    },
+    {
+      "name": "special-12-case3-gate4",
+      "directory": "ai-specials-r1",
+      "selector": 3,
+      "kind": 12,
+      "trace_sha256": "9d471105e5dbcad4185a5bec2f11e2da4abbb0e8b326887672ae0e8d7e8ae19a",
+      "state_sha256": "b9c3c2403d6c7ea0e9fdd3bdd24694cd8d3bf90c07f5c13c05c2382723b7ed41",
+      "step_count": 7325346,
+      "counts": [
+        31,
+        0
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "unit": 1,
+          "before": 69,
+          "amount": 69,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "name": "special-10-case3-gate4",
+      "directory": "ai-specials-r1",
+      "selector": 3,
+      "kind": 10,
+      "trace_sha256": "eec10672535f586d4e62d45c4202d6a493b2a63689943784874526d4a3dd54c2",
+      "state_sha256": "80c2f5fda4545cb6faccd34582148bfd899a33f58dc695143e3917d2e41b2bcf",
+      "step_count": 7325344,
+      "counts": [
+        31,
+        0
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "unit": 1,
+          "before": 69,
+          "amount": 69,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "name": "special-12-case4",
+      "directory": "ai-specials-extra-r2",
+      "selector": 4,
+      "kind": 12,
+      "trace_sha256": "283309e84e9d74dfbd790bd263197246fc0596a898cad59e3f54c82d50e839df",
+      "state_sha256": "1e5559da22cc25f965f03fc67e89307753795cc43a0a0b46dd593d7f243cf322",
+      "step_count": 3567899,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        2,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "effects": []
+    },
+    {
+      "name": "special-12-case5",
+      "directory": "ai-specials-r1",
+      "selector": 5,
+      "kind": 12,
+      "trace_sha256": "226ee594e5bc37474725a48bee4cf3a7fe5a1ad37a2845bedc2e8815eea26606",
+      "state_sha256": "fe6f865f02ff053bd0c87923a598857d3a638cf2d2058517bd58ba705c08f5aa",
+      "step_count": 5544937,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 2,
+          "unit": 5,
+          "before": 0,
+          "amount": 1,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "name": "special-10-case5",
+      "directory": "ai-specials-r1",
+      "selector": 5,
+      "kind": 10,
+      "trace_sha256": "18695f9a8895e046dc65efc1e8e292e1db102f73e812f233071c739d9f7fe118",
+      "state_sha256": "225e6f353ad6e456d8248cf93fd2012ef757062794c0d775dc77958a98964f48",
+      "step_count": 5544934,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 2,
+          "unit": 5,
+          "before": 0,
+          "amount": 1,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "name": "special-12-case7",
+      "directory": "ai-specials-r1",
+      "selector": 7,
+      "kind": 12,
+      "trace_sha256": "39ff8dfa2b9abee62ca23a87a7eeff0c4880f92ab1e2e09b85870e242600528f",
+      "state_sha256": "ec2449b9c185e3a8fcb50b59997d94dcc58b6f35f220bb9f1ddec18d12e086f5",
+      "step_count": 10275973,
+      "counts": [
+        0,
+        48
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 31,
+          "after": 0
+        },
+        {
+          "slot": 1,
+          "unit": 1,
+          "before": 69,
+          "amount": 21,
+          "after": 48
+        }
+      ]
+    },
+    {
+      "name": "special-10-case7",
+      "directory": "ai-specials-r1",
+      "selector": 7,
+      "kind": 10,
+      "trace_sha256": "823349eb04eae1d331fa6ad46cf55d5a626b705d8fb45a937e84df8c7d11e252",
+      "state_sha256": "de3a645b6642c2c62dd2045f2684c2a79893e84afe7b6c3230a076f259d86a03",
+      "step_count": 10275970,
+      "counts": [
+        0,
+        27
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 31,
+          "after": 0
+        },
+        {
+          "slot": 1,
+          "unit": 1,
+          "before": 69,
+          "amount": 42,
+          "after": 27
+        }
+      ]
+    },
+    {
+      "name": "special-12-case5-live",
+      "directory": "ai-specials-extra-r2",
+      "selector": 5,
+      "kind": 12,
+      "trace_sha256": "47c75f73dabf2cb53e02b53398d492fab06f1aaae697604eb21412f5aba915bd",
+      "state_sha256": "bf6f0284b492a8841cef66ccb7e9a458a3d4212a9da49dbe84325ae98a23de50",
+      "step_count": 6744928,
+      "counts": [
+        31,
+        45
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 2,
+          "unit": 1,
+          "before": 69,
+          "amount": 24,
+          "after": 45
+        }
+      ]
+    },
+    {
+      "name": "special-10-case5-live",
+      "directory": "ai-specials-extra-r2",
+      "selector": 5,
+      "kind": 10,
+      "trace_sha256": "2008f2f13bd02c9742501aa712d40bebfe612dc8f5676f693fb4665c36e23df7",
+      "state_sha256": "1dad9a8e9c48558efc4a5e1e894b10a77c1f2a163b22d1a6f0724115ab24c172",
+      "step_count": 6744925,
+      "counts": [
+        31,
+        34
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 2,
+          "unit": 1,
+          "before": 69,
+          "amount": 35,
+          "after": 34
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "name": "special-12-case2-kind6",
+      "directory": "ai-specials-r1",
+      "selector": 2,
+      "kind": 12,
+      "trace_sha256": "88d753bfebf2bf9ae0cb27d0f6ae5846e73d1355ea35a74584383b4b88f1fd92",
+      "state_sha256": "2e108e40ab5a02f7136dd84990ad40fb98f9baca61956a32da28c14998e59eee",
+      "step_count": 6745276,
+      "counts": [
+        25,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 6,
+          "after": 25
+        }
+      ]
+    },
+    {
+      "name": "special-10-case2-kind15",
+      "directory": "ai-specials-r1",
+      "selector": 2,
+      "kind": 10,
+      "trace_sha256": "2ca8277b9991a8b5c51d2dc94ab8e417e5beaf1ae818b34aa4a6bdb4b2cb66b4",
+      "state_sha256": "e1bd806917f4ad7953272bc25f4270c29a4ef64bc98baaec95cebb07a6da0756",
+      "step_count": 6745274,
+      "counts": [
+        16,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 15,
+          "after": 16
+        }
+      ]
+    },
+    {
+      "name": "special-12-case2-none",
+      "directory": "ai-specials-r1",
+      "selector": 2,
+      "kind": 12,
+      "trace_sha256": "69124748cbf361c3faa4f88b85aa8c04c36f8a50c7827e0778b89502d9f48f02",
+      "state_sha256": "d9649d280150cab58e8514371452d257a94ee4c3c7626a5283b2d2197944a4a3",
+      "step_count": 3567912,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": []
+    },
+    {
+      "name": "special-12-case3-gate0",
+      "directory": "ai-specials-r1",
+      "selector": 3,
+      "kind": 12,
+      "trace_sha256": "1cfe15032f29515c46757f6cfb8cedd4c1cdb068af6eedda966e1ead7966cf62",
+      "state_sha256": "bf46cbebee3dd20709a8932c0ba8b46adf6ea14d7556428829151c59422405f0",
+      "step_count": 3568063,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": []
+    },
+    {
+      "name": "special-12-case3-gate4",
+      "directory": "ai-specials-r1",
+      "selector": 3,
+      "kind": 12,
+      "trace_sha256": "9d471105e5dbcad4185a5bec2f11e2da4abbb0e8b326887672ae0e8d7e8ae19a",
+      "state_sha256": "b9c3c2403d6c7ea0e9fdd3bdd24694cd8d3bf90c07f5c13c05c2382723b7ed41",
+      "step_count": 7325346,
+      "counts": [
+        31,
+        0
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "unit": 1,
+          "before": 69,
+          "amount": 69,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "name": "special-10-case3-gate4",
+      "directory": "ai-specials-r1",
+      "selector": 3,
+      "kind": 10,
+      "trace_sha256": "eec10672535f586d4e62d45c4202d6a493b2a63689943784874526d4a3dd54c2",
+      "state_sha256": "80c2f5fda4545cb6faccd34582148bfd899a33f58dc695143e3917d2e41b2bcf",
+      "step_count": 7325344,
+      "counts": [
+        31,
+        0
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "unit": 1,
+          "before": 69,
+          "amount": 69,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "name": "special-12-case4",
+      "directory": "ai-specials-r1",
+      "selector": 4,
+      "kind": 12,
+      "trace_sha256": "94710a14daa928c0defb1202d4bf8ed1be09158cacbcec770fd0cecbbf9be160",
+      "state_sha256": "1e5559da22cc25f965f03fc67e89307753795cc43a0a0b46dd593d7f243cf322",
+      "step_count": 3567899,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        2,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "effects": []
+    },
+    {
+      "name": "special-12-case5",
+      "directory": "ai-specials-r1",
+      "selector": 5,
+      "kind": 12,
+      "trace_sha256": "226ee594e5bc37474725a48bee4cf3a7fe5a1ad37a2845bedc2e8815eea26606",
+      "state_sha256": "fe6f865f02ff053bd0c87923a598857d3a638cf2d2058517bd58ba705c08f5aa",
+      "step_count": 5544937,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 2,
+          "unit": 5,
+          "before": 0,
+          "amount": 1,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "name": "special-10-case5",
+      "directory": "ai-specials-r1",
+      "selector": 5,
+      "kind": 10,
+      "trace_sha256": "18695f9a8895e046dc65efc1e8e292e1db102f73e812f233071c739d9f7fe118",
+      "state_sha256": "225e6f353ad6e456d8248cf93fd2012ef757062794c0d775dc77958a98964f48",
+      "step_count": 5544934,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 2,
+          "unit": 5,
+          "before": 0,
+          "amount": 1,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "name": "special-12-case7",
+      "directory": "ai-specials-r1",
+      "selector": 7,
+      "kind": 12,
+      "trace_sha256": "39ff8dfa2b9abee62ca23a87a7eeff0c4880f92ab1e2e09b85870e242600528f",
+      "state_sha256": "ec2449b9c185e3a8fcb50b59997d94dcc58b6f35f220bb9f1ddec18d12e086f5",
+      "step_count": 10275973,
+      "counts": [
+        0,
+        48
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 31,
+          "after": 0
+        },
+        {
+          "slot": 1,
+          "unit": 1,
+          "before": 69,
+          "amount": 21,
+          "after": 48
+        }
+      ]
+    },
+    {
+      "name": "special-10-case7",
+      "directory": "ai-specials-r1",
+      "selector": 7,
+      "kind": 10,
+      "trace_sha256": "823349eb04eae1d331fa6ad46cf55d5a626b705d8fb45a937e84df8c7d11e252",
+      "state_sha256": "de3a645b6642c2c62dd2045f2684c2a79893e84afe7b6c3230a076f259d86a03",
+      "step_count": 10275970,
+      "counts": [
+        0,
+        27
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 31,
+          "after": 0
+        },
+        {
+          "slot": 1,
+          "unit": 1,
+          "before": 69,
+          "amount": 42,
+          "after": 27
+        }
+      ]
+    },
+    {
+      "name": "special-12-case2-kind6",
+      "directory": "ai-specials-extra-r2",
+      "selector": 2,
+      "kind": 12,
+      "trace_sha256": "fbcdeb1356bdc87246fa0311f9e1bef074b29fff5285aa45a4568438a9d67d8b",
+      "state_sha256": "2e108e40ab5a02f7136dd84990ad40fb98f9baca61956a32da28c14998e59eee",
+      "step_count": 6745276,
+      "counts": [
+        25,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 6,
+          "after": 25
+        }
+      ]
+    },
+    {
+      "name": "special-10-case2-kind15",
+      "directory": "ai-specials-extra-r2",
+      "selector": 2,
+      "kind": 10,
+      "trace_sha256": "869e99eb47ec1bd505a6ac7a47916f307784260af9d26859264eddb2263737b1",
+      "state_sha256": "e1bd806917f4ad7953272bc25f4270c29a4ef64bc98baaec95cebb07a6da0756",
+      "step_count": 6745274,
+      "counts": [
+        16,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 0,
+          "unit": 0,
+          "before": 31,
+          "amount": 15,
+          "after": 16
+        }
+      ]
+    },
+    {
+      "name": "special-12-case2-none",
+      "directory": "ai-specials-extra-r2",
+      "selector": 2,
+      "kind": 12,
+      "trace_sha256": "cd95bd0eec401d27410a2d1e69976816766e30f30c20edf515bb7ddc6eb1b88a",
+      "state_sha256": "d9649d280150cab58e8514371452d257a94ee4c3c7626a5283b2d2197944a4a3",
+      "step_count": 3567912,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": []
+    },
+    {
+      "name": "special-12-case4",
+      "directory": "ai-specials-extra-r2",
+      "selector": 4,
+      "kind": 12,
+      "trace_sha256": "283309e84e9d74dfbd790bd263197246fc0596a898cad59e3f54c82d50e839df",
+      "state_sha256": "1e5559da22cc25f965f03fc67e89307753795cc43a0a0b46dd593d7f243cf322",
+      "step_count": 3567899,
+      "counts": [
+        31,
+        69
+      ],
+      "flags": [
+        2,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "effects": []
+    },
+    {
+      "name": "special-12-case5-live",
+      "directory": "ai-specials-extra-r2",
+      "selector": 5,
+      "kind": 12,
+      "trace_sha256": "47c75f73dabf2cb53e02b53398d492fab06f1aaae697604eb21412f5aba915bd",
+      "state_sha256": "bf6f0284b492a8841cef66ccb7e9a458a3d4212a9da49dbe84325ae98a23de50",
+      "step_count": 6744928,
+      "counts": [
+        31,
+        45
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 2,
+          "unit": 1,
+          "before": 69,
+          "amount": 24,
+          "after": 45
+        }
+      ]
+    },
+    {
+      "name": "special-10-case5-live",
+      "directory": "ai-specials-extra-r2",
+      "selector": 5,
+      "kind": 10,
+      "trace_sha256": "2008f2f13bd02c9742501aa712d40bebfe612dc8f5676f693fb4665c36e23df7",
+      "state_sha256": "1dad9a8e9c48558efc4a5e1e894b10a77c1f2a163b22d1a6f0724115ab24c172",
+      "step_count": 6744925,
+      "counts": [
+        31,
+        34
+      ],
+      "flags": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "effects": [
+        {
+          "slot": 2,
+          "unit": 1,
+          "before": 69,
+          "amount": 35,
+          "after": 34
+        }
+      ]
+    }
+  ],
+  "shadow_sha256": "70b43bf9044e0378f94ef093b091bb0da868f3d4b9f6b9cef0c0d3bc3d564504",
+  "production_unchanged": {
+    "8sword": "8f6a34cca0bcb23c0d716b1cab665344d7050f273fdab714283579fe627a131d",
+    "8sword-replay": "7daf34adaeaf99e086c85248a5e3629853bc5bc2a873eb91ac11f92804688d0d",
+    "gui-check": "81f8866b74b04964c3667348d1d3b178b64258f0dc271a30d433f5e678f98309",
+    "music-check": "65bef075e0366c03d1ecc009f12d5f16c3049efbee06d0720c4d6b7fc62dbf8a",
+    "heroine-check": "41df4ba3094830ed03bbea95456124dda371c67e12f23d01b20e39542dab4899",
+    "museum-check": "d729f8e26da2f8789f10b5bb8874d59dc27ef5cb4f8eaf63149305a5f3fa7d71",
+    "story-prelude-check": "7cb2cc20ef83c63219cf5cce9e584f530a5977392226042e906072ff365c214c"
+  },
+  "core_unchanged": 923,
+  "tools": {
+    "probe-ai-specials.go": "f76cf2b2fe03897a743eab2d8c66bbe72f6cd4590ff28a5240c7de0c08dcbbd9",
+    "research-ai-specials.go": "e75556267f06691e3476c512e205aaad00ded310d2456f93a0f639842efcfd26",
+    "export-ai-specials-ida.py": "ee3ee1b5b3b4ff108acd97a32bac2444b32d8473c9ba28779a5198c3a0a5d4c3",
+    "audit-ai-specials.py": "52092e35d8d62c0ca0f6ba1049e447db31d618c435e64e250836e996698b0c51"
+  },
+  "limits": [
+    "Controlled selector and fixture; first special return only, not full round or natural encounter.",
+    "Selectors 2/3/4/5/7 sampled, not full legality, timing, spell names or production strategy.",
+    "Selector 5 retains original shifted guard; no bug fix silently applied.",
+    "Original action flag increases are observed, not a complete extra-turn scheduling claim."
+  ]
+}

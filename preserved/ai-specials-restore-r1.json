@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "files": 171,
+  "objects": 91,
+  "workplace_required": false,
+  "restored": true,
+  "index_sha256": "83400b56d3b1fd8e58d33a086f25f5933cc82bb958705552434494317619a324",
+  "offline_shadow_replay_byte_equal": true,
+  "shadow_sha256": "70b43bf9044e0378f94ef093b091bb0da868f3d4b9f6b9cef0c0d3bc3d564504",
+  "negative_cases": [
+    {
+      "case": "unsupported-selector",
+      "rejected": true
+    },
+    {
+      "case": "altered-amount",
+      "rejected": true
+    }
+  ]
+}
