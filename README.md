@@ -16,6 +16,16 @@
 
 介紹依據為原版手冊印頁 1–2、7–10 與包裝背面。掃描檔只留本機，來源名稱、雜湊及內容定位見[研究紀錄](RESEARCH-LOG.md#遊戲介紹與字型樣張的來源)。手冊所載玩法與本專案已驗證的範圍分開記錄。
 
+## 全圖形 HD 素材
+
+已辨識的104份圖檔、333筆圖形都已備妥HD圖像，涵蓋100筆部隊／怪物、14筆地圖遭遇，以及介面、場景、建築、器物、結局、單色變體與編輯圖集。可在[完整圖庫](artwork/all-graphics-hd-gallery-r1.html)依分類、原檔名及接入狀態搜尋，或查看[十二類總覽](artwork/README.md#全圖形hd圖庫)。
+
+![補齊素材的原版與HD比較](docs/images/all-graphics-hd-new-art-r1.png)
+
+左側為原版解碼，右側為已備妥的HD素材。271筆來源對應沿既有正式素材，62筆尚未正式接入。X圖集含舊版變體，部分格位與單色對應依相鄰圖集推定；原始透明資訊另存，不混稱已驗證的執行期遮罩。A.A與六份RIL仍未分類，不計入333筆。範圍見[逐筆清單](artwork/all-graphics-hd-coverage-r1.json)、[核對收據](artwork/all-graphics-hd-audit-detached-r1.json)及[素材規格](docs/spec/054-all-graphics-hd.md)。
+
+完整原圖、提示與來源已存本機永久圖庫，清理workplace不會刪到。本輪先完成美術準備；正式程式維持現行版本，反組譯重製方向尚未定案。
+
 ## 重製方向與現況
 
 部隊特性、策略 AI 與法術動畫的擴充方案見[戰術增強提案](docs/spec/030-battle-expansion-proposal.md)。已確認保留原版規則並新增獨立戰術增強模式，尚未接入新玩法；AI 從原版判斷掛點切入。HD 配色與規則模式分開，採保留玉綠、金框、黑底與朱紅的[原概念圖修色](docs/spec/031-hd-palette-refinement.md)。
@@ -219,7 +229,7 @@ MAN.AY 的16筆器物與武器圖示已逐張重畫，保留主要配色、斜�
 
 ![六份建築來源與四份HD素材對照](docs/images/buildings-original-hd-r1.png)
 
-LIVE1 村落、LIVE2 城門、LIVE3 小屋與 LIVE5 山洞已接入 HD，保留原版構圖與主要配色。新增三份以受控記憶體核對繪製及還原，六張完整畫面通過；這是素材與呈現驗證。LIVE4 石碑的碑文尚待核對，LIVE6 紅牆院門的既有樣稿尚待選定，兩者保持原圖。來源與範圍見[051](docs/spec/051-building-hd-batch.md#三組正式接入與限定驗收)及[總覽清單](docs/images/buildings-original-hd-r1.json)，不將待辦列為 HD 完成。
+LIVE1 村落、LIVE2 城門、LIVE3 小屋與 LIVE5 山洞已接入 HD，保留原版構圖與主要配色。新增三份以受控記憶體核對繪製及還原，六張完整畫面通過；這是素材與呈現驗證。LIVE4 石碑與 LIVE6 紅牆院門的HD素材已另備妥，見[完整建築比較](docs/images/all-hd-buildings-r1.png)；正式程式仍維持兩者的原圖。新碑文以模糊磨損刻痕處理，沒有猜補文字。正式接入的來源與範圍見[051](docs/spec/051-building-hd-batch.md#三組正式接入與限定驗收)及[總覽清單](docs/images/buildings-original-hd-r1.json)。
 
 ### 已選定的整體畫風
 

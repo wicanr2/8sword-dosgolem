@@ -1,0 +1,253 @@
+{
+  "schema": 1,
+  "spec": "054",
+  "images": [
+    {
+      "name": "ending-white-flash-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/ending-white-flash-r1.json",
+      "receipt_sha256": "9f53a42a1066455138f76d427a3ff4c038e0085703500b72057fd50cd9ebbf0d",
+      "image": "approved/masters/all-graphics-hd-r1/ending-white-flash-r1.png",
+      "image_sha256": "8eefd3b629909bf90392ccd50c86656b66c3999a490d1d3eab3cc8c4599d629c",
+      "prompt": "approved/provenance/all-graphics-hd-r1/ending-white-flash-r1.prompt.txt",
+      "prompt_sha256": "54562575b7eda1a139b7460df77699cf7e4d0096a36ae02494e117a4191b894c",
+      "size": [
+        1236,
+        1272
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "scope": "END3.AY record 2, white spell silhouette",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "ending-male-stand-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/ending-male-stand-r1.json",
+      "receipt_sha256": "09e5a4e096efdc58fab61134a9645e273f445707909e58bf60f0c42d13563b2d",
+      "image": "approved/masters/all-graphics-hd-r1/ending-male-stand-r1.png",
+      "image_sha256": "31e2ac6e154e3a3fe9135889d5a7925102875747a0da54d8522941d7a413e826",
+      "prompt": "approved/provenance/all-graphics-hd-r1/ending-male-stand-r1.prompt.txt",
+      "prompt_sha256": "fea994ec1f70db92a7331f4a83763440c86ef29ce9df73a5940e08db673f9509",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "scope": "END4.AY record 3",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "ending-female-stand-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/ending-female-stand-r1.json",
+      "receipt_sha256": "db5b19ae5c4f437b4dd442fec362a980985a72ef705d04daa3f47407cb30f297",
+      "image": "approved/masters/all-graphics-hd-r1/ending-female-stand-r1.png",
+      "image_sha256": "491e83d73a7142cc338f8af2824f924de4f02f9f1de6bdfa347ec900bd1f3995",
+      "prompt": "approved/provenance/all-graphics-hd-r1/ending-female-stand-r1.prompt.txt",
+      "prompt_sha256": "5fd498be08fae03c89d701ffa783fdf1f6faa6043640be3487e2cbf0c9a67453",
+      "size": [
+        1122,
+        1402
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "scope": "END4.AY record 4",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "ending-scroll-states-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/ending-scroll-states-r1.json",
+      "receipt_sha256": "f379fe7de84c3f9a92f7a76620668b257c9c0abbe99ecaabb1acc391a5889926",
+      "image": "approved/masters/all-graphics-hd-r1/ending-scroll-states-r1.png",
+      "image_sha256": "c8b67c1756d89e3bb620f1eaba9fa2bda612d8daf69190b88a1136e581246bfa",
+      "prompt": "approved/provenance/all-graphics-hd-r1/ending-scroll-states-r1.prompt.txt",
+      "prompt_sha256": "279ae414a9b4bec350892ab72ea9c926588fb76e47a56ff32f789e14076bffc7",
+      "size": [
+        1983,
+        793
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "scope": "END4.AY record 2 / END6.AY record 0",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "graveyard-background-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/graveyard-background-r1.json",
+      "receipt_sha256": "0f4a1346c3fe47c5cc2340eddd81740000d4768129086c0f8038ba9f66831aad",
+      "image": "approved/masters/all-graphics-hd-r1/graveyard-background-r1.png",
+      "image_sha256": "b5de9450c8ca236886203a71c0ef2228930791c2ccf11b2d1c59b6301e65f232",
+      "prompt": "approved/provenance/all-graphics-hd-r1/graveyard-background-r1.prompt.txt",
+      "prompt_sha256": "75630ff028291e22f502cf80fedc7914eedf6fdd42b700e1ec1a7741232f01e9",
+      "size": [
+        1877,
+        838
+      ],
+      "alpha_extrema": [
+        255,
+        255
+      ],
+      "scope": "LIVE4.AY record 0",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "courtyard-background-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/courtyard-background-r1.json",
+      "receipt_sha256": "fd361a575ae9b2b95477d4ac752d854b57baf545f6b51e9b78fb1dd53d7db6ea",
+      "image": "approved/masters/all-graphics-hd-r1/courtyard-background-r1.png",
+      "image_sha256": "2328edae3d3a92e51eedad5c5888ec21e8c5a1029b57f2b4c02f74815991ca11",
+      "prompt": "approved/provenance/all-graphics-hd-r1/courtyard-background-r1.prompt.txt",
+      "prompt_sha256": "63cf5270856230e7e379a24e2f530bbd731da714e0c62a3526bd3690afd13eae",
+      "size": [
+        1877,
+        838
+      ],
+      "alpha_extrema": [
+        255,
+        255
+      ],
+      "scope": "LIVE6.AY record 0; prior prototype retained as art preparation, no production promotion",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "ending-scroll-states-r2",
+      "receipt": "approved/provenance/all-graphics-hd-r1/ending-scroll-states-r2.json",
+      "receipt_sha256": "bf2795a73ab671566fd3d2afeff7fde7010188945d19d37458175ef3e763f2db",
+      "image": "approved/masters/all-graphics-hd-r1/ending-scroll-states-r2.png",
+      "image_sha256": "7582810223644d1176b33b7bde9eba4cfb644a05f69b7f6e4d3dc2a4981ee841",
+      "prompt": "approved/provenance/all-graphics-hd-r1/ending-scroll-states-r2.prompt.txt",
+      "prompt_sha256": "6c8173653afb993b7212ee33bf3259fa2c9fc6217298e3a20a4b8db812ff2552",
+      "size": [
+        1983,
+        793
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "scope": "END4.AY record 2 / END6.AY record 0; smooth repaint replaces pixelated r1",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "editor-cloud-sky-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/editor-cloud-sky-r1.json",
+      "receipt_sha256": "1ffe15823d25195afaf6a853cac2f6e022343b31ba518d088d018aaecf01edaa",
+      "image": "approved/masters/all-graphics-hd-r1/editor-cloud-sky-r1.png",
+      "image_sha256": "e5baad0c5580d9132fd1ec63b93e25625b3519d8a2f700f152982eabc337b815",
+      "prompt": "approved/provenance/all-graphics-hd-r1/editor-cloud-sky-r1.prompt.txt",
+      "prompt_sha256": "0bd978e81d51acfa8e6ca27a74ed39cb9e59568da47466b672e7b999c9eaf509",
+      "size": [
+        2064,
+        762
+      ],
+      "alpha_extrema": [
+        255,
+        255
+      ],
+      "scope": "X02H.AY upper cloud region y0..117; source alpha preserved separately, no runtime claim",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "editor-ocean-wave-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/editor-ocean-wave-r1.json",
+      "receipt_sha256": "7480d051926f0d227670fd76ce65625d5c937fa443b437523047c946bd263e93",
+      "image": "approved/masters/all-graphics-hd-r1/editor-ocean-wave-r1.png",
+      "image_sha256": "4488c4dcb4f65cc87deee8b3499e1d43c61bfb324f6482554a0ddbcfd695a7c5",
+      "prompt": "approved/provenance/all-graphics-hd-r1/editor-ocean-wave-r1.prompt.txt",
+      "prompt_sha256": "fb3df7416bb933e2fdc5be419be10bf012025bffeaa2df612fb08c12196acc8f",
+      "size": [
+        1877,
+        838
+      ],
+      "alpha_extrema": [
+        255,
+        255
+      ],
+      "scope": "X08.AY scene crop x62,y74,w448,h100; source alpha preserved separately; no runtime integration",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "editor-six-poses-r2",
+      "receipt": "approved/provenance/all-graphics-hd-r1/editor-six-poses-r2.json",
+      "receipt_sha256": "8bd9631ec629443f35765f0b1f353e6f465ae66e8ef7f827b3eb056c2adae739",
+      "image": "approved/masters/all-graphics-hd-r1/editor-six-poses-r2.png",
+      "image_sha256": "4f7b7303fdf1534e0e884c59e38ef3a733b81269a69f8756a3dde1d7d2393afb",
+      "prompt": "approved/provenance/all-graphics-hd-r1/editor-six-poses-r2.prompt.txt",
+      "prompt_sha256": "f27b0914183184a3a7f6bdc784dbc34fe3ad55b6c110b57855e4da6946340244",
+      "size": [
+        1295,
+        1214
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "scope": "X02.AY first three character pairs, supplemental editor poses; replaces rejected r1 identities",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "editor-two-buildings-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/editor-two-buildings-r1.json",
+      "receipt_sha256": "2488acbfc039176f3d4248d6940c7fd1eb1d25bd2cdf7cb504b890b78e867828",
+      "image": "approved/masters/all-graphics-hd-r1/editor-two-buildings-r1.png",
+      "image_sha256": "ffb589d4262427b5f0bd3c0f93e2268175369c1b809e715fd259eb337cda9867",
+      "prompt": "approved/provenance/all-graphics-hd-r1/editor-two-buildings-r1.prompt.txt",
+      "prompt_sha256": "fab9b40caf46a58717f9610ae047d35b7a1bf42cf08fdcdea84a979953383beb",
+      "size": [
+        2007,
+        784
+      ],
+      "alpha_extrema": [
+        255,
+        255
+      ],
+      "scope": "X07.AY / X09H.AY legacy architecture cells x111,y14 and x243,y14, and monochrome counterparts",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "editor-front-warrior-poses-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/editor-front-warrior-poses-r1.json",
+      "receipt_sha256": "0395da75b849564212c591165e4fdfa8644161d48232798b70c3e032a523b4e3",
+      "image": "approved/masters/all-graphics-hd-r1/editor-front-warrior-poses-r1.png",
+      "image_sha256": "62dc3debe0c0f6031555851ad58fcc4df554830c97405ab4ff8389d0c0cebbd0",
+      "prompt": "approved/provenance/all-graphics-hd-r1/editor-front-warrior-poses-r1.prompt.txt",
+      "prompt_sha256": "ec72f9990eedfac2e13679b5ab07141e51b79fbfc563d1066832a7e9fbe0f87f",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "scope": "X07.AY / X09H.AY frontal blue-armored red-caped legacy hero poses x335/400/465,y118; editor art only; second reference is sword icon, not portrait",
+      "status": "art-prepared-not-production"
+    },
+    {
+      "name": "editor-blue-energy-bursts-r1",
+      "receipt": "approved/provenance/all-graphics-hd-r1/editor-blue-energy-bursts-r1.json",
+      "receipt_sha256": "bd87ac71a6082b37491fd4c1417e6ce3529d0385e9fe04e2441b41eb26cace3b",
+      "image": "approved/masters/all-graphics-hd-r1/editor-blue-energy-bursts-r1.png",
+      "image_sha256": "62a3cddae17f87efadf0cfaf0e9b0649a25066e9e09408fab8f5595f51d6a87e",
+      "prompt": "approved/provenance/all-graphics-hd-r1/editor-blue-energy-bursts-r1.prompt.txt",
+      "prompt_sha256": "ede11f97db34864a0b624e8b3af0011eca5774627b20fd7115973aa5b4e196a9",
+      "size": [
+        2006,
+        784
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "scope": "X01.AY cyan/blue energy bursts; replaces incorrect reuse of CHOI/PON color families in intermediate editor reconstruction",
+      "status": "art-prepared-not-production"
+    }
+  ]
+}

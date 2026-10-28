@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "coverage": "artwork/all-graphics-hd-coverage-r1.json",
+  "artifacts": [
+    {
+      "file": "docs/images/all-hd-ui-r1.png",
+      "sha256": "5f155de150348e9ca78f8dafb619a5834dc53162d2d66ef9abbd40901b27c258",
+      "category": "ui",
+      "records": 6
+    },
+    {
+      "file": "docs/images/all-hd-effects-r1.png",
+      "sha256": "6f856e91062b37740ed3cc6606527b0f1779c05529348d74bb0781e09b4814b2",
+      "category": "effects",
+      "records": 8
+    },
+    {
+      "file": "docs/images/all-hd-ending-r1.png",
+      "sha256": "2b416cc20d18e53971fc8c26a8f127e44c7fbae9cd70b09c46256a597f97eb24",
+      "category": "ending",
+      "records": 37
+    },
+    {
+      "file": "docs/images/all-hd-map-encounters-r1.png",
+      "sha256": "ff5a6530383266686ff705a583879be506106860dbb3b916db6a09de6961d37b",
+      "category": "map-encounters",
+      "records": 14
+    },
+    {
+      "file": "docs/images/all-hd-battle-backgrounds-r1.png",
+      "sha256": "b216a6d84c9c144ec21741c8f564d6bfe5277aeba6e55d141093895ad8d5fc27",
+      "category": "battle-backgrounds",
+      "records": 10
+    },
+    {
+      "file": "docs/images/all-hd-buildings-r1.png",
+      "sha256": "557c6bbbdef1e6664c74e8124d7883564bdd3be4868d54b380f232e97fa303f7",
+      "category": "buildings",
+      "records": 12
+    },
+    {
+      "file": "docs/images/all-hd-hero-and-icons-r1.png",
+      "sha256": "36e27a924334ebcffceeb83f44bb0ca4d04c6328f09d9a8c47ec0d374d1251e0",
+      "category": "hero-and-icons",
+      "records": 29
+    },
+    {
+      "file": "docs/images/all-hd-troops-r1.png",
+      "sha256": "467f972b69b00d974efe8d205a9df345b37bec2d58a398ce7b60b34989945518",
+      "category": "troops",
+      "records": 100
+    },
+    {
+      "file": "docs/images/all-hd-special-markers-r1.png",
+      "sha256": "946b4d9cdddb511648baf491e2a290eebe6cc4628d84a4c99e561a3eac1e5117",
+      "category": "special-markers",
+      "records": 4
+    },
+    {
+      "file": "docs/images/all-hd-map-tiles-r1.png",
+      "sha256": "8bb33c35d2cc58cc2e9e3a27ea33f87414072756df1fee18c2562a9ddbe23ab6",
+      "category": "map-tiles",
+      "records": 68
+    },
+    {
+      "file": "docs/images/all-hd-opening-r1.png",
+      "sha256": "a66d41ad706bfcd4d4d7612c67042695aa9265eb4ca04694090b2245a00dbc21",
+      "category": "opening",
+      "records": 26
+    },
+    {
+      "file": "docs/images/all-hd-illustrations-r1.png",
+      "sha256": "d0280e66cf8f7e144c14378d5ae833a2b173722220031ec6796e39db55719b34",
+      "category": "illustrations",
+      "records": 19
+    },
+    {
+      "file": "docs/images/all-graphics-hd-new-art-r1.png",
+      "sha256": "50890fee0f1651c1d4d0342d6cc6c4ed3ff41c81277658fbfe51f4ed50aba927",
+      "records": 12
+    }
+  ]
+}

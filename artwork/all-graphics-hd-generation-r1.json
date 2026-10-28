@@ -1,0 +1,527 @@
+{
+  "schema": 1,
+  "rights": "private repository artwork documentation; full masters remain local",
+  "images": [
+    {
+      "name": "ending-white-flash-r1",
+      "scope": "END3.AY record 2, white spell silhouette",
+      "image_sha256": "8eefd3b629909bf90392ccd50c86656b66c3999a490d1d3eab3cc8c4599d629c",
+      "prompt_sha256": "54562575b7eda1a139b7460df77699cf7e4d0096a36ae02494e117a4191b894c",
+      "prompt": "Use case: style-transfer. Asset: one high-resolution transparent spell-flash silhouette for 神州八劍 HD, matching the attached ORIGINAL END3 record 2 reference. Preserve the figure's exact pose and outer contour: a full-body Chinese robed sorcerer, small traditional topknot/crown with short projections, left arm reaching diagonally up-left with a very broad long sleeve hanging below, right elbow lifted outward with forearm bent toward the head, long robe billowing strongly to lower right, two legs planted apart at the bottom. Repaint the coarse stair-step outline as a smooth elegant hand-painted Chinese fantasy silhouette. This is a WHITE FLASH silhouette, not a normal character portrait: solid luminous ivory-white interior, no face, eyes, hair color, outfit colors, shadows, anatomy lines, writing or symbols inside it. Only a very restrained soft white glow and fine painted edge may surround the clean silhouette. Real transparent alpha in all negative space including between sleeves and body and between legs. Centered full figure, entire hands, crown, sleeves, feet and trailing robe inside canvas with a small clear margin. Match reference proportions and pose faithfully, no added weapons, scenery, ground, circle, text, watermark or extra figure.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "ending-white-flash-r1",
+        "tool": "built-in image_gen",
+        "scope": "END3.AY record 2, white spell silhouette",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/ending-white-flash-r1.png",
+        "image_sha256": "8eefd3b629909bf90392ccd50c86656b66c3999a490d1d3eab3cc8c4599d629c",
+        "size": [
+          1236,
+          1272
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/ending-white-flash-r1.prompt.txt",
+        "prompt_sha256": "54562575b7eda1a139b7460df77699cf7e4d0096a36ae02494e117a4191b894c",
+        "references": [
+          {
+            "source": "workplace/probe-20261023/graphics-first/ending-hd-r1/end3-ay-02-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/generated/ending-white-flash-r1-ref-1.png",
+            "sha256": "215a3a211f76c569b599a79d6876f29359b7805e0d3dad2d2f9d704b84b7e89d"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-daeda1ed-cd7f-4a4d-891e-bbba85967749.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "ending-male-stand-r1",
+      "scope": "END4.AY record 3",
+      "image_sha256": "31e2ac6e154e3a3fe9135889d5a7925102875747a0da54d8522941d7a413e826",
+      "prompt_sha256": "fea994ec1f70db92a7331f4a83763440c86ef29ce9df73a5940e08db673f9509",
+      "prompt": "Use case: style-transfer. Asset type: ONE full-body transparent HD character sprite for 神州八劍 ending, the male protagonist in END4 record 3. Reference image 1 locks the original pose and clothing colors. Reference image 2 is the already adopted male-and-female painting: use ONLY the man's facial identity, traditional crown, white embroidered robe, purple cape, blue sash and blue boots as the design reference. Draw ONLY ONE handsome adult Chinese warrior prince, standing in strict right-facing side profile, face looking right. Both arms naturally lowered, with the near hand slightly forward and relaxed at thigh height, just as the source sprite; both hands empty. Long black hair in a traditional high topknot with small gold crown, dignified Chinese masculine features. White and restrained gold robe/armor, deep blue collar/sash/boots, a broad flowing violet-purple cloak trailing to the left. Both feet planted, full body visible, entire cape/crown/hands/boots inside frame with transparent breathing space. Detailed bright hand-painted Chinese fantasy RPG art consistent with reference 2. Standalone sprite, real clean RGBA alpha background, including between limbs. No female, extra character, sword, weapon, joined hands, glow cloud, cast shadow, oval platform, scenery, label, border or text. Avoid a colored rectangular background and translucent colored fog.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "ending-male-stand-r1",
+        "tool": "built-in image_gen",
+        "scope": "END4.AY record 3",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/ending-male-stand-r1.png",
+        "image_sha256": "31e2ac6e154e3a3fe9135889d5a7925102875747a0da54d8522941d7a413e826",
+        "size": [
+          1024,
+          1536
+        ],
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/ending-male-stand-r1.prompt.txt",
+        "prompt_sha256": "fea994ec1f70db92a7331f4a83763440c86ef29ce9df73a5940e08db673f9509",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/end4-ay-03-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/end4-ay-03-reference.png",
+            "sha256": "89ecd758f3e79f31d3b6ecdcb7b7ae3cf1c7f72dc91170541b6b2e5ff17b47f1"
+          },
+          {
+            "source": "artwork/approved/masters/ending-hd-r1/end6-pair-art-r1/pair-r2.png",
+            "path": "approved/masters/ending-hd-r1/end6-pair-art-r1/pair-r2.png",
+            "sha256": "510742d5838478747a8f3c0bb8c017fed6319071d7564c93718689b144e24a8b"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-10b8ab2c-11d9-4615-927e-036919799cc6.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "ending-female-stand-r1",
+      "scope": "END4.AY record 4",
+      "image_sha256": "491e83d73a7142cc338f8af2824f924de4f02f9f1de6bdfa347ec900bd1f3995",
+      "prompt_sha256": "5fd498be08fae03c89d701ffa783fdf1f6faa6043640be3487e2cbf0c9a67453",
+      "prompt": "Use case: style-transfer. Asset type: ONE full-body transparent HD heroine character sprite for 神州八劍 ending, END4 record 4. Reference image 1 locks the original pose and clothing colors. Reference image 2 is the already adopted couple painting: use ONLY the woman's Chinese classical beauty, high traditional black-hair arrangement with gold and pink floral ornament, golden-yellow and red long dress and pale pink ribbons as design reference. Draw ONLY ONE beautiful adult Chinese woman, standing in strict left-facing side profile, looking left and slightly upward with a graceful calm expression. Match source posture: arms bent and hands held close across the front of her upper torso, one hand near collar/chin and the other near waist; she is not holding anyone else's hand. Slim upright body, elegant gold long sleeves, long red and gold skirt sweeping to lower right, flowing pink-and-white ribbons, long black hair. Both feet planted, entire head ornament, hands, dress hem and ribbons fully inside canvas with clean transparent breathing space. Bright exquisite hand-painted Chinese fantasy RPG art consistent with reference 2. Standalone sprite, real clean RGBA alpha, including negative space around ribbons. No man, extra character, sword, weapon, joined hands, glow cloud, shadow, oval platform, scenery, label, text or border. Avoid colored rectangular background or diffuse translucent colored fog.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "ending-female-stand-r1",
+        "tool": "built-in image_gen",
+        "scope": "END4.AY record 4",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/ending-female-stand-r1.png",
+        "image_sha256": "491e83d73a7142cc338f8af2824f924de4f02f9f1de6bdfa347ec900bd1f3995",
+        "size": [
+          1122,
+          1402
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/ending-female-stand-r1.prompt.txt",
+        "prompt_sha256": "5fd498be08fae03c89d701ffa783fdf1f6faa6043640be3487e2cbf0c9a67453",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/end4-ay-04-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/end4-ay-04-reference.png",
+            "sha256": "0b03ce895692b41510be24f9872e92dafd73ba3f455829a2895b5282ae0d029d"
+          },
+          {
+            "source": "artwork/approved/masters/ending-hd-r1/end6-pair-art-r1/pair-r2.png",
+            "path": "approved/masters/ending-hd-r1/end6-pair-art-r1/pair-r2.png",
+            "sha256": "510742d5838478747a8f3c0bb8c017fed6319071d7564c93718689b144e24a8b"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-1c83da7c-ef33-44c8-9588-6ed11f2723ef.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "ending-scroll-states-r1",
+      "scope": "END4.AY record 2 / END6.AY record 0",
+      "image_sha256": "c8b67c1756d89e3bb620f1eaba9fa2bda612d8daf69190b88a1136e581246bfa",
+      "prompt_sha256": "279ae414a9b4bec350892ab72ea9c926588fb76e47a56ff32f789e14076bffc7",
+      "prompt": "Use case: style-transfer. Asset type: a transparent two-state sprite atlas of ONE Chinese hanging portrait scroll for 神州八劍 HD ending. Two equal cells in one horizontal row, with a generous empty transparent gutter. Image 1 is the original painted scroll, image 2 the same scroll empty: preserve their simple geometry. In BOTH cells draw the SAME front-facing vertical ivory-paper hanging scroll, modest slim gold top and bottom rods, narrow warm brown border, red peaked hanging cord above, no side tassels or new ornamental frame. Keep both scroll frames and their rods at identical scale, height and alignment. LEFT cell: on the paper, paint a beautiful ethereal adult Chinese classical heroine in head-and-shoulders portrait, soft refined face gently turned toward the viewer's left, long flowing black hair and a small gold/pink floral hair ornament, pale pink and golden robe details. Gentle hand-painted brushwork consistent with a 1990s Chinese fantasy RPG HD remake, subtle blue-gray atmosphere inside paper only. RIGHT cell: the identical scroll is EMPTY, showing clean unmarked opaque ivory paper, no person or shadow. Real transparent alpha outside both scrolls and between red hanging cords. Entire rods and hanging cords inside each cell with at least 5 percent transparent padding. One object with two animation states, not two different scroll designs. No text, calligraphy, letters, stamp, watermark, labels, background, landscape, extra props, sparkles or glow outside the scroll.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "ending-scroll-states-r1",
+        "tool": "built-in image_gen",
+        "scope": "END4.AY record 2 / END6.AY record 0",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/ending-scroll-states-r1.png",
+        "image_sha256": "c8b67c1756d89e3bb620f1eaba9fa2bda612d8daf69190b88a1136e581246bfa",
+        "size": [
+          1983,
+          793
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/ending-scroll-states-r1.prompt.txt",
+        "prompt_sha256": "279ae414a9b4bec350892ab72ea9c926588fb76e47a56ff32f789e14076bffc7",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/end4-ay-02-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/end4-ay-02-reference.png",
+            "sha256": "9a07c377d3f54cc8c180d8ee60372e62d5ba147a456a146421465fe66bc897bf"
+          },
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/end6-ay-00-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/end6-ay-00-reference.png",
+            "sha256": "266821fcb6820c038f21b5ecc7e36bda26be2dc4a2ca11548a137208e65e5941"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-a3c96551-672b-4d06-bea3-d04414b61262.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "historical-replaced"
+    },
+    {
+      "name": "graveyard-background-r1",
+      "scope": "LIVE4.AY record 0",
+      "image_sha256": "b5de9450c8ca236886203a71c0ef2228930791c2ccf11b2d1c59b6301e65f232",
+      "prompt_sha256": "75630ff028291e22f502cf80fedc7914eedf6fdd42b700e1ec1a7741232f01e9",
+      "prompt": "Repaint this exact classic Chinese DOS game cemetery landscape as a smooth, detailed hand-painted Chinese wuxia fantasy background for HD mode. Match the reference composition and its original color identity: large weathered gray headstone occupying the left front, two smaller gravestones across the middle right, low rough stone grave platform extending right from foreground headstone, broken mossy stone slabs, densely overgrown emerald grass. In the distance preserve the narrow warm orange-red horizon and twilight sky sweeping from teal near horizon through rich cobalt to dark indigo above. Foreground large headstone has worn vertical carvings: retain them as indistinct weathered marks, not newly invented readable text. Respect all existing stones, perspective and relative positions. Clear classical ink-and-gouache painterly technique, natural stone grain, delicate directional grass strokes and blue twilight atmosphere; restrained texture without dithering, no pixel art, no cartoon, no modern objects, no additional people or skulls. Wide horizontal background canvas, fill the entire image with the scene, no borders, no UI, no captions. All parts fully opaque. Render at high resolution with natural fine detail, not a filtered or enlarged pixelated reference.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "graveyard-background-r1",
+        "tool": "built-in image_gen",
+        "scope": "LIVE4.AY record 0",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/graveyard-background-r1.png",
+        "image_sha256": "b5de9450c8ca236886203a71c0ef2228930791c2ccf11b2d1c59b6301e65f232",
+        "size": [
+          1877,
+          838
+        ],
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/graveyard-background-r1.prompt.txt",
+        "prompt_sha256": "75630ff028291e22f502cf80fedc7914eedf6fdd42b700e1ec1a7741232f01e9",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/live4-ay-00-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/live4-ay-00-reference.png",
+            "sha256": "0a5430d0c47ff455bbca25ad7fbcbfcb4d27c08c7e45419c413bd7aa8044a264"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-b27a37fd-6d1b-4c0b-a638-c4429edd5adb.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "courtyard-background-r1",
+      "scope": "LIVE6.AY record 0; prior prototype retained as art preparation, no production promotion",
+      "image_sha256": "2328edae3d3a92e51eedad5c5888ec21e8c5a1029b57f2b4c02f74815991ca11",
+      "prompt_sha256": "63cf5270856230e7e379a24e2f530bbd731da714e0c62a3526bd3690afd13eae",
+      "prompt": "Use case: style-transfer. Asset type: a single HD hand-painted architecture background for a Chinese classical fantasy DOS RPG remake, not a UI. Image 1 is the exact composition/color reference (LIVE6 original background); image 2 is an approved hand-painted artwork from this same remake, style/brushwork reference only. Repaint ONLY the architecture scene in image 1, faithfully retaining its off-center perspective and color families, using the bright detailed hand-painted Chinese game illustration style of image 2. Landscape 2.24:1 aspect ratio, full bleed. A vermilion red courtyard wall stretches from center-left through the entire right edge. Large red tiled roof with upturned corners, elevated center-right, dark jade-green eave accents and blue shadow under eaves. Main entrance near center: two red pillars, a large deep blue door leaf on the left of the entrance and a recessed shaded reddish opening/right door; do not replace the gate with a centered symmetrical castle. Four gray-and-white stone steps lead down toward a pale stone path extending horizontally to the lower-left edge. Rich green shrubs/grass in the foreground, tall green leafy trees behind the wall on the right. Pale warm yellow/gold sky with peach-pink clouds on the left. Preserve the exact main roof outline, wall direction, entrance position, stone-step proportions and original scene perspective. Render warm red plaster with subtle masonry seams, individual terra-cotta roof tiles, fine foliage and gentle painterly daylight; turn the original EGA dither into natural shaded texture. Keep the vivid original red, blue and green readable without neon glare; no indigo palette redesign. No people, dwarves, guards, weapons, flags, religious symbols, statues, banners or new story objects. No text, lettering, signs, captions, interface, frames or watermark. No pixel art. Make the background cohesive with the approved painted recruitment gate but keep this scene's own asymmetrical composition.\n",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "courtyard-background-r1",
+        "tool": "built-in image_gen",
+        "scope": "LIVE6.AY record 0; prior prototype retained as art preparation, no production promotion",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/courtyard-background-r1.png",
+        "image_sha256": "2328edae3d3a92e51eedad5c5888ec21e8c5a1029b57f2b4c02f74815991ca11",
+        "size": [
+          1877,
+          838
+        ],
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/courtyard-background-r1.prompt.txt",
+        "prompt_sha256": "63cf5270856230e7e379a24e2f530bbd731da714e0c62a3526bd3690afd13eae",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/live6-ay-00-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/live6-ay-00-reference.png",
+            "sha256": "706787608f36dd96dcfedb4b2ca578a35b6b1da236ee5f030ce71f8fd6fc7404"
+          },
+          {
+            "source": "docs/images/recruitment-gate-approved-r1.png",
+            "path": "approved/references/all-graphics-hd-r1/generated/courtyard-background-r1-ref-2.png",
+            "sha256": "7aa67f8975843e91e0a393863ba08bb77582fd4ab62ee10fad059bebcd5b61ab"
+          }
+        ],
+        "default_generated_image": "/project/workplace/probe-20261023/graphics-first/map-interaction-r1/live6-painted-r1.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "ending-scroll-states-r2",
+      "scope": "END4.AY record 2 / END6.AY record 0; smooth repaint replaces pixelated r1",
+      "image_sha256": "7582810223644d1176b33b7bde9eba4cfb644a05f69b7f6e4d3dc2a4981ee841",
+      "prompt_sha256": "6c8173653afb993b7212ee33bf3259fa2c9fc6217298e3a20a4b8db812ff2552",
+      "prompt": "Redraw this two-state hanging scroll asset as genuinely smooth high-resolution hand-painted Chinese fantasy game artwork. Retain exactly the two scrolls side by side, left containing the beautiful adult classical Chinese heroine portrait, right blank ivory paper. Preserve warm gold rods and finials, dark warm-brown slim wooden sides, red peaked hanging cord at top; both scrolls identical in size and design. Left heroine in elegant gold-and-pink Hanfu, long glossy black hair, golden floral hair ornament and tiny pink blossoms, gentle poised face looking slightly left with delicate realistic Chinese classical facial proportions. Portrait painted softly with fine individual hair strands and natural skin shading, pale misty blue-gray decorative background INSIDE the left scroll only. Right paper completely blank smooth warm ivory. Every diagonal, face, contour, rod and hair strand must be smooth, detailed brushwork. Remove ALL pixel art appearance, blocky pixel shading, dithering, jagged stair-step silhouettes or rough pixel grids from the reference. Clean beautifully refined Chinese gouache painting; no text, no symbols on paper, no labels. Both scrolls fully visible with ample transparent margins all sides, evenly aligned. Everything OUTSIDE the actual scroll silhouettes and cords strictly transparent. Do not crop the top cords or rods. Wide landscape atlas composition, two equal halves, one portrait scroll centered in each half.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "ending-scroll-states-r2",
+        "tool": "built-in image_gen",
+        "scope": "END4.AY record 2 / END6.AY record 0; smooth repaint replaces pixelated r1",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/ending-scroll-states-r2.png",
+        "image_sha256": "7582810223644d1176b33b7bde9eba4cfb644a05f69b7f6e4d3dc2a4981ee841",
+        "size": [
+          1983,
+          793
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/ending-scroll-states-r2.prompt.txt",
+        "prompt_sha256": "6c8173653afb993b7212ee33bf3259fa2c9fc6217298e3a20a4b8db812ff2552",
+        "references": [
+          {
+            "source": "artwork/approved/masters/all-graphics-hd-r1/ending-scroll-states-r1.png",
+            "path": "approved/masters/all-graphics-hd-r1/ending-scroll-states-r1.png",
+            "sha256": "c8b67c1756d89e3bb620f1eaba9fa2bda612d8daf69190b88a1136e581246bfa"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-ff12cb6c-dee1-4bfc-97eb-1875b3ed460c.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "editor-cloud-sky-r1",
+      "scope": "X02H.AY upper cloud region y0..117; source alpha preserved separately, no runtime claim",
+      "image_sha256": "e5baad0c5580d9132fd1ec63b93e25625b3519d8a2f700f152982eabc337b815",
+      "prompt_sha256": "0bd978e81d51acfa8e6ca27a74ed39cb9e59568da47466b672e7b999c9eaf509",
+      "prompt": "Create a high-resolution hand-painted MONOCHROME Chinese ink-wash cloud-sky background based on this exact vintage game image composition. The reference is a monochrome dithered sky-only illustration, with layered sweeping horizontal cloud banks occupying the upper half, wind-swept wispy striations across middle, a few bright white openings between charcoal gray clouds; the lowest edges dissolve to empty white space. Preserve the light and dark arrangement and shape flow. No mountains, no ground, no buildings, no dragon, no people, no sun disk, no text. Paint exclusively black ink, neutral grays and ivory white, smooth refined gongbi and ink-wash brushwork with beautiful misty gradients, detailed cloud edges, no visible pixels or dot patterns. Wide landscape panel about 2.71:1, full bleed. All pixels opaque, white blank lower mist fading naturally from clouds. This is a detailed Chinese classical fantasy game HD background, not calligraphy or paper with writing.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "editor-cloud-sky-r1",
+        "tool": "built-in image_gen",
+        "scope": "X02H.AY upper cloud region y0..117; source alpha preserved separately, no runtime claim",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/editor-cloud-sky-r1.png",
+        "image_sha256": "e5baad0c5580d9132fd1ec63b93e25625b3519d8a2f700f152982eabc337b815",
+        "size": [
+          2064,
+          762
+        ],
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/editor-cloud-sky-r1.prompt.txt",
+        "prompt_sha256": "0bd978e81d51acfa8e6ca27a74ed39cb9e59568da47466b672e7b999c9eaf509",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/x02h-opaque-crop-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/x02h-opaque-crop-reference.png",
+            "sha256": "286c83d576e60bf721a0afa42270f125b11d9063871bd415e59eb5701176a2dc"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-3bab8f23-8c99-43b7-b23d-12cb8cbca6f1.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "editor-ocean-wave-r1",
+      "scope": "X08.AY scene crop x62,y74,w448,h100; source alpha preserved separately; no runtime integration",
+      "image_sha256": "4488c4dcb4f65cc87deee8b3499e1d43c61bfb324f6482554a0ddbcfd695a7c5",
+      "prompt_sha256": "fb3df7416bb933e2fdc5be419be10bf012025bffeaa2df612fb08c12196acc8f",
+      "prompt": "Redraw the reference wave painting as a smooth, highly detailed MONOCHROME Chinese classical ink-wash ocean illustration for an HD fantasy game. Exact composition: an immense curling ocean breaker rears on the RIGHT side of a wide horizontal scene, its curved dark hollow arch and pointed foaming crest sweeping left, with long agitated bands of white sea foam and low turbulent wavelets extending to the LEFT. Lower edge is rippling seawater and froth; upper edge merges into stormy mist. Preserve this low viewpoint, right-heavy curling wave and leftward flow. Black ink, neutral charcoal grays, silver gray and ivory white only. Fine hand-painted water filaments, gongbi-style foam detail, dramatic but controlled ink-wash gradients. The result should be a refined classical Chinese painting with smooth high-resolution contours, no pixels or dithering. No people, boats, land, buildings, dragon, sun disk, writing, seals or border. Landscape 2.24:1, fill the entire rectangular image with ocean and spray, all pixels opaque. Keep the recognizable original wave shape, no extra giant waves or objects.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "editor-ocean-wave-r1",
+        "tool": "built-in image_gen",
+        "scope": "X08.AY scene crop x62,y74,w448,h100; source alpha preserved separately; no runtime integration",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/editor-ocean-wave-r1.png",
+        "image_sha256": "4488c4dcb4f65cc87deee8b3499e1d43c61bfb324f6482554a0ddbcfd695a7c5",
+        "size": [
+          1877,
+          838
+        ],
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/editor-ocean-wave-r1.prompt.txt",
+        "prompt_sha256": "fb3df7416bb933e2fdc5be419be10bf012025bffeaa2df612fb08c12196acc8f",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/x08-opaque-crop-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/x08-opaque-crop-reference.png",
+            "sha256": "29c94db778fec6fb70407cfd7701c39bf3ba9d18cf63fd4150e20b864e001080"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-81ebf7b5-168d-492c-9799-d7fd350b977b.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "editor-six-poses-r2",
+      "scope": "X02.AY first three character pairs, supplemental editor poses; replaces rejected r1 identities",
+      "image_sha256": "4f7b7303fdf1534e0e884c59e38ef3a733b81269a69f8756a3dde1d7d2393afb",
+      "prompt_sha256": "f27b0914183184a3a7f6bdc784dbc34fe3ad55b6c110b57855e4da6946340244",
+      "prompt": "ONE high-resolution Chinese classical fantasy game sprite atlas, exactly SIX full-body cutouts arranged in a strict 2-column by 3-row grid. Preserve existing character identities in references 2,3,4; reference 1 controls the subtle paired poses. ALL six face LEFT. TOP TWO CELLS: the SAME slender adult red-robed Chinese Taoist swordsman from reference 2: red tied headwrap, long pale-white flowing sleeves with green embroidered cuff, red sash and long red robes over white pleated trousers, black boots; left arm held straight horizontally to left, hand and straight sword pointing left. Both poses very similar but right character steps the near foot slightly and turns the off-hand down as original pair. MIDDLE TWO CELLS: the SAME fierce crouching RED MONKEY/APE from reference 3. Bright scarlet-red fur, realistic MONKEY face with pale cream muzzle and expressive heavy brow, exposed fangs, long curled monkey tail, long powerful muscular arms, bent red-furred hind legs, knuckled fingers. No horns, no lion snout, no golden scales, no armor, no clothes. Left ape low crouch, one forearm bending up; right ape leans and steps forward as the paired source. BOTTOM TWO CELLS: the SAME BIPEDAL WHITE WOLF-HEADED SPEARMAN from reference 4, absolutely a standing humanoid wolf warrior. White wolf fur and pointed wolf ears, red cloth mask/scarf at mouth, purple-magenta sleeveless Chinese tunic, cyan scarf/collar, wide pale-white trousers, blue shin wraps/boots, red gloved humanlike hands holding a LONG SPEAR with a cyan BLUE spearhead pointing diagonally up LEFT. TWO humanoid legs and TWO arms with hands, holding spear with both hands. Not a horse, no unicorn, no rider, no quadruped. Left wolf warrior low forward combat stance, right warrior subtly changes knee and hand positions to match reference 1. Smooth refined detailed traditional Chinese game gouache painting consistent across all six. Natural anatomy, rich original red/white/purple/blue color families, sharp readable silhouettes. No pixel art, no dithering or blocky pixel edges. All sprites isolated with generous TRANSPARENT padding on EVERY side of every cell. Include long swords, spearheads, tails, feet fully inside each own cell. Never let neighboring cells touch. No background clouds, no floor, no cast shadow, no labels or text. Everything between the six bodies strictly transparent.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "editor-six-poses-r2",
+        "tool": "built-in image_gen",
+        "scope": "X02.AY first three character pairs, supplemental editor poses; replaces rejected r1 identities",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/editor-six-poses-r2.png",
+        "image_sha256": "4f7b7303fdf1534e0e884c59e38ef3a733b81269a69f8756a3dde1d7d2393afb",
+        "size": [
+          1295,
+          1214
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/editor-six-poses-r2.prompt.txt",
+        "prompt_sha256": "f27b0914183184a3a7f6bdc784dbc34fe3ad55b6c110b57855e4da6946340244",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/editor-six-poses-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/editor-six-poses-reference.png",
+            "sha256": "31b3a32f17cfd72afce6a15a5773fca3a20e15ca6e65ab43b893293cb4320af1"
+          },
+          {
+            "source": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-00.png",
+            "path": "approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-00.png",
+            "sha256": "ce232ae9482df02f4ab020fd88449c2ff0c947e399defadc4aca762d09cd2399"
+          },
+          {
+            "source": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-01.png",
+            "path": "approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-01.png",
+            "sha256": "11482a26f8d71246672d101bed21d895a570cb1f9f4846104e2c5280a66a29e4"
+          },
+          {
+            "source": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-02.png",
+            "path": "approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-02.png",
+            "sha256": "965e1da0fbe6ce98ae2df06392aa92da6dcc8ac58db451c92f79d176108ccdd6"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-9bc23ab2-4d4e-479f-be32-400e10e10de3.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "editor-two-buildings-r1",
+      "scope": "X07.AY / X09H.AY legacy architecture cells x111,y14 and x243,y14, and monochrome counterparts",
+      "image_sha256": "ffb589d4262427b5f0bd3c0f93e2268175369c1b809e715fd259eb337cda9867",
+      "prompt_sha256": "fab9b40caf46a58717f9610ae047d35b7a1bf42cf08fdcdea84a979953383beb",
+      "prompt": "Create one HD hand-painted asset sheet with EXACTLY TWO side-by-side map illustration panels separated by a clear thin neutral gap. The reference gives two old Chinese fantasy map architecture tiles. Preserve each tile's original architecture shape, camera angle, palette and grassy base, with smooth richly detailed traditional Chinese gouache painting. LEFT PANEL: a SINGLE low, long red-tiled Chinese hall with a sweeping red roof, a small raised tiered red-roofed entrance or porch at the near right end, pale ivory and turquoise-cyan plaster walls, dark slate gray shaded wall side along left, a tiny cyan window at the front. Roof ridge runs diagonally upper-left toward lower-right, left side farther away, three-quarter elevated map view, not a modern aircraft or vehicle, no wheels. Preserve the asymmetrical long roof and cyan-white front from reference. RIGHT PANEL: a compact squat square Chinese stone gateway or mausoleum facade, large plain DARK GRAY closed rectangular interior panel or blocked entrance bordered by bright white stone jambs and a COBALT BLUE horizontal lintel, a curved/decorated blue tiled cap roof above it, pale stone side walls receding behind, short gray trapezoid stone apron/path extending toward viewer in front. View from slightly above and straight toward its face, retain the original simple boxy outline, no invented inscriptions or statues. Both buildings sit on lush emerald grass with fine individual grass strokes and a little moss, fill each panel background entirely with grass; no horizons or sky. Keep the building scale within the panels like original, all structures fully inside their own panel, ample grass around edges. Two equal-size landscape panels each about 1.28:1; total about 2.56:1 wide. High resolution smooth outlines and fine roof tiles, no pixel art, no dithering, no labels, no text, no extra people or animals, all pixels opaque. This is a faithful reconstruction of two editor-only legacy building illustrations, not a redesign of the game's buildings.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "editor-two-buildings-r1",
+        "tool": "built-in image_gen",
+        "scope": "X07.AY / X09H.AY legacy architecture cells x111,y14 and x243,y14, and monochrome counterparts",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/editor-two-buildings-r1.png",
+        "image_sha256": "ffb589d4262427b5f0bd3c0f93e2268175369c1b809e715fd259eb337cda9867",
+        "size": [
+          2007,
+          784
+        ],
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/editor-two-buildings-r1.prompt.txt",
+        "prompt_sha256": "fab9b40caf46a58717f9610ae047d35b7a1bf42cf08fdcdea84a979953383beb",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/editor-two-buildings-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/editor-two-buildings-reference.png",
+            "sha256": "998f35ede5743ef4f5513f0491abf945a2e1e1cfae3611ce4f581d6ed33e70a0"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-45c4e27f-2424-4baa-b67a-934a64cae3ee.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "editor-front-warrior-poses-r1",
+      "scope": "X07.AY / X09H.AY frontal blue-armored red-caped legacy hero poses x335/400/465,y118; editor art only; second reference is sword icon, not portrait",
+      "image_sha256": "62dc3debe0c0f6031555851ad58fcc4df554830c97405ab4ff8389d0c0cebbd0",
+      "prompt_sha256": "ec72f9990eedfac2e13679b5ab07141e51b79fbfc563d1066832a7e9fbe0f87f",
+      "prompt": "ONE high-resolution painted Chinese fantasy game sprite atlas, exactly THREE full-body warrior poses in one horizontal row, equally sized separated cells, all on a fully transparent background. All three depict the SAME handsome adult Chinese military hero from the second reference, but costumed exactly like the original sprite poses in the first reference: cobalt BLUE Chinese general's helmet with silver-white upturned side ornaments and a small bright crest, fitted blue and red lamellar upper armor, green waist sash, deep violet-purple trousers, dark blue shin guards and pale silver-white boot tips, a long flowing SCARLET RED cape billowing out on both sides. Maintain the original frontal, slightly elevated game camera view, no side profile. His beautiful face is Chinese, angular and composed, young adult, serious martial bearing, no huge eyes or toy proportions. First cell follows first original frontal walking pose: near arm extends down-left and other arm bends outward, one leg stepping forward. Second cell follows second original pose: arms bent and opened a little more, other leg stepping. Third cell follows third original: wider stance with the near leg extended diagonally right and cape flaring wider to left. Use the first reference for exact limb and cape differences; do not repeat identical poses. Both arms, both hands, both legs anatomically correct, five natural fingers if visible. He carries no newly invented oversized weapon; keep hands empty as original. Detailed classical Chinese game gouache illustration, smooth natural contours, rich blue/red/green/purple palette, fine metal highlights and silk cape folds, consistent design in all three. No pixels or dithering. Each figure fully inside its own cell with generous transparent margins around capes, head and feet, no touching adjacent cells or cropping. No shadows, no scenery, no label or text. Total canvas landscape about 3:1, each cell near square.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "editor-front-warrior-poses-r1",
+        "tool": "built-in image_gen",
+        "scope": "X07.AY / X09H.AY frontal blue-armored red-caped legacy hero poses x335/400/465,y118; editor art only; second reference is sword icon, not portrait",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/editor-front-warrior-poses-r1.png",
+        "image_sha256": "62dc3debe0c0f6031555851ad58fcc4df554830c97405ab4ff8389d0c0cebbd0",
+        "size": [
+          2172,
+          724
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/editor-front-warrior-poses-r1.prompt.txt",
+        "prompt_sha256": "ec72f9990eedfac2e13679b5ab07141e51b79fbfc563d1066832a7e9fbe0f87f",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/editor-front-hero-poses-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/editor-front-hero-poses-reference.png",
+            "sha256": "b9bca6bab2f4871230a165b4856091aaceb1cf499c1ea1ffc3c091f799a74e73"
+          },
+          {
+            "source": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-28.png",
+            "path": "approved/registered-textures/all-graphics-hd-r1/primary/man-ay-28.png",
+            "sha256": "68f3ef20d1f0ba7c92af9f74c75790ab795d878be18bd6d382055ddfa8b8c23d"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-784721aa-7144-4af4-8cce-57c07329c6f7.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    },
+    {
+      "name": "editor-blue-energy-bursts-r1",
+      "scope": "X01.AY cyan/blue energy bursts; replaces incorrect reuse of CHOI/PON color families in intermediate editor reconstruction",
+      "image_sha256": "62a3cddae17f87efadf0cfaf0e9b0649a25066e9e09408fab8f5595f51d6a87e",
+      "prompt_sha256": "ede11f97db34864a0b624e8b3af0011eca5774627b20fd7115973aa5b4e196a9",
+      "prompt": "Create ONE HD Chinese fantasy game magical-effect sprite atlas with TWO isolated luminous energy bursts, one in each equal half of a wide landscape canvas. Reference contains two original pixel-art burst effects; repaint them smoothly at high resolution, preserving their specific cyan and cobalt blue palettes and rounded luminous clouds. LEFT: swirling explosive white-cyan energy cloud, glowing near-white center, flickering thin cyan streaks radiating outward and a cloud of fine pale cyan spark flecks around it. It is an irregular rounded burst rather than a ring or a symbol. RIGHT: bigger, denser electric COBALT BLUE and bright white burst, a jagged swirling mass of blue-white lightning-like filaments and soft plasma mist around a brilliant white center, finer blue sparks scattered around the silhouette. Both have a softly bounded round but irregular cloud shape, no enclosing ring or sphere shell, no yin-yang symbol, no fire-orange or red. Delicate hand-painted high-resolution classical fantasy game effects, smooth fine energy strands with clear glow falloff; no pixel art or dithering. Keep both effects fully isolated within their own cells with generous clear margins, all outer sparks visible, no crossing center divider. Background must be fully transparent everywhere outside the colored glow and sparks, including between cells, do not bake black or gray into the background. No people, scenery, ground, icons, labels, text or borders. This is an actual transparent game VFX texture atlas, not a scene.",
+      "receipt": {
+        "schema": 1,
+        "spec": "054",
+        "name": "editor-blue-energy-bursts-r1",
+        "tool": "built-in image_gen",
+        "scope": "X01.AY cyan/blue energy bursts; replaces incorrect reuse of CHOI/PON color families in intermediate editor reconstruction",
+        "status": "art-prepared-not-production",
+        "image": "approved/masters/all-graphics-hd-r1/editor-blue-energy-bursts-r1.png",
+        "image_sha256": "62a3cddae17f87efadf0cfaf0e9b0649a25066e9e09408fab8f5595f51d6a87e",
+        "size": [
+          2006,
+          784
+        ],
+        "alpha_extrema": [
+          0,
+          253
+        ],
+        "prompt": "approved/provenance/all-graphics-hd-r1/editor-blue-energy-bursts-r1.prompt.txt",
+        "prompt_sha256": "ede11f97db34864a0b624e8b3af0011eca5774627b20fd7115973aa5b4e196a9",
+        "references": [
+          {
+            "source": "artwork/approved/references/all-graphics-hd-r1/editor-blue-bursts-reference.png",
+            "path": "approved/references/all-graphics-hd-r1/editor-blue-bursts-reference.png",
+            "sha256": "a9ee7f22094703249b325cfa2515e33d697b85dead8594b807dc61313e7eb9a3"
+          }
+        ],
+        "default_generated_image": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-96d4c089-ed13-4506-b4de-3f667c1094a3.png",
+        "tool_sha256": "ef499339cfd37ec95ddd52535269851eda32edd692d365cad1a4bb880e1f2828"
+      },
+      "selection": "current-art-preparation"
+    }
+  ]
+}

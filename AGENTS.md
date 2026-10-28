@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+使用者於2026-10-28指定先完成所有圖片HD，將來反組譯重製的方向尚未定案。[054](docs/spec/054-all-graphics-hd.md)已備妥104圖檔／333筆HD素材，[圖庫](artwork/all-graphics-hd-gallery-r1.html)、[逐筆清單](artwork/all-graphics-hd-coverage-r1.json)及[獨立核對](artwork/all-graphics-hd-audit-detached-r1.json)為現行入口。271筆對應沿既有正式素材，62筆未接入；部分編輯圖集格位／單色對應保留強推論，原始IFF透明資訊另存，HD圖集不冒稱執行期遮罩契約。來源入口為[全圖形永久來源](artwork/all-graphics-sources-r1.json)，新原PNG與提示直接存artwork永久圖庫。[新增檔案清單](artwork/all-graphics-hd-files-r1.json)與初批974檔分開核對，不改preserved引用的原manifest；定稿後或清理研究區前先用[核對器](tools/audit-hd-library.py)依054的唯讀Docker命令重驗。正式接入、美術準備與用途未知分欄，不重做已驗機制，也不將本輪圖片完成稱為架構重製或全遊戲驗收。
+
 使用者於2026-10-28要求必要資料均應保存。[永久資料入口](preserved/README.md)保存程式、923核心、175固定輸入、完整r64、原版來源、音樂／字型／存檔／研究資料。[核對](preserved/verification-r1.json)、[還原試跑](preserved/restore-verification-r1.json)及[離線重建](preserved/rebuild-verification-r1.json)已通過。新建無法重生的資料或準備清理workplace前，先更新永久保存批次及清單，完成不依賴原workplace的驗證；原圖仍依下節artwork規則。完整本機物件與音源排除Git，權利分類及九首音樂待確認狀態保持。
 
 [保存／核對／還原工具](tools/preserve-project-data.py)在固定Pillow容器使用`--capture --project <唯讀專案> --archive <新可寫preserved批次>`；核對用`--verify --archive <唯讀保存目錄> --artwork <唯讀永久美術>`。還原加`--restore --out <可寫目標專案>`及可選重複`--prefix <原相對路徑>`，遇到不同檔案拒絕覆寫，不自動建立歷史符號連結。[整體核對](tools/audit-preserved-data.py)另核對原始158檔、正式程式／r64、核心／建置輸入、音源及存檔；用法與排除清單見永久入口。Go編譯快取與541份舊大型逐幀錄影未保存，原檔本輪未刪；最新存退讀兩份錄影已保留。

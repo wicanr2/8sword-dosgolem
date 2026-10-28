@@ -1,5 +1,32 @@
 # 定稿原圖永久保存
 
+## 全圖形HD圖庫
+
+已辨識的333筆圖形都有HD圖像，包含變體、重複及編輯圖集。[離線可搜尋圖庫](all-graphics-hd-gallery-r1.html)可依原檔名、分類與正式接入狀態篩選，點圖開啟本機完整材質。圖庫內嵌縮小比較，完整PNG仍在本機；比較圖不冒稱GUI擷取。
+
+| 類別 | 筆數 | 原版／HD總覽 |
+|---|---:|---|
+| 介面 | 6 | [比較圖](../docs/images/all-hd-ui-r1.png) |
+| 法術與戰場效果 | 8 | [比較圖](../docs/images/all-hd-effects-r1.png) |
+| 結局 | 37 | [比較圖](../docs/images/all-hd-ending-r1.png) |
+| 地圖遭遇 | 14 | [比較圖](../docs/images/all-hd-map-encounters-r1.png) |
+| 戰場背景 | 10 | [比較圖](../docs/images/all-hd-battle-backgrounds-r1.png) |
+| 建築 | 12 | [比較圖](../docs/images/all-hd-buildings-r1.png) |
+| 主角與器物 | 29 | [比較圖](../docs/images/all-hd-hero-and-icons-r1.png) |
+| 部隊與怪物 | 100 | [比較圖](../docs/images/all-hd-troops-r1.png) |
+| 太極與標記 | 4 | [比較圖](../docs/images/all-hd-special-markers-r1.png) |
+| 地圖圖塊 | 68 | [比較圖](../docs/images/all-hd-map-tiles-r1.png) |
+| 開場 | 26 | [比較圖](../docs/images/all-hd-opening-r1.png) |
+| 編輯圖集 | 19 | [比較圖](../docs/images/all-hd-illustrations-r1.png) |
+
+[來源清單](all-graphics-sources-r1.json)保留原生PNG及SHA；[HD對應清單](all-graphics-hd-coverage-r1.json)逐筆列出實際材質、尺寸、方法與接入狀態。271筆來源對應沿既有正式素材，62筆只備妥素材。19份X圖集包含舊版形狀，部分格位與單色對應由相鄰圖集推定；原始透明資訊另存，HD編輯圖集只作視覺參考。A.A與六RIL仍未知，不計入分母。
+
+本輪新增保存的13份主檔及完整提示見[主檔清單](hd-additions-r1.json)，包含已替換的掛畫r1與沿用的院門草稿。新人物、建築、法術效果、雲層與捲浪原圖都在`approved/masters/all-graphics-hd-r1/`，提示與收據在`approved/provenance/all-graphics-hd-r1/`。來源參考與所有正規化PNG另存同批次目錄。正式素材、候選材質與歷史中間圖以逐筆清單區分，不把目錄中每張PNG都當成正式定稿。
+
+[完整生成提示與收據](all-graphics-hd-generation-r1.json)另隨私人倉庫記錄，內容逐SHA對回永久提示。[新增逐檔清單](all-graphics-hd-files-r1.json)、[首次核對](all-graphics-hd-audit-build-r1.json)及[獨立核對](all-graphics-hd-audit-detached-r1.json)不依賴workplace；初批974檔的清單與SHA保持。重生工具、推論等級及Docker用法見[054](../docs/spec/054-all-graphics-hd.md)。
+
+## 初批永久保存
+
 完整原圖的現行入口是本目錄的 `approved/masters/`。它位於專案根目錄，與可清理的 `workplace/` 分開。定稿圖、正式採用的圖像、完整提示及來源收據均按原始位元組保存。
 
 | 內容 | 路徑 | 檔數 |

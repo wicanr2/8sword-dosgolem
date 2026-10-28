@@ -1,0 +1,4870 @@
+{
+  "schema": 1,
+  "atlases": [
+    {
+      "source_file": "X01.AY",
+      "background": [
+        0,
+        0,
+        0
+      ],
+      "matched_regions": 14,
+      "unmatched_nonbackground": 34464,
+      "total_nonbackground": 50520,
+      "placements": [
+        {
+          "source_file": "END4.AY",
+          "record": 2,
+          "source_crop": [
+            1,
+            3,
+            78,
+            46
+          ],
+          "target_rect": [
+            16,
+            98,
+            93,
+            141
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end4-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 0,
+          "source_crop": [
+            1,
+            3,
+            78,
+            46
+          ],
+          "target_rect": [
+            105,
+            98,
+            182,
+            141
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            2,
+            74,
+            46
+          ],
+          "target_rect": [
+            237,
+            3,
+            311,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-04.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            1,
+            72,
+            46
+          ],
+          "target_rect": [
+            5,
+            2,
+            77,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 5,
+          "source_crop": [
+            2,
+            2,
+            58,
+            46
+          ],
+          "target_rect": [
+            314,
+            3,
+            370,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-05.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            2,
+            54,
+            46
+          ],
+          "target_rect": [
+            80,
+            3,
+            134,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 7,
+          "source_crop": [
+            0,
+            1,
+            52,
+            46
+          ],
+          "target_rect": [
+            420,
+            2,
+            472,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-07.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            1,
+            48,
+            46
+          ],
+          "target_rect": [
+            188,
+            2,
+            236,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 2,
+          "source_crop": [
+            9,
+            1,
+            52,
+            46
+          ],
+          "target_rect": [
+            144,
+            2,
+            187,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 6,
+          "source_crop": [
+            11,
+            1,
+            48,
+            46
+          ],
+          "target_rect": [
+            382,
+            2,
+            419,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-06.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 8,
+          "source_crop": [
+            1,
+            1,
+            33,
+            46
+          ],
+          "target_rect": [
+            481,
+            2,
+            513,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-08.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "TIT4.AY",
+          "record": 9,
+          "source_crop": [
+            0,
+            1,
+            32,
+            46
+          ],
+          "target_rect": [
+            517,
+            2,
+            549,
+            47
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit4-ay-09.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END4.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            176,
+            7
+          ],
+          "target_rect": [
+            443,
+            129,
+            619,
+            136
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end4-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 12,
+          "source_crop": [
+            0,
+            0,
+            32,
+            16
+          ],
+          "target_rect": [
+            423,
+            102,
+            455,
+            118
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-12.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x01-ay-00.png"
+    },
+    {
+      "source_file": "X01H.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 1,
+      "unmatched_nonbackground": 0,
+      "total_nonbackground": 59985,
+      "placements": [
+        {
+          "source_file": "GRO03H.EG",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "target_rect": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro03h-eg-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x01h-ay-00.png"
+    },
+    {
+      "source_file": "X02.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 43,
+      "unmatched_nonbackground": 30202,
+      "total_nonbackground": 67295,
+      "placements": [
+        {
+          "source_file": "ENEMY.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            30,
+            5,
+            94,
+            30
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            336,
+            9,
+            400,
+            34
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            103,
+            33,
+            167,
+            58
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            409,
+            37,
+            473,
+            62
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 2,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            30,
+            61,
+            94,
+            86
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 2,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            336,
+            65,
+            400,
+            90
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            28,
+            92,
+            92,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            334,
+            96,
+            398,
+            121
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            102,
+            92,
+            166,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-04.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            408,
+            96,
+            472,
+            121
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-04.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 5,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            178,
+            92,
+            242,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-05.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 5,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            484,
+            96,
+            548,
+            121
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-05.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 6,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            28,
+            121,
+            92,
+            146
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-06.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 6,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            334,
+            125,
+            398,
+            150
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-06.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 7,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            102,
+            122,
+            166,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-07.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 7,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            408,
+            126,
+            472,
+            151
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-07.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 8,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            177,
+            122,
+            241,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-08.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 8,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            483,
+            126,
+            547,
+            151
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-08.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 9,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            251,
+            122,
+            315,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-09.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 9,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            557,
+            126,
+            621,
+            151
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-09.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 10,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            28,
+            153,
+            92,
+            178
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-10.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 10,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            334,
+            157,
+            398,
+            182
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-10.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 11,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            101,
+            153,
+            165,
+            178
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-11.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 11,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            407,
+            157,
+            471,
+            182
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-11.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 12,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            174,
+            153,
+            238,
+            178
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-12.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 12,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            480,
+            157,
+            544,
+            182
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-12.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 13,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            248,
+            153,
+            312,
+            178
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-13.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "ENEMY.AY",
+          "record": 13,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            554,
+            157,
+            618,
+            182
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/enemy-ay-13.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            362,
+            53,
+            370,
+            56
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            364,
+            51,
+            372,
+            54
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            364,
+            53,
+            372,
+            56
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            366,
+            51,
+            374,
+            54
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            366,
+            53,
+            374,
+            56
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            368,
+            51,
+            376,
+            54
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            368,
+            53,
+            376,
+            56
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            377,
+            48,
+            385,
+            51
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            441,
+            72,
+            449,
+            75
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            443,
+            72,
+            451,
+            75
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            445,
+            72,
+            453,
+            75
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            352,
+            44,
+            360,
+            47
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            354,
+            44,
+            362,
+            47
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            357,
+            46,
+            365,
+            49
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            359,
+            46,
+            367,
+            49
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x02-ay-00.png"
+    },
+    {
+      "source_file": "X02H.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 0,
+      "unmatched_nonbackground": 25153,
+      "total_nonbackground": 25153,
+      "placements": [],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x02h-ay-00.png"
+    },
+    {
+      "source_file": "X03.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 21,
+      "unmatched_nonbackground": 28003,
+      "total_nonbackground": 61113,
+      "placements": [
+        {
+          "source_file": "PMAP.AY",
+          "record": 15,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            309,
+            68,
+            373,
+            93
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-15.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 18,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            41,
+            505,
+            66
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-18.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 19,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            507,
+            41,
+            571,
+            66
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-19.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 20,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            177,
+            68,
+            241,
+            93
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-20.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 21,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            243,
+            68,
+            307,
+            93
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-21.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 27,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            309,
+            14,
+            373,
+            39
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-27.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 29,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            243,
+            14,
+            307,
+            39
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-29.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 30,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            507,
+            122,
+            571,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-30.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 31,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            122,
+            439,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-31.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 32,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            122,
+            505,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-32.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 33,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            68,
+            439,
+            93
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-33.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 34,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            68,
+            505,
+            93
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-34.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 35,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            507,
+            68,
+            571,
+            93
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-35.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 36,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            177,
+            95,
+            241,
+            120
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-36.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 37,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            243,
+            95,
+            307,
+            120
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-37.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 38,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            95,
+            505,
+            120
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-38.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 41,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            177,
+            122,
+            241,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-41.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 42,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            243,
+            122,
+            307,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-42.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 43,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            309,
+            122,
+            373,
+            147
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-43.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 44,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            507,
+            95,
+            571,
+            120
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-44.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 45,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            148,
+            505,
+            173
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-45.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x03-ay-00.png"
+    },
+    {
+      "source_file": "X03H.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 1,
+      "unmatched_nonbackground": 0,
+      "total_nonbackground": 37540,
+      "placements": [
+        {
+          "source_file": "GRO01H.EG",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "target_rect": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro01h-eg-00.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x03h-ay-00.png"
+    },
+    {
+      "source_file": "X04.AY",
+      "background": [
+        255,
+        255,
+        85
+      ],
+      "matched_regions": 1,
+      "unmatched_nonbackground": 0,
+      "total_nonbackground": 85554,
+      "placements": [
+        {
+          "source_file": "GRO04.EG",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "target_rect": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro04-eg-00.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x04-ay-00.png"
+    },
+    {
+      "source_file": "X04H.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 28,
+      "unmatched_nonbackground": 7778,
+      "total_nonbackground": 44220,
+      "placements": [
+        {
+          "source_file": "PMAP.AY",
+          "record": 30,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-30.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 30,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            571,
+            116,
+            635,
+            141
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-30.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 30,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            64,
+            0,
+            128,
+            25
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-30.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 31,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            0,
+            25,
+            64,
+            50
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-31.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 31,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            439,
+            116,
+            503,
+            141
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-31.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 31,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            64,
+            25,
+            128,
+            50
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-31.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 32,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            0,
+            50,
+            64,
+            75
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-32.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 32,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            505,
+            116,
+            569,
+            141
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-32.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 32,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            64,
+            50,
+            128,
+            75
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-32.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 33,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            0,
+            75,
+            64,
+            100
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-33.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 33,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            439,
+            62,
+            503,
+            87
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-33.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 33,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            64,
+            75,
+            128,
+            100
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-33.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 34,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            0,
+            100,
+            64,
+            125
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-34.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 34,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            505,
+            62,
+            569,
+            87
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-34.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 34,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            64,
+            100,
+            128,
+            125
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-34.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 35,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            0,
+            125,
+            64,
+            150
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-35.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 35,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            571,
+            62,
+            635,
+            87
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-35.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 35,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            64,
+            125,
+            128,
+            150
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-35.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 36,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            0,
+            150,
+            64,
+            175
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-36.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 36,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            241,
+            89,
+            305,
+            114
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-36.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 36,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            64,
+            150,
+            128,
+            175
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-36.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 37,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            307,
+            89,
+            371,
+            114
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-37.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 38,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            505,
+            89,
+            569,
+            114
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-38.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 41,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            241,
+            116,
+            305,
+            141
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-41.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 42,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            307,
+            116,
+            371,
+            141
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-42.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 43,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            373,
+            116,
+            437,
+            141
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-43.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 44,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            571,
+            89,
+            635,
+            114
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-44.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 45,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            505,
+            142,
+            569,
+            167
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-45.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x04h-ay-00.png"
+    },
+    {
+      "source_file": "X05.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 1,
+      "unmatched_nonbackground": 0,
+      "total_nonbackground": 44199,
+      "placements": [
+        {
+          "source_file": "LIVE4.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            448,
+            100
+          ],
+          "target_rect": [
+            62,
+            74,
+            510,
+            174
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live4-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x05-ay-00.png"
+    },
+    {
+      "source_file": "X05H.AY",
+      "background": [
+        85,
+        85,
+        85
+      ],
+      "matched_regions": 1,
+      "unmatched_nonbackground": 0,
+      "total_nonbackground": 76864,
+      "placements": [
+        {
+          "source_file": "TIT6.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "target_rect": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/tit6-ay-00.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x05h-ay-00.png"
+    },
+    {
+      "source_file": "X06.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 1,
+      "unmatched_nonbackground": 0,
+      "total_nonbackground": 44784,
+      "placements": [
+        {
+          "source_file": "LIVE3.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            448,
+            100
+          ],
+          "target_rect": [
+            62,
+            74,
+            510,
+            174
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live3-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x06-ay-00.png"
+    },
+    {
+      "source_file": "X06H.AY",
+      "background": [
+        0,
+        0,
+        0
+      ],
+      "matched_regions": 14,
+      "unmatched_nonbackground": 2831,
+      "total_nonbackground": 20587,
+      "placements": [
+        {
+          "source_file": "END6.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            442,
+            5,
+            578,
+            55
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            136,
+            0,
+            272,
+            50
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            272,
+            0,
+            408,
+            50
+          ],
+          "kind": "alpha-mask",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 2,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            0,
+            50,
+            136,
+            100
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 2,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            136,
+            50,
+            272,
+            100
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 2,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            272,
+            50,
+            408,
+            100
+          ],
+          "kind": "alpha-mask",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            0,
+            100,
+            136,
+            150
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            136,
+            100,
+            272,
+            150
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            272,
+            100,
+            408,
+            150
+          ],
+          "kind": "alpha-mask",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            0,
+            150,
+            136,
+            200
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-04.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            136,
+            150,
+            272,
+            200
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-04.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            0,
+            136,
+            50
+          ],
+          "target_rect": [
+            272,
+            150,
+            408,
+            200
+          ],
+          "kind": "alpha-mask",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-04.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "END6.AY",
+          "record": 4,
+          "source_crop": [
+            39,
+            13,
+            96,
+            34
+          ],
+          "target_rect": [
+            479,
+            148,
+            536,
+            169
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end6-ay-04.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x06h-ay-00.png"
+    },
+    {
+      "source_file": "X07.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 28,
+      "unmatched_nonbackground": 39020,
+      "total_nonbackground": 81827,
+      "placements": [
+        {
+          "source_file": "MAN.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            205,
+            92,
+            269,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            270,
+            92,
+            334,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 2,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            335,
+            92,
+            399,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            140,
+            118,
+            204,
+            143
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            205,
+            118,
+            269,
+            143
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-04.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 5,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            270,
+            118,
+            334,
+            143
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-05.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 6,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            327,
+            174,
+            391,
+            199
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-06.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 7,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            262,
+            174,
+            326,
+            199
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-07.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 8,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            197,
+            174,
+            261,
+            199
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-08.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 9,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            197,
+            148,
+            261,
+            173
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-09.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 10,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            262,
+            148,
+            326,
+            173
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-10.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 11,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            327,
+            148,
+            391,
+            173
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-11.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 46,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            508,
+            66,
+            572,
+            91
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-46.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 48,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            66,
+            505,
+            91
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-48.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 49,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            508,
+            40,
+            572,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-49.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 50,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            177,
+            14,
+            241,
+            39
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-50.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 51,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            40,
+            505,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-51.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 52,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            14,
+            439,
+            39
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-52.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 54,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            309,
+            40,
+            373,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-54.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 55,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            14,
+            505,
+            39
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-55.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 57,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            40,
+            439,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-57.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 58,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            66,
+            439,
+            91
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-58.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 59,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            111,
+            40,
+            175,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-59.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 60,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            175,
+            40,
+            239,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-60.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 61,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            239,
+            40,
+            303,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-61.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 62,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            111,
+            65,
+            175,
+            90
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-62.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 63,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            175,
+            65,
+            239,
+            90
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-63.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 64,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            239,
+            65,
+            303,
+            90
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-64.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x07-ay-00.png"
+    },
+    {
+      "source_file": "X07H.AY",
+      "background": [
+        0,
+        0,
+        0
+      ],
+      "matched_regions": 1,
+      "unmatched_nonbackground": 0,
+      "total_nonbackground": 86776,
+      "placements": [
+        {
+          "source_file": "END7.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "target_rect": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/end7-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x07h-ay-00.png"
+    },
+    {
+      "source_file": "X08.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 11,
+      "unmatched_nonbackground": 72,
+      "total_nonbackground": 25771,
+      "placements": [
+        {
+          "source_file": "LIVE5H.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            448,
+            100
+          ],
+          "target_rect": [
+            61,
+            74,
+            509,
+            174
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/live5h-ay-00.png",
+          "different_native_pixels": 37,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            224,
+            73,
+            232,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            226,
+            73,
+            234,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            228,
+            73,
+            236,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            230,
+            73,
+            238,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            232,
+            73,
+            240,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            234,
+            73,
+            242,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            236,
+            73,
+            244,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            256,
+            73,
+            264,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            258,
+            73,
+            266,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            316,
+            73,
+            324,
+            76
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x08-ay-00.png"
+    },
+    {
+      "source_file": "X08H.AY",
+      "background": [
+        255,
+        255,
+        85
+      ],
+      "matched_regions": 1,
+      "unmatched_nonbackground": 0,
+      "total_nonbackground": 85554,
+      "placements": [
+        {
+          "source_file": "GRO04.EG",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "target_rect": [
+            0,
+            0,
+            640,
+            200
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/gro04-eg-00.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x08h-ay-00.png"
+    },
+    {
+      "source_file": "X09.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 24,
+      "unmatched_nonbackground": 21293,
+      "total_nonbackground": 27931,
+      "placements": [
+        {
+          "source_file": "PMAP.AY",
+          "record": 30,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            452,
+            122,
+            516,
+            147
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-30.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 31,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            85,
+            95,
+            149,
+            120
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-31.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 32,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            523,
+            95,
+            587,
+            120
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-32.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 37,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            382,
+            95,
+            446,
+            120
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-37.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 38,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            453,
+            95,
+            517,
+            120
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-38.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 39,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            238,
+            95,
+            302,
+            120
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-39.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 40,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            310,
+            95,
+            374,
+            120
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-40.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 41,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            306,
+            122,
+            370,
+            147
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-41.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 42,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            237,
+            122,
+            301,
+            147
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-42.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 43,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            122,
+            439,
+            147
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-43.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 44,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            167,
+            122,
+            231,
+            147
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-44.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            183,
+            23,
+            191,
+            26
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            252,
+            17,
+            260,
+            20
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            267,
+            18,
+            275,
+            21
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            269,
+            18,
+            277,
+            21
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            271,
+            18,
+            279,
+            21
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            398,
+            18,
+            406,
+            21
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            183,
+            22,
+            191,
+            25
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            194,
+            15,
+            202,
+            18
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            196,
+            15,
+            204,
+            18
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            271,
+            17,
+            279,
+            20
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            296,
+            12,
+            304,
+            15
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            313,
+            13,
+            321,
+            16
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 1,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            315,
+            13,
+            323,
+            16
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 2,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x09-ay-00.png"
+    },
+    {
+      "source_file": "X09H.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 28,
+      "unmatched_nonbackground": 39020,
+      "total_nonbackground": 81827,
+      "placements": [
+        {
+          "source_file": "MAN.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            205,
+            92,
+            269,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            270,
+            92,
+            334,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 2,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            335,
+            92,
+            399,
+            117
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            140,
+            118,
+            204,
+            143
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            205,
+            118,
+            269,
+            143
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-04.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 5,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            270,
+            118,
+            334,
+            143
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-05.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 6,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            327,
+            174,
+            391,
+            199
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-06.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 7,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            262,
+            174,
+            326,
+            199
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-07.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 8,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            197,
+            174,
+            261,
+            199
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-08.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 9,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            197,
+            148,
+            261,
+            173
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-09.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 10,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            262,
+            148,
+            326,
+            173
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-10.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 11,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            327,
+            148,
+            391,
+            173
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-11.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 46,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            508,
+            66,
+            572,
+            91
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-46.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 48,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            66,
+            505,
+            91
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-48.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 49,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            508,
+            40,
+            572,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-49.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 50,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            177,
+            14,
+            241,
+            39
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-50.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 51,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            40,
+            505,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-51.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 52,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            14,
+            439,
+            39
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-52.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 54,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            309,
+            40,
+            373,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-54.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 55,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            14,
+            505,
+            39
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-55.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 57,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            40,
+            439,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-57.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 58,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            375,
+            66,
+            439,
+            91
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-58.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 59,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            111,
+            40,
+            175,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-59.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 60,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            175,
+            40,
+            239,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-60.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 61,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            239,
+            40,
+            303,
+            65
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-61.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 62,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            111,
+            65,
+            175,
+            90
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-62.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 63,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            175,
+            65,
+            239,
+            90
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-63.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 64,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            239,
+            65,
+            303,
+            90
+          ],
+          "kind": "color",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-64.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x09h-ay-00.png"
+    },
+    {
+      "source_file": "X10.AY",
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "matched_regions": 11,
+      "unmatched_nonbackground": 32672,
+      "total_nonbackground": 41386,
+      "placements": [
+        {
+          "source_file": "MAN.AY",
+          "record": 0,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            205,
+            92,
+            269,
+            117
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-00.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 1,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            270,
+            92,
+            334,
+            117
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-01.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 2,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            335,
+            92,
+            399,
+            117
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-02.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 3,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            140,
+            118,
+            204,
+            143
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-03.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 4,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            205,
+            118,
+            269,
+            143
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-04.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "MAN.AY",
+          "record": 5,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            270,
+            118,
+            334,
+            143
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/man-ay-05.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 46,
+          "source_crop": [
+            0,
+            0,
+            64,
+            25
+          ],
+          "target_rect": [
+            441,
+            40,
+            505,
+            65
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-46.png",
+          "different_native_pixels": 0,
+          "evidence_level": "confirmed exact pixel rectangle"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            498,
+            40,
+            506,
+            43
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            527,
+            29,
+            535,
+            32
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 66,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            542,
+            18,
+            550,
+            21
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-66.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        },
+        {
+          "source_file": "PMAP.AY",
+          "record": 67,
+          "source_crop": [
+            0,
+            0,
+            8,
+            3
+          ],
+          "target_rect": [
+            498,
+            39,
+            506,
+            42
+          ],
+          "kind": "monochrome-plane",
+          "hd": "artwork/approved/registered-textures/all-graphics-hd-r1/primary/pmap-ay-67.png",
+          "different_native_pixels": 3,
+          "evidence_level": "strong inference; near-identical editor variant, art only"
+        }
+      ],
+      "preview": "artwork/approved/registered-textures/all-graphics-hd-r1/editor/x10-ay-00.png"
+    }
+  ]
+}
