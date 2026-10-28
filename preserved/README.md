@@ -2,6 +2,14 @@
 
 本目錄保存程式、固定來源、音樂、字型、存檔與研究證據。完整定稿美術仍由[artwork](../artwork/README.md)管理。初批r64保存清單維持不變，後續r65另存追加批次；九首待確認音樂的批准狀態保持。
 
+## 可選目標策略AI正式接入保存
+
+[現行核對](ai-engine-audit-r1.json)、[提升](ai-engine-promotion-r1.json)、[永久清單](ai-engine-r1.json)、[捕獲](ai-engine-capture-r1.json)及[獨立核對](ai-engine-verification-r1.json)保存181固定輸入七程式、五輪來源與診斷、16份原版／改選完整控制、正常GUI截圖／狀態／輸入、存退與冷讀。1350檔去重成401物件，壓縮93784723 bytes；完整二進位、RAM與PNG留本機`ai-engine-r1/`物件，不加入Git。本輪沒有錄逐幀視訊。正式程式預設native，可選target，仍使用r65的525素材與923核心。
+
+[保存器](../tools/archive-ai-engine.py)在固定Pillow11.3.0容器用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；只掛preserved及工具，加`--verify`可逐SHA核對，另加`--restore <空白目錄>`還原。還原維持研究區原相對結構，候選來源另存workplace/player/source-candidate-ai-r5，現行程式另存current-player。[還原結果](ai-engine-restore-r1.json)已驗七程式、181來源及還原的8sword-replay可讀新模式參數；沒有原遊戲資料，未冒稱還原後已跑整款遊戲。原版、923核心、525素材與模組來源依初批／r65永久catalog，舊策略控制資料另依AI候選研究清單還原。
+
+現行公開核對是提升後重驗；提升收據的audit SHA對應保存物件中ai-engine-r5/engine-audit-r1.json。原提升前工具另存同目錄audit-at-promotion-r1.py，原SHA不改。[核對工具](../tools/audit-ai-engine.py)提升後須加`--promotion <promotion-r1.json>`及新`--out`。[文件與來源核對](ai-engine-integrity-r1.json)記錄23筆定位回填、現行程式與素材、文件入口及擁有權。正式範圍見[030](../docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)。
+
 ## AI候選與策略研究追加
 
 [策略清單](ai-policy-r1.json)、[獨立核對](ai-policy-audit-r1.json)、[捕獲結果](ai-policy-capture-r1.json)及[離線核對](ai-policy-verification-r1.json)保存八個固定局面、24次驗收執行與16份Go決策。245檔去重成103物件，壓縮16500013 bytes；完整RAM、state、三版研究執行檔、當時來源及失敗診斷保存在本機`ai-policy-r1/`物件，不加入Git。正式r65保持。[文件與來源核對](ai-policy-integrity-r1.json)另檢查23筆定位回填及正式素材保持。

@@ -265,3 +265,46 @@ AI 驗收局面包括：保護後排、挑選能擊殺的威脅、避免無效�
 [獨立核對](../../tools/audit-ai-policy.py)在固定Pillow容器用`--project <唯讀專案> --out <新JSON>`核對原MZ／IDA bytes、從原RAM重建typed輸入、候選集合、排序、整份RAM差分、DX單欄變更、原版執行參數及結算。三項父測試及vet通過；拒絕條件與同分穩定屬研究工具內部測試，原版效果另有成對實證。完整資料、來源與執行檔由[策略研究保存器](../../tools/archive-ai-policy.py)另作[永久保存](../../preserved/README.md#ai候選與策略研究追加)。
 
 下一步可就此具體政策整理首版可選增強AI的READY契約，接正常玩家戰鬥及模式隔離，原版模式維持原決策。候選器不做跨法術選擇，增兵、額外行動、反擊預判及新兵種特性另依已批准範圍分段處理，不重查本批掛點。
+
+### 首版可選目標策略AI的READY契約
+
+狀態：限定CONFORMED，僅本節。以下保留實作前READY契約；正式驗收見下節。使用者在已展示八案比較及「先全滅、再比減員比例」後要求go，授權把此政策接成可選模式。整體部隊特性、跨法術選擇與新兵種仍DRAFT，不由本節提升。原版PAM.AY SHA為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，原DB及Go1.24.13／923核心沿上節，原MZ重定位與三種位址基準保持。定位、推論等級與控制證據依[策略研究](../../RESEARCH-LOG.md#ai合法候選與實際策略掛點實證)及[核對](../../preserved/ai-policy-audit-r1.json)，不新增猜測規則。
+
+- 入口：Engine Options的BattleAI及開發播放器／重播的`-battle-ai native|target`，空值沿native。預設原版AI，不安裝策略掛點。target與HD顯示獨立，視窗標題標示模式；本節不新增工具列排版、原版存檔欄或偏好檔格式。模式屬本次執行選項，重啟以啟動參數選擇。
+- 政策：純Go最多六候選，先全滅、再以整數交叉相乘比較減員比例，同分保留原目標。普通前排鎖定／前排優先／後排與3／24遠程限制沿上節；特殊0／2／5依已驗篩選。其他特殊分派照原版選擇與結算，不改selector，不把未支援分派硬排分。
+- 介接：從PAM實際overlay載入段計算codeSeg=load+0E57h及dataSeg=load+1D78h。只有已驗來源SHA、載入／重定位段及入口bytes相符才掛點；每次提交前重驗入口、DS／SS、堆疊及typed輸入。普通／遠程BP-4保留7起算，特殊0／2改BP-8，特殊5在0x1F52B只改DX。先算完並驗證，再做一個目標欄提交，不改兵數、旗標、RNG、時間、傷害或動畫。
+- 生命週期：同步在模擬執行緒，不開背景工作；已安裝掛點可因切回native而停用，不重複註冊。PAE覆蓋後不執行PAM策略。切換從下一個選敵點生效，已開始的效果不重算。沒有AI持久狀態，既有存讀沿原資料；相同進度可在下次啟動另選模式。
+- 失敗：未知來源或掛點bytes、越界／重複活軍、堆疊／來源種類矛盾等，在提交前停止並回報AI錯誤；不在半次動作後回退。已知不支援分派、分派5原錯位檢查尚未通過或沒有受支援活目標時，在任何策略寫入前保留原版動作，狀態明列略過原因。
+- 診斷：狀態含模式、已掛接、決策／改選／略過計數及最近32筆候選、選擇與理由；記憶體有界。這是首版選敵能力，不稱反擊預判、全法術策略或勝率提高。
+
+驗收：純候選器沿八案與拒絕條件；正式Engine掛點對同一已驗快照／同一輸入核對native不改原版、target符合既有受控結果及無其他控制器寫入；至少一條正常玩家戰鬥、真正存退讀與實際視窗啟動模式標示。完整七程式候選、來源、923核心與525素材獨立核對後才提升；舊r65程式與素材保持，沒有新圖包或正式公開Release。未完成的驗收不得以研究probe或孤立單元測試替代。
+
+正式實作入口為[模式與掛點](../../internal/eightsword/battle_ai.go)、[純Go候選器](../../internal/eightsword/battle_ai_policy.go)、[候選測試](../../internal/eightsword/battle_ai_policy_test.go)及[Engine原版控制](../../internal/eightsword/battle_ai_runtime_test.go)。[候選準備器](../../tools/prepare-ai-engine.py)在固定Pillow容器使用`--project <唯讀專案> --player <可寫player> --name <新候選名稱> --out <既有battle-r1內新目錄>`，只沿923核心及181輸入建立候選，未驗前不提升正式程式。
+
+受控Engine測試的快照不含DOS診斷用overlay log，故沿固定0110h載入段直接呼叫同一個已驗證binder；這只作受控接線證據，正常overlay註冊另由冷啟動玩家路徑驗證。續跑保留原probe每2M步空白鍵的後續排程；沒有改成新的按鍵條件以湊同值。首輪缺這兩項的診斷不驗收，另留tests-r1.log。
+
+中途再載入before-decision快照不作逐步parity條件：923核心的ClockPercent=0狀態不恢復nextFrame／nextKey相位，普通動作因此可能差固定步數。正式受控測試改從與原probe完全相同的初始multi-ready快照起跑，再經相同原版入口及相同fixture／selector變更；不改核心、不加步數補償。兩種中途續跑失敗只保留診斷，不提升。
+
+[隔離GUI輸入準備器](../../tools/prepare-ai-gui.py)在Pillow容器用`--project --out <既有AI研究目錄>`從gui-check生成純XTEST helper，不改正式播放器。[GUI執行器](../../tools/check-ai-engine-gui.sh)於有界Go／Xvfb容器傳入候選目錄、helper、唯讀原版、r65素材與新輸出；正常冷啟動、募兵10人、自然遇敵／空白鍵行動、存退，再以native模式冷讀。沒有RAM注入、強制勝利或測試用程式分支。
+
+[正式獨立核對](../../tools/audit-ai-engine.py)在固定Pillow容器以`--project <唯讀專案> --out <新JSON>`聚合181來源、923核心、原r65及525素材、16組完整受控狀態、故障停止、舊／新CLI、正常GUI戰鬥與存退讀。通過前不提升七程式，未通過的中間快照／GUI路線診斷沿研究區保存。
+
+[正式提升器](../../tools/promote-ai-engine.py)在固定Pillow容器使用`--project <唯讀專案> --player <可寫player> --audit <通過收據> --receipt <新JSON>`，再次核對七程式、181來源、原r65及525素材，才逐檔替換程式與建置metadata。核心仍923檔，原r65候選與素材保留，不建新素材包或公開Release。
+
+提升後再核對加`--promotion <promotion-r1.json>`及新`--out`，改驗現行七程式等於已提升候選、r65前版仍保持。提升前工具逐byte另存audit-at-promotion-r1.py，原核對／提升SHA不改寫。
+
+[正式AI資料保存器](../../tools/archive-ai-engine.py)在固定Pillow容器使用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲五輪來源／驗證、完整GUI、現行七程式與181來源。只掛preserved加`--verify`可逐SHA核對，另加`--restore <空白目錄>`還原；923核心、原版、素材及Go模組沿既有永久catalog，不重複打包。
+
+### 首版可選目標策略AI正式提升與限定驗收
+
+本節限定CONFORMED。source-candidate-ai-r5／181固定輸入七程式已正式提升，923核心、r65的525素材及原r65七程式候選保持。預設`-battle-ai native`，可選`-battle-ai target`；容器內播放器及步數重播皆接受，與HD顯示獨立，視窗標題標示原版／策略AI。啟動參數不寫入原版進度檔。
+
+- 正式Engine在八案／兩模式的16份完整after-decision及final state，同已驗原版控制／受控改選逐byte相同。首七案取r4，特殊5取r5，兩版181來源只差測試觀測器，正式程式碼相同。特殊5測試只擷取原錯位檢查會通過的迭代，先前首個重選迭代漏判不驗收。
+- 三個純候選父測試、Engine模式切換與三個故障停止通過；程式bytes、mapping、stack不符時完整state保持，vet及七程式建置通過。未將中途快照隱藏時鐘相位差加步補償，正式比較從同一原始快照起跑。
+- 舊r65與新預設native CLI各4M步，完整state、Frame及舊收據所有欄位相同。新狀態只增加battle_ai診斷。
+- 真正視窗走冷啟動、新遊戲、正常募兵、自然遇敵、V／Ctrl、原空白鍵行動、戰鬥結束、存退。target實際註冊並做兩次選敵；此局只有相同優先目標，Changed=0，不冒稱自然改選或整體勝率改善。再以native冷啟動讀同一存檔，沒有安裝策略掛點。
+- 原版DOS存退後及冷讀後，唯讀inspect於0步取得2987 bytes緩衝區，同實際gamedata.ay逐byte相同。target存檔可由native讀取，不新增模式或AI欄位。讀後以前端Ctrl+Q關窗，與存檔階段的原版DOS退出分開記錄。
+
+提升前／後獨立核對、完整GUI及存讀見[現行收據](../../preserved/ai-engine-audit-r1.json)；[提升收據](../../preserved/ai-engine-promotion-r1.json)保留前核對SHA。原先GUI步行路線在募兵後重進建築，以及多送Esc轉到指令列，均為XTEST路線問題；最後路線以正常方向鍵離開建築，不改正式程式、記憶體或亂數。啟動視窗標題早於第一份狀態檔時，初始mode欄可為null，模式另由同一程序的完整最終狀態核對。
+
+本次只完成可選目標策略，不稱全戰術增強。反擊交換、跨法術策略、部隊特性、新兵種及增強存檔仍待後續契約；完整結局、其他平台與裝置音訊未在本次重跑。資料已[永久保存](../../preserved/README.md#可選目標策略ai正式接入保存)，中間失敗診斷與五輪來源保持，不重開已解掛點。

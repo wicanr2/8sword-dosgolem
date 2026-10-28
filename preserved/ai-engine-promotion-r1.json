@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "status": "promoted-scoped-030-optional-target-AI",
+  "candidate": "source-candidate-ai-r5",
+  "programs": {
+    "8sword": "637bdd57a88ea7c3b712beb2a4e94d1600433cf96fb0549dcc0b56c1f81e262e",
+    "8sword-replay": "d76aece806c61183f1389fd3ddcb9eec40359d4f00d1bacfa43cc62a396499f2",
+    "gui-check": "14c0084aa62d161d945bc89ef0890931b9d9e883125b33f0a4c9f04f6c66f8a7",
+    "music-check": "bf1e3b5b84d3fc7d6ef337c6a6501b7ecefc7b455cea614c366cea9545147d2b",
+    "heroine-check": "cd05673fe868aa996d77f03def83c25308e28144f8b86cd99045e12c4e3333b6",
+    "museum-check": "9ba234075d147d34e7c4b3b87aef58e5e043b76f0abb391c41534c66c4f1a742",
+    "story-prelude-check": "3ed046e0d5720dba6a8360586e90e255bf7f9f3c0df5e3fc510817aa93dc1268"
+  },
+  "previous_programs": {
+    "8sword": "8f6a34cca0bcb23c0d716b1cab665344d7050f273fdab714283579fe627a131d",
+    "8sword-replay": "7daf34adaeaf99e086c85248a5e3629853bc5bc2a873eb91ac11f92804688d0d",
+    "gui-check": "81f8866b74b04964c3667348d1d3b178b64258f0dc271a30d433f5e678f98309",
+    "music-check": "65bef075e0366c03d1ecc009f12d5f16c3049efbee06d0720c4d6b7fc62dbf8a",
+    "heroine-check": "41df4ba3094830ed03bbea95456124dda371c67e12f23d01b20e39542dab4899",
+    "museum-check": "d729f8e26da2f8789f10b5bb8874d59dc27ef5cb4f8eaf63149305a5f3fa7d71",
+    "story-prelude-check": "7cb2cc20ef83c63219cf5cce9e584f530a5977392226042e906072ff365c214c"
+  },
+  "source_inputs": 181,
+  "core_files": 923,
+  "assets": "assets-painted-r65",
+  "asset_files": 525,
+  "audit_sha256": "4544f490b8cd355fced05ac658bbf59515c20f4b5021ec6aa51b0e0c85b2355e",
+  "tool_sha256": "90246759ba84f49d79776aaf3b90b6f6611d7f2d1a89de4e10759fb3484c08ee",
+  "default": "native",
+  "optional": "target"
+}

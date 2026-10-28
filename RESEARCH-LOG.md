@@ -2254,3 +2254,21 @@ Go離線模型依已記錄目標與rand餘數重建12次減員與1組旗標，�
 三項研究父測試驗八候選集合、錯誤拒用及同分穩定，Go vet通過。16份實際決策可由保存trace離線重生；獨立Pillow從決策前原RAM重建typed資料及候選，不直接相信Go序列化建議，使用Fraction另算排序，並逐案核對原版堆疊、完整RAM差分、單目標改值及最終兵數。正式七程式與923核心逐SHA保持。
 
 獨立核對SHA `8a0eb3d7874d58827951cf2af2d2ee5fc314373c049fdbf275f80056b7d26782`，見[公開收據](preserved/ai-policy-audit-r1.json)及[永久保存](preserved/README.md#ai候選與策略研究追加)。下一步就已展示的首版政策整理可選增強AI的READY、正常玩家路徑與模式隔離，不重做已驗候選或效能無關逆向。新特性、跨法術評分、資源與存檔仍未完成。
+
+## 可選目標策略AI的正式Engine與正常玩家實證
+
+2026-10-28。使用者在前輪八案對照與明示研究政策後要求go，沿030先寫首版READY，再將純Go候選與目標交接接入Engine，完成限定CONFORMED。PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、IDA舊匯出SHA `76feaf768b248c99d54c7c3632f898f5199a844895e8312363ea5c6c9af1d7ba`及923核心保持；沒有新IDA分析或推測性改名。原MZ／IDA／runtime位址沿前節分列，新Engine只沿已驗0x1FD7A、0x1FC57、0x1FEE4、0x1F32D、0x1F476及0x1F52B，不解新分派。Go1.24.13、Pillow11.3.0及原映像SHA保持。
+
+已證實：正式Engine的native預設不安裝策略掛點。target同步在Oracle.OnCall之前算完typed候選，只有普通／遠程目標word、特殊0／2目標word或特殊5的DX可變；原版指令及executor照常結算。沒有調整RNG、傷害、兵數或行動旗標；其他分派不套此選敵政策。候選最多六筆，最近決策只保留32筆。錯誤來源／bytes／typed輸入在提交前以具名AI錯誤停止；三類故障的前後完整state同值。模式可在emulation thread切換，不重複註冊；本輪UI只提供啟動參數與標題標示，不增加模式偏好或原版存檔欄位。
+
+正式控制從原multi-ready快照SHA `88f21ef185d597fee43972aec1d14e9a6811ea072a443aa6be04fe6de999b5bf`開始，與原probe相同fixture／selector變更及每2M步空白鍵。不從中途快照假定完整時序parity：923核心Machine.LoadState在ClockPercent=0時不恢復nextFrame／nextKey，先前普通動作的26步差異因此只保留診斷，沒有加步補償或改核心。快照亦不保存DOS診斷overlay log，受控測試直接以既有0110h基底呼叫同一binder；正常overlay註冊另由GUI冷啟動證明。
+
+八案／兩模式共16份正式after-decision與final完整state，均同已驗原版控制／受控改選。首七案來自r4，特殊5來自r5，兩版181輸入只差測試觀測器。特殊5初稿擷取第一個錯位檢查不通過的重選迭代，修正observer後只重跑該案，未重跑首七案。候選器三父測試、Engine模式／故障及vet通過，七程式建置；新預設native與舊r65的4M步完整state、Frame及舊狀態欄全同。
+
+正常GUI以未含研究分支的正式候選，Xvfb／XTEST冷啟動、新遊戲、募兵、自然遇敵、V／Ctrl及Space，取得兩筆target決策。本局各只有同一優先目標，Changed=0，不能由此宣稱自然改選或策略勝率提高。戰鬥結束後依原F7存退回DOS，再用native冷啟動讀進度，檢視人物並以Ctrl+Q關窗。兩階段皆閉窗，只有存檔階段聲明原版DOS正常退出。原始GUI及兩張代表已目視，原圖沒有重製。
+
+已證實：實際gamedata.ay為2987 bytes，SHA `a5ce28cbbcc216ead5d0c8c6848116198cbcf47084129b9eedcf6ceb7e9c79e2`。存退後與冷讀後各用既有eightsword-inspect在until=0只讀0x9E000緩衝區，兩份逐byte同檔案。target不改存檔格式，native冷讀未安裝策略掛點。原版輸入、GUI截圖與存讀屬正常路徑；八固定fixture屬受控技術實證，兩者不互代。
+
+GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建築，多送Esc又切到指令列。最後沿正常方向鍵離開建築，不改正式遊戲、記憶體或RNG。X11標題早於首份狀態JSON時，啟動mode欄可能null，模式以同一程序最終狀態核對。核對器首稿誤要求冷讀以DOS退出，已依實際Ctrl+Q語意修正，未重跑已通過的玩家輸入。
+
+提升前核對SHA `4544f490b8cd355fced05ac658bbf59515c20f4b5021ec6aa51b0e0c85b2355e`，提升SHA `9f9fb3f90f815fab3bb42cdfcda785ce02ff189a272bec55ff193574f2bb6d6d`，提升後核對SHA `59244aa73017604b242f46512d4c95735dc8a43946acce9afa3b78b3af50342f`。現行181輸入七程式已提升，r65舊七程式、525素材與923核心保持。完整資料已[永久保存](preserved/README.md#可選目標策略ai正式接入保存)，入口為[030限定驗收](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)。範圍只到首版可選目標策略；跨法術、反擊交換、部隊特性與新兵種仍未完成，本輪沒有重跑完整結局或其他平台。

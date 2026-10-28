@@ -2,11 +2,12 @@
 
 核對日期：2026-10-28。各項版本記錄驗收當時的來源；現行素材與程式以最上列為準。工作規則：[AGENTS.md](AGENTS.md)。歷程：[WORKLOG.md](WORKLOG.md)。
 
-333筆已辨識圖形的HD素材已備妥，現行版本以最上列r65為準。原版模式、Go繪圖架構、音樂與玩法保持。過期研究副本及快取已依授權清理，完整原圖與必要資料仍在永久保存目錄。反組譯重製方向尚未定案。
+333筆已辨識圖形的HD素材已備妥，現行程式以最上列可選目標策略AI為準，圖像素材仍為r65。預設原版AI；Go繪圖架構、音樂與原版結算保持。過期研究副本及快取已依授權清理，完整原圖與必要資料仍在永久保存目錄。反組譯重製方向尚未定案。
 
 | 面向 | 現況與證據 |
 |---|---|
-| Go合法候選與策略掛點 | [030策略對照](docs/spec/030-battle-expansion-proposal.md#合法候選與實際策略比較結果)：八固定局面、24次執行，八組只讀完整state／DOS／OPL／I/O同控制；五案改選、15次有效效果同Go預測。射手改全滅10人隊，普通正對限制保持，特殊5避開空隊後31→20。特殊5掛點前移到原版存DX之前，只有DX改值；其他改選只改目標word。純Go不呼叫helper、不查RNG，16決策可離線重生，三父測試及vet通過。[核對](preserved/ai-policy-audit-r1.json)及[永久保存](preserved/README.md#ai候選與策略研究追加)為入口。正式r65／525素材／177來源／923核心保持；首版可選策略、正常玩家路徑與模式隔離仍待READY，不稱整體AI或勝率完成。 |
+| 首版可選目標策略AI正式接入 | [030限定CONFORMED](docs/spec/030-battle-expansion-proposal.md#首版可選目標策略ai正式提升與限定驗收)：source-candidate-ai-r5／181輸入七程式已提升，923核心及r65／525素材保持。`-battle-ai native`為預設，`target`啟用全滅／減員比例選敵，支援普通、遠程及特殊0／2／5，與HD獨立且視窗標題明示。16份正式Engine完整state同原版／已驗改選；三純候選父測試、模式／三故障、vet與7程式通過。預設native4M步同舊r65狀態及畫面。正常視窗募兵遇敵做兩次策略選敵，本局未改選，不稱自然策略收益；真正存退後以native冷讀，2987 bytes同a5ce28cb…9e2，模式不入原版存檔。[核對](preserved/ai-engine-audit-r1.json)、[提升](preserved/ai-engine-promotion-r1.json)及[永久保存](preserved/README.md#可選目標策略ai正式接入保存)為現行入口。其餘特性／兵種／跨法術仍DRAFT，不重查已驗掛點。 |
+| Go合法候選與策略掛點 | [030策略對照](docs/spec/030-battle-expansion-proposal.md#合法候選與實際策略比較結果)：八固定局面、24次執行，八組只讀完整state／DOS／OPL／I/O同控制；五案改選、15次有效效果同Go預測。射手改全滅10人隊，普通正對限制保持，特殊5避開空隊後31→20。特殊5掛點前移到原版存DX之前，只有DX改值；其他改選只改目標word。純Go不呼叫helper、不查RNG，16決策可離線重生，三父測試及vet通過。[核對](preserved/ai-policy-audit-r1.json)及[永久保存](preserved/README.md#ai候選與策略研究追加)為入口。正式r65／525素材／177來源／923核心保持；首版目標策略已依最上列接入，其他戰術擴充仍DRAFT，不稱整體AI或勝率完成。 |
 | AI其餘特殊分派 | [030限定研究](docs/spec/030-battle-expansion-proposal.md#其餘特殊分派的限定研究結果)：13種局面、17次成對執行，Go重現12次減員與1組行動旗標。分派2類型條件、3的0／4判定、4旗標加1、5錯位存活檢查及7減員已抽驗；分派5空目標與非空目標均保留原行為。各案停首個特殊返回，不稱完整回合、自然遇敵、全法術或正式策略。原版完整state／DOS／OPL／I/O成對同值，正式r65與923核心保持。[核對](preserved/ai-specials-audit-r1.json)及[永久保存](preserved/README.md#ai特殊分派研究追加)為入口；候選與評分追加見最上列，後續整理可選增強AI契約，不重做已驗圖像與分派。 |
 | 全圖形HD接入與現行建置 | [054限定CONFORMED](docs/spec/054-all-graphics-hd.md#r65限定驗收-conformed)：r65／525檔、source-candidate-completion-r4／177輸入七程式、Go1.24.13及原923核心。舊462檔逐SHA保持，新增17筆玩家來源，兩筆既有開場另補分類，共290彩色來源對應；43單色／IFF只入包。五父測試、vet、47張獨立重建、普通視窗及完整結局／BIOS Esc成對狀態與PCM抽驗通過。純色圖格保持Go矩形及031配色。受控結局不稱自然通關，建築／太極不稱自然遭遇，本輪未重跑存退讀。[圖庫r2](artwork/all-graphics-hd-gallery-r2.html)、[接入清單](artwork/graphics-integration-r65.json)、[核對](preserved/completion-r65-audit.json)及[提升](preserved/completion-r65-promotion.json)為現行入口；原PNG／提示永久保存，A.A及六RIL未知。 |
 | 已授權空間清理 | [清理紀錄](preserved/README.md#已授權清理)列出541份舊錄影、9222快取及148748份已保存舊副本，連同驗證後再次清掉的1843份快取，邏輯共119082179062 bytes；Docker未使用建置快取236.2MB。原圖、必要永久物件、原版來源、現行候選／素材、核心、音樂、模組與最新存讀錄影保留。舊路徑可按catalog還原；未備份的舊完整錄影已刪。 |

@@ -14,8 +14,10 @@ import (
 type Options struct {
 	Root, Assets, Saves string
 	HD                  bool
+	BattleAI            string
 }
 type Engine struct {
+	battleAI             *battleAIController
 	completion           *completionAssets
 	CompletionError      string
 	endingAssets         *endingAssets
@@ -108,6 +110,9 @@ type InputEvent struct {
 }
 
 func Open(opt Options) (*Engine, error) {
+	if opt.BattleAI != "" && opt.BattleAI != "native" && opt.BattleAI != "target" {
+		return nil, fmt.Errorf("AI模式無效：%s", opt.BattleAI)
+	}
 	pam, err := os.ReadFile(filepath.Join(opt.Root, "PAM.AY"))
 	if err != nil {
 		return nil, err
@@ -285,6 +290,10 @@ func Open(opt Options) (*Engine, error) {
 	if e.sourceEnabled {
 		e.initSourceRenderer()
 	}
+	if err := e.SetBattleAI(opt.BattleAI); err != nil {
+		e.Close()
+		return nil, err
+	}
 	return e, nil
 }
 func (e *Engine) Close() {
@@ -311,6 +320,9 @@ func (e *Engine) RenderAudio() []int16 {
 }
 func (e *Engine) EnableLiveClock(perMS uint64) { e.Oracle.SetDOSBoxCycles(perMS) }
 func (e *Engine) AdvanceCycles(n uint64) error {
+	if err := e.syncBattleAI(); err != nil {
+		return err
+	}
 	if e.renderFault != nil {
 		return e.renderFault
 	}
@@ -319,7 +331,7 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 		if count > 50000 {
 			count = 50000
 		}
-		if err := e.Oracle.RunCycles(count); err != nil {
+		if err := e.battleAIRun(func() error { return e.Oracle.RunCycles(count) }); err != nil {
 			var exit *oracle.ExitError
 			if errors.As(err, &exit) {
 				e.Exited = true
@@ -334,6 +346,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 			}
 		}
 		if err := e.syncEndingInput(); err != nil {
+			return err
+		}
+		if err := e.syncBattleAI(); err != nil {
 			return err
 		}
 		if e.Tracker != nil {
@@ -373,6 +388,9 @@ func (e *Engine) AdvanceCycles(n uint64) error {
 	return nil
 }
 func (e *Engine) Advance(n uint64) error {
+	if err := e.syncBattleAI(); err != nil {
+		return err
+	}
 	if e.renderFault != nil {
 		return e.renderFault
 	}
@@ -381,7 +399,7 @@ func (e *Engine) Advance(n uint64) error {
 		if count > 50000 {
 			count = 50000
 		}
-		err := e.Oracle.Run(count)
+		err := e.battleAIRun(func() error { return e.Oracle.Run(count) })
 		if err != nil {
 			var exit *oracle.ExitError
 			if errors.As(err, &exit) {
@@ -397,6 +415,9 @@ func (e *Engine) Advance(n uint64) error {
 			}
 		}
 		if err := e.syncEndingInput(); err != nil {
+			return err
+		}
+		if err := e.syncBattleAI(); err != nil {
 			return err
 		}
 		if e.Tracker != nil {
@@ -610,6 +631,7 @@ func (e *Engine) IntroFrameStage(frame *image.RGBA) string {
 }
 func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
+	out["battle_ai"] = e.BattleAIStatus()
 	out["completion_error"] = e.CompletionError
 	out["completion_assets"] = e.completion.status()
 	out["source_renderer"] = e.sourceEnabled

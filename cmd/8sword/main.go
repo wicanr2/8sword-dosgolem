@@ -410,6 +410,7 @@ func main() {
 	root := flag.String("root", "", "合法原版資料目錄")
 	assets := flag.String("assets", "", "HD 字型、圖像與音樂素材目錄")
 	font := flag.String("font", "", "字型：noto、lishu、caoshu；空白沿用偏好")
+	battleAI := flag.String("battle-ai", "native", "敵方AI：native原版；target先全滅再比減員比例")
 	poster := flag.String("poster", "", "海報：wings、cover、off；空白沿用偏好")
 	settings := flag.String("settings", "", "字型偏好檔，預設為系統使用者設定目錄")
 	saves := flag.String("saves", "", "可寫存檔目錄")
@@ -442,7 +443,7 @@ func main() {
 		}
 		defer pprof.StopCPUProfile()
 	}
-	engine, err := eightsword.Open(eightsword.Options{Root: *root, Assets: *assets, Saves: *saves, HD: *hd})
+	engine, err := eightsword.Open(eightsword.Options{Root: *root, Assets: *assets, Saves: *saves, HD: *hd, BattleAI: *battleAI})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -536,10 +537,15 @@ func main() {
 		title += "（部分可選字型載入失敗）"
 		log.Print(engine.FontError)
 	}
-	suffix := ""
-	if i := strings.IndexRune(title, '（'); i >= 0 {
-		suffix = title[i:]
+	aiTitle := " · 原版 AI"
+	if engine.BattleAIMode() == "target" {
+		aiTitle = " · 策略 AI"
 	}
+	suffix := aiTitle
+	if i := strings.IndexRune(title, '（'); i >= 0 {
+		suffix = aiTitle + title[i:]
+	}
+	title += aiTitle
 	g := &game{engine: engine, texture: ebiten.NewImage(1920, 1200), capture: *capture, cycles: *cycles, maxUpdates: *limit, settings: *settings, titleSuffix: suffix}
 	if engine.HD {
 		g.toolbar, err = eightsword.LoadPosterToolbar(*assets, engine.FontChoices())
@@ -572,7 +578,7 @@ func main() {
 		}
 	}
 	if i := strings.IndexRune(title, '（'); i >= 0 {
-		g.titleSuffix = title[i:]
+		g.titleSuffix = aiTitle + title[i:]
 	}
 	if *capture != "" {
 		g.introDraw, err = os.Create(filepath.Join(*capture, "intro-draw.jsonl"))
