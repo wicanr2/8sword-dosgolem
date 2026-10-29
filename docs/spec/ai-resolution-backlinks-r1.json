@@ -1,5 +1,21 @@
 {
   "schema": 1,
+  "player_resolutions": [
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x219CC",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x219CC",
+      "original_name": "sub_219CC",
+      "level": "proven-in-sampled-scope",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/027-battle-pon-effects.md",
+      "required_correction": "PON-PLAYER-FIREBALL-SAMPLED",
+      "receipt": "preserved/player-fireball-research-r2.json",
+      "scope": "One fixed-snapshot rear-caster fireball through original menu and target navigation; 4 source poses and 12 PON, paired full state equal.",
+      "not_closed": "Other seven battle effects, eight map effects and natural spell learning."
+    }
+  ],
   "resolutions": [
     {
       "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x206DA",

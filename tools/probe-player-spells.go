@@ -1,0 +1,292 @@
+// 030 DRAFT. Build in a temporary pinned dosgolem module; controlled spell resources.
+package main
+
+import (
+	"bytes"
+	"crypto/sha256"
+	"encoding/binary"
+	"encoding/json"
+	"flag"
+	"fmt"
+	"image"
+	"image/png"
+	"os"
+	"path/filepath"
+	"runtime"
+
+	"github.com/wicanr2/dosgolem/internal/cpu"
+	"github.com/wicanr2/dosgolem/internal/dos"
+	"github.com/wicanr2/dosgolem/internal/machine"
+	"github.com/wicanr2/dosgolem/internal/state"
+)
+
+func must(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
+func sha(b []byte) string { return fmt.Sprintf("%x", sha256.Sum256(b)) }
+func saveJSON(p string, v any) {
+	b, e := json.MarshalIndent(v, "", "  ")
+	must(e)
+	must(os.WriteFile(p, append(b, '\n'), 0644))
+}
+func shot(m *machine.Machine, p string) {
+	w, h, rgb := m.PlanarRGB()
+	if w == 0 || h == 0 {
+		return
+	}
+	im := image.NewRGBA(image.Rect(0, 0, w, h))
+	for i := 0; i < w*h; i++ {
+		copy(im.Pix[i*4:i*4+3], rgb[i*3:i*3+3])
+		im.Pix[i*4+3] = 255
+	}
+	f, e := os.Create(p)
+	must(e)
+	must(png.Encode(f, im))
+	must(f.Close())
+}
+func main() {
+	root := flag.String("root", "", "read-only original")
+	snapshot := flag.String("state", "", "fixed original snapshot")
+	out := flag.String("out", "", "new output")
+	flag.Parse()
+	if *root == "" || *snapshot == "" || *out == "" {
+		panic("missing inputs")
+	}
+	if _, e := os.Stat(*out); !os.IsNotExist(e) {
+		panic("existing output")
+	}
+	must(os.Mkdir(*out, 0755))
+	input, e := os.ReadFile(*snapshot)
+	must(e)
+	pam, e := os.ReadFile(filepath.Join(*root, "PAM.AY"))
+	must(e)
+	if sha(pam) != "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0" {
+		panic("PAM")
+	}
+	code := append([]byte(nil), pam[int(binary.LittleEndian.Uint16(pam[8:]))*16:]...)
+	for i := 0; i < int(binary.LittleEndian.Uint16(pam[6:])); i++ {
+		at := int(binary.LittleEndian.Uint16(pam[24:])) + i*4
+		loc := int(binary.LittleEndian.Uint16(pam[at+2:]))*16 + int(binary.LittleEndian.Uint16(pam[at:]))
+		binary.LittleEndian.PutUint16(code[loc:], binary.LittleEndian.Uint16(code[loc:])+0x110)
+	}
+	runs := []map[string]any{}
+	for _, observe := range []bool{false, true} {
+		label := "control"
+		if observe {
+			label = "observed"
+		}
+		dir := filepath.Join(*out, label)
+		must(os.Mkdir(dir, 0755))
+		m := machine.New()
+		d := dos.New(m, *root)
+		d.Install()
+		must(state.Load(*snapshot, m, d))
+		start := m.Steps
+		word := func(off uint16) uint16 { return m.Read16(0x1e880 + uint32(off)) }
+		words := func(seg, off uint16, n int) []uint16 {
+			a := make([]uint16, n)
+			for i := range a {
+				a[i] = m.Read16(uint32(seg)*16 + uint32(off) + uint32(i*2))
+			}
+			return a
+		}
+		for _, ip := range []uint16{0x19ac, 0x122, 0x334, 0x345c} {
+			at := 0xe570 + int(ip)
+			for i := 0; i < 24; i++ {
+				if m.Read8(0xf670+uint32(ip)+uint32(i)) != code[at+i] {
+					panic("entry prefix")
+				}
+			}
+		}
+		initial := map[string]any{"cs": m.CPU.Seg[cpu.CS], "ip": m.CPU.IP, "ds": m.CPU.Seg[cpu.DS], "step": start, "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "map": words(0x1e88, 0x6fb6, 6), "learned": word(0x26aa), "charges": words(0x1e88, 0x2aa8, 8)}
+		events := []map[string]any{}
+		mutations := []map[string]any{}
+		keys := []map[string]any{}
+		bitmaps := []map[string]any{}
+		configured, castStarted, finished := false, false, false
+		menuKey, targetKey := false, false
+		menu, target := false, false
+		var retCS, retIP, retSS, retSP uint16
+		var bitmap map[string]any
+		targets := map[uint16]string{0x19ac: "player-turn", 0x122: "spell-menu", 0x31e: "consume-charge", 0x334: "player-spell", 0x345c: "player-effect", 0x283e: "target-selection", 0x36c6: "enemy-effect"}
+		capture := func(name string) {
+			if !observe {
+				return
+			}
+			if len(events) >= 200 {
+				panic("event bound")
+			}
+			c := m.CPU
+			sp := c.R[cpu.SP]
+			bp := c.R[cpu.BP]
+			v := map[string]any{"name": name, "step": m.Steps, "cycles": m.CPU.Cycles, "cs": c.Seg[cpu.CS], "ip": c.IP, "registers": c.R, "segments": c.Seg, "stack": words(c.Seg[cpu.SS], sp, 10), "bp_minus_4": m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(bp-4)), "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12)}
+			events = append(events, v)
+			if name == "spell-menu" || name == "player-effect" || name == "player-spell:return" {
+				must(state.Save(filepath.Join(dir, name+".state"), m, d))
+				shot(m, filepath.Join(dir, name+".png"))
+			}
+		}
+		queue := func(scan uint8, why string) {
+			m.PushKey(scan)
+			keys = append(keys, map[string]any{"step": m.Steps, "scan": scan, "why": why})
+			if len(keys) > 100 {
+				panic("key bound")
+			}
+		}
+		selectEnemy := func(startNode int) {
+			type route struct {
+				node int
+				keys []uint8
+			}
+			pending := []route{{node: startNode}}
+			seen := map[int]bool{startNode: true}
+			for len(pending) > 0 {
+				at := pending[0]
+				pending = pending[1:]
+				if at.node >= 1 && at.node <= 6 {
+					id := word(0x6fc0 + uint16(at.node)*2)
+					if id < 6 && word(0x5702+id*4) > 0 {
+						for _, scan := range at.keys {
+							queue(scan, "original navigation table to live enemy")
+						}
+						queue(0x1c, "confirm live enemy with Enter")
+						return
+					}
+				}
+				for i, scan := range []uint8{0x48, 0x50, 0x4b, 0x4d} {
+					next := int(m.Read8(0x1e880 + 0x709a + uint32(at.node)*4 + uint32(i)))
+					if next > 0 && next <= 12 && !seen[next] {
+						seen[next] = true
+						keys := append(append([]uint8{}, at.keys...), scan)
+						pending = append(pending, route{next, keys})
+					}
+				}
+			}
+			panic("no original navigation route to enemy")
+		}
+		queue(0x39, "single initial original action input")
+		for m.Steps < start+100000000 {
+			c := m.CPU
+			if configured && castStarted && c.Seg[cpu.CS] == retCS && c.IP == retIP && c.Seg[cpu.SS] == retSS && c.R[cpu.SP] == retSP {
+				capture("player-spell:return")
+				finished = true
+				break
+			}
+			if c.Seg[cpu.CS] == 0xf67 {
+				if name, ok := targets[c.IP]; ok {
+					if c.IP == 0x19ac && !configured {
+						must(state.Save(filepath.Join(dir, "before-fixture.state"), m, d))
+						change := func(off, next uint16) {
+							old := word(off)
+							m.Write16(0x1e880+uint32(off), next)
+							mutations = append(mutations, map[string]any{"offset": off, "old": old, "next": next, "step": m.Steps})
+						}
+						for i := uint16(0); i < 6; i++ {
+							kind, count := uint16(0), uint16(0)
+							if i == 0 {
+								kind, count = 10, 50
+							}
+							change(0x56e8+i*4, kind)
+							change(0x56ea+i*4, count)
+							id := uint16(5)
+							if i == 3 {
+								id = 0
+							}
+							change(0x6fb6+i*2, id)
+							change(0x8e46+i*2, 1)
+						}
+						change(0x26aa, 1)
+						for i := uint16(0); i < 8; i++ {
+							n := uint16(0)
+							if i == 0 {
+								n = 2
+							}
+							change(0x2aa8+i*2, n)
+						}
+						configured = true
+						must(state.Save(filepath.Join(dir, "after-fixture.state"), m, d))
+					}
+					capture(name)
+					if configured && c.IP == 0x334 && !castStarted {
+						retIP = m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.SP]))
+						retCS = m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.SP]) + 2)
+						retSS = c.Seg[cpu.SS]
+						retSP = c.R[cpu.SP] + 4
+						castStarted = true
+					}
+					if configured && c.IP == 0x122 {
+						menu = true
+						if !menuKey {
+							queue(0x1c, "select fireball via original menu")
+							menuKey = true
+						}
+					}
+					if configured && c.IP == 0x283e {
+						target = true
+						menu = false
+						if !targetKey {
+							selectEnemy(int(m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.SP]) + 4)))
+							targetKey = true
+						}
+					}
+				}
+			}
+			if c.Seg[cpu.CS] == 0x14d2 && c.IP == 0xc86 {
+				if menu && !menuKey {
+					queue(0x1c, "select fireball via original menu")
+					menuKey = true
+				}
+				if target && !targetKey {
+					panic("target input must be planned at its validated entry")
+					targetKey = true
+				}
+			}
+			if observe && configured && c.Seg[cpu.CS] == 0x14d2 {
+				if c.IP == 0x626 || c.IP == 0x4f2 {
+					sp := c.R[cpu.SP]
+					args := words(c.Seg[cpu.SS], sp+4, 4)
+					source := args[0]
+					a := uint32(args[1])*16 + uint32(source)
+					w, h := m.Read16(a), m.Read16(a+2)
+					if w > 100 || h > 200 {
+						panic("bitmap geometry")
+					}
+					planes := 6
+					raw := make([]byte, 4+int(w)*int(h)*planes)
+					for i := range raw {
+						raw[i] = m.Read8(a + uint32(i))
+					}
+					bitmap = map[string]any{"entry": c.IP, "entry_step": m.Steps, "source_sha256": sha(raw), "width_bytes": w, "height": h, "args": args}
+				}
+				if bitmap != nil && ((c.IP == 0x76e && bitmap["entry"].(uint16) == 0x626) || (c.IP == 0x625 && bitmap["entry"].(uint16) == 0x4f2)) {
+					bitmap["return_step"] = m.Steps
+					bitmaps = append(bitmaps, bitmap)
+					if len(bitmaps) > 512 {
+						panic("bitmap bound")
+					}
+					bitmap = nil
+				}
+			}
+			must(m.Step())
+		}
+		must(state.Save(filepath.Join(dir, "final.state"), m, d))
+		shot(m, filepath.Join(dir, "final.png"))
+		raw, e := os.ReadFile(filepath.Join(dir, "final.state"))
+		must(e)
+		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12)}
+		saveJSON(filepath.Join(dir, "trace.json"), result)
+		runs = append(runs, result)
+	}
+	a, e := os.ReadFile(filepath.Join(*out, "control/final.state"))
+	must(e)
+	b, e := os.ReadFile(filepath.Join(*out, "observed/final.state"))
+	must(e)
+	equal := bytes.Equal(a, b)
+	saveJSON(filepath.Join(*out, "receipt.json"), map[string]any{"schema": 1, "go": runtime.Version(), "input_sha256": sha(input), "pam_sha256": sha(pam), "state_equal": equal, "runs": runs, "limits": "Explicit rear caster and learned/charge fixture; not natural learning or production. Fixed full original RNG state, no reroll."})
+	if !equal {
+		panic("observer changed guest")
+	}
+	fmt.Println("paired player spell state_equal", equal, "completed", runs[0]["completed"])
+}

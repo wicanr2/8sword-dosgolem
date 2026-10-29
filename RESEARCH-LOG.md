@@ -2372,3 +2372,17 @@ GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建�
 「玩家路徑與限制」：未修改候選走正常新遊戲、募兵、自然戰鬥、F7存退及auto冷讀tactics；本局未出新特殊效果。另隔離研究程式修改首輪敵軍及selector，取得一次完整效果與兩張實際Draw，透明材質和Go底圖獨立重建逐像素同值，Frame前後完整state相同。fixture不代表自然施法或種類12素材映射。三份2987-byte快照緩衝區與實檔相同。玩家法術名稱／目錄仍未知，沒有因本項完成而推定全部戰鬥動畫完成。
 
 [030限定驗收](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入與限定驗收)、[生命週期收據](preserved/vfx-lifecycle-audit-r2.json)、[正式收據](preserved/vfx-engine-audit-r1.json)與[永久清單](preserved/vfx-engine-r1.json)可回查原bytes、參數、完整state及工具。定稿B的完整透明PNG與Go產生器另保存於永久artwork，研究區刪除不影響它們。
+
+## 2026-10-29：玩家火球術、原版選單與16術原名
+
+輸入PAM.AY SHA-256仍為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；正式PAM.i64 SHA為`a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`，僅操作tmp副本。IDA9.4／py312-v1、UID1000匯出27函式6715行，Python獨立按MZ1301筆重定位驗全bytes。IDA位址基準為MZ loader線性、base10000h；執行期另以固定load0110h標示，檔案偏移獨立保存，不混列數值。
+
+「已證實，限表與consumer」：DS:2A38h起八筆12-byte戰鬥術名稱，2AB8h起八筆地圖術，原Big5與padding保留於[16術索引](docs/images/player-spell-catalog-r1.json)。使用次數分別在2AA8h與2B28h。原F4無法施法字串的DS:2A22h沒有直接xref，掃原取址operand才找到sub_16720，不能由空xref推定沒有consumer。戰鬥選單為sub_1E692，扣次為sub_1E88E，分派為sub_1E8A4；名稱不代表其餘效果已驗證。
+
+「已證實，限固定玩家火球術」：原函式sub_219CC，IDA線性0x219CC至0x21BD2、518 bytes，固定執行期0F67:345C至3661 RETF。父返回0F67:074A，BP-4法術0，六Arg為3／1／1／0／0／1。原後排種類10／12路徑呼叫原選單，Enter選火球，DS:709Ah原方向表自10經Right／Right到敵方2再Enter；Space回0EFEh取消並退還次數。受控成功組次數2→1，原種類6目標10→0，原版負責傷害與減員。來源玩家703Ch得到96,75，目標701Eh得到368,100，與真正bitmap一致，和敵方兩表方向相反。
+
+固定02-active-before快照從71624229步開始，完整原版亂數狀態不改、不重抽；第一個完整玩家回合才明示配置種類10／50人、後排映射、行動旗標、學習旗標與火球兩次，逐欄記錄。其餘只送IRQ1鍵，控制／觀測至102866405步的完整state、fixture前後與輸入相同。取消組保持兩次且無效果入口，與成功組分開。不是自然習得或正常新遊戲通關。
+
+四次來源0626之後有12次PON 1／2／3／0，來源完整SHA仍沿已驗材質。首份核對器把來源前段誤算為一張，實際四筆提交推翻它；不因此改動畫或結算。r2等待、r3來源指標讀錯、r4取消與r5成功資料分別保留，沒有把返回或狀態相同單獨當成功施法。
+
+[030 READY與限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家火球術正式接入與限定驗收)據此接同一B Go繪圖，四組正式執行器完整state、八拒絕案及兩張受控實際Draw通過。027補`PON-PLAYER-FIREBALL-SAMPLED`，原26個AI不可變鍵保持，另外保存玩家0x219CC鍵及負例。原型、原版控制、當時工具與完整GUI原PNG保存於[1045檔清單](preserved/player-fireball-r1.json)，[獨立研究收據](preserved/player-fireball-research-r2.json)與[正式核對](preserved/player-fireball-audit-r1.json)分開。剩餘七戰鬥／八地圖效果與自然習得未閉合。

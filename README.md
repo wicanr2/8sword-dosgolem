@@ -50,9 +50,13 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 
 上圖為正常新遊戲的實際視窗，從結陣選單切入第三列。兩側傷害掛點、正常遇敵與攻擊、戰鬥鎖定／解鎖及兩次冷啟動存讀已抽驗。自然戰鬥沒有觸發新減傷；結陣與壓制的效果另由受控原版函式對照證明。可看[壓制試算](docs/images/archer-pressure-prototype-r1.html)、[正式接入範圍](docs/spec/030-battle-expansion-proposal.md#戰術試作正式接入與限定驗收)與[截圖來源](docs/images/tactics-rules-runtime-r1.json)。
 
-共用特殊攻擊已接入選定的B「飛焰＋命中符光」，由Go隨實際出手與命中事件繪製，保留原版傷害與播放時鐘。以下為實際HD視窗Draw，使用明示的受控敵軍局面觸發；正常新遊戲、戰鬥及存讀另已抽驗。玩家法術目錄仍待整理。可看[飛焰畫面](docs/images/battle-vfx-b-live-flight-r1.png)、[截圖來源](docs/images/battle-vfx-b-live-r1.json)及[接入範圍](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入與限定驗收)。原先的[互動比較](docs/images/battle-vfx-prototype-r1.html)保留為樣式參考。
+共用特殊攻擊已接入選定的B「飛焰＋命中符光」，由Go隨實際出手與命中事件繪製，保留原版傷害與播放時鐘。以下為實際HD視窗Draw，使用明示的受控敵軍局面觸發；正常新遊戲、戰鬥及存讀另已抽驗。其餘玩家法術效果仍待接入。可看[飛焰畫面](docs/images/battle-vfx-b-live-flight-r1.png)、[截圖來源](docs/images/battle-vfx-b-live-r1.json)及[接入範圍](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入與限定驗收)。原先的[互動比較](docs/images/battle-vfx-prototype-r1.html)保留為樣式參考。
 
 ![B命中符光：受控局面的實際Go HD Draw](docs/images/battle-vfx-b-live-impact-r1.png)
+
+玩家火球術也已接入相同的 Go 飛焰與符光。原版選單、選敵、使用次數與結算保持；下圖同樣由明示的受控施法局面擷取。可看[飛行畫面](docs/images/player-fireball-flight-r1.png)、[截圖來源](docs/images/player-fireball-live-r1.json)、[原版16術名稱索引](docs/images/player-spell-catalog-r1.json)及[驗收範圍](docs/spec/030-battle-expansion-proposal.md#玩家火球術正式接入與限定驗收)。其餘法術效果仍待接入。
+
+![玩家火球術：受控局面的實際Go HD Draw](docs/images/player-fireball-impact-r1.png)
 
 
 | 面向 | 目前狀態 |

@@ -1,0 +1,34 @@
+{
+  "status": "passed-scoped-player-fireball-research",
+  "original_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_functions": 27,
+  "ida_lines_verified": 6715,
+  "catalog_entries": 16,
+  "full_state_equal": true,
+  "fixture_explicit": true,
+  "charges_before": 2,
+  "charges_after": 1,
+  "target_kind": 6,
+  "target_count_before": 10,
+  "target_count_after": 0,
+  "source_commits_before_impact": 4,
+  "pon_commits": 12,
+  "source_xy": [
+    96,
+    75
+  ],
+  "target_xy": [
+    368,
+    100
+  ],
+  "effect_entry": "runtime fixed load0110:0F67:345C / IDA MZ linear0x219CC",
+  "caller_return": "runtime0F67:074A",
+  "effect_retf": "runtime0F67:3661",
+  "cancel_refunds_charge": true,
+  "original_rng": "Fixed complete source snapshot, no reroll; numeric seed unknown.",
+  "limits": [
+    "Controlled learned flag/resources/rear caster; not natural learning.",
+    "Four original source poses then twelve PON commits; reuse B timing contract with swapped side tables.",
+    "Production unchanged."
+  ]
+}

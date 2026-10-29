@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "controlled_fixture": true,
+  "method": "Actual Ebiten Draw CPU image uploaded, resized 2944x1264 to 1600x687 using Pillow11.3.0 LANCZOS",
+  "source_count": 188,
+  "assets": "r68",
+  "core_files": 923,
+  "files": [
+    {
+      "phase": "flight",
+      "path": "player-fireball-flight-r1.png",
+      "sha256": "8ff641531eba696fb6dc1ce5076b60091992605320ad74bb7562ad2897985d71",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/gui-r1/vfx-draw/flight-presented.png",
+      "source_sha256": "b36a342a8e802914d4a7f7e5c221a6f99b5f75af451ad083033786d1e4c31d5f",
+      "draw": {
+        "cycles": 69214773,
+        "draw": 258,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "da58f4ce596b1c1ca42bdab695c4510d9774156bfbfd732694183f53197265da",
+        "layer_rect": [
+          598,
+          444,
+          305,
+          121
+        ],
+        "layer_stride": 1220,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "flight",
+        "sample": 63,
+        "step": 65461531,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "flight",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 3,
+          "PONCommits": 0,
+          "Frames": 3,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            96,
+            75
+          ],
+          "Target": [
+            368,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "phase": "impact",
+      "path": "player-fireball-impact-r1.png",
+      "sha256": "518702512d2015e5839a8bad16b10b5e6bf89d4fc4a44c593f1dd19cc04b862e",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/gui-r1/vfx-draw/impact-presented.png",
+      "source_sha256": "76c94ff4a34ed4bfa3d291d7a3b41d04f8dd7ddc793f8c4c1beb878d9e7f0826",
+      "draw": {
+        "cycles": 69714773,
+        "draw": 260,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "6f0ca3d3cb758c990a51426722f8e6b7051e8781417fea65f110f523933f8449",
+        "layer_rect": [
+          946,
+          460,
+          581,
+          581
+        ],
+        "layer_stride": 2324,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "impact",
+        "sample": 55,
+        "step": 65944391,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "impact",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 4,
+          "PONCommits": 6,
+          "Frames": 8,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            96,
+            75
+          ],
+          "Target": [
+            368,
+            100
+          ]
+        }
+      }
+    }
+  ],
+  "limits": "Explicit rear caster/learned flag/charges; not natural learning. X11 captures are nearby frames, not this exact Draw."
+}

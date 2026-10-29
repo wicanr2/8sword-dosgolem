@@ -1,5 +1,7 @@
 # 027：PON 戰場火花
 
+`PON-PLAYER-FIREBALL-SAMPLED`：2026-10-29沿[030玩家火球術](030-battle-expansion-proposal.md#玩家火球術b接入ready契約)，在原版`sub_219CC`的受控玩家施法中確認同一PON四筆按1／2／3／0三輪共12次，目標368,100。IDA MZ loader線性位址為0x219CC，固定載入0110h入口0F67:345C。原版選單、扣次、方向鍵選敵、Enter及返回已成對核對，完整state同值；[研究收據](../../preserved/player-fireball-research-r2.json)與[16術原名索引](../images/player-spell-catalog-r1.json)保留範圍。較早「玩家施法未知」只在這條火球術路徑獲得限定補充，其他法術及自然習得仍未知，不重開既有材質。
+
 `PON-SPECIAL-CALLERS-SAMPLED`：2026-10-29的[030動畫觀測](030-battle-expansion-proposal.md#戰鬥特殊效果的動畫觀測)已在三組受控特殊0／2／5的`sub_21C36`完整效果內，確認各12次PON，共36次，仍沿本規格`04F2/0625`與既有四張素材。較早「用途未知」現在補上這段限定caller脈絡；法術名稱、玩家施法、自然可達性及完整用途仍未知。這不是新法術種類，也不重開既有PON呈現驗收。來源與完整state核對見[觀測收據](../../preserved/battle-vfx-observation-r1.json)，原版普通攻擊與其他caller不外推。
 
 回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的首筆 HD 底圖由 [028](028-battle-militia-image.md)沿 `PAM/runtime14D2:0626/06B8/076E` 加入。本規格原版底色與累積火花契約保持；新增同狀態及實際 Draw 證據核對民兵與火花共存。下列 r22 圖像與 GUI 來源 3 仍是歷史證據，不用新圖覆寫。

@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "input": "PAM.AY",
+  "input_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "address_space": "Original file offsets and runtime DS-relative offsets separately labelled",
+  "entries": [
+    {
+      "group": "battle",
+      "index": 0,
+      "name": "火球術",
+      "text": " 火 球 術 ",
+      "ds_offset": 10808,
+      "file_offset": 136744,
+      "raw_hex": "20a4f520b27920b34e200000",
+      "uses_ds_offset": 10920,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "battle",
+      "index": 1,
+      "name": "雷火術",
+      "text": " 雷 火 術 ",
+      "ds_offset": 10820,
+      "file_offset": 136756,
+      "raw_hex": "20b97020a4f520b34e200000",
+      "uses_ds_offset": 10922,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "battle",
+      "index": 2,
+      "name": "殺鬼術",
+      "text": " 殺 鬼 術 ",
+      "ds_offset": 10832,
+      "file_offset": 136768,
+      "raw_hex": "20b1fe20b0ad20b34e200000",
+      "uses_ds_offset": 10924,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "battle",
+      "index": 3,
+      "name": "暗殺術",
+      "text": " 暗 殺 術 ",
+      "ds_offset": 10844,
+      "file_offset": 136780,
+      "raw_hex": "20b77420b1fe20b34e200000",
+      "uses_ds_offset": 10926,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "battle",
+      "index": 4,
+      "name": "凝滯術",
+      "text": " 凝 滯 術 ",
+      "ds_offset": 10856,
+      "file_offset": 136792,
+      "raw_hex": "20beae20baa220b34e200000",
+      "uses_ds_offset": 10928,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "battle",
+      "index": 5,
+      "name": "滅半術",
+      "text": " 滅 半 術 ",
+      "ds_offset": 10868,
+      "file_offset": 136804,
+      "raw_hex": "20b7c020a56220b34e200000",
+      "uses_ds_offset": 10930,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "battle",
+      "index": 6,
+      "name": "複製術",
+      "text": " 複 製 術 ",
+      "ds_offset": 10880,
+      "file_offset": 136816,
+      "raw_hex": "20bdc620bb7320b34e200000",
+      "uses_ds_offset": 10932,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "battle",
+      "index": 7,
+      "name": "地震術",
+      "text": " 地 震 術 ",
+      "ds_offset": 10892,
+      "file_offset": 136828,
+      "raw_hex": "20a66120be5f20b34e200000",
+      "uses_ds_offset": 10934,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "map",
+      "index": 0,
+      "name": "造橋術",
+      "text": " 造 橋 術 ",
+      "ds_offset": 10936,
+      "file_offset": 136872,
+      "raw_hex": "20b37920bef420b34e200000",
+      "uses_ds_offset": 11048,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "map",
+      "index": 1,
+      "name": "煉金術",
+      "text": " 煉 金 術 ",
+      "ds_offset": 10948,
+      "file_offset": 136884,
+      "raw_hex": "20b7d220aaf720b34e200000",
+      "uses_ds_offset": 11050,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "map",
+      "index": 2,
+      "name": "召兵術",
+      "text": " 召 兵 術 ",
+      "ds_offset": 10960,
+      "file_offset": 136896,
+      "raw_hex": "20a56c20a74c20b34e200000",
+      "uses_ds_offset": 11052,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "map",
+      "index": 3,
+      "name": "跳躍術",
+      "text": " 跳 躍 術 ",
+      "ds_offset": 10972,
+      "file_offset": 136908,
+      "raw_hex": "20b8f520c54420b34e200000",
+      "uses_ds_offset": 11054,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "map",
+      "index": 4,
+      "name": "停時術",
+      "text": " 停 時 術 ",
+      "ds_offset": 10984,
+      "file_offset": 136920,
+      "raw_hex": "20b0b120aec920b34e200000",
+      "uses_ds_offset": 11056,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "map",
+      "index": 5,
+      "name": "鳥瞰術",
+      "text": " 鳥 瞰 術 ",
+      "ds_offset": 10996,
+      "file_offset": 136932,
+      "raw_hex": "20b3be20c0fd20b34e200000",
+      "uses_ds_offset": 11058,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "map",
+      "index": 6,
+      "name": "涉水術",
+      "text": " 涉 水 術 ",
+      "ds_offset": 11008,
+      "file_offset": 136944,
+      "raw_hex": "20af4120a4f420b34e200000",
+      "uses_ds_offset": 11060,
+      "level": "proven-string-and-counter-consumer-only"
+    },
+    {
+      "group": "map",
+      "index": 7,
+      "name": "傳送術",
+      "text": " 傳 送 術 ",
+      "ds_offset": 11020,
+      "file_offset": 136956,
+      "raw_hex": "20b6c720b06520b34e200000",
+      "uses_ds_offset": 11062,
+      "level": "proven-string-and-counter-consumer-only"
+    }
+  ],
+  "limits": [
+    "Names/counter consumers only; map effects and seven other battle spells not dynamically verified."
+  ]
+}

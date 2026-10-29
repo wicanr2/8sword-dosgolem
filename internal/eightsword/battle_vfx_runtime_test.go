@@ -8,6 +8,7 @@ import (
 	"image/png"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -22,7 +23,7 @@ func vfxRuntimePaths(t *testing.T) (string, string, string) {
 func TestBattleVFXOriginalExecutors(t *testing.T) {
 	root, project, out := vfxRuntimePaths(t)
 	batch := filepath.Join(project, "workplace/probe-20261023/graphics-first/battle-r1")
-	for _, name := range []string{"special0-choice", "special2-choice", "special5-empty-original"} {
+	for _, name := range []string{"special0-choice", "special2-choice", "special5-empty-original", "player-fireball"} {
 		t.Run(name, func(t *testing.T) {
 			dir := filepath.Join(out, name)
 			if err := os.Mkdir(dir, 0755); err != nil {
@@ -32,6 +33,11 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 			if name == "special5-empty-original" {
 				ref = filepath.Join(batch, "ai-policy-extra-r2", name, "baseline")
 			}
+			initial, entry := "before-decision.state", uint16(0x36c6)
+			if name == "player-fireball" {
+				ref = filepath.Join(batch, "player-spells-r1/cast-r5/observed")
+				initial, entry = "player-effect.state", 0x345c
+			}
 			raw, err := os.ReadFile(filepath.Join(ref, "trace.json"))
 			if err != nil {
 				t.Fatal(err)
@@ -39,6 +45,13 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 			var tr struct{ StartStep, DecisionStep, EndStep uint64 }
 			if err = json.Unmarshal(raw, &tr); err != nil {
 				t.Fatal(err)
+			}
+			if name == "player-fireball" {
+				var player struct{ Steps uint64 }
+				if err = json.Unmarshal(raw, &player); err != nil {
+					t.Fatal(err)
+				}
+				tr.EndStep = player.Steps
 			}
 			e, err := Open(Options{Root: root, Saves: filepath.Join(dir, "scratch")})
 			if err != nil {
@@ -48,7 +61,7 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 			if e.BattleVFXStatus().Bound {
 				t.Fatal("native installed VFX")
 			}
-			if err = e.Oracle.LoadStateFile(filepath.Join(ref, "before-decision.state")); err != nil {
+			if err = e.Oracle.LoadStateFile(filepath.Join(ref, initial)); err != nil {
 				t.Fatal(err)
 			}
 			// Explicit observer fixture: install only VFX hooks over the original executor.
@@ -61,7 +74,7 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 			p := &sourceAdapter{e: e, cachedScene: &ownedScene{Pixels: make([]ownedPixel, 128000)}}
 			p.bindBattleVFX()
 			o := e.Oracle
-			o.OnCall(oracle.Addr{Seg: 0xf67, Off: 0x36c6}, func(*oracle.Oracle) {
+			o.OnCall(oracle.Addr{Seg: 0xf67, Off: entry}, func(*oracle.Oracle) {
 				if err := o.SaveStateFile(filepath.Join(dir, "effect-entry.state")); err != nil {
 					t.Fatal(err)
 				}
@@ -123,6 +136,9 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 			for next < tr.DecisionStep && next < tr.StartStep+12000000 {
 				next += 2000000
 			}
+			if name == "player-fireball" {
+				next = tr.EndStep + 1
+			}
 			for o.Steps() < tr.EndStep {
 				if next >= tr.StartStep+12000000 {
 					next = tr.EndStep + 1
@@ -157,18 +173,25 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 }
 func TestBattleVFXRejectBeforeGuestWrites(t *testing.T) {
 	root, project, out := vfxRuntimePaths(t)
-	for _, name := range []string{"code", "selector", "mapping", "geometry"} {
+	for _, name := range []string{"code", "selector", "mapping", "geometry", "player-code", "player-selector", "player-caster", "player-geometry"} {
 		t.Run(name, func(t *testing.T) {
 			e, err := Open(Options{Root: root, Saves: t.TempDir()})
 			if err != nil {
 				t.Fatal(err)
 			}
 			defer e.Close()
-			if err = e.Oracle.LoadStateFile(filepath.Join(project, "workplace/probe-20261023/graphics-first/battle-r1/ai-policy-r1/special0-choice/baseline/before-decision.state")); err != nil {
+			player := strings.HasPrefix(name, "player-")
+			initial, entry := "workplace/probe-20261023/graphics-first/battle-r1/ai-policy-r1/special0-choice/baseline/before-decision.state", uint16(0x36c6)
+			if player {
+				initial, entry = "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/cast-r5/observed/player-effect.state", 0x345c
+			}
+			if err = e.Oracle.LoadStateFile(filepath.Join(project, initial)); err != nil {
 				t.Fatal(err)
 			}
-			if err = e.Oracle.RunUntil(oracle.At(oracle.Addr{Seg: 0xf67, Off: 0x36c6}), oracle.Budget(100000)); err != nil {
-				t.Fatal(err)
+			if !player {
+				if err = e.Oracle.RunUntil(oracle.At(oracle.Addr{Seg: 0xf67, Off: entry}), oracle.Budget(100000)); err != nil {
+					t.Fatal(err)
+				}
 			}
 			if e.Tracker == nil {
 				e.Tracker = &Tracker{}
@@ -187,12 +210,20 @@ func TestBattleVFXRejectBeforeGuestWrites(t *testing.T) {
 				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.SP + 4}, 6)
 			case "geometry":
 				e.Oracle.WriteU16(oracle.Addr{Seg: r.DS, Off: 0x7024}, 65535)
+			case "player-code":
+				v.playerBody[0] ^= 1
+			case "player-selector":
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.BP - 4}, 1)
+			case "player-caster":
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.DS, Off: 0x56e8}, 1)
+			case "player-geometry":
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.DS, Off: 0x7042}, 65535)
 			}
 			before, after := filepath.Join(out, "guard-"+name+"-before.state"), filepath.Join(out, "guard-"+name+"-after.state")
 			if err = e.Oracle.SaveStateFile(before); err != nil {
 				t.Fatal(err)
 			}
-			v.begin(e.Oracle)
+			v.beginFrom(e.Oracle, player)
 			if err = e.Oracle.SaveStateFile(after); err != nil {
 				t.Fatal(err)
 			}

@@ -594,3 +594,49 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 正常GUI首輪的視窗尋找期限30秒受共用主機負載影響而失敗；只把研究helper期限改為120秒，同一候選及流程乾淨重跑通過。CLI首輪60秒不足，保留已完成舊控制，只把同候選的新控制改120秒單獨重跑通過。兩者為驗證環境／期限問題，沒有因此改production。原r1診斷與修正helper均已保存。
 
 [收尾核對器](../../tools/check-vfx-integrity.py)在固定Pillow容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`核對現行／前版、188來源、素材、核心、圖庫、文件連結及26筆定位護欄。另加`--cleanup-restore`只移除與永久清單1535檔逐SHA相同的驗證副本；永久物件、研究原始控制與候選保持。Docker生命週期另由主機檢查，不掛Docker socket。
+
+## 玩家施法動畫事件研究
+
+本節DRAFT，接續已批准同規格動畫，不重問風格。先定位正常F4施法、法術目錄、可用資源、目標與效果起訖，確認可重播的玩家路徑後才寫READY。正式vfx-r2／188來源、r68全525素材與923核心保持；未知法術名稱與效果不猜補，不把敵方特殊0／2／5當成玩家施法契約。
+
+[IDA窄查](../../tools/export-player-spells-ida.py)沿既有IDA9.4／py312-v1、UID1000與HOME=/home/ubuntu，正式PAM.i64和PAM.AY唯讀掛載，只對tmp副本匯出，目前為`/out/ida-spells-r4.json`，舊r1至r3與當時工具另存。以既有無法施法字串來源DS:2A22h的候選定位與兩個效果入口caller為線索，輸出原bytes、operands、xref、函式邊界及相鄰父呼叫。候選定位不等於已證實用途；研究區沿既有battle-r1內`player-spells-r1/`，不新增交付目錄。
+
+窄查r2至r4補取址operand，因DS相對表沒有直接xref，不能以首輪空xref判斷沒有consumer。原字串DS:2A38h起八個戰鬥術、2AB8h起八個地圖術，仍以原Big5為準。候選戰鬥選單sub_1E692、減量sub_1E88E、分派sub_1E8A4及圖片／減員sub_219CC與敵方sub_21C36不同，不能直接放寬既有B入口。
+
+[玩家探針](../../tools/probe-player-spells.go)在Go1.24.13容器與923核心暫存副本建置，用`-root <唯讀原版> -state <固定原版戰鬥快照> -out <新目錄>`成對執行。最多100M步，只在第一個完整玩家回合入口明示配置後排施法者、已學法術與火球兩次資源，逐欄記錄修改。其餘只送原版Space／Enter，記錄選單、扣量、選敵、效果及返回；控制與觀測完整state須相同。這是受控施法研究，非自然習得或正常新遊戲驗收。
+
+[獨立核對](../../tools/audit-player-spells.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --out <新JSON> --catalog <新JSON>`核對IDA重定位bytes、16筆原Big5名稱、兩側固定初態／fixture／輸入／完整返回state及真正PON時序。catalog保留原檔偏移、DS偏移、原bytes與使用次數欄；不從名稱猜效果。研究首輪無初始輸入不前進，另一輪Space正確觸發取消並退還資源，均保留診斷，不能算成功施法。
+
+### 玩家火球術B接入READY契約
+
+本節READY。PAM SHA仍83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0。IDA9.4的27函式6715行原bytes已由MZ重定位獨立核對；cast-r5用固定原版完整快照、明示後排施法者與法術資源，不改亂數。只追加火球術，不將其餘15個名稱當成效果已完成。
+
+- 正常玩家回合sub_1FF1C的後排種類10／12會呼叫sub_1E8A4；sub_1E692列八種戰鬥術，sub_1E88E減DS:2AA8h。方向鍵依DS:709Ah的原導覽表選敵，Enter確認；Space取消回傳0EFEh，原呼叫者退還次數。受控成功組兩次資源變一次，種類6目標10人變0；取消組資源仍2。控制／觀測完整state、fixture前後及輸入皆相同，種子不重抽。
+- 火球共用圖片執行器為IDA MZ loader線性0x219CC至0x21BD2，共518 bytes。固定load0110h為0F67:345C，RETF為0F67:3661，父返回0F67:074A，父BP-4為法術0；六Arg為source slot、target slot、source row／col、target row／col。實際樣本為3／1／1／0／0／1。
+- HD才安裝，原版模式保持。入口驗完整PAM及518重定位bytes、DS／SS、caller、法術0、後排種類10／12、slot／row／col關係及邊界。來源查玩家6FB6h與703Ch座標表，目標701Eh；不得沿敵方的反向表。實際來源96,75、目標368,100與bitmap一致。未知分派或不合格入口只略過新光效，不寫客體或改結算。
+- 沿既有B的四次source0626提交、最後已發生cycles間隔與十二次PON 1／2／3／0，採同一Go繪圖、文字保留、有界快取、清除與RETF政策。原型三秒不接入，不延長原版動畫。控制器內記住本次來源陣營，避免另一側RETF清掉目前效果。
+- 同一188來源候選與r68／525素材、923核心，原敵方三種特殊效果及AI／規則回歸。新玩家完整執行器與原版控制、Frame純度、入口拒絕及Go來源場景代表抽驗通過後才提升；正常存讀沿既有B驗收，沒有新格式或規則。定稿仍用已保存B原圖，不重生成素材；新證據與程式另永久保存。
+
+[準備器](../../tools/prepare-player-fireball.py)在固定Pillow容器用`freeze --project --out <新player候選>`凍結188輸入；`gui --project --source <候選src> --out <新研究目錄>`沿既有B的私有Draw探針與正常XTEST前綴，替換為[玩家fixture](../../tools/player-fire-fixture.go)。只在研究副本給後排施法者、學習旗標與兩次資源，透過原版選單與導覽表送IRQ1 Enter／方向鍵，不固定改法術selector或目標。正式程式不含研究分支。
+
+[視窗執行器](../../tools/check-player-fire-gui.sh)在既有Go1.24.13／Ebiten容器傳入`<私有程式目錄> <唯讀原版> <r68> <新輸出>`，沿1800m／2CPU／128pids／420秒外層逾時與network none、Xvfb trap。正常新遊戲及募兵遇敵後，受控施法抽兩張實際Draw，完成即Ctrl+Q；不冒稱本輪自然習得或新存讀驗收。
+
+[核對／保存／提升器](../../tools/finalize-player-fireball.py)在固定Pillow容器使用`audit|archive|verify|promote --project <唯讀專案> --out <新JSON>`；保存與獨立重驗另設`--archive <preserved>`，提升設`--player <可寫player>`。audit核對188來源、七程式、四個完整執行器、八個拒絕案及兩張實際Draw；archive保存本批候選與研究，verify只掛永久preserved與工具逐物件解壓核對，無需原workplace。通過並保存後才promote，原版、r68及923核心不改。
+
+### 玩家火球術正式接入與限定驗收
+
+本節於2026-10-29限定CONFORMED。沿已授權相同規格，提升source-candidate-player-fire-r1／188來源七程式，僅改既有控制器與原版／故障測試。原敵方特殊0／2／5、r68全525素材與923核心保持。來源與目標表分陣營，四姿態／12PON共用B公式與事件時鐘；原版模式、傷害、規則、AI及存檔不變。
+
+| 面向 | 驗收結果 |
+|---|---|
+| 來源與原名 | IDA9.4匯出27函式6715行，MZ1301筆重定位後原bytes全符；16個原Big5名稱、檔案偏移與使用次數欄已入[索引](../images/player-spell-catalog-r1.json)。只有火球術的效果完成本輪動態驗收 |
+| 原版施法 | 固定02-active-before完整快照，明示後排種類10／50人、學習旗標及火球2次。原選單Enter、兩次Right及Enter選敵，次數2→1，種類6敵軍10→0，四來源姿態及12PON；控制／觀測完整final state與fixture前後相同。Space取消組資源退還至2且無效果入口 |
+| 正式程式 | 玩家與三個敵方執行器各同原版完整state，八次Frame前後純度、八個入口拒絕零客體寫入；B公式、文字保留、繪圖邊界與既有AI／結陣／戰術／標記／工具列回歸通過，無FAIL／SKIP。Go1.24.13測試69.421秒，vet及七程式建置通過 |
+| 實際視窗 | 正常冷啟動、新遊戲與募兵遇敵後，私有fixture只給後排施法者及資源，不改selector／目標；原版導覽送IRQ1鍵。飛焰Draw258及符光Draw260共兩張，由Go底圖／原始透明層／文字遮罩獨立重建逐像素相同，Frame前後客體同值。兩張已抽看，Ctrl+Q關窗，不稱自然習得或本輪存退讀 |
+| 永久保存 | 1045檔／590物件壓縮121537338 bytes，完整候選、七程式、原版控制、四輪IDA、探針及GUI原PNG／透明層保存。在未掛原workplace容器逐物件解壓及逐檔SHA核對通過後才提升；沒有另建大型還原副本，B完整圖庫1040檔保持 |
+
+[研究收據](../../preserved/player-fireball-research-r2.json)、[正式核對](../../preserved/player-fireball-audit-r1.json)、[提升](../../preserved/player-fireball-promotion-r1.json)、[永久保存](../../preserved/README.md#玩家火球術接入保存)與[實際畫面來源](../images/player-fireball-live-r1.json)為入口。027以`PON-PLAYER-FIREBALL-SAMPLED`回填原版caller，原26個AI定位鍵保持，另列玩家0x219CC鍵；不是重開材質或證明其餘15術效果。
+
+研究錯誤保留於同批：r1僅編譯時用錯cycles API；r2未送初始鍵，原版等待且沒有fixture，不算施法；r3觀測器把DS當圖像來源segment而拒絕錯誤幾何，改讀真實Arg1；r4的Space正確觸發取消，原版退還資源，不能把函式返回視為施法成功。r5沿原導覽表送Right／Enter後才進真正效果。獨立核對器首輪誤要求命中前只有一張來源，四筆實際提交否定該模型，修正核對器後通過；未改原版或正式繪圖遷就驗證。
+
+正常新遊戲與存退／冷讀沿上一節B已有驗收，這輪只加繪圖入口，不新增存檔或規則。其餘七戰鬥術、八地圖術與自然習得仍待驗。可選畫面微調不阻塞本項。[收尾](../../preserved/player-fireball-integrity-r1.json)由同工具的`integrity --project --archive --out`核對正式／前版、圖庫、回填負例、文件、語法與擁有權；Docker容器另由主機清理狀態核對。
