@@ -2440,3 +2440,15 @@ r4以已提交PON及合法context去重，錯phase仍取消。原版兩控制刻
 已證實的是來源／caller／原流程與本組限定Go光效接入；凝滯數值欄位完整玩法語意、全部地形結果及自然習得不因術名推定。新十術同快照原版控制與Go完整state／PCM一致，五案另同連續參考、五地圖案未同，保持原版oracle未知且不阻塞呈現；先前兩稀疏限制保留。光效採HD美化的1800000 CPU cycles提示時長，Go計算預乘符環並保護來源文字，不重製或解譯x86像素迴圈。原版條件拒絕仍由原版處理，cue不代表成功。
 
 原版F3是檢閱軍隊，F4才用法術；sub_1844C只接受Enter／Esc，鳥瞰先畫5600格再查鍵盤。這些輸入／觀測問題已按原bytes與PC修正研究腳本，不改遊戲。PNG會將Go預乘RGBA轉為直通alpha，獨立核對因此另保存原始RGBA，不從PNG假設原byte值。八份正常F4 Engine Frame及四份實際Draw獨立重建均同；[030限定驗收](docs/spec/030-battle-expansion-proposal.md#剩餘十術正式接入與限定驗收)與[永久保存](preserved/README.md#剩餘十術-go-光效保存)記錄停止線，無新核心修復／自然習得／新存讀／全遊戲完成聲明。
+
+## 2026-10-29：兵種容量與招募存檔交接
+
+輸入為固定PAM.AY，SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA Pro9.4／py312-v1映像`4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab`，Go1.24.13／923核心，Pillow11.3.0核對。正式原名、原始operand與位址全部保持，[匯出工具](tools/export-troop-capacity-ida.py)只讀副本，54函式／11708行均與原MZ按1000h重定位的bytes相符。IDA位址為MZ loader線性base10000h；原檔offset另列，不混用。
+
+已證實：名稱表IDA `0x30002`／原檔`0x21472`含26個10-byte位置，1至25的兵名沿既有原bytes；價格表候選緊接於IDA `0x30106`／原檔`0x21576`。名稱表沒有直接xref，不能判為未使用。普通購民兵參數種類1，實際讀單價1；其餘名稱與價格在本切片只記靜態表，不外推25種正常招募已走過。
+
+已證實：執行期PAM載入段0110h、此路段DS1E88h；戰略軍隊為DS相對054Ah起6筆種類／數量，各4 bytes，金錢04F8h、領導力04FAh。IDA `sub_15962`對同種或空槽回1；`sub_1593C`取種類mod5、餘0取5；`sub_158F0`累計6隊。執行期入口分別為0110:5962、0110:593C、0110:58F0。75份受控原版呼叫均符合，本組不涉及RND判定，也不宣稱第26種可被原EXE正常使用。
+
+正常路徑在執行前固定DOS時鐘12:00:00，冷啟動／新遊戲／移動／數字編輯購1人，DS軍隊30→31、金錢500→499。F7正常保存、全新Engine普通繼續，軍隊與金錢同值；實際0x9E000的2987 bytes等於落地進度，SHA `eaf461dc51279c16df3f9b8caa228149b903ce10f5dc7f857f4fa32ffbc89912`。獨立gob解碼器不執行客體，Python另從RAM核對前後054Ah、04F8h及冷讀緩衝區。控制helper在原正常交易之後才明示改RAM並用原快照隔離，不能拿它們冒稱自然遇到新兵種。
+
+Go自有33-profile原型的八候選沿openKB固定參考資料，以獨立字串ID避開原種類表；gold／HP／skill只供試算，特性是未啟用的參考標記。六次招募、附檔磁碟往返、另一程序讀回與錯檔拒絕通過，既有原版模式不改。使用者最後指定先Go、後Rust，並要求處理存檔；自有招募UI、戰場、資源同步及正式存檔生命週期仍DRAFT。證據與限制集中[030](docs/spec/030-battle-expansion-proposal.md#兵種編號與存檔容量研究)、[核對](preserved/troop-capacity-audit-r1.json)及[永久保存](preserved/README.md#兵種容量與自有招募存檔原型)，原RE追到足夠交接即停止。

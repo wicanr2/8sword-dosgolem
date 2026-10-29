@@ -1,5 +1,11 @@
 # 必要資料永久保存
 
+## 兵種容量與自有招募存檔原型
+
+[030研究](../docs/spec/030-battle-expansion-proposal.md#兵種編號與存檔容量研究)與[可操作離線原型](../docs/images/owned-army-prototype-r1.html)的完整資料保存於本機`preserved/troop-capacity-r1/`，共509檔／281去重物件，壓縮20463875 bytes。本組保存固定IDA輸出、原版兩輪招募、真正F7進度／冷讀快照／解碼RAM、自有Go原型、六隊招募與存檔、另一程序讀回、故障測試及瀏覽器檢查。新增兵種仍是DRAFT原型，沒有提升正式玩家路徑。
+
+[逐檔清單](troop-capacity-r1.json)、[獨立核對](troop-capacity-audit-r1.json)、[保存收據](troop-capacity-preservation-r1.json)、[脫離workplace核對](troop-capacity-verification-r1.json)及[收尾核對](troop-capacity-integrity-r1.json)為入口。使用[工具](../tools/audit-troop-capacity.py)的`verify --archive <唯讀preserved> --out <新JSON>`在Pillow11.3.0 Docker逐SHA／長度核對，按索引path及mode可解gzip還原，無須原workplace。原版、923核心、535素材與離線模組沿[十曲保存](hd-music-r1.json)及[完整catalog](catalog.json.gz)。完整RAM、進度、二進位及IDA輸出只留本機，不加入Git；目前Git文件優先於歷史DRAFT快照。
+
 ## 十曲HD音樂保存
 
 本組沿[008接入契約](../docs/spec/008-music-events-and-playback.md#十曲同規格接入契約)保存2012檔／1733去重物件，壓縮326724927 bytes。完整十首Ogg、九首來源與製作命令、試聽頁、正常選曲PCM、完整Frame／客體state、193來源、七程式、923核心及535素材位於本機`preserved/hd-music-r1/`，不依賴workplace。原版與離線模組依賴沿既有[完整catalog](catalog.json.gz)，完整本機物件與音樂不加入Git。

@@ -1,10 +1,12 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-10-29使用者確認「先用go，之後再轉換成rust」，並要求一併處理存檔。現階段沿Go版dosgolem及Go前端擴充兵種、招募與AI；Rust遷移留後續。原版容量／存讀及自有Go原型見[030兵種研究](docs/spec/030-battle-expansion-proposal.md#兵種編號與存檔容量研究)、[離線原型](docs/images/owned-army-prototype-r1.html)與[永久保存](preserved/README.md#兵種容量與自有招募存檔原型)。原型已有25原版／8獨立ID候選、招募交易及SHA綁定存讀，尚未進正式玩家路徑；新增兵種的平衡、戰鬥、資源同步與存檔生命週期仍須READY後接入。正式193來源／七程式、923核心、r69全535素材與1040原圖保持，以CONTEXT最上列為準。
+
 十首HD配樂已沿使用者「後續都照相同規格處理，不用再詢問」的持續授權接入r69全535素材，〈幻〉及原524檔保持。入口為[008限定驗收](docs/spec/008-music-events-and-playback.md#十曲正式提升與限定驗收)及[永久保存](preserved/README.md#十曲hd音樂保存)。[合併工具](tools/finalize-hd-music.py)在固定Pillow11.3.0容器處理`prepare/archive/verify/promote/integrity`；`audit`使用既有FFmpeg5.1.9容器，參數見008與工具說明。七程式／193來源／923核心不變，不重建、不重開配器訪談；九首人耳聽感及全部玩法觸發仍未驗，不能稱逐首批准或公開授權。
 
 使用者於2026-10-29明確授權：「後續都照相同規格處理，不用再詢問」。後續已確認目標內的同規格美術、動畫與HD接入，自主完成樣式延伸、來源查證、READY契約、Go實作、代表抽驗、永久保存、正式提升及私人GitHub紀錄，不再逐張選樣或重問接入同意。風格沿已批准的原版配色與中國古風，動畫沿[030 B接入規格](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入ready契約)，繪圖沿[047模式分流](docs/spec/047-hd-scene-renderer.md#hd與原版模式分流追加契約)，保存沿[永久圖庫](artwork/README.md)與[必要資料保存](preserved/README.md)。保留原版模式、已定規則與存檔契約，依共用機制抽驗，不逐隻重跑GUI；未知語意自行查證並標示證據等級，不猜補。這項持續授權優先於舊文件對同規格工作逐項詢問的要求。
 
-現行程式為source-candidate-map-color-r2／193來源七程式與r68／525素材，923核心保持，依[030彩光限定驗收](docs/spec/030-battle-expansion-proposal.md#地圖彩光正式提升與限定驗收)提升。八種玩家戰鬥術及八種地圖術均有Go HD演出；B五術／敵方特殊、地震列搬移沿已驗機制，凝滯／複製與地圖八術新增純Go符環提示。原版模式、判定、使用次數、RNG、AI、規則、時鐘及存檔保持。十術同快照完整state／PCM、既有回歸及七程式通過，八種正常F4 Engine畫面與四份凝滯／複製實際Draw獨立重建。自然習得、原版所有分支及若干快照／連續等價性仍未驗；不是全遊戲完成聲明。以下較早數字保存當時驗收，現況以本列與CONTEXT為準。
+彩光驗收當時為source-candidate-map-color-r2／193來源七程式與r68／525素材，923核心保持，依[030彩光限定驗收](docs/spec/030-battle-expansion-proposal.md#地圖彩光正式提升與限定驗收)提升。八種玩家戰鬥術及八種地圖術均有Go HD演出；B五術／敵方特殊、地震列搬移沿已驗機制，凝滯／複製與地圖八術新增純Go符環提示。原版模式、判定、使用次數、RNG、AI、規則、時鐘及存檔保持。十術同快照完整state／PCM、既有回歸及七程式通過，八種正常F4 Engine畫面與四份凝滯／複製實際Draw獨立重建。自然習得、原版所有分支及若干快照／連續等價性仍未驗；不是全遊戲完成聲明。以下較早數字保存當時驗收，現況以本檔最上列與CONTEXT為準。
 
 [地圖彩光](tools/map-spell-color.py)沿相同193來源，只改八地圖術的色彩／底光／粗環及3600000 CPU cycles提示，戰場維持1800000與逐像素前版。r1整個Actor cell避讓造成方形缺口，未提升；r2按HD人物Tile實際alpha避讓。來源Actor格、Tile alpha、完整HD遮罩與八張正常F4 Frame已獨立重建。[永久保存](preserved/README.md#地圖法術彩光保存)含1412檔／427物件，原版模式、結果、時鐘、存檔、923核心／525素材／1040原圖保持；不將Engine Frame冒稱新Ebiten視窗驗收。
 

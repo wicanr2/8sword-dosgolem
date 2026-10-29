@@ -1,0 +1,36 @@
+{
+  "status": "passed-troop-capacity-and-owned-army-prototype",
+  "production": false,
+  "ida_functions": 54,
+  "ida_instruction_lines": 11708,
+  "helper_cases": 75,
+  "profiles": 33,
+  "native_before_count": 30,
+  "native_after_count": 31,
+  "native_before_gold": 500,
+  "native_after_gold": 499,
+  "native_save_sha256": "eaf461dc51279c16df3f9b8caa228149b903ce10f5dc7f857f4fa32ffbc89912",
+  "native_save_bytes": 2987,
+  "native_fresh_engine": true,
+  "owned_disk_roundtrip": true,
+  "owned_cold_process_equal": true,
+  "owned_transactions": 6,
+  "owned_source_sha256": {
+    "research-owned-army.go": "f1be4135bd11cfb2c3ab8283d76ea151da0c19f31bf4fb260fd85d21caf6cd86",
+    "research-owned-army_test.go": "cae69608c5a1f80bda5a991115a415265fed68f771cd3e2705b2c776815dcf60"
+  },
+  "owned_binary_sha256": "62876ce68db9af0e227b01ce4955c51272db681039922be33be09ea0df554fda",
+  "browser_receipt_sha256": "0b04e7f4c02c3f10fca6cf620c1bc1fe4c7ba7c94bb40e3f05f7aa8dfc3d2c57",
+  "unchanged_sources": 193,
+  "unchanged_programs": 7,
+  "unchanged_core": 923,
+  "unchanged_assets": 535,
+  "prototype_catalog_sha256": "07d6a012b89c788fc17547636b05c2b71aa79fed6d2cdb8d2f79952805f140e4",
+  "audit_tool_sha256": "01dba90a1dd3f52ea5024e3b265f5999ae6ab539e75c629672cf3f51e996b29a",
+  "limits": [
+    "New units exist only in a disposable Go prototype; not connected to normal recruitment or battle UI.",
+    "Native helper contracts and one ordinary purchase are verified; no full overflow or all-native-rule parity claim.",
+    "OpenKB prototype gold/HP/rank are reference values; abilities are inactive metadata.",
+    "Owned sidecar remains DRAFT: integration must own resource reconciliation, native-mode refusal and save lifecycle; not a production save format."
+  ]
+}
