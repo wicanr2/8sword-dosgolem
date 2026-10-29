@@ -1,0 +1,68 @@
+{
+  "status": "passed-scoped-vfx-lifecycle",
+  "cases": [
+    {
+      "case": "special0-choice",
+      "selector": 0,
+      "source_xy": [
+        456,
+        75
+      ],
+      "target_xy": [
+        184,
+        100
+      ],
+      "source_pose_intervals": [
+        196394,
+        194504,
+        199207
+      ],
+      "end_step": 62949945,
+      "full_state_equal": true
+    },
+    {
+      "case": "special2-choice",
+      "selector": 2,
+      "source_xy": [
+        456,
+        75
+      ],
+      "target_xy": [
+        184,
+        100
+      ],
+      "source_pose_intervals": [
+        196394,
+        194504,
+        199207
+      ],
+      "end_step": 63537443,
+      "full_state_equal": true
+    },
+    {
+      "case": "special5-empty-original",
+      "selector": 5,
+      "source_xy": [
+        456,
+        75
+      ],
+      "target_xy": [
+        184,
+        150
+      ],
+      "source_pose_intervals": [
+        196394,
+        194504,
+        199207
+      ],
+      "end_step": 62337289,
+      "full_state_equal": true
+    }
+  ],
+  "source_table": "DS:701E + row*6 + col*2",
+  "target_table": "DS:703C + row*6 + col*2",
+  "return_point": "runtime 0F67:38CB before RETF",
+  "limits": [
+    "Three controlled selectors; no player spell names or whole-game reachability claim."
+  ]
+}

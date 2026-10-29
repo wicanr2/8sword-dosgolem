@@ -18,6 +18,7 @@ type Options struct {
 	BattleRules         string
 }
 type Engine struct {
+	battleVFX            *battleVFX
 	rules                *battleRulesController
 	battleAI             *battleAIController
 	completion           *completionAssets
@@ -306,6 +307,9 @@ func Open(opt Options) (*Engine, error) {
 	return e, nil
 }
 func (e *Engine) Close() {
+	if e.battleVFX != nil {
+		e.battleVFX.cancel("close")
+	}
 	if e.sourceClose != nil {
 		e.sourceClose()
 	}
@@ -329,6 +333,7 @@ func (e *Engine) RenderAudio() []int16 {
 }
 func (e *Engine) EnableLiveClock(perMS uint64) { e.Oracle.SetDOSBoxCycles(perMS) }
 func (e *Engine) AdvanceCycles(n uint64) (result error) {
+	defer e.syncBattleVFX()
 	defer func() {
 		if result == nil {
 			result = e.syncRulesSave()
@@ -408,6 +413,7 @@ func (e *Engine) AdvanceCycles(n uint64) (result error) {
 	return nil
 }
 func (e *Engine) Advance(n uint64) (result error) {
+	defer e.syncBattleVFX()
 	defer func() {
 		if result == nil {
 			result = e.syncRulesSave()
@@ -664,6 +670,7 @@ func (e *Engine) Status() map[string]any {
 	out := map[string]any{"steps": e.Oracle.Steps(), "mode": e.Oracle.VideoMode(), "pam_loaded": e.PAMLoaded, "hd": e.HD, "asset_error": e.AssetError, "graphics_error": e.GraphicsError, "exited": e.Exited, "exit_code": e.ExitCode, "bios_consumed": e.Oracle.KeysConsumed(), "irq1_delivered": e.Oracle.IRQ1Delivered(), "unimplemented": e.Oracle.Unimplemented(), "input_events": e.InputEvents, "exec_log": e.Oracle.ExecLog(), "file_ops": e.Oracle.FileOps()}
 	out["battle_ai"] = e.BattleAIStatus()
 	out["battle_rules"] = e.BattleRulesStatus()
+	out["battle_vfx"] = e.BattleVFXStatus()
 	out["completion_error"] = e.CompletionError
 	out["completion_assets"] = e.completion.status()
 	out["source_renderer"] = e.sourceEnabled

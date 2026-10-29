@@ -1,8 +1,18 @@
 # 必要資料永久保存
 
+## B飛焰正式接入保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入與限定驗收)已提升source-candidate-vfx-r2／188來源七程式，r68全525素材及923核心保持。[正式核對](vfx-engine-audit-r1.json)、[生命週期](vfx-lifecycle-audit-r2.json)與[提升收據](vfx-engine-promotion-r1.json)分開記錄。正常戰鬥與存讀通過，受控GUI的一次飛焰／符光已用實際Draw獨立重建；不稱自然施法。
+
+[永久清單](vfx-engine-r1.json)保存1535檔／676物件、188117386 bytes，含兩版188來源候選、七程式、原版生命週期、測試、GUI正常與受控局面、三份存檔及原始透明層。372份未變原型檔沿下節舊清單，不重複壓縮。完整物件在本機`vfx-engine-r1/`，Git只保存工具、索引、收據及縮小畫面。[捕獲](vfx-engine-preservation-r1.json)與[無原workplace還原](vfx-engine-restoration-r1.json)均通過。B完整63張PNG與程序來源另外保存於[永久圖庫](../artwork/README.md#b飛焰與命中符光)，全1040檔已重驗。
+
+[保存器](../tools/archive-vfx-engine.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲。只掛preserved與工具，使用`--verify`核對，另加`--restore <空白目錄>`還原。本批按原路徑覆蓋還原的舊原型；原版、923核心、模組與r68其餘素材仍沿既有catalog。完整使用方式見030。
+
+[收尾核對](vfx-engine-integrity-r1.json)由[核對器](../tools/check-vfx-integrity.py)驗現行／前版、完整圖庫、三份存檔、26筆定位及六種缺勘誤負例、文件與擁有權。此核對須先將完整本批還原至`preserved/restore-checks/vfx-engine-r1/`。本輪1535份驗證副本逐SHA核對後清除，釋放318893642 bytes；永久物件及研究候選保持，沒有清理其他專案Docker資源。
+
 ## 特殊攻擊動畫原型保存
 
-[030 DRAFT](../docs/spec/030-battle-expansion-proposal.md#戰鬥特殊效果的動畫觀測)保存三組敵方特殊0／2／5的只讀動畫觀測。71次圖片全辨識，其中36次既有PON火花，完整返回state同無觀測及歷史原版；[觀測收據](battle-vfx-observation-r1.json)不代表玩家法術名稱或自然施法已證實。A符光／B飛焰的[互動原型](../docs/images/battle-vfx-prototype-r1.html)仍待選樣式，未接正式遊戲。
+[030原型研究](../docs/spec/030-battle-expansion-proposal.md#戰鬥特殊效果的動畫觀測)保存三組敵方特殊0／2／5的只讀動畫觀測。71次圖片全辨識，其中36次既有PON火花，完整返回state同無觀測及歷史原版；[觀測收據](battle-vfx-observation-r1.json)不代表玩家法術名稱或自然施法已證實。A符光／B飛焰的[互動原型](../docs/images/battle-vfx-prototype-r1.html)保留歷史，使用者後續已選B並依上節接入正式遊戲。
 
 [永久清單](battle-vfx-r1.json)含387檔／125物件、19420833 bytes，保存原始控制、三份既有參考trace／決策前state／返回state、兩版Go輸出、兩輪瀏覽器、完整頁面及工具。完整物件留本機`battle-vfx-r1/`；11張既有永久素材另列逐SHA依賴，不改定稿原圖。[捕獲](battle-vfx-preservation-r1.json)、[無workplace完整還原](battle-vfx-restoration-r1.json)與[Go離線重建](battle-vfx-reproduction-r1.json)通過，132份輸出逐SHA相同。驗證副本已移除，釋放29149866 bytes，永久物件與研究不刪。
 

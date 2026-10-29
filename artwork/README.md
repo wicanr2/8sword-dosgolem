@@ -1,5 +1,13 @@
 # 定稿原圖永久保存
 
+## B飛焰與命中符光
+
+使用者已選定[共用特殊攻擊B樣式](battle-vfx-b-approved-r1.json)。61張原生Go透明影格、兩張完整樣張、原始Go產生器及幾何／確認紀錄保存於`approved/masters/battle-vfx-b-r1/`與`approved/provenance/battle-vfx-b-r1/`，加入[逐檔清單](manifest.json)。這是程序繪圖，沒有image_gen提示；原型時間仍是示意，不當正式時鐘。
+
+[追加保存工具](../tools/prepare-vfx-engine.py)在固定Pillow11.3.0容器以`approved --project <唯讀專案> --artwork <可寫artwork> --out <新收據>`逐SHA複製，不覆寫不同檔案；既有manifest列保持。保存後可用既有[原圖核對器](../tools/archive-approved-art.py)的`--verify --archive <唯讀artwork>`獨立驗證，不需workplace。
+
+[捕獲收據](battle-vfx-b-preservation-r1.json)記錄新增66檔，其中63張PNG；目前共1040檔。[重驗計畫](battle-vfx-b-recheck-plan-r1.json)逐列核對本批，沿[獨立核對](../preserved/vfx-approved-art-recheck-r1.json)重驗全部永久圖庫。核對器允許manifest已含後續追加，但既有每列必須完全一致；保留原捕獲metadata，不用舊計畫覆寫新清單。
+
 ## 全圖形HD圖庫
 
 已辨識的333筆圖形都有HD圖像，包含變體、重複及編輯圖集。[離線可搜尋圖庫](all-graphics-hd-gallery-r2.html)可依原檔名、分類與正式接入狀態篩選，點圖開啟本機完整材質。圖庫內嵌縮小比較，完整PNG仍在本機；比較圖不冒稱GUI擷取。

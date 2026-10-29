@@ -38,6 +38,7 @@ func main() {
 	root := flag.String("root", "", "read-only original")
 	batch := flag.String("batch", "", "existing battle study")
 	out := flag.String("out", "", "new output")
+	lifecycle := flag.Bool("lifecycle", false, "record clocks, six arguments, geometry and exact return")
 	flag.Parse()
 	if _, e := os.Stat(*out); !os.IsNotExist(e) {
 		panic("output exists")
@@ -111,6 +112,10 @@ func main() {
 						b := o.Bytes(ptr, 4+w*h*site.planes)
 						r := o.Regs()
 						v := map[string]any{"entry_step": o.Steps(), "entry": site.entry, "return": site.ret, "runtime_segment": 0x14d2, "planes": site.planes, "xywh": []int{int(o.Arg(2)) * 8, int(o.Arg(3)), w * 8, h}, "source_sha256": hash(b), "native_sha256": hash(b[:4+w*h*4]), "ds": r.DS, "destination": o.Word(oracle.Addr{Seg: r.DS, Off: 0x748a})}
+						if *lifecycle {
+							v["entry_cycles"] = o.Cycles()
+							v["entry_ticks"] = o.Ticks()
+						}
 						pending[site.entry] = v
 					})
 					o.OnCall(oracle.Addr{Seg: 0x14d2, Off: site.ret}, func(o *oracle.Oracle) {
@@ -119,6 +124,10 @@ func main() {
 							return
 						}
 						v["return_step"] = o.Steps()
+						if *lifecycle {
+							v["return_cycles"] = o.Cycles()
+							v["return_ticks"] = o.Ticks()
+						}
 						events = append(events, v)
 						delete(pending, site.entry)
 						if len(events) <= 24 {
@@ -134,7 +143,42 @@ func main() {
 						if len(events) >= 256 {
 							panic("event budget")
 						}
-						events = append(events, map[string]any{"effect_entry": ip, "step": o.Steps(), "source_slot": o.Arg(0), "target_slot": o.Arg(1), "amount": o.Word(oracle.Addr{Seg: o.Regs().DS, Off: 0x8cb2})})
+						v := map[string]any{"effect_entry": ip, "step": o.Steps(), "source_slot": o.Arg(0), "target_slot": o.Arg(1), "amount": o.Word(oracle.Addr{Seg: o.Regs().DS, Off: 0x8cb2})}
+						if *lifecycle {
+							r := o.Regs()
+							args := []uint16{}
+							for j := 0; j < 6; j++ {
+								args = append(args, o.Arg(j))
+							}
+							v["args"] = args
+							v["cycles"] = o.Cycles()
+							v["ticks"] = o.Ticks()
+							v["ds"] = r.DS
+							v["ss"] = r.SS
+							v["sp"] = r.SP
+							v["bp"] = r.BP
+							v["caller_ip"] = o.Word(oracle.Addr{Seg: r.SS, Off: r.SP})
+							v["caller_cs"] = o.Word(oracle.Addr{Seg: r.SS, Off: r.SP + 2})
+							v["caller_selector"] = o.Word(oracle.Addr{Seg: r.SS, Off: r.BP - 4})
+							v["position_table"] = o.Bytes(oracle.Addr{Seg: r.DS, Off: 0x703c}, 24)
+							for _, pair := range []struct {
+								name           string
+								row, col, base uint16
+							}{{"source_xy", args[2], args[3], 0x701e}, {"target_xy", args[4], args[5], 0x703c}} {
+								if pair.row > 3 || pair.col > 2 {
+									panic("position argument")
+								}
+								at := pair.base + pair.row*6 + pair.col*2
+								v[pair.name] = []int{int(o.Byte(oracle.Addr{Seg: r.DS, Off: at})) * 8, int(o.Byte(oracle.Addr{Seg: r.DS, Off: at + 1}))}
+							}
+						}
+						events = append(events, v)
+					})
+				}
+				if *lifecycle {
+					o.OnCall(oracle.Addr{Seg: 0xf67, Off: 0x38cb}, func(o *oracle.Oracle) {
+						r := o.Regs()
+						events = append(events, map[string]any{"effect_return": 0x38cb, "step": o.Steps(), "cycles": o.Cycles(), "ticks": o.Ticks(), "ss": r.SS, "sp": r.SP})
 					})
 				}
 			}

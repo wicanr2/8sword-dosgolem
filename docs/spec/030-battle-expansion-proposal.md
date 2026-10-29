@@ -542,3 +542,55 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 [離線重建核對](../../tools/check-battle-vfx-restore.py)在固定Pillow容器只掛preserved、工具及永久artwork，使用`--archive <preserved> --restore <preserved/restore-checks/battle-vfx-r1> --artwork <永久artwork> --out <新JSON>`。完整還原後從永久11張素材重跑已保存的原生Go二進位，132份輸出須逐SHA同render-r2；通過才刪明確還原驗證副本，研究及永久物件保持，不讀原workplace或原版遊戲。
 
 [收尾核對](../../tools/audit-battle-vfx-final.py)在固定Pillow容器以`--project <唯讀專案> --out <新JSON>`核對正式七程式／184來源／525素材／923核心保持、原型及來源收據、Go vet／格式、瀏覽器、離線重建及文件／擁有權。不要求重跑遊戲或完整GUI，仍以DRAFT結案，不提升任何動畫程式。
+
+### B樣式確認與事件生命週期窄查
+
+使用者於2026-10-29明確選B「飛焰＋命中符光」。樣式已確認，不再詢問；正式接入仍須本節DRAFT的事件契約。只強化已驗特殊0／2／5的共用sub_21C36，HD由Go繪製，原版模式、規則、AI、傷害、原版播放時鐘及存檔保持。原型的三秒與100000步餘光不提升為正式時序。
+
+既有IDA9.4匯出保留原名與位址：sub_21C36為IDA MZ loader線性0x21C36至0x21E3C，對應固定載入0110h的執行期0F67:36C6至38CB RETF。原始bytes顯示703Ch表以row×6＋col×2取x-byte／y，六個參數中來源位置取Arg2／3，目標取Arg4／5；這裡先列待動態核對，不因靜態表就宣稱全部陣位可達。`probe-battle-vfx.go -lifecycle`沿前三組固定控制，追加六參數、原24-byte表、虛擬cycles／ticks、父selector與精確RETF事件，仍須完整state同歷史原版。研究輸出沿battle-vfx-r1內的新lifecycle版本，不重開圖片／遮罩逆向。
+
+追加勘誤：來源實際用701Eh，落點用703Ch。sub_23A42的IDA原bytes明確分開兩表；首輪來源表假設會給96,75，與真正來源456,75不符，拒絕提升。修正探針後，三組來源456,75及落點184,100／184,150均與實際bitmap參數一致，RETF的SS／SP保持，下一步即歷史返回；完整state仍同原版。三個來源影格間隔約194504至199207虛擬cycles，只作已發生事件間隔，不當未來固定時間。原r1及工具保留，新證據為lifecycle-r2與lifecycle-audit-r2.json。
+
+### B飛焰正式接入READY契約
+
+本節READY，沿上節已驗來源、Arg、兩表、selector與返回；PAM SHA仍83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0。使用者已確認B，外觀以[定稿保存](../../artwork/battle-vfx-b-approved-r1.json)為準。只強化敵方特殊0／2／5的共同sub_21C36，不稱玩家法術或擴充規則。
+
+- 只有HD的Go來源場景安裝。原版模式不裝VFX，AI／native／formation／tactics、音樂、原版時鐘及2987-byte存檔保持。無新增工具列或存檔欄，r68全525檔及923核心不改；Go程序繪製，不需要新材質包。
+- 入口驗完整PAM／重定位後sub_21C36的518 bytes、DS／SS、父caller 0E0Dh及0F67段的等價載入位置、父selector0／2／5與六參數。source／target slot須0至5，row0至1／col0至2且slot=row×3+col。701Eh與703Ch讀出的88×50矩形須在640×200內。未知caller／分派或不支援幾何只略過可選新光效，既有HD圖片保持；不更改任何客體欄。
+- 像素後端接Go來源場景的已完成typed bitmap，來源出手0626依來源矩形前四次提交推進飛焰。平滑插值只讀目前cycles與最後兩個已完成影格的間隔，第一次未有間隔時停在來源，不使用未來trace或原型三秒。進度最多0.95，真正PON提交切命中，不額外等待飛焰抵達。
+- PON只接受完整六平面SHA及04F2來源，順序1／2／3／0共12次，落點須一致。符光進度按已提交的ordinal推進；不套100000步餘光。第一次目標重繪、原版RETF、清屏、換頁、場景panel或結局／退出清除。新事件、倒退時鐘或10M步守門可取消未完成視覺，無殘留或額外客體行動。
+- 原生Go以已批准相同的光點／符圈／飛焰公式繪製到1920×1200透明材質，沿原型960×600比例提高取樣。合成底圖只來自Go owned scene，不讀原版RGB。原生文字所有權的3×6區塊保留，避免覆蓋兵數與字形；來源與落點外不染色。完整base與已返回Frame不可被就地改寫，快取只保留最後一份有界結果。
+- 渲染不推進CPU／亂數／時間、不寫RAM，影格／診斷可變不等於客體變更。狀態只記已綁定、階段、次數、取消／略過理由與有界位置，不保存未完成光效；正常讀檔從空狀態開始。
+- 驗收抽三組既有完整原版控制、前後state及重複Frame純度；原型比例取樣、文字保留、清除／倒退／錯誤來源／未知分派與原版模式隔離。正常GUI沿已驗新遊戲／募兵／戰鬥／F7存讀做最小回歸；另以明示的研究fixture觸發一組真實HD Engine飛焰／符光及實際Draw，不能冒稱自然施法。完整來源、候選與收據永久保存後才提升七程式，不重跑逐隻圖形或完整結局。
+
+[候選準備](../../tools/prepare-vfx-engine.py)在Pillow容器使用`freeze --project <唯讀專案> --player <player> --out <新候選目錄>`，保留既有184輸入再加四份VFX來源／測試，共188。原版三組直接在原執行器上掛只讀控制器，合成底圖只供測試渲染純度，不冒稱正常HD圖像；真正Go來源場景另由GUI抽驗。
+
+[隔離GUI準備](../../tools/prepare-vfx-gui.py)在同容器用`--project --source <候選src> --out <新研究目錄>`，只改私有副本的main與診斷入口，加入[研究探針](../../tools/vfx-gui-probe.go)。明示fixture在首個敵方回合保留已載入unit0作種類12／50人後排，原版分派最多八次固定0；沒有新增production旗標或遊戲分支。保留所有記憶體修改，不能據此認定載入前的圖形等於種類12素材。
+
+[視窗執行器](../../tools/check-vfx-gui.sh)在Go1.24.13／Ebiten容器接`<程式目錄> <XTEST helper> <唯讀原版> <唯讀r68> <新輸出> fixture|normal`。fixture只執行隔離程式，normal用正式候選與前輪正常工具列driver。沿1800m／2CPU／128pids／420秒外層逾時及network none，Xvfb有trap；fixture用cycles3000便於取短效果，normal保留20000。研究Draw保存不可變中央Frame、實際上傳用Frame、Go底圖、透明材質及文字遮罩；X11畫面另列鄰近時點，不冒稱同一精確Frame。Frame前後完整state必須相同。
+### B效果的冷啟動讀檔抽驗
+
+[冷讀工具](../../tools/check-vfx-cold.sh)在既有Go1.24.13／Ebiten容器，傳入正式候選、正常XTEST helper、唯讀原版、r68素材及已完成正常存檔目錄。沿原存檔與設定以auto規則冷啟動，核對戰術模式恢復、HD來源繪圖啟用及效果初始狀態為空；另以eightsword-inspect的`-until 0 -save-buffer`核對2987 bytes。原版規則與存檔欄位不變。
+
+[正式核對與提升器](../../tools/audit-vfx-engine.py)在固定Pillow11.3.0容器用`--project <唯讀專案> --out <新JSON>`核對188來源、七程式、525素材、923核心、三組原版完整state、實際Draw獨立合成及正常存讀。通過且永久保存後，另掛可寫player，傳入`--player --audit <通過收據> --promote`才提升七程式，保留前版及r68。
+
+[正式保存器](../../tools/archive-vfx-engine.py)在同容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`保存候選、生命週期研究、正式測試與GUI收據。既有原型未變檔沿battle-vfx-r1索引，不重複壓縮；已批准完整圖另沿永久artwork。只掛preserved與工具時用`--verify`核對，加`--restore <空白目錄>`還原。本批與既有原型物件可按原相對路徑合併，原版、r68與核心另沿既有catalog，不依賴保留原workplace。
+
+### B飛焰正式接入與限定驗收
+
+本節於2026-10-29限定CONFORMED。使用者已明選B，正式提升source-candidate-vfx-r2的188來源七程式，r68全525素材與923核心逐SHA保持。前版tactics-r2及兩版VFX候選保持。控制器與Go繪圖只讀客體，原版模式不綁定；傷害、AI、規則、音樂、時鐘及2987-byte原版進度不變。範圍只含已抽驗敵方特殊0／2／5的共用入口，不涵蓋玩家法術目錄或新玩法。
+
+| 驗收項 | 結果 |
+|---|---|
+| 原版控制與客體純度 | 三組完整原版執行器各同歷史final state；每組4個來源姿態與12個PON。六次Frame前後完整state相同，四個code／selector／mapping／geometry負例零客體寫入。測試底圖為明示合成底，真正HD另由GUI驗 |
+| Go呈現 | 飛焰及符光公式在2倍取樣下同已批准PNG，文字所有權保留、底圖不變、快取／清除及未知PON拒絕通過。新舊CLI冷啟動400萬步的完整state及畫面相同 |
+| 既有規則 | AI、結陣、戰術試作、標記、工具列及模式測試通過，沒有FAIL／SKIP；Go1.24.13 vet及七程式建置通過 |
+| 真正視窗 | 未改候選沿正常新遊戲、募兵、自然戰鬥、規則鎖定、獨立AI、F7存退及auto冷讀tactics通過。另以隔離敵軍fixture觸發一次完整效果，四姿態／12PON／9個效果Frame，flight及impact各取一張實際Draw；由Go底圖、原始透明層、文字遮罩獨立重建逐像素相同 |
+| 存檔 | 正常存後、冷讀及受控存後三份快照以inspect零步只讀，各2987-byte緩衝區同各自實檔；冷讀沒有殘留效果。正常存檔SHA為bf953ccc…bc2c9，受控為798119bf…34501 |
+| 永久保存 | 新增B的66檔含63張完整PNG，永久圖庫1040檔獨立通過。新候選及必要證據1535檔／676物件，壓縮188117386 bytes，未掛原workplace完整還原通過；舊原型未變372檔沿前版保存，不重複壓縮 |
+
+[正式核對](../../preserved/vfx-engine-audit-r1.json)、[生命週期](../../preserved/vfx-lifecycle-audit-r2.json)、[提升](../../preserved/vfx-engine-promotion-r1.json)與[保存／還原](../../preserved/README.md#b飛焰正式接入保存)為證據入口。[README畫面](../images/battle-vfx-b-live-impact-r1.png)來自受控局面的實際Draw，[來源](../images/battle-vfx-b-live-r1.json)記錄原PNG、SHA、step及縮小方法。X11截圖為鄰近時點，沒有混作同一精確Frame；自然戰鬥本局未觸發新效果，不稱自然施法成功。畫面抽看飛焰及符光即可，不逐隻重驗。
+
+正常GUI首輪的視窗尋找期限30秒受共用主機負載影響而失敗；只把研究helper期限改為120秒，同一候選及流程乾淨重跑通過。CLI首輪60秒不足，保留已完成舊控制，只把同候選的新控制改120秒單獨重跑通過。兩者為驗證環境／期限問題，沒有因此改production。原r1診斷與修正helper均已保存。
+
+[收尾核對器](../../tools/check-vfx-integrity.py)在固定Pillow容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`核對現行／前版、188來源、素材、核心、圖庫、文件連結及26筆定位護欄。另加`--cleanup-restore`只移除與永久清單1535檔逐SHA相同的驗證副本；永久物件、研究原始控制與候選保持。Docker生命週期另由主機檢查，不掛Docker socket。

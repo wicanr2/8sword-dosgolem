@@ -1,0 +1,974 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-00.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-00.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-01.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-01.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "65fb6af5fb03b80ac6e3efd3f26bfef12214f32f78aa1cc9aed8f2901ea1e971",
+      "bytes": 5503,
+      "image": {
+        "size": [
+          63,
+          53
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-02.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-02.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "a9014fcda7aec63010ae20f8bd5c2026fd9095114af4662a07cc0325b2f068d2",
+      "bytes": 7028,
+      "image": {
+        "size": [
+          82,
+          58
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-03.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-03.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "2768df29feb2adc2d2ce1fb9e51f0e38c9caefb4c3deda1e46d2202965d563d4",
+      "bytes": 8202,
+      "image": {
+        "size": [
+          100,
+          63
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-04.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-04.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "d9c85b6eedbba6a2b44968d3f3a365be6aac3c53f1eea32a0e70c82e9fc4f322",
+      "bytes": 8754,
+      "image": {
+        "size": [
+          117,
+          66
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-05.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-05.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "7077c820594b328a79352b6f51b49fe8ec304188d162c1ca34e76bbcc411bee8",
+      "bytes": 8789,
+      "image": {
+        "size": [
+          125,
+          64
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-06.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-06.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "13c66be9c48f13d2e2747339e6ff33b8e88248ad9a6a90497cb370c3b2995968",
+      "bytes": 8481,
+      "image": {
+        "size": [
+          125,
+          58
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-07.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-07.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "85903354d2c23fb9e6bf50a436b8f6668643c6a52a380bc43b058062d6f22798",
+      "bytes": 8246,
+      "image": {
+        "size": [
+          125,
+          50
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-08.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-08.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "d9de30cb6ebd1f95cbc8d3354124d05749b17200ec4c1f13c86a6ad670125eb7",
+      "bytes": 8084,
+      "image": {
+        "size": [
+          125,
+          48
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-09.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-09.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "56b2ee39b385185fc995a8072c72f67728fdcd247091984e99de672fe5ea6db0",
+      "bytes": 8045,
+      "image": {
+        "size": [
+          125,
+          48
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-10.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-10.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "26b73e0130f8d620dc51941cffdce632518f8a9852c13dcb629cbe63193ba312",
+      "bytes": 8088,
+      "image": {
+        "size": [
+          125,
+          48
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-11.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-11.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "b8347607a0a1e3a332eda2cc601d2cca59a87e38af0b3c6d8173dc991b256288",
+      "bytes": 8257,
+      "image": {
+        "size": [
+          125,
+          51
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-12.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-12.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "70efabbeb5482ef2a86f1bb445c36983856e266501d78e0e16c566025f00ee30",
+      "bytes": 8648,
+      "image": {
+        "size": [
+          125,
+          58
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-13.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-13.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "ef4b45282a00283b6028a356c57345bd50f8747cf740b8bb83538371eec92a4e",
+      "bytes": 9077,
+      "image": {
+        "size": [
+          125,
+          65
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-14.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-14.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "27ef50a3c175f2056c1dd5a5bdf7297e27df9dc85fc839fcc902882d6d3c83ae",
+      "bytes": 9605,
+      "image": {
+        "size": [
+          125,
+          75
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-15.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-15.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "300cc4251a6661d5e9e7124f48fdd206daa1f8a0d0c8133a537f1d62c27c69a8",
+      "bytes": 10002,
+      "image": {
+        "size": [
+          125,
+          84
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-16.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-16.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "97ec40e64b0e89163fd265c311780a9a9fd6ed7829d8ca00e563e22a47357311",
+      "bytes": 10414,
+      "image": {
+        "size": [
+          125,
+          92
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-17.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-17.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "4dd285e27a954043cf77a49fd055379cce985327cdc28eeaaed6a5ce01b3e3f9",
+      "bytes": 10768,
+      "image": {
+        "size": [
+          125,
+          98
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-18.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-18.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "2e5c57c1439f5ea9d162503e2cfc804e5e01114c53f88a3b2e3376b17a0b529a",
+      "bytes": 11019,
+      "image": {
+        "size": [
+          125,
+          103
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-19.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-19.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "a108fd75e4be8d3f535dd72761634130c5ad3cefe3586114b679b91334ca1161",
+      "bytes": 16032,
+      "image": {
+        "size": [
+          223,
+          171
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-20.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-20.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "5e471e6d98d5fa77159ba3bdb46ef9d878ec37917840315c628de72e61237eaf",
+      "bytes": 19240,
+      "image": {
+        "size": [
+          224,
+          171
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-21.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-21.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "77559e71220608c4ee3a6777975a95cbd575afc4826aa98fcdab83e6d70561c7",
+      "bytes": 20770,
+      "image": {
+        "size": [
+          227,
+          173
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-22.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-22.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "f938d3958c57e757983748f5afae09d1dbf2ea69ab68710b6b1bc2ad85fd6b38",
+      "bytes": 21649,
+      "image": {
+        "size": [
+          232,
+          176
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-23.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-23.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "bf333fc7be806a625a19d2f088942c28cb51d928bf24f0a783a54aa1ea0777aa",
+      "bytes": 21944,
+      "image": {
+        "size": [
+          234,
+          181
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-24.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-24.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "794609a604a247f7fbd0b063c0b223914443fbfe8b9b75440e58ec2d9807de71",
+      "bytes": 21543,
+      "image": {
+        "size": [
+          234,
+          185
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-25.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-25.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "c8de51e011cf993c551186ea48449a31efe8bd2790dec4bbf81e8e5ac113ccf9",
+      "bytes": 20085,
+      "image": {
+        "size": [
+          231,
+          190
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-26.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-26.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "16d39031f023e1c43cf07232d5a0cf0d92bbb93553f101b7d46b661385afc4e2",
+      "bytes": 15681,
+      "image": {
+        "size": [
+          228,
+          194
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-27.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-27.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-28.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-28.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-29.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-29.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-30.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-30.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-31.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-31.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-32.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-32.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-33.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-33.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-34.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-34.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-35.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-35.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-36.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-36.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-37.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-37.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-38.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-38.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-39.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-39.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-40.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-40.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-41.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-41.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-42.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-42.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-43.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-43.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-44.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-44.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-45.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-45.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-46.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-46.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-47.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-47.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-48.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-48.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-49.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-49.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-50.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-50.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-51.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-51.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-52.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-52.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-53.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-53.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-54.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-54.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-55.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-55.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-56.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-56.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-57.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-57.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-58.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-58.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-59.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-59.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/b-60.png",
+      "path": "approved/masters/battle-vfx-b-r1/b-60.png",
+      "role": "master",
+      "basis": "User explicitly selected B on 2026-10-29; procedural Go source preserved, not image_gen.",
+      "sha256": "01b58ddb2f86a768f91751b62f25395417f6cf526191a4aefc1ebe4f8beacdcb",
+      "bytes": 74,
+      "image": {
+        "size": [
+          1,
+          1
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "docs/images/battle-vfx-flight-r1.png",
+      "path": "approved/masters/battle-vfx-b-r1/battle-vfx-flight-r1.png",
+      "role": "approved-reference",
+      "basis": "Approved B prototype screenshot; HD scene is illustrative, not production same-state.",
+      "sha256": "d84002d99fb8a952adc2b698713a23a0e60ba543ac0d13f8c0c47d42778d6d73",
+      "bytes": 1109690,
+      "image": {
+        "size": [
+          1200,
+          1550
+        ],
+        "mode": "RGB"
+      }
+    },
+    {
+      "source": "docs/images/battle-vfx-impact-r1.png",
+      "path": "approved/masters/battle-vfx-b-r1/battle-vfx-impact-r1.png",
+      "role": "approved-reference",
+      "basis": "Approved B prototype screenshot; HD scene is illustrative, not production same-state.",
+      "sha256": "0cf5b669e00f8d7fe3d93572bfeb9bcac4f714213e7bdbfbdce7298b8480d56c",
+      "bytes": 1119422,
+      "image": {
+        "size": [
+          1200,
+          1550
+        ],
+        "mode": "RGB"
+      }
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/render-r2/frames.json",
+      "path": "approved/provenance/battle-vfx-b-r1/frames.json",
+      "role": "provenance",
+      "basis": "Original prototype frame geometry; three-second timing is not the live contract.",
+      "sha256": "a838a38e85097fdcb6b90aa72c818553938efac3ba064a78cd3682f88f96546f",
+      "bytes": 20398
+    },
+    {
+      "source": "tools/prototype-battle-vfx.go",
+      "path": "approved/provenance/battle-vfx-b-r1/generator.go",
+      "role": "provenance",
+      "basis": "Exact procedural drawing source for approved B.",
+      "sha256": "ef8f5ba8c822722e69b5e6744eb03e1c25cdb0450e694cb23144a41586bc3942",
+      "bytes": 7116
+    },
+    {
+      "source": "artwork/battle-vfx-b-approved-r1.json",
+      "path": "approved/provenance/battle-vfx-b-r1/decision.json",
+      "role": "provenance",
+      "basis": "Explicit user B selection; no generated-image prompt.",
+      "sha256": "c23356c60e4809370a47fbd425fc8834943f3ad4970c6e84e353252b64aae405",
+      "bytes": 26617
+    }
+  ]
+}

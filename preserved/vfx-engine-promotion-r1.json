@@ -1,0 +1,17 @@
+{
+  "status": "promoted-scoped-vfx-engine",
+  "audit_sha256": "786d45dafc6eb84069c4b639ffb7ebc29b5e801ec7f64ec33e8dae0af517f3ed",
+  "programs": {
+    "8sword": "fe4e16d3ca41706168328a86a611a66962a3f9171d74d545265a4d0bbb1c1561",
+    "8sword-replay": "d28f0027029399b262b95983b4ca1c540630d1db337989c57ab6a42caaf12ece",
+    "gui-check": "57f0eee1153885782c3adc69ea4944bf406153a4a5b1fe756749e4062181ae4b",
+    "music-check": "c8250c2544083dc05ede6e77a6ee09b4b2813ba0ae17d4093471eb7529ae5ace",
+    "heroine-check": "efc5db1a6ef775f19a1dafd15589655f5b45663d5350dd77e1651f54f3b2e36c",
+    "museum-check": "4a91aab98ab2dc6d4d1908335e9ca453a8f7c0aa8309aa8991b474a87aef0fc9",
+    "story-prelude-check": "e46cccd54d61d56b0c84b6ccda8b5bc997889445b4785c132d56fdc21bfd0105"
+  },
+  "source_count": 188,
+  "core_files": 923,
+  "assets": "assets-painted-r68",
+  "asset_files": 525
+}

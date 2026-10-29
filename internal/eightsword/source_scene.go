@@ -108,7 +108,7 @@ func (e *Engine) newSourcePAM() (func(), func() *image.RGBA, func()) {
 		// a held panel, without depending on legacy RGB composition side effects.
 		e.Tracker.visibleSources = p.cachedSources
 		e.Tracker.VisibleScene = visibleScene(p.cachedSources)
-		return p.cached
+		return p.composeBattleVFX(p.cached)
 	}
 	return install, frame, func() {
 		if p.unsubscribe != nil {
@@ -128,6 +128,7 @@ func (p *sourceAdapter) bind() {
 	seg := t.stringSeg
 	p.bindPanels()
 	p.bindRecruitmentPanels()
+	p.bindBattleVFX()
 	for _, site := range []struct {
 		seg, entry, ret uint16
 		base            int
@@ -139,6 +140,9 @@ func (p *sourceAdapter) bind() {
 	var page uint16
 	p.onCall(oracle.Addr{Seg: seg, Off: 0x19c}, func(*oracle.Oracle) { page = o.Arg(0) & 255 })
 	p.onCall(oracle.Addr{Seg: seg, Off: 0x1a9}, func(*oracle.Oracle) {
+		if p.e.battleVFX != nil && p.e.battleVFX.running {
+			p.e.battleVFX.cancel("page-select")
+		}
 		if page > 3 {
 			p.reject("owned page out of range")
 		}
@@ -172,6 +176,9 @@ func (p *sourceAdapter) bind() {
 	})
 	var clearApply func()
 	p.onCall(oracle.Addr{Seg: seg, Off: 0xd3e}, func(*oracle.Oracle) {
+		if p.e.battleVFX != nil && p.e.battleVFX.running {
+			p.e.battleVFX.cancel("page-clear")
+		}
 		ds := o.Regs().DS
 		dest := o.Word(oracle.Addr{Seg: ds, Off: 0x748a})
 		mode := o.Word(oracle.Addr{Seg: ds, Off: 0x7484})
@@ -400,6 +407,7 @@ func (p *sourceAdapter) bind() {
 					p.e.sourceActorCommits++
 				}
 				p.record("bitmap", map[string]any{"entry": c.entry, "entry_step": entryStep, "width_bytes": w, "height": h, "x_byte": x, "y": y, "dest": dest, "source_sha256": hash(raw), "material": id, "actor": actor, "effect": effect, "caller": nil})
+				p.battleVFXBitmap(c.entry, raw, x, y, w, h, dest)
 			}
 		})
 		p.onCall(oracle.Addr{Seg: seg, Off: c.ret}, func(*oracle.Oracle) {
@@ -418,6 +426,9 @@ func (p *sourceAdapter) bind() {
 		pending := false
 		p.onCall(oracle.Addr{Seg: seg, Off: c.entry}, func(*oracle.Oracle) {
 			if !pending {
+				if p.e.battleVFX != nil && p.e.battleVFX.running {
+					p.e.battleVFX.cancel("page-copy")
+				}
 				pending = true
 				p.active++
 			}
@@ -618,6 +629,9 @@ func (p *sourceAdapter) bindPanels() {
 }
 
 func (p *sourceAdapter) beginPanel(kind string) {
+	if p.e.battleVFX != nil && p.e.battleVFX.running {
+		p.e.battleVFX.cancel("panel")
+	}
 	if p.panel != nil {
 		if p.panel.Kind != kind {
 			p.reject("overlapping owned panel boundaries")

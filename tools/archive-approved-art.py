@@ -96,7 +96,11 @@ def main():
         manifest=dict(schema=1,scope='User-approved or production-adopted artwork; runtime inputs are separately classified.',plan_sha256=sha(a.plan),tool_sha256=sha(Path(__file__)),files=rows)
         text=json.dumps(manifest,ensure_ascii=False,indent=2)+'\n'; dest=a.archive/'manifest.json'
         if dest.exists():
-            if dest.read_text()!=text: raise ValueError('既有永久清單不同，請另存新修訂版')
+            # Later approved additions must survive an idempotent old-plan recheck.
+            # Preserve the capture-time tool/plan metadata and require exact rows.
+            existing=json.loads(dest.read_text()); indexed={v['path']:v for v in existing['files']}
+            if len(indexed)!=len(existing['files']) or any(indexed.get(row['path'])!=row for row in rows):
+                raise ValueError('既有永久清單的來源列不同，請另存新修訂版')
         else:
             with dest.open('x') as f: f.write(text)
     result=verify(a.archive)

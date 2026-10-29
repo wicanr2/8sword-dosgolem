@@ -1,0 +1,31 @@
+{
+  "status": "passed-scoped-vfx-integrity",
+  "production_programs": 7,
+  "source_count": 188,
+  "assets_unchanged": 525,
+  "core_unchanged": 923,
+  "previous_programs_preserved": 7,
+  "controlled_original_effects": 3,
+  "guards": 4,
+  "real_draws_independently_rebuilt": 2,
+  "gui_save_buffers": 3,
+  "full_artwork_files": 1040,
+  "archived_files": 1535,
+  "archived_objects": 676,
+  "restored_files_verified": 1535,
+  "restore_copy_cleaned": true,
+  "restore_bytes_cleaned": 318893642,
+  "original_resolution_keys": 26,
+  "supplemental_backlinks": 1,
+  "missing_correction_cases_rejected": 6,
+  "markdown_links": 2282,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0,
+  "limitations": [
+    "Only approved B visuals for sampled enemy special 0/2/5; player spell catalog remains open.",
+    "Original executors and actual GUI Draw are separate gates; controlled GUI fixture is not natural spell casting.",
+    "Source-over/text protection independently rebuilt from immutable Go layers; kernel checked against approved prototype.",
+    "No original RGB underlay, new gameplay, save fields, graphics pack or core change."
+  ]
+}

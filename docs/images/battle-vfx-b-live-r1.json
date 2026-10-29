@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "method": "Actual Ebiten Draw presented frame, resized 2944x1264 to 1600x687 using Pillow 11.3.0 LANCZOS",
+  "controlled_fixture": true,
+  "source_count": 188,
+  "assets": "r68",
+  "core_files": 923,
+  "limit": "Fixture changes enemy state and selector; not natural spell casting, not X11 exact same frame. Full images and raw layers preserved in vfx-engine-r1.",
+  "files": [
+    {
+      "phase": "flight",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/gui-fixture-r1/save/vfx-draw/flight-presented.png",
+      "source_sha256": "55120a7a464297c5746a7e151db855eb2cd1f75bf732f41cbaea79ae3a633ea1",
+      "path": "battle-vfx-b-live-flight-r1.png",
+      "sha256": "334a203345dbf08fbb788a97437202baa7b01925b2fb2bc81b5e94ca7b0b3519",
+      "draw": {
+        "cycles": 120519946,
+        "draw": 553,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "07cb691cbe80cc8dcc0a35bed4cf4aba5b689c3ad1e2ca5f070c1ca4543fa442",
+        "layer_rect": [
+          970,
+          294,
+          304,
+          159
+        ],
+        "layer_stride": 1216,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "flight",
+        "sample": 70,
+        "step": 114653748,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "flight",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 3,
+          "PONCommits": 0,
+          "Frames": 3,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            456,
+            75
+          ],
+          "Target": [
+            184,
+            50
+          ]
+        }
+      }
+    },
+    {
+      "phase": "impact",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/gui-fixture-r1/save/vfx-draw/impact-presented.png",
+      "source_sha256": "8e9d4bd955e51d425a9f7917f72f692fcec01d57281fd51067d765da487ee28e",
+      "path": "battle-vfx-b-live-impact-r1.png",
+      "sha256": "9c8e048e45eb72e73943b9223568ad5d1862130c6c60985969fc26b33a1efbe9",
+      "draw": {
+        "cycles": 120919946,
+        "draw": 555,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "1c6a55a11056450be814de1b9d5a4f5573590897221c975f3fc0cd1a833dc153",
+        "layer_rect": [
+          394,
+          160,
+          581,
+          581
+        ],
+        "layer_stride": 2324,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "impact",
+        "sample": 35,
+        "step": 115041648,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "impact",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 4,
+          "PONCommits": 4,
+          "Frames": 7,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            456,
+            75
+          ],
+          "Target": [
+            184,
+            50
+          ]
+        }
+      }
+    }
+  ]
+}

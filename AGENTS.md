@@ -1,10 +1,12 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
-現行程式為source-candidate-tactics-r2／184來源七程式與r68／525素材，923核心不變，依[030戰術試作限定驗收](docs/spec/030-battle-expansion-proposal.md#戰術試作正式接入與限定驗收)提升。工具列可選native原版、formation結陣、tactics戰術試作。tactics增加前排弓箭手正對活敵軍時造成傷害減25%，再套既有20%結陣；策略AI同步估值，特殊效果保持。戰鬥外切、本場固定、AI獨立；auto隨SHA綁定標記恢復，原版2987-byte進度格式不改。以下較早數字均為當時驗收，現況以本列及CONTEXT為準。
+現行程式為source-candidate-vfx-r2／188來源七程式與r68／525素材，923核心不變，依[030 B動畫限定驗收](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入與限定驗收)提升。HD新增使用者已選B「飛焰＋命中符光」，由Go依已發生來源／PON事件繪製，不寫客體。三組特殊0／2／5完整原版state、實際Draw及正常戰鬥／存讀通過；原版模式不安裝，傷害、AI、規則及存檔保持。工具列仍可獨立切native／formation／tactics與AI，auto恢復規則標記。以下較早數字為當時驗收，現況以本列及CONTEXT為準。
 
 [原版控制](tools/prepare-tactics-controls.py)、[獨立381-state核對](tools/audit-tactics-controls.py)、[凍結與字圖](tools/prepare-tactics-engine.py)、[正式測試](tools/check-tactics-engine.sh)、[GUI準備](tools/prepare-tactics-gui.py)、[三階段GUI](tools/check-tactics-gui.sh)、[核對及提升](tools/audit-tactics-engine.py)用法見030的READY契約。沿固定Go1.24.13／Pillow11.3.0 Docker；新字圖schema4／139字，舊137字及523其他素材逐SHA保持。48正式helper、42完整效果、inactive、舊模式、三種規則存讀已抽驗。[永久保存](preserved/README.md#戰術試作正式接入保存)及[保存器](tools/archive-tactics.py)不需原workplace即可核對／還原。自然戰鬥沒有合適弓箭手，不把診斷旗標或受控收益宣稱為自然壓制或整體平衡。
 
-新增[特殊攻擊動畫研究](docs/spec/030-battle-expansion-proposal.md#戰鬥特殊效果的動畫觀測)仍DRAFT，只讀三組已驗0／2／5，71圖片／36PON呼叫及完整state通過。Go原型與網頁展示不進正式184來源或r68；HD欄為合成示意，不冒稱同狀態Engine Frame、玩家法術或正式動畫。[工具](tools/prepare-battle-vfx.py)、[原生Go繪製](tools/prototype-battle-vfx.go)、[瀏覽器驗證](tools/check-battle-vfx.js)及[永久保存](preserved/README.md#特殊攻擊動畫原型保存)入口沿030；確認樣式後仍須另補事件生命週期READY，不能把原型三秒或餘光當原版時鐘。
+[B正式控制器](internal/eightsword/battle_vfx.go)、[Go繪圖](internal/eightsword/battle_vfx_draw.go)、[原版與故障測試](internal/eightsword/battle_vfx_runtime_test.go)及[原型／文字測試](internal/eightsword/battle_vfx_test.go)依030 READY。來源取DS:701Eh、目標703Ch，原首輪共用表假設已拒絕；固定518 bytes、caller與selector守門，未知只略過新光效。飛行只按已提交四姿態及最後間隔插值，命中按12個PON，RETF／重繪／換場清除。原型三秒及餘光不作正式時鐘。完整原型另留歷史，不能當玩家法術目錄。
+
+[候選準備](tools/prepare-vfx-engine.py)、[隔離GUI](tools/prepare-vfx-gui.py)、[正常／受控視窗](tools/check-vfx-gui.sh)、[冷讀](tools/check-vfx-cold.sh)、[核對／提升](tools/audit-vfx-engine.py)與[永久保存](tools/archive-vfx-engine.py)用法見030；固定Go1.24.13與Pillow11.3.0 Docker。[永久清單與還原](preserved/README.md#b飛焰正式接入保存)不依賴原workplace。受控GUI修改敵軍與selector，只有正常流程另作回歸，不能稱自然施法。定稿B的63張完整PNG與程序來源已加入永久artwork，1040檔獨立重驗通過。
 
 前版程式為source-candidate-ai-formation-r1／184來源七程式，依[030結陣知情AI限定驗收](docs/spec/030-battle-expansion-proposal.md#結陣知情ai正式接入與限定驗收)提升。策略AI在formation且Active時用既有20%減傷估值，合法目標與先全滅／再比例排序不改；特殊0／2／5不套。當時r67／525素材、923核心、工具列與存檔schema不變，前版保持。
 
