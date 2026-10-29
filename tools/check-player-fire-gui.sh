@@ -6,11 +6,14 @@ fire_bin="${1:?private binaries}"
 fire_root="${2:?read-only original}"
 fire_assets="${3:?r68}"
 fire_out="${4:?new output}"
+fire_spell="${5:-fireball}"
+[[ "$fire_spell" == fireball || "$fire_spell" == thunder ]]
 test -f "$fire_bin/8sword"
 test -f "$fire_bin/driver"
 test ! -e "$fire_out"
 mkdir "$fire_out"
 export DISPLAY=:98 LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe LP_NUM_THREADS=1 MESA_GLTHREAD=false GOMAXPROCS=2 EIGHTSWORD_VFX_FIXTURE=1
+export EIGHTSWORD_PLAYER_GUI_SPELL="$fire_spell"
 fire_pid=""
 Xvfb "$DISPLAY" -screen 0 1920x1200x24 -nolisten tcp > "$fire_out/xvfb.log" 2>&1 &
 fire_xvfb=$!

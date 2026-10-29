@@ -23,7 +23,7 @@ func vfxRuntimePaths(t *testing.T) (string, string, string) {
 func TestBattleVFXOriginalExecutors(t *testing.T) {
 	root, project, out := vfxRuntimePaths(t)
 	batch := filepath.Join(project, "workplace/probe-20261023/graphics-first/battle-r1")
-	for _, name := range []string{"special0-choice", "special2-choice", "special5-empty-original", "player-fireball"} {
+	for _, name := range []string{"special0-choice", "special2-choice", "special5-empty-original", "player-fireball", "player-thunder-mixed", "player-thunder-sparse"} {
 		t.Run(name, func(t *testing.T) {
 			dir := filepath.Join(out, name)
 			if err := os.Mkdir(dir, 0755); err != nil {
@@ -34,9 +34,20 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 				ref = filepath.Join(batch, "ai-policy-extra-r2", name, "baseline")
 			}
 			initial, entry := "before-decision.state", uint16(0x36c6)
+			expectedEffects := uint64(1)
 			if name == "player-fireball" {
 				ref = filepath.Join(batch, "player-spells-r1/cast-r5/observed")
 				initial, entry = "player-effect.state", 0x345c
+			}
+			if strings.HasPrefix(name, "player-thunder-") {
+				ref = filepath.Join(batch, "player-spells-r1/thunder-r1", strings.TrimPrefix(name, "player-thunder-"), "observed")
+				if name == "player-thunder-sparse" {
+					ref = filepath.Join(batch, "player-spells-r1/thunder-r1/sparse-resumed")
+				}
+				initial, entry = "player-effect.state", 0x345c
+				if name == "player-thunder-mixed" {
+					expectedEffects = 4
+				}
 			}
 			raw, err := os.ReadFile(filepath.Join(ref, "trace.json"))
 			if err != nil {
@@ -46,7 +57,7 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 			if err = json.Unmarshal(raw, &tr); err != nil {
 				t.Fatal(err)
 			}
-			if name == "player-fireball" {
+			if strings.HasPrefix(name, "player-") {
 				var player struct{ Steps uint64 }
 				if err = json.Unmarshal(raw, &player); err != nil {
 					t.Fatal(err)
@@ -136,7 +147,7 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 			for next < tr.DecisionStep && next < tr.StartStep+12000000 {
 				next += 2000000
 			}
-			if name == "player-fireball" {
+			if strings.HasPrefix(name, "player-") {
 				next = tr.EndStep + 1
 			}
 			for o.Steps() < tr.EndStep {
@@ -161,10 +172,14 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 				t.Fatal("VFX changed original final state")
 			}
 			info := e.BattleVFXStatus()
-			if info.Started != 1 || info.Completed != 1 || info.PONCommits != 12 || info.SourceCommits != 4 || info.Active || !samples["flight"] || !samples["impact"] {
+			if info.Started != expectedEffects || info.Completed != expectedEffects || info.PONCommits != expectedEffects*12 || info.SourceCommits != expectedEffects*4 || info.Active || !samples["flight"] || !samples["impact"] {
 				t.Fatal(info, samples)
 			}
-			raw, _ = json.MarshalIndent(map[string]any{"battle_vfx": info, "full_original_state_equal": true, "frame_guest_pure": true, "synthetic_test_base": true}, "", "  ")
+			referenceBasis := "continuous-fixed-control"
+			if name == "player-thunder-sparse" {
+				referenceBasis = "unhooked-original-mStep-resume; continuous snapshot equivalence unknown"
+			}
+			raw, _ = json.MarshalIndent(map[string]any{"battle_vfx": info, "full_original_state_equal": true, "frame_guest_pure": true, "synthetic_test_base": true, "reference_basis": referenceBasis}, "", "  ")
 			if err = os.WriteFile(filepath.Join(dir, "receipt.json"), append(raw, '\n'), 0644); err != nil {
 				t.Fatal(err)
 			}
@@ -173,17 +188,20 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 }
 func TestBattleVFXRejectBeforeGuestWrites(t *testing.T) {
 	root, project, out := vfxRuntimePaths(t)
-	for _, name := range []string{"code", "selector", "mapping", "geometry", "player-code", "player-selector", "player-caster", "player-geometry"} {
+	for _, name := range []string{"code", "selector", "mapping", "geometry", "player-code", "player-selector", "player-caster", "player-geometry", "thunder-code", "thunder-caller", "thunder-selector", "thunder-geometry"} {
 		t.Run(name, func(t *testing.T) {
 			e, err := Open(Options{Root: root, Saves: t.TempDir()})
 			if err != nil {
 				t.Fatal(err)
 			}
 			defer e.Close()
-			player := strings.HasPrefix(name, "player-")
+			player := strings.HasPrefix(name, "player-") || strings.HasPrefix(name, "thunder-")
 			initial, entry := "workplace/probe-20261023/graphics-first/battle-r1/ai-policy-r1/special0-choice/baseline/before-decision.state", uint16(0x36c6)
 			if player {
 				initial, entry = "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/cast-r5/observed/player-effect.state", 0x345c
+			}
+			if strings.HasPrefix(name, "thunder-") {
+				initial = "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/thunder-r1/mixed/observed/player-effect.state"
 			}
 			if err = e.Oracle.LoadStateFile(filepath.Join(project, initial)); err != nil {
 				t.Fatal(err)
@@ -218,6 +236,14 @@ func TestBattleVFXRejectBeforeGuestWrites(t *testing.T) {
 				e.Oracle.WriteU16(oracle.Addr{Seg: r.DS, Off: 0x56e8}, 1)
 			case "player-geometry":
 				e.Oracle.WriteU16(oracle.Addr{Seg: r.DS, Off: 0x7042}, 65535)
+			case "thunder-code":
+				v.playerBody[0] ^= 1
+			case "thunder-caller":
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.SP}, 0x74a)
+			case "thunder-selector":
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.BP - 4}, 0)
+			case "thunder-geometry":
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.DS, Off: 0x701e}, 65535)
 			}
 			before, after := filepath.Join(out, "guard-"+name+"-before.state"), filepath.Join(out, "guard-"+name+"-after.state")
 			if err = e.Oracle.SaveStateFile(before); err != nil {

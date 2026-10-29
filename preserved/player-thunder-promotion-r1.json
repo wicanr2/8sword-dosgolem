@@ -1,0 +1,17 @@
+{
+  "status": "promoted-scoped-player-thunder",
+  "audit_sha256": "bf804d3f7c7c33699dae13d4fec781b53eb5243a00bb4cfb3e6e331069243f95",
+  "programs": {
+    "8sword": "08688e161e2f3794d5930a90aef6857d76c2efabf77ba4fdd26cc5a3f80da072",
+    "8sword-replay": "52a32091a8281a6e68cce990647d702c5b59ee4fc7570297723bd91894fd0444",
+    "gui-check": "7d0ed6218ae750f8eabbefca77ce41b608e26ce1cb02e2aafababf1553118114",
+    "music-check": "8187f186c859d8c5d2c0c007c335069188ab59a87a3cf66a65f7291d5b56a4f4",
+    "heroine-check": "7f04a2ee5ddab85002525b57c3de3f046f3c694262747aa0b4cc8850e3565942",
+    "museum-check": "23bc2caf62c64520f3c4c87489b0744ecfe4f41feff6e8b8c017176e988d2ecf",
+    "story-prelude-check": "ab280e8c7526b1ae075612c47cab619b221f2d99efca05f4097e935ac6ac9704"
+  },
+  "source_count": 188,
+  "core_files": 923,
+  "assets": "r68",
+  "asset_files": 525
+}

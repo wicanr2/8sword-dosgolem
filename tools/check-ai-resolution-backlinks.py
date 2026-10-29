@@ -22,4 +22,9 @@ for v in d.get('player_resolutions',[]):
  assert evidence.is_file()and older.is_file()and receipt.is_file()
  assert v['original_address']in evidence.read_text()and v['original_name']in evidence.read_text()
  assert v['required_correction']in older.read_text()and v['scope']and v['not_closed']
+ for extra in v.get('supplemental_resolutions',[]):
+  evidence=r/extra['evidence'];older=r/extra['older_spec'];receipt=r/extra['receipt']
+  assert extra['level']=='proven-in-sampled-scope'and evidence.is_file()and older.is_file()and receipt.is_file()
+  assert v['original_address']in evidence.read_text()and v['original_name']in evidence.read_text()
+  assert extra['required_correction']in older.read_text()and extra['scope']and extra['not_closed']
 print('Resolution backlinks passed: 26 AI sampled resolutions,',len(d.get('player_resolutions',[])),'player resolutions')

@@ -1,5 +1,13 @@
 # 必要資料永久保存
 
+## 玩家雷火術接入保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#玩家雷火術正式接入與限定驗收)已提升source-candidate-player-thunder-r2／188來源七程式。六組完整state、十二拒絕案及兩張實際Draw獨立合成通過；實際GUI完整施法命中三隊。五組沿原連續控制，稀疏組沿相同快照的無掛點原版續跑，其連續等價性仍未知。r68全525素材、923核心、前版七程式與原版模式保持。[研究核對](player-thunder-research-r2.json)、[正式核對](player-thunder-audit-r1.json)、[提升](player-thunder-promotion-r1.json)及[收尾核對](player-thunder-integrity-r1.json)分開記錄，不稱自然習得或新存讀。
+
+[永久清單](player-thunder-r1.json)含1957檔／613物件，壓縮120340708 bytes，保存兩版候選、七程式、三組原版研究、失敗與成功測試、三路無掛點續跑診斷及實際Draw完整PNG／底圖／透明層。完整物件留本機`player-thunder-r1/`，不加入Git；[捕獲](player-thunder-preservation-r1.json)與[無原workplace核對](player-thunder-verification-r1.json)通過。原版／923核心／模組沿`catalog.json.gz`，固定戰鬥來源沿`ai-observation-r1.json`，既有IDA與玩家火球證據沿下節火球清單，r68沿tactics及completion-r65清單，B完整原圖沿[1040檔圖庫](../artwork/manifest.json)，不重複壓縮。
+
+[核對與保存器](../tools/finalize-player-thunder.py)在固定Pillow11.3.0 Docker使用`archive --project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲。只掛永久preserved與工具，用`verify --archive <唯讀preserved> --out <可寫新JSON>`逐物件解壓並驗每檔SHA／長度。物件按清單原路徑與mode可還原，不需要原workplace，本輪沒有另建大型還原副本。完整提示與批准圖仍沿永久圖庫，本輪沒有新生成美術。
+
 ## 玩家火球術接入保存
 
 [030限定驗收](../docs/spec/030-battle-expansion-proposal.md#玩家火球術正式接入與限定驗收)已提升source-candidate-player-fire-r1／188來源七程式。玩家火球沿既有B繪圖，四組原版執行器完整state、八拒絕案及兩張實際Draw獨立合成通過；r68全525素材、923核心、前版七程式與原版模式保持。[研究核對](player-fireball-research-r2.json)、[正式核對](player-fireball-audit-r1.json)與[提升](player-fireball-promotion-r1.json)分開記錄。受控施法不當自然習得或新存讀證據。

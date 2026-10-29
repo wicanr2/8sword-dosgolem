@@ -113,12 +113,14 @@ func (v *battleVFX) beginFrom(o *oracle.Oracle, player bool) {
 		return
 	}
 	word := func(off uint16) uint16 { return o.Word(oracle.Addr{Seg: v.data, Off: off}) }
-	if word(r.SP) != caller || word(r.SP+2) != v.code {
+	callerMatches := word(r.SP) == caller || (player && word(r.SP) == 0x516)
+	if !callerMatches || word(r.SP+2) != v.code {
 		v.skip("caller")
 		return
 	}
 	selector := word(r.BP - 4)
-	if (player && selector != 0) || (!player && selector != 0 && selector != 2 && selector != 5) {
+	playerPair := (selector == 0 && word(r.SP) == 0x74a) || (selector == 1 && word(r.SP) == 0x516)
+	if (player && !playerPair) || (!player && selector != 0 && selector != 2 && selector != 5) {
 		v.skip("selector")
 		return
 	}

@@ -640,3 +640,42 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 研究錯誤保留於同批：r1僅編譯時用錯cycles API；r2未送初始鍵，原版等待且沒有fixture，不算施法；r3觀測器把DS當圖像來源segment而拒絕錯誤幾何，改讀真實Arg1；r4的Space正確觸發取消，原版退還資源，不能把函式返回視為施法成功。r5沿原導覽表送Right／Enter後才進真正效果。獨立核對器首輪誤要求命中前只有一張來源，四筆實際提交否定該模型，修正核對器後通過；未改原版或正式繪圖遷就驗證。
 
 正常新遊戲與存退／冷讀沿上一節B已有驗收，這輪只加繪圖入口，不新增存檔或規則。其餘七戰鬥術、八地圖術與自然習得仍待驗。可選畫面微調不阻塞本項。[收尾](../../preserved/player-fireball-integrity-r1.json)由同工具的`integrity --project --archive --out`核對正式／前版、圖庫、回填負例、文件、語法與擁有權；Docker容器另由主機清理狀態核對。
+
+## 玩家雷火術事件研究
+
+本節DRAFT，接續既有同規格授權，不重問樣式。先沿已保存的IDA9.4匯出，查sub_1E8A4中IDA MZ loader線性0x1E9F8至0x1EACC的法術1分支；候選為遍歷六個敵方陣位，空隊略過，逐隊呼叫同一sub_219CC，父返回固定載入0110h的0F67:0516。這些先列靜態線索，須以固定原版完整狀態對照確定，不提前放寬正式入口。
+
+沿[玩家探針](../../tools/probe-player-spells.go)新增`-spell 1 -fixture mixed|sparse`，在原本固定快照配置雷火兩次資源，只由原版選單Down／Enter觸發，不改法術selector或目標；`-cancel-menu`另驗取消。研究目錄沿既有player-spells-r1內的`thunder-r1/`，控制與觀測須有相同fixture／輸入／完整返回state，逐個效果保存入口，驗多目標生命週期與空陣位。正式player-fire-r1／188來源、r68全525素材及923核心保持。
+
+[獨立核對](../../tools/audit-player-thunder.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --out <新JSON>`驗既有IDA6715行原bytes、三組完整原版控制、六陣位存活條件及逐隊四姿態／12PON。mixed為四活／兩空，逐槽0／1／2／3；sparse為一活／五空，只取槽1；cancel為Esc，不進效果。三組fixture前後、輸入與完整返回state成對相同，固定原版完整亂數狀態不重抽，只有mixed／sparse次數2→1。
+
+### 玩家雷火術B接入READY契約
+
+本節READY。原PAM SHA及518-byte sub_219CC沿玩家火球術；IDA MZ loader線性0x1EA83的near call返回0x1EA86，固定load0110h為0F67:0516，父BP-4為法術1。入口、RETF、來源703Ch／目標701Eh與Go繪圖均沿原契約，新增的允許組合只有「法術1＋caller0516」；火球「法術0＋caller074A」保持，交叉組合拒用。每個目標有獨立開始／四姿態／12PON／返回及清除，不跨目標累積快取或延長時鐘。
+
+只強化原版逐隊演出，存活檢查、次數、傷害及目標順序全由原版處理，HD不得自行重播或選敵。兩組成功控制、既有四執行器及八故障回歸，另加雷火bytes／caller／selector／幾何四拒絕案。實際HD視窗抽一組完整多目標施法，選單Down／Enter仍走原版，等待整個玩家法術wrapper返回才算完成，不只等第一個效果。抽第一隊飛焰／符光的實際Draw獨立合成，正常存讀沿既有B，不重跑相同機制。素材r68／525、核心923與188來源數量保持，完整證據永久保存並獨立重驗後才提升七程式。
+
+[候選／GUI準備](../../tools/prepare-player-fireball.py)加`--spell 1`凍結至新player-thunder候選；GUI私有fixture讀`EIGHTSWORD_PLAYER_GUI_SPELL=thunder`，只配法術1兩次資源，記錄原版整個法術wrapper的返回及預期目標數。沿[執行器](../../tools/check-player-fire-gui.sh)第五參數`thunder`，資源配額與trap保持。未知分派不藉本授權放寬。
+
+[雷火核對／保存／提升器](../../tools/finalize-player-thunder.py)沿火球驗收器的固定流程，使用`audit|archive|verify|promote|integrity --project <唯讀專案> --out <新JSON>`，`--archive <preserved>`或`--player <可寫player>`依動作指定。核對六組完整執行器、十二個入口拒絕、完整多目標GUI返回、兩張實際Draw及前版保持；保存後在無原workplace容器用verify逐物件重驗，通過才提升。此工具不重寫火球歷史收據。
+
+[快照續跑診斷](../../tools/diagnose-thunder-resume.go)只在923核心暫存副本編譯，以`-root -state <sparse首效果快照> -steps <原絕對返回步數> -out <新目錄>`比較無觀測m.Step、無掛點PAM Oracle與無掛點PREDELLA Oracle。固定輸入／步數、不改RAM或seed，先確認載入後state，再看返回差異；不在正式程式猜補驗證缺口。
+
+### 稀疏快照續跑的限定勘誤
+
+正式測試r1的mixed及既有四組通過，sparse從首效果快照載入後，不能重現原連續流程的102403645步狀態。診斷確認三份全無VFX的原版續跑：m.Step、PAM Oracle、PREDELLA Oracle，載入後完整state逐SHA同來源，跑至固定步數後三者均為ed23b382…df308，亦同r1的HD控制器；原連續state仍為1c938919…da47。DOS區塊相同，機器CPU／RAM不同。這只證明差異位於快照續跑與連續執行之間，內部根因未知，不宣稱已修好923核心，也不修改原始收據。
+
+本節READY驗收追加：sparse以同一份快照、相同步數的全無掛點m.Step原版續跑作獨立控制，另存`sparse-resumed`，不覆寫原連續sparse。mixed及原四組仍要求原連續final state完全相同；sparse須同新原版續跑全state，另保留原連續三組研究證明其原選單、扣次、空位及效果。這是視覺無副作用的限定驗收，稀疏快照的連續等價性列原版oracle未知，不以重抽seed或調整遊戲參數消除差異。正式繪圖程式不因此變更。
+
+## 玩家雷火術正式接入與限定驗收
+
+本節限定CONFORMED。已依前述READY及稀疏續跑勘誤，提升source-candidate-player-thunder-r2／188來源七程式；r68全525素材、923核心與前版七程式逐SHA保持。只追加法術1＋caller0516的成對守門，共用既有B原生Go繪圖。次數、傷害、逐隊順序、空隊略過及原版顯示路徑不改。
+
+- 原版研究：[r1核對](../../preserved/player-thunder-research-r1.json)保留mixed／sparse／取消三組連續控制，完整state與只讀觀測相同；兩組成功均整次2→1。mixed四隊有16來源／48PON，sparse一隊有4來源／12PON。既有IDA9.4的27函式6715行沿PAM原MZ重定位核對，不重開無關逆向。
+- 正式測試：六組執行器共九次效果、十二入口拒絕及十二張Frame客體純度通過。五組同原連續final state；sparse同三路無掛點續跑的完整state。既有B公式／文字、AI、結陣、戰術、標記與工具列回歸通過，Go1.24.13測試54.038秒，無FAIL／SKIP，vet及七程式建置通過。
+- 實際GUI：正常冷啟動／新遊戲／募兵遇敵後，明示fixture配置後排施法者、學習旗標與兩次雷火資源。只用原版選單Down／Enter，不改selector或目標；三個存活敵軍依序完成，Started=Completed=3、12來源、36PON、26效果Frame，取消及略過均0。等整個法術wrapper返回後Ctrl+Q，不把第一隊完成當整次成功。
+- Draw：飛行及命中各一張完整畫面，與Go底圖、原始透明層及文字遮罩獨立重建完全相同，已抽看。[縮小畫面與來源](../../docs/images/player-thunder-live-r1.json)收錄實際Draw資訊。fixture前已載入的民兵美術不拿來證明新兵種對應，受控施法也不當自然習得。
+
+[正式核對](../../preserved/player-thunder-audit-r1.json)與[提升](../../preserved/player-thunder-promotion-r1.json)分開記錄。[研究r2](../../preserved/player-thunder-research-r2.json)明列稀疏續跑限制：三路全無掛點原版與HD相同，卻不同原連續流程；內部根因未知。保留兩份結果，不改923核心、不重抽seed，也不宣稱連續等價性已修復。此未知不阻塞已證明的視覺無副作用接入。
+
+[永久保存](../../preserved/README.md#玩家雷火術接入保存)含1957檔／613物件、120340708壓縮bytes，含r1失敗、兩候選、診斷及完整GUI圖。未掛原workplace容器逐物件核對通過後才提升，完整B圖庫1040檔保持。原版規則、時鐘與存檔不變，正常存讀沿既有B驗收，不另聲稱新存讀。其餘六種戰鬥術、八種地圖術及自然習得未完成；可選美術微調不阻塞本項。[收尾核對](../../preserved/player-thunder-integrity-r1.json)另驗現行／前版、圖庫、定位回填負例、文件、語法與擁有權。

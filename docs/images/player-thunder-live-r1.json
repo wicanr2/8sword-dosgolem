@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "controlled_fixture": true,
+  "method": "Actual Ebiten Draw CPU image uploaded, resized 2944x1264 to 1600x687 using Pillow11.3.0 LANCZOS",
+  "candidate": "source-candidate-player-thunder-r2",
+  "source_count": 188,
+  "assets": "r68",
+  "core_files": 923,
+  "gui_targets": 3,
+  "whole_spell_wrapper_complete": true,
+  "files": [
+    {
+      "phase": "flight",
+      "path": "player-thunder-flight-r1.png",
+      "sha256": "93434d371a412fca3e2194befd192ba709f0d1f24859d71b9bd6c9b29513b34e",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/thunder-r1/gui-r1/vfx-draw/flight-presented.png",
+      "source_sha256": "6e98cb41a69be91b51b1386e6cbc415a40da570b29a8c18c096873ed6cd25461",
+      "draw": {
+        "cycles": 106717138,
+        "draw": 503,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "a1caca72b1bdc31eba6ab591ae4253a6be1b7ddfabc5dc5c0b2402f058c14f02",
+        "layer_rect": [
+          435,
+          352,
+          305,
+          245
+        ],
+        "layer_stride": 1220,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "flight",
+        "sample": 39,
+        "step": 101428975,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "flight",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 2,
+          "PONCommits": 0,
+          "Frames": 1,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            96,
+            75
+          ],
+          "Target": [
+            368,
+            50
+          ]
+        }
+      }
+    },
+    {
+      "phase": "impact",
+      "path": "player-thunder-impact-r1.png",
+      "sha256": "d098c6fda9e3f4728f109ee99aa0be572497e78188cdf1bada349121637f50d7",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/thunder-r1/gui-r1/vfx-draw/impact-presented.png",
+      "source_sha256": "7bfdb10f48b25c02d9d0c01517403095b381c955c8eb79dceb5ede508b268130",
+      "draw": {
+        "cycles": 111117140,
+        "draw": 533,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "9b7fc14ce8caddc002f68e7a593395e6f69e9255c1bd0421db604c10de951caa",
+        "layer_rect": [
+          946,
+          460,
+          581,
+          581
+        ],
+        "layer_stride": 2324,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "impact",
+        "sample": 25,
+        "step": 105744008,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "impact",
+          "Started": 2,
+          "Completed": 1,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 8,
+          "PONCommits": 15,
+          "Frames": 16,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            96,
+            75
+          ],
+          "Target": [
+            368,
+            100
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -2386,3 +2386,13 @@ GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建�
 四次來源0626之後有12次PON 1／2／3／0，來源完整SHA仍沿已驗材質。首份核對器把來源前段誤算為一張，實際四筆提交推翻它；不因此改動畫或結算。r2等待、r3來源指標讀錯、r4取消與r5成功資料分別保留，沒有把返回或狀態相同單獨當成功施法。
 
 [030 READY與限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家火球術正式接入與限定驗收)據此接同一B Go繪圖，四組正式執行器完整state、八拒絕案及兩張受控實際Draw通過。027補`PON-PLAYER-FIREBALL-SAMPLED`，原26個AI不可變鍵保持，另外保存玩家0x219CC鍵及負例。原型、原版控制、當時工具與完整GUI原PNG保存於[1045檔清單](preserved/player-fireball-r1.json)，[獨立研究收據](preserved/player-fireball-research-r2.json)與[正式核對](preserved/player-fireball-audit-r1.json)分開。剩餘七戰鬥／八地圖效果與自然習得未閉合。
+
+## 2026-10-29：玩家雷火術逐隊事件與快照續跑限制
+
+輸入PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，既有IDA Pro9.4匯出採MZ loader線性位址。sub_1E8A4的0x1E9F8..0x1EACC為法術1逐槽分支，call0x1EA83返回0x1EA86；固定load0110h的runtime父返回為0F67:0516。共用sub_219CC原518 bytes，runtime入口0F67:345C／RETF3661，來源703Ch與目標701Eh。靜態原bytes由MZ重定位核對，動態證據另列，不混用位址基準。
+
+已證實：固定原版初始快照及完整亂數狀態，mixed四活／兩空依槽0、1、2、3施放；sparse一活／五空只槽1。兩組由選單Down／Enter觸發，每隊四來源及12PON，整次資源2→1；Esc取消不入效果、資源保持2。只讀觀測同各自原版完整final state，沒有改selector或目標。[研究核對r1](preserved/player-thunder-research-r1.json)保存原始結論，正式掛點只新增法術1＋caller0516組合。
+
+追加限定勘誤：r1正式測試的sparse從首效果快照續跑，於102403645步不同原連續final state。無VFX的m.Step、PAM Oracle與PREDELLA Oracle載入後完整state均同輸入，三者固定步數結果均為ed23b38297e57ad35699196d9f2094b707ee3568c888fe13f4ad557cea5df308，亦同HD；原連續結果仍為1c93891997d555f0f3e4bc5c01651e0ec577c3ffe9853d131f2e83f198b4da47。DOS區塊同值，CPU／RAM不同。內部根因未知，不將此定位證據當核心修復。
+
+[研究核對r2](preserved/player-thunder-research-r2.json)保留原連續控制，新增同快照無掛點原版續跑參考；READY先訂正再改測試參考，正式繪圖程式不因失敗變更。五組仍對原連續流程，sparse只稱同初始快照續跑無副作用。實際GUI另完整完成三隊，兩張Draw獨立重建通過。[030限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家雷火術正式接入與限定驗收)與[永久證據](preserved/README.md#玩家雷火術接入保存)為入口，不擴張自然習得、其餘法術或存讀聲明。

@@ -10,6 +10,8 @@ import (
 )
 
 var playerFireMenu, playerFireTarget bool
+var playerFireFinished bool
+var playerFireExpected uint64
 
 func (e *Engine) ResearchVFXTick() error {
 	if os.Getenv("EIGHTSWORD_VFX_FIXTURE") != "1" || researchVFX.armed || e.battleVFX == nil {
@@ -17,6 +19,10 @@ func (e *Engine) ResearchVFXTick() error {
 	}
 	researchVFX.armed = true
 	v := e.battleVFX
+	spell := uint16(0)
+	if os.Getenv("EIGHTSWORD_PLAYER_GUI_SPELL") == "thunder" {
+		spell = 1
+	}
 	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x19ac}, func(o *oracle.Oracle) {
 		if researchVFX.changed {
 			return
@@ -44,9 +50,19 @@ func (e *Engine) ResearchVFXTick() error {
 			change(0x8e46+i*2, 1)
 		}
 		change(0x26aa, 1)
+		playerFireExpected = 1
+		if spell == 1 {
+			playerFireExpected = 0
+			for i := uint16(0); i < 6; i++ {
+				id := o.Word(oracle.Addr{Seg: v.data, Off: 0x6fc2 + i*2})
+				if id < 6 && o.Word(oracle.Addr{Seg: v.data, Off: 0x5702 + id*4}) > 0 {
+					playerFireExpected++
+				}
+			}
+		}
 		for i := uint16(0); i < 8; i++ {
 			n := uint16(0)
-			if i == 0 {
+			if i == spell {
 				n = 2
 			}
 			change(0x2aa8+i*2, n)
@@ -55,9 +71,27 @@ func (e *Engine) ResearchVFXTick() error {
 	})
 	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x122}, func(o *oracle.Oracle) {
 		if researchVFX.changed && !playerFireMenu {
+			if spell == 1 {
+				o.PressKey(oracle.KeyDown)
+			}
 			o.PressKey(oracle.KeyEnter)
 			playerFireMenu = true
 		}
+	})
+	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x334}, func(o *oracle.Oracle) {
+		if !researchVFX.changed {
+			return
+		}
+		r := o.Regs()
+		retIP := o.Word(oracle.Addr{Seg: r.SS, Off: r.SP})
+		retCS := o.Word(oracle.Addr{Seg: r.SS, Off: r.SP + 2})
+		ss, sp := r.SS, r.SP+4
+		o.OnCall(oracle.Addr{Seg: retCS, Off: retIP}, func(o *oracle.Oracle) {
+			r := o.Regs()
+			if r.SS == ss && r.SP == sp {
+				playerFireFinished = true
+			}
+		})
 	})
 	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x283e}, func(o *oracle.Oracle) {
 		if !researchVFX.changed || !playerFireMenu || playerFireTarget {

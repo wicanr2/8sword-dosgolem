@@ -2,7 +2,9 @@
 
 使用者於2026-10-29明確授權：「後續都照相同規格處理，不用再詢問」。後續已確認目標內的同規格美術、動畫與HD接入，自主完成樣式延伸、來源查證、READY契約、Go實作、代表抽驗、永久保存、正式提升及私人GitHub紀錄，不再逐張選樣或重問接入同意。風格沿已批准的原版配色與中國古風，動畫沿[030 B接入規格](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入ready契約)，繪圖沿[047模式分流](docs/spec/047-hd-scene-renderer.md#hd與原版模式分流追加契約)，保存沿[永久圖庫](artwork/README.md)與[必要資料保存](preserved/README.md)。保留原版模式、已定規則與存檔契約，依共用機制抽驗，不逐隻重跑GUI；未知語意自行查證並標示證據等級，不猜補。這項持續授權優先於舊文件對同規格工作逐項詢問的要求。
 
-現行程式為source-candidate-player-fire-r1／188來源七程式與r68／525素材，923核心不變，依[030玩家火球術限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家火球術正式接入與限定驗收)提升。已批准B「飛焰＋命中符光」追加到玩家火球術，原敵方特殊0／2／5保持。四組完整原版state、八種拒絕、兩張玩家實際Draw獨立合成通過；原版模式不安裝，傷害、AI、規則、時鐘及存檔保持。工具列仍可獨立切規則與AI，auto恢復規則標記。以下較早數字為當時驗收，現況以本列及CONTEXT為準。
+現行程式為source-candidate-player-thunder-r2／188來源七程式與r68／525素材，923核心不變，依[030玩家雷火術限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家雷火術正式接入與限定驗收)提升。B「飛焰＋命中符光」已接玩家火球術、雷火術及原敵方特殊0／2／5。六組控制與十二種拒絕通過；五組比對原連續流程，稀疏組比對相同快照的無掛點原版續跑，其連續等價性仍未知。實際GUI完成三目標施法，兩張Draw獨立合成通過。原版模式、傷害、AI、規則、時鐘及存檔保持。工具列仍可獨立切規則與AI，auto恢復規則標記。以下較早數字為當時驗收，現況以本列及CONTEXT為準。
+
+[雷火研究核對](tools/audit-player-thunder.py)、[快照診斷](tools/diagnose-thunder-resume.go)及[核對／保存／提升](tools/finalize-player-thunder.py)用法見030。法術1只允許父caller0516，火球法術0只允許074A，交叉組合拒絕；同一518-byte入口不放寬其他術。多目標順序、空隊略過及整次扣資源交原版，GUI須等完整wrapper返回。[永久保存](preserved/README.md#玩家雷火術接入保存)含失敗測試與三路原版續跑診斷，不修改原收據或宣稱核心已修復；完整B圖庫1040檔保持。
 
 [玩家原版研究](tools/probe-player-spells.go)、[IDA窄查](tools/export-player-spells-ida.py)、[獨立核對](tools/audit-player-spells.py)、[候選與GUI準備](tools/prepare-player-fireball.py)、[受控GUI](tools/check-player-fire-gui.sh)及[核對／保存／提升](tools/finalize-player-fireball.py)用法見030。原版16個法術名稱及次數欄已入[索引](docs/images/player-spell-catalog-r1.json)，只有火球術完成本輪效果驗收。玩家入口0F67:345C／RETF3661與父caller074A須核對518 bytes及法術0，來源703Ch、目標701Eh，原敵方表相反。受控後排施法者／學習旗標／次數不當自然習得；取消的原版退還資源保持。1045檔／590物件已[永久保存](preserved/README.md#玩家火球術接入保存)並無原workplace逐物件核對，完整B原圖仍沿1040檔artwork，不重生成。
 

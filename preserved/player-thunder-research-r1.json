@@ -1,0 +1,248 @@
+{
+  "status": "passed-scoped-player-thunder-research",
+  "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_lines_verified": 6715,
+  "cases": [
+    {
+      "case": "mixed",
+      "spell": 1,
+      "effects": 4,
+      "charged_once": true,
+      "final_charges": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targets": [
+        {
+          "slot": 0,
+          "source": [
+            96,
+            75
+          ],
+          "target": [
+            368,
+            50
+          ],
+          "poses": 4,
+          "pon": 12,
+          "source_cycle_intervals": [
+            197305,
+            195915,
+            194491
+          ]
+        },
+        {
+          "slot": 1,
+          "source": [
+            96,
+            75
+          ],
+          "target": [
+            368,
+            100
+          ],
+          "poses": 4,
+          "pon": 12,
+          "source_cycle_intervals": [
+            199370,
+            197019,
+            194504
+          ]
+        },
+        {
+          "slot": 2,
+          "source": [
+            96,
+            75
+          ],
+          "target": [
+            368,
+            150
+          ],
+          "poses": 4,
+          "pon": 12,
+          "source_cycle_intervals": [
+            197305,
+            194504,
+            195928
+          ]
+        },
+        {
+          "slot": 3,
+          "source": [
+            96,
+            75
+          ],
+          "target": [
+            456,
+            75
+          ],
+          "poses": 4,
+          "pon": 12,
+          "source_cycle_intervals": [
+            199139,
+            194517,
+            196813
+          ]
+        }
+      ],
+      "initial_enemy": [
+        16,
+        32,
+        6,
+        10,
+        11,
+        30,
+        21,
+        40,
+        0,
+        0,
+        0,
+        0
+      ],
+      "final_enemy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        21,
+        10,
+        0,
+        0,
+        0,
+        0
+      ],
+      "full_state_equal": true,
+      "final_state_sha256": "c45e8e8b4881231f966c8dcdc1f7cf0da29a863234189779c10cca42f824c899"
+    },
+    {
+      "case": "sparse",
+      "spell": 1,
+      "effects": 1,
+      "charged_once": true,
+      "final_charges": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targets": [
+        {
+          "slot": 1,
+          "source": [
+            96,
+            75
+          ],
+          "target": [
+            368,
+            100
+          ],
+          "poses": 4,
+          "pon": 12,
+          "source_cycle_intervals": [
+            197305,
+            194504,
+            195928
+          ]
+        }
+      ],
+      "initial_enemy": [
+        16,
+        0,
+        6,
+        10,
+        11,
+        0,
+        21,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "final_enemy": [
+        16,
+        0,
+        0,
+        0,
+        11,
+        0,
+        21,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "full_state_equal": true,
+      "final_state_sha256": "1c93891997d555f0f3e4bc5c01651e0ec577c3ffe9853d131f2e83f198b4da47"
+    },
+    {
+      "case": "cancel",
+      "spell": 1,
+      "effects": 0,
+      "charged_once": false,
+      "final_charges": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "targets": [],
+      "initial_enemy": [
+        16,
+        32,
+        6,
+        10,
+        11,
+        30,
+        21,
+        40,
+        0,
+        0,
+        0,
+        0
+      ],
+      "final_enemy": [
+        16,
+        32,
+        6,
+        10,
+        11,
+        30,
+        21,
+        40,
+        0,
+        0,
+        0,
+        0
+      ],
+      "full_state_equal": true,
+      "final_state_sha256": "8f6594bc2e535286a7111197908576edc7eebe1fa0d8cf765daf2b048fa184d1"
+    }
+  ],
+  "source_and_target_tables": "Player DS:703C, enemy DS:701E",
+  "caller_return": "fixed-load runtime0F67:0516, spell selector1",
+  "rng": "Fixed full original snapshot, no reroll; numeric seed unknown",
+  "limits": [
+    "Controlled rear caster, learned flag and two thunder uses. No natural-learning claim.",
+    "Mixed four live/two empty; sparse one live/five empty; original wrapper charges once and skips empty slots.",
+    "No production changes authorized until READY."
+  ]
+}

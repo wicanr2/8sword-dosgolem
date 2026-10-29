@@ -50,8 +50,11 @@ func main() {
 	root := flag.String("root", "", "read-only original")
 	snapshot := flag.String("state", "", "fixed original snapshot")
 	out := flag.String("out", "", "new output")
+	spell := flag.Int("spell", 0, "original menu index 0 fireball or 1 thunder")
+	fixture := flag.String("fixture", "mixed", "mixed original enemies or sparse unit 1 only")
+	cancelMenu := flag.Bool("cancel-menu", false, "cancel original spell menu with Escape")
 	flag.Parse()
-	if *root == "" || *snapshot == "" || *out == "" {
+	if *root == "" || *snapshot == "" || *out == "" || (*spell != 0 && *spell != 1) || (*fixture != "mixed" && *fixture != "sparse") {
 		panic("missing inputs")
 	}
 	if _, e := os.Stat(*out); !os.IsNotExist(e) {
@@ -110,6 +113,7 @@ func main() {
 		menu, target := false, false
 		var retCS, retIP, retSS, retSP uint16
 		var bitmap map[string]any
+		effectCount := 0
 		targets := map[uint16]string{0x19ac: "player-turn", 0x122: "spell-menu", 0x31e: "consume-charge", 0x334: "player-spell", 0x345c: "player-effect", 0x283e: "target-selection", 0x36c6: "enemy-effect"}
 		capture := func(name string) {
 			if !observe {
@@ -121,11 +125,19 @@ func main() {
 			c := m.CPU
 			sp := c.R[cpu.SP]
 			bp := c.R[cpu.BP]
-			v := map[string]any{"name": name, "step": m.Steps, "cycles": m.CPU.Cycles, "cs": c.Seg[cpu.CS], "ip": c.IP, "registers": c.R, "segments": c.Seg, "stack": words(c.Seg[cpu.SS], sp, 10), "bp_minus_4": m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(bp-4)), "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12)}
+			v := map[string]any{"name": name, "step": m.Steps, "cycles": m.CPU.Cycles, "cs": c.Seg[cpu.CS], "ip": c.IP, "registers": c.R, "segments": c.Seg, "stack": words(c.Seg[cpu.SS], sp, 10), "bp_minus_4": m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(bp-4)), "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "enemy_map": words(0x1e88, 0x6fc2, 6), "player_positions": words(0x1e88, 0x703c, 6), "enemy_positions": words(0x1e88, 0x701e, 6)}
 			events = append(events, v)
-			if name == "spell-menu" || name == "player-effect" || name == "player-spell:return" {
-				must(state.Save(filepath.Join(dir, name+".state"), m, d))
-				shot(m, filepath.Join(dir, name+".png"))
+			if name == "spell-menu" || name == "player-spell" || name == "player-effect" || name == "player-spell:return" {
+				file := name
+				if name == "player-effect" {
+					effectCount++
+					file = fmt.Sprintf("player-effect-%02d", effectCount)
+					if effectCount == 1 {
+						must(state.Save(filepath.Join(dir, "player-effect.state"), m, d))
+					}
+				}
+				must(state.Save(filepath.Join(dir, file+".state"), m, d))
+				shot(m, filepath.Join(dir, file+".png"))
 			}
 		}
 		queue := func(scan uint8, why string) {
@@ -198,9 +210,16 @@ func main() {
 							change(0x8e46+i*2, 1)
 						}
 						change(0x26aa, 1)
+						if *fixture == "sparse" {
+							for i := uint16(0); i < 6; i++ {
+								if i != 1 {
+									change(0x5702+i*4, 0)
+								}
+							}
+						}
 						for i := uint16(0); i < 8; i++ {
 							n := uint16(0)
-							if i == 0 {
+							if int(i) == *spell {
 								n = 2
 							}
 							change(0x2aa8+i*2, n)
@@ -219,7 +238,14 @@ func main() {
 					if configured && c.IP == 0x122 {
 						menu = true
 						if !menuKey {
-							queue(0x1c, "select fireball via original menu")
+							if *cancelMenu {
+								queue(0x01, "cancel original spell menu")
+							} else {
+								for i := 0; i < *spell; i++ {
+									queue(0x50, "original spell menu Down")
+								}
+								queue(0x1c, "select spell via original menu")
+							}
 							menuKey = true
 						}
 					}
@@ -258,10 +284,11 @@ func main() {
 					for i := range raw {
 						raw[i] = m.Read8(a + uint32(i))
 					}
-					bitmap = map[string]any{"entry": c.IP, "entry_step": m.Steps, "source_sha256": sha(raw), "width_bytes": w, "height": h, "args": args}
+					bitmap = map[string]any{"entry": c.IP, "entry_step": m.Steps, "entry_cycles": m.CPU.Cycles, "source_sha256": sha(raw), "width_bytes": w, "height": h, "args": args}
 				}
 				if bitmap != nil && ((c.IP == 0x76e && bitmap["entry"].(uint16) == 0x626) || (c.IP == 0x625 && bitmap["entry"].(uint16) == 0x4f2)) {
 					bitmap["return_step"] = m.Steps
+					bitmap["return_cycles"] = m.CPU.Cycles
 					bitmaps = append(bitmaps, bitmap)
 					if len(bitmaps) > 512 {
 						panic("bitmap bound")
@@ -275,7 +302,7 @@ func main() {
 		shot(m, filepath.Join(dir, "final.png"))
 		raw, e := os.ReadFile(filepath.Join(dir, "final.state"))
 		must(e)
-		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12)}
+		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "spell": *spell, "fixture": *fixture, "cancel_menu": *cancelMenu, "effect_count": effectCount}
 		saveJSON(filepath.Join(dir, "trace.json"), result)
 		runs = append(runs, result)
 	}

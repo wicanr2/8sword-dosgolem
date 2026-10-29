@@ -1,5 +1,7 @@
 # 027：PON 戰場火花
 
+`PON-PLAYER-THUNDER-SAMPLED`：沿[030雷火術](030-battle-expansion-proposal.md#玩家雷火術b接入ready契約)的原版法術1分支，混合四隊與稀疏一隊各按原存活槽順序進sub_219CC；每隊仍四出手姿態與12PON，整次只扣一個法術資源，空槽略過。父返回固定load0110h的0F67:0516，與火球074A分開。三組成功／取消的完整state成對同值，見[研究收據](../../preserved/player-thunder-research-r1.json)。此為已知玩家0x219CC的多目標caller補充，不外推其餘法術或自然習得。
+
 `PON-PLAYER-FIREBALL-SAMPLED`：2026-10-29沿[030玩家火球術](030-battle-expansion-proposal.md#玩家火球術b接入ready契約)，在原版`sub_219CC`的受控玩家施法中確認同一PON四筆按1／2／3／0三輪共12次，目標368,100。IDA MZ loader線性位址為0x219CC，固定載入0110h入口0F67:345C。原版選單、扣次、方向鍵選敵、Enter及返回已成對核對，完整state同值；[研究收據](../../preserved/player-fireball-research-r2.json)與[16術原名索引](../images/player-spell-catalog-r1.json)保留範圍。較早「玩家施法未知」只在這條火球術路徑獲得限定補充，其他法術及自然習得仍未知，不重開既有材質。
 
 `PON-SPECIAL-CALLERS-SAMPLED`：2026-10-29的[030動畫觀測](030-battle-expansion-proposal.md#戰鬥特殊效果的動畫觀測)已在三組受控特殊0／2／5的`sub_21C36`完整效果內，確認各12次PON，共36次，仍沿本規格`04F2/0625`與既有四張素材。較早「用途未知」現在補上這段限定caller脈絡；法術名稱、玩家施法、自然可達性及完整用途仍未知。這不是新法術種類，也不重開既有PON呈現驗收。來源與完整state核對見[觀測收據](../../preserved/battle-vfx-observation-r1.json)，原版普通攻擊與其他caller不外推。
