@@ -50,11 +50,13 @@ func main() {
 	root := flag.String("root", "", "read-only original")
 	snapshot := flag.String("state", "", "fixed original snapshot")
 	out := flag.String("out", "", "new output")
-	spell := flag.Int("spell", 0, "original menu index 0 fireball or 1 thunder")
-	fixture := flag.String("fixture", "mixed", "mixed original enemies or sparse unit 1 only")
+	spell := flag.Int("spell", 0, "original menu index 0 fireball, 1 thunder, 2 exorcism")
+	fixture := flag.String("fixture", "mixed", "mixed original enemies, sparse unit 1 only, or no-ghost")
+	targetKind := flag.String("target-kind", "any", "any, ghost (kind6..15), or ordinary target via original navigation")
 	cancelMenu := flag.Bool("cancel-menu", false, "cancel original spell menu with Escape")
+	cancelTarget := flag.Bool("cancel-target", false, "cancel original target menu with Escape")
 	flag.Parse()
-	if *root == "" || *snapshot == "" || *out == "" || (*spell != 0 && *spell != 1) || (*fixture != "mixed" && *fixture != "sparse") {
+	if *root == "" || *snapshot == "" || *out == "" || *spell < 0 || *spell > 2 || (*fixture != "mixed" && *fixture != "sparse" && *fixture != "no-ghost") || (*targetKind != "any" && *targetKind != "ghost" && *targetKind != "ordinary") {
 		panic("missing inputs")
 	}
 	if _, e := os.Stat(*out); !os.IsNotExist(e) {
@@ -111,6 +113,7 @@ func main() {
 		configured, castStarted, finished := false, false, false
 		menuKey, targetKey := false, false
 		menu, target := false, false
+		targetPlanNode := -1
 		var retCS, retIP, retSS, retSP uint16
 		var bitmap map[string]any
 		effectCount := 0
@@ -159,9 +162,14 @@ func main() {
 				pending = pending[1:]
 				if at.node >= 1 && at.node <= 6 {
 					id := word(0x6fc0 + uint16(at.node)*2)
-					if id < 6 && word(0x5702+id*4) > 0 {
+					kind := word(0x5700 + id*4)
+					eligible := *targetKind == "any" || (*targetKind == "ghost" && kind >= 6 && kind <= 15) || (*targetKind == "ordinary" && (kind < 6 || kind > 15))
+					if id < 6 && word(0x5702+id*4) > 0 && eligible {
 						for _, scan := range at.keys {
 							queue(scan, "original navigation table to live enemy")
+							if *spell == 2 {
+								return
+							}
 						}
 						queue(0x1c, "confirm live enemy with Enter")
 						return
@@ -187,6 +195,19 @@ func main() {
 				break
 			}
 			if c.Seg[cpu.CS] == 0xf67 {
+				if *spell == 2 && target && c.IP == 0x29f2 {
+					node := int(m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.BP]-10)))
+					if node != targetPlanNode {
+						targetKey = true
+						capture("target-cursor")
+						if *cancelTarget {
+							queue(0x01, "cancel original target menu")
+						} else {
+							selectEnemy(node)
+						}
+						targetPlanNode = node
+					}
+				}
 				if name, ok := targets[c.IP]; ok {
 					if c.IP == 0x19ac && !configured {
 						must(state.Save(filepath.Join(dir, "before-fixture.state"), m, d))
@@ -210,6 +231,14 @@ func main() {
 							change(0x8e46+i*2, 1)
 						}
 						change(0x26aa, 1)
+						if *fixture == "no-ghost" {
+							for i := uint16(0); i < 6; i++ {
+								kind := word(0x5700 + i*4)
+								if kind >= 6 && kind <= 15 {
+									change(0x5700+i*4, 16)
+								}
+							}
+						}
 						if *fixture == "sparse" {
 							for i := uint16(0); i < 6; i++ {
 								if i != 1 {
@@ -252,8 +281,12 @@ func main() {
 					if configured && c.IP == 0x283e {
 						target = true
 						menu = false
-						if !targetKey {
-							selectEnemy(int(m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.SP]) + 4)))
+						if !targetKey && *spell != 2 {
+							if *cancelTarget {
+								queue(0x01, "cancel original target menu")
+							} else {
+								selectEnemy(int(m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.SP]) + 4)))
+							}
 							targetKey = true
 						}
 					}
@@ -291,6 +324,9 @@ func main() {
 					bitmap["return_cycles"] = m.CPU.Cycles
 					bitmaps = append(bitmaps, bitmap)
 					if len(bitmaps) > 512 {
+						must(state.Save(filepath.Join(dir, "diagnostic-bound.state"), m, d))
+						shot(m, filepath.Join(dir, "diagnostic-bound.png"))
+						saveJSON(filepath.Join(dir, "diagnostic-bound.json"), map[string]any{"events": events, "keys": keys, "bitmaps": bitmaps, "step": m.Steps, "registers": m.CPU.R, "segments": m.CPU.Seg, "ip": m.CPU.IP})
 						panic("bitmap bound")
 					}
 					bitmap = nil
@@ -302,7 +338,7 @@ func main() {
 		shot(m, filepath.Join(dir, "final.png"))
 		raw, e := os.ReadFile(filepath.Join(dir, "final.state"))
 		must(e)
-		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "spell": *spell, "fixture": *fixture, "cancel_menu": *cancelMenu, "effect_count": effectCount}
+		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "spell": *spell, "fixture": *fixture, "target_kind": *targetKind, "cancel_menu": *cancelMenu, "cancel_target": *cancelTarget, "effect_count": effectCount}
 		saveJSON(filepath.Join(dir, "trace.json"), result)
 		runs = append(runs, result)
 	}

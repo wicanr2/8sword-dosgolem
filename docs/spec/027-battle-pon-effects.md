@@ -85,3 +85,5 @@
 ## 民兵其餘姿勢後續閉合
 
 `MAN01-POSES-HD-RESOLVED`：前述 MAN01 其餘三筆待辦已由 [036](036-battle-militia-poses.md#正式接入與限定驗收)閉合，來源鍵 `DOS/MAN01.EGG@a7e02cf4…e5f1/file+3304,+6608,+9912/mirror-six-planes`，沿 `PAM/runtime14D2:0626/06B8/076E`。普通游標右移選中敵方後 Enter，三筆來源與返回色碼、三組隔離、完整返回與實際 Draw、F1／F2 及真正存退讀已驗。較早只見首筆的收據保持歷史；原版動作規則、傷害、AI 與整體 HD 不由此結案。
+
+`PON-PLAYER-EXORCISM-SAMPLED`：[殺鬼術原版研究](../../preserved/player-exorcism-research-r1.json)已證實法術2同sub_219CC／0F67:074A，合類與非合類目標均有四來源／12PON；無合類與選敵Esc無效果，本次均扣一次。僅關閉此caller的抽樣未知，五個其他戰鬥及八個地圖效果、自然習得與傷害word沿用語意仍不外推。接入與驗收沿[030](030-battle-expansion-proposal.md#玩家殺鬼術b接入ready契約)。

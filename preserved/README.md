@@ -1,5 +1,13 @@
 # 必要資料永久保存
 
+## 玩家殺鬼術接入保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#玩家殺鬼術正式接入與限定驗收)已提升source-candidate-player-exorcism-r2／188來源七程式。四組[原版研究](player-exorcism-research-r1.json)、八效果控制共十一效果、十六拒絕及兩張實際Draw獨立合成通過；r68全525素材、923核心、前版七程式與B圖庫1040檔保持。[正式核對](player-exorcism-audit-r1.json)、[提升](player-exorcism-promotion-r1.json)與[收尾核對](player-exorcism-integrity-r1.json)分開記錄。七組同原連續流程，前輪稀疏組同相同快照無掛點原版續跑；不宣稱自然習得、新存讀或核心修復。
+
+[永久清單](player-exorcism-r1.json)含1839檔／616物件，壓縮125368551 bytes，保存四輪探針、四組原版控制、兩版候選、七程式、失敗與成功測試及GUI完整PNG／底圖／原始透明層。完整物件留本機`player-exorcism-r1/`，不加入Git；[捕獲](player-exorcism-preservation-r1.json)與[無原workplace核對](player-exorcism-verification-r1.json)已通過。既有IDA及火球證據沿火球清單，雷火及稀疏控制沿雷火清單；原版／923核心／模組沿`catalog.json.gz`，r68沿tactics及completion-r65，完整B原圖沿[永久圖庫](../artwork/manifest.json)，不重複保存。
+
+[核對與保存器](../tools/finalize-player-exorcism.py)在固定Pillow11.3.0 Docker使用`archive --project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲。只掛永久preserved及工具，使用`verify --archive <唯讀preserved> --out <可寫新JSON>`逐物件解壓並驗每檔SHA／長度；按清單原路徑及mode可還原，不需要原workplace，也不需另建大型還原副本。完整提示與批准圖沿圖庫，本輪沒有新生成美術。
+
 ## 玩家雷火術接入保存
 
 [030限定驗收](../docs/spec/030-battle-expansion-proposal.md#玩家雷火術正式接入與限定驗收)已提升source-candidate-player-thunder-r2／188來源七程式。六組完整state、十二拒絕案及兩張實際Draw獨立合成通過；實際GUI完整施法命中三隊。五組沿原連續控制，稀疏組沿相同快照的無掛點原版續跑，其連續等價性仍未知。r68全525素材、923核心、前版七程式與原版模式保持。[研究核對](player-thunder-research-r2.json)、[正式核對](player-thunder-audit-r1.json)、[提升](player-thunder-promotion-r1.json)及[收尾核對](player-thunder-integrity-r1.json)分開記錄，不稱自然習得或新存讀。

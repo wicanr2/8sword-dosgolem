@@ -21,6 +21,18 @@
           "receipt": "preserved/player-thunder-research-r2.json",
           "scope": "Spell1/caller runtime0516: four-live/two-empty and one-live/five-empty original menu casts; charge once, 4 poses and 12 PON per live target, paired full state equal; menu cancellation unchanged.",
           "not_closed": "Six other battle effects, eight map effects and natural learning. Sparse first-effect snapshot continuous equivalence remains unknown; unhooked original fresh resume equals HD observer."
+        },
+        {
+          "level": "proven-in-sampled-scope",
+          "evidence": "docs/spec/030-battle-expansion-proposal.md",
+          "older_spec": "docs/spec/027-battle-pon-effects.md",
+          "required_correction": "PON-PLAYER-EXORCISM-SAMPLED",
+          "receipt": "preserved/player-exorcism-research-r1.json",
+          "scope": "Original selector2 shares sub_219CC/caller074A; eligible and ordinary targets use four source commits and twelve PON; no-ghost/Escape have no effect.",
+          "not_closed": [
+            "Five other battle effects and eight map effects.",
+            "Natural learning and damage-word carry semantics; prior sparse snapshot continuity remains unknown."
+          ]
         }
       ],
       "scope": "One fixed-snapshot rear-caster fireball through original menu and target navigation; 4 source poses and 12 PON, paired full state equal.",

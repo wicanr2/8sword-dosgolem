@@ -1,0 +1,32 @@
+{
+  "status": "passed-scoped-player-exorcism-integrity",
+  "production_programs": 7,
+  "source_count": 188,
+  "assets_unchanged": 525,
+  "core_unchanged": 923,
+  "previous_programs_preserved": 7,
+  "original_executor_cases": 8,
+  "original_effect_calls": 11,
+  "guards": 16,
+  "actual_draws_independently_rebuilt": 2,
+  "catalog_names": 16,
+  "permanent_files": 1839,
+  "permanent_objects": 616,
+  "approved_artwork_files": 1040,
+  "original_AI_resolution_keys": 26,
+  "enemy_supplemental_backlinks": 1,
+  "player_resolution_keys": 1,
+  "player_supplemental_backlinks": 2,
+  "missing_correction_cases_rejected": 9,
+  "markdown_links": 2424,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0,
+  "limits": [
+    "Controlled rear caster/learned flag/charges and one kind6 enemy in GUI; not natural learning or unit-art mapping.",
+    "Sparse case matches unhooked original resume from identical snapshot; continuous snapshot equivalence remains unknown. No core change or seed reroll.",
+    "Fireball, thunder and exorcism; five other battle effects and eight map effects remain open.",
+    "No game rules, save fields, original display path, assets or core changes.",
+    "Normal save/load uses prior B acceptance; no new save GUI claim."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "status": "promoted-scoped-player-exorcism",
+  "audit_sha256": "9530483b0f7e2f15473c1a435c0864e886ab803635befb14c3ab1c625a666eac",
+  "programs": {
+    "8sword": "fe1f1622f2dd624c0151822bf9049cf6a3f4b0b6a864a482d4ff3970e1af0c61",
+    "8sword-replay": "bd838057812eb07fcfa75a4934fac2d6d0870b70e35d5f77615d44f591a4f512",
+    "gui-check": "57f0eee1153885782c3adc69ea4944bf406153a4a5b1fe756749e4062181ae4b",
+    "music-check": "1d715027a78f83f133591b812a1e4627fdd5ed900a8dcdbf2dbb4dfbfa2af28b",
+    "heroine-check": "d16828df360df605148d9f16a862b9ef02bb320b907b894d304b9b7ba675458c",
+    "museum-check": "52add772b88337b9031f7b4ebc169d5bf3747248cce6e7029c0ba02a3dc0423a",
+    "story-prelude-check": "6ceb8da29c2c850691f81b7e78e9eadb4a4417278b780306a8093bf81bd93e2b"
+  },
+  "source_count": 188,
+  "core_files": 923,
+  "assets": "r68",
+  "asset_files": 525
+}

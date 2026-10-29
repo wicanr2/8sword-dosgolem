@@ -2396,3 +2396,15 @@ GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建�
 追加限定勘誤：r1正式測試的sparse從首效果快照續跑，於102403645步不同原連續final state。無VFX的m.Step、PAM Oracle與PREDELLA Oracle載入後完整state均同輸入，三者固定步數結果均為ed23b38297e57ad35699196d9f2094b707ee3568c888fe13f4ad557cea5df308，亦同HD；原連續結果仍為1c93891997d555f0f3e4bc5c01651e0ec577c3ffe9853d131f2e83f198b4da47。DOS區塊同值，CPU／RAM不同。內部根因未知，不將此定位證據當核心修復。
 
 [研究核對r2](preserved/player-thunder-research-r2.json)保留原連續控制，新增同快照無掛點原版續跑參考；READY先訂正再改測試參考，正式繪圖程式不因失敗變更。五組仍對原連續流程，sparse只稱同初始快照續跑無副作用。實際GUI另完整完成三隊，兩張Draw獨立重建通過。[030限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家雷火術正式接入與限定驗收)與[永久證據](preserved/README.md#玩家雷火術接入保存)為入口，不擴張自然習得、其餘法術或存讀聲明。
+
+## 2026-10-29：殺鬼術共用動畫與原版邊界
+
+來源PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，沿既有IDA Pro9.4匯出。IDA採MZ loader線性位址，runtime採固定load0110h，兩者分列。27函式6715行bytes由原MZ重定位獨立核對，匯出SHA為fd5179ef957f92d13a3e4c1ce8e1eaaddad3a03046054517c983f4eb25ba44df。
+
+已證實的靜態來源：sub_1E8A4的0x1EACC起為法術2，0x1EAE2／0x1EAE7掃種類6..15，0x1EBB4／0x1EBBC再次判所選種類；非合類在0x1EBC1跳至0x1EC8D，繞過本分支的傷害word設定。0x1ECB7的e8122d呼叫sub_219CC，返回0x1ECBA，runtime父返回0F67:074A。共用入口仍為0F67:345C、518 bytes及RETF3661，來源DS:703Ch／目標701Eh。
+
+已證實的動態範圍：固定02-active-before完整快照與原亂數狀態，合類種類6目標10→0，非合類種類16目標32→22；兩者均四來源及12PON。無合類敵軍不進選敵／效果；選敵Esc不進效果。本次四組均扣一次，控制與只讀觀測完整final state相同。非合類傷害word的完整生產與沿用語意仍未知，不以這個觀測推導新的傷害規則，HD只准許原版已進入的效果。
+
+工具r1／r2一次佇列整串選敵鍵停在游標；r2診斷已見法術2與扣次，沒有把它誤當選單沒進。依IDA的0x20F62／runtime0F67:29F2，讀原BP-0Ah游標，游標改變後才送下一鍵。r3被舊targetKey檢查擋住，r4修正檢查後四組通過，不改原目標word或selector。獨立核對器初推Esc退還的假設被原版資源欄否定，改為忠實記錄2→1。[原版核對](preserved/player-exorcism-research-r1.json)保留限定證據。
+
+READY後正式只追加selector2＋caller074A。八組效果控制共十一效果、十六拒絕及實際GUI一次施法／兩張Draw獨立重建通過。前輪稀疏續跑限制沿舊收據，不重查核心。[030驗收](docs/spec/030-battle-expansion-proposal.md#玩家殺鬼術正式接入與限定驗收)與[永久保存](preserved/README.md#玩家殺鬼術接入保存)為入口，不外推其他法術、自然習得或新存讀。

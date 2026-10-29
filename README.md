@@ -58,9 +58,11 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 
 ![玩家火球術：受控局面的實際Go HD Draw](docs/images/player-fireball-impact-r1.png)
 
-玩家雷火術已沿相同規格接入，按原版順序逐隊施放，空隊略過，整次使用只扣一次資源。實際HD視窗已抽驗三個目標及完整收尾；下圖為受控施法的命中畫面。可看[飛行畫面](docs/images/player-thunder-flight-r1.png)、[截圖來源](docs/images/player-thunder-live-r1.json)及[限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家雷火術正式接入與限定驗收)。其餘六種戰鬥術與八種地圖術效果仍待驗。
+玩家雷火術已沿相同規格接入，按原版順序逐隊施放，空隊略過，整次使用只扣一次資源。實際HD視窗已抽驗三個目標及完整收尾；下圖為受控施法的命中畫面。可看[飛行畫面](docs/images/player-thunder-flight-r1.png)、[截圖來源](docs/images/player-thunder-live-r1.json)及[限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家雷火術正式接入與限定驗收)。其餘法術接入範圍見下段。
 
 ![玩家雷火術：多目標受控施法的實際Go HD Draw](docs/images/player-thunder-impact-r1.png)
+
+玩家殺鬼術也已接入 Go 飛焰與符光，保留原版目標條件與結算。可看受控實際視窗的[飛行](docs/images/player-exorcism-flight-r1.png)、[命中](docs/images/player-exorcism-impact-r1.png)、[截圖來源](docs/images/player-exorcism-live-r1.json)及[限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家殺鬼術正式接入與限定驗收)。目前已強化火球、雷火及殺鬼三種玩家戰鬥術，其餘五種戰鬥術與八種地圖術效果仍待驗。
 
 
 | 面向 | 目前狀態 |

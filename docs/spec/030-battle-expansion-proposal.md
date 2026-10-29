@@ -679,3 +679,43 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 [正式核對](../../preserved/player-thunder-audit-r1.json)與[提升](../../preserved/player-thunder-promotion-r1.json)分開記錄。[研究r2](../../preserved/player-thunder-research-r2.json)明列稀疏續跑限制：三路全無掛點原版與HD相同，卻不同原連續流程；內部根因未知。保留兩份結果，不改923核心、不重抽seed，也不宣稱連續等價性已修復。此未知不阻塞已證明的視覺無副作用接入。
 
 [永久保存](../../preserved/README.md#玩家雷火術接入保存)含1957檔／613物件、120340708壓縮bytes，含r1失敗、兩候選、診斷及完整GUI圖。未掛原workplace容器逐物件核對通過後才提升，完整B圖庫1040檔保持。原版規則、時鐘與存檔不變，正常存讀沿既有B驗收，不另聲稱新存讀。其餘六種戰鬥術、八種地圖術及自然習得未完成；可選美術微調不阻塞本項。[收尾核對](../../preserved/player-thunder-integrity-r1.json)另驗現行／前版、圖庫、定位回填負例、文件、語法與擁有權。
+
+## 玩家殺鬼術事件研究
+
+本節DRAFT，沿已批准的同規格Go光效延伸。既有IDA9.4匯出的sub_1E8A4，MZ loader線性0x1EACC..0x1EBEC為法術2分支，靜態候選先掃種類6..15是否存在，再走原版選敵，最後共用sub_219CC及父返回0F67:074A。來源PAM SHA與位址基準沿前節。目標種類不符仍可能進動畫，傷害舊值語意先列未知，不在HD修規則。
+
+沿[玩家探針](../../tools/probe-player-spells.go)新增`-spell 2 -target-kind ghost|ordinary`，仍只送原版選單與導航鍵；`-fixture no-ghost`把種類6..15換成16，`-cancel-target`只送Esc。研究輸出沿既有player-spells-r1內`exorcism-r1/`，至少驗合類目標、非合類目標、全無合類與選敵取消，成對保留完整原版state。固定完整亂數狀態，不重抽種子。正式188來源／七程式、923核心及r68素材保持，證據足夠且READY後才接入。
+
+本輪窄任務工具入口預留：[原版研究核對](../../tools/audit-player-exorcism.py)沿既有獨立MZ／IDA模型核對限定分支與四組控制；[核對／保存／提升](../../tools/finalize-player-exorcism.py)沿既有B流程。新增工具正式寫入後使用方式及驗收範圍回填本節，不以工具存在當接入完成。
+
+### 玩家殺鬼術B接入READY契約
+
+本節READY。[原版研究核對](../../preserved/player-exorcism-research-r1.json)已核對既有IDA9.4的27函式6715行原bytes及四組完整控制／只讀觀測state。合類種類6目標10→0，非合類種類16目標32→22，兩者同四來源姿態及12PON；無種類6..15不入選敵或效果，選敵Esc也不入效果。四組均次數2→1，不假設Esc退還。傷害word的跨分支沿用只列未知，不重製或修補規則。
+
+正式允許組合追加「法術2＋caller074A」，仍需同PAM SHA、固定load0110h的0F67:345C、518 bytes及RETF3661。火球0＋074A、雷火1＋0516保持，其他selector／caller交叉拒絕。來源703Ch／目標701Eh、後排施法者條件、四姿態、12PON、Go公式、文字保留與返回清除沿既有B。不要因術名另加目標種類守門，原版本來會播放非合類目標動畫。
+
+驗收沿八組效果執行器、十六個入口拒絕、原版四組研究及既有AI／規則／工具列回歸。抽一組實際HD視窗，以私有fixture配置後排施法者、法術2兩次資源及一個種類6敵軍；只用原版選單、逐游標導航及Enter，等待wrapper返回。GUI原有美術不作新兵種映射證據，完整Draw飛行／命中各一張獨立合成。規則、AI、傷害、存檔、時鐘、188來源數、923核心與r68全525素材保持；正常存讀沿B既有收據，不重跑同機制。
+
+探針r1／r2把整串選敵鍵一次送出，停在游標畫面；r3逐游標送鍵後被舊工具guard擋住，r4修正guard後四組通過。逐步鍵只在原target loop的MZ loader線性0x20F62，runtime0F67:29F2，讀BP-0Ah游標再送下一鍵，不修改目標word或selector。原版重播失敗保留為驗證工具診斷，不當產品缺陷。獨立核對首輪誤推Esc退資源，實際原版state否定後改正核對假設。
+
+[候選／GUI準備](../../tools/prepare-player-fireball.py)加`--spell 2`，前版固定player-thunder-r2；[GUI執行器](../../tools/check-player-fire-gui.sh)第五參數`exorcism`，用既有Go1.24.13／Ebiten與Pillow11.3.0 Docker及有界trap。完整證據永久保存、無原workplace重驗後才提升，未知入口不放寬。
+
+## 玩家殺鬼術正式接入與限定驗收
+
+本節限定CONFORMED。依前節READY提升source-candidate-player-exorcism-r2／188來源七程式，只在既有控制器追加法術2＋caller074A。r68全525素材、923核心與player-thunder-r2前版七程式逐SHA保持，B公式、原版模式、傷害、AI、規則、時鐘及存檔不改。
+
+| 面向 | 已驗範圍 |
+|---|---|
+| 原版控制 | 四組原版控制與只讀觀測完整state相同。種類6目標10→0，種類16目標32→22，兩者各有四來源姿態／12PON；無種類6..15與選敵Esc均無效果。四組次數皆2→1，不假設退還或自行修補傷害word |
+| 正式測試 | 八組執行器共十一效果、十六入口拒絕、十六張Frame客體純度、B公式／文字與既有AI／結陣／戰術／標記／工具列回歸通過。七組同原連續final state；前輪稀疏組仍同其無掛點原版續跑控制。Go1.24.13測試51.421秒，無FAIL／SKIP，vet及七程式建置通過 |
+| 實際GUI | 正常冷啟動／新遊戲／募兵遇敵後，明示fixture配置後排施法者、法術2兩次資源與一個種類6敵軍。原版選單Down兩次／Enter，依實際游標逐步送導航鍵，不改selector或目標word。Started=Completed=1、4來源、12PON、9效果Frame，取消／略過0，整個wrapper返回後Ctrl+Q |
+| 實際Draw | 飛行Draw233與命中Draw237，各同Go底圖、原始透明層及文字遮罩獨立重建，已抽看。完整原圖入永久物件，[縮小畫面來源](../images/player-exorcism-live-r1.json)保留來源SHA與步數。fixture先前載入的民兵／敵軍美術不當新種類映射證據 |
+| 永久保存 | 1839檔／616物件、125368551壓縮bytes，含四輪探針、原版控制、兩候選、失敗／成功測試及GUI完整圖層。未掛原workplace的容器逐物件SHA與長度核對通過後才提升；B圖庫1040檔不變，沒有新生成圖或大型還原副本 |
+
+首輪正式測試46.206秒，八組效果通過，但殺鬼幾何拒絕案修改了701Eh，而該樣本實際目標為槽1、使用7020h，所以沒有拒絕。r2只修測試的座標，正式控制器逐SHA同r1。GUI以r1非測試來源建置，所有非測試輸入與正式r2完全相同，獨立核對另驗整份r1基底；沒有為純測試變更重跑GUI或改產品。
+
+[原版研究](../../preserved/player-exorcism-research-r1.json)、[正式核對](../../preserved/player-exorcism-audit-r1.json)、[提升](../../preserved/player-exorcism-promotion-r1.json)、[永久保存](../../preserved/README.md#玩家殺鬼術接入保存)及[收尾核對](../../preserved/player-exorcism-integrity-r1.json)為入口。027以`PON-PLAYER-EXORCISM-SAMPLED`回填原caller，26個原AI鍵與前輪定位保持，追加玩家補充，不把名稱目錄視為其他術效果已驗。
+
+[核對／保存／提升器](../../tools/finalize-player-exorcism.py)在固定Pillow11.3.0 Docker使用`audit|archive|verify|promote|integrity --project <唯讀專案> --out <新JSON>`，保存／核對另設`--archive <preserved>`，提升設`--player <可寫player>`；verify只掛永久資料及工具，不需要project或workplace。來源建置沿既有Go1.24.13與923核心，實際GUI沿前節參數與trap。
+
+前輪稀疏快照與原連續執行等價性仍未知，本輪沒有修改核心或重抽seed。非合類傷害word沿用的語意、自然習得、其餘五種戰鬥術與八種地圖術效果仍待驗；正常存讀沿B既有收據，可選美術微調不阻塞本項。

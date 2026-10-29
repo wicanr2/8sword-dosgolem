@@ -1,0 +1,121 @@
+{
+  "status": "passed-scoped-player-exorcism-research",
+  "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_lines_verified": 6715,
+  "ida_export_sha256": "fd5179ef957f92d13a3e4c1ce8e1eaaddad3a03046054517c983f4eb25ba44df",
+  "cases": [
+    {
+      "case": "ghost",
+      "spell": 2,
+      "effects": 1,
+      "final_charges": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target": {
+        "slot": 1,
+        "unit": 1,
+        "kind": 6,
+        "source": [
+          96,
+          75
+        ],
+        "target": [
+          368,
+          100
+        ],
+        "before_count": 10,
+        "after_count": 0,
+        "poses": 4,
+        "pon": 12
+      },
+      "full_state_equal": true,
+      "final_state_sha256": "6cf4c30a94f867aead3f345755de95f00557aa397b5617cac6fd7fe746e13485"
+    },
+    {
+      "case": "ordinary",
+      "spell": 2,
+      "effects": 1,
+      "final_charges": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target": {
+        "slot": 2,
+        "unit": 0,
+        "kind": 16,
+        "source": [
+          96,
+          75
+        ],
+        "target": [
+          368,
+          150
+        ],
+        "before_count": 32,
+        "after_count": 22,
+        "poses": 4,
+        "pon": 12
+      },
+      "full_state_equal": true,
+      "final_state_sha256": "4f9187882841e7dee4af0f1bdf413956a60f21d6c97fdb69827e4072e6657dea"
+    },
+    {
+      "case": "no-ghost",
+      "spell": 2,
+      "effects": 0,
+      "final_charges": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target": null,
+      "full_state_equal": true,
+      "final_state_sha256": "8dce53a2f092bf3ac974d403623894d71da418179fc96e6de725e8390bdb6a51"
+    },
+    {
+      "case": "cancel",
+      "spell": 2,
+      "effects": 0,
+      "final_charges": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target": null,
+      "full_state_equal": true,
+      "final_state_sha256": "bf4646a9bd3cbae0a539f191ddfe23b9ebb2ad68428a957f313607f5614a4444"
+    }
+  ],
+  "source_and_target_tables": "Player DS:703C, enemy DS:701E",
+  "caller_return": "fixed-load runtime0F67:074A, selector2",
+  "rng": "Fixed full original snapshot, no reroll; numeric seed unknown",
+  "limits": [
+    "Controlled rear caster, learned flag/resources and no-ghost fixture; not natural learning.",
+    "Original allows ordinary target when a kind6..15 exists; original damage-word semantics outside eligible branch are not reimplemented or corrected.",
+    "No-ghost and target Escape consume once without effect in sampled original; no refund assumed.",
+    "No production changes authorized until READY."
+  ]
+}

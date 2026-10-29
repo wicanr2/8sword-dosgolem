@@ -12,6 +12,7 @@ import (
 var playerFireMenu, playerFireTarget bool
 var playerFireFinished bool
 var playerFireExpected uint64
+var playerFirePlannedNode = -1
 
 func (e *Engine) ResearchVFXTick() error {
 	if os.Getenv("EIGHTSWORD_VFX_FIXTURE") != "1" || researchVFX.armed || e.battleVFX == nil {
@@ -22,6 +23,9 @@ func (e *Engine) ResearchVFXTick() error {
 	spell := uint16(0)
 	if os.Getenv("EIGHTSWORD_PLAYER_GUI_SPELL") == "thunder" {
 		spell = 1
+	}
+	if os.Getenv("EIGHTSWORD_PLAYER_GUI_SPELL") == "exorcism" {
+		spell = 2
 	}
 	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x19ac}, func(o *oracle.Oracle) {
 		if researchVFX.changed {
@@ -50,6 +54,15 @@ func (e *Engine) ResearchVFXTick() error {
 			change(0x8e46+i*2, 1)
 		}
 		change(0x26aa, 1)
+		if spell == 2 {
+			for i := uint16(0); i < 6; i++ {
+				id := o.Word(oracle.Addr{Seg: v.data, Off: 0x6fc2 + i*2})
+				if id < 6 && o.Word(oracle.Addr{Seg: v.data, Off: 0x5702 + id*4}) > 0 {
+					change(0x5700+id*4, 6)
+					break
+				}
+			}
+		}
 		playerFireExpected = 1
 		if spell == 1 {
 			playerFireExpected = 0
@@ -71,7 +84,7 @@ func (e *Engine) ResearchVFXTick() error {
 	})
 	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x122}, func(o *oracle.Oracle) {
 		if researchVFX.changed && !playerFireMenu {
-			if spell == 1 {
+			for i := uint16(0); i < spell; i++ {
 				o.PressKey(oracle.KeyDown)
 			}
 			o.PressKey(oracle.KeyEnter)
@@ -93,8 +106,8 @@ func (e *Engine) ResearchVFXTick() error {
 			}
 		})
 	})
-	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x283e}, func(o *oracle.Oracle) {
-		if !researchVFX.changed || !playerFireMenu || playerFireTarget {
+	planTarget := func(o *oracle.Oracle) {
+		if !researchVFX.changed || !playerFireMenu || (playerFireTarget && spell != 2) {
 			return
 		}
 		playerFireTarget = true
@@ -103,16 +116,25 @@ func (e *Engine) ResearchVFXTick() error {
 			node int
 			keys []oracle.Key
 		}
-		pending := []route{{node: int(o.Arg(0))}}
-		seen := map[int]bool{int(o.Arg(0)): true}
+		node := int(o.Arg(0))
+		if spell == 2 {
+			r := o.Regs()
+			node = int(o.Word(oracle.Addr{Seg: r.SS, Off: r.BP - 10}))
+		}
+		pending := []route{{node: node}}
+		seen := map[int]bool{node: true}
 		for len(pending) > 0 {
 			at := pending[0]
 			pending = pending[1:]
 			if at.node >= 1 && at.node <= 6 {
 				id := word(0x6fc0 + uint16(at.node)*2)
-				if id < 6 && word(0x5702+id*4) > 0 {
+				kind := word(0x5700 + id*4)
+				if id < 6 && word(0x5702+id*4) > 0 && (spell != 2 || (kind >= 6 && kind <= 15)) {
 					for _, key := range at.keys {
 						o.PressKey(key)
+						if spell == 2 {
+							return
+						}
 					}
 					o.PressKey(oracle.KeyEnter)
 					return
@@ -127,7 +149,23 @@ func (e *Engine) ResearchVFXTick() error {
 				}
 			}
 		}
-		panic(fmt.Sprintf("No original target route from %d", o.Arg(0)))
+		panic(fmt.Sprintf("No original target route from %d", node))
+	}
+	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x283e}, func(o *oracle.Oracle) {
+		if spell != 2 {
+			planTarget(o)
+		}
+	})
+	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x29f2}, func(o *oracle.Oracle) {
+		if spell != 2 || !researchVFX.changed || !playerFireMenu {
+			return
+		}
+		r := o.Regs()
+		node := int(o.Word(oracle.Addr{Seg: r.SS, Off: r.BP - 10}))
+		if node != playerFirePlannedNode {
+			playerFirePlannedNode = node
+			planTarget(o)
+		}
 	})
 	return nil
 }

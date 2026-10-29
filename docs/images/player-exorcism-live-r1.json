@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "controlled_fixture": true,
+  "method": "Actual Ebiten Draw CPU image uploaded, resized 2944x1264 to 1600x687 using Pillow11.3.0 LANCZOS",
+  "candidate": "source-candidate-player-exorcism-r2",
+  "gui_base_candidate": "source-candidate-player-exorcism-r1",
+  "basis": "All non-test production inputs match r2; r2 changes only incorrect negative-test coordinate.",
+  "source_count": 188,
+  "assets": "r68",
+  "core_files": 923,
+  "whole_spell_wrapper_complete": true,
+  "files": [
+    {
+      "phase": "flight",
+      "path": "player-exorcism-flight-r1.png",
+      "sha256": "16de908006228ccf0ac95c3079ad87ed19f660bb84df3a51c83520b829b66543",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/exorcism-r1/gui-r1/vfx-draw/flight-presented.png",
+      "source_sha256": "4ba32ee756c4873f8ad114e9c458ca6d2d1aa9c1ffae139feaeb2607bd117717",
+      "draw": {
+        "cycles": 65423041,
+        "draw": 233,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "e74709a94dfb796480060981487d2c895af2cbd39fede78c58a7261231037b93",
+        "layer_rect": [
+          442,
+          348,
+          305,
+          243
+        ],
+        "layer_stride": 1220,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "flight",
+        "sample": 40,
+        "step": 61649106,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "flight",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 2,
+          "PONCommits": 0,
+          "Frames": 1,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            96,
+            75
+          ],
+          "Target": [
+            368,
+            50
+          ]
+        }
+      }
+    },
+    {
+      "phase": "impact",
+      "path": "player-exorcism-impact-r1.png",
+      "sha256": "0fe9ebf74856e42d52a1292074a9c6a0b8e86e056876ba56ded306b8eebd865f",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/exorcism-r1/gui-r1/vfx-draw/impact-presented.png",
+      "source_sha256": "4a4cdeb4dfb1d21fff1edcbcf1306a30be30ecee1827ea806f6d8f5845788b06",
+      "draw": {
+        "cycles": 66223042,
+        "draw": 237,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "452a26d6c4254c11285ff65bfebde36c59b55d3c3b6ed3d397b4398fcde388d9",
+        "layer_rect": [
+          946,
+          160,
+          581,
+          581
+        ],
+        "layer_stride": 2324,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "impact",
+        "sample": 115,
+        "step": 62416457,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "impact",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 4,
+          "PONCommits": 12,
+          "Frames": 9,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            96,
+            75
+          ],
+          "Target": [
+            368,
+            50
+          ]
+        }
+      }
+    }
+  ]
+}
