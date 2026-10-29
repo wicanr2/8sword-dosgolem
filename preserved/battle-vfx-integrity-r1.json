@@ -1,0 +1,30 @@
+{
+  "status": "passed-scoped-draft-vfx-integrity",
+  "production_changed": false,
+  "programs_unchanged": 7,
+  "source_inputs_unchanged": 184,
+  "assets_unchanged": 525,
+  "core_unchanged": 923,
+  "controlled_cases": 3,
+  "bitmap_calls": 71,
+  "pon_calls": 36,
+  "frames": 61,
+  "browser_playback_keyboard_clear_mobile": true,
+  "go_vet_passed": true,
+  "go_format_clean": true,
+  "original_resolution_keys": 26,
+  "supplemental_backlinks": 1,
+  "missing_correction_cases_rejected": 6,
+  "markdown_links": 2232,
+  "permanent_files": 387,
+  "detached_outputs_equal": 132,
+  "verified_restore_bytes_cleaned": 29149866,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0,
+  "limitations": [
+    "Original panel uses controlled guest captures; HD panels are synthetic presentation scenes, not production same-state frames.",
+    "Three-second normalization and fading are illustrative; live event lifecycle remains DRAFT.",
+    "Player spell names and resources remain unknown."
+  ]
+}

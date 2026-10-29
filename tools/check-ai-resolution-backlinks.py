@@ -10,4 +10,9 @@ for v in d['resolutions']:
  evidence=r/v['evidence'];older=r/v['older_spec'];assert evidence.is_file()and older.is_file()
  e=evidence.read_text();s=older.read_text();assert v['original_address']in e and v['original_name']in e and v['original_name']in s and v['required_correction']in s
  assert v['scope']and v['not_closed']
+ for extra in v.get('supplemental_resolutions',[]):
+  evidence=r/extra['evidence'];older=r/extra['older_spec'];receipt=r/extra['receipt']
+  assert extra['level']=='proven-in-sampled-scope'and evidence.is_file()and older.is_file()and receipt.is_file()
+  assert v['original_address']in evidence.read_text()and v['original_name']in evidence.read_text()
+  assert extra['required_correction']in older.read_text()and extra['scope']and extra['not_closed']
 print('AI resolution backlinks passed: 26 sampled resolutions')

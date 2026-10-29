@@ -164,7 +164,18 @@
       "older_spec": "docs/spec/030-battle-expansion-proposal.md",
       "required_correction": "遠程與特殊動作勘誤：2026-10-28",
       "scope": "13 controlled branch fixtures and original caller/executor bytes",
-      "not_closed": "Full multi-turn strategy, traits, new troops, cross-spell policy and extended save remain open; optional target-only AI is production in spec030."
+      "not_closed": "Full multi-turn strategy, traits, new troops, cross-spell policy and extended save remain open; optional target-only AI is production in spec030.",
+      "supplemental_resolutions": [
+        {
+          "level": "proven-in-sampled-scope",
+          "evidence": "RESEARCH-LOG.md",
+          "older_spec": "docs/spec/027-battle-pon-effects.md",
+          "receipt": "preserved/battle-vfx-observation-r1.json",
+          "required_correction": "PON-SPECIAL-CALLERS-SAMPLED",
+          "scope": "Three controlled enemy special 0/2/5 executor windows contain 36 existing PON draws; complete final states unchanged.",
+          "not_closed": "Player spell names, natural reachability, full spell catalog and production animation remain open."
+        }
+      ]
     },
     {
       "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1F641",

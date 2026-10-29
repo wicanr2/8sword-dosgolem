@@ -524,3 +524,21 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 核對器首輪把「有壓制資格」誤當各模式都已套用，後輪又把既有冷讀關窗誤要求為DOS退出；原state、實際GUI與正式測試都未變。分別核對原trace的mode與helper的正常關窗路徑後修正核對器，保留兩份當時工具。這些是核對模型錯誤，不回頭調整遊戲規則讓核對通過。
 
 [收尾核對](../../tools/check-tactics-integrity.py)在固定Pillow容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`核對正式／前版程式、來源、素材、核心、字形、文件入口與擁有權。此模式要求完整還原副本仍在；逐SHA驗完後只刪本輪及原型的驗證還原副本，不刪永久物件、原始控制或候選。另由主機Docker狀態檢查確認本案容器已清除，不在核對容器內掛Docker socket。
+
+## 戰鬥特殊效果的動畫觀測
+
+本節DRAFT，接續使用者go，先完成動畫盤點與可撤回原型，不追加規則。現行tactics-r2／184來源七程式、r68／525素材及923核心保持。027火花與029陰陽圖案已完成，不能把它們直接稱作玩家法術或重開既有素材驗收。先沿030已驗敵方特殊0／2／5的固定before-decision.state，觀察實際圖片來源、座標與效果入口時序，完整返回state須同既有控制；法術名稱、玩家施法與資源仍未知。
+
+[只讀動畫探針](../../tools/probe-battle-vfx.go)在既有Go1.24.13容器與923核心建置，使用`-root <唯讀原版> -batch <唯讀battle-r1> -out <新研究目錄>`。三組各跑無觀測與有觀測，原始來源SHA、重定位bytes及最多10M步／256事件受限，不改客體、時鐘或亂數。只在原版呼叫／返回讀參數及擷取PNG，不用固定等待猜命中；幾何與圖片SHA保留於事件JSON。研究輸出沿既有battle-r1下`battle-vfx-r1/`，無新頂層目錄或正式掛點。
+
+[獨立核對與頁面準備](../../tools/prepare-battle-vfx.py)在固定Pillow11.3.0容器使用`audit|inputs|page --project <唯讀專案> --study <可寫battle-vfx-r1> --out <新檔案>`。先核對三組final state同歷史原版、71次圖像來源與36次火花序列，再以永久圖庫的GRO02、MAN01、MAN21、MAN17及PON準備輸入。鏡射MAN21別名沿現行已驗清單，不因初批主圖索引沒有鏡射SHA就判為新素材。
+
+[Go動畫原型](../../tools/prototype-battle-vfx.go)以Go1.24.13編譯，執行`-inputs <固定JSON> -out <新目錄>`產生61格及透明效果。這是原生Go光點／線段／位元組合成，不執行CPU或遊戲規則。網頁只合成預算材質，沒有JS特性／傷害模型。A保留金紅火花並加落點符光，B另加飛焰；原型的三秒正規化及100000步餘光只供比較，不是正式時鐘契約。正式實作不可用此離線原型預知未來事件；來源、落點、清除與事件生命週期仍須另走READY。
+
+頁面可加`--render render-r2`使用第二版輸出。首版在既有明亮地表太淡，目視後只調強符光及飛焰，沒有改來源、規則或座標；兩版原始材質、工具與收據皆保留。[瀏覽器抽驗](../../tools/check-battle-vfx.js)在既有Playwright1.56.1／Chromium1194有視窗容器內，先啟Xvfb並trap收尾，再執行`node <工具> <含prototype-r1.html的目錄>`，沿1800m／2CPU／256pids／80秒外層逾時及network none。驗61格、播放、方向鍵、清除、390寬度及實際PNG，不改用主機瀏覽器。
+
+[永久保存器](../../tools/archive-battle-vfx.py)在固定Pillow容器以`--project --archive <可寫preserved> --out <新JSON>`捕獲原版控制、兩版Go材質、互動頁及瀏覽器收據。只掛preserved與工具，加`--verify`核對，另加`--restore <空白目錄>`還原；既有11張永久圖庫來源另列逐SHA依賴，不複製或變造定稿原圖。prototype不加入正式184來源或r68素材。
+
+[離線重建核對](../../tools/check-battle-vfx-restore.py)在固定Pillow容器只掛preserved、工具及永久artwork，使用`--archive <preserved> --restore <preserved/restore-checks/battle-vfx-r1> --artwork <永久artwork> --out <新JSON>`。完整還原後從永久11張素材重跑已保存的原生Go二進位，132份輸出須逐SHA同render-r2；通過才刪明確還原驗證副本，研究及永久物件保持，不讀原workplace或原版遊戲。
+
+[收尾核對](../../tools/audit-battle-vfx-final.py)在固定Pillow容器以`--project <唯讀專案> --out <新JSON>`核對正式七程式／184來源／525素材／923核心保持、原型及來源收據、Go vet／格式、瀏覽器、離線重建及文件／擁有權。不要求重跑遊戲或完整GUI，仍以DRAFT結案，不提升任何動畫程式。

@@ -1,5 +1,7 @@
 # 027：PON 戰場火花
 
+`PON-SPECIAL-CALLERS-SAMPLED`：2026-10-29的[030動畫觀測](030-battle-expansion-proposal.md#戰鬥特殊效果的動畫觀測)已在三組受控特殊0／2／5的`sub_21C36`完整效果內，確認各12次PON，共36次，仍沿本規格`04F2/0625`與既有四張素材。較早「用途未知」現在補上這段限定caller脈絡；法術名稱、玩家施法、自然可達性及完整用途仍未知。這不是新法術種類，也不重開既有PON呈現驗收。來源與完整state核對見[觀測收據](../../preserved/battle-vfx-observation-r1.json)，原版普通攻擊與其他caller不外推。
+
 回填 `BATTLE-MILITIA-ALIAS-RESOLVED`：`DOS/MAN01.EGG@a7e02cf4…e5f1/file+0/mirror-six-planes` 的首筆 HD 底圖由 [028](028-battle-militia-image.md)沿 `PAM/runtime14D2:0626/06B8/076E` 加入。本規格原版底色與累積火花契約保持；新增同狀態及實際 Draw 證據核對民兵與火花共存。下列 r22 圖像與 GUI 來源 3 仍是歷史證據，不用新圖覆寫。
 
 狀態：限定 CONFORMED。先建立 DRAFT，再以 36 次正常返回、完整逐色號重建及疊圖原型審查進 READY，實作下列獨立效果層並通過正常重播與 GUI。沿 [019](019-normal-encounter-battle-presentation.md)來源與 [022](022-battle-bitmap-transactions.md)的交易，不把僅驗 `0626` 的部隊路徑放寬為 `04F2`。四筆皆有正常返回 Frame，實際視窗的精確圖層驗證抽樣來源 3，不稱四筆都已在 GUI 逐一驗證。

@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "status": "DRAFT-presentation-prototype",
+  "go_version": "go version go1.24.13 linux/amd64",
+  "native_go_renderer": true,
+  "production_changed": false,
+  "source": "battle-vfx-r1/render-r2 and preview-r2",
+  "html_sha256": "aa92c96deb67099648c5ad3ac7e5283cc69f0c06face24244634dacf481966e0",
+  "flight_png_sha256": "d84002d99fb8a952adc2b698713a23a0e60ba543ac0d13f8c0c47d42778d6d73",
+  "impact_png_sha256": "0cf5b669e00f8d7fe3d93572bfeb9bcac4f714213e7bdbfbdce7298b8480d56c",
+  "go_source_sha256": "ef8f5ba8c822722e69b5e6744eb03e1c25cdb0450e694cb23144a41586bc3942",
+  "observation_sha256": "f0517a608d5e31db68c336a91bb3e6673ba8fc551045273caa1bd58a126d757b",
+  "browser_sha256": "f7cf5071982e7cd95de21c0779351a657a8f2a48d71bec8cf3de7be235a31752",
+  "limits": [
+    "Original panel uses controlled guest captures; HD panels are synthetic presentation scenes, not production same-state frames.",
+    "Three-second normalization and fading are illustrative; live event lifecycle remains DRAFT.",
+    "Player spell names and resources remain unknown."
+  ]
+}

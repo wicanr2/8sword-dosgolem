@@ -1,0 +1,37 @@
+{
+  "status": "passed-scoped-vfx-prototype",
+  "headed": true,
+  "browser": "Chrome/141.0.7390.37",
+  "frames": 61,
+  "pixels": {
+    "0": {
+      "a": 0,
+      "b": 0
+    },
+    "12": {
+      "a": 0,
+      "b": 3778
+    },
+    "24": {
+      "a": 7272,
+      "b": 7272
+    },
+    "60": {
+      "a": 0,
+      "b": 0
+    }
+  },
+  "keyboard_range": true,
+  "playback_advanced_to": 4,
+  "mobile": {
+    "width": 390,
+    "scroll": 390,
+    "canvas": 344
+  },
+  "screenshots": [
+    "launch-desktop-r1.png",
+    "impact-desktop-r1.png",
+    "impact-mobile-r1.png"
+  ],
+  "production_changed": false
+}

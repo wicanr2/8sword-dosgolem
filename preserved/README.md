@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## 特殊攻擊動畫原型保存
+
+[030 DRAFT](../docs/spec/030-battle-expansion-proposal.md#戰鬥特殊效果的動畫觀測)保存三組敵方特殊0／2／5的只讀動畫觀測。71次圖片全辨識，其中36次既有PON火花，完整返回state同無觀測及歷史原版；[觀測收據](battle-vfx-observation-r1.json)不代表玩家法術名稱或自然施法已證實。A符光／B飛焰的[互動原型](../docs/images/battle-vfx-prototype-r1.html)仍待選樣式，未接正式遊戲。
+
+[永久清單](battle-vfx-r1.json)含387檔／125物件、19420833 bytes，保存原始控制、三份既有參考trace／決策前state／返回state、兩版Go輸出、兩輪瀏覽器、完整頁面及工具。完整物件留本機`battle-vfx-r1/`；11張既有永久素材另列逐SHA依賴，不改定稿原圖。[捕獲](battle-vfx-preservation-r1.json)、[無workplace完整還原](battle-vfx-restoration-r1.json)與[Go離線重建](battle-vfx-reproduction-r1.json)通過，132份輸出逐SHA相同。驗證副本已移除，釋放29149866 bytes，永久物件與研究不刪。
+
+[保存器](../tools/archive-battle-vfx.py)在固定Pillow11.3.0 Docker用`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；只掛preserved與工具，加`--verify`核對、`--restore <空白目錄>`還原。[離線重建器](../tools/check-battle-vfx-restore.py)另掛永久artwork，使用`--archive --restore <preserved/restore-checks/battle-vfx-r1> --artwork --out`重建及清理，只處理已明列且逐SHA相同的驗證副本。完整用法見030，不需要原版或舊workplace。
+
+[收尾核對](battle-vfx-integrity-r1.json)確認正式七程式／184來源／525素材／923核心未變、Go vet與格式、61格操作及來源metadata。原26定位鍵保持，追加一條PON caller回填並驗六種缺勘誤負例；文件入口、擁有權與目錄形態正常，workspace Go快取為零。這是DRAFT研究收據，不是正式動畫完成證明。
+
 ## 戰術試作正式接入保存
 
 [030限定驗收](../docs/spec/030-battle-expansion-proposal.md#戰術試作正式接入與限定驗收)已提升source-candidate-tactics-r2／184來源七程式與r68／525素材，923核心保持。tactics包含25%弓箭手正對壓制與既有結陣，原native／formation語意保持。策略AI同步估值，規則工具列、戰鬥鎖定、真正F7存退及auto冷讀tactics／native通過。[控制核對](tactics-controls-r1.json)、[正式核對](tactics-audit-r1.json)與[提升收據](tactics-promotion-r1.json)分開記錄。

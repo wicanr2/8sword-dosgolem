@@ -1,0 +1,10 @@
+{
+  "status": "passed-detached-go-vfx-reproduction",
+  "workplace_required": false,
+  "original_game_required": false,
+  "permanent_artwork_files": 11,
+  "rebuilt_outputs_equal": 132,
+  "restored_files_verified": 387,
+  "verified_restore_copy_cleaned": true,
+  "bytes_cleaned": 29149866
+}

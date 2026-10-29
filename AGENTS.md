@@ -4,6 +4,8 @@
 
 [原版控制](tools/prepare-tactics-controls.py)、[獨立381-state核對](tools/audit-tactics-controls.py)、[凍結與字圖](tools/prepare-tactics-engine.py)、[正式測試](tools/check-tactics-engine.sh)、[GUI準備](tools/prepare-tactics-gui.py)、[三階段GUI](tools/check-tactics-gui.sh)、[核對及提升](tools/audit-tactics-engine.py)用法見030的READY契約。沿固定Go1.24.13／Pillow11.3.0 Docker；新字圖schema4／139字，舊137字及523其他素材逐SHA保持。48正式helper、42完整效果、inactive、舊模式、三種規則存讀已抽驗。[永久保存](preserved/README.md#戰術試作正式接入保存)及[保存器](tools/archive-tactics.py)不需原workplace即可核對／還原。自然戰鬥沒有合適弓箭手，不把診斷旗標或受控收益宣稱為自然壓制或整體平衡。
 
+新增[特殊攻擊動畫研究](docs/spec/030-battle-expansion-proposal.md#戰鬥特殊效果的動畫觀測)仍DRAFT，只讀三組已驗0／2／5，71圖片／36PON呼叫及完整state通過。Go原型與網頁展示不進正式184來源或r68；HD欄為合成示意，不冒稱同狀態Engine Frame、玩家法術或正式動畫。[工具](tools/prepare-battle-vfx.py)、[原生Go繪製](tools/prototype-battle-vfx.go)、[瀏覽器驗證](tools/check-battle-vfx.js)及[永久保存](preserved/README.md#特殊攻擊動畫原型保存)入口沿030；確認樣式後仍須另補事件生命週期READY，不能把原型三秒或餘光當原版時鐘。
+
 前版程式為source-candidate-ai-formation-r1／184來源七程式，依[030結陣知情AI限定驗收](docs/spec/030-battle-expansion-proposal.md#結陣知情ai正式接入與限定驗收)提升。策略AI在formation且Active時用既有20%減傷估值，合法目標與先全滅／再比例排序不改；特殊0／2／5不套。當時r67／525素材、923核心、工具列與存檔schema不變，前版保持。
 
 原版研究及正式候選入口是[準備器](tools/prepare-ai-formation.py)、[原版探針](tools/probe-ai-formation.go)、[獨立研究核對](tools/audit-ai-formation.py)、[候選凍結](tools/prepare-ai-formation-engine.py)、[實際GUI](tools/check-ai-formation-gui.sh)、[核對及提升](tools/audit-ai-formation-engine.py)。固定Go1.24.13與Pillow11.3.0 Docker用法見030；[狀態獨立核對](tools/audit-ai-formation-states.py)沿已保存std-only reader解108份state，不重跑CPU。[永久保存](preserved/README.md#結陣知情ai保存)及[保存器](tools/archive-ai-formation.py)可在無workplace時核對／還原。不得因AI已知結陣便宣稱其餘特性或跨法術策略完成。
