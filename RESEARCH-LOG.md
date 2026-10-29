@@ -2339,3 +2339,12 @@ GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建�
 首份Python核對誤認每動作只有一個傷害helper。實際普通樣本在執行器之前及內部各一次，遠程只在內部一次；新探針只加InsideExecutor只讀欄，兩輪36份返回state全同。只證明呼叫階段，不將前一呼叫猜成特定UI或動畫用途。[獨立Python](tools/audit-ai-formation.py)從原RAM重建候選、80%整數式及唯一目標寫入，[std-only解碼](tools/audit-ai-formation-states.py)另解108份state，直接從RAM核對36組最終部隊與步數，均通過。
 
 正式24組決策後／執行後完整state及inactive控制同原版，既有16AI及24結陣helper回歸保持。自然新遊戲／募兵／遇敵／攻擊取得三次Formation=true策略決策，Applied=Changed=0，沒有自然收益聲明。真正F7保存及DOS0通過，2987-byte實檔同零步讀取的原版緩衝區。正式程式純Go估值不呼叫原版helper，不改工具列、模式與存檔格式。來源、證據與限制見[正式驗收](docs/spec/030-battle-expansion-proposal.md#結陣知情ai正式接入與限定驗收)及[永久保存](preserved/README.md#結陣知情ai保存)。
+## 2026-10-29：弓箭手壓制的雙側原版控制
+
+輸入為PAM.AY，SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，固定快照SHA-256 `88f21ef185d597fee43972aec1d14e9a6811ea072a443aa6be04fe6de999b5bf`。沿Go1.24.13、923檔dosgolem核心與前輪std-only state-reader，不新增IDA分析。位址基準分列：IDA MZ loader線性位址1FAD0h／1FB3Ah為既有傷害AX點；受控執行期載入0110h時對應0F67:1560／0F67:15CA。SS:[BP+6]與[BP+8]沿既有ABI保留。
+
+「已證實，限抽樣」：兩側helper讀取攻方單位索引後，依各自六陣位映射反查來源陣位；不是把單位ID當陣位。守方同索引前排活隊可由既有base／slot欄位讀取。48helper與63完整效果使用相同起始狀態及固定按鍵；獨立解381份state，核對原RAM、AX之外完整狀態、合法候選、唯一目標word及全部最終兵數，見[控制核對](preserved/tactics-controls-r1.json)。沒有以探針AfterUnits或Go估值作唯一證據，也沒有重新擲骰挑結果。
+
+「新增設計，使用者已批准」：種類3前排弓箭手正對活敵軍，普通／遠程傷害先floor(AX×75/100)，再沿既有結陣資格floor(AX×80/100)。這兩個倍率不稱原版語意。種類24、後排、空正對及特殊效果不套，敵我對稱。七局面中兩個知情AI改選可減10人，舊估值選民兵只減9；native與formation的14局面保持。正常GUI沒有適用的新減傷條件，受控收益不外推自然戰鬥或整體平衡。
+
+正式實作、工具、完整狀態及永久保存沿[030限定驗收](docs/spec/030-battle-expansion-proposal.md#戰術試作正式接入與限定驗收)。其餘部隊特性、新ID容量、跨法術策略與完整反組譯重製仍未由本輪證實。

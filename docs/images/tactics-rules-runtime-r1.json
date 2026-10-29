@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "method": "Actual X11 window after normal new-game input; menu opened from formation, third row selected using keyboard afterward.",
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/tactics-r1/gui-r1/save/rules-menu-tactics.png",
+  "source_sha256": "d5b0f0cac8a5f62ed15e5e8cb482fffa8b1c2ba56855d4a7d595db04a3ee83d7",
+  "png_sha256": "d5b0f0cac8a5f62ed15e5e8cb482fffa8b1c2ba56855d4a7d595db04a3ee83d7",
+  "engine_audit_sha256": "7588dfad70c388e938d3f2127bfa16d8ea5b9e296c8af16c554acd48cf40fa01",
+  "locked_title": "神州八劍 · 教育部隸書 · F10 字型 · 策略 AI · 戰術試作",
+  "scope": "Three rules rows and normal GUI battle/save/auto cold restore. No natural archer pressure claim."
+}

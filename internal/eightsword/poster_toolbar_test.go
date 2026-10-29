@@ -229,7 +229,7 @@ func TestPosterRulesSelectionAndBattleLock(t *testing.T) {
 	if a := v.Input(2400, 140, true, ""); a.BattleRules != "formation" || !a.Consumed {
 		t.Fatal(a)
 	}
-	for _, mode := range []string{"native", "formation"} {
+	for _, mode := range []string{"native", "formation", "tactics"} {
 		for _, locked := range []bool{false, true} {
 			x := 2244
 			for _, c := range v.rulesLabel(mode, locked) + "  v" {
@@ -246,5 +246,35 @@ func TestPosterRulesSelectionAndBattleLock(t *testing.T) {
 				t.Fatal("rule label exceeds button", mode, locked)
 			}
 		}
+	}
+}
+
+func TestPosterTacticsSelectionAndLock(t *testing.T) {
+	v := testToolbar(t)
+	v.SyncBattleRules("native", false)
+	v.Input(2400, 24, true, "")
+	if v.menuLen() != 3 {
+		t.Fatal("missing tactics row")
+	}
+	a := v.Input(2400, 196, true, "")
+	if !a.Consumed || a.BattleRules != "tactics" {
+		t.Fatal(a)
+	}
+	v.SyncBattleRules("tactics", false)
+	v.Input(2400, 24, true, "")
+	if v.Selected != 2 {
+		t.Fatal("tactics was not current selection")
+	}
+	v.Input(0, 0, false, "up")
+	v.Input(0, 0, false, "escape")
+	if v.rulesMode != "tactics" || v.Menu != "" {
+		t.Fatal("cancel changed tactics")
+	}
+	v.SyncBattleRules("tactics", true)
+	if a = v.Input(2400, 24, true, ""); !a.Consumed || a.BattleRules != "" || v.Menu != "" {
+		t.Fatal("locked tactics", a)
+	}
+	if v.rulesLabel("tactics", false) != "戰術試作" && v.rulesLabel("tactics", false) != "Rules tactics" {
+		t.Fatal(v.rulesLabel("tactics", false))
 	}
 }

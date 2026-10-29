@@ -1,0 +1,17 @@
+{
+  "status": "promoted-scoped-tactics-engine",
+  "audit_sha256": "7588dfad70c388e938d3f2127bfa16d8ea5b9e296c8af16c554acd48cf40fa01",
+  "programs": {
+    "8sword": "2f6c2aa2cfc67af4021c8c8e4f9d8202b1a0da3cf8b3b00fa4300e1f2241aa11",
+    "8sword-replay": "6e579da59043b107d31f46dfca9049e62e132e34801579daba70e552aff6b3ce",
+    "gui-check": "57f0eee1153885782c3adc69ea4944bf406153a4a5b1fe756749e4062181ae4b",
+    "music-check": "07747e622c4d519caa0f2a65a723f4be40947aa7d662e23eb2f10eab414efcca",
+    "heroine-check": "21df3be31030fac4e7075b9507b6883ddc22f82d17d6be21f83eb8854d047e61",
+    "museum-check": "997eeb6b4c01e9a63efc6901011b8968d39e26bca6ea20606366e15694abe5ed",
+    "story-prelude-check": "8f3a26238499bc5398d0fa173684d34f217cb31efc11e7114efdda97ff3e0ff0"
+  },
+  "source_count": 184,
+  "core_files": 923,
+  "assets": "assets-painted-r68",
+  "asset_files": 525
+}

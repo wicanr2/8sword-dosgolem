@@ -422,10 +422,7 @@ func (g *game) updateTitle() {
 	if g.engine.BattleAIMode() == "target" {
 		ai = "策略 AI"
 	}
-	rules := "原版規則"
-	if g.engine.BattleRulesMode() == "formation" {
-		rules = "結陣試作"
-	}
+	rules := g.engine.BattleRulesName()
 	ebiten.SetWindowTitle("神州八劍 · " + g.engine.FontName() + " · F10 字型 · " + ai + " · " + rules + g.titleSuffix)
 }
 func (g *game) Layout(int, int) (int, int) {
@@ -439,7 +436,7 @@ func main() {
 	assets := flag.String("assets", "", "HD 字型、圖像與音樂素材目錄")
 	font := flag.String("font", "", "字型：noto、lishu、caoshu；空白沿用偏好")
 	battleAI := flag.String("battle-ai", "native", "敵方AI：native原版；target先全滅再比減員比例")
-	battleRules := flag.String("battle-rules", "auto", "規則：auto沿進度標記，無標記用native；formation結陣試作")
+	battleRules := flag.String("battle-rules", "auto", "規則：auto沿進度標記，無標記用native；formation結陣；tactics戰術試作")
 	poster := flag.String("poster", "", "海報：wings、cover、off；空白沿用偏好")
 	settings := flag.String("settings", "", "字型偏好檔，預設為系統使用者設定目錄")
 	saves := flag.String("saves", "", "可寫存檔目錄")
@@ -609,11 +606,7 @@ func main() {
 		g.titleSuffix = title[i:]
 	}
 	title += aiTitle
-	if engine.BattleRulesMode() == "formation" {
-		title += " · 結陣試作"
-	} else {
-		title += " · 原版規則"
-	}
+	title += " · " + engine.BattleRulesName()
 	if *capture != "" {
 		g.introDraw, err = os.Create(filepath.Join(*capture, "intro-draw.jsonl"))
 		if err != nil {

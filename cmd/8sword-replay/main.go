@@ -28,7 +28,7 @@ func main() {
 	assets := flag.String("assets", "", "prepared HD assets")
 	out := flag.String("out", "", "new receipt directory")
 	battleAI := flag.String("battle-ai", "native", "敵方AI：native原版；target目標策略")
-	battleRules := flag.String("battle-rules", "auto", "規則：auto沿存檔標記；native原版；formation結陣試作")
+	battleRules := flag.String("battle-rules", "auto", "規則：auto沿存檔標記；native原版；formation結陣；tactics戰術試作")
 	hd := flag.Bool("hd", true, "enable the native Go source renderer")
 	until := flag.Uint64("until", 250000000, "absolute final instruction")
 	frameEvery := flag.Uint64("frame-every", 1000000, "continuous compositor sampling interval")

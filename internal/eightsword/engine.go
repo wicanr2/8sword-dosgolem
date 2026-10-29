@@ -112,7 +112,7 @@ type InputEvent struct {
 }
 
 func Open(opt Options) (*Engine, error) {
-	if opt.BattleRules != "" && opt.BattleRules != "auto" && opt.BattleRules != "native" && opt.BattleRules != "formation" {
+	if opt.BattleRules != "" && opt.BattleRules != "auto" && !validBattleRules(opt.BattleRules) {
 		return nil, fmt.Errorf("戰鬥規則無效：%s", opt.BattleRules)
 	}
 	if opt.BattleAI != "" && opt.BattleAI != "native" && opt.BattleAI != "target" {

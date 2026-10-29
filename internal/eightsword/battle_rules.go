@@ -32,6 +32,7 @@ type BattleRuleRecord struct {
 	Side                           string
 	Slot, Unit, Original, Adjusted uint16
 	Eligible                       bool
+	Suppressed                     bool `json:",omitempty"`
 }
 type BattleRuleInfo struct {
 	Mode                                       string
@@ -39,6 +40,7 @@ type BattleRuleInfo struct {
 	Started, Finished, Calls, Applied, Markers uint64
 	Recent                                     []BattleRuleRecord
 	Fault                                      *BattleRuleFault
+	Suppressed                                 uint64 `json:",omitempty"`
 }
 type battleRulesController struct {
 	BattleRuleInfo
@@ -73,6 +75,26 @@ func formationDamage(amount uint16) uint16 {
 	return uint16(uint32(amount) * 80 / 100)
 }
 
+func validBattleRules(mode string) bool {
+	return mode == "native" || mode == "formation" || mode == "tactics"
+}
+func rulesHaveFormation(mode string) bool { return mode == "formation" || mode == "tactics" }
+func battleRulesName(mode string) string {
+	switch mode {
+	case "formation":
+		return "結陣試作"
+	case "tactics":
+		return "戰術試作"
+	default:
+		return "原版規則"
+	}
+}
+func (e *Engine) BattleRulesName() string { return battleRulesName(e.BattleRulesMode()) }
+func archerPressureEligible(slot int, kind, count uint16, opposed [3]uint16) bool {
+	return slot >= 0 && slot < 3 && kind == 3 && count > 0 && opposed[slot] > 0
+}
+func archerPressureDamage(amount uint16) uint16 { return uint16(uint32(amount) * 75 / 100) }
+
 func readRulesMarker(dir string) (string, bool, error) {
 	p := filepath.Join(dir, "gamedata.ay.rules.json")
 	s, err := os.Lstat(p)
@@ -97,7 +119,7 @@ func readRulesMarker(dir string) (string, bool, error) {
 		return "", true, fmt.Errorf("規則標記無效：%w", err)
 	}
 	var extra any
-	if d.Decode(&extra) != io.EOF || m.Schema != 1 || (m.Rules != "native" && m.Rules != "formation") || m.SaveBytes != 2987 {
+	if d.Decode(&extra) != io.EOF || m.Schema != 1 || !validBattleRules(m.Rules) || m.SaveBytes != 2987 {
 		return "", true, fmt.Errorf("規則標記內容無效")
 	}
 	data, err := os.ReadFile(filepath.Join(dir, "gamedata.ay"))
@@ -110,7 +132,7 @@ func readRulesMarker(dir string) (string, bool, error) {
 	return m.Rules, true, nil
 }
 func writeRulesMarker(dir, mode string) error {
-	if mode != "native" && mode != "formation" {
+	if !validBattleRules(mode) {
 		return fmt.Errorf("規則標記模式無效")
 	}
 	data, err := os.ReadFile(filepath.Join(dir, "gamedata.ay"))
@@ -155,10 +177,10 @@ func (e *Engine) initBattleRules(mode, dir string) error {
 			return err
 		}
 	}
-	if mode != "native" && mode != "formation" {
+	if !validBattleRules(mode) {
 		return fmt.Errorf("戰鬥規則無效：%s", mode)
 	}
-	e.rules = &battleRulesController{BattleRuleInfo: BattleRuleInfo{Mode: mode}, saves: dir, persist: persist || mode == "formation"}
+	e.rules = &battleRulesController{BattleRuleInfo: BattleRuleInfo{Mode: mode}, saves: dir, persist: persist || rulesHaveFormation(mode)}
 	e.Oracle.OnFileOpen(func(name string) {
 		if e.rules.persist && strings.EqualFold(filepath.Base(strings.ReplaceAll(name, "\\", "/")), "gamedata.ay") {
 			if !e.rules.needFiles {
@@ -187,7 +209,7 @@ func (e *Engine) BattleRulesStatus() BattleRuleInfo {
 	return s
 }
 func (e *Engine) SetBattleRules(mode string) error {
-	if mode != "native" && mode != "formation" {
+	if !validBattleRules(mode) {
 		return fmt.Errorf("戰鬥規則無效：%s", mode)
 	}
 	if e.rules == nil {
@@ -200,7 +222,7 @@ func (e *Engine) SetBattleRules(mode string) error {
 		return ErrBattleRulesLocked
 	}
 	e.rules.Mode = mode
-	if mode == "formation" && !e.rules.persist {
+	if rulesHaveFormation(mode) && !e.rules.persist {
 		e.rules.persist = true
 		e.rules.fileCursor = len(e.Oracle.FileOps())
 	}
@@ -296,7 +318,7 @@ func (e *Engine) battleRulePoint(ip uint16) {
 		r.Finished++
 		return
 	}
-	if r.Mode != "formation" || !r.Active {
+	if !rulesHaveFormation(r.Mode) || !r.Active {
 		return
 	}
 	if c.BP < 8 || c.BP > 65525 || c.SP > c.BP {
@@ -342,13 +364,50 @@ func (e *Engine) battleRulePoint(ip uint16) {
 	}
 	eligible := formationEligible(targetSlot, word(base+target*4), word(base+target*4+2), frontCounts)
 	adjusted := c.AX
+	suppressed := false
+	if r.Mode == "tactics" {
+		sourceBase, sourceSlots := uint16(0x5700), uint16(0x6fc2)
+		if ip == 0x15ca {
+			sourceBase, sourceSlots = 0x56e8, 0x6fb6
+		}
+		kind, count := word(sourceBase+source*4), word(sourceBase+source*4+2)
+		if kind == 3 && count > 0 {
+			sourceSlot := -1
+			seen := [6]bool{}
+			for i := 0; i < 6; i++ {
+				id := word(sourceSlots + uint16(i*2))
+				if id >= 6 {
+					panic(e.ruleFail("source-slot-mapping"))
+				}
+				if word(sourceBase+id*4+2) > 0 {
+					if seen[id] {
+						panic(e.ruleFail("source-duplicate-live-mapping"))
+					}
+					seen[id] = true
+				}
+				if id == source {
+					sourceSlot = i
+				}
+			}
+			if sourceSlot < 0 {
+				panic(e.ruleFail("unmapped-live-source"))
+			}
+			suppressed = archerPressureEligible(sourceSlot, kind, count, frontCounts)
+		}
+	}
+	if suppressed {
+		adjusted = archerPressureDamage(adjusted)
+		r.Suppressed++
+	}
 	if eligible {
-		adjusted = formationDamage(c.AX)
+		adjusted = formationDamage(adjusted)
+	}
+	if eligible || suppressed {
 		e.Oracle.SetRegs(oracle.CallRegs{AX: adjusted, SetAX: true})
 		r.Applied++
 	}
 	r.Calls++
-	r.Recent = append(r.Recent, BattleRuleRecord{e.Oracle.Steps(), side, uint16(max(targetSlot, 0)), target, c.AX, adjusted, eligible})
+	r.Recent = append(r.Recent, BattleRuleRecord{Step: e.Oracle.Steps(), Side: side, Slot: uint16(max(targetSlot, 0)), Unit: target, Original: c.AX, Adjusted: adjusted, Eligible: eligible, Suppressed: suppressed})
 	if len(r.Recent) > 16 {
 		r.Recent = append([]BattleRuleRecord(nil), r.Recent[len(r.Recent)-16:]...)
 	}

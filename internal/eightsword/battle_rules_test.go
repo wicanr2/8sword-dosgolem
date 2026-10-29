@@ -18,7 +18,7 @@ func TestRulesMarkerBindingAndCorruption(t *testing.T) {
 	if err := os.WriteFile(save, data, 0600); err != nil {
 		t.Fatal(err)
 	}
-	for _, mode := range []string{"formation", "native"} {
+	for _, mode := range []string{"formation", "native", "tactics"} {
 		if err := writeRulesMarker(dir, mode); err != nil {
 			t.Fatal(err)
 		}
@@ -53,6 +53,9 @@ func TestRuleSelectionLock(t *testing.T) {
 	e := &Engine{rules: &battleRulesController{BattleRuleInfo: BattleRuleInfo{Mode: "native", Active: true}}}
 	if err := e.SetBattleRules("formation"); !errors.Is(err, ErrBattleRulesLocked) || e.BattleRulesMode() != "native" {
 		t.Fatal("mid-battle switch", err)
+	}
+	if err := e.SetBattleRules("tactics"); !errors.Is(err, ErrBattleRulesLocked) || e.BattleRulesMode() != "native" {
+		t.Fatal("mid-battle tactics", err)
 	}
 	if err := e.SetBattleRules("unknown"); err == nil || e.BattleRulesMode() != "native" {
 		t.Fatal("invalid rule accepted")

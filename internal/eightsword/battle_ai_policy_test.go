@@ -163,3 +163,63 @@ func TestBattleAIFormationEstimate(t *testing.T) {
 		}
 	}
 }
+
+func TestBattleAITacticsEstimate(t *testing.T) {
+	v := battleAIFixture(t, "front-ranged-mixed")
+	v.FriendlySlots = [6]uint16{0, 1, 5, 5, 5, 5}
+	v.Friendly[0] = battleAIUnit{1, 20}
+	v.Friendly[1] = battleAIUnit{21, 22}
+	v.OriginalSlot = 0
+	v.Formation = true
+	old, err := evaluateBattleAI(v)
+	if err != nil || old.SuggestedSlot != 0 || old.Candidates[0].Loss != 12 {
+		t.Fatal(old, err)
+	}
+	v.ArcherPressure = true
+	before := v
+	d, err := evaluateBattleAI(v)
+	if err != nil || !d.ArcherPressure || d.SuggestedSlot != 1 || d.Candidates[0].Amount != 240 || d.Candidates[0].Loss != 9 || d.Candidates[1].Amount != 300 || d.Candidates[1].Loss != 10 || v != before {
+		t.Fatal(d, err)
+	}
+	for _, rear := range []bool{false, true} {
+		x := before
+		if rear {
+			x.SourceSlot = 3
+			x.EnemySlots = [6]uint16{3, 1, 2, 0, 4, 5}
+		} else {
+			x.Enemy[0].Kind = 24
+		}
+		on, e := evaluateBattleAI(x)
+		x.ArcherPressure = false
+		off, e2 := evaluateBattleAI(x)
+		if e != nil || e2 != nil || !reflect.DeepEqual(on.Candidates, off.Candidates) || on.SuggestedSlot != off.SuggestedSlot {
+			t.Fatal("rear/bird changed", on, off, e, e2)
+		}
+	}
+	x := before
+	x.FriendlySlots = [6]uint16{5, 0, 5, 1, 5, 5}
+	x.OriginalSlot = 1
+	d, err = evaluateBattleAI(x)
+	if err != nil || d.Candidates[0].Amount != 400 {
+		t.Fatal("open lane", d, err)
+	}
+	x = before
+	x.Formation = false
+	x.Enemy[0].Count = 4
+	x.Friendly[0].Count = 2
+	x.Friendly[1].Count = 0
+	d, err = evaluateBattleAI(x)
+	if err != nil || len(d.Candidates) != 1 || d.Candidates[0].Amount != 24 || d.Candidates[0].Loss != 0 {
+		t.Fatal("small-army threshold", d, err)
+	}
+	for _, name := range []string{"special0-choice", "special2-choice", "special5-empty-original"} {
+		x := battleAIFixture(t, name)
+		off, e := evaluateBattleAI(x)
+		x.Formation = true
+		x.ArcherPressure = true
+		on, e2 := evaluateBattleAI(x)
+		if e != nil || e2 != nil || !reflect.DeepEqual(on.Candidates, off.Candidates) || on.SuggestedSlot != off.SuggestedSlot {
+			t.Fatal("special changed", name, e, e2)
+		}
+	}
+}

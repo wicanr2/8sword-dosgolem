@@ -1,12 +1,24 @@
 # 必要資料永久保存
 
+## 戰術試作正式接入保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#戰術試作正式接入與限定驗收)已提升source-candidate-tactics-r2／184來源七程式與r68／525素材，923核心保持。tactics包含25%弓箭手正對壓制與既有結陣，原native／formation語意保持。策略AI同步估值，規則工具列、戰鬥鎖定、真正F7存退及auto冷讀tactics／native通過。[控制核對](tactics-controls-r1.json)、[正式核對](tactics-audit-r1.json)與[提升收據](tactics-promotion-r1.json)分開記錄。
+
+[永久清單](tactics-r1.json)保存1977檔／822物件，壓縮131401326 bytes，包含兩版固定來源、七程式、48雙側helper／63完整效果的原始控制、381份state獨立核對、正式測試、GUI三階段、三份真正存檔與兩份r68工具列字圖。原版、核心、模組、快照及其他523素材沿既有永久清單。[捕獲](tactics-preservation-r1.json)及[無原workplace完整還原](tactics-restoration-r1.json)通過；完整物件在本機`tactics-r1/`，Git只保存索引、工具及收據。
+
+[保存器](../tools/archive-tactics.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲。只掛preserved與工具，加`--verify`核對，另加`--restore <空白目錄>`還原。兩份r68字圖覆蓋還原的r67字圖即可得到525檔完整r68，舊137字及523素材保持。還原範圍以逐檔清單為準，不需要保留展開的驗證副本。
+
+自然戰鬥三次策略決策已讀新規則，Applied=Suppressed=Changed=0；不冒稱自然壓制收益或整體平衡。受控局面的兩次AI改選及實際減員另有完整原版執行器證據。
+
+[收尾核對](tactics-integrity-r1.json)確認七程式／184來源／525素材與923核心、前版及三份存檔緩衝區；26筆定位護欄、五種缺勘誤負例、文件連結與語法通過，輸出沒有root擁有檔案或偽.md目錄，workspace Go快取為零。1977份本輪及26份原型還原副本逐SHA核對後移除，共釋放443204750 bytes；永久物件與研究／正式候選保持。核對器只刪明確驗證副本，用法見[030收尾入口](../docs/spec/030-battle-expansion-proposal.md#戰術試作正式接入與限定驗收)。
+
 ## 弓箭手壓制原型保存
 
-使用者已確認25%正對壓制及獨立戰術試作模式，正式接入正在補證。原型的15局面／60計算由Go及獨立Python核對；兩份原版trace只作0%基準，其餘候選不是原版行為。[數值核對](archer-pressure-audit-r1.json)、[有視窗瀏覽器核對](archer-pressure-browser-r1.json)及[互動原型](../docs/images/archer-pressure-prototype-r1.html)可回查。
+使用者已確認25%正對壓制及獨立戰術試作模式，正式接入見上節。本節保存當時原型的15局面／60計算，由Go及獨立Python核對；兩份原版trace只作0%基準，其餘候選不是原版行為。[數值核對](archer-pressure-audit-r1.json)、[有視窗瀏覽器核對](archer-pressure-browser-r1.json)及[互動原型](../docs/images/archer-pressure-prototype-r1.html)可回查。
 
 [清單](archer-pressure-r1.json)含26檔／24物件、1977305 bytes，保存Go程式／測試、兩份基準trace、60結果、HTML、CLI截圖及瀏覽器三輪診斷。[捕獲](archer-pressure-preservation-r1.json)與[無workplace還原](archer-pressure-restoration-r1.json)均通過，還原的離線程式重生60結果逐byte相同。完整物件在本機archer-pressure-r1目錄，Git保存工具、索引及結果。
 
-[保存器](../tools/archive-archer-pressure.py)在固定Pillow11.3.0 Docker使用`--project --archive <可寫preserved> --out <新JSON>`；核對加`--verify`，還原另加`--restore <空白目錄>`，不需要原workplace。這是設計已批准、正式功能未完成的原型保存，不取代後續原版控制、工具列與存讀驗收。
+[保存器](../tools/archive-archer-pressure.py)在固定Pillow11.3.0 Docker使用`--project --archive <可寫preserved> --out <新JSON>`；核對加`--verify`，還原另加`--restore <空白目錄>`，不需要原workplace。這是原型保存，不取代正式原版控制、工具列與存讀驗收。
 
 ## 結陣知情AI保存
 

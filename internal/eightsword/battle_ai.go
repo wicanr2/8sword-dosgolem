@@ -217,7 +217,8 @@ func (e *Engine) battleAITarget(ip uint16, route string) {
 		target -= 7
 	}
 	v := battleAIView{Route: route, SourceSlot: source, OriginalSlot: target, Selector: selector, ShiftedSlotZero: word(r.DS, 0x6fb4), Divisor: word(r.DS, 0x26ac)}
-	v.Formation = e.rules != nil && e.rules.Mode == "formation" && e.rules.Active
+	v.Formation = e.rules != nil && rulesHaveFormation(e.rules.Mode) && e.rules.Active
+	v.ArcherPressure = e.rules != nil && e.rules.Mode == "tactics" && e.rules.Active
 	for i := uint16(0); i < 6; i++ {
 		v.Friendly[i] = battleAIUnit{word(r.DS, 0x56e8+i*4), word(r.DS, 0x56ea+i*4)}
 		v.Enemy[i] = battleAIUnit{word(r.DS, 0x5700+i*4), word(r.DS, 0x5702+i*4)}

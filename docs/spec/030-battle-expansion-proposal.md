@@ -476,3 +476,51 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 瀏覽器先後在無頭模式的metrics／Runtime呼叫逾時，原因未確定。依驗證路由改用同一映像的有視窗Chromium／Xvfb及單批60次選擇，桌面與390寬度均通過；CLI截圖另成功且已目視，兩類收據不混稱。可重跑入口為有界非root Playwright容器內啟動Xvfb，設`DISPLAY=:98 ARCHER_BROWSER_HEADED=1`後執行`node /tools/check-archer-pressure.js <研究目錄>`，Xvfb須trap收尾；沿1400m／2CPU／256pids／50秒外層逾時及network none，不退回主機瀏覽器。
 
 [原型保存器](../../tools/archive-archer-pressure.py)在固定Pillow容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；只掛preserved及工具，加`--verify`核對或`--restore <空白目錄>`還原。保存離線Go程式／60結果、兩份基準trace、HTML、截圖、三輪瀏覽器工具及診斷，不把確認設計冒稱正式玩家功能完成。
+
+## 獨立戰術模式的原版控制
+
+本節DRAFT，設計已批准，正式接入仍須控制驗證。新tactics模式包含既有20%結陣及25%弓箭手正對壓制，原native／formation語意不變。沿固定PAM、88f21ef1起始快照及923核心，不開新IDA切片。攻方種類／兵數與來源陣位須從已驗兩側helper ABI及映射讀取，不能把單位ID當陣位。
+
+[雙側helper控制](../../tools/probe-tactics-helpers.go)預定八條件、兩個受擊側、native／formation／tactics各一，共48完整呼叫。條件含前排壓制、後排射手、正對空隊、其他射手、結陣相乘、其他兵種、後排目標及2人整數門檻。只在已驗AX點套已批准的候選，其他交原版；完整前後state與AX之外狀態另核對。
+
+[控制準備器](../../tools/prepare-tactics-controls.py)在固定Pillow容器用`--project <唯讀專案> --out <tactics-r1內新目錄>`建立helpers與battles來源。後者沿前輪原版探針及純Go政策，只擴已批准壓制，七局面、三規則、原版／舊AI／知情AI三組，共63次完整效果執行；固定相同快照及鍵盤，不重投。原native／formation全部保持舊估值，tactics在三種特殊0／無壓制與近戰限制上保持合法性。
+
+[獨立控制核對](../../tools/audit-tactics-controls.py)在固定Pillow容器以`--project --reader <已保存std-only reader> --out <新JSON>`直接解192份helper及189份battle state，從RAM重算兩側資格、整數次序、候選及全部兵數。只改AX的完整序列化狀態及DOS須保持，完整效果只准目標word變更，不借Go探針的Eligible或AfterUnits作唯一證據。
+
+[素材／正式候選準備器](../../tools/prepare-tactics-engine.py)在固定Pillow11.3.0容器使用`assets|freeze --project <唯讀專案> --player <player> --out <新路徑>`。assets只在r67／525素材的字圖補「戰術」，schema4／139字，原137字與其餘523檔保持；字圖仍1024×576。freeze在後續READY後才凍結原184來源，不增加核心或正式資料檔。
+
+### 戰術試作正式接入READY契約
+
+本節READY。使用者已選25%壓制＋獨立戰術模式；48次雙側helper及63次完整效果均完成，獨立解381份state核對原RAM、AX之外狀態、候選與兵數。兩個tactics局面從舊估值選民兵實減9，改選其他部隊實減10；native／formation共14局面新舊完整state保持。原始PAM、快照SHA、原始位址及來源bytes沿前節，不新增未證實兵種或動作語意。
+
+- 規則新增tactics，顯示「戰術試作」。native維持原版，formation只做已批准20%結陣；tactics同時有結陣及25%正對壓制。auto、戰鬥外切換及本場固定沿既有契約，AI模式獨立。CLI與步數重播接受同一模式，不因顯示模式開啟新規則。
+- 同一物理helper的AX點，先檢查攻方種類3、存活、來源陣位前排0至2、守方同索引前排有活隊。符合且tactics時先floor(AX×75/100)，再按既有守方結陣資格floor(AX×80/100)。特殊分派不套壓制，鳥人24與其他種類不套。攻方後排與正對空隊保持，敵我對稱，不疊加；沒有自由棋盤距離或額外行動。
+- 來源單位索引依SS:BP+6、目標依BP+8，兩側base／slot依已驗ABI。新壓制需反查攻方陣位；來源活隊映射越界、重複或找不到時在改AX前拒用。既有守方、stack、bytes、SHA及生命週期護欄保持。純Go資格／整數函式供實際結算與AI共用，不執行原版helper試算。
+- AI在Active且tactics時讀取壓制政策，在formation或tactics時計入結陣。候選、正對鎖定、先全滅／再比例／同分保留原目標保持；新增可省略的ArcherPressure診斷旗標，其他特殊效果與未支援分派沿原版。inactive不得計入新特性。
+- 旁置gamedata.ay.rules.json仍schema1及原四欄，只擴rules允許值tactics。舊native／formation標記及無標記進度相容，實際2987-byte寫入／成功close／緩衝區SHA綁定保持。舊版程式的auto會拒絕不認識的tactics標記，不冒稱向舊版自動降級；原版進度檔不塞新欄。
+- 工具列原規則按鈕位置不變，新增第三列「戰術試作」，上下鍵／Enter／滑鼠／取消與本場固定沿既有攔截。標題及F10後同步實際模式。r68仍525檔，只換工具列PNG／JSON，schema4／139字、1024×576，SHA0ac21b4a848eb6a901c72faf9f5f363006632ea033a0180e65db82a6c5fed3d7，原137字像素及523其他檔保持。舊schema1至3保留，缺新漢字時以ASCII Rules tactics顯示且可操作。
+- 驗收為48正式helper完整state、42完整效果／三模式兩AI及inactive控制、既有AI／結陣／故障、標記三值／錯SHA／未知模式、r67及r68工具列、原版CLI控制。GUI走正常新遊戲、兩個舊模式切換、tactics本場固定、獨立AI、F7存退、auto冷讀tactics、改native保存及再冷讀native。不追隨機弓箭手編成湊自然減傷，也不重跑逐隻圖形或完整結局。全部候選／字圖與收據永久保存後才正式提升。
+
+[正式測試與建置](../../tools/check-tactics-engine.sh)只在固定Go1.24.13容器使用，掛唯讀專案於`/project`、923核心於`/dosgolem`、固定模組於`/gomodcache`，候選及研究目錄分別可寫於`/candidate`、`/out`。設`GOMODCACHE=/gomodcache GOCACHE=/tmp/cache GOMAXPROCS=2`，沿1800m／2CPU／128pids／420秒外層逾時及network none。先前r1測試找出Engine入口漏接新模式，已修正；r2測試缺輸出父目錄屬腳本問題，r3同候選乾淨重跑，不把環境失敗稱產品缺陷。
+
+[GUI準備器](../../tools/prepare-tactics-gui.py)在Pillow容器以`--project --out <既有空白研究目錄>`沿已驗XTEST來源生成隔離helper。Go容器編譯後，[三階段視窗執行器](../../tools/check-tactics-gui.sh)接收`<候選目錄> <helper> <唯讀原版> <唯讀r68> <新輸出>`；設1800m／2CPU／128pids／800秒外層逾時及network none，Xvfb有trap收尾。helper不寫RAM、不安裝測試專用遊戲分支。
+
+[獨立候選核對及提升](../../tools/audit-tactics-engine.py)在Pillow11.3.0容器使用`--project <唯讀專案> --out <新JSON>`，核對固定來源、原版完整state、r68舊字墨、正常視窗與存檔緩衝區。通過且永久保存後，才另加`--player <可寫player> --audit <通過JSON> --promote`提升七程式；前版與r67保持。
+
+[永久保存器](../../tools/archive-tactics.py)在同容器以`--project --archive <可寫preserved> --out <新JSON>`捕獲本輪；只掛preserved與工具，加`--verify`可獨立核對，另加`--restore <空白目錄>`還原。保存兩版固定來源、七程式、控制、GUI、失敗診斷及兩份r68字圖。其餘523素材、原版、模組、核心與快照沿既有永久清單，不依賴原workplace。
+
+### 戰術試作正式接入與限定驗收
+
+本節限定CONFORMED。source-candidate-tactics-r2／184來源七程式與r68／525素材已提升，12份來源變更，923核心不改。工具列新增第三列「戰術試作」，滑鼠、方向鍵／Enter、取消、本場鎖定及獨立AI沿READY契約；標題同步實際規則。r68只換工具列PNG／JSON，schema4／139字，原137字像素及523其他檔保持；r67舊素材亦可操作，缺字沿ASCII。
+
+- 48雙側helper及63完整效果原版控制通過；獨立reader解381份state，再由Python直接讀RAM核對來源陣位、正對活隊、兩次取整、唯一目標word及最終兵數。兩個tactics局面知情AI改選後實減10人，舊估值選民兵只減9；native／formation共14局面新舊保持。這是已批准的新規則，不稱原版傷害行為。
+- 正式48helper完整state、42組決策後／執行後完整state及inactive控制同受控原版；既有16AI、24結陣執行器、24結陣helper、九故障零客體副作用、三種標記、r67／r68各六工具列父測試與vet通過，沒有Skip。新舊預設4M步的完整state、Frame及前版收據欄位相同。原版與結陣模式維持既有語意。
+- 正常冷啟動、新遊戲、招募十人、自然遇敵、游標／Enter攻擊及兩側掛點通過；wrapper開始／返回各一次。戰鬥中規則不可切，AI可獨立切回原版再恢復策略，沒有工具列按鍵流入客體。三次策略決策均Formation=true及ArcherPressure=true，本局無適用新減傷條件，Applied=Suppressed=Changed=0，不稱自然壓制收益或整體平衡。
+- 真正F7保存tactics並經原版DOS退出0，auto冷啟動載入tactics；在地圖改native並真正F7保存，再auto冷啟動載入native。兩次冷讀抽驗沿既有helper正常關窗，closed=true，不宣稱再經DOS退出。三份2987-byte存檔各與inspect零步讀取的9E000h緩衝區相同；旁置四欄schema1標記與實檔SHA一致。原版進度格式不改，舊版auto仍會拒絕不識tactics的標記。
+- 實際X11工具列已目視，[選單](../images/tactics-rules-menu-r1.png)及[來源](../images/tactics-rules-runtime-r1.json)留README。沒有新美術、兵種ID、RNG政策或跨法術策略，不重跑逐隻素材與完整結局。
+
+[正式獨立核對](../../preserved/tactics-audit-r1.json)與[控制核對](../../preserved/tactics-controls-r1.json)分列。先永久保存1977檔／822物件、131401326 bytes，無原workplace完整還原通過後，才依[提升收據](../../preserved/tactics-promotion-r1.json)替換七程式及r68 metadata；前版候選、r67素材與全部永久物件保持。保存入口見[永久清單及用法](../../preserved/README.md#戰術試作正式接入保存)。
+
+核對器首輪把「有壓制資格」誤當各模式都已套用，後輪又把既有冷讀關窗誤要求為DOS退出；原state、實際GUI與正式測試都未變。分別核對原trace的mode與helper的正常關窗路徑後修正核對器，保留兩份當時工具。這些是核對模型錯誤，不回頭調整遊戲規則讓核對通過。
+
+[收尾核對](../../tools/check-tactics-integrity.py)在固定Pillow容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`核對正式／前版程式、來源、素材、核心、字形、文件入口與擁有權。此模式要求完整還原副本仍在；逐SHA驗完後只刪本輪及原型的驗證還原副本，不刪永久物件、原始控制或候選。另由主機Docker狀態檢查確認本案容器已清除，不在核對容器內掛Docker socket。

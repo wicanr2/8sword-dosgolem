@@ -306,7 +306,7 @@ func testBattleAIFormationExecutor(t *testing.T, root, batch, controls, out, nam
 	var trace struct {
 		StartStep, EndStep uint64
 		HookIP             uint16
-		Damage             []struct{ Eligible bool }
+		Damage             []struct{ Eligible, PressureEligible bool }
 		Changes            []struct {
 			Phase                     string
 			Segment, Offset, Old, New uint16
@@ -405,21 +405,24 @@ func testBattleAIFormationExecutor(t *testing.T, root, batch, controls, out, nam
 	}
 	ai, rule := e.BattleAIStatus(), e.BattleRulesStatus()
 	if mode == "target" {
-		if ai.Decisions != 1 || len(ai.Recent) != 1 || ai.Recent[0].Decision.Formation != (rules == "formation" && active) {
+		if ai.Decisions != 1 || len(ai.Recent) != 1 || ai.Recent[0].Decision.Formation != (rulesHaveFormation(rules) && active) || ai.Recent[0].Decision.ArcherPressure != (rules == "tactics" && active) {
 			t.Fatal(ai)
 		}
 	} else if ai.Bound || ai.Decisions != 0 {
 		t.Fatal(ai)
 	}
-	var applied uint64
-	if active && rules == "formation" {
+	var applied, suppressed uint64
+	if active && rulesHaveFormation(rules) {
 		for _, v := range trace.Damage {
-			if v.Eligible {
+			if v.Eligible || (rules == "tactics" && v.PressureEligible) {
 				applied++
+			}
+			if rules == "tactics" && v.PressureEligible {
+				suppressed++
 			}
 		}
 	}
-	if rule.Applied != applied {
+	if rule.Applied != applied || rule.Suppressed != suppressed {
 		t.Fatalf("damage applications: %+v want=%d", rule, applied)
 	}
 	data, err := json.MarshalIndent(map[string]any{"reference": source, "rules": rule, "battle_ai": ai, "active_fixture": active, "full_states_equal": true}, "", "  ")
@@ -429,4 +432,28 @@ func testBattleAIFormationExecutor(t *testing.T, root, batch, controls, out, nam
 	if err = os.WriteFile(filepath.Join(dir, "receipt.json"), append(data, '\n'), 0644); err != nil {
 		t.Fatal(err)
 	}
+}
+
+func TestBattleAITacticsOriginalExecutors(t *testing.T) {
+	root, batch, out := battleAIRuntimePaths(t)
+	controls := os.Getenv("EIGHTSWORD_TACTICS_BATTLES")
+	if controls == "" {
+		t.Skip("需要已驗戰術原版控制")
+	}
+	out = filepath.Join(out, "tactics")
+	if err := os.Mkdir(out, 0755); err != nil {
+		t.Fatal(err)
+	}
+	for _, name := range []string{"archer-front", "archer-rear-target", "archer-open-lane", "archer-back", "bird-front", "melee-locked", "special0"} {
+		for _, rules := range []string{"native", "formation", "tactics"} {
+			for _, mode := range []string{"native", "target"} {
+				t.Run(name+"-"+rules+"-"+mode, func(t *testing.T) {
+					testBattleAIFormationExecutor(t, root, batch, controls, out, name, rules, mode, true)
+				})
+			}
+		}
+	}
+	t.Run("tactics-inactive", func(t *testing.T) {
+		testBattleAIFormationExecutor(t, root, batch, controls, out, "archer-front", "tactics", "target", false)
+	})
 }

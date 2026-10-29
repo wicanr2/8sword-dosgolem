@@ -45,6 +45,7 @@ type PosterToolbar struct {
 	battleAI                     string
 	aiChinese                    bool
 	rulesChinese                 bool
+	tacticsChinese               bool
 	rulesMode                    string
 	rulesLocked                  bool
 	choices                      []FontChoice
@@ -115,21 +116,22 @@ func LoadPosterToolbar(dir string, choices []FontChoice) (*PosterToolbar, error)
 	legacy := m.Schema == 1 && m.AtlasSHA == "34009f2ab958e1cf34436b8d10950cc173e834c8c18631e123b1b26601d32657" && len(m.Glyphs) == 123
 	withAI := m.Schema == 2 && m.AtlasSHA == "4ad93d657be8db62c2f04206828d345d52982e824a1a3facc09005bdf4e8ab79" && len(m.Glyphs) == 127
 	withRules := m.Schema == 3 && m.AtlasSHA == "31a6532b18eb108ad195147a7176a5e080e537775ebcfe9d2e6aa6dcd3c6b9a3" && len(m.Glyphs) == 137
-	if m.SourceSHA != NotoSHA || (!legacy && !withAI && !withRules) {
+	withTactics := m.Schema == 4 && m.AtlasSHA == "0ac21b4a848eb6a901c72faf9f5f363006632ea033a0180e65db82a6c5fed3d7" && len(m.Glyphs) == 139
+	if m.SourceSHA != NotoSHA || (!legacy && !withAI && !withRules && !withTactics) {
 		return nil, fmt.Errorf("工具列字集來源不符")
 	}
 	if len(choices) == 0 || len(choices) > 3 {
 		return nil, fmt.Errorf("工具列字型選項缺失")
 	}
 	atlasHeight := 512
-	if withRules {
+	if withRules || withTactics {
 		atlasHeight = 576
 	}
 	atlas, err := readPosterImage(dir, "poster-toolbar-font.png", m.AtlasSHA, 1024, atlasHeight)
 	if err != nil {
 		return nil, err
 	}
-	v := &PosterToolbar{ID: "wings", battleAI: "native", rulesMode: "native", aiChinese: withAI || withRules, rulesChinese: withRules, atlas: atlas, glyphs: map[rune][4]int{}, panels: map[string]*image.RGBA{}, choices: append([]FontChoice(nil), choices...), dirty: true}
+	v := &PosterToolbar{ID: "wings", battleAI: "native", rulesMode: "native", aiChinese: withAI || withRules || withTactics, rulesChinese: withRules || withTactics, tacticsChinese: withTactics, atlas: atlas, glyphs: map[rune][4]int{}, panels: map[string]*image.RGBA{}, choices: append([]FontChoice(nil), choices...), dirty: true}
 	for _, g := range m.Glyphs {
 		r := []rune(g.Character)
 		box := image.Rect(g.Ink[0], g.Ink[1], g.Ink[0]+g.Ink[2], g.Ink[1]+g.Ink[3])
@@ -146,10 +148,13 @@ func LoadPosterToolbar(dir string, choices []FontChoice) (*PosterToolbar, error)
 			return nil, fmt.Errorf("工具列缺字 %U", r)
 		}
 	}
-	if withAI || withRules {
+	if withAI || withRules || withTactics {
 		required := "原版策略"
-		if withRules {
+		if withRules || withTactics {
 			required += "規則結陣試作本場固定"
+		}
+		if withTactics {
+			required += "戰術"
 		}
 		for _, r := range required {
 			if _, ok := v.glyphs[r]; !ok {
@@ -329,6 +334,9 @@ func (v *PosterToolbar) Input(x, y int, click bool, key string) ToolbarAction {
 			if v.Menu == "rules" && v.rulesMode == "formation" {
 				v.Selected = 1
 			}
+			if v.Menu == "rules" && v.rulesMode == "tactics" {
+				v.Selected = 2
+			}
 			v.dirty = true
 		}
 	}
@@ -350,7 +358,7 @@ func (v *PosterToolbar) Input(x, y int, click bool, key string) ToolbarAction {
 			} else if v.Menu == "ai" {
 				a.BattleAI = []string{"native", "target"}[v.Selected]
 			} else if v.Menu == "rules" {
-				a.BattleRules = []string{"native", "formation"}[v.Selected]
+				a.BattleRules = []string{"native", "formation", "tactics"}[v.Selected]
 			} else {
 				a.Poster = []string{"wings", "cover", "off"}[v.Selected]
 			}
@@ -363,23 +371,20 @@ func (v *PosterToolbar) menuLen() int {
 	if v.Menu == "font" {
 		return len(v.choices)
 	}
-	if v.Menu == "ai" || v.Menu == "rules" {
+	if v.Menu == "ai" {
 		return 2
 	}
 	return 3
 }
 func (v *PosterToolbar) rulesLabel(mode string, locked bool) string {
-	if !v.rulesChinese {
+	if !v.rulesChinese || (mode == "tactics" && !v.tacticsChinese) {
 		label := "Rules " + mode
 		if locked {
 			label += " (locked)"
 		}
 		return label
 	}
-	label := "原版規則"
-	if mode == "formation" {
-		label = "結陣試作"
-	}
+	label := battleRulesName(mode)
 	if locked {
 		label += " / 本場固定"
 	}
@@ -474,7 +479,7 @@ func (v *PosterToolbar) Frame(game *image.RGBA, now time.Time) *image.RGBA {
 			} else if v.Menu == "ai" {
 				label = v.battleAILabel([]string{"native", "target"}[i])
 			} else if v.Menu == "rules" {
-				label = v.rulesLabel([]string{"native", "formation"}[i], false)
+				label = v.rulesLabel([]string{"native", "formation", "tactics"}[i], false)
 			} else {
 				label = posterLabel([]string{"wings", "cover", "off"}[i])
 			}

@@ -1,0 +1,42 @@
+{
+  "status": "passed-scoped-tactics-integrity",
+  "programs": 7,
+  "source_inputs": 184,
+  "assets": 525,
+  "old_glyphs_kept": 137,
+  "new_glyphs": 2,
+  "core_unchanged": 923,
+  "previous_programs_kept": 7,
+  "previous_assets_kept": 525,
+  "original_helpers": 48,
+  "original_executors": 63,
+  "independently_decoded_states": 381,
+  "formal_new_helpers": 48,
+  "formal_new_executor_cases": 42,
+  "inactive_case": 1,
+  "prior_ai_cases": 16,
+  "prior_formation_executors": 24,
+  "formation_helper_cases": 24,
+  "fault_cases": 9,
+  "gui_phases": 3,
+  "save_buffer_matches": 3,
+  "markdown_links": 2200,
+  "resolution_backlinks": 26,
+  "missing_correction_cases_rejected": 5,
+  "python_shell_syntax": true,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0,
+  "verified_restore_copies_cleaned": [
+    {
+      "copy": "tactics-r1",
+      "files": 1977,
+      "bytes": 439893406
+    },
+    {
+      "copy": "archer-pressure-r1",
+      "files": 26,
+      "bytes": 3311344
+    }
+  ]
+}

@@ -163,3 +163,154 @@ func TestBattleRulesFaultsAndAuto(t *testing.T) {
 		t.Fatal("explicit rule must replace the marker on a genuine save")
 	}
 }
+
+func TestBattleTacticsOriginalHelpers(t *testing.T) {
+	root, _, out := rulesRuntimePaths(t)
+	controls := os.Getenv("EIGHTSWORD_TACTICS_HELPERS")
+	if controls == "" {
+		t.Skip("需要已驗雙側戰術helper控制")
+	}
+	out = filepath.Join(out, "tactics-helpers")
+	if err := os.Mkdir(out, 0755); err != nil {
+		t.Fatal(err)
+	}
+	for _, side := range []string{"player", "enemy"} {
+		for _, name := range []string{"front-opposed", "rear-archer", "open-lane", "other-ranged", "combined", "other-kind", "rear-target", "threshold"} {
+			for _, mode := range []string{"native", "formation", "tactics"} {
+				t.Run(side+"-"+name+"-"+mode, func(t *testing.T) {
+					label := side + "-" + name + "-" + mode
+					source := filepath.Join(controls, label)
+					raw, err := os.ReadFile(filepath.Join(source, "trace.json"))
+					if err != nil {
+						t.Fatal(err)
+					}
+					var trace struct {
+						Steps               uint64
+						Pressure, Formation bool
+					}
+					if err = json.Unmarshal(raw, &trace); err != nil {
+						t.Fatal(err)
+					}
+					dir := filepath.Join(out, label)
+					if err = os.Mkdir(dir, 0755); err != nil {
+						t.Fatal(err)
+					}
+					e, err := Open(Options{Root: root, Saves: filepath.Join(dir, "scratch"), BattleRules: mode})
+					if err != nil {
+						t.Fatal(err)
+					}
+					defer e.Close()
+					if err = e.Oracle.LoadStateFile(filepath.Join(source, "start-call.state")); err != nil {
+						t.Fatal(err)
+					}
+					if err = e.bindBattleRules(0x110, 0x110); err != nil {
+						t.Fatal(err)
+					}
+					e.rules.Active = true // Fixture is an isolated call; GUI covers natural wrapper entry.
+					if err = e.Advance(trace.Steps); err != nil {
+						t.Fatal(err)
+					}
+					if err = e.Oracle.SaveStateFile(filepath.Join(dir, "final.state")); err != nil {
+						t.Fatal(err)
+					}
+					a, err := os.ReadFile(filepath.Join(dir, "final.state"))
+					if err != nil {
+						t.Fatal(err)
+					}
+					b, err := os.ReadFile(filepath.Join(source, "final.state"))
+					if err != nil {
+						t.Fatal(err)
+					}
+					if !bytes.Equal(a, b) {
+						t.Fatal("tactics differs from original controlled helper")
+					}
+					info := e.BattleRulesStatus()
+					suppressed := mode == "tactics" && trace.Pressure
+					applied := mode != "native" && (trace.Formation || suppressed)
+					if info.Suppressed != boolRuleCount(suppressed) || info.Applied != boolRuleCount(applied) {
+						t.Fatal(info)
+					}
+					data, _ := json.MarshalIndent(info, "", "  ")
+					if err = os.WriteFile(filepath.Join(dir, "rules.json"), append(data, '\n'), 0644); err != nil {
+						t.Fatal(err)
+					}
+				})
+			}
+		}
+	}
+}
+
+func TestBattleTacticsSourceFaults(t *testing.T) {
+	root, _, out := rulesRuntimePaths(t)
+	controls := os.Getenv("EIGHTSWORD_TACTICS_HELPERS")
+	if controls == "" {
+		t.Skip("需要戰術helper控制")
+	}
+	for _, name := range []string{"range", "duplicate", "unmapped"} {
+		t.Run(name, func(t *testing.T) {
+			e, err := Open(Options{Root: root, Saves: t.TempDir(), BattleRules: "tactics"})
+			if err != nil {
+				t.Fatal(err)
+			}
+			defer e.Close()
+			if err = e.Oracle.LoadStateFile(filepath.Join(controls, "player-front-opposed-tactics/before-hook.state")); err != nil {
+				t.Fatal(err)
+			}
+			if err = e.bindBattleRules(0x110, 0x110); err != nil {
+				t.Fatal(err)
+			}
+			e.rules.Active = true
+			write := func(off, value uint16) { e.Oracle.WriteU16(oracle.Addr{Seg: 0x1e88, Off: off}, value) }
+			want := ""
+			switch name {
+			case "range":
+				write(0x6fc2, 6)
+				want = "source-slot-mapping"
+			case "duplicate":
+				write(0x5706, 1)
+				write(0x6fc4, 0)
+				want = "source-duplicate-live-mapping"
+			case "unmapped":
+				write(0x6fc2, 5)
+				want = "unmapped-live-source"
+			}
+			before, after := filepath.Join(out, "tactics-fault-"+name+"-before.state"), filepath.Join(out, "tactics-fault-"+name+"-after.state")
+			if err = e.Oracle.SaveStateFile(before); err != nil {
+				t.Fatal(err)
+			}
+			err = e.Advance(1)
+			if err == nil || e.rules.Fault == nil || e.rules.Fault.Reason != want {
+				t.Fatal("wrong fault", err, e.rules.Fault)
+			}
+			if err = e.Oracle.SaveStateFile(after); err != nil {
+				t.Fatal(err)
+			}
+			a, _ := os.ReadFile(before)
+			b, _ := os.ReadFile(after)
+			if !bytes.Equal(a, b) {
+				t.Fatal("fault changed guest")
+			}
+		})
+	}
+}
+
+func TestBattleRulesAutomaticThreeModes(t *testing.T) {
+	root, _, _ := rulesRuntimePaths(t)
+	dir := t.TempDir()
+	if err := os.WriteFile(filepath.Join(dir, "gamedata.ay"), bytes.Repeat([]byte{7}, 2987), 0600); err != nil {
+		t.Fatal(err)
+	}
+	for _, mode := range []string{"native", "formation", "tactics"} {
+		if err := writeRulesMarker(dir, mode); err != nil {
+			t.Fatal(err)
+		}
+		e, err := Open(Options{Root: root, Saves: dir})
+		if err != nil {
+			t.Fatal(err)
+		}
+		if e.BattleRulesMode() != mode || e.BattleRulesName() != battleRulesName(mode) {
+			t.Fatal("auto mode", e.BattleRulesStatus())
+		}
+		e.Close()
+	}
+}
