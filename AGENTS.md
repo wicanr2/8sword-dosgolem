@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+使用者於2026-10-29明確授權：「後續都照相同規格處理，不用再詢問」。後續已確認目標內的同規格美術、動畫與HD接入，自主完成樣式延伸、來源查證、READY契約、Go實作、代表抽驗、永久保存、正式提升及私人GitHub紀錄，不再逐張選樣或重問接入同意。風格沿已批准的原版配色與中國古風，動畫沿[030 B接入規格](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入ready契約)，繪圖沿[047模式分流](docs/spec/047-hd-scene-renderer.md#hd與原版模式分流追加契約)，保存沿[永久圖庫](artwork/README.md)與[必要資料保存](preserved/README.md)。保留原版模式、已定規則與存檔契約，依共用機制抽驗，不逐隻重跑GUI；未知語意自行查證並標示證據等級，不猜補。這項持續授權優先於舊文件對同規格工作逐項詢問的要求。
+
 現行程式為source-candidate-vfx-r2／188來源七程式與r68／525素材，923核心不變，依[030 B動畫限定驗收](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入與限定驗收)提升。HD新增使用者已選B「飛焰＋命中符光」，由Go依已發生來源／PON事件繪製，不寫客體。三組特殊0／2／5完整原版state、實際Draw及正常戰鬥／存讀通過；原版模式不安裝，傷害、AI、規則及存檔保持。工具列仍可獨立切native／formation／tactics與AI，auto恢復規則標記。以下較早數字為當時驗收，現況以本列及CONTEXT為準。
 
 [原版控制](tools/prepare-tactics-controls.py)、[獨立381-state核對](tools/audit-tactics-controls.py)、[凍結與字圖](tools/prepare-tactics-engine.py)、[正式測試](tools/check-tactics-engine.sh)、[GUI準備](tools/prepare-tactics-gui.py)、[三階段GUI](tools/check-tactics-gui.sh)、[核對及提升](tools/audit-tactics-engine.py)用法見030的READY契約。沿固定Go1.24.13／Pillow11.3.0 Docker；新字圖schema4／139字，舊137字及523其他素材逐SHA保持。48正式helper、42完整效果、inactive、舊模式、三種規則存讀已抽驗。[永久保存](preserved/README.md#戰術試作正式接入保存)及[保存器](tools/archive-tactics.py)不需原workplace即可核對／還原。自然戰鬥沒有合適弓箭手，不把診斷旗標或受控收益宣稱為自然壓制或整體平衡。
