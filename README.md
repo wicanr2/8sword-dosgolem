@@ -36,6 +36,8 @@
 
 HD 工具列另有「規則」選單，可選原版規則或結陣試作，與 AI 獨立。結陣讓前排且有另一存活前排同袍的民兵，承受的普通／遠程傷害量減20%，向下取整，敵我相同、不疊加，特殊效果不適用。規則在戰鬥外切換，本場固定；真正存檔後會隨進度恢復，沒有規則標記的舊進度使用原版規則。啟動選項為 `-battle-rules auto|native|formation`，預設 auto。原版進度格式保持，規則另存於同目錄的 `gamedata.ay.rules.json`。
 
+策略 AI 已納入結陣減傷估值。開啟結陣時，會先算實際傷害量，再比較能否全滅及減員比例。例如原估可全滅的15人民兵，結陣後只減12人，AI會改選可減13人的另一隊。普通正對鎖定與特殊效果保持，原版規則沿原估值。受控對照與正常視窗範圍見[結陣知情 AI 驗收](docs/spec/030-battle-expansion-proposal.md#結陣知情ai正式接入與限定驗收)，不宣稱整體平衡已完成。
+
 ![實際遊戲的規則工具列](docs/images/formation-rules-menu-r1.png)
 
 上圖為正常新遊戲的實際視窗。兩側傷害掛點的24份完整狀態、正常遇敵與攻擊、戰鬥鎖定／解鎖及兩次冷啟動存讀已抽驗。自然戰鬥只有一支友軍，沒有觸發減傷；有效結陣的結果由受控原版函式對照證明，不宣稱整體平衡已完成。可看[整數門檻試算](docs/images/formation-prototype-r1.html)、[正式接入範圍](docs/spec/030-battle-expansion-proposal.md#首版結陣正式接入與限定驗收)與[截圖來源](docs/images/formation-rules-runtime-r1.json)。

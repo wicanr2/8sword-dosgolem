@@ -2329,3 +2329,13 @@ GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建�
 正式候選source-candidate-formation-r2、Go1.24.13、原923核心走真正XTEST視窗，手冊掃描0007印頁9的游標右移與Enter觸發玩家攻擊，兩側helper共五次；戰鬥期間Active=true，返回後Started=Finished=1。沒有改軍隊、敵軍、座標、時間或亂數；RNG內部seed未受控，本次不是跨流程骰序對拍。此局民兵獨隊，Applied=0；合資格20%傷害結果只由固定快照的24份完整helper對照證明，不宣稱自然兵損或整體平衡。
 
 原版F7寫入gamedata.ay時，923核心Wrote只是意圖且FileOps沒有AH40 write，因此正式標記需同時確認2987-byte意圖、成功close、實際scratch檔與原版runtime linear0x9E000緩衝區相同，才寫規則與SHA。正常存退formation、auto冷讀後改native真正保存、再auto冷讀native，共三份實檔均與零步inspect的2987 bytes一致。原版檔案格式不改，旁置標記不載入客體RAM。各階段SHA、七程式與184來源見[獨立核對](preserved/formation-engine-audit-r1.json)，工具及完整證據由[永久入口](preserved/README.md#結陣規則正式接入保存)保存。
+
+## 2026-10-29：策略AI的結陣估值與原版執行器
+
+沿已批准20%結陣與先全滅／再比例政策，只補兩者接線，不新增倍率或兵種。PAM SHA仍83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0；原始快照SHA88f21ef185d597fee43972aec1d14e9a6811ea072a443aa6be04fe6de999b5bf，Go1.24.13及923核心保持。沒有新IDA查詢或函式命名，決策與傷害的IDA MZ／runtime原始位址沿030及前節。
+
+六預定局面各用native／formation規則、原版目標／舊策略／知情策略，共36次原版效果執行。12組決策前完整state相同，最多只改已驗target word；formation只在原傷害量點改AX。三案從舊選民兵實減12改為另一隊減13，普通正對、無同袍及特殊0保持；native六案兩策略完整state同值。所有效果由原版執行器結算，不調RNG或重投；這是受控部隊與固定快照，不稱自然編成或全局平衡。
+
+首份Python核對誤認每動作只有一個傷害helper。實際普通樣本在執行器之前及內部各一次，遠程只在內部一次；新探針只加InsideExecutor只讀欄，兩輪36份返回state全同。只證明呼叫階段，不將前一呼叫猜成特定UI或動畫用途。[獨立Python](tools/audit-ai-formation.py)從原RAM重建候選、80%整數式及唯一目標寫入，[std-only解碼](tools/audit-ai-formation-states.py)另解108份state，直接從RAM核對36組最終部隊與步數，均通過。
+
+正式24組決策後／執行後完整state及inactive控制同原版，既有16AI及24結陣helper回歸保持。自然新遊戲／募兵／遇敵／攻擊取得三次Formation=true策略決策，Applied=Changed=0，沒有自然收益聲明。真正F7保存及DOS0通過，2987-byte實檔同零步讀取的原版緩衝區。正式程式純Go估值不呼叫原版helper，不改工具列、模式與存檔格式。來源、證據與限制見[正式驗收](docs/spec/030-battle-expansion-proposal.md#結陣知情ai正式接入與限定驗收)及[永久保存](preserved/README.md#結陣知情ai保存)。

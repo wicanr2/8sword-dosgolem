@@ -115,3 +115,51 @@ func TestBattleAIStableTieRetainsOriginal(t *testing.T) {
 		t.Fatal("equal score changed original target")
 	}
 }
+
+func TestBattleAIFormationEstimate(t *testing.T) {
+	v := battleAIFixture(t, "front-ranged-mixed")
+	v.FriendlySlots = [6]uint16{0, 1, 5, 5, 5, 5}
+	v.Friendly[0] = battleAIUnit{1, 15}
+	v.Friendly[1] = battleAIUnit{21, 15}
+	v.OriginalSlot = 0
+	old, err := evaluateBattleAI(v)
+	if err != nil || old.SuggestedSlot != 0 || old.Candidates[0].Loss != 15 {
+		t.Fatal(old, err)
+	}
+	v.Formation = true
+	before := v
+	d, err := evaluateBattleAI(v)
+	if err != nil || d.SuggestedSlot != 1 || !d.Formation || d.Candidates[0].Amount != 320 || d.Candidates[0].Loss != 12 || d.Candidates[1].Loss != 13 || v != before {
+		t.Fatal(d, err)
+	}
+	v.FriendlySlots[2] = 2
+	v.Friendly[2] = battleAIUnit{21, 100}
+	d, err = evaluateBattleAI(v)
+	if err != nil || d.Candidates[0].Amount != 320 {
+		t.Fatal("formation stacked", d, err)
+	}
+	for _, rear := range []bool{false, true} {
+		x := before
+		if rear {
+			x.FriendlySlots = [6]uint16{1, 5, 5, 0, 5, 5}
+			x.OriginalSlot = 3
+		} else {
+			x.FriendlySlots = [6]uint16{0, 5, 5, 1, 5, 5}
+		}
+		on, e := evaluateBattleAI(x)
+		x.Formation = false
+		off, e2 := evaluateBattleAI(x)
+		if e != nil || e2 != nil || !reflect.DeepEqual(on.Candidates, off.Candidates) || on.SuggestedSlot != off.SuggestedSlot {
+			t.Fatal("rear/no-support changed", on, off, e, e2)
+		}
+	}
+	for _, name := range []string{"special0-choice", "special2-choice", "special5-empty-original"} {
+		x := battleAIFixture(t, name)
+		off, e := evaluateBattleAI(x)
+		x.Formation = true
+		on, e2 := evaluateBattleAI(x)
+		if e != nil || e2 != nil || !reflect.DeepEqual(on.Candidates, off.Candidates) || on.SuggestedSlot != off.SuggestedSlot {
+			t.Fatal("special damage changed", name, e, e2)
+		}
+	}
+}

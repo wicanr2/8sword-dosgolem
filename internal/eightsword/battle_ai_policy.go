@@ -5,6 +5,7 @@ import "fmt"
 
 type battleAIUnit struct{ Kind, Count uint16 }
 type battleAIView struct {
+	Formation                          bool `json:",omitempty"`
 	Route                              string
 	SourceSlot, OriginalSlot, Selector uint16
 	Friendly, Enemy                    [6]battleAIUnit
@@ -18,6 +19,7 @@ type battleAICandidate struct {
 	Eliminates                      bool
 }
 type battleAIDecision struct {
+	Formation                               bool `json:",omitempty"`
 	SourceSlot, OriginalSlot, SuggestedSlot uint16
 	Route                                   string
 	Selector                                uint16
@@ -47,6 +49,15 @@ func battleAIPredict(v battleAIView, slot uint16) (battleAICandidate, error) {
 			return c, fmt.Errorf("zero divisor")
 		}
 		c.Amount = uint16(uint32(v.Factors[source.Kind*2])*uint32(source.Count)) / divisor
+		if v.Formation {
+			frontCounts := [3]uint16{}
+			for i := range frontCounts {
+				frontCounts[i] = v.Friendly[v.FriendlySlots[i]].Count
+			}
+			if formationEligible(int(slot), u.Kind, u.Count, frontCounts) {
+				c.Amount = formationDamage(c.Amount)
+			}
+		}
 		encoded := uint16(c.Amount/hp + 1)
 		if encoded > 1 {
 			c.Loss = encoded - 1
@@ -89,7 +100,7 @@ func battleAIBetter(a, b battleAICandidate) bool {
 	return uint64(a.Loss)*uint64(b.Count) > uint64(b.Loss)*uint64(a.Count)
 }
 func evaluateBattleAI(v battleAIView) (battleAIDecision, error) {
-	d := battleAIDecision{SourceSlot: v.SourceSlot, OriginalSlot: v.OriginalSlot, SuggestedSlot: v.OriginalSlot, Route: v.Route, Selector: v.Selector, Candidates: []battleAICandidate{}, Reason: "先全滅，再比較減員比例；同分保留原目標，原目標無效時依陣位排序"}
+	d := battleAIDecision{Formation: v.Formation, SourceSlot: v.SourceSlot, OriginalSlot: v.OriginalSlot, SuggestedSlot: v.OriginalSlot, Route: v.Route, Selector: v.Selector, Candidates: []battleAICandidate{}, Reason: "先全滅，再比較減員比例；同分保留原目標，原目標無效時依陣位排序"}
 	if v.SourceSlot >= 6 || v.OriginalSlot >= 6 {
 		return d, fmt.Errorf("slot out of range")
 	}

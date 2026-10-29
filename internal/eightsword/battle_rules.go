@@ -57,6 +57,22 @@ type rulesMarker struct {
 	SaveBytes int    `json:"save_bytes"`
 }
 
+func formationEligible(slot int, kind, count uint16, frontCounts [3]uint16) bool {
+	if slot < 0 || slot >= 3 || kind != 1 || count == 0 {
+		return false
+	}
+	for i, n := range frontCounts {
+		if i != slot && n > 0 {
+			return true
+		}
+	}
+	return false
+}
+
+func formationDamage(amount uint16) uint16 {
+	return uint16(uint32(amount) * 80 / 100)
+}
+
 func readRulesMarker(dir string) (string, bool, error) {
 	p := filepath.Join(dir, "gamedata.ay.rules.json")
 	s, err := os.Lstat(p)
@@ -320,19 +336,14 @@ func (e *Engine) battleRulePoint(ip uint16) {
 	if word(base+target*4+2) > 0 && targetSlot < 0 {
 		panic(e.ruleFail("unmapped-live-target"))
 	}
-	eligible := targetSlot >= 0 && targetSlot < 3 && word(base+target*4) == 1 && word(base+target*4+2) > 0
-	support := false
-	if eligible {
-		for i := 0; i < 3; i++ {
-			if i != targetSlot && word(base+mapping[i]*4+2) > 0 {
-				support = true
-			}
-		}
+	frontCounts := [3]uint16{}
+	for i := range frontCounts {
+		frontCounts[i] = word(base + mapping[i]*4 + 2)
 	}
-	eligible = eligible && support
+	eligible := formationEligible(targetSlot, word(base+target*4), word(base+target*4+2), frontCounts)
 	adjusted := c.AX
 	if eligible {
-		adjusted = uint16(uint32(c.AX) * 80 / 100)
+		adjusted = formationDamage(c.AX)
 		e.Oracle.SetRegs(oracle.CallRegs{AX: adjusted, SetAX: true})
 		r.Applied++
 	}

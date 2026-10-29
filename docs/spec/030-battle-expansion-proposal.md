@@ -2,7 +2,7 @@
 
 狀態：方向已確認，實作規格維持 DRAFT。使用者於 2026-10-24 同意本提案，追加 HD 配色調整，避免原版紅綠並置。採用原版規則與獨立戰術增強模式，AI 從原版判斷掛點切入；尚未驗證的數值、掛點契約及存檔格式仍須完成 READY 審查。工作規則及入口見 [AGENTS](../../AGENTS.md)，目前狀態見 [CONTEXT](../../CONTEXT.md)。
 
-目前字型工具列、教育部真正隸書及原概念圖修色已分別依[032](032-poster-toolbar.md)、[015](015-font-settings.md#教育部隸書追加契約)及[031](031-hd-palette-refinement.md)完成。下列原型段落保留提案當時歷史，不重開這些完成項。AI只讀觀測、Go旁路及單欄位目標實驗已補證，正式新規則仍未提升。
+字型工具列、教育部真正隸書及原概念圖修色已分別依[032](032-poster-toolbar.md)、[015](015-font-settings.md#教育部隸書追加契約)及[031](031-hd-palette-refinement.md)完成。首版目標策略、規則工具列、民兵結陣與結陣知情估值亦已依文末各節限定CONFORMED。下列早期原型與當時unknown保留歷史，不重開完成項；其餘兵種、特性與跨法術仍DRAFT。
 
 AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub_22DBC`與`sub_22B96`的普通前排鏈已取得兩個完整敵方回合及受控目標證據，舊「尚無動態事件」只屬先前無輸入診斷。`sub_1FAA2`的算式及寫入亦已抽驗，其他分支仍未知。不可變定位、證據層級及舊文件勘誤由[回填索引](ai-resolution-backlinks-r1.json)與[檢查器](../../tools/check-ai-resolution-backlinks.py)維護；在固定Pillow容器以`--project <唯讀專案>`執行，缺定位、文件或勘誤便失敗。
 
@@ -412,3 +412,47 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 首條GUI沿舊空白鍵休息路線只觸發敵方傷害，未達雙側操作閘門；正式抽樣改用手冊的正常攻擊，不改兵力、座標、亂數或敵軍。r2存退階段已生成完整closed／DOS0及輸入收據，外層執行器卻在進入冷讀前以130結束，原因未確定；同候選及同一份真實存檔接續兩次正常冷啟動成功，不把收尾中斷寫成產品缺陷或重擲敵軍。執行器第六參數`restore-formation`僅接續已完成save階段，要求原收據及快照存在，使用原實檔，不能以測試快照啟動遊戲。
 
 本次只完成首項已批准結陣。新兵種、其餘特性、跨法術AI與全遊戲平衡仍在原提案範圍內待後續規格；沒有新平台、完整通關或全素材重驗聲明。
+
+## 策略AI納入既有結陣的研究
+
+2026-10-29使用者在「先讓AI納入結陣效果」建議後要求繼續。本節先DRAFT，只核對現有20%規則與既有選敵排序的接線，不新增兵種、倍率、法術政策、模式或存檔格式。現行184來源七程式、r67／525素材及923核心保持。
+
+現行battle_ai_policy只用原版傷害量評分，尚未讀取BattleRules；實際formation已在0F67:1560按原amount減20%，因此前排有同袍的民兵可能被錯估為能全滅。研究先沿已驗原始快照、普通／遠程／特殊0的六種固定局面，比較原版目標、舊AI及結陣知情AI；各有native／formation規則。普通正對鎖定、無同袍及特殊效果不得因估值修正而改合法性或套減傷。
+
+[原版探針](../../tools/probe-ai-formation.go)與[準備器](../../tools/prepare-ai-formation.py)沿既有Go1.24.13／923核心及固定PAM SHA，研究輸出放既有battle-r1下ai-formation-r1。只在原版已驗fixture點配置預定軍隊，目標點最多改一個target word，formation只在已驗傷害點改AX。記錄相同初始狀態、完整前後state、原版兵損、來源bytes、固定輸入及工具版本；不重投亂數，不把受控局面稱正常取得部隊。
+
+[獨立研究核對](../../tools/audit-ai-formation.py)在Pillow11.3.0容器用`--project <唯讀專案> --out <研究區內新JSON>`，從原RAM及MZ重定位重建來源、候選、整數兵損及唯一目標寫入，另核對原版執行後的全部部隊。六局面含普通可改選、前排射手、射手後排目標、普通正對鎖定、無前排同袍及特殊0；每案native／formation各有原版、舊AI、知情AI三組。
+
+### 結陣知情估值的READY契約
+
+36份原版執行、12組相同決策起點已由獨立Python核對。三個可改選局面，舊AI以400估15人民兵可全滅，實際結陣320只減12；知情估值改選另一隊減13。普通正對鎖定、無前排同袍及特殊0保持原策略。native規則下六局面新舊策略完整state相同。普通動作在執行器之前及內部各呼叫一次傷害helper，遠程只在內部一次；首份核對誤限一次，追加只讀階段紀錄後36份返回state同首輪，不改遊戲或倍率。
+
+本節READY，使用者已確認的結陣效果與先全滅／再減員比例排序保持，只修正兩者接線。既有PAM、固定快照SHA、原始位址、原bytes與923核心沿上節及結陣正式契約；不開新逆向切片。
+
+- AI只在規則Mode=formation且Active=true時，把ordinary／ranged候選的原傷害量按同一結陣資格減20%，在原除生命係數與減員編碼之前向下取整。兩個條件缺一時保留舊估值。特殊0／2／5不套。來源攻擊係數、合法目標、正對鎖定、同分保留原目標均不改。
+- 結陣資格與80%整數式抽成純函式，實際傷害掛點與候選共用；原版模式的AX及所有映射／bytes／stack檢查保持。純函式只接typed陣位、種類、兵數與前排三筆兵數，不讀RAM、RNG或呼叫原版helper。
+- battleAIView及Decision附加可省略的Formation診斷布林，native時省略；不改模式選項、工具列、字圖、原版檔案或旁置標記schema。AI與規則仍各自切換，正常battle wrapper提供Active。沒有新的使用者選項或新兵種政策。
+- 正式受控測試由相同完整原始快照與fixture／按鍵排程開始，native／formation規則各配native／target AI，共24組after-decision及final state，對照上節原版baseline／aware。控制fixture明示設Active，只證明接線；正常overlay、wrapper及工具列另走一次真正新遊戲／戰鬥抽驗。
+- 既有八案／兩AI模式、結陣24helper、三故障、舊工具列與native CLI回歸。自然戰鬥記錄知情旗標及合法決策，不要求重投取得合資格民兵或額外重跑存讀。保存格式未改，存讀沿前輪真實三階段收據。完整候選與收據永久保存後才提升，未驗時維持前版。
+
+[正式準備器](../../tools/prepare-ai-formation-engine.py)在固定Pillow11.3.0容器以`--project <唯讀專案> --player <player> --out <新候選>`核對前版七程式、r67／525素材及923核心，只凍結原184份建置輸入。正式實作沿既有battle_ai／policy／rules及其測試，不另增規則模式或字圖。
+
+[正常視窗執行器](../../tools/check-ai-formation-gui.sh)在既有Go1.24.13／Xvfb容器傳入候選、前輪已驗formation-gui-check、唯讀原版、r67及新輸出，外層設定資源配額及240秒逾時。沿相同正常新遊戲／招募／游標攻擊／兩工具列／F7存退，不新增GUI測試分支；只要求真實決策的Formation旗標與當場規則一致，不要求自然重投結陣編成。
+
+[獨立候選核對及提升器](../../tools/audit-ai-formation-engine.py)在Pillow11.3.0容器以`--project <唯讀專案> --out <新JSON>`核對184來源、923核心、原r67全525素材、24完整執行器狀態及inactive控制、既有AI／結陣回歸、正常GUI與真正保存。核對並永久保存通過後才另加`--player <可寫player> --audit <通過JSON> --promote`提升，舊候選與全部素材保持。
+
+[永久保存器](../../tools/archive-ai-formation.py)在同一Pillow容器以`--project --archive <可寫preserved> --out <新JSON>`捕獲候選、研究兩輪原state／RAM、測試、GUI與工具。只掛preserved及工具，加`--verify`即可核對，另加`--restore <空白目錄>`還原；原版、核心、模組、r67與前輪GUI helper依既有永久清單，不重複保存。
+
+[序列化狀態的追加獨立核對](../../tools/audit-ai-formation-states.py)在Pillow容器以`--project --reader <前輪已保存的std-only state-reader> --out <新JSON>`解108份原始state，直接從解出的RAM核對36份最終部隊及步數，不只信任原版探針輸出的AfterUnits。reader來源及固定schema沿前輪formation-hooks保存，解碼暫存只放容器tmp；原state已在本批永久清單，工具與追加收據另存Git。
+
+### 結陣知情AI正式接入與限定驗收
+
+本節限定CONFORMED。source-candidate-ai-formation-r1／184來源七程式已正式提升，五份來源有變更，r67全525素材及923核心逐SHA保持；工具列、模式選項、旁置標記schema與原版進度不改。AI與結算共用純Go結陣資格及整數式，估值不執行原版helper、CPU、RNG或未來狀態。
+
+- 36份原版執行、12組相同決策前狀態同獨立Python；三案知情改選實際減13，舊AI選民兵只減12。正對鎖定、無同袍及特殊0三案保持；native規則六案新舊完整state同值。[研究收據](../../preserved/ai-formation-research-r1.json)與[108份原state獨立解碼](../../preserved/ai-formation-independent-r1.json)分列，後者直接從RAM核對36份最終部隊，沒有重跑客體。
+- 24份正式after-decision及final state逐byte同原版baseline／aware，另有Mode=formation但Active=false控制同native完整state。受控fixture因在戰鬥中起跑而明示Active，沒有用它冒稱自然wrapper驗收。既有八案／兩AI模式、24結陣helper及六故障、標記／工具列、vet與七程式通過，沒有Skip。純候選另驗不疊加、前後排、無同袍、特殊0／2／5不套及無副作用。
+- 新舊預設native CLI各4M步，完整state、Frame及前版所有收據欄位同值。普通動作的helper在執行器前及內部各一次，遠程只在內部一次；兩輪原版返回state全部相同，首輪核對的次數假設修正不改原版或正式規則。
+- 真正視窗冷啟動、新遊戲、正常招募十人、自然遇敵、游標／Enter攻擊、兩工具列與F7存退通過。三次策略決策均Formation=true，原普通鎖定保持；本局只有一支友軍，Applied=Changed=0，不稱自然改選或勝率改善。實際視窗字墨及排版已目視，無新圖或版面變更。
+- 真正保存2987 bytes同零步inspect緩衝區，規則標記仍schema1、formation與實際SHA匹配，DOS退出0。這輪只增加一次保存抽樣，auto冷啟動恢復formation／native沿前輪結陣三階段收據，不稱本輪重跑冷讀。
+
+[獨立候選核對](../../preserved/ai-formation-audit-r1.json)通過並完成[永久保存](../../preserved/README.md#結陣知情ai保存)及無workplace還原後，才按[提升收據](../../preserved/ai-formation-promotion-r1.json)替換七程式。完整960檔／507物件共94943386 bytes，前版、r67及研究兩輪保持。其他特性、新兵種、跨法術策略、整體平衡及新平台仍未完成，不因這次接線再重跑逐隻素材或完整結局。

@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## 結陣知情AI保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#結陣知情ai正式接入與限定驗收)已提升source-candidate-ai-formation-r1／184來源七程式，r67全525素材及923核心保持。只有策略AI在結陣模式的傷害估值改用既有減傷；普通合法目標與特殊效果保持。[研究核對](ai-formation-research-r1.json)、[原state獨立解碼](ai-formation-independent-r1.json)、[正式核對](ai-formation-audit-r1.json)及[提升收據](ai-formation-promotion-r1.json)記錄證據。
+
+[保存清單](ai-formation-r1.json)含960檔／507物件，壓縮94943386 bytes，包含兩輪受控原版state／RAM、候選184來源及七程式、65組新舊正式執行對照與故障、GUI、真實存檔及當時工具／READY規格。完整物件留本機`ai-formation-r1/`，Git保存工具、清單及收據。[捕獲](ai-formation-preservation-r1.json)與[無workplace完整還原](ai-formation-restoration-r1.json)均通過；還原七程式及184來源另同現行程式核對。
+
+[保存器](../tools/archive-ai-formation.py)在固定Pillow11.3.0 Docker以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲。只掛preserved及工具，用`--verify --archive <唯讀preserved> --out <外部新JSON>`核對，另加`--restore <空白可寫目錄>`還原。原版、固定起點、923核心、Go模組、r67與前輪XTEST helper沿既有永久catalog及formation-engine-r1清單；追加獨立解碼工具及收據另由Git保存，所讀原state均已在本批清單。
+
+驗證用的960份還原副本已核對後[清除](ai-formation-restore-cleanup-r1.json)，釋放340403002 bytes，永久物件及研究／正式候選保持。[收尾核對](ai-formation-integrity-r1.json)另驗目前來源、前版、素材、文件與容器衛生。這次自然戰鬥只有一支友軍，不把三次Formation=true決策當成自然結陣改選或整體勝率證據。
+
 ## 結陣規則正式接入保存
 
 [030限定驗收](../docs/spec/030-battle-expansion-proposal.md#首版結陣正式接入與限定驗收)已提升184來源七程式、r67／525素材，923核心保持。[獨立核對](formation-engine-audit-r1.json)與[提升收據](formation-engine-promotion-r1.json)記錄正式範圍；原版規則／結陣試作可由HD工具列切換，規則標記隨真正存檔恢復，AI獨立。

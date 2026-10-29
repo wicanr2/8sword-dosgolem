@@ -1,6 +1,10 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
-現行程式已依[030結陣限定驗收](docs/spec/030-battle-expansion-proposal.md#首版結陣正式接入與限定驗收)提升source-candidate-formation-r2／184來源七程式與r67／525素材，923核心不改。HD工具列另設原版規則／結陣試作，戰鬥外切、本場固定，AI獨立；規則預設auto，隨SHA匹配的真正存檔標記恢復，舊進度無標記沿native。以下較早研究數字保存當時範圍，現況以上列及CONTEXT最上列為準。
+現行程式為source-candidate-ai-formation-r1／184來源七程式，依[030結陣知情AI限定驗收](docs/spec/030-battle-expansion-proposal.md#結陣知情ai正式接入與限定驗收)提升。策略AI在formation且Active時用既有20%減傷估值，合法目標與先全滅／再比例排序不改；特殊0／2／5不套。r67／525素材、923核心、工具列與存檔schema不變，前版保持。以下較早數字均為當時驗收，現況以本列及CONTEXT為準。
+
+原版研究及正式候選入口是[準備器](tools/prepare-ai-formation.py)、[原版探針](tools/probe-ai-formation.go)、[獨立研究核對](tools/audit-ai-formation.py)、[候選凍結](tools/prepare-ai-formation-engine.py)、[實際GUI](tools/check-ai-formation-gui.sh)、[核對及提升](tools/audit-ai-formation-engine.py)。固定Go1.24.13與Pillow11.3.0 Docker用法見030；[狀態獨立核對](tools/audit-ai-formation-states.py)沿已保存std-only reader解108份state，不重跑CPU。[永久保存](preserved/README.md#結陣知情ai保存)及[保存器](tools/archive-ai-formation.py)可在無workplace時核對／還原。不得因AI已知結陣便宣稱其餘特性或跨法術策略完成。
+
+前版結陣程式已依[030結陣限定驗收](docs/spec/030-battle-expansion-proposal.md#首版結陣正式接入與限定驗收)提升source-candidate-formation-r2／184來源七程式與r67／525素材，923核心不改。HD工具列另設原版規則／結陣試作，戰鬥外切、本場固定，AI獨立；規則預設auto，隨SHA匹配的真正存檔標記恢復，舊進度無標記沿native。以下較早研究數字保存當時範圍，現況以上列及CONTEXT最上列為準。
 
 [規則控制器](internal/eightsword/battle_rules.go)只在已驗兩側傷害量點改AX，其他結算交原版。受控測試在既有Go1.24.13／923核心容器設定`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_RULE_CALLS=<formation-hooks-r1/calls-r2>`、`EIGHTSWORD_RULE_OUT=<新空目錄>`，執行`go test ./internal/eightsword -run '^TestBattleRules'`。工具列測試另設`EIGHTSWORD_TEST_POSTER_ASSETS=<r67或r66>`，執行`-run '^TestPoster'`；不要誤用TEST_ASSETS造成Skip。正常GUI沿[準備器](tools/prepare-formation-gui.py)及[執行器](tools/check-formation-gui.sh)，用法見030，不注入RAM或正式測試分支。
 

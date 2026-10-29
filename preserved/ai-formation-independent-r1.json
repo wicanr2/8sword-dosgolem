@@ -1,0 +1,9 @@
+{
+  "status": "passed-independent-saved-RAM",
+  "decoded_states": 108,
+  "final_unit_arrays_verified": 36,
+  "reader_sha256": "14735de56a94f31e5cc27b9990fce6eb7454b3a4ee60e8aac6cbc550d2b9d67c",
+  "reader_source": "tools/inspect-formation-states.go plus fixed 923-core state-schema types",
+  "method": "std-only gob decoding; no Machine, CPU execution or game helper calls",
+  "tool_sha256": "d02d4639887effc05021180d6cb64bf5cad3c2198335a57c0909dbd1583ad019"
+}

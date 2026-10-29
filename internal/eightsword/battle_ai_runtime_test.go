@@ -267,3 +267,166 @@ func TestBattleAIEngineModesAndFaults(t *testing.T) {
 		t.Fatal("toggle registered duplicate hooks")
 	}
 }
+
+func TestBattleAIFormationOriginalExecutors(t *testing.T) {
+	root, batch, out := battleAIRuntimePaths(t)
+	controls := os.Getenv("EIGHTSWORD_AI_FORMATION_BATCH")
+	if controls == "" {
+		t.Skip("需要結陣原版執行器控制")
+	}
+	names := []string{"normal-ratio", "ranged-ratio", "ranged-rear", "normal-locked", "no-support", "special0"}
+	for _, name := range names {
+		for _, rules := range []string{"native", "formation"} {
+			for _, mode := range []string{"native", "target"} {
+				t.Run(name+"-"+rules+"-"+mode, func(t *testing.T) {
+					testBattleAIFormationExecutor(t, root, batch, controls, out, name, rules, mode, true)
+				})
+			}
+		}
+	}
+	t.Run("formation-inactive", func(t *testing.T) {
+		testBattleAIFormationExecutor(t, root, batch, controls, out, "ranged-ratio", "formation", "target", false)
+	})
+}
+
+func testBattleAIFormationExecutor(t *testing.T, root, batch, controls, out, name, rules, mode string, active bool) {
+	t.Helper()
+	referenceMode, referenceRules := "baseline", rules
+	if mode == "target" {
+		referenceMode = "aware"
+	}
+	if !active {
+		referenceRules = "native"
+	}
+	source := filepath.Join(controls, name+"-"+referenceRules, referenceMode)
+	raw, err := os.ReadFile(filepath.Join(source, "trace.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var trace struct {
+		StartStep, EndStep uint64
+		HookIP             uint16
+		Damage             []struct{ Eligible bool }
+		Changes            []struct {
+			Phase                     string
+			Segment, Offset, Old, New uint16
+			Step                      uint64
+		}
+	}
+	if err = json.Unmarshal(raw, &trace); err != nil {
+		t.Fatal(err)
+	}
+	label := name + "-" + rules + "-" + mode
+	if !active {
+		label += "-inactive"
+	}
+	dir := filepath.Join(out, label)
+	if err = os.Mkdir(dir, 0755); err != nil {
+		t.Fatal(err)
+	}
+	e, err := Open(Options{Root: root, Saves: filepath.Join(dir, "scratch"), BattleAI: mode, BattleRules: rules})
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer e.Close()
+	if err = e.Oracle.LoadStateFile(filepath.Join(batch, "ai-observation-r1/input-multi-r1/choi-hd-r1/multi-ready-before.state")); err != nil {
+		t.Fatal(err)
+	}
+	if err = e.bindBattleRules(0x110, 0x110); err != nil {
+		t.Fatal(err)
+	}
+	// The fixture starts within a battle. Natural wrapper lifetime is a separate GUI gate.
+	e.rules.Active = active
+	if mode == "target" {
+		if err = e.bindBattleAI(0x110, 0x110); err != nil {
+			t.Fatal(err)
+		}
+	}
+	for _, fixture := range []struct {
+		ip    uint16
+		phase string
+	}{{0x216a, "fixture"}, {0xd88, "dispatch"}} {
+		fixture := fixture
+		done := false
+		e.Oracle.OnCall(oracle.Addr{Seg: 0xf67, Off: fixture.ip}, func(o *oracle.Oracle) {
+			if done {
+				return
+			}
+			done = true
+			for _, c := range trace.Changes {
+				if c.Phase != fixture.phase {
+					continue
+				}
+				if o.Steps() != c.Step || o.Word(oracle.Addr{Seg: c.Segment, Off: c.Offset}) != c.Old {
+					t.Fatal("original fixture diverged")
+				}
+				o.WriteU16(oracle.Addr{Seg: c.Segment, Off: c.Offset}, c.New)
+			}
+		})
+	}
+	observed := false
+	e.Oracle.OnCall(oracle.Addr{Seg: 0xf67, Off: trace.HookIP}, func(*oracle.Oracle) {
+		if !observed {
+			observed = true
+			if err = e.Oracle.SaveStateFile(filepath.Join(dir, "after-decision.state")); err != nil {
+				t.Fatal(err)
+			}
+		}
+	})
+	nextKey := 0
+	e.Oracle.SetStepGuard(func(o *oracle.Oracle) error {
+		if nextKey < 6 && o.Steps() >= trace.StartStep+uint64(nextKey)*2000000 {
+			o.PressScan(" ")
+			nextKey++
+		}
+		return nil
+	})
+	if err = e.Advance(trace.EndStep - e.Oracle.Steps()); err != nil {
+		t.Fatal(err)
+	}
+	if !observed {
+		t.Fatal("no actual decision hook")
+	}
+	if err = e.Oracle.SaveStateFile(filepath.Join(dir, "final.state")); err != nil {
+		t.Fatal(err)
+	}
+	for _, file := range []string{"after-decision.state", "final.state"} {
+		a, err := os.ReadFile(filepath.Join(dir, file))
+		if err != nil {
+			t.Fatal(err)
+		}
+		b, err := os.ReadFile(filepath.Join(source, file))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if !bytes.Equal(a, b) {
+			t.Fatalf("%s differs from controlled original executor", file)
+		}
+	}
+	ai, rule := e.BattleAIStatus(), e.BattleRulesStatus()
+	if mode == "target" {
+		if ai.Decisions != 1 || len(ai.Recent) != 1 || ai.Recent[0].Decision.Formation != (rules == "formation" && active) {
+			t.Fatal(ai)
+		}
+	} else if ai.Bound || ai.Decisions != 0 {
+		t.Fatal(ai)
+	}
+	var applied uint64
+	if active && rules == "formation" {
+		for _, v := range trace.Damage {
+			if v.Eligible {
+				applied++
+			}
+		}
+	}
+	if rule.Applied != applied {
+		t.Fatalf("damage applications: %+v want=%d", rule, applied)
+	}
+	data, err := json.MarshalIndent(map[string]any{"reference": source, "rules": rule, "battle_ai": ai, "active_fixture": active, "full_states_equal": true}, "", "  ")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err = os.WriteFile(filepath.Join(dir, "receipt.json"), append(data, '\n'), 0644); err != nil {
+		t.Fatal(err)
+	}
+}

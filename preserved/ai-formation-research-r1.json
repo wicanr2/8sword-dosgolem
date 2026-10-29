@@ -1,0 +1,286 @@
+{
+  "schema": 1,
+  "status": "passed-scoped-ai-formation-original-controls",
+  "original_calls": 36,
+  "same_initial_decision_groups": 12,
+  "formation_changed_cases": 3,
+  "formation_unchanged_cases": 3,
+  "native_policies_equal_cases": 6,
+  "results": [
+    {
+      "case": "normal-ratio",
+      "rules": {
+        "native": {
+          "baseline": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "9e91ea59f3203c3053f023b14009076955f7b32abfdd1b354d7853adb3eaff69"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "9e91ea59f3203c3053f023b14009076955f7b32abfdd1b354d7853adb3eaff69"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "9e91ea59f3203c3053f023b14009076955f7b32abfdd1b354d7853adb3eaff69"
+          }
+        },
+        "formation": {
+          "baseline": {
+            "selected": 0,
+            "loss": 12,
+            "amount": 320,
+            "final_sha256": "36b6fd4f266cef15e494ea0ff34902787c552f8a706049d7e48f36ee430117a6"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 12,
+            "amount": 320,
+            "final_sha256": "36b6fd4f266cef15e494ea0ff34902787c552f8a706049d7e48f36ee430117a6"
+          },
+          "aware": {
+            "selected": 1,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "ad1905572467d528c3827fd62b25ea73545cc3ba9bb10fbcd9fd79e3e4467320"
+          }
+        }
+      }
+    },
+    {
+      "case": "ranged-ratio",
+      "rules": {
+        "native": {
+          "baseline": {
+            "selected": 1,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "989e02187f361808ac219e1415f5677450d3d092b0f70b40039ab85b7ed55f52"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "a6900e3a4868957465a0a9e42a5a86e056a72489ae842ab7d5852519d891dc34"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "a6900e3a4868957465a0a9e42a5a86e056a72489ae842ab7d5852519d891dc34"
+          }
+        },
+        "formation": {
+          "baseline": {
+            "selected": 1,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "989e02187f361808ac219e1415f5677450d3d092b0f70b40039ab85b7ed55f52"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 12,
+            "amount": 320,
+            "final_sha256": "eec03448b8577840f6d484742292dd91d2ccf4f80c4201ac1dd429ce6987b400"
+          },
+          "aware": {
+            "selected": 1,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "989e02187f361808ac219e1415f5677450d3d092b0f70b40039ab85b7ed55f52"
+          }
+        }
+      }
+    },
+    {
+      "case": "ranged-rear",
+      "rules": {
+        "native": {
+          "baseline": {
+            "selected": 3,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "61473ae9f181491c8f66f07d9fc2b2ed90e8d02c26ba8a5241a3d44a79408db0"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "71809737fff584fd0116f595eeee841109581483f456fb005aac1864b4c98f47"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "71809737fff584fd0116f595eeee841109581483f456fb005aac1864b4c98f47"
+          }
+        },
+        "formation": {
+          "baseline": {
+            "selected": 3,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "61473ae9f181491c8f66f07d9fc2b2ed90e8d02c26ba8a5241a3d44a79408db0"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 12,
+            "amount": 320,
+            "final_sha256": "16a73f351f96ff78b7be6f8fee7bf73aca1c79771bb1fc89512b130907b44a9b"
+          },
+          "aware": {
+            "selected": 3,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "61473ae9f181491c8f66f07d9fc2b2ed90e8d02c26ba8a5241a3d44a79408db0"
+          }
+        }
+      }
+    },
+    {
+      "case": "normal-locked",
+      "rules": {
+        "native": {
+          "baseline": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "162e000973a7dfed32f3b414e02c8c28f35083e104a6d22e0f7c5ff34d076d8d"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "162e000973a7dfed32f3b414e02c8c28f35083e104a6d22e0f7c5ff34d076d8d"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "162e000973a7dfed32f3b414e02c8c28f35083e104a6d22e0f7c5ff34d076d8d"
+          }
+        },
+        "formation": {
+          "baseline": {
+            "selected": 0,
+            "loss": 12,
+            "amount": 320,
+            "final_sha256": "0bbc2b4267f539dd620db03eef001ec52e93e5d5ba32ea13312136093ce6466d"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 12,
+            "amount": 320,
+            "final_sha256": "0bbc2b4267f539dd620db03eef001ec52e93e5d5ba32ea13312136093ce6466d"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 12,
+            "amount": 320,
+            "final_sha256": "0bbc2b4267f539dd620db03eef001ec52e93e5d5ba32ea13312136093ce6466d"
+          }
+        }
+      }
+    },
+    {
+      "case": "no-support",
+      "rules": {
+        "native": {
+          "baseline": {
+            "selected": 3,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "01c4e78f49ca1ac37dc37e14d1bd8c9465536e997261b676ec2f24962b52ed83"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "48993d729decaec100ae5acc6b4e29555efa84650d1658296e4c519882aea8d5"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "48993d729decaec100ae5acc6b4e29555efa84650d1658296e4c519882aea8d5"
+          }
+        },
+        "formation": {
+          "baseline": {
+            "selected": 3,
+            "loss": 13,
+            "amount": 400,
+            "final_sha256": "01c4e78f49ca1ac37dc37e14d1bd8c9465536e997261b676ec2f24962b52ed83"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "48993d729decaec100ae5acc6b4e29555efa84650d1658296e4c519882aea8d5"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 15,
+            "amount": 400,
+            "final_sha256": "48993d729decaec100ae5acc6b4e29555efa84650d1658296e4c519882aea8d5"
+          }
+        }
+      }
+    },
+    {
+      "case": "special0",
+      "rules": {
+        "native": {
+          "baseline": {
+            "selected": 1,
+            "loss": 2,
+            "amount": 2,
+            "final_sha256": "3d211706701e3cc12dc0ad5f3ca5d453c0731ecf925a591289c8bfb424634bb8"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 2,
+            "amount": 2,
+            "final_sha256": "c3ab1aa4ad110289ffd9bfd0a8af06bf155beb5680f9ade71837d89927de15fe"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 2,
+            "amount": 2,
+            "final_sha256": "c3ab1aa4ad110289ffd9bfd0a8af06bf155beb5680f9ade71837d89927de15fe"
+          }
+        },
+        "formation": {
+          "baseline": {
+            "selected": 1,
+            "loss": 2,
+            "amount": 2,
+            "final_sha256": "3d211706701e3cc12dc0ad5f3ca5d453c0731ecf925a591289c8bfb424634bb8"
+          },
+          "blind": {
+            "selected": 0,
+            "loss": 2,
+            "amount": 2,
+            "final_sha256": "c3ab1aa4ad110289ffd9bfd0a8af06bf155beb5680f9ade71837d89927de15fe"
+          },
+          "aware": {
+            "selected": 0,
+            "loss": 2,
+            "amount": 2,
+            "final_sha256": "c3ab1aa4ad110289ffd9bfd0a8af06bf155beb5680f9ade71837d89927de15fe"
+          }
+        }
+      }
+    }
+  ],
+  "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "limits": [
+    "Controlled six scenarios with fixed original snapshot; no natural battle or whole-game balance claim.",
+    "20 percent formation is the approved added rule, not original game behavior."
+  ]
+}
