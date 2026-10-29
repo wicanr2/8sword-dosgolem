@@ -1,0 +1,16 @@
+{
+  "status": "passed-offline-archer-pressure-candidate",
+  "cases": 15,
+  "calculations": 60,
+  "original_trace_baselines": 2,
+  "synthetic_cases": 13,
+  "production_programs_unchanged": 7,
+  "production_sources_unchanged": 184,
+  "assets_unchanged": 525,
+  "results_sha256": "743bea350784605df1c9735cc2bf4ea5da00a77f3ec94a7e7dd03893abb37c92",
+  "candidate": "front kind3, opposing front alive; pressure before formation",
+  "limitations": [
+    "Candidate percentages, multiplication order and new mode are not approved.",
+    "No production rules, new troop IDs or original gameplay claims."
+  ]
+}

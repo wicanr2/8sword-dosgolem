@@ -1,5 +1,13 @@
 # 必要資料永久保存
 
+## 弓箭手壓制原型保存
+
+使用者已確認25%正對壓制及獨立戰術試作模式，正式接入正在補證。原型的15局面／60計算由Go及獨立Python核對；兩份原版trace只作0%基準，其餘候選不是原版行為。[數值核對](archer-pressure-audit-r1.json)、[有視窗瀏覽器核對](archer-pressure-browser-r1.json)及[互動原型](../docs/images/archer-pressure-prototype-r1.html)可回查。
+
+[清單](archer-pressure-r1.json)含26檔／24物件、1977305 bytes，保存Go程式／測試、兩份基準trace、60結果、HTML、CLI截圖及瀏覽器三輪診斷。[捕獲](archer-pressure-preservation-r1.json)與[無workplace還原](archer-pressure-restoration-r1.json)均通過，還原的離線程式重生60結果逐byte相同。完整物件在本機archer-pressure-r1目錄，Git保存工具、索引及結果。
+
+[保存器](../tools/archive-archer-pressure.py)在固定Pillow11.3.0 Docker使用`--project --archive <可寫preserved> --out <新JSON>`；核對加`--verify`，還原另加`--restore <空白目錄>`，不需要原workplace。這是設計已批准、正式功能未完成的原型保存，不取代後續原版控制、工具列與存讀驗收。
+
 ## 結陣知情AI保存
 
 [030限定驗收](../docs/spec/030-battle-expansion-proposal.md#結陣知情ai正式接入與限定驗收)已提升source-candidate-ai-formation-r1／184來源七程式，r67全525素材及923核心保持。只有策略AI在結陣模式的傷害估值改用既有減傷；普通合法目標與特殊效果保持。[研究核對](ai-formation-research-r1.json)、[原state獨立解碼](ai-formation-independent-r1.json)、[正式核對](ai-formation-audit-r1.json)及[提升收據](ai-formation-promotion-r1.json)記錄證據。

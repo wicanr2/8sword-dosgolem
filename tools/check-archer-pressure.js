@@ -1,0 +1,22 @@
+// 030 DRAFT: offline Chromium interaction check; no dependencies or game process.
+const fs=require('node:fs'),cp=require('node:child_process'),path=require('node:path'),assert=require('node:assert/strict');
+const dir=process.argv[2];assert(dir&&fs.statSync(dir).uid===1000&&!fs.existsSync(path.join(dir,'browser-r1.json')));
+const headed=process.env.ARCHER_BROWSER_HEADED==='1';
+const browser=cp.spawn('/ms-playwright/chromium-1194/chrome-linux/chrome',[...(headed?[]:['--headless']),'--no-sandbox','--disable-dev-shm-usage','--no-first-run','--remote-debugging-pipe','--user-data-dir=/tmp/archer-browser'],{stdio:['ignore','ignore','pipe','pipe','pipe']});
+let id=0,buffer='',session;const pending=new Map();browser.stderr.on('data',b=>fs.appendFileSync(path.join(dir,'browser-stderr-r3.log'),b));
+browser.stdio[4].on('data',b=>{buffer+=b.toString();let at;while((at=buffer.indexOf('\0'))>=0){const raw=buffer.slice(0,at);buffer=buffer.slice(at+1);if(!raw)continue;const v=JSON.parse(raw),p=pending.get(v.id);if(p){clearTimeout(p.timer);pending.delete(v.id);v.error?p.reject(Error(JSON.stringify(v.error))):p.resolve(v.result)}}});
+function send(method,params={},scoped=true){fs.appendFileSync(path.join(dir,'browser-debug-r2.jsonl'),JSON.stringify({method,time:new Date().toISOString()})+'\n');return new Promise((resolve,reject)=>{const key=++id,timer=setTimeout(()=>{pending.delete(key);reject(Error('timeout '+method))},8000);pending.set(key,{resolve,reject,timer});const v={id:key,method,params};if(session&&scoped)v.sessionId=session;browser.stdio[3].write(JSON.stringify(v)+'\0')})}
+async function evaluate(expression){const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});assert(!r.exceptionDetails,JSON.stringify(r.exceptionDetails));return r.result.value}
+const timer=setTimeout(()=>{browser.kill('SIGKILL');process.exitCode=1},35000);
+(async()=>{try{
+ const version=await send('Browser.getVersion',{},false),target=await send('Target.createTarget',{url:'about:blank'},false);session=(await send('Target.attachToTarget',{targetId:target.targetId,flatten:true},false)).sessionId;
+ await send('Page.enable');await send('Emulation.setDeviceMetricsOverride',{width:1200,height:1100,deviceScaleFactor:1,mobile:false});await send('Page.navigate',{url:'file://'+path.join(dir,'prototype-r1.html')});await evaluate(`new Promise(r=>document.readyState==='complete'?r():window.addEventListener('load',r,{once:true}))`);
+ const check=await evaluate(`(()=>{const data=JSON.parse(document.querySelector('#payload').textContent),choice=document.querySelector('#case'),modeChoice=document.querySelector('#mode');let n=0;for(const row of data.rows){choice.value=row.scenario.ID;choice.dispatchEvent(new Event('change'));for(const expected of row.results){document.querySelector('[data-mode="'+expected.Mode+'"]').click();if(document.querySelector('#loss').textContent!==String(expected.Loss)||document.querySelector('#amount').textContent!==String(expected.Amount)||modeChoice.value!==expected.Mode)throw Error('UI value mismatch '+row.scenario.ID);n++}}choice.value='front-0';choice.dispatchEvent(new Event('change'));document.querySelector('[data-mode="tactics25"]').click();return {cases:choice.options.length,modes:modeChoice.options.length,interactions:n,loss:document.querySelector('#loss').textContent}})()`);
+ assert.deepEqual(check,{cases:15,modes:4,interactions:60,loss:'12'});
+ assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+ const receipt={status:'passed-interactions',browser:version.product,node:process.version,headed,cases:15,modes:4,interactions:60,default_loss:12,stronger_loss:8,combined_loss:9,rear_loss:16,small_army:[2,0],desktop_horizontal_overflow:false,game_executed:false};
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);receipt.mobile_horizontal_overflow=false;
+ receipt.desktop_screenshot='Separate CLI capture; excluded from this DOM receipt';
+ fs.writeFileSync(path.join(dir,'browser-r1.json'),JSON.stringify(receipt,null,2)+'\n');process.stdout.write(JSON.stringify(receipt)+'\n');
+ }finally{clearTimeout(timer);for(const p of pending.values())clearTimeout(p.timer);browser.kill('SIGTERM')}
+})().catch(e=>{process.stderr.write(String(e)+'\n');process.exitCode=1});

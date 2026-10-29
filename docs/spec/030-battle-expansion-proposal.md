@@ -456,3 +456,23 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 - 真正保存2987 bytes同零步inspect緩衝區，規則標記仍schema1、formation與實際SHA匹配，DOS退出0。這輪只增加一次保存抽樣，auto冷啟動恢復formation／native沿前輪結陣三階段收據，不稱本輪重跑冷讀。
 
 [獨立候選核對](../../preserved/ai-formation-audit-r1.json)通過並完成[永久保存](../../preserved/README.md#結陣知情ai保存)及無workplace還原後，才按[提升收據](../../preserved/ai-formation-promotion-r1.json)替換七程式。完整960檔／507物件共94943386 bytes，前版、r67及研究兩輪保持。其他特性、新兵種、跨法術策略、整體平衡及新平台仍未完成，不因這次接線再重跑逐隻素材或完整結局。
+
+## 弓箭手正對壓制的可撤回原型
+
+2026-10-29使用者接續go。本節DRAFT，只做候選試算，不改正式184來源七程式、r67／525素材及923核心。原版定長名稱表有弓箭手、沒有槍兵，不能用步兵ID頂替新增槍兵。已驗遠程類型3／24的合法目標保持；新增候選只針對類型3，不把鳥人自動套入。
+
+候選為弓箭手位於前排0至2，且同索引的敵方前排有存活部隊時，自身普通／遠程傷害量降低25%或50%。後排、正對空隊、其他兵種及特殊效果不套，敵我對稱、不疊加。這是新增設計，正對陣位不等於自由棋盤距離。先套壓制，再套已批准的結陣80%，各自向下取整，最後沿原版減員編碼。倍率、次序及新模式尚未批准，不進正式路徑。
+
+原型分開「原版規則／現有結陣／戰術候選25%／戰術候選50%」。若採用新特性，建議新增獨立戰術試作模式，保留現有formation存檔的單一結陣語意；不在同一marker值下偷偷追加規則。正式schema與工具列仍待設計確認，不由此原型定案。
+
+工具入口為[純Go試算](../../tools/research-archer-pressure.go)、[候選測試](../../tools/research-archer-pressure_test.go)與[準備及頁面工具](../../tools/prepare-archer-pressure.py)。沿既有battle-r1內archer-pressure-r1研究區；Go1.24.13的std-only模組只讀已驗trace，不呼叫原版或寫RAM。兩份既有原版遠程結果用於0%基準，其餘預定局面只列合成候選，不冒稱遊戲已執行新特性。
+
+[瀏覽器抽驗](../../tools/check-archer-pressure.js)只在既有Playwright1.56.1／Chromium1194 Docker以Node傳研究目錄，使用DevTools pipe，驗15局面／四模式的選擇、門檻及390像素寬度；截圖另列是否成功，不以DOM結果冒稱視覺擷取。準備器用`prepare|audit|page --project <唯讀專案> --out <研究目錄>`；Go測試／vet及產生JSON沿該目錄module，Go快取只放容器tmp。
+
+[互動候選](../images/archer-pressure-prototype-r1.html)、[實際瀏覽器樣張](../images/archer-pressure-prototype-r1.png)、[60份試算](../images/archer-pressure-results-r1.json)、[獨立數值核對](../images/archer-pressure-audit-r1.json)、[瀏覽器核對](../images/archer-pressure-browser-r1.json)及[來源紀錄](../images/archer-pressure-prototype-r1.json)已保存，倍率與新模式仍待使用者選擇，不是正式遊戲成果。13份合成局面、兩份原版trace的0%基準；其餘模式不當作原版新行為。
+
+使用者隨後明選25%壓制及獨立戰術模式，後續依此補原版控制與正式接入，不再詢問相同決定。50%只留比較歷史，現有native／formation語意保持。新tactics模式同時包含既有結陣與25%壓制，先壓制再結陣；原型不是正式接入收據。
+
+瀏覽器先後在無頭模式的metrics／Runtime呼叫逾時，原因未確定。依驗證路由改用同一映像的有視窗Chromium／Xvfb及單批60次選擇，桌面與390寬度均通過；CLI截圖另成功且已目視，兩類收據不混稱。可重跑入口為有界非root Playwright容器內啟動Xvfb，設`DISPLAY=:98 ARCHER_BROWSER_HEADED=1`後執行`node /tools/check-archer-pressure.js <研究目錄>`，Xvfb須trap收尾；沿1400m／2CPU／256pids／50秒外層逾時及network none，不退回主機瀏覽器。
+
+[原型保存器](../../tools/archive-archer-pressure.py)在固定Pillow容器以`--project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲；只掛preserved及工具，加`--verify`核對或`--restore <空白目錄>`還原。保存離線Go程式／60結果、兩份基準trace、HTML、截圖、三輪瀏覽器工具及診斷，不把確認設計冒稱正式玩家功能完成。

@@ -1,0 +1,21 @@
+{
+  "status": "passed-interactions",
+  "browser": "Chrome/141.0.7390.37",
+  "node": "v22.20.0",
+  "headed": true,
+  "cases": 15,
+  "modes": 4,
+  "interactions": 60,
+  "default_loss": 12,
+  "stronger_loss": 8,
+  "combined_loss": 9,
+  "rear_loss": 16,
+  "small_army": [
+    2,
+    0
+  ],
+  "desktop_horizontal_overflow": false,
+  "game_executed": false,
+  "mobile_horizontal_overflow": false,
+  "desktop_screenshot": "Separate CLI capture; excluded from this DOM receipt"
+}

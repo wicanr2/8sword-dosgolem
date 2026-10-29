@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "status": "DRAFT-unapproved",
+  "files": {
+    "archer-pressure-prototype-r1.html": "8667df64023b53c49404d3b2bf5040440897a1171b3ef43a50c8c80ab3451b18",
+    "archer-pressure-prototype-r1.png": "d5a10596847daffe5d420009fd1966f584d1481f5d99947e6cb600ea06de2cb0",
+    "archer-pressure-results-r1.json": "743bea350784605df1c9735cc2bf4ea5da00a77f3ec94a7e7dd03893abb37c92",
+    "archer-pressure-audit-r1.json": "be5344ea6f07fdc2866c9dbe800a8aa6feabc2552298ac52dc5873584c6ba23d",
+    "archer-pressure-browser-r1.json": "25f044ae172867298d17b2d05771f6976b7795cb1bd302e154a6ab02e7a8f4e9"
+  },
+  "generation": "Go precomputed values; no game process or memory modification",
+  "capture": "Chromium1194 CLI screenshot; separate headed Xvfb CDP interactions",
+  "sources": {
+    "workplace/probe-20261023/graphics-first/battle-r1/ai-formation-r1/original-r2/ranged-ratio-native/baseline/trace.json": "679262d9facec67b1ed19ca63da60af56eee1ed139ea501faf7558a4cf08b575",
+    "workplace/probe-20261023/graphics-first/battle-r1/ai-formation-r1/original-r2/ranged-rear-native/aware/trace.json": "2cf54fc951540e6b3bc70ea63ea462dad1a6aaf3d83497948d114e23196a7eac"
+  },
+  "tools": {
+    "research-archer-pressure.go": "35e1467f3bb5e11c87b5ca24dec9cdcc91cfad359ac6bba85bcb96f65a4530fb",
+    "research-archer-pressure_test.go": "e1bfbfae39df48123f653fb43b912819adf37f028fb17e984e8a93ce596c0573",
+    "prepare-archer-pressure.py": "fb0130b91678af1f551e41a1017cd55ca0745f0aaba2e79846d71c12404eab95",
+    "check-archer-pressure.js": "c27b6b209e49802d42c37eaada2f7c277eb65825c41c9cab6b956e8a16728a0a"
+  }
+}

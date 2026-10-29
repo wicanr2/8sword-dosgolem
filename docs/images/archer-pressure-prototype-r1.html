@@ -1,0 +1,1065 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>神州八劍：弓箭手壓制試算</title><style>
+*{box-sizing:border-box}body{margin:0;background:#101c1c;color:#efe5c4;font-family:"Noto Sans CJK TC",sans-serif;line-height:1.65}main{max-width:1060px;margin:auto;padding:22px}h1{font-size:26px;margin:8px 0}h2{font-size:19px}p{margin:9px 0}.badge{color:#f3ce7c}label{display:block}select{width:100%;background:#203a38;color:#fff1c7;border:1px solid #947d4e;padding:12px;font:inherit}.controls,.stats,.modes{display:grid;gap:12px}.controls{grid-template-columns:1.4fr 1fr}.modes{grid-template-columns:repeat(4,1fr);margin:16px 0}button{font:inherit;color:inherit;background:#1e3430;border:1px solid #87764c;padding:12px;cursor:pointer;text-align:left}button[aria-pressed=true]{background:#4a4330;border:2px solid #f0c66f}.small{font-size:13px;color:#c4bda4}.board{background:#122b2b;border:1px solid #756442;padding:12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.cell{min-height:82px;padding:8px;border:1px solid #3b5a54;border-radius:5px;color:#a6b8b1}.unit{background:#294842;color:#fff2ca}.target{border:2px solid #e0b968}.suppressed{box-shadow:inset 0 0 0 2px #e1a95a}.stats{grid-template-columns:repeat(3,1fr);margin:16px 0}.stat{background:#263832;padding:14px}.stat b{font-size:30px;display:block}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{padding:9px;border-bottom:1px solid #526052;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}.note{border-left:3px solid #ba9250;padding:8px 13px;background:#20302b}.rule{background:#253b35;padding:14px}@media(max-width:650px){main{padding:14px}.controls{grid-template-columns:1fr}.modes{grid-template-columns:1fr 1fr}.cell{font-size:12px;padding:5px;min-height:75px}.stats{gap:7px}.stat{padding:8px}.stat b{font-size:25px}}
+</style><main><div class="badge">設計原型，尚未接入遊戲</div><h1>弓箭手「正對壓制」</h1><p>前排弓箭手正對活敵軍時，自身普通／遠程傷害減25%或50%。後排、正對空隊、其他兵種與特殊效果不套。</p><div class="note">新特性只放在候選戰術模式；現有「原版規則」與「結陣試作」保持原語意。先壓制，再結陣，各自向下取整，最後沿原版減員編碼。這個順序也尚待確認。</div><div class="controls"><label>比較局面<select id="case"></select></label><label>試算模式<select id="mode"></select></label></div><p id="scenario-level" class="small"></p><div class="modes" id="cards"></div><div class="board" id="board"></div><div class="stats"><div class="stat">實際傷害量<b id="amount"></b></div><div class="stat">減員<b id="loss"></b></div><div class="stat">剩餘兵數<b id="remaining"></b></div></div><div class="rule" id="explain"></div><div class="table-wrap"><table><thead><tr><th>規則</th><th>原傷害量</th><th>壓制後</th><th>結陣後</th><th>減員</th></tr></thead><tbody id="comparison"></tbody></table></div><p class="small">整數門檻可能讓少量部隊的兵損大幅改變，減25%傷害不代表少損失25%兵數。頁面使用Go預算結果，不在瀏覽器另算傷害。</p><h2>槍兵的接入限制</h2><p>原版25筆名稱沒有槍兵，不能改名覆蓋步兵。新兵種仍需查ID、招募、素材與存讀容量；本頁沒有新增兵種或修改正式程式。</p></main><script id="payload" type="application/json">{
+  "modes": [
+    {
+      "ID": "native",
+      "Label": "原版規則",
+      "Pressure": 0,
+      "Formation": false
+    },
+    {
+      "ID": "formation",
+      "Label": "現有結陣",
+      "Pressure": 0,
+      "Formation": true
+    },
+    {
+      "ID": "tactics25",
+      "Label": "戰術候選：減25%",
+      "Pressure": 25,
+      "Formation": true
+    },
+    {
+      "ID": "tactics50",
+      "Label": "戰術候選：減50%",
+      "Pressure": 50,
+      "Formation": true
+    }
+  ],
+  "rows": [
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 300,
+          "Amount": 300,
+          "Loss": 12,
+          "Remaining": 19
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 200,
+          "Amount": 200,
+          "Loss": 8,
+          "Remaining": 23
+        }
+      ],
+      "scenario": {
+        "ID": "front-0",
+        "Label": "前排正對活敵軍",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          0,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 300,
+          "Amount": 300,
+          "Loss": 12,
+          "Remaining": 19
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 200,
+          "Amount": 200,
+          "Loss": 8,
+          "Remaining": 23
+        }
+      ],
+      "scenario": {
+        "ID": "front-1",
+        "Label": "第二前排正對活敵軍",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 1,
+        "SourceCount": 50,
+        "Front": [
+          0,
+          31,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 1,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 300,
+          "Amount": 300,
+          "Loss": 12,
+          "Remaining": 19
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 200,
+          "Amount": 200,
+          "Loss": 8,
+          "Remaining": 23
+        }
+      ],
+      "scenario": {
+        "ID": "front-2",
+        "Label": "第三前排正對活敵軍",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 2,
+        "SourceCount": 50,
+        "Front": [
+          0,
+          0,
+          31
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 2,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        }
+      ],
+      "scenario": {
+        "ID": "other-lane",
+        "Label": "只有其他正對陣位有敵軍",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          0,
+          31,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 1,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        }
+      ],
+      "scenario": {
+        "ID": "rear",
+        "Label": "弓箭手退居後排",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 3,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          0,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        }
+      ],
+      "scenario": {
+        "ID": "other-ranged",
+        "Label": "鳥人不套弓箭手候選",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 24,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          0,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        }
+      ],
+      "scenario": {
+        "ID": "other-kind",
+        "Label": "步兵不套弓箭手候選",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "normal",
+        "SourceKind": 2,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          0,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 320,
+          "Loss": 12,
+          "Remaining": 19
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 300,
+          "Amount": 240,
+          "Loss": 9,
+          "Remaining": 22
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 200,
+          "Amount": 160,
+          "Loss": 6,
+          "Remaining": 25
+        }
+      ],
+      "scenario": {
+        "ID": "protected",
+        "Label": "目標另有結陣保護",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          50,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 320,
+          "Loss": 12,
+          "Remaining": 19
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 300,
+          "Amount": 240,
+          "Loss": 9,
+          "Remaining": 22
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 200,
+          "Amount": 160,
+          "Loss": 6,
+          "Remaining": 25
+        }
+      ],
+      "scenario": {
+        "ID": "two-opponents",
+        "Label": "多支前排敵軍不疊加壓制",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          50,
+          50
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 16,
+          "Remaining": 15
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 300,
+          "Amount": 300,
+          "Loss": 12,
+          "Remaining": 19
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 200,
+          "Amount": 200,
+          "Loss": 8,
+          "Remaining": 23
+        }
+      ],
+      "scenario": {
+        "ID": "player-side",
+        "Label": "玩家弓箭手的相同局面",
+        "Level": "synthetic-candidate",
+        "Side": "player",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          0,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 400
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 25,
+          "AfterPressure": 25,
+          "Amount": 25,
+          "Loss": 2,
+          "Remaining": 0
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 25,
+          "AfterPressure": 25,
+          "Amount": 25,
+          "Loss": 2,
+          "Remaining": 0
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 25,
+          "AfterPressure": 18,
+          "Amount": 18,
+          "Loss": 0,
+          "Remaining": 2
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 25,
+          "AfterPressure": 12,
+          "Amount": 12,
+          "Loss": 0,
+          "Remaining": 2
+        }
+      ],
+      "scenario": {
+        "ID": "threshold",
+        "Label": "少量部隊的整數門檻",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          2,
+          0,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 2,
+        "HP": 25,
+        "RawAmount": 25
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 7,
+          "AfterPressure": 7,
+          "Amount": 7,
+          "Loss": 7,
+          "Remaining": 24
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": true,
+          "Raw": 7,
+          "AfterPressure": 7,
+          "Amount": 5,
+          "Loss": 5,
+          "Remaining": 26
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": true,
+          "Raw": 7,
+          "AfterPressure": 5,
+          "Amount": 4,
+          "Loss": 4,
+          "Remaining": 27
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": true,
+          "Raw": 7,
+          "AfterPressure": 3,
+          "Amount": 2,
+          "Loss": 2,
+          "Remaining": 29
+        }
+      ],
+      "scenario": {
+        "ID": "rounding",
+        "Label": "小傷害的兩次向下取整",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          50,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 1,
+        "RawAmount": 7
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 2,
+          "AfterPressure": 2,
+          "Amount": 2,
+          "Loss": 2,
+          "Remaining": 29
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 2,
+          "AfterPressure": 2,
+          "Amount": 2,
+          "Loss": 2,
+          "Remaining": 29
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 2,
+          "AfterPressure": 2,
+          "Amount": 2,
+          "Loss": 2,
+          "Remaining": 29
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": false,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 2,
+          "AfterPressure": 2,
+          "Amount": 2,
+          "Loss": 2,
+          "Remaining": 29
+        }
+      ],
+      "scenario": {
+        "ID": "special",
+        "Label": "特殊效果不套壓制或結陣",
+        "Level": "synthetic-candidate",
+        "Side": "enemy",
+        "Route": "special",
+        "SourceKind": 12,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          31,
+          50,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 31,
+        "HP": 25,
+        "RawAmount": 2
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 13,
+          "Remaining": 2
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 13,
+          "Remaining": 2
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 300,
+          "Amount": 300,
+          "Loss": 10,
+          "Remaining": 5
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 200,
+          "Amount": 200,
+          "Loss": 6,
+          "Remaining": 9
+        }
+      ],
+      "scenario": {
+        "ID": "original-ratio",
+        "Label": "原版基準：前排目標",
+        "Level": "original-trace-baseline-only",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          15,
+          15,
+          0
+        ],
+        "TargetKind": 21,
+        "TargetSlot": 1,
+        "TargetCount": 15,
+        "HP": 30,
+        "RawAmount": 400,
+        "BaselineLoss": 13
+      }
+    },
+    {
+      "results": [
+        {
+          "Mode": "native",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": false,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 400,
+          "Loss": 15,
+          "Remaining": 0
+        },
+        {
+          "Mode": "formation",
+          "PressureEligible": true,
+          "PressureApplied": false,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 400,
+          "Amount": 320,
+          "Loss": 12,
+          "Remaining": 3
+        },
+        {
+          "Mode": "tactics25",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 300,
+          "Amount": 240,
+          "Loss": 9,
+          "Remaining": 6
+        },
+        {
+          "Mode": "tactics50",
+          "PressureEligible": true,
+          "PressureApplied": true,
+          "FormationApplied": true,
+          "Raw": 400,
+          "AfterPressure": 200,
+          "Amount": 160,
+          "Loss": 6,
+          "Remaining": 9
+        }
+      ],
+      "scenario": {
+        "ID": "original-rear",
+        "Label": "原版基準：遠程可改選目標",
+        "Level": "original-trace-baseline-only",
+        "Side": "enemy",
+        "Route": "ranged",
+        "SourceKind": 3,
+        "SourceSlot": 0,
+        "SourceCount": 50,
+        "Front": [
+          15,
+          100,
+          0
+        ],
+        "TargetKind": 1,
+        "TargetSlot": 0,
+        "TargetCount": 15,
+        "HP": 25,
+        "RawAmount": 400,
+        "BaselineLoss": 15
+      }
+    }
+  ],
+  "status": "DRAFT-offline-candidate"
+}
+</script><script>
+const DATA=JSON.parse(document.getElementById('payload').textContent),cases=document.getElementById('case'),mode=document.getElementById('mode');
+for(const row of DATA.rows)cases.add(new Option(row.scenario.Label,row.scenario.ID));for(const m of DATA.modes)mode.add(new Option(m.Label,m.ID));mode.value='tactics25';
+function render(){const row=DATA.rows.find(r=>r.scenario.ID===cases.value),s=row.scenario,v=row.results.find(v=>v.Mode===mode.value);document.getElementById('scenario-level').textContent=s.Level==='synthetic-candidate'?'合成候選局面。不是遊戲已執行的新規則。':'0%原版基準取自已驗trace；壓制候選仍是離線試算。';
+document.getElementById('cards').innerHTML=DATA.modes.map((m,i)=>`<button class="mode-card" data-mode="${m.ID}" aria-pressed="${m.ID===mode.value}">${m.Label}<br>減員 ${row.results[i].Loss}</button>`).join('');document.querySelectorAll('.mode-card').forEach(b=>b.onclick=()=>{mode.value=b.dataset.mode;render()});
+const cells=['攻方後排','攻方前排','守方前排','守方後排'].map(x=>`<div class="small">${x}</div>`);for(let i=0;i<3;i++){for(let c=0;c<4;c++){let text='空陣位',cl='cell';if((c===0&&s.SourceSlot===i+3)||(c===1&&s.SourceSlot===i)){text=(s.SourceKind===3?'弓箭手':s.SourceKind===24?'鳥人':s.SourceKind===12?'雙頭鬼':'步兵')+' '+s.SourceCount;cl+=' unit';if(v.PressureApplied)cl+=' suppressed'}if(c===2&&s.Front[i]>0){text=(s.TargetSlot===i?'目標部隊':'活隊')+' '+s.Front[i];cl+=' unit'}if(c===3&&s.TargetSlot===i+3){text='目標部隊 '+s.TargetCount;cl+=' unit'}if((c===2&&s.TargetSlot===i)||(c===3&&s.TargetSlot===i+3))cl+=' target';cells.push(`<div class="${cl}">${text}</div>`)}}document.getElementById('board').innerHTML=cells.join('');
+for(const [id,n]of [['amount',v.Amount],['loss',v.Loss],['remaining',v.Remaining]])document.getElementById(id).textContent=n;
+document.getElementById('explain').textContent=(v.PressureApplied?'本候選觸發壓制。':v.PressureEligible?'符合壓制條件，但此模式沒有新增壓制。':'此局不符合弓箭手正對壓制條件。')+(v.FormationApplied?'目標的既有結陣再減20%。':'目標未套結陣減傷。');document.getElementById('comparison').innerHTML=DATA.modes.map((m,i)=>{const r=row.results[i];return `<tr><td>${m.Label}</td><td>${r.Raw}</td><td>${r.AfterPressure}</td><td>${r.Amount}</td><td>${r.Loss}</td></tr>`}).join('')}
+cases.onchange=render;mode.onchange=render;render();
+</script></html>
