@@ -1,5 +1,13 @@
 # 必要資料永久保存
 
+## 十曲HD音樂保存
+
+本組沿[008接入契約](../docs/spec/008-music-events-and-playback.md#十曲同規格接入契約)保存2012檔／1733去重物件，壓縮326724927 bytes。完整十首Ogg、九首來源與製作命令、試聽頁、正常選曲PCM、完整Frame／客體state、193來源、七程式、923核心及535素材位於本機`preserved/hd-music-r1/`，不依賴workplace。原版與離線模組依賴沿既有[完整catalog](catalog.json.gz)，完整本機物件與音樂不加入Git。
+
+[逐檔清單](hd-music-r1.json)、[播放及PCM核對](hd-music-audit-r1.json)、[保存收據](hd-music-preservation-r1.json)、[脫離workplace核對](hd-music-verification-r1.json)、[正式提升](hd-music-promotion-r1.json)與[收尾核對](hd-music-integrity-r1.json)為本組入口。使用[保存工具](../tools/finalize-hd-music.py)的`verify --archive <唯讀preserved> --out <新JSON>`在Pillow11.3.0 Docker逐SHA／長度核對，不需掛載workplace。按索引path、mode及物件SHA解gzip可還原，不能用舊READY快照取代目前Git文件。
+
+r69只替換r68的music.json並加入九音檔與一份來源紀錄，524舊檔、七程式及核心保持。九首沿使用者後續明確授權採同規格接入；逐首人耳聽感、所有玩法音樂觸發及新GUI／存讀仍未驗，現行狀態見[CONTEXT](../CONTEXT.md)。
+
 
 ## 地圖法術彩光保存
 

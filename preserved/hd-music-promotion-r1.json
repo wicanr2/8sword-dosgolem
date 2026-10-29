@@ -1,0 +1,16 @@
+{
+  "status": "promoted-ten-hd-music",
+  "assets": "assets-painted-r69",
+  "cues": 10,
+  "files": 535,
+  "programs_unchanged": {
+    "8sword": "5ed86fbbc944ba3bcc9ed0efbfed9638e97dfe2ae67079a82fcce26aa96ea34d",
+    "8sword-replay": "727a84f09ce0191e1bc5656d2cd8ce8e6835842578d5fb9d0eace1cfdaa87786",
+    "gui-check": "6a4be37534bc9ed178bb7908cae07276cc4a709a27d418835c70cfcc76e22343",
+    "music-check": "6c03bb27a3415d8de65f95059841a7ce32c5dbc5e39901e5124cd129924626c4",
+    "heroine-check": "649eef1c2883dda24cf77383a21f4f76c0eefeee7f398c83c61dfc527fad830f",
+    "museum-check": "d08733cbc80e96c1b9b591c03280e079c187ae41dbce97f4969198b2b7c916c7",
+    "story-prelude-check": "0182b5e58b5bb47889e8074a33fb8104b3c5cc715bca15830afff845232ccb72"
+  },
+  "audit_sha256": "e779f25c8820b0aa43abef8af67a889b486d65bd51160a447d036fa37d0d78cc"
+}

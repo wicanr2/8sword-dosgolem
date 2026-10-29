@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+十首HD配樂已沿使用者「後續都照相同規格處理，不用再詢問」的持續授權接入r69全535素材，〈幻〉及原524檔保持。入口為[008限定驗收](docs/spec/008-music-events-and-playback.md#十曲正式提升與限定驗收)及[永久保存](preserved/README.md#十曲hd音樂保存)。[合併工具](tools/finalize-hd-music.py)在固定Pillow11.3.0容器處理`prepare/archive/verify/promote/integrity`；`audit`使用既有FFmpeg5.1.9容器，參數見008與工具說明。七程式／193來源／923核心不變，不重建、不重開配器訪談；九首人耳聽感及全部玩法觸發仍未驗，不能稱逐首批准或公開授權。
+
 使用者於2026-10-29明確授權：「後續都照相同規格處理，不用再詢問」。後續已確認目標內的同規格美術、動畫與HD接入，自主完成樣式延伸、來源查證、READY契約、Go實作、代表抽驗、永久保存、正式提升及私人GitHub紀錄，不再逐張選樣或重問接入同意。風格沿已批准的原版配色與中國古風，動畫沿[030 B接入規格](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入ready契約)，繪圖沿[047模式分流](docs/spec/047-hd-scene-renderer.md#hd與原版模式分流追加契約)，保存沿[永久圖庫](artwork/README.md)與[必要資料保存](preserved/README.md)。保留原版模式、已定規則與存檔契約，依共用機制抽驗，不逐隻重跑GUI；未知語意自行查證並標示證據等級，不猜補。這項持續授權優先於舊文件對同規格工作逐項詢問的要求。
 
 現行程式為source-candidate-map-color-r2／193來源七程式與r68／525素材，923核心保持，依[030彩光限定驗收](docs/spec/030-battle-expansion-proposal.md#地圖彩光正式提升與限定驗收)提升。八種玩家戰鬥術及八種地圖術均有Go HD演出；B五術／敵方特殊、地震列搬移沿已驗機制，凝滯／複製與地圖八術新增純Go符環提示。原版模式、判定、使用次數、RNG、AI、規則、時鐘及存檔保持。十術同快照完整state／PCM、既有回歸及七程式通過，八種正常F4 Engine畫面與四份凝滯／複製實際Draw獨立重建。自然習得、原版所有分支及若干快照／連續等價性仍未驗；不是全遊戲完成聲明。以下較早數字保存當時驗收，現況以本列與CONTEXT為準。
@@ -55,7 +57,7 @@ AI首批分支證據依[030分支研究](docs/spec/030-battle-expansion-proposal
 
 共用Pillow r1映像已不可用，現行替代為`sc-cht-hdtools:pillow11.3.0-r2`，SHA `b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831`，仍固定Pillow11.3.0。[來源與建置](preserved/README.md#初批保存)、[Dockerfile](tools/Dockerfile.hdtools)及[替代紀錄](preserved/toolchain/hdtools-r2.json)已保存；player.sh／research.sh已改用r2。歷史指令的r1改用此映像，其餘配額／UID／唯讀掛載契約保持。
 
-使用者於2026-10-28要求必要資料均應保存。[永久資料入口](preserved/README.md)保存程式、923核心、175固定輸入、完整r64、原版來源、音樂／字型／存檔／研究資料。[核對](preserved/verification-r1.json)、[還原試跑](preserved/restore-verification-r1.json)及[離線重建](preserved/rebuild-verification-r1.json)已通過。新建無法重生的資料或準備清理workplace前，先更新永久保存批次及清單，完成不依賴原workplace的驗證；原圖仍依下節artwork規則。完整本機物件與音源排除Git，權利分類及九首音樂待確認狀態保持。
+使用者於2026-10-28要求必要資料均應保存。[永久資料入口](preserved/README.md)保存程式、923核心、175固定輸入、完整r64、原版來源、音樂／字型／存檔／研究資料。[核對](preserved/verification-r1.json)、[還原試跑](preserved/restore-verification-r1.json)及[離線重建](preserved/rebuild-verification-r1.json)已通過。新建無法重生的資料或準備清理workplace前，先更新永久保存批次及清單，完成不依賴原workplace的驗證；原圖仍依下節artwork規則。完整本機物件與音源排除Git，權利分類保持；九首音樂後續接入依上列008限定驗收。
 
 [保存／核對／還原工具](tools/preserve-project-data.py)在固定Pillow容器使用`--capture --project <唯讀專案> --archive <新可寫preserved批次>`；核對用`--verify --archive <唯讀保存目錄> --artwork <唯讀永久美術>`。還原加`--restore --out <可寫目標專案>`及可選重複`--prefix <原相對路徑>`，遇到不同檔案拒絕覆寫，不自動建立歷史符號連結。[整體核對](tools/audit-preserved-data.py)另核對原始158檔、正式程式／r64、核心／建置輸入、音源及存檔；用法與排除清單見永久入口。Go編譯快取與541份舊大型逐幀錄影未保存，原檔本輪未刪；最新存退讀兩份錄影已保留。
 
@@ -222,7 +224,7 @@ PMAP第51筆依[045](docs/spec/045-map-landmarks.md)補紅金格紋。[來源與
 
 其餘九曲的本機候選見[008候選批次](docs/spec/008-music-events-and-playback.md#其餘九曲的本機候選)。[原曲解碼](tools/decode-adlib-music.py)、[配器製作](tools/prepare-music-batch.py)與[獨立MIDI／Ogg核對](tools/audit-music-batch.py)在既有`kol-music:timidity2.14-fluid3.1-r1`容器執行。製作以`--original`、`--research`既有hd-audition-r1及新`--out`指定唯讀輸入與新輸出；核對以`--project`、`--original`、`--batch`及新`--out`。工具輸出候選，不自動延伸〈幻〉的美術／配器批准或公開權利。
 
-[十曲候選匯入](tools/prepare-hd-music-batch.py)在固定Pillow容器使用`--base` r49、`--batch`、`--audit`及新`--out`，輸出名稱須含candidate；保留343舊檔，只替換music.json並增加九首Ogg與來源紀錄，不提升正式組。[正常十曲播放工具](tools/music-batch-check.go)在既有Go1.24.13／正式獨立核心以`go build ./tools/music-batch-check.go`建置，使用`-root`、`-base`、`-assets`、新`-out`；從普通冷啟動逐首按鍵，不注入RAM或載入快照。[實際PCM核對](tools/audit-music-batch-runtime.py)在音訊容器使用`--project`、`--run`、`--assets`、`--build`與新`--out`。批准狀態看CONTEXT；目前九曲未切正式，聽感待使用者確認。
+[十曲候選匯入](tools/prepare-hd-music-batch.py)在固定Pillow容器使用`--base` r49、`--batch`、`--audit`及新`--out`，輸出名稱須含candidate；保留343舊檔，只替換music.json並增加九首Ogg與來源紀錄，不提升正式組。[正常十曲播放工具](tools/music-batch-check.go)在既有Go1.24.13／正式獨立核心以`go build ./tools/music-batch-check.go`建置，使用`-root`、`-base`、`-assets`、新`-out`；從普通冷啟動逐首按鍵，不注入RAM或載入快照。[舊候選PCM核對](tools/audit-music-batch-runtime.py)在音訊容器使用`--project`、`--run`、`--assets`、`--build`與新`--out`。本段只記r49歷史工具；現行r69採用與核對入口見本檔最上列及CONTEXT，不重跑已被取代的候選批准閘門。
 
 正式來源呈現依[047限定CONFORMED契約](docs/spec/047-hd-scene-renderer.md#正式接入契約與證據審查)接入。[場景適配器](internal/eightsword/source_scene.go)、[純矩形呈現](internal/eightsword/source_render.go)、[開場](internal/eightsword/source_intro.go)、[直接呼叫](internal/eightsword/source_direct.go)、[六平面](internal/eightsword/source_masked.go)、[逐列](internal/eightsword/source_masked_rows.go)、[錯誤邊界](internal/eightsword/source_guard.go)、[募兵交易](internal/eightsword/source_recruitment.go)及[實際Frame資訊](internal/eightsword/source_presentation.go)不含研究RGB診斷。正式提升與現況以CONTEXT為準，不由檔案存在推論完成。
 

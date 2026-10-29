@@ -80,16 +80,16 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、四份建築圖片與六塊城堡、布旗與無旗太極圖、十二張主角動作、人物頁、金玉介面、深藍故事背景、五幅彩色戰場背景、25 組部隊／怪物的 100 筆姿勢、十四筆地圖遭遇角色、火花與四姿態陰陽圖案。新增 20 組支援兩向與軍隊／戰場用途，沿共用機制代表抽驗。正常移動、頁面往返及真正存退讀已驗；已辨識的其餘彩色來源已依054補齊；自然使用範圍沿各項限定驗收。部隊範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，其餘範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[027](docs/spec/027-battle-pon-effects.md)、[029](docs/spec/029-battle-choi-markers.md)及 [045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
-| HD 音樂 | 〈幻〉B 撥弦／長笛已接入音樂欣賞與片頭，選曲、重播、循環、停止及回退通過；實際視窗混音與存退讀亦已核對。其餘九曲已完成本機配器候選與正常選曲技術測試，待聽感確認，正式播放仍為原版。音訊裝置及完整音效待驗。見 [008](docs/spec/008-music-events-and-playback.md)／[009](docs/spec/009-intro-music-handoff.md) |
+| HD 音樂 | 十首原曲衍生 HD 配樂已接入，沿撥弦／長笛方向。正常選曲、重播、循環、停止、狀態隔離與十首實際混音抽驗通過；〈幻〉另有既有片頭、視窗與存退讀驗證。其餘九首的人耳聽感、全部玩法觸發及真機音訊裝置待驗。見 [008](docs/spec/008-music-events-and-playback.md#十曲正式提升與限定驗收)／[009](docs/spec/009-intro-music-handoff.md) |
 | 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、其餘戰鬥規則及完整流程仍待驗，尚無正式交付包 |
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
-本機完整HD素材入口為`workplace/player/assets-painted-r68`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r68`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
+本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 HD模式固定由Go來源呈現器產生畫面，已移除原版RGB疊圖退路。相容像素操作也由Go處理，事件邊界不再退回原版像素寫入。使用`-hd=false`時保留原版繪圖途徑，不安裝HD繪圖掛點。未接管的HD寫入會記錄位置、保留最後完整畫面並停止。模式分流與抽驗範圍見[047限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。
 
-舊步數時鐘重播工具也已支援這條Go HD路徑，保留原本固定輸入與步數排程。有本機原版及完整素材時，可用`bash tools/player.sh replay hd step-hd-check -assets /player/assets-painted-r68`執行；收據名稱須尚未使用。工具在Docker內運行，預設重播2.5億步，抽驗範圍見[步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。
+舊步數時鐘重播工具也已支援這條Go HD路徑，保留原本固定輸入與步數排程。有本機原版及完整素材時，可用`bash tools/player.sh replay hd step-hd-check -assets /player/assets-painted-r69`執行；收據名稱須尚未使用。工具在Docker內運行，預設重播2.5億步，抽驗範圍見[步數時鐘驗收](docs/spec/047-hd-scene-renderer.md#步數時鐘正式提升與限定驗收)。
 
 Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
@@ -470,23 +470,17 @@ EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r14 \
 
 ## HD 音樂
 
-原版控制選曲與停止，前端替換已提供的音樂。〈幻〉保留原曲音符、節奏及滑音，採已批准的撥弦與長笛方向；Koto／Flute 取樣不宣稱真正古箏、竹笛錄音。缺少 HD 曲目時播放原版，損壞音樂不連帶關閉 Noto 或圖像。
+原版控制選曲與停止，前端提供〈幻〉、〈遨遊〉、〈刀祭〉、〈怡唱〉、〈馳騁〉、〈幽〉、〈靈之舞〉、〈悚慄〉、〈法域〉與〈黎明〉十首 HD 配樂。保留原曲旋律、節奏與滑音，沿已選撥弦與長笛方向使用取樣配器；Koto／Flute 不宣稱真正古箏、竹笛錄音。原版模式維持原音源，缺曲或音樂損壞時回退，圖像與字型繼續使用。
 
-片頭使用相同〈幻〉，已接入原版初始化與停止事件。正常略過或自然結束後會停歌，再由主選單管理；標題與故事的 Noto 接入見 011／012，其餘片頭美術與文字仍待替換。
+片頭使用相同〈幻〉，已接入原版初始化與停止事件。正常略過或自然結束後會停歌，再由主選單管理。
 
-已具備本機批准的 Ogg 與配樂研究輸入後，可在既有圖像組上加入音樂：
+具備合法原版資料及本機完整素材時，可使用 Docker 入口抽驗音樂欣賞：
 
 ```bash
-bash tools/player.sh music-assets painted-r9 painted-r8
-bash tools/player.sh build my-hd-build
-bash tools/player.sh music-check music-hd-check painted-r9
-EIGHTSWORD_GUI_ASSETS=/bin-player/assets-painted-r9 \
-  EIGHTSWORD_GUI_CYCLES=4000 EIGHTSWORD_GUI_VSYNC=false \
-  EIGHTSWORD_GUI_FLOW=music EIGHTSWORD_GUI_RECORD_AUDIO=1 \
-  bash tools/player.sh gui-check music-window-check
+bash tools/player.sh music-check music-hd-check painted-r69
 ```
 
-無頭工具預設完整播放 90 個虛擬秒，再測重播、換曲及人物頁。視窗工具使用真正按鍵，並記錄前端混音；驗證容器維持靜音，不代替真機音訊裝置驗收。獨立波形、狀態及故障核對方法見 [008](docs/spec/008-music-events-and-playback.md)。原版音訊時鐘及合成器持續運作，沒有改 DOS 的曲譜、存檔或遊戲規則。音樂、音源庫及原版對照均留本機。
+無頭工具預設完整播放 90 個虛擬秒，再測重播、換曲及人物頁。十曲接入另以正常冷啟動、十四操作點及獨立 Ogg 解碼核對實際混音，範圍見 [008](docs/spec/008-music-events-and-playback.md#十曲正式提升與限定驗收)。原版音訊時鐘及合成器持續運作，沒有改 DOS 曲譜、存檔或遊戲規則。完整音檔、來源、試聽頁與測試資料另有[永久保存](preserved/README.md#十曲hd音樂保存)，不隨 workplace 清理遺失。音樂與音源庫僅供本機使用，不加入 Git 或公開發行。
 
 發行商畫面的「軟體世界」及公司／年份文字隨 F10 切換。中央圖案採使用者選定的 [B 柔和漸層](docs/images/publisher-icon-gradient-approved-r1.png)，保留笑臉、棋格帽、旋翼與彩色星形，字型及位置保持。[批准紀錄](docs/images/publisher-icon-gradient-approved-r1.json)與[曲線來源](docs/images/publisher-icon-gradient-approved-r1.svg)隨圖保存。固定來源、清墨遮罩、逐幀核對及故障回退見 [016](docs/spec/016-publisher-wordmarks.md)。
 

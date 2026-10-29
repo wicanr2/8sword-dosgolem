@@ -1,0 +1,13 @@
+{
+  "status": "passed-ten-hd-music-integrity",
+  "assets": 535,
+  "cues": 10,
+  "preserved_prior_assets": 524,
+  "unchanged_sources": 193,
+  "unchanged_programs": 7,
+  "unchanged_core": 923,
+  "unchanged_artwork": 1040,
+  "markdown_links": 2630,
+  "root_owned_outputs": 0,
+  "workspace_cache_files": 0
+}

@@ -129,3 +129,39 @@ READY 審查：`state-trace` 五次初始化完成時 active 都為 1，前兩�
 ### 待確認
 
 本機`hd-music-batch-r1/index.html`提供逐曲試聽與完整循環，`nine-cues-preview-108s.ogg`提供約108秒總覽。已向使用者提出一個配器確認問題，先前〈幻〉維持。人耳聽感、三輪疲勞及這九曲的採用仍待確認；不以解碼、MIDI核對或未回覆代替批准。原曲、所有Ogg、完整音源與本機素材組不加入Git或公開發行。
+
+## 十曲同規格接入契約
+
+2026-10-29，READY。上節保留當時候選狀態。使用者後續明確授權「後續都照相同規格處理，不用再詢問」及「不用再問，一次產生完」，本輪據此沿已選撥弦／長笛方向採用九首既有候選。這是沿用風格的接入授權，不記成使用者逐首試聽批准。
+
+- 基底固定為現行r68全525檔；只替換`music.json`，加入九個既有Ogg及一份接入紀錄，形成r69全535檔。〈幻〉、其餘524檔、193程式輸入、七程式與923核心逐SHA保持。不能以舊r49候選取代現行圖像組。
+- 九首採用已通過來源／MIDI／完整Ogg核對的原檔，不重新作曲或轉檔。仍為48000 Hz雙聲道Vorbis、完整循環、原曲衍生本機使用。MFIG不新增映射。
+- 在目前193來源與923核心重跑[正常十曲工具](../../tools/music-batch-check.go)，控制用r68，候選用r69。十四檢查點比較完整客體state、Frame、輸入與I/O；另驗〈幽〉完整循環、同曲重啟、反白不重啟及Esc回原音訊。
+- [合併與核對工具](../../tools/finalize-hd-music.py)使用`prepare`、`audit`、`archive`、`verify`、`promote`及`integrity`子命令。一般操作傳入`--project <專案>`，`verify`只需`--archive <永久preserved>`及新`--out`。Pillow11.3.0負責檔案操作；`audit`用既有FFmpeg5.1.9容器獨立解碼十首實際混音，檢查精確frames、峰值、非靜音與Esc後48000 frames。
+- 音檔、完整來源／提示、試聽頁與測試PCM先存到永久`preserved/hd-music-r1/`，無workplace掛載逐SHA驗證通過才提升；入口為[永久保存](../../preserved/README.md#十曲hd音樂保存)。不移動舊組、不重建未變動程式、不建立Release。
+- 人耳疲勞、真機音訊裝置及全部玩法觸發保持未驗。原有〈幻〉GUI／存讀證據仍有效，本輪不冒稱新增九曲GUI／存讀驗收。
+
+## 十曲正式提升與限定驗收
+
+2026-10-29，本節範圍CONFORMED。r69全535素材已提升，九首原檔併入現行r68，524舊檔及〈幻〉音檔逐SHA保持。七程式、193來源、923核心與1040定稿原圖不改。
+
+| 抽驗 | 結果與限制 |
+|---|---|
+| 播放與回退 | Go1.24.13九組音樂測試1.185秒、vet通過，真實〈幻〉、錯誤清單、初始化、跨程式停止與未知OPL來源回退均通過。這組素材故障測試沿r68單曲組，十曲載入另由正常流程驗證 |
+| 正常選曲 | 沿目前193來源／923核心普通冷啟動，十項音樂欣賞、〈幽〉完整循環／重播、反白不重啟與Esc共14點；完整state、Frame、輸入、I/O相同，最終state SHA `72c4fc3df155d2bce8c3ffd1625a78f194f9be00a3c2ab03d6cd7ef0d5ea1300` |
+| 實際音訊 | 十曲各4800雙聲道frames與FFmpeg5.1.9獨立解碼比較，RMS最高0.020413個int16單位，偏移皆0；完整Ogg精確frames、非靜音、有限值、峰值及循環接點通過。Esc後48000 frames同原版控制逐取樣一致 |
+| 保存 | 2012檔／1733去重物件，壓縮326724927 bytes；完整音檔、來源、製作命令、試聽頁、PCM、程式、核心及535素材已存本機永久區，未掛workplace核對通過 |
+
+[正式核對](../../preserved/hd-music-audit-r1.json)、[保存清單](../../preserved/hd-music-r1.json)、[脫離workplace驗證](../../preserved/hd-music-verification-r1.json)、[提升](../../preserved/hd-music-promotion-r1.json)及[永久入口](../../preserved/README.md#十曲hd音樂保存)記錄版本與雜湊。舊r49候選及舊「待確認」段只記當時狀態，本輪以後續明確同規格授權接入，不以未回覆代替批准。九曲人耳疲勞、真機音訊裝置、所有玩法觸發、GUI及新存讀不在本輪完成聲明內；MFIG仍未知。
+
+工具重跑入口如下。各動作在Docker執行；專案唯讀，只有新輸出／player提升目錄或preserved可寫，UID1000，網路關閉，外層逾時與資源配額沿AGENTS。
+
+```text
+python tools/finalize-hd-music.py prepare --project /project
+python tools/finalize-hd-music.py audit --project /project --out <新核對JSON>
+python tools/finalize-hd-music.py archive --project /project --archive /archive --out <新保存JSON>
+python tools/finalize-hd-music.py verify --archive /archive --out <新驗證JSON>
+python tools/finalize-hd-music.py promote --project /project --archive /archive --out <新提升JSON>
+```
+
+`prepare`固定從r68建新候選，拒絕覆寫既有研究目錄；既有收據不可原位重跑。`audit`另設`EIGHTSWORD_AUDIO_IMAGE`為實際解碼映像SHA，本輪沿既有`wasteland-media:bookworm-modern-r1`、SHA `1c99728881f2cbcb54bfef0c1621968e59e32d6102e1b924db9d17a8a8713465`。原製作映像已不在本機，沒有另建重複映像或重製音檔。已保存FluidR3音源及製作紀錄沿[既有音訊工具鏈](../../preserved/toolchain/manifest.json)。
