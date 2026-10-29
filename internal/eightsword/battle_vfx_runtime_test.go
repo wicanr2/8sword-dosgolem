@@ -23,7 +23,7 @@ func vfxRuntimePaths(t *testing.T) (string, string, string) {
 func TestBattleVFXOriginalExecutors(t *testing.T) {
 	root, project, out := vfxRuntimePaths(t)
 	batch := filepath.Join(project, "workplace/probe-20261023/graphics-first/battle-r1")
-	for _, name := range []string{"special0-choice", "special2-choice", "special5-empty-original", "player-fireball", "player-thunder-mixed", "player-thunder-sparse", "player-exorcism-ghost", "player-exorcism-ordinary"} {
+	for _, name := range []string{"special0-choice", "special2-choice", "special5-empty-original", "player-fireball", "player-thunder-mixed", "player-thunder-sparse", "player-exorcism-ghost", "player-exorcism-ordinary", "player-assassination-high", "player-half-even", "player-half-odd"} {
 		t.Run(name, func(t *testing.T) {
 			dir := filepath.Join(out, name)
 			if err := os.Mkdir(dir, 0755); err != nil {
@@ -51,6 +51,10 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 			}
 			if strings.HasPrefix(name, "player-exorcism-") {
 				ref = filepath.Join(batch, "player-spells-r1/exorcism-r1/original-r4", strings.TrimPrefix(name, "player-exorcism-"), "observed")
+				initial, entry = "player-effect.state", 0x345c
+			}
+			if strings.HasPrefix(name, "player-assassination-") || strings.HasPrefix(name, "player-half-") {
+				ref = filepath.Join(batch, "player-spells-r1/target-spells-r1/original-r1", strings.TrimPrefix(name, "player-"), "observed")
 				initial, entry = "player-effect.state", 0x345c
 			}
 			raw, err := os.ReadFile(filepath.Join(ref, "trace.json"))
@@ -192,14 +196,14 @@ func TestBattleVFXOriginalExecutors(t *testing.T) {
 }
 func TestBattleVFXRejectBeforeGuestWrites(t *testing.T) {
 	root, project, out := vfxRuntimePaths(t)
-	for _, name := range []string{"code", "selector", "mapping", "geometry", "player-code", "player-selector", "player-caster", "player-geometry", "thunder-code", "thunder-caller", "thunder-selector", "thunder-geometry", "exorcism-code", "exorcism-caller", "exorcism-selector", "exorcism-geometry"} {
+	for _, name := range []string{"code", "selector", "mapping", "geometry", "player-code", "player-selector", "player-caster", "player-geometry", "thunder-code", "thunder-caller", "thunder-selector", "thunder-geometry", "exorcism-code", "exorcism-caller", "exorcism-selector", "exorcism-geometry", "assassination-caller", "half-caller", "player-unbound-selector"} {
 		t.Run(name, func(t *testing.T) {
 			e, err := Open(Options{Root: root, Saves: t.TempDir()})
 			if err != nil {
 				t.Fatal(err)
 			}
 			defer e.Close()
-			player := strings.HasPrefix(name, "player-") || strings.HasPrefix(name, "thunder-") || strings.HasPrefix(name, "exorcism-")
+			player := strings.HasPrefix(name, "player-") || strings.HasPrefix(name, "thunder-") || strings.HasPrefix(name, "exorcism-") || name == "assassination-caller" || name == "half-caller"
 			initial, entry := "workplace/probe-20261023/graphics-first/battle-r1/ai-policy-r1/special0-choice/baseline/before-decision.state", uint16(0x36c6)
 			if player {
 				initial, entry = "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/cast-r5/observed/player-effect.state", 0x345c
@@ -209,6 +213,13 @@ func TestBattleVFXRejectBeforeGuestWrites(t *testing.T) {
 			}
 			if strings.HasPrefix(name, "exorcism-") {
 				initial = "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/exorcism-r1/original-r4/ghost/observed/player-effect.state"
+			}
+			if name == "assassination-caller" || name == "half-caller" {
+				caseName := "assassination-high"
+				if name == "half-caller" {
+					caseName = "half-even"
+				}
+				initial = filepath.Join("workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/target-spells-r1/original-r1", caseName, "observed/player-effect.state")
 			}
 			if err = e.Oracle.LoadStateFile(filepath.Join(project, initial)); err != nil {
 				t.Fatal(err)
@@ -256,9 +267,13 @@ func TestBattleVFXRejectBeforeGuestWrites(t *testing.T) {
 			case "exorcism-caller":
 				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.SP}, 0x516)
 			case "exorcism-selector":
-				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.BP - 4}, 3)
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.BP - 4}, 4)
 			case "exorcism-geometry":
 				e.Oracle.WriteU16(oracle.Addr{Seg: r.DS, Off: 0x7020}, 65535)
+			case "assassination-caller", "half-caller":
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.SP}, 0x516)
+			case "player-unbound-selector":
+				e.Oracle.WriteU16(oracle.Addr{Seg: r.SS, Off: r.BP - 4}, 6)
 			}
 			before, after := filepath.Join(out, "guard-"+name+"-before.state"), filepath.Join(out, "guard-"+name+"-after.state")
 			if err = e.Oracle.SaveStateFile(before); err != nil {

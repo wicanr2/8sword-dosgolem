@@ -50,13 +50,14 @@ func main() {
 	root := flag.String("root", "", "read-only original")
 	snapshot := flag.String("state", "", "fixed original snapshot")
 	out := flag.String("out", "", "new output")
-	spell := flag.Int("spell", 0, "original menu index 0 fireball, 1 thunder, 2 exorcism")
-	fixture := flag.String("fixture", "mixed", "mixed original enemies, sparse unit 1 only, or no-ghost")
+	spell := flag.Int("spell", 0, "original menu index 0,1,2,3 assassination,5 halve")
+	fixture := flag.String("fixture", "mixed", "mixed, sparse, no-ghost, or odd live enemy counts")
 	targetKind := flag.String("target-kind", "any", "any, ghost (kind6..15), or ordinary target via original navigation")
 	cancelMenu := flag.Bool("cancel-menu", false, "cancel original spell menu with Escape")
+	chanceStat := flag.Int("chance-stat", -1, "explicit DS:26AE fixture, -1 unchanged or 0..4")
 	cancelTarget := flag.Bool("cancel-target", false, "cancel original target menu with Escape")
 	flag.Parse()
-	if *root == "" || *snapshot == "" || *out == "" || *spell < 0 || *spell > 2 || (*fixture != "mixed" && *fixture != "sparse" && *fixture != "no-ghost") || (*targetKind != "any" && *targetKind != "ghost" && *targetKind != "ordinary") {
+	if *root == "" || *snapshot == "" || *out == "" || *spell < 0 || (*spell > 3 && *spell != 5) || (*fixture != "mixed" && *fixture != "sparse" && *fixture != "no-ghost" && *fixture != "odd") || (*chanceStat < -1 || *chanceStat > 4) || (*targetKind != "any" && *targetKind != "ghost" && *targetKind != "ordinary") {
 		panic("missing inputs")
 	}
 	if _, e := os.Stat(*out); !os.IsNotExist(e) {
@@ -113,7 +114,7 @@ func main() {
 		configured, castStarted, finished := false, false, false
 		menuKey, targetKey := false, false
 		menu, target := false, false
-		targetPlanNode := -1
+		targetPlanNode, menuPlanNode := -1, -1
 		var retCS, retIP, retSS, retSP uint16
 		var bitmap map[string]any
 		effectCount := 0
@@ -128,7 +129,7 @@ func main() {
 			c := m.CPU
 			sp := c.R[cpu.SP]
 			bp := c.R[cpu.BP]
-			v := map[string]any{"name": name, "step": m.Steps, "cycles": m.CPU.Cycles, "cs": c.Seg[cpu.CS], "ip": c.IP, "registers": c.R, "segments": c.Seg, "stack": words(c.Seg[cpu.SS], sp, 10), "bp_minus_4": m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(bp-4)), "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "enemy_map": words(0x1e88, 0x6fc2, 6), "player_positions": words(0x1e88, 0x703c, 6), "enemy_positions": words(0x1e88, 0x701e, 6)}
+			v := map[string]any{"name": name, "step": m.Steps, "cycles": m.CPU.Cycles, "cs": c.Seg[cpu.CS], "ip": c.IP, "registers": c.R, "segments": c.Seg, "stack": words(c.Seg[cpu.SS], sp, 10), "bp_minus_4": m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(bp-4)), "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "enemy_map": words(0x1e88, 0x6fc2, 6), "player_positions": words(0x1e88, 0x703c, 6), "enemy_positions": words(0x1e88, 0x701e, 6), "chance_stat": word(0x26ae)}
 			events = append(events, v)
 			if name == "spell-menu" || name == "player-spell" || name == "player-effect" || name == "player-spell:return" {
 				file := name
@@ -167,7 +168,7 @@ func main() {
 					if id < 6 && word(0x5702+id*4) > 0 && eligible {
 						for _, scan := range at.keys {
 							queue(scan, "original navigation table to live enemy")
-							if *spell == 2 {
+							if *spell >= 2 {
 								return
 							}
 						}
@@ -195,7 +196,27 @@ func main() {
 				break
 			}
 			if c.Seg[cpu.CS] == 0xf67 {
-				if *spell == 2 && target && c.IP == 0x29f2 {
+				if *spell >= 3 && configured && menu && !menuKey && c.IP == 0x2b4 {
+					node := int(m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.BP]-6)))
+					if node != menuPlanNode {
+						capture("spell-cursor")
+						if *cancelMenu {
+							queue(0x01, "cancel original spell menu")
+							menuKey = true
+						} else if node == *spell {
+							queue(0x1c, "confirm original spell cursor")
+							menuKey = true
+						} else {
+							queue(0x50, "original spell cursor Down")
+						}
+						menuPlanNode = node
+					}
+				}
+				if configured && *spell == 3 && c.IP == 0x6ef {
+					capture("assassination-die")
+				}
+
+				if *spell >= 2 && target && c.IP == 0x29f2 {
 					node := int(m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.BP]-10)))
 					if node != targetPlanNode {
 						targetKey = true
@@ -231,6 +252,17 @@ func main() {
 							change(0x8e46+i*2, 1)
 						}
 						change(0x26aa, 1)
+						if *chanceStat >= 0 {
+							change(0x26ae, uint16(*chanceStat))
+						}
+						if *fixture == "odd" {
+							for i := uint16(0); i < 6; i++ {
+								count := word(0x5702 + i*4)
+								if count > 0 && count%2 == 0 {
+									change(0x5702+i*4, count+1)
+								}
+							}
+						}
 						if *fixture == "no-ghost" {
 							for i := uint16(0); i < 6; i++ {
 								kind := word(0x5700 + i*4)
@@ -266,7 +298,7 @@ func main() {
 					}
 					if configured && c.IP == 0x122 {
 						menu = true
-						if !menuKey {
+						if !menuKey && *spell < 3 {
 							if *cancelMenu {
 								queue(0x01, "cancel original spell menu")
 							} else {
@@ -281,7 +313,7 @@ func main() {
 					if configured && c.IP == 0x283e {
 						target = true
 						menu = false
-						if !targetKey && *spell != 2 {
+						if !targetKey && *spell < 2 {
 							if *cancelTarget {
 								queue(0x01, "cancel original target menu")
 							} else {
@@ -293,7 +325,7 @@ func main() {
 				}
 			}
 			if c.Seg[cpu.CS] == 0x14d2 && c.IP == 0xc86 {
-				if menu && !menuKey {
+				if menu && !menuKey && *spell < 3 {
 					queue(0x1c, "select fireball via original menu")
 					menuKey = true
 				}
@@ -338,7 +370,7 @@ func main() {
 		shot(m, filepath.Join(dir, "final.png"))
 		raw, e := os.ReadFile(filepath.Join(dir, "final.state"))
 		must(e)
-		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "spell": *spell, "fixture": *fixture, "target_kind": *targetKind, "cancel_menu": *cancelMenu, "cancel_target": *cancelTarget, "effect_count": effectCount}
+		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "spell": *spell, "fixture": *fixture, "target_kind": *targetKind, "cancel_menu": *cancelMenu, "cancel_target": *cancelTarget, "chance_stat": *chanceStat, "effect_count": effectCount}
 		saveJSON(filepath.Join(dir, "trace.json"), result)
 		runs = append(runs, result)
 	}

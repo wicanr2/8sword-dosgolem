@@ -2408,3 +2408,13 @@ GUI首兩輪的問題是測試路線：募兵後原左右步行可能重入建�
 工具r1／r2一次佇列整串選敵鍵停在游標；r2診斷已見法術2與扣次，沒有把它誤當選單沒進。依IDA的0x20F62／runtime0F67:29F2，讀原BP-0Ah游標，游標改變後才送下一鍵。r3被舊targetKey檢查擋住，r4修正檢查後四組通過，不改原目標word或selector。獨立核對器初推Esc退還的假設被原版資源欄否定，改為忠實記錄2→1。[原版核對](preserved/player-exorcism-research-r1.json)保留限定證據。
 
 READY後正式只追加selector2＋caller074A。八組效果控制共十一效果、十六拒絕及實際GUI一次施法／兩張Draw獨立重建通過。前輪稀疏續跑限制沿舊收據，不重查核心。[030驗收](docs/spec/030-battle-expansion-proposal.md#玩家殺鬼術正式接入與限定驗收)與[永久保存](preserved/README.md#玩家殺鬼術接入保存)為入口，不外推其他法術、自然習得或新存讀。
+
+## 2026-10-29：暗殺／滅半共用原版動畫入口
+
+來源PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0。沿既有IDA Pro9.4匯出，SHA為fd5179ef957f92d13a3e4c1ce8e1eaaddad3a03046054517c983f4eb25ba44df，27函式6715行bytes經原MZ重定位獨立核對。以下IDA位址為MZ loader線性，runtime為固定load0110h，兩者分列。
+
+已證實的靜態範圍：sub_1E8A4的case3自0x1EBEC開始，0x1EC54呼叫_rand，0x1EC5A除50，0x1EC62讀DS:26AEh，0x1EC6F加10後0x1EC74作無號大於判斷。成功在0x1EC86讀所選敵軍數量。case5自0x1ECE8開始，0x1ED61右移敵軍數量、0x1ED63加1，再跳共同傷害word。兩者最終到0x1ECB7呼叫sub_219CC，返回0x1ECBA，即runtime0F67:074A；同518-byte入口0F67:345C、RETF3661，來源DS:703Ch／目標701Eh。
+
+原版探針先宣告26AEh的0／4與滅半偶／奇數／兩Esc共六案，同一完整初始快照a4142bf59e9c742715e9c9686229ec69e90599244ea485bc9c7ee3baba034cb7。兩暗殺原餘數均4、門檻10／50都成功，目標10→0。未改原_rand輸出或種子，沒有反覆重擲；這批沒有動態失敗分支證據。滅半10→4、11→5，兩術Esc均無效果；六組皆扣一次，完整控制／只讀觀測state同值。[獨立核對](preserved/player-target-spells-research-r1.json)保存每案來源、原始輸入及結果，不將26AEh導覽名稱當完整角色屬性語意。
+
+READY後正式僅追加selector3／5與caller074A，機率、傷害及結算仍由原版執行。十一組Engine控制共十四效果與十九拒絕通過，十組同連續原版、一組沿前輪已記錄的稀疏無掛點續跑；不重新宣稱核心已修復。實際GUI只抽滅半，完整wrapper返回、兩張Draw獨立重建相同，暗殺沿共用Engine機制抽驗。[030限定驗收](docs/spec/030-battle-expansion-proposal.md#暗殺術與滅半術正式接入與限定驗收)及[永久證據](preserved/README.md#暗殺術與滅半術接入保存)為入口。

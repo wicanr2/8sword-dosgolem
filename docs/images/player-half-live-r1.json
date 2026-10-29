@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "controlled_fixture": true,
+  "method": "Actual Ebiten Draw CPU image uploaded, resized 2944x1264 to 1600x687 using Pillow11.3.0 LANCZOS",
+  "candidate": "source-candidate-player-target-spells-r1",
+  "source_count": 188,
+  "assets": "r68",
+  "core_files": 923,
+  "spell": 5,
+  "representative_of": "Shared B presentation; assassination is covered by Engine controls, not this GUI.",
+  "whole_spell_wrapper_complete": true,
+  "files": [
+    {
+      "phase": "flight",
+      "path": "player-half-flight-r1.png",
+      "sha256": "d4ec324966e0f844579230c9b8f6c2326bb3ad27adca6557f5532430d8362831",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/target-spells-r1/gui-r1/vfx-draw/flight-presented.png",
+      "source_sha256": "6412cc30fa52e606ca5a3cfb79bc887123d308832394ae48b56ec6cf1886e61c",
+      "draw": {
+        "cycles": 63916494,
+        "draw": 278,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "27f0c6174246a3670a1e99292fb28f23bd853f352220d46cdc41c2cc5fdd8f1c",
+        "layer_rect": [
+          387,
+          459,
+          305,
+          185
+        ],
+        "layer_stride": 1220,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "flight",
+        "sample": 32,
+        "step": 60144553,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "flight",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 2,
+          "PONCommits": 0,
+          "Frames": 1,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            96,
+            75
+          ],
+          "Target": [
+            368,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "phase": "impact",
+      "path": "player-half-impact-r1.png",
+      "sha256": "38c12895bf8bb499b86bc8f7627998840569c2c3a39889e92616fd60d64431c6",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/target-spells-r1/gui-r1/vfx-draw/impact-presented.png",
+      "source_sha256": "bc47a8ff4d8a8b33fa626d2993fe713af3bdaa000894f7d2f01284fa098ad5d8",
+      "draw": {
+        "cycles": 64516494,
+        "draw": 284,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "de189d94f779ad458f8f3a4ae2b6cfbef8d02ce98c5d04d5e7af63df47fde0e0",
+        "layer_rect": [
+          946,
+          460,
+          581,
+          581
+        ],
+        "layer_stride": 2324,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "impact",
+        "sample": 15,
+        "step": 60734701,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "impact",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 4,
+          "PONCommits": 2,
+          "Frames": 7,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            96,
+            75
+          ],
+          "Target": [
+            368,
+            100
+          ]
+        }
+      }
+    }
+  ]
+}

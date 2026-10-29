@@ -1,0 +1,201 @@
+{
+  "status": "passed-scoped-player-target-spells-research",
+  "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_lines_verified": 6715,
+  "ida_export_sha256": "fd5179ef957f92d13a3e4c1ce8e1eaaddad3a03046054517c983f4eb25ba44df",
+  "initial_state_sha256": "a4142bf59e9c742715e9c9686229ec69e90599244ea485bc9c7ee3baba034cb7",
+  "fixed_die": 4,
+  "cases": [
+    {
+      "case": "assassination-low",
+      "spell": 3,
+      "effects": 1,
+      "chance": {
+        "stat": 0,
+        "die": 4,
+        "threshold": 10,
+        "success": true
+      },
+      "final_charges": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target": {
+        "slot": 1,
+        "unit": 1,
+        "source": [
+          96,
+          75
+        ],
+        "target": [
+          368,
+          100
+        ],
+        "before_count": 10,
+        "after_count": 0,
+        "poses": 4,
+        "pon": 12
+      },
+      "full_state_equal": true,
+      "final_state_sha256": "c628b6baa51f2d544cbc17444a34771f45ea335f9bef1bdb786e248e8c652c1b"
+    },
+    {
+      "case": "assassination-high",
+      "spell": 3,
+      "effects": 1,
+      "chance": {
+        "stat": 4,
+        "die": 4,
+        "threshold": 50,
+        "success": true
+      },
+      "final_charges": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target": {
+        "slot": 1,
+        "unit": 1,
+        "source": [
+          96,
+          75
+        ],
+        "target": [
+          368,
+          100
+        ],
+        "before_count": 10,
+        "after_count": 0,
+        "poses": 4,
+        "pon": 12
+      },
+      "full_state_equal": true,
+      "final_state_sha256": "429657785e32f629adbc626d9019401088c204f37c157d4ce41faf0de76e3f9d"
+    },
+    {
+      "case": "assassination-cancel",
+      "spell": 3,
+      "effects": 0,
+      "chance": null,
+      "final_charges": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target": null,
+      "full_state_equal": true,
+      "final_state_sha256": "ff6e8cf09fcef4485ee6f19a8199c7b427f3fc1692dbbde96facd5a99bfc275c"
+    },
+    {
+      "case": "half-even",
+      "spell": 5,
+      "effects": 1,
+      "chance": null,
+      "final_charges": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "target": {
+        "slot": 1,
+        "unit": 1,
+        "source": [
+          96,
+          75
+        ],
+        "target": [
+          368,
+          100
+        ],
+        "before_count": 10,
+        "after_count": 4,
+        "poses": 4,
+        "pon": 12
+      },
+      "full_state_equal": true,
+      "final_state_sha256": "603692f42cd1eb0a955c93176e6326aa6db79da6405403cf6d575eaa75c89929"
+    },
+    {
+      "case": "half-odd",
+      "spell": 5,
+      "effects": 1,
+      "chance": null,
+      "final_charges": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "target": {
+        "slot": 1,
+        "unit": 1,
+        "source": [
+          96,
+          75
+        ],
+        "target": [
+          368,
+          100
+        ],
+        "before_count": 11,
+        "after_count": 5,
+        "poses": 4,
+        "pon": 12
+      },
+      "full_state_equal": true,
+      "final_state_sha256": "c8ecc70eea5a2cf3329422a05e2797f8c979fddbe6c595f4b640861fb5c4af5d"
+    },
+    {
+      "case": "half-cancel",
+      "spell": 5,
+      "effects": 0,
+      "chance": null,
+      "final_charges": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "target": null,
+      "full_state_equal": true,
+      "final_state_sha256": "17f4bfed6a9b936565f90e6f53a8037fd3cdb998c2caf1e234ef83a3b171353e"
+    }
+  ],
+  "caller_return": "fixed-load runtime0F67:074A, selectors3/5",
+  "rng": "Same full original initial state, predeclared stats0/4, original rand return untouched, no reroll; numeric seed unknown",
+  "limits": [
+    "Controlled rear caster, learned/resources, stat0/4 or odd enemy counts; not natural learning.",
+    "Original threshold and half-count observations only; HD does not implement damage or RNG.",
+    "Same shared B kernel; one representative new spell GUI, not per-spell natural-use proof."
+  ]
+}

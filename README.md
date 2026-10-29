@@ -62,7 +62,9 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 
 ![玩家雷火術：多目標受控施法的實際Go HD Draw](docs/images/player-thunder-impact-r1.png)
 
-玩家殺鬼術也已接入 Go 飛焰與符光，保留原版目標條件與結算。可看受控實際視窗的[飛行](docs/images/player-exorcism-flight-r1.png)、[命中](docs/images/player-exorcism-impact-r1.png)、[截圖來源](docs/images/player-exorcism-live-r1.json)及[限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家殺鬼術正式接入與限定驗收)。目前已強化火球、雷火及殺鬼三種玩家戰鬥術，其餘五種戰鬥術與八種地圖術效果仍待驗。
+玩家殺鬼術也已接入 Go 飛焰與符光，保留原版目標條件與結算。可看受控實際視窗的[飛行](docs/images/player-exorcism-flight-r1.png)、[命中](docs/images/player-exorcism-impact-r1.png)、[截圖來源](docs/images/player-exorcism-live-r1.json)及[限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家殺鬼術正式接入與限定驗收)。
+
+暗殺術與滅半術也已接入相同 Go 光效，命中判定、傷害與使用次數交原版處理。實際視窗沿共用機制抽驗滅半術，可看[飛行](docs/images/player-half-flight-r1.png)、[命中](docs/images/player-half-impact-r1.png)、[來源](docs/images/player-half-live-r1.json)及[驗收範圍](docs/spec/030-battle-expansion-proposal.md#暗殺術與滅半術正式接入與限定驗收)。目前五種玩家戰鬥術已強化，凝滯、複製、地震及八種地圖術效果仍待驗。
 
 
 | 面向 | 目前狀態 |

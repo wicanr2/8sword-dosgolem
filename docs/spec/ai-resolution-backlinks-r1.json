@@ -33,6 +33,18 @@
             "Five other battle effects and eight map effects.",
             "Natural learning and damage-word carry semantics; prior sparse snapshot continuity remains unknown."
           ]
+        },
+        {
+          "level": "proven-in-sampled-scope",
+          "evidence": "docs/spec/030-battle-expansion-proposal.md",
+          "older_spec": "docs/spec/027-battle-pon-effects.md",
+          "required_correction": "PON-PLAYER-TARGET-SPELLS-SAMPLED",
+          "receipt": "preserved/player-target-spells-research-r1.json",
+          "scope": "Original selectors3/5 share sub_219CC/caller074A; predeclared assassination stats0/4 yield unchanged die4 and success, half even/odd produce four source commits and twelve PON; Escape has no effect.",
+          "not_closed": [
+            "Other battle selectors4/6/7 and eight map effects.",
+            "Natural learning, assassination failed-die branch; prior sparse snapshot continuity remains unknown."
+          ]
         }
       ],
       "scope": "One fixed-snapshot rear-caster fireball through original menu and target navigation; 4 source poses and 12 PON, paired full state equal.",

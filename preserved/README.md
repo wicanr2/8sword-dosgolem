@@ -1,5 +1,13 @@
 # 必要資料永久保存
 
+## 暗殺術與滅半術接入保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#暗殺術與滅半術正式接入與限定驗收)已提升source-candidate-player-target-spells-r1／188來源七程式。六組[原版研究](player-target-spells-research-r1.json)、十一效果控制共十四效果、十九拒絕及兩張滅半實際Draw獨立合成通過；r68全525素材、923核心、前版七程式與B圖庫1040檔保持。[正式核對](player-target-spells-audit-r1.json)、[提升](player-target-spells-promotion-r1.json)與[收尾核對](player-target-spells-integrity-r1.json)分開記錄。暗殺兩門檻均原餘數4、皆成功，失敗分支未動態抽驗；前輪稀疏連續等價性仍未知，不稱自然習得或新存讀。
+
+[永久清單](player-target-spells-r1.json)含1167檔／629物件，壓縮118726717 bytes，保存固定探針、六組原版控制、188來源候選、七程式、測試與GUI完整PNG／底圖／原始透明層。完整物件留本機`player-target-spells-r1/`，不加入Git；[捕獲](player-target-spells-preservation-r1.json)及[無原workplace核對](player-target-spells-verification-r1.json)通過。原版／923核心／模組、r68與前輪控制沿既有catalog、tactics、completion-r65、火球、雷火及殺鬼清單；B完整原圖沿[永久圖庫](../artwork/manifest.json)，不重複保存。
+
+[核對與保存器](../tools/finalize-player-target-spells.py)在固定Pillow11.3.0 Docker用`archive --project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲。只掛永久preserved及工具，用`verify --archive <唯讀preserved> --out <可寫新JSON>`逐物件解壓並驗每檔SHA／長度；按清單原路徑與mode可還原，不需要原workplace。本輪沒有新生成圖或大型還原副本，完整提示與批准圖沿圖庫。
+
 ## 玩家殺鬼術接入保存
 
 [030限定驗收](../docs/spec/030-battle-expansion-proposal.md#玩家殺鬼術正式接入與限定驗收)已提升source-candidate-player-exorcism-r2／188來源七程式。四組[原版研究](player-exorcism-research-r1.json)、八效果控制共十一效果、十六拒絕及兩張實際Draw獨立合成通過；r68全525素材、923核心、前版七程式與B圖庫1040檔保持。[正式核對](player-exorcism-audit-r1.json)、[提升](player-exorcism-promotion-r1.json)與[收尾核對](player-exorcism-integrity-r1.json)分開記錄。七組同原連續流程，前輪稀疏組同相同快照無掛點原版續跑；不宣稱自然習得、新存讀或核心修復。

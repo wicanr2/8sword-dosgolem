@@ -719,3 +719,43 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 [核對／保存／提升器](../../tools/finalize-player-exorcism.py)在固定Pillow11.3.0 Docker使用`audit|archive|verify|promote|integrity --project <唯讀專案> --out <新JSON>`，保存／核對另設`--archive <preserved>`，提升設`--player <可寫player>`；verify只掛永久資料及工具，不需要project或workplace。來源建置沿既有Go1.24.13與923核心，實際GUI沿前節參數與trap。
 
 前輪稀疏快照與原連續執行等價性仍未知，本輪沒有修改核心或重抽seed。非合類傷害word沿用的語意、自然習得、其餘五種戰鬥術與八種地圖術效果仍待驗；正常存讀沿B既有收據，可選美術微調不阻塞本項。
+
+## 暗殺術與滅半術共用接入研究
+
+本節DRAFT。沿既有IDA9.4匯出查sub_1E8A4：法術3在MZ loader線性0x1EBEC起，0x1EC54呼叫_rand，0x1EC72比較DS:26AEh衍生門檻與餘數；法術5在0x1ECE8起，0x1ED61右移目標數量後加1。靜態線索顯示兩者共用0x1ECB7的sub_219CC、父返回runtime0F67:074A。來源PAM SHA與位址基準沿前節，動態成功／未成功及取消仍需驗證。
+
+[原版探針](../../tools/probe-player-spells.go)新增`-spell 3|5`、`-chance-stat 0|4`及`-fixture odd`；只改研究fixture的26AEh或非零敵軍數量，不改_rand輸出、種子、selector、目標或傷害word。兩個暗殺門檻預先固定，同一完整初始快照／亂數狀態，不按結果重抽。選單與選敵沿原游標逐鍵送IRQ1。輸出沿既有player-spells-r1內`target-spells-r1/`，六案為暗殺低／高門檻／Esc與滅半偶數／奇數／Esc。
+
+[獨立研究核對](../../tools/audit-player-target-spells.py)與[核對／保存／提升](../../tools/finalize-player-target-spells.py)列為本批入口。查證足夠且READY後才放寬正式成對守門，188來源、七程式、923核心及r68素材先保持。共用Go公式已驗，後續只抽一種新術實際GUI，不為相同機制逐術重跑視窗。
+
+### 暗殺術與滅半術B接入READY契約
+
+本節READY。[原版核對](../../preserved/player-target-spells-research-r1.json)驗既有IDA9.4的27函式6715行原bytes及六組控制／只讀觀測完整state。暗殺預先固定DS:26AEh為0與4，原_rand的餘數均4，門檻10與50均成功，目標10→0；沒有重抽種子或改亂數輸出，也不稱已動態驗失敗分支。滅半偶數10→4、奇數11→5，符合原位移加1；兩術Esc無效果。本次六組資源均2→1。
+
+正式允許組合只追加「法術3＋caller074A」與「法術5＋caller074A」，沿同一PAM SHA、固定load0110h的0F67:345C、518 bytes與RETF3661。火球0／殺鬼2＋074A及雷火1＋0516保持，其他組合拒絕。只在原版真正進入效果後呈現，不重作命中機率、傷害、目標選取或扣次。來源703Ch／目標701Eh、後排施法者條件、四姿態／12PON、Go公式、文字保留與收尾沿已驗B。
+
+正式驗收抽暗殺高門檻、滅半偶數／奇數三組，加既有八組共十一效果控制／十四效果；本批十組沿原連續狀態，一組沿前輪已記錄的稀疏無掛點原版續跑。保留既有十六拒絕，追加3／5各一個錯caller與一個未接入selector6案，共十九；共用bytes／來源／幾何守門不逐術重複測。原版兩取消案另保存，不補沒有發生的動畫。
+
+實際GUI只抽滅半術，正常冷啟動／新遊戲／募兵遇敵後以明示後排施法者／法術5資源fixture，選單與選敵逐游標送IRQ1，不改selector、目標或傷害；完成整個wrapper返回才收尾。飛行／命中各一張Draw獨立合成，暗殺沿同一機制的正式Engine控制，不冒稱暗殺自然GUI。正常存讀沿B既有收據，188來源／七程式、923核心、r68全525素材與1040圖庫保持。
+
+[候選／GUI準備](../../tools/prepare-player-fireball.py)使用`--spell 5`，前版固定player-exorcism-r2；[GUI執行器](../../tools/check-player-fire-gui.sh)第五參數`half`。新術選單於MZ loader線性0x1E824／runtime0F67:02B4讀BP-6游標，再送下一鍵；選敵仍沿20F62／29F2。固定Go1.24.13／Pillow11.3.0 Docker、有界trap及永久保存流程保持。六組原版及本批候選先永久保存，無原workplace核對後才提升。
+
+## 暗殺術與滅半術正式接入與限定驗收
+
+本節限定CONFORMED。依前節READY提升source-candidate-player-target-spells-r1／188來源七程式，正式控制器只追加selector3／5＋caller074A，Go繪圖公式保持。r68全525素材、923核心及player-exorcism-r2前版七程式逐SHA保持。機率、傷害、目標、次數、AI、規則、時鐘、存檔及原版顯示路徑不改。
+
+| 面向 | 已驗範圍 |
+|---|---|
+| 原版控制 | 六組控制／只讀觀測完整state同值。暗殺預先固定26AEh為0／4，門檻10／50，同一原始快照及_rand餘數4，兩案10→0；沒有為抽到成功重跑。滅半10→4與11→5。兩Esc沒有效果，六組資源皆2→1 |
+| 正式測試 | 十一組執行器共十四效果、十九入口拒絕、二十二張Frame客體純度、B公式／文字及既有AI／結陣／戰術／標記／工具列回歸通過。十組同原連續final state，一組仍沿前輪稀疏無掛點續跑。Go1.24.13測試84.625秒，無FAIL／SKIP，vet及七程式建置通過 |
+| 實際GUI | 只抽滅半。正常冷啟動、新遊戲、募兵遇敵後，明示fixture配置後排施法者與法術5兩次資源，不改敵軍或selector／目標／傷害word。原版選單及選敵按實際游標逐鍵送IRQ1，Started=Completed=1、4來源、12PON、9效果Frame，取消／略過0，wrapper返回後Ctrl+Q |
+| 實際Draw | 滅半飛行Draw278、命中Draw284，各同Go底圖／原始透明層／文字遮罩獨立重建，已抽看。[完整來源資訊](../images/player-half-live-r1.json)保留SHA及步數，完整PNG已永久保存；fixture原有部隊立繪不當種類映射證據 |
+| 保存與提升 | 1167檔／629物件、118726717壓縮bytes，含原版控制、候選、七程式、測試與GUI原PNG／透明層。未掛原workplace容器逐物件解壓、SHA與長度核對通過後才提升；1040原圖保持，沒有新生成圖或大型還原副本 |
+
+既有`exorcism-selector`拒絕案由3改4，因3本輪已正式允許。另加暗殺／滅半各一錯caller及selector6，共十九案；共用bytes／來源／幾何守門不逐術重複測。本輪原版探針及正式候選均首輪通過，沒有改產品遷就測試。暗殺不重跑相同GUI，其正式Engine已抽成功效果；滅半GUI不冒稱暗殺自然施法。
+
+[原版核對](../../preserved/player-target-spells-research-r1.json)、[正式核對](../../preserved/player-target-spells-audit-r1.json)、[提升](../../preserved/player-target-spells-promotion-r1.json)、[永久保存](../../preserved/README.md#暗殺術與滅半術接入保存)與[收尾核對](../../preserved/player-target-spells-integrity-r1.json)為入口。027以`PON-PLAYER-TARGET-SPELLS-SAMPLED`回填共用caller，原26個AI鍵及前輪定位保持，追加一條玩家補充。
+
+[核對／保存／提升器](../../tools/finalize-player-target-spells.py)在固定Pillow11.3.0 Docker使用`audit|archive|verify|promote|integrity --project <唯讀專案> --out <新JSON>`；保存／核對另設`--archive <preserved>`，提升設`--player <可寫player>`。verify只掛永久資料及工具，不需project或workplace。Go建置沿既有1.24.13與923核心，GUI沿前節參數及trap。
+
+暗殺的失敗機率分支未動態抽驗，兩個已測門檻都成功；HD未自行判定機率，只在原版實際呼叫效果時繪製。自然習得、前輪稀疏快照連續等價性與其餘法術仍不外推。凝滯4、複製6、地震7及八種地圖術效果待驗，正常存讀沿B既有收據，可選美術微調不阻塞本批接入。

@@ -7,7 +7,7 @@ fire_root="${2:?read-only original}"
 fire_assets="${3:?r68}"
 fire_out="${4:?new output}"
 fire_spell="${5:-fireball}"
-[[ "$fire_spell" == fireball || "$fire_spell" == thunder || "$fire_spell" == exorcism ]]
+[[ "$fire_spell" == fireball || "$fire_spell" == thunder || "$fire_spell" == exorcism || "$fire_spell" == half ]]
 test -f "$fire_bin/8sword"
 test -f "$fire_bin/driver"
 test ! -e "$fire_out"

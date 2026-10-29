@@ -1,0 +1,17 @@
+{
+  "status": "promoted-scoped-player-target-spells",
+  "audit_sha256": "301b7c94cf9a3c980c1d84d706a997d8fc903a682d7253842ad016097615577f",
+  "programs": {
+    "8sword": "c3470d10d03678b9346ee81a4addd61687d9ae526ee359babf69f12ad4246e56",
+    "8sword-replay": "557b4c72b5f0f59d77b022d6c8c45da26c6c07d93a433800cf364465084280d7",
+    "gui-check": "57f0eee1153885782c3adc69ea4944bf406153a4a5b1fe756749e4062181ae4b",
+    "music-check": "5adf1e1f6eff985eeda55f3dc0aa0046bff831beec00efccc95b1ecdd8dc200d",
+    "heroine-check": "0e5053eb3b047cef1f1aeddf261c2cf4f637d0fd24e21e067b9bad7c687a5e77",
+    "museum-check": "42fca590baf06575f582a3c3e6e533ded2d2768893764da608356d8916314874",
+    "story-prelude-check": "3db6fe28af8d782b388c73502d7fe5397ea802f3baeb22d16d17008640e1749e"
+  },
+  "source_count": 188,
+  "core_files": 923,
+  "assets": "r68",
+  "asset_files": 525
+}

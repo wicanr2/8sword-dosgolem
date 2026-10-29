@@ -5,9 +5,9 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  p=argparse.ArgumentParser();p.add_argument('action',choices=['freeze','gui'])
  for n in ['project','out']:p.add_argument('--'+n,type=pathlib.Path,required=True)
- p.add_argument('--source',type=pathlib.Path);p.add_argument('--spell',type=int,choices=[0,1,2],default=0);a=p.parse_args();r=a.project;assert os.getuid()==1000 and not a.out.exists()
+ p.add_argument('--source',type=pathlib.Path);p.add_argument('--spell',type=int,choices=[0,1,2,3,5],default=0);a=p.parse_args();r=a.project;assert os.getuid()==1000 and not a.out.exists()
  if a.action=='freeze':
-  old=json.loads((r/({0:'preserved/vfx-engine-audit-r1.json',1:'preserved/player-fireball-audit-r1.json',2:'preserved/player-thunder-audit-r1.json'}[a.spell])).read_text());player=r/'workplace/player'
+  old=json.loads((r/({0:'preserved/vfx-engine-audit-r1.json',1:'preserved/player-fireball-audit-r1.json',2:'preserved/player-thunder-audit-r1.json',3:'preserved/player-exorcism-audit-r1.json',5:'preserved/player-exorcism-audit-r1.json'}[a.spell])).read_text());player=r/'workplace/player'
   for n,h in old['programs'].items():assert sha(player/n)==h
   a.out.mkdir();inputs={}
   for n in old['source_inputs']:
@@ -35,5 +35,7 @@ def main():
   s=s.replace('受控火球','受控雷火').replace('player-fire-complete','player-thunder-complete');(a.out/'player-fire-gui-check.go').write_text(s)
  if a.spell==2:
   s=s.replace('受控火球','受控殺鬼').replace('player-fire-complete','player-exorcism-complete');(a.out/'player-fire-gui-check.go').write_text(s)
+ if a.spell==5:
+  s=s.replace('受控火球','受控滅半').replace('player-fire-complete','player-half-complete');(a.out/'player-fire-gui-check.go').write_text(s)
  meta=json.loads((a.out/'preparation.json').read_text());meta['diagnostic_inputs']={str(p.relative_to(root)):sha(p)for p in root.rglob('*')if p.is_file()};meta['changed']=[n for n,h in meta['diagnostic_inputs'].items()if meta['base_inputs'].get(n)!=h];meta['spell']=a.spell;meta['fixture']='First original player round: rear kind10/count50, learned flag and two uses of spell '+str(a.spell)+'; original spell menu IRQ1 input. No production test branch.';(a.out/'preparation.json').write_text(json.dumps(meta,indent=2)+'\n');print('Private player spell GUI prepared:',a.spell)
 if __name__=='__main__':main()

@@ -119,7 +119,7 @@ func (v *battleVFX) beginFrom(o *oracle.Oracle, player bool) {
 		return
 	}
 	selector := word(r.BP - 4)
-	playerPair := ((selector == 0 || selector == 2) && word(r.SP) == 0x74a) || (selector == 1 && word(r.SP) == 0x516)
+	playerPair := ((selector == 0 || selector == 2 || selector == 3 || selector == 5) && word(r.SP) == 0x74a) || (selector == 1 && word(r.SP) == 0x516)
 	if (player && !playerPair) || (!player && selector != 0 && selector != 2 && selector != 5) {
 		v.skip("selector")
 		return
