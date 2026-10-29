@@ -5,8 +5,9 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def read(p):return json.loads(p.read_text())
 def rebuild(base,layer,raw):
  base=Image.open(base).convert('RGBA');layer=Image.open(layer).convert('RGBA')if isinstance(layer,pathlib.Path)else layer
- assert base.size==(1920,1200)and len(raw)==128000 and set(raw)<={0,1}
- mask=Image.frombytes('L',(640,200),bytes(255 if v else 0 for v in raw)).resize(base.size,Image.Resampling.NEAREST);clip=Image.new('L',base.size);clip.paste(255,(12,12,1344,1140));allowed=ImageChops.subtract(clip,mask)
+ assert base.size==(1920,1200)and len(raw)in[128000,2304000] and set(raw)<={0,1}
+ size=(640,200)if len(raw)==128000 else base.size
+ mask=Image.frombytes('L',size,bytes(255 if v else 0 for v in raw)).resize(base.size,Image.Resampling.NEAREST);clip=Image.new('L',base.size);clip.paste(255,(12,12,1344,1140));allowed=ImageChops.subtract(clip,mask)
  # Bounded strips keep integer temporary images below the audit memory quota.
  for top in range(0,1200,100):
   box=(0,top,1920,top+100);bstrip=base.crop(box);lstrip=layer.crop(box);alpha=lstrip.getchannel('A');channels=[]

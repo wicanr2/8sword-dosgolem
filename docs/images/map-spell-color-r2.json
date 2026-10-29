@@ -1,0 +1,110 @@
+{
+  "status": "verified-map-color-overview",
+  "source_archive": "preserved/map-spell-color-r2.json",
+  "audit_sha256": "6167b4bee42a468e784a9f19f63747707a02dce768523a284730fc938bdc5298",
+  "sources": [
+    {
+      "kind": 0,
+      "name": "造橋術",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/map-color-r1/normal-r2/0/frame.png",
+      "sha256": "b2c4765bca4b2d03a5cbf165c3aaa0dd4bb6ebbab5631dc1f6b53df5fd44a972",
+      "crop": [
+        362,
+        312,
+        982,
+        832
+      ]
+    },
+    {
+      "kind": 1,
+      "name": "煉金術",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/map-color-r1/normal-r2/1/frame.png",
+      "sha256": "81a5d2ce2d44a1ebe3d5b2b0d7bda792cfd06470b462f76617c288163331d461",
+      "crop": [
+        362,
+        312,
+        982,
+        832
+      ]
+    },
+    {
+      "kind": 2,
+      "name": "召兵術",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/map-color-r1/normal-r2/2/frame.png",
+      "sha256": "bd3c10d8b10216495305cea15160492d3571498d73ade56a1e8cff0f0f3b4c71",
+      "crop": [
+        362,
+        312,
+        982,
+        832
+      ]
+    },
+    {
+      "kind": 3,
+      "name": "跳躍術",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/map-color-r1/normal-r2/3/frame.png",
+      "sha256": "bccb261a1aa0e91686701bdbe0553fdb015cd539200717cbafdb8b8ecb25a62e",
+      "crop": [
+        362,
+        312,
+        982,
+        832
+      ]
+    },
+    {
+      "kind": 4,
+      "name": "停時術",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/map-color-r1/normal-r2/4/frame.png",
+      "sha256": "7ff092182478205528e3f9b7cb24145a6d0854508228a7ac808146a888ae6861",
+      "crop": [
+        362,
+        312,
+        982,
+        832
+      ]
+    },
+    {
+      "kind": 5,
+      "name": "鳥瞰術",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/map-color-r1/normal-r2/5/frame.png",
+      "sha256": "629985b79afd5b9aec50f4352d599eb217a7a7fccfb298ffbcc150885de8351c",
+      "crop": [
+        362,
+        312,
+        982,
+        832
+      ]
+    },
+    {
+      "kind": 6,
+      "name": "涉水術",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/map-color-r1/normal-r2/6/frame.png",
+      "sha256": "1b07630668f039b878ebec0625ecb4a452027c00c04064fbfd4907da880560ae",
+      "crop": [
+        362,
+        312,
+        982,
+        832
+      ]
+    },
+    {
+      "kind": 7,
+      "name": "傳送術",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/map-color-r1/normal-r2/7/frame.png",
+      "sha256": "3c33cee8ced58f53d2e182dde6dc668ec0b4536e348f0d345b463bdee20dd4dd",
+      "crop": [
+        362,
+        312,
+        982,
+        832
+      ]
+    }
+  ],
+  "overview_sha256": "7ddb91f6e80da08ca0697c4776fd7910f9197de8486a6b6b59314f32b60e9736",
+  "comparison_sha256": "be990a9b637df6258102ae7eb45d0ab93c92dc59e647769dcf05cb1ae3fecee9",
+  "limits": [
+    "Eight normal F4 Engine frames, explicit learned/charges fixture; no new Ebiten GUI or natural learning claim.",
+    "Battle colors pixel-match accepted r2 baseline. Original rules, input, save, core and assets unchanged.",
+    "Prior snapshot/continuous limitations remain; this update changes map appearance only."
+  ]
+}

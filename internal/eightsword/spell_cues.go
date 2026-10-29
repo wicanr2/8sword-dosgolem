@@ -152,13 +152,14 @@ func (p *sourceAdapter) composeSpellCues(base *image.RGBA) *image.RGBA {
 		return base
 	}
 	o := p.e.Oracle
-	if o.VideoMode() != 0x0e || o.Cycles() < v.start || o.Cycles()-v.start >= 1800000 {
+	duration := spellCueDuration(v.Kind)
+	if o.VideoMode() != 0x0e || o.Cycles() < v.start || o.Cycles()-v.start >= duration {
 		v.Active = false
 		v.Completed++
 		v.cached = nil
 		return base
 	}
-	sample := int((o.Cycles() - v.start) * 120 / 1800000)
+	sample := int((o.Cycles() - v.start) * 120 / duration)
 	if v.cached != nil && v.cachedBase == base && v.sample == sample {
 		return v.cached
 	}
@@ -167,12 +168,49 @@ func (p *sourceAdapter) composeSpellCues(base *image.RGBA) *image.RGBA {
 		return base
 	}
 	pixels := p.cachedScene.Pixels[p.cachedScene.Start : p.cachedScene.Start+128000]
-	out := compositeSpellCue(base, layer, pixels)
+	var actors map[uint16]*graphicMaterial
+	if v.Kind < 8 {
+		actors = p.graphicsAssets().Actors
+		if actors == nil {
+			actors = map[uint16]*graphicMaterial{}
+		}
+	}
+	out := compositeMaterialSpellCue(base, layer, pixels, actors)
 	v.Frames++
 	v.cachedBase, v.cached, v.sample = base, out, sample
 	return out
 }
 func compositeSpellCue(base, layer *image.RGBA, pixels []ownedPixel) *image.RGBA {
+	return compositeProtectedSpellCue(base, layer, pixels, false)
+}
+func spellCueDuration(kind int) uint64 {
+	if kind >= 0 && kind < 8 {
+		return 3600000
+	}
+	return 1800000
+}
+func compositeProtectedSpellCue(base, layer *image.RGBA, pixels []ownedPixel, actors bool) *image.RGBA {
+	if !actors {
+		return compositeMaterialSpellCue(base, layer, pixels, nil)
+	}
+	// Test/fallback path: unavailable materials conservatively protect cells.
+	return compositeMaterialSpellCue(base, layer, pixels, map[uint16]*graphicMaterial{})
+}
+func spellCueActorProtected(pixel ownedPixel, x, y int, actors map[uint16]*graphicMaterial) bool {
+	if actors == nil || pixel.Actor.ID == 0 {
+		return false
+	}
+	m := actors[pixel.Actor.ID]
+	if m == nil || m.Tile == nil || m.NativeWidth <= 0 || m.NativeHeight <= 0 || pixel.Actor.Local >= uint32(m.NativeWidth*m.NativeHeight) {
+		return true
+	}
+	sx, sy := int(pixel.Actor.Local)%m.NativeWidth*3+x%3, int(pixel.Actor.Local)/m.NativeWidth*6+y%6
+	if !image.Pt(sx, sy).In(m.Tile.Bounds()) {
+		return true
+	}
+	return m.Tile.Pix[m.Tile.PixOffset(sx, sy)+3] != 0
+}
+func compositeMaterialSpellCue(base, layer *image.RGBA, pixels []ownedPixel, actors map[uint16]*graphicMaterial) *image.RGBA {
 	if base == nil || base.Bounds() != image.Rect(0, 0, 1920, 1200) || layer == nil || len(pixels) != 128000 {
 		return base
 	}
@@ -181,7 +219,8 @@ func compositeSpellCue(base, layer *image.RGBA, pixels []ownedPixel) *image.RGBA
 	clip := layer.Bounds().Intersect(image.Rect(12, 12, 1344, 1140))
 	for y := clip.Min.Y; y < clip.Max.Y; y++ {
 		for x := clip.Min.X; x < clip.Max.X; x++ {
-			if pixels[y/6*640+x/3].Text.ID != 0 {
+			pixel := pixels[y/6*640+x/3]
+			if pixel.Text.ID != 0 || spellCueActorProtected(pixel, x, y, actors) {
 				continue
 			}
 			at := layer.PixOffset(x, y)

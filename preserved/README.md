@@ -1,6 +1,15 @@
 # 必要資料永久保存
 
 
+## 地圖法術彩光保存
+
+[r2逐檔清單](map-spell-color-r2.json)保存1412檔／427物件，壓縮118789232 bytes。完整八術PNG、舊版同底圖重播、原始RGBA、文字／HD保護遮罩、Actor.ID／Local格與人物Tile、候選七程式都在本機 `preserved/map-spell-color-r2/`，不依賴workplace。相同物件與r1用硬連結共用壓縮檔以節省空間；刪除任一目錄不會刪除另一份連結的內容。[核對](map-spell-color-audit-r2.json)、[保存收據](map-spell-color-preservation-r2.json)、[脫離workplace核對](map-spell-color-verification-r2.json)、[提升](map-spell-color-promotion-r2.json)與[收尾](map-spell-color-integrity-r2.json)是本組入口。
+
+[r1索引](map-spell-color-r1.json)及[保存收據](map-spell-color-preservation-r1.json)只記錄整格Actor避讓造成方形缺口的未提升稿，不能作定稿。r2包含拒絕稿歷史，現行Git文件不由舊READY快照覆蓋。原版控制與923核心／525素材依賴沿[剩餘十術保存](remaining-spells-r1.json)，目前Pillow核對 helper另沿本輪Git保存的[獨立合成器](../tools/audit-remaining-presentation.py)，支援原生與完整HD遮罩兩種長度。
+
+[工具](../tools/map-spell-color.py)在Pillow11.3.0容器用 `verify --archive <唯讀preserved> --out <新JSON>`，不掛workplace即可逐SHA／長度核對。大圖、RAM與程式不入Git，Git保存工具／規格／縮小圖及索引。沒有新增AI美術，1040原圖保持。
+
+
 ## 剩餘十術 Go 光效保存
 
 [逐檔清單](remaining-spells-r1.json)保存2161檔／602個去重物件，壓縮195905478 bytes。完整地圖／凝滯／複製PNG、底圖、預乘RGBA、文字遮罩、原版快照、原版探針、候選及七程式均在本機 `preserved/remaining-spells-r1/`，不依賴workplace。[正式核對](remaining-spells-audit-r1.json)、[畫面獨立重建](remaining-spells-presentation-r1.json)與[研究核對](remaining-spells-research-r1.json)記錄範圍；[保存收據](remaining-spells-preservation-r1.json)、[脫離workplace核對](remaining-spells-verification-r1.json)、[提升](remaining-spells-promotion-r1.json)及[收尾](remaining-spells-integrity-r1.json)為交接入口。

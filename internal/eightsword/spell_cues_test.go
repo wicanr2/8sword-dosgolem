@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/wicanr2/dosgolem/oracle"
+	"image"
 	"image/png"
 	"os"
 	"path/filepath"
@@ -49,6 +50,99 @@ func TestSpellCueRendering(t *testing.T) {
 	}
 	if !bytes.Equal(base.Pix, before) || drawSpellCue(-1, .5, [2]int{}) != nil || drawSpellCue(0, 1, [2]int{}) != nil {
 		t.Fatal("invalid/pure")
+	}
+}
+
+func TestSpellCueMapProtectionAndBattleBaseline(t *testing.T) {
+	_, project, _ := vfxRuntimePaths(t)
+	base, pixels := quakeTestBase()
+	for y := 70; y < 115; y++ {
+		for x := 210; x < 240; x++ {
+			pixels[y*640+x].Actor.ID = 1
+		}
+	}
+	for kind := 0; kind < 8; kind++ {
+		out := compositeProtectedSpellCue(base, drawSpellCue(kind, .35, [2]int{224, 92}), pixels, true)
+		for y := 70 * 6; y < 115*6; y++ {
+			for x := 210 * 3; x < 240*3; x++ {
+				at := base.PixOffset(x, y)
+				if !bytes.Equal(base.Pix[at:at+4], out.Pix[at:at+4]) {
+					t.Fatal("map cue covered actor", kind, x, y)
+				}
+			}
+		}
+	}
+	base, pixels = quakeTestBase()
+	for _, kind := range []int{8, 9} {
+		f, err := os.Open(filepath.Join(project, "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/draw-r1", fmt.Sprintf("cue-%02d.png", kind)))
+		if err != nil {
+			t.Fatal(err)
+		}
+		prior, err := png.Decode(f)
+		f.Close()
+		if err != nil {
+			t.Fatal(err)
+		}
+		out := compositeSpellCue(base, drawSpellCue(kind, .35, [2]int{224, 92}), pixels)
+		for y := 0; y < 1200; y++ {
+			for x := 0; x < 1920; x++ {
+				r, g, b, a := prior.At(x, y).RGBA()
+				at := out.PixOffset(x, y)
+				if !bytes.Equal(out.Pix[at:at+4], []byte{byte(r >> 8), byte(g >> 8), byte(b >> 8), byte(a >> 8)}) {
+					t.Fatal("battle cue changed", kind, x, y)
+				}
+			}
+		}
+	}
+}
+
+func TestSpellCueMapVisibilityWindow(t *testing.T) {
+	root, project, _ := vfxRuntimePaths(t)
+	e, err := Open(Options{Root: root, Saves: t.TempDir()})
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer e.Close()
+	if err = e.Oracle.LoadStateFile(filepath.Join(project, "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/remaining-r1/original-map-r8/map-3/entry.state")); err != nil {
+		t.Fatal(err)
+	}
+	base, pixels := quakeTestBase()
+	p := &sourceAdapter{e: e, cachedScene: &ownedScene{Pixels: pixels}}
+	e.spellCues = &spellCues{}
+	e.spellCues.activate(e.Oracle, 0, [2]int{224, 92}, 1, 0)
+	if err = e.Oracle.RunCycles(2100000); err != nil {
+		t.Fatal(err)
+	}
+	if p.composeSpellCues(base) == base || !e.spellCues.Active {
+		t.Fatal("map cue disappeared at old cutoff")
+	}
+	if err = e.Oracle.RunCycles(1800000); err != nil {
+		t.Fatal(err)
+	}
+	if p.composeSpellCues(base) != base || e.spellCues.Active || e.spellCues.Completed != 1 {
+		t.Fatal("map cue did not restore base")
+	}
+}
+
+func TestSpellCueActorAlpha(t *testing.T) {
+	base, pixels := quakeTestBase()
+	pixels[92*640+224].Actor.ID = 1
+	tile := image.NewRGBA(image.Rect(0, 0, 3, 6))
+	tile.Pix[tile.PixOffset(1, 2)+3] = 255
+	actors := map[uint16]*graphicMaterial{1: {NativeWidth: 1, NativeHeight: 1, Tile: tile}}
+	layer := image.NewRGBA(image.Rect(672, 552, 675, 558))
+	for at := 0; at < len(layer.Pix); at += 4 {
+		copy(layer.Pix[at:at+4], []byte{200, 0, 100, 200})
+	}
+	out := compositeMaterialSpellCue(base, layer, pixels, actors)
+	ink := base.PixOffset(673, 554)
+	clear := base.PixOffset(672, 552)
+	if !bytes.Equal(out.Pix[ink:ink+4], base.Pix[ink:ink+4]) || bytes.Equal(out.Pix[clear:clear+4], base.Pix[clear:clear+4]) {
+		t.Fatal("actor alpha became a rectangular exclusion")
+	}
+	fallback := compositeMaterialSpellCue(base, layer, pixels, map[uint16]*graphicMaterial{})
+	if !bytes.Equal(fallback.Pix[clear:clear+4], base.Pix[clear:clear+4]) {
+		t.Fatal("missing actor material lost native protection")
 	}
 }
 

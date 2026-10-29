@@ -848,3 +848,29 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 [十術總覽](../images/remaining-spell-cues-r1.png)只裁切／縮小已驗實際畫面，[來源](../images/remaining-spell-cues-r1.json)逐張記錄SHA與裁切。地圖符環是畫區象徵提示，橋面／原版地形結果保持；不聲稱所有地形分支或自然習得。原版暗殺失敗分支與先前兩稀疏快照限制仍未知，新存讀沿原有B驗收，不重跑逐術GUI。
 
 [研究核對](../../preserved/remaining-spells-research-r1.json)、[正式核對](../../preserved/remaining-spells-audit-r1.json)、[畫面核對](../../preserved/remaining-spells-presentation-r1.json)、[提升](../../preserved/remaining-spells-promotion-r1.json)、[收尾](../../preserved/remaining-spells-integrity-r1.json)與[永久保存](../../preserved/README.md#剩餘十術-go-光效保存)為證據入口。2161檔／602物件壓縮195905478 bytes，已在不掛workplace的容器逐SHA／長度核對後才提升。本組十術已收斂，後續只處理新的玩家阻塞或可選美術微調，不重開同機制逐術逆向。
+
+### 地圖法術彩光可讀性 READY
+
+2026-10-29，使用者指出主角地圖法術不明顯，要求加顏色；沿已授權的同規格美化自主處理，不再逐樣詢問。原薄光環在亮草地上對比不足，這是HD視覺調整，原版入口／bytes／條件／結果沿本節前述十術證據，不重開逆向。
+
+八種地圖術加飽和主色、地面半透明色光、較粗亮邊及不同符號。金赭／金黃／青藍／紫紅／靛藍／暖金／水藍／紫色依序對應原selector0..7。來源文字及人物Actor cell完整保護，狀態欄、海報、工具列不覆蓋。地圖提示由1800000延長至3600000原CPU cycles，在3000 cycles/ms下約1.2秒；只延長呈現，不插入客體等待、鍵盤鎖定或額外CPU指令。戰場凝滯／複製維持1800000與前版逐byte像素。
+
+驗收以同一已保存原版底圖／相同進度比較舊／新，量測改變範圍與人物／文字保護，實際正常F4流程抽樣一個共同機制；八術依既有正常F4研究批次截圖，state／PCM沿同快照原版控制抽驗，原版模式保持。完整PNG、RGBA、遮罩與候選永久保存後才提升，不覆寫前輪圖及收據。工具與新收據在本節補入口。
+
+[彩光準備／核對／保存／提升](../../tools/map-spell-color.py)在固定Pillow11.3.0容器用 `freeze|normal --project <專案>` 建193來源候選及隔離正常F4研究。Go1.24.13／923核心沿前節環境執行TestSpellCue、既有B／地震原版控制；私有副本另跑原TestResearchRemainingMap及[同底圖重播](../../tools/research-map-spell-color_test.go)，設定 EIGHTSWORD_COLOR_OUT 指向 map-color-r1。`audit --project --out <新JSON>` 以實際RGBA／文字與Actor遮罩獨立重建，`overview --project --font <唯讀Noto>` 產生總覽／對照。`archive|promote|integrity --project --archive <preserved> --out <新JSON>` 沿新收據，`verify --archive <唯讀preserved> --out <新JSON>` 可不掛workplace核對，原版控制與舊色光資料依 remaining-spells-r1 永久索引保留。
+
+#### 彩光人物輪廓 READY 勘誤
+
+r1同底圖重播抽看顯示，來源Actor cell涵蓋整個圖像矩形，單用Actor.ID避讓會在光環切出方形缺口；r1雖與當時遮罩運算相同，未通過視覺定稿，不提升。r2改以已載入HD人物Tile的實際alpha逐HD像素避讓，文字仍沿原來源cell；alpha0允許光效穿過背景，alpha>0保留人物。缺少有效HD人物材質時保守保留來源cell。獨立核對改用完整1920×1200保護遮罩，另保存人物材質與來源cell對照的檢查。戰場合成仍維持前版，原版客體／時鐘不改。
+
+[r2人物遮罩匯出](../../tools/research-map-spell-actors_test.go)只加在私有正常F4研究，保存原Actor.ID／Local格、HD人物Tile alpha與完整1920×1200保護遮罩。Pillow另從來源格與PNG alpha逐格重建遮罩，再重建完整Frame，防止用同一錯誤遮罩自行通過。r1候選／總覽已拒絕提升；r2候選為source-candidate-map-color-r2，與正常研究／核對／永久索引各用r2新路徑，舊收據保持。
+
+### 地圖彩光正式提升與限定驗收
+
+2026-10-29限定CONFORMED，提升source-candidate-map-color-r2／193來源七程式。只改spell_cues.go、spell_cues_draw.go及其測試三份來源；八地圖術加飽和主色、半透明地光、粗亮環與不同符號，提示3600000原CPU cycles，原版判定、消耗、輸入及虛擬時鐘不改。戰場仍1800000，凝滯／複製與已接受r2繪圖baseline逐像素相同。
+
+回歸14.620秒通過，含既有B與地震原版控制、十術同快照state／PCM、五入口拒絕、晚於舊截止仍可見／新截止還原、文字／人物alpha與缺材質回退。正常新遊戲／F4八術研究39.856秒，同底圖舊版Go重播3.112秒；Pillow從Actor.ID／Local格及HD PNG alpha獨立重建完整HD保護遮罩，再重建八張完整Frame，均逐像素相同。r1雖符合當時整格模型，視覺方形缺口不接受，未提升；r2照片已抽看無此缺口。
+
+[彩光總覽](../images/map-spell-color-r2.png)、[同底圖同進度的新舊比較](../images/map-spell-color-comparison-r2.png)、[來源](../images/map-spell-color-r2.json)是裁切近景；新版為正常F4 Engine Frame，舊版為同底圖Go重播，不稱原版／HD同一frame。自然習得、新Ebiten GUI與存讀沿既有限制，不另增加完成聲明。
+
+[核對](../../preserved/map-spell-color-audit-r2.json)、[提升](../../preserved/map-spell-color-promotion-r2.json)、[收尾](../../preserved/map-spell-color-integrity-r2.json)及[永久保存](../../preserved/README.md#地圖法術彩光保存)記錄本組。1412檔／427物件壓縮118789232 bytes，完整PNG／預乘RGBA／遮罩／人物Tile／原格／候選已脫離workplace核對後才提升；r1拒絕稿及前版七程式保持，原525素材／923核心／1040圖庫不改。

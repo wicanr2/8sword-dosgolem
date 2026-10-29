@@ -70,9 +70,9 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 
 凝滯、複製及八種地圖術也已接入 Go HD 光效，目前八種玩家戰鬥術與八種地圖術都有呈現。原版判定、取消與使用次數保留，光效提示代表施法操作，不保證原版效果一定成功。
 
-![十術HD光效總覽](docs/images/remaining-spell-cues-r1.png)
+![地圖法術彩光加強](docs/images/map-spell-color-r2.png)
 
-八張 F4 地圖引擎畫面，以及凝滯、複製的實際視窗近景。學習與使用次數為受控條件；完整視窗可看[凝滯術](docs/images/player-freeze-hd-r1.png)、[複製術](docs/images/player-clone-hd-r1.png)，另附[來源](docs/images/remaining-spell-cues-r1.json)及[驗收範圍](docs/spec/030-battle-expansion-proposal.md#剩餘十術正式接入與限定驗收)。
+八種地圖法術已加強各自的顏色、地面光暈與粗光環，提示約 1.2 秒，人物與文字保留原色。可看[同底圖新舊對照](docs/images/map-spell-color-comparison-r2.png)、[畫面來源](docs/images/map-spell-color-r2.json)及[限定驗收](docs/spec/030-battle-expansion-proposal.md#地圖彩光正式提升與限定驗收)。這些是正常 F4 引擎畫面，學習與次數為受控條件；戰場既有的[凝滯術](docs/images/player-freeze-hd-r1.png)、[複製術](docs/images/player-clone-hd-r1.png)視窗演出保持。
 
 | 面向 | 目前狀態 |
 |---|---|
