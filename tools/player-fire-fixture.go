@@ -34,6 +34,9 @@ func (e *Engine) ResearchVFXTick() error {
 	if os.Getenv("EIGHTSWORD_PLAYER_GUI_SPELL") == "quake" {
 		spell = 7
 	}
+	if os.Getenv("EIGHTSWORD_PLAYER_GUI_SPELL") == "clone" {
+		spell = 6
+	}
 	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x19ac}, func(o *oracle.Oracle) {
 		if researchVFX.changed {
 			return
@@ -150,7 +153,18 @@ func (e *Engine) ResearchVFXTick() error {
 		for len(pending) > 0 {
 			at := pending[0]
 			pending = pending[1:]
-			if at.node >= 1 && at.node <= 6 {
+			if spell == 6 && at.node >= 7 && at.node <= 12 {
+				id := word(0x6fa8 + uint16(at.node)*2)
+				if id < 6 && word(0x56ea+id*4) > 0 {
+					for _, key := range at.keys {
+						o.PressKey(key)
+						return
+					}
+					o.PressKey(oracle.KeyEnter)
+					return
+				}
+			}
+			if spell != 6 && at.node >= 1 && at.node <= 6 {
 				id := word(0x6fc0 + uint16(at.node)*2)
 				kind := word(0x5700 + id*4)
 				if id < 6 && word(0x5702+id*4) > 0 && (spell != 2 || (kind >= 6 && kind <= 15)) {

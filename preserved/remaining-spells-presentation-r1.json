@@ -1,0 +1,96 @@
+{
+  "status": "passed-independent-remaining-presentation",
+  "normal_map_frames": 8,
+  "actual_window_draws": 4,
+  "clone_original_updates": 21,
+  "frames": [
+    {
+      "kind": 0,
+      "method": "normal F4 Engine Frame, resources fixture",
+      "frame_sha256": "c58f6b78d71f8c942f9acb1c1e9802677ec9c24aa4afbc6c6be356dcd3c71625",
+      "step": 19722707,
+      "sample": 25
+    },
+    {
+      "kind": 1,
+      "method": "normal F4 Engine Frame, resources fixture",
+      "frame_sha256": "2845beb1f8a9f4d5f49e40751f2ba8b6d02b6e7496d7933aa6f2f0c23d3ec47b",
+      "step": 23213486,
+      "sample": 25
+    },
+    {
+      "kind": 2,
+      "method": "normal F4 Engine Frame, resources fixture",
+      "frame_sha256": "47ac9d51916aa2818345f6c05bb77723e9ddb4a6a7103ccf59b26c2c5958ce2f",
+      "step": 26702986,
+      "sample": 25
+    },
+    {
+      "kind": 3,
+      "method": "normal F4 Engine Frame, resources fixture",
+      "frame_sha256": "c4244bededffb20802ea45f6482bc2b82bdb34ca994aaba9b891200da05ccbc2",
+      "step": 30066151,
+      "sample": 25
+    },
+    {
+      "kind": 4,
+      "method": "normal F4 Engine Frame, resources fixture",
+      "frame_sha256": "0b09af89c5c7282ab520952b3cf669cf48eb00b35ea5ff80b4ba708aadc8cb76",
+      "step": 33429108,
+      "sample": 25
+    },
+    {
+      "kind": 5,
+      "method": "normal F4 Engine Frame, resources fixture",
+      "frame_sha256": "205260160c99a080c8f10c9d910039b5a8d734d908376f3e6ad71c120d74de7e",
+      "step": 39951399,
+      "sample": 25
+    },
+    {
+      "kind": 6,
+      "method": "normal F4 Engine Frame, resources fixture",
+      "frame_sha256": "04cfcde5f56bafe3f13eeb68f87478f1f155d613666d98b9c40ea079583a699a",
+      "step": 43273808,
+      "sample": 25
+    },
+    {
+      "kind": 7,
+      "method": "normal F4 Engine Frame, resources fixture",
+      "frame_sha256": "919798323022263e061b8c58152eb337befd8de29422e9dc10131d02e227b117",
+      "step": 47502918,
+      "sample": 24
+    },
+    {
+      "kind": 9,
+      "phase": "cue-early",
+      "method": "actual Ebiten Draw, resources fixture",
+      "draw": 392,
+      "frame_sha256": "547933a3f604eaf9db99f0c605260fa2fc5e2251884f46c468d797e94d9dc62f"
+    },
+    {
+      "kind": 9,
+      "phase": "cue-late",
+      "method": "actual Ebiten Draw, resources fixture",
+      "draw": 394,
+      "frame_sha256": "205d714c562c54eb31d6b02208f81d83caa1612013eb47405c90015ab34ea4df"
+    },
+    {
+      "kind": 8,
+      "phase": "cue-early",
+      "method": "actual Ebiten Draw, resources fixture",
+      "draw": 859,
+      "frame_sha256": "34601798ee9363e24fd2c4640c0a22762eea908d3b879c1d4b31d148218d30c6"
+    },
+    {
+      "kind": 8,
+      "phase": "cue-late",
+      "method": "actual Ebiten Draw, resources fixture",
+      "draw": 863,
+      "frame_sha256": "f1c444ecfdd407935fec5b472dd872d05ae911e92aace206eb7d544b356f6d41"
+    }
+  ],
+  "limits": [
+    "Freeze and clone GUI are representative controlled original-menu casts.",
+    "Resource/learning fixtures; not natural acquisition. No new save/load claim."
+  ]
+}

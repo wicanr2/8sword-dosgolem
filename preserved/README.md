@@ -1,5 +1,12 @@
 # 必要資料永久保存
 
+
+## 剩餘十術 Go 光效保存
+
+[逐檔清單](remaining-spells-r1.json)保存2161檔／602個去重物件，壓縮195905478 bytes。完整地圖／凝滯／複製PNG、底圖、預乘RGBA、文字遮罩、原版快照、原版探針、候選及七程式均在本機 `preserved/remaining-spells-r1/`，不依賴workplace。[正式核對](remaining-spells-audit-r1.json)、[畫面獨立重建](remaining-spells-presentation-r1.json)與[研究核對](remaining-spells-research-r1.json)記錄範圍；[保存收據](remaining-spells-preservation-r1.json)、[脫離workplace核對](remaining-spells-verification-r1.json)、[提升](remaining-spells-promotion-r1.json)及[收尾](remaining-spells-integrity-r1.json)為交接入口。
+
+[保存工具](../tools/finalize-remaining-spells.py)在固定Pillow11.3.0容器用 `verify --archive <唯讀preserved> --out <新JSON>`，只掛preserved與tools即可逐SHA／長度核對。需要還原時，依清單的path從相應SHA物件解gzip並驗證，不覆寫現行Git文件；歷史快照保留READY階段。原版／923核心／模組依賴沿[player-quake-r1.json](player-quake-r1.json)及較早catalog；1040定稿圖沿永久artwork。新光效由Go生成，沒有新增AI美術或素材包。完整原版資料、RAM、程式與大圖維持本機權利分類，Git只記索引、工具及縮小成果。
+
 ## 地震Go畫布接入保存
 
 [030限定驗收](../docs/spec/030-battle-expansion-proposal.md#地震go畫布正式接入與限定驗收)已提升source-candidate-player-quake-r4／190來源七程式。原版三組研究、十三效果控制共十六效果、二十四入口拒絕及兩張實際Draw獨立重建通過；r68全525素材、923核心、前版七程式及1040圖庫保持。[研究r3](player-quake-research-r3.json)、[正式核對](player-quake-audit-r1.json)、[提升](player-quake-promotion-r1.json)與[收尾核對](player-quake-integrity-r1.json)分開記錄。

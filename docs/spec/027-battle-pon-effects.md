@@ -91,3 +91,5 @@
 `PON-PLAYER-TARGET-SPELLS-SAMPLED`：[暗殺／滅半原版研究](../../preserved/player-target-spells-research-r1.json)已驗法術3／5同sub_219CC／runtime0F67:074A。暗殺預定兩門檻的原餘數均4，成功；滅半10→4、11→5，各四來源／12PON，兩Esc無效果。不把這些觀測稱為暗殺失敗分支或自然習得；其餘法術4／6／7及八地圖效果保持開放。接入沿[030 READY](030-battle-expansion-proposal.md#暗殺術與滅半術b接入ready契約)。
 
 `PON-PLAYER-QUAKE-SAMPLED`：[地震原版核對](../../preserved/player-quake-research-r2.json)確認動畫producer為IDA MZ loader原名sub_1E8A4／0x1E8A4的法術7分支，50輪五相、250PON與250port提交；sub_21BD2只是後續逐隊結算，不套sub_219CC的四姿態／12PON模型。mixed沿原連續，sparse另保留同快照無掛點續跑限制。Go位移接入沿[030 READY](030-battle-expansion-proposal.md#地震go畫布位移ready契約)，凝滯／複製及八地圖效果仍開放。
+
+`PON-PLAYER-REMAINING-SAMPLED`：後續030已確認 sub_1E8A4 的凝滯4為直接欄位更新，複製6為逐數重繪，均不走sub_219CC四姿態／12PON。`MAP-PLAYER-SPELLS-SAMPLED`：sub_168CE 的八分支已由正常F4選單樣本觀察，統一扣次點可接Go提示；提示不代表造橋／傳送等原版結果一定成功。證據及限制見[030剩餘十術](030-battle-expansion-proposal.md#剩餘十術-ready-契約)，舊PON原型不能當全法術演出。

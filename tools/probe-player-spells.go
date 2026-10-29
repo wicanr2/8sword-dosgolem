@@ -57,7 +57,7 @@ func main() {
 	chanceStat := flag.Int("chance-stat", -1, "explicit DS:26AE fixture, -1 unchanged or 0..4")
 	cancelTarget := flag.Bool("cancel-target", false, "cancel original target menu with Escape")
 	flag.Parse()
-	if *root == "" || *snapshot == "" || *out == "" || *spell < 0 || (*spell > 3 && *spell != 5 && *spell != 7) || (*fixture != "mixed" && *fixture != "sparse" && *fixture != "no-ghost" && *fixture != "odd") || (*chanceStat < -1 || *chanceStat > 4) || (*targetKind != "any" && *targetKind != "ghost" && *targetKind != "ordinary") {
+	if *root == "" || *snapshot == "" || *out == "" || *spell < 0 || *spell > 7 || (*fixture != "mixed" && *fixture != "sparse" && *fixture != "no-ghost" && *fixture != "odd") || (*chanceStat < -1 || *chanceStat > 4) || (*targetKind != "any" && *targetKind != "ghost" && *targetKind != "ordinary") {
 		panic("missing inputs")
 	}
 	if _, e := os.Stat(*out); !os.IsNotExist(e) {
@@ -119,7 +119,7 @@ func main() {
 		var retCS, retIP, retSS, retSP uint16
 		var bitmap map[string]any
 		effectCount := 0
-		targets := map[uint16]string{0x19ac: "player-turn", 0x122: "spell-menu", 0x31e: "consume-charge", 0x334: "player-spell", 0x345c: "player-effect", 0x283e: "target-selection", 0x36c6: "enemy-effect", 0x960: "player-quake", 0x3662: "quake-damage"}
+		targets := map[uint16]string{0x19ac: "player-turn", 0x122: "spell-menu", 0x31e: "consume-charge", 0x334: "player-spell", 0x345c: "player-effect", 0x283e: "target-selection", 0x36c6: "enemy-effect", 0x960: "player-quake", 0x3662: "quake-damage", 0x752: "player-freeze", 0x906: "player-clone"}
 		capture := func(name string) {
 			if !observe {
 				return
@@ -132,7 +132,7 @@ func main() {
 			bp := c.R[cpu.BP]
 			v := map[string]any{"name": name, "step": m.Steps, "cycles": m.CPU.Cycles, "cs": c.Seg[cpu.CS], "ip": c.IP, "registers": c.R, "segments": c.Seg, "stack": words(c.Seg[cpu.SS], sp, 10), "bp_minus_4": m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(bp-4)), "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "enemy_map": words(0x1e88, 0x6fc2, 6), "player_positions": words(0x1e88, 0x703c, 6), "enemy_positions": words(0x1e88, 0x701e, 6), "chance_stat": word(0x26ae)}
 			events = append(events, v)
-			if name == "spell-menu" || name == "player-spell" || name == "player-effect" || name == "player-spell:return" || name == "player-quake" {
+			if name == "spell-menu" || name == "player-spell" || name == "player-effect" || name == "player-spell:return" || name == "player-quake" || name == "player-freeze" || name == "player-clone" && effectCount == 0 {
 				file := name
 				if name == "player-effect" {
 					effectCount++
@@ -162,7 +162,18 @@ func main() {
 			for len(pending) > 0 {
 				at := pending[0]
 				pending = pending[1:]
-				if at.node >= 1 && at.node <= 6 {
+				if *spell == 6 && at.node >= 7 && at.node <= 12 {
+					id := word(0x6fa8 + uint16(at.node)*2)
+					if id < 6 && word(0x56ea+id*4) > 0 {
+						for _, scan := range at.keys {
+							queue(scan, "original route to live friendly")
+							return
+						}
+						queue(0x1c, "confirm live friendly with Enter")
+						return
+					}
+				}
+				if *spell != 6 && at.node >= 1 && at.node <= 6 {
 					id := word(0x6fc0 + uint16(at.node)*2)
 					kind := word(0x5700 + id*4)
 					eligible := *targetKind == "any" || (*targetKind == "ghost" && kind >= 6 && kind <= 15) || (*targetKind == "ordinary" && (kind < 6 || kind > 15))

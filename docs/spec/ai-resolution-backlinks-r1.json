@@ -65,7 +65,32 @@
       "not_closed": [
         "Selectors4/6, eight map effects and natural learning.",
         "Sparse snapshot/continuous equivalence remains unknown."
+      ],
+      "supplemental_resolutions": [
+        {
+          "level": "proven-in-sampled-scope",
+          "evidence": "docs/spec/030-battle-expansion-proposal.md",
+          "older_spec": "docs/spec/027-battle-pon-effects.md",
+          "required_correction": "PON-PLAYER-REMAINING-SAMPLED",
+          "receipt": "preserved/remaining-spells-research-r1.json",
+          "scope": "Selectors4/6 use immediate flag writes / incremental friendly redraw, not sub_219CC fireball.",
+          "not_closed": "Natural learning, full gameplay semantics, prior snapshot/continuous limits."
+        }
       ]
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x168CE",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x168CE",
+      "original_name": "sub_168CE",
+      "level": "proven-in-sampled-scope",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/027-battle-pon-effects.md",
+      "required_correction": "MAP-PLAYER-SPELLS-SAMPLED",
+      "receipt": "preserved/remaining-spells-research-r1.json",
+      "scope": "Eight original F4 cursor dispatches return and consume one use; Go cues do not infer success.",
+      "not_closed": "Natural learning, all terrain outcomes, snapshot/continuous equivalence of five map samples."
     }
   ],
   "resolutions": [

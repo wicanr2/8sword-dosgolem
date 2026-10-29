@@ -1,0 +1,19 @@
+{
+  "status": "passed-remaining-ten-spells-integrity",
+  "source_count": 193,
+  "programs": 7,
+  "core_unchanged": 923,
+  "assets_unchanged": 525,
+  "artwork_unchanged": 1040,
+  "permanent_files": 2161,
+  "permanent_objects": 602,
+  "markdown_links": 2573,
+  "root_owned_outputs": 0,
+  "workspace_go_cache_files": 0,
+  "limits": [
+    "Ten new presentation cues; original outcomes/charges/RNG/timing/save and original mode unchanged.",
+    "All ten use paired same-snapshot native controls; five match prior continuous references, five map snapshot/continuous equivalences remain unknown. Prior thunder/quake sparse limitations remain.",
+    "Resources/learned fixtures, not natural acquisition. Original bridge rejection/teleport cancellation may still consume a charge. Cue means dispatch, not success.",
+    "No new save/load, balance, core repair or all-game fidelity claim."
+  ]
+}

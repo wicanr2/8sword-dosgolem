@@ -79,6 +79,7 @@ func (p *sourceAdapter) bindBattleVFX() {
 	playerAt := 0xe57*16 + 0x345c
 	v.playerBody = append([]byte(nil), code[playerAt:playerAt+518]...)
 	e.battleVFX = v
+	p.bindSpellCues(code, load)
 	p.bindBattleQuake(v, code)
 	p.onCall(oracle.Addr{Seg: v.code, Off: 0x36c6}, func(*oracle.Oracle) {
 		if e.battleVFX != nil {

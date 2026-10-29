@@ -108,7 +108,7 @@ func (e *Engine) newSourcePAM() (func(), func() *image.RGBA, func()) {
 		// a held panel, without depending on legacy RGB composition side effects.
 		e.Tracker.visibleSources = p.cachedSources
 		e.Tracker.VisibleScene = visibleScene(p.cachedSources)
-		return p.composeBattleVFX(p.cached)
+		return p.composeSpellCues(p.composeBattleVFX(p.cached))
 	}
 	return install, frame, func() {
 		if p.unsubscribe != nil {

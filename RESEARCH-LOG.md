@@ -2432,3 +2432,11 @@ Go接入後mixed同原連續；sparse由branch快照續跑的最終state不同�
 實際r3 GUI在115相取消後，從其實際低位移快照以原版Oracle、只讀PC觀測續跑，捕獲一次phase4重通知，PON數、SS／BP／SP、port和值同前一筆，沒有新PON。core923的oracle/run.go在Machine.Step前呼叫OnCall；Machine.Step可先處理中斷或回呼，原IP因而重訪。重通知已證實，具體中斷種類不深挖；這是新控制器需冪等的契約，不當作核心已修復。[研究r3](preserved/player-quake-research-r3.json)保存原始事件與工具。
 
 r4以已提交PON及合法context去重，錯phase仍取消。原版兩控制刻意重送通知後完整state同各自參考，實際新GUI也處理一次並完成250相。Go只對來源畫布列搬移，數值6／18／12／6／0是HD視覺映射，不宣稱原版CRTC硬體逐像素等價。兩張實際Draw同Pillow獨立重建，[030限定驗收](docs/spec/030-battle-expansion-proposal.md#地震go畫布正式接入與限定驗收)與[永久證據](preserved/README.md#地震go畫布接入保存)為入口。
+
+## 2026-10-29：剩餘十術的原版入口與Go提示
+
+輸入PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；IDA9.4匯出 SHA `d3b3b40dc9e4129dd21ef00e895da73edc457e6c172b07402199ec72ce5bf63d`，Go1.24.13／Pillow11.3.0。IDA採MZ loader linear base10000h，2201行原bytes由原MZ重定位獨立核對。執行期另採原載入0110h，不將兩者並列成同地址。sub_1E8A4 的凝滯IDA1ECC2h／0F67:0752直接更新欄位，複製IDA1EE76h／0F67:0906逐數重繪，控制／觀測完整state同值，沒有sub_219CC飛焰。sub_168CE／0110:68CE八分支沿原F4選單完成，68F0統一扣次前是Go cue入口，110 bytes／caller6896／selector／學習／次數及DS／SS守門。
+
+已證實的是來源／caller／原流程與本組限定Go光效接入；凝滯數值欄位完整玩法語意、全部地形結果及自然習得不因術名推定。新十術同快照原版控制與Go完整state／PCM一致，五案另同連續參考、五地圖案未同，保持原版oracle未知且不阻塞呈現；先前兩稀疏限制保留。光效採HD美化的1800000 CPU cycles提示時長，Go計算預乘符環並保護來源文字，不重製或解譯x86像素迴圈。原版條件拒絕仍由原版處理，cue不代表成功。
+
+原版F3是檢閱軍隊，F4才用法術；sub_1844C只接受Enter／Esc，鳥瞰先畫5600格再查鍵盤。這些輸入／觀測問題已按原bytes與PC修正研究腳本，不改遊戲。PNG會將Go預乘RGBA轉為直通alpha，獨立核對因此另保存原始RGBA，不從PNG假設原byte值。八份正常F4 Engine Frame及四份實際Draw獨立重建均同；[030限定驗收](docs/spec/030-battle-expansion-proposal.md#剩餘十術正式接入與限定驗收)與[永久保存](preserved/README.md#剩餘十術-go-光效保存)記錄停止線，無新核心修復／自然習得／新存讀／全遊戲完成聲明。

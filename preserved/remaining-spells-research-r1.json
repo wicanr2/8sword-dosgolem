@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "status": "passed-remaining-ten-spell-research",
+  "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_export_sha256": "d3b3b40dc9e4129dd21ef00e895da73edc457e6c172b07402199ec72ce5bf63d",
+  "ida_tool": "IDA 9.4",
+  "ida_lines_verified": 2201,
+  "cases": [
+    {
+      "name": "freeze",
+      "selector": 4,
+      "events": 1,
+      "state_equal": true,
+      "final_sha256": "9e93c65132eaafae947e43c7d2d4fcee99b99650dd74eff66611d91b3b920a1a"
+    },
+    {
+      "name": "clone",
+      "selector": 6,
+      "events": 21,
+      "state_equal": true,
+      "final_sha256": "6df5ebf086947bfd465bda34bbd54e5ccaf50df09a9b0907e64ffd674d183f27"
+    },
+    {
+      "name": "map-0",
+      "selector": 0,
+      "dispatch": true,
+      "returned": true,
+      "final_sha256": "919b940379379f3d955932c269dfed9cf54a286c6bd3e725d2e7e8a19cc984cb"
+    },
+    {
+      "name": "map-1",
+      "selector": 1,
+      "dispatch": true,
+      "returned": true,
+      "final_sha256": "d5c4bf41ac355f0ecff3dd96b3aaf04ee3059f31afd124e703897cd60e356f40"
+    },
+    {
+      "name": "map-2",
+      "selector": 2,
+      "dispatch": true,
+      "returned": true,
+      "final_sha256": "249c0493eaead7d52a8956d6a55d2acc32a6cb3c2b5d7669507caba14e70b2ca"
+    },
+    {
+      "name": "map-3",
+      "selector": 3,
+      "dispatch": true,
+      "returned": true,
+      "final_sha256": "1f992b697d5f756d8276fa24e889ffb96b42f88a14132bafcc51d1e69ee165cb"
+    },
+    {
+      "name": "map-4",
+      "selector": 4,
+      "dispatch": true,
+      "returned": true,
+      "final_sha256": "557bce8d7aed328f4cdf30b34a26194f8ef22f45888409e2ff3710c7459f9ffe"
+    },
+    {
+      "name": "map-5",
+      "selector": 5,
+      "dispatch": true,
+      "returned": true,
+      "final_sha256": "f68934e8ebe779fbd57ea09ec6bdeafd8c7ff419e77457e9b94d5275efda0a5e"
+    },
+    {
+      "name": "map-6",
+      "selector": 6,
+      "dispatch": true,
+      "returned": true,
+      "final_sha256": "b5f2ca68803d596fcb2e62837d5d6a0e9a4dd6b3878ce82955a0bd65f8e0de06"
+    },
+    {
+      "name": "map-7",
+      "selector": 7,
+      "dispatch": true,
+      "returned": true,
+      "final_sha256": "5fe525da0274399c134c3a4803aee0a5f7c064dbe02d482601036512f56364e0"
+    }
+  ],
+  "limits": [
+    "Explicit learned/resources and original cursor input; no natural learning claim.",
+    "Map bridge current terrain may reject change; visual cue means accepted dispatch only.",
+    "Map original control/HD same-snapshot comparison is a separate implementation gate."
+  ]
+}

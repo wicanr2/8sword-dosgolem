@@ -1,0 +1,17 @@
+{
+  "status": "promoted-remaining-ten-spells",
+  "source_count": 193,
+  "programs": {
+    "8sword": "6f060d891347230b2d7e8ecfc7274983354504db3c1e3ab5153ab7bdbab0e357",
+    "8sword-replay": "3b2721f29de50892c8b583d0882f0778608d189ff2e8fe56a31bd050cf253057",
+    "gui-check": "6a4be37534bc9ed178bb7908cae07276cc4a709a27d418835c70cfcc76e22343",
+    "music-check": "c3680aa9cec256d9c01cfbb969beb9ede493c49a08551773028a1ef3cd01eb37",
+    "heroine-check": "c98979f7cf78b7b48ac25f518b0145b5a1840a8dcd5606f9354cb580f1166edf",
+    "museum-check": "4753039327e9003d988bcb83dbd34a3a070dd672cd2f4e470b0c2a644b601699",
+    "story-prelude-check": "95a24f180b3c769ff12a3d675149b2ccae7ddabd60141e3ea61e70d4c3711f15"
+  },
+  "audit_sha256": "1ac3455deb45787f0070e6d92504dd13883daa45789564cc30df23279bf96d03",
+  "previous_preserved": true,
+  "assets_unchanged": 525,
+  "core_unchanged": 923
+}

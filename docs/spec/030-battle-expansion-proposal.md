@@ -816,3 +816,35 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 [原版與介面核對](../../preserved/player-quake-research-r3.json)、[正式核對](../../preserved/player-quake-audit-r1.json)、[提升](../../preserved/player-quake-promotion-r1.json)、[永久保存](../../preserved/README.md#地震go畫布接入保存)及[收尾](../../preserved/player-quake-integrity-r1.json)為入口。新增定位鍵為原名sub_1E8A4／IDA MZ loader0x1E8A4，027以`PON-PLAYER-QUAKE-SAMPLED`回填；sub_21BD2僅結算，不誤當飛焰sub_219CC。
 
 原版模式不安裝HD控制，存檔及規則格式保持，正常存讀沿既有B驗收。自然習得、暗殺動態失敗與兩稀疏快照的連續等價性未外推；凝滯、複製與八地圖術效果待處理，可選美術微調不阻塞本項。
+
+## 剩餘十術批次 Go 光效
+
+2026-10-29 DRAFT。使用者要求剩餘項目一次完成，不再逐術詢問。本組為凝滯、複製及八種地圖術，保留原版規則、使用次數、取消、亂數與存檔。先以[IDA 窄查](../../tools/export-remaining-spells-ida.py)核對原始入口／返回及 bytes，再由原版執行器抽樣。研究沿 player-spells-r1/remaining-r1，正式接入前補 READY；不將施法提示當成成功結算。
+
+### 剩餘十術 READY 契約
+
+2026-10-29。原版 PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；IDA 9.4 匯出 SHA `d3b3b40dc9e4129dd21ef00e895da73edc457e6c172b07402199ec72ce5bf63d`，獨立重定位核對2201行。IDA位址採MZ loader linear、base10000h；執行期以下採載入0110h。兩戰鬥術原版控制／觀測完整state相同，凝滯1次入口，複製21次逐數更新且50→70；八地圖術均由正常冷啟動／新遊戲／F4／原版游標選單完成並扣一次。學習旗標與使用次數為明示fixture，不稱自然習得。
+
+已證實入口：凝滯IDA1ECC2h／0F67:0752，複製IDA1EE76h／0F67:0906，父wrapper sub_1E8A4、2497 bytes、BP-4 selector4／6、BP+2原返回1CFE。地圖wrapper sub_168CE，0110:68CE..693B共110 bytes，0110:68F0為統一扣次前，BP+6 selector0..7、BP+2原返回6896。只認已核對PAM、重定位bytes、DS／SS、0Eh模式與合法selector／學習／次數；陌生context略過新增光效，不改客體。OnCall同Step、SS、BP、selector的重通知冪等，複製合法後續更新可再次刷新。
+
+呈現為HD新增施法提示，不宣稱原版光效或施法成功：凝滯冰藍符環，複製青金雙環；八地圖術依造橋赭金／煉金暖金／召兵青白／跳躍紫金雙環／停時靛青星盤／鳥瞰羽光／涉水藍色波紋／傳送紫色門環分色及幾何。地圖cue在扣次前觸發，原版仍可能拒絕造橋、取消傳送或沒有可召空位，提示不得當成成功回饋。版面採中央地圖畫區的象徵符環，非世界座標／目標定位證據；戰場以原703Ch施法者／複製對象來源點定位。
+
+純Go函式只收1920×1200 RGBA、十種cue、進度、錨點及來源文字遮罩；不收Oracle、VGA或x86指令。每次提示1800000個原CPU cycles，按120級分桶並快取；3000 cycles/ms下約600ms，標為HD美化時長，不改原版虛擬時間、步數或等待。複製每次原更新刷新提示，文字、狀態欄、海報及工具列不覆蓋，結束還原Go底圖。變更僅狀態診斷及呈現，不新增存檔欄位。
+
+驗收：十術以相同固定原版快照比較無光效與Go光效完整state、IO／PCM；重通知、壞bytes／caller／selector及文字／邊界／快取抽樣。八種地圖原型與兩種戰鬥光效生成總覽；同機制抽一份真正視窗及正常原版模式回歸，不逐術重跑GUI。原版RNG不重抽，不修未相關的序列化未知。全部資料永久保存並脫離workplace核對後才提升七程式。入口為[audit-remaining-spells.py](../../tools/audit-remaining-spells.py)、[地圖原版探針](../../tools/probe-remaining-map-spells.go)及上述IDA匯出。
+
+實作入口：[施法控制](../../internal/eightsword/spell_cues.go)、[純Go符環](../../internal/eightsword/spell_cues_draw.go)、[十術原版與保護測試](../../internal/eightsword/spell_cues_test.go)與[193來源候選準備](../../tools/prepare-remaining-spells.py)。準備器在既有Pillow11.3.0容器使用 `--project <唯讀專案> --out <player內新候選>`；測試沿Go1.24.13／923核心，設定既有EIGHTSWORD_TEST_ORIG、EIGHTSWORD_VFX_PROJECT及EIGHTSWORD_VFX_OUT，執行 `go test ./internal/eightsword -run ^TestSpellCue`，可用 EIGHTSWORD_CUE_DRAW_OUT 保存十張合成底圖的機制樣張。
+
+定位索引保留 `0x1E8A4`／`sub_1E8A4` 與 `0x168CE`／`sub_168CE`。原版研究核對收據為[remaining-spells-research-r1.json](../../preserved/remaining-spells-research-r1.json)。[正常F4研究](../../tools/research-remaining-spells_test.go)由[隔離準備器](../../tools/prepare-remaining-normal.py)在Pillow容器用 `--project --source <193來源src> --out <新研究目錄>` 加一份場景觀測；Go容器設原版／素材及 `EIGHTSWORD_CUE_NORMAL_OUT` 跑 `TestResearchRemainingMap`，不改正式程式。[視窗準備](../../tools/prepare-remaining-gui.py)同參數另加 `--spell clone|freeze`，沿原有check-player-fire-gui.sh 的clone相容參數，私有fixture分別給法術6／4；兩者不寫selector或對象。[獨立畫面核對](../../tools/audit-remaining-presentation.py)以 `--project --out` 重建8份正常地圖Frame與4份實際Draw。[總覽](../../tools/prepare-remaining-overview.py)另用 `--project --font <唯讀Noto字型>` 保存裁圖及來源。
+
+[本組保存／提升器](../../tools/finalize-remaining-spells.py)在固定Pillow11.3.0容器使用 `audit|archive|promote|integrity --project <專案> --archive <preserved> --out <新JSON>`。脫離workplace核對使用 `verify --archive <唯讀preserved> --out <新JSON>`，只掛preserved與工具；核對通過後才提升七程式，舊程式／923核心／525素材／1040原圖保持。
+
+### 剩餘十術正式接入與限定驗收
+
+2026-10-29限定CONFORMED，正式提升source-candidate-remaining-spells-r2／193來源七程式。新十組完整客體與PCM同相同初始快照的原版控制，原始參考五組相同、五組地圖連續等價性仍未知；不把相同快照對照冒稱已修序列化或完整連續parity。舊B／地震與工具列回歸加新十術／五拒絕共19.021秒通過，vet與七程式通過。原版模式不安裝新呈現，無新增規則／存檔欄位，r68全525檔、923核心、1040原圖及前版七程式保持。
+
+八地圖術以普通冷啟動／新遊戲／F4／原游標完成，19.890秒並留下八張真實Engine Frame。凝滯及複製各走一份正常冷啟動／募兵／遇敵後的明示後排施法者、學習與次數fixture；沒有寫selector、目標、RNG或結果。前者1次cue／18效果Frame，後者21次原更新／21次cue／58效果Frame，兩份wrapper均返回、無略過並Ctrl+Q。四張實際Ebiten Draw與八張地圖Frame都由Pillow按原始預乘RGBA／文字遮罩重建完全相同，Frame前後客體不變。圖中既有美術不作fixture種類映射證據。
+
+[十術總覽](../images/remaining-spell-cues-r1.png)只裁切／縮小已驗實際畫面，[來源](../images/remaining-spell-cues-r1.json)逐張記錄SHA與裁切。地圖符環是畫區象徵提示，橋面／原版地形結果保持；不聲稱所有地形分支或自然習得。原版暗殺失敗分支與先前兩稀疏快照限制仍未知，新存讀沿原有B驗收，不重跑逐術GUI。
+
+[研究核對](../../preserved/remaining-spells-research-r1.json)、[正式核對](../../preserved/remaining-spells-audit-r1.json)、[畫面核對](../../preserved/remaining-spells-presentation-r1.json)、[提升](../../preserved/remaining-spells-promotion-r1.json)、[收尾](../../preserved/remaining-spells-integrity-r1.json)與[永久保存](../../preserved/README.md#剩餘十術-go-光效保存)為證據入口。2161檔／602物件壓縮195905478 bytes，已在不掛workplace的容器逐SHA／長度核對後才提升。本組十術已收斂，後續只處理新的玩家阻塞或可選美術微調，不重開同機制逐術逆向。

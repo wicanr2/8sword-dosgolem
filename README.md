@@ -66,8 +66,13 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 
 暗殺術與滅半術也已接入相同 Go 光效，命中判定、傷害與使用次數交原版處理。實際視窗沿共用機制抽驗滅半術，可看[飛行](docs/images/player-half-flight-r1.png)、[命中](docs/images/player-half-impact-r1.png)、[來源](docs/images/player-half-live-r1.json)及[驗收範圍](docs/spec/030-battle-expansion-proposal.md#暗殺術與滅半術正式接入與限定驗收)。
 
-地震術另由 Go 直接位移完整 HD 畫布，依原版 250 個事件推進並還原，文字、工具列與海報保持固定。可看[低位移畫面](docs/images/player-quake-low-r1.png)、[高位移畫面](docs/images/player-quake-high-r1.png)、[截圖來源](docs/images/player-quake-live-r1.json)及[驗收範圍](docs/spec/030-battle-expansion-proposal.md#地震go畫布正式接入與限定驗收)。目前六種玩家戰鬥術已強化，凝滯、複製及八種地圖術效果仍待處理。
+地震術另由 Go 直接位移完整 HD 畫布，依原版 250 個事件推進並還原，文字、工具列與海報保持固定。可看[低位移畫面](docs/images/player-quake-low-r1.png)、[高位移畫面](docs/images/player-quake-high-r1.png)、[截圖來源](docs/images/player-quake-live-r1.json)及[驗收範圍](docs/spec/030-battle-expansion-proposal.md#地震go畫布正式接入與限定驗收)。
 
+凝滯、複製及八種地圖術也已接入 Go HD 光效，目前八種玩家戰鬥術與八種地圖術都有呈現。原版判定、取消與使用次數保留，光效提示代表施法操作，不保證原版效果一定成功。
+
+![十術HD光效總覽](docs/images/remaining-spell-cues-r1.png)
+
+八張 F4 地圖引擎畫面，以及凝滯、複製的實際視窗近景。學習與使用次數為受控條件；完整視窗可看[凝滯術](docs/images/player-freeze-hd-r1.png)、[複製術](docs/images/player-clone-hd-r1.png)，另附[來源](docs/images/remaining-spell-cues-r1.json)及[驗收範圍](docs/spec/030-battle-expansion-proposal.md#剩餘十術正式接入與限定驗收)。
 
 | 面向 | 目前狀態 |
 |---|---|

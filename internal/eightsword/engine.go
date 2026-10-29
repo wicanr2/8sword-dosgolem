@@ -19,6 +19,7 @@ type Options struct {
 }
 type Engine struct {
 	battleVFX            *battleVFX
+	spellCues            *spellCues
 	rules                *battleRulesController
 	battleAI             *battleAIController
 	completion           *completionAssets
@@ -307,6 +308,9 @@ func Open(opt Options) (*Engine, error) {
 	return e, nil
 }
 func (e *Engine) Close() {
+	if e.spellCues != nil {
+		e.spellCues.Active = false
+	}
 	if e.battleVFX != nil {
 		e.battleVFX.cancel("close")
 	}
@@ -671,6 +675,7 @@ func (e *Engine) Status() map[string]any {
 	out["battle_ai"] = e.BattleAIStatus()
 	out["battle_rules"] = e.BattleRulesStatus()
 	out["battle_vfx"] = e.BattleVFXStatus()
+	out["spell_cues"] = e.SpellCueStatus()
 	out["completion_error"] = e.CompletionError
 	out["completion_assets"] = e.completion.status()
 	out["source_renderer"] = e.sourceEnabled
