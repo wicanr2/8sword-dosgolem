@@ -120,6 +120,9 @@ func Open(opt Options) (*Engine, error) {
 	if opt.BattleAI != "" && opt.BattleAI != "native" && opt.BattleAI != "target" {
 		return nil, fmt.Errorf("AI模式無效：%s", opt.BattleAI)
 	}
+	if err := guardOwnedArmySave(opt.Saves); err != nil {
+		return nil, err
+	}
 	pam, err := os.ReadFile(filepath.Join(opt.Root, "PAM.AY"))
 	if err != nil {
 		return nil, err

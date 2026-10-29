@@ -1,0 +1,12 @@
+{
+  "status": "passed-owned-combat-integrity",
+  "sources": 197,
+  "programs": 7,
+  "core_unchanged": 923,
+  "assets_unchanged": 535,
+  "artwork_unchanged": 1040,
+  "markdown_links": 2698,
+  "root_owned_outputs": 0,
+  "workspace_cache_files": 0,
+  "owned_player_handoff": "pending"
+}

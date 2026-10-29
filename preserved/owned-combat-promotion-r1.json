@@ -1,0 +1,17 @@
+{
+  "status": "promoted-owned-combat-core-and-save-isolation",
+  "source_count": 197,
+  "programs": {
+    "8sword": "a3c5b78b3f6b093988f7b06e64a41c2dc06a025e6782ec01fd765fc406354aaf",
+    "8sword-replay": "e191b760db800d598421e29bbfc9af3a1087b5ba408569599a71c47c9027dd05",
+    "gui-check": "7d0ed6218ae750f8eabbefca77ce41b608e26ce1cb02e2aafababf1553118114",
+    "music-check": "ced5b991a741d94694fdf533e82de6a9c1e5dad0f2ee57df652d41c32d3cf7dd",
+    "heroine-check": "a39b29731737ad0ce03b7f6eca63e811245a398608ccc54f7002116a39ad95c9",
+    "museum-check": "f5372686a07bbada2d38f8aa08bc164740aa15511aa280ddc46d0c64a240f31f",
+    "story-prelude-check": "7ea6f38725dbed9a7b1c82363e2586b79431b5a6d210387ee36a7e6b6286b5a0"
+  },
+  "assets_unchanged": 535,
+  "core_unchanged": 923,
+  "owned_player_handoff": "pending",
+  "audit_sha256": "ec421a3ecfb5677a893fc9a6c82e5118bd49da4fc73708f63e5e6c882dba2f7f"
+}

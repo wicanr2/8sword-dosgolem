@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-10-29使用者要求戰鬥兵力亦由Go接管，避免新增兵種落入原版固定表。[030自有兵力核心](docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離)使用字串兵種ID、每方6陣位、64位元安全傷害／總兵力、32位元兵數與單次戰果回寫。原版25種不等於25陣位，擴充ID不得寫入原版kind／圖檔／數值索引。[資料鏈回放](docs/images/owned-combat-data-chain-r1.html)與[永久證據](preserved/README.md#go兵力核心與擴充存檔隔離)為入口。現行為source-candidate-owned-combat-r1／197來源七程式，核心及啟動前隔離已限定提升；自有軍隊／戰鬥UI、世界資源與完整戰果交接仍DRAFT。偵測到gamedata.ay.army.json的正式Engine在DOS啟動前拒絕，保留檔案，不忽略新增部隊繼續。沒有擴充附檔的原版玩家路徑保持；923核心／535素材／1040圖庫不改。
+
 2026-10-29使用者確認「先用go，之後再轉換成rust」，並要求一併處理存檔。現階段沿Go版dosgolem及Go前端擴充兵種、招募與AI；Rust遷移留後續。原版容量／存讀及自有Go原型見[030兵種研究](docs/spec/030-battle-expansion-proposal.md#兵種編號與存檔容量研究)、[離線原型](docs/images/owned-army-prototype-r1.html)與[永久保存](preserved/README.md#兵種容量與自有招募存檔原型)。原型已有25原版／8獨立ID候選、招募交易及SHA綁定存讀，尚未進正式玩家路徑；新增兵種的平衡、戰鬥、資源同步與存檔生命週期仍須READY後接入。正式193來源／七程式、923核心、r69全535素材與1040原圖保持，以CONTEXT最上列為準。
 
 十首HD配樂已沿使用者「後續都照相同規格處理，不用再詢問」的持續授權接入r69全535素材，〈幻〉及原524檔保持。入口為[008限定驗收](docs/spec/008-music-events-and-playback.md#十曲正式提升與限定驗收)及[永久保存](preserved/README.md#十曲hd音樂保存)。[合併工具](tools/finalize-hd-music.py)在固定Pillow11.3.0容器處理`prepare/archive/verify/promote/integrity`；`audit`使用既有FFmpeg5.1.9容器，參數見008與工具說明。七程式／193來源／923核心不變，不重建、不重開配器訪談；九首人耳聽感及全部玩法觸發仍未驗，不能稱逐首批准或公開授權。

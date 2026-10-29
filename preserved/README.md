@@ -1,5 +1,11 @@
 # 必要資料永久保存
 
+## Go兵力核心與擴充存檔隔離
+
+[030核心及隔離](../docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離)的完整197來源候選、七程式、33兵種資料、15組原版控制／原始RAM、Go招募／28行動／傷亡回寫／磁碟／另一程序讀回、三份普通原版購兵／F7存檔／冷讀快照及回放頁檢查，保存於本機`preserved/owned-combat-r1/`，共555檔／337去重物件，壓縮45608931 bytes。自有軍隊的正常招募／戰鬥UI與世界交接仍待完成，保存不代表新兵種已可正常遊玩。
+
+[逐檔清單](owned-combat-r1.json)、[獨立核對](owned-combat-audit-r1.json)、[保存收據](owned-combat-preservation-r1.json)、[脫離workplace核對](owned-combat-verification-r1.json)、[提升](owned-combat-promotion-r1.json)與[收尾](owned-combat-integrity-r1.json)為入口。[工具](../tools/prepare-owned-combat.py)的`verify --archive <唯讀preserved> --out <新JSON>`在Pillow11.3.0 Docker逐SHA及長度核對，不需workplace；按索引path／mode解gzip可還原。原版、923核心、535素材及模組沿[兵種容量保存](troop-capacity-r1.json)、[十曲保存](hd-music-r1.json)與[完整catalog](catalog.json.gz)。完整RAM、二進位、進度及大圖只留本機，Git記工具、規格、回放HTML與索引；目前Git文件優先於歷史READY快照。
+
 ## 兵種容量與自有招募存檔原型
 
 [030研究](../docs/spec/030-battle-expansion-proposal.md#兵種編號與存檔容量研究)與[可操作離線原型](../docs/images/owned-army-prototype-r1.html)的完整資料保存於本機`preserved/troop-capacity-r1/`，共509檔／281去重物件，壓縮20463875 bytes。本組保存固定IDA輸出、原版兩輪招募、真正F7進度／冷讀快照／解碼RAM、自有Go原型、六隊招募與存檔、另一程序讀回、故障測試及瀏覽器檢查。新增兵種仍是DRAFT原型，沒有提升正式玩家路徑。
