@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## 地震Go畫布接入保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#地震go畫布正式接入與限定驗收)已提升source-candidate-player-quake-r4／190來源七程式。原版三組研究、十三效果控制共十六效果、二十四入口拒絕及兩張實際Draw獨立重建通過；r68全525素材、923核心、前版七程式及1040圖庫保持。[研究r3](player-quake-research-r3.json)、[正式核對](player-quake-audit-r1.json)、[提升](player-quake-promotion-r1.json)與[收尾核對](player-quake-integrity-r1.json)分開記錄。
+
+[永久清單](player-quake-r1.json)含2599檔／748物件、270664145壓縮bytes，保存兩版原版探針、三組控制、四候選、七程式、回歸、三次GUI完整PNG／底圖／遮罩、天空接縫與115相取消診斷、三路快照續跑及原版重通知證據。完整物件留本機`player-quake-r1/`，不加入Git；[捕獲](player-quake-preservation-r1.json)及[無原workplace核對](player-quake-verification-r1.json)已通過。原版／核心／模組沿既有catalog，r68沿tactics及completion-r65；舊效果控制另需[暗殺／滅半清單](player-target-spells-r1.json)、雷火、殺鬼及火球清單，完整B原圖沿[圖庫](../artwork/manifest.json)。
+
+[保存器](../tools/finalize-player-quake.py)在固定Pillow11.3.0 Docker以`archive --project <唯讀專案> --archive <可寫preserved> --out <新JSON>`捕獲。只掛永久preserved及工具，用`verify --archive <唯讀preserved> --out <可寫新JSON>`逐物件解壓，核對每檔SHA／長度；按清單原路徑及mode可還原，不需原workplace。本輪未另建大型還原副本，也沒有新AI美術；完整提示與批准原圖仍沿永久圖庫。
+
+兩稀疏組與原連續流程等價性仍未知，保留相同快照的無掛點原版參考。重通知則已用實際GUI快照的原版唯讀觀測重現，r4實際GUI也處理一次並完成250相；不把這項修正稱為核心或存讀改版。完整回歸沿r2，r4重跑VFX／地震與新GUI，187份來源逐SHA保持，舊VFX差異只是一個診斷計數欄。
+
 ## 暗殺術與滅半術接入保存
 
 [030限定驗收](../docs/spec/030-battle-expansion-proposal.md#暗殺術與滅半術正式接入與限定驗收)已提升source-candidate-player-target-spells-r1／188來源七程式。六組[原版研究](player-target-spells-research-r1.json)、十一效果控制共十四效果、十九拒絕及兩張滅半實際Draw獨立合成通過；r68全525素材、923核心、前版七程式與B圖庫1040檔保持。[正式核對](player-target-spells-audit-r1.json)、[提升](player-target-spells-promotion-r1.json)與[收尾核對](player-target-spells-integrity-r1.json)分開記錄。暗殺兩門檻均原餘數4、皆成功，失敗分支未動態抽驗；前輪稀疏連續等價性仍未知，不稱自然習得或新存讀。

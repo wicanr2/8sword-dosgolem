@@ -31,6 +31,9 @@ func (e *Engine) ResearchVFXTick() error {
 	if os.Getenv("EIGHTSWORD_PLAYER_GUI_SPELL") == "half" {
 		spell = 5
 	}
+	if os.Getenv("EIGHTSWORD_PLAYER_GUI_SPELL") == "quake" {
+		spell = 7
+	}
 	e.Oracle.OnCall(oracle.Addr{Seg: v.code, Off: 0x19ac}, func(o *oracle.Oracle) {
 		if researchVFX.changed {
 			return

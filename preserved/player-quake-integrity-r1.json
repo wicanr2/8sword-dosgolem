@@ -1,0 +1,32 @@
+{
+  "status": "passed-scoped-player-quake-integrity",
+  "production_programs": 7,
+  "source_count": 190,
+  "assets_unchanged": 525,
+  "core_unchanged": 923,
+  "previous_programs_preserved": 7,
+  "original_executor_cases": 13,
+  "original_effect_calls": 16,
+  "guards": 24,
+  "actual_draws_independently_rebuilt": 2,
+  "catalog_names": 16,
+  "permanent_files": 2599,
+  "permanent_objects": 748,
+  "approved_artwork_files": 1040,
+  "original_AI_resolution_keys": 26,
+  "enemy_supplemental_backlinks": 1,
+  "player_resolution_keys": 2,
+  "player_supplemental_backlinks": 3,
+  "missing_correction_cases_rejected": 11,
+  "markdown_links": 2519,
+  "root_owned_outputs": 0,
+  "invalid_markdown_directories": 0,
+  "workspace_go_cache_files": 0,
+  "limits": [
+    "Controlled rear caster/learned flag/charges; quake GUI r4, not natural learning. Full regression r2 reused for 187 unchanged inputs and status-only counter addition; VFX/quake r4 rerun. Assassination failed die not dynamically sampled.",
+    "Sparse case matches unhooked original resume from identical snapshot; continuous snapshot equivalence remains unknown. No core change or seed reroll.",
+    "Six player battle effects presented; selectors4/6 and eight map effects remain open.",
+    "No game rules, save fields, original display path, assets or core changes.",
+    "Normal save/load uses prior B acceptance; no new save GUI claim."
+  ]
+}

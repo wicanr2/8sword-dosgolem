@@ -50,14 +50,14 @@ func main() {
 	root := flag.String("root", "", "read-only original")
 	snapshot := flag.String("state", "", "fixed original snapshot")
 	out := flag.String("out", "", "new output")
-	spell := flag.Int("spell", 0, "original menu index 0,1,2,3 assassination,5 halve")
+	spell := flag.Int("spell", 0, "original menu index 0,1,2,3 assassination,5 halve,7 quake")
 	fixture := flag.String("fixture", "mixed", "mixed, sparse, no-ghost, or odd live enemy counts")
 	targetKind := flag.String("target-kind", "any", "any, ghost (kind6..15), or ordinary target via original navigation")
 	cancelMenu := flag.Bool("cancel-menu", false, "cancel original spell menu with Escape")
 	chanceStat := flag.Int("chance-stat", -1, "explicit DS:26AE fixture, -1 unchanged or 0..4")
 	cancelTarget := flag.Bool("cancel-target", false, "cancel original target menu with Escape")
 	flag.Parse()
-	if *root == "" || *snapshot == "" || *out == "" || *spell < 0 || (*spell > 3 && *spell != 5) || (*fixture != "mixed" && *fixture != "sparse" && *fixture != "no-ghost" && *fixture != "odd") || (*chanceStat < -1 || *chanceStat > 4) || (*targetKind != "any" && *targetKind != "ghost" && *targetKind != "ordinary") {
+	if *root == "" || *snapshot == "" || *out == "" || *spell < 0 || (*spell > 3 && *spell != 5 && *spell != 7) || (*fixture != "mixed" && *fixture != "sparse" && *fixture != "no-ghost" && *fixture != "odd") || (*chanceStat < -1 || *chanceStat > 4) || (*targetKind != "any" && *targetKind != "ghost" && *targetKind != "ordinary") {
 		panic("missing inputs")
 	}
 	if _, e := os.Stat(*out); !os.IsNotExist(e) {
@@ -111,6 +111,7 @@ func main() {
 		mutations := []map[string]any{}
 		keys := []map[string]any{}
 		bitmaps := []map[string]any{}
+		quakePans := []map[string]any{}
 		configured, castStarted, finished := false, false, false
 		menuKey, targetKey := false, false
 		menu, target := false, false
@@ -118,7 +119,7 @@ func main() {
 		var retCS, retIP, retSS, retSP uint16
 		var bitmap map[string]any
 		effectCount := 0
-		targets := map[uint16]string{0x19ac: "player-turn", 0x122: "spell-menu", 0x31e: "consume-charge", 0x334: "player-spell", 0x345c: "player-effect", 0x283e: "target-selection", 0x36c6: "enemy-effect"}
+		targets := map[uint16]string{0x19ac: "player-turn", 0x122: "spell-menu", 0x31e: "consume-charge", 0x334: "player-spell", 0x345c: "player-effect", 0x283e: "target-selection", 0x36c6: "enemy-effect", 0x960: "player-quake", 0x3662: "quake-damage"}
 		capture := func(name string) {
 			if !observe {
 				return
@@ -131,7 +132,7 @@ func main() {
 			bp := c.R[cpu.BP]
 			v := map[string]any{"name": name, "step": m.Steps, "cycles": m.CPU.Cycles, "cs": c.Seg[cpu.CS], "ip": c.IP, "registers": c.R, "segments": c.Seg, "stack": words(c.Seg[cpu.SS], sp, 10), "bp_minus_4": m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(bp-4)), "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "enemy_map": words(0x1e88, 0x6fc2, 6), "player_positions": words(0x1e88, 0x703c, 6), "enemy_positions": words(0x1e88, 0x701e, 6), "chance_stat": word(0x26ae)}
 			events = append(events, v)
-			if name == "spell-menu" || name == "player-spell" || name == "player-effect" || name == "player-spell:return" {
+			if name == "spell-menu" || name == "player-spell" || name == "player-effect" || name == "player-spell:return" || name == "player-quake" {
 				file := name
 				if name == "player-effect" {
 					effectCount++
@@ -188,7 +189,11 @@ func main() {
 			panic("no original navigation route to enemy")
 		}
 		queue(0x39, "single initial original action input")
-		for m.Steps < start+100000000 {
+		maxSteps := uint64(100000000)
+		if *spell == 7 {
+			maxSteps = 200000000
+		}
+		for m.Steps < start+maxSteps {
 			c := m.CPU
 			if configured && castStarted && c.Seg[cpu.CS] == retCS && c.IP == retIP && c.Seg[cpu.SS] == retSS && c.R[cpu.SP] == retSP {
 				capture("player-spell:return")
@@ -196,6 +201,16 @@ func main() {
 				break
 			}
 			if c.Seg[cpu.CS] == 0xf67 {
+				if observe && configured && *spell == 7 {
+					phase := map[uint16]int{0xa05: 1, 0xa6e: 2, 0xad7: 3, 0xb40: 4, 0xba9: 5}[c.IP]
+					if phase != 0 {
+						quakePans = append(quakePans, map[string]any{"phase": phase, "step": m.Steps, "cycles": m.CPU.Cycles, "port_value": words(c.Seg[cpu.SS], c.R[cpu.SP], 2)})
+						if len(quakePans) > 250 {
+							panic("quake pan bound")
+						}
+					}
+				}
+
 				if *spell >= 3 && configured && menu && !menuKey && c.IP == 0x2b4 {
 					node := int(m.Read16(uint32(c.Seg[cpu.SS])*16 + uint32(c.R[cpu.BP]-6)))
 					if node != menuPlanNode {
@@ -370,7 +385,7 @@ func main() {
 		shot(m, filepath.Join(dir, "final.png"))
 		raw, e := os.ReadFile(filepath.Join(dir, "final.state"))
 		must(e)
-		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "spell": *spell, "fixture": *fixture, "target_kind": *targetKind, "cancel_menu": *cancelMenu, "cancel_target": *cancelTarget, "chance_stat": *chanceStat, "effect_count": effectCount}
+		result := map[string]any{"initial": initial, "configured": configured, "completed": finished, "steps": m.Steps, "state_sha256": sha(raw), "mutations": mutations, "keys": keys, "events": events, "bitmaps": bitmaps, "quake_pans": quakePans, "charges": words(0x1e88, 0x2aa8, 8), "player": words(0x1e88, 0x56e8, 12), "enemy": words(0x1e88, 0x5700, 12), "spell": *spell, "fixture": *fixture, "target_kind": *targetKind, "cancel_menu": *cancelMenu, "cancel_target": *cancelTarget, "chance_stat": *chanceStat, "effect_count": effectCount}
 		saveJSON(filepath.Join(dir, "trace.json"), result)
 		runs = append(runs, result)
 	}

@@ -2,7 +2,9 @@
 
 使用者於2026-10-29明確授權：「後續都照相同規格處理，不用再詢問」。後續已確認目標內的同規格美術、動畫與HD接入，自主完成樣式延伸、來源查證、READY契約、Go實作、代表抽驗、永久保存、正式提升及私人GitHub紀錄，不再逐張選樣或重問接入同意。風格沿已批准的原版配色與中國古風，動畫沿[030 B接入規格](docs/spec/030-battle-expansion-proposal.md#b飛焰正式接入ready契約)，繪圖沿[047模式分流](docs/spec/047-hd-scene-renderer.md#hd與原版模式分流追加契約)，保存沿[永久圖庫](artwork/README.md)與[必要資料保存](preserved/README.md)。保留原版模式、已定規則與存檔契約，依共用機制抽驗，不逐隻重跑GUI；未知語意自行查證並標示證據等級，不猜補。這項持續授權優先於舊文件對同規格工作逐項詢問的要求。
 
-現行程式為source-candidate-player-target-spells-r1／188來源七程式與r68／525素材，923核心不變，依[030暗殺／滅半限定驗收](docs/spec/030-battle-expansion-proposal.md#暗殺術與滅半術正式接入與限定驗收)提升。B「飛焰＋命中符光」已接玩家火球術、雷火術、殺鬼術、暗殺術、滅半術及原敵方特殊0／2／5。十一組效果控制與十九種拒絕通過；十組比對原連續流程，前輪稀疏組仍比對相同快照無掛點原版續跑，連續等價性未知。GUI抽滅半一術，兩張Draw獨立合成通過；暗殺沿Engine控制，不逐術重跑相同視窗。原版模式、傷害、機率、AI、規則、時鐘及存檔保持。工具列仍可獨立切規則與AI，auto恢復規則標記。以下較早數字為當時驗收，現況以本列及CONTEXT為準。
+現行程式為source-candidate-player-quake-r4／190來源七程式與r68／525素材，923核心保持，依[030地震限定驗收](docs/spec/030-battle-expansion-proposal.md#地震go畫布正式接入與限定驗收)提升。五種玩家術及原敵方特殊0／2／5沿B飛焰；地震另由Go直接位移完整HD畫布，按原250個PON／port事件推進，文字、工具列與海報保持固定。十三組效果控制與二十四入口拒絕通過，十一組沿原連續、兩稀疏組沿同快照無掛點原版續跑，連續等價性仍未知。GUI實際完成250相、處理一次重通知、兩Draw獨立重建。原版模式、傷害、機率、AI、規則、時鐘及存檔保持，工具列仍可獨立切AI／規則。以下較早數字保存當時驗收，現況以本列及CONTEXT為準。
+
+[地震Go控制與列搬移](internal/eightsword/battle_quake.go)、[回歸](internal/eightsword/battle_quake_test.go)、[原版核對](tools/audit-player-quake.py)、[候選／GUI準備](tools/prepare-player-quake.py)、[原版重通知探針](tools/probe-quake-events.go)及[保存／核對／提升](tools/finalize-player-quake.py)用法見030。只認selector7、原wrapper context／2497 bytes及五個port點，不把結算sub_21BD2當飛焰sub_219CC。OnCall先於Machine.Step，IRQ可重訪原IP；同一已提交PON的同phase合法重通知只記診斷，不重算位移，錯序仍拒絕。來源畫布不依賴原版RGB，低／高位移從實際Go底圖獨立重建。[永久保存](preserved/README.md#地震go畫布接入保存)含2599檔／748物件，完整PNG、四候選及失敗診斷不只留workplace。圖庫1040檔保持，凝滯／複製與八地圖術效果仍待後續。
 
 [暗殺／滅半原版核對](tools/audit-player-target-spells.py)及[核對／保存／提升](tools/finalize-player-target-spells.py)用法見030。只追加法術3／5＋caller074A，與火球0／殺鬼2＋074A及雷火1＋0516成對守門；未接入4／6／7不放寬。六組原版對照包含預先固定兩暗殺門檻、滅半奇偶及兩Esc，原餘數均4，未重抽種子，沒有動態驗暗殺失敗分支。[永久保存](preserved/README.md#暗殺術與滅半術接入保存)含1167檔／629物件，完整GUI原PNG、七程式與來源不依賴workplace。完整B圖庫1040檔保持。
 

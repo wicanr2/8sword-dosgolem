@@ -5,8 +5,9 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  p=argparse.ArgumentParser();p.add_argument('action',choices=['freeze','gui'])
  for n in ['project','out']:p.add_argument('--'+n,type=pathlib.Path,required=True)
- p.add_argument('--source',type=pathlib.Path);p.add_argument('--spell',type=int,choices=[0,1,2,3,5],default=0);a=p.parse_args();r=a.project;assert os.getuid()==1000 and not a.out.exists()
+ p.add_argument('--source',type=pathlib.Path);p.add_argument('--spell',type=int,choices=[0,1,2,3,5,7],default=0);a=p.parse_args();r=a.project;assert os.getuid()==1000 and not a.out.exists()
  if a.action=='freeze':
+  if a.spell==7:p.error('地震候選請使用 tools/prepare-player-quake.py freeze；此入口只共用地震GUI準備。')
   old=json.loads((r/({0:'preserved/vfx-engine-audit-r1.json',1:'preserved/player-fireball-audit-r1.json',2:'preserved/player-thunder-audit-r1.json',3:'preserved/player-exorcism-audit-r1.json',5:'preserved/player-exorcism-audit-r1.json'}[a.spell])).read_text());player=r/'workplace/player'
   for n,h in old['programs'].items():assert sha(player/n)==h
   a.out.mkdir();inputs={}

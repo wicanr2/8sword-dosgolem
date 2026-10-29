@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "controlled_fixture": true,
+  "candidate": "source-candidate-player-quake-r4",
+  "source_count": 190,
+  "core_files": 923,
+  "assets": "r68",
+  "method": "Actual Ebiten Draw CPU image uploaded; resized2944x1264 to1600x687 with Pillow11.3.0 LANCZOS",
+  "whole_spell_wrapper_complete": true,
+  "quake_phases": 250,
+  "original_pon_commits": 250,
+  "actual_repeated_notifications": 1,
+  "files": [
+    {
+      "phase": "quake-low",
+      "path": "player-quake-low-r1.png",
+      "sha256": "fb4abe685bac7fee854c13342e66aeb01323c99530c58f7fa8f597614e020ad9",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/quake-r1/gui-r4/vfx-draw/quake-low-presented.png",
+      "source_sha256": "4e1185eca73a0853182741ab5865a6697f9da7000775a49d0a93d6b04b775bbf",
+      "draw": {
+        "cycles": 60518672,
+        "draw": 355,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "081e5e0bb941851237930857188fc1cb992583b3140b857efd1821e2931e5028",
+        "layer_rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "layer_stride": 4,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "quake-low",
+        "sample": 1,
+        "step": 57014104,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "quake",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 0,
+          "PONCommits": 6,
+          "Frames": 2,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            0,
+            0
+          ],
+          "Target": [
+            0,
+            0
+          ],
+          "QuakePans": 6,
+          "QuakeDuplicates": 0,
+          "Shift": [
+            0,
+            6
+          ]
+        }
+      }
+    },
+    {
+      "phase": "quake-high",
+      "path": "player-quake-high-r1.png",
+      "sha256": "1daae1d1e7db903f632f15f27c3e068eb7d2d59327f482ad36ed2c007006779a",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/quake-r1/gui-r4/vfx-draw/quake-high-presented.png",
+      "source_sha256": "80b0143f306bd41ce2f91a18ed5973d6fc33bcdb611233b0f9e4c496c51a04b5",
+      "draw": {
+        "cycles": 60418672,
+        "draw": 354,
+        "fixture": true,
+        "frame_guest_pure": true,
+        "guest_state_sha256": "8ea65b666be736b563d6c1743cf260985e95e62988926be12bba9871519e2202",
+        "layer_rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "layer_stride": 4,
+        "method": "After actual Ebiten Draw; immutable CPU image was uploaded, X11 screenshot is a separate nearby-frame sample.",
+        "phase": "quake-high",
+        "sample": 2,
+        "step": 56923395,
+        "vfx": {
+          "Bound": true,
+          "Active": true,
+          "Phase": "quake",
+          "Started": 1,
+          "Completed": 0,
+          "Cancelled": 0,
+          "Skipped": 0,
+          "SourceCommits": 0,
+          "PONCommits": 2,
+          "Frames": 1,
+          "ProtectedTextPixels": 0,
+          "LastSkip": "",
+          "Source": [
+            0,
+            0
+          ],
+          "Target": [
+            0,
+            0
+          ],
+          "QuakePans": 2,
+          "QuakeDuplicates": 0,
+          "Shift": [
+            0,
+            18
+          ]
+        }
+      }
+    }
+  ]
+}

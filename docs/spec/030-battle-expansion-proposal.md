@@ -759,3 +759,60 @@ DRAFT研究：沿固定PAM.i64唯讀副本，用[IDA匯出](../../tools/export-f
 [核對／保存／提升器](../../tools/finalize-player-target-spells.py)在固定Pillow11.3.0 Docker使用`audit|archive|verify|promote|integrity --project <唯讀專案> --out <新JSON>`；保存／核對另設`--archive <preserved>`，提升設`--player <可寫player>`。verify只掛永久資料及工具，不需project或workplace。Go建置沿既有1.24.13與923核心，GUI沿前節參數及trap。
 
 暗殺的失敗機率分支未動態抽驗，兩個已測門檻都成功；HD未自行判定機率，只在原版實際呼叫效果時繪製。自然習得、前輪稀疏快照連續等價性與其餘法術仍不外推。凝滯4、複製6、地震7及八種地圖術效果待驗，正常存讀沿B既有收據，可選美術微調不阻塞本批接入。
+
+## 地震術Go震動研究
+
+本節DRAFT。原版剩餘4／6／7為不同演出，本輪先查地震7，不把凝滯狀態寫入或複製人數更新直接套飛焰。既有IDA9.4的sub_1E8A4，自MZ loader線性0x1EED0起為7；50輪各四次PON及CRTC低位址寫入，之後逐隊呼叫sub_21BD2結算。runtime位址沿固定load0110h，來源PAM SHA及IDA匯出沿前節。
+
+[原版探針](../../tools/probe-player-spells.go)新增`-spell 7`，先固定mixed／sparse／選單Esc三案，記錄branch入口、200個port提交、原始PON與逐隊結算，控制／只讀觀測完整state須相同。輸出沿既有player-spells-r1內`quake-r1/`。既有Go來源畫布只隨正式頁命令換Start，沒有映射這些直接CRTC震動；候選將直接Go搬移既有HD畫布，原版模式不改，不新增傷害或亂數邏輯。
+
+本批入口：[獨立研究與畫面核對](../../tools/audit-player-quake.py)、[候選與GUI準備](../../tools/prepare-player-quake.py)、[保存／核對／提升](../../tools/finalize-player-quake.py)。證據足夠且READY前不改正式繪圖；完整圖與證據沿永久保存，不只留workplace。
+
+地震研究r1追加勘誤：原始PON紀錄已是250筆，四個port探針只捕獲200筆，不能據此稱只有四相。IDA原bytes確認另有0x1F0AB的_outpw及0x1F0B0返回，runtime0F67:0B40。實際為50輪五相，值依序500Dh／F00Dh／A00Dh／500Dh／000Dh。r2補第五個只讀觀測，原r1控制與trace保留，不因漏探針修改產品。
+
+### 地震Go畫布位移READY契約
+
+本節READY。[獨立原版核對](../../preserved/player-quake-research-r1.json)已驗三組原版完整state，r1／r2結果同值。mixed四活隊與sparse一活隊均50輪五相、250筆PON及250筆CRTC提交，值500Dh／F00Dh／A00Dh／500Dh／000Dh。兩案整次資源2→1，逐活隊交sub_21BD2，樣本原數量皆不足50而歸零；選單Esc不進效果且資源2。亂數不改、不重抽。
+
+[Go地震控制與列搬移](../../internal/eightsword/battle_quake.go)附於既有battleVFX，沿來源畫布及原PON材質。開始只認runtime0F67:0960的selector7、原wrapper返回1CFE、同PAM SHA與整段2497原bytes、DS／SS、後排種類10／12及有效座標。每個完整PON提交後才接受五個原port返回點0A05／0A6E／0AD7／0B40／0BA9，讀當時原堆疊中的3D4h及預期port值，不代執行x86像素迴圈或IO。
+
+畫面只由Go將既有1920×1200 HD畫布的y180以下列搬移，對應原位移1／3／2／1／0列，輸出位移6／18／12／6／0像素。頂部文字與原文字遮罩保持，邊緣以最後一列延展，避免露黑；這些是HD呈現選擇，不稱逐像素原版硬體對拍。畫布與客體不可變，重複Frame保持快取，250相完成立即還原、Completed加1；此計數指震動演出，整次施法仍等原wrapper返回。未知PON／座標／phase／bytes只取消新震動，不改原版運算。
+
+[抽驗](../../internal/eightsword/battle_quake_test.go)驗mixed／sparse原版完整狀態、兩種非零位移的Frame純度、文字／頂部／邊緣／快取、byte／selector／caller／caster／幾何五拒絕及既有十一效果／十九拒絕回歸。正式來源增加兩檔為190，七程式、923核心、r68全525素材與1040圖庫保持。GUI抽一組正常冷啟動／募兵遇敵後的明示地震資源fixture，不改selector或傷害，低／高位移兩Draw以Pillow從原Go底圖獨立重建；正常存讀沿既有B，不逐術重跑。
+
+原始資料→原選單與資源→原判定／PON／port事件→純Go畫布→Frame→原結算的垂直鏈保持，存檔格式與時鐘不變。完整來源、控制、原PNG及提示依既有永久保存，無原workplace核對後才提升；凝滯與複製仍待後續各自契約。
+
+地震READY驗收追加：稀疏組從branch快照續跑不同原連續state。沿既有[三路診斷](../../tools/diagnose-thunder-resume.go)確認m.Step、PAM Oracle與PREDELLA Oracle載入後state全同來源，三者固定106371724步均為9eeb06b8…16e10a，也同HD；原連續仍為3b87a959…869989。原因未知，不修核心、不重抽。[追加核對](../../preserved/player-quake-research-r2.json)保留原連續與新無掛點參考，mixed仍對原連續、sparse改對同快照原版續跑。正式Go畫布不因此變更，r2候選只修測試參考與標示。
+
+地震新增定位鍵為IDA MZ loader原名sub_1E8A4／0x1E8A4，整段bytes保留，不將sub_21BD2的結算函式誤列為動畫producer。[地震提升器](../../tools/finalize-player-quake.py)沿固定Pillow11.3.0容器使用`audit|archive|verify|promote|integrity --project --archive --out`，提升另設`--player`；verify只掛永久資料與工具。191輸入私有GUI沿190來源r1，非測試輸入須逐SHA同正式r2，四個診斷檔不得進正式路徑。
+
+地震READY畫面勘誤：r1 GUI的高位移畫面在y180有天空接縫，固定整條頂部區域不適合全幅戰場。本輪同規格呈現修正為中央1920×1200整體列位移，只固定實際文字遮罩；工具列與海報本來就在中央畫布之外，不隨地震移動。舊r1畫面保留，r3以新GUI低／高兩相重驗。原來的頂部固定規定由本段取代，原版事件／狀態與時鐘不改。
+
+地震r3 GUI追加診斷：第115個PON／pan後以quake-pan-order取消，尚不提升。core923的oracle/run.go先fireCallHooksAt，再Machine.Step；Machine.Step可先進IRQ，故原IP可能在返回後再次通知。這是目前強推論，須以[原版掛點事件探針](../../tools/probe-quake-events.go)讀實際GUI快照驗證，不先改核心或放寬未知序列。
+
+地震READY事件冪等追加：實際gui-r3的低位移快照以原版Oracle、僅唯讀掛點觀測續跑，出現一次phase4的重複通知，前後PON完成數、SS／BP／SP、port及value相同，和原115相取消一致。core923的呼叫順序足以解釋：OnCall先通知、Machine.Step再可進IRQ，返回後重訪同一PC；現在列已證實的介面重入，不修改核心。
+
+同一個已提交PON的相同phase與完整合法context再次通知時只增加診斷重複計數，不增加pan、不取消畫面。新PON仍嚴格要求下一相，錯phase／錯port／錯context仍取消。開始點在尚無PON時也作相同context的冪等處理。r4新增刻意重送兩個相位通知的Frame／完整state回歸及新實際GUI；正式邏輯仍不改原版記憶體、亂數、IO或時鐘。
+
+[地震研究r3](../../preserved/player-quake-research-r3.json)在原r2收據上追加實際快照的原版重複通知驗證，對比相鄰事件的phase／PON數／SS／BP／SP／port／value完全同值；原r1／r2不覆寫。r4正式候選保留同一PON重通知的冪等性，錯phase仍拒絕，診斷計數QuakeDuplicates不進存檔或遊戲UI。
+
+## 地震Go畫布正式接入與限定驗收
+
+本節限定CONFORMED。已依READY及兩項畫面／事件勘誤，提升source-candidate-player-quake-r4／190來源七程式；r68全525素材、923核心、前版七程式及1040圖庫逐SHA保持。地震直接對Go來源畫布搬移列，不讀原版RGB再疊圖，也不靠x86逐像素模擬位移。PON沿既有Go材質，原版控制機率、資源、目標、傷害、port寫入及時鐘。
+
+| 面向 | 已驗範圍 |
+|---|---|
+| 原版研究 | IDA9.4匯出6715行原bytes與MZ重定位核對；mixed四活／sparse一活均50輪五相、250PON及250port，次數2→1。Esc無演出且資源保持2，三組控制／只讀觀測完整state同值，兩版探針最終state也相同 |
+| Go畫布 | 1920×1200整體列搬移，五相映為6／18／12／6／0像素；文字與被移動來源文字的位置保持，底緣延展最後一列。工具列與海報在中央畫布之外。完整base不可變、重複Frame快取、結束位移歸零，HD映射不冒稱原版硬體像素對拍 |
+| 重通知 | 實際GUI快照的無VFX原版只讀觀測重現一次同phase／同PON／同stack通知。r4按已提交PON去重，錯序仍拒絕；兩原版控制各刻意重送兩通知，開始點也重送，完整guest state保持、錯phase副本拒絕 |
+| 正式測試 | 十三組控制共十六效果、二十四入口拒絕、二十六張Frame客體純度通過。十一組沿原連續，雷火及地震兩稀疏組沿同快照無掛點原版續跑，連續等價性仍未知。r2完整VFX／AI／規則／工具列回歸98.101秒，r4 VFX／地震回歸14.533秒，皆無FAIL／SKIP；vet及七程式建置通過 |
+| 來源重用 | r2至r4的187份來源逐SHA保持；舊battle_vfx.go差異只加QuakeDuplicates診斷欄，驗還原該行後全文相同。新地震程式與測試另驗。沒有因畫布修正重跑無關AI／規則；r4實際GUI重新建置及抽驗 |
+| 實際GUI | 正常冷啟動／新遊戲／募兵遇敵後，明示後排施法者、學習與法術7資源fixture；不改selector、敵軍、目標、傷害或亂數。250PON／250相、49位移Frame、實際重通知1次、取消0，演出與原wrapper均完成後Ctrl+Q |
+| 實際Draw | 低位移Draw355、高位移Draw354，各同原Go底圖及文字遮罩的Pillow獨立重建，已抽看，無首版天空接縫。[來源](../images/player-quake-live-r1.json)保存步數、位移與SHA；兩張是各自實際狀態，不冒稱同一Frame或原版／HD像素對拍 |
+| 永久保存 | 2599檔／748物件、270664145壓縮bytes，保存四候選、七程式、原版控制、回歸、失敗及成功GUI完整PNG／遮罩／底圖、快照診斷與重通知證據。未掛原workplace容器逐物件核對後才提升，未另建大型還原副本 |
+
+兩項歷史問題保留：r1漏第五port觀測，250PON證據本來即存在；r1的固定頂部造成天空接縫，r3改為全畫布位移。r3 GUI第115相因同通知重入被新護欄取消，r4補介面冪等性，實際新GUI也遇到一次且成功完成。沒有改核心、亂數或原版結算遷就測試。首輪稀疏完整state差異另由三路無掛點原版續跑定位，內部根因仍未知。
+
+[原版與介面核對](../../preserved/player-quake-research-r3.json)、[正式核對](../../preserved/player-quake-audit-r1.json)、[提升](../../preserved/player-quake-promotion-r1.json)、[永久保存](../../preserved/README.md#地震go畫布接入保存)及[收尾](../../preserved/player-quake-integrity-r1.json)為入口。新增定位鍵為原名sub_1E8A4／IDA MZ loader0x1E8A4，027以`PON-PLAYER-QUAKE-SAMPLED`回填；sub_21BD2僅結算，不誤當飛焰sub_219CC。
+
+原版模式不安裝HD控制，存檔及規則格式保持，正常存讀沿既有B驗收。自然習得、暗殺動態失敗與兩稀疏快照的連續等價性未外推；凝滯、複製與八地圖術效果待處理，可選美術微調不阻塞本項。

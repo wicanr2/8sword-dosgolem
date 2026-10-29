@@ -2418,3 +2418,17 @@ READY後正式只追加selector2＋caller074A。八組效果控制共十一效�
 原版探針先宣告26AEh的0／4與滅半偶／奇數／兩Esc共六案，同一完整初始快照a4142bf59e9c742715e9c9686229ec69e90599244ea485bc9c7ee3baba034cb7。兩暗殺原餘數均4、門檻10／50都成功，目標10→0。未改原_rand輸出或種子，沒有反覆重擲；這批沒有動態失敗分支證據。滅半10→4、11→5，兩術Esc均無效果；六組皆扣一次，完整控制／只讀觀測state同值。[獨立核對](preserved/player-target-spells-research-r1.json)保存每案來源、原始輸入及結果，不將26AEh導覽名稱當完整角色屬性語意。
 
 READY後正式僅追加selector3／5與caller074A，機率、傷害及結算仍由原版執行。十一組Engine控制共十四效果與十九拒絕通過，十組同連續原版、一組沿前輪已記錄的稀疏無掛點續跑；不重新宣稱核心已修復。實際GUI只抽滅半，完整wrapper返回、兩張Draw獨立重建相同，暗殺沿共用Engine機制抽驗。[030限定驗收](docs/spec/030-battle-expansion-proposal.md#暗殺術與滅半術正式接入與限定驗收)及[永久證據](preserved/README.md#暗殺術與滅半術接入保存)為入口。
+
+## 2026-10-29：地震五相與Go事件去重
+
+來源PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，沿IDA Pro9.4匯出SHA fd5179ef957f92d13a3e4c1ce8e1eaaddad3a03046054517c983f4eb25ba44df，6715行原bytes經MZ重定位核對。以下IDA位址用MZ loader線性，runtime用固定load0110h。工具為Go1.24.13／923核心與Pillow11.3.0，完整版本及來源SHA收在正式核對的evidence_provenance。
+
+已證實：sub_1E8A4的0x1EED0起為法術7，五個_outpw返回0x1EF75／0x1EFDE／0x1F047／0x1F0B0／0x1F119，runtime0F67:0A05／0A6E／0AD7／0B40／0BA9。原port值500Dh／F00Dh／A00Dh／500Dh／000Dh，50輪共250次，每相先提交一PON。0x1F1C6呼叫sub_21BD2，runtime0F67:3662的父返回0C59；該函式只結算及數字更新，沒有飛焰四姿態／12PON演出。
+
+原版mixed四活／sparse一活／選單Esc三組完整控制與觀測同值，兩版觀測最終state相同；前兩組250PON／250port且資源2→1，Esc無效果且保持2。r1只漏了0F67:0B40探針，原始250PON紀錄已足以否定四相假設；追加第五點後核對通過，保留舊資料。
+
+Go接入後mixed同原連續；sparse由branch快照續跑的最終state不同連續原版。m.Step／PAM／PRE三路無掛點續跑載入state全符，結果皆9eeb06b8a8f3a8907a96e1a5b27e8e4bfa19e1aa686d04dc655ca7267216e10a，亦同HD；原連續仍3b87a959b62e02ce8f084d8a52e880dd968d85a99d9c04fbb7df5c8dcb869989。原因未知，另存fresh reference，不修核心或重抽seed。[研究r2](preserved/player-quake-research-r2.json)保留此限制。
+
+實際r3 GUI在115相取消後，從其實際低位移快照以原版Oracle、只讀PC觀測續跑，捕獲一次phase4重通知，PON數、SS／BP／SP、port和值同前一筆，沒有新PON。core923的oracle/run.go在Machine.Step前呼叫OnCall；Machine.Step可先處理中斷或回呼，原IP因而重訪。重通知已證實，具體中斷種類不深挖；這是新控制器需冪等的契約，不當作核心已修復。[研究r3](preserved/player-quake-research-r3.json)保存原始事件與工具。
+
+r4以已提交PON及合法context去重，錯phase仍取消。原版兩控制刻意重送通知後完整state同各自參考，實際新GUI也處理一次並完成250相。Go只對來源畫布列搬移，數值6／18／12／6／0是HD視覺映射，不宣稱原版CRTC硬體逐像素等價。兩張實際Draw同Pillow獨立重建，[030限定驗收](docs/spec/030-battle-expansion-proposal.md#地震go畫布正式接入與限定驗收)與[永久證據](preserved/README.md#地震go畫布接入保存)為入口。

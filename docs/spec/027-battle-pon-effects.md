@@ -89,3 +89,5 @@
 `PON-PLAYER-EXORCISM-SAMPLED`：[殺鬼術原版研究](../../preserved/player-exorcism-research-r1.json)已證實法術2同sub_219CC／0F67:074A，合類與非合類目標均有四來源／12PON；無合類與選敵Esc無效果，本次均扣一次。僅關閉此caller的抽樣未知，五個其他戰鬥及八個地圖效果、自然習得與傷害word沿用語意仍不外推。接入與驗收沿[030](030-battle-expansion-proposal.md#玩家殺鬼術b接入ready契約)。
 
 `PON-PLAYER-TARGET-SPELLS-SAMPLED`：[暗殺／滅半原版研究](../../preserved/player-target-spells-research-r1.json)已驗法術3／5同sub_219CC／runtime0F67:074A。暗殺預定兩門檻的原餘數均4，成功；滅半10→4、11→5，各四來源／12PON，兩Esc無效果。不把這些觀測稱為暗殺失敗分支或自然習得；其餘法術4／6／7及八地圖效果保持開放。接入沿[030 READY](030-battle-expansion-proposal.md#暗殺術與滅半術b接入ready契約)。
+
+`PON-PLAYER-QUAKE-SAMPLED`：[地震原版核對](../../preserved/player-quake-research-r2.json)確認動畫producer為IDA MZ loader原名sub_1E8A4／0x1E8A4的法術7分支，50輪五相、250PON與250port提交；sub_21BD2只是後續逐隊結算，不套sub_219CC的四姿態／12PON模型。mixed沿原連續，sparse另保留同快照無掛點續跑限制。Go位移接入沿[030 READY](030-battle-expansion-proposal.md#地震go畫布位移ready契約)，凝滯／複製及八地圖效果仍開放。

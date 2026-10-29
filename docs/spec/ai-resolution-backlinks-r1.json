@@ -49,6 +49,23 @@
       ],
       "scope": "One fixed-snapshot rear-caster fireball through original menu and target navigation; 4 source poses and 12 PON, paired full state equal.",
       "not_closed": "Other seven battle effects, eight map effects and natural spell learning."
+    },
+    {
+      "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x1E8A4",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "0x1E8A4",
+      "original_name": "sub_1E8A4",
+      "level": "proven-in-sampled-scope",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/027-battle-pon-effects.md",
+      "required_correction": "PON-PLAYER-QUAKE-SAMPLED",
+      "receipt": "preserved/player-quake-research-r3.json",
+      "scope": "Earthquake selector7: 50 rounds of five PON/CRTC phases; damage is delegated to sub_21BD2, not the sub_219CC fireball sequence.",
+      "not_closed": [
+        "Selectors4/6, eight map effects and natural learning.",
+        "Sparse snapshot/continuous equivalence remains unknown."
+      ]
     }
   ],
   "resolutions": [

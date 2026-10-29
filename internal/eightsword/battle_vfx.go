@@ -14,6 +14,8 @@ type BattleVFXInfo struct {
 	Started, Completed, Cancelled, Skipped, SourceCommits, PONCommits, Frames, ProtectedTextPixels uint64
 	LastSkip                                                                                       string
 	Source, Target                                                                                 [2]int
+	QuakePans, QuakeDuplicates                                                                     uint64
+	Shift                                                                                          [2]int
 }
 type battleVFX struct {
 	BattleVFXInfo
@@ -26,6 +28,11 @@ type battleVFX struct {
 	cachedBase, cached                               *image.RGBA
 	cachedPhase                                      string
 	cachedSample                                     int
+	quake                                            bool
+	quakeBody                                        []byte
+	quakeBP                                          uint16
+	quakeLocal                                       int
+	quakePoints                                      [6][2]int
 }
 
 func (e *Engine) BattleVFXStatus() BattleVFXInfo {
@@ -34,7 +41,13 @@ func (e *Engine) BattleVFXStatus() BattleVFXInfo {
 	}
 	return e.battleVFX.BattleVFXInfo
 }
-func (v *battleVFX) hide() { v.Active = false; v.Phase = ""; v.cachedBase = nil; v.cached = nil }
+func (v *battleVFX) hide() {
+	v.Active = false
+	v.Phase = ""
+	v.Shift = [2]int{}
+	v.cachedBase = nil
+	v.cached = nil
+}
 func (v *battleVFX) cancel(reason string) {
 	if v.running {
 		v.Cancelled++
@@ -66,6 +79,7 @@ func (p *sourceAdapter) bindBattleVFX() {
 	playerAt := 0xe57*16 + 0x345c
 	v.playerBody = append([]byte(nil), code[playerAt:playerAt+518]...)
 	e.battleVFX = v
+	p.bindBattleQuake(v, code)
 	p.onCall(oracle.Addr{Seg: v.code, Off: 0x36c6}, func(*oracle.Oracle) {
 		if e.battleVFX != nil {
 			e.battleVFX.begin(o)
@@ -103,6 +117,7 @@ func (v *battleVFX) beginFrom(o *oracle.Oracle, player bool) {
 	if v.running {
 		v.cancel("new-effect")
 	}
+	v.quake = false
 	r := o.Regs()
 	entry, caller, body := uint16(0x36c6), uint16(0xe0d), v.body
 	if player {
@@ -203,6 +218,10 @@ func (p *sourceAdapter) battleVFXBitmap(entry uint16, raw []byte, x, y, w, h int
 	if v == nil || !v.running {
 		return
 	}
+	if v.quake {
+		v.quakeBitmap(entry, raw, x, y, w, h, dest)
+		return
+	}
 	if dest != 0xa000 || w != 11 || h != 50 {
 		return
 	}
@@ -249,6 +268,9 @@ func (p *sourceAdapter) composeBattleVFX(base *image.RGBA) *image.RGBA {
 	v := e.battleVFX
 	if v == nil || !v.Active || v.Phase == "" {
 		return base
+	}
+	if v.quake {
+		return p.composeBattleQuake(base)
 	}
 	progress := 0.0
 	if v.Phase == "flight" {

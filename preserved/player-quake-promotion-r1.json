@@ -1,0 +1,17 @@
+{
+  "status": "promoted-scoped-player-quake",
+  "audit_sha256": "919507c05ea95544a596d113f8df3222d5b7555733b21210921f20b206b52a1f",
+  "programs": {
+    "8sword": "782eddf4b3eeb3c695953276a3844b28c27647452a55286d27b2d7c96a16a488",
+    "8sword-replay": "60bb0d8453b24fa4149f397e0d3f58b123cfcf3e8a63e4a4b8b5e1543267789a",
+    "gui-check": "57f0eee1153885782c3adc69ea4944bf406153a4a5b1fe756749e4062181ae4b",
+    "music-check": "b36c5c8c804d7adeffb20aa66aa98c02b4fb8e9aa0a4435b4fa79e25aa05f8d5",
+    "heroine-check": "d6e6d19d5f1c7a60af32b8aacbc84123e9504cdc4888108c39f3a0d86a93c88b",
+    "museum-check": "e46264ea461f67bd4e21df782d2c5d69a2134e8360561e97cd20afe2f2a78d96",
+    "story-prelude-check": "a18c67fc5d992aacae9a1f0c2f9dd10d3dc3b73c006e8a8f5ba446fcd9cd39cc"
+  },
+  "source_count": 190,
+  "core_files": 923,
+  "assets": "r68",
+  "asset_files": 525
+}

@@ -1,0 +1,115 @@
+{
+  "status": "passed-scoped-player-quake-research",
+  "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "ida_lines_verified": 6715,
+  "cases": [
+    {
+      "case": "mixed",
+      "pans": 250,
+      "pon": 250,
+      "targets": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "charges": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "full_state_equal": true,
+      "final_state_sha256": "4770c9ffc44bce422cef327fdb5d182455f7a4dbe50ba1b145d9550d0d52146c"
+    },
+    {
+      "case": "sparse",
+      "pans": 250,
+      "pon": 250,
+      "targets": [
+        1
+      ],
+      "charges": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "full_state_equal": true,
+      "final_state_sha256": "3b87a959b62e02ce8f084d8a52e880dd968d85a99d9c04fbb7df5c8dcb869989"
+    },
+    {
+      "case": "cancel",
+      "pans": 0,
+      "pon": 0,
+      "targets": [],
+      "charges": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "full_state_equal": true,
+      "final_state_sha256": "b67d40c6e03f1a09eaf50814ff67068b1732fc3bef4ba57d1864697d23d765b4"
+    }
+  ],
+  "phases": [
+    80,
+    240,
+    160,
+    80,
+    0
+  ],
+  "hd_vertical_shifts": [
+    6,
+    18,
+    12,
+    6,
+    0
+  ],
+  "original_damage_helper": "IDA MZ loader sub_21BD2; runtime0F67:3662, parent return0F67:0C59",
+  "limits": [
+    "Controlled rear caster/learned/charges and sparse counts; no natural-learning claim.",
+    "Original RNG unchanged; original r1/r2 full final states agree.",
+    "r1 missed one of five pan hooks; source PON evidence always contained250."
+  ],
+  "snapshot_resume_limit": {
+    "loaded_states_equal": true,
+    "three_unhooked_original_runners_equal": true,
+    "hd_observer_matches_resumed_original": true,
+    "continuous_original_different": true,
+    "resumed_sha256": "9eeb06b8a8f3a8907a96e1a5b27e8e4bfa19e1aa686d04dc655ca7267216e10a",
+    "continuous_sha256": "3b87a959b62e02ce8f084d8a52e880dd968d85a99d9c04fbb7df5c8dcb869989",
+    "cause": "unknown",
+    "production_rendering_changed_to_fit": false
+  },
+  "duplicate_notifications": {
+    "count": 1,
+    "phase": 4,
+    "native_event": {
+      "bp": 38360,
+      "duplicate": true,
+      "phase": 4,
+      "pon_returns": 114,
+      "port": 980,
+      "sp": 38330,
+      "ss": 7816,
+      "step": 80200595,
+      "value": 13
+    },
+    "receipt_sha256": "03d6a916f20ff38c6653b48b054c816e5c1d59570e294b7dcb7931cf59f39526",
+    "method": "Unhooked original rendering; only read-only PC observers; no writes or key input."
+  }
+}
