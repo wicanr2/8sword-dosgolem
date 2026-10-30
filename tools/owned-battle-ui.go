@@ -20,7 +20,13 @@ type battleUI struct {
 	Source, Target                        int
 	Dirty, Locked                         bool
 	Events                                []game.OwnedCombatOutcome
+	CommitPair                            func(OwnedWorld) (string, string, error)
+	ClosePair                             func()
 }
+
+// The default research UI keeps its existing storage. A separately compiled
+// paired-save prototype supplies the alternative factory.
+var battleUIOpener = openBattleUI
 
 func openBattleUI(dir string, c ArmyCatalog, cc game.OwnedCombatCatalog, seed OwnedWorld) (*battleUI, error) {
 	base, err := armyUIRead(filepath.Join(dir, "gamedata.ay"), 2987)
@@ -56,6 +62,12 @@ func openBattleUI(dir string, c ArmyCatalog, cc game.OwnedCombatCatalog, seed Ow
 }
 func (u *battleUI) Close() {
 	if u != nil && u.Locked {
+		if u.ClosePair != nil {
+			u.ClosePair()
+			u.ClosePair = nil
+			u.Locked = false
+			return
+		}
 		os.Remove(filepath.Join(u.Dir, ".owned-battle-ui.lock"))
 		u.Locked = false
 	}
@@ -63,6 +75,15 @@ func (u *battleUI) Close() {
 func (u *battleUI) persist(next OwnedWorld) error {
 	if !u.Locked {
 		return errors.New("進度未鎖定")
+	}
+	if u.CommitPair != nil {
+		base, saved, e := u.CommitPair(next)
+		if e != nil {
+			return e
+		}
+		u.BaseSHA, u.SavedSHA = base, saved
+		u.World, u.Dirty = next, true
+		return nil
 	}
 	base, e := armyUIRead(filepath.Join(u.Dir, "gamedata.ay"), 2987)
 	if e != nil || len(base) != 2987 || contentSHA(base) != u.BaseSHA {

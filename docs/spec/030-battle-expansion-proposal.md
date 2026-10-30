@@ -347,6 +347,30 @@ Go更新後的整份2987 bytes與原版F7輸出全同，控制組也同原基底
 
 六資源的證據已足夠，不再擴張重做存檔driver或無關runtime。完整世界仍DRAFT：軍隊／招募／戰場與原世界讀端、地圖與守軍更新、月度資源、劇情與結局，以及原版進度／Go附檔的原子提交仍未接正式路徑。正式197來源七程式、923核心、r69全535素材、1040圖庫與DOS前護欄保持，不能用本切片當作移除護欄的理由。
 
+#### 原版進度與軍隊附檔的中斷恢復試作
+
+2026-10-30 DRAFT。沿已驗六資源編碼與Go戰鬥視窗，試作原版gamedata.ay及既有eightsword-owned-world-save/1軍隊附檔的成對提交。正式存檔格式及197來源七程式不改，研究放battle-r1下的owned-paired-save-r1。這批只接獨立Go戰鬥候選，原世界軍隊consumer及DOS前護欄保持。
+
+[成對保存與恢復](../../tools/research-paired-progress.go)、[資料與拒絕測試](../../tools/research-paired-progress_test.go)、[程序中斷探針](../../tools/paired-progress-check.go)、[戰鬥UI介接](../../tools/owned-paired-ui.go)、[準備／核對／保存](../../tools/prepare-owned-paired-save.py)及[實際視窗驗證](../../tools/check-owned-paired-ui.py)為入口。舊戰鬥UI預設沿原存法；新候選只在明確加入paired介接來源時換用同步器，不在工具列增加儲存實作選單。
+
+Linux本機檔案系統的基礎契約依[rename](https://man7.org/linux/man-pages/man2/rename.2.html)、[fsync](https://man7.org/linux/man-pages/man2/fsync.2.html)及[flock](https://man7.org/linux/man-pages/man2/flock.2.html)。單檔rename不代表兩檔同時更換；同步器用固定鎖檔的核心鎖串行讀寫，先同步提交紀錄與父目錄，再逐檔同步／rename／同步父目錄，完成後移除紀錄並同步父目錄。程序結束後核心鎖釋放，鎖檔保留，避免刪檔另建inode造成兩組鎖。
+
+內部紀錄`.owned-pair.intent.json`保存已驗證的前／後兩組完整資料與來源版本。紀錄持久化前中斷保留舊組；之後中斷向前恢復新組。恢復前一次核對兩個現行檔都屬前／後組，未知內容、錯schema、缺檔、符號連結或資料來源不符時保留資料並拒絕。讀取須經同一同步器；不保證未參與鎖的第三方工具可在寫入途中直接讀取兩檔。原版軍隊與六資源以外2975 bytes保持，Go軍隊、庫存、戰中行動旗標與規則完整存入附檔；附檔SHA綁定更新後的原版檔。
+
+抽驗先固定八個程序退出點：提交前、紀錄暫存完成、紀錄持久化、原版檔暫存／持久化、附檔暫存／持久化、紀錄清除。每案由全新程序開啟並驗舊／新組，另驗實際新讀者被鎖阻擋、外部改檔／損壞紀錄／錯來源拒絕、過期提交與重複領獎拒絕。GUI沿原28動作流程抽驗戰中與戰後冷讀，另核對每次磁碟兩檔的六資源與SHA。這是程序中斷與本機檔案系統驗收，不宣稱實體斷電、網路檔案系統或其他平台完成。
+
+限定抽驗已通過，狀態仍為DRAFT。八案確實以`os.Exit(91)`結束程序，未跑defer；前兩案保留舊組，後六案由新程序恢復新組，兩個中斷點確實留下「原進度已更新、附檔仍舊」的狀態。程序死亡後重新取得固定鎖，提交紀錄核對後清除。跨程序第二讀者、外部改檔、未知版本、畸形紀錄、缺檔、符號連結、舊token及重複結算均按預定條件拒絕。錯誤發生後的寫者須恢復成功或重開，不能繼續猜測磁碟狀態。
+
+真正Ebiten視窗再次跑完招募、28次出手／14輪及一次領獎，戰中與戰後各另開程序冷讀，保留野狼29、金4400、經驗2012、等級2、領導力1100與庫存970。47份保存配對的原進度六資源與附檔逐項相同，世界狀態逐份同前版已驗GUI；每份原進度其餘2975 bytes保持。七份1920×1200 X11與Go畫布全RGB相同，三字型沿既有字圖。原三項戰鬥測試與五項成對保存父測試共0.354秒、vet及三程式建置通過，沒有FAIL或SKIP。[冷讀圖](../images/paired-save-cold-r1.png)、[畫面來源](../images/paired-save-cold-r1.json)、[最終核對](../../preserved/owned-paired-save-audit-r2.json)及[永久入口](../../preserved/README.md#go兩份存檔中斷恢復試作保存)集中證據。
+
+本機X11預覽用`bash tools/owned-paired-ui.sh`，由[啟動器](../../tools/owned-paired-ui.sh)執行獨立session-preview-r1；操作沿上節戰鬥UI，所有有效動作自動成對保存。資料已清理時先從永久清單按path／mode解gzip還原該研究prefix，或用準備器重新建立；不將舊的不匹配兩檔自動合併。字圖、原進度及既有來源均取自永久owned-battle-ui-r1與owned-world-bridge-r1，不需舊研究副本。
+
+重現沿既有固定Go1.24.13、Pillow11.3.0及923核心，配額、唯讀掛載與外部probe.mod設定同戰鬥UI節；本輪建置逾時240秒。Pillow容器執行`prepare-owned-paired-save.py prepare --project /project`，只將battle-r1父目錄掛可寫。Go容器在/out/go-src明列共用來源`tools/owned-army-model.go tools/research-owned-world.go tools/research-native-progress.go tools/research-paired-progress.go`；成對視窗再加`tools/owned-army-ui.go tools/owned-army-ui_draw.go tools/owned-battle-ui.go tools/owned-battle-ui_draw.go tools/owned-paired-ui.go`。所有Go命令使用`-mod=readonly -modfile=/out/probe.mod`：測試再加owned-battle-ui_test.go與research-paired-progress_test.go，設`EIGHTSWORD_PAIR_INPUT=/out/inputs`及前節兩個BATTLE_UI變數；vet與battle-ui建置再加owned-battle-ui_main.go。共用來源加paired-progress-check.go建置/out/paired-progress，既有owned-army-ui-xcheck.go建置/out/xcheck。
+
+Go容器先跑`python3 /project/tools/prepare-owned-paired-save.py exercise --project /project`，再以`python3 /project/tools/check-owned-paired-ui.py --work <研究目錄>`完成有界XTEST；GUI驗證用session-r1，保留另一本機預覽目錄。Pillow容器的`audit --project --out <新JSON>`核對固定候選及舊GUI世界狀態；`archive --project --archive --audit <通過收據> --out`保存，`verify --archive --out`不掛workplace，`integrity --project --archive --out`逐SHA核對正式輸入與永久原圖。
+
+候選附檔上限256 KiB、提交紀錄1 MiB、JSON深度32；重複鍵、未知欄位、來源不符或資源超過既有原版傳送界限時拒絕。初始化以RENAME_NOREPLACE發布新目錄，不覆蓋既有空目錄或進度。暫存完成後程序退出可能留下本候選的未提交tmp檔，只作研究證據，不當作有效存檔。這個機制只同步已證實六資源，沒有把Go兵種寫入原版kind；原軍隊31名民兵、世界／地圖／月度及劇情consumer仍未交接，正式Engine繼續在DOS啟動前拒絕附檔。
+
 ## AI 從原版判斷掛點切入
 
 ```mermaid

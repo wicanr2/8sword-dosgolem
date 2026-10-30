@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## Go兩份存檔中斷恢復試作保存
+
+[030成對保存](../docs/spec/030-battle-expansion-proposal.md#原版進度與軍隊附檔的中斷恢復試作)的197來源研究副本、33兵種資料、三字型字圖、2987-byte基底進度、八個程序中斷與恢復狀態、成對同步器／測試／視窗／XTEST程式、實際GUI每次保存的兩檔、七份完整PNG／X11 PPM及編譯輸出，保存於本機`preserved/owned-paired-save-r1/`。本批447檔／328去重物件，壓縮15114843 bytes，未掛workplace逐SHA及長度核對通過。
+
+八個真實程序退出點均能由新程序恢復完整舊組或新組，實際GUI的28次出手／14輪、戰中與戰後重開及單次領獎通過。47組兩檔逐項核對六資源及SHA，世界狀態均同前版已驗流程，原進度其餘2975 bytes保持。八個父測試0.354秒、vet及三程式建置通過。現有WorldSave格式不變，內部提交紀錄與Linux本機鎖仍為DRAFT候選，未驗實體斷電、其他平台及未參與鎖的工具。
+
+[逐檔清單](owned-paired-save-r1.json)、[首版核對](owned-paired-save-audit-r1.json)、[最終核對](owned-paired-save-audit-r2.json)、[保存收據](owned-paired-save-preservation-r1.json)、[脫離workplace核對](owned-paired-save-verification-r1.json)、[收尾](owned-paired-save-integrity-r1.json)與[文件入口核對](owned-paired-save-links-r1.json)為入口。完整映像ID、配額、來源與程式雜湊見批次execution-r1.json。[工具](../tools/prepare-owned-paired-save.py)在固定Pillow11.3.0 Docker使用`archive --project <唯讀專案> --archive <可寫preserved> --audit <通過收據> --out <新JSON>`保存；`verify --archive <唯讀preserved> --out <新JSON>`不掛workplace，逐物件核對。依清單path／mode及objects解gzip可還原；原版、923核心與離線模組沿[兵力核心保存](owned-combat-r1.json)及[完整catalog](catalog.json.gz)。
+
+[縮小冷讀圖](../docs/images/paired-save-cold-r1.png)、[畫面來源](../docs/images/paired-save-cold-r1.json)與[本機啟動器](../tools/owned-paired-ui.sh)加入Git。完整進度、提交紀錄、原生兵種資料及二進位維持本機；原版31名民兵與Go野狼29仍分開保存。正式197來源七程式／923核心／r69全535素材／1040圖庫及DOS前護欄不改，正常軍隊與原世界交接仍待完成。
+
 ## Go資源與原版進度交接研究保存
 
 [030六資源交接](../docs/spec/030-battle-expansion-proposal.md#六項資源的編碼與受控傳送)的IDA四函式2192行原bytes、197來源研究副本、Go編碼／計畫／測試／探針、原F7進度與配對地圖、Go戰後來源、原版控制與受控傳送的十份完整state、人物頁／地圖PNG、Go候選與原版F7輸出，保存於本機`preserved/owned-world-bridge-r1/`。本批298檔／256去重物件，壓縮10559130 bytes，未掛workplace逐SHA與長度核對通過。

@@ -1,0 +1,99 @@
+{
+  "status": "actual-go-paired-ui-cold-load",
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-paired-save-r1/gui-r1/final/frame-001-lishu.png",
+  "source_sha256": "e46c53c508961804689a584903a04a6e070c11a50457d164f7094446f5a98521",
+  "preview_sha256": "90c7a2e830d4c09be4759b69d3db300267220b51bc3134fbb01b8f2f32932c12",
+  "metadata": "workplace/probe-20261023/graphics-first/battle-r1/owned-paired-save-r1/gui-r1/final/cold-final-lishu.json",
+  "metadata_sha256": "a3a5bccb5d2cbf5a6d3acf435f56b0c57019c206a1bc82939dfc4525788c4dc4",
+  "audit": "preserved/owned-paired-save-audit-r2.json",
+  "paired_ui_commits": 47,
+  "limits": "獨立 Go 試作；明示測試資源與敵軍，未接正式地圖。",
+  "world": {
+    "schema": "eightsword-owned-world/1",
+    "revision": 3,
+    "army": {
+      "gold": 4400,
+      "leadership": 1100,
+      "recruit_rank": 2,
+      "rules": "tactics",
+      "slots": [
+        {
+          "unit": "openkb:wolf",
+          "count": 29
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "offers": {
+        "wolf-camp": {
+          "unit": "openkb:wolf",
+          "stock": 970
+        }
+      }
+    },
+    "progress": {
+      "rank": 2,
+      "merit": 2012,
+      "legacy_04f6": 200,
+      "legacy_04fc": 16,
+      "thresholds": [
+        0,
+        2000,
+        5000,
+        8000,
+        12000,
+        30000
+      ]
+    },
+    "encounters": {
+      "skeleton-patrol": {
+        "enemy": [
+          {
+            "unit": "openkb:skel",
+            "count": 15
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          }
+        ],
+        "cleared": true
+      }
+    },
+    "battle": null
+  }
+}

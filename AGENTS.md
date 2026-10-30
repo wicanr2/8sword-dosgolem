@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-10-30兩份存檔中斷恢復已沿[030 DRAFT](docs/spec/030-battle-expansion-proposal.md#原版進度與軍隊附檔的中斷恢復試作)接獨立Go戰鬥候選。[同步器](tools/research-paired-progress.go)以Linux固定鎖及內部提交紀錄配對原進度六資源與既有WorldSave，八個真實程序退出點、新程序恢復及實際GUI戰中／戰後冷讀通過；47組保存與前版世界狀態相同。資料只在參與相同鎖的本機候選內同步，未知改檔保留並拒絕；實體斷電、跨平台與正式世界交接未驗。[永久保存](preserved/README.md#go兩份存檔中斷恢復試作保存)不依賴workplace；[預覽啟動器](tools/owned-paired-ui.sh)使用獨立session。正式197來源七程式／923核心／r69全535素材／1040圖庫與DOS前護欄保持，不重開已驗六資源編碼，也不因存檔試作通過移除護欄。
+
 2026-10-30已完成[六資源原版存讀傳送研究](docs/spec/030-battle-expansion-proposal.md#六項資源的編碼與受控傳送)：固定PAM將DS04F2h起六word編到進度檔前12 bytes，公式為值加檔案byte位移再加3，讀取反向。Go依原SHA／六前值只更新這六項，2975 bytes及原民兵31保持；原版F7整檔2987 bytes同Go候選，普通新Engine Continue／F1讀回2／2012／200／4400／1100／16。兩案寫入前完整state相同，2192行IDA bytes、測試0.006秒與vet通過。[永久保存](preserved/README.md#go資源與原版進度交接研究保存)及[冷讀畫面](docs/images/native-resource-cold-r1.png)為入口。這是受控六資源傳送，正式197來源七程式與DOS前護欄保持；軍隊／世界consumer、地圖／守軍／月度與原進度／Go附檔原子提交仍DRAFT。不要再重解已證實的前12 bytes，也不把其他進度欄位或未知計數猜成已知。
 
 2026-10-30已完成[Go戰鬥視窗DRAFT抽驗](docs/spec/030-battle-expansion-proposal.md#自有戰鬥視窗研究)：實際Ebiten從空軍隊招募30野狼，經28次按鈕出手／14輪，戰中與戰後另一GUI程序冷讀，再由既有Go世界核心單次領獎。狼29、金4400、戰績2012、等級2、領導力1100、庫存970；28次傷亡由Python按原catalog獨立重算，七份X11圖與Go畫布RGB相同。[啟動器](tools/owned-battle-ui.sh)、[實際隸書畫面](docs/images/owned-battle-ui-preview-r1.png)與[永久保存](preserved/README.md#go戰鬥視窗試作保存)為入口。沿既有WorldSave，不創新schema；雙方出手順序由操作者決定，初始資源／敵軍為fixture，卡片尚未接HD戰場美術，特殊／撤退／全滅世界交接未提供。正式197來源七程式、923核心、535素材、1040圖庫與DOS前護欄保持。後續集中原地圖／資源／進度原子交接與正式玩家路徑，不重做已驗戰鬥數值與字型。

@@ -93,6 +93,13 @@ func (g *battleApp) Update() error {
 			return e
 		}
 		g.JournalSHA = g.UI.SavedSHA
+		native, e := armyUIRead(filepath.Join(g.UI.Dir, "gamedata.ay"), 2987)
+		if e != nil {
+			return e
+		}
+		if e = os.WriteFile(filepath.Join(g.Capture, fmt.Sprintf("native-%03d.ay", g.Commits)), native, 0600); e != nil {
+			return e
+		}
 	}
 	if g.UI.Dirty || g.Frame == nil {
 		g.Frame, g.Texts = paintBattleUI(g.UI, g.Fonts)
@@ -176,7 +183,7 @@ func runBattleUI() error {
 	if e != nil || contentSHA(raw) != f.CatalogRawSHA {
 		return fmt.Errorf("字圖與兵種資料不符")
 	}
-	u, e := openBattleUI(*session, c, cc, w)
+	u, e := battleUIOpener(*session, c, cc, w)
 	if e != nil {
 		return e
 	}

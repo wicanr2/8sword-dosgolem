@@ -1,0 +1,14 @@
+{
+  "status": "passed-owned-paired-save-links",
+  "relative_links": 3006,
+  "tools_indexed": 7,
+  "python_syntax": 2,
+  "root_owned_or_md_directories": [],
+  "positive_control": "tools/owned-battle-ui.go",
+  "filesystems_checked": [
+    "workplace",
+    "preserved/owned-paired-save-r1",
+    "tools",
+    "docs"
+  ]
+}

@@ -100,6 +100,10 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 ![受控Go資源經原版F7與冷讀後的人物頁](docs/images/native-resource-cold-r1.png)
 
+獨立Go戰鬥試作已支援原版資源與軍隊附檔的成對保存。保存中程序意外結束後，重開會恢復成完整的一組；戰中行動旗標及單次領獎一併保留。八個中斷點、實際戰鬥與兩次重開已抽驗，範圍限Linux本機試作，正式地圖交接仍待接入。可看[恢復機制與預覽入口](docs/spec/030-battle-expansion-proposal.md#原版進度與軍隊附檔的中斷恢復試作)、[冷讀畫面來源](docs/images/paired-save-cold-r1.json)及[永久保存](preserved/README.md#go兩份存檔中斷恢復試作保存)。
+
+![成對保存後重新開啟的Go戰鬥試作，採教育部隸書](docs/images/paired-save-cold-r1.png)
+
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 HD模式固定由Go來源呈現器產生畫面，已移除原版RGB疊圖退路。相容像素操作也由Go處理，事件邊界不再退回原版像素寫入。使用`-hd=false`時保留原版繪圖途徑，不安裝HD繪圖掛點。未接管的HD寫入會記錄位置、保留最後完整畫面並停止。模式分流與抽驗範圍見[047限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。
