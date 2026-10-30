@@ -1,0 +1,6 @@
+{
+  "status": "passed-cleanup-restore-sample",
+  "restore_after_runtime_metadata_change": true,
+  "different_existing_content_not_overwritten": true,
+  "verified_content_restored": true
+}

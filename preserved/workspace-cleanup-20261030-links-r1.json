@@ -1,0 +1,6 @@
+{
+  "status": "passed-cleanup-document-links",
+  "markdown_links": 2763,
+  "cleanup_tool_sha256": "a346d417b8db775a054446f51516388ac4042a94ddf6ada267f5178f6742b301",
+  "unfinished_go_defeat_sources_not_accepted": true
+}

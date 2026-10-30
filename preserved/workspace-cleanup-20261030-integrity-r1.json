@@ -1,0 +1,12 @@
+{
+  "status": "passed-cleanup-runtime-integrity",
+  "sources": 197,
+  "programs": 7,
+  "core": 923,
+  "assets": 535,
+  "artwork": 1040,
+  "active_defeat_research_kept": true,
+  "root_owned_active_outputs": 0,
+  "free_bytes": 355586494464,
+  "cleanup_plan_sha256": "35aff3338329c3e73fd8058c8645ae82f00d1cbbc9ffdac35506102142f61c80"
+}

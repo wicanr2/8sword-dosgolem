@@ -1,0 +1,38 @@
+{
+  "status": "active-defeat-inputs-protected",
+  "inputs": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-world-r1/normal-r4/normal-final.state",
+      "active_copy": "workplace/probe-20261023/graphics-first/battle-r1/owned-defeat-r1/inputs/oracle-state.state",
+      "sha256": "e618d4343697fa00a50ab4b6021b169f6a5e21e4eaf86100c1fac9cd7a98777b"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-world-r1/normal-r4/receipt.json",
+      "active_copy": "workplace/probe-20261023/graphics-first/battle-r1/owned-defeat-r1/inputs/world-controls.json",
+      "sha256": "3e5e936726f3e0247796d2a79ce041468d458238dccdf6fedb0ad785a2eaa882"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-combat-r1/army-catalog.json",
+      "active_copy": "workplace/probe-20261023/graphics-first/battle-r1/owned-defeat-r1/inputs/army-catalog.json",
+      "sha256": "21902471f97d7c545db15a51905067bdbe3b8cfb2f9623a936eba862f273e2da"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-combat-r1/combat-catalog.json",
+      "active_copy": "workplace/probe-20261023/graphics-first/battle-r1/owned-defeat-r1/inputs/combat-catalog.json",
+      "sha256": "96a0b0e19f93e24ba942d10bc7bbb7e9a78a5a10cc9ce0fcf02fd3896940de13"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-combat-r1/inputs/original-save.ay",
+      "active_copy": "workplace/probe-20261023/graphics-first/battle-r1/owned-defeat-r1/inputs/original-save.ay",
+      "sha256": "eaf461dc51279c16df3f9b8caa228149b903ce10f5dc7f857f4fa32ffbc89912"
+    }
+  ],
+  "cache_cleanup": {
+    "status": "removed-rebuildable-owned-defeat-cache",
+    "files": 793,
+    "logical_bytes": 56156282,
+    "allocated_bytes": 58998784,
+    "free_before": 30462517248,
+    "free_after": 30522564608
+  }
+}

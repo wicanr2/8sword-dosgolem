@@ -1,0 +1,39 @@
+{
+  "status": "completed-project-workspace-cleanup",
+  "removed_files": 40217,
+  "removed_logical_bytes": 11048469828,
+  "removed_inode_allocated_bytes": 11047514112,
+  "archived_copies": 39424,
+  "cache_files": 793,
+  "verified_archive_objects": 6636,
+  "workspace_before_inventory_allocated_bytes": 13157859328,
+  "workspace_after_allocated_bytes": 2161926144,
+  "active_research_preservation": {
+    "status": "preserved-unfinished-defeat",
+    "files": 67,
+    "objects": 59,
+    "stored_bytes": 6394141,
+    "validation_status": "DRAFT"
+  },
+  "current_runtime_unchanged": {
+    "status": "passed-cleanup-runtime-integrity",
+    "sources": 197,
+    "programs": 7,
+    "core": 923,
+    "assets": 535,
+    "artwork": 1040,
+    "active_defeat_research_kept": true,
+    "root_owned_active_outputs": 0,
+    "free_bytes": 355586494464,
+    "cleanup_plan_sha256": "35aff3338329c3e73fd8058c8645ae82f00d1cbbc9ffdac35506102142f61c80"
+  },
+  "current_filesystem_free_bytes": 355640070144,
+  "docker_removed_created_container": "0f51c6c12323",
+  "docker_images_deleted": 0,
+  "docker_global_prune": false,
+  "notes": [
+    "Only 8sword workspace copies and reproducible cache were deleted.",
+    "Current game, original inputs, saves, artwork and unfinished defeat research remain.",
+    "Filesystem free space also reflects other concurrent projects."
+  ]
+}

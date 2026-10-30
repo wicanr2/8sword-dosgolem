@@ -1,0 +1,24 @@
+{
+  "status": "cleaned-verified-workspace-copies",
+  "plan_sha256": "35aff3338329c3e73fd8058c8645ae82f00d1cbbc9ffdac35506102142f61c80",
+  "removed_files": 39424,
+  "removed_logical_bytes": 10992313546,
+  "removed_inode_allocated_bytes": 10988515328,
+  "free_bytes_before": 344312201216,
+  "free_bytes_after": 355564945408,
+  "kept": [],
+  "protected": [
+    "workplace/intake-20261023",
+    "workplace/gomodcache",
+    "workplace/dosgolem",
+    "workplace/probe-20261023/text-first",
+    "workplace/player/assets",
+    "workplace/player/assets-painted-r69",
+    "workplace/player/source-candidate-owned-combat-r1",
+    "workplace/player/assets-painted-r68",
+    "workplace/player/source-candidate-map-color-r2",
+    "workplace/player/gui/compat-pixels-save-r2",
+    "workplace/probe-20261023/graphics-first/battle-r1/owned-defeat-r1"
+  ],
+  "note": "Filesystem free-space changes can include other concurrent projects."
+}

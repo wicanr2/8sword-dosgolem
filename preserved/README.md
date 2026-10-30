@@ -216,6 +216,30 @@ r69只替換r68的music.json並加入九音檔與一份來源紀錄，524舊檔�
 
 ## 已授權清理
 
+### 2026-10-30 工作副本清理
+
+本輪刪除39424份已保存且逐SHA相同的研究／建置副本，另刪793份可重建Go快取，共40217檔、邏輯大小11048469828 bytes。檔案inode占用約11.05 GB；工作區由約13.2 GB降至2.2 GB。對應6636個永久物件已核對。全機可用空間同時受其他專案作業影響，不把其全部變化計入本輪回收量。
+
+[固定逐檔清單](workspace-cleanup-20261030-plan-r1.json.gz)、[刪除結果](workspace-cleanup-20261030-result-r1.json)、[快取及續作輸入](workspace-cleanup-20261030-active-r1.json)、[安全抽驗](workspace-cleanup-20261030-safety-r1.json)、[還原抽驗](workspace-cleanup-20261030-safety-r2.json)、[現行程式／素材核對](workspace-cleanup-20261030-integrity-r1.json)、[文件核對](workspace-cleanup-20261030-links-r1.json)及[摘要](workspace-cleanup-20261030-summary-r1.json)為入口。現行197來源七程式、923核心、r69全535素材、1040永久圖庫、原版資料、模組來源、存檔、上一版候選與最新存讀錄影保持。只移除已確認屬本專案的單一Created容器，未全域清理Docker映像或其他專案資源。
+
+[清理工具](../tools/clean-preserved-workspace.py)在固定Pillow11.3.0 Docker執行，提供`plan`、`apply`、`restore`與`integrity`。`plan`結合初批catalog、後續保存批次及永久圖庫，逐SHA核對來源與保存物件；`apply`核對固定清單、目前版本、來源檔狀態與SHA後才刪除，變動檔保留。當前版本、原版、存檔與進行中研究有保護名單，清理前須依目前狀態核對名單。
+
+重跑歷史研究時，先按相對前綴還原所需副本，例如舊世界交接研究。以下命令只在容器內解壓與寫入，拒絕覆寫不同內容；必要輸入與輸出目錄均已存在。
+
+```bash
+timeout 180s docker run --rm --init --network none \
+  --user 1000:1000 --memory 768m --cpus 1 --pids-limit 64 \
+  --mount type=bind,src=/home/anr2/cht/8sword,dst=/project,readonly \
+  --mount type=bind,src=/home/anr2/cht/8sword/workplace,dst=/project/workplace \
+  sc-cht-hdtools:pillow11.3.0-r2 python /project/tools/clean-preserved-workspace.py restore \
+  --project /project --plan /project/preserved/workspace-cleanup-20261030-plan-r1.json.gz \
+  --prefix workplace/probe-20261023/graphics-first/battle-r1/owned-world-r1
+```
+
+進行中的敗退研究仍保留原路徑，其67檔／59去重物件另保存於本機`preserved/owned-defeat-inprogress-r1/`，壓縮6394141 bytes。[草稿清單](owned-defeat-inprogress-r1.json)、[保存收據](owned-defeat-inprogress-preservation-r1.json)及[無workplace核對](owned-defeat-inprogress-verification-r1.json)記錄原版12組控制、完整before／after state、來源、未完成Go原型及部分稽核工具。這是清理前保全，不是Go功能驗收。工具的`preserve-active`與`verify-active`分別保存及獨立核對此批；完整物件不加入Git，來源與狀態以捕獲當時的DRAFT為準。
+
+### 前輪清理記錄
+
 使用者要求先釋放空間。已刪除541份舊錄影、9222份Go快取，以及148748份有永久物件且逐SHA核對相同的過期研究／建置檔。兩批邏輯大小共118929646556 bytes，永久物件及定稿圖未刪。Docker未使用建置快取另清除236.2 MB；未刪其他專案的容器、映像或資料卷。
 
 清理後的驗證另產生1843份快取，152532506 bytes，也已刪除；見[最終快取計畫](workspace-cleanup-final-cache-plan-r1.json.gz)及[結果](workspace-cleanup-final-cache-r1.json)。三批共160354份檔案、邏輯119082179062 bytes；[清理摘要](workspace-cleanup-summary-r1.json)集中列示。

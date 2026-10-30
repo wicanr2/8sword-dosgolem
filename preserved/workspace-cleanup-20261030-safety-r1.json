@@ -1,0 +1,9 @@
+{
+  "status": "passed-cleanup-safety-sample",
+  "protected_runtime": true,
+  "protected_saves": true,
+  "unknown_data_kept": true,
+  "changed_data_kept": true,
+  "hardlink_target_kept": true,
+  "restore_prefix_verified": true
+}
