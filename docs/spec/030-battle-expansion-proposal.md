@@ -285,6 +285,28 @@ python3 /project/tools/check-owned-army-ui.py --work /out
 
 Go視窗驗證配置為2 CPU／2 GiB／192程序／512 MiB exec tmpfs，外層300秒；編譯使用3 GiB／2 CPU／192程序及1 GiB exec tmpfs。全部UID1000、--rm、--init、--network none。UI稽核在Pillow容器以`prepare-owned-army-ui.py audit --project /project --out <新JSON>`核對；來源、命令與歷史失敗另保存在批次execution-r1.json。首輪C版XTEST helper缺少XTest.h，改沿既有純Go XGB；後續關閉視窗後放開Ctrl的工具錯誤已修正，使用乾淨新session重跑，失敗版保留，不列為產品故障。
 
+#### 自有戰鬥視窗研究
+
+2026-10-30 DRAFT。接續軍隊視窗，把既有Go招募、OwnedCombat的Plan／Choose／Apply／NextRound／PassRearMelee與WorldSave的戰中存讀、settleVictory接入獨立Ebiten視窗。研究沿battle-r1下的owned-battle-ui-r1，使用既有玉綠金框與三字型。只驗證操作鏈，不改正式玩家路徑、存檔格式或原版世界；正式197來源七程式與DOS前護欄保持。
+
+入口為[狀態與交易](../../tools/owned-battle-ui.go)、[Go畫布](../../tools/owned-battle-ui_draw.go)、[實際視窗](../../tools/owned-battle-ui_main.go)、[測試](../../tools/owned-battle-ui_test.go)、[準備與保存](../../tools/prepare-owned-battle-ui.py)及[實際輸入驗證](../../tools/check-owned-battle-ui.py)。沿既有eightsword-owned-world-save/1保存整個世界與進行中戰鬥，不另創格式。獨立進度初始金5000、領導力1000、等級1、戰績1990、狼營庫存1000與骷髏15均明示fixture，晉級門檻從已保存原版控制取值。
+
+原型提供招募30隻野狼、開戰、點選我方來源／敵方目標、普通／遠程出手、敵方策略出手、合法後排略過、下一輪及勝利領取。雙方出手按鈕由操作者選擇順序，沒有宣稱還原原版整體輪次排程；原核心的每輪一次、正對與後排限制照常。特殊／法術未提供輸入，撤退與全滅僅保留戰場，不猜世界復歸。每個有效動作先原子存檔才更新UI；三字型切換不改戰鬥。來源快照與基底SHA在每次保存前核對，獨立目錄鎖防止雙視窗，非本格式及外部改寫拒絕。
+
+抽驗預先固定：正常視窗從空軍隊招募、開戰、敵方出手、戰中關閉／另一程序讀回，已行動敵軍不得重複；再經真實按鈕跑完既有28次行動／14輪，領取後狼29、金4400、戰績2012、等級2、領導力1100，庫存970保持。另驗未行動前換輪、無效來源／目標、後排限制、重複領取、改檔拒絕、六陣位及字形安全矩形。完整PNG、X11擷取、每動作WorldSave與字圖先永久保存，再交接。
+
+本機X11預覽入口為`bash tools/owned-battle-ui.sh`，使用[啟動器](../../tools/owned-battle-ui.sh)及獨立session-preview-r1。先按「招募野狼30」，再按「進入戰場」；點選我方／敵方卡片後按「我方出手」，「敵方策略出手」由既有Choose選敵。「下一輪」須等本輪所有存活隊伍行動完成，「領取勝利戰果」只在勝利後有效。F10或字型按鈕切換三字型，Ctrl+Q離開；每個有效動作均自動存檔。初始資料、操作順序與畫面均為獨立DRAFT試作，沒有原版戰場同狀態畫面宣稱。
+
+準備器在Pillow11.3.0 Docker以`prepare --project /project`建立新研究區，原版／專案唯讀，只將既有battle-r1父目錄掛可寫；由永久owned-world-r1物件取回必要資料，字型由永久catalog原物件生成，授權文字沿r69，沒有舊UI工作區依賴。Go1.24.13沿/core唯讀923核心、/gomod唯讀模組、外部/out/probe.mod，設定HOME=/tmp、GOCACHE=/tmp/go-cache、GOMODCACHE=/gomod、GOPROXY=off、GOSUMDB=off；Go快取僅存有界exec tmpfs。
+
+Go編譯與回歸明確列出`owned-army-model.go owned-army-ui.go owned-army-ui_draw.go research-owned-world.go owned-battle-ui.go owned-battle-ui_draw.go`為共用來源；測試加owned-battle-ui_test.go，建置／vet加owned-battle-ui_main.go。設定`EIGHTSWORD_BATTLE_UI_INPUT=/out/inputs`與`EIGHTSWORD_BATTLE_UI_ASSETS=/out/ui-assets`，在/out/go-src執行`go test -p 2 -modfile=/out/probe.mod -v <共用來源與測試>`，同一容器建置/out/battle-ui及既有owned-army-ui-xcheck.go至/out/xcheck。最後在Go容器以`python3 /project/tools/check-owned-battle-ui.py --work /out`跑真實XTEST。編譯3 GiB／2 CPU／192程序／1 GiB exec tmpfs／180秒，GUI 2 GiB／2 CPU／192程序／512 MiB exec tmpfs／300秒；均UID1000、--rm、--init、--network none。
+
+限定抽驗已通過，仍為DRAFT。三Go父測試最終0.188秒、vet、實際GUI招募／28次出手／13次換輪／一次領獎及戰中／戰後各一個新GUI程序冷讀通過。狼30→29、敵15→0；領獎金3800→4400、戰績1990→2012、等級1→2、領導力1000→1100，庫存970保持。空第六目標、未完成換輪、冷讀後重複敵方行動及重複領獎均拒絕，前排不能當後排略過另以控制器抽驗，原2987-byte進度不變。
+
+Python核對器按每個已保存WorldSave、實際catalog攻擊／HP／除數與既有編碼減員門檻，獨立重算28次行動及13次換輪。七份1920×1200 X11擷取RGB逐像素等於Go畫布，三字型與全部文字墨跡邊界另核對。[實際預覽](../images/owned-battle-ui-preview-r1.png)、[畫面來源](../images/owned-battle-ui-preview-r1.json)、[獨立核對](../../preserved/owned-battle-ui-audit-r2.json)與[永久入口](../../preserved/README.md#go戰鬥視窗試作保存)為入口。準備／核對器的`audit --project --out <新JSON>`只查當前固定候選；`archive --project --archive --audit <最終收據> --out`保存，`verify --archive --out`在未掛workplace時逐物件核對。
+
+首版缺少本機核心require／replace，只修改外部probe.mod後重跑；正式go.mod保持。第一次GUI在空目標的核心提示「合法」缺字而中止，已把核心／控制器提示納入字圖並增加實際錯誤畫面的三字型回歸。檔案系統錯誤若含包外路徑字元，畫面顯示問號，狀態收據保留原始錯誤；不再因回報錯誤而panic。失敗GUI、字圖、來源、存檔及編譯輸出保留，不覆寫。正式Engine另以真正Open呼叫確認DOS前拒絕擴充進度；本輪未宣稱原版排程、特殊法術、正常地圖交接、自然通關或新平衡完成。
+
 ## AI 從原版判斷掛點切入
 
 ```mermaid

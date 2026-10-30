@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## Go戰鬥視窗試作保存
+
+[030戰鬥視窗研究](../docs/spec/030-battle-expansion-proposal.md#自有戰鬥視窗研究)的197來源研究副本、33兵種招募／戰鬥資料、基底進度、三字型字圖與授權、Go／XTEST程式、實際GUI招募／28次出手／13次換輪／領獎的每個WorldSave、三程序狀態與七份完整PNG／X11 PPM，保存於本機`preserved/owned-battle-ui-r1/`。首輪缺字中止、失敗字圖／存檔／二進位與修正後的乾淨GUI分開保存。這是明示資源與敵軍的DRAFT操作試作，沒有接入正式原版地圖，卡片未用HD戰場美術。
+
+本批376檔／330去重物件、壓縮18641288 bytes，未掛workplace逐物件SHA與長度核對通過。三Go父測試最終0.188秒，另有既有vet與真實GUI收據；獨立核對重算28次傷亡及13次換輪，七份X11圖與Go畫布全RGB相同。金4400、狼29、戰績2012、等級2、領導力1100與庫存970均在另一程序讀回，重複領獎拒絕。
+
+[逐檔清單](owned-battle-ui-r1.json)、[首版核對](owned-battle-ui-audit-r1.json)、[最終核對](owned-battle-ui-audit-r2.json)、[保存收據](owned-battle-ui-preservation-r1.json)、[脫離workplace核對](owned-battle-ui-verification-r1.json)、[收尾](owned-battle-ui-integrity-r1.json)與[文件入口核對](owned-battle-ui-links-r1.json)為入口。完整映像ID、來源SHA、編譯與GUI配置記在批次execution-r1.json，前版execution-r1保留歷史，最終補充記在execution-r2.json。[保存工具](../tools/prepare-owned-battle-ui.py)在固定Pillow11.3.0 Docker以`archive --project <唯讀專案> --archive <可寫preserved> --audit <最終通過收據> --out <新JSON>`保存；`verify --archive <唯讀preserved> --out <新JSON>`只讀永久資料逐物件核對，不需workplace。按清單path／mode與objects解gzip可還原；原版、923核心與離線模組沿[兵力核心保存](owned-combat-r1.json)及[完整catalog](catalog.json.gz)。
+
+[本機啟動器](../tools/owned-battle-ui.sh)使用獨立session-preview-r1，提供實際招募／出手／領獎按鈕與三字型；桌面X11尚未驗，GUI收據來自有界Xvfb。縮小[勝利畫面](../docs/images/owned-battle-ui-preview-r1.png)及[來源資訊](../docs/images/owned-battle-ui-preview-r1.json)加入Git，完整PNG、字圖、進度與二進位維持本機。正式197來源七程式、923核心、535素材、1040圖庫及DOS前護欄保持；不把試作宣稱為正常新增兵種玩家路徑。所有Go快取均隨tmpfs容器移除。
+
 ## Go軍隊招募視窗試作保存
 
 [030視窗研究](../docs/spec/030-battle-expansion-proposal.md#軍隊與招募視窗研究)的完整197來源研究副本、33兵種資料、2987-byte基底進度、三字型字圖及授權、Go視窗與XTEST程式、兩輪GUI的完整PNG／X11 PPM／狀態與存檔，保存在本機`preserved/owned-army-ui-r1/`。初始資源和商店是明示UI fixture；正式地圖與戰鬥交接仍DRAFT，軍隊卡暫用名稱首字。

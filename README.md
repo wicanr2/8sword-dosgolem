@@ -92,6 +92,10 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 ![Go軍隊招募試作的實際隸書視窗](docs/images/owned-army-ui-preview-r1.png)
 
+獨立Go戰鬥視窗也已接通招募、選敵、策略出手、傷亡、戰中存讀與單次領獎。實際按鈕流程完成28次出手，重開後會保留已行動旗標與戰果。下圖採隸書；目前使用明示的野狼／骷髏測試局面與文字卡片，尚未接入正式地圖或HD戰場美術。操作與限制見[戰鬥視窗研究](docs/spec/030-battle-expansion-proposal.md#自有戰鬥視窗研究)，完整畫面與來源另[永久保存](preserved/README.md#go戰鬥視窗試作保存)。
+
+![Go戰鬥試作的實際勝利畫面，尚未領取獎勵](docs/images/owned-battle-ui-preview-r1.png)
+
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 HD模式固定由Go來源呈現器產生畫面，已移除原版RGB疊圖退路。相容像素操作也由Go處理，事件邊界不再退回原版像素寫入。使用`-hd=false`時保留原版繪圖途徑，不安裝HD繪圖掛點。未接管的HD寫入會記錄位置、保留最後完整畫面並停止。模式分流與抽驗範圍見[047限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。

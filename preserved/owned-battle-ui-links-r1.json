@@ -1,0 +1,13 @@
+{
+  "status": "passed-owned-battle-ui-links",
+  "markdown_links": 2914,
+  "new_tools_indexed": 7,
+  "positive_control": "README.md -> CONTEXT.md",
+  "python_ast": [
+    "prepare-owned-battle-ui.py",
+    "check-owned-battle-ui.py"
+  ],
+  "root_owned_outputs": 0,
+  "md_directories": 0,
+  "workplace_checked": true
+}

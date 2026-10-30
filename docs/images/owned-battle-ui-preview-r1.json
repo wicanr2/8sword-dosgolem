@@ -1,0 +1,19 @@
+{
+  "prototype": true,
+  "source_path": "workplace/probe-20261023/graphics-first/battle-r1/owned-battle-ui-r1/gui-r1/resumed/frame-003-lishu.png",
+  "source_sha256": "e874b6df1478bff879b85c26b64729a4c9bc98a92095e31a333c7ab0585938d9",
+  "preview_sha256": "287a81491770deaefab8391c517022d71a9d9e436008f120ffd065a7a7d28911",
+  "source_size": [
+    1920,
+    1200
+  ],
+  "preview_size": [
+    1200,
+    750
+  ],
+  "font": "lishu",
+  "capture": "Actual Ebiten X11 window, RGB compared to Go RGBA canvas.",
+  "state": "Victory before reward settlement; wolves29, skeletons0, gold3800, merit1990, rank1.",
+  "normal_original_world": false,
+  "art": "Typed unit cards; original battlefield HD illustrations not part of this prototype."
+}
