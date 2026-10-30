@@ -1,0 +1,36 @@
+{
+  "schema": "world-army-shop-preview/1",
+  "status": "controlled-engine-frame-comparison",
+  "panels": [
+    {
+      "label": "原版用量：可募70",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-world-army-r1/control-r2/shop-maximum.png",
+      "source_sha256": "08d6e796375768ebf402998cc72b1687f7e78a304cf1cadf77e3c81497c49b5b",
+      "source_size": [
+        1920,
+        1200
+      ],
+      "source_state_sha256": "0c44195942e251d5c59b86051300dd18c90bef0e714b10e483f95c74269b9aab",
+      "receipt_sha256": "0102df9a6d73ffaeab19ff1f1f71e54e35786960e96ace89b778ff1074ee8f74"
+    },
+    {
+      "label": "Go計入野狼：可募55",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-world-army-r1/port-r2/shop-maximum.png",
+      "source_sha256": "94480819ae0acd1e3dfd85dfb9858994b76805a952815999874315adaa326f59",
+      "source_size": [
+        1920,
+        1200
+      ],
+      "source_state_sha256": "68c6acebbc042e82344179c1d4936d20e9db5ceae4825c5e3dd0c2936a43bbce",
+      "receipt_sha256": "71f46b28adb99e4ec5ca788d82b3f379eeeadd3d132c504889f74d54dcbb2c22"
+    }
+  ],
+  "preview_sha256": "dd987459740c21781d9695475407e1af6e4de533a48e84477e49c1632779d767",
+  "initial_state_sha256": "14a99442112f94d4ca0e96be485814fc70013ba7e2505f6ae58d5248b49b2898",
+  "same_initial_full_state": true,
+  "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "clock": "DOS 12:00:00.00; same initial complete state includes RNG state",
+  "graphics": "Go source renderer, HD r69, Noto900",
+  "audit": "preserved/owned-world-army-audit-r1.json",
+  "limits": "明示Go野狼5名及六資源投影後，沿普通地圖／民兵店輸入。兩側均為HD Engine.Frame，非新Ebiten視窗；正式新增兵種玩家路徑未完成。"
+}

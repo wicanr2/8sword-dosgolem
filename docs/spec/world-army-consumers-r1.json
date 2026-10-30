@@ -1,0 +1,189 @@
+{
+  "schema": "eightsword-world-army-consumers/1",
+  "input": "PAM.AY",
+  "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "database": "PAM.i64",
+  "database_sha256": "a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac",
+  "tool": "IDA Pro 9.4",
+  "exporter": "tools/export-world-army-ida.py",
+  "exporter_sha256": "e6a51994783c8b9d33fa0be15a10bc0c652fc17669e56f64eea8ea7b059ebdb6",
+  "export_sha256": "bf15963202e60ba1f0a666f21b31a4a74e44e6c12ac18cb12d116ee033ecc739",
+  "address_spaces": [
+    "IDA MZ loader linear base 0x10000",
+    "PAM file offsets",
+    "dosgolem runtime load 0x0110; data 0x1E88"
+  ],
+  "previous_proven_evidence": [
+    "preserved/troop-capacity-audit-r1.json",
+    "preserved/owned-world-audit-r1.json",
+    "preserved/owned-encounter-audit-r1.json",
+    "preserved/owned-world-bridge-audit-r2.json"
+  ],
+  "functions": [
+    {
+      "original_name": "sub_1151C",
+      "ida_mz_linear": "0x1151C",
+      "pam_file_offset": 10636,
+      "runtime": "0110:151C",
+      "semantic_note": "遭遇前軍隊存在檢查",
+      "level": "strong inference",
+      "original_reference_count": 1,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_11796",
+      "ida_mz_linear": "0x11796",
+      "pam_file_offset": 11270,
+      "runtime": "0110:1796",
+      "semantic_note": "普通戰果的軍隊存活分支",
+      "level": "proven",
+      "original_reference_count": 1,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_11ABE",
+      "ida_mz_linear": "0x11ABE",
+      "pam_file_offset": 12078,
+      "runtime": "0110:1ABE",
+      "semantic_note": "守軍戰果的軍隊存活分支",
+      "level": "proven",
+      "original_reference_count": 1,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_12446",
+      "ida_mz_linear": "0x12446",
+      "pam_file_offset": 14518,
+      "runtime": "0110:2446",
+      "semantic_note": "地圖事件分派內的軍隊成本與清除候選",
+      "level": "strong inference",
+      "original_reference_count": 5,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_12DDE",
+      "ida_mz_linear": "0x12DDE",
+      "pam_file_offset": 16974,
+      "runtime": "0110:2DDE",
+      "semantic_note": "守軍入口的軍隊存在檢查",
+      "level": "strong inference",
+      "original_reference_count": 1,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_132E0",
+      "ida_mz_linear": "0x132E0",
+      "pam_file_offset": 18256,
+      "runtime": "0110:32E0",
+      "semantic_note": "戰略與戰場六隊複製",
+      "level": "proven",
+      "original_reference_count": 4,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_154EA",
+      "ida_mz_linear": "0x154EA",
+      "pam_file_offset": 26970,
+      "runtime": "0110:54EA",
+      "semantic_note": "招募檢查與合併／空槽寫入",
+      "level": "proven",
+      "original_reference_count": 5,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_158F0",
+      "ida_mz_linear": "0x158F0",
+      "pam_file_offset": 28000,
+      "runtime": "0110:58F0",
+      "semantic_note": "原版六隊領導力用量",
+      "level": "proven",
+      "original_reference_count": 3,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_1593C",
+      "ida_mz_linear": "0x1593C",
+      "pam_file_offset": 28076,
+      "runtime": "0110:593C",
+      "semantic_note": "原版種類領導力權重",
+      "level": "proven",
+      "original_reference_count": 0,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_15962",
+      "ida_mz_linear": "0x15962",
+      "pam_file_offset": 28114,
+      "runtime": "0110:5962",
+      "semantic_note": "同種或空陣位容量",
+      "level": "proven",
+      "original_reference_count": 2,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_16BEA",
+      "ida_mz_linear": "0x16BEA",
+      "pam_file_offset": 32858,
+      "runtime": "0110:6BEA",
+      "semantic_note": "軍隊增補的讀寫候選，玩家語意未定",
+      "level": "unknown",
+      "original_reference_count": 5,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_175C6",
+      "ida_mz_linear": "0x175C6",
+      "pam_file_offset": 35382,
+      "runtime": "0110:75C6",
+      "semantic_note": "軍隊種類／數量顯示候選",
+      "level": "strong inference",
+      "original_reference_count": 3,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_1775A",
+      "ida_mz_linear": "0x1775A",
+      "pam_file_offset": 35786,
+      "runtime": "0110:775A",
+      "semantic_note": "軍隊互動與清除候選",
+      "level": "strong inference",
+      "original_reference_count": 15,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_17BF2",
+      "ida_mz_linear": "0x17BF2",
+      "pam_file_offset": 36962,
+      "runtime": "0110:7BF2",
+      "semantic_note": "相鄰陣位向前整理",
+      "level": "strong inference",
+      "original_reference_count": 7,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_184C0",
+      "ida_mz_linear": "0x184C0",
+      "pam_file_offset": 39216,
+      "runtime": "0110:84C0",
+      "semantic_note": "原進度軍隊打包",
+      "level": "proven",
+      "original_reference_count": 1,
+      "production_integrated": false
+    },
+    {
+      "original_name": "sub_18D38",
+      "ida_mz_linear": "0x18D38",
+      "pam_file_offset": 41384,
+      "runtime": "0110:8D38",
+      "semantic_note": "原進度軍隊讀回",
+      "level": "proven",
+      "original_reference_count": 1,
+      "production_integrated": false
+    }
+  ],
+  "limits": [
+    "Static direct/operand candidates do not prove exhaustive indirect reads.",
+    "Go prototype intercepts caller 0110:556A/55C2/55CD and commit 0110:56EC, not all listed consumers.",
+    "Role hints below proven retain their confidence and cannot authorize production."
+  ]
+}

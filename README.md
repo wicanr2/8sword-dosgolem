@@ -104,6 +104,10 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 ![成對保存後重新開啟的Go戰鬥試作，採教育部隸書](docs/images/paired-save-cold-r1.png)
 
+原版地圖的民兵店也已透過獨立試作接到 Go 軍隊。下圖左側沿原版用量，右側計入明示加入的5隻野狼，募兵上限從70降為55。購買後，Go保存31名民兵與5隻野狼，金錢為299；原版固定軍隊表保持原樣。這是同一完整起始狀態的受控HD引擎畫面，尚未開放正式新增兵種載入或其他軍隊流程。範圍見[地圖募兵交接](docs/spec/030-battle-expansion-proposal.md#地圖軍隊讀取與容量交接研究)、[畫面來源](docs/images/world-army-shop-comparison-r1.json)及[永久保存](preserved/README.md#go地圖募兵交接試作保存)。
+
+![左：原版用量可募70；右：Go計入野狼後可募55，兩側均為HD引擎畫面](docs/images/world-army-shop-comparison-r1.png)
+
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 HD模式固定由Go來源呈現器產生畫面，已移除原版RGB疊圖退路。相容像素操作也由Go處理，事件邊界不再退回原版像素寫入。使用`-hd=false`時保留原版繪圖途徑，不安裝HD繪圖掛點。未接管的HD寫入會記錄位置、保留最後完整畫面並停止。模式分流與抽驗範圍見[047限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。

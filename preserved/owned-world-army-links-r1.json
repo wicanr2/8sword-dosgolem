@@ -1,0 +1,9 @@
+{
+  "status": "passed-world-army-links",
+  "relative_links": 3056,
+  "tools_indexed": 6,
+  "consumer_index": true,
+  "python_syntax": 2,
+  "root_owned_or_md_directories": [],
+  "positive_control": "tools/owned-battle-ui.go"
+}

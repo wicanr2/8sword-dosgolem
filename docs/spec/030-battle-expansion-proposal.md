@@ -371,6 +371,39 @@ Go容器先跑`python3 /project/tools/prepare-owned-paired-save.py exercise --pr
 
 候選附檔上限256 KiB、提交紀錄1 MiB、JSON深度32；重複鍵、未知欄位、來源不符或資源超過既有原版傳送界限時拒絕。初始化以RENAME_NOREPLACE發布新目錄，不覆蓋既有空目錄或進度。暫存完成後程序退出可能留下本候選的未提交tmp檔，只作研究證據，不當作有效存檔。這個機制只同步已證實六資源，沒有把Go兵種寫入原版kind；原軍隊31名民兵、世界／地圖／月度及劇情consumer仍未交接，正式Engine繼續在DOS啟動前拒絕附檔。
 
+#### 地圖軍隊讀取與容量交接研究
+
+2026-10-30 DRAFT。沿成對保存接續原版地圖的軍隊consumer，研究放battle-r1下的owned-world-army-r1。先以[IDA軍隊讀寫端匯出](../../tools/export-world-army-ida.py)查六筆DS054Ah軍隊的直接／取址候選，以及sub_158F0／sub_1593C／sub_15962的caller；保留原位址、operand與bytes。只補玩家軍隊用量與招募容量判斷的必要邊界，不重做既有交易、傷亡與存檔恢復。靜態候選不等於全部間接讀寫，尚未驗的月度、軍隊頁與戰鬥交接不開放。正式197來源七程式、DOS前護欄與既有原版路徑保持。
+
+隔離原型入口為[Go軍隊讀取與購買介接](../../tools/research-world-army-port.go)、[拒絕／提交測試](../../tools/research-world-army-port_test.go)、[地圖與募兵探針](../../tools/probe-world-army.go)、[獨立state讀取](../../tools/read-world-army-states.go)及[準備／核對／保存](../../tools/prepare-world-army.py)。只接sub_159C4的民兵店caller，原版其餘consumer保持關閉。三個已查證的CALL點改由Go計算容量、單位領導力、整支Go軍隊用量，購買提交點則走既有Go交易及成對保存後才投影六資源；原054Ah軍隊表不寫入。這是新Go操作的VM交接點，不是逐指令模仿原helper，也不宣稱原版指令／時鐘一致。
+
+[軍隊讀寫索引](world-army-consumers-r1.json)記錄16個相關函式及各自證據等級，含原名、IDA線性位址、原檔位移與執行期定位。新發現的軍隊增補、顯示、互動及月度候選尚未全解，不因列入索引就稱已驗證或已由Go接管。
+
+預定抽驗從真正新遊戲及F7存檔出發，明示加入Go野狼5名並投影資源，原30民兵表保持。相同原始狀態分原版控制與Go介接，正常移動進民兵店後購一名民兵；預期原版用量30、可募70，Go計入野狼後用量45、可募55，Go交易保存31民兵及5野狼，金300→299。由另一程序／磁碟冷讀完整Go軍隊，不忽略附檔繼續DOS。只證明這個受控交接切片，不宣稱新增兵種已正常可玩；原世界店鋪身分／庫存、月度、其他軍隊畫面與戰鬥仍待完成。
+
+限定抽驗已通過，仍為DRAFT。IDA9.4新增16函式／4677行，逐行對原PAM檔案位移與MZ重定位bytes核對。相關操作在執行期如下；IDA線性位址為10000h加下列IP，與執行期段位址分開。
+
+| 執行期定位 | Go交接與來源 |
+|---|---|
+| 0110:556A | sub_154EA呼叫sub_15962的CALL；Go按字串ID判斷同種或空槽 |
+| 0110:55C2 | 呼叫sub_1593C的CALL；本切片僅接受已驗民兵native:01，權重1、價格1 |
+| 0110:55CD | 呼叫sub_158F0的CALL；Go計入全部已登錄軍隊，30民兵＋5野狼用量45 |
+| 0110:56EC → 576B | 原版已檢查數量／金錢後，Go再次quote／recruit、成對提交，再投影六資源，略過原軍隊寫入迴圈，返回原caller |
+
+near CALL之前的PUSH CS由ABI介接移除，AX回傳計算值；原版caller繼續處理原介面。購買點保留既有frame與數量，尾段照常返回購買數。本切片只承認sub_159C4的返回0110:5A21、kind1及DS26B8h為0的既有分支。原版另有雙倍可募分支，旗標玩家語意未定，本切片拒絕；不猜補Go規則。來源SHA、完整caller／helper／包裝碼、段／堆疊、參數及磁碟token均核對，未知分支停止，原helper入口另設拒絕哨點。
+
+首輪以整個sub_12446入口拒絕未接consumer，普通向左移動即停止。靜態資料流顯示該函式亦讀中央地圖格並分派多種事件，不能把整個函式當軍隊專用或已證實月度處理。現行在其他12個函式的45個軍隊operand候選及原招募迴圈入口共46處停止，容許不接觸軍隊的地圖分支；保護位置與IDA匯出逐項相同。實際F2驗在0110:75FD的第一個軍隊讀取前停止，軍隊不變。這份直接候選清單不是所有間接讀寫的完整證明，不足以移除正式載入護欄。
+
+控制／Go兩案在投影後的完整state逐SHA相同。原版控制募兵70、原表30→31；Go募兵55、原表30保持，Go軍隊30民兵＋5野狼→31民兵＋5野狼。兩案都正常購一人、金300→299並回地圖；Go只執行容量、權重、用量、提交四個host操作，原三helper入口零次。民兵店實際傳入3000庫存，Go附檔保存2999，野狼測試庫存995。一次性verified-militia-shop-r1只是本試作綁定，不能當跨地圖店鋪身份，原地圖庫存保存仍待接入。
+
+三個父測試0.040秒、十類拒絕與過期資料、純Go用量的百萬兵數、六隊／第25種／新增字串ID、poisoned原陣列表均通過，拒絕前後完整guest記憶體／暫存器及兩份存檔保持；vet與建置通過。獨立std-only reader解兩案共六份state，另核對兩組配對存檔、進度2975 bytes保持及另一程序冷讀。本caller仍受原世界30000資源與原介面ABI界限約束，寬整數純函式通過不代表原介面接受百萬兵數。真正Engine.Open在未掛原版路徑前仍拒絕附檔，不默默沿原軍隊繼續。[對照圖](../images/world-army-shop-comparison-r1.png)、[來源](../images/world-army-shop-comparison-r1.json)、[核對](../../preserved/owned-world-army-audit-r1.json)與[永久保存](../../preserved/README.md#go地圖募兵交接試作保存)集中證據；圖為1920×1200 Engine.Frame的縮小並列，不稱新Ebiten視窗。
+
+重現沿既有Go1.24.13、Pillow11.3.0與IDA9.4 py312-v1／UID1000／HOME=/home/ubuntu，原PAM與PAM.i64唯讀，IDA只分析/tmp副本。Pillow準備器以`prepare --project /project`建立研究來源與輸入，先保留既有ida子目錄；Go只用外部probe.mod的/core替代、唯讀923核心與模組，HOME=/tmp、GOCACHE=/tmp/go-cache、GOMODCACHE=/gomod、GOPROXY=off、GOSUMDB=off，快取只在有界exec tmpfs。
+
+Go共用來源明列`owned-army-model.go research-owned-world.go research-native-progress.go research-paired-progress.go research-world-army-port.go`，都在研究副本tools目錄。測試加research-world-army-port_test.go並設`EIGHTSWORD_ARMY_PORT_INPUT=/out/inputs`；vet／探針建置加probe-world-army.go，參數`-root /game -assets /assets -input /out/inputs -out <新目錄> -apply=false|true`。單獨建置read-world-army-states.go，以`-calls <案例> -out <案例/decoded>`解三份state；共用來源去掉port、加既有paired-progress-check.go建置獨立冷讀器，以`-input /out/inputs -dir <案例/paired-save> -mode read -world seed-world.json -out <新JSON>`另開程序讀取。
+
+編譯上限3 GiB／2 CPU／192程序／1 GiB exec tmpfs／240秒；互動研究容器相同配額、總逾時600秒，工作後明確退出。IDA上限2 GiB／1 CPU／128程序／90秒。Pillow的`audit --project --out <新JSON>`核對固定候選，`archive --project --archive --audit <通過收據> --out`保存，`verify --archive --out`不掛workplace逐物件核對，`integrity --project --archive --out`核對正式版本與永久原圖。未完成的正常新增兵種載入、軍隊UI、月度／劇情、守軍／隨機戰完整世界交接另續，不再重做這個caller的三helper。
+
 ## AI 從原版判斷掛點切入
 
 ```mermaid
