@@ -13,13 +13,13 @@ def write(p,v):
  with p.open('x') as f:json.dump(v,f,ensure_ascii=False,indent=2);f.write('\n')
 def lib(r):
  s=importlib.util.spec_from_file_location('old_ui',r/'tools/prepare-owned-army-ui.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
-def fonts(r,q,m):
+def fonts(r,q,m,extra_sources=()):
  assert __version__=='11.3.0';catalog=json.loads(gzip.decompress((r/'preserved/catalog.json.gz').read_bytes()));faces={}
  for id,h in m.FONT_SHA.items():
   raw=gzip.decompress((r/'preserved'/catalog['objects'][h]['path']).read_bytes());assert hashlib.sha256(raw).hexdigest()==h
   faces[id]=ImageFont.truetype(io.BytesIO(raw),48,index=3 if id in ('noto','serif') else 0)
  chars={chr(i) for i in range(32,127)}|{'…','　'}
- for name in TOOLS[:3]+['owned-army-ui.go','owned-army-ui_draw.go','research-owned-army.go','research-owned-world.go']:
+ for name in TOOLS[:3]+['owned-army-ui.go','owned-army-ui_draw.go','research-owned-army.go','research-owned-world.go']+list(extra_sources):
   chars.update(c for c in (r/'tools'/name).read_text() if ord(c)>=128 and c.isprintable())
  chars.update(c for c in (r/'internal/eightsword/owned_combat.go').read_text() if ord(c)>=128 and c.isprintable())
  for p in read(q/'inputs/army-catalog.json')['profiles']:chars.update(p['name'])

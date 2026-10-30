@@ -120,6 +120,10 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 另提供[固定快照與顯式記憶體變更的驗證工具](docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)，可直接檢查Go戰鬥、戰果與原版回場邊界。這是受控試作，與正常玩家流程的完成度分開記錄。
 
+[原版確認與Go戰鬥接線](docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)在隔離候選提供實際戰鬥操作，保留教育部隸書選項。下圖是固定快照與測試敵軍的實際視窗，範圍與[圖片來源](docs/images/owned-encounter-ui-lishu-r1.json)均有紀錄。
+
+![原版確認後的受控Go戰鬥介面，使用教育部隸書](docs/images/owned-encounter-ui-lishu-r1.png)
+
 ![實際F3 Go解雇視窗，採教育部隸書](docs/images/world-army-f3-lishu-r1.png)
 
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。

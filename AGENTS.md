@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-10-31[確認與Go戰鬥介面接線](docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)已在隔離候選完成受控抽樣。原版16E0確認接受後走32E0，Go介面暫停客體CPU、處理行動與成對保存，再從171D／172E回0BD3；勝利、撤退、F2及另程序冷讀通過。11張X11、6份state及所有行動／輪次已獨立核對，原054A／56E8共72 bytes保持FF、原戰鬥哨點0次。教育部隸書與合併字圖422字已驗，字圖生成器追加來源參數保留舊預設。[準備器](tools/prepare-encounter-ui.py)、[控制器](tools/research-encounter-ui.go)、[XTEST](tools/check-encounter-ui.py)及[永久保存](preserved/README.md#原版確認與go戰鬥介面接線保存)是入口。世界仍DRAFT，敵軍／撤退輸入及快照為明示fixture，正式197來源七程式與載入護欄保持。後續集中正常敵軍匯入、拒戰／追擊與正式玩家啟動，不重開本批介面、傷害、字型或既有回場ABI。
+
 2026-10-30使用者明確授權「直接修改記憶體狀態驗證」。後續同機制驗證可優先沿固定快照，明列RAM／寄存器修改與前後差異，不為測試反覆等自然遭遇；受控結果保持原標示，不改寫為自然玩家路徑。[Go戰鬥回場](docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)已驗4有效／5拒絕，原兵種表FF仍保持，原軍隊／戰術／獎勵路徑0次；勝利、撤退、全滅與六隊混合均回0BD3。[工具](tools/prepare-controlled-battle.py)、[接管邊界](tools/research-controlled-battle.go)、[探針](tools/probe-controlled-battle.go)及[永久保存](preserved/README.md#受控記憶體的go戰鬥回場保存)為入口。這是DRAFT受控切片，未接普通確認入口、正式UI或世界敵軍來源；後續集中接線，不重做27份state、原648行bytes、已驗Go行動／戰果或成對存檔。正式197來源七程式與全部載入／未知分支護欄保持。
 
 2026-10-30[普通遇敵存在與無兵損金](docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)已完成隔離Go切片。[控制器](tools/research-army-presence.go)在原0110:1650依Go字串ID軍隊回傳空旗標，16A4以原rand除數經Go算損失、先成對保存再投影金錢，原24-byte軍隊不寫入。原CPU3存在／20損金、6父測試與11類拒絕、實窗無兵299→240／返回／F2空軍隊／新GUI冷讀、有兵確認及4張X11全RGB通過。[核對](preserved/owned-army-presence-audit-r2.json)、[工具](tools/prepare-army-presence.py)及[永久保存](preserved/README.md#go遇敵存在與無兵損金保存)集中入口。整個世界仍DRAFT，1713／177A／1782尚未交接的戰鬥／拒戰分支停止，其餘軍隊保護點與正式DOS前護欄保持；後續接戰場交接，不重開本批原存在迴圈、扣金公式、三字型或成對保存機制。

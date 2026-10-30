@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 原版確認與Go戰鬥介面接線保存
+
+[030受控接線](../docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)沿固定3733快照及真實caller，將受控起點回置16E0。原版確認接受後進32E0，Go接管操作、兵力、成對保存及戰果，再經171D／172E回原0BD3。完整原版表保持FF；原版CPU在Go介面期間暫停。敵軍、初值及撤退輸入2730均是明示fixture，不稱自然玩家路徑。
+
+[準備／核對與保存器](../tools/prepare-encounter-ui.py)、[Go介接](../tools/research-encounter-ui.go)及[XTEST抽樣](../tools/check-encounter-ui.py)是重現入口。`prepare | freeze`在既有battle-r1下建立owned-encounter-ui-r1，沿正式197來源、923核心與Go1.24.13編譯獨立候選。只在來源副本套用可回查的前端Advance／按鍵及1713交接修改；177A／1782與其他未知consumer保護點保持。完整來源、修改清單與初版失敗都保存。
+
+[獨立核對](owned-encounter-ui-audit-r1.json)、[逐檔清單](owned-encounter-ui-r1.json)、[脫離工作區核對](owned-encounter-ui-verification-r1.json)及[收尾完整性](owned-encounter-ui-integrity-r1.json)集中結果。共465檔／349物件、壓縮31033651 bytes，完整物件位於本機`preserved/owned-encounter-ui-r1/`並排除Git。兩案勝利／撤退、11張X11全RGB、6份state、全部行動／輪次與另程序冷讀通過；教育部隸書已實際切換，原表FF及原戰鬥哨點零次保持。
+
+`audit --project <專案> --out <新JSON>`在固定Pillow11.3.0映像執行，核對X11與畫布全RGB、文字範圍、所有行動／輪次、完整世界戰果、原六資源與注入差異。`archive --project --archive <可寫preserved> --out <新清單>`保存完整來源及輸出，排除可重生的build-cache。`verify --archive <唯讀preserved> --out <新JSON>`逐物件驗SHA與長度，不需要workplace；逐檔path與mode可還原，遇不同檔案不覆寫。
+
+冷讀範圍是Go配對世界及六資源，沒有原位置／地圖或未結算戰場的正常Continue恢復聲明。正式197來源七程式、923核心、535素材、1040圖庫及DOS前附檔護欄保持。
+
 ## 受控記憶體的Go戰鬥回場保存
 
 [030受控驗證](../docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)依使用者授權，直接修改固定戰前快照的RAM與寄存器。原32E0真實far frame回置後，Go接管戰鬥／結算，再經171D、172E回原0BD3。原054A與56E8共72 bytes填FF，勝利、撤退、全滅、六隊混合四案都沒有進原軍隊讀表、原戰術或重複獎勵路徑；五種錯誤狀態拒絕後RAM／暫存器／兩檔不變。

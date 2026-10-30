@@ -1,6 +1,6 @@
 # 目前狀態
 
-核對日期：2026-10-30。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
+核對日期：2026-10-31。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
 
 使用者要求同規格功能與HD採共同機制抽樣，不逐兵種／圖片重跑。**既有HD與已接功能的階段抽驗已完成，整案仍未完成。** [固定計畫](preserved/phase-closeout-plan-r1.json)原先未通過的募兵後遇敵GUI鏈，已用未改的正式遊戲程式補驗成功。[補充核對](preserved/recruit-gui-diagnosis-audit-r2.json)明列 `all_planned_gates_passed=true`、`project_complete=false`；[前輪結果](preserved/phase-closeout-audit-r1.json)保留當時的未通過紀錄。新增兵種隔離原型仍不能稱為正式可玩。
 
@@ -9,6 +9,8 @@
 本切片冷讀只驗Go世界與原六資源；移動後的原版位置／地圖進度尚未同步回主存檔，不當作完整存檔生命週期。
 
 使用者已明確授權直接修改記憶體驗證。[受控戰鬥回場](docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)以固定戰前快照回置32E0，注入資源並將原兵種表填FF。勝利、撤退、全滅、六隊混合均由Go處理並經真實caller回0BD3；五種錯誤狀態拒絕且不改RAM／兩檔。[核對](preserved/controlled-owned-battle-audit-r2.json)獨立解27份state及重算Go行動／戰果。這是DRAFT受控ABI驗證，尚未接普通確認入口、正式UI或世界敵軍來源。
+
+[原版確認與Go戰鬥介面](docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)已在隔離候選完成受控接線：16E0實際確認、32E0交給Go、介面操作／成對保存、勝利或撤退、171D→172E→0BD3、F2及另程序冷讀。兩案11張X11完整RGB、6份state、28次勝利行動／13輪及一次撤退前行動均獨立核對；Go介面期間原CPU步數與cycles不變。教育部隸書實際切換及F2通過，合併字圖漏字已修正。[核對](preserved/owned-encounter-ui-audit-r1.json)與[永久保存](preserved/README.md#原版確認與go戰鬥介面接線保存)為最新入口。起點、敵軍與撤退輸入仍是明示測試資料，世界整合仍DRAFT，正式護欄保持。
 
 ## 目前版本與已驗範圍
 
@@ -26,7 +28,7 @@
 
 ## 尚未完成的實作
 
-- 新增軍隊與原地圖／正式戰鬥UI的完整交接。Go戰鬥／戰果的受控32E0→171D→0BD3切片已驗，仍須接普通確認入口、正式UI、世界敵軍及拒戰／追擊；守軍與其他軍隊讀寫consumer尚未全接。
+- 新增軍隊與原地圖的完整交接。受控確認、Go戰鬥介面與戰果回場已串接；仍須匯入正常世界敵軍並接正式玩家啟動、拒戰／追擊。守軍與其他軍隊讀寫consumer尚未全接。
 - 正式商店身份／庫存持續性、月度／劇情資源、擴充存檔的完整玩家生命週期。完成前保留附檔護欄，不把擴充ID寫入原版kind、圖片或數值索引。
 - Rust遷移留後續，依使用者最後指示先用Go。公開發行包與跨平台真機驗收尚未進行。
 

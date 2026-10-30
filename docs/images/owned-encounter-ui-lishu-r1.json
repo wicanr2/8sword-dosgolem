@@ -1,0 +1,12 @@
+{
+  "image": "owned-encounter-ui-lishu-r1.png",
+  "sha256": "0fe5f5d8b9a50b1a236ebde4ae289e6c5f1c5f1cd03915d470f6479f4e05a39e",
+  "source_archive": "preserved/owned-encounter-ui-r1.json",
+  "source_suffix": "/gui-r1/win/frame-003-dismiss-lishu.png",
+  "source_sha256": "728615797bd8cf701bd69a9146787c079e50c3f48ed1568bf1479a5a7803020a",
+  "font": "教育部隸書3.00",
+  "font_id": "lishu",
+  "controlled_memory": true,
+  "normal_player_path": false,
+  "production_changed": false
+}
