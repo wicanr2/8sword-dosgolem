@@ -2,7 +2,7 @@
 
 2026-10-30使用者要求功能與HD依共同機制抽樣後結案。[收尾抽樣](docs/spec/030-battle-expansion-proposal.md#階段收尾抽樣)以[固定計畫](preserved/phase-closeout-plan-r1.json)與[工具](tools/closeout-sample.py)為入口。已驗的HD、字型、AI、規則、音樂及Go原型不再逐圖／逐兵種重開；只有新的可重現缺陷或使用者指定的新功能才開新工作。此指示不會讓尚未接入的新增軍隊世界／戰鬥流程變成完成，也不授權移除DOS前護欄。後續目前真相只看CONTEXT最上方的收尾狀態，舊段落的「待驗」不單獨構成新待辦。
 
-本輪實際結果為[qualified](preserved/phase-closeout-audit-r1.json)，不是整案完成。HD／原版250M重播與完整state、基本GUI存退讀通過；原定募兵後遇敵的GUI鏈未過，原因未定，不能以補充基本GUI替代或當成已修。後續只查這條可重現輸入鏈及新增兵種真正世界／戰鬥接入，不重跑全部圖像／兵種或重新逆向已驗helper。正式197來源七程式及護欄保持。
+前輪[qualified](preserved/phase-closeout-audit-r1.json)的募兵後遇敵GUI缺口，已由[正常路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)完成。正式遊戲未改，購兵、F2往返、正常回程、自然遇敵撤退、F7退出與另一程序讀回均通過；31民兵及資源保持。[只讀診斷與保存](preserved/README.md#募兵gui診斷與正常路徑補驗)保留早取截圖、完整成功路徑與歷史失敗。F2提交正常，不能把舊場景map標籤當成卡畫面的證據。既有HD與已接功能階段抽樣收尾；整案仍未完成，後續集中新增兵種真正世界／戰鬥交接，不重跑本鏈、全部圖像／兵種或已驗helper。正式197來源七程式及護欄保持。
 
 2026-10-30[F3解雇交接](docs/spec/030-battle-expansion-proposal.md#f3軍隊解雇的go交接研究)已在隔離Go候選通過交易、F2回歸及真正視窗抽驗。[控制器](tools/research-world-army-dismiss.go)保留原getch與返回框架，Go接管導覽、整隊解雇、陣位整理及成對保存；原row renderer與原軍隊表不再參與本畫面。實際取消、長按只提交一次、31民兵解雇後保留5野狼、F2更新、三字型、最後一隊／空軍隊及兩次新GUI冷讀通過。六父測試1.317秒、獨立Python世界重算、七張X11全RGB、IDA641行bytes與F2單獨建置通過。[啟動器](tools/world-army-dismiss.sh)、[隸書實窗](docs/images/world-army-f3-lishu-r1.png)及[永久保存](preserved/README.md#go-f3軍隊解雇交接保存)為入口。原版規則僅靜態依據，不宣稱原版動態parity；整體世界仍DRAFT，正式197來源七程式／923核心／535素材／1040圖庫及附檔護欄保持。後續集中其餘世界consumer與戰鬥交接，不重開本批字型、取消、存檔恢復或原六資源研究。
 

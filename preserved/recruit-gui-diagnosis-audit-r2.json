@@ -1,0 +1,437 @@
+{
+  "schema": 1,
+  "status": "passed-recruitment-gui-diagnosis-and-normal-chain",
+  "all_planned_gates_passed": true,
+  "project_complete": false,
+  "production_code_changed": false,
+  "parent_audit_sha256": "796c981000775bd579b7273fcde24dd461831f3a4bd1be0dea9aafb021211ce1",
+  "baseline": {
+    "programs": {
+      "8sword": "a3c5b78b3f6b093988f7b06e64a41c2dc06a025e6782ec01fd765fc406354aaf",
+      "8sword-replay": "e191b760db800d598421e29bbfc9af3a1087b5ba408569599a71c47c9027dd05",
+      "gui-check": "7d0ed6218ae750f8eabbefca77ce41b608e26ce1cb02e2aafababf1553118114",
+      "music-check": "ced5b991a741d94694fdf533e82de6a9c1e5dad0f2ee57df652d41c32d3cf7dd",
+      "heroine-check": "a39b29731737ad0ce03b7f6eca63e811245a398608ccc54f7002116a39ad95c9",
+      "museum-check": "f5372686a07bbada2d38f8aa08bc164740aa15511aa280ddc46d0c64a240f31f",
+      "story-prelude-check": "7ea6f38725dbed9a7b1c82363e2586b79431b5a6d210387ee36a7e6b6286b5a0"
+    },
+    "source_count": 197,
+    "driver_source_sha256": "433b880cc0bfe7a2e0d2bcab253eae6d02124ab9463021a53f05c05af6e8189b",
+    "game_sha256": "a3c5b78b3f6b093988f7b06e64a41c2dc06a025e6782ec01fd765fc406354aaf"
+  },
+  "actual_recruitment": {
+    "before": {
+      "address_space": "dosgolem runtime linear; resources/army relative to verified PAM DS=1E88; raw register arrays follow core v923",
+      "bda_head": 36,
+      "bda_ring_hex": "310231021b010000000000000000000000000000000000000000000000000000",
+      "bda_tail": 36,
+      "code_bytes": "80fc017403eb2f9026807f01007420268a278ac48bd832ff2e8a8704002ea36a",
+      "cs_ip": "160A:00AD",
+      "ds_56bc": 0,
+      "ds_7484": 1,
+      "flags": 29186,
+      "guest_execution": false,
+      "input": "/player/gui/phase-closeout-core-r1/reload/gui-final.state",
+      "ip": 173,
+      "memory_sha256": "a6e83871506b24b4164e3eaad8924f947e59c850b5a80edb1a1847d422015b54",
+      "native_army_054a": [
+        {
+          "count": 30,
+          "kind": 1
+        },
+        {
+          "count": 0,
+          "kind": 0
+        },
+        {
+          "count": 0,
+          "kind": 0
+        },
+        {
+          "count": 0,
+          "kind": 0
+        },
+        {
+          "count": 0,
+          "kind": 0
+        },
+        {
+          "count": 0,
+          "kind": 0
+        }
+      ],
+      "native_resources_04f2": [
+        1,
+        0,
+        100,
+        500,
+        100,
+        0
+      ],
+      "registers": [
+        256,
+        3047,
+        272,
+        4,
+        38464,
+        38490,
+        134,
+        38541
+      ],
+      "schema": 1,
+      "segments": [
+        0,
+        5642,
+        7816,
+        7816
+      ],
+      "stack_words": [
+        39424,
+        38468,
+        3215,
+        5330,
+        29254,
+        2923,
+        272,
+        2128,
+        272,
+        0,
+        0,
+        7181,
+        272,
+        38498,
+        339,
+        272
+      ],
+      "state_sha256": "f2e31cd310994711ebd37c07ff9270d3b88d0b9ff81581e3d43dbcc55674ee0c",
+      "steps": 20959169
+    },
+    "after": {
+      "address_space": "dosgolem runtime linear; resources/army relative to verified PAM DS=1E88; raw register arrays follow core v923",
+      "bda_head": 36,
+      "bda_ring_hex": "310231021b010000000000000000000000000000000000000000000000000000",
+      "bda_tail": 36,
+      "code_bytes": "bb00008ec3bb040080fc007403eb229026807f01007502ebf7268a27538ac48b",
+      "cs_ip": "160A:007C",
+      "ds_56bc": 0,
+      "ds_7484": 1,
+      "flags": 29254,
+      "guest_execution": false,
+      "input": "/out/save/gui-final.state",
+      "ip": 124,
+      "memory_sha256": "d7bf3eb1ee19a37c34706d33e55c52f96e58e572fd08264242e6f53d592a810e",
+      "native_army_054a": [
+        {
+          "count": 31,
+          "kind": 1
+        },
+        {
+          "count": 0,
+          "kind": 0
+        },
+        {
+          "count": 0,
+          "kind": 0
+        },
+        {
+          "count": 0,
+          "kind": 0
+        },
+        {
+          "count": 0,
+          "kind": 0
+        },
+        {
+          "count": 0,
+          "kind": 0
+        }
+      ],
+      "native_resources_04f2": [
+        1,
+        0,
+        100,
+        499,
+        100,
+        0
+      ],
+      "registers": [
+        256,
+        640,
+        371,
+        17405,
+        38464,
+        38490,
+        134,
+        38541
+      ],
+      "schema": 1,
+      "segments": [
+        39424,
+        5642,
+        7816,
+        7816
+      ],
+      "stack_words": [
+        39424,
+        17405,
+        3215,
+        5330,
+        29254,
+        2923,
+        272,
+        2128,
+        272,
+        1,
+        0,
+        7181,
+        9,
+        38498,
+        339,
+        272
+      ],
+      "state_sha256": "967d039fc8e75b0ce9f68f971c88b4662c6df671da24b3483cf7421cc05f1a20",
+      "steps": 57215168
+    }
+  },
+  "actual_f2": {
+    "address_space": "dosgolem runtime linear; resources/army relative to verified PAM DS=1E88; raw register arrays follow core v923",
+    "bda_head": 36,
+    "bda_ring_hex": "310231021b010000000000000000000000000000000000000000000000000000",
+    "bda_tail": 36,
+    "code_bytes": "cd167406b80100eb0490b80000cb50515256b003babf03eeb002bab803ee8d36",
+    "cs_ip": "14D2:0C8D",
+    "ds_56bc": 1,
+    "ds_7484": 1,
+    "flags": 29335,
+    "guest_execution": false,
+    "input": "/out/f2/save/gui-final.state",
+    "ip": 3213,
+    "memory_sha256": "7fb98339e3a300b4808b15012145fb5ea881b6b528f765438b3020aa94f1cc2c",
+    "native_army_054a": [
+      {
+        "count": 31,
+        "kind": 1
+      },
+      {
+        "count": 0,
+        "kind": 0
+      },
+      {
+        "count": 0,
+        "kind": 0
+      },
+      {
+        "count": 0,
+        "kind": 0
+      },
+      {
+        "count": 0,
+        "kind": 0
+      },
+      {
+        "count": 0,
+        "kind": 0
+      }
+    ],
+    "native_resources_04f2": [
+      1,
+      0,
+      100,
+      499,
+      100,
+      0
+    ],
+    "registers": [
+      256,
+      33879,
+      272,
+      38460,
+      38456,
+      38462,
+      134,
+      38541
+    ],
+    "schema": 1,
+    "segments": [
+      7816,
+      5330,
+      7816,
+      7816
+    ],
+    "stack_words": [
+      33894,
+      272,
+      272,
+      38490,
+      16088,
+      272,
+      15778,
+      272,
+      1,
+      2966,
+      272,
+      2128,
+      272,
+      1,
+      0,
+      7181
+    ],
+    "state_sha256": "1c9cc700c05064e1f08a75e4fd1d6f66807fb1c2421612422b1dc61c8958ab94",
+    "steps": 55350385
+  },
+  "original_function_key_controls": {
+    "short": {
+      "events": [
+        {
+          "ds_56bc": 1,
+          "ip": 16018,
+          "registers": {
+            "AX": 1010,
+            "BX": 38464,
+            "CX": 29186,
+            "DX": 0,
+            "SI": 134,
+            "DI": 38541,
+            "BP": 38490,
+            "SP": 38468,
+            "DS": 7816,
+            "ES": 39424,
+            "SS": 7816,
+            "CS": 272,
+            "IP": 16018,
+            "Flags": 29334
+          },
+          "step": 57261193
+        },
+        {
+          "ds_56bc": 1,
+          "ip": 30150,
+          "registers": {
+            "AX": 47,
+            "BX": 2,
+            "CX": 16025,
+            "DX": 272,
+            "SI": 134,
+            "DI": 38541,
+            "BP": 38490,
+            "SP": 38462,
+            "DS": 7816,
+            "ES": 39424,
+            "SS": 7816,
+            "CS": 272,
+            "IP": 30150,
+            "Flags": 29254
+          },
+          "step": 57261218
+        }
+      ],
+      "hold_cycles": 3000
+    },
+    "five-frame": {
+      "events": [
+        {
+          "ds_56bc": 1,
+          "ip": 16018,
+          "registers": {
+            "AX": 1010,
+            "BX": 38464,
+            "CX": 29186,
+            "DX": 0,
+            "SI": 134,
+            "DI": 38541,
+            "BP": 38490,
+            "SP": 38468,
+            "DS": 7816,
+            "ES": 39424,
+            "SS": 7816,
+            "CS": 272,
+            "IP": 16018,
+            "Flags": 29334
+          },
+          "step": 57261167
+        },
+        {
+          "ds_56bc": 1,
+          "ip": 30150,
+          "registers": {
+            "AX": 47,
+            "BX": 2,
+            "CX": 16025,
+            "DX": 272,
+            "SI": 134,
+            "DI": 38541,
+            "BP": 38490,
+            "SP": 38462,
+            "DS": 7816,
+            "ES": 39424,
+            "SS": 7816,
+            "CS": 272,
+            "IP": 30150,
+            "Flags": 29254
+          },
+          "step": 57261192
+        }
+      ],
+      "hold_cycles": 500000
+    }
+  },
+  "completed_panel": "TRACE step=61341219 kind=panel-commit data=map[kind:army primitive_pending:0 start_step:60147282 working_revision:40451]",
+  "early_capture_sha256": "f955bce1261c7b29bab447d6365154be85ab810ef7e594a0f2f1ca28294de2b1",
+  "completed_capture_sha256": "3910dd872277ce18fa1da5320ca85f8557b24300560fcb1e46d6edaaaf2af22a",
+  "normal_gui": {
+    "save": {
+      "receipt_sha256": "7add88a5726a299a1ce7127e4ac648242b11adb0fc7f6f8d477ee94b724330a3",
+      "state_sha256": "df92ca51f09750254b1130368e285aca5642a6069016df4c613a8da04ad97247",
+      "steps": 141350124
+    },
+    "reload": {
+      "receipt_sha256": "22c5cb538e5d3648e2235738627f7e8d041eb95091c0187e87b97ab41fe5c3f0",
+      "state_sha256": "9bbbb4e865dece4f7a981c5b5b4b829f4e7861b2ab6f91fe93b971fdae86e20c",
+      "steps": 15959156
+    }
+  },
+  "save_sha256": "3629baf2eb41ad7253530d23543b054d5c90dae3a81be169c20ddcb10016c928",
+  "cold_native_resources": [
+    1,
+    0,
+    100,
+    461,
+    100,
+    0
+  ],
+  "cold_native_army": [
+    {
+      "count": 31,
+      "kind": 1
+    },
+    {
+      "count": 0,
+      "kind": 0
+    },
+    {
+      "count": 0,
+      "kind": 0
+    },
+    {
+      "count": 0,
+      "kind": 0
+    },
+    {
+      "count": 0,
+      "kind": 0
+    },
+    {
+      "count": 0,
+      "kind": 0
+    }
+  ],
+  "cold_read_step": 11112414,
+  "driver_sha256": "ac714b54889da390e4c9e28c566288bbb3204f267a09f913509b88c4e02fd9fc",
+  "resolved_gate": "Normal original recruitment, F2, return walk, natural encounter, retreat, F7 save, DOS exit and fresh-process reload.",
+  "limits": [
+    "Purposeful representative sample, not whole-game parity.",
+    "Expanded troop world handoff remains DRAFT; formal sidecar guard unchanged.",
+    "The traced renderer is a disposable read-only diagnostic; the final chain uses the unchanged formal game binary.",
+    "No RAM/register/RNG edits or snapshot-entry replacement of the GUI path."
+  ]
+}

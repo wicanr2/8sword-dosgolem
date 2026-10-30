@@ -16,6 +16,20 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 預定的募兵後遇敵GUI鏈未通過：一般時鐘下先未到達遭遇，再加普通Esc／F2檢查與原路返回的私人測試driver，仍停在F2文字等待。失敗時沒有owned render fault、素材載入錯誤或未實作指令，但原因尚未定，不將腳本逾時直接稱為產品缺陷。基本存退讀不替代這項失敗，收據明列`all_planned_gates_passed=false`及`project_complete=false`。私人driver沒有接進正式程式，原版資料、RNG與記憶體未注入；各輪資料完整保留，不再用未證實的參數或特例湊通過。
 
+### 募兵GUI診斷與正常路徑補驗
+
+2026-10-30：前輪未過的GUI門檻已補驗，既有HD與已接功能的階段抽樣收尾。整案仍未完成，擴充軍隊世界路徑維持DRAFT。正式197來源、七程式、923核心、r69全535素材與1040圖庫不改。
+
+[準備、driver產生與保存工具](../../tools/recruit-gui-diagnosis.py)沿既有Go1.24.13／Pillow11.3.0容器處理`prepare | chain-driver | audit | archive | verify`。[獨立狀態讀取器](../../tools/read-gui-army-state.go)只解保存的gob，不執行CPU；讀取固定PAM資源、六組stride4種類／兵數、CS:IP、stack與鍵盤佇列。[功能鍵探針](../../tools/probe-gui-function-key.go)在923核心Oracle從同一GUI快照送正常Ctrl make／break，再送F2，觀測runtime0110:0850／0B6B／3E92／75C6。兩者屬診斷，不替代正常玩家路徑。
+
+- 已證實：正式GUI購兵後民兵30→31、金錢500→499。GUI的F2快照selector1及stack返回3ED8顯示已進軍隊頁；原版Oracle的3000與500000 cycles兩種F2按法亦都到3E92及75C6。沒有RAM、寄存器、返回或RNG注入。
+- 已證實：私人唯讀trace在step60147282開始army交易，61341219以零未完成原語提交。等待四筆軍隊文字可見、再經三次實際Draw後，完整視窗正常顯示31／31。較早的診斷圖拍在提交前；沒有證據支持「HD卡在地圖」。既有分類器未分F2，側欄文字仍可使其標為map。
+- 已證實：本輪正常GUI使用未改的正式遊戲程式。私人driver抽一筆購兵，F2往返兩次，再沿向下兩步、向右一步的正常回程接既有遇敵路線，完成自然遭遇、進戰場、V兵力、Ctrl合併輸入、Esc撤退及回地圖。接著真正F7、原版退出0及另一程序繼續均通過。完整編輯／三字型沿前輪收據，不重跑相同機制。
+- 已證實：2987-byte人物檔SHA `3629baf2eb41ad7253530d23543b054d5c90dae3a81be169c20ddcb10016c928`。新程序於step11112414正常讀檔；存後與冷讀只讀RAM皆為31民兵、金錢461及其餘相同資源。自然執行亂數未鎖，這是玩家路徑驗收，不是同種子玩法對拍。
+- 未知：先前私人F2等待逾時的所有成因。本次正常F2已通過，不將回程修正宣稱為全部歷史失敗的唯一原因。先前失敗與收據保留。
+
+結果入口為[補驗核對](../../preserved/recruit-gui-diagnosis-audit-r2.json)及[永久保存](../../preserved/README.md#募兵gui診斷與正常路徑補驗)。原[收尾核對](../../preserved/phase-closeout-audit-r1.json)保持當時qualified結果；補驗列`all_planned_gates_passed=true`及`project_complete=false`。本次沒有正式引擎修補、擴充兵種提升、Rust遷移或Release。
+
 ## F3軍隊解雇的Go交接研究
 
 2026-10-30 DRAFT，延續已授權的Go軍隊交接。沿既有F2的IDA9.4匯出，定位原名sub_1775A、MZ loader線性1775Ah，執行期0110:775A；完整443行與sub_17BF2整理函式保留原定位。靜態證據顯示Enter清除整隊後整理陣位，Esc返回，不退金錢。兩欄三列的方向鍵只移至有部隊的陣位。動態抽驗結果另記，不以靜態閱讀宣稱原版parity。

@@ -2558,3 +2558,20 @@ Go獨立候選在執行期0110:3EBC／3ECE的單一CALL點交接，消耗前一�
 原版整隊清除在runtime7B43／7B49後呼叫整理，不見金錢回寫；這是靜態依據，本輪未執行原版動態解雇oracle。不得把Go候選通過視窗當成原版同狀態parity。原始名稱、運算元及位址保留，未擴大既有索引的原版語意等級。
 
 Go候選實際保留原getch與stack返回，CPU框架、整段來源bytes、selector、世界token、六資源與24 bytes原軍隊守門。兩個host instruction點以Go導覽與交易接手，不模擬原版導覽／解雇指令。實際XTEST完成取消、長按一次、F2更新、三字型、最後一隊／空軍隊及兩次新GUI冷讀；Python從fixture獨立重算兩次完整世界，七張X11逐RGB同Go畫布。範圍與收據見[030 F3](docs/spec/030-battle-expansion-proposal.md#f3軍隊解雇的go交接研究)及[永久保存](preserved/README.md#go-f3軍隊解雇交接保存)。
+
+## 2026-10-30：正常購兵與F2呈現的只讀診斷
+
+輸入仍為PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、正式197來源七程式及923核心。工具為Go1.24.13、Pillow11.3.0與dosgolem原版Oracle；本輪沒有重跑IDA。原定位沿既有PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac` 的匯出，IDA位址基準為MZ loader linear base10000h。下表所有數值另明列為dosgolem執行期或DS相對偏移，不混成IDA位址。
+
+| 原始定位與證據 | 附加語意與等級 |
+|---|---|
+| DS=1E88，04F2起六word；054A起六組stride4 kind／count | 已證實於本次正常GUI快照：原30民兵／金500變成31／499。快照SHA967d039f…1a20，僅解gob，不執行CPU |
+| 執行期GUI 14D2:0C8D；DS:56BC=1；stack含0110:3ED8 | 已證實：正常F2已進原版軍隊頁的輸入等待。快照SHA1c9cc700…ab94，軍隊仍31，無交易停滯證據 |
+| 執行期0110:3E92、0110:75C6 | 已證實：從同一購兵後快照，以正常Ctrl make／break清除GUI退出修飾鍵，再按F2，3000與500000 cycles兩案皆到達。沒有改RAM、RNG或返回位址；不是自然入口驗收 |
+| 私人只讀scene trace：step60147282開始army，61341219提交，primitive_pending=0 | 已證實：Go來源交易有完整提交。早拍截圖仍是地圖，等待可見來源1330／1338／1346／10380與三次Draw後，軍隊實窗正常。排除本次「HD卡地圖」推測 |
+
+原GUI狀態的場景標籤不能單獨作為F2完成條件：`visibleScene`先辨識其他頁，再以共用側欄990等七筆判為map，沒有軍隊頁分支。這是已證實的分類限制，不代表Go畫布沒有軍隊內容。先前私人driver的F2等待逾時仍缺單一根因，不提高證據等級。
+
+最後回到未改的正式遊戲程式，以普通XTEST新遊戲、購一名民兵、F2往返、正常回程及自然遇敵撤退，再F7／退出／新程序讀回。這條玩家鏈通過，31民兵與完整六資源在存後及冷讀相同。人物檔SHA `3629baf2eb41ad7253530d23543b054d5c90dae3a81be169c20ddcb10016c928`，冷讀step11112414。未控制自然亂數，不以此宣稱傷害、AI或整個世界與原版同種子parity。
+
+[030補驗](docs/spec/030-battle-expansion-proposal.md#募兵gui診斷與正常路徑補驗)、[獨立核對](preserved/recruit-gui-diagnosis-audit-r2.json)及[永久保存](preserved/README.md#募兵gui診斷與正常路徑補驗)提供完整雜湊、狀態、來源與成功／失敗收據。本次沒有新玩法掛點或正式渲染器變更。

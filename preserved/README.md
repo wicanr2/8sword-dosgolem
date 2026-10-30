@@ -1,8 +1,31 @@
 # 必要資料永久保存
 
+## 募兵GUI診斷與正常路徑補驗
+
+[030補驗](../docs/spec/030-battle-expansion-proposal.md#募兵gui診斷與正常路徑補驗)與[獨立核對](recruit-gui-diagnosis-audit-r2.json)完成前輪未過的正常GUI門檻。未改的正式遊戲程式經普通XTEST購兵、F2往返、回程、自然遇敵、撤退、F7存退及另一程序讀回；存後與冷讀均有31民兵及金錢461，2987-byte人物檔SHA保持。既有HD與功能抽樣收尾，整案及新增軍隊世界交接仍未完成。
+
+完整GUI快照、PNG、存檔、輸入收據、原版F2續跑控制、只讀場景trace、私人driver／二進位、編譯與診斷失敗另存本機`preserved/recruit-gui-diagnosis-r1/`，不加入Git。[逐檔清單](recruit-gui-diagnosis-r1.json)包含784檔／499物件、壓縮102062983 bytes。[不掛workplace核對](recruit-gui-diagnosis-verification-r1.json)已逐物件檢查SHA與解壓長度；來源、字型、素材與923核心沿既有catalog及固定候選保存。初版[核對](recruit-gui-diagnosis-audit-r1.json)保持，r2另驗私人driver可從現有工具逐字重生。
+
+[工具](../tools/recruit-gui-diagnosis.py)在固定Pillow11.3.0 Docker執行：`prepare --project <專案>`準備隔離副本；`chain-driver --project <唯讀專案> --out <新Go檔>`產生本次普通輸入排程；`audit --project <唯讀專案> --out <新JSON>`核對正式版本、原版控制、正常GUI與存讀。`archive`另指定`--archive <可寫preserved>`與新清單路徑。已存在的輸出拒絕覆寫。
+
+脫離工作區核對只需永久物件與工具：
+
+```bash
+timeout 90 docker run --rm --network none --user 1000:1000 \
+  --memory 1g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword/preserved:/archive:ro \
+  -v /home/anr2/cht/8sword/preserved:/audit \
+  -v /home/anr2/cht/8sword/tools:/tools:ro \
+  sc-cht-hdtools:pillow11.3.0-r2 \
+  python /tools/recruit-gui-diagnosis.py verify --archive /archive \
+  --out /audit/recruit-gui-diagnosis-verification-new.json
+```
+
+需要還原時，按清單的`path`與`mode`將`objects[sha256].file`逐件解gzip；來源SHA及長度須相符，目的檔存在且不同時不得覆寫。這批不是正式程式提升；正式197來源七程式、923核心、r69素材與擴充存檔護欄保持。已證實早期診斷截圖拍在F2提交前，沒有修補HD渲染；舊等待逾時的所有成因仍未知，不倒改前輪收據。
+
 ## 階段收尾抽樣保存
 
-[固定計畫](phase-closeout-plan-r1.json)、[總核對](phase-closeout-audit-r1.json)、[逐檔清單](phase-closeout-r1.json)與[脫離workplace核對](phase-closeout-verification-r1.json)記錄HD抽樣與功能缺口。總核對為qualified，`all_planned_gates_passed=false`，整案未結案。原版／HD的固定步數完整state、基本GUI存退讀、未通過的募兵／遇敵鏈、PNG、存檔、護欄拒絕及全部工具失敗，另存本機`preserved/phase-closeout-r1/`，完整物件不加入Git。
+[固定計畫](phase-closeout-plan-r1.json)、[總核對](phase-closeout-audit-r1.json)、[逐檔清單](phase-closeout-r1.json)與[脫離workplace核對](phase-closeout-verification-r1.json)記錄前輪HD抽樣與當時的功能缺口。總核對保留qualified與`all_planned_gates_passed=false`；後續GUI補驗見上節，整案仍未結案。原版／HD的固定步數完整state、基本GUI存退讀、當時未通過的募兵／遇敵鏈、PNG、存檔、護欄拒絕及全部工具失敗，另存本機`preserved/phase-closeout-r1/`，完整物件不加入Git。
 
 共557檔／249物件、壓縮67399985 bytes，已在沒有workplace掛載的容器逐SHA與長度核對。[收尾完整性](phase-closeout-integrity-r1.json)另外核對來源、圖庫、文件入口與擁有權；通過保存不代表未達的GUI門檻已通過。
 
