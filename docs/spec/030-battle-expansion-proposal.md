@@ -404,6 +404,37 @@ Go共用來源明列`owned-army-model.go research-owned-world.go research-native
 
 編譯上限3 GiB／2 CPU／192程序／1 GiB exec tmpfs／240秒；互動研究容器相同配額、總逾時600秒，工作後明確退出。IDA上限2 GiB／1 CPU／128程序／90秒。Pillow的`audit --project --out <新JSON>`核對固定候選，`archive --project --archive --audit <通過收據> --out`保存，`verify --archive --out`不掛workplace逐物件核對，`integrity --project --archive --out`核對正式版本與永久原圖。未完成的正常新增兵種載入、軍隊UI、月度／劇情、守軍／隨機戰完整世界交接另續，不再重做這個caller的三helper。
 
+#### F2軍隊檢閱的Go交接研究
+
+2026-10-30 DRAFT。接續民兵店交接，只處理F2檢閱與返回地圖，不開放解雇。研究沿battle-r1下的owned-world-army-view-r1。[IDA窄查](../../tools/export-world-army-view-ida.py)確認原sub_13E92／sub_175C6／sub_1775A的caller、參數與返回邊界；原版與Go軍隊分開保存，未知分支保持既有拒絕點。檢閱從完整Go軍隊產生自己的畫布，不將擴充ID寫進原054Ah軍隊或原版圖檔／數值索引；存檔、交易、規則與正式197來源七程式保持。
+
+原型入口：[F2交接控制器](../../tools/research-world-army-review.go)、[Go整頁畫布](../../tools/world-army-review_draw.go)、[實際前端](../../tools/world-army-review_main.go)、[資料／文字／ABI拒絕測試](../../tools/research-world-army-review_test.go)、[準備／核對／保存](../../tools/prepare-world-army-review.py)、[實際XTEST](../../tools/check-world-army-review.py)及[本機啟動器](../../tools/world-army-review.sh)。沿上一輪已保存31民兵＋5野狼及成對進度，原版執行器只取得明示的原生影子檔與配對地圖，Go附檔始終由適配器持有與驗證，不忽略附檔或修改正式Engine載入護欄。
+
+首批契約：只在sub_13E92的F2 selector1攔截兩個已查證的sub_175C6呼叫，Go顯示完整六隊、兵數及領導用量，原版sub_1844C按鍵等待與返回流程保持。F10及三字型按鈕由前端處理，不送給原版等待函式；其餘按鍵照原版關閉檢閱。保留46個未知軍隊讀寫保護點，解雇尚未接入。畫面是獨立Go畫布，沒有原版軍隊像素墊底；卡片沿既有玉綠金框，兵種用文字呈現，不冒稱新增HD部隊肖像。
+
+限定抽驗已通過，世界接入仍DRAFT。固定PAM／PAM.i64 SHA與位址基準沿上一節；IDA9.4匯出sub_13E92／sub_175C6／sub_1775A及caller視窗，三函式641行原bytes逐MZ relocation核對。F2 selector來自原IDA word_32E3C，執行期DS56BCh；原顯示分支word_34C04對應DS7484h。推論只限已核對的分派與資料流，不據變數名推定其全部玩家語意。
+
+| IDA MZ線性定位 | dosgolem執行期 | 已驗交接 |
+|---|---|---|
+| 13E92h | 0110:3E92 | selector1為檢閱；原selector2另走sub_1775A解雇，不接本原型 |
+| 13EBCh／13ECEh | 0110:3EBC／3ECE | 原顯示值1／3各傳2Fh／30h至sub_175C6。Go整頁資料已由附檔建立，略過原row函式；前一PUSH CS由ABI介接移除，AX設0，F2 caller不使用該回傳值 |
+| 13ED5h／13ED8h | 0110:3ED5／3ED8 | 原sub_1844C等待按鍵；返回點核對token、跳過次數及原24-byte軍隊不變，再關閉Go檢閱畫布，原caller回地圖 |
+| 175C6h | 0110:75C6 | 原row入口設拒絕哨點，Go檢閱期間實際次數0，不讓新ID進入原名稱／圖檔索引 |
+
+每次開啟都重新核對成對存檔、來源程式、selector／顯示值、caller／堆疊及原版六資源，再由Go字串ID取名稱／數量／領導用量。重通知在首個CALL前可重入，但不重算或增加開啟次數；錯序與重複row提交拒絕。分派碼整段對固定PAM重定位bytes核對。早期觀測另外檢查CS／DS，避免PREDELLA與PAM同一實體位址的別名被當成F2。
+
+實際視窗沿上一輪已驗Go進度，Go31民兵＋5野狼／總36／用量46／金299，原生影子軍隊30保持。適配器先鎖定並驗證Go附檔，另建原版影子工作目錄，使用相同原生進度及原map01；原版只執行已接管／受保護的部分，Go附檔不會被丟棄或交給原版固定表。這不是修改正式Open護欄，也不是證明原EXE已能讀新增兵種。模式1由真正F2按鍵實測；模式3只有靜態分派及拒絕條件，不稱已動態覆蓋。
+
+三父測試0.383秒、七類錯ABI不改完整guest記憶體／暫存器、六隊／第25種／新增ID、寬數字、長名截斷及三字型墨跡矩形通過，vet與建置通過。寬數字只驗Go資料／排版能力，既有Go世界與原版ABI上限保持。真正XTEST驗原分派／Go檢閱／回地圖、Noto900／隸書／草書、F10長按只切一次、字型按鈕、Esc／返回按鈕／Enter、同程序再次開啟及另一GUI程序冷讀。六張1920×1200 X11與實際Go畫布全RGB相同，兩份存檔SHA始終保持；原版時鐘繼續推進並產生PCM，但裝置輸出在容器驗證時靜音，不稱人耳或裝置音訊驗收。
+
+舊HD原版分派控制確實進入原row函式並返回，但本次擷取的HD呈現器仍顯示地圖，不能把它當成原版F2像素oracle或做視覺parity聲明。Go候選的檢閱圖與返回地圖已獨立目視，舊控制圖只保留呼叫／返回與畫布一致性的限定證據，不改名包裝成原版軍隊圖。[隸書實窗](../images/world-army-f2-lishu-r1.png)、[來源](../images/world-army-f2-lishu-r1.json)、[最終核對](../../preserved/owned-world-army-view-audit-r2.json)及[永久保存](../../preserved/README.md#go-f2軍隊檢閱交接保存)記錄範圍。
+
+本機X11預覽用`bash tools/world-army-review.sh`，普通繼續後按F2。啟動器使用獨立session-preview-r1、現有Go映像與唯讀原版／r69，原生影子只放容器tmpfs；F10或三字型按鈕切換，Ctrl+Q離開。它是有界開發候選，尚未提升正式七程式；不要用其一次性店鋪ID或影子檔推定完整地圖／招募／解雇／月度／戰鬥交接完成。
+
+重現沿固定Pillow11.3.0、Go1.24.13、IDA9.4 py312-v1與UID1000。準備器`prepare --project /project`從永久owned-world-army-r1取回既有Go進度、catalog及原map01，在既有研究目錄保留ida；字圖從永久原字型生成新研究快取，不改r69素材。Go明列共用來源`owned-army-model.go research-owned-world.go research-native-progress.go research-paired-progress.go research-world-army-port.go owned-army-ui.go owned-army-ui_draw.go research-world-army-review.go world-army-review_draw.go`，測試加research-world-army-review_test.go，設`EIGHTSWORD_REVIEW_INPUT=/out/inputs`及`EIGHTSWORD_REVIEW_FONTS=/out/ui-assets`；vet／視窗建置加world-army-review_main.go。
+
+所有Go命令用外部`-mod=readonly -modfile=/out/probe.mod`，/core唯讀923核心、/gomod唯讀模組，HOME=/tmp、GOCACHE=/tmp/go-cache、GOMODCACHE=/gomod、GOPROXY=off、GOSUMDB=off。建置3 GiB／2 CPU／192程序／1 GiB exec tmpfs／240秒；實際GUI同配額、總逾時900秒。另建置既有owned-army-ui-xcheck.go，新增Escape／F2 keysym而保留舊行為；Go容器用`python3 /project/tools/check-world-army-review.py --work /out`。Pillow核對用`audit --project --out <新JSON>`，保存用`archive --project --archive --audit <通過收據> --out`；`verify --archive --out`不掛workplace，`integrity`再核對正式版本與永久原圖。原版模式、正式玩家入口、46保護點與載入護欄保持。
+
 ## AI 從原版判斷掛點切入
 
 ```mermaid

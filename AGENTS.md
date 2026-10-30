@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-10-30[F2檢閱交接](docs/spec/030-battle-expansion-proposal.md#f2軍隊檢閱的go交接研究)已在獨立候選完成限定抽驗。[控制器](tools/research-world-army-review.go)在原F2分派攔兩個row-render CALL，Go整頁顯示31民兵＋5野狼／總36／領導46，原按鍵等待與返回地圖保持。實際XTEST三字型、Esc／按鈕／Enter返回、同程序再開及另一GUI冷讀通過，六張X11與Go畫布全RGB相同，兩份存檔SHA保持。[本機入口](tools/world-army-review.sh)、[隸書實窗](docs/images/world-army-f2-lishu-r1.png)及[永久保存](preserved/README.md#go-f2軍隊檢閱交接保存)為入口。候選明示持有Go附檔，原版只收獨立原生影子；46處保護點與正式載入護欄保持。舊HD原版分派控制畫面仍為地圖，只作呼叫／返回控制，不稱原版F2像素oracle。整體世界交接仍DRAFT，正式197來源七程式／923核心／535素材／1040圖庫保持；後續接解雇及其餘consumer，不重做F2三字型、原六資源或已驗三helper。
+
 2026-10-30[地圖軍隊交接DRAFT](docs/spec/030-battle-expansion-proposal.md#地圖軍隊讀取與容量交接研究)已接一個原版民兵店caller。三個招募CALL與購買提交由[Go介接](tools/research-world-army-port.go)處理，原版軍隊30人保持；Go原型計入明示野狼5名，使上限70→55，正常地圖／數字輸入購兵後保存31民兵＋5野狼、金299，另一程序冷讀同資料。[16函式索引](docs/spec/world-army-consumers-r1.json)、[實際HD引擎圖](docs/images/world-army-shop-comparison-r1.png)與[永久保存](preserved/README.md#go地圖募兵交接試作保存)集中證據。46個實際operand／迴圈保護點阻止未接軍隊讀寫，F2已驗在75FDh前停止；不能攔整個sub_12446入口，該函式也處理普通地圖事件。一次性店鋪ID不是正式世界身份，月度、其他店鋪／軍隊畫面與戰鬥仍待接入。正式197來源七程式／923核心／535素材／1040圖庫與DOS前護欄保持，不重查已驗三helper或六資源編碼。
 
 2026-10-30兩份存檔中斷恢復已沿[030 DRAFT](docs/spec/030-battle-expansion-proposal.md#原版進度與軍隊附檔的中斷恢復試作)接獨立Go戰鬥候選。[同步器](tools/research-paired-progress.go)以Linux固定鎖及內部提交紀錄配對原進度六資源與既有WorldSave，八個真實程序退出點、新程序恢復及實際GUI戰中／戰後冷讀通過；47組保存與前版世界狀態相同。資料只在參與相同鎖的本機候選內同步，未知改檔保留並拒絕；實體斷電、跨平台與正式世界交接未驗。[永久保存](preserved/README.md#go兩份存檔中斷恢復試作保存)不依賴workplace；[預覽啟動器](tools/owned-paired-ui.sh)使用獨立session。正式197來源七程式／923核心／r69全535素材／1040圖庫與DOS前護欄保持，不重開已驗六資源編碼，也不因存檔試作通過移除護欄。

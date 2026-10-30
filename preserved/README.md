@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## Go F2軍隊檢閱交接保存
+
+[030 F2檢閱](../docs/spec/030-battle-expansion-proposal.md#f2軍隊檢閱的go交接研究)的197來源研究副本、三函式641行IDA原bytes、Go控制器／整頁畫布／實際前端／測試／XTEST、固定Go存檔與原map01、三字型字圖與授權、三個GUI程序及六張完整PNG／X11 PPM、原生影子、兩版程式與編譯輸出，保存於本機`preserved/owned-world-army-view-r1/`。本批351檔／285去重物件，壓縮25167179 bytes，不依賴舊研究副本。
+
+F2由原分派交給Go畫出31民兵＋5野狼／總36／用量46／金299，原按鍵等待及返回地圖保持。實際Noto900／隸書／草書、字型長按、三種返回方式、同程序再開與另一GUI冷讀通過；六份X11全RGB等於Go畫布，兩份存檔SHA及原軍隊30保持，原row入口0次。三父測試0.383秒、七類ABI拒絕、六隊／長名／寬數字／墨跡邊界、vet與建置通過。
+
+[逐檔清單](owned-world-army-view-r1.json)、[首版核對](owned-world-army-view-audit-r1.json)、[限定範圍核對](owned-world-army-view-audit-r2.json)、[保存收據](owned-world-army-view-preservation-r1.json)、[脫離workplace核對](owned-world-army-view-verification-r1.json)、[收尾](owned-world-army-view-integrity-r1.json)及[文件入口核對](owned-world-army-view-links-r1.json)為入口。批次execution-r1.json保存映像ID、配額、來源／程式／log SHA。[工具](../tools/prepare-world-army-review.py)在固定Pillow11.3.0 Docker用`archive --project <唯讀專案> --archive <可寫preserved> --audit <通過收據> --out <新JSON>`保存，`verify --archive <唯讀preserved> --out <新JSON>`不掛workplace逐SHA及長度核對。依清單path／mode與objects解gzip可還原；923核心及模組沿[兵力核心保存](owned-combat-r1.json)及[完整catalog](catalog.json.gz)。
+
+[隸書實窗縮圖](../docs/images/world-army-f2-lishu-r1.png)、[來源](../docs/images/world-army-f2-lishu-r1.json)與[本機啟動器](../tools/world-army-review.sh)加入Git。完整PNG、原版進度／地圖、IDA輸出、二進位及壓縮物件維持本機。舊HD原版分派控制圖仍為地圖，只作呼叫／返回控制，不能當原版F2視覺oracle。這是唯讀開發候選，模式1動態覆蓋、模式3僅靜態守門，裝置音訊靜音，文字卡未接HD兵種肖像。正式197來源七程式／923核心／535素材／1040圖庫、原版模式與載入護欄保持，解雇及完整世界仍待接入。
+
 ## Go地圖募兵交接試作保存
 
 [030地圖軍隊介接](../docs/spec/030-battle-expansion-proposal.md#地圖軍隊讀取與容量交接研究)的197來源研究副本、16函式4677行IDA原bytes、Go軍隊與成對保存介接、測試與獨立reader、原版／Go兩案的普通新遊戲／F7／受控野狼設定／地圖募兵、六份state的獨立RAM、完整PNG與兩份存檔，以及首版入口保護過寬的失敗來源／程式／進度／log，保存在本機`preserved/owned-world-army-r1/`。本批407檔／293去重物件，壓縮24143626 bytes，未掛workplace逐SHA與長度核對通過。

@@ -2531,3 +2531,14 @@ Go控制資料鏈招募30野狼、14輪／28行動、剩29對敵0，完整存讀
 首輪攔整個sub_12446入口導致普通移動即停止。該函式從sub_13AEC讀中央地圖格並分派多種事件，函式入口不能代表必定存取軍隊，也不能據此稱月度處理已解出。現行把拒絕點移到實際軍隊operand前，沒有放行未支援的讀寫；F2實測在0110:75FD第一個軍隊讀取前停止，軍隊不變。首版失敗來源、程式、進度與log保留，詳見[030](docs/spec/030-battle-expansion-proposal.md#地圖軍隊讀取與容量交接研究)。
 
 std-only reader獨立解兩案六份state的原始RAM，核對金錢與24-byte軍隊表；Go單元／拒絕測試0.040秒、vet及建置通過。比較圖是受控HD Engine.Frame，沒有新Ebiten視窗、自然取得新增兵種、原版指令／時鐘或全世界交接聲明。正式197來源七程式／923核心／535素材／1040圖庫與DOS前護欄保持。完整來源、state、PNG、兩份存檔與失敗研究見[永久保存](preserved/README.md#go地圖募兵交接試作保存)。
+## 2026-10-30：F2檢閱分派與Go整頁軍隊畫布
+
+來源沿PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`與PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA Pro9.4 py312-v1／UID1000／HOME=/home/ubuntu只分析唯讀資料庫的/tmp副本；匯出[三個函式及caller](tools/export-world-army-view-ida.py)，641行原bytes逐PAM MZ relocation核對。定位基準仍分IDA linear base10000h、原PAM檔案位移及dosgolem執行期載入0110h／DS1E88h，原名與operand不改。
+
+已證實：IDA sub_13E92以word_32E3C分派七命令，執行期DS56BCh為selector；selector1是F2檢閱，selector2另外呼叫sub_1775A解雇。顯示分支word_34C04在DS7484h，值1／3分別於IDA13EBCh／13ECEh把2Fh／30h交給sub_175C6。該row函式IDA175FDh讀`[bx+54Ah]`後進原兵種名稱／圖檔索引。F2 caller在row返回後丟棄參數，不讀AX，再於IDA13ED5h呼叫sub_1844C等待按鍵，13ED8h返回，最後沿原caller回到地圖。本次動態覆蓋值1；值3保留靜態／拒絕證據，未稱實測。
+
+Go獨立候選在執行期0110:3EBC／3ECE的單一CALL點交接，消耗前一個PUSH CS並前進三bytes，F2未使用的AX設0；整頁內容由已驗成對附檔與字串ID產生，不進原row或原軍隊固定表。原按鍵等待與返回繼續執行，在0110:3ED8核對世界token與原24-byte軍隊保持才關閉Go畫布。F10／字型按鈕不送入原等待函式，避免切字型同時退出。PAM段／DS、caller／堆疊、selector／顯示分支與完整分派碼均守門，初始觀測排除與PREDELLA同實體位址的別名。既有46個其他consumer保護點不撤除。
+
+實際Ebiten／XTEST沿上輪受控Go存檔走普通繼續、F2、Go軍隊檢閱及返回地圖；顯示31民兵＋5野狼、總36、用量46／100與金299，原影子軍隊仍30。Noto900／教育部隸書／草書、F10長按只切一次、字型按鈕、Esc／返回按鈕／Enter、同程序再開及另一GUI冷讀均通過，六份1920×1200 X11圖全RGB等於Go畫布，兩份存檔SHA保持，原row入口0次。原時鐘／PCM繼續，裝置輸出靜音，沒有音訊裝置或人耳聲明。
+
+舊HD原版分派控制有進原row並返回，但擷取時HD呈現器仍為地圖；本批把它限制為呼叫／返回控制，不當原版F2畫面oracle，也不據此判斷全部原版顯示流程已解出。Go檢閱與返回地圖已另目視。[實際隸書圖](docs/images/world-army-f2-lishu-r1.png)、[來源](docs/images/world-army-f2-lishu-r1.json)、[最終核對](preserved/owned-world-army-view-audit-r2.json)及[永久保存](preserved/README.md#go-f2軍隊檢閱交接保存)保留證據與限制。三資料／字形／拒絕父測試0.383秒、七類錯ABI、六隊、寬數字與長名通過；正式197來源七程式／923核心／535素材／1040圖庫與載入護欄保持，解雇及完整世界接入仍待完成。

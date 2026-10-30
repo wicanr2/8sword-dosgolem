@@ -1,0 +1,24 @@
+{
+  "schema": "world-army-f2-preview/1",
+  "status": "actual-ebiten-f2-review",
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-world-army-view-r1/gui-r1/owned/frame-002-army-lishu.png",
+  "source_sha256": "340bedc7309c63a7c5d99838e60f692e486ca8dffa8b02422284b7f7c218abaa",
+  "preview_sha256": "5fb75cfa18e4b358ad8603f192e6649f0a9ad4b67ecb2036027cd7da73533b05",
+  "metadata": "workplace/probe-20261023/graphics-first/battle-r1/owned-world-army-view-r1/gui-r1/owned/go-lishu.json",
+  "metadata_sha256": "b66c59d2c80ea421f691e4d60e91327ef790cb8f7b1c6531730a476311fecc80",
+  "audit": "preserved/owned-world-army-view-audit-r2.json",
+  "display_mode": 1,
+  "army": {
+    "militia": 31,
+    "wolf": 5,
+    "total": 36,
+    "leadership_used": 46,
+    "leadership": 100,
+    "gold": 299
+  },
+  "limits": [
+    "既有受控Go進度的獨立接入候選，不是正常取得新增兵種。",
+    "實際X11視窗與Go畫布逐RGB相同；舊HD原版分派控制畫面維持地圖，不能作原版F2像素對照。",
+    "六隊文字卡片，沒有新增HD部隊肖像。"
+  ]
+}

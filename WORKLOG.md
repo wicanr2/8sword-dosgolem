@@ -2297,3 +2297,15 @@ Go資料鏈工具沿前輪33兵種與招募／附檔原型，控制經濟招募3
 - 完整來源、原圖、state、讀取RAM、原版進度、配對存檔與失敗研究已[永久保存](preserved/README.md#go地圖募兵交接試作保存)，407檔／293物件、壓縮24143626 bytes。README加入募兵70／55的同起始狀態比較，完整圖不只放workplace；Git只記來源、文件、縮圖與索引，不公開原版資產或發行Release。
 - 一次性店鋪ID只是受控caller綁定，其他店鋪／原地圖庫存持續性、軍隊UI、月度／劇情、守軍與隨機戰世界交接仍待完成。正式197來源七程式／923核心／r69全535素材／1040圖庫及DOS前護欄保持；後續接軍隊畫面與其餘world consumer，不重做本批已驗helper、六資源編碼與存檔恢復。
 - 收尾407檔／293物件已未掛workplace逐SHA與長度核對，正式197來源七程式／923核心／535素材／1040圖庫逐SHA保持。3056筆相對連結、六工具與consumer索引、兩份Python語法及四份Go格式通過，整個workplace與本批永久物件沒有root-owned檔案或誤建.md目錄。連結掃描最初早於integrity收據寫出，待收據完成後按相同命令重跑通過；本案容器均已移除，其他專案資源保留，來源與收據沿既有授權提交並推送私人GitHub main。
+
+## 2026-10-30：F2原分派與Go整頁檢閱
+
+- 沿使用者「ok go」接續F2檢閱，命中復古重製、規格閘門、IDA、實際視窗與文件職責路由，使用既有逆向重製及IDA9.4方法。不重開六資源、三個招募helper或交易平衡；只接唯讀F2，其他軍隊consumer保護點保持。
+- [IDA窄查](tools/export-world-army-view-ida.py)補sub_13E92／175C6／1775A及兩個caller視窗，三函式641行bytes逐原PAM relocation核對。證實selector1檢閱、selector2解雇；原顯示分支1／3各傳2Fh／30h給row renderer，F2 caller不用AX，另有原按鍵等待及返回。動態覆蓋值1，值3不稱已驗。
+- 新增[F2控制器](tools/research-world-army-review.go)、[Go整頁畫布](tools/world-army-review_draw.go)、[前端](tools/world-army-review_main.go)、[測試](tools/research-world-army-review_test.go)、[準備／保存](tools/prepare-world-army-review.py)、[XTEST](tools/check-world-army-review.py)與[啟動器](tools/world-army-review.sh)。在原CALL點交接，Go從字串ID產生六隊與統計，原row不進、原軍隊不寫；原getch與返回流程保持。前端明示鎖定Go附檔，只給原版獨立原生影子，沒有修改正式Open護欄或忽略新增部隊。
+- 真正GUI從普通繼續／F2進Go檢閱，31民兵＋5野狼／總36／用量46／金299正確；Noto900、教育部隸書、草書、F10長按一次、字型按鈕、Esc／按鈕／Enter返回、同程序再開及另一GUI冷讀均通過。原row入口0次、兩份存檔SHA及原軍隊30保持；六張1920×1200 X11全RGB等於Go畫布，Go畫布與回地圖另目視。時鐘／PCM持續，容器裝置輸出靜音，沒有人耳或真機音訊聲明。
+- 三父測試0.383秒、七類錯ABI完整guest不變、六隊／第25種／新增ID、純Go寬數字、長名與三字型墨跡矩形通過，vet及建置通過。首版建置後補早期觀測的CS／DS條件與模式紀錄，再建置最終GUI；初版來源／程式保留。共享XTEST helper只加Escape／F2 keysym，舊命令保持；沒有新建工具映像或磁碟Go快取。
+- 原版分派控制有進row並返回，但其HD畫布仍為地圖，不能把邏輯army標記當原版F2視覺oracle。首版核對後追加這項限制，另存audit-r2，不重跑已通過Go GUI或把控制圖改名當原版軍隊圖。README只放實際Go隸書畫面，完整資料與限制集中030。
+- [永久保存](preserved/README.md#go-f2軍隊檢閱交接保存)351檔／285物件、壓縮25167179 bytes。原圖、字圖、程式、進度、原生影子與驗證資料不只留workplace；Git保存來源、文件、縮圖與索引，原版及完整物件維持本機，不發行Release。正式197來源七程式／923核心／r69全535素材／1040圖庫與原版模式不改。
+- F2限定抽驗完成，整體世界交接仍DRAFT。解雇、其他店鋪／原地圖庫存、月度／劇情及完整戰鬥世界交接另續，不能因F2通過就移除載入護欄。原時鐘／像素parity、其他顯示模式、裝置音訊及HD部隊肖像均不在本批完成聲明內。
+- 收尾351檔／285物件已未掛workplace逐SHA與長度核對，正式197來源七程式／923核心／535素材／1040圖庫逐SHA保持。3110筆相對文件連結、八工具索引、三份Python語法、五份Go格式及啟動器語法通過；整個workplace與本批永久物件沒有root-owned檔案或誤建.md目錄。本案IDA／Go／Xvfb容器均已移除，其他專案資源保留；來源與收據沿既有授權提交並推送私人GitHub main。
