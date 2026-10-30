@@ -1,0 +1,11 @@
+{
+  "status": "passed-owned-defeat-integrity",
+  "production_changed": false,
+  "source_inputs": 197,
+  "programs": 7,
+  "core": 923,
+  "assets": 535,
+  "artwork": 1040,
+  "root_owned_outputs": 0,
+  "player_handoff": "pending"
+}

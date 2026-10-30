@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## Go敗退交接試作保存
+
+[030敗退原型](../docs/spec/030-battle-expansion-proposal.md#敗退原型限定抽驗)的八函式IDA原bytes、十二組原版before／after完整state、獨立記憶體讀取、197來源研究副本、三條真正Go戰鬥／敗退交易／附檔／另一程序冷讀及邊界測試，保存於本機`preserved/owned-defeat-r1/`。原型仍DRAFT，世界地圖與正式玩家UI未接入；本批不取代清理前的未完成草稿，兩者各留原始索引。
+
+本批共297檔／277去重物件，壓縮12678013 bytes，未掛workplace逐物件SHA與長度核對通過。Go快取僅放容器tmpfs，沒有留下新磁碟快取；環境與稽核假設的修正記在保存批次`execution-r1.json`，不當成產品缺陷。文件入口與來源語法另見[收尾連結核對](owned-defeat-links-r1.json)。
+
+[逐檔清單](owned-defeat-r1.json)、[獨立核對](owned-defeat-audit-r1.json)、[保存收據](owned-defeat-preservation-r1.json)、[脫離workplace核對](owned-defeat-verification-r1.json)及[收尾](owned-defeat-integrity-r1.json)為入口。[工具](../tools/audit-owned-defeat.py)在固定Pillow11.3.0 Docker以`archive --project <唯讀專案> --archive <可寫preserved> --out <新JSON>`保存；`verify --archive <唯讀preserved> --out <新JSON>`逐SHA／長度核對，不需掛workplace。依manifest的path／mode及objects解gzip可還原。原版、923核心、535素材與離線模組沿[兵力核心保存](owned-combat-r1.json)及[完整catalog](catalog.json.gz)；本批inputs包含續作所需快照、基底進度、33種資料及前輪世界控制，不依賴已清除的歷史展開副本。
+
+本機完整RAM、IDA輸出、進度、二進位與壓縮物件不加入Git；Git記工具、規格、索引與核對收據。正式197來源七程式保持，三份敗退附檔均實際由Engine在DOS前拒絕；`world_handoff=pending`不能被舊world loader忽略。全滅兩選項與存活撤退的差異見030，未知世界計數及敵軍持續性未猜補。
+
 ## Go世界交接試作保存
 
 [030世界與戰鬥交接](../docs/spec/030-battle-expansion-proposal.md#世界與戰鬥交接研究)的IDA輸出、完整197來源研究副本、正常遇敵／撤退／扣款／回地圖成對state與PNG、七組直接勝利數值、Go招募／戰鬥／世界結算、戰中與戰後附檔及另一程序冷讀、邊界／溢位測試與瀏覽器回放檢查，保存在本機`preserved/owned-world-r1/`，共429檔／293去重物件，壓縮26566599 bytes。失敗輸出與早期100點門檻試作保留歷史，現行回放採原版2000點首級門檻與明示1990初值。正式程式保持前版；保存不代表新增兵種已可正常遊玩。

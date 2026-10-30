@@ -162,6 +162,45 @@ Go兵種／陣位不再混用，不代表已完成整個遊戲的Go戰鬥接管�
 
 [獨立核對](../../preserved/owned-world-audit-r1.json)與[永久入口](../../preserved/README.md#go世界交接試作保存)為本輪依據。正式source-candidate-owned-combat-r1／197來源七程式、923核心、r69全535素材與1040圖庫保持，沒有提升新正式程式。正式招募／軍隊／戰鬥UI、原版世界敵軍資料、敗退及任務交接仍待完成；本節不標成玩家路徑CONFORMED。
 
+#### 敗退與全軍覆沒交接研究
+
+2026-10-30 DRAFT。沿前節世界交易補非勝利路徑，先由[敗退IDA窄查](../../tools/export-owned-defeat-ida.py)追sub_11796的扣款與sub_11DAA／城堡復歸consumer。研究沿既有battle-r1下的owned-defeat-r1，不修改前輪收據或正式197來源。需分開原版自然亂數、受控亂數輸入、普通撤退、全滅後有／無據點，以及Go新兵種的存活數與存讀；未證實的復歸不猜補。
+
+2026-10-30追加勘誤：上段「城堡復歸／有無據點」只是開查時的假說。sub_11DAA實際顯示玩家選單，由玩家選擇傳送回起點或冒險浪跡江湖。固定PAM的DS:47E6h、480Eh、4836h分別存「兵員全部被殲滅」、「傳送回起點」、「冒險浪跡江湖」，原字串含空格與選項編號。不得再把此函式當成據點存在判定。舊假說保留在上段供追溯，現行解釋依本段。
+
+來源仍為前節固定PAM及PAM.i64 SHA。IDA9.4匯出`ida-defeat-r2.json`保留八個原名函式及原bytes；IDA位址採MZ loader linear base10000h，執行期採載入0110h、DS1E88h。下表兩欄各用自己的基準。
+
+| 證據等級 | IDA原始定位 | 執行期與已查證行為 |
+|---|---|---|
+| 已證實 | sub_11796，1192Bh至11944h | 0110:192B呼叫_rand，0110:1930取得AX，再算`金錢 / (亂數 / 2730 + 3)`作扣款，兩次皆整數商。不能改成取餘數 |
+| 已證實 | _rand，2953Eh至29566h | 最後以`and ah,7Fh`將回傳值限制為0至32767。Go只收明示亂數輸入，不複製原版亂數內部實作 |
+| 已證實 | sub_11DAA；sub_11796，1196Dh至119BCh | 全滅後由玩家選兩項，兩者均不走撤退扣款或晉級。不是零獎勵勝利 |
+| 已證實 | sub_11796，11975h至119BCh | 傳送分支設定DS:56D6h區域0，位置取DS:03BEh／03C0h，本次40／40；DS:56C4h設3、56CEh清0，另有原版地圖載入。浪跡保留當前位置 |
+| 已證實 | sub_11796，119CCh至11A0Fh | 有存活部隊的撤退仍到既有嚴格晉級閘門；全滅兩分支先返回，即使戰績10000也不升級 |
+| 未知 | DS:56C6h與世界敵軍後續consumer | 原版控制觀察到數值4→1，晉級撤退為2；語意未證實，不命名為世界時間。隨機／守衛敵軍的存活持續性亦未由這批控制決定 |
+
+原版十二案均從同一正常流程快照SHA `e618d4343697fa00a50ab4b6021b169f6a5e21e4eaf86100c1fac9cd7a98777b`還原後直接呼叫0110:1796。只明示替換原軍隊、金錢與戰績fixture；受控亂數在原_rand真正呼叫後的0110:1930替換AX，未改種子、未重抽。原回傳值均13654。測例包含0、2729、2730、32767、零金與2金，全滅兩選項及有／無晉級條件。這些是原版局部常式控制，不當成自然全滅或正常玩家GUI。
+
+Go研究入口：[純Go敗退交易](../../tools/research-owned-defeat.go)、[邊界與存讀測試](../../tools/research-owned-defeat_test.go)、[真正Go戰鬥執行器](../../tools/owned-defeat-check.go)、[獨立state讀取器](../../tools/inspect-owned-defeat-states.go)及[準備／核對／保存工具](../../tools/audit-owned-defeat.py)。仍為DRAFT研究，不進正式玩家路徑。原型使用既有字串兵種ID、六隊及寬整數；撤退需存活軍隊與一個0至32767輸入，全滅需實際loss及明示選項。勝利、平手、重複／過期結算、未知選項與不合規輸入拒絕。存活隊伍按原順序整理，敵方存活隊伍另以typed data回傳，原世界敵軍不猜寫。
+
+敗退附檔schema為`eightsword-owned-world-defeat/1`，將before、after、選項／受控亂數與`world_handoff=pending`共同存入單一`gamedata.ay.army.json`。綁定原2987-byte進度及兩份兵種資料SHA，沿目錄鎖、預期舊SHA、暫存檔、sync及rename提交。拒絕覆寫其他schema，舊世界載入器也拒絕此格式。這是DRAFT研究格式，正式格式尚未READY；正式Engine既有DOS前護欄保持，不會讓新增ID進原版固定表。
+
+執行沿Pillow11.3.0與Go1.24.13有界Docker，`audit-owned-defeat.py prepare --project <唯讀專案>`只在明確可寫的owned-defeat-r1建立go-src，拒絕覆寫。準備器從197固定輸入複製研究來源及world原型，另產owned-army-model.go。Go使用離線模組及外部probe.mod替代到923核心；容器`/tmp`供Go暫存時需允許執行，快取用隨容器移除的tmpfs。
+
+測試顯式列出`owned-army-model.go research-owned-world.go research-owned-world_test.go research-owned-defeat.go research-owned-defeat_test.go`，設定`EIGHTSWORD_WORLD_ARMY`、`EIGHTSWORD_WORLD_COMBAT`、`EIGHTSWORD_WORLD_CONTROLS`及`EIGHTSWORD_DEFEAT_CONTROLS`至本研究inputs與original-r2/receipt.json。執行器參數為`-catalog -combat -controls -base-save -out`，另一程序改用`-load <分支存檔目錄> -out <新目錄>`。獨立reader以`-input <original-r2> -out <新JSON>`只解gzip／gob記憶體，不匯入CPU或遊戲helper；Pillow核對器另從PAM原bytes與state讀值算期望結果。
+
+#### 敗退原型限定抽驗
+
+本節仍為DRAFT，已完成資料原型抽驗。十二組原版數值對照、24份完整state的獨立記憶體讀取及八函式660行重定位bytes核對通過。原版500金的自然回傳13654扣62，固定0／2729扣166、2730扣125、32767扣33；2金整除後扣0。全滅兩選項保留500金，戰績10000也不晉級。有存活部隊的撤退則可晉級一次。
+
+Go資料鏈均真正呼叫既有Choose／Apply，再進敗退交易，沒有客體指令執行。撤退案野狼30→29、3800金→2850金，扣950；全滅案為兩隻野狼對一條龍，2→0後兩個選項皆保留4920金。三案皆不領勝利獎勵、不清敵軍，招募庫存保持，敵軍存活數另回傳。每案保存後由另一程序讀回完全相同的交易；正式Engine實際開啟這三份附檔均在DOS前拒絕，基底2987-byte進度逐SHA不變。
+
+世界舊測試及新增敗退五項父測試共0.144秒通過，無FAIL／SKIP，vet與兩支研究程式建置通過。涵蓋晉級臨界值／最高等級／30000上限、稀疏存活隊伍整理、輸入不變與深複本、重複／過期交易、錯資料SHA、目錄鎖、其他schema、缺欄位、null、短長陣列、重複鍵、尾隨資料及過深JSON。Go寬整數扣款另驗MaxUint64，不宣稱原版可保存此金額。
+
+[獨立核對](../../preserved/owned-defeat-audit-r1.json)與[永久保存](../../preserved/README.md#go敗退交接試作保存)集中證據與還原依據。核對器用`audit --project --out`，保存用`archive --project --archive --out`；`verify --archive --out`只掛永久資料，不需workplace。最後`integrity --project --archive --out`核對197來源、七程式、923核心、r69全535素材及1040原圖保持。
+
+正式玩家UI、地圖載入／位置提交、世界計數語意、隨機／守衛敵軍持續性及任務交接仍未完成，不能移除載入護欄。本輪沒有新GUI、自然全滅或正常新兵種可玩聲明。晉級路徑原AX留下7181，核對器初版誤將所有AX當成零狀態碼；已改以完整進度與記憶體為驗收。原state及Go邏輯沒有因此改動。
+
 ## AI 從原版判斷掛點切入
 
 ```mermaid
