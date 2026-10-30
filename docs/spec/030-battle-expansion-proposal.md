@@ -136,7 +136,7 @@ Go兵種／陣位不再混用，不代表已完成整個遊戲的Go戰鬥接管�
 | 已證實 | sub_13774；sub_132E0，13745h至1376Ah | 0110:3774先穩定整理空隊，再由0110:3745至376A把六隊存活數抄回054Ah；Go試作也獨立整理存活隊伍，不交給原版處理新增ID |
 | 已證實 | sub_1151C，1171Dh至1172Bh；sub_11796 | 正常遭遇戰果交0110:1796；本次撤退的500→400扣款發生於此處，最後回到地圖。敗退不是零獎勵的勝利，不能共用Go勝利分支 |
 | 已證實 | sub_132E0，136CAh至13721h；sub_11796，11892h至118AAh | 勝利的DS:04F4h增量來自敵軍原版領導力總和除2；金錢來自價格乘敵軍數量，透過DS:8362h所指段的003Eh暫存。兩者均於戰鬥外加到世界進度 |
-| 已證實 | sub_11796，119CCh至11A0Fh | 升級只在04F4h嚴格超過DS:05B2h門檻且等級小於5時發生，一場只升一次；04F6h與領導力各加100，04FCh加新等級乘3。04F6h與04FCh的玩家語意仍未知，Go資料保留原偏移標記 |
+| 已證實 | sub_11796，119CCh至11A0Fh | 升級只在04F4h嚴格超過DS:05B2h門檻且等級小於5時發生，一場只升一次；04F6h與領導力各加100，04FCh加新等級乘3。當時名稱未知，現已由[守軍顯示consumer](#守軍與獎勵的已查證分流)證實為月薪／法術能力，JSON鍵仍保留原偏移。勘誤標記：WORLD-FIELDS-RESOLVED-20261030 |
 | 已證實 | sub_19856，19856h至198FFh | 每次加值後對04F2h至04FCh六欄作有號16位元0至30000限制。Go試作保留30000上限，先用寬整數運算，不重製原版溢位轉負再歸零 |
 
 實際原版門檻前六欄為`0,2000,5000,8000,12000,30000`，由正常流程RAM與PAM原始表逐值核對。七組直接勝利控制另把測試門檻明示固定為100，驗低於、等於、剛超過、大幅超過仍只升一次、等級5封頂、金錢封頂及三項升級加值封頂。這些不是正常勝利或自然晉級的收據。
@@ -200,6 +200,49 @@ Go資料鏈均真正呼叫既有Choose／Apply，再進敗退交易，沒有客�
 [獨立核對](../../preserved/owned-defeat-audit-r1.json)與[永久保存](../../preserved/README.md#go敗退交接試作保存)集中證據與還原依據。核對器用`audit --project --out`，保存用`archive --project --archive --out`；`verify --archive --out`只掛永久資料，不需workplace。最後`integrity --project --archive --out`核對197來源、七程式、923核心、r69全535素材及1040原圖保持。
 
 正式玩家UI、地圖載入／位置提交、世界計數語意、隨機／守衛敵軍持續性及任務交接仍未完成，不能移除載入護欄。本輪沒有新GUI、自然全滅或正常新兵種可玩聲明。晉級路徑原AX留下7181，核對器初版誤將所有AX當成零狀態碼；已改以完整進度與記憶體為驗收。原state及Go邏輯沒有因此改動。
+
+#### 世界敵軍持續性與自有交接研究
+
+2026-10-30 DRAFT。接續已驗世界／敗退交易，只查隨機遭遇與固定守軍的敵軍資料生命週期。沿[IDA窄查](../../tools/export-owned-encounter-ida.py)、[原版交接fixture](../../tools/probe-owned-encounter.go)及[核對與保存](../../tools/audit-owned-encounter.py)，研究放既有battle-r1下的owned-encounter-r1。原版、正式197來源與DOS前護欄保持。局部fixture可隔離戰鬥返回值驗caller，不冒稱真正戰鬥或正常玩家流程。靜態候選與已證實資料流分開；不猜世界時鐘、任務或隨機敵軍的長期存在。
+
+研究實作入口：[Go敵軍交接](../../tools/research-owned-encounter.go)、[分支／存檔測試](../../tools/research-owned-encounter_test.go)、[真正Go資料鏈](../../tools/owned-encounter-check.go)及[獨立state讀取器](../../tools/inspect-owned-encounter-states.go)。工具尚未升為正式玩家路徑，與前版數值原型分開保存。
+
+##### 守軍與獎勵的已查證分流
+
+本節維持DRAFT，數值與caller資料流已有原版控制。來源沿前節固定PAM及PAM.i64 SHA，IDA9.4新增匯出sub_11ABE及sub_13AEC共326行，既有13函式2080行另從永久物件取回。兩份匯出均逐行對原MZ重定位核對；IDA位址用MZ loader base10000h，以下執行期用載入0110h、DS1E88h。
+
+| 證據等級 | IDA原始定位 | 已查證行為與Go對應 |
+|---|---|---|
+| 已證實 | sub_132E0，13396h至13540h | 中央地圖讀值為41h時，依區域及座標匹配索引，把固定守軍六隊複製到DS5700h；其他路徑另產生隨機敵軍。Go資料以字串ID分開標示來源，不把新增ID寫入原kind |
+| 已證實 | sub_12DDE，1309Eh至1326Eh | 戰鬥返回後，把已整理的DS5700h六隊回寫選中守軍。陣位索引來自12組座標的比對；本批實際驗區域0／1／7的索引0，不據此宣稱每區都實存12組守軍 |
+| 已證實 | sub_1151C，1171Dh至11733h | 本批正常隨機遭遇caller走sub_11796，沒有上述守軍表回寫。Go的隨機敵軍記錄在退出後移除；固定守軍保留殘兵，勝利標記清除並拒絕重開 |
+| 已證實 | sub_11ABE，11B3Bh至11B80h | DS4746h原字串「提高月薪」，數值為20乘區域加1，顯示後加到DS04F6h，IDA原名word_2DC76。前輪未知欄位04F6h的玩家語意現已證實為月薪 |
+| 已證實 | sub_11ABE，11B83h至11BDBh | DS26AAh等於1時，顯示DS476Eh「法術能力增加」，區域加1同時加到DS04FCh，IDA原名word_2DC7C。04FCh語意現已證實為法術能力；26AAh本身的玩家語意仍未知 |
+| 已證實 | sub_11ABE，11BDEh至11C7Fh | 勝利位置符合DS26BCh／26BEh加區域乘6時，顯示DS4796h「找到」與DS26EAh的劍名，並寫DS275Ah加區域乘2為1，原運算元`word ptr [bx+275Ah]`。原前兩名為掩日劍／斷水劍，確認八劍取得旗標 |
+| 已證實 | sub_11ABE，11C88h至11DA8h | 守軍敗退扣款公式同前節；全滅走相同兩選項。本函式不加隨機戰的金錢／戰績，也沒有晉級閘門，不能呼叫普通勝利模型替代 |
+| 原版已定位，Go交接未接 | sub_12DDE，1326Eh至1329Ch | 另外檢查DS365Eh表的第24至29筆，皆空時設DS56E2h並呼叫sub_1020E。既有結局呈現已驗，本批不重做；原型要求該組守軍仍存活，且拒絕其目標記錄，等待世界／劇情交接串入 |
+
+本段是對前輪「04F6h／04FCh玩家名稱未知」的追加解答。序列化鍵仍保留legacy_04f6／legacy_04fc，避免在研究格式中混改欄位。前輪sub_11796勝利控制只代表本批正常隨機遭遇的結算，不能外推固定守軍。原收據與未知形成歷程保留，現行語意依本段及[研究紀錄](../../RESEARCH-LOG.md#2026-10-30固定守軍持續性月薪與八劍旗標)。[不可變鍵與勘誤索引](ai-resolution-backlinks-r1.json)新增world_field_resolutions，沿[既有回填檢查器](../../tools/check-ai-resolution-backlinks.py)核對三項欄位、原始定位、舊文件及勘誤標記，不改26項AI紀錄。
+
+十組原版caller控制使用同一固定快照，每次重新還原。區域0／1／7各驗勝利、撤退、全滅，另驗區域1符合指定位置且26AAh為1的勝利。為隔離caller，原戰鬥入口0F67:0008暫以`MOV AX,result; RETF`替代四bytes，在返回點明示存活隊伍；確認結果、中心格41h與全滅浪跡也都是fixture。原戰鬥程式的四bytes在保存after.state前恢復。這些不是原版真正戰鬥、自然守軍遭遇或GUI驗收。
+
+原版三區的存活撤退均從原_rand取得25927，500金→459金，沒有改種子／回傳或重抽；全滅浪跡保留500金。勝利月薪100→120／140／260，金錢500及戰績10000不變、等級仍1。指定位置案另使法術能力10→12、區域1劍旗標0→1。殘兵原稀疏位置經原helper整理成1類8人／5類2人，再回寫選中守軍；整個1032-byte鄰近表區除該24-byte記錄外保持。追加亂數只讀觀測後的20份before／after完整state逐SHA同首輪；獨立std-only reader又直接解20份state記憶體，避免只相信探針摘要。
+
+##### Go世界敵軍交接原型
+
+Go沿既有33種資料與真正Choose／Apply，共六條資料鏈、87次行動，包含隨機勝利／撤退、守軍勝利／撤退／全滅及指定位置獎勵。隨機勝利仍為金3800→4400、戰績10000→10022並升一級；同敵軍的區域1守軍勝利則金3800及戰績10000保持、月薪100→140、等級保持。指定位置案另有法術能力10→12與一個劍旗標。兩個撤退案均金3800→2850，只有隨機分支可晉級；全滅案保持4920金。這些是Go資料fixture，部隊平衡仍是候選。
+
+固定守軍的非勝利記錄改為實際殘兵，勝利記錄保留初始編成作歷史資料並設Cleared；Result.EnemyRows為當前空編成，介面須依Cleared隱藏與拒絕重開。隨機記錄退出後移除。鄰近守軍、庫存及輸入不變，過期／重複交易、未知來源、錯區域／索引／身分、平手及未串接結局條件拒絕。新ID與兵數始終留在Go資料，沒有原版表回寫。
+
+單一DRAFT附檔schema `eightsword-owned-encounter-save/1`保存before／after、來源context、殘兵／月薪／法術能力／八劍旗標及pending世界命令，原2987-byte進度保持。沿目錄鎖、預期舊SHA、暫存檔與sync／rename提交；綁定原進度及兩份兵種資料。六份各由另一程序冷讀相同，舊世界／敗退loader與正式Engine均拒絕此未交接格式，不忽略旗標或新增兵種繼續。
+
+來源／世界／敗退回歸、四項新父測試、無效／畸形存檔、月薪與法術能力30000上限、清除守軍拒絕重開及vet通過。首版試算與目前結果相同；後版只補月薪／法術能力名稱的來源勘誤，所有六份session逐值保持。[獨立核對](../../preserved/owned-encounter-audit-r1.json)及[永久保存](../../preserved/README.md#go世界敵軍交接試作保存)記錄範圍。正式197來源七程式、923核心、r69全535素材與1040原圖不改，沒有正式提升或新GUI／正常玩家路徑聲明。
+
+準備器在固定Pillow11.3.0 Docker用`prepare --project <專案>`，只在明確可寫的owned-encounter-r1建立研究副本，從永久保存取回必要輸入，不依賴已清除的舊工作副本。Go1.24.13沿923核心與離線模組，使用外部probe.mod、bounded exec tmpfs及顯式來源清單：owned-army-model、research-owned-world、research-owned-defeat、research-owned-encounter與owned-encounter-check。測試另加三份對應_test，環境沿WORLD_ARMY／WORLD_COMBAT／WORLD_CONTROLS／DEFEAT_CONTROLS並加`EIGHTSWORD_ENCOUNTER_CONTROLS=<original-r2/receipt.json>`，前四份均放本研究inputs內。
+
+原版probe用`-root -state -out`；Go資料鏈用`-catalog -combat -base-save -out`，另一程序改加`-load <分支目錄>`。獨立reader用`-input <original-r2> -out <新目錄>`只解gob，不匯入CPU或遊戲helper。核對器用`audit --project --out <新JSON>`；`archive --project --archive --audit <通過收據> --out`保存完整研究，`verify --archive --out`在沒有workplace掛載時驗全部物件，最後`integrity`核對正式版本、擁有權與文件入口。
+
+正式軍隊／戰鬥UI、原版地圖與世界資料的原子提交、月度資源同步及結局旗標交接仍待接入。原版守軍各區實存容量沒有因12次座標迴圈而全盤證實；正式讀取端仍須按實際資料與位置守門。DS56C6h及26AAh的玩家語意維持未知，不繼續擴張成無關內部逆向。
 
 ## AI 從原版判斷掛點切入
 

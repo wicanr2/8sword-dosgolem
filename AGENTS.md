@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-10-30已完成[世界敵軍交接DRAFT抽驗](docs/spec/030-battle-expansion-proposal.md#世界敵軍持續性與自有交接研究)：固定守軍保留殘兵，獎勵走sub_11ABE，不能套普通sub_11796。04F6h已證實為月薪，04FCh為法術能力，DS275Ah陣列為八劍取得旗標；三項[不可變鍵勘誤](docs/spec/ai-resolution-backlinks-r1.json)由[既有檢查器](tools/check-ai-resolution-backlinks.py)核對，保留原偏移JSON鍵。十原版caller控制、20份state獨立讀取、六Go鏈87行動／六冷讀通過，資料見[永久保存](preserved/README.md#go世界敵軍交接試作保存)。正式197來源／七程式及護欄保持；後續集中玩家UI、原版地圖與進度原子提交、月度資源及結局交接，不重查上述數值或既有結局呈現。DS56C6h／26AAh名稱、各區實存守軍容量仍不能猜補。
+
 2026-10-30已完成[Go敗退資料原型抽驗](docs/spec/030-battle-expansion-proposal.md#敗退原型限定抽驗)：12組原版控制、24份state獨立讀取、三條真正Go戰鬥／退出／另一程序冷讀及世界／敗退回歸通過。[永久保存](preserved/README.md#go敗退交接試作保存)包含完整研究來源與結果，不重做已驗扣款與全滅選單。sub_11DAA是玩家選單，據點存在假說已推翻；全滅兩選項不扣款、不晉級，有存活部隊的撤退可晉級一次。原型仍DRAFT，附檔保留pending世界命令，正式197來源／七程式與DOS前護欄不改。後續處理正式玩家UI、地圖與世界敵軍交接；DS56C6h語意未知，不猜作時鐘。
 
 2026-10-30已按[清理清單](preserved/workspace-cleanup-20261030-plan-r1.json.gz)刪除逐SHA核對有永久物件的歷史工作副本。重跑舊研究時，先在Pillow11.3.0 Docker使用[還原工具](tools/clean-preserved-workspace.py)的`restore --project <專案> --plan <上述清單> --prefix <workplace相對前綴>`恢復所需路徑；工具拒絕覆寫不同內容，操作見[永久入口](preserved/README.md#2026-10-30-工作副本清理)。現行197來源七程式、923核心、r69素材、原版、存檔與圖庫保持。進行中的owned-defeat-r1原路徑保留，續作參考資料集中其`inputs/`；另有[未完成草稿保存](preserved/owned-defeat-inprogress-r1.json)，不當成Go敗退已驗收。

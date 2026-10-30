@@ -1,0 +1,7 @@
+{
+  "status": "passed-world-field-resolution-backlinks",
+  "ai_resolutions": 26,
+  "player_resolutions": 3,
+  "world_field_resolutions": 3,
+  "diagnostic": "Resolution backlinks passed: 26 AI sampled resolutions, 3 player resolutions, 3 world fields"
+}

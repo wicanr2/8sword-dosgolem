@@ -1,5 +1,58 @@
 {
   "schema": 1,
+  "world_field_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:DS-relative:04F6h",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "DS-relative data offset",
+      "original_offset": "04F6h",
+      "original_name": "word_2DC76",
+      "level": "proven-in-sampled-scope",
+      "semantic": "月薪",
+      "consumer": "sub_11ABE",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "WORLD-FIELDS-RESOLVED-20261030",
+      "receipt": "preserved/owned-encounter-audit-r1.json",
+      "scope": "DS4746h title plus displayed 20*(region+1) added to DS04F6h; three native regions and Go state controls.",
+      "not_closed": "Monthly payment lifecycle, normal expanded army UI and original world handoff. Serialized legacy key retained."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:DS-relative:04FCh",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "DS-relative data offset",
+      "original_offset": "04FCh",
+      "original_name": "word_2DC7C",
+      "level": "proven-in-sampled-scope",
+      "semantic": "法術能力",
+      "consumer": "sub_11ABE",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "WORLD-FIELDS-RESOLVED-20261030",
+      "receipt": "preserved/owned-encounter-audit-r1.json",
+      "scope": "DS476Eh title and displayed region+1 increment to DS04FCh when DS26AAh equals one; native region1 control.",
+      "not_closed": "Meaning of DS26AAh, formal spell and quest handoff. Serialized legacy key retained."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:DS-relative:275Ah",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "DS-relative data offset",
+      "original_offset": "275Ah",
+      "original_name": "word ptr [bx+275Ah]",
+      "level": "proven-in-sampled-scope",
+      "semantic": "八劍取得旗標",
+      "consumer": "sub_11ABE",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "WORLD-FIELDS-RESOLVED-20261030",
+      "receipt": "preserved/owned-encounter-audit-r1.json",
+      "scope": "Matching region position displays DS4796h found label and DS26EAh sword name, then writes the indexed flag; native region1 control.",
+      "not_closed": "Normal sword acquisition, final guard transition and atomic original map/quest handoff."
+    }
+  ],
   "player_resolutions": [
     {
       "key": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:0x219CC",

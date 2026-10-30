@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## Go世界敵軍交接試作保存
+
+[030交接研究](../docs/spec/030-battle-expansion-proposal.md#世界敵軍持續性與自有交接研究)的兩版原版caller控制、完整state與獨立RAM讀取、IDA原bytes、197來源研究副本、六Go資料鏈／87行動／六次另一程序冷讀，以及來源分流、畸形存檔與旗標測試，保存於本機`preserved/owned-encounter-r1/`。原型仍DRAFT；固定守軍與隨機遭遇使用不同獎勵，月薪／法術能力與八劍旗標已補原始消費端證據。正式玩家UI與原版地圖／進度交接尚未完成。
+
+本批400檔／327去重物件、壓縮22509097 bytes，未掛workplace逐SHA與長度核對通過。兩版原版控制的20份完整state相同；Go後版修正舊欄位名稱的限制文字，六份session與前版逐值相同，舊輸出仍留歷史。完整工具鏈識別、來源清單與重播參數見保存批次`execution-r1.json`。
+
+[逐檔清單](owned-encounter-r1.json)、[獨立核對](owned-encounter-audit-r1.json)、[保存收據](owned-encounter-preservation-r1.json)、[脫離workplace核對](owned-encounter-verification-r1.json)、[欄位回填核對](owned-encounter-backlinks-r1.json)及[收尾](owned-encounter-integrity-r1.json)為入口。[工具](../tools/audit-owned-encounter.py)在固定Pillow11.3.0 Docker使用`archive --project <唯讀專案> --archive <可寫preserved> --audit <通過收據> --out <新JSON>`保存；`verify --archive <唯讀preserved> --out <新JSON>`逐SHA／長度核對，不需workplace。可依清單path／mode及objects解gzip還原，必要33種資料、基底進度與舊控制均另存在本批inputs，不依賴已清除的歷史工作副本。
+
+完整原版RAM、進度、IDA輸出、二進位與壓縮物件維持本機；Git只記工具、規格、勘誤與索引。原版、923核心、r69全535素材與模組來源沿[兵力核心保存](owned-combat-r1.json)、[十曲保存](hd-music-r1.json)及[完整catalog](catalog.json.gz)。六份新schema附檔均實際由正式Engine在DOS前拒絕，沒有把新增ID回寫原固定表。Go快取僅用隨容器移除的tmpfs。
+
 ## Go敗退交接試作保存
 
 [030敗退原型](../docs/spec/030-battle-expansion-proposal.md#敗退原型限定抽驗)的八函式IDA原bytes、十二組原版before／after完整state、獨立記憶體讀取、197來源研究副本、三條真正Go戰鬥／敗退交易／附檔／另一程序冷讀及邊界測試，保存於本機`preserved/owned-defeat-r1/`。原型仍DRAFT，世界地圖與正式玩家UI未接入；本批不取代清理前的未完成草稿，兩者各留原始索引。
