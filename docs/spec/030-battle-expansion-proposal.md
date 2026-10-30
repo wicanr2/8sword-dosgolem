@@ -244,6 +244,47 @@ Go沿既有33種資料與真正Choose／Apply，共六條資料鏈、87次行動
 
 正式軍隊／戰鬥UI、原版地圖與世界資料的原子提交、月度資源同步及結局旗標交接仍待接入。原版守軍各區實存容量沒有因12次座標迴圈而全盤證實；正式讀取端仍須按實際資料與位置守門。DS56C6h及26AAh的玩家語意維持未知，不繼續擴張成無關內部逆向。
 
+#### 軍隊與招募視窗研究
+
+2026-10-30 DRAFT。沿已批准的玉綠金框、Noto Black 900／教育部隸書／草書與六隊規格，建立獨立Go視窗，直接接既有quote／recruit／saveArmy／loadArmy。沿共同決策技能的可撤回原型流程及使用者同規格持續授權，不重開風格訪談。這是正常世界交接前的操作驗證；正式Engine與DOS前護欄保持，不猜新兵營位置、原版軍隊選單操作或未完成戰場介面。
+
+研究入口：[介面控制與交易](../../tools/owned-army-ui.go)、[Go畫布](../../tools/owned-army-ui_draw.go)、[Ebiten視窗](../../tools/owned-army-ui_main.go)、[邊界測試](../../tools/owned-army-ui_test.go)、[資料／字圖／保存工具](../../tools/prepare-owned-army-ui.py)、[XTEST輸入與視窗抓取](../../tools/owned-army-ui-xcheck.go)及[有界GUI驗證](../../tools/check-owned-army-ui.py)。工作區沿既有battle-r1下的owned-army-ui-r1，所有操作均在Docker內。
+
+原型使用33筆既有兵種資料、每方六隊、金錢／領導力／等級／庫存限制與原eightsword-owned-army/1附檔，不新增正式規則或存檔格式。初始5000金／1000領導力／等級1與全兵種庫存為明示UI fixture，不當成原版自然兵營。每次招募或切規則先原子儲存成功才更新畫面，整個視窗生命週期持有專用目錄鎖；過期附檔SHA、錯基底進度、其他schema及第二個視窗拒絕，保留原資料。
+
+中央畫布1920×1200，三欄兩列軍隊卡與右側招募表，提供滑鼠、數字輸入、Enter招募、F10及字型按鈕。字型沿既有完整原字型SHA，教育部隸書使用原TTF，ASCII採Noto、缺中文沿Noto Serif回退。每個文字欄有獨立安全矩形與確定的省略規則，數字／名稱不靠裁切掩蓋溢位。全部繪製由Go產生RGBA，再由Ebiten呈現，不啟動DOS。
+
+驗收至少涵蓋真實XTEST招募、超額拒絕、六隊上限、按住滑鼠不重複購買、三字型實際Draw、同一存檔另一程序冷讀、字型偏好恢復及現行Engine對擴充附檔拒絕。實際X11視窗圖與Go畫布另核對，原版世界與正常新增兵種路徑仍待接入。完整輸入、圖庫、字圖及原PNG先永久保存，再把workplace視為可清理副本。
+
+本次限定抽驗通過，維持DRAFT：
+
+| 檢查 | 結果 |
+|---|---|
+| 真實滑鼠交易 | 長按450毫秒只購買一次野狼30，金5000→3800、庫存1000→970；超額1000拒絕，磁碟SHA與軍隊保持 |
+| 六隊限制 | 再募五隊各1人，金3789、領導力97；第七種拒絕，各兵種庫存另由Python資料模型核對 |
+| 三字型 | Noto Black900、教育部隸書、劉建毛草各實際Draw；五份1920×1200 X11視窗RGB逐像素等於Go畫布。缺字有明示fallback名單，不宣稱草書完整涵蓋 |
+| 讀回與生命週期 | 關閉後另一GUI程序讀到同六隊、金錢、庫存、規則及隸書偏好；目錄鎖正常釋放，基底原進度SHA不變 |
+| 邊界與隔離 | 五項Go父測試0.159秒、vet通過；驗舊SHA／錯基底／第二視窗／錯schema、十位數量與uint32／uint64上界、任意offer ID及空商店。真正Engine.Open在DOS前拒絕擴充附檔 |
+
+[預覽圖](../images/owned-army-ui-preview-r1.png)、[來源收據](../images/owned-army-ui-preview-r1.json)、[獨立核對](../../preserved/owned-army-ui-audit-r1.json)與[永久入口](../../preserved/README.md#go軍隊招募視窗試作保存)集中成果。軍隊卡目前只畫名稱首字，沒有把既有HD怪物圖當成新增兵種肖像；原版世界、戰鬥UI與自然招募仍未驗。這批不修改正式197來源／七程式、923核心、r69全535素材及1040圖庫，不提升DRAFT或移除原版固定表護欄。
+
+本機X11桌面可用`bash tools/owned-army-ui.sh`啟動。啟動器只使用固定Go映像、原型唯讀檔案及可寫`session-preview-r1`，預覽初始六空隊與明示資源，和已驗滿六隊的session-r1分開。可設`EIGHTSWORD_ARMY_UI_SESSION`指向另一個既有獨立進度目錄；目錄與2987-byte gamedata.ay均須UID1000，不使用正式玩家存檔。桌面須提供本機DISPLAY及有效XAUTHORITY，啟動器不修改X11存取設定。Ctrl+Q關閉，F10切字型，Enter招募，Ctrl+A清除數量；視窗單次執行上限30分鐘。此啟動器已檢查Bash語法，實際GUI驗證在有界Xvfb完成，未驗使用者桌面環境。
+
+重播工具鏈沿固定Go1.24.13／Pillow11.3.0 Docker，不需網路。以`prepare-owned-army-ui.py prepare --project /project`建立新owned-army-ui-r1，或依保存索引還原既有版本。`/project`唯讀，只有新研究目錄可寫；準備階段須掛可寫的既有battle-r1父目錄，來源/core與/gomod均唯讀。Go映像使用有界exec tmpfs供HOME及GOCACHE，命令如下：
+
+```sh
+export HOME=/tmp GOCACHE=/tmp/go-cache GOMODCACHE=/gomod GOPROXY=off GOSUMDB=off GOMAXPROCS=2
+cd /out/go-src
+EIGHTSWORD_ARMY_UI_INPUT=/out/inputs EIGHTSWORD_ARMY_UI_ASSETS=/out/ui-assets \
+  go test -p 2 -modfile=/out/probe.mod -v tools/owned-army-model.go tools/owned-army-ui.go tools/owned-army-ui_draw.go tools/owned-army-ui_test.go
+go vet -p 2 -modfile=/out/probe.mod tools/owned-army-model.go tools/owned-army-ui.go tools/owned-army-ui_draw.go tools/owned-army-ui_main.go
+go build -p 2 -modfile=/out/probe.mod -o /out/army-ui tools/owned-army-model.go tools/owned-army-ui.go tools/owned-army-ui_draw.go tools/owned-army-ui_main.go
+go build -p 2 -modfile=/out/probe.mod -o /out/xcheck tools/owned-army-ui-xcheck.go
+python3 /project/tools/check-owned-army-ui.py --work /out
+```
+
+Go視窗驗證配置為2 CPU／2 GiB／192程序／512 MiB exec tmpfs，外層300秒；編譯使用3 GiB／2 CPU／192程序及1 GiB exec tmpfs。全部UID1000、--rm、--init、--network none。UI稽核在Pillow容器以`prepare-owned-army-ui.py audit --project /project --out <新JSON>`核對；來源、命令與歷史失敗另保存在批次execution-r1.json。首輪C版XTEST helper缺少XTest.h，改沿既有純Go XGB；後續關閉視窗後放開Ctrl的工具錯誤已修正，使用乾淨新session重跑，失敗版保留，不列為產品故障。
+
 ## AI 從原版判斷掛點切入
 
 ```mermaid

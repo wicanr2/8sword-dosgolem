@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## Go軍隊招募視窗試作保存
+
+[030視窗研究](../docs/spec/030-battle-expansion-proposal.md#軍隊與招募視窗研究)的完整197來源研究副本、33兵種資料、2987-byte基底進度、三字型字圖及授權、Go視窗與XTEST程式、兩輪GUI的完整PNG／X11 PPM／狀態與存檔，保存在本機`preserved/owned-army-ui-r1/`。初始資源和商店是明示UI fixture；正式地圖與戰鬥交接仍DRAFT，軍隊卡暫用名稱首字。
+
+本批296檔／267去重物件、壓縮19069543 bytes，未掛workplace逐物件SHA／長度核對通過。五份實際X11圖與Go畫布全RGB相同，三字型、滑鼠交易、超額／第七隊拒絕、長按不重購、另一GUI程序冷讀與隸書偏好均通過。完整測試0.159秒、vet通過；原版進度SHA及正式197來源／七程式／923核心／535素材／1040圖庫保持。
+
+[逐檔清單](owned-army-ui-r1.json)、[獨立核對](owned-army-ui-audit-r1.json)、[保存收據](owned-army-ui-preservation-r1.json)、[脫離workplace核對](owned-army-ui-verification-r1.json)、[收尾](owned-army-ui-integrity-r1.json)與[文件入口核對](owned-army-ui-links-r1.json)為入口。[工具](../tools/prepare-owned-army-ui.py)在固定Pillow11.3.0 Docker以`archive --project <唯讀專案> --archive <可寫preserved> --out <新JSON>`保存；`verify --archive <唯讀preserved> --out <新JSON>`逐SHA與長度核對，不需workplace。依清單path／mode及objects解gzip可還原；原版、核心與離線模組沿[兵力核心保存](owned-combat-r1.json)及[完整catalog](catalog.json.gz)。編譯／GUI命令與映像ID記在批次`execution-r1.json`及030，不重建工具映像。
+
+[本機啟動器](../tools/owned-army-ui.sh)使用獨立`session-preview-r1`，不改正式玩家存檔；完整圖和失敗診斷均已保存，縮小[隸書預覽圖](../docs/images/owned-army-ui-preview-r1.png)及[來源資訊](../docs/images/owned-army-ui-preview-r1.json)加入Git。完整基底進度、二進位、字圖與壓縮物件只留本機。這批不提升正式玩家路徑，也不移除DOS前擴充存檔護欄；Go快取全在容器tmpfs，隨容器移除。
+
 ## Go世界敵軍交接試作保存
 
 [030交接研究](../docs/spec/030-battle-expansion-proposal.md#世界敵軍持續性與自有交接研究)的兩版原版caller控制、完整state與獨立RAM讀取、IDA原bytes、197來源研究副本、六Go資料鏈／87行動／六次另一程序冷讀，以及來源分流、畸形存檔與旗標測試，保存於本機`preserved/owned-encounter-r1/`。原型仍DRAFT；固定守軍與隨機遭遇使用不同獎勵，月薪／法術能力與八劍旗標已補原始消費端證據。正式玩家UI與原版地圖／進度交接尚未完成。

@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-10-30已完成[獨立Go軍隊招募視窗DRAFT抽驗](docs/spec/030-battle-expansion-proposal.md#軍隊與招募視窗研究)：實際Ebiten視窗由Go繪製並處理滑鼠／鍵盤，六隊、金錢／領導力／庫存限制、三字型、先存再更新與另一程序冷讀通過；隸書偏好可恢復。五份X11視窗與Go畫布全RGB相同，完整原圖／字圖／來源另[永久保存](preserved/README.md#go軍隊招募視窗試作保存)。[預覽啟動器](tools/owned-army-ui.sh)只在本機X11桌面使用既有固定Go映像與獨立session-preview-r1；預設資料為明示UI fixture，軍隊卡暫用首字圖示。正式197來源七程式、923核心、535素材、1040圖庫與DOS前護欄保持；下一步是戰鬥UI與原世界原子交接，不重做已驗招募限制或字型，不把獨立視窗稱為正常新兵種玩家路徑。
+
 2026-10-30已完成[世界敵軍交接DRAFT抽驗](docs/spec/030-battle-expansion-proposal.md#世界敵軍持續性與自有交接研究)：固定守軍保留殘兵，獎勵走sub_11ABE，不能套普通sub_11796。04F6h已證實為月薪，04FCh為法術能力，DS275Ah陣列為八劍取得旗標；三項[不可變鍵勘誤](docs/spec/ai-resolution-backlinks-r1.json)由[既有檢查器](tools/check-ai-resolution-backlinks.py)核對，保留原偏移JSON鍵。十原版caller控制、20份state獨立讀取、六Go鏈87行動／六冷讀通過，資料見[永久保存](preserved/README.md#go世界敵軍交接試作保存)。正式197來源／七程式及護欄保持；後續集中玩家UI、原版地圖與進度原子提交、月度資源及結局交接，不重查上述數值或既有結局呈現。DS56C6h／26AAh名稱、各區實存守軍容量仍不能猜補。
 
 2026-10-30已完成[Go敗退資料原型抽驗](docs/spec/030-battle-expansion-proposal.md#敗退原型限定抽驗)：12組原版控制、24份state獨立讀取、三條真正Go戰鬥／退出／另一程序冷讀及世界／敗退回歸通過。[永久保存](preserved/README.md#go敗退交接試作保存)包含完整研究來源與結果，不重做已驗扣款與全滅選單。sub_11DAA是玩家選單，據點存在假說已推翻；全滅兩選項不扣款、不晉級，有存活部隊的撤退可晉級一次。原型仍DRAFT，附檔保留pending世界命令，正式197來源／七程式與DOS前護欄不改。後續處理正式玩家UI、地圖與世界敵軍交接；DS56C6h語意未知，不猜作時鐘。

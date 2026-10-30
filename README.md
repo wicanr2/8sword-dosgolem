@@ -77,7 +77,7 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 | 面向 | 目前狀態 |
 |---|---|
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
-| 新增兵種 | Go 自有招募／存檔已有[離線原型](docs/images/owned-army-prototype-r1.html)，區分25種原版與8種openKB候選，可試算合併、庫存、金錢與領導力。磁碟存讀及另一程序讀回已驗；候選尚未接入遊戲招募、戰鬥與正式存檔，見[030](docs/spec/030-battle-expansion-proposal.md#兵種編號與存檔容量研究) |
+| 新增兵種 | Go 自有招募／存檔已有獨立操作視窗，區分25種原版與8種openKB候選。實際滑鼠招募、六隊上限、資源限制、三字型與關閉後重開讀檔已驗；正常遊戲的招募／戰鬥與世界交接仍待接入，見[030](docs/spec/030-battle-expansion-proposal.md#軍隊與招募視窗研究)。原[離線原型](docs/images/owned-army-prototype-r1.html)保留試算用途 |
 | Go 兵力核心 | 已加入獨立ID、每方6陣位、寬整數傷害／減員、AI選敵與一次性戰果回寫。15組既有原版控制及Go招募→戰鬥→存讀資料鏈通過，可看[28次行動回放](docs/images/owned-combat-data-chain-r1.html)。正常遊戲軍隊／戰鬥UI尚未交接，擴充軍隊附檔會在DOS啟動前被拒絕並保留，避免交給原版固定表；範圍見[030](docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離) |
 | Go 世界交接試作 | 已串接勝利獎勵、晉級、存活部隊整理、Go敵軍清除記錄及戰中／戰後存檔，另驗七組原版數值控制。可看[世界資料鏈回放](docs/images/owned-world-data-chain-r1.html)。目前為離線試作；正式招募、軍隊與戰鬥介面、敗退及任務交接仍待完成，見[030](docs/spec/030-battle-expansion-proposal.md#世界與戰鬥交接研究) |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
@@ -87,6 +87,10 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 | 玩家前端 | 已有開發用視窗、兩側手繪海報與字型工具列，可切換經典封面、龍虎延展及關閉，具有內側漸淡與 400 ms 淡入淡出。正常點選、取消、失焦、偏好恢復及人物／軍隊往返已驗，見 [032](docs/spec/032-poster-toolbar.md)。效能、音訊連續性、其餘戰鬥規則及完整流程仍待驗，尚無正式交付包 |
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
+
+Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金錢、領導力與庫存會隨交易更新，支援Noto900／隸書／草書切換及存讀。這是獨立試作，初始資源與商店為測試資料，部隊卡暫用名稱首字。正常地圖與戰鬥尚未接入；本機預覽與驗證方式見[視窗研究](docs/spec/030-battle-expansion-proposal.md#軍隊與招募視窗研究)，完整圖與來源見[永久保存](preserved/README.md#go軍隊招募視窗試作保存)。
+
+![Go軍隊招募試作的實際隸書視窗](docs/images/owned-army-ui-preview-r1.png)
 
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 

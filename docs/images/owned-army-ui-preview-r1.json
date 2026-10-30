@@ -1,0 +1,19 @@
+{
+  "prototype": true,
+  "source_path": "workplace/probe-20261023/graphics-first/battle-r1/owned-army-ui-r1/gui-r1/fresh/frame-004-lishu.png",
+  "source_sha256": "c577cb2a1782008f259b6f18e414496708366d7ff501ad0f1b07d6c3ef078b88",
+  "preview_sha256": "fae084ce63b73d965b69fc3378f235b0986b4149fec84fbd1cc425487bc14799",
+  "source_size": [
+    1920,
+    1200
+  ],
+  "preview_size": [
+    1200,
+    750
+  ],
+  "capture": "Actual Ebiten X11 window; full RGB checked against X11 GetImage by the audit.",
+  "font": "lishu",
+  "fixture": "5000 initial gold, leadership 1000, rank 1, all 33 offers stock 1000",
+  "production_path": false,
+  "glyph_emblems": "First character of unit name; no new unit portraits."
+}
