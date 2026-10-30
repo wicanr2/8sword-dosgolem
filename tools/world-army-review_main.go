@@ -48,7 +48,19 @@ func (q *reviewPCM) push(v []int16) {
 	}
 }
 
+type armyScreenExtra interface {
+	IsActive() bool
+	NoteKey(byte, bool)
+	Click(int, int) (byte, error)
+	Paint(*armyUIFonts, string) (*image.RGBA, []armyUIText)
+	State() map[string]any
+}
+
+var armyReviewExtraFactory = func(*game.Engine, *worldArmyPort) (armyScreenExtra, error) { return nil, nil }
+var armyReviewTitle = "神州八劍・軍隊試作・檢閱"
+
 type armyReviewApp struct {
+	Extra                                                                      armyScreenExtra
 	Engine                                                                     *game.Engine
 	Store                                                                      *progressPairStore
 	Snapshot                                                                   progressPairSnapshot
@@ -65,7 +77,7 @@ type armyReviewApp struct {
 	FrameSHA, PresentedSHA, FrameView, PresentedView, FrameFont, PresentedFont string
 	Capture, Preference, LastCapture                                           string
 	Updates, Draws, Captures                                                   uint64
-	CloseRelease                                                               bool
+	SyntheticRelease                                                           byte
 	PCM                                                                        *reviewPCM
 	AudioFrames                                                                uint64
 }
@@ -107,11 +119,18 @@ func (g *armyReviewApp) bind() error {
 		if e != nil {
 			return e
 		}
+		g.Extra, e = armyReviewExtraFactory(g.Engine, p)
+		if e != nil {
+			return e
+		}
 	}
 	g.Bound = true
 	return nil
 }
 func (g *armyReviewApp) view() string {
+	if g.Extra != nil && g.Extra.IsActive() {
+		return "dismiss"
+	}
 	if g.Review != nil && g.Review.Active {
 		return "army"
 	}
@@ -145,7 +164,7 @@ func (g *armyReviewApp) Update() error {
 				}
 			}
 		}
-		if g.Review != nil && g.Review.Active && inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
+		if ((g.Review != nil && g.Review.Active) || (g.Extra != nil && g.Extra.IsActive())) && inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 			x, y := ebiten.CursorPosition()
 			pt := image.Pt(x, y)
 			for _, id := range []string{"noto", "lishu", "caoshu"} {
@@ -155,20 +174,39 @@ func (g *armyReviewApp) Update() error {
 					}
 				}
 			}
-			if pt.In(reviewCloseRect) {
-				if e := g.Engine.Key(1, true); e != nil {
+			var scan byte
+			if g.Extra != nil && g.Extra.IsActive() {
+				var e error
+				scan, e = g.Extra.Click(x, y)
+				if e != nil {
 					return e
 				}
-				g.CloseRelease = true
+			} else if pt.In(reviewCloseRect) {
+				scan = 1
+			}
+			if scan != 0 {
+				if g.Extra != nil {
+					g.Extra.NoteKey(scan, true)
+				}
+				if e := g.Engine.Key(scan, true); e != nil {
+					return e
+				}
+				g.SyntheticRelease = scan
 			}
 		}
 		for _, k := range reviewKeys {
 			if inpututil.IsKeyJustPressed(k.Key) {
+				if g.Extra != nil {
+					g.Extra.NoteKey(k.Scan, true)
+				}
 				if e := g.Engine.Key(k.Scan, true); e != nil {
 					return e
 				}
 			}
 			if inpututil.IsKeyJustReleased(k.Key) {
+				if g.Extra != nil {
+					g.Extra.NoteKey(k.Scan, false)
+				}
 				if e := g.Engine.Key(k.Scan, false); e != nil {
 					return e
 				}
@@ -183,17 +221,19 @@ func (g *armyReviewApp) Update() error {
 	if g.PCM != nil {
 		g.PCM.push(pcm)
 	}
-	if g.CloseRelease {
-		if e := g.Engine.Key(1, false); e != nil {
+	if g.SyntheticRelease != 0 {
+		if e := g.Engine.Key(g.SyntheticRelease, false); e != nil {
 			return e
 		}
-		g.CloseRelease = false
+		g.SyntheticRelease = 0
 	}
 	if e := g.bind(); e != nil {
 		return e
 	}
 	g.Texts = nil
-	if g.Review != nil && g.Review.Active {
+	if g.Extra != nil && g.Extra.IsActive() {
+		g.Frame, g.Texts = g.Extra.Paint(g.Fonts, g.Engine.FontID())
+	} else if g.Review != nil && g.Review.Active {
 		g.Frame, g.Texts = paintArmyReview(g.Review.Data, g.Fonts, g.Engine.FontID())
 	} else {
 		g.Frame = g.Engine.Frame()
@@ -239,6 +279,15 @@ func (g *armyReviewApp) status() map[string]any {
 	state := map[string]any{"schema": 1, "prototype": true, "owned": g.Owned, "bound": g.Bound, "view": g.FrameView, "presented_view": g.PresentedView, "font_id": g.Engine.FontID(), "presented_font": g.PresentedFont, "canvas_sha256": g.FrameSHA, "presented_sha256": g.PresentedSHA, "last_capture": g.LastCapture, "updates": g.Updates, "draws": g.Draws, "native_row_draw_calls": g.NativeDrawCalls, "guest_steps": g.Engine.Oracle.Steps(), "audio_frames": g.AudioFrames, "pair_token": g.Snapshot.Token, "world": g.Snapshot.World, "font_sources": g.Fonts.Sources, "text_fields": g.Texts, "native_rows_hex": fmt.Sprintf("%x", g.Engine.Oracle.Bytes(oracle.Far(0x1e88, 0x54a), 24))}
 	if g.Bound {
 		state["native_display_mode"] = g.Engine.Oracle.Word(oracle.Far(0x1e88, 0x7484))
+	}
+	if g.Port != nil {
+		state["world"] = g.Port.Current.World
+		state["pair_token"] = g.Port.Current.Token
+	}
+	if g.Extra != nil {
+		for k, v := range g.Extra.State() {
+			state[k] = v
+		}
 	}
 	if g.Engine.Tracker != nil {
 		state["native_scene"] = g.Engine.Tracker.VisibleScene
@@ -373,7 +422,7 @@ func runArmyReview() error {
 		player.Play()
 	}
 	ebiten.SetTPS(30)
-	ebiten.SetWindowTitle("神州八劍・軍隊試作・檢閱")
+	ebiten.SetWindowTitle(armyReviewTitle)
 	ebiten.SetWindowSize(int(1920**scale), int(1200**scale))
 	if e = ebiten.RunGame(g); e != nil {
 		return e

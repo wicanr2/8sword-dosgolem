@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## Go F3軍隊解雇交接保存
+
+[030解雇交接](../docs/spec/030-battle-expansion-proposal.md#f3軍隊解雇的go交接研究)的隔離197來源、Go交易／控制器／畫布／前端、固定資料與三字型、原版IDA匯出、六父測試、兩輪實際GUI、完整PNG／X11 PPM、失敗關閉診斷、成對存檔與二進位，另存本機`preserved/owned-world-army-dismiss-r1/`。共417檔／301物件、壓縮11995645 bytes，已不掛workplace逐物件核對。原始碼與小型實窗預覽加入Git，完整物件及原版資料不加入Git。
+
+[逐檔清單](owned-world-army-dismiss-r1.json)、[獨立核對](owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](owned-world-army-dismiss-verification-r1.json)及[收尾](owned-world-army-dismiss-integrity-r1.json)為入口。[工具](../tools/prepare-world-army-dismiss.py)在固定Pillow11.3.0 Docker使用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單JSON>`；`verify --archive <唯讀preserved> --out <新JSON>`只掛永久資料與工具，逐SHA及長度核對。依清單path／mode及objects解gzip可還原；923核心與模組沿既有完整catalog保存。批次execution-r1.json列出Go1.24.13、映像ID、配額、建置檔案、測試環境及命令。
+
+原F3分派進Go選隊與整隊解雇，原getch／返回框架保持；Go先保存再更新畫面。取消不改檔，長按只提交一次，31民兵移除後保留5野狼，F2立即更新，最後一隊與空軍隊可返回地圖。三字型、兩次新GUI冷讀及七張1920×1200 X11全RGB核對通過；金299、庫存、原版進度與原軍隊表保持，原row入口零次。六父測試1.317秒、vet、F2獨立建置與Python世界重算通過，既有641行IDA bytes另核對。首輪GUI最後Ctrl+Q短按未觸發結束，改為持有按鍵直到程序退出後，以相同容器、相同命令與乾淨存檔重跑通過，Go程式不變，失敗來源／畫面另存。
+
+這是受控Go存檔、明示原生影子的DRAFT候選。原版解雇規則只有靜態證據，不稱原版動態parity、原版時鐘、自然取得新增兵種或全世界完成。正式197來源七程式／923核心／535素材／1040圖庫及DOS前護欄保持。[實窗縮圖](../docs/images/world-army-f3-lishu-r1.png)、[來源](../docs/images/world-army-f3-lishu-r1.json)與[本機啟動器](../tools/world-army-dismiss.sh)供查看本候選。
+
 ## Go F2軍隊檢閱交接保存
 
 [030 F2檢閱](../docs/spec/030-battle-expansion-proposal.md#f2軍隊檢閱的go交接研究)的197來源研究副本、三函式641行IDA原bytes、Go控制器／整頁畫布／實際前端／測試／XTEST、固定Go存檔與原map01、三字型字圖與授權、三個GUI程序及六張完整PNG／X11 PPM、原生影子、兩版程式與編譯輸出，保存於本機`preserved/owned-world-army-view-r1/`。本批351檔／285去重物件，壓縮25167179 bytes，不依賴舊研究副本。

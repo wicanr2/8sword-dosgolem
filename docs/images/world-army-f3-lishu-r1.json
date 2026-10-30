@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-world-army-dismiss-r1/gui-r1/owned/frame-002-dismiss-lishu.png",
+  "source_sha256": "8782e4521fef536acfb76ff04079eff75aa7bc75a3d138c4f0d1d941bee32a89",
+  "metadata": "gui-r1/owned/wolf-lishu.json",
+  "output_sha256": "561f5fccccd6d827a520b3b9243e76a02caa4b06874232152a464dbdb5ebe565",
+  "operation": "Resize actual 1920x1200 Go F3 canvas to 1152x720 with Pillow11.3.0 Lanczos.",
+  "limits": "Controlled Go save; original native army unchanged; not original F3 pixel oracle."
+}

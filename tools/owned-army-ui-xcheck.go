@@ -58,7 +58,7 @@ func main() {
 	geo, e := xproto.GetGeometry(c, xproto.Drawable(window)).Reply()
 	xc(e)
 	key := func(name string, down bool) {
-		symbols := map[string]xproto.Keysym{"Control_L": 0xffe3, "Return": 0xff0d, "Escape": 0xff1b, "F2": 0xffbf, "F10": 0xffc7, "F12": 0xffc9}
+		symbols := map[string]xproto.Keysym{"Control_L": 0xffe3, "Return": 0xff0d, "Escape": 0xff1b, "F2": 0xffbf, "F3": 0xffc0, "Up": 0xff52, "Down": 0xff54, "Left": 0xff51, "Right": 0xff53, "F10": 0xffc7, "F12": 0xffc9}
 		sym, ok := symbols[name]
 		if !ok && len(name) == 1 {
 			sym = xproto.Keysym(name[0])

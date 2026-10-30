@@ -6,6 +6,20 @@
 
 AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub_22DBC`與`sub_22B96`的普通前排鏈已取得兩個完整敵方回合及受控目標證據，舊「尚無動態事件」只屬先前無輸入診斷。`sub_1FAA2`的算式及寫入亦已抽驗，其他分支仍未知。不可變定位、證據層級及舊文件勘誤由[回填索引](ai-resolution-backlinks-r1.json)與[檢查器](../../tools/check-ai-resolution-backlinks.py)維護；在固定Pillow容器以`--project <唯讀專案>`執行，缺定位、文件或勘誤便失敗。
 
+## F3軍隊解雇的Go交接研究
+
+2026-10-30 DRAFT，延續已授權的Go軍隊交接。沿既有F2的IDA9.4匯出，定位原名sub_1775A、MZ loader線性1775Ah，執行期0110:775A；完整443行與sub_17BF2整理函式保留原定位。靜態證據顯示Enter清除整隊後整理陣位，Esc返回，不退金錢。兩欄三列的方向鍵只移至有部隊的陣位。動態抽驗結果另記，不以靜態閱讀宣稱原版parity。
+
+隔離候選由[Go交易與輸入介接](../../tools/research-world-army-dismiss.go)和[Go解雇畫布](../../tools/world-army-dismiss_draw.go)處理；共用[F2前端](../../tools/world-army-review_main.go)以選配介面接線，未編入F3時保持F2入口。研究目錄為既有battle-r1下的owned-world-army-dismiss-r1，檔案職責沿專案文件契約。原版getch及返回框架保留，Go略過原版陣列表、導覽與解雇寫入；每次實際Enter按下最多提交一次，整隊交易先保存成功才更新畫面，原金錢、商店庫存及24 bytes原軍隊保持。空軍隊允許Esc退出，Enter不作交易。
+
+[準備與保存](../../tools/prepare-world-army-dismiss.py)、[交易與畫面測試](../../tools/research-world-army-dismiss_test.go)、[實際視窗抽驗](../../tools/check-world-army-dismiss.py)及[啟動器](../../tools/world-army-dismiss.sh)為本輪入口。沿Go1.24.13、923核心、Pillow11.3.0與既有Docker配額，來源唯讀，輸出限此研究目錄。正式197來源七程式、535素材、1040圖庫及DOS前附檔護欄保持；不得將本候選當成完整世界接管。
+
+實際隸書視窗的[縮圖](../images/world-army-f3-lishu-r1.png)與[來源](../images/world-army-f3-lishu-r1.json)沿本節索引；完整畫布及X11擷取留永久保存，不只保留縮圖。
+
+本候選限定抽驗通過，維持DRAFT。六父測試1.317秒、原F2回歸、vet、候選與F2單獨建置通過；實際繼續遊戲／F3取消不改檔、長按只提交一次、31民兵移除後保留5野狼、F2同步更新、三字型、最後一隊／空軍隊及兩次新GUI冷讀通過。七張1920×1200 X11全RGB等於Go畫布；Python從原fixture獨立重算兩次世界交易，金299、庫存、原版進度及24 bytes原軍隊保持。原row入口零次；模式1實測，沒有自然取得新兵種、原版時鐘或完整世界聲明。原版解雇規則仍只有靜態依據，641行IDA bytes重定位核對不當動態oracle。
+
+[核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
+
 ## AI只讀觀測研究
 
 [輸入準備](../../tools/prepare-ai-observation.py)從永久catalog逐SHA還原原版正常玩家戰鬥快照、既有IDA匯出與輸入收據，只放`workplace/probe-20261023/graphics-first/battle-r1/ai-observation-r1/`，不恢復整批舊研究資料。[有界探針](../../tools/probe-ai-observation.go)沿現行923核心，在Go1.24.13容器的暫存核心副本建置，不改原核心或正式程式。

@@ -2542,3 +2542,19 @@ Go獨立候選在執行期0110:3EBC／3ECE的單一CALL點交接，消耗前一�
 實際Ebiten／XTEST沿上輪受控Go存檔走普通繼續、F2、Go軍隊檢閱及返回地圖；顯示31民兵＋5野狼、總36、用量46／100與金299，原影子軍隊仍30。Noto900／教育部隸書／草書、F10長按只切一次、字型按鈕、Esc／返回按鈕／Enter、同程序再開及另一GUI冷讀均通過，六份1920×1200 X11圖全RGB等於Go畫布，兩份存檔SHA保持，原row入口0次。原時鐘／PCM繼續，裝置輸出靜音，沒有音訊裝置或人耳聲明。
 
 舊HD原版分派控制有進原row並返回，但擷取時HD呈現器仍為地圖；本批把它限制為呼叫／返回控制，不當原版F2畫面oracle，也不據此判斷全部原版顯示流程已解出。Go檢閱與返回地圖已另目視。[實際隸書圖](docs/images/world-army-f2-lishu-r1.png)、[來源](docs/images/world-army-f2-lishu-r1.json)、[最終核對](preserved/owned-world-army-view-audit-r2.json)及[永久保存](preserved/README.md#go-f2軍隊檢閱交接保存)保留證據與限制。三資料／字形／拒絕父測試0.383秒、七類錯ABI、六隊、寬數字與長名通過；正式197來源七程式／923核心／535素材／1040圖庫與載入護欄保持，解雇及完整世界接入仍待完成。
+
+## 2026-10-30：F3解雇的靜態依據與Go交接
+
+來源PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0；PAM.i64為a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。重用F2保存的IDA Pro 9.4匯出，沒有重跑或改名資料庫。IDA位址為MZ loader linear base10000h，file offset另列；Go執行期載入0110h、DS／SS1E88h。三函式641行原bytes均按MZ重定位獨立核對。
+
+| 原始定位 | 執行期定位 | 附加語意與等級 |
+|---|---|---|
+| sub_13E92／IDA 0x13E92 | 0110:3E92 | 已證實：本候選實際F3進selector2，原caller返回3EDE |
+| sub_1775A／IDA 0x1775A | 0110:775A | 強推論：443行靜態控制顯示Enter清整隊、Esc取消，兩欄三列只移至非空陣位 |
+| IDA 0x1777F | 0110:777F | 已證實：候選在PUSH CS／arg30後由Go略過原row renderer並進779E getch |
+| IDA 0x177A3 | 0110:77A3 | 已證實：候選在原getch返回後由Go處理AX，Esc回7BED原epilogue，其餘回779E |
+| sub_17BF2／IDA 0x17BF2 | 0110:7BF2 | 強推論：既有世界軍隊匯出中的相鄰陣位整理；Go另以固定順序compact實作 |
+
+原版整隊清除在runtime7B43／7B49後呼叫整理，不見金錢回寫；這是靜態依據，本輪未執行原版動態解雇oracle。不得把Go候選通過視窗當成原版同狀態parity。原始名稱、運算元及位址保留，未擴大既有索引的原版語意等級。
+
+Go候選實際保留原getch與stack返回，CPU框架、整段來源bytes、selector、世界token、六資源與24 bytes原軍隊守門。兩個host instruction點以Go導覽與交易接手，不模擬原版導覽／解雇指令。實際XTEST完成取消、長按一次、F2更新、三字型、最後一隊／空軍隊及兩次新GUI冷讀；Python從fixture獨立重算兩次完整世界，七張X11逐RGB同Go畫布。範圍與收據見[030 F3](docs/spec/030-battle-expansion-proposal.md#f3軍隊解雇的go交接研究)及[永久保存](preserved/README.md#go-f3軍隊解雇交接保存)。

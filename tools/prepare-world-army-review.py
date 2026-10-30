@@ -13,12 +13,12 @@ def write(p,v):
  with p.open('x')as f:json.dump(v,f,ensure_ascii=False,indent=2);f.write('\n')
 def lib(r):
  s=importlib.util.spec_from_file_location('prior',r/'tools/prepare-owned-army-ui.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
-def fonts(r,q,m):
+def fonts(r,q,m,extra=()):
  assert __version__=='11.3.0';index=json.loads(gzip.decompress((r/'preserved/catalog.json.gz').read_bytes()));faces={}
  for id,h in m.FONT_SHA.items():
   raw=gzip.decompress((r/'preserved'/index['objects'][h]['path']).read_bytes());assert hashlib.sha256(raw).hexdigest()==h;faces[id]=ImageFont.truetype(io.BytesIO(raw),48,index=3 if id in ['noto','serif']else 0)
  chars={chr(n)for n in range(32,127)}|{'…','　'}
- for n in ['world-army-review_draw.go','world-army-review_main.go']:chars.update(c for c in(r/'tools'/n).read_text()if ord(c)>=128 and c.isprintable())
+ for n in ['world-army-review_draw.go','world-army-review_main.go',*extra]:chars.update(c for c in(r/'tools'/n).read_text()if ord(c)>=128 and c.isprintable())
  for p in read(q/'inputs/army-catalog.json')['profiles']:chars.update(p['name'])
  chars=sorted(chars);glyphs=[dict(character=c,cell=[i%16*64,i//16*64,64,64])for i,c in enumerate(chars)];height=((len(chars)+15)//16)*64;profiles=[]
  for id in ['noto','lishu','caoshu']:
