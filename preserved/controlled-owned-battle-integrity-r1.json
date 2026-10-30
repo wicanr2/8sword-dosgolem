@@ -1,0 +1,16 @@
+{
+  "status": "passed-controlled-battle-integrity",
+  "counts": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "local_links": 2281,
+  "cases": 9,
+  "independent_states": 27,
+  "ownership": "uid1000",
+  "controlled_memory": true,
+  "normal_player_path": false,
+  "production_changed": false
+}

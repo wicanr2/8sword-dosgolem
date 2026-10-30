@@ -1,5 +1,31 @@
 # 必要資料永久保存
 
+## 受控記憶體的Go戰鬥回場保存
+
+[030受控驗證](../docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)依使用者授權，直接修改固定戰前快照的RAM與寄存器。原32E0真實far frame回置後，Go接管戰鬥／結算，再經171D、172E回原0BD3。原054A與56E8共72 bytes填FF，勝利、撤退、全滅、六隊混合四案都沒有進原軍隊讀表、原戰術或重複獎勵路徑；五種錯誤狀態拒絕後RAM／暫存器／兩檔不變。
+
+[獨立核對](controlled-owned-battle-audit-r2.json)、[逐檔清單](controlled-owned-battle-r1.json)與[不掛工作區核對](controlled-owned-battle-verification-r1.json)為入口。27份完整state由std-only reader解出，再用Python核對實際注入差異、真實frame推導、648行原IDA bytes、全部Go行動、完整世界戰果與原生六資源。勝利剩29狼／金5600／等級2；撤退剩29狼／金3750；全滅空軍隊；六隊混合保留全部六隊。
+
+[收尾完整性](controlled-owned-battle-integrity-r1.json)另記錄文件入口、目前來源與擁有權核對。
+
+完整來源、原快照、Go二進位、注入前後及回場state、原RAM解讀、配對存檔與獨立程序冷讀、首次工具失敗另存本機`preserved/controlled-owned-battle-r1/`，不加入Git。共350檔／287物件、壓縮13744776 bytes。沿讀取器既有命名：before-commit.state是注入前，after-commit.state是注入後，final-map.state是回場或拒絕後，不據檔名推定存檔階段。
+
+[準備／保存工具](../tools/prepare-controlled-battle.py)以`prepare | freeze`建立研究來源；原Go核對與探針用Go1.24.13、923核心、唯讀原版、外部probe.mod與3GiB／2CPU／192程序／1GiB tmpfs。共用檔案與命令見本批execution-r1.json。[探針](../tools/probe-controlled-battle.go)固定九案，不重抽亂數；[接管邊界](../tools/research-controlled-battle.go)保留原caller／來源／資源與磁碟token守門。
+
+`decode --project <唯讀專案> --work <可寫研究別名>`可在Go映像以python3執行，沒有Pillow依賴，也不執行CPU。`audit --project --out <新JSON>`在固定Pillow11.3.0映像重算及核對；`archive`另指定可寫`--archive`與新清單。第一次把解讀放進Go映像時，準備器過早載入Pillow而失敗；現已把只讀解碼獨立，明示可寫路徑，原九案不需重跑。
+
+```bash
+timeout 90 docker run --rm --network none --user 1000:1000 \
+  --memory 1g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword/preserved:/archive:ro \
+  -v /home/anr2/cht/8sword/preserved:/audit \
+  -v /home/anr2/cht/8sword/tools:/tools:ro \
+  sc-cht-hdtools:pillow11.3.0-r2 python /tools/prepare-controlled-battle.py \
+  verify --archive /archive --out /audit/controlled-owned-battle-verification-new.json
+```
+
+按清單path／mode及objects解gzip可還原，先驗SHA與長度，不覆寫不同檔案。這是受控原版CPU回場ABI試作，未接普通確認入口、正式UI、自然敵軍來源或完整位置／地圖保存。獨立程序冷讀只驗Go配對資料，原VM持有受控停點；不宣稱正常Continue可恢復整個戰場。正式197來源七程式、923核心、535素材與載入護欄保持。
+
 ## Go遇敵存在與無兵損金保存
 
 [030切片](../docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)與[獨立核對](owned-army-presence-audit-r2.json)記錄Go接管普通遇敵的軍隊存在判斷與無兵扣金。原CPU3組存在、20組扣金及243行IDA bytes已核對；六父測試0.324秒、十一類拒絕、實際GUI無兵扣金／返回／F2／另一GUI冷讀及有兵確認通過。四張1920×1200 X11同實際Go畫布全RGB。

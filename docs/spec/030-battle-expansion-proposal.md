@@ -46,6 +46,30 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 受控記憶體的戰鬥回場驗證
+
+2026-10-30 DRAFT，使用者明確授權直接修改記憶體狀態驗證。以已保存的3733戰前快照為固定輸入，依原32E0 prologue及真實parent frame回置32E0入口；直接設定六資源，將原054A軍隊及56E8戰場兩側表填FF。Go兵種／兵力使用既有Go fixture，不把擴充ID寫進原表。這是受控ABI試作，尚未接入普通玩家流程。
+
+[準備／核對與保存](../../tools/prepare-controlled-battle.py)、[Go接管邊界](../../tools/research-controlled-battle.go)及[記憶體探針](../../tools/probe-controlled-battle.go)沿固定PAM、Go1.24.13、923核心與既有成對存檔。32E0由Go開始戰鬥並交出執行權，測試腳本提供既有Go行動；結算後投影六資源，依真實far frame回171D，再略過原重複結算至172E，原版重畫地圖後停0BD3。原3371／3379／3755／375D、32B4、1796及戰術入口設拒絕哨點。
+
+預先固定勝利、撤退、全滅、六隊混合，以及五種拒絕案例。保留每案注入前、注入後、回場後完整state；列出RAM區段與暫存器差異，獨立讀取器逐byte核對。中途及戰後另開程序讀Go配對資料。此處測原版CPU回場ABI，沒有新增HD視窗、自然遭遇、原版同種子、正式世界敵軍匯入或完整位置／地圖存檔聲明。
+
+限定控制結果已通過，狀態仍DRAFT。固定原快照SHA `d3fdfd4f739d0256f6a29ed5a55a9506dfb753964bf4af7388b20827e17605df`，來源PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`。IDA既有兩函式648行bytes逐MZ relocation核對。32E0原局部長度0Eh，原3733的SP為BP-14h；從BP取保存的parent BP、BP+2／+4的171D／0110 far返回框架，以及BP-12h／-10h的SI／DI，受控回置32E0入口。原caller仍為151C，最後返回0BD3；沒有編造假返回位址。
+
+| 固定案例 | Go結果與受控回場 |
+|---|---|
+| 勝利 | 30野狼對15骷髏，28次Go行動後剩29狼；金5000→5600，經驗1990→2012、等級1→2；Go戰中及戰後由獨立程序冷讀，回0BD3 |
+| 撤退 | 一次敵方Go行動後剩29狼；明示固定退兵輸入2730，扣1250，金5000→3750；回0BD3 |
+| 全滅 | 1狼對1000骷髏，一次Go出手確實產生loss；選既有roam分支，空軍隊、金5000保持；回0BD3 |
+| 六隊混合 | 五種擴充ID各1，加原第25兵種1；固定撤退後六隊保持，金3750，回0BD3 |
+| 五種拒絕 | 錯caller、改來源bytes、錯資源、過期磁碟token、錯段值；拒絕後完整RAM、暫存器、旗標與兩份存檔不變 |
+
+四個有效案例的原054A／56E8兩組表共72 bytes均為FF，回場後保持；已設哨點的原軍隊複製、原戰術核心、原寫回及原世界獎勵呼叫皆為0。獨立std-only讀取器解27份完整state，Python核對所有實際注入差異只落在事前宣告區段，再核對原frame推導、每次Go傷害／減員、完整世界戰果、原生進度六資源與其餘2975 bytes保持。沒有把非法值寫進正式資料。
+
+重現沿固定Go1.24.13／923核心、外部probe.mod及3GiB／2CPU／192程序／1GiB快取tmpfs，原版唯讀。準備器`prepare | freeze`建立既有battle-r1下的研究副本；Go以`-root <原版> -input <inputs> -out <新cases> -reader <獨立成對讀取器>`執行probe。`decode --project <專案> --work <可寫別名>`只需std-only reader，不依賴Pillow或執行遊戲；`audit | archive | verify`在既有Pillow11.3.0映像執行。完整Go檔案清單、版本與配額見本批execution-r1.json。
+
+[獨立核對](../../preserved/controlled-owned-battle-audit-r2.json)與[永久保存](../../preserved/README.md#受控記憶體的go戰鬥回場保存)保留原始資料與差異。這只閉合受控32E0／171D回場切片，尚未與普通玩家確認入口、世界敵軍來源或正式戰鬥UI接線；舊存在候選的1713等保護點與正式DOS前護欄保持，不稱整案完成。
+
 ## 遇敵軍隊存在與無兵損金交接
 
 2026-10-30 DRAFT。只處理原sub_1151C普通遇敵的軍隊存在判斷與無兵損金；守軍、原戰場、拒戰／被追擊及其他世界consumer保持拒絕。研究位於既有battle-r1下的owned-army-presence-r1，不改正式197來源七程式或載入護欄。

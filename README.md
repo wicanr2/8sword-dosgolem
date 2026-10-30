@@ -118,6 +118,8 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 普通遇敵的軍隊存在判斷與無兵損金也已接入隔離 Go 候選，直接採用 Go 軍隊及成對存檔。有兵時顯示原版遇敵確認，無兵時扣金並可返回、檢閱及重新讀檔；後續戰場與拒戰分支仍未接通。驗證範圍見[遇敵交接](docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)及[核對](preserved/owned-army-presence-audit-r2.json)，正式新增兵種載入護欄保持。
 
+另提供[固定快照與顯式記憶體變更的驗證工具](docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)，可直接檢查Go戰鬥、戰果與原版回場邊界。這是受控試作，與正常玩家流程的完成度分開記錄。
+
 ![實際F3 Go解雇視窗，採教育部隸書](docs/images/world-army-f3-lishu-r1.png)
 
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。

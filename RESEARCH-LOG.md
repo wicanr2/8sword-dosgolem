@@ -2596,3 +2596,17 @@ Go在1650從完整字串ID軍隊算總數，只回傳ABI空旗標，略過原六
 六父測試0.324秒、11類拒絕、vet與建置通過；四張1920×1200 X11同實際Go畫布全RGB。原24-byte軍隊及人物檔其餘2975 bytes保持，因此冷讀只驗Go世界與六資源，移動後的原位置／地圖尚未成對保存。原普通存在索引由strong inference限定升為proven，保留前級、原位址、舊030回填標記與不受影響的042入口證據；核對器檢查回填標記。
 
 [限定契約與結果](docs/spec/030-battle-expansion-proposal.md#存在與損金的限定ready契約)、[原CPU核對](preserved/owned-army-presence-evidence-r2.json)、[Go／GUI核對](preserved/owned-army-presence-audit-r2.json)及[永久保存](preserved/README.md#go遇敵存在與無兵損金保存)集中完整來源與收據。正式197來源七程式、923核心、535素材與載入護欄保持；戰場、拒戰／追擊、守軍、月度及完整世界存檔仍未完成。
+
+## 2026-10-30：直接修改記憶體的Go戰鬥回場控制
+
+使用者明確要求直接修改記憶體驗證。固定輸入來自已保存normal-r4的04-battle-call-before.state，SHA `d3fdfd4f739d0256f6a29ed5a55a9506dfb753964bf4af7388b20827e17605df`；PAM仍為SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`。沿Go1.24.13與923核心的原版Oracle，不使用DOSBox，不執行新IDA分析；舊IDA9.4的151C／32E0兩函式648行bytes按MZ relocation獨立核對。
+
+已證實於此快照的執行期frame：原0110:3733處於sub_132E0內，局部0Eh、保存DI／SI，再有一個待傳參數，因此SP=BP-14h。BP原保存parent BP，BP+2／+4為171D／0110；SI／DI分別從BP-12h／-10h回復。受控把SP設BP+2、BP恢復為parent、IP回32E0，即沿真實far frame進Go callback；不是編造可供正常玩家使用的入口。
+
+每案明示注入DS04F2起六資源、DS054A起24 bytes及DS56E8起48 bytes，後兩者全部填FF。錯caller與來源案另明列其兩位元組返回值或一位元組程式破壞；錯段案明列寄存器變更。九案前後完整state各保存三份，std-only reader解27份RAM後，Python逐byte驗差異不超宣告區段，再核對frame推導與拒絕後的完整RAM／寄存器／旗標不變。
+
+Go在32E0開始既有typed戰鬥並交出執行權，腳本提供固定Go行動與退兵輸入。勝利28次行動後狼30→29、金5000→5600、經驗1990→2012並升2級；撤退一擊後狼29、金3750；一狼對1000骷髏確實產生全滅loss後選roam；六隊混合的五個擴充ID與原第25種均保持。戰果成對提交後由Go投影六資源，far返回171D，跳過已由Go完成的原結算至172E，原版重畫地圖後停在0BD3。
+
+四案原兵種／戰場表72 bytes仍是FF，原複製、原戰術、原軍隊寫回、32B4與1796哨點均0次，沒有讀非法兵種索引。五類錯caller、來源、資源、token、段值均拒絕，兩檔不變。Go戰中與戰後另開程序冷讀；Python從catalog及每個行動重算傷害、編碼減員門檻、存活隊伍、獎勵／晉級與完整世界，並核對原進度六資源及其餘2975 bytes保持。
+
+這是受控原版CPU回場ABI證據。敵軍及規則設定來自既有Go fixture，原VM持有受控停點；沒有驗正式敵軍匯入、普通確認入口、新HD GUI或正常Continue戰場復原。完整世界仍DRAFT，不移除正式護欄。[030受控切片](docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)、[獨立核對](preserved/controlled-owned-battle-audit-r2.json)及[永久保存](preserved/README.md#受控記憶體的go戰鬥回場保存)可回查全部輸入、修改與結果。
