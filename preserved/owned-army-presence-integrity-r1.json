@@ -1,0 +1,14 @@
+{
+  "status": "passed-army-presence-integrity",
+  "local_links": 2256,
+  "counts": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "resolution_backlink": true,
+  "ownership": "uid1000",
+  "formal_changed": false,
+  "prior_attempt": "Output-only checker used nonexistent core/assets keys; fixed to the inspected dependency schema and reran all checks."
+}

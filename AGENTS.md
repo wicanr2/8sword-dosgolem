@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-10-30[普通遇敵存在與無兵損金](docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)已完成隔離Go切片。[控制器](tools/research-army-presence.go)在原0110:1650依Go字串ID軍隊回傳空旗標，16A4以原rand除數經Go算損失、先成對保存再投影金錢，原24-byte軍隊不寫入。原CPU3存在／20損金、6父測試與11類拒絕、實窗無兵299→240／返回／F2空軍隊／新GUI冷讀、有兵確認及4張X11全RGB通過。[核對](preserved/owned-army-presence-audit-r2.json)、[工具](tools/prepare-army-presence.py)及[永久保存](preserved/README.md#go遇敵存在與無兵損金保存)集中入口。整個世界仍DRAFT，1713／177A／1782尚未交接的戰鬥／拒戰分支停止，其餘軍隊保護點與正式DOS前護欄保持；後續接戰場交接，不重開本批原存在迴圈、扣金公式、三字型或成對保存機制。
+
 2026-10-30使用者要求功能與HD依共同機制抽樣後結案。[收尾抽樣](docs/spec/030-battle-expansion-proposal.md#階段收尾抽樣)以[固定計畫](preserved/phase-closeout-plan-r1.json)與[工具](tools/closeout-sample.py)為入口。已驗的HD、字型、AI、規則、音樂及Go原型不再逐圖／逐兵種重開；只有新的可重現缺陷或使用者指定的新功能才開新工作。此指示不會讓尚未接入的新增軍隊世界／戰鬥流程變成完成，也不授權移除DOS前護欄。後續目前真相只看CONTEXT最上方的收尾狀態，舊段落的「待驗」不單獨構成新待辦。
 
 前輪[qualified](preserved/phase-closeout-audit-r1.json)的募兵後遇敵GUI缺口，已由[正常路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)完成。正式遊戲未改，購兵、F2往返、正常回程、自然遇敵撤退、F7退出與另一程序讀回均通過；31民兵及資源保持。[只讀診斷與保存](preserved/README.md#募兵gui診斷與正常路徑補驗)保留早取截圖、完整成功路徑與歷史失敗。F2提交正常，不能把舊場景map標籤當成卡畫面的證據。既有HD與已接功能階段抽樣收尾；整案仍未完成，後續集中新增兵種真正世界／戰鬥交接，不重跑本鏈、全部圖像／兵種或已驗helper。正式197來源七程式及護欄保持。

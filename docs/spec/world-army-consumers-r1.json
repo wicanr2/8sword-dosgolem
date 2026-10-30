@@ -26,7 +26,17 @@
       "pam_file_offset": 10636,
       "runtime": "0110:151C",
       "semantic_note": "遭遇前軍隊存在檢查",
-      "level": "strong inference",
+      "level": "proven",
+      "resolution": {
+        "previous_level": "strong inference",
+        "scope": "Original ordinary-encounter kind>0 scan at runtime 0110:1650..1671; isolated Go existence/loss adapter, not full encounter or battle completion.",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#存在與損金的限定ready契約",
+        "evidence_receipt": "preserved/owned-army-presence-audit-r2.json",
+        "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+        "required_correction": "普通遇敵存在檢查已閉合",
+        "unaffected_spec": "docs/spec/042-friendly-man21-battle-poses.md",
+        "unaffected_reason": "The previous proof of the complete fixed-PAM entry/caller bytes remains valid. No battle-pose behavior is changed."
+      },
       "original_reference_count": 1,
       "production_integrated": false
     },

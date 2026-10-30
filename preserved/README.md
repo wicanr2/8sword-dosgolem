@@ -1,5 +1,31 @@
 # 必要資料永久保存
 
+## Go遇敵存在與無兵損金保存
+
+[030切片](../docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)與[獨立核對](owned-army-presence-audit-r2.json)記錄Go接管普通遇敵的軍隊存在判斷與無兵扣金。原CPU3組存在、20組扣金及243行IDA bytes已核對；六父測試0.324秒、十一類拒絕、實際GUI無兵扣金／返回／F2／另一GUI冷讀及有兵確認通過。四張1920×1200 X11同實際Go畫布全RGB。
+
+本次空Go軍隊的原版影子仍有30民兵，判斷正確沿Go資料；原版本次除數5，金299→240，原軍隊表不改。人物檔其餘2975 bytes保持，冷讀只驗Go世界與六資源，沒有同步移動後的新位置或地圖狀態。後續戰場、拒戰／追擊、守軍及完整存檔生命週期仍未接通，正式載入護欄保持。
+
+[原版證據](owned-army-presence-evidence-r2.json)、[逐檔清單](owned-army-presence-r1.json)與[不掛workplace核對](owned-army-presence-verification-r1.json)為入口。完整原PAM、原CPU收據、Go來源／二進位、三字型、實際PNG／X11、配對存檔、GUI與編譯紀錄、首次fixture及診斷來源，另存本機`preserved/owned-army-presence-r1/`，不加入Git。共335檔／287物件、壓縮15435075 bytes；正式197來源七程式／923核心／535素材／1040圖庫保持。
+
+[收尾完整性](owned-army-presence-integrity-r1.json)另核對目前來源、文件入口、原定位回填、擁有權與永久批次。保存核對不代表完整世界已接通。
+
+[準備與保存工具](../tools/prepare-army-presence.py)在固定Pillow11.3.0 Docker以`prepare --project <專案>`建立隔離輸入；`evidence --project --out <新JSON>`核對原CPU與IDA；`freeze`複製新研究工具；`audit --project --out <新JSON>`核對固定候選與實窗／磁碟。`archive --project --archive <可寫preserved> --out <新清單>`逐SHA保存。Go來源清單、模組旗標、映像SHA與配額保存在本批execution-r1.json，原核心與模組沿既有永久catalog。實窗使用[普通輸入腳本](../tools/check-army-presence.py)，沒有RAM、返回或RNG注入。
+
+脫離工作區核對只掛永久物件與工具：
+
+```bash
+timeout 90 docker run --rm --network none --user 1000:1000 \
+  --memory 1g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword/preserved:/archive:ro \
+  -v /home/anr2/cht/8sword/preserved:/audit \
+  -v /home/anr2/cht/8sword/tools:/tools:ro \
+  sc-cht-hdtools:pillow11.3.0-r2 python /tools/prepare-army-presence.py \
+  verify --archive /archive --out /audit/owned-army-presence-verification-new.json
+```
+
+按清單的path／mode及objects解gzip可還原；先核對來源SHA／長度，目的檔不同時拒絕覆寫。首次原CPU fixture未清除MZ內原有軍隊，空隊預期被核對器拒絕；修正fixture後三案通過，不是原版規則差異。初期掛載位置錯誤及其後確定為空的root-owned工作目錄也已處理，沒有對專案遞迴chown或更動其他專案。
+
 ## 募兵GUI診斷與正常路徑補驗
 
 [030補驗](../docs/spec/030-battle-expansion-proposal.md#募兵gui診斷與正常路徑補驗)與[獨立核對](recruit-gui-diagnosis-audit-r2.json)完成前輪未過的正常GUI門檻。未改的正式遊戲程式經普通XTEST購兵、F2往返、回程、自然遇敵、撤退、F7存退及另一程序讀回；存後與冷讀均有31民兵及金錢461，2987-byte人物檔SHA保持。既有HD與功能抽樣收尾，整案及新增軍隊世界交接仍未完成。

@@ -32,6 +32,8 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 ## F3軍隊解雇的Go交接研究
 
+下一個隔離交接切片為[遇敵軍隊存在與無兵損金](#遇敵軍隊存在與無兵損金交接)，沿既有Go軍隊與成對保存，不重開本節已驗操作。
+
 2026-10-30 DRAFT，延續已授權的Go軍隊交接。沿既有F2的IDA9.4匯出，定位原名sub_1775A、MZ loader線性1775Ah，執行期0110:775A；完整443行與sub_17BF2整理函式保留原定位。靜態證據顯示Enter清除整隊後整理陣位，Esc返回，不退金錢。兩欄三列的方向鍵只移至有部隊的陣位。動態抽驗結果另記，不以靜態閱讀宣稱原版parity。
 
 隔離候選由[Go交易與輸入介接](../../tools/research-world-army-dismiss.go)和[Go解雇畫布](../../tools/world-army-dismiss_draw.go)處理；共用[F2前端](../../tools/world-army-review_main.go)以選配介面接線，未編入F3時保持F2入口。研究目錄為既有battle-r1下的owned-world-army-dismiss-r1，檔案職責沿專案文件契約。原版getch及返回框架保留，Go略過原版陣列表、導覽與解雇寫入；每次實際Enter按下最多提交一次，整隊交易先保存成功才更新畫面，原金錢、商店庫存及24 bytes原軍隊保持。空軍隊允許Esc退出，Enter不作交易。
@@ -43,6 +45,45 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 本候選限定抽驗通過，維持DRAFT。六父測試1.317秒、原F2回歸、vet、候選與F2單獨建置通過；實際繼續遊戲／F3取消不改檔、長按只提交一次、31民兵移除後保留5野狼、F2同步更新、三字型、最後一隊／空軍隊及兩次新GUI冷讀通過。七張1920×1200 X11全RGB等於Go畫布；Python從原fixture獨立重算兩次世界交易，金299、庫存、原版進度及24 bytes原軍隊保持。原row入口零次；模式1實測，沒有自然取得新兵種、原版時鐘或完整世界聲明。原版解雇規則仍只有靜態依據，641行IDA bytes重定位核對不當動態oracle。
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
+
+## 遇敵軍隊存在與無兵損金交接
+
+2026-10-30 DRAFT。只處理原sub_1151C普通遇敵的軍隊存在判斷與無兵損金；守軍、原戰場、拒戰／被追擊及其他世界consumer保持拒絕。研究位於既有battle-r1下的owned-army-presence-r1，不改正式197來源七程式或載入護欄。
+
+來源沿固定PAM SHA83e32f13…d6c0、既有IDA9.4軍隊匯出與PAM.i64 SHAa9089db0…21ac。IDA基準為MZ loader線性10000h；下列均為執行期0110段的IP，DS／SS為1E88。原caller在0BD0呼叫，返回0BD3；1650至1671掃六筆DS054A種類，1671判空旗標，無兵分支於1690至16A8以原rand結果計算金錢損失，16DA返回。原版索引與原名保持。
+
+[原CPU窄探針](../../tools/probe-army-presence-oracle.go)先驗原六隊掃描與受控rand後的除法／扣金。[Go交接](../../tools/research-army-presence.go)、[資料／ABI測試](../../tools/research-army-presence_test.go)、[準備／保存工具](../../tools/prepare-army-presence.py)與[實際視窗抽驗](../../tools/check-army-presence.py)沿既有三字型與F2／F3候選。Go以字串ID軍隊判定是否有兵，不讓新增ID進原表；無兵扣金沿原版隨機除數，以既有成對交易先保存再投影金錢。原表只作不變診斷，不能參與判斷。
+
+原CPU控制為明示direct-entry與受控rand輸入，不能代替正常GUI。實際GUI另從已保存空Go軍隊、仍有原版影子民兵的進度正常Continue，移動至自然遇敵，應走無兵提示、完成損金、返回地圖、F2空軍隊及另一程序冷讀。新增兵種存在的案例只抽到原版遇敵確認，後續戰場尚未交接時明示停止，不宣稱已能完成擴充戰鬥。
+
+### 存在與損金的限定READY契約
+
+2026-10-30，原CPU三組存在／二十組損金與既有IDA243行原bytes獨立核對通過，限隔離候選達READY。PAM完整SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，IDA匯出SHA `bf15963202e60ba1f0a666f21b31a4a74e44e6c12ac18cb12d116ee033ecc739`，原CPU收據SHA `ffb26c960a4d3d4bd7bfb7087ed0e16c0a88a048389011d90b8283f8b3467c49`。工具為Go1.24.13、923核心與Pillow11.3.0；原匯出沿IDA9.4，不另改資料庫。
+
+| 邊界 | typed input、轉移及輸出 |
+|---|---|
+| 執行期1650→1671 | 固定wrapper151C–1796 bytes、CS／DS／SS、BP／SP、caller0BD3及六資源／磁碟token相符後，以Go軍隊總數是否大於零產生原空軍隊旗標。只回寫BP-2及PC；迴圈暫存數值下游未讀取，不模仿原迴圈 |
+| 執行期16A4→16A8 | 僅同次無兵分支。保留原rand抽取，除數CX必須2至14；Go以金錢／除數取整數，須等於原AX及BP-6的商。Go世界revision加一並透過既有兩檔同步器提交，成功後才投影DS04F8金錢，原24-byte軍隊保持 |
+| 執行期16DA | 核對同一frame、來源、原軍隊與已提交token／資源，關閉無兵事件，原版尾段及地圖重畫繼續 |
+| 有兵分支16E0 | 原版確認頁可呈現；1713、177A或1782在未接戰場／拒戰世界交接前停止。其餘46個原軍隊operand保護不放寬，165C原掃描另設哨點 |
+
+原CPU已驗的非負rand輸入下，損失為`floor(gold / (floor(rand / 2730) + 2))`。介接只接受除數2至14與既有30000世界上限，保留原商數作校驗，由Go重算並提交金錢。Go不重抽rand，不改原陣位、種別或原版圖檔索引。零金損失也只提交本事件一次；未知版本、舊token、錯frame／bytes／商、重複gate／扣款皆拒絕。磁碟錯誤交既有中斷恢復機制並停止，不在客體猜補。
+
+資料鏈為既有catalog與成對存檔→Go軍隊／商數→原提示與F2→成對提交→新GUI冷讀。驗收涵蓋原CPU局部oracle、Go／原商數、十一類拒絕與記憶體／存檔不變、普通GUI空軍隊自然遇敵及有兵確認。這不授權正式載入附檔、守軍、戰鬥、月度或完整世界提升；局部oracle不稱正常入口，GUI不稱同種子parity。
+
+### 存在與損金切片的限定驗收
+
+限定CONFORMED僅適用上述隔離介接，整個世界仍DRAFT。六個Go父測試0.324秒、vet、視窗與XTEST helper建置通過，十一類拒絕前後完整guest記憶體／暫存器及兩檔不變。新Go計算同20筆原CPU商數；空陣列、首隊與第六隊的原CPU存在旗標分別1／0／0。
+
+真正GUI從已保存的Go空軍隊與原30民兵影子普通Continue，正常左右移動至自然遇敵。Go判空，原版本次除數5，損失59，金299→240；原無兵提示、Enter返回、F2空軍隊及新程序冷讀均通過。原24-byte軍隊、人物檔其餘2975 bytes保持。另一份31民兵＋5野狼進度自然遇敵時，Go總36且走原版確認，沒有扣金或改兩份存檔；不繼續未接的戰場。
+
+四張1920×1200 X11與Go實際畫布全RGB相同，已抽看無兵損金59及有兵確認。三字型沿既有已驗atlas，不重跑本輪未改的字形。原始資料、軍隊字串ID、決策、提示、成對保存與新GUI冷讀的鏈已驗；來源索引另回填普通存在檢查，042既有入口證據不受影響。
+
+冷讀限Go世界及六資源。原進度其餘2975 bytes刻意保持，沒有把移動後的新位置／地圖狀態同步回主檔；完整玩家存檔生命週期仍未完成，不以本切片取代它。
+
+重現用準備器的`prepare | evidence | freeze | audit | archive | verify`，固定Pillow11.3.0、Go1.24.13、923核心、UID1000、無網路及既有模組。Go共用檔清單、外部probe.mod、3GiB／2CPU／192程序／1GiB快取tmpfs與GUI命令保存在本批execution-r1.json。測試設`EIGHTSWORD_ARMY_PORT_INPUT`及`EIGHTSWORD_PRESENCE_INPUT`為inputs；GUI用`python3 tools/check-army-presence.py --work <研究目錄>`。原CPUprobe以`-pam <PAM.AY> -out <新JSON>`執行，兩筆控制來源及首輪fixture失敗皆保留。
+
+[獨立核對](../../preserved/owned-army-presence-audit-r2.json)、[原版證據](../../preserved/owned-army-presence-evidence-r2.json)及[永久保存](../../preserved/README.md#go遇敵存在與無兵損金保存)為入口。正式197來源七程式／923核心／535素材／1040圖庫與附檔護欄保持，沒有正式程式提升、完整擴充戰鬥、原版指令時鐘或同種子parity聲明。
 
 ## AI只讀觀測研究
 
@@ -416,6 +457,8 @@ Go容器先跑`python3 /project/tools/prepare-owned-paired-save.py exercise --pr
 隔離原型入口為[Go軍隊讀取與購買介接](../../tools/research-world-army-port.go)、[拒絕／提交測試](../../tools/research-world-army-port_test.go)、[地圖與募兵探針](../../tools/probe-world-army.go)、[獨立state讀取](../../tools/read-world-army-states.go)及[準備／核對／保存](../../tools/prepare-world-army.py)。只接sub_159C4的民兵店caller，原版其餘consumer保持關閉。三個已查證的CALL點改由Go計算容量、單位領導力、整支Go軍隊用量，購買提交點則走既有Go交易及成對保存後才投影六資源；原054Ah軍隊表不寫入。這是新Go操作的VM交接點，不是逐指令模仿原helper，也不宣稱原版指令／時鐘一致。
 
 [軍隊讀寫索引](world-army-consumers-r1.json)記錄16個相關函式及各自證據等級，含原名、IDA線性位址、原檔位移與執行期定位。新發現的軍隊增補、顯示、互動及月度候選尚未全解，不因列入索引就稱已驗證或已由Go接管。
+
+追加勘誤：普通遇敵存在檢查已閉合，限定原0110:1650–1671與[Go存在／損金切片](#遇敵軍隊存在與無兵損金交接)。其餘守軍、月度及戰鬥限制保持。索引保留前一推論等級、來源與舊規格回填標記；042的入口／caller bytes證據不受影響。
 
 預定抽驗從真正新遊戲及F7存檔出發，明示加入Go野狼5名並投影資源，原30民兵表保持。相同原始狀態分原版控制與Go介接，正常移動進民兵店後購一名民兵；預期原版用量30、可募70，Go計入野狼後用量45、可募55，Go交易保存31民兵及5野狼，金300→299。由另一程序／磁碟冷讀完整Go軍隊，不忽略附檔繼續DOS。只證明這個受控交接切片，不宣稱新增兵種已正常可玩；原世界店鋪身分／庫存、月度、其他軍隊畫面與戰鬥仍待完成。
 

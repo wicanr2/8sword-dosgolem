@@ -1,0 +1,11 @@
+{
+  "status": "passed-original-presence-evidence",
+  "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "oracle_sha256": "ffb26c960a4d3d4bd7bfb7087ed0e16c0a88a048389011d90b8283f8b3467c49",
+  "ida_export_sha256": "bf15963202e60ba1f0a666f21b31a4a74e44e6c12ac18cb12d116ee033ecc739",
+  "ida_lines": 243,
+  "presence_cases": 3,
+  "loss_cases": 20,
+  "address_spaces": "IDA MZ loader linear base 0x10000; file offsets separate",
+  "formal_changed": false
+}

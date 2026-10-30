@@ -2575,3 +2575,24 @@ Go候選實際保留原getch與stack返回，CPU框架、整段來源bytes、sel
 最後回到未改的正式遊戲程式，以普通XTEST新遊戲、購一名民兵、F2往返、正常回程及自然遇敵撤退，再F7／退出／新程序讀回。這條玩家鏈通過，31民兵與完整六資源在存後及冷讀相同。人物檔SHA `3629baf2eb41ad7253530d23543b054d5c90dae3a81be169c20ddcb10016c928`，冷讀step11112414。未控制自然亂數，不以此宣稱傷害、AI或整個世界與原版同種子parity。
 
 [030補驗](docs/spec/030-battle-expansion-proposal.md#募兵gui診斷與正常路徑補驗)、[獨立核對](preserved/recruit-gui-diagnosis-audit-r2.json)及[永久保存](preserved/README.md#募兵gui診斷與正常路徑補驗)提供完整雜湊、狀態、來源與成功／失敗收據。本次沒有新玩法掛點或正式渲染器變更。
+
+## 2026-10-30：普通遇敵的Go軍隊存在與無兵損金
+
+輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`。重用IDA9.4既有軍隊匯出SHA `bf15963202e60ba1f0a666f21b31a4a74e44e6c12ac18cb12d116ee033ecc739`，沒有改PAM.i64或原函式名稱。原sub_1151C的243行bytes按MZ relocation核對；IDA基準10000h，執行期CS0110、DS／SS1E88，兩者分開記錄。
+
+| 原始定位 | 語意與證據等級 |
+|---|---|
+| IDA 10BD0h的CALL sub_1151C；執行期0110:0BD0 | 已證實：原caller返回0BD3，用來限制Go介接的frame，不接其他caller |
+| IDA 11650h–11671h；執行期0110:1650–1671 | 已證實：以六筆DS054A起kind>0判定是否有兵，BP-2為空旗標。原CPU空隊、首隊、第六隊三案旗標1／0／0 |
+| IDA 11690h–116A8h；執行期0110:1690–16A8 | 已證實於非負受控rand：除數為floor(rand/2730)+2，損失為floor(gold/除數)，原商存BP-6，16A4扣DS04F8金錢。20組原CPU控制與Go結果相同 |
+| IDA 116DAh；執行期0110:16DA | 已證實：無兵分支返回尾段，Go在此核對成對提交／資源／原軍隊保持並結束事件 |
+
+原CPU探針只跑明示direct-entry局部範圍，控制rand後AX，不作完整玩家入口或RNG parity。最初空隊fixture仍含MZ內初始軍隊，核對器拒絕；明確清空24 bytes後重跑三案通過，沒有更改原版程式。這是fixture修正，不把初版不符解讀成規則差異。
+
+Go在1650從完整字串ID軍隊算總數，只回傳ABI空旗標，略過原六隊掃描。16A4保留本次原rand的除數，由Go再算商並比對原AX／BP-6，先用成對同步器提交兩檔，再投影金錢。原固定kind與陣列表沒有新ID或兵數寫入；原迴圈只保留拒絕哨點，其他未知consumer繼續停止。
+
+實際GUI使用既有已保存的Go空軍隊，但原生影子仍有30民兵。普通Continue與自然移動觸發遇敵，Go判空；原除數5，損失59，金299→240。原提示、返回、F2空軍隊及另一GUI冷讀通過。另一份31民兵＋5野狼自然遇敵，Go總36並顯示原確認頁，沒有進未接戰場或改存檔。兩條GUI均沒有記憶體、返回或RNG注入；自然亂數未鎖，不稱兩側同種子parity。
+
+六父測試0.324秒、11類拒絕、vet與建置通過；四張1920×1200 X11同實際Go畫布全RGB。原24-byte軍隊及人物檔其餘2975 bytes保持，因此冷讀只驗Go世界與六資源，移動後的原位置／地圖尚未成對保存。原普通存在索引由strong inference限定升為proven，保留前級、原位址、舊030回填標記與不受影響的042入口證據；核對器檢查回填標記。
+
+[限定契約與結果](docs/spec/030-battle-expansion-proposal.md#存在與損金的限定ready契約)、[原CPU核對](preserved/owned-army-presence-evidence-r2.json)、[Go／GUI核對](preserved/owned-army-presence-audit-r2.json)及[永久保存](preserved/README.md#go遇敵存在與無兵損金保存)集中完整來源與收據。正式197來源七程式、923核心、535素材與載入護欄保持；戰場、拒戰／追擊、守軍、月度及完整世界存檔仍未完成。

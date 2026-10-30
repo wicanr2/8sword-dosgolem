@@ -116,6 +116,8 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 同一候選的 F3 解雇由 Go 處理選隊、整隊移除、陣位整理與保存，按住 Enter 只提交一次。下圖是解雇民兵後保留5隻野狼的實際視窗；F2及重新啟動後均讀到相同軍隊，金錢與庫存保持。這仍是受控存檔的開發候選，完整世界與戰鬥交接尚未完成。可看[解雇交接與啟動器](docs/spec/030-battle-expansion-proposal.md#f3軍隊解雇的go交接研究)、[畫面來源](docs/images/world-army-f3-lishu-r1.json)及[永久保存](preserved/README.md#go-f3軍隊解雇交接保存)。
 
+普通遇敵的軍隊存在判斷與無兵損金也已接入隔離 Go 候選，直接採用 Go 軍隊及成對存檔。有兵時顯示原版遇敵確認，無兵時扣金並可返回、檢閱及重新讀檔；後續戰場與拒戰分支仍未接通。驗證範圍見[遇敵交接](docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)及[核對](preserved/owned-army-presence-audit-r2.json)，正式新增兵種載入護欄保持。
+
 ![實際F3 Go解雇視窗，採教育部隸書](docs/images/world-army-f3-lishu-r1.png)
 
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
