@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## 階段收尾抽樣保存
+
+[固定計畫](phase-closeout-plan-r1.json)、[總核對](phase-closeout-audit-r1.json)、[逐檔清單](phase-closeout-r1.json)與[脫離workplace核對](phase-closeout-verification-r1.json)記錄HD抽樣與功能缺口。總核對為qualified，`all_planned_gates_passed=false`，整案未結案。原版／HD的固定步數完整state、基本GUI存退讀、未通過的募兵／遇敵鏈、PNG、存檔、護欄拒絕及全部工具失敗，另存本機`preserved/phase-closeout-r1/`，完整物件不加入Git。
+
+共557檔／249物件、壓縮67399985 bytes，已在沒有workplace掛載的容器逐SHA與長度核對。[收尾完整性](phase-closeout-integrity-r1.json)另外核對來源、圖庫、文件入口與擁有權；通過保存不代表未達的GUI門檻已通過。
+
+[工具](../tools/closeout-sample.py)在固定Pillow11.3.0 Docker使用`prepare|stage-gui|audit|archive --project <專案> --out <新JSON>`；`guard`沿Go1.24.13容器的python3執行正式重播程式，`archive`另加`--archive <可寫preserved>`。脫離工作區核對用`verify --archive <唯讀preserved> --out <新JSON>`，只掛永久資料與工具。依清單path／mode及objects解gzip可還原；正式程式與工具鏈沿既有catalog保存。
+
+抽樣範圍見[030](../docs/spec/030-battle-expansion-proposal.md#階段收尾抽樣)。新增兵種的原世界、月度／劇情與戰鬥交接尚未完成，附檔護欄保持；本批不將DRAFT提升成完整可玩，也不宣稱全遊戲通關、統計覆蓋率或新平台發行。
+
 ## Go F3軍隊解雇交接保存
 
 [030解雇交接](../docs/spec/030-battle-expansion-proposal.md#f3軍隊解雇的go交接研究)的隔離197來源、Go交易／控制器／畫布／前端、固定資料與三字型、原版IDA匯出、六父測試、兩輪實際GUI、完整PNG／X11 PPM、失敗關閉診斷、成對存檔與二進位，另存本機`preserved/owned-world-army-dismiss-r1/`。共417檔／301物件、壓縮11995645 bytes，已不掛workplace逐物件核對。原始碼與小型實窗預覽加入Git，完整物件及原版資料不加入Git。

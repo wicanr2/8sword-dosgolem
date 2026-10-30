@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "baseline": "503ed45",
+  "identity_sha256": "655514a5c002c15b26806eb3f3cb0f3b740a40f95bded4024504c8a36334bfb2",
+  "counts": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "artwork_files": 1040,
+  "original_manifest_sha256": "8ab4fd7c02d82e23ac45a475ab2e0bfa7283d0f4ca53f4234525d7796e458b6b",
+  "samples": [
+    {
+      "id": "identity",
+      "method": "All current source/binary/core/asset and permanent artwork hashes"
+    },
+    {
+      "id": "replay-native",
+      "method": "Existing CLI fixed input, 250M instructions, native mode"
+    },
+    {
+      "id": "replay-hd",
+      "method": "Same CLI fixed input, 250M instructions, HD Go source renderer, zero native pixel writes"
+    },
+    {
+      "id": "normal-gui",
+      "method": "Current formal build, actual XTEST new game/recruitment/natural battle retreat/F7/exit/cold reload; no recording"
+    },
+    {
+      "id": "reused-mechanisms",
+      "method": "Read accepted AI/tactics/VFX/music receipts and verify permanent F3 objects; no per-unit rerun"
+    },
+    {
+      "id": "guard",
+      "method": "Actual formal executable refuses expanded paired save before DOS; input files unchanged"
+    }
+  ],
+  "limits": [
+    "Purposive mechanism samples, no statistical full-game coverage claim.",
+    "Existing HD/features stage only. Expanded army world/month/event/battle handoff is not implemented in the formal player path.",
+    "No Rust migration, public release, hardware timing or new listening claim."
+  ],
+  "paths": {
+    "native": "workplace/player/replays/phase-closeout-native-r1",
+    "hd": "workplace/player/replays/phase-closeout-hd-r1",
+    "gui": "workplace/player/gui/phase-closeout-r1"
+  }
+}

@@ -77,6 +77,22 @@ for phase in "${phases[@]}"; do
     -cpu-profile "$phase_out/cpu.pprof" -vsync="${EIGHTSWORD_GUI_VSYNC:-true}" \
     -cycles "${EIGHTSWORD_GUI_CYCLES:-20000}" > "$phase_out/player.log" 2>&1 &
   gui_pid=$!
+  # Full HD assets load before Ebiten creates its window. Wait for the
+  # application's first status instead of spending the driver's window timeout
+  # on asset decoding. A dead child still fails immediately.
+  task_ready_deadline=$((SECONDS + 120))
+  until [[ -s "$phase_out/gui-state.json" ]]; do
+    if ! kill -0 "$gui_pid" 2>/dev/null; then
+      wait "$gui_pid"
+      printf '%s\n' '遊戲在寫出就緒狀態前結束。' >&2
+      exit 1
+    fi
+    if ((SECONDS >= task_ready_deadline)); then
+      printf '%s\n' '等待遊戲載入素材與建立視窗逾時。' >&2
+      exit 1
+    fi
+    sleep 0.1
+  done
   /bin-player/gui-check -out "$phase_out" -flow "$phase" -saves /out/scratch \
     -native-frame "${EIGHTSWORD_GUI_NATIVE_FRAME:-}" "${actor_flags[@]}" "${intro_flags[@]}" > "$phase_out/gui-check.log" 2>&1
   wait "$gui_pid"

@@ -1,0 +1,4346 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "workplace/player/phase-closeout-r1/build.mod",
+      "sha256": "672a221b5e12f9499fa6680ecc37547f7e9ca3dbf2f438c6d32eef727fcd214c",
+      "bytes": 626,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/build.sum",
+      "sha256": "6b7664629ffd9efe6f50b9a23484b8a90d0cae047a29a820513e332c1801f6b3",
+      "bytes": 3969,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/context-before-closeout.txt",
+      "sha256": "027be0ea17953f680ea143aa5aaeabb22e65107ba2586806991ab2a4dcd041c3",
+      "bytes": 141348,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/diagnostic-gui-check",
+      "sha256": "af9693743f5ef91c22c989d0d85f2510b25f9d868371d4a3b10ef8820175810b",
+      "bytes": 5150944,
+      "mode": 493
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/driver-build-r2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/driver-build-r3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/driver-build.log",
+      "sha256": "d429e8185010c2dc40ff96500520dab7ec7d00a417027544634f16ef46fbd63a",
+      "bytes": 110,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/execution.json",
+      "sha256": "321d8ddd8b2e61ec9e5e6c23a7450e76d3e5e38095eb8a402dd164e091cd17b7",
+      "bytes": 2350,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/go.mod",
+      "sha256": "672a221b5e12f9499fa6680ecc37547f7e9ca3dbf2f438c6d32eef727fcd214c",
+      "bytes": 626,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/go.sum",
+      "sha256": "6b7664629ffd9efe6f50b9a23484b8a90d0cae047a29a820513e332c1801f6b3",
+      "bytes": 3969,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/guard/scratch/gamedata.ay",
+      "sha256": "caee8c62409581be544bfd1aaa8093c4b627d017aa6ba975dad0f01501bd010a",
+      "bytes": 2987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/guard/scratch/gamedata.ay.army.json",
+      "sha256": "99be01d2543354594a4446c437dfacc0f741b65bf0b0656f86739f83ec3cde81",
+      "bytes": 1440,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/guard.json",
+      "sha256": "99d1d8a3288d4f627c466c09f9eda1ce7d3702619048f1e541c04797b1a0c66d",
+      "bytes": 308,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/guard.log",
+      "sha256": "fd5375bcb60695df737da1ee1724550d268e949ac126f0cd3a7b6fb12e2027e8",
+      "bytes": 270,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-bootstrap-failed-r1/save/build-go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-bootstrap-failed-r1/xvfb.log",
+      "sha256": "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690",
+      "bytes": 81,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-bootstrap.json",
+      "sha256": "8c9f12fc37ab48f1a038f5558edfc5a40f5b960e56fb0abf5d17a97ab4e1f11b",
+      "bytes": 817,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-check-before.sh",
+      "sha256": "0ca706bb58816112fa233d33e433704656f586f0067063e18684010e425894b3",
+      "bytes": 5859,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-diagnosis.json",
+      "sha256": "35a70ddb42ef32c0f9821a5b60d202c592d3a361768ac490235b3756e03a283b",
+      "bytes": 456,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/01-display.png",
+      "sha256": "26891f55af7e8b2f7bc7bc507538a2fd5a7ced96be97573352c53fa5c7a73575",
+      "bytes": 760428,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/02-sound.png",
+      "sha256": "10be2bb79dc48d74ec9315630b9152dcd1d9b73da90099f1e61b311c258b6ae9",
+      "bytes": 763677,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/03-main-menu.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/04-confirm.png",
+      "sha256": "4562adc10e6d86d8c2c4a450e783d0d75b4a5f3e8a6733d625791a1392190b98",
+      "bytes": 925904,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/05-map.png",
+      "sha256": "7a9df3935804a32246dccfddacc707ba958d151f8f1e16781e220884cff26dab",
+      "bytes": 1932181,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/build-go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/build-inputs.sha256",
+      "sha256": "ffa0dc75b729b96ac7069030317a49d894c3dea08da9a7dbae7a0a905b985156",
+      "bytes": 20791,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/build-outputs.sha256",
+      "sha256": "d2a19f59fd05b8c1c0efd4251251f147f9857f6faa04c18268282d9b2dd371ca",
+      "bytes": 552,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/cpu-start.txt",
+      "sha256": "4c2d6ecd62fa274159073495b8df1132e431943d7f7475c14ebb6fa9c4cca6f6",
+      "bytes": 164,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/cpu.pprof",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/executables.sha256",
+      "sha256": "c4b407c70f6fb94d85eee719b8338ce3d14ea49f703b0f2fb1cb3a68b9de9eae",
+      "bytes": 173,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/font-caoshu.png",
+      "sha256": "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3",
+      "bytes": 895875,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/font-lishu.png",
+      "sha256": "123c3e4432316a7446da0cdd2ebfb68776196164acde78b4d450250392c8657d",
+      "bytes": 894632,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/font-noto.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/gui-check.log",
+      "sha256": "35099b7ff0e117aadc46576bd8a91f6d0c79fc1648870cc356908b83e9d0841c",
+      "bytes": 34184,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/gui-state.json",
+      "sha256": "e1dc34db5ab8b59a598a5f2a0e83bc5dcca40dd8f36ea2291cc8e0f6ab928100",
+      "bytes": 54318,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/intro-draw.jsonl",
+      "sha256": "11fb12a08d1ab85f7efb579099a8319300b5cf31b59708f4f4ad8445541e2f69",
+      "bytes": 121741,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/load-start.txt",
+      "sha256": "e75ea238f8a690fe2fbbb54ea6b9711d9affd2dfb836e49f9eab2bb2427fd278",
+      "bytes": 26,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/player.log",
+      "sha256": "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84",
+      "bytes": 308,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-accepted.json",
+      "sha256": "2bdb1c1beacbe2ce06fb6d223a1e047808cf50d8dc47e6c0b5e02c5f058275da",
+      "bytes": 46782,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-accepted.png",
+      "sha256": "f955bce1261c7b29bab447d6365154be85ab810ef7e594a0f2f1ca28294de2b1",
+      "bytes": 1967214,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-caoshu.json",
+      "sha256": "6f1cc1efd6af7f739ad03b0f06d5464fa8c5514f1b466d6414df58d2368a61dc",
+      "bytes": 41550,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-caoshu.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-4.json",
+      "sha256": "c7008541ce93d30b86ee086239c1f8234f7309cbcd09a13fb61195184de18af7",
+      "bytes": 41993,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-4.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-5.json",
+      "sha256": "a8b7b44388d94232672e3888f15871906d4c706ef2c39d55c2e4e9c673852d39",
+      "bytes": 42393,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-5.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-6.json",
+      "sha256": "57b21cd0fb21759646d06ee9a47ec04005eac1105e952b51007429f8de314dc3",
+      "bytes": 42792,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-6.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-7.json",
+      "sha256": "ee1ab50b1200d91a38ef097a06001b56526b56cdce1d2edb376317999ac54af3",
+      "bytes": 43186,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-7.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-8.json",
+      "sha256": "f47ebaefcce4a0ad965d535edbb9d505c3d3d810df36e2eeda7e49f7dd31c40f",
+      "bytes": 43588,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-8.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-9.json",
+      "sha256": "02c3f2cec9e3c3e996602f899eafc6cd5a62711e192699ad8ce6602042f60512",
+      "bytes": 43987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-cleared-digit-9.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-edited-one.json",
+      "sha256": "e43dffeba428c405305d35dbc89924e5686fecd5aee94e56a0a9778a02cf0821",
+      "bytes": 44587,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-edited-one.png",
+      "sha256": "55a9791d9d8bfaa35c8fdc19caee1247165f7a097b4b8e7432a556efa6341d2a",
+      "bytes": 1484872,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-4.json",
+      "sha256": "11067a8ca873cf14610f425f1e30d7a9a14f9cb05e261e876f2422f175498760",
+      "bytes": 41768,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-4.png",
+      "sha256": "d822070f8db86204c1b59a29059c5c2747054b469d542103a3f59b2a6ed627e9",
+      "bytes": 1485004,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-5.json",
+      "sha256": "9cad31e0e9747bd6919c3e9f781ea215c812cfc0f1e07c7f4f14a6a59d7313e3",
+      "bytes": 42201,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-5.png",
+      "sha256": "98a91b2b8647144185b5117c9e9b197a0b7bb386a3594cc8fa6d91b9c3dc81d2",
+      "bytes": 1485157,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-6.json",
+      "sha256": "6d66384e4b8f44bece57a89aa48a9dfb47241ae90bb26975211d4595b5906568",
+      "bytes": 42599,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-6.png",
+      "sha256": "07f6a06ad7c3c815962c04f09ed17e638dfeb465e1c364232a19c0a61ceb915b",
+      "bytes": 1485223,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-7.json",
+      "sha256": "d0836c069e0f5c7c2288a338b3045c03273a78ac893244af1b089f7705f71b09",
+      "bytes": 42997,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-7.png",
+      "sha256": "de4e00e45a938507468a055807fa3399daf3441b50f6acee7c35b41f98827efc",
+      "bytes": 1484964,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-8.json",
+      "sha256": "880790102f282e84c1eb9bbfcc5afbf334a1040aff582586a8bda4d7c5c71152",
+      "bytes": 43389,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-8.png",
+      "sha256": "6736e5891aa668b144c4fb428a16efbf187811dc51967243564210cac81e9154",
+      "bytes": 1485297,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-9.json",
+      "sha256": "7236d490b66edf459d2c27d135c5daab707fb36012a1fac8b05ebb65bedd842c",
+      "bytes": 43782,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-digit-9.png",
+      "sha256": "9e0a23e34421a51b32965c6a82c48063ece97abaf11e3ace8089a3b7f94c477a",
+      "bytes": 1485268,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-ten.json",
+      "sha256": "ff75538cb86703c8e25c31480bb75ab170358212af872303778e32c9560539fb",
+      "bytes": 44380,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-input-ten.png",
+      "sha256": "6b268fc35d4a37829068ae17c590d164e35231f00e61c0b8712be0caed81c3b7",
+      "bytes": 1485389,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-lishu.json",
+      "sha256": "5b599307beb22ed13c53db84196873cc7c36ab18597dd27b1012684093d2d458",
+      "bytes": 41551,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-lishu.png",
+      "sha256": "1442ac6b50f254b9dc2b831bef430e887487516f2d4c25d879f14d6a3d109795",
+      "bytes": 1476206,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-noto.json",
+      "sha256": "94733ebb0eef68d2a26eedd47c588ea233618339efb55d4ca717761e703cc4ad",
+      "bytes": 41550,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/recruitment-noto.png",
+      "sha256": "f5e09d538e3c772b8182ee2be54a03e5076e322de3a43a660199ba8d39da4ba2",
+      "bytes": 1481896,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/save/xvfb-start.txt",
+      "sha256": "1078a7ba1fb748e23b806e444119c66e8d4c0a3791d90746a6539b2843098991",
+      "bytes": 310,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/a.a",
+      "sha256": "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa",
+      "bytes": 3700,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/bumboo.ay",
+      "sha256": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb",
+      "bytes": 4084,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/cube.ay",
+      "sha256": "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65",
+      "bytes": 10998,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/enemy.ay",
+      "sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+      "bytes": 16856,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/gamedata.ay",
+      "sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+      "bytes": 2987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/live2.ay",
+      "sha256": "b854b04f3b0d3620adc37e3adb498cbe3ae710f007766695f40f4065ebde32eb",
+      "bytes": 11480,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/man.ay",
+      "sha256": "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12",
+      "bytes": 22660,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/man12.egg",
+      "sha256": "bca2b7d5f05ae7ac23972e6ea8f5308ac22a243c78acd5970690d93c8a827632",
+      "bytes": 13216,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map00.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map01.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map02.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map03.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map04.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map05.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map06.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map07.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map08.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/map1.ay",
+      "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "bytes": 2564,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/mint.ay",
+      "sha256": "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900",
+      "bytes": 6644,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/msgbox.ay",
+      "sha256": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791",
+      "bytes": 16804,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/mtwo.ay",
+      "sha256": "01511a6ef0844ad0ebb86096cde83e9e316c6819bfc5d611f11eacf0caa317c1",
+      "bytes": 2051,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/mwlk.ay",
+      "sha256": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7",
+      "bytes": 7845,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/pmap.ay",
+      "sha256": "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02",
+      "bytes": 65317,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/sint.ay",
+      "sha256": "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df",
+      "bytes": 201,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/stwo.ay",
+      "sha256": "c00348caa8d3dd002630b71c4daad7d0c8c89c543e47840de0da6554a722dbf0",
+      "bytes": 331,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/swlk.ay",
+      "sha256": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166",
+      "bytes": 786,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/tit1.ay",
+      "sha256": "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac",
+      "bytes": 14423,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/tit2.ay",
+      "sha256": "ff31a0a4916ee1b27a56f2f7da32ec06df3716b42f831b547ed5518586f64060",
+      "bytes": 7015,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/scratch/yang2.ay",
+      "sha256": "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0",
+      "bytes": 5,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/settings.json",
+      "sha256": "1137d9889aebb4e7337e0b681321d51e6136198271d72fb22c01c9f23bb4bed7",
+      "bytes": 38,
+      "mode": 384
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-clock-failed-r1/xvfb.log",
+      "sha256": "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690",
+      "bytes": 81,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-driver-escape-only.go",
+      "sha256": "84be89020cd0e4844565f7f2193948c8080d72209e50075f1bf3d90ddfc7d7ad",
+      "bytes": 49166,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-driver.go",
+      "sha256": "fa1bfdca31c6da35b4c44cbf565fbfcb675628547e19980b4f2760c74ea514b3",
+      "bytes": 49299,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/01-display.png",
+      "sha256": "26891f55af7e8b2f7bc7bc507538a2fd5a7ced96be97573352c53fa5c7a73575",
+      "bytes": 760428,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/02-sound.png",
+      "sha256": "10be2bb79dc48d74ec9315630b9152dcd1d9b73da90099f1e61b311c258b6ae9",
+      "bytes": 763677,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/03-main-menu.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/04-confirm.png",
+      "sha256": "4562adc10e6d86d8c2c4a450e783d0d75b4a5f3e8a6733d625791a1392190b98",
+      "bytes": 925904,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/05-map.png",
+      "sha256": "7a9df3935804a32246dccfddacc707ba958d151f8f1e16781e220884cff26dab",
+      "bytes": 1932181,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/build-go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/build-inputs.sha256",
+      "sha256": "0c455c4629ccae6f0f754f881e65d11c59fb9246b274ff9380b067cfda057c12",
+      "bytes": 20871,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/build-outputs.sha256",
+      "sha256": "adde38d9334d04d60471657646c031ce3c3eea147f40fde6d6679b127cdca24e",
+      "bytes": 552,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/cpu-start.txt",
+      "sha256": "249bfe0b46cc7a0cbb6a31cf2d7de336dd982e0a966986f66f21699f1aca3700",
+      "bytes": 164,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/cpu.pprof",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/encounter-before-character.png",
+      "sha256": "cac1cc9b73a0ea9602e6565a77bdc6770aa9d9c96e8bdf2a1d5c49502ca08068",
+      "bytes": 1534027,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/encounter-selected-no.png",
+      "sha256": "67216286f3cb83f3cdb123937f3a31ae5a83ec1cd4ba06ed17e6cbf927630c4a",
+      "bytes": 1534018,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/executables.sha256",
+      "sha256": "455f7ae092804bdd53ebf97470462d8ca764119e1d3540ff26cdf8d6ec872c25",
+      "bytes": 173,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/font-caoshu.png",
+      "sha256": "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3",
+      "bytes": 895875,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/font-lishu.png",
+      "sha256": "123c3e4432316a7446da0cdd2ebfb68776196164acde78b4d450250392c8657d",
+      "bytes": 894632,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/font-noto.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/gui-check.log",
+      "sha256": "4c78285ff0cf602659d1ef49518ad1eec6eca9babba5b14ee8f4b72f0bc21b7c",
+      "bytes": 44538,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/gui-state.json",
+      "sha256": "4ac8312ff40b42faa5c97fe31cb75da1696cdcec830b70f07bce78c3f06c8f95",
+      "bytes": 72159,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/intro-draw.jsonl",
+      "sha256": "7804441f2066547d1a0bd46caf16b45fd15028da96179b5736d28f4e5e35e67a",
+      "bytes": 189575,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/load-start.txt",
+      "sha256": "7acf5b46a1a4891b6b63985ef9d6dad790507f348dbb591d7801d84aa96fa605",
+      "bytes": 25,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/player.log",
+      "sha256": "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84",
+      "bytes": 308,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-accepted.json",
+      "sha256": "0f18003f35f4df59c0a1d42a4b0ac534972577c2e036a59a4a973fc7387d5268",
+      "bytes": 46178,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-accepted.png",
+      "sha256": "363ef4cc01ac47ed19395b2b9efc4202a94e9c7641c66d92ad55a82a03186797",
+      "bytes": 1967014,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-caoshu.json",
+      "sha256": "a79034a36751a8e8d892fb10d218d6beca28634112947775a985102e02716dd0",
+      "bytes": 41070,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-caoshu.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-4.json",
+      "sha256": "bf1f993db779d90725277bcb58ad4e6618aa1e0fb7bb8099fade0cff86536af8",
+      "bytes": 41483,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-4.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-5.json",
+      "sha256": "9652b0fb842fb614d1ab673d937b23899d84ee73028d6f08f7b046a88a79e980",
+      "bytes": 41866,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-5.png",
+      "sha256": "df77432dd5546e9f9b5cf9816bf3117eb6c1e641bd2946de06bbda6860f91c2a",
+      "bytes": 1484684,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-6.json",
+      "sha256": "04e1c2876f836f3bce4c1739343c503a31c28f06da65b95d89415cbb513fe4a2",
+      "bytes": 42259,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-6.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-7.json",
+      "sha256": "7092b9adaa7c07289a7016ad2cc16513a40c7c629dcf98f3601a35426dbcadc4",
+      "bytes": 42648,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-7.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-8.json",
+      "sha256": "04261e9d03795d85c7329133266a43ae52a8302462a91d94c06fa814b95df3a5",
+      "bytes": 43029,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-8.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-9.json",
+      "sha256": "c55535661ab7dfc40d97d697e704f2c58b5dfcc6fa66d4412062e893eabac7fa",
+      "bytes": 43419,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-cleared-digit-9.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-edited-one.json",
+      "sha256": "fb068ecbfea6567152be30489392c695134b49524e25eecc06e46e4c29146083",
+      "bytes": 44003,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-edited-one.png",
+      "sha256": "67dcb7137e092f31a259f4230ce5c66a19fe17c140884fa4f6775de15ad1df62",
+      "bytes": 1484823,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-4.json",
+      "sha256": "f5ad124cd128ae22b822e6ae50b73092bc655e9a1e86ff40a30e2eb600f31c0a",
+      "bytes": 41289,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-4.png",
+      "sha256": "d822070f8db86204c1b59a29059c5c2747054b469d542103a3f59b2a6ed627e9",
+      "bytes": 1485004,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-5.json",
+      "sha256": "17de763c99f592b6aa58c6263d227b8edbb8c4cb46d7e42dca5d440095d4c78e",
+      "bytes": 41679,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-5.png",
+      "sha256": "98a91b2b8647144185b5117c9e9b197a0b7bb386a3594cc8fa6d91b9c3dc81d2",
+      "bytes": 1485157,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-6.json",
+      "sha256": "6f520ceb8932751ca229ce98a70e6941c7de13695c94b6104e15a6689755d4bf",
+      "bytes": 42068,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-6.png",
+      "sha256": "6f0729cd8ff95de6bbbc35a858c287b10ccd86bee8e65e9ffbe1f2ce7be7bf3b",
+      "bytes": 1485266,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-7.json",
+      "sha256": "3ddeb2b4736ae882012590692079be469030e2ded92837a2c14688cd40fc9628",
+      "bytes": 42454,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-7.png",
+      "sha256": "de4e00e45a938507468a055807fa3399daf3441b50f6acee7c35b41f98827efc",
+      "bytes": 1484964,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-8.json",
+      "sha256": "6268eb37c84f9c53d097a6ea07444d52f6b95bcb1d085ab6b9760520e79fce8b",
+      "bytes": 42832,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-8.png",
+      "sha256": "6736e5891aa668b144c4fb428a16efbf187811dc51967243564210cac81e9154",
+      "bytes": 1485297,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-9.json",
+      "sha256": "efe29324ad42961a761facb0a6bde90e2c31e016bdd1b8eff0fb2a3502aa14ca",
+      "bytes": 43223,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-digit-9.png",
+      "sha256": "9e0a23e34421a51b32965c6a82c48063ece97abaf11e3ace8089a3b7f94c477a",
+      "bytes": 1485268,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-ten.json",
+      "sha256": "4b70d6c7fa90608b3b7dd804724b00ad30fd512361231f444c334a992c4a10c3",
+      "bytes": 43808,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-input-ten.png",
+      "sha256": "b6ea47c3d58df68eb7b3b63668f56f9b1217a68571c88117af90095a7a41ea17",
+      "bytes": 1485346,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-lishu.json",
+      "sha256": "381e3c7dff925f8603fd2ef419d2b2563eda8fc4369c7fbc8295a387e3e4e75a",
+      "bytes": 41073,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-lishu.png",
+      "sha256": "1442ac6b50f254b9dc2b831bef430e887487516f2d4c25d879f14d6a3d109795",
+      "bytes": 1476206,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-noto.json",
+      "sha256": "f57133e4776dfe6b1f456477f63890050b2872e004da51bc203b4313e000143d",
+      "bytes": 41080,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/recruitment-noto.png",
+      "sha256": "f5e09d538e3c772b8182ee2be54a03e5076e322de3a43a660199ba8d39da4ba2",
+      "bytes": 1481896,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/save/xvfb-start.txt",
+      "sha256": "fa426938935bb3b4c368f53fda9edc437280cff17357eb3a731611e9ddf31ac6",
+      "bytes": 310,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/a.a",
+      "sha256": "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa",
+      "bytes": 3700,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/bumboo.ay",
+      "sha256": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb",
+      "bytes": 4084,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/cube.ay",
+      "sha256": "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65",
+      "bytes": 10998,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/enemy.ay",
+      "sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+      "bytes": 16856,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/gamedata.ay",
+      "sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+      "bytes": 2987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/live2.ay",
+      "sha256": "b854b04f3b0d3620adc37e3adb498cbe3ae710f007766695f40f4065ebde32eb",
+      "bytes": 11480,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/man.ay",
+      "sha256": "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12",
+      "bytes": 22660,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/man24.egg",
+      "sha256": "e9f19e9bda935d96721452bddbd17009d88f61bdc4903ea3abf3735017c31b87",
+      "bytes": 13216,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map00.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map01.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map02.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map03.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map04.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map05.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map06.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map07.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map08.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/map1.ay",
+      "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "bytes": 2564,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/mint.ay",
+      "sha256": "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900",
+      "bytes": 6644,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/msgbox.ay",
+      "sha256": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791",
+      "bytes": 16804,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/mtwo.ay",
+      "sha256": "01511a6ef0844ad0ebb86096cde83e9e316c6819bfc5d611f11eacf0caa317c1",
+      "bytes": 2051,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/mwlk.ay",
+      "sha256": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7",
+      "bytes": 7845,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/pmap.ay",
+      "sha256": "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02",
+      "bytes": 65317,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/sint.ay",
+      "sha256": "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df",
+      "bytes": 201,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/stwo.ay",
+      "sha256": "c00348caa8d3dd002630b71c4daad7d0c8c89c543e47840de0da6554a722dbf0",
+      "bytes": 331,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/swlk.ay",
+      "sha256": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166",
+      "bytes": 786,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/tit1.ay",
+      "sha256": "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac",
+      "bytes": 14423,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/scratch/yang2.ay",
+      "sha256": "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0",
+      "bytes": 5,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/settings.json",
+      "sha256": "1137d9889aebb4e7337e0b681321d51e6136198271d72fb22c01c9f23bb4bed7",
+      "bytes": 38,
+      "mode": 384
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-location-failed-r1/xvfb.log",
+      "sha256": "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690",
+      "bytes": 81,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/01-display.png",
+      "sha256": "26891f55af7e8b2f7bc7bc507538a2fd5a7ced96be97573352c53fa5c7a73575",
+      "bytes": 760428,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/02-sound.png",
+      "sha256": "10be2bb79dc48d74ec9315630b9152dcd1d9b73da90099f1e61b311c258b6ae9",
+      "bytes": 763677,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/03-main-menu.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/04-confirm.png",
+      "sha256": "4562adc10e6d86d8c2c4a450e783d0d75b4a5f3e8a6733d625791a1392190b98",
+      "bytes": 925904,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/05-map.png",
+      "sha256": "7a9df3935804a32246dccfddacc707ba958d151f8f1e16781e220884cff26dab",
+      "bytes": 1932181,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/build-go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/build-inputs.sha256",
+      "sha256": "ffa0dc75b729b96ac7069030317a49d894c3dea08da9a7dbae7a0a905b985156",
+      "bytes": 20791,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/build-outputs.sha256",
+      "sha256": "d2a19f59fd05b8c1c0efd4251251f147f9857f6faa04c18268282d9b2dd371ca",
+      "bytes": 552,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/cpu-start.txt",
+      "sha256": "2f47299b99ad8345a86f40b7bfb99d7267ba06abb2b9533c2558a1d3d245b7b6",
+      "bytes": 164,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/cpu.pprof",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/executables.sha256",
+      "sha256": "c4b407c70f6fb94d85eee719b8338ce3d14ea49f703b0f2fb1cb3a68b9de9eae",
+      "bytes": 173,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/font-caoshu.png",
+      "sha256": "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3",
+      "bytes": 895875,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/font-lishu.png",
+      "sha256": "123c3e4432316a7446da0cdd2ebfb68776196164acde78b4d450250392c8657d",
+      "bytes": 894632,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/font-noto.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/gui-check.log",
+      "sha256": "d4703b49d630906802644c9015b7254c97ff88b240126739869276a19cf0470a",
+      "bytes": 45096,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/gui-state.json",
+      "sha256": "c2cb8cf6d3dba002ada6fcf956a5aeff7f278aa29ccbb14483134304e6e0023c",
+      "bytes": 73723,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/intro-draw.jsonl",
+      "sha256": "35385ca159f0adae7ca42b3508c5255192d8a7a94673d93dcb0d155b208cf400",
+      "bytes": 214148,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/load-start.txt",
+      "sha256": "84d6278f01ec6e468930c85e531b8be832fadd831822c82516b16418047315c0",
+      "bytes": 26,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/player.log",
+      "sha256": "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84",
+      "bytes": 308,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-accepted.json",
+      "sha256": "8136143af9790fac81294044f0f5c356a54eacf5e89e11604f60309171145d1d",
+      "bytes": 45557,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-accepted.png",
+      "sha256": "f955bce1261c7b29bab447d6365154be85ab810ef7e594a0f2f1ca28294de2b1",
+      "bytes": 1967214,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-caoshu.json",
+      "sha256": "b4527bd0dba965247c8d108d39ed86fc15bef73da699ac79cbc9b43e322ac0a1",
+      "bytes": 40458,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-caoshu.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-4.json",
+      "sha256": "1b50442f40e61bae2d2694e05b67cf575b406a4744522d5feefd6de63c549b70",
+      "bytes": 40846,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-4.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-5.json",
+      "sha256": "89b17a0834d78ad972274e443cd7923c112e7996aad2ee029bbcfdadc7da61e5",
+      "bytes": 41238,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-5.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-6.json",
+      "sha256": "1c6046e160869c5d8e68cda6da01f96d17c72613f18f157b619f092ed98d9faa",
+      "bytes": 41639,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-6.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-7.json",
+      "sha256": "f5fcef6042a38734b74d0081197af565cb90c116bca60733e2272ebd825f8821",
+      "bytes": 42020,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-7.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-8.json",
+      "sha256": "f329e48da51581ab50ef87a06784c6dd8d5a538ef35a498d8c5aa18ffbf908ab",
+      "bytes": 42408,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-8.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-9.json",
+      "sha256": "64e362dab7e0b3016de7c489bb5a3fe5491fcdc3314e399d1282a8274e517916",
+      "bytes": 42805,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-cleared-digit-9.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-edited-one.json",
+      "sha256": "9fb24b30d429aa5abd34a163d6d9b37612d97c64a58e0eefbffdb6e505d86c82",
+      "bytes": 43387,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-edited-one.png",
+      "sha256": "67dcb7137e092f31a259f4230ce5c66a19fe17c140884fa4f6775de15ad1df62",
+      "bytes": 1484823,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-4.json",
+      "sha256": "fd421b9798f11d0d179acd3fb43898038f6577bb2ff58f5537ae3cf5e58795b4",
+      "bytes": 40657,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-4.png",
+      "sha256": "d822070f8db86204c1b59a29059c5c2747054b469d542103a3f59b2a6ed627e9",
+      "bytes": 1485004,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-5.json",
+      "sha256": "bb830a1981c98074d553a98a0cfc25ce1df46f55726131fa792bbee7038670d2",
+      "bytes": 41056,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-5.png",
+      "sha256": "98a91b2b8647144185b5117c9e9b197a0b7bb386a3594cc8fa6d91b9c3dc81d2",
+      "bytes": 1485157,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-6.json",
+      "sha256": "523b30ea17bd53469bf3834228f2f0ae5945d6733f892802a10980daca2e13d8",
+      "bytes": 41440,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-6.png",
+      "sha256": "07f6a06ad7c3c815962c04f09ed17e638dfeb465e1c364232a19c0a61ceb915b",
+      "bytes": 1485223,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-7.json",
+      "sha256": "f6221ee189d9c4caebceba419743f18091df29ca5efb8f1c5f32157db945bda9",
+      "bytes": 41826,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-7.png",
+      "sha256": "dd9fdef13204721bfd19763d966da2e03fc8b708c6fc6c0db60a8938390c3845",
+      "bytes": 1484916,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-8.json",
+      "sha256": "2f3345921b20a9ba6b1e0cf408accc9f48768aac65d882d3713a58dd5909cae7",
+      "bytes": 42221,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-8.png",
+      "sha256": "6736e5891aa668b144c4fb428a16efbf187811dc51967243564210cac81e9154",
+      "bytes": 1485297,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-9.json",
+      "sha256": "d87c1f5863bd14023ad346b64e87ac6c2bb9e3143280fd5037db7b7c11fb25f8",
+      "bytes": 42605,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-digit-9.png",
+      "sha256": "9e0a23e34421a51b32965c6a82c48063ece97abaf11e3ace8089a3b7f94c477a",
+      "bytes": 1485268,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-ten.json",
+      "sha256": "e91fc668127e06f187d0d8768a819c9359eea214425292a900d194566336a2c2",
+      "bytes": 43192,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-input-ten.png",
+      "sha256": "b6ea47c3d58df68eb7b3b63668f56f9b1217a68571c88117af90095a7a41ea17",
+      "bytes": 1485346,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-lishu.json",
+      "sha256": "4f25773e3a03630aa929ac1241fff470c5a5515044aebc97782b4f8917acb44a",
+      "bytes": 40463,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-lishu.png",
+      "sha256": "1442ac6b50f254b9dc2b831bef430e887487516f2d4c25d879f14d6a3d109795",
+      "bytes": 1476206,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-noto.json",
+      "sha256": "0624b17d23c82d3478ae5259dc63033a0952421f74b27c8503221ad92f80fd4c",
+      "bytes": 40458,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/recruitment-noto.png",
+      "sha256": "f5e09d538e3c772b8182ee2be54a03e5076e322de3a43a660199ba8d39da4ba2",
+      "bytes": 1481896,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/save/xvfb-start.txt",
+      "sha256": "b6c48a35a1423a8e5b385652ed93cdec3a629ef0eefcd2bac8d94f2df9b2c685",
+      "bytes": 310,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/a.a",
+      "sha256": "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa",
+      "bytes": 3700,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/bumboo.ay",
+      "sha256": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb",
+      "bytes": 4084,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/cube.ay",
+      "sha256": "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65",
+      "bytes": 10998,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/enemy.ay",
+      "sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+      "bytes": 16856,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/gamedata.ay",
+      "sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+      "bytes": 2987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/live2.ay",
+      "sha256": "b854b04f3b0d3620adc37e3adb498cbe3ae710f007766695f40f4065ebde32eb",
+      "bytes": 11480,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/man.ay",
+      "sha256": "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12",
+      "bytes": 22660,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/man01.egg",
+      "sha256": "a7e02cf495800fac19c293688043f3af6eb6deaec1a61a581ed3f9d5b8b3e5f1",
+      "bytes": 13216,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map00.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map01.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map02.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map03.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map04.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map05.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map06.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map07.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map08.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/map1.ay",
+      "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "bytes": 2564,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/mint.ay",
+      "sha256": "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900",
+      "bytes": 6644,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/msgbox.ay",
+      "sha256": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791",
+      "bytes": 16804,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/mtwo.ay",
+      "sha256": "01511a6ef0844ad0ebb86096cde83e9e316c6819bfc5d611f11eacf0caa317c1",
+      "bytes": 2051,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/mwlk.ay",
+      "sha256": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7",
+      "bytes": 7845,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/pmap.ay",
+      "sha256": "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02",
+      "bytes": 65317,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/sint.ay",
+      "sha256": "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df",
+      "bytes": 201,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/stwo.ay",
+      "sha256": "c00348caa8d3dd002630b71c4daad7d0c8c89c543e47840de0da6554a722dbf0",
+      "bytes": 331,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/swlk.ay",
+      "sha256": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166",
+      "bytes": 786,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/tit1.ay",
+      "sha256": "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac",
+      "bytes": 14423,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/scratch/yang2.ay",
+      "sha256": "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0",
+      "bytes": 5,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/settings.json",
+      "sha256": "1137d9889aebb4e7337e0b681321d51e6136198271d72fb22c01c9f23bb4bed7",
+      "bytes": 38,
+      "mode": 384
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-modal-failed-r1/xvfb.log",
+      "sha256": "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690",
+      "bytes": 81,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/build-go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/build-inputs.sha256",
+      "sha256": "ffa0dc75b729b96ac7069030317a49d894c3dea08da9a7dbae7a0a905b985156",
+      "bytes": 20791,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/build-outputs.sha256",
+      "sha256": "d2a19f59fd05b8c1c0efd4251251f147f9857f6faa04c18268282d9b2dd371ca",
+      "bytes": 552,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/cpu-start.txt",
+      "sha256": "ecce984a7d0ed16772d93faf7c454e37bba3d761caba0bd02c0bb27747aba2eb",
+      "bytes": 164,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/cpu.pprof",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/executables.sha256",
+      "sha256": "c4b407c70f6fb94d85eee719b8338ce3d14ea49f703b0f2fb1cb3a68b9de9eae",
+      "bytes": 173,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/gui-check.log",
+      "sha256": "afe20012a8c8cf52bf8bde850db4f4c9c85e058545b0be99cb1a5526989dda0e",
+      "bytes": 272,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/load-start.txt",
+      "sha256": "ea9f7e97080c3449e6a9bf44de12c79e260e241935b57e9fa9468d6f51a2207f",
+      "bytes": 27,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/player.log",
+      "sha256": "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84",
+      "bytes": 308,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/save/xvfb-start.txt",
+      "sha256": "ef13896973dcb45d6f4ce7a31f35797e0dbcc0d5bea1135d228c97e3d86524ef",
+      "bytes": 314,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/gui-window-failed-r1/xvfb.log",
+      "sha256": "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690",
+      "bytes": 81,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/modal-diagnosis.json",
+      "sha256": "7c23c6ff6a6317864e5837ec5d4ade5b115613636b1c588fd62741baef53b26b",
+      "bytes": 410,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/sources/closeout-sample.py",
+      "sha256": "6e7aefcb74dd51b84aa4d752146ecba8a205028e0cc47f40893244d2dd6b17a8",
+      "bytes": 9761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/sources/gui-check.sh",
+      "sha256": "bf1ff1bc82470b271ad5a36d5db6740c8d819f3d922c359339dedfaf25f1163b",
+      "bytes": 6478,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/phase-closeout-r1/sources/player.sh",
+      "sha256": "adc00c4a72eabceb22f90378ef63512991cddade897b7be74ed724c515e26a7d",
+      "bytes": 66982,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/final.png",
+      "sha256": "4869a656e6b0759c4b77eb1d3731a404813e22a696d4af4e4b5faf468a2fef70",
+      "bytes": 62254,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/final.state",
+      "sha256": "4b55d17998e2fa05176fdf9c2a4deab2321c15d6fd79164d88bfde82d82c64ac",
+      "bytes": 244706,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/frame-150000000.png",
+      "sha256": "2dfa4315a89bbab928a898f1c63212edb941b1d7d95cfc7d833d524d4d37b881",
+      "bytes": 16492,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/frame-180000000.png",
+      "sha256": "8e0ecddaa9f13bee11edf449fce85500adf712bcf3f0b52c3bbdb500e7b44284",
+      "bytes": 60265,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/frame-190000000.png",
+      "sha256": "a43968bcaeddf9dba04bf5b980d73443ebadca2668ed335f1f2b8e403f6f57e0",
+      "bytes": 35398,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/frame-200000000.png",
+      "sha256": "7cd6c4e168c34a671d3f9664d1ba76de79af6942aa5c2eaca1973c1b04a5c9e3",
+      "bytes": 60144,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/frame-210000000.png",
+      "sha256": "74db3f5e3cea6c4fd89728ea5e499aa632dc08a421b8d571849668a7b772261e",
+      "bytes": 44972,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/frame-220000000.png",
+      "sha256": "7cd6c4e168c34a671d3f9664d1ba76de79af6942aa5c2eaca1973c1b04a5c9e3",
+      "bytes": 60144,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/frame-230000000.png",
+      "sha256": "465a006c8fa25554c01405511332de04274a733557937e8015deb646be1c63f9",
+      "bytes": 62340,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/frame-240000000.png",
+      "sha256": "a43968bcaeddf9dba04bf5b980d73443ebadca2668ed335f1f2b8e403f6f57e0",
+      "bytes": 35398,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/receipt.json",
+      "sha256": "22d2a0a9b55a23460569b76f665865995b00da45da2fa5a90f716c2781e68a0d",
+      "bytes": 32804,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/a.a",
+      "sha256": "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa",
+      "bytes": 3700,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/bumboo.ay",
+      "sha256": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb",
+      "bytes": 4084,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/cube.ay",
+      "sha256": "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65",
+      "bytes": 10998,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/enemy.ay",
+      "sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+      "bytes": 16856,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/gamedata.ay",
+      "sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+      "bytes": 2987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/man.ay",
+      "sha256": "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12",
+      "bytes": 22660,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/man14.egg",
+      "sha256": "fcd414c4a50816fe435b9cf15a39026cbb57b25fab3954f2fddaca0e81882c82",
+      "bytes": 13216,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map00.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map01.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map02.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map03.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map04.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map05.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map06.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map07.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map08.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/map1.ay",
+      "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "bytes": 2564,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/mint.ay",
+      "sha256": "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900",
+      "bytes": 6644,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/msgbox.ay",
+      "sha256": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791",
+      "bytes": 16804,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/mwlk.ay",
+      "sha256": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7",
+      "bytes": 7845,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/pmap.ay",
+      "sha256": "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02",
+      "bytes": 65317,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/sint.ay",
+      "sha256": "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df",
+      "bytes": 201,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/swlk.ay",
+      "sha256": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166",
+      "bytes": 786,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/tit1.ay",
+      "sha256": "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac",
+      "bytes": 14423,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/tit2.ay",
+      "sha256": "ff31a0a4916ee1b27a56f2f7da32ec06df3716b42f831b547ed5518586f64060",
+      "bytes": 7015,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/tit3.ay",
+      "sha256": "31b943254292a75df2ad9d0c54eaeff7eacae83fb0f411bae4cfa4e66dd1bdec",
+      "bytes": 29584,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/tit4.ay",
+      "sha256": "d12b77ead60f2a85033c89a99b8e444473f143413647735196f75685e24de14d",
+      "bytes": 14146,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/tit5.ay",
+      "sha256": "b4114a8c64d949cba71321adc9979270ce001250845eb685badea9ad77c06d9e",
+      "bytes": 13313,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/tit6v.ay",
+      "sha256": "2131ac054ffd0df4c0f6edff23a393be2cf0416b72b6bb43eedc5d4d844b4212",
+      "bytes": 56430,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/tit6x.ay",
+      "sha256": "f4a789dc46fffb2848566181d6a81130b45339d8850d5df34bb60407beff02b6",
+      "bytes": 12822,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-native-r1/scratch/yang2.ay",
+      "sha256": "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0",
+      "bytes": 5,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/final.png",
+      "sha256": "431c122de7a89c2001dd8d02abf2ceb1ea8debb4b66c7e98d4ee8876d5baf555",
+      "bytes": 1260526,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/final.state",
+      "sha256": "4b55d17998e2fa05176fdf9c2a4deab2321c15d6fd79164d88bfde82d82c64ac",
+      "bytes": 244706,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/frame-150000000.png",
+      "sha256": "1bba547a28080b772a36f894ea6c020508c3dd777a0b8722b9d42c66df1d831c",
+      "bytes": 203243,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/frame-180000000.png",
+      "sha256": "091d4867fea38f0148f61c8c053ee6883f5cec8ab5c8f2d2ccd7054be3110567",
+      "bytes": 1227292,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/frame-190000000.png",
+      "sha256": "65e10c0e295c846eeae466f9a4a8ffc677d95eeed7470f41f6a8708c9542b47a",
+      "bytes": 839829,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/frame-200000000.png",
+      "sha256": "b97c57c1ee53375a49afe2c0844f237c131d3a10d05c55cd8d007be93831c872",
+      "bytes": 1222551,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/frame-210000000.png",
+      "sha256": "68063ff2a040ce863e4b93ffceff833f2bd51342a24b457bf843e2696ff2aed3",
+      "bytes": 846513,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/frame-220000000.png",
+      "sha256": "b97c57c1ee53375a49afe2c0844f237c131d3a10d05c55cd8d007be93831c872",
+      "bytes": 1222551,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/frame-230000000.png",
+      "sha256": "01b3754af0b06a49b9c18158cbbf2b76b4c663e53ea7c0ecd886c55e679f15dc",
+      "bytes": 1263931,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/frame-240000000.png",
+      "sha256": "65e10c0e295c846eeae466f9a4a8ffc677d95eeed7470f41f6a8708c9542b47a",
+      "bytes": 839829,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/receipt.json",
+      "sha256": "71844a3205d3b81e9b4d8c1320b7a115bf08e9789309492ce3020b4337cbee80",
+      "bytes": 41731,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/a.a",
+      "sha256": "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa",
+      "bytes": 3700,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/bumboo.ay",
+      "sha256": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb",
+      "bytes": 4084,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/cube.ay",
+      "sha256": "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65",
+      "bytes": 10998,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/enemy.ay",
+      "sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+      "bytes": 16856,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/gamedata.ay",
+      "sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+      "bytes": 2987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/man.ay",
+      "sha256": "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12",
+      "bytes": 22660,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/man14.egg",
+      "sha256": "fcd414c4a50816fe435b9cf15a39026cbb57b25fab3954f2fddaca0e81882c82",
+      "bytes": 13216,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map00.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map01.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map02.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map03.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map04.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map05.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map06.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map07.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map08.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/map1.ay",
+      "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "bytes": 2564,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/mint.ay",
+      "sha256": "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900",
+      "bytes": 6644,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/msgbox.ay",
+      "sha256": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791",
+      "bytes": 16804,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/mwlk.ay",
+      "sha256": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7",
+      "bytes": 7845,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/pmap.ay",
+      "sha256": "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02",
+      "bytes": 65317,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/sint.ay",
+      "sha256": "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df",
+      "bytes": 201,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/swlk.ay",
+      "sha256": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166",
+      "bytes": 786,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/tit1.ay",
+      "sha256": "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac",
+      "bytes": 14423,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/tit2.ay",
+      "sha256": "ff31a0a4916ee1b27a56f2f7da32ec06df3716b42f831b547ed5518586f64060",
+      "bytes": 7015,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/tit3.ay",
+      "sha256": "31b943254292a75df2ad9d0c54eaeff7eacae83fb0f411bae4cfa4e66dd1bdec",
+      "bytes": 29584,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/tit4.ay",
+      "sha256": "d12b77ead60f2a85033c89a99b8e444473f143413647735196f75685e24de14d",
+      "bytes": 14146,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/tit5.ay",
+      "sha256": "b4114a8c64d949cba71321adc9979270ce001250845eb685badea9ad77c06d9e",
+      "bytes": 13313,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/tit6v.ay",
+      "sha256": "2131ac054ffd0df4c0f6edff23a393be2cf0416b72b6bb43eedc5d4d844b4212",
+      "bytes": 56430,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/tit6x.ay",
+      "sha256": "f4a789dc46fffb2848566181d6a81130b45339d8850d5df34bb60407beff02b6",
+      "bytes": 12822,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/replays/phase-closeout-hd-r1/scratch/yang2.ay",
+      "sha256": "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0",
+      "bytes": 5,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/01-display.png",
+      "sha256": "26891f55af7e8b2f7bc7bc507538a2fd5a7ced96be97573352c53fa5c7a73575",
+      "bytes": 760428,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/02-sound.png",
+      "sha256": "10be2bb79dc48d74ec9315630b9152dcd1d9b73da90099f1e61b311c258b6ae9",
+      "bytes": 763677,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/03-main-menu.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/04-confirm.png",
+      "sha256": "4562adc10e6d86d8c2c4a450e783d0d75b4a5f3e8a6733d625791a1392190b98",
+      "bytes": 925904,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/05-map.png",
+      "sha256": "7a9df3935804a32246dccfddacc707ba958d151f8f1e16781e220884cff26dab",
+      "bytes": 1932181,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/build-go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/build-inputs.sha256",
+      "sha256": "97b1b26d8687c59c1e8dc4a28ef42447480ab467fba3ca24ad8b60e7bbb169b8",
+      "bytes": 20871,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/build-outputs.sha256",
+      "sha256": "c8a5994f85364fa0ca1a94403fc08a0728975481d5283f2b6828aaf299e85d0a",
+      "bytes": 552,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/cpu-start.txt",
+      "sha256": "4cde6ba9bea076851e8eae9b94b37c285c7a9097feea7f375a4601be0fb0910e",
+      "bytes": 164,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/cpu.pprof",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/executables.sha256",
+      "sha256": "ae4e8e7ae1a54d44643455e077f275ba7d4ca4445d5f33435054a7375fed488b",
+      "bytes": 173,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/font-caoshu.png",
+      "sha256": "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3",
+      "bytes": 895875,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/font-lishu.png",
+      "sha256": "123c3e4432316a7446da0cdd2ebfb68776196164acde78b4d450250392c8657d",
+      "bytes": 894632,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/font-noto.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/gui-check.log",
+      "sha256": "94e802a39c295393b777dc22c5509495fb6a628280cbbb954895d5430869aea1",
+      "bytes": 29193,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/gui-state.json",
+      "sha256": "37a6199f0e2f9c97b2d97f15a123df85afe391e6316a9d6fcb6ce734abd74063",
+      "bytes": 46037,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/intro-draw.jsonl",
+      "sha256": "41f214f66174baebdd89fc9fa0a439f4f1166e9fd9b7fe0663fb483b43ec9cf2",
+      "bytes": 130790,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/load-start.txt",
+      "sha256": "88f837011eec5cb88d234d8084e500f034dded24546bd124f0ef63d73bbc046f",
+      "bytes": 25,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/player.log",
+      "sha256": "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84",
+      "bytes": 308,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-accepted.json",
+      "sha256": "4d9e15436b9ab887f194c02fe170271c6e0b900ec8878d307f89430925169fbc",
+      "bytes": 45582,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-accepted.png",
+      "sha256": "f955bce1261c7b29bab447d6365154be85ab810ef7e594a0f2f1ca28294de2b1",
+      "bytes": 1967214,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-caoshu.json",
+      "sha256": "2bba8ca8f1d8451a10af199d9719ab92d59c6f19b8ec90b62be660de108bb075",
+      "bytes": 40473,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-caoshu.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-4.json",
+      "sha256": "b0aabdc8064e4875d98bf5244791ebce330ea238bec595fd8b5a10d543aba57e",
+      "bytes": 40880,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-4.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-5.json",
+      "sha256": "a702112f778b783f0fd97320e5a221a17defcf26a425994bbe2b2d5f26d59c14",
+      "bytes": 41260,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-5.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-6.json",
+      "sha256": "45e59e539160c1ff41cca31e527c1de49827434f3bfc03bddb99fc055e299d1a",
+      "bytes": 41665,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-6.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-7.json",
+      "sha256": "058813374fbe81167b8e214dc432da17833aa42c21a0bee22f31d4362ac16dad",
+      "bytes": 42052,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-7.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-8.json",
+      "sha256": "c837f2e1084c7eb3c5cb4e8dc71546784b4dde8ec64692739e905b2c79c275cf",
+      "bytes": 42442,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-8.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-9.json",
+      "sha256": "defea6faee135436a30644462763772ac97bcaa2d22cc50c6e1552a4625ca089",
+      "bytes": 42823,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-cleared-digit-9.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-edited-one.json",
+      "sha256": "4f3e2ebf521b8771a17899bbf098cb2a7e6cbb724cd5fa4553a7f501cc277088",
+      "bytes": 43407,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-edited-one.png",
+      "sha256": "55a9791d9d8bfaa35c8fdc19caee1247165f7a097b4b8e7432a556efa6341d2a",
+      "bytes": 1484872,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-4.json",
+      "sha256": "c38e7cd3d8378d958f62570f7b829c663cf9073d20b9d726def721fba1ae8101",
+      "bytes": 40681,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-4.png",
+      "sha256": "70ba85e3eead2d6c120122edcf51a3f4f6be378c0c22a2812f37b41d8771e44e",
+      "bytes": 1484965,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-5.json",
+      "sha256": "aee5db523ab539cdd4f46ee71322ef787c625a249889e564dbf0496109ae729d",
+      "bytes": 41079,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-5.png",
+      "sha256": "98a91b2b8647144185b5117c9e9b197a0b7bb386a3594cc8fa6d91b9c3dc81d2",
+      "bytes": 1485157,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-6.json",
+      "sha256": "34c21f1e9dfcd3dba58cec83c1574a3ec5eecc51f5935676aec0f5046e2a231e",
+      "bytes": 41469,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-6.png",
+      "sha256": "6f0729cd8ff95de6bbbc35a858c287b10ccd86bee8e65e9ffbe1f2ce7be7bf3b",
+      "bytes": 1485266,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-7.json",
+      "sha256": "2c2e2ef48c2c678105152467fccfec58469c55422527a8e8b808754eae73d7d5",
+      "bytes": 41849,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-7.png",
+      "sha256": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db",
+      "bytes": 1484726,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-8.json",
+      "sha256": "f00077cf2ca503ea62916e86126d6bda4b0cbcfd2a6cfed139de48e2c0a759e4",
+      "bytes": 42246,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-8.png",
+      "sha256": "6736e5891aa668b144c4fb428a16efbf187811dc51967243564210cac81e9154",
+      "bytes": 1485297,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-9.json",
+      "sha256": "5e8a1aa0b8a45a202e386319f775120a040d1a4d5d282fd9710850c0a36501ec",
+      "bytes": 42635,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-digit-9.png",
+      "sha256": "e332120f2e02570a739bc32ca015b7423c5f02700015bf5a1b70533238518650",
+      "bytes": 1485219,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-ten.json",
+      "sha256": "700e055dec045d234265f2ef08c08497fd3a94c0c64685a5f97041bb39a78895",
+      "bytes": 43213,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-input-ten.png",
+      "sha256": "6b268fc35d4a37829068ae17c590d164e35231f00e61c0b8712be0caed81c3b7",
+      "bytes": 1485389,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-lishu.json",
+      "sha256": "c324f32a3f805e3b64a8361dfd10919f204ea44e1dd7252c45874448550d0cc4",
+      "bytes": 40488,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-lishu.png",
+      "sha256": "1442ac6b50f254b9dc2b831bef430e887487516f2d4c25d879f14d6a3d109795",
+      "bytes": 1476206,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-noto.json",
+      "sha256": "7013ec0a16b7b875578f733033aafc65b699c866bee40f5841f475508bbfdc58",
+      "bytes": 40469,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/recruitment-noto.png",
+      "sha256": "f5e09d538e3c772b8182ee2be54a03e5076e322de3a43a660199ba8d39da4ba2",
+      "bytes": 1481896,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/save/xvfb-start.txt",
+      "sha256": "b645c33774cfa01bcc19191b798d46b2dac9ee44856175d069007eb689721dca",
+      "bytes": 314,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/a.a",
+      "sha256": "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa",
+      "bytes": 3700,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/bumboo.ay",
+      "sha256": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb",
+      "bytes": 4084,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/cube.ay",
+      "sha256": "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65",
+      "bytes": 10998,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/enemy.ay",
+      "sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+      "bytes": 16856,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/gamedata.ay",
+      "sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+      "bytes": 2987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/live2.ay",
+      "sha256": "b854b04f3b0d3620adc37e3adb498cbe3ae710f007766695f40f4065ebde32eb",
+      "bytes": 11480,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/man.ay",
+      "sha256": "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12",
+      "bytes": 22660,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/man02.egg",
+      "sha256": "b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad",
+      "bytes": 13216,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map00.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map01.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map02.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map03.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map04.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map05.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map06.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map07.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map08.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/map1.ay",
+      "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "bytes": 2564,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/mint.ay",
+      "sha256": "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900",
+      "bytes": 6644,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/msgbox.ay",
+      "sha256": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791",
+      "bytes": 16804,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/mtwo.ay",
+      "sha256": "01511a6ef0844ad0ebb86096cde83e9e316c6819bfc5d611f11eacf0caa317c1",
+      "bytes": 2051,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/mwlk.ay",
+      "sha256": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7",
+      "bytes": 7845,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/pmap.ay",
+      "sha256": "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02",
+      "bytes": 65317,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/sint.ay",
+      "sha256": "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df",
+      "bytes": 201,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/stwo.ay",
+      "sha256": "c00348caa8d3dd002630b71c4daad7d0c8c89c543e47840de0da6554a722dbf0",
+      "bytes": 331,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/swlk.ay",
+      "sha256": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166",
+      "bytes": 786,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/tit1.ay",
+      "sha256": "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac",
+      "bytes": 14423,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/scratch/yang2.ay",
+      "sha256": "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0",
+      "bytes": 5,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/settings.json",
+      "sha256": "1137d9889aebb4e7337e0b681321d51e6136198271d72fb22c01c9f23bb4bed7",
+      "bytes": 38,
+      "mode": 384
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-r1/xvfb.log",
+      "sha256": "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690",
+      "bytes": 81,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/01-display.png",
+      "sha256": "36483096bc6ff20431781cc5ad14901b4968502abfbfe0ae2eb231a54a590aa6",
+      "bytes": 758721,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/02-sound.png",
+      "sha256": "2ff814a28b7ada35712ffac38d788d1cc979475a9f67630b4dbf6b93af027a99",
+      "bytes": 761942,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/03-main-menu.png",
+      "sha256": "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3",
+      "bytes": 895875,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/04-loaded-map.png",
+      "sha256": "e64e22323c97cc00f350925154c9aa6272d956a27823011906b880b09f5df628",
+      "bytes": 1913089,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/05-loaded-character.png",
+      "sha256": "4914ca8b43ca7a5db922bde8c0e804207039b0ad370f30c2ffce996afd8860d4",
+      "bytes": 1593092,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/06-returned-map.png",
+      "sha256": "1e9806daaa4cf54c24f6191eb758ef614778d7ea0100e4431ea08ac577f90360",
+      "bytes": 1913020,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/build-go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/build-inputs.sha256",
+      "sha256": "97b1b26d8687c59c1e8dc4a28ef42447480ab467fba3ca24ad8b60e7bbb169b8",
+      "bytes": 20871,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/build-outputs.sha256",
+      "sha256": "c8a5994f85364fa0ca1a94403fc08a0728975481d5283f2b6828aaf299e85d0a",
+      "bytes": 552,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/cpu-end.txt",
+      "sha256": "390b408fed56cd6b9c8258272de2f9de118da6196725dc8c8fe7da9ca103359d",
+      "bytes": 177,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/cpu-start.txt",
+      "sha256": "dda65fed21d056d67e6effdc1b6ac7c6b8b2173f286d8f013dbaf2a64b9b26d4",
+      "bytes": 176,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/cpu.pprof",
+      "sha256": "4ba14ac169fafe3072acf963f71a2104426b525ddf2f267a50be5062ac1392b6",
+      "bytes": 40272,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/executables.sha256",
+      "sha256": "c4b407c70f6fb94d85eee719b8338ce3d14ea49f703b0f2fb1cb3a68b9de9eae",
+      "bytes": 173,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/font-preference-verified.png",
+      "sha256": "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3",
+      "bytes": 895875,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/gui-check.log",
+      "sha256": "fe98490a8a697135f4f78d5c1aa1163a1cbdbe2319bd9f638ec78cc87612b195",
+      "bytes": 388,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/gui-final.json",
+      "sha256": "0e4092fc15208ba0645d63f7b554aaafcbbb6f253ceb30410343861fc7850fa5",
+      "bytes": 32068,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/gui-final.state",
+      "sha256": "f2e31cd310994711ebd37c07ff9270d3b88d0b9ff81581e3d43dbcc55674ee0c",
+      "bytes": 178082,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/gui-input-receipt.json",
+      "sha256": "75c9c621997b331c4cadd31b1878a3ad419ef3707c2577d31ff3164d137040e7",
+      "bytes": 358433,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/gui-state.json",
+      "sha256": "7990805862041269579e4729a37f680a7283fa7ff64b787b3cd3d9fade2e1831",
+      "bytes": 32049,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/intro-draw.jsonl",
+      "sha256": "da313db4dca922dff6c96552360800bc0c60df38acbbd7793cafbc766b4d812b",
+      "bytes": 13077,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/load-end.txt",
+      "sha256": "eee465f6c6589fd19ad6d66963680ce338e0ae909f0876ac83fc86ca7d3d2c49",
+      "bytes": 26,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/load-start.txt",
+      "sha256": "9d6e3470958805aee8f96afd13edc3f0c10065cfc16abe7b1f5a933f93a91080",
+      "bytes": 26,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/player.log",
+      "sha256": "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84",
+      "bytes": 308,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/xvfb-end.txt",
+      "sha256": "53cac26cd6a6e6b551a76009120662a72e452b752cde811b4862c336b9504c50",
+      "bytes": 319,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/reload/xvfb-start.txt",
+      "sha256": "5bedb0a75a9119bf8f77bd695546fc1454f8efc4eae0b647edc3641f0ff7e39c",
+      "bytes": 319,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/01-display.png",
+      "sha256": "26891f55af7e8b2f7bc7bc507538a2fd5a7ced96be97573352c53fa5c7a73575",
+      "bytes": 760428,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/02-sound.png",
+      "sha256": "10be2bb79dc48d74ec9315630b9152dcd1d9b73da90099f1e61b311c258b6ae9",
+      "bytes": 763677,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/03-main-menu.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/04-confirm.png",
+      "sha256": "4562adc10e6d86d8c2c4a450e783d0d75b4a5f3e8a6733d625791a1392190b98",
+      "bytes": 925904,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/05-map.png",
+      "sha256": "7a9df3935804a32246dccfddacc707ba958d151f8f1e16781e220884cff26dab",
+      "bytes": 1932181,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/06-character.png",
+      "sha256": "4914ca8b43ca7a5db922bde8c0e804207039b0ad370f30c2ffce996afd8860d4",
+      "bytes": 1593092,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/07-return-map.png",
+      "sha256": "e372fd530aac2dc003f89c4cdb85ea839cf34d6d5fa1b1c119512e0838b5a994",
+      "bytes": 1932083,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/08-system-menu.png",
+      "sha256": "7c1b9502003b4921e8de81affbcb84d4cc6e7c1d3108151d6b1d81e2265d0537",
+      "bytes": 1531233,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/09-moved.png",
+      "sha256": "e64e22323c97cc00f350925154c9aa6272d956a27823011906b880b09f5df628",
+      "bytes": 1913089,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/10-character-again.png",
+      "sha256": "4914ca8b43ca7a5db922bde8c0e804207039b0ad370f30c2ffce996afd8860d4",
+      "bytes": 1593092,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/11-final-map.png",
+      "sha256": "1e9806daaa4cf54c24f6191eb758ef614778d7ea0100e4431ea08ac577f90360",
+      "bytes": 1913020,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/12-save-confirm.png",
+      "sha256": "b9124a7935fb963a8654ed4c54845f13734e08b398a5a11a8549f07ed26df17b",
+      "bytes": 1514810,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/13-saved-map.png",
+      "sha256": "1e9806daaa4cf54c24f6191eb758ef614778d7ea0100e4431ea08ac577f90360",
+      "bytes": 1913020,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/14-quit-focused.png",
+      "sha256": "e4a075d7411c5588e5fa2896651d949b4fb56da45da364f15ed18db2c35e45d3",
+      "bytes": 1509283,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/15-quit-confirm.png",
+      "sha256": "184cca9743c24fde3f01c265038e159f3ec9486c8f5856aa132ee779ddf2a4c8",
+      "bytes": 1515345,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/build-go-version.txt",
+      "sha256": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444",
+      "bytes": 33,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/build-inputs.sha256",
+      "sha256": "ffa0dc75b729b96ac7069030317a49d894c3dea08da9a7dbae7a0a905b985156",
+      "bytes": 20791,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/build-outputs.sha256",
+      "sha256": "d2a19f59fd05b8c1c0efd4251251f147f9857f6faa04c18268282d9b2dd371ca",
+      "bytes": 552,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/cpu-end.txt",
+      "sha256": "3587321bb9c0a8c34b3b43b570b7131449752f1887ed9a52001ea3f36aa05101",
+      "bytes": 176,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/cpu-start.txt",
+      "sha256": "314952eb979fbc26eb6e1b9cef25176378f5df3c1f6106b1903380ae37cd5942",
+      "bytes": 163,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/cpu.pprof",
+      "sha256": "653735176491d3f97199199da9683c464fb796673c8778702b9f4f07e743cd63",
+      "bytes": 45948,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/executables.sha256",
+      "sha256": "c4b407c70f6fb94d85eee719b8338ce3d14ea49f703b0f2fb1cb3a68b9de9eae",
+      "bytes": 173,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/font-caoshu.png",
+      "sha256": "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3",
+      "bytes": 895875,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/font-lishu.png",
+      "sha256": "123c3e4432316a7446da0cdd2ebfb68776196164acde78b4d450250392c8657d",
+      "bytes": 894632,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/font-noto.png",
+      "sha256": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843",
+      "bytes": 896111,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/gui-check.log",
+      "sha256": "e5393546bb1919063eba8aa9312d664587dde3dcc760ab103e40b75a3e1bf181",
+      "bytes": 765,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/gui-final.json",
+      "sha256": "136a89920bf5cad7083a484f6dd77971792796ce907c7d9539a2a8f3f1993ea2",
+      "bytes": 40169,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/gui-final.state",
+      "sha256": "dc5120eb3cb616ce905ef96f8216d2017d357825ce92c02fe8f4757d3eb1ec7d",
+      "bytes": 171745,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/gui-input-receipt.json",
+      "sha256": "eae619bfc0e98be39b58f63d3a075552968e2eebfadd6fd18276f3bf1107af19",
+      "bytes": 2039142,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/gui-state.json",
+      "sha256": "2e3b0e21dcfba8f9fbd30547b66be7e19f5c4950a95a07a18f7764f1dc2a8384",
+      "bytes": 40088,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/intro-draw.jsonl",
+      "sha256": "b394c22480a99130e9cbf8b9af1d89c7ed00a9ef39ce14cb757937e9926cf245",
+      "bytes": 35786,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/load-end.txt",
+      "sha256": "51fe5312c28328321b041e7f82fd6aa6508ec4d0499a431d0def15d8bb3940ca",
+      "bytes": 26,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/load-start.txt",
+      "sha256": "2b79a28b8981519fdf1874ccb57678800c1550a22b51495389c5b8bd75b0b268",
+      "bytes": 25,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/player.log",
+      "sha256": "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84",
+      "bytes": 308,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/saved.json",
+      "sha256": "f802d612825537f06ae260258d615f4465bf3494b48939a6586748f20e82f2f6",
+      "bytes": 43848,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/xvfb-end.txt",
+      "sha256": "5bedb0a75a9119bf8f77bd695546fc1454f8efc4eae0b647edc3641f0ff7e39c",
+      "bytes": 319,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/save/xvfb-start.txt",
+      "sha256": "fb49f51d8ab07c0337aed862db6789d3d71f903aba9ba4c39994ae96f0dc9ecc",
+      "bytes": 314,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/a.a",
+      "sha256": "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa",
+      "bytes": 3700,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/bumboo.ay",
+      "sha256": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb",
+      "bytes": 4084,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/cube.ay",
+      "sha256": "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65",
+      "bytes": 10998,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/enemy.ay",
+      "sha256": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd",
+      "bytes": 16856,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/gamedata.ay",
+      "sha256": "29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359",
+      "bytes": 2987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/man.ay",
+      "sha256": "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12",
+      "bytes": 22660,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/man05.egg",
+      "sha256": "3a07ad1144f283fb75494872ccab3796e75afaa04c1ff1a0ae101541f8d99c71",
+      "bytes": 13216,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/man22.egg",
+      "sha256": "2b29ec53671ced2f114a040ebd27521393ab65e106ed85d17624b0d1272775e0",
+      "bytes": 13216,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map00.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map01.ay",
+      "sha256": "ee5d911f5099f489d54d0ecfbb375de831eebec1e7708f69341bae8d75b7f40d",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map02.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map03.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map04.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map05.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map06.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map07.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map08.ay",
+      "sha256": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd",
+      "bytes": 5761,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/map1.ay",
+      "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "bytes": 2564,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/mint.ay",
+      "sha256": "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900",
+      "bytes": 6644,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/msgbox.ay",
+      "sha256": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791",
+      "bytes": 16804,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/mwlk.ay",
+      "sha256": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7",
+      "bytes": 7845,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/pmap.ay",
+      "sha256": "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02",
+      "bytes": 65317,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/sint.ay",
+      "sha256": "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df",
+      "bytes": 201,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/swlk.ay",
+      "sha256": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166",
+      "bytes": 786,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/tit1.ay",
+      "sha256": "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac",
+      "bytes": 14423,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/scratch/yang2.ay",
+      "sha256": "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0",
+      "bytes": 5,
+      "mode": 420
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/settings.json",
+      "sha256": "1137d9889aebb4e7337e0b681321d51e6136198271d72fb22c01c9f23bb4bed7",
+      "bytes": 38,
+      "mode": 384
+    },
+    {
+      "path": "workplace/player/gui/phase-closeout-core-r1/xvfb.log",
+      "sha256": "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690",
+      "bytes": 81,
+      "mode": 420
+    }
+  ],
+  "objects": {
+    "672a221b5e12f9499fa6680ecc37547f7e9ca3dbf2f438c6d32eef727fcd214c": {
+      "file": "672a221b5e12f9499fa6680ecc37547f7e9ca3dbf2f438c6d32eef727fcd214c.gz",
+      "stored_sha256": "5fb680e539b35964b4fe09b6f9dcf74a1e727ed5a6e1aefb0619c541a04e9221"
+    },
+    "6b7664629ffd9efe6f50b9a23484b8a90d0cae047a29a820513e332c1801f6b3": {
+      "file": "6b7664629ffd9efe6f50b9a23484b8a90d0cae047a29a820513e332c1801f6b3.gz",
+      "stored_sha256": "a30a714f7a015ce9dc1151bf19cdaf2621e6575d50548391a66be4db63898984"
+    },
+    "027be0ea17953f680ea143aa5aaeabb22e65107ba2586806991ab2a4dcd041c3": {
+      "file": "027be0ea17953f680ea143aa5aaeabb22e65107ba2586806991ab2a4dcd041c3.gz",
+      "stored_sha256": "928502470025bc3a7ada6a848e5d5ee4165f406c24cf233b039a2bb1aee4c418"
+    },
+    "af9693743f5ef91c22c989d0d85f2510b25f9d868371d4a3b10ef8820175810b": {
+      "file": "af9693743f5ef91c22c989d0d85f2510b25f9d868371d4a3b10ef8820175810b.gz",
+      "stored_sha256": "5ba73257054ede6b277e33d1691aec0abf099de01bbad442ed9f13df1a76f6f6"
+    },
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
+      "file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.gz",
+      "stored_sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    "d429e8185010c2dc40ff96500520dab7ec7d00a417027544634f16ef46fbd63a": {
+      "file": "d429e8185010c2dc40ff96500520dab7ec7d00a417027544634f16ef46fbd63a.gz",
+      "stored_sha256": "86539d04f04ed26ec06e9772f0a3c895e89e79fb60115dd35b6aa80c9b80a6b7"
+    },
+    "321d8ddd8b2e61ec9e5e6c23a7450e76d3e5e38095eb8a402dd164e091cd17b7": {
+      "file": "321d8ddd8b2e61ec9e5e6c23a7450e76d3e5e38095eb8a402dd164e091cd17b7.gz",
+      "stored_sha256": "ce26613512476531f9068f15a213c061862dfd0a935a0585117df217fd993da4"
+    },
+    "caee8c62409581be544bfd1aaa8093c4b627d017aa6ba975dad0f01501bd010a": {
+      "file": "caee8c62409581be544bfd1aaa8093c4b627d017aa6ba975dad0f01501bd010a.gz",
+      "stored_sha256": "1c1a0d5a8536be9072ae9673d714efee4d4493ff26b8f4aba693bc1c5b3b9bae"
+    },
+    "99be01d2543354594a4446c437dfacc0f741b65bf0b0656f86739f83ec3cde81": {
+      "file": "99be01d2543354594a4446c437dfacc0f741b65bf0b0656f86739f83ec3cde81.gz",
+      "stored_sha256": "90f49e717f652bdb0cf42b95f5b89d7cf2db26f525b3d1cdc24589c9d6181390"
+    },
+    "99d1d8a3288d4f627c466c09f9eda1ce7d3702619048f1e541c04797b1a0c66d": {
+      "file": "99d1d8a3288d4f627c466c09f9eda1ce7d3702619048f1e541c04797b1a0c66d.gz",
+      "stored_sha256": "9320fe0a114a6e3b87590444eb00be61d1352e0539bb1f35b0756474fd51b168"
+    },
+    "fd5375bcb60695df737da1ee1724550d268e949ac126f0cd3a7b6fb12e2027e8": {
+      "file": "fd5375bcb60695df737da1ee1724550d268e949ac126f0cd3a7b6fb12e2027e8.gz",
+      "stored_sha256": "3fac30b54d56f39b6586b9c8186d9884a7182626179b55e36379ff443dc16ace"
+    },
+    "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444": {
+      "file": "07b0d66d21bcdfdc8456adcb17203f3af8656dc11549da62e6940f99b8d45444.gz",
+      "stored_sha256": "051d2333b09a0b501f8566ba1233a3770ff32feaa5e59109cffb8d73394918e6"
+    },
+    "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690": {
+      "file": "e2861dbf17c9cb74d57668ceaa0ec8111c014cd26d10d2d0dffdf37188dac690.gz",
+      "stored_sha256": "8f6a99240553be761a509b08f30006d0707c7820bb0b5fdef7f87dada2d8fe75"
+    },
+    "8c9f12fc37ab48f1a038f5558edfc5a40f5b960e56fb0abf5d17a97ab4e1f11b": {
+      "file": "8c9f12fc37ab48f1a038f5558edfc5a40f5b960e56fb0abf5d17a97ab4e1f11b.gz",
+      "stored_sha256": "865c7a707bc64ed63f9ffb1b0d9ccc3d13bb15419bc8b267ac0db94bb9507374"
+    },
+    "0ca706bb58816112fa233d33e433704656f586f0067063e18684010e425894b3": {
+      "file": "0ca706bb58816112fa233d33e433704656f586f0067063e18684010e425894b3.gz",
+      "stored_sha256": "735d5eb5e1a85025d0769c724dd872e0934575e046790af9376c8c9d7a59cfd5"
+    },
+    "35a70ddb42ef32c0f9821a5b60d202c592d3a361768ac490235b3756e03a283b": {
+      "file": "35a70ddb42ef32c0f9821a5b60d202c592d3a361768ac490235b3756e03a283b.gz",
+      "stored_sha256": "a2b4de8db73491f5ca08fee56941122ce0f6106480ed25c61bc6ba1a22d1d04c"
+    },
+    "26891f55af7e8b2f7bc7bc507538a2fd5a7ced96be97573352c53fa5c7a73575": {
+      "file": "26891f55af7e8b2f7bc7bc507538a2fd5a7ced96be97573352c53fa5c7a73575.gz",
+      "stored_sha256": "f43734ed298e616ea3aacba4c5b4290c0c973a14a649e816e4bc0777c5e3de9d"
+    },
+    "10be2bb79dc48d74ec9315630b9152dcd1d9b73da90099f1e61b311c258b6ae9": {
+      "file": "10be2bb79dc48d74ec9315630b9152dcd1d9b73da90099f1e61b311c258b6ae9.gz",
+      "stored_sha256": "d6609e8613f29f6ec35c55ae1c527d0db97b1441af01ed5298637a7881f2669e"
+    },
+    "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843": {
+      "file": "3ad6953696a248b7a1fc051e6580730a090220abfc9d2714ac5f860aabc3f843.gz",
+      "stored_sha256": "5bfc3900bda6ad9b58e923c54a8290fcc0816b5f84f4b8a9f6215e4fb80c3f5a"
+    },
+    "4562adc10e6d86d8c2c4a450e783d0d75b4a5f3e8a6733d625791a1392190b98": {
+      "file": "4562adc10e6d86d8c2c4a450e783d0d75b4a5f3e8a6733d625791a1392190b98.gz",
+      "stored_sha256": "24ee37df064dba8b354c6e7e9e066143182377d23aaf9067e186194b8f5c7871"
+    },
+    "7a9df3935804a32246dccfddacc707ba958d151f8f1e16781e220884cff26dab": {
+      "file": "7a9df3935804a32246dccfddacc707ba958d151f8f1e16781e220884cff26dab.gz",
+      "stored_sha256": "1b109f63ac192ab4d5b83e6ac1d898b2b36742aa213d378e9ff2b2804e3c84a5"
+    },
+    "ffa0dc75b729b96ac7069030317a49d894c3dea08da9a7dbae7a0a905b985156": {
+      "file": "ffa0dc75b729b96ac7069030317a49d894c3dea08da9a7dbae7a0a905b985156.gz",
+      "stored_sha256": "1340126e061b35f294311727fba5b1e3f1210761409984b5201b8ee7a55aa08b"
+    },
+    "d2a19f59fd05b8c1c0efd4251251f147f9857f6faa04c18268282d9b2dd371ca": {
+      "file": "d2a19f59fd05b8c1c0efd4251251f147f9857f6faa04c18268282d9b2dd371ca.gz",
+      "stored_sha256": "c6219650f76284ea45130d58458b8c63ccd164c06e1bdcf214799c53cd0a4042"
+    },
+    "4c2d6ecd62fa274159073495b8df1132e431943d7f7475c14ebb6fa9c4cca6f6": {
+      "file": "4c2d6ecd62fa274159073495b8df1132e431943d7f7475c14ebb6fa9c4cca6f6.gz",
+      "stored_sha256": "b2684db27cdc8980c2a7efc5b0be1108b8b91e5d00512206e88ebf72d391b8fb"
+    },
+    "c4b407c70f6fb94d85eee719b8338ce3d14ea49f703b0f2fb1cb3a68b9de9eae": {
+      "file": "c4b407c70f6fb94d85eee719b8338ce3d14ea49f703b0f2fb1cb3a68b9de9eae.gz",
+      "stored_sha256": "c941a6c7f48aee819394667fd4fd26beba037f0d1714f68c5ff64b2adc6ac1ff"
+    },
+    "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3": {
+      "file": "b9c5258e1e842f8dc3cae74ab93067196156c3211feebbc111456766990e04d3.gz",
+      "stored_sha256": "8efb4289e86d902bfd18d7e14686889a70d476645453579929b13f0f14af74d6"
+    },
+    "123c3e4432316a7446da0cdd2ebfb68776196164acde78b4d450250392c8657d": {
+      "file": "123c3e4432316a7446da0cdd2ebfb68776196164acde78b4d450250392c8657d.gz",
+      "stored_sha256": "831cd4fc7717da66d92b95ec04b075191d250958f3dae494390820380d280556"
+    },
+    "35099b7ff0e117aadc46576bd8a91f6d0c79fc1648870cc356908b83e9d0841c": {
+      "file": "35099b7ff0e117aadc46576bd8a91f6d0c79fc1648870cc356908b83e9d0841c.gz",
+      "stored_sha256": "c222220c03b05ac3d61b8d5374660807823983197213e7c62e0a2bde74a8984f"
+    },
+    "e1dc34db5ab8b59a598a5f2a0e83bc5dcca40dd8f36ea2291cc8e0f6ab928100": {
+      "file": "e1dc34db5ab8b59a598a5f2a0e83bc5dcca40dd8f36ea2291cc8e0f6ab928100.gz",
+      "stored_sha256": "d30b06f37c43ba28500759ceeadbb626c6cd5cbeddbb226112d02da8326521bc"
+    },
+    "11fb12a08d1ab85f7efb579099a8319300b5cf31b59708f4f4ad8445541e2f69": {
+      "file": "11fb12a08d1ab85f7efb579099a8319300b5cf31b59708f4f4ad8445541e2f69.gz",
+      "stored_sha256": "d00c35c6895b65b4555a8bde814c67c359d14c81f111d9a53d722a7ba42fa49b"
+    },
+    "e75ea238f8a690fe2fbbb54ea6b9711d9affd2dfb836e49f9eab2bb2427fd278": {
+      "file": "e75ea238f8a690fe2fbbb54ea6b9711d9affd2dfb836e49f9eab2bb2427fd278.gz",
+      "stored_sha256": "394010a79c1d82e1f72b098bdd4108e12c953408916399ac5212c2937a2331ea"
+    },
+    "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84": {
+      "file": "c88768feee905764cb55e41504dbf3278dc33053d51f54df91fca92a90226f84.gz",
+      "stored_sha256": "cdd1eb04ca21c3aee15daeb163670fa67c231159911f6f4b927a869354465612"
+    },
+    "2bdb1c1beacbe2ce06fb6d223a1e047808cf50d8dc47e6c0b5e02c5f058275da": {
+      "file": "2bdb1c1beacbe2ce06fb6d223a1e047808cf50d8dc47e6c0b5e02c5f058275da.gz",
+      "stored_sha256": "a62337a931941d2d4daca270950a43d780c69c948bf9225f7cb700f07d3d1ca6"
+    },
+    "f955bce1261c7b29bab447d6365154be85ab810ef7e594a0f2f1ca28294de2b1": {
+      "file": "f955bce1261c7b29bab447d6365154be85ab810ef7e594a0f2f1ca28294de2b1.gz",
+      "stored_sha256": "94e0bb565b8539f9120e637c7658434cfe12afc1b4d53b57556b44023bd42214"
+    },
+    "6f1cc1efd6af7f739ad03b0f06d5464fa8c5514f1b466d6414df58d2368a61dc": {
+      "file": "6f1cc1efd6af7f739ad03b0f06d5464fa8c5514f1b466d6414df58d2368a61dc.gz",
+      "stored_sha256": "ee27733a3168b5c212a1d172811c78a004c7d9e43d8d48f7981ab53f9b40b1c1"
+    },
+    "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db": {
+      "file": "d97fd2165bae593ed0a4b25b578490ac828258470f50c13a11f018d6f55ac6db.gz",
+      "stored_sha256": "3105a632a4a1187d1355e418740f70b5756b59b7b3ae16edd3b76dcc1a60d39f"
+    },
+    "c7008541ce93d30b86ee086239c1f8234f7309cbcd09a13fb61195184de18af7": {
+      "file": "c7008541ce93d30b86ee086239c1f8234f7309cbcd09a13fb61195184de18af7.gz",
+      "stored_sha256": "6929f4ea5b0086776bac26b3f4b0623ae6ada97229a816833abb395c8e13a571"
+    },
+    "a8b7b44388d94232672e3888f15871906d4c706ef2c39d55c2e4e9c673852d39": {
+      "file": "a8b7b44388d94232672e3888f15871906d4c706ef2c39d55c2e4e9c673852d39.gz",
+      "stored_sha256": "5a571a5d56e17084fd4c9d4303e3d9b95edd1aa2520130028223a5285877cbeb"
+    },
+    "57b21cd0fb21759646d06ee9a47ec04005eac1105e952b51007429f8de314dc3": {
+      "file": "57b21cd0fb21759646d06ee9a47ec04005eac1105e952b51007429f8de314dc3.gz",
+      "stored_sha256": "8e53ff60551d7279cee1ebe54e0a00b487706bf9e7c4841499adabb1cb468e7e"
+    },
+    "ee1ab50b1200d91a38ef097a06001b56526b56cdce1d2edb376317999ac54af3": {
+      "file": "ee1ab50b1200d91a38ef097a06001b56526b56cdce1d2edb376317999ac54af3.gz",
+      "stored_sha256": "0970ea86f700f077362e488629d05c337e0ef98967fdc06d086ae80d6ef5f192"
+    },
+    "f47ebaefcce4a0ad965d535edbb9d505c3d3d810df36e2eeda7e49f7dd31c40f": {
+      "file": "f47ebaefcce4a0ad965d535edbb9d505c3d3d810df36e2eeda7e49f7dd31c40f.gz",
+      "stored_sha256": "9f66fa081f1d64c3a464812b865d5845052337920873cbbdf7135afa2d87b97b"
+    },
+    "02c3f2cec9e3c3e996602f899eafc6cd5a62711e192699ad8ce6602042f60512": {
+      "file": "02c3f2cec9e3c3e996602f899eafc6cd5a62711e192699ad8ce6602042f60512.gz",
+      "stored_sha256": "3dc38853c5b2f666bfdbd52e914d58a59efefcb08bc3a14365b155e9a2104a53"
+    },
+    "e43dffeba428c405305d35dbc89924e5686fecd5aee94e56a0a9778a02cf0821": {
+      "file": "e43dffeba428c405305d35dbc89924e5686fecd5aee94e56a0a9778a02cf0821.gz",
+      "stored_sha256": "62741dedaf4e341ecf5a20279b9dd6aadb13d738d020612bfeae52357f815e0b"
+    },
+    "55a9791d9d8bfaa35c8fdc19caee1247165f7a097b4b8e7432a556efa6341d2a": {
+      "file": "55a9791d9d8bfaa35c8fdc19caee1247165f7a097b4b8e7432a556efa6341d2a.gz",
+      "stored_sha256": "3379f2c66bbacfbeaaf6e8d13be4c631df02e69e626f9e96b9fee2f907156d63"
+    },
+    "11067a8ca873cf14610f425f1e30d7a9a14f9cb05e261e876f2422f175498760": {
+      "file": "11067a8ca873cf14610f425f1e30d7a9a14f9cb05e261e876f2422f175498760.gz",
+      "stored_sha256": "f1493e78a69911102204bc6df75d448830dd7a33839dfce337f005e583c697a8"
+    },
+    "d822070f8db86204c1b59a29059c5c2747054b469d542103a3f59b2a6ed627e9": {
+      "file": "d822070f8db86204c1b59a29059c5c2747054b469d542103a3f59b2a6ed627e9.gz",
+      "stored_sha256": "d82c77dd0805ae20aa8f878966bcfb15a3a59947bc1cb9846143e2dd57470d38"
+    },
+    "9cad31e0e9747bd6919c3e9f781ea215c812cfc0f1e07c7f4f14a6a59d7313e3": {
+      "file": "9cad31e0e9747bd6919c3e9f781ea215c812cfc0f1e07c7f4f14a6a59d7313e3.gz",
+      "stored_sha256": "5ae7b6e54ebe5d860d966a1519e0812299acdf999792949b3ab68c2a62009060"
+    },
+    "98a91b2b8647144185b5117c9e9b197a0b7bb386a3594cc8fa6d91b9c3dc81d2": {
+      "file": "98a91b2b8647144185b5117c9e9b197a0b7bb386a3594cc8fa6d91b9c3dc81d2.gz",
+      "stored_sha256": "14cba97ba3b92803d9a39ca6e674424808aebd26c9536274439fbc901bfef664"
+    },
+    "6d66384e4b8f44bece57a89aa48a9dfb47241ae90bb26975211d4595b5906568": {
+      "file": "6d66384e4b8f44bece57a89aa48a9dfb47241ae90bb26975211d4595b5906568.gz",
+      "stored_sha256": "eb7317840ed45cc8d96bd092e4bc2ab3a5683196774921b3fb0d8f8ed73f825f"
+    },
+    "07f6a06ad7c3c815962c04f09ed17e638dfeb465e1c364232a19c0a61ceb915b": {
+      "file": "07f6a06ad7c3c815962c04f09ed17e638dfeb465e1c364232a19c0a61ceb915b.gz",
+      "stored_sha256": "02203219b5227605ec8d0d749f90aaf458edd88c24a973d66c854d165ab1b62d"
+    },
+    "d0836c069e0f5c7c2288a338b3045c03273a78ac893244af1b089f7705f71b09": {
+      "file": "d0836c069e0f5c7c2288a338b3045c03273a78ac893244af1b089f7705f71b09.gz",
+      "stored_sha256": "76ed2fef6369493237b982924b4179ef64f90b7d3ffa7476e589fa5182e774ed"
+    },
+    "de4e00e45a938507468a055807fa3399daf3441b50f6acee7c35b41f98827efc": {
+      "file": "de4e00e45a938507468a055807fa3399daf3441b50f6acee7c35b41f98827efc.gz",
+      "stored_sha256": "80dc7e85189ac19c10133c9aa9e623d6480db0e1b476424416cc9e0d4b29cbfc"
+    },
+    "880790102f282e84c1eb9bbfcc5afbf334a1040aff582586a8bda4d7c5c71152": {
+      "file": "880790102f282e84c1eb9bbfcc5afbf334a1040aff582586a8bda4d7c5c71152.gz",
+      "stored_sha256": "bca331e17cb332eb5f8be87e9f7304b67a307e0b36d0582741c24d24069eb688"
+    },
+    "6736e5891aa668b144c4fb428a16efbf187811dc51967243564210cac81e9154": {
+      "file": "6736e5891aa668b144c4fb428a16efbf187811dc51967243564210cac81e9154.gz",
+      "stored_sha256": "20c4a46048e6f6a116c0d648f6a19807828aa9a0752862603386acc9135a5fda"
+    },
+    "7236d490b66edf459d2c27d135c5daab707fb36012a1fac8b05ebb65bedd842c": {
+      "file": "7236d490b66edf459d2c27d135c5daab707fb36012a1fac8b05ebb65bedd842c.gz",
+      "stored_sha256": "480a6bff2f4845a7dbfd64b360a9f5088120a6f6f4734218fd05b2e4173ba8bd"
+    },
+    "9e0a23e34421a51b32965c6a82c48063ece97abaf11e3ace8089a3b7f94c477a": {
+      "file": "9e0a23e34421a51b32965c6a82c48063ece97abaf11e3ace8089a3b7f94c477a.gz",
+      "stored_sha256": "e0f128261c7d22fccc1d2f0e208aba2d46c83955c2395c01d8eae61b8fbc476a"
+    },
+    "ff75538cb86703c8e25c31480bb75ab170358212af872303778e32c9560539fb": {
+      "file": "ff75538cb86703c8e25c31480bb75ab170358212af872303778e32c9560539fb.gz",
+      "stored_sha256": "f4bc6fedb071fb6ce594c2bb26e3e6452e748e1c779d120fe17651faae5e883e"
+    },
+    "6b268fc35d4a37829068ae17c590d164e35231f00e61c0b8712be0caed81c3b7": {
+      "file": "6b268fc35d4a37829068ae17c590d164e35231f00e61c0b8712be0caed81c3b7.gz",
+      "stored_sha256": "cc4b598cdf8249f14a1ddfb3aa7b95c28d4be08eb6c0460dd8e90496ca12714e"
+    },
+    "5b599307beb22ed13c53db84196873cc7c36ab18597dd27b1012684093d2d458": {
+      "file": "5b599307beb22ed13c53db84196873cc7c36ab18597dd27b1012684093d2d458.gz",
+      "stored_sha256": "d001397b1616c105ea1f931f56cef9218f10fbff5faa02bf83df003debbcd97d"
+    },
+    "1442ac6b50f254b9dc2b831bef430e887487516f2d4c25d879f14d6a3d109795": {
+      "file": "1442ac6b50f254b9dc2b831bef430e887487516f2d4c25d879f14d6a3d109795.gz",
+      "stored_sha256": "f168407d2b86beab460e2b35ae5777b40e920090ebbde35d2efd8e2ceb13e66f"
+    },
+    "94733ebb0eef68d2a26eedd47c588ea233618339efb55d4ca717761e703cc4ad": {
+      "file": "94733ebb0eef68d2a26eedd47c588ea233618339efb55d4ca717761e703cc4ad.gz",
+      "stored_sha256": "343d0fc8fd47dff1cdf039a85217915248fc7b84e0a4dbd60eec8bde1d1fd2a8"
+    },
+    "f5e09d538e3c772b8182ee2be54a03e5076e322de3a43a660199ba8d39da4ba2": {
+      "file": "f5e09d538e3c772b8182ee2be54a03e5076e322de3a43a660199ba8d39da4ba2.gz",
+      "stored_sha256": "7ffcaf15c7cb3478f6594e1a0dc3ac07dfb40159a025ae71c8498c4b4982f856"
+    },
+    "1078a7ba1fb748e23b806e444119c66e8d4c0a3791d90746a6539b2843098991": {
+      "file": "1078a7ba1fb748e23b806e444119c66e8d4c0a3791d90746a6539b2843098991.gz",
+      "stored_sha256": "99802e3da07c4df3282889adeec9c9f766018287ba5288d63c63a2eb396dd3a6"
+    },
+    "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa": {
+      "file": "05a3f71fe607ff1161db5b6958e365f7f3a9721aefb957cf1509656473ffcbaa.gz",
+      "stored_sha256": "26b012ec026151983ef1a3c476a547ab5b6435961708dfa349b8a4422a5d75a9"
+    },
+    "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb": {
+      "file": "83f208ce4d25af7fee5e492367ad19e06838a6f66d78fbe37e0d081e41ffe8cb.gz",
+      "stored_sha256": "e2e10e1356e4d1310e6839002e21567f98dd85d393abeeb3423da06ec8f35da4"
+    },
+    "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65": {
+      "file": "0b94d9a0b6acfd346721b8b193cae081a0ca2b4f9a3821ae2214afe916cf6c65.gz",
+      "stored_sha256": "abfdb692d850e06109e4ef48fe937cd4c3b0e796dcdd08d0ed0463f4f4342de1"
+    },
+    "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd": {
+      "file": "0d18b068e177b54f7b8a2b30072e9ae3ebc984fbed9fd6a8706f71d3140a5ffd.gz",
+      "stored_sha256": "bc4487e285aa1a9576eb0118fc4fe1228b6378674ea9eed48e80e79cc9b905da"
+    },
+    "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef": {
+      "file": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef.gz",
+      "stored_sha256": "14960301a3ab5f97d159ac02125fe9fff50825b3a348adca76337861398ef473"
+    },
+    "b854b04f3b0d3620adc37e3adb498cbe3ae710f007766695f40f4065ebde32eb": {
+      "file": "b854b04f3b0d3620adc37e3adb498cbe3ae710f007766695f40f4065ebde32eb.gz",
+      "stored_sha256": "bc1650c924852de4aa57eacef94035a3a09d43d3c264bef34756fadeca1ec30f"
+    },
+    "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12": {
+      "file": "9849714498718f6616644ad717906cc426c3f3f5f335cdb99dbcc8173c8dbe12.gz",
+      "stored_sha256": "6b697cf3b349e05c532df6aecad78e14adccb70eab74051b90ef6860fe0cdaa5"
+    },
+    "bca2b7d5f05ae7ac23972e6ea8f5308ac22a243c78acd5970690d93c8a827632": {
+      "file": "bca2b7d5f05ae7ac23972e6ea8f5308ac22a243c78acd5970690d93c8a827632.gz",
+      "stored_sha256": "931da8315ce37422181b436f989fbbde3a66a5ab93037cb32e660fe0f218e41d"
+    },
+    "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd": {
+      "file": "4e1b3c3eb42882afa247defa7ca54b3415872fa4d8e2ae22c83a9f4577e73dfd.gz",
+      "stored_sha256": "6a6a5737275f142008aa94854cfe685a8ce2e753e79f139fbd1b656893a4dbf4"
+    },
+    "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a": {
+      "file": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a.gz",
+      "stored_sha256": "b1c723ac77ab4b2569eee9563fecde2543737e1c8b5cb3447eaa590bf6b114ae"
+    },
+    "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900": {
+      "file": "1c5ba39af1d9d4ca4c0648182a4a5f2295cf4a4eed7c9da888d11d0ab40ed900.gz",
+      "stored_sha256": "090eacc33a269d4a4c13aa1c152c7302e244f0ae02e80e7a57222781ca5d2f87"
+    },
+    "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791": {
+      "file": "20c0aa77c62fd139a730c314bc1e3b633a38a423c68eb3b5f87981f4c600b791.gz",
+      "stored_sha256": "5114b532135e22c852d1c9e6b6c8ded21788ff9203da4817645033e16fcede02"
+    },
+    "01511a6ef0844ad0ebb86096cde83e9e316c6819bfc5d611f11eacf0caa317c1": {
+      "file": "01511a6ef0844ad0ebb86096cde83e9e316c6819bfc5d611f11eacf0caa317c1.gz",
+      "stored_sha256": "8313d64a6f2feea42f6052a11870204200a6e17b7a9371043df8f1c1b2be33c2"
+    },
+    "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7": {
+      "file": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7.gz",
+      "stored_sha256": "43b5adde8db17082c19099db7030e0d6b0d999d475c02654e0c698b14365201e"
+    },
+    "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02": {
+      "file": "9db04157a546a4fe8615becf483520b1a7d3a0a5357fef56f88dcb694dd21e02.gz",
+      "stored_sha256": "346454cfcdbe4a2b7ce6671dfffe6fca3adf2b9fbd3c6cba12bca58ac1538c1d"
+    },
+    "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df": {
+      "file": "663d8ad480ce03883ad66262bb586cc8716a1a7b5a690d04a0f1cb26fde903df.gz",
+      "stored_sha256": "a10178cd0b0a5e8bb797c96c6f3e323e1bbe5f3257377c747690b0bad96b46f9"
+    },
+    "c00348caa8d3dd002630b71c4daad7d0c8c89c543e47840de0da6554a722dbf0": {
+      "file": "c00348caa8d3dd002630b71c4daad7d0c8c89c543e47840de0da6554a722dbf0.gz",
+      "stored_sha256": "a4eaf53770c6c4493f41ed97d6a3d91701aac904f10d8b6d3303083889ff8cac"
+    },
+    "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166": {
+      "file": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166.gz",
+      "stored_sha256": "7c657fd8f20e457a2160f60149f77b98f9f1711eb8c4702f431f1a5d0f67206d"
+    },
+    "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac": {
+      "file": "8e971808ea94931ceb3ba78f3d1918984290584bd592d13ce7d081dfb08a34ac.gz",
+      "stored_sha256": "c2a0866a28a4cc135e1ef32df4e959bfd5879a0d700b4b061138301ac4dc7128"
+    },
+    "ff31a0a4916ee1b27a56f2f7da32ec06df3716b42f831b547ed5518586f64060": {
+      "file": "ff31a0a4916ee1b27a56f2f7da32ec06df3716b42f831b547ed5518586f64060.gz",
+      "stored_sha256": "3d454a4f7a30a9d5319ac8311905c55ce94bcecd2ccab4bd0485871a413f1f45"
+    },
+    "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0": {
+      "file": "8cf59485e13ae77616586837e30a95b5992d70156430d78316b92d452cb86be0.gz",
+      "stored_sha256": "64d455eb57146c710c40180c020fd437134f82e9a307da736b3626565315916c"
+    },
+    "1137d9889aebb4e7337e0b681321d51e6136198271d72fb22c01c9f23bb4bed7": {
+      "file": "1137d9889aebb4e7337e0b681321d51e6136198271d72fb22c01c9f23bb4bed7.gz",
+      "stored_sha256": "6f8c35fe8798d20fd2687d69e61949d0047caea730cf4554fbdd2a584fd4ba04"
+    },
+    "84be89020cd0e4844565f7f2193948c8080d72209e50075f1bf3d90ddfc7d7ad": {
+      "file": "84be89020cd0e4844565f7f2193948c8080d72209e50075f1bf3d90ddfc7d7ad.gz",
+      "stored_sha256": "3b56eec3b51f075fd7cedb8ca50d7e686415c9c6049298d63645631b9721b540"
+    },
+    "fa1bfdca31c6da35b4c44cbf565fbfcb675628547e19980b4f2760c74ea514b3": {
+      "file": "fa1bfdca31c6da35b4c44cbf565fbfcb675628547e19980b4f2760c74ea514b3.gz",
+      "stored_sha256": "f20df4e1ae48b186b08fbcc756d5ff97b87f1700e7387d0a98af4f9f18416591"
+    },
+    "0c455c4629ccae6f0f754f881e65d11c59fb9246b274ff9380b067cfda057c12": {
+      "file": "0c455c4629ccae6f0f754f881e65d11c59fb9246b274ff9380b067cfda057c12.gz",
+      "stored_sha256": "3700b4fef6bc87d36bc2a4c964d8cf7a50a2101a2f9b7281c0ee1fd3484a1ebf"
+    },
+    "adde38d9334d04d60471657646c031ce3c3eea147f40fde6d6679b127cdca24e": {
+      "file": "adde38d9334d04d60471657646c031ce3c3eea147f40fde6d6679b127cdca24e.gz",
+      "stored_sha256": "e26e712e46080b46f4e187f342a490f80c8b943bec086c4de21c93791010bafc"
+    },
+    "249bfe0b46cc7a0cbb6a31cf2d7de336dd982e0a966986f66f21699f1aca3700": {
+      "file": "249bfe0b46cc7a0cbb6a31cf2d7de336dd982e0a966986f66f21699f1aca3700.gz",
+      "stored_sha256": "e58ee680508da8e4ae5cfd78526c0bf141672bf13acda184dfa8051991c56939"
+    },
+    "cac1cc9b73a0ea9602e6565a77bdc6770aa9d9c96e8bdf2a1d5c49502ca08068": {
+      "file": "cac1cc9b73a0ea9602e6565a77bdc6770aa9d9c96e8bdf2a1d5c49502ca08068.gz",
+      "stored_sha256": "3eec76b9145c473d1e4a9f56fe2403e21a3a414985d765fa020eedc53d3de2c6"
+    },
+    "67216286f3cb83f3cdb123937f3a31ae5a83ec1cd4ba06ed17e6cbf927630c4a": {
+      "file": "67216286f3cb83f3cdb123937f3a31ae5a83ec1cd4ba06ed17e6cbf927630c4a.gz",
+      "stored_sha256": "7c11eb660a37c763c57805d27ea57122d5d7edc99f9eba525cbc9817a1e3a888"
+    },
+    "455f7ae092804bdd53ebf97470462d8ca764119e1d3540ff26cdf8d6ec872c25": {
+      "file": "455f7ae092804bdd53ebf97470462d8ca764119e1d3540ff26cdf8d6ec872c25.gz",
+      "stored_sha256": "8c044d1af2306e2dd502f821071853d8baab0a7346727f42a079b4d4de41494d"
+    },
+    "4c78285ff0cf602659d1ef49518ad1eec6eca9babba5b14ee8f4b72f0bc21b7c": {
+      "file": "4c78285ff0cf602659d1ef49518ad1eec6eca9babba5b14ee8f4b72f0bc21b7c.gz",
+      "stored_sha256": "4349bdbe41f9e8f26f1683c2ed7e29347806fce698ce5bde2296cbe301b06b2b"
+    },
+    "4ac8312ff40b42faa5c97fe31cb75da1696cdcec830b70f07bce78c3f06c8f95": {
+      "file": "4ac8312ff40b42faa5c97fe31cb75da1696cdcec830b70f07bce78c3f06c8f95.gz",
+      "stored_sha256": "3dc5b2eb041e0483570145d119f7addd7b06511b924b02c2e963902c5e22d520"
+    },
+    "7804441f2066547d1a0bd46caf16b45fd15028da96179b5736d28f4e5e35e67a": {
+      "file": "7804441f2066547d1a0bd46caf16b45fd15028da96179b5736d28f4e5e35e67a.gz",
+      "stored_sha256": "5314dae1be0d5bf38c0afc5f005e590177edb08d7f139666e8e02a0708eef611"
+    },
+    "7acf5b46a1a4891b6b63985ef9d6dad790507f348dbb591d7801d84aa96fa605": {
+      "file": "7acf5b46a1a4891b6b63985ef9d6dad790507f348dbb591d7801d84aa96fa605.gz",
+      "stored_sha256": "7b1bc286a3c7b8f41dc50b760afaa1c12dfc65a11b33ee28e959a5f9a88d061c"
+    },
+    "0f18003f35f4df59c0a1d42a4b0ac534972577c2e036a59a4a973fc7387d5268": {
+      "file": "0f18003f35f4df59c0a1d42a4b0ac534972577c2e036a59a4a973fc7387d5268.gz",
+      "stored_sha256": "eea08a2ae3b5452e73feab6d5583d38de37fdf91d72cf0774cf5d3a18764f12d"
+    },
+    "363ef4cc01ac47ed19395b2b9efc4202a94e9c7641c66d92ad55a82a03186797": {
+      "file": "363ef4cc01ac47ed19395b2b9efc4202a94e9c7641c66d92ad55a82a03186797.gz",
+      "stored_sha256": "5660ff5ca6ad8d683e33208736b47b171fa50999c499b9189e7cff5ddac0b472"
+    },
+    "a79034a36751a8e8d892fb10d218d6beca28634112947775a985102e02716dd0": {
+      "file": "a79034a36751a8e8d892fb10d218d6beca28634112947775a985102e02716dd0.gz",
+      "stored_sha256": "a1a41fc30a668b4212fbd9b52bc4e0d313032e0cc4765f3077e63ea4e8ab333b"
+    },
+    "bf1f993db779d90725277bcb58ad4e6618aa1e0fb7bb8099fade0cff86536af8": {
+      "file": "bf1f993db779d90725277bcb58ad4e6618aa1e0fb7bb8099fade0cff86536af8.gz",
+      "stored_sha256": "9cbaf481c2e9fcf65bdc38ad80f5e3cce1df96de954cfdeaf8fcfe8dfdb42378"
+    },
+    "9652b0fb842fb614d1ab673d937b23899d84ee73028d6f08f7b046a88a79e980": {
+      "file": "9652b0fb842fb614d1ab673d937b23899d84ee73028d6f08f7b046a88a79e980.gz",
+      "stored_sha256": "8d74c0a3af75f7d7853ef3156c763f8680e670fd948c0959e20c4a61a6d51e99"
+    },
+    "df77432dd5546e9f9b5cf9816bf3117eb6c1e641bd2946de06bbda6860f91c2a": {
+      "file": "df77432dd5546e9f9b5cf9816bf3117eb6c1e641bd2946de06bbda6860f91c2a.gz",
+      "stored_sha256": "6f13b613ae8993169e189827c31c50e9199824ffd006e3a82b0c4ec8ef4f2aed"
+    },
+    "04e1c2876f836f3bce4c1739343c503a31c28f06da65b95d89415cbb513fe4a2": {
+      "file": "04e1c2876f836f3bce4c1739343c503a31c28f06da65b95d89415cbb513fe4a2.gz",
+      "stored_sha256": "1d9afbb6a40e8faebd82ab67db8d43a58512a0f3bdebe687e359398e2b2d7a86"
+    },
+    "7092b9adaa7c07289a7016ad2cc16513a40c7c629dcf98f3601a35426dbcadc4": {
+      "file": "7092b9adaa7c07289a7016ad2cc16513a40c7c629dcf98f3601a35426dbcadc4.gz",
+      "stored_sha256": "7ff4c8a0d2d0e13d65f9ac54be111b1073871a5b0146f5cd82e0cf356e7f9ff4"
+    },
+    "04261e9d03795d85c7329133266a43ae52a8302462a91d94c06fa814b95df3a5": {
+      "file": "04261e9d03795d85c7329133266a43ae52a8302462a91d94c06fa814b95df3a5.gz",
+      "stored_sha256": "ce2f32cb54d0a325abf70c8c981830e712f4083573cdd10c562765dcdf3a01f8"
+    },
+    "c55535661ab7dfc40d97d697e704f2c58b5dfcc6fa66d4412062e893eabac7fa": {
+      "file": "c55535661ab7dfc40d97d697e704f2c58b5dfcc6fa66d4412062e893eabac7fa.gz",
+      "stored_sha256": "a9a9eb84d2e20d1183a7ce26277a30223b0961a1b96d5adabf635c666306ae58"
+    },
+    "fb068ecbfea6567152be30489392c695134b49524e25eecc06e46e4c29146083": {
+      "file": "fb068ecbfea6567152be30489392c695134b49524e25eecc06e46e4c29146083.gz",
+      "stored_sha256": "b32612e34636eb660a5971a85b6d8333d5b0ab4d598bbb940a9653aecf003af5"
+    },
+    "67dcb7137e092f31a259f4230ce5c66a19fe17c140884fa4f6775de15ad1df62": {
+      "file": "67dcb7137e092f31a259f4230ce5c66a19fe17c140884fa4f6775de15ad1df62.gz",
+      "stored_sha256": "50564214b627dc1f4e93c51a0fc882110666243778da3822e822d28501e024e1"
+    },
+    "f5ad124cd128ae22b822e6ae50b73092bc655e9a1e86ff40a30e2eb600f31c0a": {
+      "file": "f5ad124cd128ae22b822e6ae50b73092bc655e9a1e86ff40a30e2eb600f31c0a.gz",
+      "stored_sha256": "dbc7de37af93bf1cb76764710c66e8a47c0f66fb3e837fe9bcdcdbbbe3ba236e"
+    },
+    "17de763c99f592b6aa58c6263d227b8edbb8c4cb46d7e42dca5d440095d4c78e": {
+      "file": "17de763c99f592b6aa58c6263d227b8edbb8c4cb46d7e42dca5d440095d4c78e.gz",
+      "stored_sha256": "1b2e3d8e5ec18d1576b791a2c01c041b1aa42e2d7bcb58b26bb0f7d017d98dd8"
+    },
+    "6f520ceb8932751ca229ce98a70e6941c7de13695c94b6104e15a6689755d4bf": {
+      "file": "6f520ceb8932751ca229ce98a70e6941c7de13695c94b6104e15a6689755d4bf.gz",
+      "stored_sha256": "70482f9448bc3313a9b73e59dca2499ec7575832164bb24a268e3724737d67b2"
+    },
+    "6f0729cd8ff95de6bbbc35a858c287b10ccd86bee8e65e9ffbe1f2ce7be7bf3b": {
+      "file": "6f0729cd8ff95de6bbbc35a858c287b10ccd86bee8e65e9ffbe1f2ce7be7bf3b.gz",
+      "stored_sha256": "787909943d7b15964f8e999cdb16001dc5d74a5c88635586863f3dbdc094f343"
+    },
+    "3ddeb2b4736ae882012590692079be469030e2ded92837a2c14688cd40fc9628": {
+      "file": "3ddeb2b4736ae882012590692079be469030e2ded92837a2c14688cd40fc9628.gz",
+      "stored_sha256": "d0af44e13a19bc700688c93d39a5d4bd8ac6820cb61fdccab6561b9bd67b321d"
+    },
+    "6268eb37c84f9c53d097a6ea07444d52f6b95bcb1d085ab6b9760520e79fce8b": {
+      "file": "6268eb37c84f9c53d097a6ea07444d52f6b95bcb1d085ab6b9760520e79fce8b.gz",
+      "stored_sha256": "17f8aa6a3140b990f339ec03ac53a99f483454be858a4c01c85ddfd896ecfad6"
+    },
+    "efe29324ad42961a761facb0a6bde90e2c31e016bdd1b8eff0fb2a3502aa14ca": {
+      "file": "efe29324ad42961a761facb0a6bde90e2c31e016bdd1b8eff0fb2a3502aa14ca.gz",
+      "stored_sha256": "c51ec9a46f7c102af4a5a8d4133caf9f461ecb9379e4a928861d11e2063d8396"
+    },
+    "4b70d6c7fa90608b3b7dd804724b00ad30fd512361231f444c334a992c4a10c3": {
+      "file": "4b70d6c7fa90608b3b7dd804724b00ad30fd512361231f444c334a992c4a10c3.gz",
+      "stored_sha256": "c2cf518caaae2ad438e509514c6096f3a4671a8b87754714ebb04b6161e745fe"
+    },
+    "b6ea47c3d58df68eb7b3b63668f56f9b1217a68571c88117af90095a7a41ea17": {
+      "file": "b6ea47c3d58df68eb7b3b63668f56f9b1217a68571c88117af90095a7a41ea17.gz",
+      "stored_sha256": "d7cda8fbc818b0effa7139e432ae391d7eab0ee3793dcc027d764cdcb824ea4f"
+    },
+    "381e3c7dff925f8603fd2ef419d2b2563eda8fc4369c7fbc8295a387e3e4e75a": {
+      "file": "381e3c7dff925f8603fd2ef419d2b2563eda8fc4369c7fbc8295a387e3e4e75a.gz",
+      "stored_sha256": "2694cf2bb66b478db414688018996075f6e9fb81a34109e755eff56c9121d546"
+    },
+    "f57133e4776dfe6b1f456477f63890050b2872e004da51bc203b4313e000143d": {
+      "file": "f57133e4776dfe6b1f456477f63890050b2872e004da51bc203b4313e000143d.gz",
+      "stored_sha256": "bb1677c43a4dff1c443a6828ab6e5e2592f7d7849cee6fc2712c2b101100f824"
+    },
+    "fa426938935bb3b4c368f53fda9edc437280cff17357eb3a731611e9ddf31ac6": {
+      "file": "fa426938935bb3b4c368f53fda9edc437280cff17357eb3a731611e9ddf31ac6.gz",
+      "stored_sha256": "93487223b67fad4b2fed94bd7cc1e0f08c43cd3247348b9ce8002325e445d488"
+    },
+    "e9f19e9bda935d96721452bddbd17009d88f61bdc4903ea3abf3735017c31b87": {
+      "file": "e9f19e9bda935d96721452bddbd17009d88f61bdc4903ea3abf3735017c31b87.gz",
+      "stored_sha256": "22b9c8404f8a509355d3ca9195cd2403e4b537b8c28401b30c0379f428a11dc8"
+    },
+    "2f47299b99ad8345a86f40b7bfb99d7267ba06abb2b9533c2558a1d3d245b7b6": {
+      "file": "2f47299b99ad8345a86f40b7bfb99d7267ba06abb2b9533c2558a1d3d245b7b6.gz",
+      "stored_sha256": "46e4fb688207d669bd04cfdecf7005692138931d7bcde18369e1a4e6958428e2"
+    },
+    "d4703b49d630906802644c9015b7254c97ff88b240126739869276a19cf0470a": {
+      "file": "d4703b49d630906802644c9015b7254c97ff88b240126739869276a19cf0470a.gz",
+      "stored_sha256": "4466946c3f6e1dbc3e421793c6c262a76ec37abd5bcc12f7fb43e54d7ac28109"
+    },
+    "c2cb8cf6d3dba002ada6fcf956a5aeff7f278aa29ccbb14483134304e6e0023c": {
+      "file": "c2cb8cf6d3dba002ada6fcf956a5aeff7f278aa29ccbb14483134304e6e0023c.gz",
+      "stored_sha256": "ba2bb0c99f0e266ac0364221162c8331f82cff364ca22d8eb43e9ef7cd80876b"
+    },
+    "35385ca159f0adae7ca42b3508c5255192d8a7a94673d93dcb0d155b208cf400": {
+      "file": "35385ca159f0adae7ca42b3508c5255192d8a7a94673d93dcb0d155b208cf400.gz",
+      "stored_sha256": "5276cc7d6139fb478476b57b57c80ffd23c122a7575ae90717e0ee76c1eab277"
+    },
+    "84d6278f01ec6e468930c85e531b8be832fadd831822c82516b16418047315c0": {
+      "file": "84d6278f01ec6e468930c85e531b8be832fadd831822c82516b16418047315c0.gz",
+      "stored_sha256": "3d1c2646e49772727953eee44983517ff854334bc30b61986afc4c9f95b20d35"
+    },
+    "8136143af9790fac81294044f0f5c356a54eacf5e89e11604f60309171145d1d": {
+      "file": "8136143af9790fac81294044f0f5c356a54eacf5e89e11604f60309171145d1d.gz",
+      "stored_sha256": "a061da8878d63f152aa223a591204d1ce4a86c46d9569abc63dbde50dc937e09"
+    },
+    "b4527bd0dba965247c8d108d39ed86fc15bef73da699ac79cbc9b43e322ac0a1": {
+      "file": "b4527bd0dba965247c8d108d39ed86fc15bef73da699ac79cbc9b43e322ac0a1.gz",
+      "stored_sha256": "c8fd5f2b743e1f306bd2fce134a9fe603b751ac00a357f0365e15a881b86c075"
+    },
+    "1b50442f40e61bae2d2694e05b67cf575b406a4744522d5feefd6de63c549b70": {
+      "file": "1b50442f40e61bae2d2694e05b67cf575b406a4744522d5feefd6de63c549b70.gz",
+      "stored_sha256": "bdfb267e14ed2b7aed7090bfa2e746f0333bfb9270704932cfdd2fdffdc5a13b"
+    },
+    "89b17a0834d78ad972274e443cd7923c112e7996aad2ee029bbcfdadc7da61e5": {
+      "file": "89b17a0834d78ad972274e443cd7923c112e7996aad2ee029bbcfdadc7da61e5.gz",
+      "stored_sha256": "7daf779af649079846e348af283b159ee0e4a12c30029174a647058b32ddabee"
+    },
+    "1c6046e160869c5d8e68cda6da01f96d17c72613f18f157b619f092ed98d9faa": {
+      "file": "1c6046e160869c5d8e68cda6da01f96d17c72613f18f157b619f092ed98d9faa.gz",
+      "stored_sha256": "65c5f5edfff32fa59481c25101ec847f971b0ef35123a69e666e3449cd73a3ce"
+    },
+    "f5fcef6042a38734b74d0081197af565cb90c116bca60733e2272ebd825f8821": {
+      "file": "f5fcef6042a38734b74d0081197af565cb90c116bca60733e2272ebd825f8821.gz",
+      "stored_sha256": "1c71129e668592c84fdacadd28465c96080fff0be907616511e0c8485a82b388"
+    },
+    "f329e48da51581ab50ef87a06784c6dd8d5a538ef35a498d8c5aa18ffbf908ab": {
+      "file": "f329e48da51581ab50ef87a06784c6dd8d5a538ef35a498d8c5aa18ffbf908ab.gz",
+      "stored_sha256": "3014fc228aee5b4d9aad47ec9fabb17dbb4df8ac5bdca1b5b6c58c5a64e2d201"
+    },
+    "64e362dab7e0b3016de7c489bb5a3fe5491fcdc3314e399d1282a8274e517916": {
+      "file": "64e362dab7e0b3016de7c489bb5a3fe5491fcdc3314e399d1282a8274e517916.gz",
+      "stored_sha256": "6c524d847aede8b342d38c3cf4bf7cb3c46ac5c2925ee11d131e1cd7bf33b6cf"
+    },
+    "9fb24b30d429aa5abd34a163d6d9b37612d97c64a58e0eefbffdb6e505d86c82": {
+      "file": "9fb24b30d429aa5abd34a163d6d9b37612d97c64a58e0eefbffdb6e505d86c82.gz",
+      "stored_sha256": "78387981b53d0d34eff325ed545294839608bcc9beb496c28cbeb44d4ad184f4"
+    },
+    "fd421b9798f11d0d179acd3fb43898038f6577bb2ff58f5537ae3cf5e58795b4": {
+      "file": "fd421b9798f11d0d179acd3fb43898038f6577bb2ff58f5537ae3cf5e58795b4.gz",
+      "stored_sha256": "a2dd6c72ec94ac4348bd3578c8c6dd071faf1950c34848a09541c1fdcd91d3a5"
+    },
+    "bb830a1981c98074d553a98a0cfc25ce1df46f55726131fa792bbee7038670d2": {
+      "file": "bb830a1981c98074d553a98a0cfc25ce1df46f55726131fa792bbee7038670d2.gz",
+      "stored_sha256": "2bd89c6ee9b5203bce03d3444be82d2fb1e112579bff46919c518325c5b651a4"
+    },
+    "523b30ea17bd53469bf3834228f2f0ae5945d6733f892802a10980daca2e13d8": {
+      "file": "523b30ea17bd53469bf3834228f2f0ae5945d6733f892802a10980daca2e13d8.gz",
+      "stored_sha256": "5fb45ef670380d6e73fa838fef5e6d6f2ba2ef76f43af42e32e9828a4e4429f0"
+    },
+    "f6221ee189d9c4caebceba419743f18091df29ca5efb8f1c5f32157db945bda9": {
+      "file": "f6221ee189d9c4caebceba419743f18091df29ca5efb8f1c5f32157db945bda9.gz",
+      "stored_sha256": "8cdecffcd93e58c02690f8a69df94d07acb1f4615c564ea24f69056064341764"
+    },
+    "dd9fdef13204721bfd19763d966da2e03fc8b708c6fc6c0db60a8938390c3845": {
+      "file": "dd9fdef13204721bfd19763d966da2e03fc8b708c6fc6c0db60a8938390c3845.gz",
+      "stored_sha256": "3530ee63187c1fefe8dc4d5b0dfc60978304474f3eb48cd1fa8e155c1f682917"
+    },
+    "2f3345921b20a9ba6b1e0cf408accc9f48768aac65d882d3713a58dd5909cae7": {
+      "file": "2f3345921b20a9ba6b1e0cf408accc9f48768aac65d882d3713a58dd5909cae7.gz",
+      "stored_sha256": "60eda576cab93d19865dfcd461b0b4b5cfc78664de8758ed65e2b906ffed6b22"
+    },
+    "d87c1f5863bd14023ad346b64e87ac6c2bb9e3143280fd5037db7b7c11fb25f8": {
+      "file": "d87c1f5863bd14023ad346b64e87ac6c2bb9e3143280fd5037db7b7c11fb25f8.gz",
+      "stored_sha256": "11ce4cff78a7af6d1b608a65c6ac78eb0fc626cf25b4d2a45bcda00b90ca263b"
+    },
+    "e91fc668127e06f187d0d8768a819c9359eea214425292a900d194566336a2c2": {
+      "file": "e91fc668127e06f187d0d8768a819c9359eea214425292a900d194566336a2c2.gz",
+      "stored_sha256": "2464cd3773245f2330b26614dd8ef3bdd2e2f2f27813c614909b785e9ed0a4a3"
+    },
+    "4f25773e3a03630aa929ac1241fff470c5a5515044aebc97782b4f8917acb44a": {
+      "file": "4f25773e3a03630aa929ac1241fff470c5a5515044aebc97782b4f8917acb44a.gz",
+      "stored_sha256": "c046de3228d67dfc83f726a942dde19ad6e3b65a87b6fe11d17b626ab837ca73"
+    },
+    "0624b17d23c82d3478ae5259dc63033a0952421f74b27c8503221ad92f80fd4c": {
+      "file": "0624b17d23c82d3478ae5259dc63033a0952421f74b27c8503221ad92f80fd4c.gz",
+      "stored_sha256": "2da9c2a9939ba66633be2c97263174d74707cad95a6d7275e57b077d344e7c24"
+    },
+    "b6c48a35a1423a8e5b385652ed93cdec3a629ef0eefcd2bac8d94f2df9b2c685": {
+      "file": "b6c48a35a1423a8e5b385652ed93cdec3a629ef0eefcd2bac8d94f2df9b2c685.gz",
+      "stored_sha256": "38ea2cb1d5f587aa667954f1e62ed036005effe583118710aa557c408ef34278"
+    },
+    "a7e02cf495800fac19c293688043f3af6eb6deaec1a61a581ed3f9d5b8b3e5f1": {
+      "file": "a7e02cf495800fac19c293688043f3af6eb6deaec1a61a581ed3f9d5b8b3e5f1.gz",
+      "stored_sha256": "eeacb6f2896cf6cad0e74b1e2671b82bbf26d569549c7e68ddaebbe391fcba96"
+    },
+    "ecce984a7d0ed16772d93faf7c454e37bba3d761caba0bd02c0bb27747aba2eb": {
+      "file": "ecce984a7d0ed16772d93faf7c454e37bba3d761caba0bd02c0bb27747aba2eb.gz",
+      "stored_sha256": "6f975aeab9d66b0a790d92400e92a4e92b359be170fd6ce4ab8b420f8f2eab8a"
+    },
+    "afe20012a8c8cf52bf8bde850db4f4c9c85e058545b0be99cb1a5526989dda0e": {
+      "file": "afe20012a8c8cf52bf8bde850db4f4c9c85e058545b0be99cb1a5526989dda0e.gz",
+      "stored_sha256": "08f89ee66d9c23b22ced6c234bb5356054f778956207b11ec6bb8556802489ab"
+    },
+    "ea9f7e97080c3449e6a9bf44de12c79e260e241935b57e9fa9468d6f51a2207f": {
+      "file": "ea9f7e97080c3449e6a9bf44de12c79e260e241935b57e9fa9468d6f51a2207f.gz",
+      "stored_sha256": "d70e441ffdfdb92d913c3e3f439293fc5afee91f40203951347a629926c5f7c3"
+    },
+    "ef13896973dcb45d6f4ce7a31f35797e0dbcc0d5bea1135d228c97e3d86524ef": {
+      "file": "ef13896973dcb45d6f4ce7a31f35797e0dbcc0d5bea1135d228c97e3d86524ef.gz",
+      "stored_sha256": "271f0934c186b3031b80afdef10641bd0590fc6fc2345949256781dcc101e6d6"
+    },
+    "7c23c6ff6a6317864e5837ec5d4ade5b115613636b1c588fd62741baef53b26b": {
+      "file": "7c23c6ff6a6317864e5837ec5d4ade5b115613636b1c588fd62741baef53b26b.gz",
+      "stored_sha256": "2752967d1c2caea6c4b67c84e2f3b2a174d0d15ea689ac0706b154c5df76d45e"
+    },
+    "6e7aefcb74dd51b84aa4d752146ecba8a205028e0cc47f40893244d2dd6b17a8": {
+      "file": "6e7aefcb74dd51b84aa4d752146ecba8a205028e0cc47f40893244d2dd6b17a8.gz",
+      "stored_sha256": "a1ce7fc5fecea95f01e6151a7d897c7b22ceda6eb006011f85acd38c3df059f6"
+    },
+    "bf1ff1bc82470b271ad5a36d5db6740c8d819f3d922c359339dedfaf25f1163b": {
+      "file": "bf1ff1bc82470b271ad5a36d5db6740c8d819f3d922c359339dedfaf25f1163b.gz",
+      "stored_sha256": "3cb097d9fb9eb4f56d2917d7fa1afac0bec7db2e9ccafcd6e12b3f6446b5c3e6"
+    },
+    "adc00c4a72eabceb22f90378ef63512991cddade897b7be74ed724c515e26a7d": {
+      "file": "adc00c4a72eabceb22f90378ef63512991cddade897b7be74ed724c515e26a7d.gz",
+      "stored_sha256": "6bf4b403fc1fc7c27f04ffed6976e65ff2188c86b5154ccb07e50da6ff586f48"
+    },
+    "4869a656e6b0759c4b77eb1d3731a404813e22a696d4af4e4b5faf468a2fef70": {
+      "file": "4869a656e6b0759c4b77eb1d3731a404813e22a696d4af4e4b5faf468a2fef70.gz",
+      "stored_sha256": "ec8bbecf266ae4fc9f1c9af698df74550d79f7ad8a51d1e9e0152abfddab6de0"
+    },
+    "4b55d17998e2fa05176fdf9c2a4deab2321c15d6fd79164d88bfde82d82c64ac": {
+      "file": "4b55d17998e2fa05176fdf9c2a4deab2321c15d6fd79164d88bfde82d82c64ac.gz",
+      "stored_sha256": "2d61669b3d3e600ed602b801ff1b9da3b3f7b1a258317bcc4c3879da271750aa"
+    },
+    "2dfa4315a89bbab928a898f1c63212edb941b1d7d95cfc7d833d524d4d37b881": {
+      "file": "2dfa4315a89bbab928a898f1c63212edb941b1d7d95cfc7d833d524d4d37b881.gz",
+      "stored_sha256": "28aceaf33150501e8ea60f191f2b879321ccd1b8db205e90bfad3503501d9f50"
+    },
+    "8e0ecddaa9f13bee11edf449fce85500adf712bcf3f0b52c3bbdb500e7b44284": {
+      "file": "8e0ecddaa9f13bee11edf449fce85500adf712bcf3f0b52c3bbdb500e7b44284.gz",
+      "stored_sha256": "ad0ed755728d5d607c7dfff93888f3406394b83187719447b5b7df60d98b3c1a"
+    },
+    "a43968bcaeddf9dba04bf5b980d73443ebadca2668ed335f1f2b8e403f6f57e0": {
+      "file": "a43968bcaeddf9dba04bf5b980d73443ebadca2668ed335f1f2b8e403f6f57e0.gz",
+      "stored_sha256": "2bf34a18f2e0736d7e721a730b87ac12e102b21ac782b4a76483927959f931bc"
+    },
+    "7cd6c4e168c34a671d3f9664d1ba76de79af6942aa5c2eaca1973c1b04a5c9e3": {
+      "file": "7cd6c4e168c34a671d3f9664d1ba76de79af6942aa5c2eaca1973c1b04a5c9e3.gz",
+      "stored_sha256": "5e142c4a7a1869f4085d0fd6899acca5707bb1ea672f40bbd235ad75a34246b9"
+    },
+    "74db3f5e3cea6c4fd89728ea5e499aa632dc08a421b8d571849668a7b772261e": {
+      "file": "74db3f5e3cea6c4fd89728ea5e499aa632dc08a421b8d571849668a7b772261e.gz",
+      "stored_sha256": "c18cdd935dc92dc7e5dddcf968920def30b21c2d9447a082f01d29517786348e"
+    },
+    "465a006c8fa25554c01405511332de04274a733557937e8015deb646be1c63f9": {
+      "file": "465a006c8fa25554c01405511332de04274a733557937e8015deb646be1c63f9.gz",
+      "stored_sha256": "f8efaede6d11e353b5634acfc5e192a38326d17971440718563fa8c8f58188b6"
+    },
+    "22d2a0a9b55a23460569b76f665865995b00da45da2fa5a90f716c2781e68a0d": {
+      "file": "22d2a0a9b55a23460569b76f665865995b00da45da2fa5a90f716c2781e68a0d.gz",
+      "stored_sha256": "f970e46873495f74dd7d96a928cb7e07788796e4c341c6331c15efa4cdc9050b"
+    },
+    "fcd414c4a50816fe435b9cf15a39026cbb57b25fab3954f2fddaca0e81882c82": {
+      "file": "fcd414c4a50816fe435b9cf15a39026cbb57b25fab3954f2fddaca0e81882c82.gz",
+      "stored_sha256": "467990ce5cedff79ccdde86655134a27fffda5a7b6db044709ff77293c46b4e0"
+    },
+    "31b943254292a75df2ad9d0c54eaeff7eacae83fb0f411bae4cfa4e66dd1bdec": {
+      "file": "31b943254292a75df2ad9d0c54eaeff7eacae83fb0f411bae4cfa4e66dd1bdec.gz",
+      "stored_sha256": "59744fb1b306f8f756844bb3e751dae0f6b806f4e56aee7aea42fdcfb49f940d"
+    },
+    "d12b77ead60f2a85033c89a99b8e444473f143413647735196f75685e24de14d": {
+      "file": "d12b77ead60f2a85033c89a99b8e444473f143413647735196f75685e24de14d.gz",
+      "stored_sha256": "fe842ea26b2b4c90f40ad49df3f2643f05a56ae145b87011828c4723b73c5c41"
+    },
+    "b4114a8c64d949cba71321adc9979270ce001250845eb685badea9ad77c06d9e": {
+      "file": "b4114a8c64d949cba71321adc9979270ce001250845eb685badea9ad77c06d9e.gz",
+      "stored_sha256": "30412f5b1ba71cb7b00149cf00798b4ec396ad74475482c6e249453c8eb494ed"
+    },
+    "2131ac054ffd0df4c0f6edff23a393be2cf0416b72b6bb43eedc5d4d844b4212": {
+      "file": "2131ac054ffd0df4c0f6edff23a393be2cf0416b72b6bb43eedc5d4d844b4212.gz",
+      "stored_sha256": "843a53402b952b3c85bee949744ea120860aec3c54483b2342a8063bc8dc4a5d"
+    },
+    "f4a789dc46fffb2848566181d6a81130b45339d8850d5df34bb60407beff02b6": {
+      "file": "f4a789dc46fffb2848566181d6a81130b45339d8850d5df34bb60407beff02b6.gz",
+      "stored_sha256": "5aa3b55e621cf23af6bd18f5700be8cc3890c37715be294b5674d36df56f9437"
+    },
+    "431c122de7a89c2001dd8d02abf2ceb1ea8debb4b66c7e98d4ee8876d5baf555": {
+      "file": "431c122de7a89c2001dd8d02abf2ceb1ea8debb4b66c7e98d4ee8876d5baf555.gz",
+      "stored_sha256": "8210aee9507521cdccadea2dc8c8c95fe97c21b0d1e6d04e39a4748cf6109655"
+    },
+    "1bba547a28080b772a36f894ea6c020508c3dd777a0b8722b9d42c66df1d831c": {
+      "file": "1bba547a28080b772a36f894ea6c020508c3dd777a0b8722b9d42c66df1d831c.gz",
+      "stored_sha256": "853bf397644c71dc11634d8308315a596737d3367793096f637f23a311807d2c"
+    },
+    "091d4867fea38f0148f61c8c053ee6883f5cec8ab5c8f2d2ccd7054be3110567": {
+      "file": "091d4867fea38f0148f61c8c053ee6883f5cec8ab5c8f2d2ccd7054be3110567.gz",
+      "stored_sha256": "ce4bdecaa16c44cef62d8e78a005070f458e7a733da76de37847c708f8cc079e"
+    },
+    "65e10c0e295c846eeae466f9a4a8ffc677d95eeed7470f41f6a8708c9542b47a": {
+      "file": "65e10c0e295c846eeae466f9a4a8ffc677d95eeed7470f41f6a8708c9542b47a.gz",
+      "stored_sha256": "9d7ced8aea6f656e915f0376f27972fa049ceb73053055873556e9a029ad8eea"
+    },
+    "b97c57c1ee53375a49afe2c0844f237c131d3a10d05c55cd8d007be93831c872": {
+      "file": "b97c57c1ee53375a49afe2c0844f237c131d3a10d05c55cd8d007be93831c872.gz",
+      "stored_sha256": "11311e1f26157597089671ef65f52c9f4a59617cff8e8ceb5aaa0c28b80acc67"
+    },
+    "68063ff2a040ce863e4b93ffceff833f2bd51342a24b457bf843e2696ff2aed3": {
+      "file": "68063ff2a040ce863e4b93ffceff833f2bd51342a24b457bf843e2696ff2aed3.gz",
+      "stored_sha256": "9b08c4dd79570cc1bcc2bad70e9effa0022e39b133587fda1dcf6575c4c9333f"
+    },
+    "01b3754af0b06a49b9c18158cbbf2b76b4c663e53ea7c0ecd886c55e679f15dc": {
+      "file": "01b3754af0b06a49b9c18158cbbf2b76b4c663e53ea7c0ecd886c55e679f15dc.gz",
+      "stored_sha256": "73bc471361cfb50a8e0555a00ed8bd03271bdaf6475c78be4381076f02641de8"
+    },
+    "71844a3205d3b81e9b4d8c1320b7a115bf08e9789309492ce3020b4337cbee80": {
+      "file": "71844a3205d3b81e9b4d8c1320b7a115bf08e9789309492ce3020b4337cbee80.gz",
+      "stored_sha256": "19c7959964b88a96873b2c0b0e3a5ea00629eb28760b50d2cb58754157850b80"
+    },
+    "97b1b26d8687c59c1e8dc4a28ef42447480ab467fba3ca24ad8b60e7bbb169b8": {
+      "file": "97b1b26d8687c59c1e8dc4a28ef42447480ab467fba3ca24ad8b60e7bbb169b8.gz",
+      "stored_sha256": "8b9d69a21708cca4d13c51c5a0679935681a3ff4a311d9b63ed0cf2d91948374"
+    },
+    "c8a5994f85364fa0ca1a94403fc08a0728975481d5283f2b6828aaf299e85d0a": {
+      "file": "c8a5994f85364fa0ca1a94403fc08a0728975481d5283f2b6828aaf299e85d0a.gz",
+      "stored_sha256": "030a22ac8a898f577fa70c0d1665dc8887752b5783fa15484bbf8f82babb6c2f"
+    },
+    "4cde6ba9bea076851e8eae9b94b37c285c7a9097feea7f375a4601be0fb0910e": {
+      "file": "4cde6ba9bea076851e8eae9b94b37c285c7a9097feea7f375a4601be0fb0910e.gz",
+      "stored_sha256": "0fa218580dd072c330a2bd98ebff403806ab72bd0ffdfa5db68a0bedb092424a"
+    },
+    "ae4e8e7ae1a54d44643455e077f275ba7d4ca4445d5f33435054a7375fed488b": {
+      "file": "ae4e8e7ae1a54d44643455e077f275ba7d4ca4445d5f33435054a7375fed488b.gz",
+      "stored_sha256": "250906fe9983328e1be1e44ce1dfd8a1e7a34cd297832bde9d7808bc4108eec8"
+    },
+    "94e802a39c295393b777dc22c5509495fb6a628280cbbb954895d5430869aea1": {
+      "file": "94e802a39c295393b777dc22c5509495fb6a628280cbbb954895d5430869aea1.gz",
+      "stored_sha256": "9059333cf7f483bcc1a3bce09ef44d56cc6c09e30b0c9c06cf86c63912e868ad"
+    },
+    "37a6199f0e2f9c97b2d97f15a123df85afe391e6316a9d6fcb6ce734abd74063": {
+      "file": "37a6199f0e2f9c97b2d97f15a123df85afe391e6316a9d6fcb6ce734abd74063.gz",
+      "stored_sha256": "27a5e57cdc5799a4666e2b8cdae5df48c4f8d3c3aeac33e7b3a801e18ffdd267"
+    },
+    "41f214f66174baebdd89fc9fa0a439f4f1166e9fd9b7fe0663fb483b43ec9cf2": {
+      "file": "41f214f66174baebdd89fc9fa0a439f4f1166e9fd9b7fe0663fb483b43ec9cf2.gz",
+      "stored_sha256": "38cc1cce7500bd874169000f06aea506000a3c3b79c3001bb5f2aa26c5148b39"
+    },
+    "88f837011eec5cb88d234d8084e500f034dded24546bd124f0ef63d73bbc046f": {
+      "file": "88f837011eec5cb88d234d8084e500f034dded24546bd124f0ef63d73bbc046f.gz",
+      "stored_sha256": "8c2e46d48dd50ba6507c5e77015a4eded930c581df5dda2655fb8474ae65ceac"
+    },
+    "4d9e15436b9ab887f194c02fe170271c6e0b900ec8878d307f89430925169fbc": {
+      "file": "4d9e15436b9ab887f194c02fe170271c6e0b900ec8878d307f89430925169fbc.gz",
+      "stored_sha256": "5d8be6490f0eca87b843b583136c210edfef257061e70bc749ecd8ffff073cc0"
+    },
+    "2bba8ca8f1d8451a10af199d9719ab92d59c6f19b8ec90b62be660de108bb075": {
+      "file": "2bba8ca8f1d8451a10af199d9719ab92d59c6f19b8ec90b62be660de108bb075.gz",
+      "stored_sha256": "ad9c13d0fac66596edb1467c81c0f9771098fed57d688da31f2efb98fc8cbc99"
+    },
+    "b0aabdc8064e4875d98bf5244791ebce330ea238bec595fd8b5a10d543aba57e": {
+      "file": "b0aabdc8064e4875d98bf5244791ebce330ea238bec595fd8b5a10d543aba57e.gz",
+      "stored_sha256": "e9eb1a78dfcb85c0ce6642ad1fdc19679862b6ae9ffae1f3b21692b322a034b8"
+    },
+    "a702112f778b783f0fd97320e5a221a17defcf26a425994bbe2b2d5f26d59c14": {
+      "file": "a702112f778b783f0fd97320e5a221a17defcf26a425994bbe2b2d5f26d59c14.gz",
+      "stored_sha256": "bc1245a37cf63bc28ff17e6d1134acf94392adb963a942e140e21815e2082244"
+    },
+    "45e59e539160c1ff41cca31e527c1de49827434f3bfc03bddb99fc055e299d1a": {
+      "file": "45e59e539160c1ff41cca31e527c1de49827434f3bfc03bddb99fc055e299d1a.gz",
+      "stored_sha256": "9146fd1b98fbcd6ba429570cc8741d00ac89bc04521bb7520cd8586399e7965f"
+    },
+    "058813374fbe81167b8e214dc432da17833aa42c21a0bee22f31d4362ac16dad": {
+      "file": "058813374fbe81167b8e214dc432da17833aa42c21a0bee22f31d4362ac16dad.gz",
+      "stored_sha256": "750066f939219f0ca011b3479a6a49e52d606a21dc6b4205f763b7920f6752b8"
+    },
+    "c837f2e1084c7eb3c5cb4e8dc71546784b4dde8ec64692739e905b2c79c275cf": {
+      "file": "c837f2e1084c7eb3c5cb4e8dc71546784b4dde8ec64692739e905b2c79c275cf.gz",
+      "stored_sha256": "08ba399709fce01c10b32137334f84f95c34b2e4178d80ec0fa278869d9bfe50"
+    },
+    "defea6faee135436a30644462763772ac97bcaa2d22cc50c6e1552a4625ca089": {
+      "file": "defea6faee135436a30644462763772ac97bcaa2d22cc50c6e1552a4625ca089.gz",
+      "stored_sha256": "260d8892efb64e10b57ace3a71b5e88f8ab8472793e84a8ad39cc634ad1d57a0"
+    },
+    "4f3e2ebf521b8771a17899bbf098cb2a7e6cbb724cd5fa4553a7f501cc277088": {
+      "file": "4f3e2ebf521b8771a17899bbf098cb2a7e6cbb724cd5fa4553a7f501cc277088.gz",
+      "stored_sha256": "62564f454a2fa56bf1519746a5c7652d1776a872e0ff8482dc7ef534a83ba79b"
+    },
+    "c38e7cd3d8378d958f62570f7b829c663cf9073d20b9d726def721fba1ae8101": {
+      "file": "c38e7cd3d8378d958f62570f7b829c663cf9073d20b9d726def721fba1ae8101.gz",
+      "stored_sha256": "a86a6af65e0e648c6784bf249c9e803cd4eaeca514b6169471e052c6c7eff059"
+    },
+    "70ba85e3eead2d6c120122edcf51a3f4f6be378c0c22a2812f37b41d8771e44e": {
+      "file": "70ba85e3eead2d6c120122edcf51a3f4f6be378c0c22a2812f37b41d8771e44e.gz",
+      "stored_sha256": "f863d6dcf1bcf710a48f40739eaf28ee18152f2072aa548e17fbf4f536c261ed"
+    },
+    "aee5db523ab539cdd4f46ee71322ef787c625a249889e564dbf0496109ae729d": {
+      "file": "aee5db523ab539cdd4f46ee71322ef787c625a249889e564dbf0496109ae729d.gz",
+      "stored_sha256": "542fe7581205d7a4639b15cbceb94623dbc3ee00ec0ac9bace02f72bea439cf9"
+    },
+    "34c21f1e9dfcd3dba58cec83c1574a3ec5eecc51f5935676aec0f5046e2a231e": {
+      "file": "34c21f1e9dfcd3dba58cec83c1574a3ec5eecc51f5935676aec0f5046e2a231e.gz",
+      "stored_sha256": "4fcd2e452665acaaa0b5f564f4fa579db99f1cb0679342c51e1a85a6ebb06b4d"
+    },
+    "2c2e2ef48c2c678105152467fccfec58469c55422527a8e8b808754eae73d7d5": {
+      "file": "2c2e2ef48c2c678105152467fccfec58469c55422527a8e8b808754eae73d7d5.gz",
+      "stored_sha256": "fb4b8bab7cdc4f46413d46b45d6eae1da8c4b4cf899bb939485caf7a84ed58a6"
+    },
+    "f00077cf2ca503ea62916e86126d6bda4b0cbcfd2a6cfed139de48e2c0a759e4": {
+      "file": "f00077cf2ca503ea62916e86126d6bda4b0cbcfd2a6cfed139de48e2c0a759e4.gz",
+      "stored_sha256": "8174a92f09350805c4de1042c1acf467f27b1b5f8cb01b9bea5bdf5d077691ea"
+    },
+    "5e8a1aa0b8a45a202e386319f775120a040d1a4d5d282fd9710850c0a36501ec": {
+      "file": "5e8a1aa0b8a45a202e386319f775120a040d1a4d5d282fd9710850c0a36501ec.gz",
+      "stored_sha256": "2a2138fc7506c514c8af7038ae528c6a2b0b09c93d1d31a7994b6f48c2b78a34"
+    },
+    "e332120f2e02570a739bc32ca015b7423c5f02700015bf5a1b70533238518650": {
+      "file": "e332120f2e02570a739bc32ca015b7423c5f02700015bf5a1b70533238518650.gz",
+      "stored_sha256": "83ba543a1458a5b5ebc54f59f05bb9f3b27ef4a7576d1fd2b0e83c5c22c62ad3"
+    },
+    "700e055dec045d234265f2ef08c08497fd3a94c0c64685a5f97041bb39a78895": {
+      "file": "700e055dec045d234265f2ef08c08497fd3a94c0c64685a5f97041bb39a78895.gz",
+      "stored_sha256": "dee779ec75ca0bcde28a0f7d745d5a76513651e5fdbebd27d6e9d5748c6c9be9"
+    },
+    "c324f32a3f805e3b64a8361dfd10919f204ea44e1dd7252c45874448550d0cc4": {
+      "file": "c324f32a3f805e3b64a8361dfd10919f204ea44e1dd7252c45874448550d0cc4.gz",
+      "stored_sha256": "3646d055210ead6dfad3c4cacc25888acb7b0e3e88c7f5be3b3c544545090bc0"
+    },
+    "7013ec0a16b7b875578f733033aafc65b699c866bee40f5841f475508bbfdc58": {
+      "file": "7013ec0a16b7b875578f733033aafc65b699c866bee40f5841f475508bbfdc58.gz",
+      "stored_sha256": "94122ddfc3d170767db3f4f545a6095f9f5803e7b820cc1522f0594a84b0b117"
+    },
+    "b645c33774cfa01bcc19191b798d46b2dac9ee44856175d069007eb689721dca": {
+      "file": "b645c33774cfa01bcc19191b798d46b2dac9ee44856175d069007eb689721dca.gz",
+      "stored_sha256": "908266840bf53a13b0a1aa1321d805d31831ed75c6d8d688f504dafd4cbcf2c4"
+    },
+    "b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad": {
+      "file": "b841ad624b4a4d845697947eb88cfde01fb65f163bdb33d20424da7a05648dad.gz",
+      "stored_sha256": "1c3db3784ccfed0188b2c1541eb5ed0ead870f9b8b1b0c6247b6c50e569cde2b"
+    },
+    "36483096bc6ff20431781cc5ad14901b4968502abfbfe0ae2eb231a54a590aa6": {
+      "file": "36483096bc6ff20431781cc5ad14901b4968502abfbfe0ae2eb231a54a590aa6.gz",
+      "stored_sha256": "b7ec3cc4b15b2728346e2415ad9d839a9ac647188c70700caa963a67737d3362"
+    },
+    "2ff814a28b7ada35712ffac38d788d1cc979475a9f67630b4dbf6b93af027a99": {
+      "file": "2ff814a28b7ada35712ffac38d788d1cc979475a9f67630b4dbf6b93af027a99.gz",
+      "stored_sha256": "31e391490d9c0299f2b505369cf20c0c153b9dde9885f978148ce26ee2c17f20"
+    },
+    "e64e22323c97cc00f350925154c9aa6272d956a27823011906b880b09f5df628": {
+      "file": "e64e22323c97cc00f350925154c9aa6272d956a27823011906b880b09f5df628.gz",
+      "stored_sha256": "ad92f30f2085a82ccab71e1f7686865c0aa3347938b869f43cb17ec0ad0eb4f3"
+    },
+    "4914ca8b43ca7a5db922bde8c0e804207039b0ad370f30c2ffce996afd8860d4": {
+      "file": "4914ca8b43ca7a5db922bde8c0e804207039b0ad370f30c2ffce996afd8860d4.gz",
+      "stored_sha256": "5904ff4f718d656aa864e055b4763308516bd4707076af35ed0c4e5dc44a2045"
+    },
+    "1e9806daaa4cf54c24f6191eb758ef614778d7ea0100e4431ea08ac577f90360": {
+      "file": "1e9806daaa4cf54c24f6191eb758ef614778d7ea0100e4431ea08ac577f90360.gz",
+      "stored_sha256": "7325db5d7a4d26432f4a026f10d60eaf6d35ac508b1a0d40580c4f6a4b9167c4"
+    },
+    "390b408fed56cd6b9c8258272de2f9de118da6196725dc8c8fe7da9ca103359d": {
+      "file": "390b408fed56cd6b9c8258272de2f9de118da6196725dc8c8fe7da9ca103359d.gz",
+      "stored_sha256": "c3c8751023faa390d6623ff27704316f9531724eafaa72356bc94dc11b91f392"
+    },
+    "dda65fed21d056d67e6effdc1b6ac7c6b8b2173f286d8f013dbaf2a64b9b26d4": {
+      "file": "dda65fed21d056d67e6effdc1b6ac7c6b8b2173f286d8f013dbaf2a64b9b26d4.gz",
+      "stored_sha256": "bd0deed42752fe44223947589fb8ec8db2bda8c85f8fd82e087a8edbb848de8c"
+    },
+    "4ba14ac169fafe3072acf963f71a2104426b525ddf2f267a50be5062ac1392b6": {
+      "file": "4ba14ac169fafe3072acf963f71a2104426b525ddf2f267a50be5062ac1392b6.gz",
+      "stored_sha256": "c4054f18163dddf3f23767a15a54462d1a04efee001d5eb9fba8ab9c150da8c5"
+    },
+    "fe98490a8a697135f4f78d5c1aa1163a1cbdbe2319bd9f638ec78cc87612b195": {
+      "file": "fe98490a8a697135f4f78d5c1aa1163a1cbdbe2319bd9f638ec78cc87612b195.gz",
+      "stored_sha256": "0814a49aae414832eb59cb67e98721b2d5abbea59f903e9d21968e333750fcef"
+    },
+    "0e4092fc15208ba0645d63f7b554aaafcbbb6f253ceb30410343861fc7850fa5": {
+      "file": "0e4092fc15208ba0645d63f7b554aaafcbbb6f253ceb30410343861fc7850fa5.gz",
+      "stored_sha256": "7ddf4ffcbc2a0732bbc2f8555874ad5c2f28e66c88d4751242f1670aa31a28dc"
+    },
+    "f2e31cd310994711ebd37c07ff9270d3b88d0b9ff81581e3d43dbcc55674ee0c": {
+      "file": "f2e31cd310994711ebd37c07ff9270d3b88d0b9ff81581e3d43dbcc55674ee0c.gz",
+      "stored_sha256": "715394d89e987aeeb78c770c7a3a5678def7015709836d646c06c2f716d8b5ca"
+    },
+    "75c9c621997b331c4cadd31b1878a3ad419ef3707c2577d31ff3164d137040e7": {
+      "file": "75c9c621997b331c4cadd31b1878a3ad419ef3707c2577d31ff3164d137040e7.gz",
+      "stored_sha256": "e21cd8468601364fe2c063a69b37c129af4925875939621cbf308287a958b253"
+    },
+    "7990805862041269579e4729a37f680a7283fa7ff64b787b3cd3d9fade2e1831": {
+      "file": "7990805862041269579e4729a37f680a7283fa7ff64b787b3cd3d9fade2e1831.gz",
+      "stored_sha256": "2fa9ac66dd8fe729b7446f27a039d9b80554f69ac866f96a728a50f9973fbf23"
+    },
+    "da313db4dca922dff6c96552360800bc0c60df38acbbd7793cafbc766b4d812b": {
+      "file": "da313db4dca922dff6c96552360800bc0c60df38acbbd7793cafbc766b4d812b.gz",
+      "stored_sha256": "3b7d63c2081230667dcdd716429b9e6049d79b6ef759cf76f401c8e1b66e95ae"
+    },
+    "eee465f6c6589fd19ad6d66963680ce338e0ae909f0876ac83fc86ca7d3d2c49": {
+      "file": "eee465f6c6589fd19ad6d66963680ce338e0ae909f0876ac83fc86ca7d3d2c49.gz",
+      "stored_sha256": "c508cee3a170f00686f1686bdca615a8d056454bea4b602ea21a42a3df8c91f4"
+    },
+    "9d6e3470958805aee8f96afd13edc3f0c10065cfc16abe7b1f5a933f93a91080": {
+      "file": "9d6e3470958805aee8f96afd13edc3f0c10065cfc16abe7b1f5a933f93a91080.gz",
+      "stored_sha256": "e53720353381f8acfec74e344f94af0203aefc06270a69d3cf075b59ab992fd2"
+    },
+    "53cac26cd6a6e6b551a76009120662a72e452b752cde811b4862c336b9504c50": {
+      "file": "53cac26cd6a6e6b551a76009120662a72e452b752cde811b4862c336b9504c50.gz",
+      "stored_sha256": "25c9be9f7744535f8eb7fe721dbbd63e5dcd1c1341dc0269c8f72bd3f4e53a9e"
+    },
+    "5bedb0a75a9119bf8f77bd695546fc1454f8efc4eae0b647edc3641f0ff7e39c": {
+      "file": "5bedb0a75a9119bf8f77bd695546fc1454f8efc4eae0b647edc3641f0ff7e39c.gz",
+      "stored_sha256": "fc69c87a3c04dc4d4dd2c5161bc71dea219fdd4ac98836f6b4b6cf3180cbddcb"
+    },
+    "e372fd530aac2dc003f89c4cdb85ea839cf34d6d5fa1b1c119512e0838b5a994": {
+      "file": "e372fd530aac2dc003f89c4cdb85ea839cf34d6d5fa1b1c119512e0838b5a994.gz",
+      "stored_sha256": "0d3f7485d8a82eb374418fd7da2849ff7c9fffca49d3060077581e38462290fa"
+    },
+    "7c1b9502003b4921e8de81affbcb84d4cc6e7c1d3108151d6b1d81e2265d0537": {
+      "file": "7c1b9502003b4921e8de81affbcb84d4cc6e7c1d3108151d6b1d81e2265d0537.gz",
+      "stored_sha256": "e4a231b2adaec1154c028c5ef7bf0414e5a98f17bcde61a9d91ab185e3df4d8e"
+    },
+    "b9124a7935fb963a8654ed4c54845f13734e08b398a5a11a8549f07ed26df17b": {
+      "file": "b9124a7935fb963a8654ed4c54845f13734e08b398a5a11a8549f07ed26df17b.gz",
+      "stored_sha256": "f898283e34d9410b551cf75ee177616fe32ec04081d4dc7481a278f305302e81"
+    },
+    "e4a075d7411c5588e5fa2896651d949b4fb56da45da364f15ed18db2c35e45d3": {
+      "file": "e4a075d7411c5588e5fa2896651d949b4fb56da45da364f15ed18db2c35e45d3.gz",
+      "stored_sha256": "ea9f9ece86468b1bb4fa9f340c9b23323f882968448c547da597b3109a9b59f6"
+    },
+    "184cca9743c24fde3f01c265038e159f3ec9486c8f5856aa132ee779ddf2a4c8": {
+      "file": "184cca9743c24fde3f01c265038e159f3ec9486c8f5856aa132ee779ddf2a4c8.gz",
+      "stored_sha256": "08af4cf77e1a59484e4727fe3ff05fcfaa64ca48c3261a01a7e18804e903a517"
+    },
+    "3587321bb9c0a8c34b3b43b570b7131449752f1887ed9a52001ea3f36aa05101": {
+      "file": "3587321bb9c0a8c34b3b43b570b7131449752f1887ed9a52001ea3f36aa05101.gz",
+      "stored_sha256": "4254c162901fb9251185da67a4c9fbe2e85ad651b98289fe9d857327ee115a54"
+    },
+    "314952eb979fbc26eb6e1b9cef25176378f5df3c1f6106b1903380ae37cd5942": {
+      "file": "314952eb979fbc26eb6e1b9cef25176378f5df3c1f6106b1903380ae37cd5942.gz",
+      "stored_sha256": "e40cb32e0a3b3544b9f6026a57458360600f480fcaea09e5acb7e84ef3054d16"
+    },
+    "653735176491d3f97199199da9683c464fb796673c8778702b9f4f07e743cd63": {
+      "file": "653735176491d3f97199199da9683c464fb796673c8778702b9f4f07e743cd63.gz",
+      "stored_sha256": "5a8cfa71a212e1bc4bcf06673a67b01aaa71d080ad9d1e8566fd7be7af6a92b9"
+    },
+    "e5393546bb1919063eba8aa9312d664587dde3dcc760ab103e40b75a3e1bf181": {
+      "file": "e5393546bb1919063eba8aa9312d664587dde3dcc760ab103e40b75a3e1bf181.gz",
+      "stored_sha256": "1f3a1d1fd776e83c86e17a89efc4761888f42379b667cdddbfe16e0a0eb246bb"
+    },
+    "136a89920bf5cad7083a484f6dd77971792796ce907c7d9539a2a8f3f1993ea2": {
+      "file": "136a89920bf5cad7083a484f6dd77971792796ce907c7d9539a2a8f3f1993ea2.gz",
+      "stored_sha256": "59e531cbf68cdbfa5406c852d37705fad243bc6619ffff0e8b5b947a89494bcc"
+    },
+    "dc5120eb3cb616ce905ef96f8216d2017d357825ce92c02fe8f4757d3eb1ec7d": {
+      "file": "dc5120eb3cb616ce905ef96f8216d2017d357825ce92c02fe8f4757d3eb1ec7d.gz",
+      "stored_sha256": "598b2b3b529b9ede773c9641af68d3a4b0046470af46761386b3486a0adba8e2"
+    },
+    "eae619bfc0e98be39b58f63d3a075552968e2eebfadd6fd18276f3bf1107af19": {
+      "file": "eae619bfc0e98be39b58f63d3a075552968e2eebfadd6fd18276f3bf1107af19.gz",
+      "stored_sha256": "2b5b1d5e712d688dd7e99032de88825788a1bf15fb3828c1c785fa108b9a4f88"
+    },
+    "2e3b0e21dcfba8f9fbd30547b66be7e19f5c4950a95a07a18f7764f1dc2a8384": {
+      "file": "2e3b0e21dcfba8f9fbd30547b66be7e19f5c4950a95a07a18f7764f1dc2a8384.gz",
+      "stored_sha256": "54ee170d0cfafd577cdf8d928c385e4e0ffe2c5746a1ac16f128f7970d78600a"
+    },
+    "b394c22480a99130e9cbf8b9af1d89c7ed00a9ef39ce14cb757937e9926cf245": {
+      "file": "b394c22480a99130e9cbf8b9af1d89c7ed00a9ef39ce14cb757937e9926cf245.gz",
+      "stored_sha256": "a7ac1bacc1f6c322fd0d9defb7989122414555a51e7660529eccf352cd105be0"
+    },
+    "51fe5312c28328321b041e7f82fd6aa6508ec4d0499a431d0def15d8bb3940ca": {
+      "file": "51fe5312c28328321b041e7f82fd6aa6508ec4d0499a431d0def15d8bb3940ca.gz",
+      "stored_sha256": "a0a616cffcf6cd02a53d69456ae06e6828981237eb62bdc7f153c89477cd7ec2"
+    },
+    "2b79a28b8981519fdf1874ccb57678800c1550a22b51495389c5b8bd75b0b268": {
+      "file": "2b79a28b8981519fdf1874ccb57678800c1550a22b51495389c5b8bd75b0b268.gz",
+      "stored_sha256": "4e059507236d9eca4a773d7c5ecde3caab0cbb1715b05f183d68fcdd04ed4cae"
+    },
+    "f802d612825537f06ae260258d615f4465bf3494b48939a6586748f20e82f2f6": {
+      "file": "f802d612825537f06ae260258d615f4465bf3494b48939a6586748f20e82f2f6.gz",
+      "stored_sha256": "d35ebc047c6231f18606fa2fe96d2b17774d1353c89e7b32513daf113f4da656"
+    },
+    "fb49f51d8ab07c0337aed862db6789d3d71f903aba9ba4c39994ae96f0dc9ecc": {
+      "file": "fb49f51d8ab07c0337aed862db6789d3d71f903aba9ba4c39994ae96f0dc9ecc.gz",
+      "stored_sha256": "1e4c7f0354f8fefa90cb9b8be6c185c4ea9d64ed95f180ab9c2b8828d4950adc"
+    },
+    "29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359": {
+      "file": "29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359.gz",
+      "stored_sha256": "b65d2d5f1df00d87e7958cbdcee6614199abac267408779a49eec435b9614634"
+    },
+    "3a07ad1144f283fb75494872ccab3796e75afaa04c1ff1a0ae101541f8d99c71": {
+      "file": "3a07ad1144f283fb75494872ccab3796e75afaa04c1ff1a0ae101541f8d99c71.gz",
+      "stored_sha256": "9e056a7d5bcb25297ce793d8916cbd45e7a19dc658ad6f2dc35f9b3ad1cae5fe"
+    },
+    "2b29ec53671ced2f114a040ebd27521393ab65e106ed85d17624b0d1272775e0": {
+      "file": "2b29ec53671ced2f114a040ebd27521393ab65e106ed85d17624b0d1272775e0.gz",
+      "stored_sha256": "4b40bc1579074b8ad85cb3545ba604ed5578a867b4baf805be34dd092102bfca"
+    },
+    "ee5d911f5099f489d54d0ecfbb375de831eebec1e7708f69341bae8d75b7f40d": {
+      "file": "ee5d911f5099f489d54d0ecfbb375de831eebec1e7708f69341bae8d75b7f40d.gz",
+      "stored_sha256": "3210ab1d8a547569b21b7c546800a3b8f065e31e2d738496f36c851468d314ed"
+    }
+  },
+  "rights": "Local only; original save/state/graphics are not distributed."
+}

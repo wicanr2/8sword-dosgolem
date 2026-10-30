@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "status": "qualified-hd-closeout-with-gui-gap",
+  "all_planned_gates_passed": false,
+  "project_complete": false,
+  "plan_sha256": "490372953c3298116cfc62213ded3c9c041c4882d6b94c18f6f6b9c450329198",
+  "identity_sha256": "655514a5c002c15b26806eb3f3cb0f3b740a40f95bded4024504c8a36334bfb2",
+  "replays": {
+    "native": {
+      "receipt_sha256": "22d2a0a9b55a23460569b76f665865995b00da45da2fa5a90f716c2781e68a0d",
+      "state_sha256": "4b55d17998e2fa05176fdf9c2a4deab2321c15d6fd79164d88bfde82d82c64ac",
+      "native_pixel_writes": 4194129
+    },
+    "hd": {
+      "receipt_sha256": "71844a3205d3b81e9b4d8c1320b7a115bf08e9789309492ce3020b4337cbee80",
+      "state_sha256": "4b55d17998e2fa05176fdf9c2a4deab2321c15d6fd79164d88bfde82d82c64ac",
+      "native_pixel_writes": 0
+    }
+  },
+  "replay_complete_state_equal": true,
+  "additional_basic_gui": {
+    "save": {
+      "receipt_sha256": "eae619bfc0e98be39b58f63d3a075552968e2eebfadd6fd18276f3bf1107af19",
+      "steps": 49745210
+    },
+    "reload": {
+      "receipt_sha256": "75c9c621997b331c4cadd31b1878a3ad419ef3707c2577d31ff3164d137040e7",
+      "steps": 20959169
+    }
+  },
+  "planned_gui_gate": {
+    "status": "not-passed",
+    "reason": "panic: 等待 本次民兵頁文字完成 逾時",
+    "log_sha256": "94e802a39c295393b777dc22c5509495fb6a628280cbbb954895d5430869aea1",
+    "render_fault": null,
+    "classification": "Unresolved normal-input path; no claim that this proves a product defect or a successful encounter."
+  },
+  "save_sha256": "29dd62aed5918ac7ef9dcd4020a90d8a8ff84355bcd9405ded3432116b1a2359",
+  "reused": {
+    "ai-engine-audit-r1.json": {
+      "status": "PASS-scoped-030-optional-target-AI",
+      "sha256": "59244aa73017604b242f46512d4c95735dc8a43946acce9afa3b78b3af50342f"
+    },
+    "tactics-audit-r1.json": {
+      "status": "passed-scoped-tactics-engine",
+      "sha256": "7588dfad70c388e938d3f2127bfa16d8ea5b9e296c8af16c554acd48cf40fa01"
+    },
+    "vfx-engine-audit-r1.json": {
+      "status": "passed-scoped-vfx-engine",
+      "sha256": "786d45dafc6eb84069c4b639ffb7ebc29b5e801ec7f64ec33e8dae0af517f3ed"
+    },
+    "hd-music-audit-r1.json": {
+      "status": "passed-current-ten-hd-music",
+      "sha256": "e779f25c8820b0aa43abef8af67a889b486d65bd51160a447d036fa37d0d78cc"
+    },
+    "owned-world-army-dismiss-audit-r1.json": {
+      "status": "passed-draft-f3-dismiss",
+      "sha256": "bfe590134ff54719786c16a537e894d7b675493556cbb174b0928e8b88b94e34"
+    }
+  },
+  "f3_preserved": {
+    "files": 417,
+    "objects": 301
+  },
+  "new_troop_player_handoff_complete": false,
+  "limits": [
+    "Purposive mechanism samples, no statistical full-game coverage claim.",
+    "Existing HD/features stage only. Expanded army world/month/event/battle handoff is not implemented in the formal player path.",
+    "No Rust migration, public release, hardware timing or new listening claim."
+  ]
+}

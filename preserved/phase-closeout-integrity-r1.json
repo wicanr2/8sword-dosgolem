@@ -1,0 +1,16 @@
+{
+  "status": "passed-integrity-with-qualification-preserved",
+  "project_complete": false,
+  "all_planned_gates_passed": false,
+  "identity_sha256": "655514a5c002c15b26806eb3f3cb0f3b740a40f95bded4024504c8a36334bfb2",
+  "counts": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "artwork_files": 1040,
+  "local_links": 2202,
+  "ownership": "uid1000",
+  "formal_game_changed": false
+}
