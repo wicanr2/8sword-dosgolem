@@ -96,6 +96,10 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 ![Go戰鬥試作的實際勝利畫面，尚未領取獎勵](docs/images/owned-battle-ui-preview-r1.png)
 
+六項資源也已完成與原版存讀的受控傳送驗證。Go更新等級、經驗、月薪、金錢、領導與法術能力後，產出的進度與原版F7整檔相同；全新程序普通繼續可讀回相同數值。下圖是冷讀後的HD人物頁引擎畫面，原版軍隊保持原樣，完整新增兵種世界交接仍待完成。範圍見[資源交接研究](docs/spec/030-battle-expansion-proposal.md#六項資源的編碼與受控傳送)及[永久保存](preserved/README.md#go資源與原版進度交接研究保存)。
+
+![受控Go資源經原版F7與冷讀後的人物頁](docs/images/native-resource-cold-r1.png)
+
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
 HD模式固定由Go來源呈現器產生畫面，已移除原版RGB疊圖退路。相容像素操作也由Go處理，事件邊界不再退回原版像素寫入。使用`-hd=false`時保留原版繪圖途徑，不安裝HD繪圖掛點。未接管的HD寫入會記錄位置、保留最後完整畫面並停止。模式分流與抽驗範圍見[047限定驗收](docs/spec/047-hd-scene-renderer.md#相容像素正式提升與限定驗收)。

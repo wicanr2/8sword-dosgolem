@@ -1,0 +1,13 @@
+{
+  "status": "passed-owned-world-bridge-links",
+  "markdown_links": 2960,
+  "new_tools_indexed": 5,
+  "positive_control": "README.md -> CONTEXT.md",
+  "python_ast": [
+    "export-owned-save-ida.py",
+    "prepare-owned-world-bridge.py"
+  ],
+  "root_owned_outputs": 0,
+  "md_directories": 0,
+  "workplace_checked": true
+}

@@ -307,6 +307,46 @@ Python核對器按每個已保存WorldSave、實際catalog攻擊／HP／除數�
 
 首版缺少本機核心require／replace，只修改外部probe.mod後重跑；正式go.mod保持。第一次GUI在空目標的核心提示「合法」缺字而中止，已把核心／控制器提示納入字圖並增加實際錯誤畫面的三字型回歸。檔案系統錯誤若含包外路徑字元，畫面顯示問號，狀態收據保留原始錯誤；不再因回報錯誤而panic。失敗GUI、字圖、來源、存檔及編譯輸出保留，不覆寫。正式Engine另以真正Open呼叫確認DOS前拒絕擴充進度；本輪未宣稱原版排程、特殊法術、正常地圖交接、自然通關或新平衡完成。
 
+#### 原版進度與Go世界交接研究
+
+2026-10-30 DRAFT。接續已驗Go戰鬥視窗，窄查原版2987-byte進度的打包／還原與戰後回地圖邊界，建立Go世界資源交接所需的實際偏移。研究沿battle-r1下的owned-world-bridge-r1，來源與正式197程式保持唯讀，不把執行期DS偏移直接當成檔案偏移，不把擴充ID或兵數寫入原版種類／數值表。
+
+入口為[存檔IDA窄查](../../tools/export-owned-save-ida.py)，先沿固定PAM／PAM.i64、521函式與既有IDA9.4／UID1000工具鏈查2987長度及gamedata字串的直接consumer，再以dosgolem固定快照和原版正常F7／冷讀建立最小充分證據。原版RAM、檔案、Go資料及原子提交分開驗證；未知世界計數與原版軍隊consumer仍拒絕猜補，未達READY不移除載入護欄。
+
+##### 六項資源的編碼與受控傳送
+
+已證實的窄範圍如下。來源為固定PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`；IDA9.4採MZ loader linear base10000h，dosgolem執行期採載入0110h、DS1E88h。下表的進度檔位移只指gamedata.ay，不與PAM檔案位移混用。
+
+| 證據等級 | gamedata.ay位移 | 執行期DS相對位移 | 欄位 |
+|---|---|---|---|
+| 已證實 | 0 | 04F2h | 等級 |
+| 已證實 | 2 | 04F4h | Go沿用merit／戰績；原F1標籤為「經驗」 |
+| 已證實 | 4 | 04F6h | 月薪 |
+| 已證實 | 6 | 04F8h | 金錢 |
+| 已證實 | 8 | 04FAh | 領導能力 |
+| 已證實 | 10 | 04FCh | 法術能力 |
+
+IDA `sub_184C0`的184CDh至18500h把六個word按順序存入緩衝區，每筆加檔案位移再加3，以16位元小端序保存。`sub_18D38`的18D83h至18DB5h反向扣除位移與3，再寫回DS04F2h起六word。兩函式的18D0Ah／18D60h均傳入2987長度，原檔緩衝區為執行期9E00:0000。靜態匯出四函式共2192行，逐行MZ重定位bytes核對通過。六項以外的2975 bytes仍視為不透明資料，不據本切片宣稱完整格式已解出。
+
+[純Go計畫與編碼](../../tools/research-native-progress.go)、[真實進度與拒絕測試](../../tools/research-native-progress_test.go)、[原版F7／冷讀探針](../../tools/probe-native-progress.go)及[準備／獨立核對／保存](../../tools/prepare-owned-world-bridge.py)均為DRAFT研究。計畫綁定固定PAM SHA、原檔SHA與六項前值，只接受等級1至5及各項0至30000；錯版本、錯長度、舊前值、過期或改動計畫、超大整數均拒絕。更新只複製原進度並改前12 bytes，不接收兵種ID或兵數，也不重新編造其餘資料。
+
+原版控制組與受控組均從真實F7的31名民兵進度及配對map01.ay普通Continue開始。兩組寫入前的完整state SHA相同。受控組由Go一次寫六個RAM word，數值取自上一節已驗Go戰鬥GUI戰後資料，然後普通F1、返回、F7儲存、關閉Engine、全新Engine普通Continue及F1。這是受控資源傳送，不是原版自然獲得戰果，也不把Go野狼軍隊交給原版。
+
+| 資源 | 原版基底 | Go戰後目標與原版冷讀 |
+|---|---:|---:|
+| 等級 | 1 | 2 |
+| 經驗／merit | 0 | 2012 |
+| 月薪 | 100 | 200 |
+| 金錢 | 499 | 4400 |
+| 領導能力 | 100 | 1100 |
+| 法術能力 | 0 | 16 |
+
+Go更新後的整份2987 bytes與原版F7輸出全同，控制組也同原基底SHA `eaf461dc51279c16df3f9b8caa228149b903ce10f5dc7f857f4fa32ffbc89912`。原版軍隊RAM24 bytes及檔案12至35保持，仍為原版民兵31；Go原型的野狼29與其他世界資料另保留，沒有忽略附檔後繼續。測試0.006秒、vet與建置通過，原版兩組流程無快照載入、亂數回傳替換或戰鬥callee stub。[獨立核對](../../preserved/owned-world-bridge-audit-r2.json)、[完整位元組對照](../../preserved/owned-world-bridge-full-byte-r1.json)、[冷讀人物頁](../images/native-resource-cold-r1.png)、[畫面來源](../images/native-resource-cold-r1.json)與[永久保存](../../preserved/README.md#go資源與原版進度交接研究保存)為入口。圖為HD Engine.Frame，沒有新Ebiten視窗驗收。
+
+工具沿固定Pillow11.3.0、Go1.24.13與既有IDA9.4 py312-v1 Docker。IDA在唯讀PAM.i64的/tmp副本匯出，不改正式資料庫。準備器用`prepare --project /project`，只掛本研究目錄可寫，從永久troop-capacity-r1與owned-battle-ui-r1物件取資料，無舊研究副本依賴。Go沿唯讀923核心與模組，外部probe.mod設定/core替代、GOPROXY=off／GOSUMDB=off，GOCACHE只在有界exec tmpfs。測試明列`research-native-progress.go research-native-progress_test.go`並設`EIGHTSWORD_NATIVE_PROGRESS_INPUT=/out/inputs`；探針建置改列`research-native-progress.go probe-native-progress.go`，參數為`-root /game -assets /assets -input /out/inputs/native -target /out/inputs/target-resources.json -out <新目錄> -apply=false|true`。原版兩案各240秒／2 GiB／1 CPU／128程序，IDA90秒／2 GiB／1 CPU／128程序；均UID1000、--rm、--init、--network none。`audit --project --out <新JSON>`核對資料、原始bytes與兩案；保存用`archive --project --archive --audit <最終收據> --out`，`verify --archive --out`不掛workplace。
+
+六資源的證據已足夠，不再擴張重做存檔driver或無關runtime。完整世界仍DRAFT：軍隊／招募／戰場與原世界讀端、地圖與守軍更新、月度資源、劇情與結局，以及原版進度／Go附檔的原子提交仍未接正式路徑。正式197來源七程式、923核心、r69全535素材、1040圖庫與DOS前護欄保持，不能用本切片當作移除護欄的理由。
+
 ## AI 從原版判斷掛點切入
 
 ```mermaid

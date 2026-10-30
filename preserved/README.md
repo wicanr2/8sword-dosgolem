@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## Go資源與原版進度交接研究保存
+
+[030六資源交接](../docs/spec/030-battle-expansion-proposal.md#六項資源的編碼與受控傳送)的IDA四函式2192行原bytes、197來源研究副本、Go編碼／計畫／測試／探針、原F7進度與配對地圖、Go戰後來源、原版控制與受控傳送的十份完整state、人物頁／地圖PNG、Go候選與原版F7輸出，保存於本機`preserved/owned-world-bridge-r1/`。本批298檔／256去重物件，壓縮10559130 bytes，未掛workplace逐SHA與長度核對通過。
+
+兩案寫入前完整state相同；每案Go候選與原版F7全2987 bytes相同，六數值在全新Engine普通Continue／F1讀回。原版民兵31、軍隊24 bytes與六項以外2975 bytes保持。這是受控資源傳送，Go野狼29及完整世界資料另留來源，正式軍隊與原世界交接仍DRAFT。正式197來源七程式、923核心、r69全535素材、1040圖庫及DOS前護欄保持。
+
+[逐檔清單](owned-world-bridge-r1.json)、[首版核對](owned-world-bridge-audit-r1.json)、[最終核對](owned-world-bridge-audit-r2.json)、[整檔對照](owned-world-bridge-full-byte-r1.json)、[保存收據](owned-world-bridge-preservation-r1.json)、[脫離workplace核對](owned-world-bridge-verification-r1.json)、[收尾](owned-world-bridge-integrity-r1.json)與[文件入口核對](owned-world-bridge-links-r1.json)為入口。完整映像ID、參數、虛擬時鐘與來源SHA見批次execution-r1.json。[保存工具](../tools/prepare-owned-world-bridge.py)在固定Pillow11.3.0 Docker使用`archive --project <唯讀專案> --archive <可寫preserved> --audit <最終通過收據> --out <新JSON>`；`verify --archive <唯讀preserved> --out <新JSON>`逐SHA／長度核對，不需workplace。依清單path／mode與objects解gzip可還原；原版、923核心與離線模組沿[兵力核心保存](owned-combat-r1.json)及[完整catalog](catalog.json.gz)。重建研究時先在有界Docker建立本研究的ida／inputs目錄，再依030執行IDA與Go準備器。
+
+縮小[冷讀人物頁](../docs/images/native-resource-cold-r1.png)與[來源資訊](../docs/images/native-resource-cold-r1.json)加入Git；這是HD Engine.Frame，不是新Ebiten視窗。完整PNG、原版進度／地圖、二進位、IDA輸出與壓縮物件維持本機。Go快取只放隨容器移除的exec tmpfs，沒有新工具映像或磁碟快取。
+
 ## Go戰鬥視窗試作保存
 
 [030戰鬥視窗研究](../docs/spec/030-battle-expansion-proposal.md#自有戰鬥視窗研究)的197來源研究副本、33兵種招募／戰鬥資料、基底進度、三字型字圖與授權、Go／XTEST程式、實際GUI招募／28次出手／13次換輪／領獎的每個WorldSave、三程序狀態與七份完整PNG／X11 PPM，保存於本機`preserved/owned-battle-ui-r1/`。首輪缺字中止、失敗字圖／存檔／二進位與修正後的乾淨GUI分開保存。這是明示資源與敵軍的DRAFT操作試作，沒有接入正式原版地圖，卡片未用HD戰場美術。

@@ -1,6 +1,6 @@
 # 逆向與啟動研究
 
-入口：[AGENTS.md](AGENTS.md)。目前狀態：[CONTEXT.md](CONTEXT.md)。下列收據與原版素材只留本機 `workplace/`。
+入口：[AGENTS.md](AGENTS.md)。目前狀態：[CONTEXT.md](CONTEXT.md)。歷史段落保留當時的workplace路徑；現行保存與清理範圍以[永久資料入口](preserved/README.md)為準。
 
 ## 2026-10-23：來源盤點與原版啟動
 
@@ -2506,3 +2506,13 @@ Go控制資料鏈招募30野狼、14輪／28行動、剩29對敵0，完整存讀
 - 既有[回填索引](docs/spec/ai-resolution-backlinks-r1.json)另加三項world_field_resolutions，鍵包含dos16/PAM.AY、來源SHA與原DS相對偏移，26項AI及既有玩家索引不變。[檢查器](tools/check-ai-resolution-backlinks.py)同時檢查原始定位、消費端、舊規格勘誤標記與收據，避免再把月薪／法術能力當成未知而重查。
 
 原版DS365Eh第24至29筆皆空時的結局入口已定位，Go世界與既有結局呈現尚未交接。本批保留該組守軍，原型對其目標及無存活證據拒絕提交。正式UI、原版地圖／存檔原子交接與月度資源同步仍待完成；不擴張重做既有結局、繪圖或亂數內部。
+
+## 2026-10-30：六項資源的原版存檔編碼與Go傳送
+
+- 問題：Go戰果已完成獨立GUI，但尚無原版進度欄位的打包／還原契約。執行期DS偏移不能當成gamedata.ay檔案偏移，完整世界仍DRAFT。
+- 輸入PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4 py312-v1／UID1000從正式唯讀DB複製到/tmp，匯出四函式2192行原bytes與xref；逐MZ重定位核對通過，沒有改名。IDA採MZ loader linear base10000h，dosgolem執行期另為載入0110h、DS1E88h。
+- 已證實：IDA sub_184C0的184CDh至18500h，按索引0至5讀`[di+4F2h]`，加byte位移與3後以word寫入存檔緩衝區；sub_18D38的18D83h至18DB5h反向扣除，寫回DS04F2h起六word。檔案位移0／2／4／6／8／10，依序為等級、merit、月薪、金錢、領導能力、法術能力。merit沿既有Go鍵，原F1文字為「經驗」。原兩函式分別傳2987長度，執行期檔案緩衝區9E00:0000；其他2975 bytes本輪不解義。
+- 已證實的受控傳送：正常F7基底與配對map01.ay由永久troop-capacity-r1取回，原資源1／0／100／499／100／0、民兵31。控制與受控兩組普通Continue到Go寫入前的完整state同SHA。受控組由Go直接寫六資源RAM word，目標取上一輪Go戰鬥實際GUI戰後資料2／2012／200／4400／1100／16，再普通F1、F7儲存、關閉與新Engine普通Continue／F1。沒有載入快照、亂數回傳替換或戰鬥stub，不稱原版自然戰果。
+- 純Go以原進度SHA與六前值規劃更新，只改前12 bytes並保留2975 bytes。Go候選與原版F7的完整2987 bytes相同，控制組同原基底SHA `eaf461dc51279c16df3f9b8caa228149b903ce10f5dc7f857f4fa32ffbc89912`。原版六隊RAM24 bytes及檔案12至35保持，民兵31未被替換；Go野狼29及完整世界資料另外保存。這只確認資源傳送，不能將其解讀為擴充軍隊已回原世界。
+- Go真實資料／邊界測試0.006秒、vet與建置通過，拒絕錯PAM、錯長度、舊SHA／前值、改動／重放計畫、等級0／6及30001／65535／65536／MaxUint64。最高合法目標5／30000各項可往返；原版同狀態對照限上述兩組，不外推全格式與所有數值。完整證據、使用方法與停止線見[030資源交接](docs/spec/030-battle-expansion-proposal.md#六項資源的編碼與受控傳送)及[永久保存](preserved/README.md#go資源與原版進度交接研究保存)。
+- 正式197來源七程式、923核心、535素材與1040圖庫不改，DOS前擴充存檔護欄保持。軍隊與原世界consumer、守軍／地圖、月度、劇情與結局、原版進度與Go附檔原子提交仍未完成；DS56C6h等未知計數不猜補。證據足夠後回到玩家交接，不深挖標準DOS檔案服務或runtime。

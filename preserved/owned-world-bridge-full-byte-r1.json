@@ -1,0 +1,21 @@
+{
+  "status": "passed-full-native-resource-byte-check",
+  "cases": [
+    {
+      "phase": "control-r1",
+      "go_candidate_sha256": "eaf461dc51279c16df3f9b8caa228149b903ce10f5dc7f857f4fa32ffbc89912",
+      "native_save_sha256": "eaf461dc51279c16df3f9b8caa228149b903ce10f5dc7f857f4fa32ffbc89912",
+      "compared_bytes": 2987
+    },
+    {
+      "phase": "transport-r1",
+      "go_candidate_sha256": "88ecc5070a0e3122b1eea574e5a92de3321440d9abc245ed35688487903ca1dd",
+      "native_save_sha256": "88ecc5070a0e3122b1eea574e5a92de3321440d9abc245ed35688487903ca1dd",
+      "compared_bytes": 2987
+    }
+  ],
+  "same_initial_state_sha256": "62a1f03f5122e89eb80450ada793f39d75abc9ec00176ff9271c431d839061f2",
+  "resources_changed_only_in_first_12_bytes": true,
+  "opaque_bytes_preserved": 2975,
+  "normal_extended_army_path": false
+}

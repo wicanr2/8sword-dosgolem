@@ -1,0 +1,27 @@
+{
+  "prototype": true,
+  "capture": "Go HD Engine.Frame after ordinary original F7 and fresh Engine Continue/F1; not an Ebiten window capture.",
+  "controlled_resource_write": true,
+  "source_path": "workplace/probe-20261023/graphics-first/battle-r1/owned-world-bridge-r1/transport-r1/cold-character.png",
+  "source_sha256": "da5967125aec136f90959fb89af600348193c7ae628c3af7a97342d85c93a3ae",
+  "preview_sha256": "33818e90df88cfdeb5e37400aa41fc6309cfa80b58d1739699646f0e4e606609",
+  "source_size": [
+    1920,
+    1200
+  ],
+  "preview_size": [
+    1200,
+    750
+  ],
+  "font": "Noto Sans CJK TC Black 900",
+  "values": {
+    "rank": 2,
+    "merit": 2012,
+    "monthly_pay": 200,
+    "gold": 4400,
+    "leadership": 1100,
+    "spell_power": 16
+  },
+  "original_army_unchanged": true,
+  "normal_extended_army_path": false
+}
