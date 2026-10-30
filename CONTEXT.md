@@ -1,6 +1,6 @@
 # 目前狀態
 
-核對日期：2026-10-29。各項版本記錄驗收當時的來源；現行素材與程式以最上列為準。工作規則：[AGENTS.md](AGENTS.md)。歷程：[WORKLOG.md](WORKLOG.md)。
+核對日期：2026-10-30。各項版本記錄驗收當時的來源；現行素材與程式以最上列為準。工作規則：[AGENTS.md](AGENTS.md)。歷程：[WORKLOG.md](WORKLOG.md)。
 
 持續授權：使用者要求後續都照相同規格處理，不再詢問。同規格美術、動畫與HD接入沿已批准風格、Go呈現、代表抽驗、永久保存及私人GitHub紀錄自主完成；具體範圍與入口見[專案規則](AGENTS.md)。
 
@@ -10,6 +10,7 @@
 
 | 面向 | 現況與證據 |
 |---|---|
+| 本輪：Go世界交接試作 | [030世界交接](docs/spec/030-battle-expansion-proposal.md#世界與戰鬥交接研究)維持DRAFT。已串接33種Go資料、招募、28次真正Go行動、勝利獎勵／晉級／存活隊伍整理／Go敵軍清除記錄，以及戰中與戰後各一份附檔的另一程序冷讀。受控野狼30→29、金錢3800→4400、戰績1990→2012、等級1→2、領導力1000→1100，庫存970保持；採實際原版晉級門檻，兵種平衡仍為候選。正常原版遇敵／撤退／扣100／回地圖的11個交接點已觀測，完整state與無觀測控制相同；七組勝利數值另作直接呼叫控制。過期世界、重複結算／清敵、存檔鎖／舊SHA、畸形資料及大額獎勵已驗。正式197來源七程式、923核心、535素材與1040圖庫不變，擴充附檔仍由Engine在DOS前拒絕。[回放](docs/images/owned-world-data-chain-r1.html)、[核對](preserved/owned-world-audit-r1.json)及[永久入口](preserved/README.md#go世界交接試作保存)記錄範圍。正式軍隊／招募／戰鬥UI、敗退、任務與原版世界敵軍交接仍待接入，不把離線試作當成正常玩家完成。 |
 | 本輪：Go兵力核心與存檔隔離 | [030限定CONFORMED](docs/spec/030-battle-expansion-proposal.md#go兵力核心及隔離正式提升與限定驗收)：已提升owned-combat-r1／197來源七程式。33種資料用字串ID、每方6隊，Go算傷害／減員／總兵力、AI與單次回寫；15組原版數值／選敵控制、既有16 Engine動作控制、無效ID／陣位／零HP／大兵數／重複行動及快照形狀通過，回歸10.076秒。有效第5陣位與第25種類另驗0.003秒。Go資料鏈28行動／14輪，野狼30→29、敵15→0，金錢3800／庫存970保持，另一程序讀回同軍隊及規則。正常購兵／F7存檔／新Engine冷讀三份完整state及Frame逐SHA同前193來源。擴充軍隊附檔在DOS載入前拒絕，防止交給原版固定表。[回放](docs/images/owned-combat-data-chain-r1.html)、[核對](preserved/owned-combat-audit-r1.json)、[提升](preserved/owned-combat-promotion-r1.json)及[永久入口](preserved/README.md#go兵力核心與擴充存檔隔離)記錄範圍；555檔／337物件已脫離workplace核對。923核心／535素材／1040圖庫保持。這是資料核心與隔離的正式提升，正常新增兵種招募／戰鬥UI、世界資源同步、全法術及完整戰果交接仍DRAFT，不能移除護欄或宣稱新兵種已可玩。 |
 | 本輪：Go自有招募／存檔原型 | [030研究與DRAFT原型](docs/spec/030-battle-expansion-proposal.md#兵種編號與存檔容量研究)：IDA9.4共54函式／11708行原bytes、75容量／領導力控制及正常民兵30→31／金500→499已核對。真正F7存檔後全新Engine冷讀，軍隊／金錢及2987-byte原緩衝區全同。Go原型含25原版／8獨立ID候選、六隊交易、庫存／金錢／領導力與SHA綁定附檔；六次交易後完整磁碟／另一程序往返、拒絕錯進度／未知版本／缺欄位／重複鍵／短長陣列通過。[離線原型](docs/images/owned-army-prototype-r1.html)、[獨立核對](preserved/troop-capacity-audit-r1.json)與[永久入口](preserved/README.md#兵種容量與自有招募存檔原型)為依據。193來源／七程式、923核心、535素材及1040原圖不改；新增兵種尚未接正式招募／戰鬥／存檔生命週期，數值只供可撤回試算，特性標記未啟用。下一步是自有軍隊與原版資源／戰鬥／UI的交接契約，Rust留後續。 |
 | 本輪：十曲HD音樂 | [008限定CONFORMED](docs/spec/008-music-events-and-playback.md#十曲正式提升與限定驗收)：沿同規格全權授權，九首既有候選併入r69全535檔，〈幻〉及其餘524檔保持。九組音樂測試1.185秒、vet、正常冷啟動十曲／14操作點通過，完整state SHA 72c4fc3d…1300；每曲4800雙聲道frames與獨立解碼RMS≤0.021，Esc後48000 frames原音訊逐取樣相同。2012檔／1733物件永久保存，無workplace逐SHA核對通過。[核對](preserved/hd-music-audit-r1.json)、[提升](preserved/hd-music-promotion-r1.json)與[永久入口](preserved/README.md#十曲hd音樂保存)為依據。七程式／193來源／923核心／1040原圖保持；未新增逐首人耳、全部玩法觸發、GUI或存讀驗收。 |

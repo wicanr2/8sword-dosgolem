@@ -1,5 +1,11 @@
 # 必要資料永久保存
 
+## Go世界交接試作保存
+
+[030世界與戰鬥交接](../docs/spec/030-battle-expansion-proposal.md#世界與戰鬥交接研究)的IDA輸出、完整197來源研究副本、正常遇敵／撤退／扣款／回地圖成對state與PNG、七組直接勝利數值、Go招募／戰鬥／世界結算、戰中與戰後附檔及另一程序冷讀、邊界／溢位測試與瀏覽器回放檢查，保存在本機`preserved/owned-world-r1/`，共429檔／293去重物件，壓縮26566599 bytes。失敗輸出與早期100點門檻試作保留歷史，現行回放採原版2000點首級門檻與明示1990初值。正式程式保持前版；保存不代表新增兵種已可正常遊玩。
+
+[逐檔清單](owned-world-r1.json)、[獨立核對](owned-world-audit-r1.json)、[保存收據](owned-world-preservation-r1.json)、[脫離workplace核對](owned-world-verification-r1.json)及[收尾](owned-world-integrity-r1.json)為入口。[工具](../tools/audit-owned-world.py)在Pillow11.3.0 Docker使用`verify --archive <唯讀preserved> --out <新JSON>`逐SHA與長度核對，不需workplace。按清單path／mode解gzip可還原；原版、923核心、535素材、既有33種資料及模組依[兵力核心保存](owned-combat-r1.json)、[容量研究保存](troop-capacity-r1.json)與[完整catalog](catalog.json.gz)。完整二進位、RAM、進度、IDA原始輸出及大圖維持本機，Git只記工具、規格、回放與索引。
+
 ## Go兵力核心與擴充存檔隔離
 
 [030核心及隔離](../docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離)的完整197來源候選、七程式、33兵種資料、15組原版控制／原始RAM、Go招募／28行動／傷亡回寫／磁碟／另一程序讀回、三份普通原版購兵／F7存檔／冷讀快照及回放頁檢查，保存於本機`preserved/owned-combat-r1/`，共555檔／337去重物件，壓縮45608931 bytes。自有軍隊的正常招募／戰鬥UI與世界交接仍待完成，保存不代表新兵種已可正常遊玩。

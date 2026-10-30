@@ -1,0 +1,121 @@
+{
+  "status": "passed-draft-owned-world",
+  "production_changed": false,
+  "player_path": false,
+  "ida_functions": 13,
+  "ida_lines": 2080,
+  "operand_candidates": 390,
+  "normal_boundary_events": 11,
+  "normal_state_sha256": "e618d4343697fa00a50ab4b6021b169f6a5e21e4eaf86100c1fac9cd7a98777b",
+  "original_controls": [
+    {
+      "name": "below",
+      "result": [
+        1,
+        99,
+        100,
+        507,
+        300,
+        10
+      ]
+    },
+    {
+      "name": "equal",
+      "result": [
+        1,
+        100,
+        100,
+        507,
+        300,
+        10
+      ]
+    },
+    {
+      "name": "above",
+      "result": [
+        2,
+        101,
+        200,
+        507,
+        400,
+        16
+      ]
+    },
+    {
+      "name": "single-promotion",
+      "result": [
+        2,
+        10001,
+        200,
+        507,
+        400,
+        16
+      ]
+    },
+    {
+      "name": "rank-cap",
+      "result": [
+        5,
+        30000,
+        100,
+        507,
+        300,
+        10
+      ]
+    },
+    {
+      "name": "gold-cap",
+      "result": [
+        1,
+        99,
+        100,
+        30000,
+        300,
+        10
+      ]
+    },
+    {
+      "name": "bonus-cap",
+      "result": [
+        2,
+        101,
+        30000,
+        507,
+        30000,
+        30000
+      ]
+    }
+  ],
+  "actions": 28,
+  "remaining_troops": 29,
+  "gold": 4400,
+  "merit": 2012,
+  "rank": 2,
+  "mid_battle_cold_load": true,
+  "final_cold_load": true,
+  "sources": {
+    "tools/probe-owned-world.go": "f1a713639a00fb871ae36f19b600fa42bdc3714666eacfb5a7f9f95680933200",
+    "tools/research-owned-world.go": "29092e79877609cec39e1d223c7eaae3eb67863d2b3e937e27990a2042f8e1fb",
+    "tools/research-owned-world_test.go": "b093e3e94742c037879b03fe63baba8476eb1559688b95b3694aedb3b6e6a086",
+    "tools/owned-world-check.go": "ae5175b5f217ef45532be5921a5cb388ca6685164ee739193360943185b94ac5",
+    "tools/export-owned-world-ida.py": "9437f9518e734b36f1725dabc961ed8cf1c3473d36f07e3762446fb637672ddd",
+    "tools/audit-owned-world.py": "8b3e4acc0a266628d549430f431d38174e303f3da69c0b08e7d200879f2b57a3"
+  },
+  "dependencies": {
+    "preserved/owned-combat-r1.json": "565158d111ca496ed298b61bdec6a0759a4386d56541a5bd00b416da870f3e4c",
+    "preserved/troop-capacity-r1.json": "c6d0b684dda0d7cc1922cc7edc3819f588d81b01272ec895aca567de3369e4a1"
+  },
+  "unchanged": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core": 923,
+    "assets": 535,
+    "artwork": 1040
+  },
+  "limits": [
+    "DRAFT; normal expanded-unit UI/world integration remains pending.",
+    "Normal player path is escape, not victory. Seven victory controls use explicit direct calls.",
+    "Go preserves original 30000 stat caps but does not emulate signed-16-bit overflow.",
+    "Defeat/retreat penalties, quests and unknown legacy field labels remain unsupported."
+  ]
+}
