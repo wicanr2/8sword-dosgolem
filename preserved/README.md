@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## 原版隨機敵軍Go匯入保存
+
+[030敵軍來源](../docs/spec/030-battle-expansion-proposal.md#原版隨機敵軍的go匯入)保留原版RNG與敵軍生成，Go略過我方固定表複製，在36B4讀取原版生成完成的六隊，再交Go戰鬥／戰果／成對保存。原054A及我方56E8共48 bytes填FF，只作不變診斷。種類1至25、兵數1至32767及原陣位逐欄轉成Go字串ID，未知／重複／不完整資料拒絕，不猜補。
+
+[準備／核對與保存](../tools/prepare-runtime-enemy.py)、[Go匯入](../tools/research-runtime-enemy.go)與[原版成對控制](../tools/probe-runtime-enemy.go)是入口。`prepare | freeze`沿固定Pillow11.3.0、Go1.24.13與923核心建立既有battle-r1下的runtime-enemy-r1；兩組控制均從同一保存的原版RNG狀態開始，沒有重新抽種子。具體來源、Go檔案、資源配額及執行方法保存在本批execution-r1.json及go-src，原版、模組與HD素材唯讀掛載。
+
+[獨立核對](runtime-enemy-audit-r1.json)、[逐檔清單](runtime-enemy-r1.json)、[脫離工作區核對](runtime-enemy-verification-r1.json)及[收尾完整性](runtime-enemy-integrity-r1.json)集中結果。399檔／347物件、壓縮32068748 bytes留在本機`preserved/runtime-enemy-r1/`，完整原版物件排除Git；索引與核對資料加入私人倉庫。
+
+兩組原版與跳過複製的敵軍／各10次rand返回相同，12個解析案例為3有效／9拒絕；Go各出手一次後受控撤退及回0BD3通過。實際確認流程另作操作抽樣，原版生成四隊敵軍，Go出手、撤退、F2及另程序冷讀通過。19份state、648行IDA bytes、五張X11全RGB、字界、原六資源與其餘2975 bytes均已獨立核對。reader的`-all`及原三快照預設以相同資料驗一致。
+
+`audit --project <專案> --out <新JSON>`在Pillow映像執行，透過已建置std-only reader只解狀態，不重跑客體；`archive --project --archive <可寫preserved> --out <新清單>`保存所有輸入、來源與輸出。`verify --archive <唯讀preserved> --out <新JSON>`只需本批物件與工具，逐SHA／長度核對，不需workplace。依清單path／mode與objects可還原，避免覆寫不同檔案。
+
+完整原版狀態、PAM、Go二進位與原圖只留本機，不加入Git。原版生成尚未重寫；5／5除數及撤退2730仍是明示試作條件，不宣稱完整原版戰鬥或自然遭遇。世界整合DRAFT，正式197來源七程式、923核心、535素材、1040圖庫與DOS前護欄保持。
+
 ## 原版確認與Go戰鬥介面接線保存
 
 [030受控接線](../docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)沿固定3733快照及真實caller，將受控起點回置16E0。原版確認接受後進32E0，Go接管操作、兵力、成對保存及戰果，再經171D／172E回原0BD3。完整原版表保持FF；原版CPU在Go介面期間暫停。敵軍、初值及撤退輸入2730均是明示fixture，不稱自然玩家路徑。

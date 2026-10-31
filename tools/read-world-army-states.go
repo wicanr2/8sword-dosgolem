@@ -20,6 +20,7 @@ import (
 func main() {
 	calls := flag.String("calls", "", "original states")
 	out := flag.String("out", "", "new decoding output")
+	all := flag.Bool("all", false, "read every explicitly saved .state in the directory")
 	flag.Parse()
 	check := func(err error) {
 		if err != nil {
@@ -34,7 +35,19 @@ func main() {
 	}
 	check(os.Mkdir(*out, 0755))
 	rows := map[string]any{}
-	for _, name := range []string{"before-commit.state", "after-commit.state", "final-map.state"} {
+	names := []string{"before-commit.state", "after-commit.state", "final-map.state"}
+	if *all {
+		paths, err := filepath.Glob(filepath.Join(*calls, "*.state"))
+		check(err)
+		if len(paths) == 0 {
+			panic("no saved states")
+		}
+		names = nil
+		for _, path := range paths {
+			names = append(names, filepath.Base(path))
+		}
+	}
+	for _, name := range names {
 		f, e := os.Open(filepath.Join(*calls, name))
 		check(e)
 		z, e := gzip.NewReader(f)
@@ -84,5 +97,9 @@ func main() {
 	b, e := json.MarshalIndent(rows, "", "  ")
 	check(e)
 	check(os.WriteFile(filepath.Join(*out, "index.json"), append(b, '\n'), 0644))
-	fmt.Println("Read three original snapshots without running guest instructions")
+	if *all {
+		fmt.Printf("Read %d original snapshots without running guest instructions\n", len(names))
+	} else {
+		fmt.Println("Read three original snapshots without running guest instructions")
+	}
 }

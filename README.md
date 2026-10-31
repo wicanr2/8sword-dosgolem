@@ -122,6 +122,8 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 [原版確認與Go戰鬥接線](docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)在隔離候選提供實際戰鬥操作，保留教育部隸書選項。下圖是固定快照與測試敵軍的實際視窗，範圍與[圖片來源](docs/images/owned-encounter-ui-lishu-r1.json)均有紀錄。
 
+敵軍也可由[原版隨機生成資料匯入Go](docs/spec/030-battle-expansion-proposal.md#原版隨機敵軍的go匯入)。這條受控候選沿用原版RNG及生成程序，由Go處理匯入後的戰鬥、戰果與存檔。
+
 ![原版確認後的受控Go戰鬥介面，使用教育部隸書](docs/images/owned-encounter-ui-lishu-r1.png)
 
 ![實際F3 Go解雇視窗，採教育部隸書](docs/images/world-army-f3-lishu-r1.png)

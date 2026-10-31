@@ -1,0 +1,21 @@
+{
+  "status": "passed-runtime-enemy-integrity",
+  "local_links": 2336,
+  "pairs": 2,
+  "parser_cases": 12,
+  "gui_screens": 5,
+  "independent_states": 19,
+  "reader_default_compatibility": 3,
+  "ida_lines": 648,
+  "source_inputs": 197,
+  "programs": 7,
+  "core_files": 923,
+  "asset_hashes": 535,
+  "files": 399,
+  "objects": 347,
+  "cache_removed_bytes": 133075235,
+  "ownership": "uid1000",
+  "controlled_memory": true,
+  "normal_player_path": false,
+  "production_changed": false
+}
