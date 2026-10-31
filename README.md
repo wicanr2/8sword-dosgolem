@@ -20,6 +20,14 @@
 
 介紹依據為原版手冊印頁 1–2、7–10 與包裝背面。掃描檔只留本機，來源名稱、雜湊及內容定位見[研究紀錄](RESEARCH-LOG.md#遊戲介紹與字型樣張的來源)。手冊所載玩法與本專案已驗證的範圍分開記錄。
 
+## HD募兵圖示
+
+招募頁已接入25種原版部隊的HD圖示，與既有中國古風素材共用。圖示置於建築區右側，保留原版數量、月薪、現金與輸入欄。可看[25種圖示總覽](docs/images/recruit-unit-icons-r1.png)，或用[原版規則預覽](tools/recruit-icons.sh)試玩；目前是隔離入口，正式播放器與Go擴充軍隊護欄保持。
+
+![HD募兵圖示實景](docs/images/recruit-shop-hd-icons-r1.png)
+
+原版矮人招募頁，沿既有HD部隊素材。實際招募、扣款、離店、F7及另一程序軍隊讀回已抽驗；圖示開關的完整遊戲狀態與PCM相同。範圍見[核對](preserved/recruit-icons-audit-r1.json)及[來源](docs/images/recruit-unit-icons-r1.json)，新增兵種的招募肖像與Go庫存仍待接。
+
 ## 全圖形 HD 素材
 
 已辨識的104份圖檔、333筆圖形都已備妥HD圖像，涵蓋100筆部隊／怪物、14筆地圖遭遇，以及介面、場景、建築、器物、結局、單色變體與編輯圖集。可在[完整圖庫](artwork/all-graphics-hd-gallery-r2.html)依分類、原檔名及接入狀態搜尋，或查看[十二類總覽](artwork/README.md#全圖形hd圖庫)。

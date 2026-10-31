@@ -1,0 +1,20 @@
+{
+  "status": "passed-hd-recruit-icons-integrity",
+  "files": 763,
+  "objects": 431,
+  "compressed_bytes": 63704787,
+  "detached_verified": true,
+  "local_links": 3230,
+  "link_errors": [],
+  "root_owned_files": 0,
+  "markdown_directories": 0,
+  "cache_removed_files": 1884,
+  "cache_removed_bytes": 171263082,
+  "formal_sources": 197,
+  "core_files": 923,
+  "assets": 535,
+  "formal_changed": false,
+  "production_promoted": false,
+  "native_army_path": true,
+  "cleanup_scope": "This candidate build-cache only; no shared or other-project resources."
+}

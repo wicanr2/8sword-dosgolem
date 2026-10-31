@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## HD募兵部隊圖示保存
+
+25種原版部隊沿既有已驗HD快取接入募兵頁。Go在Go來源畫布上合成卡片，不借原版RGB；缺圖、未知kind與原版模式安全略過，離店清除。實際普通Continue、矮人購買1名、F7、另一程序Continue與F2通過，金499→498、原庫存1200→1199，軍隊與金錢讀回保持。正式197來源／七程式、923核心、535素材、1040圖庫及Go附檔護欄不變。
+
+入口集中[030契約](../docs/spec/030-battle-expansion-proposal.md#募兵庫存與hd部隊圖示)、[IDA窄查](../tools/export-recruit-shop-ida.py)、[快取API](../tools/research-recruit-icons.go)、[觀測與Go合成](../tools/recruit-icons-ui.go)、[原版軍隊前端](../tools/recruit-native-main.go)、[讀取測試](../tools/research-recruit-icons_test.go)、[準備／發圖／保存](../tools/prepare-recruit-icons.py)、[獨立核對](../tools/check-recruit-icons.py)、[實際按鍵](../tools/check-recruit-icons-ui.py)及[試玩入口](../tools/recruit-icons.sh)。結果為[限定核對](recruit-icons-audit-r1.json)、[逐檔清單](recruit-icons-r1.json)、[脫離工作區核對](recruit-icons-verification-r1.json)及[收尾](recruit-icons-integrity-r1.json)。[總覽與實景來源](../docs/images/recruit-unit-icons-r1.json)記錄素材與字型SHA。
+
+完整快取PNG／RGBA、全尺寸畫布、PCM、state、原版進度／地圖、IDA匯出、前版工具、失敗與成功資料保存於本機`preserved/recruit-icons-r1/`，排除Git，不依賴原workplace。新完整原畫沒有生成，既有永久圖庫1040檔保持。五份完整state及PCM逐SHA相同；卡片從原RGBA獨立重建，五張X11全RGB對應當下Go提交SHA。兩張F12 PNG比截窗早，差異只在輸入底線區，另記時序，沒有把不同時刻PNG冒充同幀。
+
+本批763檔／431物件、壓縮63704787 bytes，未掛workplace逐SHA／長度核對通過。收尾核對3230個本機連結、當前工具與UID／GID；只清本批1884份Go快取、171263082 bytes。專案有界容器已回收，沒有新映像或清其他專案資源。
+
+五類庫存表與原扣量已定位，僅觀測兩個場所，不宣稱Go庫存持續性、刷新或購買中斷已完成。原單一Go民兵店在其他類別仍拒絕；這次實際GUI走原版軍隊／存檔，不放寬護欄。八種openKB候選招募肖像未加入。
+
+固定Pillow11.3.0 r2容器使用`prepare|freeze --project <專案>`；Go命令見研究根`execution-r1.json`。GUI用`--work /out --run gui-r4`，既有已保存暖段只補冷讀時加`--cold-only`。原版與素材唯讀，UID1000、network none、3GiB／2CPU／192程序。保存器用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`；不掛workplace的核對用`verify --archive <唯讀preserved> --out <新JSON>`。只在保存與核對後清本批快取。
+
 ## 戰中續接與單次戰果保存
 
 隔離候選已接戰中／返回冷讀，F7後回完整v2地圖快照。正式197來源七程式、923核心、535素材、1040圖庫及DOS前附檔護欄保持。[030限定範圍](../docs/spec/030-battle-expansion-proposal.md#戰中續接與單次戰果)、[codec與交易](../tools/research-battle-resume.go)、[UI接線](../tools/battle-resume-ui.go)、[新Engine探針](../tools/probe-battle-resume.go)、[追擊測試](../tools/research-battle-resume_test.go)、[準備與保存](../tools/prepare-battle-resume.py)、[獨立核對](../tools/check-battle-resume.py)、[GUI抽樣](../tools/check-battle-resume-ui.py)、[僅測試起點](../tools/battle-resume-fixture.go)及[本機入口](../tools/battle-resume.sh)為入口。

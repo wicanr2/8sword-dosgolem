@@ -1,0 +1,162 @@
+{
+  "audit_sha256": "5842554ae4042b93a4b664355b6854d2ad4edb3a2c22dfe835841fb5f3c34c50",
+  "overview_sha256": "8c6c4ce9216bb0493aee73fcb7676b46428e4cb1ce33e4bda3da7dd29a98e2f5",
+  "preview_sha256": "6ba624df3ec7f9fa43e7900bcfdfda9a4018a69ef4d9a8f808f3ecb291a6d827",
+  "font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "font": "Noto Sans CJK TC Black",
+  "source_rows": [
+    {
+      "file": "kind01.png",
+      "kind": 1,
+      "rgba_sha256": "1c795ec9e8d67feca9a014d3b3511bc9ed9d9d115102e8042e4a16b3b4982fe5",
+      "visible_pixels": 24004
+    },
+    {
+      "file": "kind02.png",
+      "kind": 2,
+      "rgba_sha256": "74a2343bbfd67871ae9d9854d6055c2469700ee977f9cdddda861775593c6893",
+      "visible_pixels": 22416
+    },
+    {
+      "file": "kind03.png",
+      "kind": 3,
+      "rgba_sha256": "0ef14291634d7b0e21554176285f7a3dc8325b658dfbd7a0303cc12943ad842f",
+      "visible_pixels": 30195
+    },
+    {
+      "file": "kind04.png",
+      "kind": 4,
+      "rgba_sha256": "966b3ba60a3c0a9cfacb42b1aee6e59623231ef3930b88929b8fe29dddd60f95",
+      "visible_pixels": 38887
+    },
+    {
+      "file": "kind05.png",
+      "kind": 5,
+      "rgba_sha256": "99a9025309e7c1044b4fe704aab3e74208146969d02671fcbfa3bae3d91065d6",
+      "visible_pixels": 29666
+    },
+    {
+      "file": "kind06.png",
+      "kind": 6,
+      "rgba_sha256": "9b55c520330108df14928b31d8316119b17b6483de642d235cbed98051dcac83",
+      "visible_pixels": 19915
+    },
+    {
+      "file": "kind07.png",
+      "kind": 7,
+      "rgba_sha256": "4ae92aed476cafdcad57129cd8da56f2057049412b7895a03b0b335b6dede82d",
+      "visible_pixels": 25161
+    },
+    {
+      "file": "kind08.png",
+      "kind": 8,
+      "rgba_sha256": "3369f761bca67105217f9adf8a35500d31d8555aed271556ad29c77d68c3777e",
+      "visible_pixels": 25152
+    },
+    {
+      "file": "kind09.png",
+      "kind": 9,
+      "rgba_sha256": "6f71e0eb8e6170e4cea4f5f63daee0e59bf3f094056d2a4e00827073184549b8",
+      "visible_pixels": 31646
+    },
+    {
+      "file": "kind10.png",
+      "kind": 10,
+      "rgba_sha256": "849ce485f9510bf3451e014298a9ab1422c8da0032ef263d0acca37cdbdb9830",
+      "visible_pixels": 34463
+    },
+    {
+      "file": "kind11.png",
+      "kind": 11,
+      "rgba_sha256": "00d51b8808497edd5e75a2fa8f95e20a5a6bed474612078667f9c722e05c1cab",
+      "visible_pixels": 17055
+    },
+    {
+      "file": "kind12.png",
+      "kind": 12,
+      "rgba_sha256": "2bbe4770e3c6d9cdcfeb8998de23f6fe19b86b1a5929301845806447a22cbed3",
+      "visible_pixels": 34299
+    },
+    {
+      "file": "kind13.png",
+      "kind": 13,
+      "rgba_sha256": "879978b619834dc20c44149f45e0e3c5a8eb38715637d3736d45b61941c684bb",
+      "visible_pixels": 19306
+    },
+    {
+      "file": "kind14.png",
+      "kind": 14,
+      "rgba_sha256": "d29bc5764d7dcb4260a2141779b3cb607376e10421a7c4d850fd245492b3152b",
+      "visible_pixels": 12971
+    },
+    {
+      "file": "kind15.png",
+      "kind": 15,
+      "rgba_sha256": "4b3da8ffc679a306048e19a668d0aef785f43a3d76691991d3faec21a0495575",
+      "visible_pixels": 17219
+    },
+    {
+      "file": "kind16.png",
+      "kind": 16,
+      "rgba_sha256": "7bba23cffb1c221ed3e004c72e9a8703a956da149adc2e998d7b40b380855d6e",
+      "visible_pixels": 12821
+    },
+    {
+      "file": "kind17.png",
+      "kind": 17,
+      "rgba_sha256": "87b48575d5e6af610fd627bc6e8aa07b0ab646553d5de5c2eb9cbd5e5820bdd0",
+      "visible_pixels": 21408
+    },
+    {
+      "file": "kind18.png",
+      "kind": 18,
+      "rgba_sha256": "b069925f21421c3ff1b4843eecc7d0e1368b637b8e1fa6420a717cb279743c53",
+      "visible_pixels": 16676
+    },
+    {
+      "file": "kind19.png",
+      "kind": 19,
+      "rgba_sha256": "bd59a226b771e5e48afacc43054c5fd196be85605842f5b4e14fbf966d30b97e",
+      "visible_pixels": 25564
+    },
+    {
+      "file": "kind20.png",
+      "kind": 20,
+      "rgba_sha256": "49906621a833359383ba6d83cb8a5a13b908aa3387c60dc8c095abb02b276bad",
+      "visible_pixels": 34773
+    },
+    {
+      "file": "kind21.png",
+      "kind": 21,
+      "rgba_sha256": "90f3e7d4039f3aca90f5921f79e04e1155c699fe923482a42c588f9a61148f4c",
+      "visible_pixels": 16123
+    },
+    {
+      "file": "kind22.png",
+      "kind": 22,
+      "rgba_sha256": "6721afdf88741fcc0689c192bf03d21f7319ac3491869104a48fbbd127f4a73a",
+      "visible_pixels": 27949
+    },
+    {
+      "file": "kind23.png",
+      "kind": 23,
+      "rgba_sha256": "6bdbdca85e2295f1a39fb12a895d87886af44bb4d014a55e8d1ab9e6e795fc69",
+      "visible_pixels": 34337
+    },
+    {
+      "file": "kind24.png",
+      "kind": 24,
+      "rgba_sha256": "09a49890556d2f4b21d2f265ec4eea33922abbf2786e6dd9402f4d5888b82b2f",
+      "visible_pixels": 20186
+    },
+    {
+      "file": "kind25.png",
+      "kind": 25,
+      "rgba_sha256": "fc48b8ac26859b7d41b6f797b4eec7390c5be4eea8e3151f460412b5e6656dc5",
+      "visible_pixels": 31674
+    }
+  ],
+  "preview_source": "workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/gui-r4/warm/frame-001-map-noto.png",
+  "preview_source_sha256": "4fd18cf01f3dc656986e638e3f60382985604319d1fc78237bafd19548db6ba8",
+  "rights": "Derived from existing approved HD caches. Complete frames and source inputs remain in the local permanent batch."
+}

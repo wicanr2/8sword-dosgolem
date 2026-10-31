@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-01[HD募兵圖示](docs/spec/030-battle-expansion-proposal.md#募兵庫存與hd部隊圖示)已在隔離預覽完成25種原版部隊的快取接線與代表抽驗。[原版軍隊試玩入口](tools/recruit-icons.sh)沿原招募／F7存檔，Go在既有Go來源畫布上合成圖示；不是先畫原版RGB再疊圖。實際矮人1名、金499→498、庫存1200→1199、F7及新程序F2讀回已驗。五份完整state與PCM在圖示開關間相同，五張X11與當下Go提交SHA相同。來源、限制與保存見[核對](preserved/recruit-icons-audit-r1.json)及[永久入口](preserved/README.md#hd募兵部隊圖示保存)。正式197來源／七程式／923核心／535素材／1040圖庫及Go附檔護欄保持；五類庫存的表與扣量已定位，但Go店鋪身份、刷新與中斷購買仍DRAFT，不放寬舊單一民兵店候選或將八種openKB候選當成已有招募肖像。
+
 2026-10-31戰中續接已在隔離候選抽驗。[030續接契約](docs/spec/030-battle-expansion-proposal.md#戰中續接與單次戰果)、[本機入口](tools/battle-resume.sh)、[核對](preserved/battle-resume-audit-r1.json)及[永久保存](preserved/README.md#戰中續接與單次戰果保存)為入口。v3引用不可變VM物件，原版敵軍及追擊先手與交戰一併啟用；每個Go動作保存，戰果及返回seed只提交一次，F7後回v2。受控暖起點後的實際關閉／普通Continue、撤退、返回再重開、F7與F2已驗，八張X11完整RGB通過。正式197來源七程式／923核心／535素材／1040圖庫及DOS前附檔護欄保持，不把候選或這次受控起點稱為正式新增兵種世界、自然遇敵或全遊戲完成。其餘商店庫存、世界consumer與正式整合仍DRAFT；不重開已驗HD、亂數或部隊抽樣。
 
 2026-10-31[撤退亂數與拒戰／追擊](docs/spec/030-battle-expansion-proposal.md#撤退亂數與拒戰追擊交接)已在隔離候選完成受控接線。Go原版LCG與160次原rand相同，六門檻共12原版／Go控制一致，四拒絕與重複撤退不推進seed。非追擊沿原sub_111FE消失動畫返回，追擊8D6A=1映射Go已支援的敵方先手；GUI實際撤退值3524，已移除固定2730。73份state、1261行IDA bytes、七張X11與兩條冷讀通過。Go提交後原回場在0110:71B3另取rand一次，收據分別保存held／settled／final，不把差異誤判為Go公式錯誤。入口為[準備器](tools/prepare-refusal-rng.py)、[Go亂數](tools/research-refusal-rng.go)、[介接](tools/refusal-rng-ui.go)、[控制](tools/probe-refusal-rng.go)及[永久保存](preserved/README.md#撤退亂數與拒戰追擊保存)。世界仍DRAFT，後排特殊動作與全滅選單尚未完整接UI，不移除正式197來源／七程式的載入護欄，不重開本批亂數、門檻、字型與回場抽樣。

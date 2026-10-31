@@ -46,6 +46,40 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 募兵庫存與HD部隊圖示
+
+2026-10-31 DRAFT，接續使用者的世界交接要求，並納入「招募部隊要有部隊圖示，HD模式」。先以既有PAM與IDA資料庫窄查五個募兵wrapper、共用招募與提示函式；保存原名、bytes、xref與位址空間，不把原單次3000庫存直接當成永久店鋪庫存。原版行為未釐清前不猜補扣庫存或刷新規則。正式197來源七程式、923核心、535素材及1040圖庫保持。
+
+圖示沿已驗25種HD部隊第一姿態與透明快取，不改美術風格或原版模式。候選在Go來源畫面完成後合成資訊卡，資料取共用募兵函式已驗種類參數；不讀原版RGB、不用x86模仿繪圖、不遮住數量／價格／輸入欄。缺素材跳過圖示，拒絕未知種類，離店清除。圖示生命週期與原版同起始state／PCM抽驗，另做一次實際募兵輸入及離店視窗；其他兵種採共用資產映射抽樣，不逐種走GUI。
+
+研究沿既有battle-r1下的`recruit-icons-r1`。入口為[IDA窄查](../../tools/export-recruit-shop-ida.py)，圖示與候選接線工具於同輪補入。本輪仍是可撤回候選，不升級正式格式或解除附檔護欄。
+
+### HD募兵圖示的隔離READY契約
+
+來源為固定PAM與PAM.i64，SHA沿本節既有索引，IDA9.4／py312-v1與Go1.24.13。IDA MZ線性154EA、15792與159C4起五個0x90-byte wrapper已保存；執行期為0110:54EA等，不混用基準。共用入口從SS:SP+4／+6取kind／stock，far caller僅接受5A21加0x90倍數，共五組。父BP-6為資料列，須在DS56D6區域對應的三列內；DS3F00加組別×F0與列×10的+4／+6須與種類／庫存參數相同。五類各24筆、每筆10 bytes，wrapper在返回後的5A37加0x90倍數從+6扣AX。這是已證實的靜態資料流，重訪／F7後冷讀與刷新週期仍待動態核對，不據此提升永久庫存接管。
+
+僅圖示候選接線READY。圖示從已驗GraphicsAssets的不可變第一姿態複製，native01／06／11／16／21沿既有85／91／95／87／99，其餘沿troopGroups註冊映射；kind僅1–25，缺組安全略過。54EA只觀測，4EA6提示頁完成後顯示，5565／5772返回清除；所有callback不改CPU／DOS記憶體／亂數／原圖層。於Go來源Frame上合成卡片，1920×1200座標1060,96至1324,618，只用建築區右側，不碰底部文字／數量欄及右側指令。保留alpha、等比例縮放與內距，不改已批准城門原檔。
+
+候選沿戰中續接已保存來源建立獨立輸出，正式197來源／七程式與535素材保持。驗收取同起點、同輸入的圖示開關state／PCM／庫存，確認僅卡片範圍像素不同；25圖示作資產接線總覽，真正GUI抽一個原版場所的輸入、離店與回場，不挑選特定兵種湊結果。新單元測試限讀取與快取不可變、映射與模式／缺件回退，不重跑既有部隊繪圖、戰鬥或RNG樣本。
+
+實際招募圖示沿原版軍隊／原存檔的可撤回入口`-native-game`。原版進度與九圖置於獨立可寫目錄，啟動前驗目錄／UID並持有排他鎖，退出釋放；原招募、庫存與F7仍由原程式執行。HD、音樂、字型與Go繪圖沿既有Engine。此入口沒有Go軍隊附檔，不繞過正式Engine的附檔拒絕。原單一Go民兵店在其他wrapper仍停止，未因這次呈現接線而升級世界規則。
+
+工具入口為[快取API](../../tools/research-recruit-icons.go)、[讀取與Go合成](../../tools/recruit-icons-ui.go)、[原版軍隊前端](../../tools/recruit-native-main.go)、[API讀取測試](../../tools/research-recruit-icons_test.go)、[準備／發圖／保存](../../tools/prepare-recruit-icons.py)、[獨立核對](../../tools/check-recruit-icons.py)、[視窗抽樣](../../tools/check-recruit-icons-ui.py)與[試玩入口](../../tools/recruit-icons.sh)。Go建置與vet沿Go1.24.13、923核心及研究根`execution-r1.json`；原版掛`/game:ro`、r69素材掛`/assets:ro`、研究根掛`/out`。API測試用`EIGHTSWORD_TEST_ORIG`、`EIGHTSWORD_TEST_SOURCE_ASSETS`及新`EIGHTSWORD_RECRUIT_ICON_OUT`，只跑`TestRecruitmentUnitIcons`。視窗工具`--work /out --run gui-r4`，已保存暖段只補冷讀可加`--cold-only`，不重做購買。
+
+固定Pillow11.3.0 r2容器以`prepare|freeze --project <專案>`準備來源，核對器用`--project <唯讀專案> --out <新JSON>`。`publish --project <專案> --images <可寫docs/images>`產生既有快取的總覽與實景縮圖，完整版本仍保存。`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`保存；`verify --archive <唯讀preserved> --out <新JSON>`不掛workplace重驗物件。範圍與來源見[永久入口](../../preserved/README.md#hd募兵部隊圖示保存)。
+
+### HD募兵圖示的限定抽驗
+
+2026-11-01隔離呈現切片通過，正式播放器及Go世界仍未提升。[獨立核對](../../preserved/recruit-icons-audit-r1.json)重建凍結來源差異、PAM重定位bytes、原RGBA卡片與實際視窗。25種快取讀取、複本不可變、原版模式、未知kind及缺材質回退通過；原PNG與RGBA均保存，沒有把PNG解碼後的透明色值當成原記憶體SHA。
+
+同一個原版民兵店在圖示開關間，五份完整state及PCM逐SHA相同，原軍隊、兩份研究進度及回場PNG一致；差異只在既定卡片矩形。觀測到類別0／列1庫存3000→2999，沒有改原扣量。這是呈現不影響原流程的局部對照，不稱所有商店、玩法或硬體時序parity。
+
+真正GUI普通Continue後遇到原版類別4／列0的矮人場所，招募1名、金499→498、庫存1200→1199，再走F7、退出、另一程序Continue與F2，軍隊及金錢保持。五張X11完整RGB的SHA等於當下已提交的Go Frame；兩張較早F12 PNG在輸入底線區的24×5像素不同，另保存兩時刻SHA，不拿早圖冒充同幀。單位卡片在兩時刻相同，招募與總覽另作目視。沒有注入RAM、返回框架或測試seed，也沒有等待新增自然戰鬥。
+
+首輪XTEST缺F1鍵，補0xFFBE後重跑；Go軍隊模式遇到其他店鋪時保護停止，遂在原版軍隊入口驗呈現，沒有放寬舊守門。資料表的零值native_kind會省略，腳本改用明示預設0；原版模式沒有Go checkpoint的位置診斷欄，後續限核對軍隊／金錢並只補冷讀。IDA受ASCII locale影響的中文索引讀取改明示UTF-8，r2匯出合併既有位址索引，未分級語意保持unknown警示。所有失敗與成功收據保留，這些不列為新遊戲規則缺陷。
+
+五類表及扣量已有靜態與兩場所觀測；Go穩定店鋪身份、刷新、未按F7的中斷購買與八種openKB候選肖像仍DRAFT。這輪不碰HD原畫、戰鬥傷害、AI、RNG、正式格式或原版模式，不把25圖示抽驗外推全世界接管。
+
 ## 戰中續接與單次戰果
 
 2026-10-31 DRAFT，接續使用者要求戰中續接。正式197來源七程式、923核心及正式存檔格式不變，只建立可撤回候選。已驗32E0持有、171D／172E回場、Go戰鬥資料、原版LCG及F7完整快照沿既有收據，不重開傷害、HD或自然遭遇等待。
