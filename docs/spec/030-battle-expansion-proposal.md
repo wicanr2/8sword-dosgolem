@@ -46,6 +46,30 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 撤退亂數與拒戰追擊交接
+
+2026-10-31 DRAFT，接續已授權的Go世界接管與固定狀態抽樣，研究沿battle-r1下的refusal-rng-r1。先確認原rand及拒戰consumer，不把拒戰猜成零效果返回，不新增傷害或存檔schema。正式197來源七程式及附檔護欄保持。
+
+原PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`與PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`沿既有來源。[IDA窄查](../../tools/export-refusal-rng-ida.py)保留原函式、位址、bytes與xref。IDA採MZ loader線性10000h，執行期仍採0110段與DS／SS1E88，兩者分列。
+
+既有原bytes顯示rand使用DS81BC的32位元狀態，乘214013加2531011後回傳高16位的低15位；新[Go亂數與分支](../../tools/research-refusal-rng.go)先以[原版控制](../../tools/probe-refusal-rng.go)抽驗溢位、連續狀態及8192／16384相鄰門檻，再接撤退及拒戰。固定測試seed在執行前列出，門檻seed以LCG模反元素直接構造，不以重擲尋找通過結果。
+
+拒戰的原173A呼叫rand，173F–1750依整數商rand／8192等於1進追擊，其餘到1782；追擊於177A設定8D6A為1，再進1719戰鬥。非追擊呼叫sub_111FE的作用及8D6A的戰鬥consumer仍待此次窄查。未解清前不放寬舊停止點；Go只在來源、caller、frame、token及資源吻合後操作。
+
+[準備／核對與保存](../../tools/prepare-refusal-rng.py)為本輪入口；預計原版固定seed控制、Go拒戰兩分支、實際介面撤退及冷讀各作最小充分抽樣。原版RNG狀態仍沿執行期RAM，不擅自新增附檔欄位或宣稱原版存檔保存RNG序列。
+
+### 撤退與拒戰的受控結果
+
+隔離接線抽樣通過，完整世界仍DRAFT。[核對](../../preserved/refusal-rng-audit-r2.json)從IDA9.4的七函式1261行原bytes與固定PAM relocation獨立核對來源。sub_111FE本體操作圖形資料並以原blit呼叫逐步縮小顯示；受控未追擊實際消失並返回，原軍隊及兩檔保持，沒有進入已設原戰術／軍隊結算掛點。8D6A經sub_1E578的第二參數交sub_205E6，值1先進敵方sub_206DA；新候選對已支援普通／遠程動作執行一次敵方階段，不假稱後排特殊動作與全滅UI已完成。
+
+Go用uint32自然繞回計算`next = seed*214013+2531011`，回傳`(next>>16)&32767`。十個預先固定seed各連續16次原版呼叫共160次相同，六個門檻值0／8191／8192／16383／16384／32767的原版與Go共12執行同分支。Go拒戰在173A一次更新seed並選1752或1782；來源、caller、frame、token與資源不符停止。撤退先驗持有frame及來源，再以目前seed算亂數、成對提交世界，成功後才發布下一seed。四種過期token／來源／frame／資源拒絕的完整RAM、寄存器與兩檔保持；重複撤退不再取亂數。
+
+原版控制的追擊三次敵方Go行動後，2500狼剩2360；撤退值9334，金5000→4167。實際XTEST另做兩條操作鏈：拒戰未追擊返回、F2與冷讀保持2500狼／金5000；追擊先手兩次後2446狼，撤退值3524，金3750，回場F2與另一程序讀回一致。七張X11全RGB與Go畫布相同、字界不越界，原玩家48 bytes保持FF，原戰術／軍隊／獎勵哨點0次。
+
+73份完整state另驗LCG最終狀態、受控注入區段、拒絕不變及完整世界結算。首次核對把Go提交後seed直接與回場seed比較而失敗；補上settled.state與唯讀rand呼叫紀錄後，確認原回場於執行期0110:71B3另取一次rand。最終核對按held→Go提交→原回場呼叫→final逐點重建，不修改公式或原回場程序；GUI及產品接線未因此重跑。第一批原始資料及失敗核對保留，補充原版控制另用乾淨輸出重生。
+
+`before/after-commit.state`沿舊reader名稱表示測試起點注入前後；`settled.state`才是Go撤退提交後。GUI以預先選定seed在173A前明示設定門檻，另存before/after-seed.state；正常接線未啟用此測試旗標時沿用當前RAM seed。此為受控抽樣，沒有自然遭遇、整段時鐘／RNG序列或原位置／地圖冷讀聲明。正式197來源七程式、923核心、535素材及護欄保持，完整來源與原圖見[永久保存](../../preserved/README.md#撤退亂數與拒戰追擊保存)。
+
 ## 原版隨機敵軍的Go匯入
 
 2026-10-31 DRAFT，接續已批准的Go世界交接與記憶體驗證。原版敵軍在sub_132E0內生成，不能在32E0入口把尚未生成的5700表當成此次敵軍。沿既有PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、3733快照SHA `d3fdfd4f739d0256f6a29ed5a55a9506dfb753964bf4af7388b20827e17605df`及IDA648行匯出，以下均為執行期0110段，DS／SS=1E88。

@@ -116,13 +116,15 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 同一候選的 F3 解雇由 Go 處理選隊、整隊移除、陣位整理與保存，按住 Enter 只提交一次。下圖是解雇民兵後保留5隻野狼的實際視窗；F2及重新啟動後均讀到相同軍隊，金錢與庫存保持。這仍是受控存檔的開發候選，完整世界與戰鬥交接尚未完成。可看[解雇交接與啟動器](docs/spec/030-battle-expansion-proposal.md#f3軍隊解雇的go交接研究)、[畫面來源](docs/images/world-army-f3-lishu-r1.json)及[永久保存](preserved/README.md#go-f3軍隊解雇交接保存)。
 
-普通遇敵的軍隊存在判斷與無兵損金也已接入隔離 Go 候選，直接採用 Go 軍隊及成對存檔。有兵時顯示原版遇敵確認，無兵時扣金並可返回、檢閱及重新讀檔；後續戰場與拒戰分支仍未接通。驗證範圍見[遇敵交接](docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)及[核對](preserved/owned-army-presence-audit-r2.json)，正式新增兵種載入護欄保持。
+普通遇敵的軍隊存在判斷與無兵損金也已接入隔離 Go 候選，直接採用 Go 軍隊及成對存檔。有兵時顯示原版遇敵確認，無兵時扣金並可返回、檢閱及重新讀檔。驗證範圍見[遇敵交接](docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)及[核對](preserved/owned-army-presence-audit-r2.json)；後續受控戰鬥接線見下方，正式新增兵種載入護欄保持。
 
 另提供[固定快照與顯式記憶體變更的驗證工具](docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)，可直接檢查Go戰鬥、戰果與原版回場邊界。這是受控試作，與正常玩家流程的完成度分開記錄。
 
 [原版確認與Go戰鬥接線](docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)在隔離候選提供實際戰鬥操作，保留教育部隸書選項。下圖是固定快照與測試敵軍的實際視窗，範圍與[圖片來源](docs/images/owned-encounter-ui-lishu-r1.json)均有紀錄。
 
 敵軍也可由[原版隨機生成資料匯入Go](docs/spec/030-battle-expansion-proposal.md#原版隨機敵軍的go匯入)。這條受控候選沿用原版RNG及生成程序，由Go處理匯入後的戰鬥、戰果與存檔。
+
+[拒戰判斷與撤退亂數](docs/spec/030-battle-expansion-proposal.md#撤退亂數與拒戰追擊交接)亦已由Go接入受控候選，包含未被追擊返回與追擊時的敵方先手。世界整合與完整戰鬥選單仍待完成。
 
 ![原版確認後的受控Go戰鬥介面，使用教育部隸書](docs/images/owned-encounter-ui-lishu-r1.png)
 

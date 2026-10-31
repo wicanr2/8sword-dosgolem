@@ -1,0 +1,21 @@
+{
+  "status": "passed-refusal-rng-integrity",
+  "local_links": 2360,
+  "original_rng_calls": 160,
+  "original_and_go_gates": 12,
+  "rejection_cases": 4,
+  "gui_screens": 7,
+  "independent_states": 73,
+  "ida_lines": 1261,
+  "source_inputs": 197,
+  "programs": 7,
+  "core_files": 923,
+  "asset_hashes": 535,
+  "files": 740,
+  "objects": 460,
+  "cache_removed_bytes": 134758507,
+  "ownership": "uid1000",
+  "controlled_memory": true,
+  "normal_player_path": false,
+  "production_changed": false
+}

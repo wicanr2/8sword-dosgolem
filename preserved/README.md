@@ -1,5 +1,21 @@
 # 必要資料永久保存
 
+## 撤退亂數與拒戰追擊保存
+
+[030接線及範圍](../docs/spec/030-battle-expansion-proposal.md#撤退亂數與拒戰追擊交接)記錄Go原版LCG、拒戰兩分支及追擊先手。Go撤退以當前DS81BC狀態取值，成對存檔成功後才發布下一seed；拒絕與重複操作不消耗亂數。執行期狀態未新增附檔欄位，不宣稱冷讀恢復原版RNG序列。
+
+入口為[準備／核對與保存](../tools/prepare-refusal-rng.py)、[Go亂數與門檻](../tools/research-refusal-rng.go)、[介面接線](../tools/refusal-rng-ui.go)、[原版控制](../tools/probe-refusal-rng.go)與[IDA窄查](../tools/export-refusal-rng-ida.py)。IDA使用既有py312-v1、UID1000、HOME=/home/ubuntu，原始PAM與PAM.i64唯讀，DB只在tmp副本開啟。輸出合併受版控軍隊consumer索引、等級及來源；未收錄語意標unknown與警示，不改原函式名或位址。原輸入、1261行匯出、索引、identity及工具版本都保留。
+
+[最終核對](refusal-rng-audit-r2.json)、[逐檔清單](refusal-rng-r1.json)、[脫離工作區核對](refusal-rng-verification-r1.json)及[收尾完整性](refusal-rng-integrity-r1.json)集中結果。完整740檔／460物件、壓縮50074128 bytes位於本機`preserved/refusal-rng-r1/`並排除Git，索引與核對紀錄加入私人倉庫。
+
+十個預定seed各16次原rand共160次與Go相同，六門檻的原版／Go12執行同分支。四種過期token／來源／frame／資源拒絕完整RAM及兩檔不變，重複撤退不再取值。原版控制追擊先手後2360狼／金4167，亂數9334；GUI未追擊返回2500狼／金5000，追擊先手後2446狼／金3750，亂數3524。兩條GUI都完成F2與另程序冷讀，七張X11全RGB及字界核對通過。
+
+最終73份state分開保存：before／after-commit是受控起點注入，before／after-seed是GUI門檻設定，held是Go持有，settled是Go提交後，final-map是原版回場後。原回場在0110:71B3另取一次rand；最初把兩個邊界當成同點的核對失敗另留audit-attempt-r1.json與probe-r1。補充快照及唯讀呼叫紀錄不改產品或公式，舊GUI維持；新控制在乾淨輸出重生，不覆寫第一批。
+
+`prepare`在已有IDA輸出的既有battle-r1/refusal-rng-r1建立隔離來源，`freeze`凍結工具。沿Go1.24.13、923核心、外部probe.mod與唯讀原版／模組／r69素材建置，確切命令與配額見本批execution-r1.json。`audit --project <專案> --out <新JSON>`在Pillow11.3.0映像解既存state及重算資料，不執行新遊戲流程；`archive --project --archive <可寫preserved> --out <新清單>`保存所有輸入與輸出，跳過可重生build-cache。`verify --archive <唯讀preserved> --out <新JSON>`不需workplace，逐物件驗SHA及長度；依清單path／mode可還原，避免覆寫不同檔案。
+
+原始PAM、DB、完整PNG、state及二進位僅留本機；索引、來源及核對紀錄加入私人倉庫。世界整合仍DRAFT，5／5除數、受控起點及2500狼為明示試作，後排特殊動作、全滅選單與正式玩家入口仍待接，正式197來源七程式及載入護欄保持。
+
 ## 原版隨機敵軍Go匯入保存
 
 [030敵軍來源](../docs/spec/030-battle-expansion-proposal.md#原版隨機敵軍的go匯入)保留原版RNG與敵軍生成，Go略過我方固定表複製，在36B4讀取原版生成完成的六隊，再交Go戰鬥／戰果／成對保存。原054A及我方56E8共48 bytes填FF，只作不變診斷。種類1至25、兵數1至32767及原陣位逐欄轉成Go字串ID，未知／重複／不完整資料拒絕，不猜補。

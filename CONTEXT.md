@@ -4,15 +4,11 @@
 
 使用者要求同規格功能與HD採共同機制抽樣，不逐兵種／圖片重跑。**既有HD與已接功能的階段抽驗已完成，整案仍未完成。** [固定計畫](preserved/phase-closeout-plan-r1.json)原先未通過的募兵後遇敵GUI鏈，已用未改的正式遊戲程式補驗成功。[補充核對](preserved/recruit-gui-diagnosis-audit-r2.json)明列 `all_planned_gates_passed=true`、`project_complete=false`；[前輪結果](preserved/phase-closeout-audit-r1.json)保留當時的未通過紀錄。新增兵種隔離原型仍不能稱為正式可玩。
 
-目前接續Go世界交接。[普通遇敵存在／無兵損金](docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)已在隔離候選通過原CPU控制、資料與實際GUI抽驗。Go空軍隊會正確覆蓋原版影子中仍有30民兵的情況，金錢299→240並由新程序讀回；有兵則到原版確認頁。後續戰場與拒戰世界分支仍攔下，正式附檔護欄保持。[核對](preserved/owned-army-presence-audit-r2.json)與[永久保存](preserved/README.md#go遇敵存在與無兵損金保存)為本輪入口。
+Go世界仍是隔離候選，已串接軍隊存在／無兵損金、原版確認、原版隨機敵軍匯入、Go戰鬥／戰果、F2／F3、拒戰／追擊及實際亂數撤退。原版玩家表以FF作不變診斷，兵數、傷害與戰果由Go處理。正式Engine遇到新增軍隊附檔仍在DOS前拒絕，原版模式保持。既有[存在／損金](preserved/owned-army-presence-audit-r2.json)、[戰鬥回場](preserved/controlled-owned-battle-audit-r2.json)、[介面](preserved/owned-encounter-ui-audit-r1.json)與[敵軍來源](preserved/runtime-enemy-audit-r1.json)收據沿用，不重開共同機制。
 
-本切片冷讀只驗Go世界與原六資源；移動後的原版位置／地圖進度尚未同步回主存檔，不當作完整存檔生命週期。
+最新切片為[撤退亂數與拒戰／追擊](docs/spec/030-battle-expansion-proposal.md#撤退亂數與拒戰追擊交接)。Go以原版32位元LCG推進DS81BC；160次原rand控制、12組門檻、四種拒絕與重複撤退檢查通過。拒戰未追擊沿原消失動畫返回且配對世界不變；追擊保留8D6A=1，Go先執行已支援的敵方普通／遠程行動。GUI拒戰返回及追擊→Go先手→實際亂數撤退→F2→冷讀通過，七張X11全RGB一致。GUI撤退值3524，2500狼→2446、金5000→3750；Go提交後原回場於0110:71B3另取一次rand，已分開核對。73份state、1261行IDA bytes與[核對](preserved/refusal-rng-audit-r2.json)已[永久保存](preserved/README.md#撤退亂數與拒戰追擊保存)。
 
-使用者已明確授權直接修改記憶體驗證。[受控戰鬥回場](docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)以固定戰前快照回置32E0，注入資源並將原兵種表填FF。勝利、撤退、全滅、六隊混合均由Go處理並經真實caller回0BD3；五種錯誤狀態拒絕且不改RAM／兩檔。[核對](preserved/controlled-owned-battle-audit-r2.json)獨立解27份state及重算Go行動／戰果。這是DRAFT受控ABI驗證，尚未接普通確認入口、正式UI或世界敵軍來源。
-
-[原版確認與Go戰鬥介面](docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)已在隔離候選完成受控接線：16E0實際確認、32E0交給Go、介面操作／成對保存、勝利或撤退、171D→172E→0BD3、F2及另程序冷讀。兩案11張X11完整RGB、6份state、28次勝利行動／13輪及一次撤退前行動均獨立核對；Go介面期間原CPU步數與cycles不變。教育部隸書實際切換及F2通過，合併字圖漏字已修正。[核對](preserved/owned-encounter-ui-audit-r1.json)與[永久保存](preserved/README.md#原版確認與go戰鬥介面接線保存)為最新入口。起點、敵軍與撤退輸入仍是明示測試資料，世界整合仍DRAFT，正式護欄保持。
-
-[原版隨機敵軍匯入](docs/spec/030-battle-expansion-proposal.md#原版隨機敵軍的go匯入)已接進隔離Go候選。略過原3365我方固定表複製，保留原隨機生成，36B4在原獎勵與戰術核心前讀取真正敵軍。固定等級1／區域0及等級5／區域7的原版／Go控制，敵軍與各10次rand回傳相同；12組解析邊界、19份state、648行原bytes與舊reader三快照模式均通過。實際確認→原版生成敵軍→Go出手→撤退→F2→另程序冷讀通過，五張X11全RGB一致。原版玩家48 bytes維持FF、原戰鬥哨點0次。[核對](preserved/runtime-enemy-audit-r1.json)及[永久保存](preserved/README.md#原版隨機敵軍go匯入保存)為最新入口。RNG與敵軍生成仍沿原版，5／5除數及撤退2730仍是明示試作條件，正式玩家啟動與完整世界整合維持DRAFT。
+以上採使用者明確授權的固定快照、記憶體設定及共同機制抽樣。起點、2500狼及5／5除數為明示試作，不稱自然取得或完整原版戰鬥。冷讀目前只驗Go世界及原六資源；原位置／地圖進度與RNG冷讀序列尚未完成保存。正常玩家啟動、完整戰鬥選單及其餘世界consumer仍DRAFT。
 
 ## 目前版本與已驗範圍
 
@@ -26,11 +22,11 @@
 | AI與規則 | 可選target策略AI；native／formation／tactics規則由工具列切換，本場固定。20%結陣與25%弓箭手壓制已限定驗收，不能外推全遊戲平衡 | [030](docs/spec/030-battle-expansion-proposal.md)、[AI](preserved/ai-engine-audit-r1.json)、[戰術](preserved/tactics-audit-r1.json) |
 | 音樂與法術 | 十首HD音樂已接r69，玩家八戰鬥術及八地圖術有Go演出；沿已保存機制收據，不逐術重跑。九首未新增人耳確認、自然習得與全部分支未驗 | [音樂](preserved/hd-music-audit-r1.json)、[法術](preserved/remaining-spells-audit-r1.json)、[彩光](preserved/map-spell-color-audit-r2.json) |
 | Go擴充核心 | 25原版／8候選字串ID、每方6陣位、安全兵力／傷害及一次戰果提交；正式Engine遇到軍隊附檔仍在DOS前拒絕，檔案保留 | [030核心契約](docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離) |
-| Go軍隊與戰鬥候選 | 隔離招募、戰鬥、勝敗／撤退、世界獎勵、成對保存、F2／F3、遇敵存在及原版生成敵軍的Go匯入已有代表驗證；世界整合仍DRAFT，沒有正式新增兵種世界路徑 | [永久候選索引](preserved/README.md)、[最新切片](preserved/runtime-enemy-audit-r1.json) |
+| Go軍隊與戰鬥候選 | 隔離招募、戰鬥、世界獎勵、成對保存、F2／F3、原版敵軍匯入、實際亂數撤退及拒戰／追擊已有代表驗證；世界整合仍DRAFT，沒有正式新增兵種世界路徑 | [永久候選索引](preserved/README.md)、[最新切片](preserved/refusal-rng-audit-r2.json) |
 
 ## 尚未完成的實作
 
-- 新增軍隊與原地圖的完整交接。受控確認、原版隨機敵軍、Go戰鬥介面與戰果回場已串接；仍須接正常遇敵的正式玩家啟動、撤退亂數、拒戰／追擊。守軍與其他軍隊讀寫consumer尚未全接。
+- 新增軍隊與原地圖的完整交接。受控確認、原版隨機敵軍、Go戰鬥、撤退亂數與拒戰／追擊已串接；仍須接正常遇敵的正式玩家啟動、完整戰鬥選單、後排特殊動作與全滅選擇。守軍與其他軍隊讀寫consumer尚未全接。
 - 正式商店身份／庫存持續性、月度／劇情資源、擴充存檔的完整玩家生命週期。完成前保留附檔護欄，不把擴充ID寫入原版kind、圖片或數值索引。
 - Rust遷移留後續，依使用者最後指示先用Go。公開發行包與跨平台真機驗收尚未進行。
 
