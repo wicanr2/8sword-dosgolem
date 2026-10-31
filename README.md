@@ -20,13 +20,29 @@
 
 介紹依據為原版手冊印頁 1–2、7–10 與包裝背面。掃描檔只留本機，來源名稱、雜湊及內容定位見[研究紀錄](RESEARCH-LOG.md#遊戲介紹與字型樣張的來源)。手冊所載玩法與本專案已驗證的範圍分開記錄。
 
+## openKB新增部隊的HD圖像
+
+弓箭手、槍兵、野狼、骷髏兵、洞穴巨人、德魯依、吸血鬼與火龍，已依神州八劍的中國古風製作HD圖像，並接入隔離Go候選的軍隊、解雇與戰鬥介面。下圖左側是openKB來源，右側是新的HD圖像；[33種合併總覽](docs/images/troops-all-original-hd-with-openkb-r4.png)也已包含這八種單位。
+
+![openKB八種新增單位的來源與HD對照](docs/images/openkb-eight-original-hd-r1.png)
+
+以下是實際遊戲視窗。兩張軍隊頁合計顯示全部八種新增單位，第二張同時保留原版民兵。軍隊配置為明示測試資料，戰鬥入口採受控起點；自然招募與完整世界交接仍待接入，正式播放器的附檔護欄保持。
+
+![遊戲中的HD軍隊：弓箭手、槍兵、野狼、骷髏兵、洞穴巨人與德魯依](docs/images/openkb-army-a-hd-r1.png)
+
+![遊戲中的HD軍隊：吸血鬼、火龍與原版民兵](docs/images/openkb-army-b-hd-r1.png)
+
+![openKB新增部隊進入神州八劍的Go戰鬥介面](docs/images/openkb-battle-hd-r1.png)
+
+實際出手後的兵力與回合可在戰中重開時讀回。這批是靜態HD圖示，沿既有Go戰鬥規則，沒有新增攻擊動畫或改兵種數值。範圍見[呈現契約與驗證](docs/spec/030-battle-expansion-proposal.md#openkb新增單位的hd圖像與遊戲截圖)、[截圖來源](docs/images/openkb-game-screenshots-r1.json)及[完整原圖與生成提示](artwork/README.md#openkb新增單位hd)。來源縮圖取自openKB free sprites，作者包含driedfruit，逐檔作者與授權資訊見[來源紀錄](docs/images/openkb-eight-original-hd-r1.json)。
+
 ## HD募兵圖示
 
 招募頁已接入25種原版部隊的HD圖示，與既有中國古風素材共用。圖示置於建築區右側，保留原版數量、月薪、現金與輸入欄。可看[25種圖示總覽](docs/images/recruit-unit-icons-r1.png)，或用[原版規則預覽](tools/recruit-icons.sh)試玩；目前是隔離入口，正式播放器與Go擴充軍隊護欄保持。
 
 ![HD募兵圖示實景](docs/images/recruit-shop-hd-icons-r1.png)
 
-原版矮人招募頁，沿既有HD部隊素材。實際招募、扣款、離店、F7及另一程序軍隊讀回已抽驗；圖示開關的完整遊戲狀態與PCM相同。範圍見[核對](preserved/recruit-icons-audit-r1.json)及[來源](docs/images/recruit-unit-icons-r1.json)，新增兵種的招募肖像與Go庫存仍待接。
+原版矮人招募頁，沿既有HD部隊素材。實際招募、扣款、離店、F7及另一程序軍隊讀回已抽驗；圖示開關的完整遊戲狀態與PCM相同。範圍見[核對](preserved/recruit-icons-audit-r1.json)及[來源](docs/images/recruit-unit-icons-r1.json)。Go庫存保存另見[最新候選](tools/openkb-hd.sh)；八種新增部隊目前在軍隊與戰鬥介面顯示，尚未接入自然營地招募。
 
 ## 全圖形 HD 素材
 
@@ -120,7 +136,7 @@ Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金
 
 ![左：原版用量可募70；右：Go計入野狼後可募55，兩側均為HD引擎畫面](docs/images/world-army-shop-comparison-r1.png)
 
-獨立候選的 F2 檢閱也已接到完整 Go 軍隊。下圖是從遊戲地圖開啟的實際視窗，顯示既有測試進度的31名民兵與5隻野狼；支援隸書、草書及 Noto 切換，按鍵或按鈕可返回地圖，重開後資料保持。六隊暫用文字卡，正式新增兵種載入仍待接入。範圍與本機入口見[檢閱交接](docs/spec/030-battle-expansion-proposal.md#f2軍隊檢閱的go交接研究)、[畫面來源](docs/images/world-army-f2-lishu-r1.json)及[永久保存](preserved/README.md#go-f2軍隊檢閱交接保存)。
+獨立候選的F2檢閱已接到完整Go軍隊。下圖保留較早文字卡版本的實際視窗，顯示測試進度的31名民兵與5隻野狼；支援隸書、草書及Noto切換，按鍵或按鈕可返回地圖，重開後資料保持。最新版本的HD圖像見上方openKB章節，正式新增兵種載入仍待接入。較早範圍見[檢閱交接](docs/spec/030-battle-expansion-proposal.md#f2軍隊檢閱的go交接研究)、[畫面來源](docs/images/world-army-f2-lishu-r1.json)及[永久保存](preserved/README.md#go-f2軍隊檢閱交接保存)。
 
 ![實際F2 Go軍隊檢閱視窗，採教育部隸書](docs/images/world-army-f2-lishu-r1.png)
 
@@ -192,9 +208,9 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
 ### 原版圖像完整盤點與 HD 覆蓋
 
-![全部25組部隊與怪物的原版及HD圖片](docs/images/troops-all-original-hd-r3.png)
+![原版25種與openKB新增8種，共33種部隊與怪物的來源及HD圖片](docs/images/troops-all-original-hd-with-openkb-r4.png)
 
-上圖列出 `MAN01` 至 `MAN25` 的全部 25 組，每組左側為第 0 筆原版，右側為 HD 圖片。100 個姿勢均已正式登錄；新增 20 組的原向與鏡射支援軍隊頁及戰場，兩種用途共用不可變快取。新增圖的四姿勢全貌可看[80 個姿勢總覽](docs/images/troops-new-hd-all-poses-r2.png)，完整原版另見[104 筆原版姿勢圖](docs/images/troops-all-poses-original-r1.png)。這些是素材圖集，沒有宣稱同狀態戰場對拍。
+上半部列出 `MAN01` 至 `MAN25` 的全部25組，每組左側為第0筆原版，右側為HD；下半部加入八種openKB來源／HD圖像，共33種。原版100個姿勢均已正式登錄，新增八種目前各有一張靜態HD圖示，接入隔離Go候選。原版新增20組的四姿勢可看[80個姿勢總覽](docs/images/troops-new-hd-all-poses-r2.png)，完整原版另見[104筆原版姿勢圖](docs/images/troops-all-poses-original-r1.png)。這些是素材圖集；實際遊戲截圖見上方openKB章節。
 
 新圖沿已驗的共用機制抽樣。持刀兵、幽靈與龍以受控記憶體呼叫原版繪圖，兩向、軍隊用入口與戰場入口共 12 個完整畫面通過；正常視窗另驗三字型、人物／軍隊頁及真正存退讀。不逐隻等待自然遭遇，也不將受控測試稱為自然遭遇。`MAN27` 的四筆太極圖用途仍未證實，分開列入盤點。素材、提示與來源雜湊見[批次清單](docs/images/troops-hd-batch-r2.json)、[接入契約與抽驗](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)及[總覽工具](tools/prepare-troop-hd-overview.py)。完整 PNG 與提示留本機。
 

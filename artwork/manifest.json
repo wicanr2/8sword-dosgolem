@@ -11865,6 +11865,333 @@
       "basis": "Explicit user B selection; no generated-image prompt.",
       "sha256": "c23356c60e4809370a47fbd425fc8834943f3ad4970c6e84e353252b64aae405",
       "bytes": 26617
+    },
+    {
+      "source": "preserved/recruit-icons-r1.json#asset-test-r2/kind01.png",
+      "path": "approved/references/openkb-hd-r1/native01-style.png",
+      "sha256": "94543e17b40291ea57c4e040658cdedd9fcc7c8cdd533f9a0cd4cafa260ccf79",
+      "bytes": 77243,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          264,
+          300
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-c4f5419b-0b47-4cbb-a4cf-98a1c0c18fd0.png",
+      "path": "approved/masters/openkb-hd-r1/arcr.png",
+      "sha256": "959a5491d9d7c489bf67963e8b51c2563d9c146ab0050aae858011c8d9a07905",
+      "bytes": 1381105,
+      "role": "master",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "openkb-code/data/free/arcr.png",
+      "path": "approved/references/openkb-hd-r1/arcr.png",
+      "sha256": "0e49032dcabebd1999329a80880c769b937cd31a7447c828c46deb0bc1e8e053",
+      "bytes": 1494,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          192,
+          34
+        ],
+        "mode": "P"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json#openkb:arcr",
+      "path": "approved/provenance/openkb-hd-r1/arcr.json",
+      "sha256": "a87ac2db6fca91dc30355d24e8a1d5247fb245f7cc068f1c49f406a8f8f423a7",
+      "bytes": 2253,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-70c36215-c5ff-4456-9c35-5d68a3b5bee2.png",
+      "path": "approved/masters/openkb-hd-r1/pike.png",
+      "sha256": "36663d166f11d42a6a2fecb36bf14d837e5882bb592b8df2c1b0f5186f8650af",
+      "bytes": 1311725,
+      "role": "master",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "openkb-code/data/free/pike.png",
+      "path": "approved/references/openkb-hd-r1/pike.png",
+      "sha256": "3bd362248c9f2fd6c679da67b2b5ab4e2805b352fd3050e8bf2966e7d4530eb8",
+      "bytes": 1360,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          192,
+          34
+        ],
+        "mode": "P"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json#openkb:pike",
+      "path": "approved/provenance/openkb-hd-r1/pike.json",
+      "sha256": "b55307e66758561f63d2fd25b0da120c7a3a1e8f011469f37f5b3a9d33e87910",
+      "bytes": 2282,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-b33a9406-5d01-43f6-9ee5-e0d369a34e14.png",
+      "path": "approved/masters/openkb-hd-r1/wolf.png",
+      "sha256": "effe6c906553fb0715319d3ba5955b7aeca060cadd65bb981372c2e44e999cd7",
+      "bytes": 1458684,
+      "role": "master",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "openkb-code/data/free/wolf.png",
+      "path": "approved/references/openkb-hd-r1/wolf.png",
+      "sha256": "8339dbcf998f48c5a327c5ce41ce573372f8aca64d6293f26c05515ad171a6a3",
+      "bytes": 1320,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          192,
+          34
+        ],
+        "mode": "P"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json#openkb:wolf",
+      "path": "approved/provenance/openkb-hd-r1/wolf.json",
+      "sha256": "77a36d2b5bb8a7dae873c8a8f3c9769e93fb47c4c3e2d89ec44f94a68ccf5c8e",
+      "bytes": 2232,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-c25f5997-189b-4ada-b078-772988d922e0.png",
+      "path": "approved/masters/openkb-hd-r1/skel.png",
+      "sha256": "7fbd55d8995ee7cc832114c69b3b09718b61ef1267d412abab2cc924ddd82086",
+      "bytes": 1223484,
+      "role": "master",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "openkb-code/data/free/skel.png",
+      "path": "approved/references/openkb-hd-r1/skel.png",
+      "sha256": "6817ef6055197f873e5a818340797f58e5027cfcb0cd7d8f1a32583801bc1450",
+      "bytes": 1385,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          192,
+          34
+        ],
+        "mode": "P"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json#openkb:skel",
+      "path": "approved/provenance/openkb-hd-r1/skel.json",
+      "sha256": "a1cac5e4a9ea3d66b54966ba5c797234fc0d1d101e70d9567161c06000b849cc",
+      "bytes": 2250,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-45ec2001-09a5-4bfd-8157-59218ffd70e3.png",
+      "path": "approved/masters/openkb-hd-r1/troll.png",
+      "sha256": "026ab845961d59622fa8dfc3fbd11ff50fe989790570446669eebf9050b2841a",
+      "bytes": 1667088,
+      "role": "master",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "openkb-code/data/free/trol.png",
+      "path": "approved/references/openkb-hd-r1/trol.png",
+      "sha256": "1bc8382f599eee234554646217d627bf5383e0d9a2493a5b09ac455f48696904",
+      "bytes": 1687,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          192,
+          34
+        ],
+        "mode": "P"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json#openkb:troll",
+      "path": "approved/provenance/openkb-hd-r1/troll.json",
+      "sha256": "6a395058f9752bc9dcc5f6dae6aa199624054f93e8da9ff3d70cf7c07321b82f",
+      "bytes": 2281,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-ab5f4949-f5e0-4a6a-afdd-126ec30463f2.png",
+      "path": "approved/masters/openkb-hd-r1/drui.png",
+      "sha256": "296ac912af76c628fbf57cb04c7fbcfed153d14387018d0eafb28bd478898cc9",
+      "bytes": 1829183,
+      "role": "master",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "openkb-code/data/free/drui.png",
+      "path": "approved/references/openkb-hd-r1/drui.png",
+      "sha256": "e46809041e40d815801ea2f5d2ad7fd2b7dd8d09fe6ddc9561df5386cfbf04f7",
+      "bytes": 1605,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          192,
+          34
+        ],
+        "mode": "P"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json#openkb:drui",
+      "path": "approved/provenance/openkb-hd-r1/drui.json",
+      "sha256": "9892ab9d6614918cb61044eccb41937b62dd93fcc133eafe5e6b405306aa3ceb",
+      "bytes": 2313,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-de968744-90b8-44bc-8570-184e0a9fbf10.png",
+      "path": "approved/masters/openkb-hd-r1/vamp.png",
+      "sha256": "e9b589a3f61580b972363135716f50445da9d6f1cd451f0462582c8cc081fead",
+      "bytes": 1707177,
+      "role": "master",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "openkb-code/data/free/vamp.png",
+      "path": "approved/references/openkb-hd-r1/vamp.png",
+      "sha256": "6a0c9b02257d0e5b3d62bd6bff9c9e027664f14dd9de0ccc21de667d2b22b734",
+      "bytes": 1398,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          192,
+          34
+        ],
+        "mode": "P"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json#openkb:vamp",
+      "path": "approved/provenance/openkb-hd-r1/vamp.json",
+      "sha256": "1297bf111581a2271e3ed26d279c750c91487057633ad5b086e281a1185fa065",
+      "bytes": 2356,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-369e93df-e334-4af0-b6e7-69c7b90d7ac4.png",
+      "path": "approved/masters/openkb-hd-r1/drag.png",
+      "sha256": "cc304487fcf0014963a96d47345a7c292ad33e260354f540aa18ad62b5544796",
+      "bytes": 2052994,
+      "role": "master",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "openkb-code/data/free/drag.png",
+      "path": "approved/references/openkb-hd-r1/drag.png",
+      "sha256": "0391b000e7009d23eeb8d03d848afadb55a51fa2a57349a75bfbacad4da685b9",
+      "bytes": 1960,
+      "role": "reference",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots.",
+      "image": {
+        "size": [
+          192,
+          34
+        ],
+        "mode": "P"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json#openkb:drag",
+      "path": "approved/provenance/openkb-hd-r1/drag.json",
+      "sha256": "0c819f11a8efc40526ef5c144b8caca93ae3c8f049230b6bc20826277945558c",
+      "bytes": 2492,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "artwork/openkb-hd-generation-r1.json",
+      "path": "approved/provenance/openkb-hd-r1/generation.json",
+      "sha256": "fa8618766af8056e0b41b4ce257884a537e293480ee5437d824ad7f983392019",
+      "bytes": 19462,
+      "role": "provenance",
+      "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
     }
   ],
   "additions": [
@@ -11873,6 +12200,11 @@
       "sha256": "c23356c60e4809370a47fbd425fc8834943f3ad4970c6e84e353252b64aae405",
       "previous_manifest_sha256": "daaca39e8a5a69e169b089b1155c6e71e57675d6be2d6fac327d04fdcd03e7e1",
       "files": 66
+    },
+    {
+      "index": "openkb-hd-preservation-r1.json",
+      "previous_manifest_sha256": "ccd12135cca65a82be149f2019a78660a14d6212109065c4bfbc208243a31a19",
+      "files": 26
     }
   ]
 }

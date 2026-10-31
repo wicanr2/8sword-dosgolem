@@ -46,6 +46,34 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## openKB新增單位的HD圖像與遊戲截圖
+
+2026-11-01 DRAFT，使用者明確要求openKB新增單位的HD圖像、總覽與神州八劍內截圖須直接顯示於README。沿已確認八種候選、既有中國古風及原版配色，不新增兵種或改平衡。月度交接仍待續，不因這輪美術完成而宣稱已接完整世界。
+
+### 新增單位呈現的隔離READY契約
+
+已證實資料為現有33種catalog中的八個`openkb:`字串ID。來源為固定openKB提交`f67208e1aeedaefd737a860f66c9635305ad9376`及`data/free/troops.ini`，SHA-256 `d7059047d3ab529cd390f806702b0a4db0332d50141dbf3d66a6ebda38017573`；原圖使用同目錄arcr／pike／wolf／skel／trol／drui／vamp／drag八份PNG，逐SHA保存，不從DOS版猜圖號。角色為弓箭手、槍兵、野狼、骷髏兵、洞穴巨人、德魯依、吸血鬼、火龍。數值、規則、存檔及Native表均保持。
+
+HD原畫使用圖片生成技能的內建工具，逐單位生成透明全身圖，沿現有HD民兵的手繪細節及側面朝右構圖。只改美術呈現；洞穴巨人的原綠膚、德魯依的木杖／綠袍、吸血鬼的深色披風及火龍的翼龍輪廓保留來源識別，不把全部妖怪改成同一個人形。採用後先保存完整原PNG與提示至永久artwork，舊1040檔逐列不變。
+
+Go候選介面以完整字串ID讀取不可變圖像快取；缺圖或未知ID保留文字卡，原版25種繼續取既有快取。不把新增ID送入原版圖片、kind或數值表。檢閱、解雇及Go戰鬥卡的圖片矩形與文字安全區分開，完整輪廓等比縮放，文字不裁切。只替換凍結候選呈現器，正式197來源／七程式與附檔護欄保持。
+
+驗收取八圖的來源／alpha／快取與共用繪圖抽驗。GUI由普通Continue進F2及Go戰鬥，使用明示受控初始軍隊，不冒稱自然取得；至少一張軍隊頁及一張實際戰場X11與當下Go畫布同SHA。總覽包含原25種與新增八種，新增部分左側為openKB來源、右側為HD，不能稱為神州原版新增單位。README內嵌總覽與遊戲截圖；完整原圖、提示與來源另存artwork及preserved。工具入口於同輪接入，研究沿既有battle-r1下`openkb-hd-r1`。
+
+### openKB圖像的限定CONFORMED
+
+[圖片載入與Go繪圖](../../tools/openkb-hd-art.go)以八個完整字串ID查可選512×512透明快取，核對catalog／逐PNG SHA、形狀及路徑。未知ID、缺件與資料不符沿文字卡回退，不對新ID做native kind轉換。原25種沿既有Engine快取API。F2／F3圖像與文字左右分區；戰鬥卡保留名稱、兵數、行動狀態及選取框，敵側圖片鏡射。規則、資源、傷害、RNG與存檔未改。
+
+[準備／永久原圖／發圖／保存器](../../tools/prepare-openkb-hd.py)只修改凍結候選四份UI工具，正式197來源七程式不變。完整1254×1254透明原PNG八張、八份來源PNG、一份既有風格參考及完整提示共26檔，追加永久manifest為1066檔，前1040列逐字重建SHA保持。[逐檔核對](../../preserved/openkb-hd-artwork-verification-r1.json)不需workplace；沒有將工具顯示的縮放尺寸當成原PNG尺寸。
+
+[快取／繪圖探針](../../tools/openkb-hd-probe.go)驗八個ID、原圖獨立正規化、不可變來源、透明混合、鏡射、未知／缺件及catalog不符回退。[實際GUI](../../tools/check-openkb-hd-ui.py)完成兩組普通Continue→F2及一組F3，涵蓋八種新增單位與原版民兵；另沿已有受控3733起點進原版確認、Go戰鬥、一次弓箭手遠程出手及新程序Continue讀回。金錢、軍隊、回合與已行動旗標保持，原軍隊影子24 bytes不變。未宣稱自然遇敵或自然招募。
+
+[獨立核對](../../tools/check-openkb-hd.py)重建六張X11內45處圖像，檢查來源SHA、比例、鏡射及像素混合，圖像安全區與文字安全區不相交，文字墨跡皆在安全區。六張截窗全RGB等於Go實際提交SHA，戰中重開保留完整world／token。結果見[限定核對](../../preserved/openkb-hd-audit-r1.json)，完整資料見[永久保存](../../preserved/README.md#openkb單位hd與遊戲截圖保存)。沒有重做既有傷害、三字型、音樂或原版HD機制。
+
+README直接嵌入[八種比較](../images/openkb-eight-original-hd-r1.png)、兩張軍隊頁與一張戰鬥頁；既有25種總覽保留，另以新檔追加八種為[33種合併圖](../images/troops-all-original-hd-with-openkb-r4.png)。[畫面來源](../images/openkb-game-screenshots-r1.json)及[來源／作者metadata](../images/openkb-eight-original-hd-r1.json)逐SHA對回完整檔案，沒有把素材圖集冒稱遊戲截圖。
+
+本機入口`bash tools/openkb-hd.sh`預設明示展示進度`session-army-a`，可用`EIGHTSWORD_OPENKB_SESSION`指定其他本候選進度；另一展示為`session-army-b`，八種尚未接自然營地招募。準備器在Pillow11.3.0-r2執行`capture|prepare|freeze|gallery|publish|archive|verify`，固定輸入與各mode參數見`--help`及永久入口。Go1.24.13建置命令位於研究根`openkb-execution-r1.json`，只有fixture binary包含舊受控入口，正常binary不含該旗標。兩者共用呈現器。原版、923核心、模組及r69素材唯讀，UID1000、network none、3GiB／2CPU／192PID有界容器，工作後回收。
+
 ## Go募兵庫存與購買保存
 
 2026-11-01 DRAFT，接續使用者要求推進Go世界交接。這輪只處理已定位的原版募兵表、穩定來源身份及購買保存，不重做圖示、傷害或RNG。正式197來源七程式、923核心與r69素材保持，原版模式及DOS前Go軍隊附檔護欄不移除。

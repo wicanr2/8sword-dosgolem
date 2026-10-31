@@ -1,0 +1,26 @@
+{
+  "status": "passed-openkb-hd-integrity",
+  "local_links": 3322,
+  "positive_index_control": "README.md -> preserved/README.md",
+  "ownership_checked": 3412,
+  "bad_owners": [],
+  "cleanup": {
+    "status": "cache-cleared-after-detached-verification",
+    "cache_files_removed": 1434,
+    "cache_bytes_removed": 136276184,
+    "scope": "Only openkb-hd-r1/build-cache. Complete masters already preserved in artwork."
+  },
+  "checksums": {
+    "openkb-hd-audit-r1.json": "00b7ac49630284aa59811fb911dd49d363ff337ec0e5baae1199723ae18b5804",
+    "openkb-hd-artwork-verification-r1.json": "0e08a1823b9d5139bd708ebf6c7fd68d973e8861dabf3c1815318d032c09c022",
+    "openkb-hd-r1.json": "94f3f193d352f79a733cd90ce2b4ed9ebbb2209fcb574cf6c1e75fe81414de5e",
+    "openkb-hd-verification-r1.json": "591032e48559453ba4da296b2bb1d8750c7f0ab6f42807949dba5756b16e4529"
+  },
+  "readme_images_checked": 5,
+  "submitted_screenshots_checked": 3,
+  "docker_scope": "All task containers used --rm and no openkb-hd mount remains. Other projects untouched.",
+  "overview_units_checked": 33,
+  "original_25_overview_pixels_unchanged": true,
+  "new_overview_sha256": "664f389ca11613a317beb83dcb4b41b334637564d20e5d111f56fc38d6c72993",
+  "combined_overview_sha256": "009f569a94f358a4474c2e687549be0cf8e6fcce54afd9891afd9215ba383034"
+}

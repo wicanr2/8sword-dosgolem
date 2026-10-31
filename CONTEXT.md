@@ -6,13 +6,17 @@
 
 Go世界仍是隔離候選，已串接軍隊存在／無兵損金、原版確認、原版隨機敵軍匯入、Go戰鬥／戰果、F2／F3、拒戰／追擊及實際亂數撤退。最新候選已取消固定快照啟動依賴，由正常繼續、走動與原版確認接入Go戰鬥並返回地圖。正式Engine遇到新增軍隊附檔仍在DOS前拒絕，原版模式保持。既有[存在／損金](preserved/owned-army-presence-audit-r2.json)、[戰鬥回場](preserved/controlled-owned-battle-audit-r2.json)、[介面](preserved/owned-encounter-ui-audit-r1.json)與[敵軍來源](preserved/runtime-enemy-audit-r1.json)收據沿用，不重開共同機制。
 
-最新切片為[Go募兵庫存與購買保存](docs/spec/030-battle-expansion-proposal.md#go募兵庫存與購買保存)。隔離v4以類別／資料列綁定營地，購兵時Go軍隊、扣金與原庫存word同一journal提交。原表120筆／600word與原版RAM／進度一致；民兵重訪、矮人購買及取消的受控wrapper已驗。四個中斷點恢復、過期token／非法補貨等拒絕、v4戰中／返回VM交接與F7保留v4通過，不重跑既有傷害／RNG。[限定核對](preserved/camp-stock-audit-r1.json)、[永久保存](preserved/README.md#go募兵庫存與購買保存)及[最新入口](tools/camp-stock.sh)為入口。
+最新切片為[openKB八種單位HD與遊戲截圖](docs/spec/030-battle-expansion-proposal.md#openkb新增單位的hd圖像與遊戲截圖)。八張透明手繪原圖已接隔離Go候選的F2、F3與戰鬥卡，全部使用字串ID，原版25種取既有HD快取。兩張F2畫面涵蓋全部八種；一次弓箭手出手及戰中冷讀保持完整world／token。六張X11全RGB與Go提交SHA相同，45處圖像從原RGBA獨立重建，圖像與文字安全區不相交。[核對](preserved/openkb-hd-audit-r1.json)、[來源與HD總覽](docs/images/openkb-eight-original-hd-r1.png)、[33種總覽](docs/images/troops-all-original-hd-with-openkb-r4.png)、[截圖來源](docs/images/openkb-game-screenshots-r1.json)與[最新本機入口](tools/openkb-hd.sh)為入口。README已直接內嵌總覽、兩張軍隊頁與一張戰鬥頁。
+
+圖像沿已確認中國古風與openKB來源識別，不改既有兵種數值、傷害、RNG或存檔。軍隊為明示測試配置，戰鬥入口採已驗固定快照，不稱自然取得或自然遇敵；八種目前各一張靜態圖，沒有新增攻擊動畫。原圖、完整提示與來源直接保存永久artwork，舊1040列保持，新增26檔後共1066檔。正式197來源七程式、923核心、r69全535素材及DOS前附檔護欄保持。月度／劇情資源、自然營地招募及完整世界接管仍未完成。
+
+前輪[Go募兵庫存與購買保存](docs/spec/030-battle-expansion-proposal.md#go募兵庫存與購買保存)保持。隔離v4以類別／資料列綁定營地，購兵時Go軍隊、扣金與原庫存word同一journal提交。原表120筆／600word與原版RAM／進度一致；民兵重訪、矮人購買及取消的受控wrapper已驗。四個中斷點恢復、過期token／非法補貨等拒絕、v4戰中／返回VM交接與F7保留v4通過，不重跑既有傷害／RNG。[限定核對](preserved/camp-stock-audit-r1.json)及[永久保存](preserved/README.md#go募兵庫存與購買保存)為入口。
 
 實際普通Continue、移動、招募1民兵後未按F7就關閉，另一程序Continue、重訪、取消與F2完成。金5000→4999、庫存3000→2999；Go軍隊保留2500狼並增加1民兵，原影子30民兵保持。重訪／取消不改token與兩檔內容，五張X11全RGB等於當下Go提交。起始Go軍隊仍為明示試作；本輪GUI沒有RAM或seed注入。購買只自動保存已接管資源與庫存，當前走動位置仍由F7保存。
 
 [HD募兵圖示](docs/spec/030-battle-expansion-proposal.md#募兵庫存與hd部隊圖示)沿前輪25種原版部隊第一姿態與既有城門原圖。Go直接合成既有Go來源畫布，不讀原版RGB；圖示不碰底部價格／數量欄，離店清除。[總覽與實景](docs/images/recruit-unit-icons-r1.json)、[圖示核對](preserved/recruit-icons-audit-r1.json)及[永久保存](preserved/README.md#hd募兵部隊圖示保存)保持，不重驗共同機制。
 
-圖示的原版軍隊預覽仍走原招募／原存檔；新的Go募兵預覽另採隔離v4，兩種入口不共用進度。新候選接五個來源wrapper，但月度／劇情補貨與其餘軍隊consumer仍未知，身份或庫存不符拒絕。八種openKB招募肖像未接。正式197來源七程式及Go附檔護欄保持，沒有提升正式格式或完整世界交接。
+圖示的原版軍隊預覽仍走原招募／原存檔；新的Go募兵預覽另採隔離v4，兩種入口不共用進度。新候選接五個來源wrapper，但月度／劇情補貨與其餘軍隊consumer仍未知，身份或庫存不符拒絕。八種openKB已有軍隊／戰鬥圖像，尚未接自然營地招募。正式197來源七程式及Go附檔護欄保持，沒有提升正式格式或完整世界交接。
 
 前輪[戰中續接與單次戰果](docs/spec/030-battle-expansion-proposal.md#戰中續接與單次戰果)保持：隔離v3一併啟用Go戰鬥與32E0原生停點，保存回合／兵力／已行動旗標；結算及返回seed只提交一次，F7後回v2。VM物件以SHA、PAM／923核心索引、來源bytes、frame及資源驗證，缺件或損壞拒絕並保留兩檔。
 
@@ -29,11 +33,11 @@ Go世界仍是隔離候選，已串接軍隊存在／無兵損金、原版確認
 | 面向 | 目前真相 | 證據入口 |
 |---|---|---|
 | 執行器與程式 | Go版dosgolem，source-candidate-owned-combat-r1，197來源、七程式、923核心；本輪未改正式遊戲程式或素材 | [兵力核心核對](preserved/owned-combat-audit-r1.json) |
-| HD圖形 | r69全535素材；104圖檔333筆已辨識圖形已備妥HD產圖，290彩色來源正式對應，43單色／IFF僅入包；永久圖庫1040檔逐SHA核對 | [圖庫](artwork/all-graphics-hd-gallery-r2.html)、[接入清單](artwork/graphics-integration-r65.json) |
+| HD圖形 | r69全535素材保持；原104圖檔333筆已有HD，290彩色正式對應、43單色／IFF僅入包。新增八種openKB靜態圖進隔離UI，永久圖庫由1040追加至1066檔 | [原版圖庫](artwork/all-graphics-hd-gallery-r2.html)、[新增八種](artwork/README.md#openkb新增單位hd) |
 | Go繪圖分流 | 沿用前輪原版／HD各250M固定步數對照，最終完整state同SHA；原版像素寫入4194129次，HD零次、無繪圖故障。只限這段輸入，不外推所有分支 | [步數對照](preserved/phase-closeout-audit-r1.json)、[047](docs/spec/047-hd-scene-renderer.md) |
 | 正常玩家路徑 | 正式遊戲在3000 cycles/ms下完成新遊戲、購兵、F2兩次檢閱、自然遇敵、撤退、F7存檔、原版正常退出與另一程序繼續。2987-byte存檔SHA保持，存後／冷讀均為31民兵及金錢461；三字型與偏好沿用前輪結果 | [本輪GUI核對](preserved/recruit-gui-diagnosis-audit-r2.json)、[基本GUI與字型](preserved/phase-closeout-audit-r1.json) |
 | 字型與海報 | Noto Black900、教育部隸書、草書，工具列／F10與偏好保存；兩側海報及漸淡銜接沿既有驗收 | [015字型](docs/spec/015-font-settings.md)、[032海報](docs/spec/032-poster-toolbar.md) |
-| 募兵候選 | 25種原版HD圖示沿前輪；隔離v4已接穩定營地、Go購兵與庫存成對保存，未F7冷讀／重訪／取消通過。刷新及新兵種肖像待接 | [庫存核對](preserved/camp-stock-audit-r1.json)、[圖示核對](preserved/recruit-icons-audit-r1.json) |
+| 募兵候選 | 25種原版HD圖示沿前輪；隔離v4已接穩定營地、Go購兵與庫存成對保存，未F7冷讀／重訪／取消通過。八種新增圖已進F2／F3／Go戰鬥，刷新及自然營地招募待接 | [庫存核對](preserved/camp-stock-audit-r1.json)、[新增圖核對](preserved/openkb-hd-audit-r1.json) |
 | AI與規則 | 可選target策略AI；native／formation／tactics規則由工具列切換，本場固定。20%結陣與25%弓箭手壓制已限定驗收，不能外推全遊戲平衡 | [030](docs/spec/030-battle-expansion-proposal.md)、[AI](preserved/ai-engine-audit-r1.json)、[戰術](preserved/tactics-audit-r1.json) |
 | 音樂與法術 | 十首HD音樂已接r69，玩家八戰鬥術及八地圖術有Go演出；沿已保存機制收據，不逐術重跑。九首未新增人耳確認、自然習得與全部分支未驗 | [音樂](preserved/hd-music-audit-r1.json)、[法術](preserved/remaining-spells-audit-r1.json)、[彩光](preserved/map-spell-color-audit-r2.json) |
 | Go擴充核心 | 25原版／8候選字串ID、每方6陣位、安全兵力／傷害及一次戰果提交；正式Engine遇到軍隊附檔仍在DOS前拒絕，檔案保留 | [030核心契約](docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離) |
@@ -56,7 +60,7 @@ Go世界仍是隔離候選，已串接軍隊存在／無兵損金、原版確認
 
 ## 執行與保存
 
-正式本機素材：`workplace/player/assets-painted-r69`。正常播放器及研究工具見[README](README.md)。最新軍隊候選入口為[Go募兵保存](tools/camp-stock.sh)，可讀隔離v1至v4，使用獨立session及原生影子；不交給舊預覽工具或正式Engine。較早[戰中續接](tools/battle-resume.sh)、[F7](tools/native-checkpoint.sh)、[正常遇敵](tools/normal-encounter.sh)、[F2](tools/world-army-review.sh)、[F3](tools/world-army-dismiss.sh)及[獨立戰鬥](tools/owned-paired-ui.sh)保留各自歷史契約，不移除正式載入護欄。
+正式本機素材：`workplace/player/assets-painted-r69`。正常播放器及研究工具見[README](README.md)。最新軍隊候選入口為[openKB HD](tools/openkb-hd.sh)，沿Go募兵保存，可讀隔離v1至v4，使用獨立session及原生影子；不交給舊預覽工具或正式Engine。較早[Go募兵保存](tools/camp-stock.sh)、[戰中續接](tools/battle-resume.sh)、[F7](tools/native-checkpoint.sh)、[正常遇敵](tools/normal-encounter.sh)、[F2](tools/world-army-review.sh)、[F3](tools/world-army-dismiss.sh)及[獨立戰鬥](tools/owned-paired-ui.sh)保留各自歷史契約，不移除正式載入護欄。
 
 [HD募兵圖示預覽](tools/recruit-icons.sh)使用獨立原版進度，入口為`-native-game -saves <可寫原版存檔目錄>`。沒有Go軍隊附檔；以原版規則募兵與F7保存，可用既有HD音樂與字型。這個入口不替代Go擴充軍隊候選，也未提升正式播放器。
 

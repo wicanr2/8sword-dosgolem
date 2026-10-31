@@ -1,0 +1,31 @@
+{
+  "screens": [
+    {
+      "image": "openkb-army-a-hd-r1.png",
+      "sha256": "a3b9bffef58a6b951c41a247942c83910b79fc00b850a0ad8932e61031ea5c24",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/openkb-hd-r1/gui-r1/army-a/frame-001-army-noto.png",
+      "source_sha256": "ed2e210d9bd6411ad95e6413c91be72a6fc6cc588d880e234f733bb454e5a873",
+      "controlled_initial_army": true,
+      "controlled_battle_entry": false
+    },
+    {
+      "image": "openkb-army-b-hd-r1.png",
+      "sha256": "1839f273f5279a3c54537c7d2670ec34c3ea660265479ce07382984f1ab8b502",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/openkb-hd-r1/gui-r1/army-b/frame-001-army-noto.png",
+      "source_sha256": "ba632b1216d942d5fc2cf9605a9d49d82032d118250aa1835c86a01b842220ae",
+      "controlled_initial_army": true,
+      "controlled_battle_entry": false
+    },
+    {
+      "image": "openkb-battle-hd-r1.png",
+      "sha256": "99f0549744f7c4f14278019d21d49edad9e5cd3c720ad66e49d24fb06f1274cc",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/openkb-hd-r1/gui-r1/battle-warm/frame-001-battle-noto.png",
+      "source_sha256": "63a681fec82700f4bd19e623f7d6e48bd5387084be787c3bf55a5329eb1a5dd2",
+      "controlled_initial_army": true,
+      "controlled_battle_entry": true
+    }
+  ],
+  "audit_sha256": "00b7ac49630284aa59811fb911dd49d363ff337ec0e5baae1199723ae18b5804",
+  "natural_acquisition": false,
+  "source": "Actual Ebiten/Go window; full submitted frame and X11 SHA checked independently."
+}

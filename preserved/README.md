@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## openKB單位HD與遊戲截圖保存
+
+八種新增單位已有透明手繪HD圖像，接入隔離Go候選的F2、F3與戰鬥卡，README直接內嵌八種來源／HD總覽、33種合併總覽、兩張軍隊頁與一張戰鬥頁。八張完整原PNG、完整提示及來源另在[永久圖庫](../artwork/README.md#openkb新增單位hd)，不依賴workplace或工具預設目錄；舊1040列保持，現共1066檔。
+
+入口為[030呈現契約](../docs/spec/030-battle-expansion-proposal.md#openkb新增單位的hd圖像與遊戲截圖)、[原圖與候選準備／發圖／保存](../tools/prepare-openkb-hd.py)、[Go圖片快取／繪圖](../tools/openkb-hd-art.go)、[共用機制探針](../tools/openkb-hd-probe.go)、[獨立核對](../tools/check-openkb-hd.py)、[實際按鍵](../tools/check-openkb-hd-ui.py)及[試玩入口](../tools/openkb-hd.sh)。結果集中[原圖核對](openkb-hd-artwork-verification-r1.json)、[限定核對](openkb-hd-audit-r1.json)、[逐檔清單](openkb-hd-r1.json)、[脫離工作區核對](openkb-hd-verification-r1.json)與[收尾](openkb-hd-integrity-r1.json)。
+
+兩組普通Continue／F2涵蓋全部八種，另驗F3；一組明示受控3733起點進原版確認、Go戰鬥及弓箭手遠程出手，再由新程序Continue讀回。六張X11全RGB等於Go提交SHA，45處圖像從原RGBA獨立重建，圖像不與文字區相交。原影子24 bytes不變；展示軍隊不是自然取得，受控起點不是自然遇敵，八種各一張靜態圖，不稱新增動畫或平衡完成。
+
+完整候選、UI圖像、字型圖集、來源進度／九圖、VM物件、全尺寸Go畫布與X11擷取保存於本機`preserved/openkb-hd-r1/`，排除Git。正式197來源七程式、923核心、r69全535素材與附檔護欄保持。月度／劇情、自然營地招募及完整世界接管待續，不因美術完成而放寬原固定表。
+
+原圖保存用`capture --project <唯讀專案> --artwork <可寫永久圖庫> --generated <唯讀工具原圖根> --openkb <唯讀openKB> --out <新收據>`，不覆寫不同原圖。候選用`prepare|freeze --project <專案>`；`gallery|publish --project <唯讀專案> --images <可寫docs/images>`輸出總覽／截圖。Go命令見研究根`openkb-execution-r1.json`，GUI用`--work /out`。保存用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`，不掛workplace重驗用`verify --archive <唯讀preserved> --out <新JSON>`。均沿固定Pillow11.3.0-r2／Go1.24.13、UID1000、無網路與有界容器，只清本批已保存後的可重生快取。
+
+本批480檔／380物件、壓縮34836791 bytes，未掛workplace逐SHA／長度核對通過。永久圖庫1066檔另行獨立核對；只清本批1434份Go編譯快取、136276184 bytes，沒有新映像或清其他專案資源。
+
 ## Go募兵庫存與購買保存
 
 隔離v4已把穩定營地來源、Go軍隊、扣金與原庫存word放入同一兩檔交易。未F7關閉後，實際新程序Continue／重訪／取消及F2保持軍隊、金錢與庫存；普通購買不自動保存走動位置。正式197來源七程式、923核心、535素材、1040圖庫與DOS前Go附檔護欄保持，月度／劇情補貨及其餘軍隊consumer仍未接。

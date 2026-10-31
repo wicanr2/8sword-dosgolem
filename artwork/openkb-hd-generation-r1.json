@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "status": "adopted-isolated-presentation",
+  "generator": "image_gen built-in",
+  "openkb_commit": "f67208e1aeedaefd737a860f66c9635305ad9376",
+  "troops_ini_sha256": "d7059047d3ab529cd390f806702b0a4db0332d50141dbf3d66a6ebda38017573",
+  "scope": "Eight current catalog candidates; same-style continued authorization. No rules or save schema changes.",
+  "rows": [
+    {
+      "id": "openkb:arcr",
+      "name": "弓箭手",
+      "file": "arcr",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-c4f5419b-0b47-4cbb-a4cf-98a1c0c18fd0.png",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent full-body HD tactical RPG unit for 神州八劍. Image 1 is ONLY the openKB archer role and purple/ochre palette reference; Image 2 is the required existing 神州八劍 HD painted sprite style. Generate ONE Chinese classical archer, entire body and entire bow visible, facing screen RIGHT in a readable three-quarter side battle stance. A handsome adult East Asian male with tied dark hair and ochre headband, plum-purple tunic, subdued gold lamellar shoulder armor, green cloth accents, cloth leggings and boots, holding an authentic Chinese recurved bow with one nocked arrow aimed toward the right. Confident anatomically correct hands, natural bow grip. Same fine hand-painted gouache brushwork, crisp silhouette, controlled colors, illustrated 1990s Chinese fantasy game character style as Image 2. This is a unit sprite, not a scene or portrait. Centered full body occupying about 82 percent of a square canvas; keep 8 percent clear padding around all limbs and the bow. Genuine transparent background, no ground plane, no floor shadow, no backdrop, no text, no labels, no border, no duplicate figures, no checkerboard painted into image. Soft upper-left illumination and consistent neutral viewing angle; normal human proportions, detailed but readable at 180 pixels high.",
+      "references": [
+        "/home/anr2/openkb/openkb-code/data/free/arcr.png",
+        "/home/anr2/cht/8sword/workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/asset-test-r2/kind01.png"
+      ],
+      "master": "approved/masters/openkb-hd-r1/arcr.png",
+      "provenance": "approved/provenance/openkb-hd-r1/arcr.json",
+      "transparent_background": true
+    },
+    {
+      "id": "openkb:pike",
+      "name": "槍兵",
+      "file": "pike",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-70c36215-c5ff-4456-9c35-5d68a3b5bee2.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent full-body HD tactical RPG unit for 神州八劍. Image 1 supplies ONLY the original openKB role, silhouette and colors. Image 2 supplies the required existing 神州八劍 painted sprite style. SUBJECT: A sturdy adult East Asian pikeman in a Chinese classical military outfit, dark navy and black lamellar armor over pale cloth, tied black hair under a simple dark headwrap, brown belt and boots, both hands holding ONE long straight spear with a pale steel tip aimed to the RIGHT. Retain the source's dark-blue silhouette and long spear role. Anatomically correct hands, clear tip and shaft, complete feet and weapon. STYLE AND COMPOSITION: fine hand-painted gouache brushwork, crisp readable silhouette, restrained rich colors, illustrated classic Chinese fantasy game artwork matching Image 2. A single unit sprite, NOT a scene, not a close-up. Neutral three-quarter side view facing RIGHT, soft upper-left illumination, full body occupying 78 to 82 percent of square canvas, at least 8 percent clear padding on all sides. All limbs, weapon, wings and tail must remain completely inside canvas. Genuine transparent background, no ground plane, no cast shadow, no backdrop, no text, no watermark, no border, no duplicate figures, no painted checkerboard. Clearly recognizable and attractive at 180 pixels high.",
+      "references": [
+        "/home/anr2/openkb/openkb-code/data/free/pike.png",
+        "/home/anr2/cht/8sword/workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/asset-test-r2/kind01.png"
+      ],
+      "master": "approved/masters/openkb-hd-r1/pike.png",
+      "provenance": "approved/provenance/openkb-hd-r1/pike.json",
+      "transparent_background": true
+    },
+    {
+      "id": "openkb:wolf",
+      "name": "野狼",
+      "file": "wolf",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-b33a9406-5d01-43f6-9ee5-e0d369a34e14.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent full-body HD tactical RPG unit for 神州八劍. Image 1 supplies ONLY the original openKB role, silhouette and colors. Image 2 supplies the required existing 神州八劍 painted sprite style. SUBJECT: ONE powerful grey wild wolf, natural animal anatomy with exactly four legs, silver-grey fur, darker spine, long bushy tail, pale throat, amber eyes, alert ears, partially open mouth, poised in a low right-facing stride. A realistic Chinese fantasy mountain wolf, with no human clothing, no saddle, no armor. Retain source grey body and unmistakable wolf silhouette. STYLE AND COMPOSITION: fine hand-painted gouache brushwork, crisp readable silhouette, restrained rich colors, illustrated classic Chinese fantasy game artwork matching Image 2. A single unit sprite, NOT a scene, not a close-up. Neutral three-quarter side view facing RIGHT, soft upper-left illumination, full body occupying 78 to 82 percent of square canvas, at least 8 percent clear padding on all sides. All limbs, weapon, wings and tail must remain completely inside canvas. Genuine transparent background, no ground plane, no cast shadow, no backdrop, no text, no watermark, no border, no duplicate figures, no painted checkerboard. Clearly recognizable and attractive at 180 pixels high.",
+      "references": [
+        "/home/anr2/openkb/openkb-code/data/free/wolf.png",
+        "/home/anr2/cht/8sword/workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/asset-test-r2/kind01.png"
+      ],
+      "master": "approved/masters/openkb-hd-r1/wolf.png",
+      "provenance": "approved/provenance/openkb-hd-r1/wolf.json",
+      "transparent_background": true
+    },
+    {
+      "id": "openkb:skel",
+      "name": "骷髏兵",
+      "file": "skel",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-c25f5997-189b-4ada-b078-772988d922e0.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent full-body HD tactical RPG unit for 神州八劍. Image 1 supplies ONLY the original openKB role, silhouette and colors. Image 2 supplies the required existing 神州八劍 painted sprite style. SUBJECT: ONE animated ivory skeleton foot soldier, human proportions and anatomically readable bones, a weathered ancient Chinese iron helmet and small scraps of rust-red cloth and dark lamellar armor, holding ONE plain Chinese single-edged dao low toward the RIGHT. Entire skull, rib cage, both legs, feet and sword visible, no gore, no flesh. Retain ivory-bone palette and skeletal role. STYLE AND COMPOSITION: fine hand-painted gouache brushwork, crisp readable silhouette, restrained rich colors, illustrated classic Chinese fantasy game artwork matching Image 2. A single unit sprite, NOT a scene, not a close-up. Neutral three-quarter side view facing RIGHT, soft upper-left illumination, full body occupying 78 to 82 percent of square canvas, at least 8 percent clear padding on all sides. All limbs, weapon, wings and tail must remain completely inside canvas. Genuine transparent background, no ground plane, no cast shadow, no backdrop, no text, no watermark, no border, no duplicate figures, no painted checkerboard. Clearly recognizable and attractive at 180 pixels high.",
+      "references": [
+        "/home/anr2/openkb/openkb-code/data/free/skel.png",
+        "/home/anr2/cht/8sword/workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/asset-test-r2/kind01.png"
+      ],
+      "master": "approved/masters/openkb-hd-r1/skel.png",
+      "provenance": "approved/provenance/openkb-hd-r1/skel.json",
+      "transparent_background": true
+    },
+    {
+      "id": "openkb:troll",
+      "name": "洞穴巨人",
+      "file": "trol",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-45ec2001-09a5-4bfd-8157-59218ffd70e3.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent full-body HD tactical RPG unit for 神州八劍. Image 1 supplies ONLY the original openKB role, silhouette and colors. Image 2 supplies the required existing 神州八劍 painted sprite style. SUBJECT: ONE muscular hulking green-skinned cave troll/ogre, broad heavy face, large hands, strong thick legs, moss-green skin, coarse dark hair, earthy brown hide wrap and simple wrist bindings. Holding ONE short rough stone club downward, facing right in a grounded battle stance. Retain source green skin and bulky creature silhouette. Exactly two arms and two legs; no giant human armor, no goblin proportions. STYLE AND COMPOSITION: fine hand-painted gouache brushwork, crisp readable silhouette, restrained rich colors, illustrated classic Chinese fantasy game artwork matching Image 2. A single unit sprite, NOT a scene, not a close-up. Neutral three-quarter side view facing RIGHT, soft upper-left illumination, full body occupying 78 to 82 percent of square canvas, at least 8 percent clear padding on all sides. All limbs, weapon, wings and tail must remain completely inside canvas. Genuine transparent background, no ground plane, no cast shadow, no backdrop, no text, no watermark, no border, no duplicate figures, no painted checkerboard. Clearly recognizable and attractive at 180 pixels high.",
+      "references": [
+        "/home/anr2/openkb/openkb-code/data/free/trol.png",
+        "/home/anr2/cht/8sword/workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/asset-test-r2/kind01.png"
+      ],
+      "master": "approved/masters/openkb-hd-r1/troll.png",
+      "provenance": "approved/provenance/openkb-hd-r1/troll.json",
+      "transparent_background": true
+    },
+    {
+      "id": "openkb:drui",
+      "name": "德魯依",
+      "file": "drui",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-ab5f4949-f5e0-4a6a-afdd-126ec30463f2.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent full-body HD tactical RPG unit for 神州八劍. Image 1 supplies ONLY the original openKB role, silhouette and colors. Image 2 supplies the required existing 神州八劍 painted sprite style. SUBJECT: ONE elderly East Asian nature druid, dignified grey beard, olive-green and earthy-brown layered robes and deep green hood, rope belt, simple brown boots, one hand gripping a gnarled wooden staff with a small leafy branch and softly luminous jade-green jewel. Face and body three-quarter toward RIGHT. Preserve openKB nature-mage role and green/brown palette; subtle Chinese classical fantasy tailoring. No huge spell cloud, no text or symbols. STYLE AND COMPOSITION: fine hand-painted gouache brushwork, crisp readable silhouette, restrained rich colors, illustrated classic Chinese fantasy game artwork matching Image 2. A single unit sprite, NOT a scene, not a close-up. Neutral three-quarter side view facing RIGHT, soft upper-left illumination, full body occupying 78 to 82 percent of square canvas, at least 8 percent clear padding on all sides. All limbs, weapon, wings and tail must remain completely inside canvas. Genuine transparent background, no ground plane, no cast shadow, no backdrop, no text, no watermark, no border, no duplicate figures, no painted checkerboard. Clearly recognizable and attractive at 180 pixels high.",
+      "references": [
+        "/home/anr2/openkb/openkb-code/data/free/drui.png",
+        "/home/anr2/cht/8sword/workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/asset-test-r2/kind01.png"
+      ],
+      "master": "approved/masters/openkb-hd-r1/drui.png",
+      "provenance": "approved/provenance/openkb-hd-r1/drui.json",
+      "transparent_background": true
+    },
+    {
+      "id": "openkb:vamp",
+      "name": "吸血鬼",
+      "file": "vamp",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-de968744-90b8-44bc-8570-184e0a9fbf10.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent full-body HD tactical RPG unit for 神州八劍. Image 1 supplies ONLY the original openKB role, silhouette and colors. Image 2 supplies the required existing 神州八劍 painted sprite style. SUBJECT: ONE elegant pale adult East Asian male vampire, long tied black hair, severe noble face, subtle small visible fangs, long navy-black robe with crimson lining and a flowing bat-shaped cloak, one outstretched hand toward the RIGHT with natural five fingers, the other hand holding the cloak. Chinese classical dark fantasy aristocrat with cloth boots, entire body visible. Retain source dark cloak and pale face; do not turn him into a jiangshi, do not add talismans or a Western top hat. STYLE AND COMPOSITION: fine hand-painted gouache brushwork, crisp readable silhouette, restrained rich colors, illustrated classic Chinese fantasy game artwork matching Image 2. A single unit sprite, NOT a scene, not a close-up. Neutral three-quarter side view facing RIGHT, soft upper-left illumination, full body occupying 78 to 82 percent of square canvas, at least 8 percent clear padding on all sides. All limbs, weapon, wings and tail must remain completely inside canvas. Genuine transparent background, no ground plane, no cast shadow, no backdrop, no text, no watermark, no border, no duplicate figures, no painted checkerboard. Clearly recognizable and attractive at 180 pixels high.",
+      "references": [
+        "/home/anr2/openkb/openkb-code/data/free/vamp.png",
+        "/home/anr2/cht/8sword/workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/asset-test-r2/kind01.png"
+      ],
+      "master": "approved/masters/openkb-hd-r1/vamp.png",
+      "provenance": "approved/provenance/openkb-hd-r1/vamp.json",
+      "transparent_background": true
+    },
+    {
+      "id": "openkb:drag",
+      "name": "火龍",
+      "file": "drag",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-369e93df-e334-4af0-b6e7-69c7b90d7ac4.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent full-body HD tactical RPG unit for 神州八劍. Image 1 supplies ONLY the original openKB role, silhouette and colors. Image 2 supplies the required existing 神州八劍 painted sprite style. SUBJECT: ONE majestic winged fire dragon, entire creature clearly visible, long emerald-green scaled body, four strong reptilian legs, two large ochre-gold membrane wings opened diagonally, long tapering tail curling left, dark green back spines, ivory horns and claws, head facing screen RIGHT with a SMALL orange-red flame leaving its mouth. Retain openKB source green scales/gold wings and winged-dragon role. Refined Chinese hand-painted fantasy illustration with subtly classical dragon facial whiskers, but keep the functional wings and four legs. No scenery or massive flame backdrop. Fit full wings and tail inside the canvas. STYLE AND COMPOSITION: fine hand-painted gouache brushwork, crisp readable silhouette, restrained rich colors, illustrated classic Chinese fantasy game artwork matching Image 2. A single unit sprite, NOT a scene, not a close-up. Neutral three-quarter side view facing RIGHT, soft upper-left illumination, full body occupying 78 to 82 percent of square canvas, at least 8 percent clear padding on all sides. All limbs, weapon, wings and tail must remain completely inside canvas. Genuine transparent background, no ground plane, no cast shadow, no backdrop, no text, no watermark, no border, no duplicate figures, no painted checkerboard. Clearly recognizable and attractive at 180 pixels high.",
+      "references": [
+        "/home/anr2/openkb/openkb-code/data/free/drag.png",
+        "/home/anr2/cht/8sword/workplace/probe-20261023/graphics-first/battle-r1/recruit-icons-r1/asset-test-r2/kind01.png"
+      ],
+      "master": "approved/masters/openkb-hd-r1/drag.png",
+      "provenance": "approved/provenance/openkb-hd-r1/drag.json",
+      "transparent_background": true
+    }
+  ]
+}

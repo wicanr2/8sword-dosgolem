@@ -1,5 +1,13 @@
 # 定稿原圖永久保存
 
+## openKB新增單位HD
+
+八種候選單位沿既有中國古風與原版配色重繪，完整提示與來源見[生成紀錄](openkb-hd-generation-r1.json)。採用的透明原PNG與提示保存於`approved/masters/openkb-hd-r1/`及`approved/provenance/openkb-hd-r1/`，不依賴workplace或圖片工具的預設輸出目錄。接入範圍依[030呈現契約](../docs/spec/030-battle-expansion-proposal.md#openkb新增單位的hd圖像與遊戲截圖)，不改既有兵種數值與規則。
+
+[原圖保存收據](openkb-hd-preservation-r1.json)記錄八張完整1254×1254透明PNG、八份來源PNG、既有風格參考及完整提示，共新增26檔；[逐檔清單](manifest.json)保留舊1040列，現在共1066檔。[不依賴workplace的獨立核對](../preserved/openkb-hd-artwork-verification-r1.json)已通過。下方1040檔為此前基礎圖庫的歷史數字。
+
+[八種來源／HD總覽](../docs/images/openkb-eight-original-hd-r1.png)、[33種合併總覽](../docs/images/troops-all-original-hd-with-openkb-r4.png)與[實際截圖來源](../docs/images/openkb-game-screenshots-r1.json)已加入README。Go軍隊／戰鬥的代表驗證與完整研究來源見[永久保存](../preserved/README.md#openkb單位hd與遊戲截圖保存)。八圖由內建image_gen逐圖產生，完整提示在本節生成紀錄；沒有改用CLI或用放大像素冒充重繪。
+
 ## B飛焰與命中符光
 
 使用者已選定[共用特殊攻擊B樣式](battle-vfx-b-approved-r1.json)。61張原生Go透明影格、兩張完整樣張、原始Go產生器及幾何／確認紀錄保存於`approved/masters/battle-vfx-b-r1/`與`approved/provenance/battle-vfx-b-r1/`，加入[逐檔清單](manifest.json)。這是程序繪圖，沒有image_gen提示；原型時間仍是示意，不當正式時鐘。
