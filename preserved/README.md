@@ -1,5 +1,23 @@
 # 必要資料永久保存
 
+## F7完整進度與地圖快照保存
+
+隔離候選已接原版F7的完整2987-byte進度、九份5761-byte地圖與Go世界成對保存，普通Continue可由新的Engine讀回位置與地圖。原版影子仍31民兵，Go資料為明示2500狼／金5000，新增ID不寫入原版。正式197來源七程式、923核心、535素材、1040圖庫與載入護欄保持。
+
+[030規格](../docs/spec/030-battle-expansion-proposal.md#原位置與地圖的成對快照)、[快照封裝](../tools/research-native-checkpoint.go)、[F7掛點](../tools/native-checkpoint-port.go)、[介面接線](../tools/native-checkpoint-ui.go)、[原版／冷讀](../tools/probe-native-checkpoint.go)、[載荷測試](../tools/research-native-checkpoint_test.go)、[準備／核對／保存](../tools/prepare-native-checkpoint.py)、[實際按鍵](../tools/check-native-checkpoint.py)、[按鍵助手](../tools/owned-army-ui-xcheck.go)、[本機入口](../tools/native-checkpoint.sh)與[IDA窄匯出](../tools/export-native-checkpoint-ida.py)為入口。結果集中在[最終核對](native-checkpoint-audit-r2.json)、[前版核對](native-checkpoint-audit-r1.json)、[逐檔清單](native-checkpoint-r1.json)、[脫離工作區核對](native-checkpoint-verification-r1.json)及[收尾](native-checkpoint-integrity-r1.json)。完整原圖、state、地圖與原版binary只留本機`preserved/native-checkpoint-r1/`，排除Git。
+
+本批524檔／329物件、壓縮35371065 bytes，未掛workplace的逐SHA／長度核對通過。只刪本輪可重生Go編譯快取156688179 bytes，沒有清其他專案資源。
+
+原版PAM／DB雜湊沿前輪，IDA9.4／py312-v1在tmp DB窄匯出四函式1530行，原始名稱、位址與bytes保持。8D31掛點晚於原進度與地圖close；檔案須等於9E00與9C00原緩衝區，Wrote只作請求量，另驗close及實際內容。8524只在已綁F7內複製經核對的原影子，實際12次；其餘軍隊讀寫與8DE9護欄保留。
+
+正常下移兩格後，DS8E44由38變40，F7及新Engine冷讀保持40；其餘位置群、地圖SHA、完整進度及Go軍隊一致。原版探針另明示把地圖資料位元組4000從48改為來源142的既有值13，Python獨立重建唯一修改與原100→50處理，冷讀保留。實際XTEST不用RAM修改，完成F7、正常關閉、新程序Continue及F2，三張X11全RGB與Go畫布相同，地圖與軍隊頁已目視。
+
+候選v2把九份地圖納入Go附檔，仍用兩檔交易；可讀v1，不把新封裝交舊預覽或正式Engine，也不作正式格式升級。新載荷兩中斷點、後續Go提交保留地圖、過期token與地圖名稱／長度拒絕通過。最後補上戰中地圖重開與降版拒絕，驗檔案保留及不建立原生影子。此兩處只新增拒絕路徑，原版及GUI允許路徑未改，正向收據沿r3，r5建置／vet與新拒絕測試另保留，沒有重跑GUI或其他HD／亂數樣本。
+
+`prepare --project <專案>`在既有battle-r1/native-checkpoint-r1的IDA輸出旁建立候選；資料從永久normal-encounter-r1與合法原版九份地圖讀入。`freeze`凍結來源；Go1.24.13／923核心的建置、vet、測試與F7助手命令見本批execution-r1.json及xcheck-execution-r1.json。原版探針使用240秒／3GiB／2CPU／128PID，GUI使用600秒／3GiB／2CPU／192PID，皆UID1000、無網路、有界並回收程序。新版本機預覽使用獨立session-gui與新原生影子。
+
+`audit --project --out <新JSON>`在固定Pillow11.3.0容器核對原bytes、三份候選介接差異、地圖封裝、完整進度、世界與X11。`archive --project --archive <preserved> --out <新清單>`保存完整來源與各輪診斷，排除可重生build-cache；`verify --archive <唯讀preserved> --out <新JSON>`逐物件驗SHA與長度，不需workplace。PAM.i64完整來源另沿refusal-rng-r1保存。戰中原地圖續接、跨程序RNG序列及完整世界玩法未在此批完成。
+
 ## 正常遇敵入口保存
 
 隔離Go候選已從正常繼續與走動接入原版確認、敵軍生成、Go戰鬥、實際亂數撤退及回場。沒有載入固定快照、回捲IP、寫入原軍隊表或設定測試seed。起始2500狼、領導30000與金5000仍為明示試作；原版影子31民兵保持。正式197來源七程式、923核心、535素材及附檔護欄不改。

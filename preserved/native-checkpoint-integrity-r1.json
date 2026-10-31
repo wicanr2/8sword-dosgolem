@@ -1,0 +1,20 @@
+{
+  "status": "passed-native-checkpoint-integrity",
+  "files": 524,
+  "objects": 329,
+  "stored_bytes": 35371065,
+  "removed_build_cache_bytes": 156688179,
+  "root_owned_or_md_directories": [],
+  "formal_dependencies_unchanged": true,
+  "source_tools_current": true,
+  "source_tools_indexed": true,
+  "local_links_checked": 1298,
+  "verification": {
+    "status": "passed-detached-native-checkpoint",
+    "files": 524,
+    "objects": 329
+  },
+  "format_promoted": false,
+  "production_promoted": false,
+  "positive_gui_scope": "r3 supported nonpending paths; r5 adds only tested pending and downgrade rejection guards"
+}

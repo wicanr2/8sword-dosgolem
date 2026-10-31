@@ -46,6 +46,38 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 原位置與地圖的成對快照
+
+2026-10-31 DRAFT，接續使用者要求處理存檔與既定的下一段工作。正式197來源七程式、原版存檔與既有附檔保持；本輪只在可撤回候選研究完整F7交接，既有傷害、HD、亂數與兵種不再加測。
+
+原版PAM SHA與既有存檔證據沿[六資源](#六項資源的編碼與受控傳送)。原`sub_184C0`打包2987 bytes，呼叫`sub_1041E`後寫出gamedata.ay，原buffer為執行期9E00:0000；地圖寫入的檔名、長度、buffer與冷讀欄位先以IDA資料庫與實際FileOps確認。已有的2975-byte不透明資料不逐欄翻譯，完整快照交原版還原；原軍隊12至35 bytes保持，新增ID不寫入原版。
+
+候選方向為保留兩檔交易與既有256KiB附檔／1MiB提交上限：原版完整進度與Go世界一起提交，地圖內容封裝在隔離候選附檔中，啟動時還原到獨立原生影子。舊候選資料仍能讀，正式格式不升級或覆寫。未知地圖形狀、來源或未完成戰鬥停止，不以假資料補洞。證據足夠後補限定READY及工具入口，再做一條F7→退出→另一Engine繼續的代表鏈；中斷恢復沿原機制，只補新載荷的必要抽樣。
+
+### 完整快照的隔離READY契約
+
+僅限可撤回候選接線READY，正式世界與正式格式仍DRAFT。IDA9.4保留原始名稱／bytes／xref的四函式匯出確認：`sub_1041E`本體沒有5761-byte地圖寫入，其服務細節本輪不追；`sub_184C0`在原進度關閉後呼叫`sub_14878`，後者把9C00:0000的5761 bytes寫入DS8E52檔名，並把來源byte100改50。原進度為9E00:0000的2987 bytes。掛點採執行期0110:8D31，已晚於地圖close，保留原pop SI／pop DI／RETF；0110:84C0入口只接受原F7 caller返回4186、DS／SS1E88、已驗PAM與兩函式完整bytes。第一次觀測即記錄FileOps游標；任何寫入失敗、長度、close、token、frame、原軍隊或六資源不符皆停止。
+
+候選封裝為`eightsword-owned-world-save/2`，保留原WorldSave欄位與World資料，另加九份`map00.ay`至`map08.ay`的原始bytes。實際來源有九份5761-byte MAP00–08，另八份單位數MAP1–8為不同素材，不能混入。新提交沿兩檔日誌，型別為`eightsword-pair-intent/2`；既有同型temp、fsync、rename及中斷恢復流程保持。完整快照只使World.Revision加一，軍隊／資源不變；之後普通Go提交保持地圖與其餘原版進度，仍只投影六資源。新讀取器可讀v1，v2限新候選的獨立session，不交舊工具、正式Engine或原存檔；沒有正式格式升級聲明。
+
+原版完整進度與九份地圖由同一成對token保護。啟動先驗SHA／長度／canonical檔名，再還原到新原生影子，不讓原版看到Go附檔。完整內容交原讀取器還原，位置相關RAM群只作原operand與動態差分，不猜補X／Y欄位。以正常移動、真實F7、另一Engine普通Continue比對進度buffer、地圖buffer及原位置群；地圖變動另採明示單一RAM格複製既有合法值，不稱自然探索收益。只補完整載荷在native-durable／world-durable兩中斷點及過期token／圖檔形狀拒絕，不重跑既有八階段與全部戰鬥測試。
+
+首次實跑停在既有0110:8524保護點，來源bytes證明為原進度12至35 bytes的影子軍隊複製。本切片只在84C0已綁定的F7框架內放行：先把原影子24 bytes逐word與原存檔解碼值比較，複製點再驗相同來源、BP／SP及24 bytes不變。Go軍隊不投影此表，其他consumer與8DE9讀檔保護保持；不能把這個原影子複製視為Go兵力計算。
+
+入口為[IDA匯出](../../tools/export-native-checkpoint-ida.py)、[快照與封裝](../../tools/research-native-checkpoint.go)、[F7掛點](../../tools/native-checkpoint-port.go)、[介面](../../tools/native-checkpoint-ui.go)、[原版與冷讀探針](../../tools/probe-native-checkpoint.go)、[載荷回歸](../../tools/research-native-checkpoint_test.go)、[準備／核對／保存](../../tools/prepare-native-checkpoint.py)、[正常介面抽樣](../../tools/check-native-checkpoint.py)及[本機入口](../../tools/native-checkpoint.sh)。來源與未縮原圖永久保存後才清快取。原版RNG冷讀、戰中正常續接、月度與劇情consumer不隨本切片宣告完成。
+
+### F7完整快照的限定抽驗
+
+隔離切片抽驗通過，正式接入仍DRAFT。四函式1530行bytes經PAM重定位獨立核對；實跑F7有兩筆寫入請求2987／5761及四筆open／close，12次8524影子複製，原31民兵保持。來源紀錄需同時使用Wrote請求與FileOps關閉，923核心的FileOps沒有write記錄；最初按單一介面計數造成的拒絕另留診斷，沒有改核心或原版檔案服務。
+
+原版探針正常繼續、下移兩格後，DS8E44由38變40；明示把地圖資料位元組4000由48換成來源142的13，再以真實F7保存。新Engine普通Continue讀回完整2987-byte buffer、九份地圖、位置群與Go世界。Python另重建單一改動、原100→50處理及九份base64載荷，與原生影子及冷讀檔全同；不把診斷改動稱為自然地圖進展。
+
+實際GUI沒有RAM修改，走F7→正常關閉→新程序Continue→F2，位置群、地圖SHA、2500狼／金5000一致；三張X11全RGB與Go畫布相同並已目視。助手原先缺F7 keysym，補上`0xffc4`後在同一映像、同一命令乾淨重跑；字型、HD、傷害與亂數樣本不重開。
+
+新載荷回歸0.466秒，含v1初始化、完整封裝、兩提交中斷點、之後Go更新保留地圖、過期token及圖檔形狀。最後0.223秒補驗真實待結算世界的新封裝冷讀、DOS前拒絕地圖重開且兩檔不變，以及拒絕舊版intent丟棄v2地圖。正向GUI與原版收據基於r3；r5只多這兩處拒絕，來源差異逐字核對後沿用已驗允許路徑，不重跑GUI。各版建置／vet、來源與二進位識別均保存。
+
+[最終核對](../../preserved/native-checkpoint-audit-r2.json)、[前版核對](../../preserved/native-checkpoint-audit-r1.json)與[永久保存](../../preserved/README.md#f7完整進度與地圖快照保存)集中範圍。正式197來源七程式、923核心、535素材與1040圖庫不改；新v2只在獨立候選，不升級正式格式，也未完成戰中原地圖續接或整個世界。
+
 ## 正常遇敵與多場生命週期
 
 2026-10-31，隔離候選的接線契約READY，完整世界仍DRAFT。使用者要求停止同類抽驗並繼續實作。本切片沿已驗[軍隊存在](../../preserved/owned-army-presence-audit-r2.json)、[原版敵軍匯入](../../preserved/runtime-enemy-audit-r1.json)及[拒戰／撤退](../../preserved/refusal-rng-audit-r2.json)，不重查公式或增加門檻樣本。原PAM SHA與執行期位址沿下節。
