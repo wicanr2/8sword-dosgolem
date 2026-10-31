@@ -8,6 +8,8 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
+隔離Go軍隊候選已能從正常繼續、走動與原版確認進入Go戰鬥，並完成撤退回場、F2及成對檔讀回，不再要求固定快照。起始軍隊仍為測試資料，原位置／地圖進度的完整保存待接，正式載入護欄保留。入口為[本機預覽](tools/normal-encounter.sh)、[接線範圍](docs/spec/030-battle-expansion-proposal.md#正常遇敵與多場生命週期)與[驗證紀錄](preserved/normal-encounter-audit-r1.json)。
+
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
 ## 關於這款遊戲
@@ -81,7 +83,7 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 新增兵種 | Go 自有招募／存檔已有獨立操作視窗，區分25種原版與8種openKB候選。實際滑鼠招募、六隊上限、資源限制、三字型與關閉後重開讀檔已驗；正常遊戲的招募／戰鬥與世界交接仍待接入，見[030](docs/spec/030-battle-expansion-proposal.md#軍隊與招募視窗研究)。原[離線原型](docs/images/owned-army-prototype-r1.html)保留試算用途 |
 | Go 兵力核心 | 已加入獨立ID、每方6陣位、寬整數傷害／減員、AI選敵與一次性戰果回寫。15組既有原版控制及Go招募→戰鬥→存讀資料鏈通過，可看[28次行動回放](docs/images/owned-combat-data-chain-r1.html)。正常遊戲軍隊／戰鬥UI尚未交接，擴充軍隊附檔會在DOS啟動前被拒絕並保留，避免交給原版固定表；範圍見[030](docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離) |
-| Go 世界交接試作 | 已串接勝利獎勵、晉級、存活部隊整理、Go敵軍清除記錄及戰中／戰後存檔，另驗七組原版數值控制。可看[世界資料鏈回放](docs/images/owned-world-data-chain-r1.html)。目前為離線試作；正式招募、軍隊與戰鬥介面、敗退及任務交接仍待完成，見[030](docs/spec/030-battle-expansion-proposal.md#世界與戰鬥交接研究) |
+| Go 世界交接試作 | 隔離候選已從正常繼續與走動遇敵接入Go戰鬥、撤退回場、F2及成對檔讀回。勝利獎勵、晉級、軍隊整理與拒戰／追擊沿既有抽驗。正式載入、完整位置／地圖保存及其餘世界流程待接，範圍見[正常入口](docs/spec/030-battle-expansion-proposal.md#正常遇敵與多場生命週期)與[目前狀態](CONTEXT.md) |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、四份建築圖片與六塊城堡、布旗與無旗太極圖、十二張主角動作、人物頁、金玉介面、深藍故事背景、五幅彩色戰場背景、25 組部隊／怪物的 100 筆姿勢、十四筆地圖遭遇角色、火花與四姿態陰陽圖案。新增 20 組支援兩向與軍隊／戰場用途，沿共用機制代表抽驗。正常移動、頁面往返及真正存退讀已驗；已辨識的其餘彩色來源已依054補齊；自然使用範圍沿各項限定驗收。部隊範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，其餘範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[027](docs/spec/027-battle-pon-effects.md)、[029](docs/spec/029-battle-choi-markers.md)及 [045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |

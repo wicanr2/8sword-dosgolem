@@ -4,11 +4,13 @@
 
 使用者要求同規格功能與HD採共同機制抽樣，不逐兵種／圖片重跑。**既有HD與已接功能的階段抽驗已完成，整案仍未完成。** [固定計畫](preserved/phase-closeout-plan-r1.json)原先未通過的募兵後遇敵GUI鏈，已用未改的正式遊戲程式補驗成功。[補充核對](preserved/recruit-gui-diagnosis-audit-r2.json)明列 `all_planned_gates_passed=true`、`project_complete=false`；[前輪結果](preserved/phase-closeout-audit-r1.json)保留當時的未通過紀錄。新增兵種隔離原型仍不能稱為正式可玩。
 
-Go世界仍是隔離候選，已串接軍隊存在／無兵損金、原版確認、原版隨機敵軍匯入、Go戰鬥／戰果、F2／F3、拒戰／追擊及實際亂數撤退。原版玩家表以FF作不變診斷，兵數、傷害與戰果由Go處理。正式Engine遇到新增軍隊附檔仍在DOS前拒絕，原版模式保持。既有[存在／損金](preserved/owned-army-presence-audit-r2.json)、[戰鬥回場](preserved/controlled-owned-battle-audit-r2.json)、[介面](preserved/owned-encounter-ui-audit-r1.json)與[敵軍來源](preserved/runtime-enemy-audit-r1.json)收據沿用，不重開共同機制。
+Go世界仍是隔離候選，已串接軍隊存在／無兵損金、原版確認、原版隨機敵軍匯入、Go戰鬥／戰果、F2／F3、拒戰／追擊及實際亂數撤退。最新候選已取消固定快照啟動依賴，由正常繼續、走動與原版確認接入Go戰鬥並返回地圖。正式Engine遇到新增軍隊附檔仍在DOS前拒絕，原版模式保持。既有[存在／損金](preserved/owned-army-presence-audit-r2.json)、[戰鬥回場](preserved/controlled-owned-battle-audit-r2.json)、[介面](preserved/owned-encounter-ui-audit-r1.json)與[敵軍來源](preserved/runtime-enemy-audit-r1.json)收據沿用，不重開共同機制。
 
-最新切片為[撤退亂數與拒戰／追擊](docs/spec/030-battle-expansion-proposal.md#撤退亂數與拒戰追擊交接)。Go以原版32位元LCG推進DS81BC；160次原rand控制、12組門檻、四種拒絕與重複撤退檢查通過。拒戰未追擊沿原消失動畫返回且配對世界不變；追擊保留8D6A=1，Go先執行已支援的敵方普通／遠程行動。GUI拒戰返回及追擊→Go先手→實際亂數撤退→F2→冷讀通過，七張X11全RGB一致。GUI撤退值3524，2500狼→2446、金5000→3750；Go提交後原回場於0110:71B3另取一次rand，已分開核對。73份state、1261行IDA bytes與[核對](preserved/refusal-rng-audit-r2.json)已[永久保存](preserved/README.md#撤退亂數與拒戰追擊保存)。
+最新切片為[正常遇敵入口](docs/spec/030-battle-expansion-proposal.md#正常遇敵與多場生命週期)。一場正常走動、確認、Go戰鬥、撤退回場、F2及另一程序讀回通過；沒有載入快照、回捲IP、改原軍隊表或設定測試seed。起始Go軍隊仍為明示2500狼，原版影子保持31民兵。實際敵軍16種38／21種26／11種20，撤退值18264，金5000→4445；四張X11全RGB與Go畫布相同。[核對](preserved/normal-encounter-audit-r1.json)與[永久保存](preserved/README.md#正常遇敵入口保存)為入口。多場狀態重設已實作；第二次自然遭遇未在有界操作內出現，依使用者抽驗收斂指示不再等待，未宣稱多場自然抽驗完成。
 
-以上採使用者明確授權的固定快照、記憶體設定及共同機制抽樣。起點、2500狼及5／5除數為明示試作，不稱自然取得或完整原版戰鬥。冷讀目前只驗Go世界及原六資源；原位置／地圖進度與RNG冷讀序列尚未完成保存。正常玩家啟動、完整戰鬥選單及其餘世界consumer仍DRAFT。
+拒戰、追擊先手與Go原版LCG沿[前輪核對](preserved/refusal-rng-audit-r2.json)，不重跑160次亂數、12門檻或既有傷害／HD／字型。回場另取rand的邊界亦沿既有證據。
+
+較早研究採使用者授權的固定快照與記憶體設定；最新入口採正常繼續與走動。2500狼及5／5除數為明示試作，不稱自然取得或完整原版戰鬥。冷讀目前只驗Go世界及原六資源；原位置／地圖進度與RNG冷讀序列尚未完成保存。正式世界接入、完整戰鬥選單及其餘世界consumer仍DRAFT。
 
 ## 目前版本與已驗範圍
 
@@ -22,12 +24,13 @@ Go世界仍是隔離候選，已串接軍隊存在／無兵損金、原版確認
 | AI與規則 | 可選target策略AI；native／formation／tactics規則由工具列切換，本場固定。20%結陣與25%弓箭手壓制已限定驗收，不能外推全遊戲平衡 | [030](docs/spec/030-battle-expansion-proposal.md)、[AI](preserved/ai-engine-audit-r1.json)、[戰術](preserved/tactics-audit-r1.json) |
 | 音樂與法術 | 十首HD音樂已接r69，玩家八戰鬥術及八地圖術有Go演出；沿已保存機制收據，不逐術重跑。九首未新增人耳確認、自然習得與全部分支未驗 | [音樂](preserved/hd-music-audit-r1.json)、[法術](preserved/remaining-spells-audit-r1.json)、[彩光](preserved/map-spell-color-audit-r2.json) |
 | Go擴充核心 | 25原版／8候選字串ID、每方6陣位、安全兵力／傷害及一次戰果提交；正式Engine遇到軍隊附檔仍在DOS前拒絕，檔案保留 | [030核心契約](docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離) |
-| Go軍隊與戰鬥候選 | 隔離招募、戰鬥、世界獎勵、成對保存、F2／F3、原版敵軍匯入、實際亂數撤退及拒戰／追擊已有代表驗證；世界整合仍DRAFT，沒有正式新增兵種世界路徑 | [永久候選索引](preserved/README.md)、[最新切片](preserved/refusal-rng-audit-r2.json) |
+| Go軍隊與戰鬥候選 | 正常繼續與走動遇敵可交Go戰鬥並回場；隔離招募、世界獎勵、成對保存、F2／F3及拒戰／追擊沿既有抽驗。世界整合仍DRAFT，沒有正式新增兵種世界路徑 | [永久候選索引](preserved/README.md)、[最新切片](preserved/normal-encounter-audit-r1.json) |
 
 ## 尚未完成的實作
 
-- 新增軍隊與原地圖的完整交接。受控確認、原版隨機敵軍、Go戰鬥、撤退亂數與拒戰／追擊已串接；仍須接正常遇敵的正式玩家啟動、完整戰鬥選單、後排特殊動作與全滅選擇。守軍與其他軍隊讀寫consumer尚未全接。
+- 新增軍隊與原地圖的完整交接。隔離候選的正常啟動及一場遇敵已完成；仍須整入正式前端、完整戰鬥選單、後排特殊動作與全滅選擇。守軍與其他軍隊讀寫consumer尚未全接。
 - 正式商店身份／庫存持續性、月度／劇情資源、擴充存檔的完整玩家生命週期。完成前保留附檔護欄，不把擴充ID寫入原版kind、圖片或數值索引。
+- 下一段先接原位置／地圖進度與Go世界的同步存檔，沿既有六資源與交易保存機制，不追加同類圖片或亂數抽驗。
 - Rust遷移留後續，依使用者最後指示先用Go。公開發行包與跨平台真機驗收尚未進行。
 
 ## 驗收範圍與證據限制
@@ -40,6 +43,6 @@ Go世界仍是隔離候選，已串接軍隊存在／無兵損金、原版確認
 
 ## 執行與保存
 
-正式本機素材：`workplace/player/assets-painted-r69`。正常播放器及研究工具見[README](README.md)。軍隊候選啟動器：[F2](tools/world-army-review.sh)、[F3](tools/world-army-dismiss.sh)、[獨立戰鬥](tools/owned-paired-ui.sh)。候選使用獨立session及原生影子，不移除正式載入護欄。
+正式本機素材：`workplace/player/assets-painted-r69`。正常播放器及研究工具見[README](README.md)。軍隊候選啟動器：[正常遇敵](tools/normal-encounter.sh)、[F2](tools/world-army-review.sh)、[F3](tools/world-army-dismiss.sh)、[獨立戰鬥](tools/owned-paired-ui.sh)。候選使用獨立session及原生影子，不移除正式載入護欄。
 
 完整定稿圖與提示位於[artwork](artwork/README.md)；程式、音樂、字型、存檔及研究資料位於[preserved](preserved/README.md)，不只放workplace。收尾資料見[前輪清單](preserved/phase-closeout-r1.json)及[本輪補驗清單](preserved/recruit-gui-diagnosis-r1.json)，後者另有[脫離工作區核對](preserved/recruit-gui-diagnosis-verification-r1.json)。原版資料與完整本機物件不加入Git，沒有新Release或公開素材授權聲明。

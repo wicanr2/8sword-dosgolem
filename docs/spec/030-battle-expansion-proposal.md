@@ -46,6 +46,24 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 正常遇敵與多場生命週期
+
+2026-10-31，隔離候選的接線契約READY，完整世界仍DRAFT。使用者要求停止同類抽驗並繼續實作。本切片沿已驗[軍隊存在](../../preserved/owned-army-presence-audit-r2.json)、[原版敵軍匯入](../../preserved/runtime-enemy-audit-r1.json)及[拒戰／撤退](../../preserved/refusal-rng-audit-r2.json)，不重查公式或增加門檻樣本。原PAM SHA與執行期位址沿下節。
+
+- 從成對存檔正常啟動、繼續遊戲、走動至151C。取消必填快照與3733回捲，不設定IP、寄存器、原軍隊表或測試seed。原生影子僅供已驗地圖執行器讀取，新增ID保持Go所有。
+- 在既有1650存在判斷之前檢查來源、caller、frame與最新成對token，重設上一場已結束的橋接狀態。未結束戰鬥、過期檔案或仍啟用的存在context拒絕。不得重新安裝而累積callback。
+- 1713肯定答覆沿真實存在／確認context；173A拒戰沿已驗Go亂數。32E0經原版生成敵軍後交Go。結算仍只一次，回0BD3後可進下一場，原軍隊表全程保持。
+- F2／F3、資源與成對交易沿既有機制；不改schema。存檔目前只覆蓋Go世界與六資源，原位置／地圖進度與RNG冷讀仍未接妥，不宣稱完整保存。
+- 未支援守軍、後排特殊動作、全滅選擇及其他軍隊consumer繼續停止；正式Engine的DOS前附檔護欄不移除。明示5／5傷害除數保持試作，不稱原版完整戰術。
+
+來源→原地圖遇敵→存在與確認→原版敵軍→Go戰鬥→戰果／成對保存→回場為本輪垂直鏈。沿使用者抽驗收斂指示，只用一場正常介面鏈驗入口，既有傷害、亂數、字型與HD收據沿用。多場重入已實作，第二次自然遭遇未在有界排程內出現，不為等待隨機條件擴大驗收。入口為[正常遇敵控制器](../../tools/normal-encounter-ui.go)、[準備／核對／保存](../../tools/prepare-normal-encounter.py)、[操作抽樣](../../tools/check-normal-encounter.py)及[本機啟動](../../tools/normal-encounter.sh)。操作抽樣預設一場，`--encounters 2`僅供後續有明確重入阻塞時使用。完整候選及操作證據永久保存，不只留workplace。
+
+### 正常入口的限定抽驗結果
+
+隔離入口抽驗通過，世界整合仍DRAFT。Go建置與vet通過後，使用同一程式從正常繼續、下移離城及左右走動觸發確認，按畫面實際選取位置選「是」。原版生成16種38／21種26／11種20，Go持有32E0並顯示，原軍隊複製跳過一次；撤退值18264，金5000→4445，2500狼保持。回0BD3、F2、正常關閉及另一程序讀回成對檔通過，原31民兵24 bytes及其餘2975-byte人物內容保持，原戰鬥／存在迴圈哨點零次。
+
+[核對](../../preserved/normal-encounter-audit-r1.json)沿正式197來源、七程式、923核心與535素材雜湊，驗四張X11全RGB、完整世界變化、Go亂數與兩檔讀回；本次不重開原版公式或字型／HD抽驗。完整來源、原PNG、回場state及操作排程診斷沿[永久保存](../../preserved/README.md#正常遇敵入口保存)。多場重設只有實作，未取得第二場自然抽驗；原位置／地圖進度與RNG冷讀、正式世界接入不在完成聲明內。
+
 ## 撤退亂數與拒戰追擊交接
 
 2026-10-31 DRAFT，接續已授權的Go世界接管與固定狀態抽樣，研究沿battle-r1下的refusal-rng-r1。先確認原rand及拒戰consumer，不把拒戰猜成零效果返回，不新增傷害或存檔schema。正式197來源七程式及附檔護欄保持。

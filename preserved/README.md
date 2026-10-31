@@ -1,5 +1,21 @@
 # 必要資料永久保存
 
+## 正常遇敵入口保存
+
+隔離Go候選已從正常繼續與走動接入原版確認、敵軍生成、Go戰鬥、實際亂數撤退及回場。沒有載入固定快照、回捲IP、寫入原軍隊表或設定測試seed。起始2500狼、領導30000與金5000仍為明示試作；原版影子31民兵保持。正式197來源七程式、923核心、535素材及附檔護欄不改。
+
+[接線規格](../docs/spec/030-battle-expansion-proposal.md#正常遇敵與多場生命週期)、[控制器](../tools/normal-encounter-ui.go)、[準備／核對／保存](../tools/prepare-normal-encounter.py)、[正常操作抽樣](../tools/check-normal-encounter.py)與[本機啟動](../tools/normal-encounter.sh)為入口。[核對](normal-encounter-audit-r1.json)、[逐檔清單](normal-encounter-r1.json)、[脫離工作區核對](normal-encounter-verification-r1.json)及[收尾](normal-encounter-integrity-r1.json)保存結果；完整物件位於本機`preserved/normal-encounter-r1/`並排除Git。
+
+本批415檔／332物件，壓縮29484646 bytes；未掛workplace逐SHA及長度核對通過。已刪本批可重生Go編譯快取130485328 bytes，未清其他專案資源。
+
+抽一場正常確認後，原版產生16種38／21種26／11種20，Go解析並顯示；實際撤退值18264，金5000→4445，2500狼保持。回場、F2與另一程序讀回Go世界及六資源通過，四張X11全RGB等於Go畫布。這不包含位置／地圖進度與RNG的冷讀恢復，也不表示完整戰鬥選單或新增兵種自然取得。
+
+多場狀態重設已實作，沒有在每場追加callback。第二次自然遭遇未在有界排程出現，依使用者要求停止等待，預設抽樣改一場；多場自然重入未驗。舊排程、確認頁分類與左右鍵選項的診斷、手動XTEST移動紀錄及成功的一場鏈均保留，不把操作腳本的等待問題寫成遊戲缺陷。
+
+`prepare --project <專案>`從既有永久批次恢復已驗接線與輸入，在`workplace/probe-20261023/graphics-first/battle-r1/normal-encounter-r1`建立新候選；不依賴舊研究目錄。`freeze`凍結四份新工具，Go1.24.13／923核心容器的建置及vet命令見該批`execution-r1.json`。操作抽樣預設一場，沿既有Go／Xvfb映像、UID1000、3GiB／2CPU／192PID、無網路及600秒外層逾時；程序結束後回收Xvfb。
+
+`audit --project --out <新JSON>`在Pillow11.3.0容器核對正式依賴、永久接線、世界變化、存檔與畫面。`archive --project --archive <preserved> --out <新清單>`保存完整候選、輸入、原PNG、state及各次診斷，排除可重生build-cache。`verify --archive <唯讀preserved> --out <新JSON>`逐物件核對SHA與長度，不需workplace；還原依清單path／mode，已有不同檔案不可覆寫。本機預覽使用獨立session及原生影子，未支援consumer保持停止。
+
 ## 撤退亂數與拒戰追擊保存
 
 [030接線及範圍](../docs/spec/030-battle-expansion-proposal.md#撤退亂數與拒戰追擊交接)記錄Go原版LCG、拒戰兩分支及追擊先手。Go撤退以當前DS81BC狀態取值，成對存檔成功後才發布下一seed；拒絕與重複操作不消耗亂數。執行期狀態未新增附檔欄位，不宣稱冷讀恢復原版RNG序列。

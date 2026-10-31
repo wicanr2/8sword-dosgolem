@@ -1,0 +1,23 @@
+{
+  "status": "passed-normal-encounter-integrity",
+  "files": 415,
+  "objects": 332,
+  "stored_bytes": 29484646,
+  "removed_build_cache_bytes": 130485328,
+  "root_owned_or_md_directories": [],
+  "local_links_checked": 1268,
+  "source_tools_indexed": [
+    "normal-encounter-ui.go",
+    "prepare-normal-encounter.py",
+    "check-normal-encounter.py",
+    "normal-encounter.sh"
+  ],
+  "formal_dependencies_unchanged": true,
+  "detached_verification": {
+    "status": "passed-detached-normal-encounter",
+    "files": 415,
+    "objects": 332
+  },
+  "production_promoted": false,
+  "rearm_naturally_sampled": false
+}
