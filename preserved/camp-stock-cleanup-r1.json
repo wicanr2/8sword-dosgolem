@@ -1,0 +1,8 @@
+{
+  "status": "passed-scoped-cache-cleanup",
+  "archived_files": 477,
+  "archived_objects": 372,
+  "cache_files_removed": 1438,
+  "cache_bytes_removed": 138153176,
+  "scope": "Only camp-stock-r1/build-cache; permanent batch already verified without workplace."
+}

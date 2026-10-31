@@ -46,6 +46,38 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## Go募兵庫存與購買保存
+
+2026-11-01 DRAFT，接續使用者要求推進Go世界交接。這輪只處理已定位的原版募兵表、穩定來源身份及購買保存，不重做圖示、傷害或RNG。正式197來源七程式、923核心與r69素材保持，原版模式及DOS前Go軍隊附檔護欄不移除。
+
+沿已保存IDA9.4資料庫匯出的sub_184C0／sub_18D38與五個募兵wrapper，先查表與原2987-byte進度的映射。靜態候選：六資源與12軍隊word後，按24列、每列五欄、每欄五類的次序交錯編碼；每word加檔案byte offset與3。結構從DS3EFE加類別×F0及列×10開始，wrapper的DS3F00座標是結構第1欄，第4欄才是庫存。庫存檔案offset候選為76＋列×50＋類別×2，不能把五表直接當連續raw memcpy。先與既有原版RAM／存檔逐欄核對再實作。
+
+候選方向：來源身份以類別與全域資料列綁定，kind／位置從原進度驗證；Go軍隊、扣金與庫存同一兩檔交易，Native shadow只投影已證實欄位。購買後未按F7也不再丟掉庫存；原版wrapper暖路徑只扣一次。刷新或來源身份不符先拒絕，不把未知月度流程猜成補貨。新封裝限獨立候選，正式格式不升級。
+
+### 募兵保存的隔離READY契約
+
+2026-11-01，原版既有招募前快照的120筆／600word，與原2987-byte進度按上式逐欄同值。IDA MZ線性1854E–18662、18E02–18EE4的保存／讀回資料流與PAM bytes交叉核對；執行期DS及檔案offset另列，不混用位址基準。結構／編碼及庫存投影列為已證實。月度補貨、劇情改寫及未觀測消費端仍未知，不加入本輪接線。
+
+來源鍵固定為`native-camp:類別兩位:全域列兩位`，類別0–4、列0–23。綁定從原進度取種類與庫存，入口另核對父frame、區域對應三列、位置及參數，未知身份／庫存不符拒絕。Go交易只允許單一來源綁定或按既有recruit規則的一筆購買。扣金、增加Go軍隊及庫存減量同一journal提交；原影子只改六資源及該庫存word，12word軍隊、kind及位置不改。磁碟提交後原wrapper暖路徑扣一次；共用入口及提交重通知不得重複扣款。重訪可讀既有來源，不重新建立滿庫存。
+
+封裝以隔離v4區分新保存語意，保留九圖及可選v3 VM物件。F7不得降版，且已綁庫存須與即時原表一致；普通購買只保存已接管資源與庫存，不宣稱保存當前走動位置。返回VM較舊時，恢復前驗證全部已綁身份，再投影新庫存；其他VM資料與返回seed沿前版。舊工具不得讀v4，正式Engine的附檔護欄保持。
+
+入口：[原表編碼](../../tools/research-camp-stock.go)、[交易與續接](../../tools/research-camp-stock-save.go)、[隔離準備／保存](../../tools/prepare-camp-stock.py)。研究位於既有battle-r1下的`camp-stock-r1`。沿Go1.24.13與Pillow11.3.0-r2容器、UID1000、唯讀原版／923核心／模組、無網路及有界資源。驗收限原表映射、單筆購買／重訪／取消、未F7冷讀、中斷恢復與代表視窗；既有HD圖示、傷害及RNG不重跑。
+
+### 募兵保存的限定CONFORMED
+
+[來源綁定與wrapper交接](../../tools/camp-stock-port.go)由準備器只修改凍結候選的四份工具來源；正式Engine不改。共用入口54EA以五個caller、父BP-6及區域／座標核對來源，四個既有Go掛點沿用，commit後仍由原wrapper減AX。離店結束交易上下文，重訪不再觸發舊「單店已綁定」拒絕。Go計算只使用已驗catalog的字串ID；擴充ID、兵數不寫入原軍隊24 bytes。
+
+[受控探針](../../tools/probe-camp-stock.go)驗民兵連續兩次重訪購買、矮人一次購買及取消；原wrapper庫存與Go／磁碟同值，取消token不變。另驗過期token、五項非法交易及before-intent／intent-durable／native-durable／world-durable四個中斷點。原byte差異只有金錢及庫存，kind、位置與原軍隊保持。重用既有32E0 VM物件，另驗v4新戰鬥anchor、撤退返回、返回後購買、冷讀庫存投影及F7清anchor保留v4；沒有重做戰鬥平衡或RNG對拍。
+
+[實際按鍵](../../tools/check-camp-stock-ui.py)以正常Continue、移動、購買1民兵、未F7關閉、新程序Continue、重訪取消與F2驗玩家鏈。初始Go軍隊為明示2500狼，購買後增加1民兵；金5000→4999、庫存3000→2999。冷讀與取消保留完整Go world／token，原影子30民兵與Native檔保持。本輪GUI不注入RAM或seed，不把受控probe稱為自然玩家路徑。
+
+[獨立核對](../../tools/check-camp-stock.py)核對1441行保存／讀回IDA bytes、600word映射、四份wrapper RAM、完整Native／Go資料及五張X11與提交畫布SHA。正式197來源七程式、923核心、535素材及1040圖庫不變。結果見[限定核對](../../preserved/camp-stock-audit-r1.json)，完整候選、原進度／九圖、VM、RGBA擷取及前版資料見[永久保存](../../preserved/README.md#go募兵庫存與購買保存)。
+
+最新本機入口為`bash tools/camp-stock.sh`，預設使用本批獨立`gui-session-r1`；可用`EIGHTSWORD_CAMP_SESSION`指定其他由本候選建立的進度。需本機X11、既有固定Go映像、合法原版及r69素材，啟動器先驗路徑與UID，不讓Docker建立缺少的來源。走動位置仍按F7保存。月度／劇情補貨、剩餘軍隊consumer與八種openKB招募肖像未完成，本輪不提升正式格式、移除附檔護欄或宣稱全遊戲完成。
+
+準備／凍結用固定Pillow容器執行`prepare|freeze --project <專案>`；Go建置命令保存在研究根`camp-execution-r1.json`，原版／核心／模組唯讀。probe用`-root /game -input /out/inputs -out /out/<新目錄>`，本輪完整交接收據為`probe-r2`。GUI用`python3 tools/check-camp-stock-ui.py --work /out`。核對器用`--project <唯讀專案> --out <新JSON>`；保存與不掛workplace的驗證依永久入口，不另建交付目錄。
+
 ## 募兵庫存與HD部隊圖示
 
 2026-10-31 DRAFT，接續使用者的世界交接要求，並納入「招募部隊要有部隊圖示，HD模式」。先以既有PAM與IDA資料庫窄查五個募兵wrapper、共用招募與提示函式；保存原名、bytes、xref與位址空間，不把原單次3000庫存直接當成永久店鋪庫存。原版行為未釐清前不猜補扣庫存或刷新規則。正式197來源七程式、923核心、535素材及1040圖庫保持。

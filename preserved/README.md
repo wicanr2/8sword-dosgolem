@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## Go募兵庫存與購買保存
+
+隔離v4已把穩定營地來源、Go軍隊、扣金與原庫存word放入同一兩檔交易。未F7關閉後，實際新程序Continue／重訪／取消及F2保持軍隊、金錢與庫存；普通購買不自動保存走動位置。正式197來源七程式、923核心、535素材、1040圖庫與DOS前Go附檔護欄保持，月度／劇情補貨及其餘軍隊consumer仍未接。
+
+入口集中[030契約與限定範圍](../docs/spec/030-battle-expansion-proposal.md#go募兵庫存與購買保存)、[原表編碼](../tools/research-camp-stock.go)、[兩檔交易／VM投影](../tools/research-camp-stock-save.go)、[來源掛點](../tools/camp-stock-port.go)、[探針](../tools/probe-camp-stock.go)、[準備／保存](../tools/prepare-camp-stock.py)、[獨立核對](../tools/check-camp-stock.py)、[實際按鍵](../tools/check-camp-stock-ui.py)與[試玩入口](../tools/camp-stock.sh)。結果為[核對](camp-stock-audit-r1.json)、[逐檔清單](camp-stock-r1.json)、[脫離工作區核對](camp-stock-verification-r1.json)、[快取清理](camp-stock-cleanup-r1.json)與[收尾](camp-stock-integrity-r1.json)。
+
+完整凍結候選、前版工具、原進度／地圖／PAM、IDA匯出、VM、原始RAM、X11與Go全尺寸PNG保存在本機`preserved/camp-stock-r1/`，排除Git。原版120筆／600word與保存／讀回1441行IDA bytes核對；民兵重訪及矮人購買／取消、四個保存中斷點與五項非法交易已抽驗。v4另驗戰中anchor、返回後購買、冷讀庫存投影及F7保留v4。五張X11全RGB等於當下Go提交畫布；圖示與軍隊頁已目視。既有HD／字型／傷害／RNG共用驗收保持。
+
+固定Pillow11.3.0-r2容器執行`prepare|freeze --project <專案>`，來源從既有永久批次還原；Go1.24.13的建置命令見研究根`camp-execution-r1.json`。原版、923核心與模組唯讀，UID1000、無網路、有界資源。保存用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`；不掛workplace的核對用`verify --archive <唯讀preserved> --out <新JSON>`。只有本批可重生build-cache在保存與核對後清理，不清其他專案資源。
+
+本批477檔／372物件、壓縮32719724 bytes，未掛workplace的逐SHA／長度核對通過。只清本批1438份Go快取、138153176 bytes；沒有新增映像或清其他專案資源。
+
 ## HD募兵部隊圖示保存
 
 25種原版部隊沿既有已驗HD快取接入募兵頁。Go在Go來源畫布上合成卡片，不借原版RGB；缺圖、未知kind與原版模式安全略過，離店清除。實際普通Continue、矮人購買1名、F7、另一程序Continue與F2通過，金499→498、原庫存1200→1199，軍隊與金錢讀回保持。正式197來源／七程式、923核心、535素材、1040圖庫及Go附檔護欄不變。

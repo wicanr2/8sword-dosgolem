@@ -2654,3 +2654,15 @@ Go拒戰在173A驗完整wrapper／rand bytes、原caller、BP／SP、token與六
 首次獨立核對在held→final的seed相等假設失敗。補錄settled.state顯示Go已正確將231013900推到611767455，原版回場另由0110:71B3呼叫rand，才成2702793958；GUI也沿同一額外呼叫鏈。新核對分開Go提交與原回場，不猜補或更改Go公式、原回場及時鐘，僅追加唯讀呼叫紀錄並乾淨重生原控制。首批來源、原始狀態與失敗資料保留。
 
 本輪限受控接線，未宣稱自然RNG整段、CPU時鐘或RNG冷讀序列一致，原版敵軍生成及其他rand caller仍沿原程式。正常玩家入口及完整世界consumer仍DRAFT，正式197來源七程式不變。[030範圍](docs/spec/030-battle-expansion-proposal.md#撤退亂數與拒戰追擊交接)、[核對](preserved/refusal-rng-audit-r2.json)及[永久保存](preserved/README.md#撤退亂數與拒戰追擊保存)為入口。
+
+## 2026-11-01：募兵表的進度映射與購買保存
+
+來源為PAM.AY，SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；既有PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。重用已保存IDA Pro9.4／py312-v1匯出，不啟動新DB分析；Go1.24.13只讀取gob，Pillow11.3.0-r2獨立核對原bytes與資料。IDA採MZ loader線性base10000h，執行期為0110:offset及DS1E88，進度offset另以byte計。
+
+已證實：sub_184C0的IDA1854E–18662在六資源與12軍隊word之後，按24列、每列五欄、每欄五類寫入。每個word加絕對檔案byte offset及3，以16位元繞回；sub_18D38的IDA18E02–18EE4反向讀回。原運算元`[bx+di+3EFEh]`與其餘四個相距F0h的來源保持原樣，不用新符號覆蓋。1441行來源bytes逐檔案offset及MZ relocation核對。
+
+因此第g類、第r列、第f欄的原表位址為DS:3EFE＋g×F0＋r×10＋f×2；進度byte offset為36＋r×50＋f×10＋g×2。kind為f3，stock為f4，庫存offset即76＋r×50＋g×2。原wrapper所用DS3F00是座標欄，結構起點在它前兩bytes；這是對前輪「從3F00看表」的補充定位，沒有推翻既有+4 kind／+6 stock觀測。120筆／600word與原版招募前RAM、原2987-byte進度逐欄同值，證據已永久保存。
+
+五個wrapper的far caller、父BP-6及區域三列沿前輪。新受控測試重用實際frame，明示回到共用入口與指定數量，再由原wrapper執行扣量；民兵連續兩次、矮人一次與取消均與Go及磁碟一致。受控入口不算自然玩家證據。獨立GUI另用普通Continue、走動及按鍵完成購買後未F7關閉、冷讀、重訪取消及F2，金5000→4999、庫存3000→2999，Go狼2500加民兵1，原影子30民兵保持。
+
+Go v4只投影六資源及已綁定庫存word。四個保存中斷與冷讀不重複扣款；返回VM先核對全部來源身份，再投影最新庫存。月度／劇情補貨和未接消費端仍未知，不從固定表形狀推論刷新週期。固定197來源七程式、923核心、535素材及正式附檔護欄保持。[規格](docs/spec/030-battle-expansion-proposal.md#go募兵庫存與購買保存)、[限定核對](preserved/camp-stock-audit-r1.json)與[永久入口](preserved/README.md#go募兵庫存與購買保存)為現行證據。

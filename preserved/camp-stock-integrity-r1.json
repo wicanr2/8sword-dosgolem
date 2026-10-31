@@ -1,0 +1,23 @@
+{
+  "status": "passed-camp-stock-integrity",
+  "local_links": 3266,
+  "positive_index_control": "README.md -> preserved/README.md",
+  "ownership_checked": 883,
+  "bad_owners": [],
+  "checksums": {
+    "camp-stock-audit-r1.json": "3c4522ead86ffef768754700e94d19f99784c4239f962c09c6e88b68aabd06c9",
+    "camp-stock-r1.json": "5cc8b9f47179e4bf28f66b133ce31f39730df9bd966165fdce3fc771bec8c4dc",
+    "camp-stock-verification-r1.json": "6cc4a80f5ab1e76b60dcfe2c2228b5d78590d6e438de877306262dc71fdc3fd5",
+    "camp-stock-cleanup-r1.json": "ac4d73557380c43420e5fb6aa8896c83cf72189c09dcb475cdd366f16369b4e8"
+  },
+  "cleanup": {
+    "status": "passed-scoped-cache-cleanup",
+    "archived_files": 477,
+    "archived_objects": 372,
+    "cache_files_removed": 1438,
+    "cache_bytes_removed": 138153176,
+    "scope": "Only camp-stock-r1/build-cache; permanent batch already verified without workplace."
+  },
+  "workplace_cache_exists": false,
+  "docker_scope": "All task containers used --rm; no camp-stock mount remains. Other projects untouched."
+}

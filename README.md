@@ -8,7 +8,7 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。戰中重開、撤退回場、F7及軍隊檢閱已做受控起點的實際視窗抽樣，戰果不重複結算。起始軍隊仍為測試資料，正式格式與載入護欄保留。入口為[戰中續接預覽](tools/battle-resume.sh)、[接線範圍](docs/spec/030-battle-expansion-proposal.md#戰中續接與單次戰果)與[驗證紀錄](preserved/battle-resume-audit-r1.json)。
+隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。重訪與取消已有實際視窗抽樣；走動位置仍按F7保存。起始軍隊仍為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與募兵預覽](tools/camp-stock.sh)，範圍與限制見[接線規格](docs/spec/030-battle-expansion-proposal.md#go募兵庫存與購買保存)及[驗證紀錄](preserved/camp-stock-audit-r1.json)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
