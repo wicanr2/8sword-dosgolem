@@ -46,6 +46,50 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 戰中續接與單次戰果
+
+2026-10-31 DRAFT，接續使用者要求戰中續接。正式197來源七程式、923核心及正式存檔格式不變，只建立可撤回候選。已驗32E0持有、171D／172E回場、Go戰鬥資料、原版LCG及F7完整快照沿既有收據，不重開傷害、HD或自然遭遇等待。
+
+已查923核心的檔案快照：gzip內為機器與DOS兩段有長度的gob，保存CPU／記憶體／時鐘及DOS配置器／檔案位置；不保存Go來源畫布、按鍵持有集合與診斷紀錄。既有持有state約168KiB，連同九圖直接塞入附檔會超過256KiB，所以候選以SHA命名的不可變物件先保存，再由原兩檔交易引用；缺件、錯hash或codec拒絕，未引用物件可保留作孤兒，不當有效進度。新封裝限本機候選，不升級正式格式。
+
+原版敵軍生成後先暫停於已驗0110:32E0 far frame，再把Go交戰與原生停點一起發布，不能先留下沒有停點的戰中進度。後續Go行動沿同一物件保存當前回合與已行動旗標。冷啟動先驗物件與原版／核心版本，再沿既有合法原生影子建立Engine、載入停點並由Go重建戰鬥UI；不重新生成敵軍、不投影新增ID。
+
+結算另記「返回待續」階段及結果與RNG狀態，Go戰果只提交一次；冷啟動只續原返回與地圖重繪，不再扣兵／扣金／發獎勵。下一次F7成功後可回到完整地圖快照。其餘尚未接的全滅選擇、後排特殊動作與守軍保持原護欄。來源快照若有可寫檔案仍開著，或Root／frame／資源不符，不假定可搬移而放行。
+
+先做既有固定狀態的暖／冷續接及一次撤退回場，再補一條實際Go視窗關閉／重開；使用者已授權記憶體設定，起點明示受控，不等待自然遭遇。工具與限定READY在實作同輪掛入本節，完整資料永久保存後才清快取。
+
+### 戰中續接的隔離READY契約
+
+僅限可撤回候選READY，正式世界與正式格式仍DRAFT。證據以既有32E0 far frame、171D／172E回場、原版LCG及923核心的`internal/state/state.go`、`internal/machine/state.go`、`internal/dos/state.go`、`oracle/live.go`為準。PAM SHA沿上節，工具為Go1.24.13、dosgolem-go-ebiten映像8ed6bdee…0581與Pillow11.3.0 r2。所有執行期位址均為dosgolem的segment:offset；沒有新增IDA語意推論。完整核心索引另計SHA，與PAM、三段已驗來源bytes及機器／DOS codec v3一起鎖定。快照不含Go畫布／按鍵／診斷紀錄是已證實的執行器契約，不能外推硬體時鐘或PCM parity。
+
+| 項目 | 候選契約 |
+|---|---|
+| 型別與上限 | 封裝`eightsword-owned-world-save/3`保留v2九圖，另存`native_resume`引用；兩檔日誌為`eightsword-pair-intent/3`。附檔256KiB、日誌1MiB保持。gzip物件最多2MiB，展開最多16MiB且恰好兩段gob |
+| 物件 | `.native-resume/<SHA>.state`以排他rename及檔案／目錄fsync先發布，再寫兩檔intent。中斷留下的未引用物件不啟動戰鬥。已存在但內容不同、符號連結、缺件、SHA或大小不符皆拒絕 |
+| 來源與資源 | CS0110、DS／SS1E88、IP32E0、far return171D:0110與父caller0BD3:0110；核對SP／BP、資源、原影子24 bytes、原版六列敵軍及初始Go敵軍。Root固定`/game`且所有DOS handle已關閉，不搬移仍開著的影子檔 |
+| 初次交戰 | 36B4只暫存Go世界並恢復原32E0框架。退出Machine.Step後保存VM；追擊先手沿既有Go普通／遠程helper在記憶體完整算完，再一次啟用戰鬥與停點。失敗時不留下半場交戰或半段先手 |
+| 戰中行動 | 保存Go回合、已行動旗標及兵力；原VM停點與原LCG不動。冷啟動正常Continue後載入已驗停點，由Go畫戰鬥頁；不重生敵軍、不重做追擊先手 |
+| 勝利／撤退 | 兩檔提交同時將引用改為`return`，保留原停點，保存結果與撤退後seed。返回時只續171D／172E及原地圖重繪，不再結算Go戰果。重開同一return只重播返回；F7成功後改回v2並清引用 |
+| 保留護欄 | 舊v1／v2戰中資料沒有物件時仍拒絕地圖重開。全滅選擇、守軍、後排特殊及尚未接的世界consumer不放寬。正式Engine的DOS前附檔拒絕保持 |
+
+入口為[codec與交易](../../tools/research-battle-resume.go)、[UI續接](../../tools/battle-resume-ui.go)、[原生與冷讀探針](../../tools/probe-battle-resume.go)、[追擊原子提交測試](../../tools/research-battle-resume_test.go)、[準備與保存](../../tools/prepare-battle-resume.py)、[獨立核對](../../tools/check-battle-resume.py)、[視窗抽樣](../../tools/check-battle-resume-ui.py)、[明示GUI起點](../../tools/battle-resume-fixture.go)及[本機入口](../../tools/battle-resume.sh)。GUI起點只編進`resume-ui-fixture`；一般`resume-ui`沒有固定快照旗標。
+
+研究根為`workplace/probe-20261023/graphics-first/battle-r1/battle-resume-r1`。固定Pillow容器執行準備器`prepare|freeze --project <專案>`；`resume-execution-r1.json`保存完整Go建置命令，923核心掛`/core:ro`、模組掛`/gomodcache:ro`。原版掛`/game:ro`，素材掛`/assets:ro`，研究根掛`/out`。探針用`-root /game -assets /assets -input /out/inputs -out /out/<新目錄>`；視窗工具用`--work /out --run gui-r2`。追擊測試沿UI完整來源加測試檔，設`EIGHTSWORD_RESUME_WORK=/out`，執行`-run '^TestResumePursuitAtomicOpening$'`。均為UID1000、network none、3GiB／2CPU／192程序及有界Xvfb。
+
+核對器在固定Pillow容器用`--project <唯讀專案> --out <新JSON>`。保存器用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`，脫離工作區核對用`verify --archive <唯讀preserved> --out <新JSON>`，只需工具與保存物件。完整state、物件及畫布只留本機；永久索引見[戰中續接保存](../../preserved/README.md#戰中續接與單次戰果保存)。
+
+### 戰中續接的限定抽驗
+
+隔離接線抽驗通過，正式世界／格式仍DRAFT。[獨立核對](../../preserved/battle-resume-audit-r1.json)以現行凍結來源重建所有前版工具差異，正式197來源／七程式、923核心及535素材逐SHA保持。固定起點明示採既有3733快照，將原影子還原為原存檔31民兵，不設定測試seed；原版敵軍生成只執行一次，停在32E0後才啟用Go交戰與167657-byte VM物件。
+
+原生探針出手一次後關閉Engine／store，由新Engine冷讀完整Go戰鬥。獨立gob讀取器不執行guest，held與cold-held完整1MiB RAM相同，寄存器與原位置群亦同；Python另從PAM做MZ重定位核對三段來源bytes。撤退seed338465690依既有LCG變1436797941，原回場再取一次至3846655716；冷讀返回保持相同seed。金5000依既有公式只扣至4167，重開不再扣除，重複結算拒絕。這是局部狀態與返回對照，不稱完整CPU／PCM時序parity。
+
+物件落盤後、intent落盤後、world落盤後與撤退native落盤後四個中斷點通過；第一案只留孤兒且不啟動交戰，其餘恢復完整交易。缺物件拒絕且原兩檔保持，損壞gzip／codec及重複結算拒絕。首輪測試錯把交戰時未變的native載荷當成必寫，沒有觸發native-durable；改在真實撤退扣金驗此點，失敗與乾淨重跑均保存，不列為產品缺陷。
+
+實際Go視窗以受控暖起點進行確認及出手，Ctrl+Q後用不含fixture的程序普通Continue，兵力、回合、已行動旗標與token保持。接著撤退、關閉、再重開return、F7、另一程序冷讀與F2通過；八張1920×1200 X11全RGB等於各自Go畫布，戰鬥與回場另作目視。追擊先手另以modifier1受控快照核對：兩次Go動作與既有pursuitOpening helper同值，world-durable中斷後冷讀仍是完整先手，不再改seed；普通modifier0保持原世界。Go建置、vet及0.275秒追擊測試通過。
+
+不新增自然遭遇等待，不把受控起點稱自然取得2500狼。未增加勝利冷讀GUI、全滅選擇、守軍、後排特殊、長篇跨流程RNG或音訊對拍；這些不外推完成。正式世界consumer、商店庫存與發布仍未完成，既有HD／字型／部隊及160次亂數樣本不重跑。
+
 ## 原位置與地圖的成對快照
 
 2026-10-31 DRAFT，接續使用者要求處理存檔與既定的下一段工作。正式197來源七程式、原版存檔與既有附檔保持；本輪只在可撤回候選研究完整F7交接，既有傷害、HD、亂數與兵種不再加測。

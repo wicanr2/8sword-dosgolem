@@ -1,0 +1,21 @@
+{
+  "status": "passed-battle-resume-integrity",
+  "files": 826,
+  "objects": 383,
+  "compressed_bytes": 54882484,
+  "detached_verified": true,
+  "local_links": 3189,
+  "link_errors": [],
+  "root_owned_files": 0,
+  "markdown_directories": 0,
+  "cache_removed_files": 1953,
+  "cache_removed_bytes": 157035466,
+  "source_tools_unchanged": true,
+  "formal_sources": 197,
+  "core_files": 923,
+  "assets": 535,
+  "formal_changed": false,
+  "production_promoted": false,
+  "cleanup_scope": "This candidate build-cache only; no shared or other-project resources.",
+  "docker_cleanup": "All bounded project jobs used --rm; host Docker mount filters checked empty."
+}

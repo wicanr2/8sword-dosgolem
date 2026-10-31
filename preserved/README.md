@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## 戰中續接與單次戰果保存
+
+隔離候選已接戰中／返回冷讀，F7後回完整v2地圖快照。正式197來源七程式、923核心、535素材、1040圖庫及DOS前附檔護欄保持。[030限定範圍](../docs/spec/030-battle-expansion-proposal.md#戰中續接與單次戰果)、[codec與交易](../tools/research-battle-resume.go)、[UI接線](../tools/battle-resume-ui.go)、[新Engine探針](../tools/probe-battle-resume.go)、[追擊測試](../tools/research-battle-resume_test.go)、[準備與保存](../tools/prepare-battle-resume.py)、[獨立核對](../tools/check-battle-resume.py)、[GUI抽樣](../tools/check-battle-resume-ui.py)、[僅測試起點](../tools/battle-resume-fixture.go)及[本機入口](../tools/battle-resume.sh)為入口。
+
+結果集中在[限定核對](battle-resume-audit-r1.json)、[逐檔清單](battle-resume-r1.json)、[脫離工作區核對](battle-resume-verification-r1.json)及[收尾](battle-resume-integrity-r1.json)。完整來源、前版差異、VM物件、原圖、X11擷取、成對存檔、九圖、失敗與重跑保存於本機`preserved/battle-resume-r1/`，排除Git；923核心與模組沿既有永久批次及本批SHA索引。所有必要資料不依賴原workplace複本。
+
+本批826檔／383物件、壓縮54882484 bytes，未掛workplace的逐SHA／長度核對通過。收尾檢查3189個本機連結與本批擁有權；只刪1953份可重生Go快取、157035466 bytes，專案有界容器已回收，沒有新增映像或清其他專案資源。
+
+普通交戰的VM物件167657 bytes。新Engine可讀同一場Go行動並撤退；金5000只扣一次至4167，返回seed及位置保持。八張實際視窗全RGB等於Go畫布；另以不執行guest的gob讀取器驗完整RAM、寄存器、原影子及來源bytes。追擊兩動作與既有UI helper一致，完整先手與停點一併提交，冷讀不重做。起點明示受控，沒有自然遭遇、完整戰鬥或全遊戲完成聲明。
+
+新v3只引用SHA命名的不可變VM物件，不把它塞入256KiB附檔。物件先落盤，兩檔日誌再啟用；孤兒不算進度，缺件、來源／核心／frame／資源或codec不符拒絕。四個中斷點與缺物件保檔、損壞codec及重複結算已驗。原版25種及影子24 bytes保持，新ID不寫入原版索引。舊v1／v2戰中資料無物件時仍拒絕地圖重開。
+
+準備器在固定Pillow11.3.0 r2、UID1000、network none容器使用`prepare|freeze --project <專案>`；Go建置／probe／GUI用法集中030。保存用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`；不掛workplace的核對用`verify --archive <唯讀preserved> --out <新JSON>`，完整來源工具位於Git。保存完成後只刪本批`build-cache`，不清其他專案資源。
+
 ## F7完整進度與地圖快照保存
 
 隔離候選已接原版F7的完整2987-byte進度、九份5761-byte地圖與Go世界成對保存，普通Continue可由新的Engine讀回位置與地圖。原版影子仍31民兵，Go資料為明示2500狼／金5000，新增ID不寫入原版。正式197來源七程式、923核心、535素材、1040圖庫與載入護欄保持。
