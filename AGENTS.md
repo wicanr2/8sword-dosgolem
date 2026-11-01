@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-01[Go寶箱資源](docs/spec/030-battle-expansion-proposal.md#寶箱資源的限定conformed)已接隔離候選，原金錢／領導力選項保持，Go安全加值、清單一寶箱並保存完整v4／九圖，pending intent為treasure-1。兩側七案、618行IDA bytes、80原欄位與1120前後結果已核對，六案完整進度同SHA，原版回繞案明示改Go封頂。四個中斷、八項拒絕及實際移動／Enter／未F7冷讀F2通過；500→550、寶箱50→0，Go35人及原影子24 bytes保持，三張X11同提交SHA。[核對](preserved/treasure-audit-r1.json)、[定位索引](docs/spec/treasure-address-index-r1.json)、[永久保存](preserved/README.md#go寶箱資源保存)及[最新入口](tools/treasure.sh)為入口。GUI只設定初始位置／軍隊，不改事件或選擇；普通binary無位置旗標。正式197來源七程式、923核心、535素材、1066美術與附檔護欄保持，其他劇情／地圖術資源與正式整合待續。
+
 2026-11-01[Go寬數值月報](docs/spec/030-battle-expansion-proposal.md#寬數值月報的限定conformed)已在隔離候選去掉32767軍費限制，Go直接繪製完整應付／實付與清軍提示，Noto900／隸書／草書支援uint64最長20位。六個來源控制、規則邊界、四個中斷與實際月報／切隸書／冷讀F2通過；720筆營地及十個數字欄位獨立重建，四張X11同提交SHA，原影子24 bytes保持。[核對](preserved/monthly-wide-audit-r2.json)、[永久保存](preserved/README.md#go寬數值月報保存)及[最新入口](tools/monthly-wide.sh)為入口。原資源仍0–30000、保存仍v4，pending intent為monthly-2；未完成monthly-1先用前版恢復，不能忽略。前輪「超域拒絕／寬數值待接」已由本切片限定取代。正式197來源七程式、923核心、r69全535素材、1066美術與附檔護欄保持，劇情資源、自然新增兵種營地及正式整合待續。
 
 2026-11-01[Go月結](docs/spec/030-battle-expansion-proposal.md#月度資源與營地更新的go交接)已在隔離候選接六隊軍費及120筆營地刷新，月末以v4原子保存Go世界、完整原進度與九圖。七個固定seed原版控制、三個候選、四個中斷點及普通Continue／走動／月報／冷讀F2通過；GUI只用測試binary縮短倒數，正常binary無此旗標。30民兵加5狼費用230、金500→370，營地2900→3000，原影子24 bytes保持；三張X11與Go提交SHA相同。[核對](preserved/monthly-audit-r1.json)、[永久保存](preserved/README.md#go月度資源與營地更新保存)及[最新入口](tools/monthly.sh)為入口。超出32767有號數字域的軍費／收入組合拒絕並保檔，寬數值介面、劇情及正式整合待續；NPC守軍／日曆／獨立副本序列化留原程式。正式197來源七程式、923核心、r69全535素材、1066美術與DOS前附檔護欄保持。以下歷史月度「未知／待接」以本列及CONTEXT為準，不重開已驗HD、傷害或RNG機制。

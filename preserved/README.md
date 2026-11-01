@@ -1,5 +1,21 @@
 # 必要資料永久保存
 
+## Go寶箱資源保存
+
+隔離候選保留原寶箱金錢／領導力選項，Go安全加值並清單一寶箱，完整進度、九圖與Go世界同筆保存。兩側七案、618行IDA bytes、80筆原始對照及1120筆前後結果已核對，六案完整2987 bytes同SHA，回繞案明示Go封頂。四個提交中斷及八項拒絕通過；取消、空箱、重複完成、已領取與過期token不重發。
+
+入口為[030契約](../docs/spec/030-battle-expansion-proposal.md#寶箱資源的隔離ready契約)、[原始定位索引](../docs/spec/treasure-address-index-r1.json)、[IDA窄匯出](../tools/export-story-resources-ida.py)、[資料與加值](../tools/treasure-data.go)、[原版／Go控制](../tools/probe-treasure.go)、[故障與拒絕](../tools/probe-treasure-faults.go)、[Go掛點](../tools/treasure-port.go)、[原子交易](../tools/treasure-store.go)、[獨立序列化](../tools/treasure-native-save.go)、[UI交接](../tools/treasure-ui.go)、[GUI位置設定](../tools/treasure-fixture.go)、[實際按鍵](../tools/check-treasure-ui.py)、[獨立核對](../tools/check-treasure.py)、[準備／發圖／保存](../tools/prepare-treasure.py)及[普通試玩](../tools/treasure.sh)。結果為[原版核對](treasure-original-audit-r1.json)、[限定核對](treasure-audit-r1.json)、[逐檔清單](treasure-r1.json)、[脫離工作區核對](treasure-verification-r1.json)與[清理及收尾](treasure-integrity-r1.json)。README的[寶箱選項](../docs/images/treasure-choice-r1.png)、[領取後軍隊](../docs/images/treasure-army-r1.png)與[畫面來源](../docs/images/treasure-runtime-r1.json)對回本批完整PNG。
+
+實際Continue後設定初始位置到既有寶箱東側，再用普通向左移動、原Enter選項、F2、未F7關閉與另一程序Continue／F2驗證。50金使500→550，30民兵加5狼保持，寶箱50→0；冷讀world／token同值。位置及軍隊明示受控，沒有改IP、選擇或獎勵，不稱自然抵達／取得。三張X11及PNG與Go提交逐RGB同SHA，原影子24 bytes保持。
+
+完整來源、原版／兩版Go候選、五個binary、資料／九圖、state／RAM、IDA匯出及全尺寸畫面保存在本機`preserved/treasure-r1/`，排除Git。原始Go控制與binary另存original-src／original-execution-r1.json，候選r1也保留來源及binary；r2只補只讀等待狀態後從同起點重跑。固定Go1.24.13命令在研究根treasure-execution-r1.json；原版只讀控制模式不安裝Go資源掛點。
+
+Pillow11.3.0-r2用`prepare|freeze --project <專案>`，發圖用`publish --project <唯讀專案> --images <可寫docs/images>`；GUI用`--work /out`，獨立核對用`--project <唯讀專案> --out <新JSON>`，原版證據加`--original-only`。保存用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`，不掛workplace核對用`verify --archive <唯讀preserved> --out <新JSON>`。IDA沿既有py312-v1／UID1000／HOME=/home/ubuntu，只分析正式DB的tmp副本；原版、923核心、模組及r69唯讀，有界無網路容器，完成後回收。
+
+保存仍v4，pending intent新增treasure-1，舊工具拒絕未知恢復，不可忽略。只有固定來源、父frame、座標／價值與即時資源吻合的寶箱能提交，其他劇情／煉金／召兵資源未接；正式197來源七程式、923核心、535素材、1066美術及附檔護欄保持。
+
+本批1605檔／498物件、壓縮61390132 bytes，未掛workplace逐SHA／長度核對通過。只清本批1467份Go編譯快取、151967623 bytes，原始碼、原始state／RAM、進度與完整畫面均保留。專案有界容器已回收，沒有新映像或清其他專案資源。
+
 ## Go寬數值月報保存
 
 隔離候選已用64位元軍費與Go月報取代原16位元費用欄。分列應付／實付，資金不足顯示全軍離隊及免收本次費用。Noto900、隸書及草書的20位數字完整顯示，原422字模格位逐格保持，只追加12字。原資源仍0–30000，保存仍v4；pending intent為monthly-2，舊工具會拒絕未知恢復，monthly-1未完成交易先用前版恢復。

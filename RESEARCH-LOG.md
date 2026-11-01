@@ -2703,3 +2703,26 @@ GUI用專用binary於Continue綁定後只把倒數設1，普通binary沒有此�
 三種字型的422舊格位及alpha合計1266格保持，只追加12字，固定Pillow11.3.0-r2及原字型SHA。Go字形測試完整排出uint64最大20位，墨跡在安全區且不省略。實際普通Continue／走動進月報、F10切隸書、返回、另一程序Continue／F2通過；倒數與起始軍隊明示受控，普通binary不含倒數旗標。四張X11與Go提交／全尺寸PNG同SHA，兩張月報的十個數字欄由字圖alpha獨立重建，沒有原版軍費word投影。
 
 [READY與限定驗收](docs/spec/030-battle-expansion-proposal.md#寬數值月報的隔離ready契約)、[獨立核對](preserved/monthly-wide-audit-r2.json)與[永久保存](preserved/README.md#go寬數值月報保存)為證據入口。Go1.24.13、有界無網路UID1000容器，正式197來源七程式、923核心、r69素材、1066美術及DOS前護欄保持；未推進劇情資源、自然新增兵種營地或正式世界整合。
+
+## 2026-11-01：寶箱價值與Go資源保存
+
+輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA Pro9.4／py312-v1分析正式DB的tmp副本，UID1000、HOME=/home/ubuntu、有界無網路容器。兩輪窄匯出共五個函式，保存原名、原operand、bytes與xref；第一輪原匯出及工具也保留。獨立核對618行PAM bytes及MZ relocation，沒有修改DB或將未證實變數名當證據。
+
+位址基準為IDA MZ線性base10000h、runtime0110:offset與DS1E88；PAM檔案offset及gamedata.ay byte offset另列。已證實的定位與來源集中[原始位址索引](docs/spec/treasure-address-index-r1.json)，不以新語意覆蓋IDA原名。
+
+| 原始定位 | 附加語意與推論等級 | 證據 |
+|---|---|---|
+| sub_120B0；0110:20B0；返回25E8 | 已證實：原寶箱兩選擇流程 | 原xref、七個固定seed原版控制、實際GUI |
+| DS4490＋區域×20＋列×2 | 已證實：八區各十筆價值，零為已領／空箱 | 未改招募前RAM與原進度80word逐欄一致 |
+| gamedata.ay byte1348起80word | 已證實：每word加絕對byte offset與3的既有編碼 | sub_184C0的18764–187B0及原始RAM／進度 |
+| 0110:22E9／22F2 | 已證實：清單一價值並加金 | 原分支、Go／原版完整保存對照 |
+| 0110:230E／231D | 已證實：清單一價值，加價值除10的整數商至領導力 | 原分支、509得到50、封頂案例 |
+| 0110:2440 | 已證實：pop SI前可持久保存，SP=BP-10 | 原frame及獨立84C0序列化／另一程序Continue |
+
+初查以600營地word後只有法術次數推算，未通過原RAM比對便停止。原序列化器還保存24個物品word及16個旗標word，價值起點因此為1348。正式實作使用經80word獨立核對的起點，沒有把失敗猜測寫進資料格式。原地圖5761-byte進度檔是探索狀態，不能當地形資料；sub_13AEC從far pointer讀取72-byte列寬、來源byte減30h。原區域0寶箱座標23,8的tile為59，其東側24,8為可行走tile1，GUI只設定初始位置後用普通向左移動。
+
+原DS43EE文字為「你得到一個寶箱，箱中物品價值」，DS4416／443E提供納入財產與分贈部隊。七案預先固定seed12345678h，沒有重投：選金500→1000；價值509分贈得50領導力；兩項30000封頂；取消及空箱不發獎。原30000金加5000會16位元回繞並被原上限helper清為零，Go沿已授權的安全運算封頂30000，明示為原版保真域以外的差異。
+
+Go與原版六案完整2987-byte保存SHA相同，回繞案只有金錢word不同，其他資料同值。Go清一筆原寶箱、保留其他79筆、120營地與原軍隊24 bytes，六資源及一次性記錄同一treasure-1 journal提交，完成格式仍v4。獨立原始讀取器驗兩側1120筆前後值；四個中斷點恢復及八項拒絕通過，不重領、不忽略未知pending。
+
+實際Continue後只設定初始位置，正常移動／Enter領50金，500→550，Go30民兵加5狼及原影子30民兵保持。未F7關閉後另一程序Continue／F2保持world／token及零寶箱；三張X11與Go提交／完整PNG同SHA。起始軍隊與位置為明示測試配置，不稱自然取得／自然抵達；其他劇情、煉金及召兵資源仍待接。[READY與限定驗收](docs/spec/030-battle-expansion-proposal.md#寶箱資源的隔離ready契約)、[原版核對](preserved/treasure-original-audit-r1.json)、[限定核對](preserved/treasure-audit-r1.json)及[永久保存](preserved/README.md#go寶箱資源保存)為入口。

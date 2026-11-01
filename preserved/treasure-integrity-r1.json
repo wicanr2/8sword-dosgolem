@@ -1,0 +1,34 @@
+{
+  "status": "passed-treasure-integrity",
+  "files": 1605,
+  "objects": 498,
+  "compressed_bytes": 61390132,
+  "archive_sha256": "ad15045e8a67067bdb2c8577ab8299008b1197505276a42574e9bc52ceaf4ec6",
+  "verification_sha256": "540182efc6bd8a8bd3f0ecc8b0a2f3b742134ff2e8c75821096237c7eb550de7",
+  "audit_sha256": "3df39b45ffe4a8ae9308a1ae141312797cca8ee54a7566abd3d97bc6ae70f36d",
+  "source_tools": {
+    "prepare-treasure.py": "adbce11760d48610e895e29f863106cfb86321f0f5eaed7bb584e80734b90d3c",
+    "export-story-resources-ida.py": "85fa89bd17de81e153a8557e27a61dcadfd8f5b37bd279f822a7e29d2cb70145",
+    "treasure-data.go": "08a8ac2ca9e86d7e77101a498020610b54ff5c2d9f728736ee38db0a7ace43ac",
+    "treasure-native-save.go": "99444c05151ca274583101c25fd81c94d403a3769e3b13698ed45af1c6d6ee1d",
+    "probe-treasure.go": "a4d793284bc3d161ba4182509635fbaa8db456919098c9296e7e3366f5403c82",
+    "probe-treasure-faults.go": "46ba62d094dbba85ec5ba63c69a32b2f3ba41283d5ac6073bf8aa97a2ee226bb",
+    "treasure-port.go": "9c18ce30af1fa85acf5e83cc8a86fba79ca27fd3cbb2ceabd92366d695d8b98e",
+    "treasure-store.go": "2c610cdfb61803c35a9004ee9685b0e62ce17f426e357a977f7c3f9ad4e5dc65",
+    "treasure-ui.go": "181ecbc4dec6315088713a079b5634a3767ca5c3c006b5ec9ccf2141e3b1b45a",
+    "treasure-fixture.go": "1ef73ad141da025cd3b05994c30a7b0d06dc5df7831dfe6874991c4b701685c4",
+    "check-treasure.py": "eb5a8a941d16097d4fc86e614782197d79d718540290327acfb4026ca2e0393f",
+    "check-treasure-ui.py": "e352eea107c3927622e41c8e9271f5cb600027f2649ad8884b2130b7a3e79845",
+    "treasure.sh": "ba541dd89c338f3b0ddf4204bb8fb541db8cf07010f0fb0880006d01847f3afe"
+  },
+  "formal_changed": false,
+  "production_promoted": false,
+  "removed_build_cache": {
+    "path": "workplace/probe-20261023/graphics-first/battle-r1/story-resources-r1/build-cache",
+    "files": 1467,
+    "bytes": 151967623,
+    "rebuildable": true,
+    "excluded_from_archive": true
+  },
+  "root_owned_or_md_directories": []
+}

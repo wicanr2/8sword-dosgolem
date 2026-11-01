@@ -1,0 +1,20 @@
+{
+  "rows": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/story-resources-r1/gui-r1/warm/frame-001-treasure-noto.png",
+      "source_sha256": "3f771ef42b8691d40307e83f6897ca55c2397914e67cd9a156a1d6af5bf5e7ba",
+      "file": "treasure-choice-r1.png",
+      "sha256": "a7867156c3381980571c7ee1d642df2df7650b1b5b484053b5dff93da931a30e"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/story-resources-r1/gui-r1/warm/frame-002-army-noto.png",
+      "source_sha256": "dc75f54abd50e0f6d7cbba7adad2af0678d8be73e72ba35cea8e554bec1c50ae",
+      "file": "treasure-army-r1.png",
+      "sha256": "488e7a4e19e9f36e964f4134d6fc479518bc75c53d579799c530718d9fd72b28"
+    }
+  ],
+  "controlled_initial_position": true,
+  "controlled_initial_army": true,
+  "ordinary_movement_and_choice": true,
+  "production_promoted": false
+}

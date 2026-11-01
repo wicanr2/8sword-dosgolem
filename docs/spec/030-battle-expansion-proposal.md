@@ -46,6 +46,38 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 地圖事件資源與Go保存
+
+2026-11-01，接續使用者同意的劇情資源交接，寶箱切片已限定CONFORMED，其他事件仍DRAFT。由月結以外的原金錢／月薪改寫點，追一條「原事件→Go資源→畫面→保存／冷讀」鏈。未知旗標、一次性事件與原地圖改寫先驗證，不把六資源的任意差異直接當合法獎勵，也不放寬軍隊表護欄。
+
+來源沿固定PAM.AY及PAM.i64、IDA9.4／py312-v1、Go1.24.13與既有923核心。先用[事件資源窄匯出](../../tools/export-story-resources-ida.py)保留原名、xref、原operand、bytes及位址基準；新研究沿battle-r1下`story-resources-r1`，沿既有永久批次還原輸入與候選。證據審查達READY後才接隔離玩家路徑，正式197來源／七程式及DOS前附檔護欄保持，已驗月結／HD／傷害不重跑。
+
+### 寶箱資源的隔離READY契約
+
+已由IDA9.4原bytes、原版七案及獨立state讀取證實：sub_120B0由0110:25E4進入、far返回25E8，依DS56D6區域與DS8C60十組座標找到寶箱。DS4490加區域×20加列×2為80筆價值；保存offset為1348加相同索引，每word加絕對byte offset及3。1348之前另有16個法術次數、24個物品word及16個旗標word，不能只在600營地word後算16個法術word。80筆與未改動原版招募前RAM逐欄一致。
+
+原DS43EE字串為「你得到一個寶箱，箱中物品價值」，DS4416／443E分別提供納入財產及分贈部隊增加領導能力。選項1在0110:22E9清價值、22F2加金；選項2在230E清價值、231D加價值除10的整數商到DS04FA，原19856封頂30000。Esc不清寶箱、不加資源，原空寶箱不開選單。原版七案固定seed12345678h，不重投；30000金加5000原版回繞歸零，保留為差異證據。
+
+Go沿已同意的安全寬運算，價值限定1–30000、金錢／領導力各0–30000，先以64位元加值再封頂30000，不沿用回繞歸零。選擇、文字、原輸入及其餘事件仍交原版。只有固定PAM bytes、DS／SS、25E8父frame、唯一座標／價值身份、即時六資源與80筆價值同存檔時才接管。Go略過原加值block，只清同一原價值word並投影六資源；軍隊24 bytes、其他79寶箱及120營地不改。未知或重疊身份拒絕保檔，不把任意資源差異當合法獎勵。
+
+原函式2440、pop SI前作保存停點，SP為BP減10。沿已驗的獨立84C0序列化副本，完整原進度／九圖與Go資源共用一次原子交易；隔離v4保持，pending intent新增treasure-1，舊工具拒絕未知恢復。完成後清除舊返回anchor，由完整當前位置重開；取消與空寶箱不提交。實際收據須驗重複完成／重領拒絕、四個提交中斷及未F7冷讀。
+
+來源、資料與控制入口為[窄匯出](../../tools/export-story-resources-ida.py)、[保存欄位](../../tools/treasure-data.go)、[原版／候選探針](../../tools/probe-treasure.go)、[獨立序列化副本](../../tools/treasure-native-save.go)、[準備／保存](../../tools/prepare-treasure.py)與[獨立核對](../../tools/check-treasure.py)。GUI只使用已授權的初始軍隊及位置設定，普通移動至原寶箱、原選項、返回與新程序F2；不直接寫入獎勵／選擇或改IP。正式197來源／七程式、923核心、r69素材、1066美術與附檔護欄保持，其他劇情、煉金術、召兵術及正式整合不在本切片。
+
+### 寶箱資源的限定CONFORMED
+
+2026-11-01，[Go控制器](../../tools/treasure-port.go)在固定PAM／父frame下接原兩個選擇分支，以[Go資料與加值](../../tools/treasure-data.go)清單一寶箱並回寫已驗六資源。[原子交易](../../tools/treasure-store.go)同時驗軍隊24 bytes、120營地及其他79寶箱保持，再保存完整v4進度與九圖；[UI交接](../../tools/treasure-ui.go)只在2440停點持久提交後返回。新pending intent為treasure-1，舊工具拒絕未知恢復，已完成v4仍可讀；同一已清寶箱、重複完成、過期token及非法描述均拒絕。
+
+七個原版控制與七個Go控制的起始seed預先固定12345678h。六案的完整2987-byte序列化結果同SHA，只有30000金加5000的回繞案故意改為Go安全封頂30000，原版歸零的收據保持。領導力509除10得50；取消與空寶箱不改world／token。618行IDA bytes、未修改輸入的80筆價值、兩側1120筆前後結果均獨立核對。新增只讀等待狀態後又從相同起點重跑候選r2，原r1／原始碼／binary另留，不改原版收據。
+
+[保存故障探針](../../tools/probe-treasure-faults.go)驗四個中斷點及八項拒絕。恢復後只能為舊500金／未領500，或新1000金／已領零；再恢復token保持，再領拒絕。未知區域／列、錯價值／選擇、其他寶箱、軍隊、營地及過期token不能混入正式獎勵。
+
+[實際按鍵](../../tools/check-treasure-ui.py)使用獨立[初始位置設定](../../tools/treasure-fixture.go)，只在Continue後把英雄放到原寶箱東側，不改IP、價值、選擇或獎勵。向左一步進原寶箱，普通Enter領50金，500→550，原記錄50→0；F2保留30民兵加5狼、原影子30民兵保持。未按F7直接關閉，普通binary新程序Continue及F2讀回同world／token與零寶箱；三張X11／完整PNG與Go提交SHA同值。原選項、軍隊頁已目視，沒有自然取得軍隊或自然抵達此寶箱的聲明。
+
+[獨立核對](../../tools/check-treasure.py)、[原始定位／證據等級索引](treasure-address-index-r1.json)、[原版收據](../../preserved/treasure-original-audit-r1.json)、[限定收據](../../preserved/treasure-audit-r1.json)及[永久保存](../../preserved/README.md#go寶箱資源保存)為入口。README新增[原寶箱選項](../images/treasure-choice-r1.png)及[領取後Go軍隊](../images/treasure-army-r1.png)，來源見[畫面紀錄](../images/treasure-runtime-r1.json)。原版圖形、HD、字型、月結、傷害及兵種數值不改。
+
+普通入口為`bash tools/treasure.sh`，`EIGHTSWORD_TREASURE_SESSION`可指定本候選進度。Go1.24.13建置命令位於研究根`treasure-execution-r1.json`；原版最初編譯另存`original-execution-r1.json`及`original-src`。Pillow11.3.0-r2用`prepare|freeze|publish|archive|verify`，參數見準備器及永久入口。GUI位置設定只存在fixture binary。正式197來源七程式、923核心、r69全535素材、1066美術與DOS前護欄保持；寶箱以外的劇情資源、煉金／召兵等地圖術與正式整合仍待續。
+
 ## 月度資源與營地更新的Go交接
 
 2026-11-01，接續已確認的Go世界交接，限定接入隔離候選。原版月度入口、薪餉／軍費、營地更新與保存邊界已查證，READY契約與限定CONFORMED見下。既有HD圖像、戰鬥、RNG及存檔抽驗沿用，正式197來源七程式與附檔護欄保持。

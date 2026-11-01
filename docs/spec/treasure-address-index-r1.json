@@ -1,0 +1,212 @@
+{
+  "schema": "eightsword-treasure-address-index/1",
+  "input": "PAM.AY",
+  "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "database": "PAM.i64",
+  "database_sha256": "a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac",
+  "tool": "IDA Pro 9.4",
+  "address_spaces": [
+    "IDA MZ loader linear base0x10000",
+    "dosgolem runtime0110:offset; DS1E88",
+    "PAM file offsets separate; saved gamedata.ay byte offsets"
+  ],
+  "records": [
+    {
+      "original_location": {
+        "ida_linear": 73904,
+        "file_offset": 13600,
+        "bytes": "55",
+        "instruction": "push    bp",
+        "operands": [
+          {
+            "index": 0,
+            "type": 1,
+            "value": 5
+          }
+        ]
+      },
+      "semantic_note": "寶箱事件入口；far caller返回0110:25E8",
+      "level": "proven",
+      "evidence": [
+        "preserved/treasure-original-audit-r1.json",
+        "preserved/treasure-audit-r1.json"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 74473,
+        "file_offset": 14169,
+        "bytes": "c78090440000",
+        "instruction": "mov     word ptr [bx+si+4490h], 0",
+        "operands": [
+          {
+            "index": 0,
+            "type": 4,
+            "value": 17552
+          },
+          {
+            "index": 1,
+            "type": 5,
+            "value": 0
+          }
+        ]
+      },
+      "semantic_note": "選金錢，清單一寶箱價值",
+      "level": "proven",
+      "evidence": [
+        "preserved/treasure-original-audit-r1.json",
+        "preserved/treasure-audit-r1.json"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 74482,
+        "file_offset": 14178,
+        "bytes": "0106f804",
+        "instruction": "add     word_2DC78, ax",
+        "operands": [
+          {
+            "index": 0,
+            "type": 2,
+            "value": 1272
+          },
+          {
+            "index": 1,
+            "type": 1,
+            "value": 0
+          }
+        ]
+      },
+      "semantic_note": "原版16位元加金；Go略過此block改安全封頂",
+      "level": "proven",
+      "evidence": [
+        "preserved/treasure-original-audit-r1.json",
+        "preserved/treasure-audit-r1.json"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 74510,
+        "file_offset": 14206,
+        "bytes": "c78090440000",
+        "instruction": "mov     word ptr [bx+si+4490h], 0",
+        "operands": [
+          {
+            "index": 0,
+            "type": 4,
+            "value": 17552
+          },
+          {
+            "index": 1,
+            "type": 5,
+            "value": 0
+          }
+        ]
+      },
+      "semantic_note": "選分贈部隊，清單一寶箱價值",
+      "level": "proven",
+      "evidence": [
+        "preserved/treasure-original-audit-r1.json",
+        "preserved/treasure-audit-r1.json"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 74525,
+        "file_offset": 14221,
+        "bytes": "0106fa04",
+        "instruction": "add     word_2DC7A, ax",
+        "operands": [
+          {
+            "index": 0,
+            "type": 2,
+            "value": 1274
+          },
+          {
+            "index": 1,
+            "type": 1,
+            "value": 0
+          }
+        ]
+      },
+      "semantic_note": "原版加價值除10整數商至領導力",
+      "level": "proven",
+      "evidence": [
+        "preserved/treasure-original-audit-r1.json",
+        "preserved/treasure-audit-r1.json"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 74816,
+        "file_offset": 14512,
+        "bytes": "5e",
+        "instruction": "pop     si",
+        "operands": [
+          {
+            "index": 0,
+            "type": 1,
+            "value": 6
+          }
+        ]
+      },
+      "semantic_note": "原函式pop SI前保存停點，SP=BP-10",
+      "level": "proven",
+      "evidence": [
+        "preserved/treasure-original-audit-r1.json",
+        "preserved/treasure-audit-r1.json"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 80693,
+        "file_offset": 20389,
+        "bytes": "2d3000",
+        "instruction": "sub     ax, 30h ; '0'",
+        "operands": [
+          {
+            "index": 0,
+            "type": 1,
+            "value": 0
+          },
+          {
+            "index": 1,
+            "type": 5,
+            "value": 48
+          }
+        ]
+      },
+      "semantic_note": "原地圖tile值為來源byte減30h",
+      "level": "proven",
+      "evidence": [
+        "preserved/treasure-original-audit-r1.json",
+        "preserved/treasure-audit-r1.json"
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "original_operand": "[bx+si+4490h]",
+      "ds_offset": "4490h",
+      "count": 80,
+      "region_count": 8,
+      "rows_per_region": 10,
+      "stride_bytes": 2,
+      "saved_base_byte_offset": 1348,
+      "saved_codec": "word + absolute byte offset + 3 modulo65536",
+      "semantic_note": "寶箱價值；零為已領取或原空箱",
+      "level": "proven",
+      "evidence": "preserved/treasure-original-audit-r1.json#original_input_words"
+    },
+    {
+      "original_operand": "[bp+var_6]",
+      "bp_offset": -6,
+      "semantic_note": "原選項1納入金錢，2增加領導力；Esc不領取",
+      "level": "proven",
+      "evidence": "preserved/treasure-original-audit-r1.json#original_cases"
+    }
+  ],
+  "production_integrated": false,
+  "isolated_candidate_integrated": true,
+  "scope": "One chest mechanism with controlled fixtures and one controlled initial GUI position; other story resource paths remain unknown."
+}
