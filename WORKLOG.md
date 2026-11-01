@@ -2621,3 +2621,5 @@ r2抽驗及獨立核對全數通過。普通GUI這次rand32064，召20矮人；�
 - README 加入全滅與回場縮圖，最新入口為 tools/annihilation-roam.sh；sub_11796 索引附限定 resolution，原始名稱與定位保留。傳回起點、其餘特殊分派、守軍、自然新增兵種營地與正式整合仍待續。本分支代表抽驗停止，不稱整案結案。
 
 完整來源、普通／fixture binary、VM、原進度、九圖與全尺寸畫面已保存，入口見[永久保存](preserved/README.md#全軍覆沒浪跡江湖保存)。565 檔／457 物件、壓縮 30515422 bytes，未載入原工作區輸入逐 SHA／長度核對通過；6 份根目錄工具、全部保存工作副本、33 條新連結與 README 正對照、兩張縮圖重建一致。Python／shell 語法、Go 格式、UID/GID 1000 與 root-owned／異常目錄檢查通過。只刪本批 1741 份 Go 快取、169125307 bytes，另刪新生成 28143-byte Python 快取；完整來源、VM 與 PNG 保持。正式 197 來源七程式、923 核心、535 素材、1066 美術及 DOS 前護欄保持，沒有新 image、Release 或其他專案清理。Git 與 Docker 收尾以下列追加為準。
+
+主提交 2651fbae62b6f7bffeb7d3682a4ee7f9c7b8c92e 已推送私人 origin/main，git ls-remote 回讀同 SHA。暫存空白檢查通過，docker ps -a 的 8sword 篩選為空，沒有本案殘留容器。本行另作文件收尾提交，不改已驗候選或保存批次。
