@@ -2655,3 +2655,5 @@ r2抽驗及獨立核對全數通過。普通GUI這次rand32064，召20矮人；�
 - README加入第一次交戰、殘兵再戰與F2冷讀三張實景及來源，最新入口為tools/guarded-battle.sh。頭目／結局守軍、其餘特殊分派、自然新增兵種營地及正式世界整合待續，沒有Release。
 
 [永久保存](preserved/README.md#一般守軍go戰鬥保存)715檔／515去重物件，壓縮41227394 bytes；未掛原workplace的獨立逐SHA／長度核對通過。完整來源、binary、504-word控制、VM／RAM、九圖、進度及全尺寸PNG／X11保持。[收尾](preserved/guarded-battle-integrity-r1.json)另核對715檔工作複本、10份根工具、37條新連結與README正對照、三張縮圖重建、Python／Bash語法及Go格式，UID/GID1000、root-owned與異常目錄檢查通過。只刪本批1737份編譯快取，共158672774邏輯bytes，未清其他專案。Git與Docker收尾以下列追加為準。
+
+主提交1d516b3940a2f83d037619986fc4b797c189ccfd已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，本案Docker容器篩選為空，沒有殘留程序或新映像。本行另作文件收尾提交，不改候選、保存批次或抽驗範圍。
