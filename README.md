@@ -8,7 +8,7 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與全滅回場預覽](tools/annihilation-origin.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。
+隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與一般守軍預覽](tools/guarded-battle.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
@@ -35,6 +35,14 @@
 ![openKB新增部隊進入神州八劍的Go戰鬥介面](docs/images/openkb-battle-hd-r1.png)
 
 實際出手後的兵力與回合可在戰中重開時讀回。這批是靜態HD圖示，沿既有Go戰鬥規則，沒有新增攻擊動畫或改兵種數值。範圍見[呈現契約與驗證](docs/spec/030-battle-expansion-proposal.md#openkb新增單位的hd圖像與遊戲截圖)、[截圖來源](docs/images/openkb-game-screenshots-r1.json)及[完整原圖與生成提示](artwork/README.md#openkb新增單位hd)。來源縮圖取自openKB free sprites，作者包含driedfruit，逐檔作者與授權資訊見[來源紀錄](docs/images/openkb-eight-original-hd-r1.json)。
+
+## 一般守軍與殘兵保存
+
+隔離 Go 候選已接一般守軍戰鬥。撤退會保存雙方殘兵，再走回守軍格時繼續交戰；勝利後清除該處守軍並增加月薪。下圖由原版守軍編成進入 Go 戰鬥，我方同時使用原版部隊與 openKB 火龍、野狼及弓箭手。
+
+![撤退後再戰，守軍保留四隊殘兵，原版與openKB部隊共同作戰](docs/images/guarded-battle-guard-rematch-r1.png)
+
+起始軍隊與鄰近位置為明示測試配置，敵軍、確認與後續操作沿實際遊戲。撤退、重開再戰、勝利、F7 及新程序 F2 已抽驗；月薪100變120，沒有隨機戰的金錢、戰績或晉級獎勵。頭目與結局守軍仍保留護欄。可看[第一次交戰](docs/images/guarded-battle-guard-opened-r1.png)、[冷讀軍隊頁](docs/images/guarded-battle-mixed-army-r1.png)、[預覽入口](tools/guarded-battle.sh)、[畫面來源](docs/images/guarded-battle-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。正式世界整合仍待完成。
 
 ## 寶箱獎勵與保存
 
@@ -66,7 +74,7 @@
 
 ![全軍覆沒後可選回起點或浪跡江湖](docs/images/annihilation-origin-loss-r1.png)
 
-畫面使用明示的野狼軍隊、敵軍與入口配置，再以普通滑鼠操作及普通程式冷讀。可看[回到起點](docs/images/annihilation-origin-returned-r1.png)、[預覽入口](tools/annihilation-origin.sh)、[畫面來源](docs/images/annihilation-origin-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。守軍戰鬥與正式世界整合仍待接入。
+畫面使用明示的野狼軍隊、敵軍與入口配置，再以普通滑鼠操作及普通程式冷讀。可看[回到起點](docs/images/annihilation-origin-returned-r1.png)、[預覽入口](tools/annihilation-origin.sh)、[畫面來源](docs/images/annihilation-origin-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。一般守軍已有上節的接入，頭目、結局守軍與正式世界整合待續。
 
 ## 後排特殊部隊出手
 

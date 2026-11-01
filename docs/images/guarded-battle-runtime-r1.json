@@ -1,0 +1,26 @@
+{
+  "images": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/guarded-battle-r1/gui-r2/warm/frame-001-battle-noto.png",
+      "source_sha256": "6b1649c15397cee8060f5a50b0f282d067b0859c255c49c45a9b39ebc86a00c6",
+      "published": "guarded-battle-guard-opened-r1.png",
+      "published_sha256": "4b9cd7157d228833407233eb89d1bbfd52e9323ae241cbf5bd82346742d320f7"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/guarded-battle-r1/gui-r2/cold-retreat/frame-002-battle-noto.png",
+      "source_sha256": "24437d934697269c4c463457fdc516aa31424a0e3ef867858c031b2cdcf12da2",
+      "published": "guarded-battle-guard-rematch-r1.png",
+      "published_sha256": "30a44d50f85ee8da1a5f92779cfb50bdb6ed0ae76cb7de0bebc38cf9470894e6"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/guarded-battle-r1/gui-r2/cold-checkpoint/frame-002-army-noto.png",
+      "source_sha256": "d67c6754e3b52699ebcc83cfd07bcfbabf922827cc8e6885de6e08762b82490a",
+      "published": "guarded-battle-mixed-army-r1.png",
+      "published_sha256": "e3a6477e6df20d2fbcfa856f5fab3c59a009bff914a6078368cf0774d1f73f77"
+    }
+  ],
+  "controlled_initial_army_and_position": true,
+  "native_guard_unmodified": true,
+  "normal_ui_clicks": true,
+  "production_promoted": false
+}

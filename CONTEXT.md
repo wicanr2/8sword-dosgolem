@@ -2,7 +2,11 @@
 
 核對日期：2026-11-01。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
 
-最新切片為[全軍覆沒傳回起點](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。隔離 Go 候選已提供「傳送回起點／冒險浪跡江湖」兩鈕。Go 以二元樹解開固定地形，建立九類地標座標，回寫正規化地圖，再更新位置；這段沒有執行原版地圖載入或像素指令。既有 v3／v4 native_resume 的 result 3 表示待回起點，舊 reader 拒絕新值。[核對](preserved/annihilation-origin-audit-r1.json)、[永久保存](preserved/README.md#全軍覆沒傳回起點保存)、[實際選鈕](docs/images/annihilation-origin-loss-r1.png)及[最新入口](tools/annihilation-origin.sh)為入口。
+最新切片為[一般守軍Go戰鬥](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。隔離候選保留原守軍檢閱／確認，以Go六隊判斷存在、計算戰鬥與保存殘兵，勝利單次增加月薪並清該處NPC。守軍以309E／25EE frame分流，隨機戰保持171D／0BD3；新增ID不進原主角25種索引。[核對](preserved/guarded-battle-audit-r1.json)、[永久保存](preserved/README.md#一般守軍go戰鬥保存)、[再戰畫面](docs/images/guarded-battle-guard-rematch-r1.png)與[最新入口](tools/guarded-battle.sh)為入口。
+
+原八區42處座標、504個NPC word及保存區間`[1508,2516)`已核對。原0區索引0五隊未改，明示混合軍隊與鄰近起點後走正常移動／確認；石人擊倒30猴妖、撤退、普通binary冷讀四隊殘兵、再戰勝利、冷讀待回場、F7及另一程序F2通過。月薪100→120，戰績10000／等級1保持，金錢只扣一次撤退費；其他41處、主角影子24 bytes與449字保持。一次中斷恢復、重複／頭目／結局／非法NPC拒絕及11張X11同Go提交通過。GUI實際v1→v3→v2，不宣稱v4新GUI或自然抵達。正式197來源七程式、923核心、535素材、1066美術與DOS前護欄保持。代表抽驗停止；頭目及結局守軍、其餘特殊分派、自然新增兵種營地與正式整合待續。以下「守軍待續」為當時歷史，一般守軍已由本節閉合。
+
+前輪切片為[全軍覆沒傳回起點](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。隔離 Go 候選已提供「傳送回起點／冒險浪跡江湖」兩鈕。Go 以二元樹解開固定地形，建立九類地標座標，回寫正規化地圖，再更新位置；這段沒有執行原版地圖載入或像素指令。既有 v3／v4 native_resume 的 result 3 表示待回起點，舊 reader 拒絕新值。[核對](preserved/annihilation-origin-audit-r1.json)、[永久保存](preserved/README.md#全軍覆沒傳回起點保存)、[實際選鈕](docs/images/annihilation-origin-loss-r1.png)及[最新入口](tools/annihilation-origin.sh)為入口。
 
 兩個來源控制涵蓋同區與 map02→map01，完整地形、地圖與 95 筆寫入相同，307 行 IDA bytes 經獨立核對。GUI 的 5 隻野狼實際全滅，普通 binary 冷讀後選起點，位置 41／40→40／40；未 F7 關閉後可重建同一筆回場，再 F7、另一程序 F2 空軍隊通過。金 500、戰績 1990、原影子 24 bytes 保持；一次 intent-durable 恢復、來源破損與重複拒絕、七張 X11 同 Go 提交通過。軍隊、原入口及敵軍為明示 fixture，不稱自然全滅；GUI 實際為 v1→v3→v2，449 字與素材全數保持。原版整段選單在地圖分支前另有三次 rand，本輪只證實交接分支 seed 保持，不宣稱整段亂數對拍。正式 197 來源七程式、923 核心、535 素材、1066 美術及 DOS 前護欄維持。代表抽驗停止；守軍、其餘特殊分派、自然新增兵種營地與正式整合仍待續。
 

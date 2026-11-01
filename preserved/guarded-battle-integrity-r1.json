@@ -1,0 +1,170 @@
+{
+  "status": "passed-guarded-battle-integrity",
+  "archive_files_matched": 715,
+  "root_tools_matched": 10,
+  "new_links": 37,
+  "positive_control": "README -> CONTEXT",
+  "published_images_rebuilt": 3,
+  "formal_artwork_files": 1066,
+  "python_syntax": true,
+  "bash_syntax_and_go_format": "passed separate fixed Go container",
+  "root_owned_or_md_directories": [],
+  "uid": 1000,
+  "gid": 1000,
+  "cleanup": {
+    "scope": "guarded-battle-r1/build-cache only",
+    "files": 1737,
+    "logical_bytes": 158672774,
+    "preserved_complete_inputs": true
+  },
+  "links": [
+    [
+      "AGENTS.md",
+      "tools/guarded-battle.sh"
+    ],
+    [
+      "AGENTS.md",
+      "preserved/guarded-battle-audit-r1.json"
+    ],
+    [
+      "CONTEXT.md",
+      "preserved/guarded-battle-audit-r1.json"
+    ],
+    [
+      "CONTEXT.md",
+      "docs/images/guarded-battle-guard-rematch-r1.png"
+    ],
+    [
+      "CONTEXT.md",
+      "tools/guarded-battle.sh"
+    ],
+    [
+      "README.md",
+      "tools/guarded-battle.sh"
+    ],
+    [
+      "README.md",
+      "docs/images/guarded-battle-guard-rematch-r1.png"
+    ],
+    [
+      "README.md",
+      "docs/images/guarded-battle-guard-opened-r1.png"
+    ],
+    [
+      "README.md",
+      "docs/images/guarded-battle-mixed-army-r1.png"
+    ],
+    [
+      "README.md",
+      "tools/guarded-battle.sh"
+    ],
+    [
+      "README.md",
+      "docs/images/guarded-battle-runtime-r1.json"
+    ],
+    [
+      "RESEARCH-LOG.md",
+      "preserved/guarded-battle-audit-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/prepare-guarded-battle.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/guarded-battle.go"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/guarded-battle_test.go"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/check-guarded-battle-ui.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/check-guarded-battle.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/guarded-battle.sh"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../preserved/guarded-battle-audit-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/guarded-battle-guard-opened-r1.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/guarded-battle-guard-rematch-r1.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/guarded-battle-mixed-army-r1.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/guarded-battle-runtime-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/guarded-battle.go"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/guarded-battle_test.go"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/check-guarded-battle-ui.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/check-guarded-battle.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/guarded-battle.sh"
+    ],
+    [
+      "preserved/README.md",
+      "guarded-battle-audit-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "guarded-battle-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "guarded-battle-verification-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "guarded-battle-integrity-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/guarded-battle-guard-opened-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/guarded-battle-guard-rematch-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/guarded-battle-mixed-army-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/guarded-battle-runtime-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/prepare-guarded-battle.py"
+    ]
+  ]
+}

@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 一般守軍Go戰鬥保存
+
+隔離候選已將一般守軍接入Go六隊存在判斷、戰鬥、殘兵與月薪保存。保留原檢閱與確認，使用309E／25EE frame識別守軍；隨機戰保留獨立caller。頭目與結局守軍拒絕，正式Engine的DOS前附檔護欄保持。
+
+入口為[030 READY與限定CONFORMED](../docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)、[來源佈局](../tools/guarded-layout.go)、[守軍接管](../tools/guarded-battle.go)、[交易保存](../tools/guarded-store.go)、[抽驗](../tools/guarded-battle_test.go)、[GUI](../tools/check-guarded-battle-ui.py)、[獨立核對](../tools/check-guarded-battle.py)與[普通預覽](../tools/guarded-battle.sh)。原504-word保存位置由[序列化探針](../tools/probe-guarded-save.go)核對，既有十組caller控制與IDA9.4匯出保持原始定位。
+
+[核對收據](guarded-battle-audit-r1.json)驗原42處、504-word保存區間、Go撤退殘兵、再次交戰、月薪100→120、其他41處及原主角影子保持。一次intent-durable恢復、重複／非法NPC／頭目／結局拒絕與11張X11逐RGBA通過。GUI只配置起始軍隊與鄰近位置，原敵軍未改；普通binary冷讀、F7及另一程序F2通過。449字與全部舊UI素材保持，實際為v1→v3→v2；不新增v4 GUI、守軍全滅GUI或自然取得部隊聲明。
+
+完整來源、普通／fixture binary、原版輸入、VM／RAM、九圖、進度與全尺寸PNG／X11保存在本機`preserved/guarded-battle-r1/`，排除Git。[清單](guarded-battle-r1.json)、[脫離workplace核對](guarded-battle-verification-r1.json)與[清理收尾](guarded-battle-integrity-r1.json)為入口。README的[第一次交戰](../docs/images/guarded-battle-guard-opened-r1.png)、[再戰](../docs/images/guarded-battle-guard-rematch-r1.png)、[F2](../docs/images/guarded-battle-mixed-army-r1.png)與[來源](../docs/images/guarded-battle-runtime-r1.json)可回查完整PNG。首輪Enter重訪失敗、Xvfb環境及測試編譯診斷保留。
+
+[準備／保存器](../tools/prepare-guarded-battle.py)沿固定Pillow11.3.0 r2容器，以`prepare|freeze --project <專案>`準備來源，`publish --project <唯讀專案> --images <可寫圖目錄>`發圖，`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單JSON>`保存，`verify --archive <唯讀preserved> --out <新JSON>`在沒有workplace時逐物件核對。Go1.24.13建置與測試命令收在候選`guarded-battle-execution-r1.json`，設定`EIGHTSWORD_GUARDED_WORK=<候選>`；中斷測試另設`EIGHTSWORD_GUARDED_COLD=1`，只在新的戰中副本執行。GUI用`check-guarded-battle-ui.py --work <候選> --name gui-r2`；第二次需新進度與新輸出名稱，不覆寫舊收據。原版同時唯讀掛`/game`及歷史錨點Root，核心`/core`、模組`/gomodcache`，完整配額與掛載見保存的`execution-provenance-r1.json`。沒有新IDA執行，也沒有擴大已驗HD、音訊或傷害矩陣。
+
 ## 全軍覆沒傳回起點保存
 
 隔離 Go 候選已接全滅後「傳送回起點」，並保留浪跡選擇。Go 解碼固定 map1 地形、建立地標、回寫當前地圖，再回到 40／40；軍隊仍由 Go 字串 ID 管理，原影子 24 bytes 保持。正常回場仍沿既有 Go HD 重畫，正式 Engine 的 DOS 前附檔護欄保持。

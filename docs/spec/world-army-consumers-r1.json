@@ -92,7 +92,24 @@
       "semantic_note": "守軍戰果的軍隊存活分支",
       "level": "proven",
       "original_reference_count": 1,
-      "production_integrated": false
+      "production_integrated": false,
+      "resolution": {
+        "previous_level": "proven",
+        "identity": {
+          "platform": "DOS",
+          "module": "PAM.AY",
+          "ida_mz_linear": "0x11ABE",
+          "runtime": "0110:1ABE",
+          "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+        },
+        "scope": "Ordinary fixed guards only, isolated Go candidate; boss/ending guarded. Original source evidence retained.",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed",
+        "evidence_receipt": "preserved/guarded-battle-audit-r1.json",
+        "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+        "required_correction": "GUARDED-BATTLE-GO-20261101",
+        "unaffected_spec": "docs/spec/042-friendly-man21-battle-poses.md",
+        "unaffected_reason": "Direction and pose source evidence remains unchanged."
+      }
     },
     {
       "original_name": "sub_12446",
@@ -110,9 +127,26 @@
       "pam_file_offset": 16974,
       "runtime": "0110:2DDE",
       "semantic_note": "守軍入口的軍隊存在檢查",
-      "level": "strong inference",
+      "level": "proven",
       "original_reference_count": 1,
-      "production_integrated": false
+      "production_integrated": false,
+      "resolution": {
+        "previous_level": "strong inference",
+        "identity": {
+          "platform": "DOS",
+          "module": "PAM.AY",
+          "ida_mz_linear": "0x12DDE",
+          "runtime": "0110:2DDE",
+          "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+        },
+        "scope": "Ordinary fixed guards only, isolated Go candidate; boss/ending guarded. Original source evidence retained.",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed",
+        "evidence_receipt": "preserved/guarded-battle-audit-r1.json",
+        "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+        "required_correction": "GUARDED-BATTLE-GO-20261101",
+        "unaffected_spec": "docs/spec/042-friendly-man21-battle-poses.md",
+        "unaffected_reason": "Direction and pose source evidence remains unchanged."
+      }
     },
     {
       "original_name": "sub_132E0",
@@ -122,7 +156,24 @@
       "semantic_note": "戰略與戰場六隊複製",
       "level": "proven",
       "original_reference_count": 4,
-      "production_integrated": false
+      "production_integrated": false,
+      "resolution": {
+        "previous_level": "proven",
+        "identity": {
+          "platform": "DOS",
+          "module": "PAM.AY",
+          "ida_mz_linear": "0x132E0",
+          "runtime": "0110:32E0",
+          "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+        },
+        "scope": "Ordinary fixed guards only, isolated Go candidate; boss/ending guarded. Original source evidence retained.",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed",
+        "evidence_receipt": "preserved/guarded-battle-audit-r1.json",
+        "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+        "required_correction": "GUARDED-BATTLE-GO-20261101",
+        "unaffected_spec": "docs/spec/042-friendly-man21-battle-poses.md",
+        "unaffected_reason": "Direction and pose source evidence remains unchanged."
+      }
     },
     {
       "original_name": "sub_154EA",

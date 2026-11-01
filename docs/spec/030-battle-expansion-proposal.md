@@ -756,6 +756,8 @@ Go資料鏈均真正呼叫既有Choose／Apply，再進敗退交易，沒有客�
 
 ##### 守軍與獎勵的已查證分流
 
+後續閉合：本節原版證據保持，一般守軍已由[限定CONFORMED](#一般守軍的go戰鬥交接限定conformed)串接Go；頭目、結局及未抽驗分支仍保留限制。勘誤標記：`GUARDED-BATTLE-GO-20261101`。
+
 本節維持DRAFT，數值與caller資料流已有原版控制。來源沿前節固定PAM及PAM.i64 SHA，IDA9.4新增匯出sub_11ABE及sub_13AEC共326行，既有13函式2080行另從永久物件取回。兩份匯出均逐行對原MZ重定位核對；IDA位址用MZ loader base10000h，以下執行期用載入0110h、DS1E88h。
 
 | 證據等級 | IDA原始定位 | 已查證行為與Go對應 |
@@ -1818,6 +1820,51 @@ r1同底圖重播抽看顯示，來源Actor cell涵蓋整個圖像矩形，單�
 審查結論：原版分支與既有 Go 空軍隊結算證據足夠，以上範圍 READY。待回場值 2 必須以 `loss` 重算相同 world，不能把任意戰果轉成浪跡。正式 Engine、原版模式、197 來源七程式、923 核心、r69 全 535 素材與 1066 圖庫維持。
 
 實作與驗證入口為[準備器](../../tools/prepare-annihilation-roam.py)、[停點守門](../../tools/annihilation-roam.go)、[交易抽驗](../../tools/annihilation-roam_test.go)、[視窗抽驗](../../tools/check-annihilation-roam-ui.py)、[獨立核對](../../tools/check-annihilation-roam.py)及[隔離啟動器](../../tools/annihilation-roam.sh)。候選位於 `workplace/probe-20261023/graphics-first/battle-r1/annihilation-roam-r1`，沿後排出手保存批次恢復。以固定 Go 1.24.13 與 Pillow 11.3.0 r2 容器執行，UID 1000、無網路、唯讀原始資料與核心，只寫候選目錄；`prepare/freeze/archive/verify/publish` 參數沿準備器說明。
+
+## 一般守軍的 Go 戰鬥交接 DRAFT
+
+2026-11-01。接續已驗回場，範圍為固定來源的一般守軍，勝利月薪、撤退殘兵與存檔。頭目及結局守軍先拒絕，不猜劇情旗標。原始資料與已驗規則沿本檔「守軍與獎勵的已查證分流」，原始 PAM／資料庫雜湊保持。先核對 42 處守軍的實際座標、六隊形狀及保存位置，再接共享 Go 戰鬥介面；原版模式與正式 Engine 的 DOS 前護欄保持。
+
+入口為[準備／保存器](../../tools/prepare-guarded-battle.py)與[原存檔位置探針](../../tools/probe-guarded-save.go)，工作區為既有 battle-r1 下的 guarded-battle-r1。保存探針只在原 serializer 的隔離呼叫中給 504 個 NPC word 加標記，不把標記兵種交給玩法或圖檔查表。原 caller、勝利與殘兵證據重用 owned-encounter 保存，不重新模擬整場原版戰鬥。
+
+## 一般守軍的 Go 戰鬥交接 READY
+
+2026-11-01。以上一般守軍提升為 READY；頭目與區域0索引4的結局守軍不接入。固定 PAM SHA 與前節保持，來源重用 IDA9.4 的守軍 caller／獎勵及 F7 serializer，MZ線性基準10000h與執行期0110h分列。[原存檔探針](../../tools/probe-guarded-save.go)於隔離 serializer 呼叫中標記504個word，獨立核對實際輸出為 `[1508,2516)`，與DS `[365E,3A4E)` 逐word對應；原編碼為 `value + byte_offset + 3` 的16位元結果。這不是玩家路徑或真正原版戰鬥。
+
+| 項目 | READY 契約 |
+|---|---|
+| 實際容量 | 八份原地形的marker113數為7、4、4、4、4、4、4、11，共42處；不沿12次迴圈猜容量。每處六隊／24 bytes，以實際座標與區域對應固定表；saved／live NPC資料須一致。 |
+| 主角軍隊 | 在 `0110:3048` 以Go六隊存在狀態取代原 `054A` 六次讀取，跳到3069；原24 bytes不寫新ID。共享3365複製旁路保持，傷害與兵數沿Go核心。 |
+| 原流程 | 保留原守軍資料檢閱與確認。共享32E0入口的守軍far返回為309E，父caller為25EE；隨機戰171D／0BD3保持。只接受固定原bytes與合法frame。 |
+| 敵軍 | 只讀已證實六隊原NPC，native kind1–25及非負有界兵數。Go以guarded區域／索引字串ID保存，非勝利保留整理後殘兵，勝利保留歷史編成並設Cleared。 |
+| 戰果 | 沿已驗guarded resolveEncounter，不套隨機戰金錢／戰績或晉級。一般勝利加月薪20×區域加1，26AA等於1時沿原能力加值；不猜26AA語意。不接頭目劍旗標或結局。 |
+| 保存 | 沿既有v3／v4的immutable VM錨點與九圖。32E0的309E／25EE識別守軍，舊reader因不符原frame而拒絕。結算同筆保存Go world、六資源、目標守軍24 bytes與return phase，其他41處與原主角影子保持。 |
+| 冷讀與回場 | 從錨點重建守軍context，不用world相同就猜來源。309E處以Go投影六資源／NPC，必要時沿已驗Go回起點，跳32AD原epilogue返回25EE，跳過原重複獎勵、NPC寫回與結局判斷。正常F7完成位置／九圖checkpoint。 |
+| 混合遭遇 | 隨機遭遇開始／移除時保留已保存守軍；一般守軍再次開始以已綁定的原NPC目前資料為準，不能重發已清除獎勵。共同begin驗證只允許來源目標改動。 |
+| 停止線 | 來源、位置、儲存映射或身分不符拒絕，不退回原25種主角陣列。結局守軍必須仍存活，一般流程不觸發未知劇情。正式Engine、原版模式與DOS前護欄保持。 |
+
+驗收為原504-word映射與十組既有caller控制、共享回歸最小抽樣、實際原確認→Go攻擊→撤退殘兵→關閉冷讀→再次交戰→勝利→F7／F2。初始軍隊與位置可明示配置，保留正常移動／確認操作，不冒稱自然抵達或全遊戲平衡。介面沿既有玉綠金框、三字型及33種圖示，不重開風格選擇。
+
+實作入口為[來源佈局](../../tools/guarded-layout.go)、[守軍接管](../../tools/guarded-battle.go)、[保存與驗證](../../tools/guarded-store.go)、[抽驗](../../tools/guarded-battle_test.go)、[起點配置](../../tools/guarded-fixture.go)、[GUI驗證](../../tools/check-guarded-battle-ui.py)、[獨立核對](../../tools/check-guarded-battle.py)及[預覽](../../tools/guarded-battle.sh)。執行、凍結與保存沿本節準備器及固定Go1.24.13／Pillow11.3.0容器；不擴大已驗HD與法術矩陣。
+
+## 一般守軍的Go戰鬥交接限定CONFORMED
+
+2026-11-01。以上一般守軍 READY 依[獨立核對](../../preserved/guarded-battle-audit-r1.json)限定 CONFORMED，接入隔離 Go 候選，正式 Engine 保持。原始來源為 PAM.AY，SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；IDA9.4 資料庫 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。沿已保存的 caller／獎勵控制，不宣稱原版完整戰鬥同狀態對拍。
+
+| 項目 | 已驗範圍 |
+|---|---|
+| 已證實來源 | 原八份地形共有42處守軍，分布為7、4、4、4、4、4、4、11；504個NPC word的實際序列化位置為`[1508,2516)`。既有十組caller控制與三份IDA匯出逐bytes核對，不把battle stub當實戰。 |
+| 主角隔離 | `sub_12DDE` 的執行期 `0110:3048` 由Go判斷六隊存在；`sub_132E0` 的3365複製旁路沿既有契約。守軍frame為309E／25EE，與隨機戰171D／0BD3分流。原主角24 bytes保持，擴充ID不進原kind索引。 |
+| 實際戰鬥 | 原區域0索引0的五隊守軍未改。Go石人擊倒30猴妖後撤退，四隊殘兵保留；普通binary冷讀、走出再走回、原確認後再次開戰，直到Go實際判定勝利。起始混合軍隊及鄰近6／4位置為fixture，不稱自然取得或自然抵達。 |
+| 戰果保存 | 單一NPC24 bytes投影已抽驗，其他41處及主角影子保持。撤退實際seed只推進一次；勝利月薪100→120，金錢保持撤退後數值，戰績10000／等級1保持，不套隨機戰獎勵或晉級。未F7關閉後可重建同一world／token，再F7與另一程序F2讀回。 |
+| 恢復與拒絕 | 一次intent-durable中斷可冷讀完成單次撤退；重複結算、破損來源、頭目、結局守軍、實際索引越界、擴充NPC ID及未勝利領獎拒絕。隨機戰開始保留既有守軍記錄的helper通過。 |
+| 呈現與相容 | 11張完整X11逐RGBA等於Go提交，文字在安全區內；449字與全部既有UI素材保持。實際GUI為v1→v3→v2，v4只沿共同接線，不新增v4 GUI聲明。正式197來源七程式、923核心、r69全535素材及1066永久美術保持。 |
+
+勘誤標記：`GUARDED-BATTLE-GO-20261101`。較早「守軍Go交接未接」現僅適用頭目、結局與本輪未抽驗分支。`sub_12DDE` 的軍隊存在檢查由strong inference提升為限定已證實；`sub_132E0` 與 `sub_11ABE` 原定位及已證實資料流保留。[軍隊消費索引](world-army-consumers-r1.json)附加不可變模組／位址鍵及回填入口。042的方向與圖姿態證據不受影響，不改其結論。
+
+本輪不新增頭目劍旗標／結局交接，也沒有新增守軍全滅GUI、自然跨區遭遇或全遊戲平衡聲明。原有Go全滅兩種選擇沿共享分流接線，不能以隨機戰的GUI代替守軍抽驗。代表抽樣到此停止；後續為頭目與結局守軍、其他特殊分派、自然新增兵種營地及正式整合。
+
+[永久保存](../../preserved/README.md#一般守軍go戰鬥保存)收錄原版輸入、完整來源／binary、504-word探針、VM／RAM、九圖、兩次GUI與全尺寸PNG／X11。[第一次交戰](../images/guarded-battle-guard-opened-r1.png)、[撤退後再戰](../images/guarded-battle-guard-rematch-r1.png)、[F2冷讀](../images/guarded-battle-mixed-army-r1.png)與[來源](../images/guarded-battle-runtime-r1.json)已放README。舊步驟誤以Enter重訪，r2改正常走出再走回；舊GUI與測試環境失敗保留，不記為產品缺陷。
 
 ## 全軍覆沒傳回起點的 DRAFT 研究
 
