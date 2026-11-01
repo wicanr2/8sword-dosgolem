@@ -2707,3 +2707,18 @@ README補實購單位進場圖，[030追加驗收](docs/spec/030-battle-expansio
 本批永久保存602檔／497物件，壓縮27786383 bytes；未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/reinforcement-battle-integrity-r1.json)另驗602工作複本、28條新增連結及README正對照、三份Python語法與UID/GID1000，沒有root-owned或異常目錄。本輪沒有編譯或新增build-cache，候選Docker容器篩選為空，沒有新映像或殘留程序。首次保存核對早於保存程序結束，等待同一程序完成後同命令通過，屬執行順序問題，非產品缺陷。Git推送狀態以下列追加為準。
 
 主提交4304e661a50dd25145527f6dde4a2c422753b0ef已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，候選Docker容器篩選為空。本行另作文件收尾提交，不改已驗程式、保存與抽驗範圍。
+
+
+## 2026-11-02：Go軍隊命令與原版進度匯入
+
+開工HEAD `7b04c5154a8a2f64c2effd8b4c5830c904bc3738`，工作樹乾淨。沿復古遊戲規格閘門、逆向技能與文件職責，接續已授權Go軍隊交接。先查來源、既有init順序及原資源／兵數／晉級表，寫READY，才整理命令；沒有重新討論HD風格或八種兵種數值。
+
+- 父版66份執行期Go來源移至internal/ownedworld，保留原函式與位址註記；13層init改具名後以原編譯順序呼叫。單純依Go檔名排序會改factory順序，因此未直接照搬。cmd/8sword-owned只呼叫Run，原版命令及其附檔護欄保持。新增唯讀圖示API與父版方法逐Go格式化比對一致。
+- 匯入器讀原2987-byte人物檔、六隊、六資源及九圖，原byte不改，地圖優先用存檔目錄，缺者讀唯讀原資料。晉級表由固定PAM檔案偏移0x1F1A2讀取；初始native規則、空offers與空遭遇，不贈兵或加金。v5兩檔以fsync／不覆寫rename原子發布。
+- 建置、十項拒絕、來源地圖偏好、CLI拒絕owned=false與vet通過。實際原版隨附進度30民兵、金500、領導力100、戰績0匯入，Continue／F2／營地切既有戰術規則／購野狼1／F7／另一程序F2通過，金460、獨立74保持。這條新匯入鏈沒有fixture軍隊或RAM注入。
+- 新命令另冷讀前輪實際v5戰中保存，world、軍隊與已行動旗標保持；舊樣本仍沿前輪控制的起始軍隊。首收據將fixture旗標放在整批層次，已拆成新匯入／舊戰中來源，修正前JSON保留，不修改當時畫面或遊戲狀態。六張X11與Go提交RGBA同SHA，66檔機械轉換、13層順序及268項建置來源獨立核對。
+- Docker匯入啟動器首次讓xvfb-run作PID1，Xvfb已開但wrapper等待訊號，8sword-owned尚未執行；停止該本案容器、補--init後同一命令立即通過，兩檔與應用程式匯入逐byte相同。前版腳本及診斷保留，屬程序管理修正，原始進度未寫入。一次後續控制核對在匯入結束前啟動，待完成後重跑通過，沒有改成產品缺陷。
+
+README提供建置／匯入／執行入口與無fixture匯入後的冷讀軍隊圖。[030驗收](docs/spec/030-battle-expansion-proposal.md#命令與原版匯入限定-conformed)、[最終核對](preserved/owned-player-audit-r4.json)與[永久保存](preserved/README.md#go軍隊命令與原版進度匯入保存)為入口。現有197項來源、舊七程式、923核心、535素材與1066美術保持，新增命令採268項來源；目前限定Linux Docker／X11，未發布Release。新遊戲直接建立Go進度、其餘特殊分派與完整世界整合仍待完成；已驗招募、戰鬥及HD矩陣不重跑。保存與Git收尾以下列追加為準。
+
+本批永久保存515檔／370物件，壓縮18753725 bytes，另記一筆不跟隨的診斷symlink；未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/owned-player-integrity-r1.json)另驗515工作複本、45條新增連結及README正對照、Python／Bash語法與新來源UID/GID1000，root-owned／異常目錄檢查通過。只清本輪1919份Go快取、141882398邏輯bytes及兩份已知Python快取，完整程式、輸入、VM與原PNG保持。候選Docker容器篩選為空，沒有新映像或全域清理。Git提交與推送以下列追加為準。

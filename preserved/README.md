@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## Go軍隊命令與原版進度匯入保存
+
+本批515檔／370去重物件，壓縮18753725 bytes，另記一筆測試連結。[收尾核對](owned-player-integrity-r1.json)及[快取清理](owned-player-cleanup-r1.json)可重查。
+
+`cmd/8sword-owned`與`internal/ownedworld`提供可建置的Go軍隊入口。66份已驗adapter保留13層初始化順序，原版人物與九圖可直接建立v5進度。沒有測試贈兵；原版隨附30民兵、金500、領導力100直接匯入後，正常招募、F7及冷讀通過。舊戰中樣本另沿前輪明示起始軍隊，沒有將它混稱為新匯入路徑。
+
+入口為[030驗收](../docs/spec/030-battle-expansion-proposal.md#命令與原版匯入限定-conformed)、[Docker啟動器](../tools/owned-player.sh)、[來源準備](../tools/prepare-owned-player.py)、[GUI抽驗](../tools/check-owned-player.py)與[獨立核對器](../tools/audit-owned-player.py)。[最終核對](owned-player-audit-r4.json)、[來源對照](owned-player-source-origin-r1.json)、[268項建置來源](owned-player-source-manifest-r1.json)、[畫面來源](../docs/images/owned-player-runtime-r1.json)與[逐檔清單](owned-player-r1.json)可重查。較早核對[r1](owned-player-audit-r1.json)、[r2](owned-player-audit-r2.json)及[r3](owned-player-audit-r3.json)保留當時工具與來源註記。
+
+本機物件在`preserved/owned-player-r1/`，保存完整新來源、程式、原人物／九圖、17份UI素材、原PAM、匯入拒絕案例、六張完整PNG／X11、舊v5戰中VM與啟動器診斷。測試用symlink只記目標，不跟隨或自動還原。原資料及完整美術不進Git，程式碼、索引與縮小成果沿私人倉庫記錄。舊七程式、923核心及535素材不因此替換，沒有Release。
+
+準備本機資料用`bash tools/owned-player.sh prepare`，已有資料包直接`build`；原版匯入與執行命令見[README](../README.md#go軍隊入口與原版存檔匯入)。來源整理器可沿父版保存物件重建資料，已有的受版控來源不覆寫；建置與匯入工作仍在有界、非root、network none的Docker內。
+
+封存用固定Pillow11.3.0容器，專案唯讀掛`/project`、本保存目錄可寫掛`/archive`，執行`prepare-owned-player.py archive --project /project --archive /archive --out /archive/owned-player-r1.json`。只核對用`verify --archive /archive --out /out/新核對.json`，不需workplace，[核對結果](owned-player-verification-r1.json)按原SHA與大小驗證每個物件。Go快取排除保存，只有封存及獨立驗證完成後才清理。
+
 ## 購得新兵的v5戰鬥鏈保存
 
 本批602檔／497去重物件，壓縮27786383 bytes。[收尾核對](reinforcement-battle-integrity-r1.json)另驗工作複本、文件連結與擁有權。

@@ -1,0 +1,15 @@
+{
+  "status": "removed-only-owned-player-build-cache",
+  "files": 1919,
+  "logical_bytes": 141882398,
+  "python_cache": [
+    {
+      "file": "prepare-owned-player.cpython-313.pyc",
+      "bytes": 13981
+    },
+    {
+      "file": "prepare-owned-army-ui.cpython-313.pyc",
+      "bytes": 28143
+    }
+  ]
+}

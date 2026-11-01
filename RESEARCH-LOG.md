@@ -2866,3 +2866,12 @@ GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改
 正常12次移動及原版確認後，Go由24-byte原敵軍匯入戰鬥；原版戰鬥路徑計數為0，原主角軍隊影子保持。野狼1隻出手傷害0、減員0及行動旗標由獨立Python重算，v5戰中冷讀同world／token。撤退使用既有原rand契約：369818040→2508362139，值5506，整數除法扣92金；回場冷讀與F7不重扣。庫存及所有offer保持。
 
 暖程序step16912871與冷程序16912872，週期同18343292；每程序內戰中不推進。這符合已知host callback重訪限制，不是跨程序完整state同SHA。自然執行未固定seed，沒有原版／Go同seed對拍聲明。完整來源、VM及九張實際畫布由[獨立核對](preserved/reinforcement-battle-audit-r1.json)及[永久保存](preserved/README.md#購得新兵的v5戰鬥鏈保存)索引。
+
+
+## 2026-11-02：原版進度到Go軍隊命令
+
+已證實。輸入PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、原GAMEDATA.AY SHA `84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef`。晉級表runtime位址DS `1E88:05B2`，MZ檔案偏移`0x1F1A2`，原bytes `0000d0078813401fe02e3075`。按MZ header與DS相對載入基址獨立取得六word 0／2000／5000／8000／12000／30000，沿既有原版probe讀05B2的證據；沒有新函式語意猜測或硬體driver逆向。
+
+2987-byte人物檔前12 bytes沿既有codec解為等級1、戰績0、月薪100、金500、領導力100、原04FC為0；六隊區間[12,36)含30民兵。新v5原人物檔逐byte保留，九圖完整嵌入。Python從原bytes獨立重建整份typed world，與匯入及GUI軍隊頁同值；購兵／規則／F7各步world亦重建。
+
+父版66份明列來源與13個factory init次序已有執行證據，移至套件後顯式保持順序，原名稱與位址註記不改。舊game套件只需增加已驗唯讀RecruitmentUnitIcon方法，沒有改Engine控制流。新命令程式SHA `33d5a44be21ec9868f382c19e036e9c434e8e7698960f939d895385067163d87`，機械轉換及268項來源由[核對](preserved/owned-player-audit-r4.json)驗證，[來源索引](preserved/owned-player-source-origin-r1.json)保留原路徑與SHA。新匯入鏈無fixture；舊v5戰中樣本仍是前輪受控起始軍隊，兩者來源分列。不稱自然新遊戲、所有特殊分派或完整世界parity。

@@ -1,0 +1,27 @@
+{
+  "images": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-player-r1/gui-r1/imported/frame-001-army-noto.png",
+      "source_sha256": "95636b5f604f1d21245b15bfe55f7d22ab2b17ccc654b06ef3070464601c2da0",
+      "published": "owned-player-native-import-army-r1.png",
+      "published_sha256": "a6409987ec707fb594638962419c04acc26261b6fc2a1112978f5297c7184acf"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-player-r1/gui-r1/cold-import/frame-001-army-noto.png",
+      "source_sha256": "17f596b7fc70b0823ff6dec63cc6fa55cdc4b6e38c9401ba6123c347bc2af8b8",
+      "published": "owned-player-native-import-cold-army-r1.png",
+      "published_sha256": "9b68fb8f293f8a1daf7d59795f15d7425f25320e65f506ad505a35150e942342"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/owned-player-r1/gui-r1/cold-battle/frame-001-battle-noto.png",
+      "source_sha256": "3cdade914ca88721171f40b4790579554588006d71917cb9e5b77bd2d09e6132",
+      "published": "owned-player-owned-command-cold-battle-r1.png",
+      "published_sha256": "8b51810ab01f2229272d944f75e65121e2166b823c16e76344090ed67160b843"
+    }
+  ],
+  "memory_injected": false,
+  "old_battle_from_previous_real_save": true,
+  "default_original_player_unchanged": true,
+  "native_import_fixture_army_used": false,
+  "legacy_battle_origin_controlled_initial_army": true
+}

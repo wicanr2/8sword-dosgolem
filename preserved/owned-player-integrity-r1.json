@@ -1,0 +1,12 @@
+{
+  "status": "passed-owned-player-integrity",
+  "verified_workplace_files": 515,
+  "objects": 370,
+  "diagnostic_links": 1,
+  "compressed_bytes": 18753725,
+  "new_markdown_links": 45,
+  "link_positive_control": true,
+  "ownership": "UID/GID 1000",
+  "root_owned_or_markdown_dirs": [],
+  "python_syntax": true
+}

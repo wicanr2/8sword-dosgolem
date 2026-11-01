@@ -1,0 +1,417 @@
+{
+  "parent": "reinforcement-camps-r1",
+  "parent_archive_sha256": "1d4cfbf1574afb396e0e7bbf9df76a155a3a2cece600356d76ac9af9cd7775ff",
+  "files": [
+    {
+      "parent_path": "tools/owned-army-model.go",
+      "parent_sha256": "80460cd4c94abc58eb7268a18a4927d1fcbab64e4b4b326a973dd89587655613",
+      "path": "internal/ownedworld/owned-army-model.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-owned-world.go",
+      "parent_sha256": "29092e79877609cec39e1d223c7eaae3eb67863d2b3e937e27990a2042f8e1fb",
+      "path": "internal/ownedworld/research-owned-world.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-owned-defeat.go",
+      "parent_sha256": "023d159867b32d51cab567e19f7d7f99400db6bdc7de39fda460e35383b497a7",
+      "path": "internal/ownedworld/research-owned-defeat.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-owned-encounter.go",
+      "parent_sha256": "169627d4fa7e2af41194bbc85b8f9c2b46007a31e3da78d57467292c53f47745",
+      "path": "internal/ownedworld/research-owned-encounter.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-native-progress.go",
+      "parent_sha256": "991a6e123c3bc2ed19390a21aab6541008018867e5950f2349f5dac8e0657d80",
+      "path": "internal/ownedworld/research-native-progress.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-paired-progress.go",
+      "parent_sha256": "fc0c75e18656d148be702a4867654943935d93d24e6daf1104e4886e8ced4875",
+      "path": "internal/ownedworld/research-paired-progress.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-world-army-port.go",
+      "parent_sha256": "89061bae2d36daea3fd7a3abcd13fd458ff013786e5cbcef062732878af20ced",
+      "path": "internal/ownedworld/research-world-army-port.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-controlled-battle.go",
+      "parent_sha256": "c7fc5dcd08d161428598bcbb9f8915cb2784f673a94849a2ef1c008e153bc7e2",
+      "path": "internal/ownedworld/research-controlled-battle.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-runtime-enemy.go",
+      "parent_sha256": "bf50b2de257848c8aa958856247bc3bef7007130b06295eaaf0e95218a45d53a",
+      "path": "internal/ownedworld/research-runtime-enemy.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-refusal-rng.go",
+      "parent_sha256": "61f39c184e98bd5491869821abc741cafcb32bfebb467101f1ec18e7a7c3ba43",
+      "path": "internal/ownedworld/research-refusal-rng.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-world-army-review.go",
+      "parent_sha256": "4c5af90a74fe63a3d996096acef0e8c4ade4ed4965f93ec25a5947c7d0417338",
+      "path": "internal/ownedworld/research-world-army-review.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/world-army-review_draw.go",
+      "parent_sha256": "314ee5fa3b44ba11b16876ad750e332b54cd414478c1857fbca40a09dfc11ce5",
+      "path": "internal/ownedworld/world-army-review_draw.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/world-army-review_main.go",
+      "parent_sha256": "7e491ad9be7beba70119a7c81a91bf6960358ebd4722f2f4205edcc74395d894",
+      "path": "internal/ownedworld/world-army-review_main.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-world-army-dismiss.go",
+      "parent_sha256": "e68a813030c200264c00e7ae931a856fd43341164d121b575f641afcc1b00d57",
+      "path": "internal/ownedworld/research-world-army-dismiss.go",
+      "layer": 13
+    },
+    {
+      "parent_path": "tools/world-army-dismiss_draw.go",
+      "parent_sha256": "8b8239f5b2b48b38c389ad52615db50163ca5db73f0eae5ffa067b2cb948a564",
+      "path": "internal/ownedworld/world-army-dismiss_draw.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-army-presence.go",
+      "parent_sha256": "7dfb9adec3d64af81ba16564b9838495260dfd38473dcfaf144d2356d208af49",
+      "path": "internal/ownedworld/research-army-presence.go",
+      "layer": 15
+    },
+    {
+      "parent_path": "tools/owned-battle-ui.go",
+      "parent_sha256": "822e320da015d8c76d2693f7e1da54e0a1a02e39fa0ccdd7e024fd1ff089200c",
+      "path": "internal/ownedworld/owned-battle-ui.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/owned-battle-ui_draw.go",
+      "parent_sha256": "a15625932bcadd6240762e2c27e55e3129f439796cb515bea5e7fde99c648e51",
+      "path": "internal/ownedworld/owned-battle-ui_draw.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/owned-army-ui.go",
+      "parent_sha256": "c38c3680668e12e5e21f05559e260477058ca31a324fc240735d179390c1b801",
+      "path": "internal/ownedworld/owned-army-ui.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/owned-army-ui_draw.go",
+      "parent_sha256": "801ad3cc0f229726fbb3faa9ef7cd39d5ff992aedbefe5e1315b2c2a6c10ac5e",
+      "path": "internal/ownedworld/owned-army-ui_draw.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/normal-encounter-ui.go",
+      "parent_sha256": "63006fb9cd9fc1ec48f73c08c85205a661d823c9dc3939585e78d8be4404402e",
+      "path": "internal/ownedworld/normal-encounter-ui.go",
+      "layer": 20
+    },
+    {
+      "parent_path": "tools/refusal-rng-ui.go",
+      "parent_sha256": "1852e0033b29d3d792e9de37164a0c8f0470d59f2f70412b48fdea531d1f7311",
+      "path": "internal/ownedworld/refusal-rng-ui.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-native-checkpoint.go",
+      "parent_sha256": "e305569df95994669e2cb55b812837f2ae3182c2eb3c82777efffa3841f6d9be",
+      "path": "internal/ownedworld/research-native-checkpoint.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/native-checkpoint-port.go",
+      "parent_sha256": "477912c2567e24f17902267557c484abe160dfd7267e5e609977509fb4a31759",
+      "path": "internal/ownedworld/native-checkpoint-port.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/native-checkpoint-ui.go",
+      "parent_sha256": "25ad114afc95d4a14ef1b5449b89215ae15522ad0f690e7d806500018e722328",
+      "path": "internal/ownedworld/native-checkpoint-ui.go",
+      "layer": 24
+    },
+    {
+      "parent_path": "tools/research-battle-resume.go",
+      "parent_sha256": "2e98842c4ff050bd313d31c71576d2c402014af3251d3fe3a525b5b4e174a109",
+      "path": "internal/ownedworld/research-battle-resume.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/battle-resume-pins.go",
+      "parent_sha256": "1a136aa95c58946e2882cc1edf7484a3c586168fc864af9b05c840c646c9dbf6",
+      "path": "internal/ownedworld/battle-resume-pins.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/battle-resume-ui.go",
+      "parent_sha256": "42a0496c08a287d95236789195649f4ad04807474f60431ab03286f671187550",
+      "path": "internal/ownedworld/battle-resume-ui.go",
+      "layer": 27
+    },
+    {
+      "parent_path": "tools/recruit-icons-ui.go",
+      "parent_sha256": "537693f8fe914ee98c211666319efebf7223db93c03cebcd658df20f90de5e0b",
+      "path": "internal/ownedworld/recruit-icons-ui.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/recruit-native-main.go",
+      "parent_sha256": "53980d34ad2ff67b9723fa246e1be33da6790ed78dd7d3cd5faed0f1c96cc323",
+      "path": "internal/ownedworld/recruit-native-main.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-camp-stock.go",
+      "parent_sha256": "20c6c6d1824e5c824ff8f13a666275abc34739b5bce984999ac6c1f157820f53",
+      "path": "internal/ownedworld/research-camp-stock.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-camp-stock-save.go",
+      "parent_sha256": "dd256b0e0686a15bbd104da87be677a0eaf55a250e3cc3e8cf04cbf791680818",
+      "path": "internal/ownedworld/research-camp-stock-save.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/camp-stock-port.go",
+      "parent_sha256": "eedc9d588aed81892be48b3f3b1c87d69421030586935fb3d0e858b750cb40bf",
+      "path": "internal/ownedworld/camp-stock-port.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/openkb-hd-art.go",
+      "parent_sha256": "329633ea19521bf21061158823190be143c2dbd1b1307b9015c84e41ca399cab",
+      "path": "internal/ownedworld/openkb-hd-art.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/research-monthly.go",
+      "parent_sha256": "f6f7e4e71446aeaa149aa4a1134306494f0719015bf63e9e896b81ce8714aedb",
+      "path": "internal/ownedworld/research-monthly.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/monthly-native-save.go",
+      "parent_sha256": "fd1155c08b7d9e28a878f376bc47fa3919f56ecfa0d7372c8cfdfa2e44cbb445",
+      "path": "internal/ownedworld/monthly-native-save.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/monthly-store.go",
+      "parent_sha256": "017600ea0532c9d4603ac55f6a663f6e663d35b11ae69bf7b1c998a23cb36af7",
+      "path": "internal/ownedworld/monthly-store.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/monthly-port.go",
+      "parent_sha256": "a33b28ebcfd87a5c55bb8c2958d5adea11c0e82fe0b6587d212dcd310eb7de42",
+      "path": "internal/ownedworld/monthly-port.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/monthly-ui.go",
+      "parent_sha256": "4cc3a8755f563fedd91d9f19c69417091addeebf0c6bd46aef8adcd712032309",
+      "path": "internal/ownedworld/monthly-ui.go",
+      "layer": 38
+    },
+    {
+      "parent_path": "tools/monthly-wide-ui.go",
+      "parent_sha256": "614af7f2825e9adbcab8c52642972a7c13fbe2a1e87ce974cb86e2e529e837d5",
+      "path": "internal/ownedworld/monthly-wide-ui.go",
+      "layer": 39
+    },
+    {
+      "parent_path": "tools/treasure-data.go",
+      "parent_sha256": "08a8ac2ca9e86d7e77101a498020610b54ff5c2d9f728736ee38db0a7ace43ac",
+      "path": "internal/ownedworld/treasure-data.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/treasure-native-save.go",
+      "parent_sha256": "d475efaa1f62e51fda1e0db8a64b616ed41aad505d1370ddef4627a9f798e296",
+      "path": "internal/ownedworld/treasure-native-save.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/treasure-store.go",
+      "parent_sha256": "2c610cdfb61803c35a9004ee9685b0e62ce17f426e357a977f7c3f9ad4e5dc65",
+      "path": "internal/ownedworld/treasure-store.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/treasure-port.go",
+      "parent_sha256": "b7320dee0fd628bee7356f74b7b5bc4a1066d2c829ce0539bdc5d77b43214a2c",
+      "path": "internal/ownedworld/treasure-port.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/treasure-ui.go",
+      "parent_sha256": "181ecbc4dec6315088713a079b5634a3767ca5c3c006b5ec9ccf2141e3b1b45a",
+      "path": "internal/ownedworld/treasure-ui.go",
+      "layer": 44
+    },
+    {
+      "parent_path": "tools/alchemy-data.go",
+      "parent_sha256": "49f218b596ea52c9c4e2cd91088c087f27c84d072e74b189108d5cb4849df8f7",
+      "path": "internal/ownedworld/alchemy-data.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/alchemy-native-save.go",
+      "parent_sha256": "5a8a864722c7a18b57af8234610c680373b2cbe699570efa48af3476252d5178",
+      "path": "internal/ownedworld/alchemy-native-save.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/alchemy-store.go",
+      "parent_sha256": "ef95f42a8d928ec99afee5ce53c310d0bcb7f40c8badfa1ac0c4ea8413ce2658",
+      "path": "internal/ownedworld/alchemy-store.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/alchemy-port.go",
+      "parent_sha256": "8a5cba647d78758a6d2f55bc42107406fd22741a024dbca6b6e80465479f1804",
+      "path": "internal/ownedworld/alchemy-port.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/alchemy-ui.go",
+      "parent_sha256": "2e4f71c34ab74992a362204549053ec65f0682a21c609ee871f9e0105bb69258",
+      "path": "internal/ownedworld/alchemy-ui.go",
+      "layer": 49
+    },
+    {
+      "parent_path": "tools/summon-data.go",
+      "parent_sha256": "3e6e9d0509c4a327290e19c43d082d05b8f0c97a55e31a25a28d8779e4d9a0bd",
+      "path": "internal/ownedworld/summon-data.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/summon-native-save.go",
+      "parent_sha256": "6be241c79b3070aa022f307129fcbacf844b0eaa5604ee638e7a19c58bd0de1c",
+      "path": "internal/ownedworld/summon-native-save.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/summon-store.go",
+      "parent_sha256": "2516026099d7bdeb23d381b3200d400dfb7f7c1f461cce7fb17abf4cda0d706c",
+      "path": "internal/ownedworld/summon-store.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/summon-port.go",
+      "parent_sha256": "efcab60f18c60701717b91b17076b390fb13862384a8dc21e9d9ea966a3d92eb",
+      "path": "internal/ownedworld/summon-port.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/summon-ui.go",
+      "parent_sha256": "a08080eef199ac164be1987412ab04ebd65d2b784b15bc3042d90cec665b7ebd",
+      "path": "internal/ownedworld/summon-ui.go",
+      "layer": 54
+    },
+    {
+      "parent_path": "tools/rear-actions.go",
+      "parent_sha256": "095eb1e38c99ac21d16b3df73710080f6d761e0731c6eeeb04c22abc60dab1f4",
+      "path": "internal/ownedworld/rear-actions.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/annihilation-roam.go",
+      "parent_sha256": "bad9fd916f0fd2696e888feebe2dc715a3bc887562fab414d09a3bf15b005d46",
+      "path": "internal/ownedworld/annihilation-roam.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/origin-map.go",
+      "parent_sha256": "b507c28021a6b521f148670e4d3bd5f5c278c2573bdbd7ce4b0b6eb7f8d537a7",
+      "path": "internal/ownedworld/origin-map.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/annihilation-origin.go",
+      "parent_sha256": "5730d7bb430160160e02b42358b03fe136095be48bce87571a86aaca203d903d",
+      "path": "internal/ownedworld/annihilation-origin.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/guarded-layout.go",
+      "parent_sha256": "a70c31da5d78369d30b1c081043ad1b08ec85ba15b750bc1fface7371231c6f0",
+      "path": "internal/ownedworld/guarded-layout.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/guarded-battle.go",
+      "parent_sha256": "1bbff93b8c05cc7df440ba56c0a8046921636ee56dbd0adc0004746f472840bf",
+      "path": "internal/ownedworld/guarded-battle.go",
+      "layer": 60
+    },
+    {
+      "parent_path": "tools/guarded-store.go",
+      "parent_sha256": "21b3e8448730f86cf0163bfc938f26c941d04c27916948c445a27e6cf7ec86a1",
+      "path": "internal/ownedworld/guarded-store.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/sword-guards.go",
+      "parent_sha256": "85cd184021578ded21d47c9a2898ea9e9d02e00293e5eabc232ffd50cf0739c1",
+      "path": "internal/ownedworld/sword-guards.go",
+      "layer": 62
+    },
+    {
+      "parent_path": "tools/sword-lifecycle.go",
+      "parent_sha256": "a815d83bb2eb7d179d59cb05adc16d96314a64f6113b1754f3be8517162b692c",
+      "path": "internal/ownedworld/sword-lifecycle.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/reinforcement-camps.go",
+      "parent_sha256": "83679e478353503048fd1c73f2ab73104d622231af3e5f31bc82a2f8bd344ae4",
+      "path": "internal/ownedworld/reinforcement-camps.go",
+      "layer": null
+    },
+    {
+      "parent_path": "tools/reinforcement-ui.go",
+      "parent_sha256": "7eae07bda86a6f14481c9b2a626bf61e5a0c2cda6f4f95c019fd0315fe0ef6a6",
+      "path": "internal/ownedworld/reinforcement-ui.go",
+      "layer": 65
+    }
+  ],
+  "init_layers": [
+    13,
+    15,
+    20,
+    24,
+    27,
+    38,
+    39,
+    44,
+    49,
+    54,
+    60,
+    62,
+    65
+  ]
+}

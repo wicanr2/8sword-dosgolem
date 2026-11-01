@@ -6,11 +6,31 @@
 
 以 Go 版 dosgolem 執行原版 DOS 程式，接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI、民兵結陣與弓箭手壓制規則。兵種及招募接管目前沿 Go 開發，Rust 遷移留待後續。
 
-既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
+既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。Go軍隊已有獨立命令與原版存檔匯入，完整世界流程仍未結案。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與增援營地預覽](tools/reinforcement-camps.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)。
+Go軍隊入口可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。可由原版存檔匯入軍隊，預設播放器的附檔護欄保留。最新入口為[Go軍隊啟動器](tools/owned-player.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#go軍隊命令與原版進度匯入-ready)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
+
+## Go軍隊入口與原版存檔匯入
+
+[8sword-owned](cmd/8sword-owned/main.go)可直接從原版存檔建立自有軍隊進度。原資源、六隊兵力及九張地圖一起保留，再用Go招募、軍隊管理與戰鬥。預設原版入口仍保留；新命令使用同一套HD圖像、音樂與三字型。
+
+本機資料包第一次建立時執行 `bash tools/owned-player.sh prepare`。已有資料包可直接建置。將以下兩個絕對路徑換成自己的目錄：
+
+```bash
+bash tools/owned-player.sh build
+bash tools/owned-player.sh import /絕對路徑/原版存檔 /絕對路徑/新的Go進度
+bash tools/owned-player.sh run /絕對路徑/新的Go進度
+```
+
+目前這個入口使用Linux Docker與本機X11。匯入時原版遊戲應已關閉，新目的地必須尚未存在；來源只讀，原存檔不覆寫。資料與HD素材沿[永久保存入口](preserved/README.md#go軍隊命令與原版進度匯入保存)準備，完整原版資料不隨Git提供。
+
+以下軍隊由原版隨附存檔匯入，再於普通營地購得野狼1隻，F7後關閉重開。金500變460、領導力100保持，沒有測試贈兵或記憶體注入。
+
+![原版進度匯入後實購野狼，冷讀保留民兵與新兵](docs/images/owned-player-native-import-cold-army-r1.png)
+
+原版匯入、募兵、存退讀及舊v5戰中存檔的接續已代表抽驗；[來源與截圖](docs/images/owned-player-runtime-r1.json)分開標示本次匯入與前輪戰中樣本。新遊戲直接建立Go進度、原播放器的海報／AI工具列合併、其餘特殊分派及完整世界整合仍待完成，範圍見[命令驗收](docs/spec/030-battle-expansion-proposal.md#命令與原版匯入限定-conformed)。
 
 ## 關於這款遊戲
 

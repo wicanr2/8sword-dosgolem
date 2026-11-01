@@ -1,0 +1,4 @@
+package ownedworld
+
+const resumeCoreSHA = "cb86cc05d4f3fee1eb7e3aa3bf202d17bcb91776abdfc7df93f8b9bf25e39c02"
+const resumeCodeSHA = "b917372a05d5cfac3949c51ef7d077f334009bab854856862d0c48a77cbf93b2"

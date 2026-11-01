@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-02接上[Go軍隊命令與原版匯入](docs/spec/030-battle-expansion-proposal.md#命令與原版匯入限定-conformed)。已驗66份adapter移至internal/ownedworld，13層初始化明確保持原序，cmd/8sword-owned可直接建置；原版進度以原資源／原六隊／九圖建立v5，不再依賴預製測試軍隊。入口為[Docker啟動器](tools/owned-player.sh)、[核對](preserved/owned-player-audit-r4.json)及[永久保存](preserved/README.md#go軍隊命令與原版進度匯入保存)。原版隨附進度30民兵、500金、100領導力、戰績0直接匯入，正常募兵得野狼1，金460、庫存74、F7及冷讀保持；另讀前輪真實v5戰中樣本，該舊樣本保留其原測試起始軍隊來源。六張X11同Go提交、十項拒絕、來源偏好地圖及CLI拒絕owned=false通過。268項新命令建置來源含既有197項不改，舊七程式、923核心、535素材、1066美術與預設Engine護欄保持。新入口目前Linux Docker／X11；下一步為原播放器的海報／AI工具列合併、新遊戲直接建立Go進度及其餘特殊分派，完整世界整合待續，沒有Release。
+
 2026-11-02追加完成[實購新兵的v5戰鬥鏈](docs/spec/030-battle-expansion-proposal.md#購得新兵的-v5-戰鬥鏈限定-conformed)抽驗，沿上一輪實購野狼的F7進度與完全相同Go程式。普通走動／原確認／野狼出手／戰中冷讀／撤退／待回場冷讀／F7／新程序F2均通過，獨立74與原店3000保持，金460→368只扣一次；九張X11同Go提交。每程序戰中CPU保持，冷讀沿既有一個host重訪step限制。入口為[核對](preserved/reinforcement-battle-audit-r1.json)與[永久保存](preserved/README.md#購得新兵的v5戰鬥鏈保存)。原正式197來源七程式、923核心、535素材、1066美術及護欄不改，沒有正式提升或Release。此鏈不再重跑；其餘特殊分派與正式世界整合待續。
 
 2026-11-02已依使用者選定A接入隔離候選reinforcement-camps-r1：原店保持，另提供八種HD單位的Go增援分頁、獨立庫存及v5存讀。沿[030限定驗收](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)、[普通預覽](tools/reinforcement-camps.sh)、[核對](preserved/reinforcement-camps-audit-r2.json)與[永久保存](preserved/README.md#新增兵種增援分頁保存)。正常營地實購野狼、未F7及F7冷讀、十張X11、月補貨模型、v4升v5、journal恢復及舊版拒讀通過；原店3000、獨立75→74、金500→460。起始30原版民兵為fixture，沒有預贈新兵，不稱自然高階取得或整體平衡。正式197來源七程式、923核心、535素材、1066美術及DOS前護欄保持。依同機制代表抽驗，不重跑八種GUI或已完成HD；後續取其餘特殊分派或正式世界整合的最小垂直鏈。
