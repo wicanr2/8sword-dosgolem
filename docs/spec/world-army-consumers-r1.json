@@ -62,7 +62,26 @@
           "ida_mz_linear": "0x11796",
           "runtime": "0110:1796",
           "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
-        }
+        },
+        "current_scope": "Random encounter roam and origin return are integrated in the isolated Go candidate; formal Engine remains guarded.",
+        "followups": [
+          {
+            "scope": "Origin map1 decoding/landmarks, map normalization and result3 cold return; controlled source and GUI sampling only.",
+            "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed",
+            "evidence_receipt": "preserved/annihilation-origin-audit-r1.json",
+            "original_receipt": "preserved/annihilation-origin-original-audit-r3.json",
+            "rng_limit": "Only the map-transition branch preserves RNG; original wrapper has three pre-branch calls.",
+            "identity": {
+              "platform": "DOS",
+              "module": "PAM.AY",
+              "ida_mz_linear": "0x11796",
+              "runtime": "0110:1796",
+              "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+            },
+            "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+            "required_correction": "ORIGIN-RETURN-GO-20261101"
+          }
+        ]
       }
     },
     {
@@ -225,5 +244,116 @@
     "Static direct/operand candidates do not prove exhaustive indirect reads.",
     "Go prototype intercepts caller 0110:556A/55C2/55CD and commit 0110:56EC, not all listed consumers.",
     "Role hints below proven retain their confidence and cannot authorize production."
-  ]
+  ],
+  "origin_map_evidence": {
+    "scope": "Fixed PAM and map1 source controls; auxiliary annotations preserve original names and operands.",
+    "functions": [
+      {
+        "original_name": "sub_1041E",
+        "ida_mz_linear": "0x1041e",
+        "semantic_note": "地圖寫回前呼叫的服務；本輪不推定內部用途。",
+        "level": "unknown",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的-ready-契約",
+        "evidence_receipt": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "ida_mz_linear": "0x145fa",
+        "semantic_note": "固定map1的72×80掃描建立九類marker座標，不推定陣列容量。",
+        "level": "proven",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的-ready-契約",
+        "evidence_receipt": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_251DE",
+        "ida_mz_linear": "0x251de",
+        "semantic_note": "固定map1的byte-leaf二元樹與低位元優先決策。",
+        "level": "proven",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的-ready-契約",
+        "evidence_receipt": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_252E4",
+        "ida_mz_linear": "0x252e4",
+        "semantic_note": "固定map1的輸出長度、root與字典／bitstream入口。",
+        "level": "proven",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的-ready-契約",
+        "evidence_receipt": "preserved/annihilation-origin-original-audit-r3.json"
+      }
+    ],
+    "operands": [
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-7344h]",
+        "ds_displacement": "0x8cbc",
+        "semantic_note": "marker 99 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-7294h]",
+        "ds_displacement": "0x8d6c",
+        "semantic_note": "marker 101 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-7238h]",
+        "ds_displacement": "0x8dc8",
+        "semantic_note": "marker 102 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-7220h]",
+        "ds_displacement": "0x8de0",
+        "semantic_note": "marker 103 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-7208h]",
+        "ds_displacement": "0x8df8",
+        "semantic_note": "marker 104 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-71ECh]",
+        "ds_displacement": "0x8e14",
+        "semantic_note": "marker 105 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-71D4h]",
+        "ds_displacement": "0x8e2c",
+        "semantic_note": "marker 106 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-73A0h]",
+        "ds_displacement": "0x8c60",
+        "semantic_note": "marker 107 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      },
+      {
+        "original_name": "sub_145FA",
+        "original_operand": "[si-73D0h]",
+        "ds_displacement": "0x8c30",
+        "semantic_note": "marker 113 的X，下一個word為Y；固定map1已抽驗。",
+        "level": "proven",
+        "evidence": "preserved/annihilation-origin-original-audit-r3.json"
+      }
+    ]
+  }
 }

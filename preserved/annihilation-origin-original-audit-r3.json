@@ -1,0 +1,53 @@
+{
+  "status": "passed-original-origin-map-evidence",
+  "ida_lines": 307,
+  "original_cases": [
+    {
+      "region": 0,
+      "current": "map01.ay",
+      "go_words": 95,
+      "terrain_sha256": "e75fe9e9e37dcbc1bc3b18fe92f2beb0c44fc935ee73f2ba5d415b6e3c925797",
+      "saved_map_sha256": "2ccffe1896e748c7999a0d63e61e1d1bbe235fa8cd4d0c71077dc0d0aa75f516",
+      "loaded_map_sha256": "2ccffe1896e748c7999a0d63e61e1d1bbe235fa8cd4d0c71077dc0d0aa75f516",
+      "landmark_counts": {
+        "99": 18,
+        "101": 2,
+        "102": 2,
+        "103": 1,
+        "104": 2,
+        "105": 1,
+        "106": 2,
+        "107": 10,
+        "113": 7
+      }
+    },
+    {
+      "region": 1,
+      "current": "map02.ay",
+      "go_words": 95,
+      "terrain_sha256": "e75fe9e9e37dcbc1bc3b18fe92f2beb0c44fc935ee73f2ba5d415b6e3c925797",
+      "saved_map_sha256": "627c23e0b5918d3cf9607660065f51954c09daa03ebe016663f0dc314d197a03",
+      "loaded_map_sha256": "b50371c7ad356d2565bd7507b9d05854aa48c703b7c0930850e96be2471810af",
+      "landmark_counts": {
+        "99": 18,
+        "101": 2,
+        "102": 2,
+        "103": 1,
+        "104": 2,
+        "105": 1,
+        "106": 2,
+        "107": 10,
+        "113": 7
+      }
+    }
+  ],
+  "map_transition_rng_unchanged": true,
+  "original_pre_map_rand_calls": 3,
+  "original_pre_map_rand_callers": [
+    "0110:6494",
+    "0110:71B3"
+  ],
+  "full_wrapper_rng_parity": false,
+  "controlled_initial_state": true,
+  "player_path": false
+}

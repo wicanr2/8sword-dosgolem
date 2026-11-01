@@ -2803,3 +2803,18 @@ GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改
 三字型原434字共1302格保持，只新增剋、打、擊、比四字共12格；字型來源及fallback沿永久音畫資料，沒有新增圖片或字型授權。原33種圖像載入無故障。獨立Python從原字圖與前後world重算，不使用Go畫面做唯一預期。結果見[限定核對](preserved/rear-actions-audit-r3.json)、[030](docs/spec/030-battle-expansion-proposal.md#後排特殊出手的限定conformed)及[永久保存](preserved/README.md#後排特殊出手保存)。
 
 查軍隊索引時亦發現sub_16BEA仍列unknown。沿前輪召兵三案與原0x16BEA／0110:6BEA／來源SHA，回填proven及resolution backlink；舊unknown等級、IDA匯出及歷史證據保持。本輪核對器驗勘誤標記，不重開已完成召兵研究。其他特殊分派、全滅、守軍及正式世界交接不由本批外推。
+
+
+## 全滅回起點的地圖資料與亂數計數勘誤
+
+2026-11-01。輸入為固定 PAM.AY，SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`；MAP1.AY SHA-256 `7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a`。原控制起始 state SHA-256 `e618d4343697fa00a50ab4b6021b169f6a5e21e4eaf86100c1fac9cd7a98777b`，兩案皆先恢復這一份，不改 seed、不重投。原始資料、三輪控制、Go 計畫、RAM、VM 與來源快照沿[永久保存](preserved/README.md#全軍覆沒傳回起點保存)。
+
+- 工具為既有 IDA Pro9.4 的 py312-v1 容器、Go1.24.13／923核心與獨立 Pillow11.3.0／Python。正式 DB 唯讀，使用暫存副本；IDA 函式數 521，UID1000，無網路。新增匯出 307 行，MZ 重定位後逐筆比對原檔。
+- 已證實：`sub_252E4` 讀輸出長度／root，`sub_251DE` 依低位元優先走雙 child word 的樹。固定 MAP1 的 root301，46個節點，bitstream從188 bytes開始，輸出5761 bytes。沒有把程式指令放進 Go 解譯器。
+- 已證實：`sub_145FA` 在72×80格中找99、101–107、113，依各自計數寫原 DS 座標表。固定 MAP1 共45個地標，90個座標word，加五個回場word共95筆。陣列容量沒有因此推定，原 operands 及座標表尾部保持。
+- 已證實：`sub_11796` 的 IDA11975分支，對應執行0110:1975，載入起點地形後將當前地圖100→50寫回，再讀map01，設X/Y為DS03BE/03C0的40／40，DS56D6／56CE為0、56C4為3。原同區及map02跨區兩案的完整地形、完整讀寫地圖與95筆word，均與Go計畫相同；額外控制最後一byte為100，證明正規化長度為5761。
+- 位址空間分開：IDA1041E、145FA對應執行0110:041E、0110:45FA；IDA251DE、252E4對應執行162D:000E、162D:0114。資料運算元維持原DS-relative寫法，不以自訂名稱取代定位。[索引](docs/spec/world-army-consumers-r1.json)另附推論等級與來源，匯出自動合併；`sub_1041E` 內部用途仍unknown，不阻塞已驗Go地圖交接。
+
+追加勘誤：舊敗退探針只在扣金用的0110:1930計數，原收據的零次不能代表整個wrapper沒有rand。新探針直接觀測_rand，兩案在地圖分支前各有三次，caller為0110:6494與0110:71B3；1975之後為零，分支seed保持。原版進入分支前還會更新可見格；首個跨區setup位置35／35的九格因此改變。r1／r2失敗核對保留，r3於真正的分支入口捕獲輸入，沒有改原版結果或調整種子。Go延續既有自有戰鬥視窗的種子契約，不補跑原版選單等待，也不宣稱整段wrapper的RNG parity。原圖形、音樂、所有已驗來源與原始收據沒有因此覆寫。
+
+範圍沿[READY與限定驗收](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。來源控制為明示空軍隊、位置與最後地圖byte；GUI另以已知入口與Go軍隊fixture驗證回場、冷讀及F7，兩層證據不混稱自然全滅或完整VM同狀態。守軍與其餘玩家路徑仍待後續窄任務。

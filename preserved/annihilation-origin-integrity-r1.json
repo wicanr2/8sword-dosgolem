@@ -1,0 +1,21 @@
+{
+  "status": "passed-annihilation-origin-integrity",
+  "archived_files_checked": 699,
+  "objects": 495,
+  "compressed_bytes": 40604664,
+  "root_tools_checked": 9,
+  "links_checked": 41,
+  "positive_link_control": true,
+  "published_images_rebuilt": 2,
+  "owner_uid_gid": 1000,
+  "no_root_owned_or_markdown_directories": true,
+  "detached_archive_verified": true,
+  "formal_audit_identical": true,
+  "backlink_identity_and_correction_guard": "passed by final runtime auditor",
+  "go_format_and_shell_syntax": "separate Docker check passed",
+  "python_syntax": true,
+  "removed_cache_files": 1716,
+  "removed_cache_bytes": 144645118,
+  "removed_python_cache_bytes": 0,
+  "cleanup_scope": "Only this candidate build-cache and newly generated helper pyc; full sources, VM, RAM and PNG kept."
+}

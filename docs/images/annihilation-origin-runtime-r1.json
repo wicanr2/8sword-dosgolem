@@ -1,0 +1,19 @@
+{
+  "images": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/annihilation-origin-r1/gui-r1/warm/frame-001-battle-noto.png",
+      "source_sha256": "5337d52e354fdd797eb95c14fac9d132d6a5c0e1fa6143d5c44a1c52c1210985",
+      "published": "annihilation-origin-loss-r1.png",
+      "published_sha256": "6469e5eba579ab878531effada2adb30712e6346218bafa82ce14b40f2a6b761"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/annihilation-origin-r1/gui-r1/cold-loss/frame-002-map-noto.png",
+      "source_sha256": "3dd94e81b9b294a5497101d5be5293787ac3b6eddb4ca58c410e7143861a56ee",
+      "published": "annihilation-origin-returned-r1.png",
+      "published_sha256": "d8df96883a70a893ffb90cd40b7fede226c894ee0aa2b448cad3bcc64ce5826b"
+    }
+  ],
+  "controlled_initial_army_and_native_entry_and_enemy": true,
+  "normal_ui_clicks": true,
+  "production_promoted": false
+}

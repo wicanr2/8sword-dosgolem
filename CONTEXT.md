@@ -2,7 +2,11 @@
 
 核對日期：2026-11-01。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
 
-最新切片為[全軍覆沒後浪跡江湖](docs/spec/030-battle-expansion-proposal.md#全軍覆沒浪跡江湖的限定conformed)。隔離 Go 候選在實際兵力核心算出 loss 後提供明確選擇，清空 Go 軍隊並返回原地，金錢、戰績、RNG 與原軍隊影子保持。既有 v3／v4 native_resume 新增 result 2 表示待回場浪跡，沒有新增欄位；舊 reader 會拒絕該結果值。[核對](preserved/annihilation-roam-audit-r2.json)、[完整保存](preserved/README.md#全軍覆沒浪跡江湖保存)、[實際畫面](docs/images/annihilation-roam-loss-r1.png)及[最新入口](tools/annihilation-roam.sh)為入口。
+最新切片為[全軍覆沒傳回起點](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。隔離 Go 候選已提供「傳送回起點／冒險浪跡江湖」兩鈕。Go 以二元樹解開固定地形，建立九類地標座標，回寫正規化地圖，再更新位置；這段沒有執行原版地圖載入或像素指令。既有 v3／v4 native_resume 的 result 3 表示待回起點，舊 reader 拒絕新值。[核對](preserved/annihilation-origin-audit-r1.json)、[永久保存](preserved/README.md#全軍覆沒傳回起點保存)、[實際選鈕](docs/images/annihilation-origin-loss-r1.png)及[最新入口](tools/annihilation-origin.sh)為入口。
+
+兩個來源控制涵蓋同區與 map02→map01，完整地形、地圖與 95 筆寫入相同，307 行 IDA bytes 經獨立核對。GUI 的 5 隻野狼實際全滅，普通 binary 冷讀後選起點，位置 41／40→40／40；未 F7 關閉後可重建同一筆回場，再 F7、另一程序 F2 空軍隊通過。金 500、戰績 1990、原影子 24 bytes 保持；一次 intent-durable 恢復、來源破損與重複拒絕、七張 X11 同 Go 提交通過。軍隊、原入口及敵軍為明示 fixture，不稱自然全滅；GUI 實際為 v1→v3→v2，449 字與素材全數保持。原版整段選單在地圖分支前另有三次 rand，本輪只證實交接分支 seed 保持，不宣稱整段亂數對拍。正式 197 來源七程式、923 核心、535 素材、1066 美術及 DOS 前護欄維持。代表抽驗停止；守軍、其餘特殊分派、自然新增兵種營地與正式整合仍待續。
+
+前輪切片為[全軍覆沒後浪跡江湖](docs/spec/030-battle-expansion-proposal.md#全軍覆沒浪跡江湖的限定conformed)。隔離 Go 候選在實際兵力核心算出 loss 後提供明確選擇，清空 Go 軍隊並返回原地，金錢、戰績、RNG 與原軍隊影子保持。既有 v3／v4 native_resume 新增 result 2 表示待回場浪跡，沒有新增欄位；舊 reader 會拒絕該結果值。[核對](preserved/annihilation-roam-audit-r2.json)、[完整保存](preserved/README.md#全軍覆沒浪跡江湖保存)、[實際畫面](docs/images/annihilation-roam-loss-r1.png)及[最新入口](tools/annihilation-roam.sh)為入口。
 
 5 隻野狼遭猴妖攻擊全滅，關閉後普通 binary 冷讀 loss、選浪跡、回場，再關閉冷讀待回場進度、F7 保存及另一程序 F2 空軍隊均通過。原位置 map01.ay 的 41／40、金 500 與戰績 1990 保持，結算 revision 1→2，F7 另加一。一次 intent-durable 中斷恢復及重複提交拒絕通過，七張 X11 與 Go 提交 RGBA 同 SHA。模板軍隊、原入口與敵軍明示受控，不稱自然全滅。438 舊字／1314 格保持，三字型只補 11 字。正式 197 來源七程式、923 核心、r69 全 535 素材、1066 美術及 DOS 前附檔護欄保持。傳回起點的地圖交接、其餘特殊分派、守軍與正式整合仍待續；代表抽驗到此停止。
 

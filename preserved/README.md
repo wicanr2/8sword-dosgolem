@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## 全軍覆沒傳回起點保存
+
+隔離 Go 候選已接全滅後「傳送回起點」，並保留浪跡選擇。Go 解碼固定 map1 地形、建立地標、回寫當前地圖，再回到 40／40；軍隊仍由 Go 字串 ID 管理，原影子 24 bytes 保持。正常回場仍沿既有 Go HD 重畫，正式 Engine 的 DOS 前附檔護欄保持。
+
+入口為[READY 與限定 CONFORMED](../docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)、[地圖計畫](../tools/origin-map.go)、[停點與交易](../tools/annihilation-origin.go)、[中斷抽驗](../tools/annihilation-origin_test.go)、[GUI 抽驗](../tools/check-annihilation-origin-ui.py)與[預覽](../tools/annihilation-origin.sh)。來源工具為[原版探針](../tools/probe-annihilation-origin.go)及[IDA 窄查](../tools/export-annihilation-origin-ida.py)；[獨立核對器](../tools/check-annihilation-origin.py)驗證完整地形、地圖、原始位址與視窗結果。原位置與 operand 註記收在[軍隊索引](../docs/spec/world-army-consumers-r1.json)的 origin_map_evidence，未知項目保留等級與警示。
+
+兩個來源案、307 行 IDA bytes、95 筆狀態／座標寫入通過。[來源核對](annihilation-origin-original-audit-r3.json)保留第一份通過的資料結論，最終[限定核對](annihilation-origin-audit-r1.json)另驗自動合併索引的匯出、輸入防護、一次 intent-durable 恢復、重複拒絕與七張完整 X11。普通 binary 冷讀 loss、回起點、冷讀待回場、F7 與另一程序 F2 空軍隊通過。金 500、戰績 1990 保持，位置 41／40→40／40；449 字與既有 UI 素材逐 SHA 保持。初始軍隊、原入口與敵軍為明示 fixture，不稱自然全滅；跨區由來源控制抽驗，GUI 代表仍在起點區域。
+
+完整來源、普通／fixture binary、三輪原版控制、VM／RAM、九圖、原進度、全尺寸 PNG／X11、IDA 匯出與索引快照保存在本機 `preserved/annihilation-origin-r1/`，排除 Git。[清單](annihilation-origin-r1.json)、[脫離 workplace 核對](annihilation-origin-verification-r1.json)與[清理收尾](annihilation-origin-integrity-r1.json)記錄本批。README 的[選鈕](../docs/images/annihilation-origin-loss-r1.png)、[回場](../docs/images/annihilation-origin-returned-r1.png)與[來源](../docs/images/annihilation-origin-runtime-r1.json)對回完整原 PNG。
+
+原始研究首版比較整段 wrapper，發現分支前的三次 rand 與可見格更新。r3 改以真正地圖交接入口為比較點；沒有改 seed、重投或挑案例。Go 延續自有戰鬥視窗的 seed 契約，不能稱原版整段亂數一致。初稿、失敗核對、兩版探針來源／binary 與全部原收據保持。保存沿 v3／v4 原欄位的 result 3，F7 清除錨點；本輪 GUI 實際為 v1→v3→v2，沒有新增 v4 GUI 驗收。
+
+[準備／保存器](../tools/prepare-annihilation-origin.py)沿固定 Pillow 11.3.0 r2 容器使用 `prepare|freeze --project <專案>`，發圖用 `publish --project <唯讀專案> --images <可寫圖目錄>`；保存用 `archive --project <唯讀專案> --archive <可寫preserved> --out <新清單JSON>`，獨立核對用 `verify --archive <唯讀preserved> --out <新JSON>`，不需要原 workplace。Go 1.24.13 的建置與測試命令收在候選 `annihilation-origin-execution-r1.json`，模型設 `EIGHTSWORD_ORIGIN_WORK=<候選>`，中斷冷讀另設 `EIGHTSWORD_ORIGIN_COLD=1`。原版同時唯讀掛 `/game` 及錨點歷史 Root `/project/workplace/intake-20261023/sources/game/8sword`，核心掛 `/core`；完整配額、映像與命令見保存的 execution-provenance-r1.json。Xvfb 與 IDA 皆有逾時、UID1000、無網路及程序清理。
+
 ## 全軍覆沒浪跡江湖保存
 
 隔離 Go 候選已接實際全滅後的「冒險浪跡江湖」。空軍隊、隨機遭遇清除與待回場選擇一併保存，重開不重複結算；返回原地後仍可正常 F7、冷讀與 F2。傳回起點包含地圖交接，仍待接入。正式 Engine 的附檔護欄保持。

@@ -8,7 +8,7 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與全滅回場預覽](tools/annihilation-roam.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#全軍覆沒浪跡江湖的限定conformed)。
+隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與全滅回場預覽](tools/annihilation-origin.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
@@ -62,11 +62,11 @@
 
 ## 全軍覆沒後繼續冒險
 
-隔離 Go 候選在全軍覆沒後可選「冒險浪跡江湖」，以空軍隊返回原位置，保留金錢與戰績。全滅畫面、待回場選擇與 F7 進度都能在關閉後讀回。
+隔離 Go 候選在全軍覆沒後可選「傳送回起點」，或「冒險浪跡江湖」留在原地。Go 會更新地圖與位置，保留金錢與戰績；全滅畫面、待回場選擇與 F7 進度都能在關閉後讀回。
 
-![全軍覆沒後選擇冒險浪跡江湖](docs/images/annihilation-roam-loss-r1.png)
+![全軍覆沒後可選回起點或浪跡江湖](docs/images/annihilation-origin-loss-r1.png)
 
-畫面使用明示的野狼軍隊、敵軍與入口配置，再以普通滑鼠操作及普通程式冷讀。可看[返回地圖](docs/images/annihilation-roam-returned-r1.png)、[預覽入口](tools/annihilation-roam.sh)、[畫面來源](docs/images/annihilation-roam-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#全軍覆沒浪跡江湖的限定conformed)。傳回起點與正式世界整合仍待接入。
+畫面使用明示的野狼軍隊、敵軍與入口配置，再以普通滑鼠操作及普通程式冷讀。可看[回到起點](docs/images/annihilation-origin-returned-r1.png)、[預覽入口](tools/annihilation-origin.sh)、[畫面來源](docs/images/annihilation-origin-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。守軍戰鬥與正式世界整合仍待接入。
 
 ## 後排特殊部隊出手
 
