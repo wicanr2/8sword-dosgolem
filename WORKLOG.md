@@ -2722,3 +2722,5 @@ README補實購單位進場圖，[030追加驗收](docs/spec/030-battle-expansio
 README提供建置／匯入／執行入口與無fixture匯入後的冷讀軍隊圖。[030驗收](docs/spec/030-battle-expansion-proposal.md#命令與原版匯入限定-conformed)、[最終核對](preserved/owned-player-audit-r4.json)與[永久保存](preserved/README.md#go軍隊命令與原版進度匯入保存)為入口。現有197項來源、舊七程式、923核心、535素材與1066美術保持，新增命令採268項來源；目前限定Linux Docker／X11，未發布Release。新遊戲直接建立Go進度、其餘特殊分派與完整世界整合仍待完成；已驗招募、戰鬥及HD矩陣不重跑。保存與Git收尾以下列追加為準。
 
 本批永久保存515檔／370物件，壓縮18753725 bytes，另記一筆不跟隨的診斷symlink；未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/owned-player-integrity-r1.json)另驗515工作複本、45條新增連結及README正對照、Python／Bash語法與新來源UID/GID1000，root-owned／異常目錄檢查通過。只清本輪1919份Go快取、141882398邏輯bytes及兩份已知Python快取，完整程式、輸入、VM與原PNG保持。候選Docker容器篩選為空，沒有新映像或全域清理。Git提交與推送以下列追加為準。
+
+主提交93fa2ef55c3a3b00b13a4c41918d4899298085af已推送私人origin/main，git ls-remote回讀同SHA。工作樹乾淨、暫存空白檢查通過，候選Docker容器篩選為空。本行另作文件收尾提交，不改已驗程式、保存或抽驗範圍。
