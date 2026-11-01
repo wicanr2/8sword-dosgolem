@@ -2605,3 +2605,5 @@ r2抽驗及獨立核對全數通過。普通GUI這次rand32064，召20矮人；�
 - 代表抽驗已足夠；其他特殊分派、全滅選擇、守軍及正式世界整合待續。完整來源、fixture、收據與畫面沿[永久入口](preserved/README.md#後排特殊出手保存)保存，沒有新Release或公開原版資料。
 
 保存及清理：本批475檔／430物件、壓縮25632240 bytes，未掛workplace逐SHA／長度核對通過。7份工具與全部工作副本一致，兩張README縮圖重建相同，Python／shell語法與Go格式通過。只刪本批1700份Go快取、143719614 bytes，另刪一份28143-byte Python快取；完整來源、VM及畫面保持。Git及Docker收尾以下列追加為準。
+
+主提交9fb8250ec34c53237dc9c9ed353143cc2ac6a392已推送私人origin/main，git ls-remote回讀同SHA。53條本輪連結／索引、README正對照、14份新工具／證據擁有權與暫存空白檢查通過；召兵resolution backlink另已核對。docker ps -a的8sword篩選為空，沒有殘留本案容器。本行另作文件收尾提交，不改已驗候選與保存批次。
