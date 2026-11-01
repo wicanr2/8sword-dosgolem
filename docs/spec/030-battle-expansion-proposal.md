@@ -26,7 +26,29 @@
 
 重建沿`prepare-reinforcement-camps.py prepare --project /project`及`freeze --project /project`，在固定Pillow容器掛專案與明確候選輸出。候選`execution-r1.json`列出完整`ui_build`與`ui_test`；在Go1.24.13容器將候選掛`/out`、923核心唯讀掛`/core`、既有模組唯讀掛`/gomodcache`，工作目錄`/out/go-src`，設定`GOMODCACHE=/gomodcache`、`GOCACHE=/out/build-cache`、`GOMAXPROCS=2`。模型另設`EIGHTSWORD_REINFORCEMENT_WORK`指向有`inputs/`的新輸出目錄，測試命令包在`xvfb-run -a`。GUI用既有`xcheck`，沿[有界執行器](../../tools/check-reinforcement-camps.py)，全程限Docker、UID1000、network none、配額與外層逾時，來源唯讀。原版state路徑的歷史alias沿父版啟動器掛載。
 
-### 提案歷史
+### 購得新兵的 v5 戰鬥鏈抽驗計畫
+
+2026-11-02追加，沿既有A與戰鬥READY，不新增玩法、兵種數值或格式。下一個尚未抽驗的垂直鏈是實購野狼的v5營地進度進入既有Go戰鬥，戰中關閉／冷讀，再撤退回場並F7。以已保存`reinforcement-camps-r1/session-gui-r2`為固定起始，30民兵與1野狼、金460及獨立野狼74保持來源紀錄，不重贈新兵或注入敵軍。
+
+- 使用父版相同binary、923核心與r69素材，以正常走動及原確認進場，敵軍由原版產生。走動上限128步，不重投種子或改RNG；自然遭遇路徑不當作固定seed原版對拍。
+- 抽一筆野狼普通出手，核對Go既有數值、行動旗標與敵軍減員；戰中關閉後普通程式冷讀，v5、完整world及獨立offer應保持。
+- 以既有撤退鈕結算；待回場存檔再冷讀與F7，確認不重扣、原店及獨立庫存不被戰鬥封套移除。原24-byte軍隊影子不得寫入新增ID。
+- 視窗擷取核對Go提交、每程序戰中CPU暫停；跨程序步數沿既有一個host callback重訪限制。資料、完整PNG、VM與失敗日誌先永久保存；正式Engine及原版模式不提升。
+
+入口為[準備與保存](../../tools/prepare-reinforcement-battle.py)、[有界視窗抽驗](../../tools/check-reinforcement-battle.py)及[獨立核對](../../tools/audit-reinforcement-battle.py)。沿既有`battle-r1/reinforcement-battle-r1`。若碰到新兵與v5整合缺口，先定位並補本契約，再修候選；不重跑已完成八兵種圖像或各規則矩陣。完成聲明以追加結果為準。
+
+### 購得新兵的 v5 戰鬥鏈限定 CONFORMED
+
+2026-11-02，追加抽驗完成。[獨立核對](../../preserved/reinforcement-battle-audit-r1.json)、[截圖來源](../images/reinforcement-battle-runtime-r1.json)及[永久保存](../../preserved/README.md#購得新兵的v5戰鬥鏈保存)為入口。先前A驗收的「未新驗v5戰鬥」保留當時範圍，本節補足一條實際玩家鏈，沒有新增執行期程式或改變原規則。
+
+- 起始直接取上一輪實購結果的F7進度，30民兵、1野狼、金460與獨立庫存74。Go binary SHA `b70cdd0a53864cab611b63a66d2bfd7c71c2149b0906f6904f82b4b572ee226d`、所有父版來源與素材保持。12次正常移動後原版確認進場，敵軍從24原始bytes解出，沒有RAM、IP或seed注入。
+- 野狼普通出手依既有公式傷害0、減員0，行動旗標變true；完整world由Python獨立重建。普通程式戰中冷讀同world／token，獨立庫存保持。原軍隊影子保持，原版戰鬥路徑計數為0。
+- 撤退前seed369818040，下一值2508362139、rand5506，扣`460/(5506/2730+3)=92`金，餘368。待回場冷讀不重扣，F7及另一程序F2保留30民兵與1野狼，原店／獨立庫存不變；v5依序含battle／return參照，F7清參照仍保留v5。
+- 九張1920×1200 X11與Go提交逐RGB一致。暖程序戰中步數16912871、週期18343292保持；冷讀步數16912872、週期同值，沿既有host callback重訪一個step限制，不稱跨程序完整state相同。
+
+本輪是沿既有固定起始軍隊與已實購新兵的正常遇敵抽樣，不稱自然新遊戲、自然高階兵取得、原版完整戰鬥parity或全遊戲平衡。正式197來源七程式、923核心、r69全535素材、1066美術及DOS前附檔護欄保持。此鏈代表抽驗停止，後續為正式世界整合與其餘特殊分派，不能從本節外推其完成。
+
+### 較早提案資料
 
 以下為選定A之前的提案歷史。
 

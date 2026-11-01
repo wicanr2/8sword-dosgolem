@@ -1,0 +1,11 @@
+{
+  "status": "passed-reinforcement-battle-integrity",
+  "verified_workplace_files": 602,
+  "objects": 497,
+  "compressed_bytes": 27786383,
+  "new_markdown_links": 28,
+  "link_positive_control": true,
+  "ownership": "UID/GID 1000",
+  "root_owned_or_markdown_dirs": [],
+  "python_syntax": true
+}

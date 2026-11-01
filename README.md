@@ -54,6 +54,10 @@
 
 ![F7冷讀後，軍隊頁保留原版民兵與新增野狼](docs/images/reinforcement-camps-f7-cold-army-r1.png)
 
+這隻實購野狼也已經正常遇敵進入Go戰鬥，出手旗標可在戰中重開後讀回；撤退及F7冷讀保持軍隊與獨立庫存。起始民兵仍為測試配置，驗證範圍見[v5戰鬥鏈抽驗](docs/spec/030-battle-expansion-proposal.md#購得新兵的-v5-戰鬥鏈限定-conformed)與[畫面來源](docs/images/reinforcement-battle-runtime-r1.json)。
+
+![實購野狼與原版民兵，正常遇敵進入Go戰鬥](docs/images/reinforcement-battle-purchased-wolf-battle-r1.png)
+
 這是隔離Go候選，起始30民兵為明示測試配置，新增野狼由實際營地購買。八種單位價格、等級及獨立補貨仍屬試作平衡；正式播放器保留附檔護欄。可看[預覽入口](tools/reinforcement-camps.sh)、[畫面來源](docs/images/reinforcement-camps-runtime-r1.json)、[接入與抽驗](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)及[永久保存](preserved/README.md#新增兵種增援分頁保存)。較早的[A／B互動比較](docs/images/openkb-camp-proposal-r1.html)保留設計紀錄，現行採A。
 
 ## 頭目名劍與HD結局

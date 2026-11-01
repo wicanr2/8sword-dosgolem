@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## 購得新兵的v5戰鬥鏈保存
+
+本批602檔／497去重物件，壓縮27786383 bytes。[收尾核對](reinforcement-battle-integrity-r1.json)另驗工作複本、文件連結與擁有權。
+
+沿上一輪實購野狼的F7進度，以相同Go程式抽驗正常遇敵、野狼出手、戰中冷讀、撤退、待回場冷讀與F7。軍隊及原店／獨立庫存保持，撤退金460→368只扣一次。原正式Engine、素材與玩法程式不改，不稱原版完整戰鬥對拍或自然新遊戲。
+
+入口為[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#購得新兵的-v5-戰鬥鏈限定-conformed)、[準備與保存器](../tools/prepare-reinforcement-battle.py)、[視窗抽驗](../tools/check-reinforcement-battle.py)、[獨立核對器](../tools/audit-reinforcement-battle.py)、[核對](reinforcement-battle-audit-r1.json)與[畫面來源](../docs/images/reinforcement-battle-runtime-r1.json)。[逐檔清單](reinforcement-battle-r1.json)保存相同binary、全部父版來源、固定輸入、初始／戰中／回場／F7存檔、原版VM、九圖、完整PNG與X11；物件在本機`preserved/reinforcement-battle-r1/`，原始資料與完整美術不加入Git。
+
+在固定Pillow11.3.0容器，將專案唯讀掛`/project`、明確輸出掛`/archive`，執行`prepare-reinforcement-battle.py archive --project /project --archive /archive --out /archive/reinforcement-battle-r1.json`。只驗保存則用`verify --archive /archive --out /out/新核對.json`，不掛workplace，[結果](reinforcement-battle-verification-r1.json)記錄逐SHA及大小。來源重建用`prepare --project /project`從已保存父版還原，拒絕覆寫既有研究目錄；只更新抽驗工具用`freeze`，不改runtime。UID1000、network none、配額、外層逾時與既有Go／Xvfb工具鏈保持。
+
 ## 頭目名劍與結局守軍保存
 
 隔離Go候選已接頭目名劍旗標、F1八劍數量及結局守軍戰果，冷讀可接既有HD結局至正常退出。[030 READY／限定CONFORMED](../docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)、[核對](sword-guards-audit-r1.json)、[旗標及交接](../tools/sword-guards.go)、[掛點生命週期](../tools/sword-lifecycle.go)、[抽驗](../tools/sword-guards_test.go)、[GUI](../tools/check-sword-guards-ui.py)與[普通預覽](../tools/sword-guards.sh)為入口。正式197來源七程式、923核心、535素材、1066美術與DOS前護欄保持。

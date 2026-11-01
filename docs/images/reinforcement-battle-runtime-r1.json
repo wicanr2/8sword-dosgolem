@@ -1,0 +1,27 @@
+{
+  "images": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/reinforcement-battle-r1/gui-r1/warm/frame-003-battle-lishu.png",
+      "source_sha256": "929fc584b10e54fd6ca2c09d00b8b4862a358da026f4f26a9f8b3e717a8e55d2",
+      "published": "reinforcement-battle-purchased-wolf-battle-r1.png",
+      "published_sha256": "c7bfc1360a78483a9b7b776ac39dd12a3581582cb450fcc4db22b99875790754"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/reinforcement-battle-r1/gui-r1/cold-battle/frame-001-battle-lishu.png",
+      "source_sha256": "d10e802313102c6680711099a4e1715b19ebf92fcb4bc24a212e99ecc09c1ff2",
+      "published": "reinforcement-battle-cold-wolf-action-r1.png",
+      "published_sha256": "fcc69a30982ca2cb420674be7ea0a469a24377f8c65270f111e70cd7080cd7d6"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/reinforcement-battle-r1/gui-r1/cold-f7/frame-001-army-lishu.png",
+      "source_sha256": "f018fe8800b91177c316d8a0a2efd5371780b7a098a264afe98b1baa600c2b6f",
+      "published": "reinforcement-battle-cold-recruited-army-r1.png",
+      "published_sha256": "72c29bfdaa92e381f5ac3a045b9b0aa5b5f345e843d3b7fe25862b74123b7dd8"
+    }
+  ],
+  "pregranted_openkb_units": false,
+  "memory_injected": false,
+  "fixed_initial_native_army": true,
+  "natural_encounter": true,
+  "original_parity": false
+}

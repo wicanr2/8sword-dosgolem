@@ -2692,3 +2692,16 @@ r2抽驗及獨立核對全數通過。普通GUI這次rand32064，召20矮人；�
 本批永久保存增援711檔／521物件、壓縮36268844 bytes，提案23檔／20物件、壓縮3230733 bytes；未掛workplace的逐SHA／大小核對通過。[收尾核對](preserved/reinforcement-camps-integrity-r1.json)核對734檔工作複本、62條新連結及README正對照、Python／Bash語法與UID/GID1000，root-owned／異常目錄檢查無異常。研究筆記開工引用的進度SHA與實際固定輸入不符，已改為84fb0c8f…26eef，見[來源核對](preserved/reinforcement-camps-source-check-r1.json)；產品輸入與抽驗不改。只清本輪兩批已驗保存的build-cache，共2196檔、206844762邏輯bytes，完整原圖／程式／進度保留。專案候選Docker容器篩選為空，沒有新映像，未清其他專案。Git推送狀態以下列追加為準。
 
 主提交a42114d544116f80cc43212d5123ff6415b1e554已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，候選Docker容器篩選為空，沒有新映像或殘留程序。本行另作文件收尾提交，不改候選、保存或抽驗範圍。
+
+
+## 2026-11-02：實購新兵的v5戰鬥鏈追加抽驗
+
+開工HEAD `7324f532e48e7d98f7c66713e5c9814f194f2933`，工作樹乾淨。依復古遊戲路由載入規格閘門、逆向技能、文件職責與README標準。前輪A已完成營地招募，續抽尚未驗的v5戰鬥保存鏈，不重做八兵種或HD矩陣。
+
+起始從前輪實購野狼的F7檔還原，30民兵、1野狼、金460及獨立74。binary與父版全部來源逐SHA保持，沒有編譯或修改runtime。12次普通移動及原確認進場，敵軍由原版24 bytes匯入；點野狼出手後，行動旗標可在另一程序讀回同world／token。傷害0、減員0符合既有候選數值，Python獨立重建整份world。
+
+撤退沿原seed369818040生成rand5506，只扣92金至368；普通冷讀待回場、F7、新程序F2軍隊及全部offers保持。v5依序保存battle／return參照，F7清參照仍保留v5。九張X11與Go畫布全RGB一致，兩程序各自戰中CPU保持；冷讀多一個host重訪step，週期同18343292，未冒稱跨程序state相同。自然亂數未固定，不當原版／Go規則對拍。
+
+README補實購單位進場圖，[030追加驗收](docs/spec/030-battle-expansion-proposal.md#購得新兵的-v5-戰鬥鏈限定-conformed)、[獨立核對](preserved/reinforcement-battle-audit-r1.json)及[永久保存](preserved/README.md#購得新兵的v5戰鬥鏈保存)為入口。正式197來源七程式、923核心、535素材、1066美術與DOS前附檔護欄不改，沒有Release；代表抽驗到此停止，其餘特殊分派與正式世界整合待續。保存及Git收尾以下列追加為準。
+
+本批永久保存602檔／497物件，壓縮27786383 bytes；未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/reinforcement-battle-integrity-r1.json)另驗602工作複本、28條新增連結及README正對照、三份Python語法與UID/GID1000，沒有root-owned或異常目錄。本輪沒有編譯或新增build-cache，候選Docker容器篩選為空，沒有新映像或殘留程序。首次保存核對早於保存程序結束，等待同一程序完成後同命令通過，屬執行順序問題，非產品缺陷。Git推送狀態以下列追加為準。
