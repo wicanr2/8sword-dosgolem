@@ -2726,3 +2726,32 @@ GUI用專用binary於Continue綁定後只把倒數設1，普通binary沒有此�
 Go與原版六案完整2987-byte保存SHA相同，回繞案只有金錢word不同，其他資料同值。Go清一筆原寶箱、保留其他79筆、120營地與原軍隊24 bytes，六資源及一次性記錄同一treasure-1 journal提交，完成格式仍v4。獨立原始讀取器驗兩側1120筆前後值；四個中斷點恢復及八項拒絕通過，不重領、不忽略未知pending。
 
 實際Continue後只設定初始位置，正常移動／Enter領50金，500→550，Go30民兵加5狼及原影子30民兵保持。未F7關閉後另一程序Continue／F2保持world／token及零寶箱；三張X11與Go提交／完整PNG同SHA。起始軍隊與位置為明示測試配置，不稱自然取得／自然抵達；其他劇情、煉金及召兵資源仍待接。[READY與限定驗收](docs/spec/030-battle-expansion-proposal.md#寶箱資源的隔離ready契約)、[原版核對](preserved/treasure-original-audit-r1.json)、[限定核對](preserved/treasure-audit-r1.json)及[永久保存](preserved/README.md#go寶箱資源保存)為入口。
+
+
+## 2026-11-01：煉金術的Go資源與扣次交接
+
+問題只限煉金術的金錢與使用次數如何跟Go世界一起保存。原選單、亂數與HD呈現沿既有機制；召兵術另有原軍隊表讀寫，不由本輪推定。
+
+來源為PAM.AY，SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0；PAM.i64為a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。重用remaining-spells-r1內IDA9.4匯出與原F4入口快照、treasure-r1候選及原保存輸入；沒有再次修改DB。工具為Go1.24.13、923檔核心與Pillow11.3.0，容器沿Go映像8ed6bdee2bce1f32f804e888f942b25bbf62f2165a43344bb4587f3371de0581及Pillow-r2映像b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831。
+
+定位及已證實語意如下。IDA以MZ線性10000h為基準，runtime固定0110，data為DS／SS1E88；檔案偏移另按MZ header換算，核對器對重定位word加1000h後比bytes，不將不同基準當成相同位址。
+
+| 原始定位 | 已證實語意與證據 |
+|---|---|
+| IDA sub_168CE，runtime0110:68CE，110 bytes | 地圖法術wrapper；selector1，far返回0110:6896。原版F4快照與兩組原版控制確認 |
+| IDA sub_16B20，runtime0110:6B20，202 bytes | 煉金效果；6B56呼叫rand，6B5B取得AX，IDIV 104h取商，DS26AE等於1加40 |
+| runtime0110:6BD6／6BDE | 原加金與封頂block；Go在前者替代計算、續接後者，保留提示與等待 |
+| runtime0110:68F0／68F9 | 統一扣次block與pop BP前停點；Go只接已驗selector1，原子保存後才允許返回 |
+| DS2B2A，原保存byte1254 | 煉金次數；原版／Go RAM及保存檔均2→1 |
+| DS26AA，原保存byte1316 | 已學習旗標；原保存與GUI冷讀為1 |
+| DS26AE，原保存byte1324 | 加40旗標；原版兩案及原保存資料流確認 |
+
+DRAFT欄位勘誤：起初把26AE按連續word估為1320，已被原保存sub_184C0的資料流否定。IDA線性1872A取[di+26AA]，1874C取[di+275A]，每列交錯寫入，故26AE在1324。原r2 RAM正確但保存fixture位置不正確，整批仍留歷史；修正規格及欄位後重跑original-r3、candidate-r1，未覆寫早期收據。核對器也沿實際匯出鍵original_file_offset讀取，沒有把其他匯出器的file_offset鍵當成此份格式。
+
+兩組控制在執行前固定seed12345678h，原rand同為23359，商89；加成為129。正常500→589、加成封頂29990→30000，次數2→1，最終seed3768712380。Go與原版兩案完整2987 bytes分別同SHA a498556025400b308ddf21b78c2748b25889c484e9ab80096bd1748d9b8ba612、16fd3107fcc3f8e21049a17e8aec2926efbfce614a4f5fc359c0deb90a33158c。核對118行IDA bytes、六資源、學習／加成／次數、原軍隊24 bytes、120營地與80寶箱。這只證實兩個受控局面，不稱完整遊戲亂數序列或自然習得。
+
+快照保存的DOS Root是/project/workplace/intake-20261023/sources/game/8sword，最初只掛/game造成獨立副本無法建立原保存檔。std-only gob診斷後補同路徑唯讀alias，使用原快照重跑成功；歸類為環境掛載問題，不是遊戲規則。普通GUI沒有載入該歷史快照，只需/game。
+
+正常GUI以明示的30民兵、5狼、已學習及兩次使用機會啟動，Continue後普通F4選煉金術，rand28660得到110金，500→610、次數2→1。未按F7關閉，另一程序Continue／F2讀回相同world及token；三張X11全RGBA等於Go提交。GUI沒有RAM、IP或seed注入；原始位置也未改。無次數偽造入口在rand前拒絕，RAM與保存保持；一個intent-durable中斷冷讀到與正常提交相同的兩檔，再恢復與重複提交不重發。沿使用者抽驗指示不擴大故障或HD矩陣。
+
+實作鏈、READY／限定CONFORMED與全部工具見[030](docs/spec/030-battle-expansion-proposal.md#煉金術的限定conformed)。[獨立核對](preserved/alchemy-audit-r1.json)、[原版核對](preserved/alchemy-original-audit-r1.json)及[永久保存](preserved/README.md#go煉金術保存)保留來源、失敗與成功資料。召兵術、其餘劇情消費端及正式世界整合仍未完成；正式Engine的附檔護欄保持。

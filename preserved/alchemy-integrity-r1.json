@@ -1,0 +1,16 @@
+{
+  "status": "passed-alchemy-integrity",
+  "archived_files": 696,
+  "objects": 448,
+  "compressed_bytes": 26609617,
+  "removed_build_cache_files": 1464,
+  "removed_build_cache_bytes": 141877046,
+  "formal_dependencies_unchanged": true,
+  "source_tools_match": true,
+  "all_archived_working_files_match": true,
+  "python_syntax": true,
+  "shell_syntax": true,
+  "published_image_match": true,
+  "root_owned_or_md_directories": [],
+  "production_promoted": false
+}

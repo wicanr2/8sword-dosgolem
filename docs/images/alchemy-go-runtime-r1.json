@@ -1,0 +1,9 @@
+{
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/alchemy-r1/gui-r1/warm/frame-001-alchemy-noto.png",
+  "source_sha256": "012bd0c265dfc00ca1e73234b10e181fd450796b4229875f4c9e1c39468ecab6",
+  "published_sha256": "feaae78f6ea2b3387c9e12fdddadb845e1a1d3aea70e2dca0652165e0a635bb5",
+  "initial_learned_and_uses_fixture": true,
+  "ordinary_f4_and_choice": true,
+  "amount": 110,
+  "production_promoted": false
+}

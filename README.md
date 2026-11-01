@@ -8,7 +8,7 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與寶箱預覽](tools/treasure.sh)，範圍見[月結規格](docs/spec/030-battle-expansion-proposal.md#月度資源與營地更新的go交接)。
+隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與煉金術預覽](tools/alchemy.sh)，範圍見[月結規格](docs/spec/030-battle-expansion-proposal.md#月度資源與營地更新的go交接)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
@@ -43,6 +43,14 @@
 ![原寶箱選項：納入財產或增加領導力](docs/images/treasure-choice-r1.png)
 
 領取50金後，500金變550，30民兵與5隻野狼保持。另一程序繼續時，軍隊、金錢與已清空的寶箱記錄一致。可看[領取後軍隊頁](docs/images/treasure-army-r1.png)、[普通預覽入口](tools/treasure.sh)、[限定驗收](docs/spec/030-battle-expansion-proposal.md#寶箱資源的限定conformed)與[畫面來源](docs/images/treasure-runtime-r1.json)。其他劇情資源與正式世界整合仍待接入。
+
+## 煉金術與剩餘次數
+
+隔離Go候選已接煉金術的加金與扣次，沿用原版法術選單、亂數與HD演出。金錢和剩餘次數一起保存，未按F7關閉後也能讀回。下圖由正常F4操作取得110金，500金變610，次數2變1；重開後軍隊仍為30民兵加5隻野狼。
+
+![正常F4煉金術取得110金的HD視窗](docs/images/alchemy-go-runtime-r1.png)
+
+初始軍隊、已學習與兩次使用機會為明示測試配置，沒有在GUI改RAM、IP或亂數。可用[煉金術預覽入口](tools/alchemy.sh)繼續，範圍與限制見[限定驗收](docs/spec/030-battle-expansion-proposal.md#煉金術的限定conformed)、[畫面來源](docs/images/alchemy-go-runtime-r1.json)與[永久保存](preserved/README.md#go煉金術保存)。召兵術及其餘世界交接仍待接入。
 
 ## Go軍隊的月結與營地補貨
 

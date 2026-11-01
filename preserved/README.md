@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## Go煉金術保存
+
+隔離候選由Go按原rand結果計算煉金獎勵、封頂30000及扣一次，完整v4進度、九圖與Go世界同筆保存。兩組原版／Go完整2987 bytes同SHA；無次數拒絕、一個intent-durable恢復及重複提交拒絕通過。正常Continue／F4／原選項／確認／F2／未F7關閉／新程序冷讀通過，500→610、次數2→1，30民兵加5狼及原影子24 bytes保持。三張完整X11與Go提交SHA相同，沒有GUI RAM、IP或seed注入；初始軍隊／學習／次數為明示配置，不稱自然習得。
+
+入口為[030契約與限定驗收](../docs/spec/030-battle-expansion-proposal.md#煉金術的限定conformed)、[資料與公式](../tools/alchemy-data.go)、[原版／Go探針](../tools/probe-alchemy.go)、[測試接線與中斷](../tools/alchemy-probe-bind.go)、[Go控制器](../tools/alchemy-port.go)、[原子交易](../tools/alchemy-store.go)、[原生保存副本](../tools/alchemy-native-save.go)、[UI交接](../tools/alchemy-ui.go)、[視窗抽驗](../tools/check-alchemy-ui.py)、[獨立核對](../tools/check-alchemy.py)、[準備／發圖／保存](../tools/prepare-alchemy.py)及[普通試玩](../tools/alchemy.sh)。結果為[原版核對](alchemy-original-audit-r1.json)、[限定核對](alchemy-audit-r1.json)、[逐檔清單](alchemy-r1.json)、[脫離workplace核對](alchemy-verification-r1.json)與[清理及收尾](alchemy-integrity-r1.json)。README的[煉金實景](../docs/images/alchemy-go-runtime-r1.png)與[畫面來源](../docs/images/alchemy-go-runtime-r1.json)對回完整PNG。
+
+完整來源、原版／Go binary、輸入／九圖、state／RAM、IDA匯出、失敗資料及三張全尺寸視窗保存在本機`preserved/alchemy-r1/`，排除Git。固定Go1.24.13命令在研究根alchemy-execution-r1.json；原版成功命令及當時來源另存original-execution-r3.json／original-success-src。最初序列化快照的DOS Root還原失敗與錯誤1320道具偏移的DRAFT資料保留；成功版依交錯保存欄位1324核對。最初GUI的XTEST缺F4鍵碼只修本候選測試工具，普通binary不改，再以同一命令及乾淨session重跑通過。
+
+Pillow11.3.0-r2用`prepare|freeze --project <專案>`，發圖用`publish --project <唯讀專案> --images <可寫docs/images>`；獨立核對用`--project <唯讀專案> --out <新JSON>`，原版證據加`--original-only`。保存用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`；核對用`verify --archive <唯讀preserved> --out <新JSON>`，不掛workplace。GUI沿Go1.24.13容器執行`python3 /tools/check-alchemy-ui.py --work /out`，掛本批研究為/out、原資料為/game及r69為/assets。所有容器無網路、UID/GID1000、來源唯讀並設資源／逾時界限。
+
+歷史F4快照的DOS Root為`/project/workplace/intake-20261023/sources/game/8sword`，無頭探針與獨立保存副本的容器需另把同一原資料唯讀掛到該路徑。普通GUI只掛/game。保存仍v4，pending intent新增alchemy-1，舊工具遇未知未完成交易拒絕；已完成v4可讀。正式197來源七程式、923核心、535素材、1066美術與附檔護欄保持；召兵術、其餘劇情消費端及正式整合待續。
+
+本批696檔／448物件、壓縮26609617 bytes，未掛workplace逐SHA及長度核對通過。只刪本批1464份編譯快取、141877046 bytes；完整原始碼、VM、RAM及畫面均保留。UID/GID1000、root-owned與誤建.md目錄檢查通過，沒有新映像或全域Docker清理。
+
 ## Go寶箱資源保存
 
 隔離候選保留原寶箱金錢／領導力選項，Go安全加值並清單一寶箱，完整進度、九圖與Go世界同筆保存。兩側七案、618行IDA bytes、80筆原始對照及1120筆前後結果已核對，六案完整2987 bytes同SHA，回繞案明示Go封頂。四個提交中斷及八項拒絕通過；取消、空箱、重複完成、已領取與過期token不重發。

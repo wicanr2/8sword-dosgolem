@@ -46,6 +46,38 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 煉金術資源與次數保存
+
+2026-11-01 DRAFT，依使用者「抽驗差不多即可」接續地圖術資源。這輪只接煉金術的加金與扣次，沿既有HD演出、原選單、RNG及原子保存，不重跑八術、全部字型或四個共用中斷點。召兵術會掃原六隊，先保持既有軍隊護欄，另待Go軍隊契約。
+
+已保存IDA9.4的sub_168CE／sub_16B20顯示原候選公式為rand回傳的整數商除260，DS26AE等於1時另加40；不能把商改成餘數。統一扣次在0110:68F0，煉金selector1用DS2B2A。沿固定PAM／923核心及既有F4入口快照做兩個代表原版控制，再審查READY。來源從永久remaining-spells-r1及treasure-r1取回，研究位於battle-r1下alchemy-r1；[準備／保存](../../tools/prepare-alchemy.py)、[資料欄位](../../tools/alchemy-data.go)、[原版與候選探針](../../tools/probe-alchemy.go)、[獨立序列化](../../tools/alchemy-native-save.go)為入口。
+
+### 煉金術的隔離READY契約
+
+原版兩案與獨立讀取已證實：固定seed12345678h時首個rand回傳23359，整數商89；道具旗標DS26AE等於1時為129。正常500→589，道具案29990→30000，兩案次數2→1，未改亂數或重投。來源為既有IDA9.4匯出、固定PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，位址基準仍為IDA MZ線性10000h、runtime0110及DS1E88。
+
+學習旗標DS26AA存於原進度byte1316，煉金次數DS2B2A存於1254；道具旗標DS26AE存於1324。兩組8旗標以26AA／275A逐列交錯保存，不能把26AE當連續word的1320；原1872A–18758資料流與實際保存值已核對。這項定位在DRAFT驗證階段修正，未接正式玩家路徑。
+
+隔離Go在68CE核對selector1、父返回6896、學習／正次數及六資源。6B5B取原rand回傳後，由Go計算商與加成、寫入原報告的local，略過原計算；6BD6由Go安全加金並略過原加值block；68F0只對本次已驗selector1由Go扣一次，68F9在pop BP前持久保存。來源bytes、DS／SS與各階段frame須一致，未達學習／次數條件拒絕保檔，其他selector不套這個掛點。
+
+原選單、RNG、提示、HD光效及等待鍵保持。保存沿完整v4／九圖，新pending intent為alchemy-1，金錢與扣次同筆提交，舊工具拒絕未知恢復。原軍隊24 bytes、120營地與80寶箱不改；其餘當前來源狀態沿完整原版序列化保存。重播舊descriptor或重複完成不得再加金／扣次。驗收限兩個原版／Go代表案、一個無次數拒絕、一個intent-durable恢復及一次普通F4／未F7冷讀，不重開共用機制矩陣。
+
+### 煉金術的限定CONFORMED
+
+2026-11-01，隔離候選已按上述READY契約接[Go資料與公式](../../tools/alchemy-data.go)、[入口／計算／扣次控制器](../../tools/alchemy-port.go)、[完整來源序列化](../../tools/alchemy-native-save.go)、[原子交易](../../tools/alchemy-store.go)及[UI交接](../../tools/alchemy-ui.go)。原版與候選都使用原rand結果；Go略過原商數、加金與扣次block，沒有用x86解譯器模仿這些計算。HD仍沿既有Go繪圖，原版模式不改。
+
+[原版／Go探針](../../tools/probe-alchemy.go)預先固定seed12345678h，正常與加成封頂兩案都取得23359。兩側各為89／129金，500→589／29990→30000，次數2→1，最終seed同為3768712380。兩案完整2987-byte進度同SHA，原軍隊24 bytes、120營地與80寶箱保持；Go世界只加金與revision。獨立核對同時讀原版／Go RAM與保存檔，不以探針自報結果代替檢查。
+
+[候選測試接線](../../tools/alchemy-probe-bind.go)驗重複完成／舊施法描述拒絕，一個intent-durable中斷恢復後兩檔與正常提交完全相同，再恢復不重發。無次數的偽造入口在rand前拒絕，RAM與存檔保持。沿使用者抽驗指示，只測這個代表中斷，不重跑已有四階段故障、全部HD、三字型或RNG矩陣。
+
+[實際視窗抽驗](../../tools/check-alchemy-ui.py)使用普通binary，Continue後按F4，選原版煉金術、確認結果，再F2。這次原rand為28660，取得110金，500→610，次數2→1；未F7關閉後，另一程序Continue及F2讀回相同world／token、金錢與次數，30民兵加5狼及原影子24 bytes保持。初始軍隊／學習／次數明示配置，沒有GUI RAM、IP或seed注入；不稱自然學會。三張完整X11、PNG與Go提交RGBA同SHA；結果文字及軍隊頁已目視。
+
+[獨立核對](../../tools/check-alchemy.py)驗118行IDA bytes、兩組完整進度、拒絕／恢復、九圖及三張視窗。[原版收據](../../preserved/alchemy-original-audit-r1.json)、[限定收據](../../preserved/alchemy-audit-r1.json)、[README實景](../images/alchemy-go-runtime-r1.png)、[畫面來源](../images/alchemy-go-runtime-r1.json)與[永久保存](../../preserved/README.md#go煉金術保存)構成本輪入口。固定來源PAM／DB SHA及工具版本沿本節；IDA原168CE／16B20線性位址、runtime0110:68CE／6B20及DS偏移保持，已驗語意標為已證實。
+
+普通入口為`bash tools/alchemy.sh`，`EIGHTSWORD_ALCHEMY_SESSION`可指定隔離進度。準備、凍結、發圖、保存與脫離workplace核對沿[準備器](../../tools/prepare-alchemy.py)的`prepare|freeze|publish|archive|verify`，建置命令在研究根alchemy-execution-r1.json；原版成功命令與來源另存original-execution-r3.json／original-success-src。歷史快照記錄DOS Root為`/project/workplace/intake-20261023/sources/game/8sword`，只有載入該快照的無頭控制／獨立序列化容器需額外同路徑唯讀掛載；普通GUI只用`/game`。最初XTEST未收錄F4只屬驗證工具問題，修正同一工具後以同一GUI命令及乾淨session重跑，失敗資料保留。
+
+新pending intent為alchemy-1，舊工具拒絕未知未完成交易，已完成v4仍可讀。其餘當前來源狀態由完整原序列化承接，不宣稱它們與舊checkpoint逐欄不變。正式197來源七程式、923核心、r69全535素材、1066美術及DOS前護欄保持；召兵術的原六隊寫入、其餘劇情消費端、自然新增兵種招募與正式整合仍未完成。
+
 ## 地圖事件資源與Go保存
 
 2026-11-01，接續使用者同意的劇情資源交接，寶箱切片已限定CONFORMED，其他事件仍DRAFT。由月結以外的原金錢／月薪改寫點，追一條「原事件→Go資源→畫面→保存／冷讀」鏈。未知旗標、一次性事件與原地圖改寫先驗證，不把六資源的任意差異直接當合法獎勵，也不放寬軍隊表護欄。
