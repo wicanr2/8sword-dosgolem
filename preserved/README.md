@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## Go月度資源與營地更新保存
+
+隔離候選已由Go計算六隊軍費及120筆營地補貨，月末一併保存Go世界、完整2987-byte原進度及九圖。七個原版控制預先固定seed12345678h，三個Go候選涵蓋原兵種、混合與資金不足，四個提交中斷及重複完成拒絕已驗。實際Continue／走動／月報／新程序冷讀F2通過，三張X11全RGB等於Go提交SHA。30民兵加5狼費用230、金500→370、營地2900→3000，原影子24 bytes保持。
+
+入口為[030限定契約](../docs/spec/030-battle-expansion-proposal.md#月度資源與營地更新的go交接)、[IDA匯出](../tools/export-monthly-ida.py)、[月結規則與上限](../tools/research-monthly.go)、[原版控制](../tools/probe-monthly-original.go)、[獨立原版序列化副本](../tools/monthly-native-save.go)、[原子交易](../tools/monthly-store.go)、[來源掛點](../tools/monthly-port.go)、[UI交接](../tools/monthly-ui.go)、[Go候選控制](../tools/probe-monthly-candidate.go)、[獨立核對](../tools/check-monthly.py)、[實際按鍵](../tools/check-monthly-ui.py)、[測試倒數](../tools/monthly-fixture.go)、[準備／發圖／保存](../tools/prepare-monthly.py)與[普通試玩](../tools/monthly.sh)。結果為[限定核對](monthly-audit-r1.json)、[逐檔清單](monthly-r1.json)、[脫離工作區核對](monthly-verification-r1.json)、[清理及收尾](monthly-integrity-r1.json)。[README月報](../docs/images/monthly-go-report-r1.png)與[來源](../docs/images/monthly-go-report-r1.json)對回本批完整PNG。
+
+完整凍結候選、33種UI圖像、字型、來源進度／九圖、原版與候選state／原始RAM、IDA匯出、全尺寸Go畫布及X11保存在本機`preserved/monthly-r1/`，排除Git。保存格式仍v4，只有pending journal新增monthly-1識別，舊工具遇未知恢復會拒絕。完成月結後不保留舊返回anchor，冷讀按完整月末位置／計數器重開，不重扣費用。
+
+固定Pillow11.3.0-r2容器執行`prepare|freeze --project <專案>`；Go1.24.13建置命令位於研究根`monthly-execution-r1.json`。GUI用`check-monthly-ui.py --work /out`，獨立核對用`check-monthly.py --project <唯讀專案> --out <新JSON>`。README縮圖用`publish --project <唯讀專案> --images <可寫docs/images>`；保存用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`。不掛workplace的逐SHA／長度核對用`verify --archive <唯讀preserved> --out <新JSON>`。均使用UID1000、無網路、有界容器及唯讀原版／923核心／模組／r69素材。
+
+首版月費沿現有catalog價格，八種新增單位為明示試作。大軍費、金錢加月薪超出32767或資源超出30000時在改寫前拒絕保檔，寬數值介面另接；未將原版16位元回繞造成的增金照搬。GUI倒數由專用測試binary設為1，軍隊亦為測試配置，不稱自然跨月。42處NPC守軍、原亂數／日曆及保存序列化仍由原版處理；劇情資源與正式世界整合未完成。正式197來源七程式、923核心、r69全535素材、1066永久美術及附檔護欄保持。
+
+本批644檔／451物件、壓縮41074369 bytes，未掛workplace逐SHA／長度核對通過。只清本批1447份Go編譯快取、140944252 bytes，完整來源及畫面均保留。沒有新映像或清理其他專案資源。
+
 ## openKB單位HD與遊戲截圖保存
 
 八種新增單位已有透明手繪HD圖像，接入隔離Go候選的F2、F3與戰鬥卡，README直接內嵌八種來源／HD總覽、33種合併總覽、兩張軍隊頁與一張戰鬥頁。八張完整原PNG、完整提示及來源另在[永久圖庫](../artwork/README.md#openkb新增單位hd)，不依賴workplace或工具預設目錄；舊1040列保持，現共1066檔。

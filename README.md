@@ -8,7 +8,7 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。重訪與取消已有實際視窗抽樣；走動位置仍按F7保存。起始軍隊仍為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與募兵預覽](tools/camp-stock.sh)，範圍與限制見[接線規格](docs/spec/030-battle-expansion-proposal.md#go募兵庫存與購買保存)及[驗證紀錄](preserved/camp-stock-audit-r1.json)。
+隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與月結預覽](tools/monthly.sh)，範圍見[月結規格](docs/spec/030-battle-expansion-proposal.md#月度資源與營地更新的go交接)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
@@ -35,6 +35,14 @@
 ![openKB新增部隊進入神州八劍的Go戰鬥介面](docs/images/openkb-battle-hd-r1.png)
 
 實際出手後的兵力與回合可在戰中重開時讀回。這批是靜態HD圖示，沿既有Go戰鬥規則，沒有新增攻擊動畫或改兵種數值。範圍見[呈現契約與驗證](docs/spec/030-battle-expansion-proposal.md#openkb新增單位的hd圖像與遊戲截圖)、[截圖來源](docs/images/openkb-game-screenshots-r1.json)及[完整原圖與生成提示](artwork/README.md#openkb新增單位hd)。來源縮圖取自openKB free sprites，作者包含driedfruit，逐檔作者與授權資訊見[來源紀錄](docs/images/openkb-eight-original-hd-r1.json)。
+
+## Go軍隊的月結與營地補貨
+
+隔離候選已按Go軍隊計算軍費，並更新120筆原版營地庫存。下圖是實際視窗：30名民兵加5隻狼，月薪100、軍費230，現金由500變370。月末會一併保存Go軍隊、原版進度及九張地圖，新程序繼續不會再扣一次。
+
+![Go月結：月薪100、軍費230、現金餘額370](docs/images/monthly-go-report-r1.png)
+
+這次用明示測試軍隊與縮短的月末倒數抽驗，原影子軍隊保持。八種新增單位沿現有候選價格試算月費；超出原數字介面的金額先拒絕，寬數值介面、劇情資源與正式整合仍待完成。入口為[月結預覽](tools/monthly.sh)，詳見[限定驗收](docs/spec/030-battle-expansion-proposal.md#月度首版的限定conformed)、[畫面來源](docs/images/monthly-go-report-r1.json)與[核對](preserved/monthly-audit-r1.json)。
 
 ## HD募兵圖示
 

@@ -1,0 +1,34 @@
+{
+  "status": "passed-monthly-integrity",
+  "files": 644,
+  "objects": 451,
+  "compressed_bytes": 41074369,
+  "archive_sha256": "f724c0a3b89d337ef5473dfd394fd4d2890f10b393ae7f48d6ff6021b26dcfd5",
+  "verification_sha256": "73adec50d19f1440c51b01765314d55923067cdb359f751482289c602b4b6c94",
+  "audit_sha256": "4c77c9f1db157c83bae1bf2579391438ecf018a27d95c690dec84ead7293b606",
+  "source_tools": {
+    "export-monthly-ida.py": "77473b1beda70a91dd9fa4d8a9af255a7a5c018822d0b89a729a780cbe673ad3",
+    "research-monthly.go": "30df3d1b379bc1f9c5ae0f66898ca66383aad27e43f81cdb505d2eaa61dcebaa",
+    "probe-monthly-original.go": "efd097a6c373b6c43076d4eb31f1f7491df47ccd7483ba4df2d63d3307b43c0f",
+    "probe-monthly-candidate.go": "1a72f2afd6c124c9ef821a3507b7d20bbb7c4231359cb1e1694f94ce0d0d3804",
+    "monthly-native-save.go": "1e215b98131ee3eff6ec34ef7102c4691cc35bf1b47a73c557d43599ac1cf5b1",
+    "monthly-store.go": "9ddb140ee6b966128c886837b4da9c457a020c75c1fa50b7703c8b9f0609142d",
+    "monthly-port.go": "98e2c9383f6616921b60421743672817d60e1cf5665383c24531638e18fd9f51",
+    "monthly-ui.go": "4cc3a8755f563fedd91d9f19c69417091addeebf0c6bd46aef8adcd712032309",
+    "monthly-fixture.go": "3c8121610798035bbecdb6763ab2a264597260973fb36db9a6c63e80c8c597c0",
+    "prepare-monthly.py": "5d78e2f68e4926778d237b6183487174703ed9089572d021a6f304e66a38f0eb",
+    "check-monthly.py": "dfb8b3109ff2c2af7949f5d7db54fa3074c82d239a6368e500b810df79f1b321",
+    "check-monthly-ui.py": "2b1942d5aa258cae4ac77dd741dd337a335246646c272f437a7a27e9be9f3bd5",
+    "monthly.sh": "6082e08d957acd5592b3f06da4d1b5791711edaff4a8c7d11dbb240398d7521f"
+  },
+  "formal_changed": false,
+  "production_promoted": false,
+  "removed_build_cache": {
+    "path": "workplace/probe-20261023/graphics-first/battle-r1/monthly-r1/build-cache",
+    "files": 1447,
+    "bytes": 140944252,
+    "rebuildable": true,
+    "excluded_from_archive": true
+  },
+  "root_owned_or_md_directories": []
+}

@@ -46,6 +46,42 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 月度資源與營地更新的Go交接
+
+2026-11-01，接續已確認的Go世界交接，限定接入隔離候選。原版月度入口、薪餉／軍費、營地更新與保存邊界已查證，READY契約與限定CONFORMED見下。既有HD圖像、戰鬥、RNG及存檔抽驗沿用，正式197來源七程式與附檔護欄保持。
+
+既有IDA匯出將sub_12446標成混合地圖事件分派，不能以整個函式為月結掛點。新線索是執行期0110:26DF對DS56DA遞減，達界限後呼叫數個helper，再於2702起讀原軍隊及DS2986費用表。計數器、補貨、溢位及資金不足語意由下列固定seed原版控制補驗，不只依據靜態線索實作。原始位址、operand及舊證據等級保持。
+
+研究沿既有battle-r1下`monthly-r1`。來源為已固定PAM.AY及唯讀PAM.i64，工具為既有IDA9.4／py312-v1及Go1.24.13。[IDA窄匯出](../../tools/export-monthly-ida.py)保留原名、bytes、xref與位址基準；Go規則、READY契約及受控抽驗入口見下。資料保存後才清本批快取。
+
+### 月度首版的隔離READY契約
+
+原PAM SHA及DB SHA沿本節既有固定值。IDA MZ線性12446／12856等保留原名，執行期為0110:2446／2856，data為DS1E88；IDA DGROUP線性2D780對應PAM映像偏移1D780。已保存五函式及115筆operand候選，未解語意維持unknown，不能把sub_16226另有的驗證／亂數分支誤作薪餉計算。
+
+已證實於靜態資料流及七個固定seed原版控制：26DF減DS56DA，結果為非正數時進26ED月結。2856的前段對五類24筆有種類的營地，補`max(stock/10,10)`後取原上限；上限源自DS3A56加組別F0及列10，種類與庫存仍在原3F04／3F06。29F9後是42處敵方守軍的增兵，留原版執行，不把玩家軍隊寫入那些表。
+
+費用源自原DS2986表，與招募使用相同數值。[Go規則](../../tools/research-monthly.go)沿現有catalog的Gold費用欄，以64位元安全加乘統計六隊。原版25種費用逐項對原表；新增八種沿既有候選費用試作，不稱openKB原版月費或正式平衡。只有軍費不大於32767、金錢加月薪不大於32767及各資源不大於30000的域進入原數字介面；較大值在月結改寫前拒絕並保檔，後續寬數值介面另接。原版回繞邊界已保存，拒絕域不稱原版parity。
+
+已驗域內，新金錢為舊金加月薪減軍費；負數時清空Go六隊、軍費歸零，新金為舊金加月薪；最後封頂30000。原版影子24 bytes不清，不寫新ID。原版月結文字與Go來源畫布沿用，Go掛點略過玩家軍隊掃描與AX財務計算，營地計算由Go完成，敵方守軍、原亂數及324計數器／6相位重設交原版。
+
+月末在284D、原等待鍵之前暫停。由同一已核對VM的獨立副本只呼叫既有84C0序列化器，產生完整2987-byte進度及九圖，驗原bytes、原軍隊、9E00／9C00緩衝、寫入長度與close；不推進玩家VM。Go月結與完整原進度共用既有原子交易，保存格式仍v4；新的pending intent版本讓舊工具拒絕未知恢復，已完成提交仍可由v4讀取。舊返回anchor由完整月末進度替換，戰中禁止月結，正式Engine護欄保持。
+
+原版控制從已有合法caller frame恢復至26D6，明示控制軍隊、金錢、月薪、計數器、營地庫存並預先固定seed12345678h，不重投。已驗支付、剛好、不足、封頂、不跨月與兩種回繞案；120筆營地及獨立84C0完整序列化通過。[原版探針](../../tools/probe-monthly-original.go)、[獨立序列化](../../tools/monthly-native-save.go)與[準備／保存](../../tools/prepare-monthly.py)為入口。代表GUI、冷讀與中斷核對見下，不重跑既有HD／傷害／音樂。
+
+### 月度首版的限定CONFORMED
+
+2026-11-01，本段只提升隔離月結候選，不提升正式Engine或擴充世界格式。[來源控制器](../../tools/monthly-port.go)核對固定原碼、DS、原父frame與計數器，Go接管六隊費用及120筆營地庫存。未接的原軍隊operand保留拒絕護欄，不能讓影子表漏算新增兵種。42處NPC守軍與原亂數、月末報表及日曆仍走原流程；原25種同起始原版控制在六資源以外的2975個保存bytes完全相同。
+
+[交易](../../tools/monthly-store.go)以獨立monthly-1 intent區分月結，保存完成仍為隔離v4。完整進度及九圖取自同一月末快照的獨立序列化副本，沒有推進玩家VM或解析未知守軍保存欄。[UI交接](../../tools/monthly-ui.go)在原等待鍵前完成一次持久提交，再讓原流程返回。四個中斷點、重複完成拒絕、冷讀、原影子24 bytes與九圖均已抽驗。
+
+[候選探針](../../tools/probe-monthly-candidate.go)驗原25種之一、混合軍隊及資金不足三案，另驗超域軍費拒絕。混合30民兵／5狼，月薪100、費用230，金500→370；資金不足時清Go軍隊、費用歸零，金0→100，原影子軍隊保持。營地庫存2900→3000，其他營地按原上限封頂，kind及位置不改。七個原版案例在執行前固定seed12345678h，沒有重投；Go三案結束seed與原版支付案一致。
+
+[實際視窗](../../tools/check-monthly-ui.py)從普通Continue、向下移動進月報，關閉後另一程序Continue及F2保持完整world／token。測試專用[倒數設定](../../tools/monthly-fixture.go)只在Continue完成綁定時把DS56DA設為1，不改IP、軍隊、亂數或月結計算；普通binary不含該旗標。三張X11全RGB等於Go提交SHA，月報已目視，沒有按F7或在冷讀再扣款。[README畫面](../images/monthly-go-report-r1.png)及[來源](../images/monthly-go-report-r1.json)對回完整保存圖。
+
+[獨立核對](../../tools/check-monthly.py)確認1205行IDA bytes、25種價格、120個上限、十組執行共1200筆營地結果、原生軍隊隔離、完整進度與實際視窗。早期核對工具有一處Python空白語法錯誤，修正後對同批資料重跑；沒有重跑原版或改測試結果。[限定收據](../../preserved/monthly-audit-r1.json)及[永久保存](../../preserved/README.md#go月度資源與營地更新保存)記錄工具、輸入、二進位及限制，不把受控起點稱自然跨月。
+
+本機普通入口為`bash tools/monthly.sh`，預設`session-gui-r1`抽驗後進度，可用`EIGHTSWORD_MONTHLY_SESSION`指定本候選session。它不設定月末倒數；沿33種HD圖像及既有Go募兵／戰鬥機制。固定Pillow11.3.0-r2執行`prepare|freeze|publish|archive|verify --project <專案>`，各參數見`--help`；Go1.24.13命令見研究根`monthly-execution-r1.json`。大軍費／寬數值介面、劇情資源及正式世界整合仍未完成，八種新單位月費是現有候選價格試作，非正式平衡。
+
 ## openKB新增單位的HD圖像與遊戲截圖
 
 2026-11-01 DRAFT，使用者明確要求openKB新增單位的HD圖像、總覽與神州八劍內截圖須直接顯示於README。沿已確認八種候選、既有中國古風及原版配色，不新增兵種或改平衡。月度交接仍待續，不因這輪美術完成而宣稱已接完整世界。

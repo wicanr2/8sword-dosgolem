@@ -1,0 +1,103 @@
+{
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/monthly-r1/gui-r1/warm/frame-001-map-noto.png",
+  "source_sha256": "f4c2dae20a3231c18f1c7f926a704cbecbdb4ba11b6990931421c47828be0736",
+  "published_sha256": "60d4a2315d99ccf4bb383332282376b807f629466e424f7f39437fb974591897",
+  "size": [
+    960,
+    600
+  ],
+  "controlled_countdown": true,
+  "controlled_initial_army": true,
+  "monthly": {
+    "active": true,
+    "budget": {
+      "Before": 500,
+      "Income": 100,
+      "Due": 230,
+      "Charged": 230,
+      "After": 370,
+      "Disbanded": false
+    },
+    "committed": true,
+    "events": [
+      {
+        "budget": {
+          "Before": 500,
+          "Income": 100,
+          "Due": 230,
+          "Charged": 230,
+          "After": 370,
+          "Disbanded": false
+        },
+        "native_sha256": "34512fd04283112a69ff25a853c377c3e9d11786f05e4d3546ab78e21b7b2b1b",
+        "token": "b462f012cbbfa7944e6e1f0b294a11e193fa7451a874cfdddd1f9cbf9cc5e7c8",
+        "world": {
+          "schema": "eightsword-owned-world/1",
+          "revision": 1,
+          "army": {
+            "gold": 370,
+            "leadership": 30000,
+            "recruit_rank": 1,
+            "rules": "tactics",
+            "slots": [
+              {
+                "unit": "native:01",
+                "count": 30
+              },
+              {
+                "unit": "openkb:wolf",
+                "count": 5
+              },
+              {
+                "unit": "",
+                "count": 0
+              },
+              {
+                "unit": "",
+                "count": 0
+              },
+              {
+                "unit": "",
+                "count": 0
+              },
+              {
+                "unit": "",
+                "count": 0
+              }
+            ],
+            "offers": {
+              "native-camp:00:01": {
+                "unit": "native:01",
+                "stock": 3000
+              },
+              "wolf-camp": {
+                "unit": "openkb:wolf",
+                "stock": 1000
+              }
+            }
+          },
+          "progress": {
+            "rank": 1,
+            "merit": 1990,
+            "legacy_04f6": 100,
+            "legacy_04fc": 10,
+            "thresholds": [
+              0,
+              2000,
+              5000,
+              8000,
+              12000,
+              30000
+            ]
+          },
+          "encounters": {},
+          "battle": null
+        }
+      }
+    ],
+    "pending": false,
+    "saves": 1
+  },
+  "original_shadow_unchanged": true,
+  "production_promoted": false
+}
