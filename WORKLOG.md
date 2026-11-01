@@ -2573,3 +2573,5 @@ Go格式、Git空白、文件連結、圖像來源與新增檔案UID／GID核對
 - README加入煉金實景及普通入口；CONTEXT／AGENTS與030補目前狀態、限定CONFORMED及停止線。完整資料另批永久保存並在沒有workplace掛載時核對，結果見[保存入口](preserved/README.md#go煉金術保存)。
 
 收尾：本批696檔／448物件永久保存，壓縮26609617 bytes，脫離workplace逐SHA／長度核對通過。另驗全部工作副本及工具來源與清單一致、Python／shell語法與Go格式、README縮圖來源及擁有權；只刪本批1464份Go快取、141877046 bytes，未清其他專案資源。Git提交及遠端回讀結果以下列追加為準。
+
+主提交fb6ec3118254689c27226b7b88e33f302aa1731e已推送私人origin/main，git ls-remote回讀相同SHA。60條本輪煉金連結與索引、README正對照、18份新工具／證據的UID/GID1000及暫存空白檢查通過。docker ps -a的8sword篩選為空，沒有殘留本案容器。本行另作文件收尾提交，不改已驗候選或保存批次。
