@@ -2705,3 +2705,5 @@ r2抽驗及獨立核對全數通過。普通GUI這次rand32064，召20矮人；�
 README補實購單位進場圖，[030追加驗收](docs/spec/030-battle-expansion-proposal.md#購得新兵的-v5-戰鬥鏈限定-conformed)、[獨立核對](preserved/reinforcement-battle-audit-r1.json)及[永久保存](preserved/README.md#購得新兵的v5戰鬥鏈保存)為入口。正式197來源七程式、923核心、535素材、1066美術與DOS前附檔護欄不改，沒有Release；代表抽驗到此停止，其餘特殊分派與正式世界整合待續。保存及Git收尾以下列追加為準。
 
 本批永久保存602檔／497物件，壓縮27786383 bytes；未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/reinforcement-battle-integrity-r1.json)另驗602工作複本、28條新增連結及README正對照、三份Python語法與UID/GID1000，沒有root-owned或異常目錄。本輪沒有編譯或新增build-cache，候選Docker容器篩選為空，沒有新映像或殘留程序。首次保存核對早於保存程序結束，等待同一程序完成後同命令通過，屬執行順序問題，非產品缺陷。Git推送狀態以下列追加為準。
+
+主提交4304e661a50dd25145527f6dde4a2c422753b0ef已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，候選Docker容器篩選為空。本行另作文件收尾提交，不改已驗程式、保存與抽驗範圍。
