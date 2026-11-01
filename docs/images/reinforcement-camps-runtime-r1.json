@@ -1,0 +1,27 @@
+{
+  "images": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/reinforcement-camps-r1/gui-r2/warm/frame-001-recruit-noto.png",
+      "source_sha256": "63c293b5d3ff8520ad92ce8cf26e669575114f9717410de7c912f9ad6c92737f",
+      "published": "reinforcement-camps-original-shop-r1.png",
+      "published_sha256": "ad7876a003b7a5387d2640484c08584e8288629c5d96d552e13019cd59a5d0af"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/reinforcement-camps-r1/gui-r2/warm/frame-003-reinforcements-lishu.png",
+      "source_sha256": "abbba2716fdc32a47c7664b178baa882c619a36ce8096aa141594046879b647f",
+      "published": "reinforcement-camps-eight-hd-lishu-r1.png",
+      "published_sha256": "4e0bd13090587b9540f855c3d2ddae309aa6f4fdac0f9b1ce719831806c7a664"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/reinforcement-camps-r1/gui-r2/cold-f7/frame-001-army-lishu.png",
+      "source_sha256": "c47526a98c906ea548b900de63f4be9ef4b769a9f3ab23752c1b498db960c0bf",
+      "published": "reinforcement-camps-f7-cold-army-r1.png",
+      "published_sha256": "71d2f4b3b33166af4317b87b31c077a37fc5c6940c629c3ae56903df0778df30"
+    }
+  ],
+  "controlled_starting_go_army": true,
+  "pregranted_openkb_units": false,
+  "memory_injected": false,
+  "natural_camp_entry": true,
+  "formal_promoted": false
+}

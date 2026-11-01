@@ -1,0 +1,6 @@
+{
+  "status": "documentation-source-hash-corrected-before-finalization",
+  "artifact": "inputs/original-save.ay",
+  "sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+  "reason": "Initial handoff hash did not match the actual fixed input; corrected the research note before publishing."
+}

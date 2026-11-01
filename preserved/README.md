@@ -733,3 +733,18 @@ timeout 300s docker run --rm --network none \
 需要還原時，以上述相同唯讀來源掛載，另將目標專案掛為可寫`/restore`，改用`--restore --archive /archive --artwork /artwork --out /restore`。可重複加`--prefix <清單中的原路徑>`只取需要的部分。還原器保留原權限、逐SHA核對，不覆寫內容不同的既有檔案。原路徑以專案根目錄為基準，例如`workplace/player/assets-painted-r64`。
 
 [隔離還原試跑工具](../tools/check-preserved-restore.py)已在沒有掛載原workplace或外部專案的容器執行。舊程式的原版／HD各跑400萬步，完整state相同；真正存後與冷讀快照皆只讀取2987 bytes，與人物檔SHA6f1689c2…23bfc2e一致。另從還原的175輸入／923核心／模組來源，以全新Go編譯快取及斷網設定重新建置無頭程式成功。這是保存可用性核對，沒有新增完整GUI或全遊戲對拍聲明。
+## 新增兵種營地提案保存
+
+使用者已於2026-11-02選定A，保留原店並增加可選增援分頁。[決策](openkb-camp-decision-a-r1.json)、[提案清單](openkb-camp-proposal-r1.json)、[800案獨立核對](openkb-camp-proposal-audit-r1.json)、[瀏覽器抽驗](openkb-camp-proposal-browser-r1.json)與[脫離workplace核對](openkb-camp-proposal-verification-r1.json)保存當時A／B比較，不代表B亦獲採用。
+
+[準備與保存器](../tools/prepare-openkb-camp-proposal.py)在固定Pillow11.3.0容器使用`archive --project /project --archive /archive --out /archive/openkb-camp-proposal-r1.json`。來源專案唯讀，`preserved/`限可寫；`verify --archive /archive --out /out/新核對.json`只需唯讀保存目錄與工具，不需workplace。物件在本機`preserved/openkb-camp-proposal-r1/`，原始進度與完整試算不加入Git。提案縮圖及自含HTML沿私人倉庫紀錄。
+
+## 新增兵種增援分頁保存
+
+隔離A候選入口為[030契約](../docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)、[預覽](../tools/reinforcement-camps.sh)、[準備與保存器](../tools/prepare-reinforcement-camps.py)、[獨立核對器](../tools/audit-reinforcement-camps.py)及[實際視窗抽驗](../tools/check-reinforcement-camps.py)。完整資料由[逐檔清單](reinforcement-camps-r1.json)、[獨立抽驗](reinforcement-camps-audit-r2.json)與[脫離workplace核對](reinforcement-camps-verification-r1.json)索引。
+
+本機`preserved/reinforcement-camps-r1/`保存完整來源、父版固定輸入、編譯程式、17份UI素材、v4／v5存檔、九張地圖、成功及失敗視窗PNG／X11、模型、日誌與決策依賴。原資料及完整美術物件排除Git，縮小成果與索引沿私人倉庫紀錄；沒有新增美術原圖或正式Engine提升。
+
+保存器用同一組Docker唯讀專案與可寫`preserved/`掛載，執行`archive --project /project --archive /archive --out /archive/reinforcement-camps-r1.json`。獨立核對以`verify --archive /archive --out /out/新核對.json`執行，只掛保存目錄及工具。Go來源還原與清單的原路徑對應；每個物件為gzip，先核對`stored_sha256`、解壓大小及原SHA，再以原`mode`寫至新的目的地，遇不同檔案不覆寫。現有`prepare`直接從父版`sword-guards-r1`重建輸入，`freeze`只更新列明的patch及新增工具。
+
+增援批次共711檔／521去重物件、壓縮36268844 bytes；提案共23檔／20物件、壓縮3230733 bytes。[首次核對](reinforcement-camps-audit-r1.json)、[收尾核對](reinforcement-camps-integrity-r1.json)、[來源SHA更正](reinforcement-camps-source-check-r1.json)與[快取清理](reinforcement-camps-cleanup-r1.json)另存。提案的[縮圖與HTML來源](../docs/images/openkb-camp-proposal-runtime-r1.json)為歷史比較，不代表尚待重選。

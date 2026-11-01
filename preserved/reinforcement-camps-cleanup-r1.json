@@ -1,0 +1,16 @@
+{
+  "status": "removed-only-verified-batch-build-caches",
+  "rows": [
+    {
+      "path": "/work/openkb-camp-proposal-r1/build-cache",
+      "files": 462,
+      "logical_bytes": 40581151
+    },
+    {
+      "path": "/work/reinforcement-camps-r1/build-cache",
+      "files": 1734,
+      "logical_bytes": 166263611
+    }
+  ],
+  "total_logical_bytes": 206844762
+}

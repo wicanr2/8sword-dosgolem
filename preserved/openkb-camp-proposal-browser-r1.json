@@ -1,0 +1,13 @@
+{
+  "status": "passed-camp-proposal-browser",
+  "browser": "Chrome/141.0.7390.37",
+  "camps": 50,
+  "units": 8,
+  "mode_a_preserves_original": true,
+  "mode_b_replaces_original": true,
+  "rank_switch": true,
+  "camp_switch": true,
+  "mobile_horizontal_overflow": false,
+  "game_executed": false,
+  "save_writes": false
+}

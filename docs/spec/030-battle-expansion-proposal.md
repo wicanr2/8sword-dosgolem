@@ -1,5 +1,48 @@
 # 030：部隊特性、戰術 AI、法術動畫與字型工具列提案
 
+## 新兵自然營地 A 接入 READY
+
+2026-11-02，使用者明確選定「A：保留原店＋增援分頁」。以下為隔離候選的實作契約；八種價格及階級沿既有候選，不宣稱平衡定稿。原正式Engine、原店配置與原版模式不提升或改寫。
+
+- 正常營地沿已驗`0110:54EA`來源、caller、類別、列與座標守門。Go新增「原版兵種／新增兵種」分頁，後者暫停guest推進，顯示八種既有HD圖示及同一套三字型。關閉未購買分頁可返回原店。
+- 每個非零原營地首次開啟新增分頁時，原子建立八筆獨立offer，鍵為`reinforce:類別:列:原兵種:新兵代碼`。初始量為`floor(當前原店庫存×原兵價格÷新兵價格)`；不減原店庫存。完整八筆為一組，不接受缺筆、變更來源或未知兵種。
+- 獨立庫存每月增加`max(庫存÷10,10)`，上限為`floor(已驗原店補貨上限×原兵價格÷新兵價格)`。原店仍走原補貨規則；此為可選試作平衡，不稱原版行為。
+- 招募沿既有Go `quote/recruit`、六陣位、金錢、領導力、階級與32位兵數驗證。一次交易只減一個offer並增加對應部隊。新兵只能使用結陣或戰術規則；工具列可在戰外切換，已有新兵時拒絕切回原版規則。
+- 招募先完成成對journal提交，再同步六項原資源；擴充ID不進原版種類表。購買後以正常Esc退出原店，避免原店沿用購買前的容量計算。未完成或故障時停止，不繼續DOS。
+- 新寫入營地封套用`eightsword-owned-world-save/5`與intent `/5`。完成的v1至v4沿既有檢查讀入，下一次有效交易升級；v4不得攜帶新增offer。舊待恢復intent不猜補，由對應舊候選先完成。新v5由舊候選拒絕。F7、戰中暫存、戰果及月度交易保留新增offer。
+- 抽驗包含正常營地入口、HD圖示、招募、取消、CPU暫停、重新開啟與獨立程序存讀；模型另驗庫存／金錢／階級／陣位界線、月補貨、舊存檔升級、錯誤版本、journal中斷恢復及拒絕重複提交。既有戰鬥機制採代表抽驗，不重跑逐兵種矩陣。
+
+入口為[候選準備與保存](../../tools/prepare-reinforcement-camps.py)、[獨立庫存與交易](../../tools/reinforcement-camps.go)、[Go分頁](../../tools/reinforcement-ui.go)及[交易抽驗](../../tools/reinforcement-camps_test.go)。候選使用既有`battle-r1/reinforcement-camps-r1`，父版為已保存`sword-guards-r1`，沿固定Go1.24.13／923核心及Pillow11.3.0容器。結果未抽驗前不稱CONFORMED。
+
+### A 接入限定 CONFORMED
+
+2026-11-02，隔離候選依本節READY完成。正常走入原民兵營地，再點新增分頁，八種HD圖示及教育部隸書可見；Go頁連續20更新的guest steps保持。起始軍隊固定30民兵，沒有預贈openKB單位。購野狼1隻，金500→460、獨立庫存75→74，原店民兵3000與原軍隊24 bytes保持。關閉後普通程式冷讀、再次開店、取消、已有新兵拒切原規則、F2、F7與另一程序F2已抽驗。
+
+兩次完整模型結果相同。完成v4升v5、重綁不補貨、錯token／零量／超量／階級不足／憑空庫存／刪除庫存池／原版規則降級均拒絕；intent-durable中斷由新Store恢復一次，舊token不能重購。模型營地00:00的野狼149依來源cap補回150，原步兵2000保持，軍費70、月薪100、金460→490。全部50有效營地400筆獨立offer封套111760 bytes，低於既有界線。原cap首測預期錯誤及缺「階」字崩潰保留，後者改為既有「等級」，449字與17份UI素材保持。
+
+原八張GUI沿r2；Go原始碼格式化後重新建置，完整模型及兩張冷讀頁另驗r3，合計十張1920×1200 X11 RGB等於Go提交。舊`sword-guards-ui`對v5在建立DOS影子目錄前拒絕且保留進度。此輪沒有新增完整戰鬥GUI、自然高階兵取得、八兵種平衡或正式Engine整合聲明；戰中與戰果沿既有共用封套及交易程式，不能外推為本輪新驗v5戰鬥。正式197來源七程式、923核心、r69全535素材、1066美術及原版途徑不改。
+
+結果見[獨立核對](../../preserved/reinforcement-camps-audit-r2.json)、[截圖來源](../images/reinforcement-camps-runtime-r1.json)與[永久保存](../../preserved/README.md#新增兵種增援分頁保存)。普通預覽執行`bash tools/reinforcement-camps.sh`，需既有Docker映像、合法原資料、本機X11及候選資料，預設開`session-gui-r2`；另用`EIGHTSWORD_REINFORCEMENT_SESSION`指定自己的獨立候選進度。啟動器只掛所選進度可寫，其餘候選與原資料唯讀，不注入記憶體。
+
+重建沿`prepare-reinforcement-camps.py prepare --project /project`及`freeze --project /project`，在固定Pillow容器掛專案與明確候選輸出。候選`execution-r1.json`列出完整`ui_build`與`ui_test`；在Go1.24.13容器將候選掛`/out`、923核心唯讀掛`/core`、既有模組唯讀掛`/gomodcache`，工作目錄`/out/go-src`，設定`GOMODCACHE=/gomodcache`、`GOCACHE=/out/build-cache`、`GOMAXPROCS=2`。模型另設`EIGHTSWORD_REINFORCEMENT_WORK`指向有`inputs/`的新輸出目錄，測試命令包在`xvfb-run -a`。GUI用既有`xcheck`，沿[有界執行器](../../tools/check-reinforcement-camps.py)，全程限Docker、UID1000、network none、配額與外層逾時，來源唯讀。原版state路徑的歷史alias沿父版啟動器掛載。
+
+### 提案歷史
+
+以下為選定A之前的提案歷史。
+
+2026-11-01。既有八種openKB數值、HD圖像、Go招募／戰鬥與存檔已在候選抽驗，但尚未決定自然營地配置。此處只製作可撤回提案，不把「繼續」解讀為覆蓋原營地的授權。比較A保留原店並加可選增援分頁，或B把指定營地改賣一種新兵。價格／階級沿已保存候選；庫存只示例按原店金額折算，補貨與正式對照仍待選定分支後定規格。
+
+入口為[資料與樣張準備](../../tools/prepare-openkb-camp-proposal.py)、[互動版面](../../tools/openkb-camp-proposal.html)、[既有Go招募核心試算](../../tools/research-openkb-camp-quotes.go)及[瀏覽器抽驗](../../tools/check-openkb-camp-proposal.js)。研究沿既有battle-r1下openkb-camp-proposal-r1，正式程式、原120筆記錄、六資源、軍隊、時鐘與存檔不改。樣張及依賴查證完成後才詢問新增的營地配置取捨。
+
+### 已查證與待決定
+
+- 這份固定進度的120筆欄位有50筆非零兵種記錄，不表示整款遊戲只有50個營地。類別、資料列、區域、座標、兵種及庫存沿已證實的camp codec解出，來源SHA見[提案資料](../images/openkb-camp-proposal-data-r1.json)。
+- 八種候選仍是既有openKB-reference-prototype資料，不稱平衡定稿。用Go既有quote核心對50營地、八兵種、兩個階級共800案試算，獨立Python按金錢／領導力／階級／候選庫存重建相同結果。沒有執行遊戲或寫存檔。
+- [互動樣張](../images/openkb-camp-proposal-r1.html)與[A／B並列](../images/openkb-camp-proposal-comparison-r1.png)已完成桌面、營地／階級切換及窄窗抽驗。首版營地選單造成窄窗橫向溢出，已修寬度；舊版與診斷保留。
+- 當時A／B待決定；2026-11-02使用者已選A。接入契約以本節最上方READY為準，提案保留比較用途。
+
+[永久保存](../../preserved/README.md#新增兵種營地提案保存)、[試算核對](../../preserved/openkb-camp-proposal-audit-r1.json)與[瀏覽器核對](../../preserved/openkb-camp-proposal-browser-r1.json)可重查。原正式197來源七程式、923核心、535素材及1066美術保持。
+
 狀態：方向已確認，實作規格維持 DRAFT。使用者於 2026-10-24 同意本提案，追加 HD 配色調整，避免原版紅綠並置。採用原版規則與獨立戰術增強模式，AI 從原版判斷掛點切入；尚未驗證的數值、掛點契約及存檔格式仍須完成 READY 審查。工作規則及入口見 [AGENTS](../../AGENTS.md)，目前狀態見 [CONTEXT](../../CONTEXT.md)。
 
 字型工具列、教育部真正隸書及原概念圖修色已分別依[032](032-poster-toolbar.md)、[015](015-font-settings.md#教育部隸書追加契約)及[031](031-hd-palette-refinement.md)完成。首版目標策略、規則工具列、民兵結陣與結陣知情估值亦已依文末各節限定CONFORMED。下列早期原型與當時unknown保留歷史，不重開完成項；其餘兵種、特性與跨法術仍DRAFT。

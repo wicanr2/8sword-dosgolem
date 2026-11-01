@@ -1,0 +1,9 @@
+{
+  "status": "passed-independent-camp-proposal-quotes",
+  "camps": 50,
+  "units": 8,
+  "quotes": 800,
+  "native_unchanged": true,
+  "production_changed": false,
+  "decision_pending": true
+}

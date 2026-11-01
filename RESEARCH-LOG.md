@@ -2848,3 +2848,12 @@ GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改
 - 原頭目五隊及結局六隊未改，混合軍隊及起點、最終八劍明示fixture。兩場以普通UI到Go勝利，月薪100→120，第一劍0→1；金500、戰績10000、等級1保持。一次intent-durable恢復與重複／無關旗標拒絕通過。12張X11與Go提交逐RGBA相同，最終結局world／token保持，無重複加薪；不稱自然通關或原版整場戰鬥parity。
 
 勘誤標記`SWORD-GUARDS-GO-20261101`回填030、053及軍隊消費索引，三函式原resolution與身份鍵保留，另列sub_1020E交接。入口為[限定驗收](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)、[核對](preserved/sword-guards-audit-r1.json)及[永久保存](preserved/README.md#頭目名劍與結局守軍保存)。頭目／最終戰為r1／r2，最終r3補F1及完整結局，不以舊戰鬥畫面冒稱最終binary逐動作重驗。
+
+
+## 2026-11-02：原店與增援分頁
+
+來源沿已保存sword-guards-r1，PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，固定2987-byte進度SHA `84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef`。本次不開新IDA切片，沿既有IDA9.4與Go1.24.13來源索引、原始camp codec及固定來源守門，不改名或抹除原位址。
+
+已證實：進度120欄位含50筆非零兵種記錄。提案沿八兵種、兩階級重生800筆quote，Pillow11.3.0容器獨立重算相同。使用者選A後，正常GUI於runtime0110:54EA進原類別0／列1的民兵營地，原庫存3000；新增頁購野狼1後獨立75→74、金500→460、原庫存與24 bytes原軍隊不變。CPU僅在新增頁暫停，不模擬原x86像素迴圈。十張X11與Go提交同值，F7前後冷讀及舊程式v5拒讀通過。
+
+新增獨立庫存及補貨是已選A的試作政策，非原版逆向結論。月補貨沿既有原cap表，模型營地00:00的野狼149→150及步兵2000保持；先前預期163／2200忽略cap，屬測試預期錯誤。首版缺字改用既有等級，未改字體素材；失敗來源與日誌仍保存。證據入口為[030限定驗收](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)及[獨立核對](preserved/reinforcement-camps-audit-r2.json)。不外推自然高階招募、全遊戲平衡或新v5完整戰鬥。

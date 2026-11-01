@@ -1,8 +1,12 @@
 # 目前狀態
 
-核對日期：2026-11-01。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
+核對日期：2026-11-02。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
 
-最新切片為[頭目名劍與結局守軍](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)。隔離Go候選同筆保存頭目名劍、NPC與戰果，F1補八劍數量；最終守軍保留八劍進場檢查，Go勝利清守軍後接既有HD結局。PAE會重用PAM線性位址，最終候選在020E停用21檔玩法掛點，HD／音樂／結局掛點保持。[核對](preserved/sword-guards-audit-r1.json)、[永久保存](preserved/README.md#頭目名劍與結局守軍保存)、[最新預覽](tools/sword-guards.sh)與[實景](docs/images/sword-guards-runtime-r1.json)為入口。
+2026-11-02，已依使用者選定A，完成隔離候選reinforcement-camps-r1的原店＋可選增援分頁。[030契約與限定驗收](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)、[預覽](tools/reinforcement-camps.sh)、[核對](preserved/reinforcement-camps-audit-r2.json)及[永久保存](preserved/README.md#新增兵種增援分頁保存)為入口。八種既有HD圖示、三字型及戰外規則切換接上獨立庫存與v5成對保存；原店配置／庫存不減，補貨按來源價格及上限折算。
+
+固定30原版民兵、沒有預贈openKB兵種的進度，以普通走動進營地，Go頁暫停CPU，實購野狼1隻，金500→460、獨立75→74，原店民兵3000保持。未按F7冷讀、取消、已有新兵拒絕切原規則、F2、F7與另一程序F2均通過。模型另驗v4完成檔升v5、單次journal中斷恢復、重複／篡改拒絕、月補貨及全部50有效營地400筆新offer，封套111760 bytes；舊候選在DOS前拒讀v5。十張X11同Go提交。首版缺「階」字改用既有「等級」；月補貨首測誤忽略來源cap，修測試預期後通過，失敗資料保留。正式197來源七程式、923核心、r69全535素材與1066美術保持，沒有正式整合或Release。本輪不新增完整戰鬥、自然高階兵取得或全遊戲平衡聲明，既有戰鬥／月度沿共用保存與規則；其餘特殊分派與正式世界整合待續。
+
+前輪切片為[頭目名劍與結局守軍](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)。隔離Go候選同筆保存頭目名劍、NPC與戰果，F1補八劍數量；最終守軍保留八劍進場檢查，Go勝利清守軍後接既有HD結局。PAE會重用PAM線性位址，最終候選在020E停用21檔玩法掛點，HD／音樂／結局掛點保持。[核對](preserved/sword-guards-audit-r1.json)、[永久保存](preserved/README.md#頭目名劍與結局守軍保存)、[最新預覽](tools/sword-guards.sh)與[實景](docs/images/sword-guards-runtime-r1.json)為入口。
 
 原八word序列化位置、八區頭目座標、6448行IDA bytes與16項旗標結果通過。原頭目五隊及結局六隊未改，明示軍隊／位置及最終八劍後正常操作至勝利；頭目月薪100→120、第一劍0→1、F7冷讀保持。最終戰果關閉後普通binary冷讀完整HD演出退出0，world／token保持，不再加薪。一次中斷恢復、重複／無關旗標拒絕及12張X11同Go提交通過。頭目／最終戰沿r1／r2，最終r3補驗F1與結局；缺劍拒絕、PAE位址碰撞及缺標點診斷均保留。449字與17份UI素材保持，實際頭目v1→v3→v2、最終v1→v3，不稱自然通關、新v4 GUI或通關後世界。正式197來源七程式、923核心、535素材、1066美術與DOS前護欄保持，代表抽驗停止；其餘特殊分派、自然新增兵種營地及正式整合待續。以下舊「頭目／結局待續」以本節閉合範圍為準。
 

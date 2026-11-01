@@ -8,7 +8,7 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與名劍結局預覽](tools/sword-guards.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)。
+隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與增援營地預覽](tools/reinforcement-camps.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
@@ -26,7 +26,7 @@
 
 ![openKB八種新增單位的來源與HD對照](docs/images/openkb-eight-original-hd-r1.png)
 
-以下是實際遊戲視窗。兩張軍隊頁合計顯示全部八種新增單位，第二張同時保留原版民兵。軍隊配置為明示測試資料，戰鬥入口採受控起點；自然招募與完整世界交接仍待接入，正式播放器的附檔護欄保持。
+以下是實際遊戲視窗。兩張軍隊頁合計顯示全部八種新增單位，第二張同時保留原版民兵。軍隊配置為明示測試資料，戰鬥入口採受控起點；自然營地增援分頁已接入隔離候選，完整世界整合仍待完成，正式播放器的附檔護欄保持。
 
 ![遊戲中的HD軍隊：弓箭手、槍兵、野狼、骷髏兵、洞穴巨人與德魯依](docs/images/openkb-army-a-hd-r1.png)
 
@@ -43,6 +43,18 @@
 ![撤退後再戰，守軍保留四隊殘兵，原版與openKB部隊共同作戰](docs/images/guarded-battle-guard-rematch-r1.png)
 
 起始軍隊與鄰近位置為明示測試配置，敵軍、確認與後續操作沿實際遊戲。撤退、重開再戰、勝利、F7 及新程序 F2 已抽驗；月薪100變120，沒有隨機戰的金錢、戰績或晉級獎勵。頭目與結局已由下節接入隔離候選。可看[第一次交戰](docs/images/guarded-battle-guard-opened-r1.png)、[冷讀軍隊頁](docs/images/guarded-battle-mixed-army-r1.png)、[預覽入口](tools/guarded-battle.sh)、[畫面來源](docs/images/guarded-battle-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。正式世界整合仍待完成。
+
+## 原店與新增兵種分頁
+
+已依選定的A方案保留原店，另加可選的新增兵種分頁。八種openKB單位均有HD圖示，可選數量並依金錢、領導力與等級招募；三字型與戰外規則切換也可直接操作。
+
+![實際營地的八種新增兵種與教育部隸書](docs/images/reinforcement-camps-eight-hd-lishu-r1.png)
+
+新增兵種使用獨立庫存，購買不減原店兵力。實際抽驗從3000民兵的[原店](docs/images/reinforcement-camps-original-shop-r1.png)購得一隻野狼，獨立庫存75變74，金錢500變460；未按F7關閉及F7後重新讀檔均保留。
+
+![F7冷讀後，軍隊頁保留原版民兵與新增野狼](docs/images/reinforcement-camps-f7-cold-army-r1.png)
+
+這是隔離Go候選，起始30民兵為明示測試配置，新增野狼由實際營地購買。八種單位價格、等級及獨立補貨仍屬試作平衡；正式播放器保留附檔護欄。可看[預覽入口](tools/reinforcement-camps.sh)、[畫面來源](docs/images/reinforcement-camps-runtime-r1.json)、[接入與抽驗](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)及[永久保存](preserved/README.md#新增兵種增援分頁保存)。較早的[A／B互動比較](docs/images/openkb-camp-proposal-r1.html)保留設計紀錄，現行採A。
 
 ## 頭目名劍與HD結局
 

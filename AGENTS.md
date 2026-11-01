@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-02已依使用者選定A接入隔離候選reinforcement-camps-r1：原店保持，另提供八種HD單位的Go增援分頁、獨立庫存及v5存讀。沿[030限定驗收](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)、[普通預覽](tools/reinforcement-camps.sh)、[核對](preserved/reinforcement-camps-audit-r2.json)與[永久保存](preserved/README.md#新增兵種增援分頁保存)。正常營地實購野狼、未F7及F7冷讀、十張X11、月補貨模型、v4升v5、journal恢復及舊版拒讀通過；原店3000、獨立75→74、金500→460。起始30原版民兵為fixture，沒有預贈新兵，不稱自然高階取得或整體平衡。正式197來源七程式、923核心、535素材、1066美術及DOS前護欄保持。依同機制代表抽驗，不重跑八種GUI或已完成HD；後續取其餘特殊分派或正式世界整合的最小垂直鏈。
+
 2026-11-01頭目名劍與結局守軍沿[030限定驗收](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)接入隔離Go候選。八劍旗標同戰果保存，F1顯示數量；Go清結局守軍後接既有HD演出，普通binary冷讀完整退出0。PAE重用線性位址，進020E後停止21檔隔離玩法掛點，Engine的HD／音樂掛點保持。入口為[預覽](tools/sword-guards.sh)、[核對](preserved/sword-guards-audit-r1.json)與[永久保存](preserved/README.md#頭目名劍與結局守軍保存)。軍隊／位置／最終八劍為明示fixture，不稱自然通關。正式197來源七程式、923核心、535素材、1066美術與DOS前附檔護欄保持，不重跑已驗HD、頭目或結局；其餘特殊分派、自然新增兵種營地與正式整合待續。
 
 2026-11-01一般守軍已沿[030限定驗收](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)接入隔離Go候選。原42處座標及504-word保存位置已核對，守軍309E／25EE與隨機戰分流；Go六隊存在、原確認、殘兵、單次月薪、冷讀與F7／F2已代表抽驗。入口為[普通預覽](tools/guarded-battle.sh)、[核對](preserved/guarded-battle-audit-r1.json)與[永久保存](preserved/README.md#一般守軍go戰鬥保存)。正式197來源七程式、923核心、535素材、1066圖庫與DOS前附檔護欄保持。頭目／結局拒絕，不重跑已驗HD、傷害與一般守軍矩陣。下一切片為頭目／結局、其餘特殊分派、自然新增兵種營地或正式整合，依CONTEXT現況取最小垂直鏈。

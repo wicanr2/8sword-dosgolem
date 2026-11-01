@@ -1,0 +1,22 @@
+{
+  "status": "passed-reinforcement-integrity",
+  "verified_workplace_files": 734,
+  "batches": [
+    {
+      "batch": "openkb-camp-proposal-r1",
+      "files": 23,
+      "objects": 20
+    },
+    {
+      "batch": "reinforcement-camps-r1",
+      "files": 711,
+      "objects": 521
+    }
+  ],
+  "new_markdown_links": 62,
+  "link_positive_control": true,
+  "ownership": "UID/GID 1000",
+  "root_owned_or_markdown_dirs": [],
+  "python_syntax": true,
+  "original_progress_sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef"
+}
