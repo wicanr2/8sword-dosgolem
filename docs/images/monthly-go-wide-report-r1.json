@@ -1,0 +1,16 @@
+{
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/monthly-wide-r1/gui-r1/warm/frame-001-monthly-noto.png",
+  "source_sha256": "79caa5c73fe982f45a635584ccb994cddee1c46a96f32c3aba9a3528f327d4d7",
+  "published_sha256": "a3b3c37e9c7ea945881c523183b5e1ffaea75f4f83fc39f55f2b16328a243e5d",
+  "controlled_countdown": true,
+  "controlled_initial_army": true,
+  "budget": {
+    "Before": 500,
+    "Income": 100,
+    "Due": 100030,
+    "Charged": 0,
+    "After": 600,
+    "Disbanded": true
+  },
+  "production_promoted": false
+}

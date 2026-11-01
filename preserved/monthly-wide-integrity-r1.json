@@ -1,0 +1,28 @@
+{
+  "status": "passed-monthly-wide-integrity",
+  "files": 643,
+  "objects": 439,
+  "compressed_bytes": 33288304,
+  "archive_sha256": "1210aa9edb92be310244107c78425d6d3e307bf368fea258da8761c38fa99efa",
+  "verification_sha256": "d46719a42d363077b6b3b8036856b5c85d8e3c14ca2fb479a9f7115763a57647",
+  "audit_sha256": "1fcb2062a069b8e351b0808d120645a0967e732d33fbe03fc095d5112c33c70d",
+  "source_tools": {
+    "prepare-monthly-wide.py": "416fad780441bd6bfab901a082c9de0123c45c66f64d176440deada25872483f",
+    "monthly-wide-ui.go": "614af7f2825e9adbcab8c52642972a7c13fbe2a1e87ce974cb86e2e529e837d5",
+    "monthly-wide-checks.go": "23137f79e07a71253cd5d3b020ff952e02eeb7118db98f17ce80204f896f90d9",
+    "monthly-wide-ui_test.go": "136951cd57b7d52f2dcdc17f8e9e99123064b8bf25d2070c4c076d27103dc5f2",
+    "check-monthly-wide.py": "99c27653b913f35ae602943fe8f754b0d840d28501ce6ed9fd40466c202ecc46",
+    "check-monthly-wide-ui.py": "5e6d3415faa849f0d7137b4c71e716ac9e66bd365ecccf7a252773bb6e4ec6cc",
+    "monthly-wide.sh": "939cd0ba2024423e61a8663bf5689c3b1c0ae66692d8cdc66f340c3d3e3f9794"
+  },
+  "formal_changed": false,
+  "production_promoted": false,
+  "removed_build_cache": {
+    "path": "workplace/probe-20261023/graphics-first/battle-r1/monthly-wide-r1/build-cache",
+    "files": 1712,
+    "bytes": 144052227,
+    "rebuildable": true,
+    "excluded_from_archive": true
+  },
+  "root_owned_or_md_directories": []
+}

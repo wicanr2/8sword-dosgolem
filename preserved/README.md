@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## Go寬數值月報保存
+
+隔離候選已用64位元軍費與Go月報取代原16位元費用欄。分列應付／實付，資金不足顯示全軍離隊及免收本次費用。Noto900、隸書及草書的20位數字完整顯示，原422字模格位逐格保持，只追加12字。原資源仍0–30000，保存仍v4；pending intent為monthly-2，舊工具會拒絕未知恢復，monthly-1未完成交易先用前版恢復。
+
+入口為[030契約](../docs/spec/030-battle-expansion-proposal.md#寬數值月報的隔離ready契約)、[準備／字圖／發圖／保存](../tools/prepare-monthly-wide.py)、[Go月報與輸入介接](../tools/monthly-wide-ui.go)、[規則邊界](../tools/monthly-wide-checks.go)、[三字型測試](../tools/monthly-wide-ui_test.go)、[實際按鍵](../tools/check-monthly-wide-ui.py)、[獨立核對](../tools/check-monthly-wide.py)及[普通試玩](../tools/monthly-wide.sh)。結果為[限定核對](monthly-wide-audit-r2.json)、[先前核對](monthly-wide-audit-r1.json)、[逐檔清單](monthly-wide-r1.json)、[脫離工作區核對](monthly-wide-verification-r1.json)與[清理及收尾](monthly-wide-integrity-r1.json)。README的[實際月報](../docs/images/monthly-go-wide-report-r1.png)與[來源](../docs/images/monthly-go-wide-report-r1.json)對回本批完整畫面。
+
+六組來源執行及六組純規則邊界、四個中斷點、720筆營地、1266舊字模格位及三種字型20位安全區已核對。實際Continue／走動／大軍費月報／切隸書／返回／新程序Continue／F2通過，沒有F7或重扣；四張X11與Go提交及保存PNG同SHA，十個數字欄從原alpha獨立重建。起始軍隊與倒數明示受控，不稱自然跨月；原版影子24 bytes保持，不將新ID、兵數或軍費塞進原表。
+
+完整候選、三個binary、33種UI素材、來源／九圖、state／原始RAM、字圖、全尺寸畫布與X11保存在本機`preserved/monthly-wide-r1/`，排除Git。固定Pillow11.3.0-r2執行`prepare|freeze --project <專案>`；Go1.24.13命令在研究根`monthly-wide-execution-r1.json`，只保留本輪建置及測試，原版控制沿前版永久收據。GUI用`--work /out`，獨立核對用`--project <唯讀專案> --out <新JSON>`；字形測試變數及有界Xvfb見030。
+
+發圖用`publish --project <唯讀專案> --images <可寫docs/images>`，保存用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`；不掛workplace逐SHA／長度核對用`verify --archive <唯讀preserved> --out <新JSON>`。UID1000、無網路、有界容器及原版／923核心／模組／r69唯讀契約保持。正式197來源七程式、535素材及1066永久美術不改，劇情資源與正式世界交接待續。
+
+本批643檔／439物件、壓縮33288304 bytes，未掛workplace逐SHA／長度核對通過。只清本批1712份Go編譯快取、144052227 bytes，來源、進度、字圖與完整畫面均保持。有界容器已回收，沒有新映像或清其他專案資源。
+
 ## Go月度資源與營地更新保存
 
 隔離候選已由Go計算六隊軍費及120筆營地補貨，月末一併保存Go世界、完整2987-byte原進度及九圖。七個原版控制預先固定seed12345678h，三個Go候選涵蓋原兵種、混合與資金不足，四個提交中斷及重複完成拒絕已驗。實際Continue／走動／月報／新程序冷讀F2通過，三張X11全RGB等於Go提交SHA。30民兵加5狼費用230、金500→370、營地2900→3000，原影子24 bytes保持。
