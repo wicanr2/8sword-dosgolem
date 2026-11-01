@@ -8,7 +8,7 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與召兵術預覽](tools/summon.sh)，範圍見[月結規格](docs/spec/030-battle-expansion-proposal.md#月度資源與營地更新的go交接)。
+隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與後排出手預覽](tools/rear-actions.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#後排特殊出手的限定conformed)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
@@ -59,6 +59,14 @@
 ![召兵後重開的HD軍隊：民兵、野狼與矮人](docs/images/summon-go-army-r1.png)
 
 可看[原版召兵結果的HD實景](docs/images/summon-go-outcome-r1.png)、[預覽入口](tools/summon.sh)、[畫面來源](docs/images/summon-go-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#召兵術的限定conformed)。初始軍隊、可用旗標及次數是明示測試配置，GUI沒有改RAM、IP或亂數；滿六隊且沒有同類時，沿原版不加兵仍扣一次。其餘劇情資源、自然新增兵種營地及正式世界整合仍待接入。
+
+## 後排特殊部隊出手
+
+隔離Go戰鬥視窗已接上道士與雙頭鬼的三種既有特殊動作，分為定額、剋制與比例打擊。敵方後排也能出手，普通後排可略過，完成行動後便能進入下一輪。戰中關閉再開，兵數與已行動旗標會一併恢復。
+
+![後排雙頭鬼出手，敵軍猴妖200人減為194人](docs/images/rear-actions-player-r1.png)
+
+這批畫面使用明示的軍隊、敵軍及原版入口快照，接著以正常滑鼠操作與普通程式冷讀；不稱自然遇敵。可看[敵方後排攻擊後的畫面](docs/images/rear-actions-enemy-r1.png)、[畫面來源](docs/images/rear-actions-runtime-r1.json)、[預覽入口](tools/rear-actions.sh)及[限定驗收](docs/spec/030-battle-expansion-proposal.md#後排特殊出手的限定conformed)。三種按鈕是效果描述，沿已驗核心，不代表完整法術選單或原版隨機選術策略。
 
 ## Go軍隊的月結與營地補貨
 

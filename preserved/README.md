@@ -1,5 +1,21 @@
 # 必要資料永久保存
 
+## 後排特殊出手保存
+
+隔離視窗已接道士／雙頭鬼後排的既有selector0／2／5，三鈕為定額／剋制／比例效果描述，不冒稱原版術名。敵方保留原預設0與既有目標策略；普通敵方後排完成略過後能進第二輪。只改UI接線，公式、RNG、序列化、正式197來源七程式、923核心、535素材、1066美術及DOS前護欄保持。
+
+入口為[030契約及限定驗收](../docs/spec/030-battle-expansion-proposal.md#後排特殊出手的限定conformed)、[UI動作與敵方路由](../tools/rear-actions.go)、[九組helper](../tools/rear-actions_test.go)、[敵軍fixture](../tools/rear-actions-fixture.go)、[既有原入口fixture](../tools/battle-resume-fixture.go)、[實際視窗](../tools/check-rear-actions-ui.py)、[獨立核對](../tools/check-rear-actions.py)、[準備／發圖／保存](../tools/prepare-rear-actions.py)及[普通入口](../tools/rear-actions.sh)。[原版十五筆控制](owned-combat-audit-r1.json)沿前輪，不新跑CPU；本輪結果為[限定核對](rear-actions-audit-r3.json)、[逐檔清單](rear-actions-r1.json)、[脫離工作區核對](rear-actions-verification-r1.json)與[收尾及清理](rear-actions-integrity-r1.json)。README的[玩家出手](../docs/images/rear-actions-player-r1.png)、[敵方出手](../docs/images/rear-actions-enemy-r1.png)及[來源](../docs/images/rear-actions-runtime-r1.json)對回完整PNG。
+
+九組helper涵蓋減2／6／11、道士減5、三拒絕、敵後排減狼2與略過→下一輪；helper持久保存使用收集器，不冒稱真檔案驗收。GUI以受控既有原入口、初始軍隊及敵軍進場，正常滑鼠使我方後排雙頭鬼將猴妖200→194，關閉後普通binary戰中冷讀同world／token與已行動旗標。敵後排使野狼5→3，完成其餘出手與略過後進第二輪。四張X11／PNG同Go提交RGBA、原影子24 bytes及CPU cycles保持。三字型原434字／1302格不變，只追加4字／12格，33種圖像沒有載入故障。
+
+本輪由裸v1模板進既有v3 native_resume封裝，VM物件SHA、PAM／核心、九圖及冷讀均核對。原v4序列化來源逐SHA保持，沒有新格式或新v4 GUI聲明。核對器最初跨程序直接比Steps，以及誤用v4／resume欄名的兩份失敗版本與診斷均保存；Machine.Step先計數再派發主機掛點，cold重訪多一步而cycles相同，現驗每個程序內Steps停止，沒有改遊戲或重跑GUI。
+
+完整候選、兩個binary、字圖、fixture、九組helper、原VM、四張全尺寸視窗、收據與核對器失敗保存在本機`preserved/rear-actions-r1/`，排除Git。Pillow11.3.0-r2用`prepare|freeze --project <專案>`，`publish --project <唯讀專案> --images <可寫目錄>`，`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`，`verify --archive <唯讀preserved> --out <新JSON>`；後者不掛workplace。Go1.24.13命令在研究根rear-actions-execution-r1.json，helper設EIGHTSWORD_REAR_INPUT／EIGHTSWORD_REAR_OUT並使用有界Xvfb，GUI用`--work /out`。來源、923核心、模組與r69唯讀；UID/GID1000、無網路並限制資源與逾時。普通binary不編入兩個fixture。
+
+順帶回填較早軍隊索引sub_16BEA的unknown，沿前輪summon-audit-r2及原始位址／來源SHA，新增resolution backlink及勘誤標記；不改IDA匯出或重新研究召兵。其餘特殊分派、全滅選擇、守軍與正式世界交接仍待續，既有HD／字型／亂數及全部保存故障不重跑。
+
+本批475檔／430物件、壓縮25632240 bytes，未掛workplace逐SHA／長度核對通過。全部工作副本與7份工具來源一致，兩張README縮圖可由完整PNG重建。只清本批1700份Go快取、143719614 bytes，另清一份28143-byte Python快取；完整程式、VM與畫面保持。UID/GID1000、root-owned與誤建.md目錄檢查通過，沒有新映像或全域清理。
+
 ## Go召兵術保存
 
 隔離候選由Go依原rand選原版兵種ID與人數，補同類或第一空隊，滿隊不加入仍扣一次。召兵使用私有6906掛點，沒有覆蓋既有煉金68F0／68F9。軍隊與次數、完整v4進度／九圖同筆保存，pending intent新增summon-1；舊工具拒絕未知未完成交易，完成v4仍可讀。正式197來源七程式、923核心、535素材、1066美術及DOS前護欄保持。

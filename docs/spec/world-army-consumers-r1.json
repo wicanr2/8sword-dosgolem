@@ -135,10 +135,25 @@
       "ida_mz_linear": "0x16BEA",
       "pam_file_offset": 32858,
       "runtime": "0110:6BEA",
-      "semantic_note": "軍隊增補的讀寫候選，玩家語意未定",
-      "level": "unknown",
+      "semantic_note": "召兵術：依階級／亂數選種，補同類或空隊；Go隔離候選已交接",
+      "level": "proven",
       "original_reference_count": 5,
-      "production_integrated": false
+      "production_integrated": false,
+      "resolution": {
+        "previous_level": "unknown",
+        "scope": "Fixed PAM selector2, original three cases and isolated Go summon r2; formal Engine remains guarded.",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#召兵術的限定conformed",
+        "evidence_receipt": "preserved/summon-audit-r2.json",
+        "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+        "required_correction": "軍隊增補未知語意已閉合為召兵術",
+        "identity": {
+          "platform": "DOS",
+          "module": "PAM.AY",
+          "ida_mz_linear": "0x16BEA",
+          "runtime": "0110:6BEA",
+          "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+        }
+      }
     },
     {
       "original_name": "sub_175C6",

@@ -1,0 +1,19 @@
+{
+  "images": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/rear-actions-r1/gui-r1/warm/frame-001-battle-noto.png",
+      "source_sha256": "7b54595ca403393ede2adf18c97179eb02121efb125aac6c5b205cc8584d00db",
+      "published": "rear-actions-player-r1.png",
+      "published_sha256": "2f067f021fac28f2f48f046ab3c812bfd4fc4c6aeda8c35c7a0bc96b9f6d95b2"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/rear-actions-r1/gui-r1/cold/frame-002-battle-noto.png",
+      "source_sha256": "5cf26e06554726b6e7315b05803d43ec3d23ed73474fa6a116c92fdaaef11acd",
+      "published": "rear-actions-enemy-r1.png",
+      "published_sha256": "442d8450c42a8cb02f384afdefaf54747e9067bd2245f62bf3feb9a9502d8ab1"
+    }
+  ],
+  "controlled_native_entry_and_enemy": true,
+  "normal_ui_clicks": true,
+  "production_promoted": false
+}

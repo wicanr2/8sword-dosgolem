@@ -46,6 +46,36 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 後排特殊出手的視窗交接
+
+2026-11-01，接續使用者「繼續，抽驗差不多即可」。本輪只補既有Go核心的後排操作接線。當前UI把後排道士kind10／雙頭鬼kind12當普通近戰，playerPlan拒絕、enemyPlan略過，而PassRearMelee又拒絕這兩種，NextRound要求全部存活單位已行動，因此會卡在本輪。核心公式與傷害已由前輪原版控制證實，不重開CPU或HD研究。
+
+### 後排特殊出手的隔離READY契約
+
+沿[自有兵力核心](#自有兵力結算與固定表隔離)、[原版固定收據](../../preserved/owned-combat-audit-r1.json)及固定PAM／923核心／197來源。原版十五筆控制包括selector0／2／5的雙頭鬼減2／6／11人，來源SHA、trace及限制仍以舊收據為準。本輪只接核心已允許的後排kind10／12與這三分支，不新增傷害、法術、RNG或openKB技能，不把敵方特殊分派當成已確認的玩家術名。
+
+UI在既有戰鬥上方空區加「定額打擊」「剋制打擊」「比例打擊」，只是效果描述。三鈕分別送既有selector0／2／5；目標、來源或已行動不合法即禁用，強行呼叫仍由核心拒絕且不提交。前排／其他兵種仍走原普通／遠程路徑，後排普通近戰沿既有略過。敵方沿目前固定selector0預設與原Choose目標策略，只補道士／雙頭鬼後排路由，不新增跨法術決策或仿原版隨機選術。
+
+敵方普通後排若沒有可用出手，沿既有PassRearMelee完成略過，讓NextRound不被未行動旗標阻擋。每個有效動作仍經原UI→Go核心→成對保存；既有v1–v4生命週期、戰中VM錨點與返回流程保持，不增加偏好或存檔欄位。本輪裸模板由initializeProgressPair建立v1，進戰中後沿原路徑升既有v3，欄名為native_resume；不強迫改成帶營地身份的v4，也不將來源保持冒稱新v4 GUI驗收。三字型只追加缺字，舊字模格位及HD素材逐SHA保持。
+
+抽樣限三特殊分支、道士代表、非法來源／目標、敵方後排路由與略過→下一輪，再做一次受控既有原版入口／正常滑鼠特殊出手／關閉／普通binary戰中冷讀／敵方出手／下一輪。入口、軍隊與敵軍資料明示fixture，不稱自然遭遇；不重跑全部字型、HD、傷害或故障矩陣。正式197來源七程式、923核心、r69全535素材、1066美術及DOS前護欄保持。
+
+研究沿既有battle-r1下rear-actions-r1；[準備／保存](../../tools/prepare-rear-actions.py)為入口，來源自summon-r1永久批次還原。實作後追加限定驗收，原版完整戰術、其餘特殊分派及世界整合不外推。
+
+### 後排特殊出手的限定CONFORMED
+
+2026-11-01，[UI操作與敵方路由](../../tools/rear-actions.go)已接既有核心Plan／Choose／Apply／PassRearMelee，不改197正式來源中的owned_combat.go。玩家只能對後排kind10／12使用三種已驗分支，非法來源、目標、零號門檻與重複出手由核心拒絕，不提交。敵方保留既有selector0及先全滅、再比較減員比例的Choose；這只是補既有預設路由，不新增隨機選術或跨法術策略。普通敵方後排完成既有略過後可進下一輪。
+
+[九組helper](../../tools/rear-actions_test.go)驗雙頭鬼減2／6／11人、道士減5人，三類非法操作不改world、不提交；敵後排雙頭鬼選5狼減2，另驗普通後排略過後第二輪。helper的persist使用收集器，只證明UI送出的world與提交次數；真正成對保存另由GUI證明。原版十五筆控制沿前輪保存重用，本輪沒有新跑CPU原版，不能把內部helper當成新的完整原版對拍。
+
+[實際視窗](../../tools/check-rear-actions-ui.py)使用既有[原入口fixture](../../tools/battle-resume-fixture.go)及獨立[敵軍fixture](../../tools/rear-actions-fixture.go)，只有fixture binary包含注入。正常滑鼠令我方後排雙頭鬼以selector2使猴妖200→194；關閉後普通binary繼續，world／token與已行動旗標相同。敵方先完成普通出手，再由後排雙頭鬼以selector0使野狼5→3；完成其餘普通出手與後排略過後，成功進入第二輪。四張完整X11／PNG同Go提交RGBA，舊軍隊24 bytes及CPU cycles保持，原版戰術呼叫為零。初始軍隊、原入口與敵軍為明示fixture，不稱自然遭遇或新取得部隊。
+
+[獨立核對](../../tools/check-rear-actions.py)從前後world重算五次特殊效果、拒絕與略過／第二輪，另比對兩次GUI特殊效果及最後回合重設。三字型434舊字共1302格逐格保持，只新增剋、打、擊、比四字及12格；全33種圖像正常載入，沒有新增圖像或重跑既有HD矩陣。來源與結果為[限定收據](../../preserved/rear-actions-audit-r3.json)、[玩家實景](../images/rear-actions-player-r1.png)、[敵方實景](../images/rear-actions-enemy-r1.png)、[畫面來源](../images/rear-actions-runtime-r1.json)及[永久保存](../../preserved/README.md#後排特殊出手保存)。
+
+核對器兩項初始假設已修正並保留失敗版本：跨程序Steps不能直接當成原CPU指令數；Machine.Step先加Steps再執行主機掛點，冷讀重訪停點多記一步而cycles不變。現改驗每個程序內Steps停止及跨冷讀cycles保持，不增加容許誤差或要求步數湊同值。另有裸initializeProgressPair模板沿既有v1→v3路徑，欄名為native_resume；原v4序列化程式逐SHA保持，未修改或冒稱本輪新v4 GUI驗收。遊戲程式、GUI操作與畫面沒有因此重跑或變更。
+
+普通入口為`bash tools/rear-actions.sh`，`EIGHTSWORD_REAR_ACTIONS_SESSION`可指定隔離進度。[準備器](../../tools/prepare-rear-actions.py)用`prepare|freeze --project <專案>`，Go1.24.13建置／helper命令在研究根rear-actions-execution-r1.json；helper以Xvfb環境設定EIGHTSWORD_REAR_INPUT及EIGHTSWORD_REAR_OUT執行，GUI用`--work /out`。發圖、archive及verify參數沿永久入口，脫離workplace核對已另保存。正式197來源七程式、923核心、r69全535素材、1066美術及DOS前護欄保持；其餘特殊分派、全滅選擇、守軍與正式世界整合待續，代表抽驗至此停止。
+
 ## 召兵術與Go六隊交接
 
 2026-11-01 DRAFT，依使用者「繼續、抽驗差不多即可」，接續召兵術。重用永久IDA9.4的sub_168CE／sub_16BEA與月結保存的sub_16226，不重掃整個EXE。原PAM／DB／923核心及Go1.24.13契約沿煉金術，位址基準為IDA MZ線性10000h、runtime0110及DS1E88。
@@ -67,6 +97,8 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 驗收限三組來源／候選、無次數入口拒絕、一次intent-durable恢復與重複提交拒絕，再做一次普通Continue／F4／召兵／F2／未F7關閉／新程序冷讀。初始軍隊、可用旗標與次數明示配置，不稱自然學習；原版／HD、字型、既有傷害與全部保存故障矩陣沿用。原版與Go抽驗工具為[探針](../../tools/probe-summon.go)、[來源序列化](../../tools/summon-native-save.go)與[獨立核對](../../tools/check-summon.py)。
 
 ### 召兵術的限定CONFORMED
+
+較早軍隊讀寫索引的sub_16BEA原列unknown，軍隊增補未知語意已閉合為召兵術。原始IDA位址0x16BEA、runtime0110:6BEA及來源SHA保持；索引附原unknown等級及本節／summon-audit-r2的resolution backlink，不覆寫原IDA匯出。
 
 2026-11-01，r2隔離候選已依上述修正後READY接入。[資料與計算](../../tools/summon-data.go)把原rand結果轉成native字串ID及人數，[Go控制器](../../tools/summon-port.go)替代原計算／六隊迴圈，只投影原報告locals及成功旗標。[保存交易](../../tools/summon-store.go)同筆提交Go軍隊、扣次、完整v4與九圖，[來源序列化](../../tools/summon-native-save.go)只在獨立VM執行原84C0，不推進玩家時鐘。沒有使用x86解譯迴圈模仿Go兵力計算，也不把Go新增ID寫回原表。
 

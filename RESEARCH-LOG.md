@@ -2782,3 +2782,24 @@ IDA位址基準為MZ線性10000h，runtime為0110:offset，data為DS／SS1E88；
 契約、工具與後續限定結果見[030](docs/spec/030-battle-expansion-proposal.md#召兵術與go六隊交接)；新證據批次由[永久保存](preserved/README.md#go召兵術保存)收錄，與原版輸入、完整圖像一起留本機，沒有公開散布原資料。
 
 r2限定結果：[獨立核對](preserved/summon-audit-r2.json)通過三組控制、一次中斷／重播拒絕及三張GUI。每案原影子24 bytes保持，其餘2963保存bytes同來源；Go世界只改相應陣位／revision，原次數扣一次。普通GUI的rand32064使階級1召kind21矮人20名，30民兵加5狼變總55，金500與原影子保持，次數2→1；未F7關閉後新程序Continue／F2讀回同world／token。實景、冷讀軍隊與文字已目視，X11全RGBA同Go提交SHA。初始軍隊、可用旗標與次數為明示fixture，GUI無RAM、IP或seed注入。r2未重開原版／HD、三字型、AI或既有故障矩陣，僅同樣本乾淨重跑。限定CONFORMED見[030](docs/spec/030-battle-expansion-proposal.md#召兵術的限定conformed)，其餘世界交接不由本批外推。
+
+
+## 2026-11-01：後排特殊出手的UI接線
+
+問題來自現行視窗的路由，核心規則已有證據。Go核心OwnedCombatState.Plan在後排kind10道士／kind12雙頭鬼接受selector0／2／5，PassRearMelee拒絕這兩種，NextRound要求所有存活單位已行動。當時playerPlan只給normal／ranged，enemyPlan也跳過非遠程後排，故特殊部隊無法完成行動，並會阻擋下一輪。這個結論由固定來源與本輪helper重現，不以舊工作清單判定。
+
+沿PAM.AY SHA83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0、PAM.i64 SHAa9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac及既有923核心。沒有新跑IDA或CPU原版；前輪[十五筆固定控制](preserved/owned-combat-audit-r1.json)的trace與2／6／11減員證據重用。原位址基準仍為IDA MZ線性10000h、runtime PAM0110及DS1E88，本輪不新增反組譯語意。工具為Go1.24.13與Pillow11.3.0-r2，映像SHA沿前輪召兵／煉金，來源與模組唯讀、UID/GID1000、無網路。
+
+UI只送既有特殊action；三鈕為效果描述，不把敵方特殊分派猜作原版玩家術名。敵方沿原預設selector0及Choose目標排序，普通後排沿既有PassRearMelee略過。未替openKB單位發明技能，沒有新增跨術策略、公式、RNG或存檔欄位。九組helper覆蓋三種雙頭鬼效果、道士代表、三拒絕、敵後排與略過後第二輪。helper的persist為收集器，只作操作／world／提交次數驗證，真檔案與冷讀由另一條GUI鏈驗。
+
+GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改成200猴妖、後排20雙頭鬼及5步兵。既有3733入口fixture的SHA仍為d3fdfd4f739d0256f6a29ed5a55a9506dfb753964bf4af7388b20827e17605df；新增fixture只在原敵軍生成後、runtime0110:36B4匯入前改DS5700起24 bytes，不改原玩家影子。普通binary不包含兩個fixture。
+
+實際滑鼠特殊出手selector2使敵猴妖200→194。關閉後普通binary新程序讀回同world／token及已行動旗標。敵方完成普通出手後，後排雙頭鬼以selector0使狼5→3；普通後排略過、其他部隊出手後進第二輪。四張X11／PNG同Go提交RGBA，原軍隊24 bytes與CPU cycles保持，原戰術呼叫零次。這是受控入口及敵軍的視窗鏈，不稱自然遭遇、完整戰術或新的原版oracle。
+
+核對器失敗分類：首版錯把跨程序Steps當成原CPU指令數；固定核心internal/machine/machine.go先Steps++，主機掛點若yield就返回，尚未執行CPU.Step。cold重訪停點多記一步，warm為38921270、cold為38921271，兩程序各自不再增加，CPU cycles均40392329。核對改為分程序Steps停止及跨cold cycles保持，沒有把差異湊成零或容許任意誤差。來源SHA與行文保留clock-checker-diagnostic-r1.json，未宣稱跨程序完整Machine state同SHA。
+
+第二版誤假設模板必為v4、欄名為resume；實檔與既有checkpointSave證實裸v1模板進既有v3，欄名為native_resume，九圖與不可變VM物件都有。先修READY與核對契約，沿原GUI資料核對，遊戲程式、GUI與序列化均未改。舊v4來源逐SHA保持，這不等於新v4 GUI驗收；schema-checker-diagnostic-r2.json保留失敗原因。
+
+三字型原434字共1302格保持，只新增剋、打、擊、比四字共12格；字型來源及fallback沿永久音畫資料，沒有新增圖片或字型授權。原33種圖像載入無故障。獨立Python從原字圖與前後world重算，不使用Go畫面做唯一預期。結果見[限定核對](preserved/rear-actions-audit-r3.json)、[030](docs/spec/030-battle-expansion-proposal.md#後排特殊出手的限定conformed)及[永久保存](preserved/README.md#後排特殊出手保存)。
+
+查軍隊索引時亦發現sub_16BEA仍列unknown。沿前輪召兵三案與原0x16BEA／0110:6BEA／來源SHA，回填proven及resolution backlink；舊unknown等級、IDA匯出及歷史證據保持。本輪核對器驗勘誤標記，不重開已完成召兵研究。其他特殊分派、全滅、守軍及正式世界交接不由本批外推。
