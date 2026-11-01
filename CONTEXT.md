@@ -2,7 +2,11 @@
 
 核對日期：2026-11-01。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
 
-最新切片為[後排特殊出手的視窗交接](docs/spec/030-battle-expansion-proposal.md#後排特殊出手的限定conformed)。Go核心原本已支援後排道士／雙頭鬼，但UI未接，無法出手也不能略過，因此阻擋下一輪。隔離視窗已接selector0／2／5三鈕，敵方沿原預設0與既有目標策略；普通敵方後排也可完成略過。公式、RNG、原版模式與存檔程式保持。[獨立核對](preserved/rear-actions-audit-r3.json)、[永久保存](preserved/README.md#後排特殊出手保存)、[實際畫面](docs/images/rear-actions-player-r1.png)及[最新入口](tools/rear-actions.sh)為入口。
+最新切片為[全軍覆沒後浪跡江湖](docs/spec/030-battle-expansion-proposal.md#全軍覆沒浪跡江湖的限定conformed)。隔離 Go 候選在實際兵力核心算出 loss 後提供明確選擇，清空 Go 軍隊並返回原地，金錢、戰績、RNG 與原軍隊影子保持。既有 v3／v4 native_resume 新增 result 2 表示待回場浪跡，沒有新增欄位；舊 reader 會拒絕該結果值。[核對](preserved/annihilation-roam-audit-r2.json)、[完整保存](preserved/README.md#全軍覆沒浪跡江湖保存)、[實際畫面](docs/images/annihilation-roam-loss-r1.png)及[最新入口](tools/annihilation-roam.sh)為入口。
+
+5 隻野狼遭猴妖攻擊全滅，關閉後普通 binary 冷讀 loss、選浪跡、回場，再關閉冷讀待回場進度、F7 保存及另一程序 F2 空軍隊均通過。原位置 map01.ay 的 41／40、金 500 與戰績 1990 保持，結算 revision 1→2，F7 另加一。一次 intent-durable 中斷恢復及重複提交拒絕通過，七張 X11 與 Go 提交 RGBA 同 SHA。模板軍隊、原入口與敵軍明示受控，不稱自然全滅。438 舊字／1314 格保持，三字型只補 11 字。正式 197 來源七程式、923 核心、r69 全 535 素材、1066 美術及 DOS 前附檔護欄保持。傳回起點的地圖交接、其餘特殊分派、守軍與正式整合仍待續；代表抽驗到此停止。
+
+前輪切片為[後排特殊出手的視窗交接](docs/spec/030-battle-expansion-proposal.md#後排特殊出手的限定conformed)。Go核心原本已支援後排道士／雙頭鬼，但UI未接，無法出手也不能略過，因此阻擋下一輪。隔離視窗已接selector0／2／5三鈕，敵方沿原預設0與既有目標策略；普通敵方後排也可完成略過。公式、RNG、原版模式與存檔程式保持。[獨立核對](preserved/rear-actions-audit-r3.json)、[永久保存](preserved/README.md#後排特殊出手保存)、[實際畫面](docs/images/rear-actions-player-r1.png)及[最新入口](tools/rear-actions.sh)為入口。
 
 九組helper涵蓋三特殊分支、道士、三拒絕、敵方後排與略過→下一輪。實際GUI後排雙頭鬼使敵猴妖200→194，關閉後普通binary讀回同world／token與已行動旗標；敵方後排雙頭鬼令野狼5→3，完成其餘出手／略過後進第二輪。四張X11與Go提交RGBA同SHA，原軍隊及CPU週期保持；兩個程序各自步數不前進。冷讀重訪主機停點多記一步，沿Machine.Step先計數再派發主機掛點的契約，不冒稱跨程序完整state同SHA。初始軍隊、原入口與敵軍為fixture，本輪由裸v1模板進既有v3 native_resume，未新增格式或聲稱新v4 GUI驗收。三字型原434字／1302格保持，只追加剋、打、擊、比。正式197來源七程式、923核心、r69全535素材、1066美術與DOS前護欄保持，代表抽驗停止；其餘特殊分派、全滅選擇、守軍及正式整合待續。
 

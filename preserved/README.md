@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 全軍覆沒浪跡江湖保存
+
+隔離 Go 候選已接實際全滅後的「冒險浪跡江湖」。空軍隊、隨機遭遇清除與待回場選擇一併保存，重開不重複結算；返回原地後仍可正常 F7、冷讀與 F2。傳回起點包含地圖交接，仍待接入。正式 Engine 的附檔護欄保持。
+
+入口為[030 READY 與限定 CONFORMED](../docs/spec/030-battle-expansion-proposal.md#全軍覆沒浪跡江湖的限定conformed)、[停點守門](../tools/annihilation-roam.go)、[交易抽驗](../tools/annihilation-roam_test.go)、[實際視窗](../tools/check-annihilation-roam-ui.py)、[獨立核對器](../tools/check-annihilation-roam.py)與[預覽入口](../tools/annihilation-roam.sh)。[核對收據](annihilation-roam-audit-r2.json)、[完整清單](annihilation-roam-r1.json)、[脫離 workplace 核對](annihilation-roam-verification-r1.json)及[清理收尾](annihilation-roam-integrity-r1.json)記錄本批。[README 全滅畫面](../docs/images/annihilation-roam-loss-r1.png)、[回場畫面](../docs/images/annihilation-roam-returned-r1.png)與[來源](../docs/images/annihilation-roam-runtime-r1.json)對回全尺寸原 PNG。
+
+原版兩個浪跡控制與 660 行 IDA bytes 沿既有保存核對，沒有重跑原版 CPU。Go 核心實際全滅、拒絕未全滅／隱含選擇／戰果不符、一個 intent-durable 中斷與重複提交拒絕通過。普通 binary 冷讀 loss、明確選擇、回場、冷讀待回場、F7 及另一程序 F2 通過，七張 X11 等於 Go 提交。位置 41／40、金 500、戰績 1990 與原影子 24 bytes 保持；初始軍隊、原入口與敵軍明示受控，不稱自然全滅或全遊戲 parity。
+
+完整候選來源、普通／fixture binary、VM 錨點、原進度、九圖、全尺寸畫面、失敗測試與核對診斷，保存在本機 `preserved/annihilation-roam-r1/`，排除 Git。字圖沿前三種字型追加 11 字，舊 438 字／1314 格逐像素保持。保存仍 v3／v4；`native_resume.result=2` 為全滅浪跡，舊 reader 的範圍檢查會拒絕，F7 後沿完整 v2／v4 checkpoint 清除錨點。本次實際驗的是裸 v1→v3→v2，不冒稱新增 v4 GUI 驗收。
+
+[準備／保存工具](../tools/prepare-annihilation-roam.py)沿固定 Pillow 11.3.0 r2 容器使用 `prepare|freeze --project <專案>`、`publish --project <唯讀專案> --images <可寫圖目錄>`、`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單JSON>`；獨立核對用 `verify --archive <唯讀preserved> --out <新JSON>`，不掛 workplace。Go 1.24.13 的命令在候選 `annihilation-roam-execution-r1.json`，模型設 `EIGHTSWORD_ROAM_WORK=<候選>`；中斷冷讀另設 `EIGHTSWORD_ROAM_COLD=1`。原始資料同時唯讀掛 `/game` 及錨點歷史 Root `/project/workplace/intake-20261023/sources/game/8sword`，核心掛 `/core`，快取只寫本批；測試的 Xvfb 由有界程序管理。
+
 ## 後排特殊出手保存
 
 隔離視窗已接道士／雙頭鬼後排的既有selector0／2／5，三鈕為定額／剋制／比例效果描述，不冒稱原版術名。敵方保留原預設0與既有目標策略；普通敵方後排完成略過後能進第二輪。只改UI接線，公式、RNG、序列化、正式197來源七程式、923核心、535素材、1066美術及DOS前護欄保持。

@@ -48,7 +48,22 @@
       "semantic_note": "普通戰果的軍隊存活分支",
       "level": "proven",
       "original_reference_count": 1,
-      "production_integrated": false
+      "production_integrated": false,
+      "resolution": {
+        "previous_level": "proven",
+        "scope": "Random total loss roam branch, isolated Go candidate only; origin/map transfer remains DRAFT and formal Engine guarded.",
+        "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#全軍覆沒浪跡江湖的限定conformed",
+        "evidence_receipt": "preserved/annihilation-roam-audit-r2.json",
+        "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+        "required_correction": "原存活分支來源證據保留，新增全滅浪跡的Go視窗與冷讀回場驗收；不外推傳回起點或守軍。",
+        "identity": {
+          "platform": "DOS",
+          "module": "PAM.AY",
+          "ida_mz_linear": "0x11796",
+          "runtime": "0110:1796",
+          "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+        }
+      }
     },
     {
       "original_name": "sub_11ABE",

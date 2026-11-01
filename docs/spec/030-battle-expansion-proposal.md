@@ -1799,3 +1799,39 @@ r1同底圖重播抽看顯示，來源Actor cell涵蓋整個圖像矩形，單�
 [彩光總覽](../images/map-spell-color-r2.png)、[同底圖同進度的新舊比較](../images/map-spell-color-comparison-r2.png)、[來源](../images/map-spell-color-r2.json)是裁切近景；新版為正常F4 Engine Frame，舊版為同底圖Go重播，不稱原版／HD同一frame。自然習得、新Ebiten GUI與存讀沿既有限制，不另增加完成聲明。
 
 [核對](../../preserved/map-spell-color-audit-r2.json)、[提升](../../preserved/map-spell-color-promotion-r2.json)、[收尾](../../preserved/map-spell-color-integrity-r2.json)及[永久保存](../../preserved/README.md#地圖法術彩光保存)記錄本組。1412檔／427物件壓縮118789232 bytes，完整PNG／預乘RGBA／遮罩／人物Tile／原格／候選已脫離workplace核對後才提升；r1拒絕稿及前版七程式保持，原525素材／923核心／1040圖庫不改。
+
+## 全軍覆沒浪跡江湖的 READY 契約
+
+2026-11-01。範圍為隔離 Go 隨機遭遇的全軍覆沒與「冒險浪跡江湖」。傳回起點包含地圖載入、重設與座標投影，仍為 DRAFT，不以純模型的 NextOrigin 宣稱接入。
+
+證據沿[原版敗退核對](../../preserved/owned-defeat-audit-r1.json)及[來源保存](../../preserved/owned-defeat-r1.json)。PAM SHA-256 為 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，IDA 9.4 資料庫 SHA-256 為 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA 線性位址以 MZ 10000h 為基準，執行位址另列 `0110:offset`。已證實 `sub_11796` 的 IDA `1196C–119C2`，對應執行 `0110:196C–19C2`，全滅顯示兩選項。選項二不呼叫 rand、不扣金、不升級，也不搬動位置。12 組原版控制包含兩種全滅選擇與高戰績分支；本輪不重跑已驗 helper。
+
+| 層次 | 契約 |
+|---|---|
+| 來源到規則 | 沿字串 ID 與 Go 兵力核心的實際 `loss`，不以原影子軍隊推測全滅。 |
+| 畫面 | 全滅時原撤退按鈕改為「冒險浪跡江湖」，由玩家明確選取。未全滅、舊動作、重複提交均拒絕。 |
+| 交易 | 沿原 `resolveDefeat`／`resolveEncounter`，清除本場隨機遭遇、移出空軍隊、revision 加一，資源與 RNG 保持。 |
+| 保存 | 既有 v3／v4 `native_resume` 的 `result` 新增值 2，限定為全滅浪跡；0 勝利、1 撤退保持。無新增欄位。舊 reader 的 `<=1` 驗證會拒絕新待回場狀態，不忽略選擇。 |
+| 冷讀 | 待回場沿不可變原 VM 錨點與九張地圖，載入 result 2；以既有一次回場橋接跳過原版軍隊／重複戰果，保留位置與原 24 bytes 軍隊。正常 F7 沿原完整 checkpoint 清除錨點。 |
+| 防護 | 只認既有 `0110:32E0` 停點、`171D/0110` far frame、原兩段 wrapper bytes、資源與 token。傳回起點未進候選，不接受 result 3。 |
+
+審查結論：原版分支與既有 Go 空軍隊結算證據足夠，以上範圍 READY。待回場值 2 必須以 `loss` 重算相同 world，不能把任意戰果轉成浪跡。正式 Engine、原版模式、197 來源七程式、923 核心、r69 全 535 素材與 1066 圖庫維持。
+
+實作與驗證入口為[準備器](../../tools/prepare-annihilation-roam.py)、[停點守門](../../tools/annihilation-roam.go)、[交易抽驗](../../tools/annihilation-roam_test.go)、[視窗抽驗](../../tools/check-annihilation-roam-ui.py)、[獨立核對](../../tools/check-annihilation-roam.py)及[隔離啟動器](../../tools/annihilation-roam.sh)。候選位於 `workplace/probe-20261023/graphics-first/battle-r1/annihilation-roam-r1`，沿後排出手保存批次恢復。以固定 Go 1.24.13 與 Pillow 11.3.0 r2 容器執行，UID 1000、無網路、唯讀原始資料與核心，只寫候選目錄；`prepare/freeze/archive/verify/publish` 參數沿準備器說明。
+
+## 全軍覆沒浪跡江湖的限定CONFORMED
+
+2026-11-01。以上浪跡分支沿[獨立核對](../../preserved/annihilation-roam-audit-r2.json)限定 CONFORMED，沒有提升正式 Engine。來源保持原 197 來源七程式、923 核心、r69 全 535 素材與 1066 圖庫，前輪後排候選逐 SHA 保持，僅兩個回場控制檔與隔離視窗接線有明列差異。
+
+| 抽驗 | 結果與限制 |
+|---|---|
+| 原版證據 | 沿保存的 roam／roam-promotion 兩案，資源與位置保持、零 rand；660 行 IDA bytes 經 MZ 重定位後逐筆核對。沒有新原版執行或完整戰鬥同狀態聲明。 |
+| Go 核心 | 狼 5 隻遭敵猴妖攻擊後實際 loss，再沿空軍隊結算；未全滅、隱含選擇與不符 world 拒絕。 |
+| 交易冷讀 | 實際 loss 的副本在 intent-durable 中斷，另一個 store 恢復單次結算，result 2／原 seed 保持，再次結算拒絕。 |
+| 玩家介面 | 受控軍隊／原入口／敵軍，正常點擊敵方出手；普通 binary 冷讀 loss 後選浪跡、回地圖。未按 F7 關閉，再冷讀待回場也回到同位置與同 world／token；接著正常 F7，另一程序 F2 顯示空軍隊。 |
+| 狀態與畫面 | map01.ay 位置 41／40、金 500、戰績 1990、原 24 bytes 軍隊保持，結算 revision 1→2，F7 另加一。七張完整 X11 等於 Go 提交 RGBA；各程序戰鬥停點的 Steps／Cycles 不前進，跨程序不稱完整 state 同 SHA。 |
+| 字型與保存 | 舊 438 字／三字型 1314 格逐像素保持，只補 11 字。完整來源、原錨點、九圖、進度及畫面另存永久批次；本輪實際為裸 v1→v3→v2，未新增 v4 GUI 聲明。 |
+
+首兩次 helper 失敗為測試誤用既有 Close／Apply API 及動作名稱，修正測試後通過。獨立核對首版直接比較重定位後 IDA bytes 與未重定位檔案，沿既有 MZ `+1000h` 契約修正；失敗核對來源與診斷保留，遊戲及 GUI 不變，不重跑已通過畫面來擴大樣本。
+
+完整證據、可重建命令與權利分類見[永久保存](../../preserved/README.md#全軍覆沒浪跡江湖保存)，縮圖見[全滅](../images/annihilation-roam-loss-r1.png)與[返回地圖](../images/annihilation-roam-returned-r1.png)，[來源](../images/annihilation-roam-runtime-r1.json)保留完整原 PNG SHA。傳回起點仍 DRAFT，尚未處理其地圖切換、重設及保存交接；其餘特殊分派、守軍、自然新增兵種營地與正式整合仍待續。依使用者代表抽驗要求，本分支停止擴大測試。
