@@ -1,0 +1,187 @@
+{
+  "status": "passed-sword-guards-integrity",
+  "archive_files_matched": 973,
+  "root_tools_matched": 9,
+  "new_links": 41,
+  "positive_control": "README -> CONTEXT",
+  "published_images_rebuilt": 3,
+  "formal_artwork_files": 1066,
+  "python_syntax": true,
+  "bash_syntax_and_go_format": "passed fixed Go container",
+  "uid": 1000,
+  "gid": 1000,
+  "root_owned_or_md_directories": [],
+  "validator_correction": "External GitHub URLs excluded from local path checks.",
+  "cleanup": {
+    "scope": "sword-guards-r1/build-cache only",
+    "files": 1754,
+    "logical_bytes": 173359532,
+    "preserved_complete_inputs": true
+  },
+  "links": [
+    [
+      "AGENTS.md",
+      "tools/sword-guards.sh"
+    ],
+    [
+      "AGENTS.md",
+      "preserved/sword-guards-audit-r1.json"
+    ],
+    [
+      "CONTEXT.md",
+      "preserved/sword-guards-audit-r1.json"
+    ],
+    [
+      "CONTEXT.md",
+      "tools/sword-guards.sh"
+    ],
+    [
+      "CONTEXT.md",
+      "docs/images/sword-guards-runtime-r1.json"
+    ],
+    [
+      "README.md",
+      "tools/sword-guards.sh"
+    ],
+    [
+      "README.md",
+      "docs/images/sword-guards-boss-sword-hud-r1.png"
+    ],
+    [
+      "README.md",
+      "docs/images/sword-guards-hd-ending-r1.png"
+    ],
+    [
+      "README.md",
+      "docs/images/sword-guards-final-opened-r1.png"
+    ],
+    [
+      "README.md",
+      "tools/sword-guards.sh"
+    ],
+    [
+      "README.md",
+      "docs/images/sword-guards-runtime-r1.json"
+    ],
+    [
+      "RESEARCH-LOG.md",
+      "preserved/sword-guards-audit-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/probe-sword-guards.go"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/prepare-sword-guards.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/sword-guards.go"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/sword-lifecycle.go"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/sword-guards_test.go"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/sword-guards-fixture.go"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/check-sword-guards-ui.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/check-sword-guards.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/sword-guards.sh"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../preserved/sword-guards-audit-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/sword-guards-boss-sword-hud-r1.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/sword-guards-final-opened-r1.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/sword-guards-hd-ending-r1.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/sword-guards-runtime-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "sword-guards-audit-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/sword-guards.go"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/sword-lifecycle.go"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/sword-guards_test.go"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/check-sword-guards-ui.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/sword-guards.sh"
+    ],
+    [
+      "preserved/README.md",
+      "sword-guards-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "sword-guards-verification-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "sword-guards-integrity-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/sword-guards-boss-sword-hud-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/sword-guards-final-opened-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/sword-guards-hd-ending-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/sword-guards-runtime-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/check-sword-guards.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/prepare-sword-guards.py"
+    ]
+  ]
+}

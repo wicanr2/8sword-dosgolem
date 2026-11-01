@@ -2,7 +2,11 @@
 
 核對日期：2026-11-01。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
 
-最新切片為[一般守軍Go戰鬥](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。隔離候選保留原守軍檢閱／確認，以Go六隊判斷存在、計算戰鬥與保存殘兵，勝利單次增加月薪並清該處NPC。守軍以309E／25EE frame分流，隨機戰保持171D／0BD3；新增ID不進原主角25種索引。[核對](preserved/guarded-battle-audit-r1.json)、[永久保存](preserved/README.md#一般守軍go戰鬥保存)、[再戰畫面](docs/images/guarded-battle-guard-rematch-r1.png)與[最新入口](tools/guarded-battle.sh)為入口。
+最新切片為[頭目名劍與結局守軍](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)。隔離Go候選同筆保存頭目名劍、NPC與戰果，F1補八劍數量；最終守軍保留八劍進場檢查，Go勝利清守軍後接既有HD結局。PAE會重用PAM線性位址，最終候選在020E停用21檔玩法掛點，HD／音樂／結局掛點保持。[核對](preserved/sword-guards-audit-r1.json)、[永久保存](preserved/README.md#頭目名劍與結局守軍保存)、[最新預覽](tools/sword-guards.sh)與[實景](docs/images/sword-guards-runtime-r1.json)為入口。
+
+原八word序列化位置、八區頭目座標、6448行IDA bytes與16項旗標結果通過。原頭目五隊及結局六隊未改，明示軍隊／位置及最終八劍後正常操作至勝利；頭目月薪100→120、第一劍0→1、F7冷讀保持。最終戰果關閉後普通binary冷讀完整HD演出退出0，world／token保持，不再加薪。一次中斷恢復、重複／無關旗標拒絕及12張X11同Go提交通過。頭目／最終戰沿r1／r2，最終r3補驗F1與結局；缺劍拒絕、PAE位址碰撞及缺標點診斷均保留。449字與17份UI素材保持，實際頭目v1→v3→v2、最終v1→v3，不稱自然通關、新v4 GUI或通關後世界。正式197來源七程式、923核心、535素材、1066美術與DOS前護欄保持，代表抽驗停止；其餘特殊分派、自然新增兵種營地及正式整合待續。以下舊「頭目／結局待續」以本節閉合範圍為準。
+
+前輪切片為[一般守軍Go戰鬥](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。隔離候選保留原守軍檢閱／確認，以Go六隊判斷存在、計算戰鬥與保存殘兵，勝利單次增加月薪並清該處NPC。守軍以309E／25EE frame分流，隨機戰保持171D／0BD3；新增ID不進原主角25種索引。[核對](preserved/guarded-battle-audit-r1.json)、[永久保存](preserved/README.md#一般守軍go戰鬥保存)、[再戰畫面](docs/images/guarded-battle-guard-rematch-r1.png)與[最新入口](tools/guarded-battle.sh)為入口。
 
 原八區42處座標、504個NPC word及保存區間`[1508,2516)`已核對。原0區索引0五隊未改，明示混合軍隊與鄰近起點後走正常移動／確認；石人擊倒30猴妖、撤退、普通binary冷讀四隊殘兵、再戰勝利、冷讀待回場、F7及另一程序F2通過。月薪100→120，戰績10000／等級1保持，金錢只扣一次撤退費；其他41處、主角影子24 bytes與449字保持。一次中斷恢復、重複／頭目／結局／非法NPC拒絕及11張X11同Go提交通過。GUI實際v1→v3→v2，不宣稱v4新GUI或自然抵達。正式197來源七程式、923核心、535素材、1066美術與DOS前護欄保持。代表抽驗停止；頭目及結局守軍、其餘特殊分派、自然新增兵種營地與正式整合待續。以下「守軍待續」為當時歷史，一般守軍已由本節閉合。
 

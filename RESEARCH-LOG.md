@@ -2833,3 +2833,18 @@ GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改
 - 一次intent-durable恢復、重複提交與來源／頭目／結局／非法NPC拒絕通過。11張完整X11逐RGBA等於Go提交，449字及舊UI素材保持。實際GUI格式v1→v3→v2，沒有新v4或守軍全滅GUI聲明；原版十組caller控制含battle stub，不能稱原版完整實戰對拍。
 
 勘誤標記 `GUARDED-BATTLE-GO-20261101` 已回填030較早守軍段落及三函式的resolution索引。12DDE軍隊存在檢查由strong inference提升為限定已證實；原始定位及原證據保留，042方向／圖姿態結論不受影響。首輪GUI只按Enter重訪未觸發守軍，修正為正常走出再走回；未改產品來迎合腳本。來源、失敗GUI與診斷、VM／RAM及完整畫面見[永久保存](preserved/README.md#一般守軍go戰鬥保存)，結論範圍見[獨立核對](preserved/guarded-battle-audit-r1.json)及[030](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。
+
+
+## 頭目名劍、結局前提與掛點生命週期
+
+2026-11-01。輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。沿Go1.24.13／923核心、Pillow11.3.0及既有IDA9.4匯出，沒有新增IDA工作。6448行bytes以原MZ重定位獨立核對，IDA線性base10000h、執行0110h、file offset分列。
+
+- 已證實：原serializer控制標記DS275A加序號乘2的八word，原2987-byte進度位置為1318加序號乘4，編碼仍value加byte_offset加3。未標記伴隨word、其他七旗標及NPC保持。標記只執行serializer，不進玩法。r2重建固定來源後再跑，r1控制保留。
+- 已證實：原DS26BC／26BE加區域乘6的八組頭目座標，對應42處實際表的索引1、3、3、3、2、3、2、10。sub_11ABE的IDA11BDE至11C7F在勝利設定對應DS275A旗標；Go沿既有Pieces模型投影原保存區，不新增JSON欄位。
+- 已證實：sub_12DDE的IDA12FCB至13045在最終位置檢查八劍，有零便顯示提示、回原確認。首輪最終模板沒有八劍，原流程正確拒絕；修正測試前提，未修改產品繞過原條件。
+- 已證實：sub_12DDE的1326E至1329C檢查DS365E的第24至29筆kind；全空設DS56E2並在0110:329B接sub_1020E。Go清0區索引4的真戰果後做同一判斷，原020E只接既有PAE播放。其他DS56E2寫入語意不由本輪外推。
+- 實際r2在PAE的0634:032A誤觸原PAM world-army線性掛點，錯誤為call site/segments。這是overlay重用位址的生命週期缺口。最終在020E停用隔離候選21檔註冊的玩法OnCall／HostInstruction；Engine的HD、來源、音樂及結局掛點不動。原來源／binary與失敗記錄保存在before-lifecycle-r2，r3普通binary冷讀完整HD結局退出0。
+- 畫面勘誤：F1原寶物區並未顯示八劍數量，早期只看到metadata旗標不能當可見證據。Go補欄後，普通程序冷讀可見「八劍: 1 / 8」。全形冒號不在449字圖造成的失敗保留，改用已有ASCII標點，不重製字圖。
+- 原頭目五隊及結局六隊未改，混合軍隊及起點、最終八劍明示fixture。兩場以普通UI到Go勝利，月薪100→120，第一劍0→1；金500、戰績10000、等級1保持。一次intent-durable恢復與重複／無關旗標拒絕通過。12張X11與Go提交逐RGBA相同，最終結局world／token保持，無重複加薪；不稱自然通關或原版整場戰鬥parity。
+
+勘誤標記`SWORD-GUARDS-GO-20261101`回填030、053及軍隊消費索引，三函式原resolution與身份鍵保留，另列sub_1020E交接。入口為[限定驗收](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)、[核對](preserved/sword-guards-audit-r1.json)及[永久保存](preserved/README.md#頭目名劍與結局守軍保存)。頭目／最終戰為r1／r2，最終r3補F1及完整結局，不以舊戰鬥畫面冒稱最終binary逐動作重驗。

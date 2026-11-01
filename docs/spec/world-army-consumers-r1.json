@@ -108,7 +108,24 @@
         "older_spec": "docs/spec/030-battle-expansion-proposal.md",
         "required_correction": "GUARDED-BATTLE-GO-20261101",
         "unaffected_spec": "docs/spec/042-friendly-man21-battle-poses.md",
-        "unaffected_reason": "Direction and pose source evidence remains unchanged."
+        "unaffected_reason": "Direction and pose source evidence remains unchanged.",
+        "current_scope": "Ordinary and boss guards, sword flags and final-guard handoff in isolated Go candidate; formal Engine guarded.",
+        "followups": [
+          {
+            "identity": {
+              "platform": "DOS",
+              "module": "PAM.AY",
+              "ida_mz_linear": "0x11ABE",
+              "runtime": "0110:1ABE",
+              "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+            },
+            "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed",
+            "evidence_receipt": "preserved/sword-guards-audit-r1.json",
+            "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+            "required_correction": "SWORD-GUARDS-GO-20261101",
+            "scope": "Sword flag projection and final guard only; controlled initial setup, not natural completion."
+          }
+        ]
       }
     },
     {
@@ -145,7 +162,24 @@
         "older_spec": "docs/spec/030-battle-expansion-proposal.md",
         "required_correction": "GUARDED-BATTLE-GO-20261101",
         "unaffected_spec": "docs/spec/042-friendly-man21-battle-poses.md",
-        "unaffected_reason": "Direction and pose source evidence remains unchanged."
+        "unaffected_reason": "Direction and pose source evidence remains unchanged.",
+        "current_scope": "Ordinary and boss guards, sword flags and final-guard handoff in isolated Go candidate; formal Engine guarded.",
+        "followups": [
+          {
+            "identity": {
+              "platform": "DOS",
+              "module": "PAM.AY",
+              "ida_mz_linear": "0x12DDE",
+              "runtime": "0110:2DDE",
+              "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+            },
+            "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed",
+            "evidence_receipt": "preserved/sword-guards-audit-r1.json",
+            "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+            "required_correction": "SWORD-GUARDS-GO-20261101",
+            "scope": "Sword flag projection and final guard only; controlled initial setup, not natural completion."
+          }
+        ]
       }
     },
     {
@@ -172,7 +206,24 @@
         "older_spec": "docs/spec/030-battle-expansion-proposal.md",
         "required_correction": "GUARDED-BATTLE-GO-20261101",
         "unaffected_spec": "docs/spec/042-friendly-man21-battle-poses.md",
-        "unaffected_reason": "Direction and pose source evidence remains unchanged."
+        "unaffected_reason": "Direction and pose source evidence remains unchanged.",
+        "current_scope": "Ordinary and boss guards, sword flags and final-guard handoff in isolated Go candidate; formal Engine guarded.",
+        "followups": [
+          {
+            "identity": {
+              "platform": "DOS",
+              "module": "PAM.AY",
+              "ida_mz_linear": "0x132E0",
+              "runtime": "0110:32E0",
+              "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+            },
+            "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed",
+            "evidence_receipt": "preserved/sword-guards-audit-r1.json",
+            "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+            "required_correction": "SWORD-GUARDS-GO-20261101",
+            "scope": "Sword flag projection and final guard only; controlled initial setup, not natural completion."
+          }
+        ]
       }
     },
     {
@@ -406,5 +457,21 @@
         "evidence": "preserved/annihilation-origin-original-audit-r3.json"
       }
     ]
+  },
+  "sword_guard_handoff": {
+    "identity": {
+      "platform": "DOS",
+      "module": "PAM.AY",
+      "original_name": "sub_1020E",
+      "ida_mz_linear": "0x1020E",
+      "runtime": "0110:020E",
+      "source_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0"
+    },
+    "level": "proven",
+    "scope": "Go final-guard condition to existing PAE playback; other DS56E2 writers unknown.",
+    "evidence_spec": "docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed",
+    "older_spec": "docs/spec/053-ending-hd.md",
+    "required_correction": "SWORD-GUARDS-GO-20261101",
+    "evidence_receipt": "preserved/sword-guards-audit-r1.json"
   }
 }

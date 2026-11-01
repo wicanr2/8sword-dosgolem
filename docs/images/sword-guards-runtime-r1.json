@@ -1,0 +1,26 @@
+{
+  "images": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/sword-guards-r1/gui-r3/cold-boss-hud/frame-001-character-noto.png",
+      "source_sha256": "9140ac1433e911484b83926894e89fb5147c0bcd4e3e6548073a937b6265cce1",
+      "published": "sword-guards-boss-sword-hud-r1.png",
+      "published_sha256": "808350165f8bbc8e362a10fa104d72ab72315bd85bc50e6510c1aa1048c1d995"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/sword-guards-r1/gui-r2/final/frame-001-battle-noto.png",
+      "source_sha256": "76e44dc60593138f4b281d0e1e6166c57758ace13cae5eb84b908549f9583589",
+      "published": "sword-guards-final-opened-r1.png",
+      "published_sha256": "a4ef1f48748a689f614799af80ad9f1ecf35b211e26ada22b18fbbc956f33a40"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/sword-guards-r1/gui-r3/cold-ending/frame-001--noto.png",
+      "source_sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09",
+      "published": "sword-guards-hd-ending-r1.png",
+      "published_sha256": "cdd86556bc8a168395ce7c2db77be84e1be3839b970f9ed0c83e1402e134df9d"
+    }
+  ],
+  "controlled_initial_army_and_position": true,
+  "controlled_final_eight_swords": true,
+  "native_enemies_unmodified": true,
+  "production_promoted": false
+}

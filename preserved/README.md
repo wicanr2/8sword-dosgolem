@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 頭目名劍與結局守軍保存
+
+隔離Go候選已接頭目名劍旗標、F1八劍數量及結局守軍戰果，冷讀可接既有HD結局至正常退出。[030 READY／限定CONFORMED](../docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)、[核對](sword-guards-audit-r1.json)、[旗標及交接](../tools/sword-guards.go)、[掛點生命週期](../tools/sword-lifecycle.go)、[抽驗](../tools/sword-guards_test.go)、[GUI](../tools/check-sword-guards-ui.py)與[普通預覽](../tools/sword-guards.sh)為入口。正式197來源七程式、923核心、535素材、1066美術與DOS前護欄保持。
+
+6448行既有IDA bytes、八word原序列化位置、八區座標與16項旗標結果通過。頭目原五隊勝利、單次名劍及F7冷讀，結局原六隊勝利、關閉後普通程式續播退出0均已抽驗。最終r3補驗F1與結局，不重跑r1／r2兩場。初始軍隊／位置及最終八劍為fixture，不稱自然通關或v4新GUI。12張完整X11逐RGBA等於Go提交，449字及17份UI素材保持；一次中斷恢復、重複與無關旗標拒絕通過。
+
+完整來源、前後版binary、原輸入、序列化探針、VM／RAM、九圖、進度及PNG／X11保存在本機`preserved/sword-guards-r1/`，不加入Git。[清單](sword-guards-r1.json)、[脫離workplace核對](sword-guards-verification-r1.json)與[清理收尾](sword-guards-integrity-r1.json)為入口。缺劍拒絕、PAE位址碰撞及字圖標點失敗保留；碰撞前來源與binary另存before-lifecycle-r2。結局進度保留return錨點，可重播而不再加薪，未新增通關後世界。
+
+README的[F1](../docs/images/sword-guards-boss-sword-hud-r1.png)、[原六隊](../docs/images/sword-guards-final-opened-r1.png)、[HD結局](../docs/images/sword-guards-hd-ending-r1.png)與[來源](../docs/images/sword-guards-runtime-r1.json)對回完整PNG。[獨立核對器](../tools/check-sword-guards.py)亦檢查PAM位址、旗標／NPC保存差異與resolution回填。
+
+[準備／保存器](../tools/prepare-sword-guards.py)在固定Pillow11.3.0 r2容器執行`prepare|freeze --project <專案>`；`publish --project <唯讀專案> --images <可寫圖目錄>`；`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單JSON>`；`verify --archive <唯讀preserved> --out <新JSON>`。最後一項不用workplace。Go1.24.13建置命令在候選sword-guards-execution-r1.json，設定`EIGHTSWORD_SWORD_WORK=<候選>`；中斷模式另設`EIGHTSWORD_SWORD_COLD=1`，必須使用未結算的勝利副本。原版唯讀掛/game及歷史錨點Root，核心/core、模組/gomodcache；完整配額及步驟見保存的execution-provenance-r1.json。GUI工具的`--resume-final`及`--resume-ending`只重用已保存樣本與待演出進度，不強迫重跑通過的戰鬥；所有輸出須用新目錄。
+
 ## 一般守軍Go戰鬥保存
 
 隔離候選已將一般守軍接入Go六隊存在判斷、戰鬥、殘兵與月薪保存。保留原檢閱與確認，使用309E／25EE frame識別守軍；隨機戰保留獨立caller。頭目與結局守軍拒絕，正式Engine的DOS前附檔護欄保持。

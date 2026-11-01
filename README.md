@@ -8,7 +8,7 @@
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。新增兵種仍在隔離候選，完整世界流程尚未接入，整案仍未完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與一般守軍預覽](tools/guarded-battle.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。
+隔離Go軍隊候選可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。起始軍隊為測試資料，正式格式與載入護欄保留。最新入口為[Go軍隊與名劍結局預覽](tools/sword-guards.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
@@ -42,7 +42,19 @@
 
 ![撤退後再戰，守軍保留四隊殘兵，原版與openKB部隊共同作戰](docs/images/guarded-battle-guard-rematch-r1.png)
 
-起始軍隊與鄰近位置為明示測試配置，敵軍、確認與後續操作沿實際遊戲。撤退、重開再戰、勝利、F7 及新程序 F2 已抽驗；月薪100變120，沒有隨機戰的金錢、戰績或晉級獎勵。頭目與結局守軍仍保留護欄。可看[第一次交戰](docs/images/guarded-battle-guard-opened-r1.png)、[冷讀軍隊頁](docs/images/guarded-battle-mixed-army-r1.png)、[預覽入口](tools/guarded-battle.sh)、[畫面來源](docs/images/guarded-battle-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。正式世界整合仍待完成。
+起始軍隊與鄰近位置為明示測試配置，敵軍、確認與後續操作沿實際遊戲。撤退、重開再戰、勝利、F7 及新程序 F2 已抽驗；月薪100變120，沒有隨機戰的金錢、戰績或晉級獎勵。頭目與結局已由下節接入隔離候選。可看[第一次交戰](docs/images/guarded-battle-guard-opened-r1.png)、[冷讀軍隊頁](docs/images/guarded-battle-mixed-army-r1.png)、[預覽入口](tools/guarded-battle.sh)、[畫面來源](docs/images/guarded-battle-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。正式世界整合仍待完成。
+
+## 頭目名劍與HD結局
+
+隔離Go候選已接頭目名劍與結局守軍。勝利取得對應名劍，與戰果一併保存；F1新增八劍數量，關閉重開仍能讀回。
+
+![頭目勝利並冷讀後，F1顯示八劍1／8](docs/images/sword-guards-boss-sword-hud-r1.png)
+
+最終守軍仍要求八劍齊備。Go戰鬥勝利後可關閉，再由普通程式冷讀並接續既有HD結局，演出完成不重複加薪。
+
+![結局守軍戰果冷讀後接續的HD結局](docs/images/sword-guards-hd-ending-r1.png)
+
+起始軍隊、位置與最終八劍為明示測試配置，敵軍保持[原六隊編成](docs/images/sword-guards-final-opened-r1.png)，戰鬥以正常介面操作，不稱自然通關。可看[預覽入口](tools/sword-guards.sh)、[畫面來源](docs/images/sword-guards-runtime-r1.json)、[限定驗收](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)及[永久保存](preserved/README.md#頭目名劍與結局守軍保存)。正式世界整合仍待完成。
 
 ## 寶箱獎勵與保存
 
@@ -74,7 +86,7 @@
 
 ![全軍覆沒後可選回起點或浪跡江湖](docs/images/annihilation-origin-loss-r1.png)
 
-畫面使用明示的野狼軍隊、敵軍與入口配置，再以普通滑鼠操作及普通程式冷讀。可看[回到起點](docs/images/annihilation-origin-returned-r1.png)、[預覽入口](tools/annihilation-origin.sh)、[畫面來源](docs/images/annihilation-origin-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。一般守軍已有上節的接入，頭目、結局守軍與正式世界整合待續。
+畫面使用明示的野狼軍隊、敵軍與入口配置，再以普通滑鼠操作及普通程式冷讀。可看[回到起點](docs/images/annihilation-origin-returned-r1.png)、[預覽入口](tools/annihilation-origin.sh)、[畫面來源](docs/images/annihilation-origin-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。一般守軍已有上節的接入，其餘特殊分派與正式世界整合待續。
 
 ## 後排特殊部隊出手
 

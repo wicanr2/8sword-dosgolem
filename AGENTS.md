@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-01頭目名劍與結局守軍沿[030限定驗收](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)接入隔離Go候選。八劍旗標同戰果保存，F1顯示數量；Go清結局守軍後接既有HD演出，普通binary冷讀完整退出0。PAE重用線性位址，進020E後停止21檔隔離玩法掛點，Engine的HD／音樂掛點保持。入口為[預覽](tools/sword-guards.sh)、[核對](preserved/sword-guards-audit-r1.json)與[永久保存](preserved/README.md#頭目名劍與結局守軍保存)。軍隊／位置／最終八劍為明示fixture，不稱自然通關。正式197來源七程式、923核心、535素材、1066美術與DOS前附檔護欄保持，不重跑已驗HD、頭目或結局；其餘特殊分派、自然新增兵種營地與正式整合待續。
+
 2026-11-01一般守軍已沿[030限定驗收](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)接入隔離Go候選。原42處座標及504-word保存位置已核對，守軍309E／25EE與隨機戰分流；Go六隊存在、原確認、殘兵、單次月薪、冷讀與F7／F2已代表抽驗。入口為[普通預覽](tools/guarded-battle.sh)、[核對](preserved/guarded-battle-audit-r1.json)與[永久保存](preserved/README.md#一般守軍go戰鬥保存)。正式197來源七程式、923核心、535素材、1066圖庫與DOS前附檔護欄保持。頭目／結局拒絕，不重跑已驗HD、傷害與一般守軍矩陣。下一切片為頭目／結局、其餘特殊分派、自然新增兵種營地或正式整合，依CONTEXT現況取最小垂直鏈。
 
 2026-11-01[全軍覆沒傳回起點](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)已接隔離 Go 候選。Go 展開 map1、更新地標、正規化當前地圖並回到 40／40，沿既有回場橋接；兩個來源案、307 行 IDA、95 筆寫入及七張實際 X11 抽驗通過。v3／v4 native_resume 新增 result 3，交易中斷可恢復，未 F7 重開不重複結算；F7／冷讀 F2 已驗。入口為[預覽](tools/annihilation-origin.sh)、[核對](preserved/annihilation-origin-audit-r1.json)及[永久保存](preserved/README.md#全軍覆沒傳回起點保存)。原入口、軍隊與敵軍明示受控，GUI 實際 v1→v3→v2；原選單在地圖分支前另有三次 rand，不能把舊 1930 點零計數解讀為整段 RNG parity。正式 197 來源七程式、923 核心、535 素材、1066 美術、449 字及 DOS 前護欄保持，守軍與正式世界整合待續。
