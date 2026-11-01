@@ -2690,3 +2690,5 @@ r2抽驗及獨立核對全數通過。普通GUI這次rand32064，召20矮人；�
 正式197來源七程式、923核心、r69全535素材、1066美術與DOS前護欄保持。本輪不重跑八種GUI或既有戰鬥矩陣，不稱高階自然取得、整體平衡、正式世界整合或全案結案。[保存入口](preserved/README.md#新增兵種增援分頁保存)與[核對](preserved/reinforcement-camps-audit-r2.json)可重查。保存、清理與Git收尾以下列追加為準。
 
 本批永久保存增援711檔／521物件、壓縮36268844 bytes，提案23檔／20物件、壓縮3230733 bytes；未掛workplace的逐SHA／大小核對通過。[收尾核對](preserved/reinforcement-camps-integrity-r1.json)核對734檔工作複本、62條新連結及README正對照、Python／Bash語法與UID/GID1000，root-owned／異常目錄檢查無異常。研究筆記開工引用的進度SHA與實際固定輸入不符，已改為84fb0c8f…26eef，見[來源核對](preserved/reinforcement-camps-source-check-r1.json)；產品輸入與抽驗不改。只清本輪兩批已驗保存的build-cache，共2196檔、206844762邏輯bytes，完整原圖／程式／進度保留。專案候選Docker容器篩選為空，沒有新映像，未清其他專案。Git推送狀態以下列追加為準。
+
+主提交a42114d544116f80cc43212d5123ff6415b1e554已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，候選Docker容器篩選為空，沒有新映像或殘留程序。本行另作文件收尾提交，不改候選、保存或抽驗範圍。
