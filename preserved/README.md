@@ -1,5 +1,21 @@
 # 必要資料永久保存
 
+## Go召兵術保存
+
+隔離候選由Go依原rand選原版兵種ID與人數，補同類或第一空隊，滿隊不加入仍扣一次。召兵使用私有6906掛點，沒有覆蓋既有煉金68F0／68F9。軍隊與次數、完整v4進度／九圖同筆保存，pending intent新增summon-1；舊工具拒絕未知未完成交易，完成v4仍可讀。正式197來源七程式、923核心、535素材、1066美術及DOS前護欄保持。
+
+入口為[030契約與限定驗收](../docs/spec/030-battle-expansion-proposal.md#召兵術的限定conformed)、[資料與計算](../tools/summon-data.go)、[原版／Go探針](../tools/probe-summon.go)、[故障與重播拒絕](../tools/summon-probe-bind.go)、[Go控制器](../tools/summon-port.go)、[成對交易](../tools/summon-store.go)、[來源序列化](../tools/summon-native-save.go)、[UI交接](../tools/summon-ui.go)、[視窗抽驗](../tools/check-summon-ui.py)、[獨立核對](../tools/check-summon.py)、[準備／發圖／保存](../tools/prepare-summon.py)及[普通試玩](../tools/summon.sh)。結果為[原版核對](summon-original-audit-r1.json)、[r2限定核對](summon-audit-r2.json)、[逐檔清單](summon-r1.json)、[脫離workplace核對](summon-verification-r1.json)與[清理及收尾](summon-integrity-r1.json)。README的[召兵結果](../docs/images/summon-go-outcome-r1.png)、[冷讀軍隊](../docs/images/summon-go-army-r1.png)及[來源](../docs/images/summon-go-runtime-r1.json)對回完整PNG。
+
+492行IDA bytes、double1.5、三組固定seed原版／Go控制通過。同類狐狸30→50，加成新隊6飛龍，滿六隊則不加兵；三案次數2→1。Go原影子24 bytes保持，其他2963保存bytes同來源控制，Go既有野狼保持。無次數偽造入口、重複完成、舊描述重播及一個intent-durable中斷恢復通過。正常Continue／F4召20矮人／F2／未F7關閉／另一程序冷讀讀回30民兵、5狼、20矮人及一次餘額；金500保持，三張X11同Go提交SHA。初始軍隊、可用旗標及次數明示受控，GUI無RAM、IP或seed注入。
+
+完整原版輸入、492行IDA、兩版候選來源／binary、控制、VM／RAM、完整進度／九圖及兩輪全尺寸視窗保存在本機`preserved/summon-r1/`，排除Git。r1原先的35／375保守限制已由16249的EB05無條件跳躍否定；修READY後移除，r2同起點／同命令重跑。舊來源／binary另存candidate-src-r1，原版當時來源與命令另存original-src／original-execution-r1.json；原始收據不覆寫。既有煉金來源逐SHA保持，不把這項靜態保持稱為新GUI回歸。
+
+工具沿Pillow11.3.0-r2用`prepare|freeze --project <專案>`，發圖用`publish --project <唯讀專案> --images <可寫目錄>`；獨立核對用`--project <唯讀專案> --out <新JSON>`，原版證據加`--original-only`。保存用`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`，脫離workplace核對用`verify --archive <唯讀preserved> --out <新JSON>`。Go1.24.13命令在研究根summon-execution-r1.json；GUI命令為`python3 /tools/check-summon-ui.py --work /out`，研究、原資料及r69分別掛/out、/game及/assets。無頭歷史快照另掛煉金相同DOS Root alias，來源均唯讀、UID/GID1000、無網路並有資源／逾時界限。
+
+Go沿既有領導力、uint32及同類唯一驗證，越界拒絕保檔，不稱原版超額／重複隊parity。其餘劇情消費端、自然新增兵種營地與正式世界整合待續；已達本輪代表抽樣停止線。
+
+本批841檔／492物件、壓縮41963702 bytes，未掛workplace逐SHA／長度核對通過。工作副本與工具逐SHA一致，兩張README縮圖由完整r2 PNG獨立重建相同。只清本批1450份Go快取、144329636 bytes，另清一份28143-byte Python快取；完整原始碼、VM、RAM及畫面保持。UID/GID1000、root-owned與誤建.md目錄檢查通過，沒有建立新映像或全域清理。
+
 ## Go煉金術保存
 
 隔離候選由Go按原rand結果計算煉金獎勵、封頂30000及扣一次，完整v4進度、九圖與Go世界同筆保存。兩組原版／Go完整2987 bytes同SHA；無次數拒絕、一個intent-durable恢復及重複提交拒絕通過。正常Continue／F4／原選項／確認／F2／未F7關閉／新程序冷讀通過，500→610、次數2→1，30民兵加5狼及原影子24 bytes保持。三張完整X11與Go提交SHA相同，沒有GUI RAM、IP或seed注入；初始軍隊／學習／次數為明示配置，不稱自然習得。

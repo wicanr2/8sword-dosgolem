@@ -46,6 +46,42 @@ AI回合觀測勘誤：2026-10-28。`sub_206DA`、`sub_1FB6C`、`0x1FD7A`、`sub
 
 [核對](../../preserved/owned-world-army-dismiss-audit-r1.json)、[脫離workplace核對](../../preserved/owned-world-army-dismiss-verification-r1.json)、[收尾](../../preserved/owned-world-army-dismiss-integrity-r1.json)及[永久保存](../../preserved/README.md#go-f3軍隊解雇交接保存)收錄417檔／301物件。首輪GUI最後關閉逾時，只修測試工具的Ctrl+Q持有方式；同一容器、同一命令及乾淨存檔重跑通過，Go程式不變，前輪完整資料保留。後續接其餘世界consumer與戰鬥交接，不重做本批字型、交易或既有存檔恢復機制。
 
+## 召兵術與Go六隊交接
+
+2026-11-01 DRAFT，依使用者「繼續、抽驗差不多即可」，接續召兵術。重用永久IDA9.4的sub_168CE／sub_16BEA與月結保存的sub_16226，不重掃整個EXE。原PAM／DB／923核心及Go1.24.13契約沿煉金術，位址基準為IDA MZ線性10000h、runtime0110及DS1E88。
+
+靜態來源顯示：selector2，kind為rand整數商除6600乘5加階級，階級1–5給20／16／12／8／4人，DS26B0等於1時乘1.5。原先遍歷六隊補所有同類，再找第一空隊，找不到仍扣次。這些暫為強推論，先做原版同狀態控制才提升。Go既有資料禁止重複同類，維持字串ID、32位元兵數與領導力驗證；不新增超出既有模型的平衡規則。
+
+研究沿既有battle-r1下summon-r1，來源從alchemy-r1、remaining-spells-r1及monthly-r1永久批次取回。[準備／保存](../../tools/prepare-summon.py)、[資料欄位](../../tools/summon-data.go)為入口。先抽同類補兵、加成新增、六隊滿三案；正式197來源七程式、923核心、535素材、1066美術與DOS前護欄保持。
+
+### 召兵術的隔離READY契約
+
+原版三案及獨立RAM／原保存核對已證實：預先固定seed12345678h，rand23359。階級1選kind16狐狸20名，同類30→50；階級5選kind20飛龍，加成4乘1.5為6，放入第一空隊；六隊滿且無同類則不加入。三案都扣一次2→1，六資源保持。來源及證據等級沿上列，原16BEA全584 bytes與168CE全110 bytes核對；倍率原DS8364八bytes為double1.5，保持原檔offset換算。
+
+原wrapper selector2的effect返回6906。Go在6C2B取得原rand結果後，計算kind與人數，放入原報告locals BP-12／BP-2，跳到6C87，保留原文字、RNG及HD演出。6D76由Go解析同類或第一空陣位，寫原成功旗標BP-8並跳6DFB，完全略過6DB1／6DBA／6DD2／6DE2／6DE9的原軍隊表；原護欄仍保留。Go資料禁止同類重複，count為uint32，累加先檢查上限並沿既有領導力validate；越界拒絕保檔，不猜補超領導力規則。
+
+召兵扣次DS2B2C對應原保存byte1256，加成DS26B0對應1328，來源可用旗標DS26AA仍取byte1316；不把8組交錯旗標算成連續保存。保存不與煉金共用68F0／68F9主機掛點：只在selector2私有返回6906驗frame、一次扣次並暫停，完整進度／九圖與Go軍隊原子提交後才跳68F9返回6896。Oracle的OnCall可並列，但OnHostInstruction是單一位址註冊，不能覆蓋既有煉金掛點。新pending intent為summon-1，原v4保持，舊工具遇未知未完成交易拒絕。
+
+原sub_16226保留，不重寫未使用的驗證支線。複核已固定來源可見IDA16249／runtime0110:6249的bytes為EB05，無條件跳到16250，再跳16478；因此此來源不會走16253起的驗證支線。初稿按36／376門檻加的保守拒絕已被這筆bytes否定，READY改為不額外限制該計數器，原版三案起始0仍明示為fixture。原軍隊24 bytes、120營地與80寶箱保持。原版／Go保存允許軍隊24 bytes不同，Go原生影子維持舊值，實際兵數只進Go字串ID軍隊；其他保存bytes須同來源控制。
+
+驗收限三組來源／候選、無次數入口拒絕、一次intent-durable恢復與重複提交拒絕，再做一次普通Continue／F4／召兵／F2／未F7關閉／新程序冷讀。初始軍隊、可用旗標與次數明示配置，不稱自然學習；原版／HD、字型、既有傷害與全部保存故障矩陣沿用。原版與Go抽驗工具為[探針](../../tools/probe-summon.go)、[來源序列化](../../tools/summon-native-save.go)與[獨立核對](../../tools/check-summon.py)。
+
+### 召兵術的限定CONFORMED
+
+2026-11-01，r2隔離候選已依上述修正後READY接入。[資料與計算](../../tools/summon-data.go)把原rand結果轉成native字串ID及人數，[Go控制器](../../tools/summon-port.go)替代原計算／六隊迴圈，只投影原報告locals及成功旗標。[保存交易](../../tools/summon-store.go)同筆提交Go軍隊、扣次、完整v4與九圖，[來源序列化](../../tools/summon-native-save.go)只在獨立VM執行原84C0，不推進玩家時鐘。沒有使用x86解譯迴圈模仿Go兵力計算，也不把Go新增ID寫回原表。
+
+三組固定seed原版／Go控制均通過，狐狸30→50、加成飛龍6人入新隊、六隊滿則不加入，都扣一次2→1。Go原影子24 bytes保持，其他2963保存bytes逐值等於原版控制；Go另保留5狼，新增飛龍放Go第一空隊，不能把原版與Go的陣位硬當相同。六資源、120營地及80寶箱保持。無次數偽造入口在rand前拒絕，RAM及保存不改。[測試接線](../../tools/summon-probe-bind.go)另驗重複完成、舊描述重播及一次intent-durable恢復，恢復兩檔與正常提交相同，再恢復不重發。
+
+[UI交接](../../tools/summon-ui.go)保留原選單與等待；[實際按鍵工具](../../tools/check-summon-ui.py)用普通binary的Continue／F4選召兵，這次rand32064、階級1，召kind21矮人20名。原30民兵及5狼保持，總35→55，金500保持、次數2→1。未按F7關閉，另一程序Continue／F2讀回相同world／token及三隊；三張X11／完整PNG與Go提交RGBA同SHA。初始軍隊、可用旗標及次數為fixture，沒有GUI RAM、IP或seed注入，不稱自然取得／學習。
+
+492行IDA bytes及原double1.5、三組原版／Go RAM、完整原保存、Go世界、九圖及三張GUI由[獨立核對](../../tools/check-summon.py)驗證。[原版核對](../../preserved/summon-original-audit-r1.json)、[r2限定核對](../../preserved/summon-audit-r2.json)、[README軍隊實景](../images/summon-go-army-r1.png)、[原結果實景](../images/summon-go-outcome-r1.png)、[畫面來源](../images/summon-go-runtime-r1.json)與[永久保存](../../preserved/README.md#go召兵術保存)為入口。
+
+r1已通過相同三案與GUI，但帶有不必要的35／375限制。原16249的EB05證明固定跳過未用驗證支線後，先修READY再移除，r2以同一控制起點／同一GUI命令及新session重跑。r1完整來源、binary、控制、GUI與audit保留，不重寫原版收據；舊煉金來源逐SHA保持，未擴大重跑其GUI、字型、HD、AI或保存故障矩陣。
+
+普通入口為`bash tools/summon.sh`，`EIGHTSWORD_SUMMON_SESSION`可指定隔離進度，預設已抽驗的session-gui-r2。[準備器](../../tools/prepare-summon.py)用`prepare|freeze --project <專案>`、`publish --project <唯讀專案> --images <可寫目錄>`、`archive --project <唯讀專案> --archive <可寫preserved> --out <新清單>`、`verify --archive <唯讀preserved> --out <新JSON>`；後者不需要workplace。Go1.24.13命令位於研究根summon-execution-r1.json；原版當時來源與命令另存original-src／original-execution-r1.json。沿煉金相同歷史快照DOS Root的唯讀alias，普通GUI僅需/game。
+
+隔離格式仍v4，pending intent為summon-1；舊工具拒絕未知未完成交易，完成v4可讀。Go既有領導力、uint32及同類唯一驗證保持，未驗原版重複同類、超額軍隊或word回繞，不稱全遊戲parity。正式197來源七程式、923核心、r69全535素材、1066美術及DOS前護欄保持；其餘劇情消費端、自然新增兵種營地、完整戰鬥選單與正式世界整合仍待續。代表抽驗至此停止。
+
 ## 煉金術資源與次數保存
 
 2026-11-01 DRAFT，依使用者「抽驗差不多即可」接續地圖術資源。這輪只接煉金術的加金與扣次，沿既有HD演出、原選單、RNG及原子保存，不重跑八術、全部字型或四個共用中斷點。召兵術會掃原六隊，先保持既有軍隊護欄，另待Go軍隊契約。

@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/summon-r1/gui-r2/warm/frame-001-summon-noto.png",
+      "source_sha256": "d83e7415d2a3b2c94485be9d6998fd3979215573f5b59cf57763534be25ca102",
+      "published": "summon-go-outcome-r1.png",
+      "published_sha256": "46168fd481a4f8b070443adceff00969c21d766d8baa5f79335525f97f68a62d"
+    },
+    {
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/summon-r1/gui-r2/cold/frame-001-army-noto.png",
+      "source_sha256": "f5b97fe392566b8885e9773483fe4cc51fef6bc1a3d5e27bda227a50fa40cfe7",
+      "published": "summon-go-army-r1.png",
+      "published_sha256": "d3cce034512cf731d4c521e2988415c06d021cb552351972d6315f10d3b08d30"
+    }
+  ],
+  "ordinary_f4_and_choice": true,
+  "initial_army_access_and_uses_fixture": true,
+  "award": {
+    "Roll": 32064,
+    "Bonus": false,
+    "UsesBefore": 2
+  },
+  "production_promoted": false
+}

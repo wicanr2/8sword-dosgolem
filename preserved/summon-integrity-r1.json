@@ -1,0 +1,18 @@
+{
+  "status": "passed-summon-integrity",
+  "archived_files": 841,
+  "objects": 492,
+  "compressed_bytes": 41963702,
+  "removed_build_cache_files": 1450,
+  "removed_build_cache_bytes": 144329636,
+  "removed_python_cache_files": 1,
+  "removed_python_cache_bytes": 28143,
+  "formal_dependencies_unchanged": true,
+  "source_tools_match": true,
+  "all_archived_working_files_match": true,
+  "python_syntax": true,
+  "shell_syntax": true,
+  "published_images_match": true,
+  "root_owned_or_md_directories": [],
+  "production_promoted": false
+}

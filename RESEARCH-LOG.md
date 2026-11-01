@@ -2755,3 +2755,30 @@ DRAFT欄位勘誤：起初把26AE按連續word估為1320，已被原保存sub_18
 正常GUI以明示的30民兵、5狼、已學習及兩次使用機會啟動，Continue後普通F4選煉金術，rand28660得到110金，500→610、次數2→1。未按F7關閉，另一程序Continue／F2讀回相同world及token；三張X11全RGBA等於Go提交。GUI沒有RAM、IP或seed注入；原始位置也未改。無次數偽造入口在rand前拒絕，RAM與保存保持；一個intent-durable中斷冷讀到與正常提交相同的兩檔，再恢復與重複提交不重發。沿使用者抽驗指示不擴大故障或HD矩陣。
 
 實作鏈、READY／限定CONFORMED與全部工具見[030](docs/spec/030-battle-expansion-proposal.md#煉金術的限定conformed)。[獨立核對](preserved/alchemy-audit-r1.json)、[原版核對](preserved/alchemy-original-audit-r1.json)及[永久保存](preserved/README.md#go煉金術保存)保留來源、失敗與成功資料。召兵術、其餘劇情消費端及正式世界整合仍未完成；正式Engine的附檔護欄保持。
+
+
+## 2026-11-01：召兵術的Go軍隊交接
+
+沿已保存的原F4快照、IDA9.4與煉金候選追召兵術，不重掃EXE。PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，PAM.i64為a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。來源批次為remaining-spells-r1、monthly-r1及alchemy-r1。工具沿IDA9.4既有匯出、Go1.24.13／923核心、Pillow11.3.0-r2；Go及Pillow映像SHA沿前輪煉金紀錄，未新建工具鏈。
+
+IDA位址基準為MZ線性10000h，runtime為0110:offset，data為DS／SS1E88；原檔offset加MZ header另記。獨立核對將重定位word加1000h後比對492行IDA bytes，包含sub_168CE、sub_16BEA及sub_16226。下列召兵語意由來源及三個固定seed控制證實，未抽驗的原版重複同類／溢位不外推。
+
+| 原始定位 | 已證實語意及證據 |
+|---|---|
+| IDA sub_168CE，runtime0110:68CE | selector2轉入sub_16BEA，effect返回6906，再走統一扣次 |
+| IDA sub_16BEA，runtime0110:6BEA，584 bytes | 6C26呼叫rand；6C2B後用商除6600、乘5、加階級選kind1–25 |
+| runtime0110:6C40至6C87 | 階級1–5人數為20／16／12／8／4，DS26B0等於1乘1.5；原DS8364的double為1.5，PAM檔offset26F54 |
+| runtime0110:6D76至6DFB | 原先補所有同類，再找第一空隊，沒有位置仍扣一次；Go替代此block並保留成功旗標BP-8 |
+| DS2B2C，原保存byte1256 | 召兵次數，三案2→1 |
+| DS26B0，原保存byte1328 | 加成旗標，沿交錯26AA／275A保存，不按連續word猜偏移 |
+| runtime0110:6906及6896 | 召兵私有返回與原F4 caller；Go在6906扣次後提交完整進度／九圖與軍隊，再讓原返回繼續 |
+
+原版三案執行前固定seed12345678h，不重投，rand23359。階級1選狐狸kind16，20人補同類30→50；階級5加成選飛龍kind20，6人放第一空隊；六種不同部隊佔滿時，狐狸無法加入。三案六資源保持，次數2→1，保存及RAM各六隊逐欄核對。
+
+修正初稿的計數器假說：sub_16226的16246雖比較24h，但16249實際bytes是EB05，從1624B加5到16250，隨後跳16478；不會走16253起的驗證支線。r1曾加35／375的保守拒絕，這筆無條件跳躍足以否定該限制。先修READY，再移除限制；保留candidate-src-r1、兩個舊binary、r1完整控制／GUI與核對。這是規格審查修正，不宣稱原版存在會觸發的清資源缺陷，也不繼續逆向未使用的驗證helper。
+
+避免主機掛點衝突：Oracle.OnCall附加多個callback，但OnHostInstruction對同一位址安裝主機函式。故召兵使用6906的私有掛點，不覆蓋煉金68F0／68F9。原軍隊五個operand guard仍在，Go跳6DFB使它們不被執行；實際軍隊只用字串ID／uint32，不寫新增ID或人數進原24 bytes。Go既有領導力與同類唯一驗證保持，超出既有模型拒絕保檔，不能稱原版超額召兵或word回繞parity。
+
+契約、工具與後續限定結果見[030](docs/spec/030-battle-expansion-proposal.md#召兵術與go六隊交接)；新證據批次由[永久保存](preserved/README.md#go召兵術保存)收錄，與原版輸入、完整圖像一起留本機，沒有公開散布原資料。
+
+r2限定結果：[獨立核對](preserved/summon-audit-r2.json)通過三組控制、一次中斷／重播拒絕及三張GUI。每案原影子24 bytes保持，其餘2963保存bytes同來源；Go世界只改相應陣位／revision，原次數扣一次。普通GUI的rand32064使階級1召kind21矮人20名，30民兵加5狼變總55，金500與原影子保持，次數2→1；未F7關閉後新程序Continue／F2讀回同world／token。實景、冷讀軍隊與文字已目視，X11全RGBA同Go提交SHA。初始軍隊、可用旗標與次數為明示fixture，GUI無RAM、IP或seed注入。r2未重開原版／HD、三字型、AI或既有故障矩陣，僅同樣本乾淨重跑。限定CONFORMED見[030](docs/spec/030-battle-expansion-proposal.md#召兵術的限定conformed)，其餘世界交接不由本批外推。
