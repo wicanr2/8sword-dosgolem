@@ -12,7 +12,12 @@
 
 ## 最近驗證
 
-最新為[原25種六隊投影](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)。隔離候選由Go提供戰場六隊資料，保留原選單、減員、動畫與回合；返回時Go收取原整理後剩兵，略過原軍隊影子寫回。六隊模型、19種拒絕及原版／HD四條冷啟動遇敵至正常Esc返回通過。30民兵剩16，原控制與Go的完整Frame、戰場資料及seed相同；Go剩兵交成對Store後新Store冷讀一致，原人物檔與軍隊影子保持。[核對](preserved/original-army-projection-audit-r1.json)、[成果](docs/images/original-army-projection-r1.png)與[保存](preserved/README.md#原25種六隊戰場投影保存)為入口。
+最新為[募兵透明與openKB身份修正](docs/spec/030-battle-expansion-proposal.md#募兵圖示透明與openkb身份修正)。原店及新增兵種數量輸入已移除圖示金邊／綠底；弓箭手改為中國古風美女，槍兵改為持削尖木棍的布衣農民。兩張完整透明原圖與三份提示追加永久圖庫，1071檔獨立核對通過。283來源隔離候選、透明合成模型及四張正常GUI逐RGB核對通過；六張其他新增圖、數值、規則、存檔、原197來源七程式／923核心／535素材保持。[核對](preserved/troop-presentation-fix-audit-r1.json)、[成果圖](docs/images/troop-presentation-corrected-r1.png)與[保存](preserved/README.md#募兵透明與openkb身份修正保存)為入口。
+
+新圖示包在`workplace/probe-20261023/graphics-first/battle-r1/troop-presentation-fix-r1/ui-assets`，可從本批保存還原。後續候選應使用此包，不沿舊版本圖片。一般Go入口仍停止；新增ID原戰場固定表隔離及完整世界戰果接續處理。GUI只從既有30民兵／2野狼進度正常操作，槍兵原等級2／金800限制保持，未宣稱自然招募到兩種更正單位。
+
+
+前輪為[原25種六隊投影](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)。隔離候選由Go提供戰場六隊資料，保留原選單、減員、動畫與回合；返回時Go收取原整理後剩兵，略過原軍隊影子寫回。六隊模型、19種拒絕及原版／HD四條冷啟動遇敵至正常Esc返回通過。30民兵剩16，原控制與Go的完整Frame、戰場資料及seed相同；Go剩兵交成對Store後新Store冷讀一致，原人物檔與軍隊影子保持。[核對](preserved/original-army-projection-audit-r1.json)、[成果](docs/images/original-army-projection-r1.png)與[保存](preserved/README.md#原25種六隊戰場投影保存)為入口。
 
 候選282來源，目前只在研究測試安裝。進出資料限原25種及native規則，擴充ID仍拒絕；原版仍處理戰場減員與特殊分派，尚未把全部兵力交Go。剩兵保存測試不等於完整世界戰果：損金、獎勵、F7、戰中續接及GUI尚未接驗。一般Go入口保持停止；下一步是新增ID的固定表隔離與原戰場呈現，再接完整戰果Store。
 
@@ -41,7 +46,7 @@
 | 面向 | 目前真相 | 證據入口 |
 |---|---|---|
 | 執行器與程式 | Go版dosgolem，source-candidate-owned-combat-r1，197來源、七程式、923核心；本輪未改正式遊戲程式或素材 | [兵力核心核對](preserved/owned-combat-audit-r1.json) |
-| HD圖形 | r69全535素材保持；原104圖檔333筆已有HD，290彩色正式對應、43單色／IFF僅入包。新增八種openKB靜態圖進隔離UI，永久圖庫由1040追加至1066檔 | [原版圖庫](artwork/all-graphics-hd-gallery-r2.html)、[新增八種](artwork/README.md#openkb新增單位hd) |
+| HD圖形 | r69全535素材保持；原104圖檔333筆已有HD，290彩色正式對應、43單色／IFF僅入包。新增八種openKB靜態圖進隔離UI，永久圖庫含兩張身份修正，目前1071檔 | [原版圖庫](artwork/all-graphics-hd-gallery-r2.html)、[新增八種](artwork/README.md#openkb新增單位hd) |
 | Go繪圖分流 | 沿用前輪原版／HD各250M固定步數對照，最終完整state同SHA；原版像素寫入4194129次，HD零次、無繪圖故障。只限這段輸入，不外推所有分支 | [步數對照](preserved/phase-closeout-audit-r1.json)、[047](docs/spec/047-hd-scene-renderer.md) |
 | 正常玩家路徑 | 正式遊戲在3000 cycles/ms下完成新遊戲、購兵、F2兩次檢閱、自然遇敵、撤退、F7存檔、原版正常退出與另一程序繼續。2987-byte存檔SHA保持，存後／冷讀均為31民兵及金錢461；三字型與偏好沿用前輪結果 | [本輪GUI核對](preserved/recruit-gui-diagnosis-audit-r2.json)、[基本GUI與字型](preserved/phase-closeout-audit-r1.json) |
 | 字型與海報 | Noto Black900、教育部隸書、草書，工具列／F10與偏好保存；兩側海報及漸淡銜接沿既有驗收 | [015字型](docs/spec/015-font-settings.md)、[032海報](docs/spec/032-poster-toolbar.md) |

@@ -128,9 +128,6 @@ func composeRecruitIcons(e *game.Engine, base *image.RGBA) *image.RGBA {
 	}
 	out := image.NewRGBA(base.Bounds())
 	draw.Draw(out, out.Bounds(), base, base.Bounds().Min, draw.Src)
-	draw.Draw(out, recruitIconCard, image.NewUniform(color.RGBA{176, 150, 85, 255}), image.Point{}, draw.Src)
-	inside := recruitIconCard.Inset(3)
-	draw.Draw(out, inside, image.NewUniform(color.RGBA{7, 36, 26, 255}), image.Point{}, draw.Src)
 	// Fit the complete alpha silhouette, preserving aspect ratio and a fixed
 	// inset. No portrait pixels enter the text or numeric input area below.
 	bounds := image.Rectangle{}
@@ -149,7 +146,7 @@ func composeRecruitIcons(e *game.Engine, base *image.RGBA) *image.RGBA {
 	if bounds.Empty() {
 		return base
 	}
-	area := inside.Inset(18)
+	area := recruitIconCard.Inset(21)
 	w, h := area.Dx(), area.Dy()
 	if w*bounds.Dy() > h*bounds.Dx() {
 		w = h * bounds.Dx() / bounds.Dy()

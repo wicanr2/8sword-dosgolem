@@ -2,11 +2,15 @@
 
 ## openKB新增單位HD
 
+使用者更正弓箭手應為中國古風美女，槍兵應為持削尖木棍的布衣農民。[兩圖修正提示](openkb-hd-corrections-r2.json)與[追加保存](openkb-hd-corrections-preservation-r2.json)為新版本入口。完整透明PNG及提示追加在`approved/masters/openkb-hd-r2/`與`approved/provenance/openkb-hd-r2/`，r1舊圖與來源不刪。新版本總覽與接入結果依[030呈現修正](../docs/spec/030-battle-expansion-proposal.md#募兵圖示透明與openkb身份修正)更新；八個兵種ID、數值與存檔保持。
+
+[1071檔獨立核對](../preserved/troop-corrected-artwork-verification-r1.json)已完成，沒有掛載workplace。修正接入沿[呈現準備／保存](../tools/troop-presentation-fix.py)與[實際視窗抽驗](../tools/check-troop-presentation-gui.py)，完整生成使用內建image_gen，沒有CLI替代。舊版1066檔均保持，新版本另追加兩張主圖與三份提示紀錄。
+
 八種候選單位沿既有中國古風與原版配色重繪，完整提示與來源見[生成紀錄](openkb-hd-generation-r1.json)。採用的透明原PNG與提示保存於`approved/masters/openkb-hd-r1/`及`approved/provenance/openkb-hd-r1/`，不依賴workplace或圖片工具的預設輸出目錄。接入範圍依[030呈現契約](../docs/spec/030-battle-expansion-proposal.md#openkb新增單位的hd圖像與遊戲截圖)，不改既有兵種數值與規則。
 
-[原圖保存收據](openkb-hd-preservation-r1.json)記錄八張完整1254×1254透明PNG、八份來源PNG、既有風格參考及完整提示，共新增26檔；[逐檔清單](manifest.json)保留舊1040列，現在共1066檔。[不依賴workplace的獨立核對](../preserved/openkb-hd-artwork-verification-r1.json)已通過。下方1040檔為此前基礎圖庫的歷史數字。
+[原圖保存收據](openkb-hd-preservation-r1.json)記錄八張完整1254×1254透明PNG、八份來源PNG、既有風格參考及完整提示，共新增26檔；[逐檔清單](manifest.json)保留舊1040列，當時共1066檔；本次修正追加後現為1071檔。[不依賴workplace的獨立核對](../preserved/openkb-hd-artwork-verification-r1.json)已通過。下方1040檔為此前基礎圖庫的歷史數字。
 
-[八種來源／HD總覽](../docs/images/openkb-eight-original-hd-r1.png)、[33種合併總覽](../docs/images/troops-all-original-hd-with-openkb-r4.png)與[實際截圖來源](../docs/images/openkb-game-screenshots-r1.json)已加入README。Go軍隊／戰鬥的代表驗證與完整研究來源見[永久保存](../preserved/README.md#openkb單位hd與遊戲截圖保存)。八圖由內建image_gen逐圖產生，完整提示在本節生成紀錄；沒有改用CLI或用放大像素冒充重繪。
+[新版八種來源／HD總覽](../docs/images/openkb-eight-original-hd-r2.png)、[33種合併總覽](../docs/images/troops-all-original-hd-with-openkb-r5.png)與[實際截圖來源](../docs/images/openkb-game-screenshots-r1.json)已加入README。Go軍隊／戰鬥的代表驗證與完整研究來源見[永久保存](../preserved/README.md#openkb單位hd與遊戲截圖保存)。八圖由內建image_gen逐圖產生，完整提示在本節生成紀錄；沒有改用CLI或用放大像素冒充重繪。
 
 ## B飛焰與命中符光
 

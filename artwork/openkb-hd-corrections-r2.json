@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "status": "adopted-presentation-correction",
+  "tool": "built-in image_gen",
+  "user_corrections": [
+    "募兵部隊圖示不應有不透明底板",
+    "openKB弓箭手應為美女",
+    "openKB槍兵應為農民持削尖木長棍"
+  ],
+  "rows": [
+    {
+      "id": "openkb:arcr",
+      "file": "arcr",
+      "name": "弓箭手",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-43d7ecdc-7434-43ae-92d7-66621a7f2b94.png",
+      "reference": "approved/masters/openkb-hd-r1/arcr.png",
+      "master": "approved/masters/openkb-hd-r2/arcr.png",
+      "provenance": "approved/provenance/openkb-hd-r2/arcr.json",
+      "prompt": "Use case: precise-object-edit. Edit target: the referenced full-body archer sprite. Replace this male archer with a clearly adult, beautiful Chinese female archer for the 神州八劍 HD remake. Preserve the same polished hand-painted classic Chinese fantasy game sprite style, crisp readable silhouette, side-facing to the right, full body including feet, actively drawing a wooden recurved bow with a nocked arrow. Feminine refined classical Chinese face, gentle graceful eyebrows, black long hair in a practical tied half-up style with a simple ribbon. Purple Chinese cloth tunic and flowing green waist sash, ivory underlayer and trousers, modest practical female martial attire, light leather arm guards; graceful athletic proportions. Hands anatomically correct: left hand extends and grips bow, right hand draws string to cheek; arrow aims right. Match the old sprite's palette, brush detail and useful scale; do not reuse its masculine face or broad masculine body. Single complete isolated character. Real transparent alpha background, including between bowstring, arms and legs; no solid-color background, no checkerboard drawn into the image, no scene, no base, no floor shadow, no frame, no text, no watermark. Keep weapon and all anatomy entirely inside canvas with comfortable transparent margin."
+    },
+    {
+      "id": "openkb:pike",
+      "file": "pike",
+      "name": "槍兵",
+      "generated_path": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-40bcf944-c70f-46c9-978e-9ce8b69ab17c.png",
+      "reference": "approved/masters/openkb-hd-r1/pike.png",
+      "master": "approved/masters/openkb-hd-r2/pike.png",
+      "provenance": "approved/provenance/openkb-hd-r2/pike.json",
+      "prompt": "Use case: precise-object-edit. Edit target: the referenced armored spearman sprite. Redesign this unit as an ordinary Chinese peasant militia farmer holding a long sharpened wooden pole, for the 神州八劍 HD remake. The user specifically wants a farmer with a wooden long stick whose end is whittled to a point. Remove ALL armor and every metal spearhead. An adult Chinese farmer, simple blue coarse-cloth tunic with rolled sleeves, unadorned cloth belt, loose off-white trousers, cloth leg wraps and simple straw/cloth shoes, plain blue head cloth. Work-worn humble practical appearance. Both hands naturally grip one continuous long rough-grained wooden staff diagonally, pointed tip toward upper right: the point is carved from the same brown wood, with visible lighter wood facets, no attached blade, no metal socket, no gold fittings, no decorative trim. Full-body combat-ready side-facing stance toward right, feet visible. Preserve the reference's hand-painted classic Chinese fantasy illustration quality and readable game-sprite silhouette. Single isolated complete figure, true transparent alpha background including between limbs and staff; no scenery, no floor, no shadow patch, no checkerboard drawn in, no frame, no lettering, no watermark. Entire staff and all anatomy fully in canvas with clear transparent margin."
+    }
+  ]
+}

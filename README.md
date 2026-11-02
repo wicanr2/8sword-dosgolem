@@ -24,17 +24,13 @@ F2已在隔離候選接上原兵種的Go資料，保留原版部隊圖、兵種�
 
 F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回。上圖解雇31民兵後留下1矮人；原影子仍為30民兵。原版／HD畫面、長按Enter、空軍隊、Noto／隸書及重新開啟進度已抽驗。這組原25種抽驗見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)與[圖片來源](docs/images/original-army-dismiss-go-r1.json)。
 
-![新增兵種接入原版兩欄三列的HD軍隊頁與解雇頁](docs/images/original-army-fields-go-r1.png)
+八種新增兵種已沿原版兩欄三列接入隔離HD候選的F2／F3，保留方向鍵、選取、名稱、兵數與月薪。[既有欄位驗收](docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)包含取消、解雇、三字型與冷讀；新增兵種的原版戰場與完整玩家入口仍待接。
 
-八種新增兵種也已接入隔離HD候選的F2／F3，使用原版欄位、方向鍵與選取標示。圖中為六隊明示測試配置；左側檢閱，右側以隸書選取野狼。名稱、兵數、月薪及既有HD圖由Go提供，新增ID不進原25種索引。取消、解雇、三字型與冷讀已抽驗。原版戰場與完整玩家入口仍待接，原版模式尚不接受新增兵種。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)與[圖片來源](docs/images/original-army-fields-go-r1.json)。
+![募兵透明圖示、女弓箭手與持削尖木棍農民的實際HD視窗](docs/images/troop-presentation-corrected-r1.png)
 
-![原店沿用數量輸入與隸書，Go購兵後冷讀軍隊頁](docs/images/original-recruit-quantity-go-r1.png)
+募兵圖示已去除金邊綠底，人物透明部分直接透出城門背景，原25種與新增兵種的數量輸入都適用。新增弓箭手改為中國古風美女，槍兵改為持削尖木棍的布衣農民。上圖為正常按鍵進入原店、增援頁、野狼數量輸入及F2的實際視窗，軍隊沿既有30民兵與2野狼測試進度，沒有購兵或改數值。四張X11畫面已與Go提交逐RGB核對，見[修正驗收](docs/spec/030-battle-expansion-proposal.md#募兵圖示透明與openkb身份修正)與[圖片來源](docs/images/troop-presentation-corrected-r1.json)。
 
-原店的原25種商品已接上Go計算，仍使用原版四位數輸入、刪字、Enter／Esc與錯誤提示。金錢、領導用量及六隊容量計入新增兵種，購兵沿成對保存；新增ID不進原種類表。上圖以30民兵與2野狼作明示測試，購1民兵後冷讀為31民兵與2野狼。數字編輯、取消、超量拒絕、購買與Noto／隸書實際視窗已抽驗。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原店數量輸入與go計算限定-conformed)與[圖片來源](docs/images/original-recruit-quantity-go-r1.json)。
-
-![新增野狼沿原版數量輸入，購後冷讀原版式軍隊頁](docs/images/original-reinforcement-quantity-go-r1.png)
-
-新增兵種分頁也已接回原版四位數輸入。選兵後按Enter／招募，由Go計算與保存，原店建築、數字編輯、取消與錯誤提示保持。上圖沿明示軍隊購2隻野狼，野狼2→4、金錢500→420，原店民兵庫存3000保持；冷讀軍隊頁仍有30民兵與4野狼。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)與[圖片來源](docs/images/original-reinforcement-quantity-go-r1.json)。原版戰場與一般Go玩家入口仍待接。
+原店與新增兵種均沿原版四位數輸入、刪字、Enter／Esc及錯誤提示，由Go計算金錢、領導用量及容量，再成對保存。既有購兵、取消、超量及冷讀證據保持，見[原店接入](docs/spec/030-battle-expansion-proposal.md#原店數量輸入與go計算限定-conformed)與[新增兵種接入](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)。新版畫面只驗呈現，不另宣稱本輪重驗全部交易。
 
 ## 戰場與Go後端
 
@@ -69,13 +65,13 @@ bash tools/owned-player.sh import /絕對路徑/原版存檔 /絕對路徑/新�
 
 ## openKB新增部隊的HD圖像
 
-弓箭手、槍兵、野狼、骷髏兵、洞穴巨人、德魯依、吸血鬼與火龍，已依神州八劍的中國古風製作HD圖像。[33種合併總覽](docs/images/troops-all-original-hd-with-openkb-r4.png)包含全部25種原版部隊與這八種單位。
+女弓箭手、持削尖木棍的農民槍兵、野狼、骷髏兵、洞穴巨人、德魯依、吸血鬼與火龍，已依神州八劍的中國古風製作HD圖像。[33種合併總覽](docs/images/troops-all-original-hd-with-openkb-r5.png)包含全部25種原版部隊與這八種單位。
 
-![openKB八種新增單位的來源與HD對照](docs/images/openkb-eight-original-hd-r1.png)
+![openKB八種新增單位的來源與HD對照](docs/images/openkb-eight-original-hd-r2.png)
 
-八種單位已有[舊候選軍隊頁A](docs/images/openkb-army-a-hd-r1.png)與[頁B](docs/images/openkb-army-b-hd-r1.png)的截圖，軍隊為明示測試資料。這兩張保存素材接入證據，管理版面已由上節原版方式定案覆蓋。
+八種單位已有[舊候選軍隊頁A](docs/images/openkb-army-a-hd-r1.png)與[頁B](docs/images/openkb-army-b-hd-r1.png)的截圖，軍隊為明示測試資料。這兩張只保留修正前的歷史素材證據，弓箭手與槍兵的現行外觀以上方新版總覽為準；管理版面已由上節原版方式定案覆蓋。
 
-完整原圖與生成提示見[永久美術](artwork/README.md#openkb新增單位hd)，畫面來源見[截圖紀錄](docs/images/openkb-game-screenshots-r1.json)。來源縮圖取自openKB free sprites，作者包含driedfruit，逐檔作者與授權見[來源紀錄](docs/images/openkb-eight-original-hd-r1.json)。
+完整原圖與生成提示見[永久美術](artwork/README.md#openkb新增單位hd)，畫面來源見[截圖紀錄](docs/images/openkb-game-screenshots-r1.json)。來源縮圖取自openKB free sprites，作者包含driedfruit，逐檔作者與授權見[來源紀錄](docs/images/openkb-eight-original-hd-r2.json)。
 
 ## 原店與新增兵種分頁
 
@@ -231,7 +227,7 @@ Go產生HD畫面與略過原版x86像素迴圈是兩個不同範圍：
 
 ### 原版圖像完整盤點與 HD 覆蓋
 
-![原版25種與openKB新增8種，共33種部隊與怪物的來源及HD圖片](docs/images/troops-all-original-hd-with-openkb-r4.png)
+![原版25種與openKB新增8種，共33種部隊與怪物的來源及HD圖片](docs/images/troops-all-original-hd-with-openkb-r5.png)
 
 上半部列出 `MAN01` 至 `MAN25` 的全部25組，每組左側為第0筆原版，右側為HD；下半部加入八種openKB來源／HD圖像，共33種。原版100個姿勢均已正式登錄，新增八種目前各有一張靜態HD圖示，接入隔離Go候選。原版新增20組的四姿勢可看[80個姿勢總覽](docs/images/troops-new-hd-all-poses-r2.png)，完整原版另見[104筆原版姿勢圖](docs/images/troops-all-poses-original-r1.png)。這些是素材圖集；實際遊戲截圖見上方openKB章節。
 

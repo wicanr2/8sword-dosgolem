@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "output_sha256": "b7a3468e13767e7703b77fefb31383a8c9ff18107c3363c45a84a65ae34a93b0",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-presentation-fix-r1/gui-r1/native-redo/frame-001-recruit-lishu.png",
+      "sha256": "03d0882146ff927def950c08940458e2b1ee94d1fd2c26294ce8a62e809f313e",
+      "metadata_sha256": "0b5e3eaca412880067a040923ad3b040fed41e1e8bf0238cde5d1596fd4e8980"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-presentation-fix-r1/gui-r1/warm/frame-003-recruit-lishu.png",
+      "sha256": "c7ae5e90a91029a3553d0090b2b43cab11c8bfb0a83e6860cc73fd120d669f07",
+      "metadata_sha256": "3c1947b301187104026eb4837dd863790d91a611d793fa8312e79a36da97de52"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-presentation-fix-r1/gui-r1/warm/frame-002-reinforcements-lishu.png",
+      "sha256": "a41e87ff69d604b5bb77b955bf3b0b1ba297a9c686a4e46c87b83e1889b9da64",
+      "metadata_sha256": "bb47ea8ed171be9d3ecb9dff1e835d711d3f59ef174f74abfda4ba4541e300d0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/troop-presentation-fix-r1/gui-r1/warm/frame-004-army-lishu.png",
+      "sha256": "f62e9903d35660f0c9aaae822bdc29c9479ee15d3cdaf7ec80396bf3fc7d2a2e",
+      "metadata_sha256": "3c6064c397f29ae0c76a6b2a8373ad3de32937ced36268016ddd218388b4c86f"
+    }
+  ],
+  "actual_window_verified": true,
+  "controlled_initial_army": true,
+  "scope": "Presentation only; no battle integration acceptance."
+}

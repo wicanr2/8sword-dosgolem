@@ -1,0 +1,38 @@
+{
+  "status": "passed-troop-presentation-fix-audit",
+  "source_files": 283,
+  "corrected_units": [
+    "openkb:arcr",
+    "openkb:pike"
+  ],
+  "unchanged_unit_images": [
+    "openkb:wolf",
+    "openkb:skel",
+    "openkb:troll",
+    "openkb:drui",
+    "openkb:vamp",
+    "openkb:drag"
+  ],
+  "transparent_native_and_new_recruitment": true,
+  "alpha_reconstruction": [
+    {
+      "path": "native",
+      "source_sha256": "94543e17b40291ea57c4e040658cdedd9fcc7c8cdd533f9a0cd4cafa260ccf79",
+      "transparent_samples_unchanged": 33910,
+      "opaque_samples_equal": 1,
+      "outside_silhouette_differences": 0,
+      "partial_alpha": "Existing Go premultiplied blending retained; not used for exact RGB oracle."
+    },
+    {
+      "path": "new",
+      "source_sha256": "a71bcf2af0add88445696f291c4b3b204b7605291c6176d2ed9ff8264bebecea",
+      "transparent_samples_unchanged": 33909,
+      "opaque_samples_equal": 334,
+      "outside_silhouette_differences": 0,
+      "partial_alpha": "Existing Go premultiplied blending retained; not used for exact RGB oracle."
+    }
+  ],
+  "gui_frames": 4,
+  "ordinary_player_entry_disabled": true,
+  "rules_save_and_transactions_unchanged": true
+}

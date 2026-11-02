@@ -204,6 +204,19 @@ HD底圖由既有純Go來源呈現器提交，原版查表在執行前已略過�
 
 CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新增兵種橋接仍為DRAFT；既有卡片畫面不改名成原版驗收。README改展示既有原版／HD戰場，保留openKB八種HD素材與軍隊圖，歷史卡片圖及收據不刪除。
 
+### 募兵圖示透明與openKB身份修正
+
+2026-11-02使用者先指出募兵圖示底板不透明，並更正openKB弓箭手為中國古風美女、槍兵為穿布衣且持削尖木棍的農民。本輪先修這兩項呈現，原戰場新增ID橋接暫列後續，不變更兵種數值／規則／存檔。原圖與提示追加永久美術新版本，舊圖不刪。[素材修正與保存](../../tools/troop-presentation-fix.py)、[代表抽驗](../../internal/ownedworld/recruit_presentation_test.go)與[永久圖庫](../../artwork/README.md#openkb新增單位hd)為入口，研究輸出沿既有battle-r1下`troop-presentation-fix-r1`。
+
+呈現READY：募兵原25種圖示及新增兵種數字輸入只以已有alpha的人物輪廓畫在原背景，不畫`recruitIconCard`金邊／綠底，位置及圖示大小保持；透明像素必須保留來源背景。弓箭手僅換成成年中國古典美女，維持側向拉弓、紫綠主色與既有手繪風格；槍兵僅換成布衣農民及整根削尖木棍。新增主圖與提示先永久保存，再正規化為512×512既有格式，其餘六張素材逐SHA保持。兩圖及資料清單沿同一33兵種ID，不改計算、交易、存檔或原版模式。代表抽驗包含原背景alpha合成、實際正常募兵／新增兵種頁與軍隊頁截圖，以及總覽圖；共用機制不重跑逐兵種交易矩陣。
+
+正常視窗抽驗沿[有界執行器](../../tools/check-troop-presentation-gui.py)，以原按鍵進募兵、點增援頁選女弓箭手／農民槍兵、原數量輸入取消及F2，沒有RAM／IP注入。實際素材與完整畫面另批永久保存，舊版截圖與收據保持歷史定位。
+
+限定CONFORMED：本輪283來源候選、合成測試17.58秒及四張正常X11通過。原店民兵／新增野狼圖示不再有底板；透明抽樣分別33910／33909點保留來源背景，兩圖輪廓外差異為零。新版兩張1254×1254原圖、512×512實際素材與提示已保存，六張其他新增素材逐SHA保持，1071永久檔獨立核對。四張GUI為正常進原營地、增援頁、野狼數量輸入及F2，沿明示30民兵＋2野狼，不做購買或RAM／IP注入。槍兵rank2／金800對本份rank1／金500進度原樣拒絕，不修改數值配合圖像抽驗。
+
+[核對](../../preserved/troop-presentation-fix-audit-r1.json)、[完整成果](../images/troop-presentation-corrected-r1.png)、[畫面來源](../images/troop-presentation-corrected-r1.json)、[新版八種總覽](../images/openkb-eight-original-hd-r2.png)、[來源](../images/openkb-eight-original-hd-r2.json)、[33種總覽](../images/troops-all-original-hd-with-openkb-r5.png)與[永久保存](../../preserved/README.md#募兵透明與openkb身份修正保存)為入口。此前r1募兵截圖的綠底及r1弓箭手／槍兵外觀保留歷史，不能作現行樣式。一般入口、原戰場新增ID、其他交易矩陣與完整世界戰果未由本輪提升。
+
+
 ### 原版戰場與Go後端橋接 DRAFT
 
 2026-11-02接續六隊資料橋接，研究範圍為原25種Go軍隊投影至原戰場、原操作返回後收取剩餘部隊，以及成對保存冷讀。新增ID仍拒絕，原軍隊影子不得被戰場寫回覆蓋。入口為[投影研究與保存](../../tools/original-army-projection.py)、[IDA整理函式](../../tools/export-original-army-projection-ida.py)、[六隊介接](../../internal/ownedworld/original_army_projection.go)與[代表測試](../../internal/ownedworld/original_army_projection_test.go)。輸出沿既有battle-r1下`original-army-projection-r1`。原25種已依下節READY完成限定驗收；新增ID與完整世界戰果仍DRAFT，一般玩家入口保持停止。

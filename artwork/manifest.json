@@ -12192,6 +12192,60 @@
       "bytes": 19462,
       "role": "provenance",
       "basis": "User authorized same-style HD additions and requested these eight units in README/game screenshots."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-43d7ecdc-7434-43ae-92d7-66621a7f2b94.png",
+      "path": "approved/masters/openkb-hd-r2/arcr.png",
+      "sha256": "d146551edff44c5bc60c77c56bedcc4ceb387501fa0d07a62933a0d6768c0e75",
+      "bytes": 1268390,
+      "role": "master",
+      "basis": "User corrected archer to Chinese female and pike to peasant with sharpened wooden pole.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-corrections-r2.json#openkb:arcr",
+      "path": "approved/provenance/openkb-hd-r2/arcr.json",
+      "sha256": "86ef37dee42b7f465f25e28bab0468a0de8b7defef02c796012e4f5ee2e2f6f0",
+      "bytes": 1884,
+      "role": "provenance",
+      "basis": "User corrected archer to Chinese female and pike to peasant with sharpened wooden pole."
+    },
+    {
+      "source": "/home/anr2/.codex/generated_images/01a16679-f288-79f3-937e-a6e60e23ea29/exec-40bcf944-c70f-46c9-978e-9ce8b69ab17c.png",
+      "path": "approved/masters/openkb-hd-r2/pike.png",
+      "sha256": "ac07453188c7be9103489df709ffefb4bd115fc2e8c54d719704b590bcbf3110",
+      "bytes": 1292035,
+      "role": "master",
+      "basis": "User corrected archer to Chinese female and pike to peasant with sharpened wooden pole.",
+      "image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      }
+    },
+    {
+      "source": "artwork/openkb-hd-corrections-r2.json#openkb:pike",
+      "path": "approved/provenance/openkb-hd-r2/pike.json",
+      "sha256": "2e5be04ad82ad260a9513b3e93d9cb32e9ff400b7621b449496794866da36b75",
+      "bytes": 1904,
+      "role": "provenance",
+      "basis": "User corrected archer to Chinese female and pike to peasant with sharpened wooden pole."
+    },
+    {
+      "source": "artwork/openkb-hd-corrections-r2.json",
+      "path": "approved/provenance/openkb-hd-r2/generation.json",
+      "sha256": "544dd14c8db727b72a7a570c39c993519178b0ab9092dc7e7ff59b39e43a72a3",
+      "bytes": 4162,
+      "role": "provenance",
+      "basis": "User corrected archer to Chinese female and pike to peasant with sharpened wooden pole."
     }
   ],
   "additions": [
@@ -12205,6 +12259,11 @@
       "index": "openkb-hd-preservation-r1.json",
       "previous_manifest_sha256": "ccd12135cca65a82be149f2019a78660a14d6212109065c4bfbc208243a31a19",
       "files": 26
+    },
+    {
+      "index": "openkb-hd-corrections-preservation-r2.json",
+      "previous_manifest_sha256": "ff49e56bce47d02fbfc3b78b4ebc5af4f44def511ba48dcfd8f4957a9567bf14",
+      "files": 5
     }
   ]
 }

@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "units": [
+    {
+      "id": "openkb:arcr",
+      "name": "弓箭手",
+      "master": "approved/masters/openkb-hd-r2/arcr.png",
+      "master_sha256": "d146551edff44c5bc60c77c56bedcc4ceb387501fa0d07a62933a0d6768c0e75",
+      "source": "approved/references/openkb-hd-r1/arcr.png",
+      "source_sha256": "0e49032dcabebd1999329a80880c769b937cd31a7447c828c46deb0bc1e8e053",
+      "runtime_asset_sha256": "08c0e57b1ea4870cf9d1a4be00385a0e3e2c766a9a7ea9eaee6af71d6fd20c3c",
+      "source_first_frame": [
+        0,
+        0,
+        48,
+        34
+      ],
+      "display_color_key": [
+        128,
+        0,
+        128
+      ],
+      "source_metadata": {}
+    },
+    {
+      "id": "openkb:pike",
+      "name": "槍兵",
+      "master": "approved/masters/openkb-hd-r2/pike.png",
+      "master_sha256": "ac07453188c7be9103489df709ffefb4bd115fc2e8c54d719704b590bcbf3110",
+      "source": "approved/references/openkb-hd-r1/pike.png",
+      "source_sha256": "3bd362248c9f2fd6c679da67b2b5ab4e2805b352fd3050e8bf2966e7d4530eb8",
+      "runtime_asset_sha256": "6de1dfc6bda8c23b3040cc4fcf9d88ebd8ac6d50e6e7b29c6bb0ecee51126e28",
+      "source_first_frame": [
+        0,
+        0,
+        48,
+        34
+      ],
+      "display_color_key": [
+        128,
+        0,
+        128
+      ],
+      "source_metadata": {}
+    },
+    {
+      "id": "openkb:wolf",
+      "name": "野狼",
+      "master": "approved/masters/openkb-hd-r1/wolf.png",
+      "master_sha256": "effe6c906553fb0715319d3ba5955b7aeca060cadd65bb981372c2e44e999cd7",
+      "source": "approved/references/openkb-hd-r1/wolf.png",
+      "source_sha256": "8339dbcf998f48c5a327c5ce41ce573372f8aca64d6293f26c05515ad171a6a3",
+      "runtime_asset_sha256": "6159dac5e95ba8757d8017817f326ee9befed79f47e3183742a043b17546f9c2",
+      "source_first_frame": [
+        0,
+        0,
+        48,
+        34
+      ],
+      "display_color_key": [
+        128,
+        0,
+        128
+      ],
+      "source_metadata": {}
+    },
+    {
+      "id": "openkb:skel",
+      "name": "骷髏兵",
+      "master": "approved/masters/openkb-hd-r1/skel.png",
+      "master_sha256": "7fbd55d8995ee7cc832114c69b3b09718b61ef1267d412abab2cc924ddd82086",
+      "source": "approved/references/openkb-hd-r1/skel.png",
+      "source_sha256": "6817ef6055197f873e5a818340797f58e5027cfcb0cd7d8f1a32583801bc1450",
+      "runtime_asset_sha256": "4e8dc21c791dce4365fcabe56dc19a967735f1704d97bbe4a2455f0a37537b6c",
+      "source_first_frame": [
+        0,
+        0,
+        48,
+        34
+      ],
+      "display_color_key": [
+        128,
+        0,
+        128
+      ],
+      "source_metadata": {}
+    },
+    {
+      "id": "openkb:troll",
+      "name": "洞穴巨人",
+      "master": "approved/masters/openkb-hd-r1/troll.png",
+      "master_sha256": "026ab845961d59622fa8dfc3fbd11ff50fe989790570446669eebf9050b2841a",
+      "source": "approved/references/openkb-hd-r1/trol.png",
+      "source_sha256": "1bc8382f599eee234554646217d627bf5383e0d9a2493a5b09ac455f48696904",
+      "runtime_asset_sha256": "497c7b10c4f8b575e79a8a3a2b24cea0a31a182d0f63fd9e2acb6a2a34b2c3f4",
+      "source_first_frame": [
+        0,
+        0,
+        48,
+        34
+      ],
+      "display_color_key": [
+        255,
+        13,
+        255
+      ],
+      "source_metadata": {
+        "Author": "driedfruit <driedfruit@mindloop.net>",
+        "License": "|| (CC-BY-SA GPL-3)",
+        "LicenseURL": "http://creativecommons.org/licenses/by-sa/4.0/\nhttp://www.gnu.org/licenses/gpl-3.0.html",
+        "Copyright": "Copyright (c) 2014 driedfruit <driedfruit@mindloop.net>"
+      }
+    },
+    {
+      "id": "openkb:drui",
+      "name": "德魯依",
+      "master": "approved/masters/openkb-hd-r1/drui.png",
+      "master_sha256": "296ac912af76c628fbf57cb04c7fbcfed153d14387018d0eafb28bd478898cc9",
+      "source": "approved/references/openkb-hd-r1/drui.png",
+      "source_sha256": "e46809041e40d815801ea2f5d2ad7fd2b7dd8d09fe6ddc9561df5386cfbf04f7",
+      "runtime_asset_sha256": "c91328a788e6089f6e5564fdde44fb262d0587e30285ef71041b7accec94bf04",
+      "source_first_frame": [
+        0,
+        0,
+        48,
+        34
+      ],
+      "display_color_key": [
+        128,
+        0,
+        128
+      ],
+      "source_metadata": {}
+    },
+    {
+      "id": "openkb:vamp",
+      "name": "吸血鬼",
+      "master": "approved/masters/openkb-hd-r1/vamp.png",
+      "master_sha256": "e9b589a3f61580b972363135716f50445da9d6f1cd451f0462582c8cc081fead",
+      "source": "approved/references/openkb-hd-r1/vamp.png",
+      "source_sha256": "6a0c9b02257d0e5b3d62bd6bff9c9e027664f14dd9de0ccc21de667d2b22b734",
+      "runtime_asset_sha256": "69253c53f21a00869ee572b18dd6d34fe56821df670684a8892f0e7b4cd51db3",
+      "source_first_frame": [
+        0,
+        0,
+        48,
+        34
+      ],
+      "display_color_key": [
+        128,
+        0,
+        128
+      ],
+      "source_metadata": {}
+    },
+    {
+      "id": "openkb:drag",
+      "name": "火龍",
+      "master": "approved/masters/openkb-hd-r1/drag.png",
+      "master_sha256": "cc304487fcf0014963a96d47345a7c292ad33e260354f540aa18ad62b5544796",
+      "source": "approved/references/openkb-hd-r1/drag.png",
+      "source_sha256": "0391b000e7009d23eeb8d03d848afadb55a51fa2a57349a75bfbacad4da685b9",
+      "runtime_asset_sha256": "9f5a5909b5b6d51e08a5c72d30786eb7500db901ff6781ec44c53f696c5a89fc",
+      "source_first_frame": [
+        0,
+        0,
+        48,
+        34
+      ],
+      "display_color_key": [
+        255,
+        13,
+        255
+      ],
+      "source_metadata": {
+        "Author": "driedfruit <driedfruit@mindloop.net>",
+        "License": "|| (CC-BY-SA GPL-3)",
+        "LicenseURL": "http://creativecommons.org/licenses/by-sa/4.0/\nhttp://www.gnu.org/licenses/gpl-3.0.html",
+        "Copyright": "Copyright (c) 2018 driedfruit <driedfruit@mindloop.net>"
+      }
+    }
+  ],
+  "count": 8,
+  "total_native_plus_added": 33,
+  "source_font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "original_25_sheet_sha256": "ef22eb7ac6673fe4e4e7d1c4c7b4126fb4c3e03e3b53116ab41b5a1be056c70e",
+  "overview_sha256": "1f29ec74f6d46f55abd895efce4655775f6308cf834c706cc656a85b42147590",
+  "combined_overview_sha256": "65ba6b6f57040a2a3e1a58789d313c34ed9b8ee4970391b12025c33cb81924de",
+  "method": "Eight source first poses and generated static HD sprites; source color key for display, nearest-neighbor retro enlargement. Existing 25-unit sheet embedded unchanged.",
+  "rights": "Source previews: openKB free sprites, driedfruit and other upstream contributors; per-file author/license metadata above. Complete inputs remain local."
+}

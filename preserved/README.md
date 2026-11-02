@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 募兵透明與openKB身份修正保存
+
+本批479檔／384物件，壓縮41656117 bytes，已完成不掛workplace的逐SHA與大小核對。
+
+本批保存募兵透明底框修正、女弓箭手及持削尖木棍的農民槍兵。[限定驗收](../docs/spec/030-battle-expansion-proposal.md#募兵圖示透明與openkb身份修正)、[獨立核對](troop-presentation-fix-audit-r1.json)、[逐檔清單](troop-presentation-fix-r1.json)、[脫離workplace核對](troop-presentation-fix-verification-r1.json)及[收尾核對](troop-presentation-fix-integrity-r1.json)為入口。兩張1254×1254透明原圖、完整提示與來源已另存[永久美術](../artwork/README.md#openkb新增單位hd)，[1071檔核對](troop-corrected-artwork-verification-r1.json)不依賴workplace。
+
+候選283來源，只改原店及新增兵種數量輸入的圖示底板，另換兩張512×512圖示及SHA清單。六張其他新增單位、原197來源七程式、923核心與r69全535素材保持。Go合成抽驗、來源背景透明區域獨立核對、四張實際X11與提交畫面逐RGB相同，原有規則、存檔與一般入口護欄保持。沒有新增原戰場或完整世界結算驗收。
+
+[準備／核對／保存工具](../tools/troop-presentation-fix.py)與[有界GUI](../tools/check-troop-presentation-gui.py)沿固定Pillow11.3.0 r2、Go1.24.13容器。研究目錄是`battle-r1/troop-presentation-fix-r1`；最新`ui-assets`是兩圖修正版，不覆寫歷史候選。完整建置、環境、overlay與測試命令留`execution-r1.json`。GUI只在研究overlay移除普通啟動護欄，沒有RAM／IP注入；數量輸入抽可招募的野狼，槍兵原有等級／金錢拒絕保持。
+
+保存時掛專案唯讀`/project`、本目錄可寫`/archive`，執行`troop-presentation-fix.py archive --project /project --archive /archive --out /archive/troop-presentation-fix-r1.json`。不掛workplace時以`verify --archive /archive --out /out/新核對.json`逐物件核對。完整候選、程式、舊／新GUI、來源與失敗診斷存在本機`preserved/troop-presentation-fix-r1/`，不進Git；[實際畫面](../docs/images/troop-presentation-corrected-r1.png)、[來源](../docs/images/troop-presentation-corrected-r1.json)、[新版八種總覽](../docs/images/openkb-eight-original-hd-r2.png)及[33種總覽](../docs/images/troops-all-original-hd-with-openkb-r5.png)加入私人倉庫。
+
 ## 原25種六隊戰場投影保存
 
 本批435檔／336去重物件，壓縮13914141 bytes，已完成不掛workplace的逐SHA及大小核對。

@@ -203,8 +203,6 @@ func (x *originalReinforcementQuantity) paint(base *image.RGBA) (*image.RGBA, []
 	}
 	out := image.NewRGBA(base.Bounds())
 	draw.Draw(out, out.Bounds(), base, base.Bounds().Min, draw.Src)
-	uiFill(out, recruitIconCard, color.RGBA{176, 150, 85, 255})
-	uiFill(out, recruitIconCard.Inset(3), color.RGBA{7, 36, 26, 255})
 	f.icon(out, x.Unit, recruitIconCard.Inset(21))
 	// sub_15792 puts the three source lines at y=116/133/150. The numeric
 	// prompt at y=167, its original text, digits and blinking cursor stay intact.

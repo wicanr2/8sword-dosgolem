@@ -2872,3 +2872,18 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 
 
 主提交ac98f02c9e9099b75463349b90bcbd5ac829759d已推送私人origin/main，git ls-remote回讀同SHA，工作樹乾淨。暫存空白檢查通過，本輪Docker工作均已結束並移除；其餘列出容器的掛載屬其他專案，未清理。此行另作文件收尾提交，不改程式、資料保存或限定驗收範圍。
+
+
+## 2026-11-02：募兵透明圖示、女弓箭手與農民槍兵
+
+開工HEAD `3a147dc411d7bdea435470c9b0a3fe30edf7ff1d`，工作樹乾淨，原欲接原戰場新增ID。使用者先指出募兵綠底，再更正openKB弓箭手與槍兵身份，本輪先完成這些呈現修正，原戰場工作保持下一步。路由載入復古重製、規格閘門、文件職責與imagegen技能，沿已授權同規格作業，不重問美術。
+
+- 直接查本機使用者連結對應圖片與原程式，確認圖示有alpha，綠底來自兩個Go compositing入口額外底板。移除金邊／綠底，位置及圖示大小保持。原版模式、原197來源七程式／923核心／535素材保持。
+- 內建image_gen逐張編輯原弓箭手／槍兵，兩張均1254×1254 RGBA、alpha0至255。女弓箭手紫綠服裝、農民藍布衣及整根削尖木棍；原PNG及完整提示先追加永久美術，再生成512×512素材。六張其他新兵素材逐SHA保持，1071檔永久美術獨立核對通過。
+- 合成測試17.58秒通過，Python確認原店33910及新兵33909個透明取樣點、整個輪廓外保留原底圖。四張實際GUI經正常原營地／新增分頁／野狼數量輸入取消／F2，X11與提交RGB及SHA一致，軍隊30民兵／2野狼、金500保持。原新兵頁BindReinforcements沿既有規則建立offers，沒有購買或改兵種數值。
+- 保留新測試初稿語法、GUI命令python／python3差異、低等級槍兵拒絕、alpha抽樣配額錯誤、原店游標metadata相位及補拍工具選項等診斷。只修測試／工具契約，不改遊戲規則湊通過。原店metadata補拍只重跑單張正常入店，三張已過GUI與原前版保持。
+
+[核對](preserved/troop-presentation-fix-audit-r1.json)、[新八種總覽](docs/images/openkb-eight-original-hd-r2.png)、[33種總覽](docs/images/troops-all-original-hd-with-openkb-r5.png)、[實際畫面](docs/images/troop-presentation-corrected-r1.png)與[永久保存](preserved/README.md#募兵透明與openkb身份修正保存)為入口。README移除現行區塊的舊底板與舊男弓箭手圖片，舊檔仍可追溯。候選283來源、新圖示包位於troop-presentation-fix-r1；一般Go入口持續停止，未提升新增ID原戰場或完整世界結算。保存／清理與Git狀態以下列追加為準。
+
+
+本批479檔／384物件、壓縮41656117 bytes已保存，脫離workplace逐SHA／大小核對通過。收尾核對283來源、3417相對連結／錨點與1071永久美術，UID/GID1000，沒有root-owned或異常.md目錄。只刪1703份本輪Go快取、144811962邏輯bytes，以及42份已逐SHA永久保存的前版GUI／進度副本、16518936邏輯bytes。最新程式、來源、素材、進度與成果保持，沒有新映像或全域Docker清理。Git推送及容器狀態以下列追加為準。

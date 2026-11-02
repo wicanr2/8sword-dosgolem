@@ -1,5 +1,8 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-02使用者更正募兵透明底板、女弓箭手及削尖木棍農民。原店／新增兵種圖示只合成alpha人物，不加金邊綠底；兩圖與三份提示追加永久美術1071檔，舊圖保持。現行候選283來源，UI圖示包是`battle-r1/troop-presentation-fix-r1/ui-assets`，保存與還原見[永久入口](preserved/README.md#募兵透明與openkb身份修正保存)，操作及驗收見[030](docs/spec/030-battle-expansion-proposal.md#募兵圖示透明與openkb身份修正)。原197來源七程式、923核心、535素材、數值／規則／存檔保持；一般Go入口仍停止，原戰場新增ID與世界戰果後續接。後續素材沿新包，不再用舊弓箭手／鎧甲槍兵覆蓋。
+
+
 2026-11-02原25種六隊投影依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)完成隔離候選282來源。Go在原wrapper進出投影／收取六隊，普通算式沿前版；原戰場選單、減員、動畫及回合保持。原版／HD四路正常冷啟動遇敵及Esc返回、19種拒絕、剩兵成對保存冷讀通過。入口為[介接](internal/ownedworld/original_army_projection.go)、[抽驗](internal/ownedworld/original_army_projection_test.go)、[準備／核對／保存](tools/original-army-projection.py)與[永久保存](preserved/README.md#原25種六隊戰場投影保存)。新增ID仍拒絕，完整世界戰果、其餘規則／特殊術、F7與GUI未驗；一般Go入口持續停止。現況以CONTEXT為準，不重做本輪已驗原25種邊界。
 
 
