@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "output": "original-reinforcement-quantity-go-r1.png",
+  "output_sha256": "37a66565b2320ac667a5eb9e20a6b82ad44aabe3cf0ba8c20a94418c39219770",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-reinforcement-quantity-r1/gui-r1/warm/frame-005-recruit-lishu.png",
+      "sha256": "830be7fbf4e6e1151d411e906fd61a600a8aade227db2b5cdc31883079123b52",
+      "metadata_sha256": "0e8c6685016bb49edf0bcdc9b9b0868e28e56f2db09d0c5b514a6c5b3a52e1b1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-reinforcement-quantity-r1/gui-r1/cold/frame-001-army-lishu.png",
+      "sha256": "8f317ff4aa86dcce5db4fea4b1adab9c10cbb5d14d48b10084f3df5137eb64db",
+      "metadata_sha256": "fe0b4d4bb6f9eb3bbf6b16dc407e1647d3698b40f012d7551e01a03ef55ec0cf"
+    }
+  ],
+  "audit_sha256": "f6a665f4983fde46431e9d671403423183cdc02bb5aed3000a80c5518eecbab1",
+  "controlled_army": true,
+  "actual_window_verified": true,
+  "clock_initial": "12:00 via Oracle.SetClock; live3000 cycles/ms",
+  "rng_comparison": "No random outcome compared",
+  "full_guest_state_parity_claimed": false
+}

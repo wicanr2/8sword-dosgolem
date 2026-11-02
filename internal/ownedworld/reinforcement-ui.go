@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	game "github.com/wicanr2/8sword-dosgolem/internal/eightsword"
-	"github.com/wicanr2/dosgolem/oracle"
 	"image"
 	"image/color"
 	"image/draw"
@@ -22,6 +21,8 @@ type reinforcementUI struct {
 	ExitPhase int
 	Purchases uint64
 	Events    []map[string]any
+	Held      *image.RGBA
+	HeldTexts []armyUIText
 }
 
 var reinforcementCurrent *reinforcementUI
@@ -40,7 +41,13 @@ func (x *reinforcementUI) key() string {
 	return reinforcementKey(x.Port.ShopGroup, x.Port.ShopRow, x.Port.ShopKind, openKBArtIDs[x.Selected])
 }
 func (x *reinforcementUI) ready() bool {
-	return x.Port.ShopOpen && recruitIconsCurrent != nil && recruitIconsCurrent.Ready && x.ExitPhase == 0
+	return x.Port.ShopOpen && recruitIconsCurrent != nil && recruitIconsCurrent.Ready && x.ExitPhase == 0 && !x.quantity().active()
+}
+func (x *reinforcementUI) quantity() *originalReinforcementQuantity {
+	if x.Port.RecruitQuantity == nil {
+		return nil
+	}
+	return x.Port.RecruitQuantity.Reinforcement
 }
 func (x *reinforcementUI) open() error {
 	if !x.ready() {
@@ -71,26 +78,14 @@ func (x *reinforcementUI) buy() error {
 	if e != nil {
 		return e
 	}
-	if x.Count == 0 || x.Count > q.Maximum {
+	if q.Maximum == 0 {
 		x.Message = "金錢 領導力 等級 庫存 或陣位不足"
 		return nil
 	}
-	s, e := x.Port.Store.RecruitReinforcement(x.Port.Current.Token, x.key(), x.Count)
-	if e != nil {
-		return e
+	if x.quantity() == nil {
+		return errors.New("original reinforcement quantity not installed")
 	}
-	x.Port.Current = s
-	for i, n := range pairWorldResources(s.World).words() {
-		if n > 30000 {
-			return errors.New("reinforcement native resource bound")
-		}
-		x.Engine.Oracle.WriteU16(oracle.Far(0x1e88, 0x4f2+uint16(i*2)), uint16(n))
-	}
-	x.Purchases++
-	x.Active = false
-	x.ExitPhase = 1
-	x.Events = append(x.Events, map[string]any{"event": "purchase", "key": x.key(), "count": x.Count, "steps": x.Engine.Oracle.Steps(), "token": s.Token})
-	return nil
+	return x.quantity().begin()
 }
 func (x *reinforcementUI) NoteKey(k byte, down bool) {
 	if !down {
@@ -131,6 +126,9 @@ func (x *reinforcementUI) NoteKey(k byte, down bool) {
 func (x *reinforcementUI) Click(px, py int) (byte, error) {
 	pt := image.Pt(px, py)
 	if x.Port.ShopOpen {
+		if x.quantity().active() {
+			return 0, nil
+		}
 		if pt.In(reinforceNewTab) {
 			return 0, x.open()
 		}
@@ -169,19 +167,6 @@ func (x *reinforcementUI) Click(px, py int) (byte, error) {
 				return 0, nil
 			}
 		}
-		q, e := x.Port.Current.World.Army.quote(x.Port.Store.Catalog, x.key())
-		if e != nil {
-			return 0, e
-		}
-		if pt.In(image.Rect(60, 900, 220, 980)) && x.Count > 1 {
-			x.Count--
-		}
-		if pt.In(image.Rect(450, 900, 610, 980)) && x.Count < q.Maximum {
-			x.Count++
-		}
-		if pt.In(image.Rect(640, 900, 940, 980)) && q.Maximum > 0 {
-			x.Count = q.Maximum
-		}
 		if pt.In(reinforceBuy) {
 			return 0, x.buy()
 		}
@@ -198,9 +183,15 @@ func (x *reinforcementUI) State() map[string]any {
 		v = x.Previous.State()
 	}
 	v["reinforcements"] = map[string]any{"active": x.Active, "shop_open": x.Port.ShopOpen, "selected": x.Selected, "count": x.Count, "message": x.Message, "purchases": x.Purchases, "exit_phase": x.ExitPhase, "events": x.Events, "offers": reinforcementOffers(x.Port.Current.World.Army), "native_stock": x.Port.ShopStock, "group": x.Port.ShopGroup, "row": x.Port.ShopRow}
+	if q := x.quantity(); q != nil {
+		v["reinforcement_quantity"] = map[string]any{"phase": q.Phase, "ready": q.Ready, "key": q.Key, "unit": q.Unit, "starts": q.Starts, "purchases": q.Purchases, "events": q.Events}
+	}
 	return v
 }
 func (x *reinforcementUI) Paint(f *armyUIFonts, font string) (*image.RGBA, []armyUIText) {
+	if x.quantity().active() {
+		return x.quantity().paint(x.Engine.Frame())
+	}
 	if !x.Port.ShopOpen {
 		return x.Previous.Paint(f, font)
 	}
@@ -250,13 +241,10 @@ func (x *reinforcementUI) Paint(f *armyUIFonts, font string) (*image.RGBA, []arm
 	}
 	q, _ := w.Army.quote(x.Port.Store.Catalog, x.key())
 	p.number("reinforce-maximum", fmt.Sprintf("%s 可招募 %d", idx[openKBArtIDs[x.Selected]].Name, q.Maximum), image.Rect(60, 850, 1850, 895), 32, 24, uiGold)
-	p.button("reinforce-minus", "-", image.Rect(60, 900, 220, 980), false, x.Count > 1)
-	p.number("reinforce-count", fmt.Sprintf("%d", x.Count), image.Rect(240, 900, 430, 980), 40, 12, uiIvory)
-	p.button("reinforce-plus", "+", image.Rect(450, 900, 610, 980), false, x.Count < q.Maximum)
-	p.button("reinforce-max", "最大", image.Rect(640, 900, 940, 980), false, q.Maximum > 0)
 	p.button("reinforce-buy", "招募", reinforceBuy, false, q.Maximum > 0 && w.Army.Rules != "native")
 	p.text("reinforce-message", x.Message, image.Rect(60, 1000, 1850, 1060), 28, uiGold, false)
 	p.text("reinforce-help", "方向鍵選擇 Enter 招募 Esc 返回原版兵種 F10 字型", image.Rect(60, 1090, 1850, 1160), 28, uiIvory, false)
+	x.Held, x.HeldTexts = out, p.Texts
 	return out, p.Texts
 }
 func reinforcementGuestKey(g *armyReviewApp, k byte, down bool) error {
@@ -277,6 +265,9 @@ func reinforcementGuestKey(g *armyReviewApp, k byte, down bool) error {
 func advanceReinforcementUI(g *armyReviewApp) error {
 	x := reinforcementCurrent
 	if x != nil {
+		if err := x.quantity().advance(g); err != nil {
+			return err
+		}
 		if x.Active {
 			return nil
 		}
@@ -303,6 +294,7 @@ func initializeLayer65() {
 			return nil, err
 		}
 		x := &reinforcementUI{Previous: v, Engine: e, Port: p, Count: 1, Blocked: map[byte]bool{}}
+		installOriginalReinforcementQuantity(x)
 		reinforcementCurrent = x
 		return x, nil
 	}

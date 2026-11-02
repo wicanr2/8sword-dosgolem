@@ -82,6 +82,7 @@ func (p originalRecruitPlan) result(count uint32, gold uint64) (uint16, error) {
 }
 
 type originalRecruitQuantity struct {
+	Reinforcement                           *originalReinforcementQuantity
 	Engine                                  *game.Engine
 	Port                                    *worldArmyPort
 	Code                                    []byte
@@ -276,6 +277,15 @@ func (x *originalRecruitQuantity) execute(m *dg.Machine, ip uint16) (bool, error
 		if x.InputPending {
 			return false, errors.New("original quantity pending at preflight")
 		}
+		if x.Reinforcement.active() {
+			if x.Reinforcement.Phase != "input" {
+				return false, errors.New("original reinforcement preflight phase")
+			}
+			plan, err = x.Reinforcement.plan(s)
+			if err != nil {
+				return false, &worldArmyPortFault{err.Error()}
+			}
+		}
 		x.Plan = plan
 		x.Preflights++
 		next = plan.Preflight
@@ -287,7 +297,11 @@ func (x *originalRecruitQuantity) execute(m *dg.Machine, ip uint16) (bool, error
 		if !x.InputPending || !x.Returned || count != x.Value || c.R[dg.AX] != count || c.R[dg.BP] != x.InputParent {
 			return false, &worldArmyPortFault{"original quantity result binding"}
 		}
-		next, err = plan.result(uint32(count), s.World.Army.Gold)
+		if x.Reinforcement.active() {
+			next, err = x.Reinforcement.result(m, s, count)
+		} else {
+			next, err = plan.result(uint32(count), s.World.Army.Gold)
+		}
 		if err != nil {
 			return false, &worldArmyPortFault{err.Error()}
 		}

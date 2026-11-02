@@ -2818,3 +2818,19 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 本批永久保存817檔／432去重物件，壓縮113706882 bytes，不掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-recruit-quantity-integrity-r1.json)核對817工作複本、276來源、3236相對連結／錨點與三筆回鏈，UID/GID1000，沒有root-owned或異常.md目錄。只刪本輪1753份Go快取、175134527邏輯bytes及逐SHA已保存的311份舊副本、205993604邏輯bytes；最新來源、程式、進度及完整成果保留。沒有新映像或全域清理。Git與Docker最終狀態以下列推送為準。
 
 主提交bd5ae9dddeeb30ad7b313e06fdbf1460e4704d23已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，Docker按掛載來源查無本案執行中或已停止容器；其他專案資源未動。收尾另刪本輪工具import生成的單一UID1000 Python快取，不影響永久來源。此行另作文件收尾提交，不改程式、保存與限定驗收範圍。
+
+
+## 2026-11-02：新增兵種接回原版數量輸入
+
+開工HEAD `cccbf5d8da941693dfc55d5067f1223731f5853e`，工作樹乾淨。路由命中原版GUI還原、規格閘門、文件職責，收尾另載入驗證與回鏈準則；沿復古重製技能。既有IDA與原數量控制證據已足夠，先補READY才實作，沒有新增美術、規則、格式或卡片戰鬥。
+
+- 保留已選A增援分頁及方向鍵。選兵後Enter／招募只進原四位數編輯器，分頁加減／最大數量按鈕移除。一次Esc使原編輯器正常返回，5689核對後轉5523重算新兵最大量與提示，數字編輯、刪字、第五字忽略、取消及錯誤提示均沿原流程。Go只寫新兵字串ID及成對交易，交易後原wrapper回0保持原店庫存；不進原56EC。
+- 第一輪新兵執行器測試通過。補齊階級／滿六隊／金錢／領導量／零庫存模型，僅改測試，非測試來源逐SHA與兩個已建程式相同；再凍結278來源，三個切片全過。原25種七階段14張完整HD Frame仍相同，新兵八張Frame，取消／9999拒絕／招募2野狼／冷讀均通過。
+- 實際XTEST正常Continue、原店、分頁、Noto／隸書、輸入12後Left刪成1、取消、9999拒絕、輸入2購買、冷F2及再開新兵輸入通過，八張完整X11逐RGB等於提交PNG。Go30民兵＋2野狼來自前輪明示進度，購後30民兵＋4野狼、金420、獨立庫存73，原店民兵3000及軍隊影子保持。GUI只略過啟動護欄，沒有GUI RAM／IP注入；標準入口仍在進度IO前停止。
+- GUI準備首次僅把候選掛成另一個可寫別名，工具仍沿唯讀project路徑寫入而停止；改為精確候選子路徑可寫後同命令成功，屬掛載問題，尚未啟動GUI，沒有改產品。全輪建置與測試沒有產品失敗。第一版README圖選輸入1的中途畫面，改用實際確認2畫面與購後冷讀並列，前版一併保存。
+
+[限定接入](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)、[核對](preserved/original-reinforcement-quantity-audit-r1.json)、[README圖](docs/images/original-reinforcement-quantity-go-r1.png)及[永久保存](preserved/README.md#新增兵種沿原數量輸入保存)為入口。三筆舊定位索引追加新兵consumer，030較早未接說明加勘誤。原197來源七程式、923核心、535素材、1066美術及v5格式保持，一般Go入口停止，原版／HD戰場與世界整合仍待接。保存、清理及Git／Docker收尾以下列追加為準。
+
+本批561檔／400去重物件，壓縮88472160 bytes，未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-reinforcement-quantity-integrity-r1.json)驗561工作複本、278來源、3271條相對連結／錨點及三筆新consumer，UID/GID1000，沒有root-owned或異常.md目錄。只刪1725份本輪Go快取、157127351邏輯bytes，38份已逐SHA保存的舊副本、31189494邏輯bytes，以及單一28143-byte工具快取。最新來源、程式、進度與成果仍留工作區，沒有新映像或全域清理。
+
+本輪入口仍限已能進原數字提示的營地，原店更早的階級／容量拒絕入口未另接。5689舊診斷的價格／庫存代表原店frame，新兵報價與結果以獨立事件及canonical world判讀，已於030記明；不為診斷整理重開已驗交易矩陣。Git與Docker最終狀態以下列推送為準。

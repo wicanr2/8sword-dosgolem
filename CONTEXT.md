@@ -8,13 +8,17 @@
 
 `cmd/8sword`與原七程式仍走既有原版／HD路徑。`cmd/8sword-owned`的一般玩家啟動已撤回，在讀寫進度前拒絕；`-import-only`保持。`tools/owned-player.sh run`也先行停止，避免啟動快取的舊卡片程式。所有既有v1至v5資料保留，不刪附檔或降級交給原版固定表。
 
-優先工作是[原版管理與Go資料接管](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)，F2／F3原兵種及HD新增兵種欄位、原店原25種商品的原數量輸入與Go計算已抽驗。接續新增兵種分頁的原數量輸入與[原版戰場](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)，這些後續接線仍DRAFT。沿已有IDA與原版HD證據補足READY契約，再代表抽驗；擴充ID不得寫入原25種索引。原版模式新增兵種呈現尚未處理。海報／AI工具列合併、新遊戲建立Go進度及其餘特殊分派排在橋接之後，不再推進卡片操作。
+優先工作是[原版管理與Go資料接管](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)，F2／F3原兵種及HD新增兵種欄位、原25種與新增兵種的原數量輸入已抽驗。接續[原版戰場](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)，後續接線仍DRAFT。沿已有IDA與原版HD證據補足READY契約，再代表抽驗；擴充ID不得寫入原25種索引。原版模式新增兵種呈現尚未處理。海報／AI工具列合併、新遊戲建立Go進度及其餘特殊分派排在橋接之後，不再推進卡片操作。
 
 ## 最近驗證
 
-最新為[原店數量輸入與Go計算](docs/spec/030-battle-expansion-proposal.md#原店數量輸入與go計算限定-conformed)。原四位數編輯、刪字、第五字忽略、取消、超量拒絕與購兵沿原流程，Go接管階級、容量、領導量、庫存與安全費用。補齊前端0至9及退格鍵轉送。七階段共14張完整HD控制畫面相同，七張Noto／隸書實際視窗與提交RGB相同；購兵後冷讀通過。[核對](preserved/original-recruit-quantity-audit-r1.json)、[成果](docs/images/original-recruit-quantity-go-r1.png)與[保存](preserved/README.md#原店數量輸入與go計算保存)為入口。
+最新為[新增兵種沿原數量輸入](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)。已選增援分頁保留選兵，Enter／招募轉入原四位數編輯器。Go接獨立商品、最大量、安全費用及交易，沿原wrapper回0保持原店庫存。八種模型、階級／六隊／金錢／領導／庫存及故障拒絕、八張執行器畫面、八張Noto／隸書實際X11及冷讀通過。[核對](preserved/original-reinforcement-quantity-audit-r1.json)、[成果](docs/images/original-reinforcement-quantity-go-r1.png)與[保存](preserved/README.md#新增兵種沿原數量輸入保存)為入口。
 
-測試軍隊為30民兵與2野狼，購1民兵後31民兵、2野狼、金499及原店庫存2999。原影子軍隊24 bytes保持，只同步原金錢與原店庫存。原版控制另用36民兵，使領導用量同為36；軍隊身份不同，不稱完整客體state parity。6000飛龍費用72000由Go安全拒絕，與原16位元低word6464有意不同，僅作模型及受控掛點驗證。一般Go入口仍於進度IO前停止；研究視窗只略過啟動護欄，沒有GUI RAM／IP注入。
+沿前輪明示30民兵＋2野狼進度，取消與9999拒絕不改成對進度。購2野狼後30民兵＋4野狼、金420、獨立庫存73，原店民兵3000及影子軍隊24 bytes保持；原人物檔只改金錢word。F2與再開新兵輸入的冷讀world保持。新兵接管沒有原版新兵oracle，不稱完整客體state／時鐘parity或自然取得。一般Go入口仍在進度IO前拒絕；研究GUI只移除啟動護欄，沒有GUI RAM／IP注入。
+
+前輪[原店數量輸入與Go計算](docs/spec/030-battle-expansion-proposal.md#原店數量輸入與go計算限定-conformed)保持，本輪另回歸七階段14張完整HD控制Frame。補齊的0至9與退格鍵轉送沿用，原版數字編輯器不改。
+
+前輪原店測試軍隊為30民兵與2野狼，購1民兵後31民兵、2野狼、金499及原店庫存2999。原影子軍隊24 bytes保持，只同步原金錢與原店庫存。原版控制另用36民兵，使領導用量同為36；軍隊身份不同，不稱完整客體state parity。6000飛龍費用72000由Go安全拒絕，與原16位元低word6464有意不同，僅作模型及受控掛點驗證。
 
 前輪為[新增兵種的原版式HD欄位](docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)。八種既有HD圖、名稱、兵數與月薪已接原兩欄三列，新增行在原查表前略過，由Go填保留空位；原方向鍵、Enter解雇、Esc與重繪保持。六隊混合軍隊、取消、解雇野狼及未F7冷讀通過；六張Noto／隸書／草書實際視窗同提交RGB，欄位外畫面保持。[核對](preserved/original-army-fields-audit-r1.json)、[成果](docs/images/original-army-fields-go-r1.png)與[保存](preserved/README.md#新增兵種的原版式hd軍隊欄位保存)為入口。
 
@@ -43,9 +47,10 @@
 
 ## 尚未完成的實作
 
-- 原版F2／F3及原店原25種商品的數量輸入已接Go。接續新增兵種分頁的原數量輸入；原版模式的新增兵種呈現仍未處理。保留月薪欄位，不拿Go領導用量欄取代。
+- 原版F2／F3、原25種與新增兵種的原數量輸入已接Go。原版模式的新增兵種呈現仍未處理。保留月薪欄位，不拿Go領導用量欄取代。
 - 將Go typed部隊、兵力與動作接回原版戰場的選單、出手、回合及HD呈現。原版與HD各代表抽一條控制路徑，再抽新兵、AI與存讀。卡片介面不作正式驗收。
 - 完成新增軍隊的正式世界整合與其餘資源消費端。穩定營地、寶箱、煉金術、召兵術、月結、守軍及頭目已有研究成果，不重新開啟全部逆向。
+- 新兵原數量輸入沿已能進原數字提示的營地；原店更早因階級／容量拒絕時，增援入口仍未另接。這是入口範圍限制，不重跑已驗數字編輯與交易。
 - 完成原前端工具列與Go軍隊整合、新遊戲直接建立Go進度。VM缺失的舊戰中資料繼續拒絕，保留正式Engine的附檔護欄。
 - Rust遷移留後續，依使用者最後指示先用Go。公開發行包與跨平台真機驗收尚未進行。
 

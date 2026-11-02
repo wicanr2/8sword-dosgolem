@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 新增兵種沿原數量輸入保存
+
+本批561檔／400去重物件，壓縮88472160 bytes，已完成不掛workplace的逐SHA及大小核對。
+
+新增兵種保留已選增援分頁，選定後進原四位數編輯器。Go處理獨立庫存、安全費用與成對交易，原店庫存與原軍隊影子保持；數字與游標沿既有Go來源呈現器。[030契約](../docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入-ready)明列控制轉移與保存邊界，一般Go入口仍停止，原版戰場仍待接。
+
+入口為[數量介接](../internal/ownedworld/original_reinforcement_quantity.go)、[抽驗](../internal/ownedworld/original_reinforcement_quantity_test.go)、[準備／核對／保存器](../tools/original-reinforcement-quantity.py)、[視窗工具](../tools/check-original-reinforcement-quantity-gui.py)、[核對](original-reinforcement-quantity-audit-r1.json)、[逐檔清單](original-reinforcement-quantity-r1.json)、[脫離workplace核對](original-reinforcement-quantity-verification-r1.json)與[收尾核對](original-reinforcement-quantity-integrity-r1.json)。完整候選來源、程式、固定輸入、三字型、八種HD圖、成對進度、PNG／X11與第一輪測試保存在本機`preserved/original-reinforcement-quantity-r1/`，不進Git。縮小成果與[來源](../docs/images/original-reinforcement-quantity-go-r1.json)留私人倉庫。
+
+固定Pillow11.3.0 r2容器掛專案唯讀`/project`及保存目錄可寫`/archive`，執行`original-reinforcement-quantity.py archive --project /project --archive /archive --out /archive/original-reinforcement-quantity-r1.json`。核對用`verify --archive /archive --out /out/新核對.json`，不掛workplace。`prepare|freeze|gui`需明確可寫候選目錄，不能只把同一目錄掛到另一個可寫別名；其他動作用法見工具。Go1.24.13命令、映像、UID1000、network none、配額及研究overlay保存在`execution-r1.json`；GUI的`--cold-only`只接續暖程序。
+
+軍隊沿前輪明示30民兵＋2野狼保存配置，未修改GUI RAM／IP。新的控制轉移與交易沒有原版新兵oracle，不稱完整客體state／時鐘parity或自然取得；原25種輸入另作完整畫面回歸。原197來源七程式、923核心、535素材與存檔schema保持，沒有Release或公開素材授權聲明。
+
 ## 原店數量輸入與Go計算保存
 
 本批817檔／432去重物件，壓縮113706882 bytes，已完成不掛workplace的逐SHA與大小核對。

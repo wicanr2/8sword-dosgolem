@@ -1,0 +1,14 @@
+{
+  "status": "passed-original-reinforcement-quantity-audit",
+  "source_files": 278,
+  "models": 8,
+  "runtime_frames": 8,
+  "gui_frames": 8,
+  "native_regression_frames": 14,
+  "cold_world_equal": true,
+  "native_stock": 3000,
+  "independent_wolf_stock": 73,
+  "controlled_army": true,
+  "full_guest_state_parity_claimed": false,
+  "ordinary_entry_disabled": true
+}

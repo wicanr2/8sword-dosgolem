@@ -604,7 +604,18 @@
       "scope": "Original 25 products, four-digit editor and Go-owned mixed-army arithmetic; sampled original keyboard route and cold save.",
       "not_closed": "Reinforcement-page original numeric input, native-mode extended art, battlefield bridge and ordinary owned-player entry.",
       "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
-      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic."
+      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic.",
+      "additional_consumers": [
+        {
+          "semantic": "Selected extension offers reuse the original editor; host result returns AX0 to preserve native camp stock.",
+          "evidence": "docs/spec/030-battle-expansion-proposal.md",
+          "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+          "required_correction": "REINFORCEMENT-ORIGINAL-QUANTITY-20261102",
+          "receipt": "preserved/original-reinforcement-quantity-audit-r1.json",
+          "scope": "Approved A selection page -> original four-digit editor -> Go independent recruitment -> original-layout HD F2 and cold save.",
+          "not_closed": "Original battlefield bridge, native-mode extension art, ordinary owned entry."
+        }
+      ]
     },
     {
       "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:5523",
@@ -622,7 +633,18 @@
       "scope": "Original 25 products, four-digit editor and Go-owned mixed-army arithmetic; sampled original keyboard route and cold save.",
       "not_closed": "Reinforcement-page original numeric input, native-mode extended art, battlefield bridge and ordinary owned-player entry.",
       "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
-      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic."
+      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic.",
+      "additional_consumers": [
+        {
+          "semantic": "Selected extension offers reuse the original editor; host result returns AX0 to preserve native camp stock.",
+          "evidence": "docs/spec/030-battle-expansion-proposal.md",
+          "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+          "required_correction": "REINFORCEMENT-ORIGINAL-QUANTITY-20261102",
+          "receipt": "preserved/original-reinforcement-quantity-audit-r1.json",
+          "scope": "Approved A selection page -> original four-digit editor -> Go independent recruitment -> original-layout HD F2 and cold save.",
+          "not_closed": "Original battlefield bridge, native-mode extension art, ordinary owned entry."
+        }
+      ]
     },
     {
       "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:5689",
@@ -640,7 +662,18 @@
       "scope": "Original 25 products, four-digit editor and Go-owned mixed-army arithmetic; sampled original keyboard route and cold save.",
       "not_closed": "Reinforcement-page original numeric input, native-mode extended art, battlefield bridge and ordinary owned-player entry.",
       "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
-      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic."
+      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic.",
+      "additional_consumers": [
+        {
+          "semantic": "Selected extension offers reuse the original editor; host result returns AX0 to preserve native camp stock.",
+          "evidence": "docs/spec/030-battle-expansion-proposal.md",
+          "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+          "required_correction": "REINFORCEMENT-ORIGINAL-QUANTITY-20261102",
+          "receipt": "preserved/original-reinforcement-quantity-audit-r1.json",
+          "scope": "Approved A selection page -> original four-digit editor -> Go independent recruitment -> original-layout HD F2 and cold save.",
+          "not_closed": "Original battlefield bridge, native-mode extension art, ordinary owned entry."
+        }
+      ]
     }
   ]
 }

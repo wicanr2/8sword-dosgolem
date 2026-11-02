@@ -2964,3 +2964,14 @@ GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改
 IDA MZ載入器在segment重定位word加1000h，38處指令bytes與原檔未重定位值不同，例如__chkstk的segment。獨立核對先按MZ relocation table處理，再按逐指令file_offset驗bytes；dosgolem runtime另按0110重定位，不拿兩種段值直接比較。完整原定位及bytes保留，推論等級為上述已證實抽驗範圍，不由Go能跑反推所有原版語意。
 
 前端只轉送1／2／3是實窗證實的接線缺口，補齊0至9及Backspace後原編輯器正常處理9999。原版保存只允許金錢word檔案偏移6／7與本店庫存126／127改動，軍隊[12,36)保持。Go world與原影子成對保存，獨立冷讀確認一次交易。
+
+
+## 2026-11-02：新增商品共用原四位數編輯器
+
+已證實於抽驗範圍，原PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`。沿上一節已保存IDA Pro9.4四函式／657筆指令與PAM.i64雜湊，沒有另跑IDA、改名或修改資料庫。dosgolem runtime CS:IP與IDA MZ線性／file offset仍分列。
+
+- 原定位sub_14E7E、runtime `0110:4E7E`的caller5683及50C9／50E1返回保持。分頁選兵後僅送一次Esc，於sub_154EA的runtime `0110:5689`驗原返回及父frame，再轉同frame的`0110:5523`；55F0後重算最大量文字與數字輸入座標。這是Go明示控制轉移，不稱原版已有新增商品。
+- 八種商品只用Go字串ID及既有獨立offer。有效輸入先RecruitReinforcement成對交易，投影資源後沿555F回AX0；原wrapper故不扣原店庫存，亦不走56EC的原兵種提交。實際野狼購2後金420、兵4、獨立庫存73，原店民兵3000與原軍隊24 bytes保持。取消與9999原錯量回應不改進度。
+- sub_15792在原邏輯y116／133／150呈現庫存／種類、月薪與金錢。Go沿640×200至1920×1200的x3／y6座標填同三行及HD圖，保留y167的原提示、數字及游標。新兵圖採已驗同一alpha繪圖機制，整張Go畫布完成後一次提交；不先顯示原店的另一個兵種。最大量仍是剩餘領導量除Command，購前21、購後19，不能以現金可購量10代替。
+
+原25種回歸14張完整HD Frame相同；新兵八張執行器Frame、八張實際X11及冷讀沿[限定接入](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)。軍隊源自前輪明示保存配置，沒有GUI RAM／IP注入；新兵不存在原版oracle，不宣稱完整客體state／時鐘parity。資料來源、程式與原圖位置見[永久保存](preserved/README.md#新增兵種沿原數量輸入保存)。
