@@ -8,13 +8,13 @@
 
 `cmd/8sword`與原七程式仍走既有原版／HD路徑。`cmd/8sword-owned`的一般玩家啟動已撤回，在讀寫進度前拒絕；`-import-only`保持。`tools/owned-player.sh run`也先行停止，避免啟動快取的舊卡片程式。所有既有v1至v5資料保留，不刪附檔或降級交給原版固定表。
 
-優先工作是[原版管理與Go資料接管](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)，F2原兵種切片已抽驗，接續擴充名稱／圖像、F3、募兵與[原版戰場](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)，目前技術接線仍DRAFT。沿已有IDA與原版HD證據補足READY契約，再代表抽驗；擴充ID不得寫入原25種索引。海報／AI工具列合併、新遊戲建立Go進度及其餘特殊分派排在橋接之後，不再推進卡片操作。
+優先工作是[原版管理與Go資料接管](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)，F2／F3原兵種切片已抽驗，接續擴充名稱／圖像、募兵與[原版戰場](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)。這些後續接線仍DRAFT。沿已有IDA與原版HD證據補足READY契約，再代表抽驗；擴充ID不得寫入原25種索引。海報／AI工具列合併、新遊戲建立Go進度及其餘特殊分派排在橋接之後，不再推進卡片操作。
 
 ## 最近驗證
 
-最新為[原版F2原兵種接線](docs/spec/030-battle-expansion-proposal.md#f2原版兵種資料接線限定-conformed)，沿Go六隊供應種類、兵數與月薪，保留原row、圖像與等待返回。原版及HD代表抽驗31民兵＋1矮人，影子仍30民兵；完整Frame與原版相同軍隊控制相同，兩檔保持。Noto／隸書實際XTEST三張畫面與Go提交同RGB，返回及重進通過。[核對](preserved/original-army-review-audit-r1.json)、[成果](docs/images/original-army-go-data-r1.png)及[保存](preserved/README.md#原版f2與go資料接線保存)為入口。
+最新為[原版F3與Go解雇交易](docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)。保留原版導覽、選取、Enter／Esc與重繪，由Go提供種類／兵數／月薪，移除整隊並成對保存。原版／HD各五階段完整Frame與同軍隊原版控制相同；長按Enter只提交一次，空隊按鍵不新增交易，讀取／提交接管停用均拒絕。六張實際Noto／隸書視窗同Go提交RGB，未F7冷讀及F2回歸通過。[核對](preserved/original-army-dismiss-audit-r1.json)、[成果](docs/images/original-army-dismiss-go-r1.png)與[保存](preserved/README.md#原版f3與go解雇交易保存)為入口。
 
-此切片僅限原25種ID白名單、緊密隊列及原已驗數值顯示範圍；新增ID及超界拒絕。軍隊為明示fixture，視窗以研究副本移除一般啟動護欄，不稱完整玩家入口或自然募兵。原3ED5仍可能持有地圖，擷取須等844C／ret3ED8；早期held map比較及GUI失敗不作正式成果。
+F2／F3僅限原25種ID白名單、緊密隊列及原已驗數值顯示範圍；新增ID及超界拒絕。軍隊為明示Go31民兵＋1矮人，原影子始終30民兵，原進度逐byte不改；解雇只改Go附檔。視窗以研究副本移除一般啟動護欄，不稱完整玩家入口或自然募兵。F2須等844C／ret3ED8，F3須等779E原頁提交，返回地圖須等3E91；早期held map比較不作成果。原版空隊Enter未動態執行，不聲稱完整客體state或時鐘parity。
 
 本次入口修正已抽驗普通啟動拒絕、既有進度兩檔逐byte保持與原版進度匯入成功。來源及結果見[030入口修正](docs/spec/030-battle-expansion-proposal.md#先行入口修正-ready)與[永久保存](preserved/README.md#原版戰場契約與卡片入口撤回保存)。這只驗收撤回入口，不代表新增兵種已接回原戰場。
 
@@ -37,7 +37,7 @@
 
 ## 尚未完成的實作
 
-- 原版F2已接原兵種Go資料。接續擴充兵種名稱／圖像及原數字顯示範圍，再接F3方向鍵／Enter解雇／Esc，以及募兵原數量輸入。保留原兵種、數量與月薪欄位，不拿Go領導用量欄取代原月薪。
+- 原版F2／F3已接原兵種Go資料及解雇保存。接續擴充兵種名稱／圖像與原數字顯示範圍，再接募兵原數量輸入。保留原兵種、數量與月薪欄位，不拿Go領導用量欄取代原月薪。
 - 將Go typed部隊、兵力與動作接回原版戰場的選單、出手、回合及HD呈現。原版與HD各代表抽一條控制路徑，再抽新兵、AI與存讀。卡片介面不作正式驗收。
 - 完成新增軍隊的正式世界整合與其餘資源消費端。穩定營地、寶箱、煉金術、召兵術、月結、守軍及頭目已有研究成果，不重新開啟全部逆向。
 - 完成原前端工具列與Go軍隊整合、新遊戲直接建立Go進度。VM缺失的舊戰中資料繼續拒絕，保留正式Engine的附檔護欄。

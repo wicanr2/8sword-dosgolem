@@ -1,0 +1,19 @@
+{
+  "status": "passed-original-F3-Go-transaction-integrity",
+  "archived_files": 864,
+  "source_files": 272,
+  "baseline": "197 sources, seven programs, 923 core and 535 assets unchanged by SHA",
+  "markdown_links": 3170,
+  "artwork_index_positive_control": true,
+  "ownership": "1000:1000",
+  "root_owned_or_md_directories": [],
+  "cleanup": {
+    "cache_files": 1725,
+    "cache_logical_bytes": 154573538,
+    "archived_copies": 211,
+    "archived_copy_logical_bytes": 24169458,
+    "scope": "workplace/probe-20261023/graphics-first/battle-r1/original-army-dismiss-r1"
+  },
+  "extended_kind_presentation": false,
+  "production_entry_remains_disabled": true
+}

@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "output": "original-army-dismiss-go-r1.png",
+  "output_sha256": "92f34c1fd7bf41e28be839084aa3b7eebe41127ccc040f5d14a96bcf613054e1",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-dismiss-r1/runtime-hd-false/side-1-after-dismiss.png",
+      "sha256": "b10740ad11f23fd5d93640de50f6a0fc01984da7a080560338de83a77c527e13"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-dismiss-r1/gui-r1/warm/frame-003-dismiss-noto.png",
+      "sha256": "acce4bcc2169e5775382d6f4953376b88f9121e7d6696d6e57e988dc22a0f839"
+    }
+  ],
+  "audit_sha256": "51f3c92bd2eb55bcea2c8e95edd9c4fbf311f5c84cad038e57a9d10598eaafa0",
+  "clock_initial": "12:00:00.00 via Oracle.SetClock",
+  "controlled_army": true,
+  "hd_actual_window_verified": true,
+  "extended_kind_presentation": false,
+  "full_guest_state_parity_claimed": false
+}

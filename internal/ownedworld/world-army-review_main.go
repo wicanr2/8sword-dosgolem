@@ -138,6 +138,9 @@ func (g *armyReviewApp) bind() error {
 }
 func (g *armyReviewApp) view() string {
 	if g.OriginalReview != nil && g.OriginalReview.Active && g.OriginalReview.Ready {
+		if g.OriginalReview.Mode == 2 {
+			return "dismiss"
+		}
 		return "army"
 	}
 	if reinforcementCurrent != nil && reinforcementCurrent.Port.ShopOpen {
@@ -336,6 +339,8 @@ func (g *armyReviewApp) status() map[string]any {
 	if g.OriginalReview != nil {
 		state["original_review_active"] = g.OriginalReview.Active
 		state["original_review_ready"] = g.OriginalReview.Ready
+		state["original_review_mode"] = g.OriginalReview.Mode
+		state["original_review_map_ready"] = g.OriginalReview.ReturnReady
 		state["original_review_opens"] = g.OriginalReview.Opens
 		state["original_review_closes"] = g.OriginalReview.Closes
 		state["original_review_operations"] = g.OriginalReview.Reads

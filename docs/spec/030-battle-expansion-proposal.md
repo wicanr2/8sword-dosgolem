@@ -48,6 +48,34 @@ Go原兵種資料已接回原版row與按鍵等待，使用[原版F2介接](../.
 
 [原版／HD成果](../images/original-army-go-data-r1.png)與[來源收據](../images/original-army-go-data-r1.json)為展示入口。一般Go玩家入口仍停止；視窗僅在受控研究副本移除啟動護欄，沒有注入IP或GUI軍隊。擴充名稱／圖像、F3、募兵及原版戰場接線仍待完成，不將本切片提升為完整玩家入口或新Release。
 
+### 原版F3導覽與Go解雇交易 READY
+
+沿上一F2切片接原25種白名單，不開放擴充名稱／圖像。保留原`sub_1775A`兩欄三列、方向鍵導覽、名稱選取、Enter整隊解雇、Esc返回與原row重繪；Go提供軍隊資料並沿既有`dismissWholeStack`及成對Store提交。沒有卡片或新增按鈕。
+
+原PAM／PAM.i64、IDA9.4、Go1.24.13與位址基準沿上節及已保存443行F3匯出。下列為dosgolem執行期CS:IP：原入口`0110:775A`由`3EDEh`返回；共享row的初始／重繪返回為`7782h／7B85h`、參數30h。原種類讀點`77CD,7850,78AD,7930,798D,7A10,7A6D,7AF0,7BAF`與零比較`781B,78FF,79DB,7ABF`改讀Go快照，原分支、欄列變數與名稱重繪繼續。CMP結果限已驗0至25，按x86 CMP16與0的ZF／PF等狀態提供，不動其它旗標。
+
+Enter分支`0110:7B2E`在任何原軍隊寫入之前，以原BP欄／列計算選隊，由Go驗版本、移除整隊、整理陣位並提交一次。成功後更新Go快照，跳到原`7B53h`選取調整／重繪。原寫入`7B43h／7B49h`及原整理`sub_17BF2`一律保留拒絕哨點；host接管失效時先停下，不寫影子表。Go不退金錢、不改庫存與六資源，原進度及影子24 bytes保持；journal故障沿既有恢復契約，不猜補。
+
+同一實體Enter按下只提交一次，沿Engine.InputEvents的按下邊緣，原getch仍取得與處理按鍵。空軍隊的Enter／方向鍵不作交易，Esc正常返回，避免原最後一隊移除後負陣位落入原寫入；不宣稱原鍵盤自動重複逐時鐘一致。原`779Eh`提交完成後才標Ready，`77A3h`取得新鍵後暫停Ready，返回地圖依原`3E91h`提交點。
+
+驗收沿明示Go31民兵＋1矮人、原影子30民兵，正常Continue→F3→導覽→取消／解雇→F2→再F3→空隊，原版／HD各與相同呈現軍隊的原版控制比較。另抽單次交易／未F7冷讀、空隊不重複交易及停用Enter接管仍不寫影子。原版控制不執行已知無部隊的危險Enter，對空隊只比正常顯示與Esc。一般Go入口停止狀態保持，GUI只在受控研究副本略過啟動護欄。
+
+入口為[原版F3介接](../../internal/ownedworld/original_army_dismiss.go)、[共享row資料](../../internal/ownedworld/original_army_review.go)、[抽驗](../../internal/ownedworld/original_army_dismiss_test.go)、[候選／核對／保存](../../tools/original-army-dismiss.py)及[視窗抽驗](../../tools/check-original-army-dismiss-gui.py)。研究輸出沿既有`battle-r1/original-army-dismiss-r1`；不改原七程式、923核心、535素材或存檔schema。結果另追加限定CONFORMED。
+
+### 原版F3與Go解雇交易限定 CONFORMED
+
+2026-11-02，以上READY切片完成。[獨立核對](../../preserved/original-army-dismiss-audit-r1.json)、[原版／HD成果](../images/original-army-dismiss-go-r1.png)、[圖片來源](../images/original-army-dismiss-go-r1.json)及[永久保存](../../preserved/README.md#原版f3與go解雇交易保存)為入口。
+
+| 抽驗 | 結果與範圍 |
+|---|---|
+| 原版導覽與Go資料 | 原版／HD各沿正常Continue、F3選隊與取消、解雇、F2、再F3至空隊。五階段各兩側完整1920×1200 Frame，共20張，逐RGBA相同。資料為Go31民兵＋1矮人，原影子30民兵；控制側只供應相同呈現軍隊。 |
+| 交易與保存 | 原版種類／兵數寫入及整理陣位均有拒絕哨點，Go只提交兩次解雇。長按Enter1000毫秒只提交一次，空隊方向鍵／Enter不新增交易。兩模式的原人物檔與影子24 bytes保持，冷讀world等於原world僅revision加2及六隊清空。未改schema。 |
+| 讀取與計算保護 | 0至25的Go CMP16旗標與dosgolem執行實際CMP指令相同。停用資料讀取或Enter提交接管，均停止且零交易、兩檔及影子保持；未退回原固定表繼續。F2原版／HD及既有四類拒絕回歸通過。 |
+| 實際視窗 | XTEST以原按鍵完成選隊、取消、解雇與Esc。Noto／隸書、未F7關閉後冷讀F2、最後一隊解雇與空隊操作通過；六張X11 RGB等於Go提交。只有軍隊初值為明示測試配置，GUI未改RAM／IP。 |
+| 隔離與正式入口 | 候選272項來源，固定Go1.24.13／Pillow11.3.0容器。研究GUI建置覆蓋只移除一般啟動護欄；標準程式仍在讀寫前拒絕，兩檔保持。原197來源、七程式、923核心、535素材與1066美術不改。 |
+
+本輪沒有測試失敗。首批通過後補入原版模式獨立寫入哨點及兩項故障抽驗，再以凍結來源重跑相關切片通過。此結果只限原25種ID白名單、緊密六隊與原數字顯示範圍；新增八種名稱／圖像、募兵與原版戰場橋接仍待接，一般Go玩家入口維持停止。原版空隊Enter未動態執行，僅比空隊畫面與正常Esc，不稱已重現原版崩潰、完整客體state或時鐘parity。
+
 ## 原版戰場呈現定案與卡片介面撤回
 
 2026-11-02，使用者明確更正：「另外我看到有 go 的戰鬥模式 這不是我想要的 我想要還是用原版+原版HD的戰場模式」。此決定優先於下列較早的卡片操作原型及其呈現驗收。Go接管後端不代表另做玩家戰鬥介面；先前把兩者合併推進是範圍誤判。

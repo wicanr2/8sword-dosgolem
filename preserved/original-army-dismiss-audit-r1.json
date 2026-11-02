@@ -1,0 +1,94 @@
+{
+  "status": "passed-original-F3-Go-transaction-audit",
+  "source_files": 272,
+  "control_frames": [
+    {
+      "hd": "false",
+      "stage": "opened",
+      "rgba_sha256": "419a87ccbe83939aba47d2bdc1f6ff3d0aaaf0d9da0cf3301b37a84d4c69a281"
+    },
+    {
+      "hd": "false",
+      "stage": "selected-second",
+      "rgba_sha256": "17f5771cc4c08400202b8716ad0dac312380bb7724825239b6f330b54036b6dc"
+    },
+    {
+      "hd": "false",
+      "stage": "after-dismiss",
+      "rgba_sha256": "3925919fe5a3800623302f9fabf49e965cc400af862e160ce21a924dcf319d9d"
+    },
+    {
+      "hd": "false",
+      "stage": "f2-remaining",
+      "rgba_sha256": "1b5fa35688c10f7798cb7c98318b9d8034cad27bb4e8f5e886ab4c32ab02fad5"
+    },
+    {
+      "hd": "false",
+      "stage": "empty",
+      "rgba_sha256": "7cc9996887fd39329df0f2f4597fe6536ca38ba094db1ae51a203dc3037f4dc7"
+    },
+    {
+      "hd": "true",
+      "stage": "opened",
+      "rgba_sha256": "5cdf8722e85e6f1d6719982a18f7810d76e76369f5fea3e58c1576f6ef8c25bd"
+    },
+    {
+      "hd": "true",
+      "stage": "selected-second",
+      "rgba_sha256": "0af64e67d2666704ab11ffaaa28e48d236deea129030f51b4ad70125a603977b"
+    },
+    {
+      "hd": "true",
+      "stage": "after-dismiss",
+      "rgba_sha256": "06df44c1aaf11c808f69b91827d57b9f57ee4caf6b2d058c122187e2793ef1c1"
+    },
+    {
+      "hd": "true",
+      "stage": "f2-remaining",
+      "rgba_sha256": "98de51d7ebaaa48140c866d4300e2d5ae7c33631d71a5455e607fc7b410b5cd3"
+    },
+    {
+      "hd": "true",
+      "stage": "empty",
+      "rgba_sha256": "32e9d13624f83b4416fe5f70aa9fd331192c1f07906d4429978933b0fd381878"
+    }
+  ],
+  "gui": [
+    {
+      "phase": "warm",
+      "name": "opened-noto",
+      "rgba_sha256": "5cdf8722e85e6f1d6719982a18f7810d76e76369f5fea3e58c1576f6ef8c25bd"
+    },
+    {
+      "phase": "warm",
+      "name": "selected-second-noto",
+      "rgba_sha256": "0af64e67d2666704ab11ffaaa28e48d236deea129030f51b4ad70125a603977b"
+    },
+    {
+      "phase": "warm",
+      "name": "after-dismiss-noto",
+      "rgba_sha256": "06df44c1aaf11c808f69b91827d57b9f57ee4caf6b2d058c122187e2793ef1c1"
+    },
+    {
+      "phase": "warm",
+      "name": "after-dismiss-lishu",
+      "rgba_sha256": "4939a234a5ec599f2ecc9bc387a692fa2f3fe3a11917ae34193a01e1bb177a40"
+    },
+    {
+      "phase": "cold",
+      "name": "cold-f2-lishu",
+      "rgba_sha256": "4ea85b6026cd0906ad4f6a70e6642daa3b8432044fb128c7eaa3605ce67a67f7"
+    },
+    {
+      "phase": "cold",
+      "name": "empty-lishu",
+      "rgba_sha256": "273b1775dc5009389fab0f6d440e22c4f2a7b9952e624cdaf014c1dec8be67ae"
+    }
+  ],
+  "source_cmp_flags_cases": 26,
+  "save_schema_changed": false,
+  "controlled_army": true,
+  "extended_kind_presentation": false,
+  "production_entry_remains_disabled": true,
+  "full_guest_state_parity_claimed": false
+}

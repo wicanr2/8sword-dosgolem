@@ -15,19 +15,21 @@ import (
 // the original name/image tables. This first bridge rejects them explicitly.
 type originalReviewRow struct{ Kind, Count, Monthly uint16 }
 type originalArmyReview struct {
-	Engine        *game.Engine
-	Port          *worldArmyPort
-	Code          []byte
-	Rows          [6]originalReviewRow
-	Active        bool
-	Ready         bool
-	Token         string
-	NativeRows    []byte
-	BP            uint16
-	LastPost      uint16
-	LastValue     uint16
-	Reads         [4]uint64
-	Opens, Closes uint64
+	Engine                              *game.Engine
+	Port                                *worldArmyPort
+	Code                                []byte
+	Rows                                [6]originalReviewRow
+	Active                              bool
+	Ready                               bool
+	Mode, RowReturn, RowArg             uint16
+	RowDone, ReturnReady, ReturnPending bool
+	Token                               string
+	NativeRows                          []byte
+	BP                                  uint16
+	LastPost                            uint16
+	LastValue                           uint16
+	Reads                               [4]uint64
+	Opens, Closes                       uint64
 }
 
 func originalReviewRows(c ArmyCatalog, w OwnedWorld) ([6]originalReviewRow, error) {
@@ -66,7 +68,7 @@ func (v *originalArmyReview) check() error {
 	if r.CS != 0x110 || r.DS != 0x1e88 || r.SS != 0x1e88 ||
 		!bytes.Equal(v.Code[0x3e92:0x3f08], o.Bytes(oracle.Far(0x110, 0x3e92), 0x76)) ||
 		!bytes.Equal(v.Code[0x75c6:0x775a], o.Bytes(oracle.Far(0x110, 0x75c6), 0x194)) ||
-		o.Word(oracle.Far(0x1e88, 0x56bc)) != 1 || o.Word(oracle.Far(0x1e88, 0x7484)) != 1 {
+		(v.Mode != 1 && v.Mode != 2) || o.Word(oracle.Far(0x1e88, 0x56bc)) != v.Mode || o.Word(oracle.Far(0x1e88, 0x7484)) != 1 {
 		return errors.New("original F2 source/segments/selector")
 	}
 	s, err := v.Port.snapshot()
@@ -121,6 +123,7 @@ func installOriginalArmyReview(e *game.Engine, p *worldArmyPort) (*originalArmyR
 			fail(errors.New("dispatcher frame"))
 		}
 		v.Token = s.Token
+		v.Mode = 1
 		v.NativeRows = o.Bytes(oracle.Far(0x1e88, 0x54a), 24)
 		if err = v.check(); err != nil {
 			fail(err)
@@ -128,6 +131,7 @@ func installOriginalArmyReview(e *game.Engine, p *worldArmyPort) (*originalArmyR
 		v.Rows = rows
 		v.Active = true
 		v.Ready = false
+		v.ReturnReady, v.ReturnPending = false, false
 		v.BP = 0
 		v.LastPost = 0
 		v.Reads = [4]uint64{}
@@ -141,9 +145,19 @@ func installOriginalArmyReview(e *game.Engine, p *worldArmyPort) (*originalArmyR
 			fail(err)
 		}
 		r := o.Regs()
-		if r.SP > 65529 || o.Word(oracle.Far(r.SS, r.SP)) != 0x3ebf || o.Word(oracle.Far(r.SS, r.SP+2)) != 0x110 || o.Word(oracle.Far(r.SS, r.SP+4)) != 0x2f {
+		if r.SP > 65529 || o.Word(oracle.Far(r.SS, r.SP+2)) != 0x110 {
 			fail(errors.New("row caller"))
 		}
+		ret, arg := o.Word(oracle.Far(r.SS, r.SP)), o.Word(oracle.Far(r.SS, r.SP+4))
+		if !(v.Mode == 1 && ret == 0x3ebf && arg == 0x2f || v.Mode == 2 && (ret == 0x7782 || ret == 0x7b85) && arg == 0x30 && p.OriginalDismiss != nil) {
+			fail(errors.New("row mode/caller"))
+		}
+		v.RowReturn, v.RowArg = ret, arg
+		v.BP = 0
+		v.Reads = [4]uint64{}
+		v.LastPost = 0
+		v.RowDone = false
+		v.Ready = false
 	})
 	for _, ip := range []uint16{0x75fd, 0x76ad, 0x76e8, 0x770d} {
 		ip := ip
@@ -166,24 +180,18 @@ func installOriginalArmyReview(e *game.Engine, p *worldArmyPort) (*originalArmyR
 		})
 	}
 	swordOnCall(e.Oracle, oracle.Far(0x110, 0x3ed5), func(*oracle.Oracle) {
-		if !v.Active {
+		if !v.Active || v.Mode != 1 {
 			return
 		}
 		if err := v.check(); err != nil {
 			fail(err)
 		}
-		var occupied uint64
-		for _, r := range v.Rows {
-			if r.Kind != 0 {
-				occupied++
-			}
-		}
-		if v.Reads != [4]uint64{6, occupied, occupied, occupied} {
-			fail(fmt.Errorf("row operations %v", v.Reads))
+		if err := v.finishRows(); err != nil {
+			fail(err)
 		}
 	})
 	swordOnCall(e.Oracle, oracle.Far(0x110, 0x3ed8), func(*oracle.Oracle) {
-		if !v.Active {
+		if !v.Active || v.Mode != 1 {
 			return
 		}
 		if err := v.check(); err != nil {
@@ -191,12 +199,13 @@ func installOriginalArmyReview(e *game.Engine, p *worldArmyPort) (*originalArmyR
 		}
 		v.Active = false
 		v.Ready = false
+		v.ReturnPending = true
 		v.Closes++
 	})
 	// Source rendering commits the army panel at sub_1844C, after the CALL
 	// at 3ED5 has actually been dispatched. Active alone still holds the map.
 	swordOnCall(e.Oracle, oracle.Far(0x110, 0x844c), func(o *oracle.Oracle) {
-		if !v.Active {
+		if !v.Active || v.Mode != 1 {
 			return
 		}
 		r := o.Regs()
@@ -207,7 +216,30 @@ func installOriginalArmyReview(e *game.Engine, p *worldArmyPort) (*originalArmyR
 			v.Ready = true
 		}
 	})
+	swordOnCall(e.Oracle, oracle.Far(0x110, 0x3e91), func(*oracle.Oracle) {
+		if v.ReturnPending {
+			v.ReturnReady = true
+			v.ReturnPending = false
+		}
+	})
 	return v, nil
+}
+
+func (v *originalArmyReview) finishRows() error {
+	if v.RowDone {
+		return nil
+	}
+	var occupied uint64
+	for _, r := range v.Rows {
+		if r.Kind != 0 {
+			occupied++
+		}
+	}
+	if v.Reads != [4]uint64{6, occupied, occupied, occupied} {
+		return fmt.Errorf("row operations %v", v.Reads)
+	}
+	v.RowDone = true
+	return nil
 }
 
 func (v *originalArmyReview) acceptsRead(ip uint16) bool {
@@ -225,7 +257,7 @@ func (v *originalArmyReview) supply(m *dg.Machine, ip uint16) (bool, error) {
 	c := m.CPU
 	bp, sp := c.R[dg.BP], c.R[dg.SP]
 	base := uint32(0x1e880)
-	if c.IP != ip || c.Cycles == math.MaxUint64 || bp < 18 || bp > 65520 || sp > bp || m.Read16(base+uint32(bp)+2) != 0x3ebf || m.Read16(base+uint32(bp)+4) != 0x110 || m.Read16(base+uint32(bp)+6) != 0x2f {
+	if c.IP != ip || c.Cycles == math.MaxUint64 || bp < 18 || bp > 65520 || sp > bp || m.Read16(base+uint32(bp)+2) != v.RowReturn || m.Read16(base+uint32(bp)+4) != 0x110 || m.Read16(base+uint32(bp)+6) != v.RowArg {
 		return fail("row frame")
 	}
 	if v.BP != 0 && v.BP != bp {

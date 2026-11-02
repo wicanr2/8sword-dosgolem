@@ -2766,3 +2766,15 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 [收尾核對](preserved/original-army-review-integrity-r1.json)通過762工作複本、270建置來源、3137條相對連結及美術入口正對照。只刪本輪1767份Go快取、175410383邏輯bytes，以及逐SHA保存的302份較早副本、118336779邏輯bytes；最新程式、來源、輸入與成果仍留工作區，原件均可從永久物件重取。另以固定PAM靜態核對25種月薪word全部等於catalog Gold，結果另存受版控JSON，不新增或重跑25種GUI。無新映像或全域清理；Git與Docker最終狀態以下列推送為準。
 
 主提交a78256b126e61dce7efd776852f08fb1bdd93e9f已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，本案按專案根與候選掛載來源查無執行中或已停止容器。此行另作文件收尾提交，不改程式、保存與限定驗收範圍。
+
+## 2026-11-02：原版F3接回Go解雇交易與保存
+
+開工HEAD `c5201808ea15871ff45056562a4dab4b7b6ed9cc`，工作樹乾淨。路由命中原版GUI還原與規格閘門，沿復古重製技能及文件職責；沿使用者已定案的原版管理方式接F3。先補READY，才實作原版導覽與Go交易，不重開介面選樣或美術。
+
+- original_army_dismiss保留sub_1775A原兩欄三列、方向鍵、選取標示、Enter與Esc。共享F2 row由Go提供種類／兵數／月薪，原種類讀取及零比較不再借影子表作權威。Enter在7B2E前接Go整隊移除及成對Store提交，回原7B53重繪；原兩處寫入及整理函式保持拒絕。原版與HD均裝獨立哨點，沒有卡片畫面。
+- 原版／HD各從Continue正常進F3，Go31民兵＋1矮人，原影子30民兵。開頁、選第二隊、解雇、F2剩餘隊及空軍隊五階段，與同呈現軍隊原版控制共20張完整Frame逐RGBA相同。長按Enter只提交一次，兩次解雇後world只變revision及六隊，原人物檔與影子保持，未F7冷讀通過。26個CMP旗標案例對實際dosgolem指令；停用讀取／提交均拒絕、零交易。F2原版／HD與四類拒絕回歸通過。
+- 首批通過後補原版模式獨立寫入哨點與故障抽驗，凍結272項來源再跑相關切片通過。本輪沒有測試失敗，沒有新IDA逆向。實際XTEST以正常按鍵完成選隊、取消、解雇、Esc及另一程序F2；六張Noto／隸書X11逐RGB等於Go提交。原空隊Enter僅靜態辨識風險，沒有執行作原版oracle。研究GUI只用建置覆蓋移除啟動護欄，未改RAM／IP；標準程式仍於進度IO前拒絕。
+
+[030結果](docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)、[獨立核對](preserved/original-army-dismiss-audit-r1.json)、[README成果](docs/images/original-army-dismiss-go-r1.png)及[永久保存](preserved/README.md#原版f3與go解雇交易保存)為入口。原197來源七程式、923核心、535素材與1066美術保持；存檔schema未變，沒有Release。完成範圍限原25種白名單與已驗顯示範圍；擴充名稱／圖像、募兵及原版戰場仍待接。保存、清理及Git收尾以下列追加為準。
+
+本批永久保存864檔／383去重物件，壓縮46169784 bytes，未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-army-dismiss-integrity-r1.json)另驗864工作複本、272來源、3170條相對連結／錨點與美術入口正對照，UID/GID1000，無root-owned或異常.md目錄。只刪本輪1725份Go快取、154573538邏輯bytes及逐SHA已保存的211份較早副本、24169458邏輯bytes；最新程式、來源、輸入、進度與完整成果保留。沒有新映像或全域清理，其它專案容器未觸及。Git及本案Docker最終狀態以下列推送為準。

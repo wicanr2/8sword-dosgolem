@@ -1,5 +1,15 @@
 # 必要資料永久保存
 
+## 原版F3與Go解雇交易保存
+
+本批864檔／383去重物件，壓縮46169784 bytes，脫離workplace逐SHA／大小核對通過。完整來源與最新成果保留，快取及已保存舊副本依收尾核對清理。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)接回原版選隊、名稱選取、Enter解雇、Esc返回與重繪，由Go提供資料及成對交易。原版／HD各五階段完整Frame、F2回歸、長按Enter一次交易、空隊按鍵、兩項接管停用拒絕及六張實際Noto／隸書視窗與冷讀通過。限原25種兵種；新增兵種呈現及一般Go玩家入口仍待接。
+
+入口為[介接](../internal/ownedworld/original_army_dismiss.go)、[抽驗](../internal/ownedworld/original_army_dismiss_test.go)、[候選／核對／保存器](../tools/original-army-dismiss.py)、[視窗工具](../tools/check-original-army-dismiss-gui.py)、[核對](original-army-dismiss-audit-r1.json)、[逐檔清單](original-army-dismiss-r1.json)、[脫離workplace核對](original-army-dismiss-verification-r1.json)與[收尾核對](original-army-dismiss-integrity-r1.json)。完整272項候選來源、程式、固定輸入、成對進度、PNG／X11、首批與最終抽驗留本機`preserved/original-army-dismiss-r1/`；原版資料與完整程式不進Git。README成果及[來源](../docs/images/original-army-dismiss-go-r1.json)留私人倉庫，沒有新素材或公開授權聲明。
+
+固定Pillow11.3.0 r2容器掛專案唯讀`/project`及保存目錄可寫`/archive`，執行`original-army-dismiss.py archive --project /project --archive /archive --out /archive/original-army-dismiss-r1.json`。核對用`verify --archive /archive --out /out/新核對.json`，不掛workplace。`prepare|freeze|gui|audit|publish`參數見工具；Go1.24.13命令、映像SHA、UID1000、network none、配額與掛載保存於本批`execution-r1.json`。研究GUI只略過一般啟動護欄，軍隊明示Go31民兵＋1矮人，原影子30民兵保持，沒有GUI RAM／IP注入。原版空隊Enter未動態執行，不稱完整客體state或時鐘parity。
+
 ## 原版F2與Go資料接線保存
 
 本批762檔／388去重物件，壓縮82876110 bytes，已完成脫離workplace核對。[收尾核對](original-army-review-integrity-r1.json)另驗來源、連結與擁有權。

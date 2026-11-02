@@ -2916,3 +2916,19 @@ GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改
 來源、完整畫面、失敗及最終資料見[永久保存](preserved/README.md#原版f2與go資料接線保存)，[030限定結果](docs/spec/030-battle-expansion-proposal.md#f2原版兵種資料接線限定-conformed)界定完成範圍。
 
 另將固定PAM的25個`[DS:2986h+2×kind]`word逐項比對catalog，全部等於Gold欄，並非領導Command欄。原始檔案偏移、25筆數值與兩個輸入SHA見[月薪表核對](preserved/original-army-review-monthly-table-r1.json)。此為固定資料核對，不把它當作25種動態GUI抽驗。
+
+## 2026-11-02：F3原導覽與Go交易的接線證據
+
+原PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。沿既有IDA Pro9.4的443行F3匯出，原件位於永久owned-world-army-dismiss-r1；本輪沒有新IDA分析。執行工具Go1.24.13、923核心dosgolem。IDA MZ loader線性函式名仍為sub_1775A；下表獨立標示dosgolem執行期CS:IP，不將其與檔案偏移混稱。
+
+| 執行期CS:IP | 已證實接線與來源 |
+|---|---|
+| 0110:775A／返回3EDE | 原F3入口／返回；初始row返回7782及重繪返回7B85，兩者原參數30h。實際Continue與F3測試可重播。 |
+| 0110:77CD,7850,78AD,7930,798D,7A10,7A6D,7AF0,7BAF | 原種類word讀取改由Go六隊供應；BP／slot／來源bytes與token守門，後繼哨點要求Go已提交。 |
+| 0110:781B,78FF,79DB,7ABF | 原種類與0的CMP16由Go供應旗標。26個種類0至25對dosgolem實際原CMP指令，運算旗標相同，保留其它旗標。 |
+| 0110:7B2E／7B43／7B49／7BF2 | Enter在7B2E接Go交易，按原欄×3＋列選隊，跳到7B53繼續原選取調整與row重繪。原兩處軍隊寫入及sub_17BF2整理不執行，獨立拒絕哨點防止接管失效後寫入。 |
+| 0110:779E／77A3／3E91 | 原頁提交後Ready、取得按鍵後暫停Ready、返回地圖提交。實際視窗取圖依這些邊界，不把held frame當完成。 |
+
+強推論：原最後一隊解雇後，7B53至7B7A可使選取變負值；再次Enter可能沿原位移運算落入錯誤軍隊位置。這是靜態資料流風險，本輪沒有對原版空隊執行Enter或聲稱重現崩潰。Go在空軍隊只接受Esc返回，其餘按鍵不交易。長按Enter以Engine.InputEvents實體按下序號去重，不聲稱原鍵盤自動重複時鐘一致。
+
+動態已證實：原版／HD同呈現軍隊五階段完整Frame相同，兩次Go交易後原人物檔與原影子24 bytes保持；六張實際Noto／隸書視窗同Go提交，冷讀world只變revision加2及六隊清空。停用資料讀取或提交接管，均停止且兩檔／影子不改。軍隊初值為明示測試配置，不外推自然招募、擴充兵種呈現、完整客體state或時鐘parity。[030限定結果](docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)及[永久保存](preserved/README.md#原版f3與go解雇交易保存)保存來源、實際收據與控制界線。

@@ -65,7 +65,9 @@ type armyDismiss struct {
 }
 
 func initializeLayer13() {
-	armyReviewExtraFactory = func(e *game.Engine, p *worldArmyPort) (armyScreenExtra, error) { return installArmyDismiss(e, p) }
+	armyReviewExtraFactory = func(e *game.Engine, p *worldArmyPort) (armyScreenExtra, error) {
+		return installOriginalArmyDismiss(e, p, p.OriginalReview)
+	}
 	armyReviewTitle = "神州八劍・軍隊試作・管理"
 }
 func (d *armyDismiss) IsActive() bool { return d.Active }
