@@ -2850,3 +2850,5 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 [限定結果](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)、[核對](preserved/original-battle-bridge-audit-r1.json)、[README圖](docs/images/original-battle-go-arithmetic-r1.png)與[保存](preserved/README.md#原戰場雙側普通算式保存)為入口。280候選來源、原版與HD畫面、完整state、固定資料與所有前版保存。原197來源七程式、923核心、535素材及1066美術保持，沒有新戰鬥模式／Release。此橋接只研究安裝，Go世界軍隊投影、新兵、其餘規則、GUI與戰果存讀仍待接；一般Go入口停止。保存、清理及Git／Docker收尾以下列追加為準。
 
 本批508檔／371去重物件，壓縮43349131 bytes，不掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-battle-bridge-integrity-r1.json)另驗508工作複本、280來源、3306相對連結／錨點與兩筆定位回填，UID/GID1000，沒有root-owned或異常.md目錄。只刪1724份本輪Go快取、160076344邏輯bytes，以及57份已逐SHA保存的舊副本、55064360邏輯bytes。最新來源、測試程式、輸入、state與完整成果保留，沒有新映像或全域清理。本案按專案根與候選掛載來源查無執行中或已停止容器；Git推送以下列追加為準。
+
+主提交b2dfe09c0f47bcf9d48ec09bd3c01b6580aaba22已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，本案Docker容器已收尾，其他專案資源未動。此行另作文件收尾提交，不改算式、永久保存或限定驗收範圍。
