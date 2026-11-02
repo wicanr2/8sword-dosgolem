@@ -1,4 +1,4 @@
-// Command 8sword-owned runs the Go-owned army adapter with HD presentation.
+// Command 8sword-owned imports native progress while the original battlefield bridge is pending.
 package main
 
 import (

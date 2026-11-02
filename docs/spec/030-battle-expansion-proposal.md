@@ -1,6 +1,36 @@
 # 030：部隊特性、戰術 AI、法術動畫與字型工具列提案
 
+## 原版戰場呈現定案與卡片介面撤回
+
+2026-11-02，使用者明確更正：「另外我看到有 go 的戰鬥模式 這不是我想要的 我想要還是用原版+原版HD的戰場模式」。此決定優先於下列較早的卡片操作原型及其呈現驗收。Go接管後端不代表另做玩家戰鬥介面；先前把兩者合併推進是範圍誤判。
+
+- 玩家戰場沿原版配置、選單、鍵盤操作、攻擊／受擊／法術演出與戰鬥流程。原版模式保留原途徑；HD使用已驗Go繪圖、已批准素材與同一套原版戰場。參照[原版／HD總覽](../images/battle-original-hd-r1.png)及[019正常路徑](019-normal-encounter-battle-presentation.md)。
+- Go仍負責已授權的擴充兵種、安全兵力、規則、AI及存檔。卡片、獨立出手鈕、人工點「敵方出手／下一輪」均不作正式玩家介面，不新增一個可切換的Go戰鬥模式。
+- 較早卡片畫面、binary與收據保留為後端研究；它們只證明當時的資料／規則／保存鏈，不能驗收原版戰場呈現。README撤下卡片戰鬥的推薦與展示，來源索引及歷史收據保留。
+
+### 先行入口修正 READY
+
+`cmd/8sword-owned`的玩家啟動目前仍進卡片UI。因此先在參數解析後、任何人物／附檔／DOS影子讀寫之前，拒絕普通玩家啟動，回報原版戰場橋接尚未完成。`-import-only`匯入工具保持；不刪除、轉換或降級既有v1至v5進度。`tools/owned-player.sh run`亦停止推薦並明確回報同一限制，防止仍快取的舊binary啟動卡片UI。原`cmd/8sword`與舊七程式保持，原版／HD戰場不改。
+
+本次只驗證入口撤回、拒絕發生於讀寫前、舊進度兩檔逐byte保持及匯入工具仍可用，不宣稱原版戰場的擴充兵種接入已完成。來源為[入口](../../internal/ownedworld/world-army-review_main.go)、[啟動器](../../tools/owned-player.sh)與[核對器](../../tools/check-original-battle-contract.py)。
+
+### 先行入口撤回限定 CONFORMED
+
+2026-11-02，普通命令在`flag.Parse`後、讀寫進度前拒絕；以不存在的原版／輸入路徑及既有成對進度抽驗，得到卡片入口停用訊息，scratch未建立，兩檔逐byte不改。`-import-only`另以固定原版資料成功建立v5，原2987 bytes同SHA。啟動器`run`在Docker及資料檢查前退出2，快取舊程式不會由該入口啟動。
+
+新命令按268項來源在固定Go1.24.13／923核心容器重建，程式SHA `ef22a21499c3c7b31877bc6c85adf18c25ffc4f9ceee89df3c5256d8ac9f1931`。[抽驗收據](../../preserved/original-battle-contract-receipt-r1.json)、[來源清單](../../preserved/original-battle-contract-source-manifest-r1.json)及[永久保存](../../preserved/README.md#原版戰場契約與卡片入口撤回保存)可回查。原197來源、七程式、923核心與535素材逐SHA保持，沒有新戰場GUI或全遊戲重測。
+
+CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新增兵種橋接仍為DRAFT；既有卡片畫面不改名成原版驗收。README改展示既有原版／HD戰場，保留openKB八種HD素材與軍隊圖，歷史卡片圖及收據不刪除。
+
+### 原版戰場與Go後端橋接 DRAFT
+
+已證實：目前`controlledBattle.enter`在runtime `0110:32E0`回報yield；`advanceEncounterUI`建立`battleUI`，`encounterExtra.Paint`呼叫`paintBattleUI`。直接改成`Engine.Frame()`會停在尚未繪製原版戰場的時點，不能當成接回成功。來源PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，原掛點與原始名稱保留。
+
+下一步窄查原版選單／出手／回合推進與既有HD呈現事件，將Go typed部隊、數值與動作接回原版操作及畫面。擴充ID不得寫入原25種索引，不以假原版ID冒充新兵，不把新靜態背景加卡片當完成。原版與HD各抽一條相同控制路徑，再抽新兵、存讀與AI；證據足以定READY後實作，不重畫已批准美術或重問同一方向。
+
 ## Go軍隊命令與原版進度匯入 READY
+
+呈現範圍勘誤：本節及其CONFORMED保存當時的匯入、資料與卡片研究結果。一般玩家啟動已由[原版戰場定案](#原版戰場呈現定案與卡片介面撤回)撤回；目前僅保留匯入工具，不能沿本節舊啟動流程驗收正式戰場。
 
 2026-11-02，沿使用者已確認的Go軍隊接管、原版模式保留及存讀契約，接續可直接建置的命令與原版進度匯入。這次整理已驗候選的程式位置，使用既有v5格式；不新增兵種、數值、平衡或發行決定。原`cmd/8sword`及其DOS前附檔護欄保持。
 

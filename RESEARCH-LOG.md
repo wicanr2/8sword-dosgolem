@@ -2875,3 +2875,13 @@ GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改
 2987-byte人物檔前12 bytes沿既有codec解為等級1、戰績0、月薪100、金500、領導力100、原04FC為0；六隊區間[12,36)含30民兵。新v5原人物檔逐byte保留，九圖完整嵌入。Python從原bytes獨立重建整份typed world，與匯入及GUI軍隊頁同值；購兵／規則／F7各步world亦重建。
 
 父版66份明列來源與13個factory init次序已有執行證據，移至套件後顯式保持順序，原名稱與位址註記不改。舊game套件只需增加已驗唯讀RecruitmentUnitIcon方法，沒有改Engine控制流。新命令程式SHA `33d5a44be21ec9868f382c19e036e9c434e8e7698960f939d895385067163d87`，機械轉換及268項來源由[核對](preserved/owned-player-audit-r4.json)驗證，[來源索引](preserved/owned-player-source-origin-r1.json)保留原路徑與SHA。新匯入鏈無fixture；舊v5戰中樣本仍是前輪受控起始軍隊，兩者來源分列。不稱自然新遊戲、所有特殊分派或完整世界parity。
+
+## 2026-11-02：原版戰場與卡片路徑的範圍勘誤
+
+來源為PAM.AY，SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；執行工具沿Go1.24.13、923核心dosgolem與既有047呈現器。下列位址`0110:32E0`為dosgolem執行期CS:IP，不是IDA線性位址或檔案偏移。本次只讀Go來源與既有證據，沒有新增原版trace或反組譯。
+
+- 已證實來源路徑：`internal/ownedworld/research-controlled-battle.go`的`controlledBattle.enter`在既有戰鬥入口yield；`normal-encounter-ui.go`建立`battleUI`，`encounterExtra.Paint`再呼叫`owned-battle-ui_draw.go`的`paintBattleUI`。這條路徑另畫卡片與出手按鈕，未繼續原版完整戰場流程。
+- 已證實既有正式原版／HD戰場沿`internal/eightsword`呈現管線保留。本次不改其來源、七程式或素材。對照圖為[原版／HD戰場](docs/images/battle-original-hd-r1.png)，既有玩家路徑見[019](docs/spec/019-normal-encounter-battle-presentation.md)。
+- 未知：如何把Go typed部隊與安全兵數接回原選單、出手、回合與呈現事件，並讓擴充ID不落入原25種索引。直接顯示入口yield時的`Engine.Frame()`不能證明已完成原戰場，不以換底圖解決。
+
+使用者的最新決定撤回卡片作為正式玩家介面的方向。較早卡片GUI與中斷恢復等收據仍可證明當時後端研究，不驗收原版戰場。下一窄查範圍及DRAFT見[030](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)，本次只先撤回錯誤入口與README展示。

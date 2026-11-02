@@ -57,6 +57,10 @@ type armyScreenExtra interface {
 var armyReviewExtraFactory = func(*game.Engine, *worldArmyPort) (armyScreenExtra, error) { return nil, nil }
 var armyReviewTitle = "神州八劍・軍隊試作・檢閱"
 
+// Player combat must use the original battlefield. The former card UI remains
+// research source until its backend can drive the verified original interface.
+var ErrOriginalBattlefieldPending = errors.New("原版／原版HD戰場的Go後端橋接尚未完成；卡片戰鬥入口已停用，既有進度保留")
+
 type armyReviewApp struct {
 	Extra                                                                      armyScreenExtra
 	Engine                                                                     *game.Engine
@@ -361,6 +365,9 @@ func runArmyReview() error {
 	if !*owned {
 		return errors.New("Go軍隊命令不接受owned=false，原版模式請用8sword")
 	}
+	if !*nativeImportOnly {
+		return ErrOriginalBattlefieldPending
+	}
 	if os.Getuid() != 1000 || (*scratch == "" && !*nativeImportOnly) || *scale < 0.5 || *scale > 2 {
 		return errors.New("請指定有效的研究路徑與視窗比例")
 	}
@@ -473,5 +480,5 @@ func runArmyReview() error {
 	return nil
 }
 
-// Run starts the Go-owned army command. Call once per process.
+// Run handles import-only operations while the original battlefield bridge is pending.
 func Run() error { return runArmyReview() }

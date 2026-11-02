@@ -1,0 +1,11 @@
+{
+  "status": "passed-card-entry-withdrawal",
+  "card_player_refused_before_read": true,
+  "existing_pair_unchanged": {
+    "gamedata.ay": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+    "gamedata.ay.army.json": "47257abb09052ba38bd8afadd05d125ccd7374c624d40b2cf92acee26e81eb78"
+  },
+  "import_only_passed": true,
+  "program_sha256": "ef22a21499c3c7b31877bc6c85adf18c25ffc4f9ceee89df3c5256d8ac9f1931",
+  "original_battle_bridge_complete": false
+}

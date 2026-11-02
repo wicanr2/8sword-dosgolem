@@ -2724,3 +2724,16 @@ README提供建置／匯入／執行入口與無fixture匯入後的冷讀軍隊�
 本批永久保存515檔／370物件，壓縮18753725 bytes，另記一筆不跟隨的診斷symlink；未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/owned-player-integrity-r1.json)另驗515工作複本、45條新增連結及README正對照、Python／Bash語法與新來源UID/GID1000，root-owned／異常目錄檢查通過。只清本輪1919份Go快取、141882398邏輯bytes及兩份已知Python快取，完整程式、輸入、VM與原PNG保持。候選Docker容器篩選為空，沒有新映像或全域清理。Git提交與推送以下列追加為準。
 
 主提交93fa2ef55c3a3b00b13a4c41918d4899298085af已推送私人origin/main，git ls-remote回讀同SHA。工作樹乾淨、暫存空白檢查通過，候選Docker容器篩選為空。本行另作文件收尾提交，不改已驗程式、保存或抽驗範圍。
+
+## 2026-11-02：撤回卡片戰鬥介面，恢復原版戰場方向
+
+開工HEAD `50eae938430f635a7906c5ac1b33c0be8bd0ce3f`。使用者指出Go戰鬥模式不符需求，要求原版與原版HD戰場。前輪將Go後端接管推成獨立卡片UI是範圍誤判；這次接受更正，不要求重新批准同一方向。載入復古遊戲規格閘門、共同決策與文件職責；沿原決策自主修正入口。
+
+- 查明原研究在runtime CS:IP `0110:32E0` yield後，另建battleUI與paintBattleUI；它沒有繼續原版完整戰場。Go資料、存檔、兵力與AI成果保留；後續須橋接原版選單、出手、回合與既有HD演出，不新增卡片模式或以靜態背景冒充完成。橋接仍DRAFT。
+- 先寫030撤回READY，再讓cmd/8sword-owned在參數解析後、進度IO前拒絕普通啟動。僅保留import-only；owned-player.sh run在Docker與資料檢查前即停止，防止經啟動器進入快取卡片程式。來源生成器同步保留護欄，不修改既有進度或原版cmd/8sword。
+- 固定Go1.24.13容器重建268項來源。代表抽驗普通命令拒絕、scratch未建立、既有兩檔逐byte保持與原版進度成功匯入v5。Bash啟動器退出2，Python／Bash語法通過。只驗入口撤回與進度保持，不重跑原版HD或八種兵種矩陣，也不宣稱已接回新兵戰場。
+- README撤下卡片戰鬥展示與run推薦，集中展示既有原版／HD戰場，保留八種新增HD圖像與軍隊總覽。CONTEXT收斂為現況與下一工作；AGENTS最上列覆蓋舊卡片進度方向，RESEARCH-LOG追加勘誤。歷史圖檔、收據及後端來源保持。
+
+[030限定結果](docs/spec/030-battle-expansion-proposal.md#先行入口撤回限定-conformed)、[抽驗收據](preserved/original-battle-contract-receipt-r1.json)及[永久保存](preserved/README.md#原版戰場契約與卡片入口撤回保存)為入口。本批296檔／287物件，壓縮9098449 bytes，不掛workplace逐SHA／大小核對通過。完整新程式、268來源、輸入進度與日誌均已保存；原197來源、七程式、923核心、535素材與美術不改，沒有Release。最終擁有權、連結、快取清理、Docker與Git收尾以下列追加為準。
+
+[收尾核對](preserved/original-battle-contract-integrity-r1.json)通過296工作複本、268來源、3094條文件連結與美術入口正對照，原197來源／七程式／923核心／535素材逐SHA保持，新增來源及輸出為UID/GID1000，沒有root-owned或異常.md目錄。僅刪本輪1438份Go快取、133274470邏輯bytes，完整程式、輸入與進度保持。Docker按掛載來源核對，本專案無執行中或已停止容器，沒有新映像或全域清理。Git推送以下列紀錄為準。

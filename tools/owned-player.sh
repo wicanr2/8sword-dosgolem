@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-# All build, import and player workloads remain inside bounded Docker.
+# All build and import workloads remain inside bounded Docker.
 set -euo pipefail
+if [[ "${1:-}" == run ]]; then
+ printf '%s\n' '原版／原版HD戰場的Go後端橋接尚未完成。卡片戰鬥玩家入口已停用，既有進度保留；原版播放器沿cmd/8sword。' >&2
+ exit 2
+fi
 task_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 task_work="$task_root/workplace/probe-20261023/graphics-first/battle-r1/owned-player-r1"
 task_original="$task_root/workplace/intake-20261023/sources/game/8sword"
@@ -48,25 +52,5 @@ case "${1:-}" in
    dosgolem-go-ebiten:1.24-r1 xvfb-run -a /pack/8sword-owned -root /game -input /pack/inputs \
    -session "/sessions/$task_name" -import-native /native -import-only
   ;;
- run)
-  task_session="${2:?指定Go進度目錄}"
-  [[ "$task_session" = /* ]]; test -d "$task_session"; test ! -L "$task_session"
-  test -f "$task_session/gamedata.ay"; test -f "$task_session/gamedata.ay.army.json"
-  test -x "$task_work/8sword-owned"; test -d "$task_work/inputs"; test -d "$task_work/ui-assets"
-  [[ "${DISPLAY:-}" =~ ^:[0-9]+(\.[0-9]+)?$ ]]
-  task_display="${DISPLAY#:}"; task_display="${task_display%%.*}"
-  test -S "/tmp/.X11-unix/X$task_display"
-  task_auth="${XAUTHORITY:-$HOME/.Xauthority}"; test -f "$task_auth"
-  exec timeout -k 10s 1800s docker run --rm --init --network none --read-only --user "$task_uid:$task_gid" --memory 3g --cpus 2 --pids-limit 192 \
-   --tmpfs /tmp:rw,exec,size=512m -e HOME=/tmp -e DISPLAY -e XAUTHORITY=/x11-auth \
-   -e LIBGL_ALWAYS_SOFTWARE=1 -e LP_NUM_THREADS=1 -e GOMAXPROCS=2 \
-   --mount "type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix,readonly" --mount "type=bind,src=$task_auth,dst=/x11-auth,readonly" \
-   --mount "type=bind,src=$task_work,dst=/pack,readonly" --mount "type=bind,src=$task_session,dst=/session" \
-   --mount "type=bind,src=$task_original,dst=/game,readonly" \
-   --mount "type=bind,src=$task_original,dst=/project/workplace/intake-20261023/sources/game/8sword,readonly" \
-   --mount "type=bind,src=$task_assets,dst=/assets,readonly" \
-   dosgolem-go-ebiten:1.24-r1 /pack/8sword-owned -root /game -assets /assets -input /pack/inputs \
-   -ui-assets /pack/ui-assets -session /session -scratch /tmp/native-shadow
-  ;;
- *) printf '%s\n' '用法：owned-player.sh prepare | build | import <原版存檔目錄> <新的Go進度目錄> | run <Go進度目錄>' >&2; exit 2 ;;
+ *) printf '%s\n' '用法：owned-player.sh prepare | build | import <原版存檔目錄> <新的Go進度目錄>；run 暫停使用，待接回原版戰場。' >&2; exit 2 ;;
 esac

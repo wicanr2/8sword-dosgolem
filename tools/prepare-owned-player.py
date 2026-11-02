@@ -16,8 +16,9 @@ def translate(name,raw,index):
  count=s.count('func init()');assert count<=1,name
  if count:s=s.replace('func init()',f'func initializeLayer{index:02d}()',1)
  if name=='world-army-review_main.go':
-  start=s.index('func main()');s=s[:start]+'// Run starts the Go-owned army command. Call once per process.\nfunc Run() error { return runArmyReview() }\n'
-  s=s.replace('flag.Parse()','flag.Parse()\n if !*owned{return errors.New("Go軍隊命令不接受owned=false，原版模式請用8sword")}')
+  start=s.index('func main()');s=s[:start]+'// Run handles import-only operations while the original battlefield bridge is pending.\nfunc Run() error { return runArmyReview() }\n'
+  s=s.replace('var armyReviewTitle = "神州八劍・軍隊試作・檢閱"','var armyReviewTitle = "神州八劍・軍隊試作・檢閱"\n// Player combat must use the original battlefield. The former card UI remains\n// research source until its backend can drive the verified original interface.\nvar ErrOriginalBattlefieldPending = errors.New("原版／原版HD戰場的Go後端橋接尚未完成；卡片戰鬥入口已停用，既有進度保留")')
+  s=s.replace('flag.Parse()','flag.Parse()\n if !*owned{return errors.New("Go軍隊命令不接受owned=false，原版模式請用8sword")}\n if !*nativeImportOnly{return ErrOriginalBattlefieldPending}')
   s=s.replace('*scratch == "" ||','(*scratch == "" && !*nativeImportOnly) ||')
   needle='store, snap, e := openProgressPair(*session, c, cc)'
   assert s.count(needle)==1;s=s.replace(needle,'if *nativeImportSource!="" { if e:=importNativeProgress(*root,*nativeImportSource,*session,*input,c,cc);e!=nil{return e};if *nativeImportOnly{return nil} } else if *nativeImportOnly{return errors.New("import-only requires import-native")}\n '+needle)

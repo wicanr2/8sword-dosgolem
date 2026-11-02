@@ -6,31 +6,28 @@
 
 以 Go 版 dosgolem 執行原版 DOS 程式，接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI、民兵結陣與弓箭手壓制規則。兵種及招募接管目前沿 Go 開發，Rust 遷移留待後續。
 
-既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。Go軍隊已有獨立命令與原版存檔匯入，完整世界流程仍未結案。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
+既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。玩家使用原版或原版HD戰場，保留原版配置、選單、操作與戰鬥流程。新增兵種的Go後端接回這套戰場仍待完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
-Go軍隊入口可從正常繼續與走動進入Go戰鬥並回場，支援戰中存退讀與F7完整位置／地圖快照。營地已有穩定身份，購兵會一併保存Go軍隊、金錢與庫存，未按F7就關閉後也能讀回。月結也已接Go軍費與營地補貨，完成時保存完整位置及地圖；普通購兵後的走動仍按F7保存。可由原版存檔匯入軍隊，預設播放器的附檔護欄保留。最新入口為[Go軍隊啟動器](tools/owned-player.sh)，範圍見[交接規格](docs/spec/030-battle-expansion-proposal.md#go軍隊命令與原版進度匯入-ready)。
+先前的獨立卡片戰鬥介面已撤回，`8sword-owned`的一般玩家啟動已停用。Go兵力、AI、招募與存檔研究保留，後續接入同一套原版戰場，不提供另一個Go戰鬥模式。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
-## Go軍隊入口與原版存檔匯入
+## 戰場與Go後端
 
-[8sword-owned](cmd/8sword-owned/main.go)可直接從原版存檔建立自有軍隊進度。原資源、六隊兵力及九張地圖一起保留，再用Go招募、軍隊管理與戰鬥。預設原版入口仍保留；新命令使用同一套HD圖像、音樂與三字型。
+原版模式保留原繪圖途徑；HD模式由Go繪製同一套戰場，使用已批准的HD背景、部隊與法術效果。兩者沿用原版戰鬥選單與按鍵。下圖是既有同狀態比較，擴充兵種尚未接入這套戰場。
 
-本機資料包第一次建立時執行 `bash tools/owned-player.sh prepare`。已有資料包可直接建置。將以下兩個絕對路徑換成自己的目錄：
+![原版戰場與同配置的HD戰場](docs/images/battle-original-hd-r1.png)
+
+`cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
+
+需要研究匯入時，先按[永久保存入口](preserved/README.md#go軍隊命令與原版進度匯入保存)準備合法本機資料，再建置並指定新的目的地：
 
 ```bash
 bash tools/owned-player.sh build
 bash tools/owned-player.sh import /絕對路徑/原版存檔 /絕對路徑/新的Go進度
-bash tools/owned-player.sh run /絕對路徑/新的Go進度
 ```
 
-目前這個入口使用Linux Docker與本機X11。匯入時原版遊戲應已關閉，新目的地必須尚未存在；來源只讀，原存檔不覆寫。資料與HD素材沿[永久保存入口](preserved/README.md#go軍隊命令與原版進度匯入保存)準備，完整原版資料不隨Git提供。
-
-以下軍隊由原版隨附存檔匯入，再於普通營地購得野狼1隻，F7後關閉重開。金500變460、領導力100保持，沒有測試贈兵或記憶體注入。
-
-![原版進度匯入後實購野狼，冷讀保留民兵與新兵](docs/images/owned-player-native-import-cold-army-r1.png)
-
-原版匯入、募兵、存退讀及舊v5戰中存檔的接續已代表抽驗；[來源與截圖](docs/images/owned-player-runtime-r1.json)分開標示本次匯入與前輪戰中樣本。新遊戲直接建立Go進度、原播放器的海報／AI工具列合併、其餘特殊分派及完整世界整合仍待完成，範圍見[命令驗收](docs/spec/030-battle-expansion-proposal.md#命令與原版匯入限定-conformed)。
+匯入來源必須是已關閉遊戲的原版進度，原目錄只讀。這個工具不代表新增兵種已能以原版戰場遊玩。
 
 ## 關於這款遊戲
 
@@ -42,103 +39,37 @@ bash tools/owned-player.sh run /絕對路徑/新的Go進度
 
 ## openKB新增部隊的HD圖像
 
-弓箭手、槍兵、野狼、骷髏兵、洞穴巨人、德魯依、吸血鬼與火龍，已依神州八劍的中國古風製作HD圖像，並接入隔離Go候選的軍隊、解雇與戰鬥介面。下圖左側是openKB來源，右側是新的HD圖像；[33種合併總覽](docs/images/troops-all-original-hd-with-openkb-r4.png)也已包含這八種單位。
+弓箭手、槍兵、野狼、骷髏兵、洞穴巨人、德魯依、吸血鬼與火龍，已依神州八劍的中國古風製作HD圖像。[33種合併總覽](docs/images/troops-all-original-hd-with-openkb-r4.png)包含全部25種原版部隊與這八種單位。
 
 ![openKB八種新增單位的來源與HD對照](docs/images/openkb-eight-original-hd-r1.png)
 
-以下是實際遊戲視窗。兩張軍隊頁合計顯示全部八種新增單位，第二張同時保留原版民兵。軍隊配置為明示測試資料，戰鬥入口採受控起點；自然營地增援分頁已接入隔離候選，完整世界整合仍待完成，正式播放器的附檔護欄保持。
+以下兩張是研究候選的軍隊頁，合計顯示全部八種單位。軍隊配置為明示測試資料；這些素材仍會用於後續接入，戰場呈現以原版／原版HD為準。
 
-![遊戲中的HD軍隊：弓箭手、槍兵、野狼、骷髏兵、洞穴巨人與德魯依](docs/images/openkb-army-a-hd-r1.png)
+![HD軍隊候選：弓箭手、槍兵、野狼、骷髏兵、洞穴巨人與德魯依](docs/images/openkb-army-a-hd-r1.png)
 
-![遊戲中的HD軍隊：吸血鬼、火龍與原版民兵](docs/images/openkb-army-b-hd-r1.png)
+![HD軍隊候選：吸血鬼、火龍與原版民兵](docs/images/openkb-army-b-hd-r1.png)
 
-![openKB新增部隊進入神州八劍的Go戰鬥介面](docs/images/openkb-battle-hd-r1.png)
-
-實際出手後的兵力與回合可在戰中重開時讀回。這批是靜態HD圖示，沿既有Go戰鬥規則，沒有新增攻擊動畫或改兵種數值。範圍見[呈現契約與驗證](docs/spec/030-battle-expansion-proposal.md#openkb新增單位的hd圖像與遊戲截圖)、[截圖來源](docs/images/openkb-game-screenshots-r1.json)及[完整原圖與生成提示](artwork/README.md#openkb新增單位hd)。來源縮圖取自openKB free sprites，作者包含driedfruit，逐檔作者與授權資訊見[來源紀錄](docs/images/openkb-eight-original-hd-r1.json)。
-
-## 一般守軍與殘兵保存
-
-隔離 Go 候選已接一般守軍戰鬥。撤退會保存雙方殘兵，再走回守軍格時繼續交戰；勝利後清除該處守軍並增加月薪。下圖由原版守軍編成進入 Go 戰鬥，我方同時使用原版部隊與 openKB 火龍、野狼及弓箭手。
-
-![撤退後再戰，守軍保留四隊殘兵，原版與openKB部隊共同作戰](docs/images/guarded-battle-guard-rematch-r1.png)
-
-起始軍隊與鄰近位置為明示測試配置，敵軍、確認與後續操作沿實際遊戲。撤退、重開再戰、勝利、F7 及新程序 F2 已抽驗；月薪100變120，沒有隨機戰的金錢、戰績或晉級獎勵。頭目與結局已由下節接入隔離候選。可看[第一次交戰](docs/images/guarded-battle-guard-opened-r1.png)、[冷讀軍隊頁](docs/images/guarded-battle-mixed-army-r1.png)、[預覽入口](tools/guarded-battle.sh)、[畫面來源](docs/images/guarded-battle-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#一般守軍的go戰鬥交接限定conformed)。正式世界整合仍待完成。
+完整原圖與生成提示見[永久美術](artwork/README.md#openkb新增單位hd)，畫面來源見[截圖紀錄](docs/images/openkb-game-screenshots-r1.json)。來源縮圖取自openKB free sprites，作者包含driedfruit，逐檔作者與授權見[來源紀錄](docs/images/openkb-eight-original-hd-r1.json)。
 
 ## 原店與新增兵種分頁
 
-已依選定的A方案保留原店，另加可選的新增兵種分頁。八種openKB單位均有HD圖示，可選數量並依金錢、領導力與等級招募；三字型與戰外規則切換也可直接操作。
+已選定保留原店，另加可選的新增兵種分頁。研究候選已有八種HD圖示、數量選擇、獨立庫存與成對保存；原店配置與庫存保持。這些後端成果保留，待原版戰場橋接完成後整合進玩家入口。
 
-![實際營地的八種新增兵種與教育部隸書](docs/images/reinforcement-camps-eight-hd-lishu-r1.png)
+![研究候選的八種新增兵種與教育部隸書](docs/images/reinforcement-camps-eight-hd-lishu-r1.png)
 
-新增兵種使用獨立庫存，購買不減原店兵力。實際抽驗從3000民兵的[原店](docs/images/reinforcement-camps-original-shop-r1.png)購得一隻野狼，獨立庫存75變74，金錢500變460；未按F7關閉及F7後重新讀檔均保留。
+實購野狼、購後冷讀、F7與庫存保存已代表抽驗，沒有把卡片戰鬥當作原版戰場驗收。範圍見[營地契約](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)與[永久保存](preserved/README.md#新增兵種增援分頁保存)。
 
-![F7冷讀後，軍隊頁保留原版民兵與新增野狼](docs/images/reinforcement-camps-f7-cold-army-r1.png)
+## Go後端研究紀錄
 
-這隻實購野狼也已經正常遇敵進入Go戰鬥，出手旗標可在戰中重開後讀回；撤退及F7冷讀保持軍隊與獨立庫存。起始民兵仍為測試配置，驗證範圍見[v5戰鬥鏈抽驗](docs/spec/030-battle-expansion-proposal.md#購得新兵的-v5-戰鬥鏈限定-conformed)與[畫面來源](docs/images/reinforcement-battle-runtime-r1.json)。
+下列資料與規則成果保留。較早的卡片視窗及其操作收據只證明當時的研究路徑，不能代表目前玩家戰場已完成。
 
-![實購野狼與原版民兵，正常遇敵進入Go戰鬥](docs/images/reinforcement-battle-purchased-wolf-battle-r1.png)
-
-這是隔離Go候選，起始30民兵為明示測試配置，新增野狼由實際營地購買。八種單位價格、等級及獨立補貨仍屬試作平衡；正式播放器保留附檔護欄。可看[預覽入口](tools/reinforcement-camps.sh)、[畫面來源](docs/images/reinforcement-camps-runtime-r1.json)、[接入與抽驗](docs/spec/030-battle-expansion-proposal.md#新兵自然營地-a-接入-ready)及[永久保存](preserved/README.md#新增兵種增援分頁保存)。較早的[A／B互動比較](docs/images/openkb-camp-proposal-r1.html)保留設計紀錄，現行採A。
-
-## 頭目名劍與HD結局
-
-隔離Go候選已接頭目名劍與結局守軍。勝利取得對應名劍，與戰果一併保存；F1新增八劍數量，關閉重開仍能讀回。
-
-![頭目勝利並冷讀後，F1顯示八劍1／8](docs/images/sword-guards-boss-sword-hud-r1.png)
-
-最終守軍仍要求八劍齊備。Go戰鬥勝利後可關閉，再由普通程式冷讀並接續既有HD結局，演出完成不重複加薪。
-
-![結局守軍戰果冷讀後接續的HD結局](docs/images/sword-guards-hd-ending-r1.png)
-
-起始軍隊、位置與最終八劍為明示測試配置，敵軍保持[原六隊編成](docs/images/sword-guards-final-opened-r1.png)，戰鬥以正常介面操作，不稱自然通關。可看[預覽入口](tools/sword-guards.sh)、[畫面來源](docs/images/sword-guards-runtime-r1.json)、[限定驗收](docs/spec/030-battle-expansion-proposal.md#頭目名劍與結局守軍限定conformed)及[永久保存](preserved/README.md#頭目名劍與結局守軍保存)。正式世界整合仍待完成。
-
-## 寶箱獎勵與保存
-
-隔離Go候選已接入原版寶箱的兩個選擇：納入金錢，或分贈部隊增加領導力。獎勵與已領取記錄一併保存，未按F7關閉後也能讀回，避免重複領取。下圖是實際原選項；起始軍隊與位置使用明示測試配置，接著以普通移動與按鍵操作。
-
-![原寶箱選項：納入財產或增加領導力](docs/images/treasure-choice-r1.png)
-
-領取50金後，500金變550，30民兵與5隻野狼保持。另一程序繼續時，軍隊、金錢與已清空的寶箱記錄一致。可看[領取後軍隊頁](docs/images/treasure-army-r1.png)、[普通預覽入口](tools/treasure.sh)、[限定驗收](docs/spec/030-battle-expansion-proposal.md#寶箱資源的限定conformed)與[畫面來源](docs/images/treasure-runtime-r1.json)。其他劇情資源與正式世界整合仍待接入。
-
-## 煉金術與剩餘次數
-
-隔離Go候選已接煉金術的加金與扣次，沿用原版法術選單、亂數與HD演出。金錢和剩餘次數一起保存，未按F7關閉後也能讀回。下圖由正常F4操作取得110金，500金變610，次數2變1；重開後軍隊仍為30民兵加5隻野狼。
-
-![正常F4煉金術取得110金的HD視窗](docs/images/alchemy-go-runtime-r1.png)
-
-初始軍隊、已學習與兩次使用機會為明示測試配置，沒有在GUI改RAM、IP或亂數。可用[煉金術預覽入口](tools/alchemy.sh)繼續，範圍與限制見[限定驗收](docs/spec/030-battle-expansion-proposal.md#煉金術的限定conformed)、[畫面來源](docs/images/alchemy-go-runtime-r1.json)與[永久保存](preserved/README.md#go煉金術保存)。其餘世界交接仍待接入。
-
-## 召兵術與Go軍隊
-
-召兵術已接入隔離Go候選，沿原版亂數選兵種，補入同類或第一個空陣位。軍隊與剩餘次數一起保存，原版影子表保持。下圖由普通F4選單召入20名矮人，原有30民兵與5隻野狼保留；未按F7就關閉，重開後三隊與剩餘一次機會都能讀回。
-
-![召兵後重開的HD軍隊：民兵、野狼與矮人](docs/images/summon-go-army-r1.png)
-
-可看[原版召兵結果的HD實景](docs/images/summon-go-outcome-r1.png)、[預覽入口](tools/summon.sh)、[畫面來源](docs/images/summon-go-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#召兵術的限定conformed)。初始軍隊、可用旗標及次數是明示測試配置，GUI沒有改RAM、IP或亂數；滿六隊且沒有同類時，沿原版不加兵仍扣一次。其餘劇情資源、自然新增兵種營地及正式世界整合仍待接入。
-
-## 全軍覆沒後繼續冒險
-
-隔離 Go 候選在全軍覆沒後可選「傳送回起點」，或「冒險浪跡江湖」留在原地。Go 會更新地圖與位置，保留金錢與戰績；全滅畫面、待回場選擇與 F7 進度都能在關閉後讀回。
-
-![全軍覆沒後可選回起點或浪跡江湖](docs/images/annihilation-origin-loss-r1.png)
-
-畫面使用明示的野狼軍隊、敵軍與入口配置，再以普通滑鼠操作及普通程式冷讀。可看[回到起點](docs/images/annihilation-origin-returned-r1.png)、[預覽入口](tools/annihilation-origin.sh)、[畫面來源](docs/images/annihilation-origin-runtime-r1.json)與[限定驗收](docs/spec/030-battle-expansion-proposal.md#全軍覆沒傳回起點的限定conformed)。一般守軍已有上節的接入，其餘特殊分派與正式世界整合待續。
-
-## 後排特殊部隊出手
-
-隔離Go戰鬥視窗已接上道士與雙頭鬼的三種既有特殊動作，分為定額、剋制與比例打擊。敵方後排也能出手，普通後排可略過，完成行動後便能進入下一輪。戰中關閉再開，兵數與已行動旗標會一併恢復。
-
-![後排雙頭鬼出手，敵軍猴妖200人減為194人](docs/images/rear-actions-player-r1.png)
-
-這批畫面使用明示的軍隊、敵軍及原版入口快照，接著以正常滑鼠操作與普通程式冷讀；不稱自然遇敵。可看[敵方後排攻擊後的畫面](docs/images/rear-actions-enemy-r1.png)、[畫面來源](docs/images/rear-actions-runtime-r1.json)、[預覽入口](tools/rear-actions.sh)及[限定驗收](docs/spec/030-battle-expansion-proposal.md#後排特殊出手的限定conformed)。三種按鈕是效果描述，沿已驗核心，不代表完整法術選單或原版隨機選術策略。
-
-## Go軍隊的月結與營地補貨
-
-隔離候選已按Go軍隊計算軍費，並更新120筆原版營地庫存。月報由Go直接繪製，分開顯示應付與實付，支援大軍費、Noto900、隸書與草書。月末會一併保存Go軍隊、原版進度及九張地圖，新程序繼續不會再扣一次。
-
-![Go月報完整顯示應付軍費100030，資金不足時實付零](docs/images/monthly-go-wide-report-r1.png)
-
-圖中使用明示測試軍隊與縮短的月末倒數：30民兵加2500狼，應付100030，資金不足時全軍離隊、實付零，現金由500加月薪100成600。八種新增單位沿候選價格試算月費，原影子軍隊保持；金錢與其他原版資源仍封頂30000。入口為[寬數值月結預覽](tools/monthly-wide.sh)，詳見[限定驗收](docs/spec/030-battle-expansion-proposal.md#寬數值月報的限定conformed)、[畫面來源](docs/images/monthly-go-wide-report-r1.json)與[核對](preserved/monthly-wide-audit-r2.json)。劇情資源與正式整合仍待完成。
+| 研究範圍 | 證據與限制 |
+|---|---|
+| 安全兵力與AI | [六陣位、安全整數與單次戰果](docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離)；擴充ID不寫入原25種索引 |
+| 軍隊與存檔 | [原版進度匯入](preserved/README.md#go軍隊命令與原版進度匯入保存)、[成對保存與中斷恢復](preserved/README.md#go兩份存檔中斷恢復試作保存) |
+| 世界與戰果 | [一般守軍](preserved/README.md#一般守軍go戰鬥保存)、[頭目名劍與結局](preserved/README.md#頭目名劍與結局守軍保存)、[全滅回場](preserved/README.md#全軍覆沒傳回起點保存) |
+| 資源與法術 | [寶箱](preserved/README.md#go寶箱資源保存)、[煉金術](preserved/README.md#go煉金術保存)、[召兵術](preserved/README.md#go召兵術保存)、[月結](preserved/monthly-wide-audit-r2.json) |
+| 戰場接線 | [原版戰場與Go後端橋接](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)仍為DRAFT，須接回原選單、出手、回合與演出 |
 
 ## HD募兵圖示
 
@@ -146,7 +77,7 @@ bash tools/owned-player.sh run /絕對路徑/新的Go進度
 
 ![HD募兵圖示實景](docs/images/recruit-shop-hd-icons-r1.png)
 
-原版矮人招募頁，沿既有HD部隊素材。實際招募、扣款、離店、F7及另一程序軍隊讀回已抽驗；圖示開關的完整遊戲狀態與PCM相同。範圍見[核對](preserved/recruit-icons-audit-r1.json)及[來源](docs/images/recruit-unit-icons-r1.json)。Go庫存保存另見[最新候選](tools/openkb-hd.sh)；八種新增部隊目前在軍隊與戰鬥介面顯示，尚未接入自然營地招募。
+原版矮人招募頁，沿既有HD部隊素材。實際招募、扣款、離店、F7及另一程序軍隊讀回已抽驗；圖示開關的完整遊戲狀態與PCM相同。範圍見[核對](preserved/recruit-icons-audit-r1.json)及[來源](docs/images/recruit-unit-icons-r1.json)。Go庫存與新增兵種分頁見[研究紀錄](#原店與新增兵種分頁)，原版戰場橋接完成前不提供擴充兵種玩家入口。
 
 ## 全圖形 HD 素材
 
@@ -211,7 +142,7 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 | 原版執行 | 已透過 dosgolem 冷啟動、新遊戲、地圖移動、存檔、退出，再冷啟動載入進度 |
 | 新增兵種 | Go 自有招募／存檔已有獨立操作視窗，區分25種原版與8種openKB候選。實際滑鼠招募、六隊上限、資源限制、三字型與關閉後重開讀檔已驗；正常遊戲的招募／戰鬥與世界交接仍待接入，見[030](docs/spec/030-battle-expansion-proposal.md#軍隊與招募視窗研究)。原[離線原型](docs/images/owned-army-prototype-r1.html)保留試算用途 |
 | Go 兵力核心 | 已加入獨立ID、每方6陣位、寬整數傷害／減員、AI選敵與一次性戰果回寫。15組既有原版控制及Go招募→戰鬥→存讀資料鏈通過，可看[28次行動回放](docs/images/owned-combat-data-chain-r1.html)。正常遊戲軍隊／戰鬥UI尚未交接，擴充軍隊附檔會在DOS啟動前被拒絕並保留，避免交給原版固定表；範圍見[030](docs/spec/030-battle-expansion-proposal.md#自有兵力結算與固定表隔離) |
-| Go 世界交接試作 | 正常遇敵、Go戰鬥及回場已有隔離候選，F7位置／地圖快照與Go軍隊可由新Engine讀回。勝利獎勵、晉級與拒戰／追擊沿既有抽驗；正式載入、戰中原地圖續接及其餘世界流程待接。見[完整快照](docs/spec/030-battle-expansion-proposal.md#原位置與地圖的成對快照)與[目前狀態](CONTEXT.md) |
+| Go 世界交接研究 | 遇敵、戰果與保存已有研究證據；先前卡片介面已撤回。新增兵種須接回原版／原版HD戰場，完整世界整合待完成。見[目前狀態](CONTEXT.md) |
 | 顯示相容性 | 已修正原版切換顯示頁後的黑畫面；[BIOS 顯示頁規格](docs/spec/001-planar-bios-display-pages.md)記錄驗證範圍 |
 | HD 圖像 | 已接入 B 古風地表、四份建築圖片與六塊城堡、布旗與無旗太極圖、十二張主角動作、人物頁、金玉介面、深藍故事背景、五幅彩色戰場背景、25 組部隊／怪物的 100 筆姿勢、十四筆地圖遭遇角色、火花與四姿態陰陽圖案。新增 20 組支援兩向與軍隊／戰場用途，沿共用機制代表抽驗。正常移動、頁面往返及真正存退讀已驗；已辨識的其餘彩色來源已依054補齊；自然使用範圍沿各項限定驗收。部隊範圍見 [048](docs/spec/048-troop-hd-batch.md#正式接入與限定驗收)，其餘範圍見 [014](docs/spec/014-intro-story-background.md)、[021](docs/spec/021-battle-background-pages.md)、[027](docs/spec/027-battle-pon-effects.md)、[029](docs/spec/029-battle-choi-markers.md)及 [045](docs/spec/045-map-landmarks.md#第-48-筆正式提升與限定驗收) |
 | HD 文字 | 預設 Noto Sans CJK TC Black 900，包含 PAM 的 636 字與 95 個 ASCII、片頭標題、五頁直排故事、四組製作名單與發行商圖片文字。新素材組可由工具列或 F10 切換教育部隸書、草書並保留偏好，範圍見 [015](docs/spec/015-font-settings.md)及 [016](docs/spec/016-publisher-wordmarks.md)。已驗啟動選項、主選單、人物、軍隊、無法施法提示、地圖位置及系統選單；其他圖片文字與長文仍待處理 |
@@ -220,45 +151,7 @@ HD 工具列另有「規則」選單，與 AI 獨立：
 
 目前狀態與證據入口集中在 [CONTEXT.md](CONTEXT.md)。[自有 HD 場景呈現器](docs/spec/047-hd-scene-renderer.md#正式提升與限定驗收)已接入正式入口，直接從來源圖像、角色、文字與頁面命令產生完整畫面，不再以原版 RGB 畫面墊底。已驗的選單、人物／軍隊及募兵交易完成後才提交；四／五平面圖片與六平面角色沿事件邊界接管像素迴圈，保留原版需要的索引平面讀回。自然開場、工具列三字型與真正存退讀已抽驗，來源故障會明確停止。其餘音畫、未抽驗玩家分支及整體效能仍待完成。
 
-Go軍隊招募視窗已可實際操作，下圖採教育部隸書。六隊、金錢、領導力與庫存會隨交易更新，支援Noto900／隸書／草書切換及存讀。這是獨立試作，初始資源與商店為測試資料，部隊卡暫用名稱首字。正常地圖與戰鬥尚未接入；本機預覽與驗證方式見[視窗研究](docs/spec/030-battle-expansion-proposal.md#軍隊與招募視窗研究)，完整圖與來源見[永久保存](preserved/README.md#go軍隊招募視窗試作保存)。
-
-![Go軍隊招募試作的實際隸書視窗](docs/images/owned-army-ui-preview-r1.png)
-
-獨立Go戰鬥視窗也已接通招募、選敵、策略出手、傷亡、戰中存讀與單次領獎。實際按鈕流程完成28次出手，重開後會保留已行動旗標與戰果。下圖採隸書；目前使用明示的野狼／骷髏測試局面與文字卡片，尚未接入正式地圖或HD戰場美術。操作與限制見[戰鬥視窗研究](docs/spec/030-battle-expansion-proposal.md#自有戰鬥視窗研究)，完整畫面與來源另[永久保存](preserved/README.md#go戰鬥視窗試作保存)。
-
-![Go戰鬥試作的實際勝利畫面，尚未領取獎勵](docs/images/owned-battle-ui-preview-r1.png)
-
-六項資源也已完成與原版存讀的受控傳送驗證。Go更新等級、經驗、月薪、金錢、領導與法術能力後，產出的進度與原版F7整檔相同；全新程序普通繼續可讀回相同數值。下圖是冷讀後的HD人物頁引擎畫面，原版軍隊保持原樣，完整新增兵種世界交接仍待完成。範圍見[資源交接研究](docs/spec/030-battle-expansion-proposal.md#六項資源的編碼與受控傳送)及[永久保存](preserved/README.md#go資源與原版進度交接研究保存)。
-
-![受控Go資源經原版F7與冷讀後的人物頁](docs/images/native-resource-cold-r1.png)
-
-獨立Go戰鬥試作已支援原版資源與軍隊附檔的成對保存。保存中程序意外結束後，重開會恢復成完整的一組；戰中行動旗標及單次領獎一併保留。八個中斷點、實際戰鬥與兩次重開已抽驗，範圍限Linux本機試作，正式地圖交接仍待接入。可看[恢復機制與預覽入口](docs/spec/030-battle-expansion-proposal.md#原版進度與軍隊附檔的中斷恢復試作)、[冷讀畫面來源](docs/images/paired-save-cold-r1.json)及[永久保存](preserved/README.md#go兩份存檔中斷恢復試作保存)。
-
-![成對保存後重新開啟的Go戰鬥試作，採教育部隸書](docs/images/paired-save-cold-r1.png)
-
-原版地圖的民兵店也已透過獨立試作接到 Go 軍隊。下圖左側沿原版用量，右側計入明示加入的5隻野狼，募兵上限從70降為55。購買後，Go保存31名民兵與5隻野狼，金錢為299；原版固定軍隊表保持原樣。這是同一完整起始狀態的受控HD引擎畫面，尚未開放正式新增兵種載入或其他軍隊流程。範圍見[地圖募兵交接](docs/spec/030-battle-expansion-proposal.md#地圖軍隊讀取與容量交接研究)、[畫面來源](docs/images/world-army-shop-comparison-r1.json)及[永久保存](preserved/README.md#go地圖募兵交接試作保存)。
-
-![左：原版用量可募70；右：Go計入野狼後可募55，兩側均為HD引擎畫面](docs/images/world-army-shop-comparison-r1.png)
-
-獨立候選的F2檢閱已接到完整Go軍隊。下圖保留較早文字卡版本的實際視窗，顯示測試進度的31名民兵與5隻野狼；支援隸書、草書及Noto切換，按鍵或按鈕可返回地圖，重開後資料保持。最新版本的HD圖像見上方openKB章節，正式新增兵種載入仍待接入。較早範圍見[檢閱交接](docs/spec/030-battle-expansion-proposal.md#f2軍隊檢閱的go交接研究)、[畫面來源](docs/images/world-army-f2-lishu-r1.json)及[永久保存](preserved/README.md#go-f2軍隊檢閱交接保存)。
-
-![實際F2 Go軍隊檢閱視窗，採教育部隸書](docs/images/world-army-f2-lishu-r1.png)
-
-同一候選的 F3 解雇由 Go 處理選隊、整隊移除、陣位整理與保存，按住 Enter 只提交一次。下圖是解雇民兵後保留5隻野狼的實際視窗；F2及重新啟動後均讀到相同軍隊，金錢與庫存保持。這仍是受控存檔的開發候選，完整世界與戰鬥交接尚未完成。可看[解雇交接與啟動器](docs/spec/030-battle-expansion-proposal.md#f3軍隊解雇的go交接研究)、[畫面來源](docs/images/world-army-f3-lishu-r1.json)及[永久保存](preserved/README.md#go-f3軍隊解雇交接保存)。
-
-普通遇敵的軍隊存在判斷與無兵損金也已接入隔離 Go 候選，直接採用 Go 軍隊及成對存檔。有兵時顯示原版遇敵確認，無兵時扣金並可返回、檢閱及重新讀檔。驗證範圍見[遇敵交接](docs/spec/030-battle-expansion-proposal.md#遇敵軍隊存在與無兵損金交接)及[核對](preserved/owned-army-presence-audit-r2.json)；後續受控戰鬥接線見下方，正式新增兵種載入護欄保持。
-
-另提供[固定快照與顯式記憶體變更的驗證工具](docs/spec/030-battle-expansion-proposal.md#受控記憶體的戰鬥回場驗證)，可直接檢查Go戰鬥、戰果與原版回場邊界。這是受控試作，與正常玩家流程的完成度分開記錄。
-
-[原版確認與Go戰鬥接線](docs/spec/030-battle-expansion-proposal.md#原版確認與go戰鬥介面的受控接線)在隔離候選提供實際戰鬥操作，保留教育部隸書選項。下圖是固定快照與測試敵軍的實際視窗，範圍與[圖片來源](docs/images/owned-encounter-ui-lishu-r1.json)均有紀錄。
-
-敵軍也可由[原版隨機生成資料匯入Go](docs/spec/030-battle-expansion-proposal.md#原版隨機敵軍的go匯入)。這條受控候選沿用原版RNG及生成程序，由Go處理匯入後的戰鬥、戰果與存檔。
-
-[拒戰判斷與撤退亂數](docs/spec/030-battle-expansion-proposal.md#撤退亂數與拒戰追擊交接)亦已由Go接入受控候選，包含未被追擊返回與追擊時的敵方先手。世界整合與完整戰鬥選單仍待完成。
-
-![原版確認後的受控Go戰鬥介面，使用教育部隸書](docs/images/owned-encounter-ui-lishu-r1.png)
-
-![實際F3 Go解雇視窗，採教育部隸書](docs/images/world-army-f3-lishu-r1.png)
+較早的獨立軍隊、卡片戰鬥與世界交接視窗已轉為[後端研究紀錄](#go後端研究紀錄)。圖片、來源與測試收據留在[永久保存](preserved/README.md)，不再作為正式戰鬥介面展示。
 
 本機完整HD素材入口為`workplace/player/assets-painted-r69`。使用既有Docker視窗驗證入口時，設定`EIGHTSWORD_GUI_ASSETS=/player/assets-painted-r69`；播放器的`-assets`參數也指向這份完整素材組。原始遊戲與完整素材維持本機保存。
 
@@ -376,7 +269,7 @@ END7的[構圖比較](docs/images/ending-corrected-candidate-r2.png)與[完整�
 
 ### 原版／HD 戰場總覽
 
-![相同狀態的原版與 HD 戰場總覽](docs/images/battle-original-hd-r1.png)
+原版與HD完整戰場對照見[戰場與Go後端](#戰場與go後端)。
 
 左側為 dosgolem 實際原生 VGA 索引與當時色盤重建，右側為相同客體狀態的 HD 畫面，包含手繪背景、敵方部隊、民兵及火花。兩列分別抽樣戰場兵力與交戰火花，不代表全遊戲已完成。來源及對拍見 [022](docs/spec/022-battle-bitmap-transactions.md)、[027](docs/spec/027-battle-pon-effects.md)與 [028](docs/spec/028-battle-militia-image.md)。
 

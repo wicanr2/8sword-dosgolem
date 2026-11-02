@@ -1,16 +1,28 @@
 # 必要資料永久保存
 
+## 原版戰場契約與卡片入口撤回保存
+
+使用者已指定原版與原版HD戰場。較早卡片戰鬥的來源、畫面與收據留作後端研究，不再作玩家介面驗收。[030定案與橋接DRAFT](../docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)是現行入口。
+
+本批296檔／287去重物件，壓縮9098449 bytes，已完成不掛workplace的逐SHA／大小核對。[收尾核對](original-battle-contract-integrity-r1.json)另驗來源、連結與擁有權。
+
+本批保存撤回後的268項命令來源、新程式、建置紀錄、普通啟動拒絕、原版匯入與既有進度兩檔。入口為[核對器](../tools/check-original-battle-contract.py)、[抽驗結果](original-battle-contract-receipt-r1.json)、[建置來源清單](original-battle-contract-source-manifest-r1.json)、[逐檔清單](original-battle-contract-r1.json)及[脫離workplace核對](original-battle-contract-verification-r1.json)。完整物件在本機`preserved/original-battle-contract-r1/`，原版資料與完整程式不進Git。
+
+`cmd/8sword-owned`普通啟動於進度讀寫前拒絕，`-import-only`可用；`owned-player.sh run`在檢查資料與Docker之前即回報停止，避免啟動快取舊程式。原`cmd/8sword`、七程式、923核心與535素材保持。此批只驗收入口撤回與進度保持，新增兵種尚未接回原版戰場。
+
+[工具](../tools/check-original-battle-contract.py)沿固定Pillow11.3.0 r2容器，專案唯讀掛`/project`、保存目錄可寫掛`/archive`，執行`archive --project /project --archive /archive --out /archive/original-battle-contract-r1.json`。只驗物件用`verify --archive /archive --out /out/新核對.json`，不用workplace。Go1.24.13的建置與抽驗命令、掛載及配額保存在批次`execution-r1.json`，入口準備用`prepare --project /project`，拒絕覆寫既有研究目錄。
+
 ## Go軍隊命令與原版進度匯入保存
 
 本批515檔／370去重物件，壓縮18753725 bytes，另記一筆測試連結。[收尾核對](owned-player-integrity-r1.json)及[快取清理](owned-player-cleanup-r1.json)可重查。
 
-`cmd/8sword-owned`與`internal/ownedworld`提供可建置的Go軍隊入口。66份已驗adapter保留13層初始化順序，原版人物與九圖可直接建立v5進度。沒有測試贈兵；原版隨附30民兵、金500、領導力100直接匯入後，正常招募、F7及冷讀通過。舊戰中樣本另沿前輪明示起始軍隊，沒有將它混稱為新匯入路徑。
+本節為撤回前歷史批次。`cmd/8sword-owned`目前只保留匯入，一般玩家入口依上節停止；`internal/ownedworld`後端來源保留。當時66份adapter整理與匯入結果如下。66份已驗adapter保留13層初始化順序，原版人物與九圖可直接建立v5進度。沒有測試贈兵；原版隨附30民兵、金500、領導力100直接匯入後，正常招募、F7及冷讀通過。舊戰中樣本另沿前輪明示起始軍隊，沒有將它混稱為新匯入路徑。
 
 入口為[030驗收](../docs/spec/030-battle-expansion-proposal.md#命令與原版匯入限定-conformed)、[Docker啟動器](../tools/owned-player.sh)、[來源準備](../tools/prepare-owned-player.py)、[GUI抽驗](../tools/check-owned-player.py)與[獨立核對器](../tools/audit-owned-player.py)。[最終核對](owned-player-audit-r4.json)、[來源對照](owned-player-source-origin-r1.json)、[268項建置來源](owned-player-source-manifest-r1.json)、[畫面來源](../docs/images/owned-player-runtime-r1.json)與[逐檔清單](owned-player-r1.json)可重查。較早核對[r1](owned-player-audit-r1.json)、[r2](owned-player-audit-r2.json)及[r3](owned-player-audit-r3.json)保留當時工具與來源註記。
 
 本機物件在`preserved/owned-player-r1/`，保存完整新來源、程式、原人物／九圖、17份UI素材、原PAM、匯入拒絕案例、六張完整PNG／X11、舊v5戰中VM與啟動器診斷。測試用symlink只記目標，不跟隨或自動還原。原資料及完整美術不進Git，程式碼、索引與縮小成果沿私人倉庫記錄。舊七程式、923核心及535素材不因此替換，沒有Release。
 
-準備本機資料用`bash tools/owned-player.sh prepare`，已有資料包直接`build`；原版匯入與執行命令見[README](../README.md#go軍隊入口與原版存檔匯入)。來源整理器可沿父版保存物件重建資料，已有的受版控來源不覆寫；建置與匯入工作仍在有界、非root、network none的Docker內。
+準備本機資料用`bash tools/owned-player.sh prepare`，已有資料包直接`build`；原版匯入與入口限制見[README](../README.md#戰場與go後端)。來源整理器可沿父版保存物件重建資料，已有的受版控來源不覆寫；建置與匯入工作仍在有界、非root、network none的Docker內。
 
 封存用固定Pillow11.3.0容器，專案唯讀掛`/project`、本保存目錄可寫掛`/archive`，執行`prepare-owned-player.py archive --project /project --archive /archive --out /archive/owned-player-r1.json`。只核對用`verify --archive /archive --out /out/新核對.json`，不需workplace，[核對結果](owned-player-verification-r1.json)按原SHA與大小驗證每個物件。Go快取排除保存，只有封存及獨立驗證完成後才清理。
 
