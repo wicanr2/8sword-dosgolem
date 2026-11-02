@@ -1,0 +1,18 @@
+{
+  "status": "passed-original-army-projection-integrity",
+  "archived_files_verified": 435,
+  "source_files": 282,
+  "relative_links_and_anchors": 3335,
+  "positive_control": "README -> artwork/README.md",
+  "resolution_backlinks": 3,
+  "ownership": "UID/GID1000; no root-owned or .md directory in this batch",
+  "baseline_unchanged": "197 source / 7 programs / 923 core / 535 assets / 1066 art",
+  "limits": [
+    "Original25 six-slot projection and partial remainder store only; expanded IDs, full world settlement, F7 and GUI pending."
+  ],
+  "cleanup": {
+    "cache_files": 1686,
+    "cache_logical_bytes": 138570346,
+    "saved_old_files": 0
+  }
+}

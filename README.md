@@ -42,9 +42,11 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版戰場與同配置的HD戰場](docs/images/battle-original-hd-r1.png)
 
-![原版與HD戰場的Go普通傷害算式抽驗](docs/images/original-battle-go-arithmetic-r1.png)
+![Go六隊資料接原版與HD戰場](docs/images/original-army-projection-r1.png)
 
-隔離候選已將玩家與敵方普通傷害算式交給Go，保留同一套原版戰場與流程。雙側原helper對照、原版／HD的正常冷啟動遇敵與一段敵方普通行動已抽驗，減員、生命值及完整畫面一致。此段未載入戰場快照，亂數種子預先固定；圖片是Engine畫面，尚未新增實際視窗驗收。Go軍隊投影、新增兵種戰場、其餘規則與戰果保存仍待接。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)與[圖片來源](docs/images/original-battle-go-arithmetic-r1.json)。
+隔離候選已將原25種六隊資料及雙側普通傷害算式接Go，保留原戰場選單、演出與回合。原版／HD各抽原控制與Go的正常冷啟動遇敵，首個敵方普通行動後完整畫面一致。正常Esc返回後30民兵剩16，Go保存後新Store冷讀一致，原人物檔保持。亂數種子預先固定；上圖是Engine畫面，未新增實際視窗驗收。
+
+新增兵種在原戰場的固定表隔離、其餘規則與完整世界戰果仍待接。此輪只完成原25種資料進出與剩兵保存，尚未開放Go軍隊玩家入口。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)與[圖片來源](docs/images/original-army-projection-r1.json)。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 

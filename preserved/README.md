@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 原25種六隊戰場投影保存
+
+本批435檔／336去重物件，壓縮13914141 bytes，已完成不掛workplace的逐SHA及大小核對。
+
+本批保存原25種Go軍隊進出原版／HD戰場的隔離候選。新增ID仍拒絕，一般Go玩家入口保持停止。[READY與限定結果](../docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)、[核對](original-army-projection-audit-r1.json)、[逐檔清單](original-army-projection-r1.json)、[脫離workplace核對](original-army-projection-verification-r1.json)與[收尾核對](original-army-projection-integrity-r1.json)為入口。
+
+六隊模型、19種拒絕、原版／HD各兩條冷啟動遇敵及正常Esc返回通過。30民兵剩16，Go收取剩兵後交既有成對Store保存，新Store冷讀一致。原軍隊影子及原人物檔保持；獎勵、損金、F7整合與完整世界戰果仍未接入，不稱完整戰鬥驗收。
+
+完整候選來源、測試程式、三函式IDA證據、固定輸入、四路state及PNG存入本機`preserved/original-army-projection-r1/`。原版資料、完整圖片及程式排除Git；[縮圖](../docs/images/original-army-projection-r1.png)及[來源](../docs/images/original-army-projection-r1.json)留私人倉庫。
+
+[準備／核對／保存工具](../tools/original-army-projection.py)在固定Pillow11.3.0 r2容器使用`prepare|freeze|audit|publish|archive|verify`，參數沿本工具`--help`。研究目錄沿`battle-r1/original-army-projection-r1`。保存時掛專案唯讀`/project`、本目錄可寫`/archive`，執行`archive --project /project --archive /archive --out /archive/original-army-projection-r1.json`；獨立核對使用`verify --archive /archive --out /out/新核對.json`，不掛workplace。Go1.24.13、IDA9.4、唯讀來源、UID1000、配額及完整命令另留批次`execution-r1.json`。
+
 ## 原戰場雙側普通算式保存
 
 本批508檔／371去重物件，壓縮43349131 bytes，已完成不掛workplace的逐SHA及大小核對。

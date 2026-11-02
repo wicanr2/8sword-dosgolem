@@ -713,5 +713,55 @@
       "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
       "unaffected_reason": "Original source-scene renderer and mode split unchanged; the candidate replaces arithmetic only."
     }
+  ],
+  "original_army_projection_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:3365",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0110:3365",
+      "original_name": "sub_132E0",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go typed native25 army supplies six tactical records; bypass original DS054A copy.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-ARMY-PROJECTION-20261102",
+      "receipt": "preserved/original-army-projection-audit-r1.json",
+      "scope": "Native25 six-slot model; fixed-seed normal original/HD encounter and Escape return; typed remainder paired-save cold read.",
+      "not_closed": "Expanded IDs, all actions/rules, complete world settlement, F7, GUI and general player entry."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:3745",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0110:3745",
+      "original_name": "sub_132E0",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Capture compacted tactical survivors and bypass original shadow writeback; paired-store result slice only.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-ARMY-PROJECTION-20261102",
+      "receipt": "preserved/original-army-projection-audit-r1.json",
+      "scope": "Native25 six-slot model; fixed-seed normal original/HD encounter and Escape return; typed remainder paired-save cold read.",
+      "not_closed": "Expanded IDs, all actions/rules, complete world settlement, F7, GUI and general player entry."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:3774",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0110:3774",
+      "original_name": "sub_13774",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Original cleanup compacts empty tactical records before Go captures survivors.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-ARMY-PROJECTION-20261102",
+      "receipt": "preserved/original-army-projection-audit-r1.json",
+      "scope": "Native25 six-slot model; fixed-seed normal original/HD encounter and Escape return; typed remainder paired-save cold read.",
+      "not_closed": "Expanded IDs, all actions/rules, complete world settlement, F7, GUI and general player entry."
+    }
   ]
 }

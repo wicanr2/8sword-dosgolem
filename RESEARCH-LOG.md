@@ -2991,3 +2991,15 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 原版與HD的原算式／Go四條正常冷啟動鏈，Continue後固定亂數種子0x12345678，正常向下離開營地列、左右走路遇敵，按原實際選取狀態確認。全段沒有載入戰場快照、改部隊或座標；至首個敵方普通executor返回，兩次原helper及完整Frame相同，亂數末值4153486591。這是Engine正常輸入，未驗GUI、Go世界軍隊、其他規則、整回合與戰果保存。結果見[030限定](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)與[保存](preserved/README.md#原戰場雙側普通算式保存)。
 
 初版單次helper假設由原xref及動態呼叫推翻，原失敗保留。舊快照HD基準在14D2:06B8報compatibility/native-video-write-leftover，當時尚未使用Go算式；改正常冷啟動驗證後通過，沒有改繪圖器，也不宣稱解決所有舊快照續跑。
+
+
+## 原25種六隊資料進出原戰場
+
+2026-11-02，已證實範圍限[030原25種投影](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)。來源PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`，IDA9.4於UID1000的tmp資料庫匯出三函式，最小探針521函式。原名、bytes、xref與operand保持，`ida/ida-projection.json`另列IDA MZ線性及file offset。runtime loader0110與戰術段0F67分開標示。
+
+- `sub_132E0`於runtime0110:3365的原迴圈讀DS:054A／054C，寫56E8／56EA並清5700／5702；Go此處投影typed六隊，直接續3396。原敵軍生成與戰場入口保持。
+- `sub_13774`，IDA13774h／runtime0110:3774，將原敵我空隊依原順序前移。其caller返回3745後，原wrapper原欲將56E8／56EA回寫054A／054C；Go收取整理後剩兵，續376A，保留影子。這是資料隔離接點，不能推論所有原查表已被替代。
+- 六隊模型刻意與30民兵影子不同，確認Go為資料來源。19種來源、身份、範圍、階段與輸出拒絕不改客體。冷啟動四路以相同seed正常走路、原確認、敵方普通行動及Esc返回。第一行動完整Frame與戰場狀態相同，返回皆剩16民兵／result1／seed2441068421。
+- Go返回時影子仍30，原控制影子16。測試以Store保存16及revision，再新Store冷讀。Python獨立解原控制24 bytes與v5封套，原人物SHA逐byte保持；未推進原wrapper之後的世界損金／獎勵或F7，不稱完整戰果或全客體state parity。
+
+本輪沒有產品測試失敗。初次文件patch因標題層級不符而未套用；讀技能時容器中的symlink目標未掛載，改讀IDA專案內實體技能。兩者在分析／建置前修正，與遊戲行為無關。新兵固定表隔離、native以外規則、全部特殊術、GUI及正式入口仍待接；原197來源七程式、923核心、535素材與1066美術保持。完整資料見[永久保存](preserved/README.md#原25種六隊戰場投影保存)，不依賴workplace。

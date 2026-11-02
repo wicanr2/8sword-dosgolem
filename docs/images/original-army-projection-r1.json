@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "output": "original-army-projection-r1.png",
+  "output_sha256": "d028693bf02ca374068b36e748f3c237e8da5339d82ac6beb2a7331a222f1aad",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-projection-r1/projection-action-r1/hd-false-mode-1/frame.png",
+      "sha256": "97412c4686fac627cba6a5805ca8bd40b61580d0df2c9ef9bf69c1fd4b91e044",
+      "dimensions": [
+        1920,
+        1200
+      ]
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-projection-r1/projection-action-r1/hd-true-mode-1/frame.png",
+      "sha256": "11e5d2e80fd0afa76a595ab2a76618edd1a8048c3c349916e3a641e6fb1dc9ec",
+      "dimensions": [
+        1920,
+        1200
+      ]
+    }
+  ],
+  "audit_sha256": "8dab38014e736a35f724c60cb7771336b47b57efce62743375e8b00005aa396e",
+  "seed": 305419896,
+  "normal_cold_start": true,
+  "actual_window_verified": false,
+  "scope": "Original25 projection, ordinary action and Escape return; partial typed remainder store, not complete world settlement."
+}

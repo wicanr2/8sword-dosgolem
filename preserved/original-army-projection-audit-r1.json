@@ -1,0 +1,41 @@
+{
+  "status": "passed-original-army-projection-audit",
+  "source_files": 282,
+  "ida_functions": 3,
+  "six_slot_model": true,
+  "refusals": [
+    "source",
+    "caller",
+    "segment",
+    "cycles",
+    "entry-repeat",
+    "frame",
+    "shadow",
+    "copy-repeat",
+    "typed-change",
+    "capture-increase",
+    "capture-unknown",
+    "capture-hole",
+    "capture-repeat",
+    "result",
+    "extension",
+    "wide",
+    "zero",
+    "duplicate",
+    "empty"
+  ],
+  "cold_start_pairs": 2,
+  "full_frames_equal": true,
+  "normal_escape_return": true,
+  "typed_remainder_saved_and_cold_read": true,
+  "native_shadow_and_file_unchanged": true,
+  "seed": 305419896,
+  "ordinary_player_entry_disabled": true,
+  "not_verified": [
+    "expanded IDs in original battlefield",
+    "all actions/formation/tactics",
+    "complete world result settlement",
+    "GUI",
+    "normal F7 integration"
+  ]
+}

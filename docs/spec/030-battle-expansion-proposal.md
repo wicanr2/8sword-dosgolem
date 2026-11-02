@@ -206,13 +206,36 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 ### 原版戰場與Go後端橋接 DRAFT
 
-`ORIGINAL-BATTLE-ARITHMETIC-20261102`：原戰場雙側普通算式已由下節限定接入Go；Go軍隊投影、擴充兵種、其餘行動與戰果保存仍未完成。本節不因局部算式完成便升為完整戰場CONFORMED。
+2026-11-02接續六隊資料橋接，研究範圍為原25種Go軍隊投影至原戰場、原操作返回後收取剩餘部隊，以及成對保存冷讀。新增ID仍拒絕，原軍隊影子不得被戰場寫回覆蓋。入口為[投影研究與保存](../../tools/original-army-projection.py)、[IDA整理函式](../../tools/export-original-army-projection-ida.py)、[六隊介接](../../internal/ownedworld/original_army_projection.go)與[代表測試](../../internal/ownedworld/original_army_projection_test.go)。輸出沿既有battle-r1下`original-army-projection-r1`。原25種已依下節READY完成限定驗收；新增ID與完整世界戰果仍DRAFT，一般玩家入口保持停止。
+
+`ORIGINAL-BATTLE-ARITHMETIC-20261102`：原戰場雙側普通算式已由下節限定接入Go；原25種投影另依`ORIGINAL-ARMY-PROJECTION-20261102`限定完成，擴充兵種、其餘行動與完整戰果保存仍未完成。本節不因局部算式完成便升為完整戰場CONFORMED。
 
 已證實：目前`controlledBattle.enter`在runtime `0110:32E0`回報yield；`advanceEncounterUI`建立`battleUI`，`encounterExtra.Paint`呼叫`paintBattleUI`。直接改成`Engine.Frame()`會停在尚未繪製原版戰場的時點，不能當成接回成功。來源PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，原掛點與原始名稱保留。
 
 下一步窄查原版選單／出手／回合推進與既有HD呈現事件，將Go typed部隊、數值與動作接回原版操作及畫面。擴充ID不得寫入原25種索引，不以假原版ID冒充新兵，不把新靜態背景加卡片當完成。原版與HD各抽一條相同控制路徑，再抽新兵、存讀與AI；證據足以定READY後實作，不重畫已批准美術或重問同一方向。
 
 2026-11-02接續窄查：先定位sub_132E0與原戰術入口runtime `0F67:0008`的隊伍投影、輸入、選隊、回合與返回邊界。保持一般Go入口停止，研究不把新增ID寫入原固定表。入口為[橋接準備／保存](../../tools/original-battle-bridge.py)、[IDA原戰場匯出](../../tools/export-original-battle-bridge-ida.py)及[受控觀測](../../internal/ownedworld/original_battle_bridge_test.go)，輸出沿既有battle-r1下的`original-battle-bridge-r1`。先用原版執行器取得來源／同狀態控制，再定最小READY切片；不以舊卡片戰鬥或孤立傷害helper驗收原版戰場。
+
+### 原25種六隊投影 READY
+
+IDA9.4新匯出固定相同PAM與PAM.i64雜湊。已證實`sub_132E0`於runtime `0110:3365..3395`將DS:054A的六隊複製到DS:56E8並清空敵方5700；`sub_13774`於`0110:3774..380A`只將56E8／5700的空洞向前整理；`0110:3745..3769`將整理後軍隊寫回054A。IDA線性分別為13365h、13774h、13745h，完整bytes與原operand見本輪`ida/ida-projection.json`，不能混用位址基準。
+
+- 隔離候選只接原25種、native規則、六隊各1至32767兵。Go字串ID及typed catalog驗證後才編碼戰場暫存陣列。新增ID、超界數量、重複隊伍、空軍隊及未知資料先拒絕，不用原兵種代替。
+- 在32E0核對普通遭遇caller、完整wrapper／整理函式bytes、段與堆疊，保存原軍隊影子。3365以Go軍隊取代原複製迴圈，清敵方24 bytes後續走原敵軍生成、原選單、原動畫與原回合。原版與HD皆適用，沒有卡片UI或新模式。
+- 3745核對同一frame與影子，讀取原整理後六隊。每個存活ID須屬輸入軍隊且兵數不增加；空隊須為雙零。保存typed結果與原返回值，跳至376A，阻止原軍隊寫回。32E0與3745之外不得改原軍隊影子。
+- 普通傷害沿已驗Go算式。此切片仍由原版處理選敵、減員及特殊分派；不宣稱Go已接管所有兵力與戰果。結果可交既有成對Store保存並獨立冷讀，但獎勵、撤退損金與完整戰果生命週期不在本次提升範圍。
+- 先驗六隊模型、來源／caller／數量／ID／重入與回寫拒絕，再以相同固定seed的原版／HD冷啟動、正常走路遇敵各比較原控制與Go投影。抽第一個普通行動及正常Esc返回，核對完整Frame、戰場資料、seed、原影子與typed剩兵。保存採一次成對提交及新Store冷讀，原人物檔軍隊bytes保持。
+
+### 原25種六隊投影限定 CONFORMED
+
+`ORIGINAL-ARMY-PROJECTION-20261102`。隔離候選282來源已完成本節限定範圍。原版／HD都沿原戰場，沒有卡片操作或新的戰鬥模式；一般Go入口保持停止。
+
+- 六隊模型以原1／3／6／10／12／24驗證，Go軍隊與原影子刻意不同，戰場24 bytes確由Go投影。來源、caller、段、frame、重入、影子、變動輸入、增加兵數、未知隊伍、空洞、結果及新增ID等19項拒絕，不改客體RAM／寄存器／cycles。
+- 原版／HD各跑原控制及Go兩條冷啟動路徑。從合法原版進度正常Continue、走路遇敵及原確認，移動前固定seed `0x12345678`。第一個敵方普通行動後的完整1920×1200 Frame、兩側戰場隊伍、待扣HP及seed4153486591相同。此輪同時沿前版Go普通算式。
+- 再正常送Esc，於原wrapper返回`0110:171D`停下。四路皆result1、30民兵剩16、seed2441068421。Go在`0110:3745`收取原整理後軍隊並略過原寫回，原影子仍30；原控制影子為16。兩者有意不同，不稱完整客體state parity。
+- 測試在wrapper返回後將剩兵交既有成對Store，v5新Store冷讀16民兵。Python獨立讀原控制24 bytes與兩邊保存封套，確認只變world軍隊及revision，原人物SHA仍`84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef`。這是剩兵保存切片，尚未接正式戰果／撤退損金／獎勵／F7與戰中續接。
+
+[核對](../../preserved/original-army-projection-audit-r1.json)、[成果圖](../images/original-army-projection-r1.png)、[圖片來源](../images/original-army-projection-r1.json)及[永久保存](../../preserved/README.md#原25種六隊戰場投影保存)為入口。模型與行動測試0.01／75.47秒通過。原197來源七程式、923核心、r69全535素材與1066美術保持；沒有本輪GUI驗收、新增ID原戰場、所有法術／規則或完整世界戰果聲明。此前「Go軍隊投影未接」只剩新增ID與完整玩家整合，不重新開啟本節原25種進出邊界。
 
 ### 原戰場雙側普通傷害橋接 READY
 

@@ -1,5 +1,8 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-02原25種六隊投影依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)完成隔離候選282來源。Go在原wrapper進出投影／收取六隊，普通算式沿前版；原戰場選單、減員、動畫及回合保持。原版／HD四路正常冷啟動遇敵及Esc返回、19種拒絕、剩兵成對保存冷讀通過。入口為[介接](internal/ownedworld/original_army_projection.go)、[抽驗](internal/ownedworld/original_army_projection_test.go)、[準備／核對／保存](tools/original-army-projection.py)與[永久保存](preserved/README.md#原25種六隊戰場投影保存)。新增ID仍拒絕，完整世界戰果、其餘規則／特殊術、F7與GUI未驗；一般Go入口持續停止。現況以CONTEXT為準，不重做本輪已驗原25種邊界。
+
+
 2026-11-02原戰場雙側普通算式已沿[030限定接入](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)由Go處理，來源為sub_1FAA2／runtime0F67:1532與sub_1FB02／1592，待扣HP副作用保持。八組原helper、十種拒絕及原版／HD冷啟動遇敵至首個敵方普通行動已對照；每行動兩個原caller都須保留，不按出手去重。[保存](preserved/README.md#原戰場雙側普通算式保存)含280來源、IDA11函式及全部前版。typed catalog只提供原25種AP／HP，Go世界軍隊、新兵、其他規則及戰果保存仍待接；目前只研究安裝，一般Go入口保持停止。原197來源七程式／923核心／535素材／1066美術不改，不重開已驗算式或美術。現況以CONTEXT為準。
 
 2026-11-02新增兵種的增援分頁已沿[030限定接入](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)接回原四位數編輯器。Go接獨立商品、領導用量、安全費用與成對交易，回原wrapper的AX0保持原店庫存；擴充ID不入原kind表。野狼取消／錯量／購2／F2冷讀、八種模型、原25種回歸及八張實窗已抽驗。[永久保存](preserved/README.md#新增兵種沿原數量輸入保存)含278項來源、完整程式與進度；原197來源七程式／923核心／535素材／1066美術保持。一般Go入口仍在進度IO前停止，接續原版／原版HD戰場橋接，不重開已驗募兵與美術矩陣。現況以CONTEXT為準。

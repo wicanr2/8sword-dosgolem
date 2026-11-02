@@ -12,9 +12,11 @@
 
 ## 最近驗證
 
-最新為[原戰場雙側普通算式](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)。隔離候選用Go取代原玩家／敵方普通傷害helper，原選單、減員、動畫及回合保持。八組原helper控制、十種拒絕及原版／HD的冷啟動行動段通過；固定seed後正常走路、原確認進場，完整Frame、減員、待扣HP與seed末值相同。[核對](preserved/original-battle-bridge-audit-r1.json)、[成果](docs/images/original-battle-go-arithmetic-r1.png)與[保存](preserved/README.md#原戰場雙側普通算式保存)為入口。
+最新為[原25種六隊投影](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)。隔離候選由Go提供戰場六隊資料，保留原選單、減員、動畫與回合；返回時Go收取原整理後剩兵，略過原軍隊影子寫回。六隊模型、19種拒絕及原版／HD四條冷啟動遇敵至正常Esc返回通過。30民兵剩16，原控制與Go的完整Frame、戰場資料及seed相同；Go剩兵交成對Store後新Store冷讀一致，原人物檔與軍隊影子保持。[核對](preserved/original-army-projection-audit-r1.json)、[成果](docs/images/original-army-projection-r1.png)與[保存](preserved/README.md#原25種六隊戰場投影保存)為入口。
 
-這只完成計算接點。typed catalog提供原25種AP／HP，種類及兵數仍來自原戰場陣列；Go世界軍隊投影與新增ID尚未接入。自然行動段只驗敵方普通行動，玩家側以受控helper驗證；其他規則、特殊術、完整回合、戰果存讀及GUI仍未驗。此橋接目前只在研究測試安裝，沒有另一個玩家戰鬥模式。一般Go入口持續停止，下一步是六隊身份投影、原選單動作及保存鏈。
+候選282來源，目前只在研究測試安裝。進出資料限原25種及native規則，擴充ID仍拒絕；原版仍處理戰場減員與特殊分派，尚未把全部兵力交Go。剩兵保存測試不等於完整世界戰果：損金、獎勵、F7、戰中續接及GUI尚未接驗。一般Go入口保持停止；下一步是新增ID的固定表隔離與原戰場呈現，再接完整戰果Store。
+
+前輪[雙側普通算式](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)保持；這次冷啟動同時沿用該算式，沒有重開helper研究。玩家側自然攻擊、其餘規則與法術仍未由本輪驗收。
 
 前輪為[新增兵種沿原數量輸入](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)。已選增援分頁保留選兵，Enter／招募轉入原四位數編輯器。Go接獨立商品、最大量、安全費用及交易，沿原wrapper回0保持原店庫存。八種模型、階級／六隊／金錢／領導／庫存及故障拒絕、八張執行器畫面、八張Noto／隸書實際X11及冷讀通過。[核對](preserved/original-reinforcement-quantity-audit-r1.json)、[成果](docs/images/original-reinforcement-quantity-go-r1.png)與[保存](preserved/README.md#新增兵種沿原數量輸入保存)為入口。
 
@@ -52,7 +54,7 @@
 ## 尚未完成的實作
 
 - 原版F2／F3、原25種與新增兵種的原數量輸入已接Go。原版模式的新增兵種呈現仍未處理。保留月薪欄位，不拿Go領導用量欄取代。
-- 將Go六隊身份、兵數與動作接回原版戰場的選單、出手、回合及HD呈現。雙側普通算式已限定接Go，接續軍隊投影、玩家動作與戰果Store，再抽新兵、AI與存讀。卡片介面不作正式驗收。
+- 將Go六隊身份、兵數與動作接回原版戰場的選單、出手、回合及HD呈現。雙側普通算式與原25種六隊投影已限定接Go，接續新增ID、玩家動作與完整戰果Store，再抽新兵、AI與存讀。卡片介面不作正式驗收。
 - 完成新增軍隊的正式世界整合與其餘資源消費端。穩定營地、寶箱、煉金術、召兵術、月結、守軍及頭目已有研究成果，不重新開啟全部逆向。
 - 新兵原數量輸入沿已能進原數字提示的營地；原店更早因階級／容量拒絕時，增援入口仍未另接。這是入口範圍限制，不重跑已驗數字編輯與交易。
 - 完成原前端工具列與Go軍隊整合、新遊戲直接建立Go進度。VM缺失的舊戰中資料繼續拒絕，保留正式Engine的附檔護欄。
