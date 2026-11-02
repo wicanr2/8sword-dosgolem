@@ -1,0 +1,70 @@
+{
+  "status": "passed-original-layout-HD-fields-audit",
+  "source_files": 274,
+  "runtime_frames": [
+    "f2-noto",
+    "f3-wolf-noto",
+    "f3-troll-noto",
+    "f3-after-wolf",
+    "f2-lishu",
+    "f2-caoshu"
+  ],
+  "gui_frames": 6,
+  "models": [
+    {
+      "count": 4294967295,
+      "monthly": 1073741823750,
+      "name": "弓箭手",
+      "unit": "openkb:arcr"
+    },
+    {
+      "count": 4294967295,
+      "monthly": 3435973836000,
+      "name": "槍兵",
+      "unit": "openkb:pike"
+    },
+    {
+      "count": 4294967295,
+      "monthly": 171798691800,
+      "name": "野狼",
+      "unit": "openkb:wolf"
+    },
+    {
+      "count": 4294967295,
+      "monthly": 171798691800,
+      "name": "骷髏兵",
+      "unit": "openkb:skel"
+    },
+    {
+      "count": 4294967295,
+      "monthly": 4294967295000,
+      "name": "洞穴巨人",
+      "unit": "openkb:troll"
+    },
+    {
+      "count": 4294967295,
+      "monthly": 3006477106500,
+      "name": "德魯依",
+      "unit": "openkb:drui"
+    },
+    {
+      "count": 4294967295,
+      "monthly": 6442450942500,
+      "name": "吸血鬼",
+      "unit": "openkb:vamp"
+    },
+    {
+      "count": 4294967295,
+      "monthly": 21474836475000,
+      "name": "火龍",
+      "unit": "openkb:drag"
+    }
+  ],
+  "regression_control_frames": 20,
+  "unchanged_outside_fields": true,
+  "original_name_spans": 9,
+  "original_art_parity_claimed": false,
+  "controlled_army": true,
+  "native_extended_rejected": true,
+  "production_entry_remains_disabled": true
+}

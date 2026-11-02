@@ -133,6 +133,9 @@ func (g *armyReviewApp) bind() error {
 		return e
 	}
 	hdUnitArt = loadHDUnitArtwork(g.Engine, flag.Lookup("ui-assets").Value.String(), g.Fonts.CatalogRawSHA)
+	if g.OriginalReview != nil {
+		g.OriginalReview.Fields = newOriginalArmyFields(g.OriginalReview, g.Fonts, hdUnitArt)
+	}
 	g.Bound = true
 	return nil
 }
@@ -273,6 +276,7 @@ func (g *armyReviewApp) Update() error {
 		g.Frame, g.Texts = paintArmyReview(g.Review.Data, g.Fonts, g.Engine.FontID())
 	} else {
 		g.Frame = composeRecruitIcons(g.Engine, g.Engine.Frame())
+		g.Frame, g.Texts = composeOriginalArmyFields(g.OriginalReview, g.Frame)
 	}
 	g.Frame, g.Texts = swordDecorate(g, g.Frame, g.Texts)
 	if g.Frame == nil || g.Frame.Bounds() != image.Rect(0, 0, 1920, 1200) {

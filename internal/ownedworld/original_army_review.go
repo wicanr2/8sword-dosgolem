@@ -11,9 +11,18 @@ import (
 	"github.com/wicanr2/dosgolem/oracle"
 )
 
-// Spec 030: original F2 UI, Go-owned data. Extended kinds are not routed into
-// the original name/image tables. This first bridge rejects them explicitly.
-type originalReviewRow struct{ Kind, Count, Monthly uint16 }
+// Spec 030: genuine native IDs retain the original row. Host fields never
+// expose an extended identity to the original name/image/stat tables.
+type originalReviewRow struct {
+	Kind       uint16
+	Count      uint32
+	Monthly    uint64
+	Unit, Name string
+	Host       bool
+}
+
+func (r originalReviewRow) occupied() bool { return r.Unit != "" }
+
 type originalArmyReview struct {
 	Engine                              *game.Engine
 	Port                                *worldArmyPort
@@ -30,9 +39,13 @@ type originalArmyReview struct {
 	LastValue                           uint16
 	Reads                               [4]uint64
 	Opens, Closes                       uint64
+	Fields                              *originalArmyFields
 }
 
 func originalReviewRows(c ArmyCatalog, w OwnedWorld) ([6]originalReviewRow, error) {
+	return originalReviewRowsWithFields(c, w, false)
+}
+func originalReviewRowsWithFields(c ArmyCatalog, w OwnedWorld, fields bool) ([6]originalReviewRow, error) {
 	var rows [6]originalReviewRow
 	if err := w.Army.validate(c); err != nil {
 		return rows, err
@@ -51,22 +64,41 @@ func originalReviewRows(c ArmyCatalog, w OwnedWorld) ([6]originalReviewRow, erro
 			continue
 		}
 		p := idx[s.Unit]
-		if empty || p.Origin != "native" || p.NativeKind < 1 || p.NativeKind > 25 || s.Unit != fmt.Sprintf("native:%02d", p.NativeKind) {
+		native := p.Origin == "native" && p.NativeKind >= 1 && p.NativeKind <= 25 && s.Unit == fmt.Sprintf("native:%02d", p.NativeKind)
+		extended := p.Origin == "openkb-reference-prototype" && originalOpenKBID(s.Unit) && p.NativeKind == 0
+		if empty || (!native && !(fields && extended)) {
 			return rows, errors.New("original F2 requires compact original-kind rows; extended presentation pending")
 		}
-		if s.Count > 32767 || p.Gold > 32767 || p.Gold*uint64(s.Count) > 32767 {
+		wide := s.Count > 32767 || p.Gold > 32767 || p.Gold*uint64(s.Count) > 32767
+		if wide && !fields {
 			return rows, errors.New("original F2 numeric display range")
 		}
-		rows[i] = originalReviewRow{p.NativeKind, uint16(s.Count), uint16(p.Gold * uint64(s.Count))}
+		rows[i] = originalReviewRow{Kind: p.NativeKind, Count: s.Count, Monthly: p.Gold * uint64(s.Count), Unit: s.Unit, Name: p.Name, Host: extended || wide}
 	}
 	return rows, nil
+}
+func (v *originalArmyReview) rows(w OwnedWorld) ([6]originalReviewRow, error) {
+	rows, err := originalReviewRowsWithFields(v.Port.Store.Catalog, w, v.Engine.HD && v.Fields != nil)
+	if err == nil && v.Fields != nil {
+		err = v.Fields.validate(rows)
+	}
+	return rows, err
 }
 
 func (v *originalArmyReview) check() error {
 	o := v.Engine.Oracle
 	r := o.Regs()
-	if r.CS != 0x110 || r.DS != 0x1e88 || r.SS != 0x1e88 ||
-		!bytes.Equal(v.Code[0x3e92:0x3f08], o.Bytes(oracle.Far(0x110, 0x3e92), 0x76)) ||
+	if r.CS != 0x110 || r.DS != 0x1e88 || r.SS != 0x1e88 {
+		return errors.New("original F2 callback segments")
+	}
+	return v.checkSnapshot()
+}
+
+// A presented frame can be requested while the original getch executes in a
+// different code segment. Validate its immutable binding, not a call-site ABI.
+func (v *originalArmyReview) checkSnapshot() error {
+	o := v.Engine.Oracle
+	if !bytes.Equal(v.Code[0x3e92:0x3f08], o.Bytes(oracle.Far(0x110, 0x3e92), 0x76)) ||
 		!bytes.Equal(v.Code[0x75c6:0x775a], o.Bytes(oracle.Far(0x110, 0x75c6), 0x194)) ||
 		(v.Mode != 1 && v.Mode != 2) || o.Word(oracle.Far(0x1e88, 0x56bc)) != v.Mode || o.Word(oracle.Far(0x1e88, 0x7484)) != 1 {
 		return errors.New("original F2 source/segments/selector")
@@ -115,7 +147,7 @@ func installOriginalArmyReview(e *game.Engine, p *worldArmyPort) (*originalArmyR
 			}
 			fail(errors.New("unexpected dispatcher reentry"))
 		}
-		rows, err := originalReviewRows(p.Store.Catalog, s.World)
+		rows, err := v.rows(s.World)
 		if err != nil {
 			fail(err)
 		}
@@ -179,6 +211,15 @@ func installOriginalArmyReview(e *game.Engine, p *worldArmyPort) (*originalArmyR
 			}
 		})
 	}
+	swordOnCall(e.Oracle, oracle.Far(0x110, 0x7c3c), func(o *oracle.Oracle) {
+		if !v.Active || v.BP == 0 {
+			return
+		}
+		slot := o.Word(oracle.Far(0x1e88, v.BP-10))
+		if slot < 6 && v.Rows[slot].Host {
+			fail(errors.New("host row escaped into native sprite table"))
+		}
+	})
 	swordOnCall(e.Oracle, oracle.Far(0x110, 0x3ed5), func(*oracle.Oracle) {
 		if !v.Active || v.Mode != 1 {
 			return
@@ -231,7 +272,7 @@ func (v *originalArmyReview) finishRows() error {
 	}
 	var occupied uint64
 	for _, r := range v.Rows {
-		if r.Kind != 0 {
+		if r.occupied() && !r.Host {
 			occupied++
 		}
 	}
@@ -275,6 +316,17 @@ func (v *originalArmyReview) supply(m *dg.Machine, ip uint16) (bool, error) {
 	var post, value uint16
 	switch ip {
 	case 0x75fd:
+		if row.Host {
+			if v.Fields == nil || !v.Engine.HD {
+				return fail("host fields unavailable")
+			}
+			v.BP = bp
+			v.Reads[0]++
+			v.Fields.SkippedRows++
+			c.IP = 0x773a
+			c.Cycles++
+			return true, nil
+		}
 		index = 0
 		post = 0x7601
 		value = row.Kind
@@ -285,14 +337,14 @@ func (v *originalArmyReview) supply(m *dg.Machine, ip uint16) (bool, error) {
 	case 0x76e8:
 		index = 2
 		post = 0x76ec
-		value = row.Count
+		value = uint16(row.Count)
 	case 0x770d:
 		if row.Kind == 0 || m.Read16(base+uint32(bp)-12) != row.Kind {
 			return fail("monthly row kind")
 		}
 		index = 3
 		post = 0x771c
-		value = row.Monthly
+		value = uint16(row.Monthly)
 	default:
 		return fail("unknown data operation")
 	}

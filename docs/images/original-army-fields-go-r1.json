@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "output": "original-army-fields-go-r1.png",
+  "output_sha256": "31db6227a27434aa1ec491d7ebc34856e9fa850bcd6ac6d325c965952be05503",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-fields-r1/gui-r1/warm/frame-001-army-noto.png",
+      "sha256": "582297f23eaf1dbd1f3319868958e64b54ec3390f9da5c868a7763fb12a01fa9",
+      "font": "noto",
+      "metadata_path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-fields-r1/gui-r1/warm/f2-noto.json",
+      "metadata_sha256": "4c9c9f0ca29620de4aadab06dc2b7ce85646e8ff6c74e9b26fbca15ba65c2801"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-fields-r1/gui-r1/warm/frame-003-dismiss-lishu.png",
+      "sha256": "e1db10ddfa13185365f16ea129e48363c950a65a4c64680e0f7bbbd5e0e67976",
+      "font": "lishu",
+      "metadata_path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-fields-r1/gui-r1/warm/f3-wolf-lishu.json",
+      "metadata_sha256": "90b0cd9edd8f7e1755c7d9d592cf57dbe866c26e41e99b5cb3e13263e1cb3d08"
+    }
+  ],
+  "audit_sha256": "4c1ccbcb02a552ec408d79fe14c287a33f559dfab8d9abda3b70b3078021800f",
+  "clock_initial": "12:00:00.00 via Oracle.SetClock; live 3000 cycles/ms",
+  "rng_comparison": "No random outcome compared",
+  "controlled_army": true,
+  "actual_window_verified": true,
+  "original_art_parity_claimed": false
+}

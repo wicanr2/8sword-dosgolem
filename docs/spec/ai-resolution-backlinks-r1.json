@@ -548,5 +548,43 @@
       "scope": "36 isolated original helper calls; 12 read-only pairs and four controlled AX changes; no natural battle claim",
       "not_closed": "Normal player attack/ranged caller, full battle losses, rule-mode lifecycle, toolbar integration and save marker remain DRAFT."
     }
+  ],
+  "army_presentation_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:75FD",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0110:75FD",
+      "original_name": "sub_175C6",
+      "level": "proven-in-sampled-scope",
+      "semantic": "HD Go fields bypass original image/name/stat tables before indexing.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ARMY-HOST-FIELDS-20261102",
+      "receipt": "preserved/original-army-fields-audit-r1.json",
+      "scope": "Original-layout HD reserved fields and sampled original keyboard lifecycle; extended units have no original graphical oracle.",
+      "not_closed": "Native-mode extended art, original recruiting quantity input, battlefield bridge and ordinary owned-player entry.",
+      "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
+      "unaffected_reason": "Original source-scene commit boundaries retained."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:775A",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0110:775A",
+      "original_name": "sub_1775A",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Original direction-key navigation and Go-owned extended-unit dismissal with original-layout HD fields.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ARMY-HOST-FIELDS-20261102",
+      "receipt": "preserved/original-army-fields-audit-r1.json",
+      "scope": "Original-layout HD reserved fields and sampled original keyboard lifecycle; extended units have no original graphical oracle.",
+      "not_closed": "Native-mode extended art, original recruiting quantity input, battlefield bridge and ordinary owned-player entry.",
+      "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
+      "unaffected_reason": "Original source-scene commit boundaries retained."
+    }
   ]
 }

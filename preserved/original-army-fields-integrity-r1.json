@@ -1,0 +1,20 @@
+{
+  "status": "passed-original-layout-HD-fields-integrity",
+  "archived_files": 803,
+  "source_files": 274,
+  "baseline": "197 sources, seven programs, 923 core and 535 assets unchanged by SHA",
+  "markdown_links": 3206,
+  "resolution_backlinks": 2,
+  "artwork_index_positive_control": true,
+  "ownership": "1000:1000",
+  "root_owned_or_md_directories": [],
+  "cleanup": {
+    "cache_files": 1736,
+    "cache_logical_bytes": 161964922,
+    "archived_copies": 92,
+    "archived_copy_logical_bytes": 19004212,
+    "scope": "workplace/probe-20261023/graphics-first/battle-r1/original-army-fields-r1"
+  },
+  "native_extended_rejected": true,
+  "production_entry_remains_disabled": true
+}

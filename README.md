@@ -22,7 +22,11 @@ F2已在隔離候選接上原兵種的Go資料，保留原版部隊圖、兵種�
 
 ![原版F3與HD F3保留原版操作，由Go解雇與保存](docs/images/original-army-dismiss-go-r1.png)
 
-F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回。上圖解雇31民兵後留下1矮人；原影子仍為30民兵。原版／HD畫面、長按Enter、空軍隊、Noto／隸書及重新開啟進度已抽驗。新增兵種呈現、募兵與完整玩家入口仍待接；目前限原25種兵種，見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)與[圖片來源](docs/images/original-army-dismiss-go-r1.json)。
+F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回。上圖解雇31民兵後留下1矮人；原影子仍為30民兵。原版／HD畫面、長按Enter、空軍隊、Noto／隸書及重新開啟進度已抽驗。這組原25種抽驗見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)與[圖片來源](docs/images/original-army-dismiss-go-r1.json)。
+
+![新增兵種接入原版兩欄三列的HD軍隊頁與解雇頁](docs/images/original-army-fields-go-r1.png)
+
+八種新增兵種也已接入隔離HD候選的F2／F3，使用原版欄位、方向鍵與選取標示。圖中為六隊明示測試配置；左側檢閱，右側以隸書選取野狼。名稱、兵數、月薪及既有HD圖由Go提供，新增ID不進原25種索引。取消、解雇、三字型與冷讀已抽驗。募兵、原版戰場與完整玩家入口仍待接，原版模式尚不接受新增兵種。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)與[圖片來源](docs/images/original-army-fields-go-r1.json)。
 
 ## 戰場與Go後端
 

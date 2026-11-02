@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 新增兵種的原版式HD軍隊欄位保存
+
+本批803檔／413去重物件，壓縮58997225 bytes，已完成脫離workplace的逐SHA／大小核對。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)接回八種新增兵種的原版式HD軍隊欄位。兩欄三列、方向鍵、Enter解雇與Esc保持；Go在原查表前略過新增行，填既有HD圖、種類、數量及月薪。六隊混合軍隊、取消、解雇及冷讀、六張三字型實際視窗、欄位外像素保持與原兵種回歸通過。原版模式新增兵種仍拒絕，一般Go入口仍停止。
+
+入口為[欄位呈現](../internal/ownedworld/original_army_fields.go)、[抽驗](../internal/ownedworld/original_army_fields_test.go)、[準備／核對／保存器](../tools/original-army-fields.py)、[視窗工具](../tools/check-original-army-fields-gui.py)、[核對](original-army-fields-audit-r1.json)、[逐檔清單](original-army-fields-r1.json)、[脫離workplace核對](original-army-fields-verification-r1.json)及[收尾核對](original-army-fields-integrity-r1.json)。完整274項候選來源、程式、固定輸入、既有八種圖、字圖、成對進度、原PNG／X11及失敗前版留本機`preserved/original-army-fields-r1/`。原版資料、完整程式及美術不進Git，縮小成果與[來源](../docs/images/original-army-fields-go-r1.json)留私人倉庫。
+
+固定Pillow11.3.0 r2容器掛專案唯讀`/project`及保存目錄可寫`/archive`，執行`original-army-fields.py archive --project /project --archive /archive --out /archive/original-army-fields-r1.json`。核對用`verify --archive /archive --out /out/新核對.json`，不掛workplace。其他動作用法見工具；Go1.24.13命令、映像、UID1000、network none與配額保存於`execution-r1.json`。GUI的`--resume-cold`只補已完成暖程序的冷讀，不重做交易；每張來源及X11仍獨立核對。HD初始化時間上限、測試配置與回呼／呈現檢查前版均保留。
+
+軍隊、tactics與領導力30000是受控配置，原影子30民兵；最大數字只作離線欄位模型。研究GUI只略過一般啟動護欄，沒有GUI RAM／IP注入；不宣稱自然招募、新兵原圖parity、世界資源上限改變或完整戰場完成。
+
 ## 原版F3與Go解雇交易保存
 
 本批864檔／383去重物件，壓縮46169784 bytes，脫離workplace逐SHA／大小核對通過。完整來源與最新成果保留，快取及已保存舊副本依收尾核對清理。

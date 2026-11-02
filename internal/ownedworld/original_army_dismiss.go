@@ -97,7 +97,7 @@ func installOriginalArmyDismiss(e *game.Engine, p *worldArmyPort, v *originalArm
 		if err != nil {
 			fail(err)
 		}
-		rows, err := originalReviewRows(p.Store.Catalog, s.World)
+		rows, err := v.rows(s.World)
 		if err != nil {
 			fail(err)
 		}
@@ -192,7 +192,7 @@ func installOriginalArmyDismiss(e *game.Engine, p *worldArmyPort, v *originalArm
 		if err := d.frame(m); err != nil {
 			return false, err
 		}
-		if v.Rows[0].Kind != 0 || m.CPU.R[dg.AX] == 0x011b {
+		if v.Rows[0].occupied() || m.CPU.R[dg.AX] == 0x011b {
 			return false, nil
 		}
 		// After dismissing the last stack the original selection may be -1.
@@ -226,7 +226,8 @@ func (d *originalArmyDismiss) supply(m *dg.Machine, ip uint16) (bool, error) {
 	if c.IP != ip || c.R[dg.BX]%4 != 0 || c.R[dg.BX] > 20 {
 		return false, errors.New("original F3 slot operand")
 	}
-	value := d.View.Rows[c.R[dg.BX]/4].Kind
+	row := d.View.Rows[c.R[dg.BX]/4]
+	value := row.Kind
 	cmp := containsIP(originalDismissComparisons, ip)
 	if !cmp && !containsIP(originalDismissMoves, ip) {
 		return false, errors.New("original F3 unknown read")
@@ -234,10 +235,28 @@ func (d *originalArmyDismiss) supply(m *dg.Machine, ip uint16) (bool, error) {
 	post := ip + 4
 	var flags uint16
 	if cmp {
+		if row.Host && row.occupied() {
+			value = 1
+		} // Presence only; never a native kind/index.
 		post = ip + 5
 		c.Flags = originalKindZeroFlags(c.Flags, value)
 		flags = c.Flags & 0x8d5
 	} else {
+		if row.Host {
+			if d.View.Fields == nil || !d.View.Engine.HD {
+				return false, errors.New("F3 host fields unavailable")
+			}
+			post = originalDismissNameEnds[ip]
+			if post == 0 {
+				return false, errors.New("F3 unknown name span")
+			}
+			d.View.Fields.SkippedNames++
+			d.BP = c.R[dg.BP]
+			d.LastPost = post
+			c.IP = post
+			c.Cycles++
+			return true, nil
+		}
 		c.R[dg.AX] = value
 	}
 	d.BP = c.R[dg.BP]
@@ -299,7 +318,7 @@ func (d *originalArmyDismiss) commit(m *dg.Machine) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	rows, err := originalReviewRows(v.Port.Store.Catalog, next)
+	rows, err := v.rows(next)
 	if err != nil {
 		return false, err
 	}
@@ -337,7 +356,7 @@ func (d *originalArmyDismiss) State() map[string]any {
 	if d.active() && d.BP >= 16 {
 		col := d.View.Engine.Oracle.Word(oracle.Far(0x1e88, d.BP-4))
 		row := d.View.Engine.Oracle.Word(oracle.Far(0x1e88, d.BP-6))
-		if col < 2 && row < 3 && d.View.Rows[col*3+row].Kind != 0 {
+		if col < 2 && row < 3 && d.View.Rows[col*3+row].occupied() {
 			selected = int(col*3 + row)
 		}
 	}
