@@ -2797,3 +2797,5 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 本批永久保存803檔／413去重物件，壓縮58997225 bytes；不掛workplace逐SHA／大小核對通過。完整來源、程式、圖像、字圖、固定輸入、進度、截圖與失敗均已保全。收尾核對、快取與Git／Docker狀態以下列追加為準。
 
 [收尾核對](preserved/original-army-fields-integrity-r1.json)通過803工作複本、274來源、3206條相對連結／錨點及兩筆回填護欄，美術入口正對照與UID/GID1000通過，無root-owned或異常.md目錄。只刪本輪1736份Go快取、161964922邏輯bytes與逐SHA已保存的92份較早副本、19004212邏輯bytes；最新來源、程式、輸入、進度及完整成果保留。沒有新映像或全域清理，其它專案資源未觸及。Git與Docker最終狀態以下列推送為準。
+
+主提交0d1f2f25334eb85ff2eb43ff06c4e48daba3592f已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，Docker按掛載來源查無本案執行中或已停止容器。此行另作文件收尾提交，不改程式、保存與限定驗收範圍。
