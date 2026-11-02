@@ -71,6 +71,7 @@ type worldArmyPortFault struct{ Reason string }
 func (f *worldArmyPortFault) Error() string { return "world army port: " + f.Reason }
 
 type worldArmyPort struct {
+	RecruitQuantity          *originalRecruitQuantity
 	OriginalReview           *originalArmyReview
 	OriginalDismiss          *originalArmyDismiss
 	Store                    *progressPairStore

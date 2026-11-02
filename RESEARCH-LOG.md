@@ -2948,3 +2948,19 @@ GUI初始30民兵、5狼、120猴妖、後排10雙頭鬼，原敵軍頁明示改
 動態已證實：明示31民兵、2野狼與各1火龍／德魯依／洞穴巨人／弓箭手的六隊，原影子仍30民兵。F2、F3原方向鍵、取消、Enter解雇野狼、返回、F2及未F7冷讀通過。以受控初始進度為基準，人物檔與影子24 bytes保持；world只加一次revision並移除／整理選中隊伍。六張Noto／隸書／草書實際X11同提交RGB，欄位外逐像素保持。八種名稱及最大數字為離線欄位模型；未驗自然招募、原版模式新兵圖像或完整戰場。
 
 追加回填`ARMY-HOST-FIELDS-20261102`：030較早「完整六隊／擴充ID與原row接線未知」已按本切片限定閉合，原版模式擴充素材及戰場仍未知。回填列於[既有索引](docs/spec/ai-resolution-backlinks-r1.json)的army_presentation_resolutions；047原場景提交邊界不受影響。回呼的CS／DS／SS限制不適用任意Frame時點，原getch可合法處於另一程式段，呈現改驗來源及快照綁定。前版誤用與HD初始化的時間上限均保存。[030結果](docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)及[永久保存](preserved/README.md#新增兵種的原版式hd軍隊欄位保存)為完整證據入口。
+
+
+## 2026-11-02：原店數量輸入與Go費用接管
+
+已證實，限原店原25種商品。輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`；原人物檔SHA `84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef`。沿IDA Pro9.4／IDAPython py312-v1映像及資料庫tmp副本，521函式中只匯出sub_14E7E、sub_154EA、sub_15792、sub_17E28，沒有改名或覆寫正式資料庫。工具及完整匯出見[永久保存](preserved/README.md#原店數量輸入與go計算保存)。
+
+下列均明示dosgolem runtime CS:IP，與匯出的IDA MZ線性／檔案偏移分列，不混為同一位址：
+
+- `0110:4E7E..50E1`是四位數編輯器。DS:8DBC為字串，輸入frame BP-2為長度、BP-8為最後鍵；數字分支在長度4略過第五字。Backspace `0E08h`與Left `4B00h`共用4F06刪字分支。Enter走___catox後50E1 RETF，Esc回AX0於50C9 RETF；兩個RETF時BP已回到父frame，SP仍為輸入入口SP。
+- 原店caller5683傳兩word座標，x為父BP-4加32、y167。5523..55EF為階級、六隊容量、金錢與領導量；5689..56EB為回傳數量、庫存與單價乘算，既有Go提交56EC在後。Go於前兩處接管算術，原數字編輯及原錯誤分支保持。
+- 領導量最大顯示為剩餘領導力除Command，不夾到金錢或庫存。Go混合軍隊30民兵與2野狼用量36，控制原軍隊36民兵，以相同顯示量核對完整HD畫面；不宣稱兩側軍隊或完整state同值。
+- native:20飛龍Gold12、Command5由固定catalog與原表沿已驗來源。16位元乘算只保留低word，6000×12的低word6464、真實值72000；Go保留72000並拒絕扣款。此為安全算式差異與受控掛點驗證，沒有本輪原版整店溢位動態oracle。
+
+IDA MZ載入器在segment重定位word加1000h，38處指令bytes與原檔未重定位值不同，例如__chkstk的segment。獨立核對先按MZ relocation table處理，再按逐指令file_offset驗bytes；dosgolem runtime另按0110重定位，不拿兩種段值直接比較。完整原定位及bytes保留，推論等級為上述已證實抽驗範圍，不由Go能跑反推所有原版語意。
+
+前端只轉送1／2／3是實窗證實的接線缺口，補齊0至9及Backspace後原編輯器正常處理9999。原版保存只允許金錢word檔案偏移6／7與本店庫存126／127改動，軍隊[12,36)保持。Go world與原影子成對保存，獨立冷讀確認一次交易。

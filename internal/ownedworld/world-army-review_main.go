@@ -89,7 +89,9 @@ var reviewKeys = []struct {
 	Key  ebiten.Key
 	Scan byte
 }{
-	{ebiten.KeyDigit1, 2}, {ebiten.KeyDigit2, 3}, {ebiten.KeyDigit3, 4}, {ebiten.KeyEnter, 0x1c}, {ebiten.KeyEscape, 1}, {ebiten.KeySpace, 0x39},
+	{ebiten.KeyDigit1, 2}, {ebiten.KeyDigit2, 3}, {ebiten.KeyDigit3, 4}, {ebiten.KeyDigit4, 5}, {ebiten.KeyDigit5, 6},
+	{ebiten.KeyDigit6, 7}, {ebiten.KeyDigit7, 8}, {ebiten.KeyDigit8, 9}, {ebiten.KeyDigit9, 10}, {ebiten.KeyDigit0, 11},
+	{ebiten.KeyBackspace, 0x0e}, {ebiten.KeyEnter, 0x1c}, {ebiten.KeyEscape, 1}, {ebiten.KeySpace, 0x39},
 	{ebiten.KeyArrowLeft, 0x4b}, {ebiten.KeyArrowRight, 0x4d}, {ebiten.KeyArrowUp, 0x48}, {ebiten.KeyArrowDown, 0x50},
 	{ebiten.KeyF1, 0x3b}, {ebiten.KeyF2, 0x3c}, {ebiten.KeyF3, 0x3d}, {ebiten.KeyF4, 0x3e}, {ebiten.KeyF5, 0x3f}, {ebiten.KeyF6, 0x40}, {ebiten.KeyF7, 0x41},
 }
@@ -120,6 +122,9 @@ func (g *armyReviewApp) bind() error {
 			return e
 		}
 		g.Port = p
+		if _, e = installOriginalRecruitQuantity(g.Engine, p); e != nil {
+			return e
+		}
 		g.OriginalReview, e = installOriginalArmyReview(g.Engine, p)
 		if e != nil {
 			return e
@@ -324,6 +329,9 @@ func (g *armyReviewApp) status() map[string]any {
 	if g.Port != nil {
 		state["world"] = g.Port.Current.World
 		state["pair_token"] = g.Port.Current.Token
+		if g.Port.RecruitQuantity != nil {
+			state["original_recruit_quantity"] = g.Port.RecruitQuantity.State()
+		}
 	}
 	if g.Extra != nil {
 		for k, v := range g.Extra.State() {

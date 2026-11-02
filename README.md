@@ -28,6 +28,10 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 八種新增兵種也已接入隔離HD候選的F2／F3，使用原版欄位、方向鍵與選取標示。圖中為六隊明示測試配置；左側檢閱，右側以隸書選取野狼。名稱、兵數、月薪及既有HD圖由Go提供，新增ID不進原25種索引。取消、解雇、三字型與冷讀已抽驗。募兵、原版戰場與完整玩家入口仍待接，原版模式尚不接受新增兵種。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)與[圖片來源](docs/images/original-army-fields-go-r1.json)。
 
+![原店沿用數量輸入與隸書，Go購兵後冷讀軍隊頁](docs/images/original-recruit-quantity-go-r1.png)
+
+原店的原25種商品已接上Go計算，仍使用原版四位數輸入、刪字、Enter／Esc與錯誤提示。金錢、領導用量及六隊容量計入新增兵種，購兵沿成對保存；新增ID不進原種類表。上圖以30民兵與2野狼作明示測試，購1民兵後冷讀為31民兵與2野狼。數字編輯、取消、超量拒絕、購買與Noto／隸書實際視窗已抽驗。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原店數量輸入與go計算限定-conformed)與[圖片來源](docs/images/original-recruit-quantity-go-r1.json)。新增兵種分頁的原數量輸入及原版戰場仍待接，一般Go玩家入口保持停止。
+
 ## 戰場與Go後端
 
 原版模式保留原繪圖途徑；HD模式由Go繪製同一套戰場，使用已批准的HD背景、部隊與法術效果。兩者沿用原版戰鬥選單與按鍵。下圖是既有同狀態比較，擴充兵種尚未接入這套戰場。

@@ -586,5 +586,61 @@
       "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
       "unaffected_reason": "Original source-scene commit boundaries retained."
     }
+  ],
+  "recruit_quantity_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:4E7E",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0110:4E7E",
+      "original_name": "sub_14E7E",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Original four-digit numeric editor and verified far return retained.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "RECRUIT-QUANTITY-GO-20261102",
+      "receipt": "preserved/original-recruit-quantity-audit-r1.json",
+      "scope": "Original 25 products, four-digit editor and Go-owned mixed-army arithmetic; sampled original keyboard route and cold save.",
+      "not_closed": "Reinforcement-page original numeric input, native-mode extended art, battlefield bridge and ordinary owned-player entry.",
+      "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
+      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:5523",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0110:5523",
+      "original_name": "sub_154EA",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go preflight computes native-camp availability using the entire owned army.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "RECRUIT-QUANTITY-GO-20261102",
+      "receipt": "preserved/original-recruit-quantity-audit-r1.json",
+      "scope": "Original 25 products, four-digit editor and Go-owned mixed-army arithmetic; sampled original keyboard route and cold save.",
+      "not_closed": "Reinforcement-page original numeric input, native-mode extended art, battlefield bridge and ordinary owned-player entry.",
+      "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
+      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0110:5689",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0110:5689",
+      "original_name": "sub_154EA",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go validates original editor result with wide price multiplication before single purchase commit.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "RECRUIT-QUANTITY-GO-20261102",
+      "receipt": "preserved/original-recruit-quantity-audit-r1.json",
+      "scope": "Original 25 products, four-digit editor and Go-owned mixed-army arithmetic; sampled original keyboard route and cold save.",
+      "not_closed": "Reinforcement-page original numeric input, native-mode extended art, battlefield bridge and ordinary owned-player entry.",
+      "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
+      "unaffected_reason": "Original input and source-scene rendering retained; host handles quantity arithmetic."
+    }
   ]
 }

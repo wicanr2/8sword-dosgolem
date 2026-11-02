@@ -2799,3 +2799,20 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 [收尾核對](preserved/original-army-fields-integrity-r1.json)通過803工作複本、274來源、3206條相對連結／錨點及兩筆回填護欄，美術入口正對照與UID/GID1000通過，無root-owned或異常.md目錄。只刪本輪1736份Go快取、161964922邏輯bytes與逐SHA已保存的92份較早副本、19004212邏輯bytes；最新來源、程式、輸入、進度及完整成果保留。沒有新映像或全域清理，其它專案資源未觸及。Git與Docker最終狀態以下列推送為準。
 
 主提交0d1f2f25334eb85ff2eb43ff06c4e48daba3592f已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，Docker按掛載來源查無本案執行中或已停止容器。此行另作文件收尾提交，不改程式、保存與限定驗收範圍。
+
+
+## 2026-11-02：原店數量輸入與Go安全計算
+
+開工HEAD `7aea49a016ed8c905ac958ba5ba700db825b4ea9`，工作樹乾淨。路由命中原版GUI還原、規格閘門、IDA9.4、文件職責與證據回鏈；使用復古重製及IDA技能。依使用者已確認的原版管理方式，這輪只接原店原25種商品的原數量輸入與Go計算，新增兵種分頁後續另接。
+
+- 先用唯讀PAM.i64的tmp副本窄查四函式，保留原名、完整bytes、IDA線性與檔案偏移。確認原編輯器四位、Backspace／Left刪字、Enter／Esc返回及原店兩段算式，補READY才實作。Go於5523與5689取得真實混合軍隊資料，沿原錯誤分支與既有56EC成對交易；新增ID不入原25種表，停用接管仍由哨點拒絕。
+- 模型核對25種價格／Command及rank／slot／gold／leadership／stock／source／frame／result拒絕。飛龍6000隻費用72000由Go安全拒絕，2500隻扣30000至0，重複提交拒絕。這是受控邊界，不稱原16位元溢位動態parity。
+- 兩側Continue走原店，七階段共14張完整HD Frame相同。Go30民兵＋2野狼與原版控制36民兵用量同36，並非同軍隊身份。退格、四位、第五位忽略、取消與購1通過，Go31民兵＋2野狼、金499、庫存2999及冷讀world保持；原軍隊24 bytes不改。最終276來源重新建置，兩個正式測試切片全通過。
+- 第一版headless driver未走進原店，改沿已驗F1／Esc路徑，不是產品故障。實窗XTEST不支援BackSpace名稱，沿原Left同分支驗刪字，headless另驗Backspace。接著實窗抓到前端僅轉送1／2／3，修正0至9及Backspace後重建兩程式、完整兩測試及GUI。原版數字編輯器不改。
+- 首批完整GUI暖／冷與保存通過，獨立像素核對發現三圖相差閃爍游標底線；保留前版，driver新增完整RGB同步。第一次同步重試遇XTEST工具拒覆寫，改每次唯一檔名，沒有改遊戲或遮掉差異。失敗與同步重試原圖一併保存，最終結果以下列追加為準。
+
+標準入口仍在進度IO前停止，既有兩檔SHA及scratch未建立均核對；研究GUI只用建置覆蓋移除啟動護欄，沒有GUI RAM／IP注入。原197來源七程式、923核心、535素材、1066永久美術及存檔schema保持。新增兵種分頁的原數量輸入、原版戰場與一般Go入口仍待接。保存、圖片、清理及Git／Docker收尾以下列追加為準。
+
+最終七張Noto／隸書實窗與提交RGB全部相同，游標相位同步保留每次擷取原圖。[獨立核對](preserved/original-recruit-quantity-audit-r1.json)通過657筆IDA指令、25種模型、14張完整控制Frame、七張實際視窗及冷讀；[README成果](docs/images/original-recruit-quantity-go-r1.png)與[來源](docs/images/original-recruit-quantity-go-r1.json)已加入。回填索引新增三筆模組SHA／runtime位址，030舊DRAFT加勘誤，047呈現契約保持；首次回鏈核對要求完整CS:IP，已補明列原定位。
+
+本批永久保存817檔／432去重物件，壓縮113706882 bytes，不掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-recruit-quantity-integrity-r1.json)核對817工作複本、276來源、3236相對連結／錨點與三筆回鏈，UID/GID1000，沒有root-owned或異常.md目錄。只刪本輪1753份Go快取、175134527邏輯bytes及逐SHA已保存的311份舊副本、205993604邏輯bytes；最新來源、程式、進度及完整成果保留。沒有新映像或全域清理。Git與Docker最終狀態以下列推送為準。

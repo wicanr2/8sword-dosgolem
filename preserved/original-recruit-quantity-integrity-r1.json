@@ -1,0 +1,19 @@
+{
+  "status": "passed-original-recruit-quantity-integrity",
+  "archived_files_verified": 817,
+  "source_files": 276,
+  "relative_links_and_anchors": 3236,
+  "positive_control": "README -> artwork/README.md",
+  "resolution_backlinks": 3,
+  "ownership": "UID/GID1000; no root-owned or .md directory in this batch",
+  "baseline_unchanged": "197 source / 7 programs / 923 core / 535 assets",
+  "cleanup": {
+    "cache_files": 1753,
+    "cache_logical_bytes": 175134527,
+    "saved_old_files": 311,
+    "saved_old_logical_bytes": 205993604
+  },
+  "limits": [
+    "No whole-game parity; no public release; ordinary owned entry remains blocked."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "output": "original-recruit-quantity-go-r1.png",
+  "output_sha256": "641f8e1af3c33e4088a29f55b935c1a57b97039c1e9fb09d6c3349cd6420027e",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-recruit-quantity-r1/gui-r1/warm/frame-003-recruit-lishu.png",
+      "sha256": "3a7576b881b8df3e5b70b6509ee4c3d1f9c8ffccd35f1d92ef12641eacd88469",
+      "metadata_path": "workplace/probe-20261023/graphics-first/battle-r1/original-recruit-quantity-r1/gui-r1/warm/shop-input-lishu.json",
+      "metadata_sha256": "0d339bd1991c670a486ed16efc46816c01acc4c68561acdef581f260adea6939"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-recruit-quantity-r1/gui-r1/cold/frame-001-army-lishu.png",
+      "sha256": "bb9b650b2667206f1347c4939e8e3a419c917c067a0a50e8e161138c825199dd",
+      "metadata_path": "workplace/probe-20261023/graphics-first/battle-r1/original-recruit-quantity-r1/gui-r1/cold/cold-f2-lishu.json",
+      "metadata_sha256": "ac9414e3ef87e2210853b72ddaedded20cd2af5e48bcd4666fc9d7f0ca401e9e"
+    }
+  ],
+  "audit_sha256": "12f7929b22c24e2116657249d5510ff40c4e4fbb5b6144746f8f69b032a51a23",
+  "clock_initial": "12:00:00.00 via Oracle.SetClock; live 3000 cycles/ms",
+  "rng_comparison": "No random outcome compared",
+  "controlled_army": true,
+  "actual_window_verified": true,
+  "full_guest_state_parity_claimed": false
+}

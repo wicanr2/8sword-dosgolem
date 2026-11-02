@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 原店數量輸入與Go計算保存
+
+本批817檔／432去重物件，壓縮113706882 bytes，已完成不掛workplace的逐SHA與大小核對。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#原店數量輸入與go計算限定-conformed)保留原四位數輸入、刪字、Enter／Esc及錯誤提示，原25種商品由Go計入六隊容量、全部部隊領導用量、庫存與安全費用。25種模型、七階段共14張原版控制HD畫面、七張Noto／隸書實際視窗、購兵與冷讀通過。測試軍隊30民兵＋2野狼，購1民兵後31民兵、金499、庫存2999；原影子軍隊保持。一般Go入口仍停止，新增兵種分頁的原數量輸入與原版戰場仍待接。
+
+入口為[數量接管](../internal/ownedworld/original_recruit_quantity.go)、[抽驗](../internal/ownedworld/original_recruit_quantity_test.go)、[準備／核對／保存器](../tools/original-recruit-quantity.py)、[IDA窄匯出](../tools/export-original-recruit-quantity-ida.py)、[視窗工具](../tools/check-original-recruit-quantity-gui.py)、[核對](original-recruit-quantity-audit-r1.json)、[逐檔清單](original-recruit-quantity-r1.json)、[脫離workplace核對](original-recruit-quantity-verification-r1.json)與[收尾核對](original-recruit-quantity-integrity-r1.json)。完整276項候選來源、程式、固定輸入、IDA原名／bytes／檔案偏移、成對進度、PNG／X11及失敗前版保存在本機`preserved/original-recruit-quantity-r1/`，不進Git。縮小成果與[來源](../docs/images/original-recruit-quantity-go-r1.json)留私人倉庫。
+
+在固定Pillow11.3.0 r2容器掛專案唯讀`/project`及保存目錄可寫`/archive`，執行`original-recruit-quantity.py archive --project /project --archive /archive --out /archive/original-recruit-quantity-r1.json`。核對用`verify --archive /archive --out /out/新核對.json`，不掛workplace。其他動作用法見工具；Go1.24.13與IDA9.4命令、映像、UID1000、network none與配額保存於`execution-r1.json`。GUI暖／冷程序分批，`--cold-only`僅續接已完成暖程序。游標同步要求完整RGB相同，不裁切或遮掉游標。
+
+原版控制36民兵與Go30民兵＋2野狼領導用量相同，軍隊身份不同，不稱完整客體state parity。72000費用安全拒絕僅作模型及受控掛點驗證，不宣稱原版溢位動態parity。研究GUI只移除啟動護欄，沒有GUI RAM／IP注入。完整失敗與診斷在保存後才清理工作副本。
+
 ## 新增兵種的原版式HD軍隊欄位保存
 
 本批803檔／413去重物件，壓縮58997225 bytes，已完成脫離workplace的逐SHA／大小核對。

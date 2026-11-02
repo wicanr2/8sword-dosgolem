@@ -1,0 +1,15 @@
+{
+  "status": "passed-original-recruit-quantity-audit",
+  "source_files": 276,
+  "ida_functions": 4,
+  "source_instructions": 657,
+  "model_profiles": 25,
+  "control_frames": 14,
+  "gui_frames": 7,
+  "four_digit_editor_preserved": true,
+  "true_cost": 72000,
+  "native_low_word": 6464,
+  "controlled_army": true,
+  "full_guest_state_parity_claimed": false,
+  "production_entry_remains_disabled": true
+}
