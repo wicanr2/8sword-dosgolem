@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 原版F2與Go資料接線保存
+
+本批762檔／388去重物件，壓縮82876110 bytes，已完成脫離workplace核對。[收尾核對](original-army-review-integrity-r1.json)另驗來源、連結與擁有權。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#f2原版兵種資料接線限定-conformed)完成原兵種F2：Go資料與月薪計算，原row、圖像、欄位與按鍵等待返回。原版及HD完整Frame對照、兩次檢閱、Go兩檔與影子表保持通過；實際XTEST的Noto、隸書與返回三張RGB同Go提交。新增兵種、F3與一般Go玩家入口仍未開放。
+
+入口為[資料介接](../internal/ownedworld/original_army_review.go)、[抽驗](../internal/ownedworld/original_army_review_test.go)、[候選／核對／保存器](../tools/original-army-review.py)、[視窗工具](../tools/check-original-army-review-gui.py)、[核對](original-army-review-audit-r1.json)、[25種月薪表核對](original-army-review-monthly-table-r1.json)、[逐檔清單](original-army-review-r1.json)及[脫離workplace核對](original-army-review-verification-r1.json)。完整來源、270項建置清單、測試／正式護欄／研究GUI程式、固定輸入、成對進度、PNG／X11、字圖與前版失敗保存在本機`preserved/original-army-review-r1/`，原版資料及完整程式不進Git。縮小成果及[來源](../docs/images/original-army-go-data-r1.json)留私人倉庫。
+
+早期Active／3ED5擷取仍是held map，該HD等圖結果不作F2證據；最終r3只認844C／ret3ED8提交。舊卡片護欄及字型偏好診斷另存。研究GUI只移除一般啟動護欄，軍隊為明示fixture，沒有GUI修改RAM／IP，不把這個程式作玩家入口。標準建置仍拒絕啟動且保留進度。
+
+在固定Pillow11.3.0 r2容器以專案唯讀`/project`、保存目錄可寫`/archive`，執行`original-army-review.py archive --project /project --archive /archive --out /archive/original-army-review-r1.json`。`verify --archive /archive --out /out/新核對.json`不用workplace。`prepare|freeze|gui|audit|publish`用法見工具；Go1.24.13的命令、固定映像、UID1000、network none、掛載及配額保存在本批`execution-r1.json`，不全域清理其他專案。
+
 ## 原版戰場契約與卡片入口撤回保存
 
 使用者已指定原版與原版HD戰場。較早卡片戰鬥的來源、畫面與收據留作後端研究，不再作玩家介面驗收。[030定案與橋接DRAFT](../docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)是現行入口。

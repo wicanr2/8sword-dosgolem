@@ -16,9 +16,9 @@
 
 F2軍隊檢閱、F3解雇與營地募兵沿用原版管理方式。原版與HD維持相同版面、選隊、數量輸入、Enter／Esc及返回流程；Go在後端提供六隊資料，處理兵數、月薪、領導用量、扣款、庫存與保存。原店＋可選增援分頁的既有方案保持。
 
-![既有原版與HD軍隊頁的同狀態對照](docs/images/army-man21-original-hd-r1.png)
+![原版與HD的原版式軍隊頁，資料由Go提供](docs/images/original-army-go-data-r1.png)
 
-上圖是既有原版部隊的正常玩家路徑。Go完整軍隊接回原版管理介面仍待完成，先前獨立卡片管理頁只留研究；範圍見[管理契約](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)。
+F2已在隔離候選接上原兵種的Go資料，保留原版部隊圖、兵種、數量與月薪欄位。圖中Go軍隊為31民兵＋1矮人，原版影子仍是30民兵；這是明示測試配置。原版／HD完整畫面、實際HD視窗、返回及重進已抽驗，進度保持。新增兵種呈現、F3與完整玩家入口仍待接；範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#f2原版兵種資料接線限定-conformed)與[圖片來源](docs/images/original-army-go-data-r1.json)。
 
 ## 戰場與Go後端
 
@@ -313,9 +313,9 @@ END7的[構圖比較](docs/images/ending-corrected-candidate-r2.png)與[完整�
 
 ### 軍隊頁
 
-民兵、矮人的同狀態軍隊頁對照見[部隊管理與Go資料](#部隊管理與go資料)。
+較早正常續玩的民兵、矮人原版／HD軍隊頁見[原圖](docs/images/army-man21-original-hd-r1.png)。
 
-正常招募後，民兵與矮人的軍隊頁都使用 HD 圖像與 Noto 文字。矮人共用既有戰場手繪圖，在軍隊頁轉為右向；F2、F3 的三字型、取消返回與真正存退讀均已驗證。上圖來自正常續玩的相同原版狀態，視窗另有獨立驗收；[範圍與證據](docs/spec/041-army-man21-image.md)、[圖像紀錄](docs/images/army-man21-original-hd-r1.json)及[重生工具](tools/prepare-readme-army21-overview.py)可回查。其他兵種的完整素材與抽驗範圍見上方25組總覽。
+正常招募後，民兵與矮人的軍隊頁都使用 HD 圖像與 Noto 文字。矮人共用既有戰場手繪圖，在軍隊頁轉為右向；F2、F3 的三字型、取消返回與真正存退讀均已驗證。該圖來自正常續玩的相同原版狀態，視窗另有獨立驗收；[範圍與證據](docs/spec/041-army-man21-image.md)、[圖像紀錄](docs/images/army-man21-original-hd-r1.json)及[重生工具](tools/prepare-readme-army21-overview.py)可回查。其他兵種的完整素材與抽驗範圍見上方25組總覽。
 
 ### 地圖城堡
 

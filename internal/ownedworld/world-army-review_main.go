@@ -68,6 +68,7 @@ type armyReviewApp struct {
 	Snapshot                                                                   progressPairSnapshot
 	Port                                                                       *worldArmyPort
 	Review                                                                     *armyReview
+	OriginalReview                                                             *originalArmyReview
 	Fonts                                                                      *armyUIFonts
 	Owned                                                                      bool
 	Bound                                                                      bool
@@ -119,7 +120,7 @@ func (g *armyReviewApp) bind() error {
 			return e
 		}
 		g.Port = p
-		g.Review, e = installArmyReview(g.Engine, p)
+		g.OriginalReview, e = installOriginalArmyReview(g.Engine, p)
 		if e != nil {
 			return e
 		}
@@ -136,6 +137,9 @@ func (g *armyReviewApp) bind() error {
 	return nil
 }
 func (g *armyReviewApp) view() string {
+	if g.OriginalReview != nil && g.OriginalReview.Active && g.OriginalReview.Ready {
+		return "army"
+	}
 	if reinforcementCurrent != nil && reinforcementCurrent.Port.ShopOpen {
 		if reinforcementCurrent.Active {
 			return "reinforcements"
@@ -329,6 +333,14 @@ func (g *armyReviewApp) status() map[string]any {
 		state["review_native_entries"] = g.Review.NativeEntries
 		state["review_data"] = g.Review.Data
 	}
+	if g.OriginalReview != nil {
+		state["original_review_active"] = g.OriginalReview.Active
+		state["original_review_ready"] = g.OriginalReview.Ready
+		state["original_review_opens"] = g.OriginalReview.Opens
+		state["original_review_closes"] = g.OriginalReview.Closes
+		state["original_review_operations"] = g.OriginalReview.Reads
+		state["original_review_rows"] = g.OriginalReview.Rows
+	}
 	if recruitIconsCurrent != nil {
 		state["recruit_icons"] = recruitIconsCurrent.state()
 	}
@@ -453,7 +465,7 @@ func runArmyReview() error {
 			return
 		}
 		g.NativeDrawCalls++
-		if g.Owned && (!g.Bound || g.Review == nil || !g.Review.Active) {
+		if g.Owned && (!g.Bound || g.OriginalReview == nil || !g.OriginalReview.Active) {
 			panic(&worldArmyPortFault{"army review not bound before native draw"})
 		}
 	})

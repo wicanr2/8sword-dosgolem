@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "output": "original-army-go-data-r1.png",
+  "output_sha256": "4cb524fc3e340c2ae65ac0ba273ca03ba1e09941f72674cab47228f6b59890cf",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-review-r1/runtime-hd-false/side-1.png",
+      "sha256": "ed99762aaf8f6bf00e2b47dd99800c4204dc6247e319f7f32ebcdc9537206d03"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-army-review-r1/gui-r1/frame-001-army-noto.png",
+      "sha256": "56dea8568757713815e0ae3ea766dbc9305200773cc16d6ca60f92c7dd0e8f21"
+    }
+  ],
+  "audit_sha256": "a78d6ef55dfd55407783d5004604fa192e3d8a807a348b617136320b2a350009",
+  "controlled_army": true,
+  "hd_actual_window_verified": true,
+  "extended_kind_presentation": false,
+  "original_clock_parity_claimed": false,
+  "clock_initial": "12:00:00.00 via Oracle.SetClock",
+  "native_save_sha256": "84fb0c8f5e4645954160eea8de45d030d7efd632cdb3dafa896f7c4e9c626eef",
+  "comparison": "Original/HD presentation of equivalent Go army data; each mode separately matched its original control frame",
+  "full_guest_state_parity_claimed": false
+}

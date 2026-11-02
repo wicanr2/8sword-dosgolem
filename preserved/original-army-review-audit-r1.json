@@ -1,0 +1,114 @@
+{
+  "status": "passed-original-F2-Go-data-audit",
+  "source_files": 270,
+  "runtime": [
+    {
+      "controlled_army": true,
+      "data_operations": [
+        6,
+        2,
+        2,
+        2
+      ],
+      "frame_sha256": "5927b7aad6ccbbb955d2160f94fba55f9c66b192663c04ad39584d12a76275fe",
+      "full_frame_equal": true,
+      "go_closes": 2,
+      "go_opens": 2,
+      "go_rows": [
+        {
+          "unit": "native:01",
+          "count": 31
+        },
+        {
+          "unit": "native:21",
+          "count": 1
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "hd": false,
+      "native_shadow_hex": "01001e000000000000000000000000000000000000000000",
+      "normal_keyboard_path": true,
+      "save_pair_unchanged": true,
+      "stale_and_source_rejected": true,
+      "wait_boundary": "0110:844C/return-3ED8"
+    },
+    {
+      "controlled_army": true,
+      "data_operations": [
+        6,
+        2,
+        2,
+        2
+      ],
+      "disabled_data_hook_refused": "world army port: original F2: Go data operation did not commit",
+      "frame_sha256": "c695fb825793682544546baf2798c1c3a89c54dae198a8386c2bbdcc48770a7d",
+      "full_frame_equal": true,
+      "go_closes": 2,
+      "go_opens": 2,
+      "go_rows": [
+        {
+          "unit": "native:01",
+          "count": 31
+        },
+        {
+          "unit": "native:21",
+          "count": 1
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "hd": true,
+      "native_shadow_hex": "01001e000000000000000000000000000000000000000000",
+      "normal_keyboard_path": true,
+      "save_pair_unchanged": true,
+      "stale_and_source_rejected": true,
+      "wait_boundary": "0110:844C/return-3ED8"
+    }
+  ],
+  "gui": [
+    {
+      "name": "original-f2-go-noto",
+      "rgba_sha256": "c695fb825793682544546baf2798c1c3a89c54dae198a8386c2bbdcc48770a7d"
+    },
+    {
+      "name": "original-f2-go-lishu",
+      "rgba_sha256": "f4885fa6c9becdb9f419b5df44877c2e1ce66125a18f191bd061c85c9eb268fd"
+    },
+    {
+      "name": "returned-map",
+      "rgba_sha256": "47eee64db22529985f07a080ceceb2d89bac748616490cc8936920e8f6dbefbc"
+    }
+  ],
+  "production_entry_remains_disabled": true,
+  "extended_kind_presentation": false,
+  "original_clock_parity_claimed": false
+}

@@ -1,0 +1,185 @@
+{
+  "status": "passed-fixed-PAM-monthly-table-catalog",
+  "grade": "已證實：固定來源25個word與catalog相同；不是25兵種動態GUI驗收",
+  "source_pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+  "catalog_sha256": "21902471f97d7c545db15a51905067bdbe3b8cfb2f9623a936eba862f273e2da",
+  "tools": "Python 3.13 / struct in fixed Pillow11.3.0-r2 Docker",
+  "address_basis": "PAM.AY file offsets; MZ header + (runtime DS 1E88h - load 0110h)*16 + original operand 2986h + 2*kind",
+  "rows": [
+    {
+      "kind": 1,
+      "file_offset": 136568,
+      "source_word": 1,
+      "catalog_gold": 1,
+      "command": 1
+    },
+    {
+      "kind": 2,
+      "file_offset": 136570,
+      "source_word": 3,
+      "catalog_gold": 3,
+      "command": 2
+    },
+    {
+      "kind": 3,
+      "file_offset": 136572,
+      "source_word": 6,
+      "catalog_gold": 6,
+      "command": 3
+    },
+    {
+      "kind": 4,
+      "file_offset": 136574,
+      "source_word": 7,
+      "catalog_gold": 7,
+      "command": 4
+    },
+    {
+      "kind": 5,
+      "file_offset": 136576,
+      "source_word": 10,
+      "catalog_gold": 10,
+      "command": 5
+    },
+    {
+      "kind": 6,
+      "file_offset": 136578,
+      "source_word": 2,
+      "catalog_gold": 2,
+      "command": 1
+    },
+    {
+      "kind": 7,
+      "file_offset": 136580,
+      "source_word": 3,
+      "catalog_gold": 3,
+      "command": 2
+    },
+    {
+      "kind": 8,
+      "file_offset": 136582,
+      "source_word": 5,
+      "catalog_gold": 5,
+      "command": 3
+    },
+    {
+      "kind": 9,
+      "file_offset": 136584,
+      "source_word": 7,
+      "catalog_gold": 7,
+      "command": 4
+    },
+    {
+      "kind": 10,
+      "file_offset": 136586,
+      "source_word": 10,
+      "catalog_gold": 10,
+      "command": 5
+    },
+    {
+      "kind": 11,
+      "file_offset": 136588,
+      "source_word": 2,
+      "catalog_gold": 2,
+      "command": 1
+    },
+    {
+      "kind": 12,
+      "file_offset": 136590,
+      "source_word": 3,
+      "catalog_gold": 3,
+      "command": 2
+    },
+    {
+      "kind": 13,
+      "file_offset": 136592,
+      "source_word": 5,
+      "catalog_gold": 5,
+      "command": 3
+    },
+    {
+      "kind": 14,
+      "file_offset": 136594,
+      "source_word": 7,
+      "catalog_gold": 7,
+      "command": 4
+    },
+    {
+      "kind": 15,
+      "file_offset": 136596,
+      "source_word": 10,
+      "catalog_gold": 10,
+      "command": 5
+    },
+    {
+      "kind": 16,
+      "file_offset": 136598,
+      "source_word": 1,
+      "catalog_gold": 1,
+      "command": 1
+    },
+    {
+      "kind": 17,
+      "file_offset": 136600,
+      "source_word": 3,
+      "catalog_gold": 3,
+      "command": 2
+    },
+    {
+      "kind": 18,
+      "file_offset": 136602,
+      "source_word": 6,
+      "catalog_gold": 6,
+      "command": 3
+    },
+    {
+      "kind": 19,
+      "file_offset": 136604,
+      "source_word": 8,
+      "catalog_gold": 8,
+      "command": 4
+    },
+    {
+      "kind": 20,
+      "file_offset": 136606,
+      "source_word": 12,
+      "catalog_gold": 12,
+      "command": 5
+    },
+    {
+      "kind": 21,
+      "file_offset": 136608,
+      "source_word": 1,
+      "catalog_gold": 1,
+      "command": 1
+    },
+    {
+      "kind": 22,
+      "file_offset": 136610,
+      "source_word": 3,
+      "catalog_gold": 3,
+      "command": 2
+    },
+    {
+      "kind": 23,
+      "file_offset": 136612,
+      "source_word": 5,
+      "catalog_gold": 5,
+      "command": 3
+    },
+    {
+      "kind": 24,
+      "file_offset": 136614,
+      "source_word": 7,
+      "catalog_gold": 7,
+      "command": 4
+    },
+    {
+      "kind": 25,
+      "file_offset": 136616,
+      "source_word": 10,
+      "catalog_gold": 10,
+      "command": 5
+    }
+  ]
+}

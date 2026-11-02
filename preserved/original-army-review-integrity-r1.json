@@ -1,0 +1,19 @@
+{
+  "status": "passed-original-F2-Go-data-integrity",
+  "archived_files": 762,
+  "source_files": 270,
+  "baseline": "197 sources, seven programs, 923 core and 535 assets unchanged by SHA",
+  "markdown_links": 3137,
+  "artwork_index_positive_control": true,
+  "ownership": "1000:1000",
+  "root_owned_or_md_directories": [],
+  "cleanup": {
+    "cache_files": 1767,
+    "cache_logical_bytes": 175410383,
+    "archived_copies": 302,
+    "archived_copy_logical_bytes": 118336779,
+    "scope": "workplace/probe-20261023/graphics-first/battle-r1/original-army-review-r1"
+  },
+  "extended_kind_presentation": false,
+  "production_entry_remains_disabled": true
+}
