@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-02使用者追加定案：F2檢閱、F3解雇及營地募兵均沿原版管理方式，Go負責六隊資料、兵力、用量／月薪、招募與解雇交易及保存。原版／HD保留同一套版面、方向鍵、Enter／Esc及返回流程，不另做卡片管理頁；原店＋增援分頁的既有A案保持。依[030管理契約](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)，接入優先順序為F2、F3、募兵及原版戰場。現有管理卡片與戰鬥卡片只留歷史研究；一般Go入口繼續停止，原版cmd/8sword保持。接線尚DRAFT，不把定案或既有後端測試當成原版UI已接入。
+
 2026-11-02使用者明確更正戰場方向：只採原版與原版HD戰場，保留原版配置、選單、按鍵、出手演出與回合流程。Go接管後端，不另做卡片戰鬥模式。依[030定案](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)，卡片玩家入口與README展示已撤回，`cmd/8sword-owned`普通啟動於讀寫前拒絕，僅保留`-import-only`；啟動器`run`亦先停。既有進度與後端成果保留，原`cmd/8sword`及原版／HD繪圖路徑保持。[原版戰場橋接](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)仍DRAFT，列為下一優先，不冒稱已接入新增兵種。較早卡片GUI及按鈕驗收只作歷史研究，不再作正式玩家呈現或下一步依據；唯一現況見CONTEXT。
 
 2026-11-02接上[Go軍隊命令與原版匯入](docs/spec/030-battle-expansion-proposal.md#命令與原版匯入限定-conformed)。已驗66份adapter移至internal/ownedworld，13層初始化明確保持原序，cmd/8sword-owned可直接建置；原版進度以原資源／原六隊／九圖建立v5，不再依賴預製測試軍隊。入口為[Docker啟動器](tools/owned-player.sh)、[核對](preserved/owned-player-audit-r4.json)及[永久保存](preserved/README.md#go軍隊命令與原版進度匯入保存)。原版隨附進度30民兵、500金、100領導力、戰績0直接匯入，正常募兵得野狼1，金460、庫存74、F7及冷讀保持；另讀前輪真實v5戰中樣本，該舊樣本保留其原測試起始軍隊來源。六張X11同Go提交、十項拒絕、來源偏好地圖及CLI拒絕owned=false通過。268項新命令建置來源含既有197項不改，舊七程式、923核心、535素材、1066美術與預設Engine護欄保持。新入口目前Linux Docker／X11；下一步為原播放器的海報／AI工具列合併、新遊戲直接建立Go進度及其餘特殊分派，完整世界整合待續，沒有Release。

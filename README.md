@@ -12,6 +12,14 @@
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
+## 部隊管理與Go資料
+
+F2軍隊檢閱、F3解雇與營地募兵沿用原版管理方式。原版與HD維持相同版面、選隊、數量輸入、Enter／Esc及返回流程；Go在後端提供六隊資料，處理兵數、月薪、領導用量、扣款、庫存與保存。原店＋可選增援分頁的既有方案保持。
+
+![既有原版與HD軍隊頁的同狀態對照](docs/images/army-man21-original-hd-r1.png)
+
+上圖是既有原版部隊的正常玩家路徑。Go完整軍隊接回原版管理介面仍待完成，先前獨立卡片管理頁只留研究；範圍見[管理契約](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)。
+
 ## 戰場與Go後端
 
 原版模式保留原繪圖途徑；HD模式由Go繪製同一套戰場，使用已批准的HD背景、部隊與法術效果。兩者沿用原版戰鬥選單與按鍵。下圖是既有同狀態比較，擴充兵種尚未接入這套戰場。
@@ -43,11 +51,7 @@ bash tools/owned-player.sh import /絕對路徑/原版存檔 /絕對路徑/新�
 
 ![openKB八種新增單位的來源與HD對照](docs/images/openkb-eight-original-hd-r1.png)
 
-以下兩張是研究候選的軍隊頁，合計顯示全部八種單位。軍隊配置為明示測試資料；這些素材仍會用於後續接入，戰場呈現以原版／原版HD為準。
-
-![HD軍隊候選：弓箭手、槍兵、野狼、骷髏兵、洞穴巨人與德魯依](docs/images/openkb-army-a-hd-r1.png)
-
-![HD軍隊候選：吸血鬼、火龍與原版民兵](docs/images/openkb-army-b-hd-r1.png)
+八種單位已有[舊候選軍隊頁A](docs/images/openkb-army-a-hd-r1.png)與[頁B](docs/images/openkb-army-b-hd-r1.png)的截圖，軍隊為明示測試資料。這兩張保存素材接入證據，管理版面已由上節原版方式定案覆蓋。
 
 完整原圖與生成提示見[永久美術](artwork/README.md#openkb新增單位hd)，畫面來源見[截圖紀錄](docs/images/openkb-game-screenshots-r1.json)。來源縮圖取自openKB free sprites，作者包含driedfruit，逐檔作者與授權見[來源紀錄](docs/images/openkb-eight-original-hd-r1.json)。
 
@@ -309,7 +313,7 @@ END7的[構圖比較](docs/images/ending-corrected-candidate-r2.png)與[完整�
 
 ### 軍隊頁
 
-![相同原版狀態的民兵、矮人與 HD 軍隊頁對照](docs/images/army-man21-original-hd-r1.png)
+民兵、矮人的同狀態軍隊頁對照見[部隊管理與Go資料](#部隊管理與go資料)。
 
 正常招募後，民兵與矮人的軍隊頁都使用 HD 圖像與 Noto 文字。矮人共用既有戰場手繪圖，在軍隊頁轉為右向；F2、F3 的三字型、取消返回與真正存退讀均已驗證。上圖來自正常續玩的相同原版狀態，視窗另有獨立驗收；[範圍與證據](docs/spec/041-army-man21-image.md)、[圖像紀錄](docs/images/army-man21-original-hd-r1.json)及[重生工具](tools/prepare-readme-army21-overview.py)可回查。其他兵種的完整素材與抽驗範圍見上方25組總覽。
 
