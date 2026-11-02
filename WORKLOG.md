@@ -2764,3 +2764,5 @@ README提供建置／匯入／執行入口與無fixture匯入後的冷讀軍隊�
 README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來源](docs/images/original-army-go-data-r1.json)、[核對](preserved/original-army-review-audit-r1.json)及[永久保存](preserved/README.md#原版f2與go資料接線保存)可回查。270項新候選來源、完整程式／固定輸入／進度／GUI與失敗資料已保存，共762檔／388物件、壓縮82876110 bytes，不掛workplace逐SHA／大小核對通過。原197來源七程式、923核心、535素材與美術保持；新增兵種F2呈現、F3、募兵及原版戰場仍待接，沒有Release。收尾核對、快取、Docker與Git以下列追加為準。
 
 [收尾核對](preserved/original-army-review-integrity-r1.json)通過762工作複本、270建置來源、3137條相對連結及美術入口正對照。只刪本輪1767份Go快取、175410383邏輯bytes，以及逐SHA保存的302份較早副本、118336779邏輯bytes；最新程式、來源、輸入與成果仍留工作區，原件均可從永久物件重取。另以固定PAM靜態核對25種月薪word全部等於catalog Gold，結果另存受版控JSON，不新增或重跑25種GUI。無新映像或全域清理；Git與Docker最終狀態以下列推送為準。
+
+主提交a78256b126e61dce7efd776852f08fb1bdd93e9f已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，本案按專案根與候選掛載來源查無執行中或已停止容器。此行另作文件收尾提交，不改程式、保存與限定驗收範圍。
