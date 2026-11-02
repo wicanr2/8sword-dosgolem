@@ -675,5 +675,43 @@
         }
       ]
     }
+  ],
+  "original_battle_bridge_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:1532",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:1532",
+      "original_name": "sub_1FAA2",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go enemy ordinary arithmetic, original AX encoded casualty return and DS:[target*2-735Ch] pending HP side effect; preserve both original callers.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-ARITHMETIC-20261102",
+      "receipt": "preserved/original-battle-bridge-audit-r1.json",
+      "scope": "Native25 typed Attack/HP and original ordinary damage/HP side effect. Both helpers same-state controlled; original/HD cold engine path through first enemy ordinary action.",
+      "not_closed": "Go-world army identity/count projection, extended-unit battlefield, other rules/specials, GUI and world battle save lifecycle.",
+      "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
+      "unaffected_reason": "Original source-scene renderer and mode split unchanged; the candidate replaces arithmetic only."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:1592",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:1592",
+      "original_name": "sub_1FB02",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go player ordinary arithmetic, original AX encoded casualty return and DS:[target*2-71A0h] pending HP side effect.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-ARITHMETIC-20261102",
+      "receipt": "preserved/original-battle-bridge-audit-r1.json",
+      "scope": "Native25 typed Attack/HP and original ordinary damage/HP side effect. Both helpers same-state controlled; original/HD cold engine path through first enemy ordinary action.",
+      "not_closed": "Go-world army identity/count projection, extended-unit battlefield, other rules/specials, GUI and world battle save lifecycle.",
+      "unaffected_spec": "docs/spec/047-hd-scene-renderer.md",
+      "unaffected_reason": "Original source-scene renderer and mode split unchanged; the candidate replaces arithmetic only."
+    }
   ]
 }

@@ -1,5 +1,17 @@
 # 必要資料永久保存
 
+## 原戰場雙側普通算式保存
+
+本批508檔／371去重物件，壓縮43349131 bytes，已完成不掛workplace的逐SHA及大小核對。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)只接原25種的雙側普通傷害算式，沒有新增戰鬥模式。原選敵、減員、動畫與回合保持，Go檢查固定catalog及原call frame後計算。八組原helper控制、十種拒絕及原版／HD各一組冷啟動行動段通過；Go世界軍隊、新兵呈現、其他規則、GUI與戰果存讀仍待接，一般Go入口保持停止。
+
+入口為[Go算式](../internal/ownedworld/original_battle_bridge.go)、[抽驗](../internal/ownedworld/original_battle_bridge_test.go)、[IDA原戰場匯出](../tools/export-original-battle-bridge-ida.py)、[準備／核對／保存](../tools/original-battle-bridge.py)、[核對](original-battle-bridge-audit-r1.json)、[逐檔清單](original-battle-bridge-r1.json)、[脫離workplace核對](original-battle-bridge-verification-r1.json)及[收尾核對](original-battle-bridge-integrity-r1.json)。完整280項候選來源、測試程式、11函式IDA bytes、固定資料／快照、每組state、完整PNG及所有前版保存在本機`preserved/original-battle-bridge-r1/`，原版資料、完整美術及程式不進Git。縮小成果與[來源](../docs/images/original-battle-go-arithmetic-r1.json)留私人倉庫。
+
+固定Pillow11.3.0 r2容器掛專案唯讀`/project`及保存目錄可寫`/archive`，執行`original-battle-bridge.py archive --project /project --archive /archive --out /archive/original-battle-bridge-r1.json`。核對用`verify --archive /archive --out /out/新核對.json`，不掛workplace。Go1.24.13與IDA9.4的命令、映像、UID1000、network none與配額保存於`execution-r1.json`；原`.i64`唯讀，僅tmp副本供IDA查詢。
+
+雙側helper以受控stack窄驗；行動段從原進度冷啟動，固定seed後正常移動／確認，沒有修改部隊／座標或載入戰場快照。不是完整客體state／時鐘parity，沒有GUI或完整戰鬥驗收。兩個原caller都會扣原HP word，不能依一個出手去重；舊快照的HD入口限制保留，不將改驗證方法稱為修復繪圖器。
+
 ## 新增兵種沿原數量輸入保存
 
 本批561檔／400去重物件，壓縮88472160 bytes，已完成不掛workplace的逐SHA及大小核對。

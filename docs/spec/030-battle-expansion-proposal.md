@@ -206,9 +206,42 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 ### 原版戰場與Go後端橋接 DRAFT
 
+`ORIGINAL-BATTLE-ARITHMETIC-20261102`：原戰場雙側普通算式已由下節限定接入Go；Go軍隊投影、擴充兵種、其餘行動與戰果保存仍未完成。本節不因局部算式完成便升為完整戰場CONFORMED。
+
 已證實：目前`controlledBattle.enter`在runtime `0110:32E0`回報yield；`advanceEncounterUI`建立`battleUI`，`encounterExtra.Paint`呼叫`paintBattleUI`。直接改成`Engine.Frame()`會停在尚未繪製原版戰場的時點，不能當成接回成功。來源PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，原掛點與原始名稱保留。
 
 下一步窄查原版選單／出手／回合推進與既有HD呈現事件，將Go typed部隊、數值與動作接回原版操作及畫面。擴充ID不得寫入原25種索引，不以假原版ID冒充新兵，不把新靜態背景加卡片當完成。原版與HD各抽一條相同控制路徑，再抽新兵、存讀與AI；證據足以定READY後實作，不重畫已批准美術或重問同一方向。
+
+2026-11-02接續窄查：先定位sub_132E0與原戰術入口runtime `0F67:0008`的隊伍投影、輸入、選隊、回合與返回邊界。保持一般Go入口停止，研究不把新增ID寫入原固定表。入口為[橋接準備／保存](../../tools/original-battle-bridge.py)、[IDA原戰場匯出](../../tools/export-original-battle-bridge-ida.py)及[受控觀測](../../internal/ownedworld/original_battle_bridge_test.go)，輸出沿既有battle-r1下的`original-battle-bridge-r1`。先用原版執行器取得來源／同狀態控制，再定最小READY切片；不以舊卡片戰鬥或孤立傷害helper驗收原版戰場。
+
+### 原戰場雙側普通傷害橋接 READY
+
+2026-11-02，先完成原戰場最小計算接點，不提升一般Go入口。固定PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`與PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`，IDA Pro9.4／521函式；原始名稱、bytes、IDA MZ線性及file offset保留於本輪匯出。下列位址明示dosgolem runtime CS:IP。
+
+- 已證實sub_1FAA2，`0F67:1532..1591`，敵方普通／遠程傷害。arg0為敵方原隊索引，arg2為玩家原隊索引；`DS:5700/5702`與`56E8/56EA`讀種類／兵數，70CE＋kind×4為Attack、70D0＋kind×4為HP。amount為Attack×兵數除26AC＋5，target的8CA4＋index×2扣amount；AX回floor(amount/HP)＋1。原caller返回4658或48B2。
+- 已證實sub_1FB02，`0F67:1592..15FB`，玩家普通／遠程傷害，兩隊表相反。amount為Attack×兵數除5－26B2，再乘26B8＋1，target的8E60＋index×2扣amount；AX同上。原caller返回32D9。兩函式無RND或時鐘讀取，選敵、減員門檻、標記、動畫及回合交原流程。
+- Go橋接使用固定typed CombatCatalog，檢查原種1至25、兩隊索引0至5、來源與目標存活、原表Attack／HP與catalog相同、原call stack及完整helper bytes。乘算以64位元，除數必須正；傳回仍受原AX範圍限制，超界拒絕，不把大兵數硬寫入原戰場。原待扣HP word保留16位元投影，原組隊及保存不改。
+- 原敵方執行器及效果callee各有一個傷害呼叫，原xref為IDA MZ線性22BC5／22E1F，返回為runtime `0F67:4658`／`0F67:48B2`。一次完整行動不能假定只算一次；動態控制逐次記錄原入口／返回的AX與HP，Go保留每次呼叫及副作用，不以出手為單位去重。
+- 在函式入口由Go計算、更新該HP word、返回原caller，整段原helper不再執行；原helper下一個IP設拒絕哨點。停用、壞來源／欄位、越界種類／隊伍／算式／caller均拒絕。這只接原規則native，既有結陣／戰術hook位於helper內，未另對接前不得宣稱這兩種規則沿新橋接生效。
+
+驗收採同狀態的原helper控制，兩側普通量、零減員、全滅門檻與高乘積模型；再從固定原戰場快照按等價輸入跑一條完整普通行動，核對減員、待扣HP與完整畫面。兩側執行前固定相同原版seed，Go算式不使用RNG；不追整場骰序或逐指令時鐘一致。快照及受控stack只用於此窄驗，不能替代正常世界進場、完整戰鬥、擴充兵種、存讀或GUI驗收。
+
+驗證方法追加：舊戰場快照可用於原helper窄驗，但HD基準在未重建來源呈現器入口的中途快照續跑會拒絕原像素寫入。完整行動改為兩模式皆從冷啟動Continue、正常移動／原確認進場；在地圖開始移動前固定seed，沒有讀戰場快照或改部隊／座標。此項只驗原25種的計算及正常Engine畫面，仍不取代GUI、Go世界戰果保存與擴充兵種戰場驗收。
+
+入口為[Go雙側算式](../../internal/ownedworld/original_battle_bridge.go)、[同狀態抽驗](../../internal/ownedworld/original_battle_bridge_test.go)與[準備／核對／保存](../../tools/original-battle-bridge.py)。不新增Go戰鬥模式或卡片頁，原版與HD原畫面、原七程式及一般入口護欄保持；只有本輪隔離候選安裝此橋接，結果另追加限定範圍。
+
+### 原戰場雙側普通算式限定 CONFORMED
+
+`ORIGINAL-BATTLE-ARITHMETIC-20261102`，2026-11-02。隔離候選已以Go取代sub_1FAA2的runtime `0F67:1532`及sub_1FB02的`0F67:1592`，保留原戰場、選敵、減員、動畫與回合流程。沒有新增玩家戰鬥模式或卡片頁，一般Go玩家入口保持停止。
+
+- 八組雙側原helper同狀態控制通過，包含小傷害與不同兵數。比較AX編碼與原待扣HP word，兩側seed預先固定`0x12345678`，helper不改RNG。十種來源、caller、種類／隊伍、零兵數、表格、除數、超界及停用拒絕均不改RAM／寄存器／cycles；formation明確拒絕，未冒用舊helper內規則hook。
+- 原版與HD各跑原算式／Go兩次正常冷啟動Continue，向下離開營地列，再左右往返遇敵，按實際原選取狀態選是。部隊、座標與世界進度未注入，移動前固定相同seed；全段未載入戰場快照。至首個敵方普通效果executor返回，兩次原傷害呼叫均逐筆核對，傷害88／AX4、待扣HP、兩隊減員、seed末值4153486591及完整1920×1200 Frame相同。
+- 玩家側目前以受控原helper驗證；這段自然行動沒有玩家攻擊。普通／遠程共用這兩個算式，但本輪未另走自然遠程、特殊術、完整回合、戰果Store或GUI，不外推已驗範圍。
+- 64位元模型Attack100×3000÷5得到60000、AX3001，與原16位元乘積截斷有意不同。超出原word呈現範圍時先拒絕；這不是完整32位兵數戰場。原25種AP／HP由typed catalog提供並與當前原表核對，軍隊種類／兵數仍沿原戰場陣列，尚未接Go世界軍隊與新增字串ID。
+
+[核對](../../preserved/original-battle-bridge-audit-r1.json)、[成果來源](../images/original-battle-go-arithmetic-r1.json)與[永久保存](../../preserved/README.md#原戰場雙側普通算式保存)為入口。280項候選來源與三輪前版均保存，原197來源七程式、923核心、r69全535素材及1066美術保持。新橋接目前只由研究抽驗安裝，未接入一般命令。
+
+初版測試假定一個行動只有一次helper，被原兩個caller及動態紀錄否定，保留失敗資料後改逐次比對；實作未改成去重。第二版HD基準續跑舊快照時在原繪圖入口拒絕，屬驗證起點不含完整HD來源生命週期，未改繪圖器；改正常冷啟動後同機制通過，不宣稱修復所有快照續跑。接續Go軍隊投影與原選單動作／存檔鏈，不重查已閉合雙側算式或重畫戰場。
 
 ## Go軍隊命令與原版進度匯入 READY
 

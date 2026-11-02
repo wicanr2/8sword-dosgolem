@@ -1,0 +1,19 @@
+{
+  "status": "passed-original-battle-bridge-integrity",
+  "archived_files_verified": 508,
+  "source_files": 280,
+  "relative_links_and_anchors": 3306,
+  "positive_control": "README -> artwork/README.md",
+  "resolution_backlinks": 2,
+  "ownership": "UID/GID1000; no root-owned or .md directory in this batch",
+  "baseline_unchanged": "197 source / 7 programs / 923 core / 535 assets / 1066 art",
+  "cleanup": {
+    "cache_files": 1724,
+    "cache_logical_bytes": 160076344,
+    "saved_old_files": 57,
+    "saved_old_logical_bytes": 55064360
+  },
+  "limits": [
+    "Arithmetic candidate only; no Go-world army/extended battlefield/save integration or GUI claim; no public release."
+  ]
+}

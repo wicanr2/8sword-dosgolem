@@ -42,6 +42,10 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版戰場與同配置的HD戰場](docs/images/battle-original-hd-r1.png)
 
+![原版與HD戰場的Go普通傷害算式抽驗](docs/images/original-battle-go-arithmetic-r1.png)
+
+隔離候選已將玩家與敵方普通傷害算式交給Go，保留同一套原版戰場與流程。雙側原helper對照、原版／HD的正常冷啟動遇敵與一段敵方普通行動已抽驗，減員、生命值及完整畫面一致。此段未載入戰場快照，亂數種子預先固定；圖片是Engine畫面，尚未新增實際視窗驗收。Go軍隊投影、新增兵種戰場、其餘規則與戰果保存仍待接。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)與[圖片來源](docs/images/original-battle-go-arithmetic-r1.json)。
+
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 
 需要研究匯入時，先按[永久保存入口](preserved/README.md#go軍隊命令與原版進度匯入保存)準備合法本機資料，再建置並指定新的目的地：

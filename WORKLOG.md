@@ -2836,3 +2836,17 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 本輪入口仍限已能進原數字提示的營地，原店更早的階級／容量拒絕入口未另接。5689舊診斷的價格／庫存代表原店frame，新兵報價與結果以獨立事件及canonical world判讀，已於030記明；不為診斷整理重開已驗交易矩陣。Git與Docker最終狀態以下列推送為準。
 
 主提交503d7face96fadd58f14d8f86dc98665028293f9已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，Docker按專案根與候選掛載來源查無本案執行中或已停止容器；其他專案資源未動。此行另作文件收尾提交，不改程式、永久保存或限定驗收範圍。
+
+
+## 2026-11-02：原戰場普通傷害接點
+
+開工HEAD `f07dd535846dc00a8a48da8f7956becf4cac1824`，工作樹乾淨。路由命中原版GUI還原、規格閘門、IDA窄查及文件職責，使用復古重製與IDA9.4技能；來源／生命週期限制後另載入正常玩家路徑方法。一般Go入口保持停止，不以既有卡片戰鬥完成戰場橋接。
+
+- 先匯出sub_132E0及戰術入口，再沿直接caller窄匯出11函式。保留原名、IDA線性、file offset、bytes及521函式最小探針，來源及輸出UID1000核對。確認雙側普通helper副作用後補READY，才接Go安全算式與原caller返回；原組隊、選敵、動畫與回合不改。
+- 八組雙側原helper同狀態控制通過。完整行動第一版誤設一次helper斷言，原xref及逐次觀測證明兩次呼叫；原版／Go當時整圖已相同，改測試逐次核對，產品不改成去重。第二版原版模式通過，HD在舊快照基準的原像素入口拒絕，尚未用Go算式；保留失敗後改正常冷啟動，不改繪圖器。
+- 最終原版／HD各跑原算式及Go四條Continue→正常走路遇敵→原確認→首個敵方普通executor返回，移動前固定相同亂數種子。兩次damage88／AX4、待扣HP、兩隊減員、種子末值4153486591與1920×1200完整Frame相同，沒有載入戰場快照、改部隊或座標。玩家側僅受控helper，沒有自然玩家攻擊或GUI聲明。
+- 其後只新增拒絕測試，原非測試來源與冷啟動執行版本逐SHA保持；十種來源／範圍／停用／算式拒絕、formation拒絕及高乘積60000模型通過。原call stack／受控fixture只用於helper窄驗，不代替正常行動段。兩份實際測試程式及精確來源清單分開保存。
+
+[限定結果](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)、[核對](preserved/original-battle-bridge-audit-r1.json)、[README圖](docs/images/original-battle-go-arithmetic-r1.png)與[保存](preserved/README.md#原戰場雙側普通算式保存)為入口。280候選來源、原版與HD畫面、完整state、固定資料與所有前版保存。原197來源七程式、923核心、535素材及1066美術保持，沒有新戰鬥模式／Release。此橋接只研究安裝，Go世界軍隊投影、新兵、其餘規則、GUI與戰果存讀仍待接；一般Go入口停止。保存、清理及Git／Docker收尾以下列追加為準。
+
+本批508檔／371去重物件，壓縮43349131 bytes，不掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-battle-bridge-integrity-r1.json)另驗508工作複本、280來源、3306相對連結／錨點與兩筆定位回填，UID/GID1000，沒有root-owned或異常.md目錄。只刪1724份本輪Go快取、160076344邏輯bytes，以及57份已逐SHA保存的舊副本、55064360邏輯bytes。最新來源、測試程式、輸入、state與完整成果保留，沒有新映像或全域清理。本案按專案根與候選掛載來源查無執行中或已停止容器；Git推送以下列追加為準。

@@ -2975,3 +2975,19 @@ IDA MZ載入器在segment重定位word加1000h，38處指令bytes與原檔未重
 - sub_15792在原邏輯y116／133／150呈現庫存／種類、月薪與金錢。Go沿640×200至1920×1200的x3／y6座標填同三行及HD圖，保留y167的原提示、數字及游標。新兵圖採已驗同一alpha繪圖機制，整張Go畫布完成後一次提交；不先顯示原店的另一個兵種。最大量仍是剩餘領導量除Command，購前21、購後19，不能以現金可購量10代替。
 
 原25種回歸14張完整HD Frame相同；新兵八張執行器Frame、八張實際X11及冷讀沿[限定接入](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)。軍隊源自前輪明示保存配置，沒有GUI RAM／IP注入；新兵不存在原版oracle，不宣稱完整客體state／時鐘parity。資料來源、程式與原圖位置見[永久保存](preserved/README.md#新增兵種沿原數量輸入保存)。
+
+
+## 2026-11-02：原戰場雙側普通傷害的Go入口
+
+已證實於限定範圍。PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA Pro9.4／py312-v1、UID1000、HOME=/home/ubuntu，正式資料庫唯讀，只查tmp副本；521函式中窄匯出11個原函式與戰術函式邊界索引，原名、operand、bytes、IDA MZ線性及file offset分列，未改名或patch。
+
+- IDA MZ線性sub_132E0的13371／13379將六隊原54A／54C複製至56E8／56EA，3751／3759會回寫原軍隊；runtime為0110:3371／3379、3751／3759。這些不能直接讓新增字串ID通過，Go世界軍隊橋接仍未完成。
+- 原戰術入口sub_1E578對應dosgolem runtime0F67:0008，先組陣與畫場，再進sub_205E6回合外圈。原V／Esc、玩家選單sub_20DAE及排序／換列sub_20724／20AB4仍保留，不因後端接管另造卡片戰鬥。
+- sub_1FAA2，IDA線性1FAA2..1FB01，runtime0F67:1532..1591，是敵方普通／遠程算式。Attack×原兵數先截低word，再除DS:26AC＋5，按玩家HP除後回AX＋1；原operand `sub [bx-735Ch], ax`實際為DS:8CA4＋target×2待扣HP。sub_1FB02，IDA1FB02..1FB6B、runtime1592..15FB，玩家側除5－26B2，再乘26B8＋1，operand `[bx-71A0h]`為DS:8E60＋target×2。兩段無RND／硬體時鐘讀取。
+- 原helper除傳回減員編碼，亦扣待扣HP。敵方兩個原xref為IDA22BC5與22E1F，runtime返回4658與48B2；同一次普通效果段確實呼叫兩次，不能按出手去重。Go逐次保存兩個副作用。玩家caller的IDA21846對應runtime返回32D9。
+
+Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0表，在原helper入口完成安全64位算式、HP word投影與far return。雙側八組原helper比較AX及HP通過；高乘積模型60000與原截斷結果有意不同，超出word範圍先拒絕。十種壞來源／範圍及formation拒絕不改狀態。
+
+原版與HD的原算式／Go四條正常冷啟動鏈，Continue後固定亂數種子0x12345678，正常向下離開營地列、左右走路遇敵，按原實際選取狀態確認。全段沒有載入戰場快照、改部隊或座標；至首個敵方普通executor返回，兩次原helper及完整Frame相同，亂數末值4153486591。這是Engine正常輸入，未驗GUI、Go世界軍隊、其他規則、整回合與戰果保存。結果見[030限定](docs/spec/030-battle-expansion-proposal.md#原戰場雙側普通算式限定-conformed)與[保存](preserved/README.md#原戰場雙側普通算式保存)。
+
+初版單次helper假設由原xref及動態呼叫推翻，原失敗保留。舊快照HD基準在14D2:06B8報compatibility/native-video-write-leftover，當時尚未使用Go算式；改正常冷啟動驗證後通過，沒有改繪圖器，也不宣稱解決所有舊快照續跑。

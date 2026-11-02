@@ -1,0 +1,22 @@
+{
+  "status": "passed-original-battle-bridge-audit",
+  "source_files": 280,
+  "ida_functions": 11,
+  "helper_pairs": 8,
+  "action_pairs": 2,
+  "refusal_cases": 10,
+  "formation_rejected": true,
+  "original_and_hd_frames_equal": true,
+  "fixed_original_seed": 305419896,
+  "helper_controlled_snapshot": true,
+  "action_snapshot_loaded": false,
+  "action_normal_cold_start": true,
+  "ordinary_owned_player_entry_disabled": true,
+  "not_verified": [
+    "GUI",
+    "Go-world army entry and battle save lifecycle",
+    "extended IDs in original battlefield",
+    "formation/tactics bridge",
+    "natural player attack and all spells"
+  ]
+}
