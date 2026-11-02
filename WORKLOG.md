@@ -2816,3 +2816,5 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 最終七張Noto／隸書實窗與提交RGB全部相同，游標相位同步保留每次擷取原圖。[獨立核對](preserved/original-recruit-quantity-audit-r1.json)通過657筆IDA指令、25種模型、14張完整控制Frame、七張實際視窗及冷讀；[README成果](docs/images/original-recruit-quantity-go-r1.png)與[來源](docs/images/original-recruit-quantity-go-r1.json)已加入。回填索引新增三筆模組SHA／runtime位址，030舊DRAFT加勘誤，047呈現契約保持；首次回鏈核對要求完整CS:IP，已補明列原定位。
 
 本批永久保存817檔／432去重物件，壓縮113706882 bytes，不掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-recruit-quantity-integrity-r1.json)核對817工作複本、276來源、3236相對連結／錨點與三筆回鏈，UID/GID1000，沒有root-owned或異常.md目錄。只刪本輪1753份Go快取、175134527邏輯bytes及逐SHA已保存的311份舊副本、205993604邏輯bytes；最新來源、程式、進度及完整成果保留。沒有新映像或全域清理。Git與Docker最終狀態以下列推送為準。
+
+主提交bd5ae9dddeeb30ad7b313e06fdbf1460e4704d23已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，Docker按掛載來源查無本案執行中或已停止容器；其他專案資源未動。收尾另刪本輪工具import生成的單一UID1000 Python快取，不影響永久來源。此行另作文件收尾提交，不改程式、保存與限定驗收範圍。
