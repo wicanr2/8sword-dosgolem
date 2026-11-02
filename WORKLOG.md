@@ -2778,3 +2778,5 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 [030結果](docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)、[獨立核對](preserved/original-army-dismiss-audit-r1.json)、[README成果](docs/images/original-army-dismiss-go-r1.png)及[永久保存](preserved/README.md#原版f3與go解雇交易保存)為入口。原197來源七程式、923核心、535素材與1066美術保持；存檔schema未變，沒有Release。完成範圍限原25種白名單與已驗顯示範圍；擴充名稱／圖像、募兵及原版戰場仍待接。保存、清理及Git收尾以下列追加為準。
 
 本批永久保存864檔／383去重物件，壓縮46169784 bytes，未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-army-dismiss-integrity-r1.json)另驗864工作複本、272來源、3170條相對連結／錨點與美術入口正對照，UID/GID1000，無root-owned或異常.md目錄。只刪本輪1725份Go快取、154573538邏輯bytes及逐SHA已保存的211份較早副本、24169458邏輯bytes；最新程式、來源、輸入、進度與完整成果保留。沒有新映像或全域清理，其它專案容器未觸及。Git及本案Docker最終狀態以下列推送為準。
+
+主提交9fce05235417d1b9da14638bececf62ab37bbd9b已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，Docker按掛載來源查無本案執行中或已停止容器。此行另作文件收尾提交，不改程式、保存與限定驗收範圍。
