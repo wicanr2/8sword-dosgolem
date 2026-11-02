@@ -2737,3 +2737,5 @@ README提供建置／匯入／執行入口與無fixture匯入後的冷讀軍隊�
 [030限定結果](docs/spec/030-battle-expansion-proposal.md#先行入口撤回限定-conformed)、[抽驗收據](preserved/original-battle-contract-receipt-r1.json)及[永久保存](preserved/README.md#原版戰場契約與卡片入口撤回保存)為入口。本批296檔／287物件，壓縮9098449 bytes，不掛workplace逐SHA／大小核對通過。完整新程式、268來源、輸入進度與日誌均已保存；原197來源、七程式、923核心、535素材與美術不改，沒有Release。最終擁有權、連結、快取清理、Docker與Git收尾以下列追加為準。
 
 [收尾核對](preserved/original-battle-contract-integrity-r1.json)通過296工作複本、268來源、3094條文件連結與美術入口正對照，原197來源／七程式／923核心／535素材逐SHA保持，新增來源及輸出為UID/GID1000，沒有root-owned或異常.md目錄。僅刪本輪1438份Go快取、133274470邏輯bytes，完整程式、輸入與進度保持。Docker按掛載來源核對，本專案無執行中或已停止容器，沒有新映像或全域清理。Git推送以下列紀錄為準。
+
+主提交166396ef32c7b9f31771d62032b41faaa4eb9cc2已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，本案Docker容器為空。本行另作文件收尾提交，不改入口、保存或驗收範圍。
