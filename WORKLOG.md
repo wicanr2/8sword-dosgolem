@@ -2887,3 +2887,6 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 
 
 本批479檔／384物件、壓縮41656117 bytes已保存，脫離workplace逐SHA／大小核對通過。收尾核對283來源、3417相對連結／錨點與1071永久美術，UID/GID1000，沒有root-owned或異常.md目錄。只刪1703份本輪Go快取、144811962邏輯bytes，以及42份已逐SHA永久保存的前版GUI／進度副本、16518936邏輯bytes。最新程式、來源、素材、進度與成果保持，沒有新映像或全域Docker清理。Git推送及容器狀態以下列追加為準。
+
+
+主提交cef4e9c6d8454123b3ae86bcd02a14321bc9880d已推送私人origin/main，git ls-remote回讀同SHA，工作樹乾淨。暫存空白檢查通過，本輪Docker工作已全部結束並移除；剩餘容器為其他專案，未清理。此行另作文件收尾提交，不改素材、程式或限定驗收範圍。
