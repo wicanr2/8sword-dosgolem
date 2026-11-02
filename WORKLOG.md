@@ -2834,3 +2834,5 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 本批561檔／400去重物件，壓縮88472160 bytes，未掛workplace逐SHA／大小核對通過。[收尾核對](preserved/original-reinforcement-quantity-integrity-r1.json)驗561工作複本、278來源、3271條相對連結／錨點及三筆新consumer，UID/GID1000，沒有root-owned或異常.md目錄。只刪1725份本輪Go快取、157127351邏輯bytes，38份已逐SHA保存的舊副本、31189494邏輯bytes，以及單一28143-byte工具快取。最新來源、程式、進度與成果仍留工作區，沒有新映像或全域清理。
 
 本輪入口仍限已能進原數字提示的營地，原店更早的階級／容量拒絕入口未另接。5689舊診斷的價格／庫存代表原店frame，新兵報價與結果以獨立事件及canonical world判讀，已於030記明；不為診斷整理重開已驗交易矩陣。Git與Docker最終狀態以下列推送為準。
+
+主提交503d7face96fadd58f14d8f86dc98665028293f9已推送私人origin/main，git ls-remote回讀同SHA。暫存空白檢查通過，Docker按專案根與候選掛載來源查無本案執行中或已停止容器；其他專案資源未動。此行另作文件收尾提交，不改程式、永久保存或限定驗收範圍。
