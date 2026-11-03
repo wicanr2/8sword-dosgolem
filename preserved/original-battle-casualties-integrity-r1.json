@@ -1,0 +1,117 @@
+{
+  "status": "passed-original-battle-casualties-integrity",
+  "source_files": 289,
+  "archived_files_checked": 1208,
+  "positive_link_control": true,
+  "new_links_checked": 25,
+  "source_matches_tested_candidate": true,
+  "python_AST": true,
+  "source_UID": 1000,
+  "root_owned_or_md_directories": 0,
+  "detached_verification": true,
+  "publication_SHA": true,
+  "runtime_backlinks": 5,
+  "Noto_remaining_count_visible": true,
+  "links": [
+    [
+      "AGENTS.md",
+      "docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed"
+    ],
+    [
+      "AGENTS.md",
+      "preserved/README.md#首個敵方近戰與go減員保存"
+    ],
+    [
+      "CONTEXT.md",
+      "docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed"
+    ],
+    [
+      "CONTEXT.md",
+      "preserved/original-battle-casualties-audit-r1.json"
+    ],
+    [
+      "CONTEXT.md",
+      "docs/images/original-battle-go-casualties-r1.png"
+    ],
+    [
+      "CONTEXT.md",
+      "preserved/README.md#首個敵方近戰與go減員保存"
+    ],
+    [
+      "README.md",
+      "docs/images/original-battle-go-casualties-r1.png"
+    ],
+    [
+      "README.md",
+      "docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed"
+    ],
+    [
+      "README.md",
+      "docs/images/original-battle-go-casualties-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed"
+    ],
+    [
+      "preserved/README.md",
+      "original-battle-casualties-audit-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "original-battle-casualties-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "original-battle-casualties-verification-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/export-original-battle-casualties-ida.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/original-battle-casualties.py"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/original-battle-go-casualties-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/original-battle-go-casualties-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/export-original-battle-casualties-ida.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/original-battle-casualties.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../preserved/original-battle-casualties-audit-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/original-battle-go-casualties-r1.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/original-battle-go-casualties-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../preserved/README.md#首個敵方近戰與go減員保存"
+    ],
+    [
+      "RESEARCH-LOG.md",
+      "preserved/README.md#首個敵方近戰與go減員保存"
+    ],
+    [
+      "RESEARCH-LOG.md",
+      "docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed"
+    ]
+  ]
+}

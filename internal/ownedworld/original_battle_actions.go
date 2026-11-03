@@ -42,6 +42,7 @@ type originalBattleActions struct {
 	AliasReads    []originalBattleAlias
 	Sites         map[uint16]uint64
 	Target        *originalEnemyTarget
+	Casualties    *originalBattleCasualties
 }
 
 type originalBattleAlias struct{ BX, Slot, MapWord, Offset, Value uint16 }
@@ -54,9 +55,15 @@ func (x *originalBattleActions) check(m *dg.Machine, ip uint16, start, end int) 
 	if !bytes.Equal(x.Setup.Code[start-0x10000:end-0x10000], m.Mem[start-0x10000+0x1100:end-0x10000+0x1100]) {
 		return errors.New("battle presence source bytes")
 	}
-	rows, err := x.Setup.rows(m)
-	if err != nil || rows != x.Setup.Plan.Rows {
-		return errors.New("battle presence typed/native projection changed")
+	if x.Casualties != nil && x.Casualties.Started {
+		if err := x.Casualties.checkProjection(m); err != nil {
+			return err
+		}
+	} else {
+		rows, err := x.Setup.rows(m)
+		if err != nil || rows != x.Setup.Plan.Rows {
+			return errors.New("battle presence typed/native projection changed")
+		}
 	}
 	for side, base := range []uint32{0x6fb6, 0x6fc2} {
 		for i, raw := range x.Setup.Plan.Slots[side] {
@@ -156,6 +163,9 @@ func (x *originalBattleActions) presence(m *dg.Machine, site originalBattlePrese
 }
 
 func (x *originalBattleActions) hold(m *dg.Machine, ip uint16) (bool, error) {
+	if x.Casualties != nil && x.Casualties.Started && ip == 0x4626 {
+		return x.Casualties.impactEnter(m)
+	}
 	start, end := 0x22b96, 0x22dbc
 	if ip == 0x484c {
 		start, end = 0x22dbc, 0x23a42
@@ -192,6 +202,9 @@ func (x *originalBattleActions) hold(m *dg.Machine, ip uint16) (bool, error) {
 	}
 	if x.Target == nil {
 		x.Target = &v
+	}
+	if x.Casualties != nil && ip == 0x484c {
+		return x.Casualties.enter(m)
 	}
 	return false, errOriginalBattleTargetHeld
 }

@@ -911,5 +911,87 @@
       "scope": "65 native instruction pairs; eight extended identities; original/HD cold first enemy selection; mixed and expanded controlled enemy-first selection only.",
       "not_closed": "Expanded player turn, attacks, casualties, spells, whole battle, GUI and save lifecycle."
     }
+  ],
+  "original_battle_casualty_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:1532",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:1532",
+      "original_name": "sub_1FAA2",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Preserve two ordinary enemy damage helper calls with Go pending HP and native compatibility words.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-MELEE-CASUALTIES-20261103",
+      "receipt": "preserved/original-battle-casualties-audit-r1.json",
+      "scope": "18 models, eight refusals, normal native/HD first enemy melee oracle pairs, controlled expanded wolf death/survival; each one Go count commit.",
+      "not_closed": "Expanded player turn, ranged, spells, next action, complete battle, new hit/death poses, GUI and world save lifecycle."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:4588",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:4588",
+      "original_name": "sub_22AF8",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Original shared step wrapper is an additional proven nested impact caller.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-MELEE-CASUALTIES-20261103",
+      "receipt": "preserved/original-battle-casualties-audit-r1.json",
+      "scope": "18 models, eight refusals, normal native/HD first enemy melee oracle pairs, controlled expanded wolf death/survival; each one Go count commit.",
+      "not_closed": "Expanded player turn, ranged, spells, next action, complete battle, new hit/death poses, GUI and world save lifecycle."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:4626",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:4626",
+      "original_name": "sub_22B96",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Original nested impact reads Go count; countdown is presentation only.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-MELEE-CASUALTIES-20261103",
+      "receipt": "preserved/original-battle-casualties-audit-r1.json",
+      "scope": "18 models, eight refusals, normal native/HD first enemy melee oracle pairs, controlled expanded wolf death/survival; each one Go count commit.",
+      "not_closed": "Expanded player turn, ranged, spells, next action, complete battle, new hit/death poses, GUI and world save lifecycle."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:4847",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:4847",
+      "original_name": "loc_22DB7",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Commit Go authoritative casualty count once after verifying countdown/death clears.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-MELEE-CASUALTIES-20261103",
+      "receipt": "preserved/original-battle-casualties-audit-r1.json",
+      "scope": "18 models, eight refusals, normal native/HD first enemy melee oracle pairs, controlled expanded wolf death/survival; each one Go count commit.",
+      "not_closed": "Expanded player turn, ranged, spells, next action, complete battle, new hit/death poses, GUI and world save lifecycle."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:1818",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:1818",
+      "original_name": "loc_1FD88",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Hold after original complete first enemy melee; later actions and world writeback remain unadmitted.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-MELEE-CASUALTIES-20261103",
+      "receipt": "preserved/original-battle-casualties-audit-r1.json",
+      "scope": "18 models, eight refusals, normal native/HD first enemy melee oracle pairs, controlled expanded wolf death/survival; each one Go count commit.",
+      "not_closed": "Expanded player turn, ranged, spells, next action, complete battle, new hit/death poses, GUI and world save lifecycle."
+    }
   ]
 }

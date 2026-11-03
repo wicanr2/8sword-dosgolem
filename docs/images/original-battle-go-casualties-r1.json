@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "output_sha256": "25a44348062e97f5305f1cc61c9ba7b952791b79dd965faef4ea1bf03843e59a",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-casualties-r1/expanded-r1/0/frame.png",
+      "sha256": "641e1c30d9db7bb8557c307ae29cd1870247cd84bcce0209ea15eadec29ab2f7",
+      "record": {
+        "target": {
+          "IP": 18508,
+          "Caller": 6168,
+          "SourceSlot": 0,
+          "TargetSlot": 0,
+          "SourceRaw": 0,
+          "TargetRaw": 0,
+          "Source": {
+            "unit": "native:06",
+            "count": 11
+          },
+          "Target": {
+            "unit": "openkb:wolf",
+            "count": 2
+          }
+        },
+        "Before": 2,
+        "After": 0,
+        "Loss": 2,
+        "calls": [
+          {
+            "caller": 18610,
+            "damage": 88,
+            "encoded": 30,
+            "BeforeHP": 6,
+            "AfterHP": 0,
+            "BeforeWord": 0,
+            "AfterWord": 0
+          },
+          {
+            "caller": 18008,
+            "damage": 88,
+            "encoded": 30,
+            "BeforeHP": 0,
+            "AfterHP": 0,
+            "BeforeWord": 0,
+            "AfterWord": 0
+          }
+        ],
+        "PlannedDisplay": [
+          2,
+          1,
+          0
+        ],
+        "Display": [
+          2,
+          1,
+          0
+        ],
+        "updates": 1
+      }
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-casualties-r1/expanded-r1/1/frame.png",
+      "sha256": "db6420be4f78b28b40cd7a51b8c68dc3d8552d72fd529392db0be1e9c19b6436",
+      "record": {
+        "target": {
+          "IP": 18508,
+          "Caller": 6168,
+          "SourceSlot": 0,
+          "TargetSlot": 0,
+          "SourceRaw": 0,
+          "TargetRaw": 0,
+          "Source": {
+            "unit": "native:06",
+            "count": 11
+          },
+          "Target": {
+            "unit": "openkb:wolf",
+            "count": 100
+          }
+        },
+        "Before": 100,
+        "After": 71,
+        "Loss": 29,
+        "calls": [
+          {
+            "caller": 18610,
+            "damage": 88,
+            "encoded": 30,
+            "BeforeHP": 300,
+            "AfterHP": 212,
+            "BeforeWord": 0,
+            "AfterWord": 0
+          },
+          {
+            "caller": 18008,
+            "damage": 88,
+            "encoded": 30,
+            "BeforeHP": 212,
+            "AfterHP": 124,
+            "BeforeWord": 0,
+            "AfterWord": 0
+          }
+        ],
+        "PlannedDisplay": [
+          75,
+          74,
+          73,
+          72,
+          71
+        ],
+        "Display": [
+          75,
+          74,
+          73,
+          72,
+          71
+        ],
+        "updates": 1
+      }
+    }
+  ],
+  "actual_window_verified": false,
+  "playable": false,
+  "controlled_typed_override": true,
+  "controlled_enemy_first_argument": true,
+  "scope": "First enemy melee complete; Go authoritative count only. New unit hit/death poses unimplemented."
+}

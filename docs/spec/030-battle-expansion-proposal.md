@@ -219,6 +219,40 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 ### 原版戰場與Go後端橋接 DRAFT
 
+2026-11-03接續首個敵方普通近戰的Go減員及原演出消費端。入口預留[Go減員](../../internal/ownedworld/original_battle_casualties.go)、[控制抽驗](../../internal/ownedworld/original_battle_casualties_test.go)、[原減員與部隊繪圖匯出](../../tools/export-original-battle-casualties-ida.py)及[準備／核對／保存](../../tools/original-battle-casualties.py)。研究沿既有battle-r1下`original-battle-casualties-r1`，先查新增ID為0時的部隊繪圖及倒數兵數，再定READY。既有出手閘與一般Go入口停止保持。
+
+#### 首個敵方近戰減員 READY
+
+沿固定PAM／PAM.i64雜湊及IDA9.4，新增九函式原bytes／xref／operand匯出。已證實sub_23AFC在玩家種類0時直接略過原部隊材質，沒有讓0進查表；sub_23A42處理原敵軍動作。故新兵可保留原列0，由Go呈現靜態材質及兵數，敵軍仍走原近戰動作。新兵受擊姿勢與死亡動畫未由此實作。
+
+READY追加：正常路徑的受擊入口也會由共用步進`sub_22AF8`呼叫，原runtime caller為461D；原「內層caller只來自22DBC本體」不完整。IDA新增匯出22AF8，已證實其先沿來源／目標位置呼叫23A42移動，再呼叫22B96。只新增這個原caller，檢查完整wrapper bytes、wrapper frame的父BP、原22DBC呼叫它的E8目標，以及wrapper兩個原陣位參數。第一輪拒絕與診斷保留，不放寬任意caller。
+
+- 只解鎖`sub_22DBC`的第一個普通近戰。頂層原caller1818、來源原兵種1–25、來源／目標陣位與原隊索引、原native規則及完整函式bytes守門。原玩家行動、直接遠程、法術、下一次攻擊與世界寫回仍停止。
+- 以獨立Go rows及pending HP持有正式兵數。原版動畫倒數另存Display，不改正式rows。原25種的相容kind/count/HP word按原結果寫回，新增兵種三者維持0；Go pending HP飽和至0，原HP word保留原16位相減，兩者分別記錄。
+- `sub_1FAA2`於1532的原helper以Go算AP×來源兵數÷原26AC+5，encoded=floor(damage/目標HP)+1。只接受48B2及4658兩caller，第二次只允許內層impact且與第一次同來源／目標／encoded；完整來源、係數與原AP／HP表綁定。維持原兩次pending HP相減；不把helper呼叫次數當成兩次減員。先沿既有安全word範圍，來源兵數、damage、encoded超界即拒絕，目標畫面兵數限32767，不假稱全32位原動畫已完成。
+- 普通近戰內十個玩家kind比較僅提供Go存活布林值給新增列，原25種保留原kind的比較旗標。兩個impact兵數讀取22C4A／22CFF讀Go正式數量；22CA0／22D40只更新Display與原兵種的相容數量。22D95／22D99清相容列時，仍不向原表寫新增種類或兵數。
+- encoded1為零損失；encoded>=before且encoded>1為全滅；其餘loss=encoded−1。部分損失的倒數由原before或before−encoded+5開始，止於after；全滅倒數min(before,5)至0。每項寫入必須符合此已證實序列。22DB7在驗完序列與原frame後只提交一次Go正式數量；近戰早返encoded1則在頂層caller處提交零損失。頂層原far return後即停止，重試不得重算。
+- HD沿原版場地與原敵軍動作，新增人物沿已批准透明材質。原新增列為0，原繪字不畫它；Go於原703C座標的兵數位置補數字，正式Count0則移除新兵。這一輪只抽完整攻擊後畫面，未宣稱中間受擊圖層／姿勢已完成。
+- 驗收原版／HD正常冷啟動遇敵至第一個完整近戰返回，對照原版與Go的Frame、兵數、pending HP及seed。新兵另以typed override／受控敵先手抽全滅與存活，驗兩次helper、單次Go更新、原列0及五次重試不變。原輸入、舊出手閘預設及一般玩家入口不改。
+
+#### 首個敵方近戰減員限定 CONFORMED
+
+2026-11-03。289來源隔離候選通過18種原兵／新增兵模型、八種拒絕、原版／HD各一組正常冷啟動完整近戰對照，以及新兵兩案受控抽驗。原版控制與Go的完整Frame、原列、pending HP word及seed相同。野狼2→0及100→71，各兩次傷害helper、一次正式兵數提交、五次重試保持；原新兵kind/count/HP word仍0，原軍隊影子保持。Noto剩兵71已在原座標的數字框確認可見。
+
+舊存活／選敵65指令、80新增ID比較、拒絕及原native-only投影19種拒絕回歸保持。原197來源七程式、923核心、r69全535素材與1071美術不變。[核對](../../preserved/original-battle-casualties-audit-r1.json)、[成果](../images/original-battle-go-casualties-r1.png)、[來源](../images/original-battle-go-casualties-r1.json)與[永久保存](../../preserved/README.md#首個敵方近戰與go減員保存)為入口。
+
+勘誤標記`ORIGINAL-MELEE-CASUALTIES-20261103`：前輪出手前閘仍是預設；只有明確安裝本控制器才處理第一個敵方普通近戰，並在原caller1818停止。[回填索引](ai-resolution-backlinks-r1.json)追加以下已證實runtime定位。
+
+| 原定位 | dosgolem runtime CS:IP | 本輪範圍 |
+|---|---|---|
+| sub_1FAA2 | 0F67:1532 | 原兩次helper各減pending HP，不重複減員 |
+| sub_22AF8 | 0F67:4588 | 已證實的原共用步進與內層受擊caller |
+| sub_22B96 | 0F67:4626 | 內層兵數讀取、動畫倒數與單次提交 |
+| loc_22DB7 | 0F67:4847 | Go正式兵數單次提交邊界 |
+| loc_1FD88 | 0F67:1818 | 原完整近戰返回後停止 |
+
+這一輪不提升完整戰鬥、下一次攻擊、玩家行動、遠程、法術、GUI或世界存檔。新增兵種仍用靜態透明圖示，受擊／死亡姿勢及中間圖層未接。後續先補玩家出手與其餘普通路徑，再解除相應閘，不以這兩案宣稱全部部隊或戰鬥完成。
+
 2026-11-03接續存活、普通選敵與減員窄查，保留前輪新兵出手前閘。入口為[IDA行動資料匯出](../../tools/export-original-battle-actions-ida.py)、[準備與保存](../../tools/original-battle-actions.py)、[Go行動資料](../../internal/ownedworld/original_battle_actions.go)及[控制抽驗](../../internal/ownedworld/original_battle_actions_test.go)。輸出沿既有battle-r1下`original-battle-actions-r1`。先定原caller／寫入／回合語意，再補READY，不把初始Frame當作戰鬥完成。
 
 #### 存活與敵方選敵 READY

@@ -1,0 +1,15 @@
+{
+  "status": "passed-local-original-battle-casualties-cleanup",
+  "archive_manifest_sha256": "8bce3521a381f43e869eae149234a51e493edbe2c9c99e3c0445ae5187875636",
+  "archived_files_deleted": 699,
+  "archived_bytes_deleted": 39062386,
+  "cache_files_deleted": 1706,
+  "cache_bytes_deleted": 156776934,
+  "scopes": [
+    "first-failed",
+    "caller-diagnostic",
+    "build-cache"
+  ],
+  "all_archived_files_SHA_checked_before_delete": true,
+  "other_projects_or_images_changed": false
+}

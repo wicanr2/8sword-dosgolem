@@ -50,7 +50,11 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版HD電腦選到新增兵種，扣兵前暫停](docs/images/original-battle-extended-target-r1.png)
 
-隔離候選也已讓存活判斷讀取Go兵數，原版電腦能選到野狼及農民槍兵。原版／HD選敵對照的畫面、結果與亂數種子一致。上圖使用明示編成及受控敵先手，只驗選敵；新增兵種的攻擊、減員與完整戰果仍待接。範圍見[選敵限定驗收](docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)與[圖片來源](docs/images/original-battle-extended-target-r1.json)。
+隔離候選也已讓存活判斷讀取Go兵數，原版電腦能選到野狼及農民槍兵。原版／HD選敵對照的畫面、結果與亂數種子一致。上圖使用明示編成及受控敵先手，選敵階段停在扣兵前。範圍見[選敵限定驗收](docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)與[圖片來源](docs/images/original-battle-extended-target-r1.json)。
+
+![原版HD敵軍近戰後，由Go統一結算新增兵種的剩兵](docs/images/original-battle-go-casualties-r1.png)
+
+第一個敵方普通近戰已接Go減員，保留原敵軍動作。上圖野狼2→0及100→71，原兩次傷害計算保持，正式兵數只更新一次；新增兵種的原版kind/count/HP欄位維持0。這是受控編成與敵先手的抽驗，下一次行動前暫停。玩家行動、其餘戰鬥與完整戰果仍待接，新兵受擊／死亡姿勢尚未完成。範圍見[減員限定驗收](docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)與[圖片來源](docs/images/original-battle-go-casualties-r1.json)。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 

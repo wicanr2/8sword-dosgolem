@@ -2931,3 +2931,22 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 
 - 功能提交`28435407875c6b784bbf800e2b18b7699251300b`已推送origin/main，主機git ls-remote回讀一致。提交只含Go來源、工具、文件、縮小成果及JSON索引，完整保存物件已排除Git。
 - 收尾僅追加推送紀錄。測試、永久保存、清理與Docker生命週期結果如上；工作樹在收尾提交後核對。
+
+
+## 2026-11-03：首個敵方近戰與Go正式減員
+
+- 使用者繼續後，沿原版／原版HD戰場接Go正式兵數，開工HEAD為92273538d8fc365816a6653458c863f3b3e04b6f。路由命中復古重製、規格閘門、IDA窄查及驗證／交接；使用Docker，不新建工具映像或改用卡片介面。
+- 使用者中途詢問移除DOS EXE並改Rust是否可行。已說明可做獨立重製，現版仍需EXE推進部分流程；HD素材與已解出的規則可沿用。這是能力說明，沒有把問題當成已授權的架構切換；本輪接續已在進行的Go減員。
+- IDA9.4 py312-v1沿既有UID1000／HOME=/home/ubuntu，在network none、2GiB／2CPU／128程序、100秒外層逾時及唯讀PAM.i64／原版下匯出。正式DB先複製/tmp，不改名；原八函式再追加共用步進22AF8，共九函式，521函式資料庫與原SHA保持。
+- READY分開正式兵數、pending HP與動畫倒數。Go處理原1532兩次helper及兵數讀寫，原敵軍近戰動作保留；新增kind/count/HP word仍0。新增靜態圖與兵數由Go合成，死亡則移除；新兵姿勢／中間圖層不由本輪驗收。
+- 第一輪模型通過，正常路徑在內層受擊入口被caller守門拒絕。診斷取得SP95B2、ret461D、原source／target slot0及一次helper。回到RE後證實22AF8先移動再呼叫22B96，補READY及完整wrapper／父frame／原E8目標檢查才接入。失敗、診斷來源與原程式保留，不任意放寬caller。
+- 最終289來源候選、18模型、八拒絕通過。原版／HD各抽正常冷啟動Continue、地圖按鍵遇敵及原確認至首個完整敵方普通近戰返回，原控制與Go完整Frame、原列、HP word及seed相同。兩案新兵另用typed override及原敵先手參數1，野狼2→0、100→71，各兩次helper但正式兵數只提交一次；五次重試RAM、cycles、seed、更新次數與原軍隊影子保持。
+- Go1.24.13容器採UID1000、network none、3GiB／2CPU／192程序及360秒外層逾時；923核心、module cache、原版與r69素材唯讀，只有本批可寫。gofmt後凍結來源，以`go test -modfile=/out/probe.mod -c -o /out/ownedworld.test ./internal/ownedworld`建置，Xvfb執行`^TestOriginalBattleCasualty`。完整命令與映像SHA在保存內execution-r1.json。
+- 同一程式追加舊存活／選敵Controls與Guards、native-only投影Models回歸，65原指令、80新增ID比較及19原投影拒絕保持。未重跑全部既有HD或七程式，正式197來源／923核心／535素材／1071美術保持。
+- 固定Pillow11.3.0 r2容器獨立核對九函式原MZ bytes、289來源、傷害／倒數公式、兩組原版／HD完整Frame及新兵原列隔離。剩兵71在原703C座標數字框確認可見，607個實心暖金像素及裁圖保留。
+- README補首個近戰成果及來源JSON，030限定CONFORMED，五個runtime定位與勘誤回填。一般Go入口仍停止，預設出手前閘保持；僅明確安裝新隔離控制器才延後至首個近戰返回。玩家出手、直接遠程、後續行動、法術、完整戰鬥與世界存檔仍未接驗。
+- 完整PNG、state、固定輸入、程式及成功／失敗來源永久保存1208檔／379物件，壓縮43198822 bytes。未新增Release或公開素材授權聲明；原版資料及完整保存物件不進Git。
+
+- 脫離workplace逐SHA核對1208檔／379物件通過；收尾核對289來源、25個新連結、五個runtime回填、Python語法、Noto數字可見及UID1000通過。Go格式與Git空白檢查通過。
+- 依既有清理授權，只刪本批156776934 bytes快取，以及逐SHA確認已保存的699檔／39062386 bytes失敗與診斷副本。現行候選、固定輸入及成功收據保持。
+- 本批一次性容器均移除，未新建映像；共享主機其他專案的容器與映像保持。

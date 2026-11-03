@@ -243,11 +243,17 @@ func composeOriginalBattleSetup(e *game.Engine, x *originalBattleSetup, art *hdU
 	out := image.NewRGBA(base.Bounds())
 	draw.Draw(out, out.Bounds(), base, base.Bounds().Min, draw.Src)
 	f := &originalArmyFields{Art: art, Boxes: map[string]image.Rectangle{}}
+	rows := x.Plan.Rows
+	var casualties *originalBattleCasualties
+	if x.Actions != nil && x.Actions.Casualties != nil && x.Actions.Casualties.Started {
+		casualties = x.Actions.Casualties
+		rows = casualties.Rows
+	}
 	for slot, raw := range x.Plan.Slots[0] {
 		if raw >= 6 {
 			continue
 		}
-		s := x.Plan.Rows[0][raw]
+		s := rows[0][raw]
 		p, ok := x.Catalog.Profiles[s.Unit]
 		if !ok || p.NativeKind != 0 || s.Count == 0 {
 			continue
@@ -275,6 +281,11 @@ func composeOriginalBattleSetup(e *game.Engine, x *originalBattleSetup, art *hdU
 			return nil, errors.New("setup sprite area bounds")
 		}
 		f.icon(out, s.Unit, area)
+		if casualties != nil {
+			if err := casualties.text(e, out, raw, area); err != nil {
+				return nil, err
+			}
+		}
 	}
 	return out, nil
 }

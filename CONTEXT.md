@@ -12,7 +12,13 @@
 
 ## 最近驗證
 
-最新為[Go存活與原版敵方選敵](docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)。287來源隔離候選接管13處兵數比較；65組原指令對照、80次新增ID的32位兵數比較、各種拒絕、兩組中間代碼相容讀取及原版／HD正常冷啟動選敵對照通過。原版的暫時目標代碼曾造成表外word讀取，已按IDA與動態資料流保留，畫面、選敵與seed保持一致。[核對](preserved/original-battle-actions-audit-r1.json)、[成果圖](docs/images/original-battle-extended-target-r1.png)與[保存](preserved/README.md#go存活與原版敵方選敵保存)為入口。
+最新為[首個敵方近戰與Go減員](docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)。289來源隔離候選保留原敵軍普通近戰動作，Go持有正式兵數及pending HP，動畫倒數獨立。18種模型、八種拒絕、原版／HD各一組正常冷啟動原版對照及兩案新兵受擊通過；原完整Frame、兵數、HP word與seed相同。[核對](preserved/original-battle-casualties-audit-r1.json)、[成果圖](docs/images/original-battle-go-casualties-r1.png)與[保存](preserved/README.md#首個敵方近戰與go減員保存)為入口。
+
+受控敵先手與混合編成中，野狼2→0及100→71。原兩次傷害helper保持，但正式兵數只提交一次；各五次重試保持RAM、cycles、seed與更新次數。原新兵kind/count/HP word維持0，原軍隊影子不變。這個隔離控制器在第一個完整近戰返回後停止；一般Go入口保持停用，既有預設出手前閘保持。新兵受擊／死亡姿勢、中間圖層、玩家行動、直接遠程、下一次攻擊、法術與完整世界戰果尚未接，畫面兵數先限32767。下一步補玩家出手及其餘普通路徑。
+
+解除近戰返回閘前，存活、後續選敵、排序與戰果必須改讀減員後的Go rows；初始Plan不能當後續兵數。現行Target及返回閘禁止進下一次選敵，因此本輪不會把舊數量送回原版繼續。
+
+前輪為[Go存活與原版敵方選敵](docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)。287來源隔離候選接管13處兵數比較；65組原指令對照、80次新增ID的32位兵數比較、各種拒絕、兩組中間代碼相容讀取及原版／HD正常冷啟動選敵對照通過。原版的暫時目標代碼曾造成表外word讀取，已按IDA與動態資料流保留，畫面、選敵與seed保持一致。[核對](preserved/original-battle-actions-audit-r1.json)、[成果圖](docs/images/original-battle-extended-target-r1.png)與[保存](preserved/README.md#go存活與原版敵方選敵保存)為入口。
 
 混合與全新增編成均能讓原版電腦選到新增兵種。兩案明示typed override及原回合先手參數1，不能稱自然新增兵戰鬥。原種類／兵數欄保持0，原軍隊影子不改；各五次重試保持RAM、cycles、seed與選敵。隔離候選的閘延至敵方執行器入口，扣兵及全部新增兵玩家半回合仍停止。下一步接Go減員、原演出中的兵數顯示與玩家行動；兩次原傷害helper及動畫倒數寫入不可重複結算。一般Go玩家入口、法術與完整世界戰果保持未完成。
 

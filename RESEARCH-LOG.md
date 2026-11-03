@@ -3039,3 +3039,16 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 - 限定實作：Go讀typed兵數產生cmp-zero旗標，原25種保留完整word的零、符號與同位旗標；新增兵種只傳存活布林值，未寫假種類或兵數。13站完整函式bytes、段暫存器、原隊／局部資料流及投影均守門。敵方普通／遠程入口只記錄原選敵，扣兵前返回固定host error。
 - 動態抽樣：65原指令對照、80新增ID讀取、兩組相容指令、兩組原版／HD冷啟動選敵對照及兩案新兵目標通過。新兵兩案明示typed override與原先手參數1，各五次重試不變；不稱自然玩家路徑、實際攻擊或完整回合。正常原軍隊控制沒有先手注入。
 - 回填標記`ORIGINAL-BATTLE-PRESENCE-20261103`及六個不可變runtime定位列入[索引](docs/spec/ai-resolution-backlinks-r1.json)，[030限定結果](docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)保留前輪初始0035閘的歷史與預設契約。
+
+
+## 2026-11-03：首個原敵軍近戰的Go減員消費端
+
+輸入PAM.AY SHA-256為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，PAM.i64為`a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA Pro9.4資料庫521函式，選取九函式；IDA MZ線性base10000及file offset分列，dosgolem runtime CS0F67 IP=IDA線性−1E570，DS=1E88。入口見[永久保存](preserved/README.md#首個敵方近戰與go減員保存)與[030限定結果](docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)。
+
+- 已證實sub_23AFC對原玩家kind0直接略過材質，sub_23A42處理原敵軍動作。新增ID可保留原列0，Go合成靜態材質，不借原kind1或其他身份。
+- 勘誤：首批內層caller假設只包含22DBC的九個直接呼叫；正常原路徑另取得caller461D，即IDA22B8D。新匯出sub_22AF8證實其由22DBC七個caller使用，移動來源部隊後在22B8A呼叫22B96。新增檢查完整wrapper、原父frame／來源目標參數及父E8目標，沒有放寬未知caller。原失敗、診斷與首八函式匯出保持可追溯。
+- 已證實22DBC先於48B2返回第一次1532傷害helper，encoded1早返；其他路徑經22AF8或直接呼叫22B96，再由4658返回第二次同helper。原26AC+5除數與來源AP／目標HP資料綁定保持。新兵用typed HP，原HP相容word不借位；Go完整pending HP飽和0與原16位HP word分別保存，不稱兩者完全相同。
+- 已證實22C4A／22CFF讀目標正式兵數；22CA0／22D40的倒數只是演出。encoded1零損失，encoded>=before且>1全滅，其餘loss=encoded−1。部分損失最多五個倒數，全滅min(before,5)至0；22D95／22D99清原列。Go驗每次倒數值，22DB7只提交一次正式數量，原caller1818立即停止。
+- 動態：18模型及八拒絕、原版／HD兩組正常冷啟動控制通過。完整Frame、兵數、原HP word與seed相同，未宣稱完整CPU state／時鐘parity。新兵受控編成與敵先手下，11隻原6號敵軍每次helper傷害88，兩隻野狼全滅、100隻剩71；Go pending HP分別0及124，原新兵word均0。兩次helper不當成兩次減員，各五次重試不再更新。
+- 原演出完成返回後的Frame仍有原受擊光效，原版與Go控制同樣如此。新兵受擊／死亡姿勢及中間圖層未完成；本輪只驗正式減員與完成返回後的靜態新兵／Noto剩兵。首個完整近戰後仍停止，不外推整場、玩家出手、遠程、法術或存檔。
+- 標記`ORIGINAL-MELEE-CASUALTIES-20261103`及五項runtime不可變鍵已加入[回填索引](docs/spec/ai-resolution-backlinks-r1.json)，舊出手前閘仍為預設，只有新隔離控制器依限定契約延後。

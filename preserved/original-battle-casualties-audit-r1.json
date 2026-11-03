@@ -1,0 +1,23 @@
+{
+  "status": "passed-original-battle-casualties-audit",
+  "source_files": 289,
+  "ida_functions": 9,
+  "models": 18,
+  "refusals": 8,
+  "cold_native_HD_pairs": 2,
+  "expanded_full_melee_cases": 2,
+  "authoritative_updates_each": 1,
+  "held_retries_each": 5,
+  "native_projection_refusals": 19,
+  "presence_regression": true,
+  "controlled_enemy_first_argument": true,
+  "new_ids_in_original_tables": 0,
+  "ordinary_player_entry_disabled": true,
+  "not_verified": [
+    "expanded player turn/ranged/spells",
+    "next attack/complete battle",
+    "new unit hit/death poses",
+    "GUI",
+    "world save lifecycle"
+  ]
+}

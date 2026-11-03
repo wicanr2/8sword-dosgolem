@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## 首個敵方近戰與Go減員保存
+
+本批1208檔／379物件，壓縮43198822 bytes；完整成功、失敗與caller診斷來源均保留，編譯快取不保存。
+
+[本批清理](original-battle-casualties-cleanup-r1.json)只刪逐SHA確認已保存的失敗／診斷副本及本批編譯快取，現行候選與固定輸入保持。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)、[核對](original-battle-casualties-audit-r1.json)、[逐檔清單](original-battle-casualties-r1.json)、[脫離workplace核對](original-battle-casualties-verification-r1.json)及[收尾核對](original-battle-casualties-integrity-r1.json)為入口。289來源隔離候選保留原敵軍普通近戰，Go持有正式兵數，動畫倒數獨立；原兩次傷害helper保持，正式兵數只提交一次。原版／HD正常冷啟動首個完整近戰、18模型、八拒絕與舊存活／投影回歸通過。
+
+受控敵先手及混合編成的野狼2→0、100→71，新增兵種原kind/count/HP word仍0。各五次重試RAM、cycles、seed及提交次數保持，原軍隊影子不變；剩兵71已在原兵數框確認可見。只限這次普通近戰，之後仍暫停；新兵受擊／死亡姿勢、中間圖層、玩家動作、遠程、法術、完整戰鬥、GUI與世界存檔未驗。原197來源七程式、923核心、535素材與1071美術保持。
+
+[Go控制器](../internal/ownedworld/original_battle_casualties.go)、[抽驗](../internal/ownedworld/original_battle_casualties_test.go)、[IDA匯出](../tools/export-original-battle-casualties-ida.py)、[準備／核對／保存](../tools/original-battle-casualties.py)、[成果圖](../docs/images/original-battle-go-casualties-r1.png)與[來源](../docs/images/original-battle-go-casualties-r1.json)為入口。完整候選、九函式IDA bytes、固定資料、失敗與診斷來源、測試程式、state及未縮PNG只存本機`preserved/original-battle-casualties-r1/`，不進Git。縮小成果沿私人倉庫紀錄。
+
+固定Pillow11.3.0 r2容器用`original-battle-casualties.py prepare|freeze|audit|publish|archive|verify`，參數見`--help`。研究沿`battle-r1/original-battle-casualties-r1`，Go1.24.13／IDA9.4、完整命令、UID1000、network none與資源配額見保存內execution-r1.json及WORKLOG。保存用`archive --project /project --archive /archive --out /archive/original-battle-casualties-r1.json`；不掛workplace的核對用`verify --archive /archive --out /out/新核對.json`。
+
 ## Go存活與原版敵方選敵保存
 
 本批1574檔／382物件，壓縮58424602 bytes；成功、失敗與診斷來源均保留，編譯快取不保存。
