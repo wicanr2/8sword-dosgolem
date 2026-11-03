@@ -219,6 +219,38 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 ### 原版戰場與Go後端橋接 DRAFT
 
+2026-11-03接續普通回合的原世界結算與F7。研究沿既有battle-r1下`original-battle-world-r1`；先沿永久owned-world／owned-defeat的原版資料流及native-checkpoint契約，查證原1796結算中的Go剩兵判定、世界數值、原結算畫面、全滅去向與成對保存。不重開已驗普通回合；正式入口保持停止。新增工具及來源在本節補READY後索引，未達READY不接一般玩家路徑。
+
+#### 原世界結算與F7 READY
+
+READY追加勘誤`ORIGINAL-MOTION-EMPTY-20261103`：混合編成在原0F67:50DB抓到跨兩列近戰的不同分支。sub_22DBC的22F55／23607比較來源方目的格種類；目的格空時，23642至2364B只交換0與2，不移動中間列。目的格存活時才沿236D4至23755輪移。sub_21EA0有對稱分支。前輪「所有近戰都插入並移動中間列」已否定；新Go模型按目的格存活分流，保留20個逐字寫入核對，不在返回處放寬RAM信任。完整原state與Go動作記錄保留，修正後再驗混合勝利及原版對照。
+
+輸入沿固定PAM及PAM.i64 SHA，IDA9.4的owned-world-r1／owned-defeat-r1永久匯出與原版數值控制作證據，不重開已證實公式。MZ線性base10000與runtime0110分列。此切片只接正常隨機遭遇的原caller172B至sub_11796，守軍／頭目另保留停止線。實作入口為[Go世界結算](../../internal/ownedworld/original_battle_world.go)、[抽驗](../../internal/ownedworld/original_battle_world_test.go)及[準備與保存](../../tools/original-battle-world.py)。
+
+- 原世界wrapper完成3745的Go剩兵收取後，1796綁定原caller172B、段／frame、完整1151C與11796 bytes、Go回合Done／Released及Store token、初始軍隊與世界六數值。未知caller或過期狀態停止，不放寬一般入口。
+- 勝利獎勵按原敵軍初始typed數量計算：Gold=sum(count×price)、Merit=floor(sum(count×command)/2)，與原8E84及8362所指段003E獨立核對。原結算畫面與按鍵維持；1895／18A5的資源加值交Go寬整數，依既有30000上限投影，不重複執行原ADD。
+- 1900原DS:054A種類零比較改讀Go剩兵是否為空，不把影子軍隊視作正式部隊。撤退192B原rand用既有已證實LCG契約，只取一次真實當前seed，gold除以rand/2730+3；1944扣款交Go。全滅保持原1DAA選單、玩家選項與原地圖傳送／浪跡流程，不猜選項、不發獎勵、不扣撤退金。
+- 19CC的等級／門檻仍沿原分支，但嚴格核對Go預期是否晉級；19E8／19EC／19F5／1A07交Go更新Rank、月薪、領導與法術能力。只在Merit嚴格超過原門檻且Rank<5時升一次；全滅沿原早返不升級。所有六欄維持原已批准30000上限。
+- 原19B8或1AB8返回前，驗Go預測的六數值、來源frame及原影子保持，再將Go剩兵與世界數值單次提交既有成對Store。失敗停在同一返回點可重試，成功後不重複領取；不新增存檔schema。原返回與結果文字維持，不跳過1796整頁。
+- F7沿既有nativeCheckpoint契約驗實際DOS完成2987-byte人物檔、九地圖、目前地圖buffer與close，保存Go軍隊與資源後再冷開Store及原Continue。原軍隊影子保持，新增ID不進原存檔種類表。原位置／原地圖轉移交原程式，Go成對保存完整opaque資料；不把此切片宣稱為不依賴EXE。
+- 抽原版／Go同起始seed的原兵種普通撤退與全滅，核對世界數值、結果／地圖畫面、seed及原選項；新增兵另用明示typed override抽勝利／撤退／全滅，數量須在已驗word邊界。每案追正常原按鍵返回、F7、成對Store及新程序Continue冷讀。守軍、法術、擴充規則／AI、動態新兵姿勢及一般玩家入口不由此提升。
+
+#### 原世界結算與F7限定 CONFORMED
+
+2026-11-03。294來源隔離候選的Go世界結算已接回原隨機遭遇caller，保留sub_11796／runtime`0110:1796`的原頁面、按鍵及全滅選單。`0110:1900`用Go剩兵判斷全滅，`0110:192B`取原實際seed的一次LCG，`0110:19E8`等掛點處理晉級；`sub_184C0`的`0110:8D31`沿既有真正DOS完成後的成對checkpoint，不新增格式。標記`ORIGINAL-WORLD-RESULT-F7-20261103`：前輪「世界戰果／F7未接」只描述當時批次，隨機遭遇由本批限定閉合，守軍／頭目不外推。
+
+原版普通撤退與HD全滅浪跡各一組原版／Go同起始seed、正常按鍵對照，最終完整Frame、六數值、位置／地圖SHA及seed相同。Go撤退扣41金，500→459，剩30民兵；全滅浪跡保持500金且Go軍隊空。兩份原oracle來源保持，修正近戰模型後只重跑Go側，與原oracle比較。沒有用新兵強制戰果冒充原版同編成。
+
+新兵明示74民兵／2野狼／2女弓箭手，領導用量恰為100，保持原world資源。17動作取勝後58民兵／2弓箭手，金615、戰績37；混合全滅則沿原選單1傳送回起點，不扣金或升級。新增兵種規則標記為formation，只為既有Store身份契約，本批戰場仍沿native普通公式，不稱已套結陣。初版80民兵的fixture超領導，在進戰前被拒絕，修正為74而未改資料或規則。
+
+另以明示Merit1999、金29950、月薪29950、法術能力29999的存檔fixture驗真正原頁面晉級流程，結果Rank2、Merit2036、金／月薪／法術能力30000、領導200。五份Go結果皆經實際F7，驗2987 bytes人物檔、九地圖、目前地圖buffer與DOS close，再由獨立新程序從檔案Continue；Go軍隊／六數值／位置完全保持。沒有載入VM快照或用原影子軍隊替代Go新兵。
+
+混合編成觸發`sub_22DBC`的`0F67:50DB`原2364B空目的格分支。原先一律輪移會誤改中間列；已依23607及23642至2364B修正，目的格空改交換兩端。`sub_21EA0`對稱寫入`0F67:417F`的原226EF同樣沿此模型。完整失敗state／動作／Go預測與IDA bytes保留，六模型、八世界拒絕、138比較與原65存活／80新增ID讀取、18減員模型／八拒絕、19投影拒絕回歸通過。標記`ORIGINAL-MOTION-EMPTY-20261103`回填前輪「所有近戰輪移」的範圍。
+
+獨立核對2740行舊永久IDA原MZ bytes、來源SHA、七個情境收據、獎勵／扣款／晉級與上限、五份成對存檔及五程序冷讀。撤退局部rand的After不等於整段返回後seed；只驗局部已證實LCG，整段seed與原oracle比較，不追多餘內部骰序。F7初兩輪自動Enter越界與第三輪未物化九地圖均是驗證配置問題，已沿既有輸入／載入器修正，不改存檔契約。最初result-panel.png取得過早，只作未採用取樣保存，不當結算對話畫面；成果僅用已核對的回地圖Frame。
+
+[核對](../../preserved/original-battle-world-audit-r1.json)、[成果](../images/original-battle-world-f7-r1.png)、[來源](../images/original-battle-world-f7-r1.json)與[永久保存](../../preserved/README.md#原世界結算與f7保存)為入口。工具在固定Pillow11.3.0使用`freeze|audit|publish|archive|verify --project --out`，保存另加`--archive`；獨立程序冷讀在既有Go映像用`cold --project --out`，完整環境在保存內execution-r1.json。原197來源七程式、923核心、r69全535素材與1071美術不變。一般Go入口仍停用；守軍／頭目、法術／特殊、擴充規則／AI、戰中續接、動態新兵姿勢及超word動畫仍待完成，不宣稱完整戰鬥或Rust獨立版完成。
+
 2026-11-03使用者定案：先完成完整戰鬥，再重寫不依賴DOS EXE的Rust獨立版。本輪接續連續兵數、陣位整理、玩家選隊／選敵及雙方普通行動。入口為[回合資料與掛點](../../internal/ownedworld/original_battle_rounds.go)、[抽驗](../../internal/ownedworld/original_battle_rounds_test.go)、[IDA匯出](../../tools/export-original-battle-rounds-ida.py)與[準備／保存](../../tools/original-battle-rounds.py)。研究沿`battle-r1/original-battle-rounds-r1`，既有單次近戰閘預設保持；先補RE與READY，不把解除一個閘視作完整戰鬥。
 
 #### 連續普通行動與玩家出手 READY

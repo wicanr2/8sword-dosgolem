@@ -14,11 +14,18 @@
 
 ## 最近驗證
 
-最新為[連續普通戰鬥](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)。292來源隔離候選已接玩家近戰／直接遠程、普通敵軍行動、整理補位及近戰換位；原版／HD各一組冷啟動原版對照，完整Frame、原兵數、HP word、返回值與seed相同。138原指令對照、八拒絕及舊存活／減員／投影回歸通過。[核對](preserved/original-battle-rounds-audit-r1.json)、[成果圖](docs/images/original-battle-go-rounds-r1.png)與[永久保存](preserved/README.md#連續普通戰鬥與剩兵回傳保存)為入口。
+最新為[原世界結算與F7](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)。294來源隔離候選保留原結算畫面、全滅去向、原地圖返回及F7，Go處理剩兵、獎勵／扣款與晉級數值。原版模式普通撤退、HD全滅浪跡各一組原版／Go對照，完整地圖Frame、六數值、位置與seed相同。五份Go戰後進度各經實際F7、關閉Store、獨立程序Continue，軍隊、六數值及位置保持。[核對](preserved/original-battle-world-audit-r1.json)、[成果](docs/images/original-battle-world-f7-r1.png)與[永久保存](preserved/README.md#原世界結算與f7保存)為入口。
+
+明示74民兵／2野狼／2女弓箭手編成符合領導100，經17動作取勝，剩58民兵／2弓箭手，金500→615、戰績0→37。原兵種全滅走浪跡，混合全滅走原選單回起點，都不領獎或扣撤退金。另以Merit1999及金錢／月薪／法術能力接近上限的存檔fixture，驗升2級、戰績2036、金錢／月薪／法術能力30000、領導200。這是明示測試編成與數值，沒有宣稱自然招募或自然晉級。
+
+混合勝局抓到舊近戰模型漏項：目的格已空時，跨兩列只交換兩端，原中間列不動；已依原bytes與失敗state補正，六模型及正常回歸通過，原20個map寫入逐字守門保持。八個世界掛點拒絕、既有138比較及存活／減員／投影回歸保持。下一步補特殊／法術、守軍／頭目交接，再整合擴充規則／策略AI、戰中續接與一般玩家入口。新兵動態姿勢與超word動畫仍未完成。正式197來源七程式、923核心、535素材與1071美術保持，完整戰鬥後再進Rust。
+
+
+前輪為[連續普通戰鬥](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)。292來源隔離候選已接玩家近戰／直接遠程、普通敵軍行動、整理補位及近戰換位；原版／HD各一組冷啟動原版對照，完整Frame、原兵數、HP word、返回值與seed相同。138原指令對照、八拒絕及舊存活／減員／投影回歸通過。[核對](preserved/original-battle-rounds-audit-r1.json)、[成果圖](docs/images/original-battle-go-rounds-r1.png)與[永久保存](preserved/README.md#連續普通戰鬥與剩兵回傳保存)為入口。
 
 明示新兵編成三案為：1000野狼＋10女弓箭手經32次行動取勝，剩603野狼＋10弓箭手；2野狼＋30民兵略過行動後全滅；同編成正常Esc撤退，兵數保持。未改原先手參數。各五次返回閘重試保持RAM／cycles／seed／歷史，再放行至原0110:171D，由Go收取剩兵且原軍隊影子保持。成對Store保存與新Store冷讀通過，使用明示formation／領導30000的存檔fixture，只驗軍隊保存，不等於本場使用結陣或世界資源已接通。
 
-下一步是特殊／法術的Go資料消費端，以及原世界勝敗／撤退交接、獎勵／敗戰重置與F7保存；其後整合規則／策略AI與一般玩家入口。新兵受擊／死亡姿勢、動作中圖層及超word數量仍未完成。一般Go入口停止，正式197來源七程式／923核心／535素材／1071美術保持；完整戰鬥完成後再做Rust獨立版。以下前輪記錄只保留當時範圍，不重新開已驗普通路徑。
+該批未處理的原世界隨機遭遇／F7已由上列新批限定接通；特殊／法術、守軍及其餘整合仍待完成。新兵受擊／死亡姿勢、動作中圖層及超word數量仍未完成。一般Go入口停止，正式197來源七程式／923核心／535素材／1071美術保持；完整戰鬥完成後再做Rust獨立版。以下前輪記錄只保留當時範圍，不重新開已驗普通路徑。
 
 
 前輪為[首個敵方近戰與Go減員](docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)。289來源隔離候選保留原敵軍普通近戰動作，Go持有正式兵數及pending HP，動畫倒數獨立。18種模型、八種拒絕、原版／HD各一組正常冷啟動原版對照及兩案新兵受擊通過；原完整Frame、兵數、HP word與seed相同。[核對](preserved/original-battle-casualties-audit-r1.json)、[成果圖](docs/images/original-battle-go-casualties-r1.png)與[保存](preserved/README.md#首個敵方近戰與go減員保存)為入口。

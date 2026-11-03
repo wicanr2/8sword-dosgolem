@@ -2976,3 +2976,20 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 
 - 功能提交`a792ca9ac13f887c297383616a6857417ea3421a`已推送origin/main，主機git ls-remote回讀一致。完整本機物件、原版資料與state未加入Git。
 - 收尾提交只追加推送紀錄，沒有變更已驗production來源；工作樹在收尾後核對。
+
+
+## 2026-11-03：原世界戰果、F7與五程序冷讀
+
+- 按既定順序延續Go原戰場，Rust仍在完整戰鬥之後。路由命中逆向重製技能、spec閘門、文件職責、README標準、驗證交接及結論回填。沿永久world／defeat與native-checkpoint證據，重新核對2740行MZ bytes，不重開原公式或硬體研究。
+- 建立030 READY後加入original_battle_world.go：原1796結算UI／全滅去向保留，Go處理剩兵判斷、獎勵／扣款、晉級與六欄上限，在原返回前單次成對Store提交。F7沿既有原DOS完成及九地圖檢查，不改schema、一般Go入口或197正式來源。
+- 首次編譯移除未用test import。F7前兩輪有自動Enter延伸到系統選單，第三輪缺少完整九地圖，均依既有GUI／物化器修正驗證設定。兩次原版控制完成後保留，後續只重跑Go側；未將未完成F7當成成功。
+- 混合fixture80民兵／2狼／2弓箭手用量106超過領導100，Store在進戰前拒絕。按實際profile修成74＋2＋2，用量100，不更改平衡／領導。新編成暴露真正近戰模型缺口：空目的格的跨兩列動作只交換兩端。保留失敗及完整診斷state／Go history，回IDA原bytes補READY，再修Go模型，六例及死來源拒絕通過。
+- 固定Go1.24.13／Pillow11.3.0既有映像，UID1000、network none、3GiB／2CPU／192程序與600秒上限。923核心、module cache、原版與r69素材唯讀，僅本研究批次可寫。完整環境與命令見保存內execution-r1.json。
+- 修正後172.02秒完成四條Go玩家路徑：原版普通撤退、HD全滅浪跡、混合勝利、混合全滅回起點；前兩條與原oracle完整Frame、六數值、位置及seed相同。勝局17動作後58民兵／2弓箭手，金615／Merit37。原兩種全滅選項及正常F7保持。
+- 另57.08秒晉級／上限fixture通過：Rank2／Merit2036，金錢、月薪及法術能力30000、領導200。七個回歸測試涵蓋八世界拒絕、六motion模型、138比較及八拒絕、舊存活／減員／投影。原版無Go的兩條oracle無需因Go模型修正而重生。
+- 每個Go結果均實際完成F7、Store冷讀及新Engine Continue，另由工具cold依序啟動五個獨立測試程序，世界SHA、六數值、軍隊與位置一致。沒有用VM snapshot替代冷開。動態功能驗證後只移除過早的結果畫面取樣，production不改，最後重新編譯並跑世界拒絕／motion模型通過。
+- 稽核器初版錯設所有舊IDA匯出都有function_count，以及局部rand After等同完整返回seed；依原schema／階段修正，不改原收據。獨立audit重新解F7與九地圖、核公式、兩組完整Frame及五程序結果通過。過早result-panel.png只保存未採用取樣，README新圖使用真正回地圖Frame。
+- README、CONTEXT、AGENTS、030限定CONFORMED及七個runtime回填同步。一般入口、守軍／頭目、法術／特殊、擴充規則／AI、戰中續接與新兵姿勢仍待完成，不宣稱完整戰鬥或Rust獨立版完成。正式197來源七程式、923核心、535素材與1071美術保持。
+- 本批3070檔／445物件、壓縮72403861 bytes已永久保存；原版、完整PNG／state、成功／失敗來源與五程序結果只存本機，完整物件不進Git。
+
+- 脫離workplace逐SHA核對3070檔／445物件通過；收尾294來源、14個新連結、七項runtime回填、Python語法、Go格式及UID1000通過。本批沒有root-owned檔或錯建.md目錄。依既有授權刪2182份／120434700 bytes已保存副本及1777份／215043053 bytes快取，保持兩份稽核基線manifest及現行候選。所有本批一次性容器已移除，未建新映像，其他專案資源保持。

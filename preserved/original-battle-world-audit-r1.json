@@ -1,0 +1,68 @@
+{
+  "status": "passed-original-battle-world-audit",
+  "source_files": 294,
+  "ida_lines": 2740,
+  "original_pairs": 2,
+  "frame_resource_location_seed_pairs_equal": true,
+  "go_world_results": 5,
+  "actual_F7_saves": 5,
+  "separate_process_cold": 5,
+  "new_ids_in_native_tables": 0,
+  "empty_destination_motion_corrected": true,
+  "motion_models": 6,
+  "world_refusals": 8,
+  "win_resources": [
+    1,
+    37,
+    100,
+    615,
+    100,
+    0
+  ],
+  "win_survivors": [
+    {
+      "unit": "native:01",
+      "count": 58
+    },
+    {
+      "unit": "openkb:arcr",
+      "count": 2
+    },
+    {
+      "unit": "",
+      "count": 0
+    },
+    {
+      "unit": "",
+      "count": 0
+    },
+    {
+      "unit": "",
+      "count": 0
+    },
+    {
+      "unit": "",
+      "count": 0
+    }
+  ],
+  "promotion_cap_resources": [
+    2,
+    2036,
+    30000,
+    30000,
+    200,
+    30000
+  ],
+  "formal_runtime_unchanged": true,
+  "general_player_entry_disabled": true,
+  "not_verified": [
+    "guard/boss world results",
+    "special/caster actions and spells",
+    "formation/tactics and target AI integration",
+    "new unit hit/death poses",
+    "wide animation",
+    "battle in-progress save/resume in original battlefield",
+    "actual GUI window",
+    "general owned player startup"
+  ]
+}

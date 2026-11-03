@@ -1,0 +1,21 @@
+{
+  "status": "passed-original-battle-world-integrity",
+  "source_files": 294,
+  "new_link_checks": 14,
+  "runtime_backlinks": 7,
+  "python_syntax": true,
+  "uid": 1000,
+  "root_owned_work_files": 0,
+  "markdown_named_directories": 0,
+  "detached_files": 3070,
+  "detached_objects": 445,
+  "formal_source_files": 197,
+  "formal_core_files": 923,
+  "formal_assets": 535,
+  "artwork_files": 1071,
+  "go_result_cases": 5,
+  "original_pairs": 2,
+  "separate_process_Continue": 5,
+  "general_player_entry": false,
+  "scope": "Random-encounter settlement and F7; remaining full-battle integration is documented."
+}

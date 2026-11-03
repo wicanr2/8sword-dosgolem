@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "sha256": "5c1370c156ed52ed4620f5f8f71b397934962939a181a90286e84a5fd0674f85",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-world-r1/world-r1/expanded-win-promotion/map.png",
+      "sha256": "03a1f9f561036828da888fd0564e17444f626dfc6efef7bc8b08c1431a868eba",
+      "scenario": "expanded-win-promotion"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-world-r1/world-r1/expanded-win/map.png",
+      "sha256": "39b1c942e0aea9af6253fd1d606d693955275665d0ec4eea0ff196dbfac603f7",
+      "scenario": "expanded-win"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-world-r1/world-r1/expanded-loss-origin/map.png",
+      "sha256": "f053153a919583e22828b05a55d214e2c59f6060fde2f930785cbd1aa473607d",
+      "scenario": "expanded-loss-origin"
+    }
+  ],
+  "actual_window": false,
+  "general_player_entry": false,
+  "scope": "Original random-encounter result UI; Go army/resources, source F7 and separate-process Continue."
+}

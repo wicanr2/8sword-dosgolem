@@ -1,5 +1,34 @@
 # 必要資料永久保存
 
+## 原世界結算與F7保存
+
+本批3070檔／445物件，壓縮72403861 bytes，完整成功／失敗來源、原版證據、state、未縮PNG、F7人物檔與九地圖、五個獨立程序冷讀均已保存。完整物件只存本機`preserved/original-battle-world-r1/`，不進Git；編譯快取排除。
+
+[清理收據](original-battle-world-cleanup-r1.json)只移除2182份逐SHA已保存副本及1777份本批快取，共335477753 bytes；目前候選、成功收據與兩份稽核基線清單保持。[清理後核對](original-battle-world-post-cleanup-audit-r1.json)通過。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)、[核對](original-battle-world-audit-r1.json)、[逐檔清單](original-battle-world-r1.json)、[脫離workplace核對](original-battle-world-verification-r1.json)及[收尾核對](original-battle-world-integrity-r1.json)為入口。[成果](../docs/images/original-battle-world-f7-r1.png)只使用已驗回地圖Frame；過早的result-panel.png是未採用取樣，不能當成結算對話畫面。
+
+294來源候選保留原隨機遭遇結算、全滅去向與F7，Go持有正式軍隊並計算獎勵、扣款、晉級及上限。兩組原版／Go的Frame、六數值、位置與seed相同；五個Go結果經實際DOS完成F7，再由五個獨立程序Continue冷讀。明示混合勝局剩58民兵／2女弓箭手、金615、戰績37；另驗全滅回起點及晉級／30000上限。
+
+跨兩列近戰目的格為空時只交換兩端，修正見`ORIGINAL-MOTION-EMPTY-20261103`。完整錯誤state、Go動作、預測與原IDA bytes均保留，沒有放寬逐字map守門。F7自動Enter壽命、九地圖物化及超領導fixture屬測試配置失敗；各次來源／日誌均保留。正式197來源七程式、923核心、535素材、1071美術與一般Go入口停止保持；守軍／頭目、法術／特殊、規則／AI、戰中續接及新兵姿勢仍未完成。
+
+[控制器](../internal/ownedworld/original_battle_world.go)、[抽驗](../internal/ownedworld/original_battle_world_test.go)、[回合模型](../internal/ownedworld/original_battle_rounds.go)與[準備／核對／保存工具](../tools/original-battle-world.py)為入口。固定輸入沿前批建立，`freeze`凍結來源，`audit`獨立核對2740行原MZ bytes、公式與成對進度，`cold`在Go映像啟動五個獨立測試程序。完整命令、環境、失敗分類、唯讀掛載及映像SHA在保存內execution-r1.json。
+
+保存用固定Pillow11.3.0 r2容器，專案唯讀、preserved可寫，UID1000、network none、2GiB／2CPU／64程序及120秒逾時：`original-battle-world.py archive --project /project --archive /archive --out /archive/新清單.json`。本批已固定，不能直接覆寫；需要重建另採新版本批次。
+
+脫離workplace核對只掛保存與工具：
+
+```bash
+timeout 120 docker run --rm --init --network none --user 1000:1000 \
+  --memory 1g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword/tools:/tools:ro \
+  -v /home/anr2/cht/8sword/preserved:/archive \
+  sc-cht-hdtools:pillow11.3.0-r2 python /tools/original-battle-world.py \
+  verify --archive /archive --out /archive/新核對.json
+```
+
+還原依清單的原路徑／mode，先驗stored_sha256，gzip解壓後驗原大小與SHA，再寫到新目的地，不覆寫不同內容。完整原版資料／PNG／state維持本機分類，縮小成果與索引沿私人倉庫紀錄。
+
 ## 連續普通戰鬥與剩兵回傳保存
 
 本批2165檔／404物件，壓縮63421387 bytes；原版資料、完整PNG、state、成功與失敗來源、292來源候選及測試程式均保留。編譯快取不保存。物件只存本機`preserved/original-battle-rounds-r1/`，不進Git，不依賴workplace。

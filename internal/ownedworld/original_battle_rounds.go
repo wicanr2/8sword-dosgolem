@@ -309,17 +309,11 @@ func (r *originalBattleRounds) enter(m *dg.Machine, side int, ip uint16) (bool, 
 	r.MotionAfter = r.Slots
 	if !direct {
 		from, to := int(ss), int(ts%3)
-		v := r.MotionAfter[side][from]
-		if from < to {
-			for k := from; k < to; k++ {
-				r.MotionAfter[side][k] = r.MotionAfter[side][k+1]
-			}
-		} else {
-			for k := from; k > to; k-- {
-				r.MotionAfter[side][k] = r.MotionAfter[side][k-1]
-			}
+		var err error
+		r.MotionAfter[side], err = roundMotionPlan(r.Rows[side], r.Slots[side], from, to)
+		if err != nil {
+			return false, err
 		}
-		r.MotionAfter[side][to] = v
 	}
 
 	if direct {
@@ -328,6 +322,37 @@ func (r *originalBattleRounds) enter(m *dg.Machine, side int, ip uint16) (bool, 
 	}
 	a.Target = &c.Record.Target
 	return false, nil
+}
+
+// Original 22F55/23607 and symmetric player branches: an empty destination
+// swaps endpoints; an occupied destination rotates the intervening front rows.
+func roundMotionPlan(rows [6]ArmyStack, slots [6]uint16, from, to int) ([6]uint16, error) {
+	out := slots
+	if from < 0 || from >= 3 || to < 0 || to >= 3 {
+		return out, errors.New("round motion front bounds")
+	}
+	for _, raw := range slots {
+		if raw >= 6 {
+			return out, errors.New("round motion map bounds")
+		}
+	}
+	if rows[slots[from]].Count == 0 {
+		return out, errors.New("round motion dead source")
+	}
+	v := out[from]
+	if rows[slots[to]].Count == 0 {
+		out[from] = out[to]
+	} else if from < to {
+		for k := from; k < to; k++ {
+			out[k] = out[k+1]
+		}
+	} else {
+		for k := from; k > to; k-- {
+			out[k] = out[k-1]
+		}
+	}
+	out[to] = v
+	return out, nil
 }
 
 func (r *originalBattleRounds) playerGate(m *dg.Machine, ip uint16) (bool, error) {

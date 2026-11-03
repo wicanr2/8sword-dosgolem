@@ -3065,3 +3065,16 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 - 動態：正常Continue與地圖按鍵至遇敵，原版／HD各一組原控制與Go連續九動作直到原返回，Frame、原列、HP word、AX與seed相同。沒有CPU全state、PCM或時鐘parity聲明。新兵typed override三案保持原先手：32動作取勝剩603狼＋10女弓箭手、八敵軍動作全滅、零動作Esc撤退。受控編成不能稱自然取得。
 - 原sub_1E578／003C五次返回閘重試保持RAM／cycles／seed／歷史，明確釋放後沿原world wrapper至0110:171D，由既有3745投影收取Go rows，原軍隊影子不改。三案保存及新Store冷讀一致，但Store先設formation／領導30000的明示fixture。初次native規則拒絕是既有存檔契約正常生效，不是產品回歸；沒有放寬schema。
 - 限制：未走171D後世界獎勵、敗戰重置與F7；特殊／法術、擴充規則／策略AI、新兵動態姿勢／中間圖層、超word動畫及一般Go入口未驗。本輪只讓普通行動沿原戰場閉合，不宣稱完整戰鬥或Rust已開始。七個runtime不可變鍵及兩個勘誤標記已回填[索引](docs/spec/ai-resolution-backlinks-r1.json)。
+
+
+## 2026-11-03：原世界結算、F7與空目的格近戰勘誤
+
+來源PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。使用永久owned-world-r1／owned-defeat-r1的IDA9.4匯出，不重新深挖已證實公式；2740行bytes重新對MZ重定位核對。IDA base10000、file offset、world runtime0110與battle runtime0F67分列。證據見[030](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)及[永久保存](preserved/README.md#原世界結算與f7保存)。
+
+- 已證實的既有語意接回原操作：1796的caller172B，1895／18A5加Merit／Gold，1900依第一隊種類分全滅，192B一次rand與1944扣款，19E8等級及19EC／19F5／1A07三加值。Go代替數值寫入與剩兵判斷，原文字、按鍵、全滅選單及地圖轉移執行原程式。返回19B8／1AB8前成對Store單次提交，原軍隊影子保持。
+- 新發現已證實：混合74民兵／2狼／2弓箭手，在第五次動作的敵軍近戰中，原50DB欲把slot2寫回raw0，Go預測raw1，逐字守門在寫入前拒絕。原state與history顯示敵方slot0原隊已死、slot1仍33隻、來源slot2為29隻。IDA22F55／23607檢查目的格，空時23642至2364B交換0／2，存活時236D4至23755才輪移中列。玩家21EA0有對稱分支。標記`ORIGINAL-MOTION-EMPTY-20261103`否定舊「所有情況都輪移」，保留舊收據與失敗，補READY後修模型，沒有信任未知RAM或取消map核對。
+- 動態：原版撤退與HD全滅浪跡的原控制／Go，Frame、六數值、位置／地圖SHA及seed相同。修正模型後重跑Go側，原oracle保持。混合勝局17動作，58民兵／2弓箭手、金615、Merit37；混合全滅走原選項1回起點，原兵種全滅走選項2浪跡，兩者都不扣金或獎勵。
+- 數值fixture：Merit1999、金29950、月薪29950、法術能力29999。真正勝利後原晉級頁流程得到Rank2／Merit2036／月薪30000／金30000／領導200／法術能力30000，六欄以Go預測及F7檔案解碼獨立核對。編成及邊界值明示，不稱自然購兵或晉級。
+- 五份Go結果均實際F7至DOS close，原2987-byte人物檔與九地圖被既有checkpoint綁定；五個新程序各從檔案Continue，軍隊、數值與位置保持，沒有LoadState。原opaque軍隊影子24 bytes保持，擴充ID留在Go附檔。
+- 亂數邊界：局部退戰LCG的Before／After／Value已核對，但整段返回後還會合法變更seed；只比較局部規則及最後原oracle，不因兩個不同階段seed不相同而深入骰序。這是稽核器前提修正，Go及原收據不改。
+- 限制：只接原隨機遭遇一次完整往返，未接可重複一般入口、守軍／頭目、法術／特殊、擴充規則／AI、原戰場戰中續接、超word動畫與新兵動態姿勢。Engine畫面不冒稱X11視窗；過早result-panel取樣不作結算對話證據。七項不可變runtime定位及勘誤已回填[索引](docs/spec/ai-resolution-backlinks-r1.json)。

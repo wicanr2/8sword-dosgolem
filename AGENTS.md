@@ -2,6 +2,8 @@
 
 2026-11-03使用者確認先完成完整戰鬥，再重寫為不依賴DOS EXE的Rust獨立版。現階段Go接回原版／HD操作，完成雙方行動、連續回合、勝敗／撤退、戰果保存及冷讀後才進Rust階段；這是已確認順序，不重問。現況與完成範圍以[CONTEXT](CONTEXT.md)及[030](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)為準，不能把單次攻擊當完整戰鬥。
 
+2026-11-03原隨機遭遇的世界結算／F7依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)完成294來源隔離候選。Go接剩兵、獎勵、撤退扣款與晉級數值，原結算畫面、全滅去向及F7保留。兩組原版對照、五次實際F7與五份獨立程序Continue通過；混合勝利剩58民兵／2弓箭手，金615、戰績37。跨兩列目的格空時只交換兩端，見`ORIGINAL-MOTION-EMPTY-20261103`，不可再套所有情況都輪移的舊假設。[保存入口](preserved/README.md#原世界結算與f7保存)不依賴workplace。守軍／頭目、法術／特殊、規則／AI整合、戰中續接及一般Go入口仍待完成；原197來源七程式、923核心、535素材與1071美術保持，完整戰鬥後才轉Rust。
+
 2026-11-03連續普通戰鬥依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)完成292來源隔離候選。玩家近戰／遠程、敵軍普通行動、補位及換位讀Go更新後資料；原版／HD冷啟動對照通過，新兵32動作勝利、全滅及撤退三案均回原世界wrapper，Go剩兵成對保存後冷讀相同。玩家原扣兵公式與敵軍有差異，見`ORIGINAL-ROUND-PLAYER-LOSS-20261103`，不可沿舊核心共用損失公式推斷玩家exact。一般Go入口保持停止；特殊／法術、完整世界獎勵與F7、規則／策略AI串接、新兵姿勢及超word動畫仍待完成。[保存入口](preserved/README.md#連續普通戰鬥與剩兵回傳保存)包含成功／失敗完整資料，不依賴workplace。這是普通戰鬥限定提升，完整戰鬥完成後才進Rust。
 
 2026-11-03首個敵方近戰依[030限定結果](docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)完成289來源隔離候選。Go持正式兵數與pending HP，動畫倒數分離；原兩次helper保持，正式兵數提交一次。18模型、八拒絕、原版／HD正常首個完整近戰對照及受控野狼2→0、100→71通過。原共用步進sub_22AF8的461D caller已由IDA補證，不可只認22DBC直接caller。只有明確安裝[減員控制器](internal/ownedworld/original_battle_casualties.go)才延後至第一個近戰返回後暫停；預設出手前閘、一般Go入口停止及原197來源七程式／923核心／535素材／1071美術保持。[永久入口](preserved/README.md#首個敵方近戰與go減員保存)可核對還原。新兵姿勢、中間圖層、玩家行動、遠程、後續攻擊、法術及世界戰果未接；原動畫畫面兵數先限32767，下一步補玩家與其餘普通路徑。
