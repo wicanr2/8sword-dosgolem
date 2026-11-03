@@ -2993,3 +2993,8 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 - 本批3070檔／445物件、壓縮72403861 bytes已永久保存；原版、完整PNG／state、成功／失敗來源與五程序結果只存本機，完整物件不進Git。
 
 - 脫離workplace逐SHA核對3070檔／445物件通過；收尾294來源、14個新連結、七項runtime回填、Python語法、Go格式及UID1000通過。本批沒有root-owned檔或錯建.md目錄。依既有授權刪2182份／120434700 bytes已保存副本及1777份／215043053 bytes快取，保持兩份稽核基線manifest及現行候選。所有本批一次性容器已移除，未建新映像，其他專案資源保持。
+
+### 本輪提交與遠端核對
+
+- 功能提交`bb99637c0066fbccb4df4c3bd6dec12f2b49c980`已推送origin/main，主機git ls-remote回讀一致。只提交來源、文件、縮小成果圖與清單，完整本機保存物件未入Git。
+- 收尾只追加此紀錄，未改production來源；工作樹在收尾提交後核對。
