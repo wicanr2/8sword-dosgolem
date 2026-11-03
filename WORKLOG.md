@@ -3046,3 +3046,5 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 [獨立核對](preserved/original-battle-enemy-audit-r1.json)確認300來源、50函式／12279行原MZ bytes、公式、完整Frame及F7九張地圖。前述特殊返回cohort的敵方控制器相同；目的列修正以精確逆轉及舊SHA核對，最終來源另重跑完整世界與回歸。資料共2010檔／513物件、壓縮85329591 bytes，[脫離workplace核對](preserved/original-battle-enemy-verification-r1.json)通過。完整物件排除Git，README縮圖已目視檢查。
 
 [清理](preserved/original-battle-enemy-cleanup-r1.json)只刪605份已保存且逐SHA相同的舊副本與1777份Go快取，共317840209 bytes；現行來源、最終二進位、永久物件與定稿圖保持，不碰其他專案。十筆新位址回填護欄通過。收尾檢查詳見[永久入口](preserved/README.md#原戰場敵方特殊go資料保存)；本輪Docker均有界且--rm，無留下專案容器。守軍／頭目、規則／AI整合、超領導保存、新兵姿勢、寬數量動畫、戰中續接及一般入口續接；完整戰鬥後才進Rust。
+
+2026-11-03提交收尾：`99828d93c43e9af4ced09e425721248ed00dbc94`已推送私人GitHub的main，遠端SHA一致。README成果圖及24檔來源／證據索引已入庫，完整原資料與85 MB物件保持本機。清理後獨立audit相同、54個新增入口與十筆位址回填通過，工作樹於功能提交後乾淨；本段只補推送紀錄，不改程式。
