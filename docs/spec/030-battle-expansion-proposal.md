@@ -221,6 +221,53 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 2026-11-03接續敵方特殊資料接管，研究沿battle-r1下`original-battle-enemy-r1`。入口為[敵方控制器](../../internal/ownedworld/original_battle_enemy.go)、[抽驗](../../internal/ownedworld/original_battle_enemy_test.go)與[準備／保存](../../tools/original-battle-enemy.py)。原戰場、原分派、自然RNG及已驗玩家八術保持，不改成卡片介面。
 
+#### 原戰場守軍與頭目交接 DRAFT
+
+2026-11-03接續敵方特殊，沿既有守軍／八劍來源及Go資料，接回原版／HD戰場的原確認、連續戰鬥、殘兵、獎勵與F7。舊卡片路徑的限定驗收只作資料／存檔證據，不當本批原戰場完成。本批研究沿既有battle-r1下`original-battle-guards-r1`，先核對sub_12DDE的309E返回、sub_132B4地圖清理及sub_11ABE獎勵。入口預定[窄查](../../tools/export-original-battle-guards-ida.py)、[候選與保存](../../tools/original-battle-guards.py)、[Go交接](../../internal/ownedworld/original_battle_guards.go)及[抽驗](../../internal/ownedworld/original_battle_guards_test.go)，READY前不接正式玩家路徑。
+
+原25種敵軍／42處守軍、八區頭目索引與原保存位置沿既有證據，不重畫素材或重做全表逆向。原PAM／i64及Go1.24.13／923核心保持。待查的是原戰場caller與世界返回生命週期；保存沿既有Go世界的守軍record與成對提交，不新增卡片UI。一般入口仍停止，結局守軍另保留交接停止線。
+
+#### 原戰場一般守軍與頭目 READY
+
+固定PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`及PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`保持。既有IDA9.4守軍／獎勵匯出另加四函式窄查，保留原名、線性位址、file offset及bytes，不重新命名；IDA MZ base10000與runtime0110分列。以下原靜態語意沿已證實資料，正式動態接線待驗。
+
+- sub_12DDE入口2DDE限原caller25EE，確認／八劍進場檢查保持。3048至3069的影子六隊判斷由Go六隊存在值取代。守軍來源、42處實際座標、八劍旗標與所有NPC word核對，清除守軍、未知索引與結局守軍0區4先拒絕。一般隨機戰仍只接受原171D／0BD3，不全面放寬caller。
+- sub_132E0投影另設明確守軍模式，綁309E／25EE及已綁定守軍。原版戰場仍由同一Go setup／actions／rounds／spells／support／enemy控制器提供兵數。原影子軍隊保持，新增ID不進原固定表；畫面數量及HP沿既有word停止線。
+- 在309E核對Go回合已Done／Released、玩家投影已收取、原結果AX與frame。原sub_13774整理後的敵軍24 bytes須等於Go剩兵壓緊結果；Go只更新選中NPC的24 bytes，略過原1309E至1326E掃描寫回，保留326E結局檢查及地圖返回。其他41處守軍與主角影子逐byte保持。原sub_132B4共43 bytes，函式本身沒有直接兵力／獎勵寫入，本批保留原callee呼叫，不把它當Go戰果計算或深挖各helper。
+- 保留sub_11ABE原獎勵頁與按鍵。1B7B加月薪、1BD6加法術能力及1C7F寫八劍旗標由Go處理，先綁原32AA caller、區域／位置與結果。勝利只加20×(區域+1)月薪；26AA為1才另加區域+1法術能力，30000封頂。只有原頭目索引勝利才設該區旗標。金錢／戰績／等級不套隨機戰獎勵或晉級。
+- 撤退／全滅沿原sub_11ABE失敗頁，原1CD8的軍隊判斷讀Go剩兵；1D03只推進一次原LCG，1D1C交Go扣款。原全滅選單、回起點／浪跡路徑保持。原reward返回32AD只提交一次Go剩兵、守軍record與六世界資源。重複返回不可再領獎，陌生frame／來源／過期token／非目標NPC改寫即拒絕。
+- 沿既有WorldEncounter與成對Store，不加schema或新欄位。Go的守軍record為正式資料；未F7前原opaque NPC／劍word仍屬前次原存檔。冷啟動明確安裝本橋接時，先從成對Go record重建該NPC及已清頭目的旗標到原RAM，再讓原玩家流程繼續，不重播獎勵、不信舊NPC覆蓋Go。既有F7照原serializer一次捕獲RAM、九張地圖與旗標，成對checkpoint同步後解除差異。中斷發生在Go提交前則舊進度不變，提交後依Go record冷讀恢復；不以兩次分開的Go／NPC交易掩蓋中間狀態。
+- 驗收原版／HD各一組原控制／Go完整勝局，抽普通守軍撤退與殘兵冷讀、頭目勝利旗標、含新增兵種、未F7冷讀與真正F7後獨立程序Continue。固定seed在進戰前設，不重投；位置／大軍隊為明示fixture，守軍原隊伍不改。舊卡片GUI、caller stub與新Engine Frame證據分列。共享原語及拒絕測試代表抽驗，不逐守軍或逐新兵重跑。
+- 一般Go入口、同程序多戰控制器生命週期、規則／AI整合、戰中續接與結局守軍交接保持停止線。原197來源七程式、923核心、535素材及1071美術不改；完成資料保存與獨立核對後才限定CONFORMED。
+
+#### 原戰場一般守軍與頭目限定 CONFORMED
+
+`ORIGINAL-GUARD-WORLD-20261103`：302來源隔離候選把守軍與頭目接回同一套原版／HD戰場。Go接初始投影、普通／特殊兵力、殘兵、月薪與劍旗標，原確認、戰場、獎勵頁、地圖清理與F7保持。原卡片守軍成果只供資料契約，沒有恢復卡片UI。正式197來源七程式、923核心、535素材及1071美術保持。
+
+| dosgolem runtime CS:IP | IDA MZ原名／線性位址 | 本批責任 |
+|---|---|---|
+| 0110:2DDE | sub_12DDE／12DDE | 綁定25EE caller、守軍位置與Go進度 |
+| 0110:3048 | sub_12DDE／13048 | Go軍隊存在判斷，不用影子軍隊 |
+| 0110:32E0 | sub_132E0／132E0 | 明確守軍投影，僅接受309E／25EE |
+| 0110:309E | sub_12DDE／1309E | 收取Go戰果，只投影一筆NPC24 bytes |
+| 0110:1ABE | sub_11ABE／11ABE | 保留原獎勵頁，綁定32AA caller |
+| 0110:1B7B | sub_11ABE／11B7B | Go提供月薪增量，30000封頂 |
+| 0110:1C7F | sub_11ABE／11C7F | 頭目勝利才寫該區八劍旗標 |
+| 0110:32AD | sub_12DDE／132AD | 單次成對提交剩兵、守軍record與資源 |
+| 0110:25EE | sub_12446／125EE | 原地圖返回後驗證資料保持 |
+
+原版模式守軍勝利與HD守軍撤退各一組原控制／Go，完整地圖Frame、504個NPC word、八劍旗標、六世界數值及seed相同。來源均為正常Continue、明示位置後的原移動／確認／選敵按鍵；未注入IP、替代battle函式、強制戰果或改守軍編成。seed0x12345678在移動前寫DS:81BC／81BE，沒有重投。原版勝局1000民兵／200原弓箭手，八次普通動作後剩979／200，月薪100→120；金500、戰績10000及等級1保持，證明沒有誤用隨機勝利獎勵或晉級。撤退前擊倒30猴妖，另四隊40／30／40／20存活，金500→400，軍隊不減。
+
+兩個HD混合局明示另加20野狼及20女弓箭手，原守軍五隊不改。一般守軍11次普通動作後剩983民兵／200原弓箭手／20女弓箭手；0區頭目10次後剩989／200／20，第一旗標0→1，其餘七旗標保持。兩局野狼均全滅，沒有把新增ID送進原表。Store沿既有formation保存標記，本場Engine規則仍native，沒有驗收結陣／壓制／策略AI整合。
+
+四條Go路徑均驗未F7新Engine冷讀，從Go record恢復NPC及劍旗標，沒有重領月薪。之後實際F7、關閉Store及四個獨立程序Continue，軍隊、資源、位置、NPC與旗標保持，九張地圖逐byte核對。`ORIGINAL-GUARD-RECORD-AUTHORITY-20261103`區分保存權威：成對Go record先提交，原opaque NPC／劍word留在前次checkpoint；原版F7才捕獲新RAM及地圖。這沿既有WorldEncounter、journal與v2等格式，不新增欄位或兩次分開的戰果交易。16個八區record模型、7種record拒絕、12種獎勵掛點拒絕、intent-durable恢復及5次已提交返回模型重試通過。返回重試是模型，不冒稱五次完整GUI重播。
+
+最後另重跑既有setup／存活／減員／普通回合／法術／輔助術／敵方特殊／世界拒絕，以及隨機戰Go原版撤退至F7冷讀。隨機投影仍只接受171D／0BD3；守軍模式未綁context時拒絕，不全面放寬caller。所有通過cohort的非測試來源逐SHA相同，後續只補返回模型與修正混合軍隊保存標記。
+
+固定PAM／i64及工具版本沿READY；本輪27份函式匯出共6264行bytes重新對MZ重定位核對。`sub_132B4`的43-byte本體沒有直接兵力或獎勵寫入，本批保留其原呼叫；深層helper不因本批被宣稱完整語意。IDA匯出合併受版控索引，未知項保留警示。入口為[核對](../../preserved/original-battle-guards-audit-r1.json)、[成果](../images/original-battle-guards-go-r1.png)、[圖片來源](../images/original-battle-guards-go-r1.json)、[研究紀錄](../../RESEARCH-LOG.md#原戰場守軍頭目與go紀錄權威)及[永久保存](../../preserved/README.md#原戰場守軍與頭目保存)。工具的`freeze|audit|publish|archive|verify --project --out`與Go／IDA掛載、配額、種子及失敗分類見保存內execution-r1.json，保存另加`--archive`。
+
+限定0區一般守軍0與頭目1的勝利／撤退，其他七區只驗record模型；全滅／空軍隊、26AA=1完整路徑、同程序取消重進／多戰、結局守軍、規則／AI整合、超領導保存、新兵姿勢、超word動畫、戰中續接及一般入口仍待驗或接續。這是戰後Engine畫面，未新增X11驗收或自然取得聲明。完整戰鬥後才進Rust。
+
 #### 敵方八分派Go資料 READY
 
 `ORIGINAL-MOTION-REAR-20261103`追加READY勘誤：原近戰後排目標不能用target%3計算永久換位。固定IDA匯出的sub_21EA0在21F0A／22386／22662依來源前排分支，後排3／4／5有獨立case；例如22284至22386的來源0、目標5只演出後返回，不寫6FB6六陣位。sub_22DBC對稱。72組原分支研究隔離兩側、來源0至2、目標0至5及目的格空／非空，只替代畫圖／傷害callee與已知10／12-byte區域變數配置，不當完整戰鬥對照。兩側原永久換位目的列相同：前排0至2沿原列；後排3在來源2時移到1，後排4在來源0時移到1，其餘回原位。原目的格空時交換兩端、存活時移動中間列的契約保持。Go先按此矩陣選目的列，再沿已驗換位模型；原20處寫入核對與返回的完整map檢查保持，不直接放行錯配。來源為本批`enemy-motion-research.json`及失敗完整state，正式提升仍須重跑該完整戰鬥與既有普通回歸。

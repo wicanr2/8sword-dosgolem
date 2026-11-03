@@ -64,7 +64,11 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版與HD的敵方特殊，以及戰後地圖](docs/images/original-battle-go-enemy-r1.png)
 
-敵方八種特殊分派已接上Go兵數與行動計數，保留原選敵、動畫及回合。十三組原版對照通過；含新增兵種的完整勝局也已完成F7與獨立程序讀檔。圖為明示敵軍／分派配置的完成幀，並非自然遭遇或動畫中間幀。另修正原後排目標的近戰換位，見[敵方特殊限定驗收](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)及[圖片來源](docs/images/original-battle-go-enemy-r1.json)。守軍／頭目、規則／AI整合、戰中續接與一般Go入口仍待完成。
+敵方八種特殊分派已接上Go兵數與行動計數，保留原選敵、動畫及回合。十三組原版對照通過；含新增兵種的完整勝局也已完成F7與獨立程序讀檔。圖為明示敵軍／分派配置的完成幀，並非自然遭遇或動畫中間幀。另修正原後排目標的近戰換位，見[敵方特殊限定驗收](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)及[圖片來源](docs/images/original-battle-go-enemy-r1.json)。規則／AI整合、戰中續接與一般Go入口仍待完成。
+
+![原版守軍勝利、HD撤退殘兵與頭目勝利的戰後地圖](docs/images/original-battle-guards-go-r1.png)
+
+一般守軍與頭目也已在隔離候選沿用原確認、戰場與獎勵頁，由Go保存殘兵、月薪及劍旗標。兩組原版對照與四條F7／獨立程序讀檔通過，未F7重開也能恢復Go紀錄。圖為明示軍隊／位置的戰後地圖，原守軍編成保持。範圍見[守軍限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)及[圖片來源](docs/images/original-battle-guards-go-r1.json)。結局守軍、同程序多戰與一般玩家入口仍待接續。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 

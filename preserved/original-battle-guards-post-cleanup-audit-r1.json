@@ -1,0 +1,223 @@
+{
+  "status": "passed-original-battle-guards-audit",
+  "source_files": 302,
+  "ida_functions": 27,
+  "ida_lines": 6264,
+  "cleanup_direct_body_bytes": 43,
+  "original_pairs": [
+    {
+      "name": "native-win",
+      "frame_sha256": "fb830f39e926897e6e8ab4a677facf3caf61e5902669a5f2471a2fe0d694473c",
+      "seed": 3419349918,
+      "resources": [
+        1,
+        10000,
+        120,
+        500,
+        30000,
+        0
+      ]
+    },
+    {
+      "name": "hd-retreat",
+      "frame_sha256": "cab5999d1c62e6e49ce5f952b27fb1f6fbbc849f59d352347f700b5a474079db",
+      "seed": 875374778,
+      "resources": [
+        1,
+        10000,
+        100,
+        400,
+        30000,
+        0
+      ]
+    }
+  ],
+  "Go_guard_worlds": [
+    {
+      "name": "native-win",
+      "result": "win",
+      "remaining": [
+        {
+          "unit": "native:01",
+          "count": 979
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "resources": [
+        1,
+        10000,
+        120,
+        500,
+        30000,
+        0
+      ],
+      "actions": 8,
+      "boss": false,
+      "record_key": "guarded:00:00"
+    },
+    {
+      "name": "hd-retreat",
+      "result": "retreat",
+      "remaining": [
+        {
+          "unit": "native:01",
+          "count": 1000
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "resources": [
+        1,
+        10000,
+        100,
+        400,
+        30000,
+        0
+      ],
+      "actions": 1,
+      "boss": false,
+      "record_key": "guarded:00:00"
+    },
+    {
+      "name": "hd-mixed-win",
+      "result": "win",
+      "remaining": [
+        {
+          "unit": "native:01",
+          "count": 983
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "openkb:arcr",
+          "count": 20
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "resources": [
+        1,
+        10000,
+        120,
+        500,
+        30000,
+        0
+      ],
+      "actions": 11,
+      "boss": false,
+      "record_key": "guarded:00:00"
+    },
+    {
+      "name": "hd-boss-win",
+      "result": "win",
+      "remaining": [
+        {
+          "unit": "native:01",
+          "count": 989
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "openkb:arcr",
+          "count": 20
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "resources": [
+        1,
+        10000,
+        120,
+        500,
+        30000,
+        0
+      ],
+      "actions": 10,
+      "boss": true,
+      "record_key": "guarded:00:01"
+    }
+  ],
+  "record_models": 16,
+  "record_refusals": 7,
+  "reward_refusals": 12,
+  "committed_return_model_retries": 5,
+  "interrupted_paired_commit_recovered": true,
+  "pre_F7_cold_engine_restorations": 4,
+  "actual_F7_saves": 4,
+  "separate_process_Continue": 4,
+  "non_target_NPC_and_native_army_preserved": true,
+  "no_random_victory_reward_or_promotion": true,
+  "source_cohorts_production_equal": true,
+  "initial_seed": 305419896,
+  "seed_method": "setupCold sets DS:81BC/81BE before moving into the guard; no reroll.",
+  "formal_runtime_unchanged": true,
+  "general_entry_disabled": true,
+  "limits": [
+    "Large army, leadership30000, merit10000 and starting position are fixtures; native guard roster unchanged.",
+    "Original/Go comparisons cover native win and HD retreat only; mixed/boss cases have no equivalent native new-ID roster.",
+    "Record overlay restores Go NPC/sword authority before F7; full native opaque checkpoint updates at the original F7. No schema change.",
+    "Engine frames only; no new actual-window acceptance.",
+    "Final guard/ending bridge, in-process repeated battles, rules/AI integration, over-leadership persistence, dynamic poses, wide animation, mid-battle save and general startup remain open."
+  ]
+}

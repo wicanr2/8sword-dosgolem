@@ -473,5 +473,29 @@
     "older_spec": "docs/spec/053-ending-hd.md",
     "required_correction": "SWORD-GUARDS-GO-20261101",
     "evidence_receipt": "preserved/sword-guards-audit-r1.json"
+  },
+  "original_guard_battlefield_bridge": {
+    "marker": "ORIGINAL-GUARD-WORLD-20261103",
+    "evidence": "docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed",
+    "receipt": "preserved/original-battle-guards-audit-r1.json",
+    "scope": "Original battlefield win/retreat bridge; two native pairs and four cold-save paths. Earlier card-UI results remain historical data evidence.",
+    "functions": [
+      {
+        "original_name": "sub_12DDE",
+        "ida_mz_linear": "0x12DDE",
+        "level": "proven-in-sampled-scope"
+      },
+      {
+        "original_name": "sub_132E0",
+        "ida_mz_linear": "0x132E0",
+        "level": "proven-in-sampled-scope"
+      },
+      {
+        "original_name": "sub_11ABE",
+        "ida_mz_linear": "0x11ABE",
+        "level": "proven-in-sampled-scope"
+      }
+    ],
+    "not_closed": "Final guard and general startup remain disabled. sub_132B4 retains its original calls; deep helper semantics are not promoted."
   }
 }

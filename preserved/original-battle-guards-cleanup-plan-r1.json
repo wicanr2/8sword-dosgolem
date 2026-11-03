@@ -1,0 +1,35 @@
+{
+  "status": "verified-narrow-cleanup-plan",
+  "archived": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/ownedworld.test",
+      "sha256": "a619f355b2371a17874e9288bb91fae6b5da7c0a7c4375fb3eec094092d08d9a",
+      "bytes": 17306192
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/first-passing-cohort/ownedworld.test",
+      "sha256": "a619f355b2371a17874e9288bb91fae6b5da7c0a7c4375fb3eec094092d08d9a",
+      "bytes": 17306192
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/reward-input-failed/ownedworld.test",
+      "sha256": "ff3aa867aae947e1be2914a4409afbffc2d78fa3cc1ffff0fb47062b9db199f0",
+      "bytes": 17263960
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/map-stop-harness-failed/ownedworld.test",
+      "sha256": "ff0bc550dd5e7d142ff1c9f21045a91cc6f1c1a31065d92f01bafd97b6e80851",
+      "bytes": 17300888
+    }
+  ],
+  "build_cache_files": 1758,
+  "build_cache_bytes": 199830336,
+  "build_cache_path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/build-cache",
+  "kept": [
+    "ownedworld-final.test",
+    "current source and all receipts",
+    "all permanent objects",
+    "all approved masters",
+    "other projects and shared module cache"
+  ]
+}

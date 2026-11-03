@@ -3118,3 +3118,22 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 完整混合局明示74民兵／2野狼／2女弓箭手及敵3名原12號／10狐狸，固定敵先手與首次分派1。敵普通攻擊使74→73，多目標術使民兵73→71、新兵各2→0；後續原分派2無合類目標，沒有補效果。三次普通動作戰勝後剩71民兵，金519、戰績8；真正F7及獨立程序Continue的軍隊、世界數值、位置與次數保持。formation只為Store保存標記，本場規則native。另以全新增100狼／10弓箭手抽驗受術，原玩家24-byte種類／兵數保持0，影子軍隊不變。
 
 [030 READY與限定驗收](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)、[核對](preserved/original-battle-enemy-audit-r1.json)與[位址回填台帳](docs/spec/ai-resolution-backlinks-r1.json)記錄邊界。原PAM及i64不改，12279行IDA bytes重新對原MZ重定位核對。這批不宣稱自然新敵軍、全遊戲、全x86移除或新X11驗收；守軍／頭目、規則／AI串接、超領導保存、新兵姿勢、超word動畫、戰中續接及一般入口保持未完成。
+
+
+## 原戰場守軍頭目與Go紀錄權威
+
+2026-11-03。PAM.AY SHA-256為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，PAM.i64為`a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。沿既有守軍／獎勵／serializer證據，另用IDA Pro9.4 py312-v1、UID1000、HOME=/home/ubuntu讀正式DB的/tmp副本，窄查四函式。IDA MZ線性base10000、原file offset與runtime0110:IP分列，原函式名與operand保留。匯出合併受版控world-army-consumers索引，未分級語意不匯入；`sub_132B4`深層用途仍不提升為已證實。資料庫521函式，27份匯出共6264行bytes重新對原MZ重定位核對。
+
+- 已證實，限定此原caller：sub_12DDE入口runtime0110:2DDE由25EE返回，sub_132E0戰場wrapper返回309E，parent25EE。與隨機戰171D／0BD3不同。本批明確守軍模式才接受這組frame，沒有把所有caller放行。
+- 已證實，沿原NPC及保存位置：原42處守軍、八區頭目索引與504個word不改。Go於3048提供軍隊存在值，使用同一原版／HD戰場及Go資料控制器。309E核對原sub_13774整理結果等於Go敵軍剩兵後，只寫選中NPC24 bytes，略過原整批掃描寫回。主角影子及其他41處保持。
+- 已證實，限定本輪靜態本體：sub_132B4為43 bytes，直接內容是stack helper及既有callee分派，沒有直接兵力或獎勵寫入。保留原呼叫及原地圖恢復；沒有為此深入逆向各helper或宣稱其完整語意。
+- 已證實，限定本批動態抽樣：sub_11ABE的1B7B月薪與1C7F頭目劍旗標交Go，原獎勵頁／確認繼續。一般勝利與頭目勝利都只加月薪20，金500／戰績10000／等級1保持。撤退在1D03只取一次原LCG，1D1C由Go扣款，原500→400與原控制相同。
+- 新Go保存契約，非原版新語意：`ORIGINAL-GUARD-RECORD-AUTHORITY-20261103`沿既有WorldEncounter與成對journal，先提交Go軍隊、NPC record及資源。未F7的原opaque NPC／劍word保留前次checkpoint；明確安裝本橋接的冷啟動先從Go record投影RAM，避免舊NPC覆蓋新資料。原F7才捕獲新的NPC、劍旗標、位置及九圖，沒有新增schema或拆成兩次戰果交易。
+
+原版守軍勝利與HD撤退兩組同seed原控制／Go的完整地圖Frame、NPC、旗標、資源及seed一致。軍隊1000民兵／200原弓箭手、領導30000、戰績10000及鄰近位置為明示fixture，原守軍五隊不改。勝利八次普通動作，剩979民兵／200弓箭手，月薪100→120；撤退只擊倒30猴妖，另四隊40／30／40／20保存。另兩HD局加20野狼／20女弓箭手，一般守軍勝後983／200／20，0區頭目勝後989／200／20，野狼均全滅，第一劍旗標0→1。Store的formation只為新兵保存標記，本場Engine規則native。
+
+四條路徑均有未F7新Engine恢復、真正F7及四個獨立程序Continue。NPC、旗標、Go軍隊、六資源與位置保持，九圖逐byte核對。16個八區record模型、19種拒絕、intent-durable恢復及5次已提交返回模型通過；模型不冒稱額外完整原版戰鬥。既有普通／法術／輔助術／敵方特殊資料回歸與一般隨機戰原caller至F7保持。通過cohort的非測試來源逐SHA相同。
+
+失敗分類：第一輪原版已贏且敵軍全空，停在獎勵getch，測試輸入漏戰後Enter；之後原版停止回呼未限制driver phase，阻止了map advance，均只改測試。其他失敗為ArmyStack型別誤用、model未保留原敵軍歷史、混合fixture未用既有formation保存標記、IDA讀中文索引使用ASCII。原版程序、時鐘、原守軍編成與規則未因這些錯誤改動。完整失敗檔均[永久保存](preserved/README.md#原戰場守軍與頭目保存)。
+
+[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)、[核對](preserved/original-battle-guards-audit-r1.json)與[回填台帳](docs/spec/ai-resolution-backlinks-r1.json)為入口。只驗0區守軍0／頭目1的勝利與撤退；全滅／空軍隊、26AA=1完整路徑、其他區實戰、同程序取消重進／多戰、結局守軍及一般入口仍待驗或接續。原197來源七程式、923核心、535素材與1071美術保持，沒有新X11或自然取得聲明。

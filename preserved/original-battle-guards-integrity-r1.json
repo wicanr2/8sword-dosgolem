@@ -1,0 +1,150 @@
+{
+  "status": "passed-original-battle-guards-integrity",
+  "post_cleanup_audit_equal": true,
+  "new_links_checked": [
+    {
+      "document": "AGENTS.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed"
+    },
+    {
+      "document": "AGENTS.md",
+      "target": "preserved/README.md#原戰場守軍與頭目保存"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "preserved/original-battle-guards-audit-r1.json"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "docs/images/original-battle-guards-go-r1.png"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "preserved/README.md#原戰場守軍與頭目保存"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "RESEARCH-LOG.md#原戰場守軍頭目與go紀錄權威"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/images/original-battle-guards-go-r1.png"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/images/original-battle-guards-go-r1.json"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "preserved/README.md#原戰場守軍與頭目保存"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "preserved/original-battle-guards-audit-r1.json"
+    },
+    {
+      "document": "WORKLOG.md",
+      "target": "tools/original-battle-guards.py"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-guards-cleanup-plan-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-guards-cleanup-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-guards-post-cleanup-audit-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-guards-integrity-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-guards-audit-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-guards-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-guards-verification-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../docs/images/original-battle-guards-go-r1.png"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../docs/images/original-battle-guards-go-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../tools/export-original-battle-guards-ida.py"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../tools/original-battle-guards.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../tools/export-original-battle-guards-ida.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../tools/original-battle-guards.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../preserved/original-battle-guards-audit-r1.json"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../images/original-battle-guards-go-r1.png"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../images/original-battle-guards-go-r1.json"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../RESEARCH-LOG.md#原戰場守軍頭目與go紀錄權威"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../preserved/README.md#原戰場守軍與頭目保存"
+    }
+  ],
+  "new_sources_and_documents_uid": 1000,
+  "research_root_owned_or_md_directories": [],
+  "formal_runtime_unchanged": true,
+  "docker_scope": "Task containers were bounded and --rm; no persistent container created.",
+  "push_record": "WORKLOG.md",
+  "limits": [
+    "Large army, leadership30000, merit10000 and starting position are fixtures; native guard roster unchanged.",
+    "Original/Go comparisons cover native win and HD retreat only; mixed/boss cases have no equivalent native new-ID roster.",
+    "Record overlay restores Go NPC/sword authority before F7; full native opaque checkpoint updates at the original F7. No schema change.",
+    "Engine frames only; no new actual-window acceptance.",
+    "Final guard/ending bridge, in-process repeated battles, rules/AI integration, over-leadership persistence, dynamic poses, wide animation, mid-battle save and general startup remain open."
+  ]
+}

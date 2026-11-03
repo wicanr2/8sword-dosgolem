@@ -14,6 +14,8 @@ import (
 // Spec030 READY: bounded native-kind projection into the original battlefield.
 // Expanded IDs remain outside this adapter; ordinary player startup is disabled.
 type originalArmyProjection struct {
+	Guard                     *guardedBinding
+	GuardOnly                 bool
 	Rounds                    *originalBattleRounds
 	Code                      []byte
 	Catalog                   game.OwnedCombatCatalog
@@ -131,8 +133,17 @@ func (x *originalArmyProjection) execute(m *dg.Machine, ip uint16) (bool, error)
 		return fail("typed army changed")
 	}
 	sp, bp := c.R[dg.SP], c.R[dg.BP]
+	returnIP, parentIP := uint16(0x171d), uint16(0xbd3)
+	if x.GuardOnly {
+		if x.Guard == nil {
+			return fail("guard context not bound")
+		}
+		returnIP, parentIP = 0x309e, 0x25ee
+	} else if x.Guard != nil {
+		return fail("guard context on random projection")
+	}
 	if ip == 0x32e0 {
-		if x.Phase != "" || sp < 32 || sp > 65530 || bp > 65528 || m.Read16(ds+uint32(sp)) != 0x171d || m.Read16(ds+uint32(sp)+2) != 0x110 || m.Read16(ds+uint32(bp)+2) != 0xbd3 || m.Read16(ds+uint32(bp)+4) != 0x110 {
+		if x.Phase != "" || sp < 32 || sp > 65530 || bp > 65528 || m.Read16(ds+uint32(sp)) != returnIP || m.Read16(ds+uint32(sp)+2) != 0x110 || m.Read16(ds+uint32(bp)+2) != parentIP || m.Read16(ds+uint32(bp)+4) != 0x110 {
 			return fail("entry phase/caller")
 		}
 		x.EntrySP, x.EntryBP = sp, bp
@@ -141,7 +152,7 @@ func (x *originalArmyProjection) execute(m *dg.Machine, ip uint16) (bool, error)
 		x.Entries++
 		return false, nil // Original prologue, terrain and enemy generation continue.
 	}
-	if bp != x.EntrySP-2 || sp != bp-0x12 || m.Read16(ds+uint32(bp)) != x.EntryBP || m.Read16(ds+uint32(bp)+2) != 0x171d || m.Read16(ds+uint32(bp)+4) != 0x110 || !bytes.Equal(x.Shadow, m.Mem[ds+0x54a:ds+0x562]) {
+	if bp != x.EntrySP-2 || sp != bp-0x12 || m.Read16(ds+uint32(bp)) != x.EntryBP || m.Read16(ds+uint32(bp)+2) != returnIP || m.Read16(ds+uint32(bp)+4) != 0x110 || !bytes.Equal(x.Shadow, m.Mem[ds+0x54a:ds+0x562]) {
 		return fail("frame/shadow")
 	}
 	switch ip {

@@ -14,7 +14,15 @@
 
 ## 最近驗證
 
-最新為[敵方八分派Go資料](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)。300來源隔離候選接管敵方特殊兵數、六行動計數、額外行動與複製，原版／HD戰場、選敵及動畫保持。十三組原控制／Go的兵數、HP、計數、seed及完整Frame相同；46計數原指令、12 alias原指令、60傷害模型、34拒絕及既有普通／法術／輔助術／世界回歸通過。[核對](preserved/original-battle-enemy-audit-r1.json)、[成果](docs/images/original-battle-go-enemy-r1.png)及[保存](preserved/README.md#原戰場敵方特殊go資料保存)為入口。
+最新為[原戰場一般守軍與頭目](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)。302來源隔離候選保留原確認、原版／HD戰場、獎勵頁及地圖清理，Go接殘兵、月薪及八劍旗標。原版守軍勝利、HD守軍撤退兩組原控制／Go的完整地圖Frame、NPC、旗標、資源及seed相同。另兩條含新兵的HD守軍／頭目勝局通過，四次真正F7與四個獨立程序Continue保持軍隊、位置、資源、NPC與旗標。[核對](preserved/original-battle-guards-audit-r1.json)、[成果](docs/images/original-battle-guards-go-r1.png)及[永久保存](preserved/README.md#原戰場守軍與頭目保存)為入口。
+
+明示1000民兵／200原弓箭手、領導30000、戰績10000及0區鄰近位置，原守軍五隊不改。勝利月薪100→120，金500／戰績10000／等級1保持；撤退前擊倒30猴妖，另四隊殘兵保留，金500→400。混合局另加20狼／20女弓箭手，普通守軍勝後983民兵／200原弓箭手／20女弓箭手；頭目勝後989／200／20，第一旗標0→1。Store的formation只是沿既有新兵保存標記，本場規則native。
+
+`ORIGINAL-GUARD-RECORD-AUTHORITY-20261103`：Go守軍record先成對提交，未F7前原opaque NPC／劍word仍是前次checkpoint。明確安裝本橋接的冷啟動從Go record投影RAM，不重播獎勵；F7再同步原serializer與九圖，不加schema或欄位。四條未F7新Engine恢復、16個八區record模型、19種拒絕、intent-durable恢復及5次已提交返回模型通過。27份IDA匯出6264行對原MZ核對，43-byte sub_132B4原呼叫保留；普通隨機戰的舊caller與F7回歸通過。
+
+下一步是結局守軍交接、同程序取消重進／多戰與一般入口，再整合規則／策略AI及戰中續接。守軍全滅／空軍隊、26AA=1完整路徑及其他七區未新增實戰驗收；超領導、新兵姿勢及超word動畫保持待辦。正式197來源七程式、923核心、535素材及1071美術保持，完整戰鬥後才進Rust。詳細來源見[研究紀錄](RESEARCH-LOG.md#原戰場守軍頭目與go紀錄權威)。
+
+前輪為[敵方八分派Go資料](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)。300來源隔離候選接管敵方特殊兵數、六行動計數、額外行動與複製，原版／HD戰場、選敵及動畫保持。十三組原控制／Go的兵數、HP、計數、seed及完整Frame相同；46計數原指令、12 alias原指令、60傷害模型、34拒絕及既有普通／法術／輔助術／世界回歸通過。[核對](preserved/original-battle-enemy-audit-r1.json)、[成果](docs/images/original-battle-go-enemy-r1.png)及[保存](preserved/README.md#原戰場敵方特殊go資料保存)為入口。
 
 全新增100野狼／10女弓箭手完成受術，原玩家種類／兵數24 bytes保持0。另一局明示74民兵／2野狼／2弓箭手，以及敵3名原12號／10狐狸；固定敵先手與首次分派1，兩種新兵各2→0，三次普通動作後戰勝，剩71民兵、金519、戰績8。真正F7與獨立程序Continue保持軍隊、六數值、位置及次數。本場規則native，Store的formation只驗保存標記；沒有宣稱自然敵軍或新X11驗收。
 

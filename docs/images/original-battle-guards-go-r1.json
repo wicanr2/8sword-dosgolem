@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "sha256": "a177d639a51d88bbc89d81c0fb3e3c3252214009fcba7260ca36b096563cd089",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/guards-r1/native-win-mode-1/map.png",
+      "sha256": "8876f1c3e24cc3436b9c9a7bc924af67fc8d6b7f26554595b9d503f105534a13"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/guards-r1/hd-retreat-mode-1/map.png",
+      "sha256": "bec410d9e67670515d306ec546b2f14930e70ff722d8833c516784665bd054b7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/guards-r1/hd-boss-win-mode-1/map.png",
+      "sha256": "4b9440c0338702e2c5f80cedbf234f48eccf9903909d61690a4e3a69f66b3bbb"
+    }
+  ],
+  "actual_window": false,
+  "battle_animation_midframe": false,
+  "general_player_entry": false,
+  "scope": "Controlled initial armies and positions; native guards unchanged; postbattle map frames."
+}
