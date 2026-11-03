@@ -1,0 +1,15 @@
+{
+  "status": "passed-original-battle-rounds-integrity",
+  "source_files": 292,
+  "new_link_checks": 16,
+  "backlink_rows": 7,
+  "python_syntax": true,
+  "uid": 1000,
+  "root_owned_in_work_batch": 0,
+  "markdown_named_directories": 0,
+  "detached_files": 2165,
+  "detached_objects": 404,
+  "formal_runtime_unchanged": true,
+  "production_changed_after_functional_tests": false,
+  "limits": "Ordinary battles only; generic owned player entry disabled; world rewards/F7 and specials/spells unverified."
+}

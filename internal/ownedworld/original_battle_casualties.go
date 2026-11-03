@@ -24,6 +24,7 @@ type originalCasualtyAmount struct {
 }
 
 type originalCasualtyRecord struct {
+	Player                  bool                `json:"player,omitempty"`
 	Target                  originalEnemyTarget `json:"target"`
 	Before, After, Loss     uint32
 	Calls                   []originalCasualtyAmount `json:"calls"`
@@ -34,6 +35,7 @@ type originalCasualtyRecord struct {
 // Spec030 READY: one enemy melee, with the original executor and Go counts.
 // General player startup, all later actions and world settlement remain held.
 type originalBattleCasualties struct {
+	Player, Direct                                     bool
 	Actions                                            *originalBattleActions
 	Rows                                               [2][6]ArmyStack
 	HP                                                 [2][6]uint64
@@ -93,6 +95,15 @@ func originalImpactCaller(code []byte, ret uint16) bool {
 }
 
 func (x *originalBattleCasualties) impactEnter(m *dg.Machine) (bool, error) {
+	if x.Player {
+		return x.Actions.Rounds.playerImpact(m)
+	}
+	if x.Direct {
+		if m.CPU.R[dg.SP] != x.EntrySP || m.CPU.R[dg.BP] != x.EntryBP {
+			return false, errors.New("direct impact repeated frame")
+		}
+		return false, nil
+	}
 	if err := x.Actions.check(m, 0x4626, 0x22b96, 0x22dbc); err != nil {
 		return false, err
 	}
@@ -165,13 +176,17 @@ func (x *originalBattleCasualties) helper(m *dg.Machine) (bool, error) {
 		return false, errors.New("Go casualty helper phase/stack")
 	}
 	ret := m.Read16(0x1e880 + sp)
-	if m.Read16(0x1e880+sp+2) != 0xf67 || m.Read16(0x1e880+sp+4) != t.SourceRaw || m.Read16(0x1e880+sp+6) != t.TargetRaw || (ret == 0x48b2 && (x.Impact || len(x.Record.Calls) != 0)) || (ret == 0x4658 && (!x.Impact || len(x.Record.Calls) != 1)) || (ret != 0x48b2 && ret != 0x4658) {
+	expected := 1
+	if x.Direct {
+		expected = 0
+	}
+	if m.Read16(0x1e880+sp+2) != 0xf67 || m.Read16(0x1e880+sp+4) != t.SourceRaw || m.Read16(0x1e880+sp+6) != t.TargetRaw || (ret == 0x48b2 && (x.Impact || len(x.Record.Calls) != 0)) || (ret == 0x4658 && (!x.Impact || len(x.Record.Calls) != expected)) || (ret != 0x48b2 && ret != 0x4658) {
 		return false, errors.New("Go casualty helper caller/identity")
 	}
 	catalog := x.Actions.Setup.Catalog
 	source, target := catalog.Profiles[t.Source.Unit], catalog.Profiles[t.Target.Unit]
 	divisor := uint32(m.Read16(0x1e880+0x26ac)) + 5
-	if divisor > 65535 || uint64(m.Read16(0x1e880+0x70ce+uint32(source.NativeKind)*4)) != source.Attack || (target.NativeKind != 0 && uint64(m.Read16(0x1e880+0x70d0+uint32(target.NativeKind)*4)) != target.HP) {
+	if divisor > 65535 || (source.NativeKind != 0 && uint64(m.Read16(0x1e880+0x70ce+uint32(source.NativeKind)*4)) != source.Attack) || (target.NativeKind != 0 && uint64(m.Read16(0x1e880+0x70d0+uint32(target.NativeKind)*4)) != target.HP) {
 		return false, errors.New("Go casualty profile/divisor binding")
 	}
 	damage, encoded, err := originalBattleAmountFor(source.Attack, uint16(t.Source.Count), target.HP, uint16(divisor), 1)
@@ -232,12 +247,19 @@ func (x *originalBattleCasualties) kind(m *dg.Machine, ida int) (bool, error) {
 }
 
 func (x *originalBattleCasualties) impactSite(m *dg.Machine, ip uint16) error {
+	if x.Player {
+		return x.Actions.Rounds.playerImpactSite(m, ip)
+	}
 	if err := x.Actions.check(m, ip, 0x22b96, 0x22dbc); err != nil {
 		return err
 	}
 	c := m.CPU
 	bp := uint32(c.R[dg.BP])
-	if !x.Impact || x.Complete || len(x.Record.Calls) != 2 || bp != uint32(x.ImpactSP)-2 || bp < 16 || m.Read16(0x1e880+bp) != x.ImpactBP || m.Read16(0x1e880+bp+2) != x.ImpactReturn || m.Read16(0x1e880+bp+4) != 0xf67 {
+	expected := 2
+	if x.Direct {
+		expected = 1
+	}
+	if !x.Impact || x.Complete || len(x.Record.Calls) != expected || bp != uint32(x.ImpactSP)-2 || bp < 16 || m.Read16(0x1e880+bp) != x.ImpactBP || m.Read16(0x1e880+bp+2) != x.ImpactReturn || m.Read16(0x1e880+bp+4) != 0xf67 {
 		return errors.New("Go casualty impact frame/phase")
 	}
 	return nil
@@ -263,26 +285,31 @@ func (x *originalBattleCasualties) writeCount(m *dg.Machine, ip uint16) (bool, e
 	}
 	c := m.CPU
 	t := x.Record.Target
-	offset := int(t.TargetRaw) * 4
+	side := 0
+	if x.Player {
+		side = 1
+	}
+	base := uint32(0x56e8 + side*24)
+	offset := side*24 + int(t.TargetRaw)*4
 	if x.Committed {
 		return false, errors.New("Go casualty count write after commit")
 	}
 	native := x.Actions.Setup.Catalog.Profiles[t.Target.Unit].NativeKind != 0
 	switch ip {
-	case 0x4730, 0x47d0: // IDA22CA0 / 22D40, animation counter only.
+	case 0x4730, 0x47d0, 0x3340, 0x33e0: // Both sides' animation counters.
 		index := len(x.Record.Display)
 		if c.R[dg.BX] != t.TargetRaw*4 || index >= len(x.Record.PlannedDisplay) || c.R[dg.AX] != x.Record.PlannedDisplay[index] || x.ClearStage != 0 {
 			return false, errors.New("Go casualty display sequence")
 		}
 		if native {
-			m.Write16(0x1e880+0x56ea+uint32(offset), c.R[dg.AX])
+			m.Write16(0x1e880+base+2+uint32(t.TargetRaw)*4, c.R[dg.AX])
 			binary.LittleEndian.PutUint16(x.Projected[offset+2:offset+4], c.R[dg.AX])
 		}
 		x.DisplayValue = uint32(c.R[dg.AX])
 		x.Record.Display = append(x.Record.Display, c.R[dg.AX])
-	case 0x4825, 0x4829: // IDA22D95 / 22D99, death clears compatibility row.
+	case 0x4825, 0x4829, 0x3435, 0x3439: // Death clears compatibility row.
 		stage := uint16(0)
-		if ip == 0x4829 {
+		if ip == 0x4829 || ip == 0x3439 {
 			stage = 1
 			offset += 2
 		}
@@ -303,7 +330,13 @@ func (x *originalBattleCasualties) writeCount(m *dg.Machine, ip uint16) (bool, e
 }
 
 func (x *originalBattleCasualties) commit(m *dg.Machine) (bool, error) {
-	if err := x.impactSite(m, 0x4847); err != nil {
+	ip := uint16(0x4847)
+	side := 0
+	if x.Player {
+		ip = 0x3457
+		side = 1
+	}
+	if err := x.impactSite(m, ip); err != nil {
 		return false, err
 	}
 	if x.Committed {
@@ -312,7 +345,7 @@ func (x *originalBattleCasualties) commit(m *dg.Machine) (bool, error) {
 	if len(x.Record.Display) != len(x.Record.PlannedDisplay) || (x.Record.After == 0 && x.ClearStage != 2) || (x.Record.After > 0 && x.ClearStage != 0) || m.CPU.R[dg.SP] != x.ImpactSP-12 {
 		return false, errors.New("Go casualty incomplete display/death")
 	}
-	x.Rows[0][x.Record.Target.TargetRaw].Count = x.Record.After
+	x.Rows[side][x.Record.Target.TargetRaw].Count = x.Record.After
 	x.DisplayValue = x.Record.After
 	x.Committed = true
 	x.Record.Updates++
@@ -323,7 +356,11 @@ func (x *originalBattleCasualties) finish(m *dg.Machine, ip uint16) (bool, error
 	if !x.Started {
 		return false, nil
 	}
-	if err := x.Actions.check(m, ip, 0x1fb6c, 0x1ff1b); err != nil {
+	start, end := 0x1fb6c, 0x1ff1b
+	if x.Player {
+		start, end = 0x1ff1c, 0x20318
+	}
+	if err := x.Actions.check(m, ip, start, end); err != nil {
 		return false, err
 	}
 	if ip != x.Record.Target.Caller || m.CPU.R[dg.SP] != x.EntrySP+4 || m.CPU.R[dg.BP] != x.EntryBP {
@@ -337,6 +374,9 @@ func (x *originalBattleCasualties) finish(m *dg.Machine, ip uint16) (bool, error
 		x.Record.Updates++
 	}
 	x.Complete = true
+	if x.Actions.Rounds != nil {
+		return x.Actions.Rounds.finishAction(m)
+	}
 	return false, errOriginalBattleCasualtiesHeld
 }
 
@@ -369,7 +409,7 @@ func installOriginalBattleCasualties(e *game.Engine, a *originalBattleActions) (
 
 func (x *originalBattleCasualties) text(e *game.Engine, out *image.RGBA, raw uint16, area image.Rectangle) error {
 	count := x.Rows[0][raw].Count
-	if x.Started && !x.Committed && raw == x.Record.Target.TargetRaw {
+	if x.Started && !x.Player && !x.Committed && raw == x.Record.Target.TargetRaw {
 		count = x.DisplayValue
 	}
 	if count == 0 {

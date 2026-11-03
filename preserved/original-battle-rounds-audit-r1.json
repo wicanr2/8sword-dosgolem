@@ -1,0 +1,38 @@
+{
+  "status": "passed-original-battle-rounds-audit",
+  "source_files": 292,
+  "ida_functions": 20,
+  "comparison_sites": 69,
+  "sort_write_sites": 16,
+  "motion_write_sites": 20,
+  "native_comparison_pairs": 138,
+  "comparison_refusals": 8,
+  "cold_native_HD_pairs": 2,
+  "expanded_results": [
+    "win",
+    "loss",
+    "retreat"
+  ],
+  "expanded_actions": [
+    32,
+    8,
+    0
+  ],
+  "army_store_cold_read_cases": 3,
+  "world_wrapper_returned_cases": 3,
+  "army_only_store_fixture_rules": "formation",
+  "army_only_store_fixture_leadership": 30000,
+  "original_seed": 305419896,
+  "original_player_damage_differs_from_enemy": true,
+  "new_ids_in_original_tables": 0,
+  "ordinary_player_entry_disabled": true,
+  "not_verified": [
+    "special/caster actions and spells",
+    "world rewards, defeat reset and F7 checkpoint",
+    "formation/tactics and target AI in expanded rounds",
+    "new unit hit/death poses",
+    "actual GUI window",
+    "word-wide encounter bounds",
+    "general player entry"
+  ]
+}

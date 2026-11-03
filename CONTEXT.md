@@ -4,6 +4,8 @@
 
 ## 有效決定與優先工作
 
+2026-11-03使用者已確認先完成原版／原版HD戰場的完整戰鬥，再重寫成不依賴DOS EXE的Rust獨立版。現階段沿Go補齊雙方行動、連續回合、勝敗／撤退、戰果與存檔冷讀；完整戰鬥未完成前不切換架構。Rust階段沿用已保存素材、typed資料、規則及原版對照，DOS只留開發對照，不作獨立版執行期依賴。
+
 使用者已明確要求原版部隊管理方式，以及原版與原版HD戰場。保留原版配置、選單、按鍵、攻擊與法術演出及回合流程，不採獨立Go卡片戰鬥介面。F2檢閱、F3解雇與營地募兵沿原版版面、方向鍵、Enter／Esc及返回流程；Go接管擴充兵種、兵數、用量／月薪、交易、安全兵力、AI、規則與存檔。原店＋增援分頁的既有A案保持，不另做卡片管理頁。
 
 `cmd/8sword`與原七程式仍走既有原版／HD路徑。`cmd/8sword-owned`的一般玩家啟動已撤回，在讀寫進度前拒絕；`-import-only`保持。`tools/owned-player.sh run`也先行停止，避免啟動快取的舊卡片程式。所有既有v1至v5資料保留，不刪附檔或降級交給原版固定表。
@@ -12,7 +14,14 @@
 
 ## 最近驗證
 
-最新為[首個敵方近戰與Go減員](docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)。289來源隔離候選保留原敵軍普通近戰動作，Go持有正式兵數及pending HP，動畫倒數獨立。18種模型、八種拒絕、原版／HD各一組正常冷啟動原版對照及兩案新兵受擊通過；原完整Frame、兵數、HP word與seed相同。[核對](preserved/original-battle-casualties-audit-r1.json)、[成果圖](docs/images/original-battle-go-casualties-r1.png)與[保存](preserved/README.md#首個敵方近戰與go減員保存)為入口。
+最新為[連續普通戰鬥](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)。292來源隔離候選已接玩家近戰／直接遠程、普通敵軍行動、整理補位及近戰換位；原版／HD各一組冷啟動原版對照，完整Frame、原兵數、HP word、返回值與seed相同。138原指令對照、八拒絕及舊存活／減員／投影回歸通過。[核對](preserved/original-battle-rounds-audit-r1.json)、[成果圖](docs/images/original-battle-go-rounds-r1.png)與[永久保存](preserved/README.md#連續普通戰鬥與剩兵回傳保存)為入口。
+
+明示新兵編成三案為：1000野狼＋10女弓箭手經32次行動取勝，剩603野狼＋10弓箭手；2野狼＋30民兵略過行動後全滅；同編成正常Esc撤退，兵數保持。未改原先手參數。各五次返回閘重試保持RAM／cycles／seed／歷史，再放行至原0110:171D，由Go收取剩兵且原軍隊影子保持。成對Store保存與新Store冷讀通過，使用明示formation／領導30000的存檔fixture，只驗軍隊保存，不等於本場使用結陣或世界資源已接通。
+
+下一步是特殊／法術的Go資料消費端，以及原世界勝敗／撤退交接、獎勵／敗戰重置與F7保存；其後整合規則／策略AI與一般玩家入口。新兵受擊／死亡姿勢、動作中圖層及超word數量仍未完成。一般Go入口停止，正式197來源七程式／923核心／535素材／1071美術保持；完整戰鬥完成後再做Rust獨立版。以下前輪記錄只保留當時範圍，不重新開已驗普通路徑。
+
+
+前輪為[首個敵方近戰與Go減員](docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)。289來源隔離候選保留原敵軍普通近戰動作，Go持有正式兵數及pending HP，動畫倒數獨立。18種模型、八種拒絕、原版／HD各一組正常冷啟動原版對照及兩案新兵受擊通過；原完整Frame、兵數、HP word與seed相同。[核對](preserved/original-battle-casualties-audit-r1.json)、[成果圖](docs/images/original-battle-go-casualties-r1.png)與[保存](preserved/README.md#首個敵方近戰與go減員保存)為入口。
 
 受控敵先手與混合編成中，野狼2→0及100→71。原兩次傷害helper保持，但正式兵數只提交一次；各五次重試保持RAM、cycles、seed與更新次數。原新兵kind/count/HP word維持0，原軍隊影子不變。這個隔離控制器在第一個完整近戰返回後停止；一般Go入口保持停用，既有預設出手前閘保持。新兵受擊／死亡姿勢、中間圖層、玩家行動、直接遠程、下一次攻擊、法術與完整世界戰果尚未接，畫面兵數先限32767。下一步補玩家出手及其餘普通路徑。
 

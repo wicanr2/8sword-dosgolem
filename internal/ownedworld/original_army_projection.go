@@ -14,6 +14,7 @@ import (
 // Spec030 READY: bounded native-kind projection into the original battlefield.
 // Expanded IDs remain outside this adapter; ordinary player startup is disabled.
 type originalArmyProjection struct {
+	Rounds                    *originalBattleRounds
 	Code                      []byte
 	Catalog                   game.OwnedCombatCatalog
 	Input, Remaining          [6]ArmyStack
@@ -156,13 +157,16 @@ func (x *originalArmyProjection) execute(m *dg.Machine, ip uint16) (bool, error)
 		x.Phase = "projected"
 		x.Copies++
 	case 0x3745:
-		if x.HeldPreview {
+		if x.HeldPreview && (x.Rounds == nil || !x.Rounds.Done || !x.Rounds.Released) {
 			return fail("held preview cannot capture or commit")
 		}
 		if x.Phase != "projected" || x.Captures != 0 {
 			return fail("capture phase")
 		}
 		rows, err := x.capture(m.Mem[ds+0x56e8 : ds+0x5700])
+		if x.HeldPreview {
+			rows, err = x.captureRounds()
+		}
 		if err != nil {
 			return fail(err.Error())
 		}
@@ -179,6 +183,33 @@ func (x *originalArmyProjection) execute(m *dg.Machine, ip uint16) (bool, error)
 	}
 	c.Cycles++
 	return true, nil
+}
+
+func (x *originalArmyProjection) captureRounds() ([6]ArmyStack, error) {
+	var rows [6]ArmyStack
+	if x.Rounds == nil || !x.Rounds.Done || !x.Rounds.Released {
+		return rows, errors.New("Go battle result unbound")
+	}
+	before := map[string]uint32{}
+	for _, s := range x.Input {
+		if s.Unit != "" {
+			before[s.Unit] = s.Count
+		}
+	}
+	seen := map[string]bool{}
+	at := 0
+	for _, s := range x.Rounds.Rows[0] {
+		if s.Count == 0 {
+			continue
+		}
+		if s.Unit == "" || s.Count > before[s.Unit] || seen[s.Unit] || at >= 6 {
+			return rows, errors.New("Go battle result identity/count")
+		}
+		rows[at] = s
+		at++
+		seen[s.Unit] = true
+	}
+	return rows, nil
 }
 
 func installOriginalArmyProjection(e *game.Engine, catalog game.OwnedCombatCatalog, rows [6]ArmyStack) (*originalArmyProjection, error) {

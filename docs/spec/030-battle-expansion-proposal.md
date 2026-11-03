@@ -219,6 +219,41 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 ### 原版戰場與Go後端橋接 DRAFT
 
+2026-11-03使用者定案：先完成完整戰鬥，再重寫不依賴DOS EXE的Rust獨立版。本輪接續連續兵數、陣位整理、玩家選隊／選敵及雙方普通行動。入口為[回合資料與掛點](../../internal/ownedworld/original_battle_rounds.go)、[抽驗](../../internal/ownedworld/original_battle_rounds_test.go)、[IDA匯出](../../tools/export-original-battle-rounds-ida.py)與[準備／保存](../../tools/original-battle-rounds.py)。研究沿`battle-r1/original-battle-rounds-r1`，既有單次近戰閘預設保持；先補RE與READY，不把解除一個閘視作完整戰鬥。
+
+#### 連續普通行動與玩家出手 READY
+
+沿固定PAM／PAM.i64及IDA9.4，20個原函式保留原名、bytes、operand、xref與file offset。已證實玩家impact217B0只有一次1FB02，沒有敵方encoded1早返，部分損失倒數用JGE，故玩家loss=min(encoded,before)；敵方仍沿前輪encoded1零損失、其餘encoded−1及全滅門檻。這是原版差異，不以共用公式改平衡。動態原版控制須驗證玩家實際出手。
+
+- 新連續控制器持有更新後rows、HP及原列投影；每個普通行動結束後收取單次提交，清除上一動作，下一次存活／選敵只讀current rows。原初始Plan保持供來源定位，不再當後續兵數。
+- 原玩家選敵20DAE保留方向鍵、Enter、Space略過與Esc撤退。玩家dispatcher及UI的兵數比較讀Go current rows；新增遠程只依既有profile.Ranged走原分支，不向種類／數值表寫假ID。直接遠程與普通近戰沿原函式及原caller守門；未接特殊／法術在原入口停止。
+- 原20724／20AB4按PAM的708A／708E／7092／7096四組三格順序填空位，活隊、排除遠程及原10／12規則已由原bytes確認。Go純模型先產生每次swap，原控制流程及重繪保持，兩個原map寫入逐一對照Go預測再更新Go maps，不讓新兵0列被誤當空隊。原8個2AA8法術word只參與玩家原caster前移條件，不猜法術名稱。
+- 原回合、行動次數、seed及場地／選單保持；普通傷害沿原係數及安全word邊界。玩家impact的兵數讀取、倒數與清列交Go，原新兵kind/count/HP word維持0，Go正式數量只提交一次。畫面兵數暫限32767，超界拒絕，不把這輪當全部32位動畫完成。
+- [原欄位consumer表](../../internal/ownedworld/original_battle_rounds_sites.go)由本批IDA匯出產生，逐站保存原函式範圍、暫存器、欄位種類與指令長度；只處理本節所列函式的已辨識比較及陣位寫入，未知指令拒絕匯入，不以文字名稱猜新掛點。
+- 原205E6返回003C時記錄Go勝敗／撤退及剩兵，暫停於世界清理前。原版／HD抽正常操作的連續普通戰鬥，另以明示新兵編成抽玩家出手與多次敵方行動。完整戰果世界交接、全部特殊／法術、一般Go入口及Rust切換仍未由此提升。
+
+READY追加：21EA0／22DBC在近戰後亦會寫來源方的前三個map word，按來源列到目標列移動並把中間列移位。這些是動作中的正式換位，不屬於20724／20AB4整理。首輪在原caller1818抓到敵方slot0由raw0變raw1，舊「只在整理器改maps」已否定。Go在出手前預算前排移位，每個原absolute MOV逐字與預算核對，再同步Go maps；不在返回處整批信任陌生RAM。原版／HD正常對照須覆蓋換位後後續行動。
+
+READY追加戰果回傳：沿前輪已驗0110:3745原wrapper frame及原13774整理呼叫。只有本控制器Done且明確釋放003C返回閘後，held投影才可收取Go current rows，按原軍隊輸入身份、兵數不得增加及六隊容量檢查，再跳過原影子寫回。預設held投影仍拒絕。先抽回0110:171D，保存剩兵至既有成對Store並由新Store冷讀；這只驗軍隊戰果回傳，世界獎勵、敗戰重置及F7尚不由此提升。
+
+#### 連續普通戰鬥限定 CONFORMED
+
+2026-11-03。292來源隔離候選沿原選單／方向鍵／Enter、Space及Esc，接通普通玩家近戰／直接遠程、敵方普通行動、下一隊與連續回合、整理補位及近戰換位。20函式IDA bytes逐項與重定位MZ獨立核對，69比較、16整理map寫入與20近戰map寫入按原位址核對。138原指令對照、八拒絕及舊65存活比較／80新增ID讀取、18減員模型／八拒絕、19投影拒絕均通過。
+
+原版／HD各抽一組正常冷啟動Continue、地圖遇敵、原確認、方向鍵選敵及Enter至原回合返回，兩組原控制與Go的完整Frame、原列、HP word、AX與seed相同。每組Go共九次普通行動。seed於執行前固定0x12345678，未重投；沒有完整CPU state、PCM或時鐘parity聲明。沒有用direct-entry替代這段原兵種玩家流程。
+
+新增兵種使用明示typed override，原先手參數未改：1000野狼＋10女弓箭手經32次動作取勝，剩603野狼＋10弓箭手；2野狼＋30民兵Space略過後八次敵軍動作全滅；同編成在原選敵Esc撤退，零攻擊且兵數保持。每次傷害只提交一次，原新增kind/count/HP word維持0。003C的五次重試保持完整RAM、cycles、seed、動作歷史及軍隊影子，明確釋放後返回原0110:171D，Go收取剩兵並略過原影子寫回。
+
+三案再交既有成對Store並由新Store冷讀。此測試先建立明示formation／領導30000的Store fixture，之後軍隊更新不改原人物檔；戰鬥本身仍沿native普通公式。第一輪因直接使用匯入的native規則被既有擴充兵種檢查拒絕，保留失敗，改正測試fixture後乾淨重跑，不放寬Store契約。這只驗軍隊保存，世界獎勵、敗戰重置、F7及完整世界返回未提升。
+
+勘誤標記`ORIGINAL-ROUND-PLAYER-LOSS-20261103`：玩家`sub_217B0`在`0F67:3240`共用於近戰受擊及直接遠程，並非僅遠程執行器；其`sub_1FB02`於`0F67:1592`返回32D9，實際loss=min(encoded,before)，包括encoded1亦減一。敵方沿前輪encoded1早返及其餘encoded−1。舊197來源的owned_combat共用損失公式沒有由此修正或重新驗收；後續Rust須消費本批原版玩家對照，不把舊核心自洽當成玩家exact。舊單次減員controller預設只處理敵軍，契約保持。
+
+勘誤標記`ORIGINAL-CONTINUOUS-ROUNDS-20261103`：`sub_20724`的`0F67:21B4`與`sub_20AB4`的`0F67:2544`整理，以及`sub_21EA0`的`0F67:3930`與`sub_22DBC`的`0F67:484C`近戰換位，都必須同步Go maps；`sub_1E578`的`0F67:003C`只在本控制器明確安裝時改為整場普通戰鬥返回閘。前輪1818第一次敵方近戰閘、0035初始閘及一般入口預設保持。前輪「玩家／遠程／下一動作未接」只描述當時批次；新批限定範圍以上列為準。
+
+[獨立核對](../../preserved/original-battle-rounds-audit-r1.json)、[成果](../images/original-battle-go-rounds-r1.png)、[來源](../images/original-battle-go-rounds-r1.json)、[永久保存](../../preserved/README.md#連續普通戰鬥與剩兵回傳保存)及[回填索引](ai-resolution-backlinks-r1.json)為入口。工具在固定Pillow11.3.0容器用`original-battle-rounds.py prepare|freeze|audit|publish|archive|verify`，沿既有battle-r1研究目錄，參數及完整Docker命令見保存。生成的站點表由audit從IDA原指令重新推導驗證，21168／210CE繪圖比較沿既有呈現器，不重裝回合比較掛點。
+
+未完成項：特殊／法術、世界完整戰果與F7、結陣／戰術及策略AI在本控制器的整合、新兵受擊／死亡姿勢及中間圖層、超word數量及一般Go玩家入口。target數量暫限32767，source暫限65535，傷害／encoded沿word安全邊界；原32位資料可保存不代表這些動畫已支援全32位。未新增實際GUI視窗驗收。原197來源七程式、923核心、r69全535素材與1071美術保持。完整戰鬥仍未結案，Rust獨立版尚未開始。
+
 2026-11-03接續首個敵方普通近戰的Go減員及原演出消費端。入口預留[Go減員](../../internal/ownedworld/original_battle_casualties.go)、[控制抽驗](../../internal/ownedworld/original_battle_casualties_test.go)、[原減員與部隊繪圖匯出](../../tools/export-original-battle-casualties-ida.py)及[準備／核對／保存](../../tools/original-battle-casualties.py)。研究沿既有battle-r1下`original-battle-casualties-r1`，先查新增ID為0時的部隊繪圖及倒數兵數，再定READY。既有出手閘與一般Go入口停止保持。
 
 #### 首個敵方近戰減員 READY
@@ -263,7 +298,7 @@ READY追加：正常路徑的受擊入口也會由共用步進`sub_22AF8`呼叫�
 - 原版原回合、亂數與陣位→原隊索引流程保持。只在隔離候選中，將原0035的初始閘延後至敵方普通／遠程執行器`sub_22DBC`或`sub_22B96`入口，檢查原caller、陣位與來源／目標存活後記錄選敵，再以固定host error停止。重試不改RAM、時鐘、選敵或亂數。其他行動入口未解鎖。
 - 為抽驗全新增編成，原wrapper的3365投影新增獨立的held-preview選項。仍只將合法原25種寫入battle rows，新增ID所屬原列維持四個零；world影子054A保持。原入口預設與既有native-only驗證不改，預覽若到3745戰果回寫立即拒絕。
 - 抽驗原兩種模式的正常冷啟動遇敵至首個敵方執行器，核對完整Frame、原列、seed與選敵。另抽混合及全新增編成，以明示typed override並將`sub_205E6`原先手參數0改為1來隔離敵方選敵；檢查原caller003C與完整函式bytes，正式程式沒有此修改。新增兵種的玩家半回合仍封鎖。驗證原版選敵確實能指向新增兵種後，在扣兵前停止。這不是正常可玩、新兵攻擊、GUI或存檔驗收。
-- 減員研究記錄：`sub_22DBC`先呼叫`sub_1FAA2`，encoded為1時直接返回；其餘進分派並再次呼叫`sub_22B96`內的傷害helper。中間倒數會多次寫原兵數，不能將每次寫入視作新的Go損失。`sub_217B0`為玩家遠程執行器，`sub_21000`為玩家兵數繪字，`sub_21BD2`為另一條直接扣兵分支。上述尚未接管。
+- 減員研究記錄：`sub_22DBC`先呼叫`sub_1FAA2`，encoded為1時直接返回；其餘進分派並再次呼叫`sub_22B96`內的傷害helper。中間倒數會多次寫原兵數，不能將每次寫入視作新的Go損失。`sub_217B0`為玩家受擊與直接遠程共用執行器，`sub_21000`為玩家兵數繪字，`sub_21BD2`為另一條直接扣兵分支。上述尚未接管。
 
 READY追加勘誤：`1FD17`查到對位活隊後，原`1FD1E–1FD24`把0至2陣位號寫入`[bp-4]`，沒有加7；`1FD37–1FD44`因而暫讀6FA8之前段映射及另一個DS word，再決定是否重抽，最後`1FD5F–1FD65`才補回7。正常原版控制觀測到BX=9D94、`[bp-4]=[bp-6]=0`，該次讀DS:F47E為0。這是原版中間讀取，並非原隊索引。先前「每個BX皆原隊索引」已被否定。Go相容分支只在完整函式bytes、合法來源陣位、兩個局部值相同、Go對位活隊，以及BX確由`word[6FA8+slot*2]×4`低16位得到時保留這次word比較。沿16位有效位址讀取，不寫假兵數；其他表外索引仍拒絕。這保留原重抽與seed序列，不修原版行為。獨立指令對照及正常原版／HD控制必須覆蓋此分支。
 

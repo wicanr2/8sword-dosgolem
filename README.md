@@ -4,7 +4,7 @@
 
 完整定稿原圖與提示另存本機永久目錄 `artwork/approved/`，清理 `workplace/` 不會刪到這些複本。分類、逐檔雜湊與獨立核對見[定稿原圖索引](artwork/README.md)。
 
-以 Go 版 dosgolem 執行原版 DOS 程式，接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI、民兵結陣與弓箭手壓制規則。兵種及招募接管目前沿 Go 開發，Rust 遷移留待後續。
+以 Go 版 dosgolem 執行原版 DOS 程式，接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI、民兵結陣與弓箭手壓制規則。兵種及招募接管目前沿 Go 開發；先完成原版／HD完整戰鬥，再重寫成不依賴DOS EXE的Rust獨立版。
 
 既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。玩家使用原版或原版HD戰場，保留原版配置、選單、操作與戰鬥流程。新增兵種的Go後端接回這套戰場仍待完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
@@ -34,7 +34,7 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ## 戰場與Go後端
 
-原版模式保留原繪圖途徑；HD模式由Go繪製同一套戰場，使用已批准的HD背景、部隊與法術效果。兩者沿用原版戰鬥選單與按鍵。下圖是既有同狀態比較，擴充兵種尚未接入這套戰場。
+原版模式保留原繪圖途徑；HD模式由Go繪製同一套戰場，使用已批准的HD背景、部隊與法術效果。兩者沿用原版戰鬥選單與按鍵。下圖是既有原兵種的同狀態比較。新增兵種的普通戰鬥已在隔離候選接入，一般玩家入口仍待完成。
 
 ![原版戰場與同配置的HD戰場](docs/images/battle-original-hd-r1.png)
 
@@ -44,17 +44,11 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 新增兵種在原戰場的固定表隔離、其餘規則與完整世界戰果仍待接。此輪只完成原25種資料進出與剩兵保存，尚未開放Go軍隊玩家入口。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)與[圖片來源](docs/images/original-army-projection-r1.json)。
 
-![新增兵種在原版HD戰場的初始陣位，出手前暫停](docs/images/original-battle-extended-setup-r1.png)
+![新增兵種在原版HD戰場完成普通戰鬥的勝利、全滅與撤退](docs/images/original-battle-go-rounds-r1.png)
 
-新增兵種已能在原版HD戰場的初始陣位呈現。左圖使用既有明示30民兵與2野狼進度，右圖為六隊展示，包含新版女弓箭手與木棍農民。Go持有身份與完整HP，新增ID不進原25種表；兩張全Frame已從原背景、原座標與透明素材獨立重建。畫面在出手前暫停，目前尚不可戰鬥。範圍見[初始接入驗收](docs/spec/030-battle-expansion-proposal.md#初始陣位與hp限定-conformed)與[圖片來源](docs/images/original-battle-extended-setup-r1.json)。
+普通戰鬥已在隔離候選接通玩家近戰、女弓箭手射擊、敵軍行動與連續回合。上圖為明示測試編成：左側經32次行動取勝，1000野狼剩603、10弓箭手保持；中間全滅，右側正常Esc撤退。三案都已交回Go剩兵並保存，重新開啟後數量一致。原兵種另以原版／HD正常按鍵冷啟動對照，最終畫面、兵數、HP word與seed相同。
 
-![原版HD電腦選到新增兵種，扣兵前暫停](docs/images/original-battle-extended-target-r1.png)
-
-隔離候選也已讓存活判斷讀取Go兵數，原版電腦能選到野狼及農民槍兵。原版／HD選敵對照的畫面、結果與亂數種子一致。上圖使用明示編成及受控敵先手，選敵階段停在扣兵前。範圍見[選敵限定驗收](docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)與[圖片來源](docs/images/original-battle-extended-target-r1.json)。
-
-![原版HD敵軍近戰後，由Go統一結算新增兵種的剩兵](docs/images/original-battle-go-casualties-r1.png)
-
-第一個敵方普通近戰已接Go減員，保留原敵軍動作。上圖野狼2→0及100→71，原兩次傷害計算保持，正式兵數只更新一次；新增兵種的原版kind/count/HP欄位維持0。這是受控編成與敵先手的抽驗，下一次行動前暫停。玩家行動、其餘戰鬥與完整戰果仍待接，新兵受擊／死亡姿勢尚未完成。範圍見[減員限定驗收](docs/spec/030-battle-expansion-proposal.md#首個敵方近戰減員限定-conformed)與[圖片來源](docs/images/original-battle-go-casualties-r1.json)。
+這批是Engine畫面與軍隊保存抽驗；存檔使用明示擴充規則／領導力配置。法術、特殊行動、世界獎勵、F7串接及新兵受擊／死亡姿勢仍待完成，一般Go玩家入口保持停用。初始、選敵與單次近戰證據保存在規格與永久保存，現況見[普通戰鬥驗收](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)與[圖片來源](docs/images/original-battle-go-rounds-r1.json)。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 

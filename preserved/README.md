@@ -1,5 +1,41 @@
 # 必要資料永久保存
 
+## 連續普通戰鬥與剩兵回傳保存
+
+本批2165檔／404物件，壓縮63421387 bytes；原版資料、完整PNG、state、成功與失敗來源、292來源候選及測試程式均保留。編譯快取不保存。物件只存本機`preserved/original-battle-rounds-r1/`，不進Git，不依賴workplace。
+
+[本批清理](original-battle-rounds-cleanup-r1.json)只刪已逐SHA確認保存的1611檔舊候選／失敗副本與1740檔編譯快取，共291450022 bytes。現行來源、輸入、成功收據及永久物件保留。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)、[核對](original-battle-rounds-audit-r1.json)、[逐檔清單](original-battle-rounds-r1.json)、[脫離workplace核對](original-battle-rounds-verification-r1.json)及[收尾核對](original-battle-rounds-integrity-r1.json)為入口。[成果](../docs/images/original-battle-go-rounds-r1.png)是明示編成的Engine畫面，未新增實際視窗驗收。原版／HD普通戰鬥對照、138原指令與八拒絕、新兵勝／敗／撤退、原wrapper剩兵回傳及軍隊Store冷讀通過。
+
+玩家受擊`sub_217B0`的損失與敵方不同，參考`ORIGINAL-ROUND-PLAYER-LOSS-20261103`。新兵32動作勝局剩603野狼及10弓箭手；全滅及撤退各自保存。Store測試先建立明示formation／領導30000配置，只驗軍隊保存；戰鬥仍沿native公式，世界獎勵／敗戰重置與F7尚未整合。特殊／法術、新兵受擊姿勢、擴充規則／AI與一般玩家入口仍未完成。原197來源七程式、923核心、535素材與1071美術保持。
+
+[回合控制器](../internal/ownedworld/original_battle_rounds.go)、[原欄位掛點](../internal/ownedworld/original_battle_rounds_sites.go)、[抽驗](../internal/ownedworld/original_battle_rounds_test.go)、[IDA匯出](../tools/export-original-battle-rounds-ida.py)及[準備／核對／保存工具](../tools/original-battle-rounds.py)為入口。沿Go1.24.13／Pillow11.3.0既有映像；完整執行參數、映像SHA與失敗分類在保存內`execution-r1.json`。一般Go入口與舊出手前閘保持，只有明確安裝新控制器才接整場普通行動。
+
+固定Pillow容器執行`original-battle-rounds.py prepare|freeze|audit|publish|archive|verify`。`prepare`只在新研究目錄建立固定輸入；`freeze`更新明列來源；`audit`獨立核對MZ bytes、站點表、傷害／倒數及完整Frame。以唯讀專案、可寫preserved執行：
+
+```bash
+timeout 120 docker run --rm --init --network none --user 1000:1000 \
+  --memory 2g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword:/project:ro \
+  -v /home/anr2/cht/8sword/preserved:/archive \
+  sc-cht-hdtools:pillow11.3.0-r2 python /project/tools/original-battle-rounds.py \
+  archive --project /project --archive /archive --out /archive/新的清單.json
+```
+
+本批已保存，重跑archive需先採新批次，不能覆寫既有物件。只核對時，不掛workplace：
+
+```bash
+timeout 120 docker run --rm --init --network none --user 1000:1000 \
+  --memory 1g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword/tools:/tools:ro \
+  -v /home/anr2/cht/8sword/preserved:/archive \
+  sc-cht-hdtools:pillow11.3.0-r2 python /tools/original-battle-rounds.py \
+  verify --archive /archive --out /archive/新的核對.json
+```
+
+清單以專案根目錄保存原路徑與mode；物件先驗stored_sha256，再gzip解壓、驗原大小與SHA，寫至新的還原目錄。不同內容不得覆寫。含原版資料及完整畫面的物件維持本機權利分類，縮小成果與索引沿私人倉庫紀錄。
+
 ## 首個敵方近戰與Go減員保存
 
 本批1208檔／379物件，壓縮43198822 bytes；完整成功、失敗與caller診斷來源均保留，編譯快取不保存。

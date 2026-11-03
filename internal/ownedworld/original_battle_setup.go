@@ -244,12 +244,17 @@ func composeOriginalBattleSetup(e *game.Engine, x *originalBattleSetup, art *hdU
 	draw.Draw(out, out.Bounds(), base, base.Bounds().Min, draw.Src)
 	f := &originalArmyFields{Art: art, Boxes: map[string]image.Rectangle{}}
 	rows := x.Plan.Rows
+	slots := x.Plan.Slots
 	var casualties *originalBattleCasualties
 	if x.Actions != nil && x.Actions.Casualties != nil && x.Actions.Casualties.Started {
 		casualties = x.Actions.Casualties
 		rows = casualties.Rows
 	}
-	for slot, raw := range x.Plan.Slots[0] {
+	if x.Actions != nil && x.Actions.Rounds != nil && x.Actions.Rounds.Active {
+		rows = x.Actions.Rounds.currentRows()
+		slots = x.Actions.Rounds.Slots
+	}
+	for slot, raw := range slots[0] {
 		if raw >= 6 {
 			continue
 		}
@@ -283,6 +288,11 @@ func composeOriginalBattleSetup(e *game.Engine, x *originalBattleSetup, art *hdU
 		f.icon(out, s.Unit, area)
 		if casualties != nil {
 			if err := casualties.text(e, out, raw, area); err != nil {
+				return nil, err
+			}
+		} else if x.Actions != nil && x.Actions.Rounds != nil && x.Actions.Rounds.Active {
+			view := originalBattleCasualties{Rows: rows}
+			if err := view.text(e, out, raw, area); err != nil {
 				return nil, err
 			}
 		}

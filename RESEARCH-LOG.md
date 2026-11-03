@@ -3052,3 +3052,16 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 - 動態：18模型及八拒絕、原版／HD兩組正常冷啟動控制通過。完整Frame、兵數、原HP word與seed相同，未宣稱完整CPU state／時鐘parity。新兵受控編成與敵先手下，11隻原6號敵軍每次helper傷害88，兩隻野狼全滅、100隻剩71；Go pending HP分別0及124，原新兵word均0。兩次helper不當成兩次減員，各五次重試不再更新。
 - 原演出完成返回後的Frame仍有原受擊光效，原版與Go控制同樣如此。新兵受擊／死亡姿勢及中間圖層未完成；本輪只驗正式減員與完成返回後的靜態新兵／Noto剩兵。首個完整近戰後仍停止，不外推整場、玩家出手、遠程、法術或存檔。
 - 標記`ORIGINAL-MELEE-CASUALTIES-20261103`及五項runtime不可變鍵已加入[回填索引](docs/spec/ai-resolution-backlinks-r1.json)，舊出手前閘仍為預設，只有新隔離控制器依限定契約延後。
+
+
+## 2026-11-03：連續普通行動、玩家扣兵差異與陣位同步
+
+輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA Pro9.4的521函式資料庫窄取20函式。IDA MZ線性base10000、file offset及runtime CS:IP分列，runtime CS0F67的IP=IDA線性−1E570，DS1E88。原版收據由固定923核心dosgolem重生，seed於執行前固定0x12345678。證據入口為[030](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)及[永久保存](preserved/README.md#連續普通戰鬥與剩兵回傳保存)。
+
+- 已證實：原玩家sub_217B0／runtime0F67:3240由近戰與直接遠程共用，內部sub_1FB02／1592只呼叫一次。部分損失倒數用JGE，loss=min(encoded,before)，包括encoded1減一。敵方沿encoded1早返、其餘encoded−1。這推翻把舊核心共用損失公式外推玩家的做法；舊197來源核心保持，Rust應依本批玩家oracle。標記`ORIGINAL-ROUND-PLAYER-LOSS-20261103`。
+- 已證實：sub_20724／21B4與sub_20AB4／2544按708A、708E、7092、7096順序補空位；排除遠程及原10／12，玩家無非caster活隊且八個2AA8 word皆0時有原caster前移例外。Go先預算swap，逐一核對16個原寫入點後更新maps，原控制／重繪保留。
+- 追加勘誤：第一輪在原敵軍返回1818發現slot0由raw0變raw1，原「只有整理器改maps」不足。IDA證實sub_21EA0／3930與sub_22DBC／484C在近戰後會把來源列插到目標列，移位其餘前列。Go先預算結果，20個原absolute MOV逐字核對，不整批信任返回RAM。失敗與詳細診斷均永久保留。
+- 已證實：原玩家UI20DAE保留方向鍵、Enter、Space及Esc；新增Ranged只按typed profile跳原分類分支，不寫假種類。69個原比較以Go current rows取值，138組原CPU單指令旗標／IP對照及八種不改狀態的拒絕通過。21168／210CE繪圖消費端沿原呈現器，沒有重裝同一回合比較。
+- 動態：正常Continue與地圖按鍵至遇敵，原版／HD各一組原控制與Go連續九動作直到原返回，Frame、原列、HP word、AX與seed相同。沒有CPU全state、PCM或時鐘parity聲明。新兵typed override三案保持原先手：32動作取勝剩603狼＋10女弓箭手、八敵軍動作全滅、零動作Esc撤退。受控編成不能稱自然取得。
+- 原sub_1E578／003C五次返回閘重試保持RAM／cycles／seed／歷史，明確釋放後沿原world wrapper至0110:171D，由既有3745投影收取Go rows，原軍隊影子不改。三案保存及新Store冷讀一致，但Store先設formation／領導30000的明示fixture。初次native規則拒絕是既有存檔契約正常生效，不是產品回歸；沒有放寬schema。
+- 限制：未走171D後世界獎勵、敗戰重置與F7；特殊／法術、擴充規則／策略AI、新兵動態姿勢／中間圖層、超word動畫及一般Go入口未驗。本輪只讓普通行動沿原戰場閉合，不宣稱完整戰鬥或Rust已開始。七個runtime不可變鍵及兩個勘誤標記已回填[索引](docs/spec/ai-resolution-backlinks-r1.json)。

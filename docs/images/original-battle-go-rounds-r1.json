@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "output_sha256": "c5c16a886c12cdae79e6c952c0c290e997df9ad0c996d6ff533989b3731bf2aa",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-rounds-r1/expanded-r1/0/frame.png",
+      "sha256": "06de8712d88ddc861d95955696cf864a595acb480fea87c58ead6f77a127db4c",
+      "result": "win"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-rounds-r1/expanded-r1/1/frame.png",
+      "sha256": "e8105d86565dcb011d4544e61aa2629cf4e2c2627e54a92f9fa210ea974b5ea1",
+      "result": "loss"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-rounds-r1/expanded-r1/2/frame.png",
+      "sha256": "ebdad1f05efbb507a925b28df796e38af496d4de50cfea422333cdef13530d34",
+      "result": "retreat"
+    }
+  ],
+  "actual_window_verified": false,
+  "playable": false,
+  "controlled_typed_override": true,
+  "scope": "Ordinary rounds to win/loss/retreat; world wrapper army capture; paired Store army-only cold read with explicit owned-rules/leadership fixture."
+}

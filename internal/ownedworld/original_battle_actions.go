@@ -43,6 +43,7 @@ type originalBattleActions struct {
 	Sites         map[uint16]uint64
 	Target        *originalEnemyTarget
 	Casualties    *originalBattleCasualties
+	Rounds        *originalBattleRounds
 }
 
 type originalBattleAlias struct{ BX, Slot, MapWord, Offset, Value uint16 }
@@ -55,7 +56,11 @@ func (x *originalBattleActions) check(m *dg.Machine, ip uint16, start, end int) 
 	if !bytes.Equal(x.Setup.Code[start-0x10000:end-0x10000], m.Mem[start-0x10000+0x1100:end-0x10000+0x1100]) {
 		return errors.New("battle presence source bytes")
 	}
-	if x.Casualties != nil && x.Casualties.Started {
+	if x.Rounds != nil && x.Rounds.Active {
+		if err := x.Rounds.checkProjection(m); err != nil {
+			return err
+		}
+	} else if x.Casualties != nil && x.Casualties.Started {
 		if err := x.Casualties.checkProjection(m); err != nil {
 			return err
 		}
@@ -66,9 +71,9 @@ func (x *originalBattleActions) check(m *dg.Machine, ip uint16, start, end int) 
 		}
 	}
 	for side, base := range []uint32{0x6fb6, 0x6fc2} {
-		for i, raw := range x.Setup.Plan.Slots[side] {
+		for i, raw := range x.slots()[side] {
 			if m.Read16(0x1e880+base+uint32(i*2)) != raw {
-				return errors.New("battle presence slot map changed")
+				return fmt.Errorf("battle presence slot map changed side=%d slot=%d expected=%04X actual=%04X", side, i, raw, m.Read16(0x1e880+base+uint32(i*2)))
 			}
 		}
 	}
@@ -80,6 +85,9 @@ func (x *originalBattleActions) begin(m *dg.Machine) (bool, error) {
 		return false, err
 	}
 	x.Active = true
+	if x.Rounds != nil {
+		return x.Rounds.begin(m)
+	}
 	return false, nil // Original round and RNG continue; no projected fake count.
 }
 
@@ -117,10 +125,10 @@ func (x *originalBattleActions) presence(m *dg.Machine, site originalBattlePrese
 			if source != selected {
 				return false, errors.New("battle transient target provenance")
 			}
-			raw := x.Setup.Plan.Slots[0][source]
-			sr := x.Setup.Plan.Slots[1][source]
+			raw := x.slots()[0][source]
+			sr := x.slots()[1][source]
 			word := m.Read16(0x1e880 + 0x6fa8 + uint32(source*2))
-			if raw >= 6 || sr >= 6 || x.Setup.Plan.Rows[0][raw].Count == 0 || x.Setup.Plan.Rows[1][sr].Count == 0 || c.R[dg.BX] != word*4 {
+			if raw >= 6 || sr >= 6 || x.rows()[0][raw].Count == 0 || x.rows()[1][sr].Count == 0 || c.R[dg.BX] != word*4 {
 				return false, errors.New("battle transient target origin/alive/BX")
 			}
 			offset := c.R[dg.BX] + 0x56ea
@@ -135,7 +143,7 @@ func (x *originalBattleActions) presence(m *dg.Machine, site originalBattlePrese
 		if c.R[dg.BX]%4 != 0 || c.R[dg.BX]/4 >= 6 {
 			return false, errors.New("battle presence raw index")
 		}
-		row := x.Setup.Plan.Rows[site.Side][c.R[dg.BX]/4]
+		row := x.rows()[site.Side][c.R[dg.BX]/4]
 		value = uint16(row.Count)
 		extended = row.Unit != "" && x.Setup.Catalog.Profiles[row.Unit].NativeKind == 0
 		if extended {
@@ -188,11 +196,11 @@ func (x *originalBattleActions) hold(m *dg.Machine, ip uint16) (bool, error) {
 	if source >= 6 || target >= 6 {
 		return false, errors.New("attack entry slot")
 	}
-	sr, tr := x.Setup.Plan.Slots[1][source], x.Setup.Plan.Slots[0][target]
+	sr, tr := x.slots()[1][source], x.slots()[0][target]
 	if sr >= 6 || tr >= 6 {
 		return false, errors.New("attack entry raw")
 	}
-	s, t := x.Setup.Plan.Rows[1][sr], x.Setup.Plan.Rows[0][tr]
+	s, t := x.rows()[1][sr], x.rows()[0][tr]
 	if s.Count == 0 || t.Count == 0 {
 		return false, errors.New("attack entry dead source/target")
 	}
@@ -202,6 +210,9 @@ func (x *originalBattleActions) hold(m *dg.Machine, ip uint16) (bool, error) {
 	}
 	if x.Target == nil {
 		x.Target = &v
+	}
+	if x.Rounds != nil {
+		return x.Rounds.enter(m, 1, ip)
 	}
 	if x.Casualties != nil && ip == 0x484c {
 		return x.Casualties.enter(m)
@@ -233,7 +244,10 @@ func installOriginalBattleActions(e *game.Engine, setup *originalBattleSetup, co
 	// Player dispatch and spells have not been admitted by this contract.
 	for _, ip := range []uint16{0x211a, 0x334, 0x3240, 0x3930} {
 		ip := ip
-		swordOnHostInstruction(e.Oracle, oracle.Far(0xf67, ip), func(*dg.Machine) (bool, error) {
+		swordOnHostInstruction(e.Oracle, oracle.Far(0xf67, ip), func(m *dg.Machine) (bool, error) {
+			if x.Rounds != nil {
+				return x.Rounds.playerGate(m, ip)
+			}
 			if ip == 0x211a && setup.Override == nil {
 				return false, nil
 			}
@@ -241,4 +255,17 @@ func installOriginalBattleActions(e *game.Engine, setup *originalBattleSetup, co
 		})
 	}
 	return x, nil
+}
+
+func (x *originalBattleActions) rows() [2][6]ArmyStack {
+	if x.Rounds != nil && x.Rounds.Active {
+		return x.Rounds.currentRows()
+	}
+	return x.Setup.Plan.Rows
+}
+func (x *originalBattleActions) slots() [2][6]uint16 {
+	if x.Rounds != nil && x.Rounds.Active {
+		return x.Rounds.Slots
+	}
+	return x.Setup.Plan.Slots
 }
