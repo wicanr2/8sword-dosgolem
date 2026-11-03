@@ -3026,3 +3026,8 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 - [核對](preserved/original-battle-support-audit-r1.json)、[限定結果](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)、[成果](docs/images/original-battle-go-support-r1.png)及[保存](preserved/README.md#原戰場凝滯複製go資料保存)已掛README、CONTEXT與AGENTS，十項runtime定位及兩個標記回填backlink。沒有將Engine Frame稱為新X11驗收。
 - 1302檔／466物件永久保存，壓縮53027980 bytes。未掛workplace的只讀核對通過；原版、完整state／PNG及二進位僅本機保存。逐SHA已保存的舊副本36550563 bytes與1706檔本批快取161131352 bytes已清理，共197681915 bytes；核對基線、現行候選及成功收據保持。
 - 正式197來源七程式、923核心、535素材及1071美術保持。新增複製目標、超領導保存、敵方特殊、守軍／頭目、規則／AI整合、戰中續接、新兵姿勢、超word動畫及一般入口仍未完成；完整戰鬥後才進Rust。Docker工作均有界、自動移除，沒有新增映像或清理其他專案。
+### 兩術提交與後續定位
+
+- 功能提交`d23b525ceea2678c74b6158077791bae795bbbff`已推送origin/main，主機git ls-remote回讀一致。完整本機物件未加入Git。
+- 敵方特殊沿已保存30函式定位，未另開研究目錄：sub_1FB6C的1FE77呼叫sub_1F266，runtime0F67:0CF6／返回190A；減員入口36C6／38CC。原分派330至339餘數保留selector0，受控selector7不當自然觸發證據。後續先補獨立READY再接Go，不把本輪兩術抽驗外推敵方特殊。
+- 收尾只追加此記錄及DRAFT入口定位，沒有改production來源。工作樹與遠端在收尾提交後再次核對。

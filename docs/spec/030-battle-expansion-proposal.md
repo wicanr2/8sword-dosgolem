@@ -221,6 +221,8 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 2026-11-03接續凝滯4、複製6及敵方特殊的Go資料接管。研究沿既有battle-r1下`original-battle-support-r1`，先查證我方8E46行動次數的初始化／增減／消費，以及複製的分段公式、動畫數字、戰後回寫與F7。入口預定為[輔助術控制](../../internal/ownedworld/original_battle_support.go)、[抽驗](../../internal/ownedworld/original_battle_support_test.go)及[準備／保存](../../tools/original-battle-support.py)。現有六攻擊術及正式197來源保持；補足READY前不放寬一般入口。
 
+敵方特殊的下一切片已定位，尚未READY：沿同批固定IDA匯出，sub_1FB6C的1FE77呼叫1987-byte sub_1F266，runtime入口0F67:0CF6／返回190A；兩條減員為sub_21C36的36C6與sub_21E3C的38CC。應在原入口先綁定Go資料，再處理目標、效果及敵方行動計數，不能等原減員後才收取RAM。既有受控selector7不當自然觸發證據；原1F28C分派在330至339餘數區間保留初始selector0，沒有直接指定7，後續保留此原分派停止線。這是入口與靜態線索，未提升敵方正式控制器。
+
 #### 凝滯複製Go資料 READY
 
 沿本節固定PAM／i64及IDA9.4的27函式匯出；另沿原六隊投影的sub_132E0／sub_13774／sub_2031A。原名、bytes、file offset、IDA MZ base10000與runtime CS:IP保留，不重做整份反組譯。以下原靜態語意已由bytes及caller／consumer證實，Go正式接入仍須動態對照。
