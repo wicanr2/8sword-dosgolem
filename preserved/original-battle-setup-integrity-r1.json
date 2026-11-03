@@ -1,0 +1,21 @@
+{
+  "status": "passed-original-battle-setup-integrity",
+  "archived_files_verified": 544,
+  "archive_objects": 402,
+  "archive_compressed_bytes": 42763026,
+  "source_files": 285,
+  "relative_links_and_anchors": 3402,
+  "positive_control": "README -> artwork/README.md",
+  "resolution_backlinks": 3,
+  "ownership": "UID/GID1000; no root-owned or .md directory in this batch",
+  "baseline_unchanged": "197 source / 7 programs / 923 core / 535 assets / 1071 artwork files",
+  "limits": [
+    "Initial formation/HP and held expanded scene only; target/casualty/spell/save and GUI pending."
+  ],
+  "cleanup": {
+    "cache_files": 1696,
+    "cache_logical_bytes": 146963850,
+    "saved_old_files": 6,
+    "saved_old_logical_bytes": 16792721
+  }
+}

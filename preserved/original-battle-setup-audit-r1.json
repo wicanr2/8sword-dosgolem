@@ -1,0 +1,34 @@
+{
+  "status": "passed-original-battle-setup-audit",
+  "source_files": 285,
+  "ida_functions": 12,
+  "direct_operand_sites": 530,
+  "helper_pairs": 12,
+  "runtime_refusals": 12,
+  "extended_uint32_models": 8,
+  "cold_native_hd_pairs": 2,
+  "held_preview_cases": 2,
+  "held_retries_each": 5,
+  "independent_composition": [
+    {
+      "case": 0,
+      "sprites": 1,
+      "whole_frame_reconstructed": true,
+      "coords_pristine_PAM": true
+    },
+    {
+      "case": 1,
+      "sprites": 5,
+      "whole_frame_reconstructed": true,
+      "coords_pristine_PAM": true
+    }
+  ],
+  "new_ids_in_original_tables": 0,
+  "ordinary_player_entry_disabled": true,
+  "not_verified": [
+    "playable expanded battle",
+    "new-unit targeting/casualties/spells",
+    "GUI",
+    "world battle save lifecycle"
+  ]
+}

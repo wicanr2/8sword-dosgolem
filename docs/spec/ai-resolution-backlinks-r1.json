@@ -763,5 +763,55 @@
       "scope": "Native25 six-slot model; fixed-seed normal original/HD encounter and Escape return; typed remainder paired-save cold read.",
       "not_closed": "Expanded IDs, all actions/rules, complete world settlement, F7, GUI and general player entry."
     }
+  ],
+  "original_battle_setup_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:1DAA",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:1DAA",
+      "original_name": "sub_2031A",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go constructs six tactical slot mappings and occupancy flags from typed identities.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-SETUP-20261103",
+      "receipt": "preserved/original-battle-setup-audit-r1.json",
+      "scope": "Native original/Go helpers and cold action; expanded initial scene only with held action gate and independent pixel reconstruction.",
+      "not_closed": "Playable expanded battle, alive/target/casualty/spell consumers, world settlement and GUI."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:14BA",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:14BA",
+      "original_name": "sub_1FA2A",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go retains full uint64 HP; native compatibility words keep original lowword; extended words remain zero.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-SETUP-20261103",
+      "receipt": "preserved/original-battle-setup-audit-r1.json",
+      "scope": "Native original/Go helpers and cold action; expanded initial scene only with held action gate and independent pixel reconstruction.",
+      "not_closed": "Playable expanded battle, alive/target/casualty/spell consumers, world settlement and GUI."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:0035",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:0035",
+      "original_name": "sub_1E578",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Extended initial view is held before every original round; no native targeting or casualty fallback.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-SETUP-20261103",
+      "receipt": "preserved/original-battle-setup-audit-r1.json",
+      "scope": "Native original/Go helpers and cold action; expanded initial scene only with held action gate and independent pixel reconstruction.",
+      "not_closed": "Playable expanded battle, alive/target/casualty/spell consumers, world settlement and GUI."
+    }
   ]
 }

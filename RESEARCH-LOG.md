@@ -3014,3 +3014,15 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 原店／新增兵種透明區域分別33910／33909個取樣點保持底圖，輪廓外RGB差異零。Go模型17.58秒及四張正常GUI通過，X11／PNG／提交SHA均核對。GUI沿明示30民兵＋2野狼，原店、增援頁、野狼原數量輸入取消、F2皆正常按鍵，無RAM／IP注入。低等級進度不能招募槍兵，保留原拒絕；沒有本輪自然取得女弓箭手／槍兵或全部兵種交易聲明。
 
 先前工具失敗與修正分類保存於批次`verification-history-r1.json`。第一版GUI已逐RGB匹配，但原店metadata取到不同的原輸入游標明滅相位，補單張相同程式的新正常進店擷取後SHA一致；原失配畫面／metadata保持。這不是修復遊戲繪圖器的聲明。原戰場新增ID及完整世界結算仍接續處理，不由本輪呈現抽驗升級。
+
+
+## 原戰場初始陣位、HP與新兵空格呈現
+
+2026-11-03。固定PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`與PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4於UID1000、唯讀來源及tmp資料庫，匯出原名／xref／bytes／operand，probe521函式。本輪12函式與530個直接operand只作本切片資料來源，指標別名及其他consumer仍未知，不宣稱完整查表隔離。
+
+- 已證實sub_2031A，IDA MZ線性2031Ah，runtime0F67:1DAA，六格map位於DS:6FB6／6FC2、佔用旗標8CB4／8E6E。原10／12優先後置，3／24沿後置，其餘首個空位；未用格指最後空隊。六種編成的原helper與Go逐資料對照通過。
+- 已證實sub_1FA2A，IDA1FA2Ah，runtime0F67:14BA，原HP70D0乘原兵數，玩家8CA4／敵8E60收低word。Go另存完整uint64，新兵相容word0；原高乘積截斷只是相容投影，不當作Go權威HP。八種32位上限模型及原helper控制通過。
+- 已證實sub_21440對kind0略過部隊圖像載入；sub_21168對count0還原空格背景。DS:703C原固定座標在PAM檔案以MZ header＋DS相對load0110的偏移定位，byte-x乘24、y乘6得到HD人物框。新兵輪廓由Go放入該空格，原種類／兵數留0，沒有用假原兵種代替。
+- 正常原版／HD四路冷啟動遇敵，固定seed，初始maps／HP及首個敵方普通行動後的全Frame、原軍隊／待扣HP／seed相同。新增ID的兩案只跑至0035回合前，各五次重試RAM／cycles不變，原sub_205E6未進。標準圖像庫解碼RGBA後，由Python獨立重建整張Frame，分別新增1／5個sprite，逐byte相同。
+
+本輪沒有遊戲執行失敗。首個source manifest在gofmt前產生，新增拒絕／原始素材測試後的SHA核對識別到格式差異。保留原manifest及兩版Go程式，另比對主機Go函式2180列指令／標頭，保持常數與暫存器、只正規化分支及PC-relative data位移，結果相同；不稱binary逐byte相同，亦未修改DOS EXE。產品只接初始資料與呈現，原存活判斷、選敵、減員、法術、GUI與完整世界戰果仍待接。入口見[030限定結果](docs/spec/030-battle-expansion-proposal.md#初始陣位與hp限定-conformed)及[永久保存](preserved/README.md#原戰場初始陣位與hp接管保存)。

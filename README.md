@@ -44,6 +44,10 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 新增兵種在原戰場的固定表隔離、其餘規則與完整世界戰果仍待接。此輪只完成原25種資料進出與剩兵保存，尚未開放Go軍隊玩家入口。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)與[圖片來源](docs/images/original-army-projection-r1.json)。
 
+![新增兵種在原版HD戰場的初始陣位，出手前暫停](docs/images/original-battle-extended-setup-r1.png)
+
+新增兵種已能在原版HD戰場的初始陣位呈現。左圖使用既有明示30民兵與2野狼進度，右圖為六隊展示，包含新版女弓箭手與木棍農民。Go持有身份與完整HP，新增ID不進原25種表；兩張全Frame已從原背景、原座標與透明素材獨立重建。畫面在出手前暫停，目前尚不可戰鬥，選敵、減員及完整戰果接續處理。範圍見[初始接入驗收](docs/spec/030-battle-expansion-proposal.md#初始陣位與hp限定-conformed)與[圖片來源](docs/images/original-battle-extended-setup-r1.json)。
+
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 
 需要研究匯入時，先按[永久保存入口](preserved/README.md#go軍隊命令與原版進度匯入保存)準備合法本機資料，再建置並指定新的目的地：

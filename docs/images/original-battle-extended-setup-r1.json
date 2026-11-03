@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "output_sha256": "40a60ef7352ca64341daf20caa2d5de25d892e4f418babda5476e2548a2e79e1",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-setup-r1/preview-r1/0/frame.png",
+      "sha256": "e96c2d04585eea82ce64314d298001e18162c4096df8ac09da22108417c5d35a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-setup-r1/preview-r1/1/frame.png",
+      "sha256": "b5141186651d38db042d2df5915a22b64d914e23ab4addec15f1128b2e7165cd"
+    }
+  ],
+  "actual_window_verified": false,
+  "playable": false,
+  "controlled_typed_override": true,
+  "scope": "Initial formation and HP only; host gate holds before every action."
+}

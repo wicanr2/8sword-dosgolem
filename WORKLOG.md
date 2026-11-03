@@ -2890,3 +2890,18 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 
 
 主提交cef4e9c6d8454123b3ae86bcd02a14321bc9880d已推送私人origin/main，git ls-remote回讀同SHA，工作樹乾淨。暫存空白檢查通過，本輪Docker工作已全部結束並移除；剩餘容器為其他專案，未清理。此行另作文件收尾提交，不改素材、程式或限定驗收範圍。
+
+
+## 2026-11-03：原戰場初始陣位與HP由Go接管
+
+開工HEAD `075827d4ddc0cab8db35603a42465cb085f73936`，工作樹乾淨。使用者同意前輪美術修正後，接續原版戰場新增ID。路由命中復古重製、規格閘門、IDA窄查、文件職責及驗收／回填；沿已授權原版操作與Go後端，不新開戰鬥模式或美術訪談。
+
+- 先匯出九函式，再按直接draw caller追加至12，保留兩份匯出與原名／bytes／operand。530個直接欄位site僅供查找，未把它們都升為已接。補READY後Go接初始陣位及HP，原25種12組原helper對照0.90秒通過，包含空洞、遠程、特殊原kind10／12、滿六隊與高乘積。
+- 原版／HD四路Continue→正常走路遇敵→首個敵方普通行動，固定seed，初始maps／旗標／HP及行動後全Frame／原兵力／待扣HP／seed相同，109.17秒通過。兩個HD新兵初始畫面沿既有30民兵＋2野狼與明示六隊展示，Go持完整身份／HP、原新兵欄位0；各五次回合前閘重試RAM／cycles保持，原回合入口0，79.27秒通過。
+- 新增原始素材解碼0.16秒及12種拒絕0.02秒，保留前版cold binary與測試來源。Python從原Frame、固定PAM座標及標準解碼RGBA獨立重建全Frame，1／5個新兵sprite逐byte相同。最新女弓箭手與木棍農民沿前輪新包，不生成新圖。
+- 第一份manifest在gofmt前建立，核對時發現格式化雜湊差異，原收據與程式保持。追加主機Go函式指令對照2180列，保留常數及寄存器、只正規化必要位址後相同。此為來源紀錄修正，沒有玩法失敗或DOS EXE變更；沒有以錯誤資料放寬新兵查表。
+
+[限定結果](docs/spec/030-battle-expansion-proposal.md#初始陣位與hp限定-conformed)、[核對](preserved/original-battle-setup-audit-r1.json)、[初始畫面](docs/images/original-battle-extended-setup-r1.png)及[永久保存](preserved/README.md#原戰場初始陣位與hp接管保存)為入口。候選285來源，正式197來源七程式／923核心／535素材／1071美術保持。含新兵時0035閘保持，尚不可玩，沒有GUI或世界存讀提升。下一步為原存活判斷、選隊與減員資料，不重做已驗初始helper。保存、清理及Git／Docker狀態以下列追加為準。
+
+
+本批544檔／402物件、壓縮42763026 bytes已保存，不掛workplace逐SHA／大小核對通過。收尾核對285來源、3402相對連結／錨點、三筆定位回填及本批UID/GID1000，沒有root-owned或異常.md目錄。只刪1696份本輪Go快取、146963850邏輯bytes，以及6份逐SHA保存的前版程式／IDA／測試副本、16792721邏輯bytes。最新來源、程式、原始RGBA、輸入、state與完整PNG保持，沒有新映像或其他專案清理。Git推送及容器狀態以下列追加為準。

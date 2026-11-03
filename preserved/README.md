@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## 原戰場初始陣位與HP接管保存
+
+本批544檔／402物件，壓縮42763026 bytes，已完成不掛workplace的逐SHA及大小核對。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#初始陣位與hp限定-conformed)、[核對](original-battle-setup-audit-r1.json)、[逐檔清單](original-battle-setup-r1.json)、[脫離workplace核對](original-battle-setup-verification-r1.json)及[收尾核對](original-battle-setup-integrity-r1.json)為入口。Go接原初始陣位及HP，新增兵種的身份／完整HP保留Go，原種類／兵數／HP相容欄位維持空值。含新兵的原版HD初始畫面在回合前暫停，不能作完整戰鬥或玩家入口。
+
+285來源候選、12組原helper對照、12種拒絕、八種32位兵數模型、原版／HD四條正常冷啟動行動段及兩種初始畫面通過。新兵全Frame已由原背景、固定PAM座標與原始RGBA素材獨立重建；女弓箭手及木棍農民沿最新包。原197來源七程式、923核心、r69全535素材與1071美術保持，沒有新增Go戰鬥模式。
+
+入口為[Go初始資料](../internal/ownedworld/original_battle_setup.go)、[控制／冷啟動／出手前暫停](../internal/ownedworld/original_battle_setup_test.go)、[IDA匯出](../tools/export-original-battle-setup-ida.py)、[準備／核對／保存](../tools/original-battle-setup.py)及[成果來源](../docs/images/original-battle-extended-setup-r1.json)。完整兩版測試程式、固定資料、12函式IDA bytes、530直接operand、各組state及未縮PNG保存在本機`preserved/original-battle-setup-r1/`，原資料、完整圖像與程式不進Git。縮小[初始畫面](../docs/images/original-battle-extended-setup-r1.png)沿私人倉庫保存。
+
+固定Pillow11.3.0 r2容器用`original-battle-setup.py prepare|freeze|audit|publish|archive|verify`，參數見`--help`。工作目錄沿`battle-r1/original-battle-setup-r1`，Go1.24.13／IDA9.4完整命令、UID1000／network none／配額及唯讀掛載保存在`execution-r1.json`。保存用`archive --project /project --archive /archive --out /archive/original-battle-setup-r1.json`；不掛workplace的驗證用`verify --archive /archive --out /out/新核對.json`。
+
+第一份source manifest在gofmt前產生；實際冷啟動來源先gofmt再編譯，後續只補測試。原格式manifest及兩版程式保留，Go主機函式指令經保留literal的重定位正規化核對相同，不冒稱兩個binary逐byte一致，也未修改DOS程式。選敵、減員、法術、GUI與戰果存讀仍未接，不解除`0F67:0035`暫停閘。
+
 ## 募兵透明與openKB身份修正保存
 
 本批479檔／384物件，壓縮41656117 bytes，已完成不掛workplace的逐SHA與大小核對。
