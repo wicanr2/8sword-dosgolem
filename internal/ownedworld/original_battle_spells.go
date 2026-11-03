@@ -29,6 +29,7 @@ type originalSpellRecord struct {
 	Random                      *originalRandPlan
 }
 type originalBattleSpells struct {
+	Support                          *originalBattleSupport
 	Engine                           *game.Engine
 	Rounds                           *originalBattleRounds
 	Active, Hold                     bool
@@ -101,6 +102,11 @@ func originalSpellAmount(selector int, kind uint16, source, target uint32, hp ui
 }
 
 func (p *originalBattleSpells) projection(m *dg.Machine) error {
+	if p.Support != nil {
+		if err := p.Support.projection(m); err != nil {
+			return err
+		}
+	}
 	r := p.Rounds
 	if !bytes.Equal(p.Projected[:], m.Mem[0x1e880+0x56e8:0x1e880+0x5718]) || !bytes.Equal(r.HPWords[:12], m.Mem[0x1e880+0x8ca4:0x1e880+0x8cb0]) || !bytes.Equal(r.HPWords[12:], m.Mem[0x1e880+0x8e60:0x1e880+0x8e6c]) {
 		return errors.New("spell projection changed")
@@ -137,6 +143,15 @@ func (p *originalBattleSpells) begin(m *dg.Machine) (bool, error) {
 			return false, errors.New("extended enemy spell path not admitted")
 		}
 	}
+	if p.Support != nil {
+		if p.Support.Mask != 63 {
+			return false, errors.New("spell action counters uninitialized")
+		}
+		if err := p.Support.projection(m); err != nil {
+			return false, err
+		}
+		p.Support.start()
+	}
 	p.Rows, p.Projected = r.Rows, r.Projected
 	p.EntrySP, p.EntryBP, p.Caster = c.R[dg.SP], c.R[dg.BP], slot
 	p.Selector = -1
@@ -160,7 +175,8 @@ func (p *originalBattleSpells) consume(m *dg.Machine) (bool, error) {
 		return false, errors.New("spell charge caller")
 	}
 	selector := int(m.Read16(0x1e880 + sp + 4))
-	if p.Consumed || !spellSupported(selector) || p.Charges[selector] == 0 {
+	supported := spellSupported(selector) || (p.Support != nil && (selector == 4 || selector == 6))
+	if p.Consumed || !supported || p.Charges[selector] == 0 {
 		return false, errors.New("spell selection not admitted")
 	}
 	if !bytes.Equal(p.Rounds.Actions.Setup.Code[0xe88e:0xe8a3], m.Mem[0xf670+0x31e:0xf670+0x333]) {
@@ -389,6 +405,11 @@ func (p *originalBattleSpells) finish(m *dg.Machine) (bool, error) {
 		after[i] = m.Read16(0x1e880 + 0x2aa8 + uint32(i*2))
 		if int(i) != p.Selector && after[i] != before || int(i) == p.Selector && (after[i] > before || before-after[i] > 1) {
 			return false, errors.New("spell final charges")
+		}
+	}
+	if p.Support != nil {
+		if err := p.Support.finish(); err != nil {
+			return false, err
 		}
 	}
 	p.Records = append(p.Records, originalSpellRecord{p.Selector, p.Caster, p.Effects, p.Charges, after, p.Random})

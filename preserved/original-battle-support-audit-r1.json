@@ -1,0 +1,240 @@
+{
+  "status": "passed-original-battle-support-audit",
+  "source_files": 298,
+  "ida_functions": 30,
+  "ida_lines": 7358,
+  "original_pairs": 6,
+  "counter_instruction_controls": 46,
+  "clone_models": 24,
+  "counter_refusals": 8,
+  "clone_write_refusals": 8,
+  "growth_refusals": 6,
+  "clone_bound_refusals": 4,
+  "frames_counts_HP_counters_charges_seed_equal": true,
+  "held_retries": 5,
+  "rows": [
+    {
+      "name": "freeze-hd",
+      "growth": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3
+      ],
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    },
+    {
+      "name": "clone-hd",
+      "growth": [
+        30,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame_sha256": "cfbf60ae4e15b77fea7af3391c7615b33a5b7d3567454ca68060c0f568d4f409"
+    },
+    {
+      "name": "clone-no-growth-hd",
+      "growth": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame_sha256": "4abe1ac43615913cfe4b29114db80915a822e56741637be50cd5becea93b6803"
+    },
+    {
+      "name": "clone-native",
+      "growth": [
+        30,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame_sha256": "05a0cf7a2143d453bee7c5a9f3203de9b1229adda890892b66820a2cde66a749"
+    },
+    {
+      "name": "clone-space",
+      "growth": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "frame_sha256": "1282c9bcc373a9c1611ec7960e67e2ae15361d07f9728c7b948c35398d91cfc6"
+    },
+    {
+      "name": "clone-skip-hd",
+      "growth": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3
+      ],
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    }
+  ],
+  "worlds": [
+    {
+      "name": "clone-world-r1",
+      "remaining": [
+        {
+          "unit": "native:01",
+          "count": 65
+        },
+        {
+          "unit": "native:10",
+          "count": 1
+        },
+        {
+          "unit": "openkb:arcr",
+          "count": 1
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "resources": {
+        "rank": 1,
+        "merit": 37,
+        "monthly_pay": 100,
+        "gold": 615,
+        "leadership": 100,
+        "spell_power": 0
+      },
+      "ordinary_actions": 17,
+      "charges_hex": "03000300030003000300030002000300"
+    },
+    {
+      "name": "freeze-world-r1",
+      "remaining": [
+        {
+          "unit": "native:01",
+          "count": 65
+        },
+        {
+          "unit": "native:12",
+          "count": 2
+        },
+        {
+          "unit": "openkb:arcr",
+          "count": 1
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "resources": {
+        "rank": 1,
+        "merit": 37,
+        "monthly_pay": 100,
+        "gold": 615,
+        "leadership": 100,
+        "spell_power": 0
+      },
+      "ordinary_actions": 16,
+      "charges_hex": "03000300030003000200030003000300"
+    }
+  ],
+  "actual_F7_saves": 2,
+  "separate_process_Continue": 2,
+  "formal_runtime_unchanged": true,
+  "general_player_entry_disabled": true,
+  "limits": [
+    "Explicit caster, learned and charge fixtures; not natural acquisition.",
+    "Native clone targets only; original intermediate clone arithmetic retained as a compatibility check.",
+    "Post-clone over-leadership world path remains unsupported; Store bound unchanged.",
+    "Enemy specials, guard/boss bridges, rules/AI integration, dynamic poses, wide animation, mid-battle save and general startup remain open.",
+    "Engine frames; no new X11 acceptance."
+  ]
+}

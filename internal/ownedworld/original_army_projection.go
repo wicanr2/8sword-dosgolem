@@ -91,11 +91,9 @@ func (x *originalArmyProjection) capture(raw []byte) ([6]ArmyStack, error) {
 	if len(raw) != 24 {
 		return rows, errors.New("original battle result shape")
 	}
-	before := map[string]uint32{}
-	for _, s := range x.Input {
-		if s.Unit != "" {
-			before[s.Unit] = s.Count
-		}
+	before, err := x.captureBounds()
+	if err != nil {
+		return rows, err
 	}
 	seen := map[string]bool{}
 	empty := false
@@ -106,7 +104,7 @@ func (x *originalArmyProjection) capture(raw []byte) ([6]ArmyStack, error) {
 			continue
 		}
 		id := fmt.Sprintf("native:%02d", kind)
-		if empty || kind < 1 || kind > 25 || count == 0 || uint32(count) > before[id] || seen[id] {
+		if empty || kind < 1 || kind > 25 || count == 0 || uint64(count) > before[id] || seen[id] {
 			return [6]ArmyStack{}, errors.New("original battle result identity/count/compaction")
 		}
 		seen[id] = true
@@ -190,11 +188,9 @@ func (x *originalArmyProjection) captureRounds() ([6]ArmyStack, error) {
 	if x.Rounds == nil || !x.Rounds.Done || !x.Rounds.Released {
 		return rows, errors.New("Go battle result unbound")
 	}
-	before := map[string]uint32{}
-	for _, s := range x.Input {
-		if s.Unit != "" {
-			before[s.Unit] = s.Count
-		}
+	before, err := x.captureBounds()
+	if err != nil {
+		return rows, err
 	}
 	seen := map[string]bool{}
 	at := 0
@@ -202,7 +198,7 @@ func (x *originalArmyProjection) captureRounds() ([6]ArmyStack, error) {
 		if s.Count == 0 {
 			continue
 		}
-		if s.Unit == "" || s.Count > before[s.Unit] || seen[s.Unit] || at >= 6 {
+		if s.Unit == "" || uint64(s.Count) > before[s.Unit] || seen[s.Unit] || at >= 6 {
 			return rows, errors.New("Go battle result identity/count")
 		}
 		rows[at] = s
@@ -210,6 +206,41 @@ func (x *originalArmyProjection) captureRounds() ([6]ArmyStack, error) {
 		seen[s.Unit] = true
 	}
 	return rows, nil
+}
+
+// Only committed source-checked clone deltas may expand the initial bound.
+// Unknown identities and unaccounted growth remain rejected on both returns.
+func (x *originalArmyProjection) captureBounds() (map[string]uint64, error) {
+	before := map[string]uint64{}
+	for _, row := range x.Input {
+		if row.Unit != "" {
+			before[row.Unit] = uint64(row.Count)
+		}
+	}
+	if x.Rounds == nil || x.Rounds.Spells == nil || x.Rounds.Spells.Support == nil {
+		return before, nil
+	}
+	s := x.Rounds.Spells.Support
+	var growth [6]uint64
+	for _, record := range s.Records {
+		c := record.Clone
+		if c == nil {
+			continue
+		}
+		if record.Selector != 6 || c.Raw >= 6 || c.Updates != 1 || c.After < c.Before || c.Unit != x.Rounds.Actions.Setup.Plan.Rows[0][c.Raw].Unit || before[c.Unit] == 0 {
+			return nil, errors.New("clone growth provenance")
+		}
+		growth[c.Raw] += uint64(c.After - c.Before)
+	}
+	for raw, n := range growth {
+		if n != uint64(s.Growth[raw]) {
+			return nil, errors.New("clone growth ledger differs")
+		}
+		if n > 0 {
+			before[x.Rounds.Actions.Setup.Plan.Rows[0][raw].Unit] += n
+		}
+	}
+	return before, nil
 }
 
 func installOriginalArmyProjection(e *game.Engine, catalog game.OwnedCombatCatalog, rows [6]ArmyStack) (*originalArmyProjection, error) {

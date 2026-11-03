@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "sha256": "d382656884d09ebcbf5f17e401c3ba7a2c866f1da265156dcbf7fbed777ee4bc",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-support-r1/support-r1/clone-native-mode-1/frame.png",
+      "sha256": "4b5cb6dd416c1164961a6ecf2b82f8cc82009089dafba0ff68062d3c6ab7ca14"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-support-r1/support-r1/clone-hd-mode-1/frame.png",
+      "sha256": "35fd18d3fa9f91bee759bf7ad2b0b97aef437f2622cb77aef4645325c24a59a8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-support-r1/clone-world-r1/map.png",
+      "sha256": "39b1c942e0aea9af6253fd1d606d693955275665d0ec4eea0ff196dbfac603f7"
+    }
+  ],
+  "actual_window": false,
+  "spell_animation_midframe": false,
+  "general_player_entry": false,
+  "scope": "Controlled clone fixtures; original/HD completion frames and postbattle map."
+}

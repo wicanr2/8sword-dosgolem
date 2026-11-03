@@ -185,16 +185,18 @@ func spellEncounter(t *testing.T, e *game.Engine, selector int, cancel string, g
 	cast, menu := false, false
 	finished := false
 	full := len(whole) > 0 && whole[0]
-	e.Oracle.OnCall(oracle.Far(0xf67, 0x1cfe), func(*oracle.Oracle) { cast = false; finished = true })
 	node := -1
 	pending := false
+	entering := false
+	e.Oracle.OnCall(oracle.Far(0xf67, 0x1cfe), func(*oracle.Oracle) { cast = false; pending = false; finished = true })
+	e.Oracle.OnCall(oracle.Far(0xf67, 0x283f), func(*oracle.Oracle) { entering = false })
 	var picker oracle.Regs
 	pickerTarget := uint16(0)
 	pickerNode := -1
 	// Read the live cursor at the original BIOS poll. Queue one move per
 	// acknowledged cursor transition, including repeated direction keys.
 	e.Oracle.OnCall(oracle.Far(0xf67, 0x28a6), func(o *oracle.Oracle) {
-		if !cast || !pending {
+		if !pending {
 			return
 		}
 		r := o.Regs()
@@ -203,7 +205,7 @@ func spellEncounter(t *testing.T, e *game.Engine, selector int, cancel string, g
 			return
 		}
 		pickerNode = int(at)
-		if cancel == "target" || cancel == "target-space" {
+		if cast && (cancel == "target" || cancel == "target-space") {
 			if cancel == "target-space" {
 				o.PressScan(" ")
 				return
@@ -269,34 +271,32 @@ func spellEncounter(t *testing.T, e *game.Engine, selector int, cancel string, g
 		}
 	})
 	e.Oracle.OnCall(oracle.Far(0xf67, 0x283e), func(o *oracle.Oracle) {
-		if pending {
+		if entering {
 			return
 		}
+		entering = true
 		pending = true
 		picker = o.Regs()
-		start := o.Word(oracle.Far(picker.SS, picker.SP+4))
 		picker.IP = o.Word(oracle.Far(picker.SS, picker.SP))
 		picker.CS = o.Word(oracle.Far(picker.SS, picker.SP+2))
 		picker.SP += 4
 		target := uint16(0)
+		mapBase, unitBase, offset := uint16(0x6fc2), uint16(0x5700), uint16(1)
+		if cast && selector == 6 {
+			mapBase, unitBase, offset = 0x6fb6, 0x56e8, 7
+		}
 		for slot := uint16(0); slot < 6; slot++ {
-			raw := o.Word(oracle.Far(0x1e88, 0x6fc2+slot*2))
-			if raw < 6 && o.Word(oracle.Far(0x1e88, 0x5702+raw*4)) > 0 {
-				target = slot + 1
+			raw := o.Word(oracle.Far(0x1e88, mapBase+slot*2))
+			if raw < 6 && o.Word(oracle.Far(0x1e88, unitBase+2+raw*4)) > 0 {
+				target = slot + offset
 				break
 			}
 		}
 		if target == 0 {
 			t.Fatal("spell input has no target")
 		}
-		if cast {
-			pickerTarget = target
-			pickerNode = -1
-			return
-		}
-		if err := roundKeys(o, start, target); err != nil {
-			t.Fatal(err)
-		}
+		pickerTarget = target
+		pickerNode = -1
 	})
 	steps := e.Oracle.Steps()
 	released := false
@@ -466,6 +466,10 @@ func TestOriginalBattleSpells(t *testing.T) {
 }
 
 func TestOriginalSpellWorld(t *testing.T) {
+	originalSpellWorld(t, "spell-world-r1", 0, [6]ArmyStack{{"native:01", 74}, {"native:12", 2}, {"openkb:wolf", 1}, {"openkb:arcr", 1}}, false)
+}
+
+func originalSpellWorld(t *testing.T, name string, selector int, player [6]ArmyStack, withSupport bool) {
 	work, root, combat := setupInputs(t)
 	assets := os.Getenv("EIGHTSWORD_TEST_SOURCE_ASSETS")
 	if assets == "" {
@@ -477,7 +481,7 @@ func TestOriginalSpellWorld(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	dir := filepath.Join(work, "spell-world-r1")
+	dir := filepath.Join(work, name)
 	must(os.Mkdir(dir, 0700))
 	var catalog ArmyCatalog
 	raw, err := os.ReadFile(filepath.Join(work, "inputs/army-catalog.json"))
@@ -488,7 +492,6 @@ func TestOriginalSpellWorld(t *testing.T) {
 	store, snap, err := openProgressPair(session, catalog, combat)
 	must(err)
 	defer store.Close()
-	player := [6]ArmyStack{{"native:01", 74}, {"native:12", 2}, {"openkb:wolf", 1}, {"openkb:arcr", 1}}
 	w := snap.World
 	w.Army.Slots = player
 	w.Army.Rules = "formation"
@@ -518,17 +521,26 @@ func TestOriginalSpellWorld(t *testing.T) {
 	projection.Rounds = rounds
 	spells, err := installOriginalBattleSpells(e, rounds)
 	must(err)
+	var support *originalBattleSupport
+	if withSupport {
+		support, err = installOriginalBattleSupport(e, spells)
+		must(err)
+	}
 	world, err := installOriginalBattleWorld(e, port, projection, rounds)
 	must(err)
 	checkpoint, err := installNativeCheckpoint(e, port, filepath.Join(dir, "scratch"))
 	must(err)
-	err = spellEncounter(t, e, 0, "", true, true)
+	err = spellEncounter(t, e, selector, "", true, true)
 	if !errors.Is(err, errOriginalBattleRoundsHeld) {
 		must(e.Oracle.SaveStateFile(filepath.Join(dir, "failed-battle.state")))
 		setupWrite(t, filepath.Join(dir, "failed-battle.json"), map[string]any{"error": fmt.Sprint(err), "regs": e.Oracle.Regs(), "spells": spells.Records, "rows": rounds.Rows, "history": rounds.History})
 		t.Fatal("spell continuous battle", err)
 	}
-	if rounds.Result != "win" || len(spells.Records) == 0 || len(spells.Records[0].Effects) == 0 || len(rounds.History) < 2 {
+	applied := len(spells.Records) > 0 && len(spells.Records[0].Effects) > 0
+	if support != nil {
+		applied = len(support.Records) > 0 && support.Records[0].Selector == selector
+	}
+	if rounds.Result != "win" || !applied || len(rounds.History) < 2 {
 		t.Fatal("spell/ordinary battle not completed", rounds.Result, len(spells.Records), len(rounds.History))
 	}
 	rounds.AllowWorld = true
@@ -585,5 +597,8 @@ func TestOriginalSpellWorld(t *testing.T) {
 		t.Fatal("spell survivors not saved")
 	}
 	must(e.Oracle.SaveStateFile(filepath.Join(dir, "saved.state")))
+	if support != nil {
+		setupWrite(t, filepath.Join(dir, "support.json"), map[string]any{"records": support.Records, "growth": support.Growth, "counters": support.Counters, "consumes": support.Consumes, "reads": support.Reads})
+	}
 	setupWrite(t, filepath.Join(dir, "receipt.json"), map[string]any{"status": "passed-original-spell-world", "initial": player, "remaining": saved.World.Army.Slots, "world_sha256": worldDigest(saved.World), "charges_hex": charges, "records": spells.Records, "ordinary_actions": len(rounds.History), "result": rounds.Result, "resources": pairWorldResources(saved.World), "location": location, "checkpoint_saves": checkpoint.Saves, "controlled_abi_fixture": true, "battle_rules_applied": "native", "stored_rules": saved.World.Army.Rules})
 }

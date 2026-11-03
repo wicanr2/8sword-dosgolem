@@ -219,6 +219,49 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 ### 原版戰場與Go後端橋接 DRAFT
 
+2026-11-03接續凝滯4、複製6及敵方特殊的Go資料接管。研究沿既有battle-r1下`original-battle-support-r1`，先查證我方8E46行動次數的初始化／增減／消費，以及複製的分段公式、動畫數字、戰後回寫與F7。入口預定為[輔助術控制](../../internal/ownedworld/original_battle_support.go)、[抽驗](../../internal/ownedworld/original_battle_support_test.go)及[準備／保存](../../tools/original-battle-support.py)。現有六攻擊術及正式197來源保持；補足READY前不放寬一般入口。
+
+#### 凝滯複製Go資料 READY
+
+沿本節固定PAM／i64及IDA9.4的27函式匯出；另沿原六隊投影的sub_132E0／sub_13774／sub_2031A。原名、bytes、file offset、IDA MZ base10000與runtime CS:IP保留，不重做整份反組譯。以下原靜態語意已由bytes及caller／consumer證實，Go正式接入仍須動態對照。
+
+- 凝滯4的sub_1E8A4在1ECE1執行`inc word ptr [bx-71BAh]`，BX為玩家6FB6陣位表的raw×2，對應DS:8E46六個行動計數。不是兵種索引；空格重用同raw時亦照原順序累加，不能自行去重。sub_2068A的206A4每半場初始化六word為1；sub_1FF1C的1FF81／201CE比較0，1FF95／201EF各消耗一次。Go持有六計數並逐字投影，接管MOV／CMP／INC／DEC，原CF及其他flags依原指令保留，原選隊及額外行動流程維持。
+- 上述計數只在原已開始回合、已核對段／bytes／frame及合法raw下操作。第一次初始化依六個原寫入建立Go狀態，其後先比對投影再更新。初始化caller2061A、玩家caller206C1，施法增量綁原selector4與wrapper frame。未知phase、錯序、越界、消耗0或增量溢位拒絕，不改RAM或Go狀態。
+- 複製6由原選敵介面選我方7至12，僅接受存活原25種目標。目標兵數依50／100／200／300／400分段，factor為20／14／13／12／11／10；原10號施法者divisor10，12號為20。scaled=floor(count×factor/divisor)。原1EE76至1EEB3只在before<=scaled時，依before至scaled逐一顯示並寫入。正式after=max(before,scaled)，不能改成加上scaled，也不能把未進迴圈當減兵。
+- 1EE5D的原scaled由Go獨立算出並核對，1EE90的動畫兵數寫入與正式rows分開，1EECB提交一次；原HP word保持。超原word乘積、scaled或32767畫面範圍拒絕。後續存活、排序、普通攻擊與戰果讀Go更新後資料。其他新增玩家兵種可並存，新增目標與新施法者本批不猜補。
+- sub_132E0的13751至1375D會直接回寫戰後兵數，原程式沒有按初始數量截斷。Go回傳仍拒絕未知身份及無來源增兵；只用已提交複製紀錄的delta擴張初始上限。原六隊容量及Store領導上限不變，本批世界保存抽驗限合法領導範圍；複製後超領導的完整玩家路徑另列待處理，不靜默丟兵或放寬Store。
+- 只在明確安裝輔助術控制器時開放4／6，既有六術控制器及一般入口保持。原選術、Space退款、Esc撤退不退款、Go扣次及HD提示共用既有契約；動作計數只屬本場，不新增存檔格式，戰中續接仍未完成。
+- 驗收採固定seed及明示施法者／學習／次數，抽凝滯、複製增兵、12號複製不增加、取消、原版／HD對照的兵數、HP、計數、次數、Frame與seed。對原指令抽計數flags／RAM，另驗錯誤狀態與成對存檔。至少一案施法後續普通行動、正常世界返回、真正F7及獨立程序Continue。敵方特殊若未取得獨立READY，不藉本批放寬。
+
+#### 凝滯複製Go資料限定 CONFORMED
+
+`ORIGINAL-SUPPORT-DATA-20261103`：298來源隔離候選加入兩術。Go持有行動計數、初始化／比較／增減、複製正式兵數及逐次動畫數字。原選單、Space退款／Esc撤退分流、HD提示、普通回合與世界返回保持；未安裝新控制器時，原六術控制器仍拒絕4／6。
+
+| dosgolem runtime CS:IP | IDA MZ原名／線性位址 | 已驗責任 |
+|---|---|---|
+| 0F67:2134 | sub_2068A／206A4 | 六行動計數逐項初始化 |
+| 0F67:0771 | sub_1E8A4／1ECE1 | 凝滯依原六陣位增加計數 |
+| 0F67:1A11 | sub_1FF1C／1FF81 | 前排行動計數比較 |
+| 0F67:1C5E | sub_1FF1C／201CE | 後排行動計數比較 |
+| 0F67:1A25 | sub_1FF1C／1FF95 | 前排消耗計數 |
+| 0F67:1C7F | sub_1FF1C／201EF | 後排消耗計數 |
+| 0F67:08ED | sub_1E8A4／1EE5D | Go複製公式核對與結果提供 |
+| 0F67:0920 | sub_1E8A4／1EE90 | 獨立動畫兵數寫入 |
+| 0F67:095B | sub_1E8A4／1EECB | 複製正式兵數提交一次 |
+| 0110:3745 | sub_132E0／13745 | 依已提交增量限制戰後回傳 |
+
+六組原控制／Go包含凝滯HD、複製HD、12號複製只重寫原數量、原版模式、Space退款，以及50兵scaled35而完全不進動畫迴圈的分支。每組兵數、原HP word、六行動計數、次數、seed及完整Frame相同，各五次返回閘重試不變RAM與cycles。凝滯的空陣位共用raw5沒有去重，實際計數[0,0,1,1,1,1]變成[1,1,1,1,1,5]，總增量6。46組MOV／CMP／INC／DEC與原CPU單指令比較RAM／flags一致，24複製模型、4超界拒絕、8計數拒絕、8複製寫入拒絕及6戰後增量拒絕通過。
+
+`ORIGINAL-CLONE-GROWTH-20261103`追加勘誤：前輪回傳「兵數不得超過進戰初始量」只適用沒有增兵的路徑。原13751至1375D直接寫回戰後數量；現在只按已提交的複製紀錄擴張上限，並核對獨立增量帳。沒有紀錄、來源身份不符、未提交、超出紀錄或舊路徑仍拒絕，沒有全面相信原RAM或當前rows來證明增兵。
+
+兩條混合編成均由原選單施法後正常戰勝、世界返回、真正F7至DOS close及獨立程序Continue。複製編成40民兵／1道士／1野狼／1女弓箭手，40→80，17次普通行動後剩65民兵／1道士／1弓箭手；凝滯編成74民兵／2雙頭鬼／1野狼／1弓箭手，16次普通行動後剩65民兵／2雙頭鬼／1弓箭手。兩局金615、戰績37，軍隊、位置、六數值及所用術3→2在冷讀後保持。編成、學習及次數均為明示fixture，不稱自然招募／習得；Store的formation標記只驗保存，本場仍native。
+
+最初凝滯額外選敵因測試輸入停住，完整來源／state已保存。最終在原picker的push bp後解除入口重通知閘，於讀鍵點按實際游標逐步送鍵，普通及施法選敵共用；只重跑失敗的凝滯世界路徑，已通過複製路徑保持。原規則與Go正式來源不變，不能把驗證腳本等待列為產品缺陷。既有火球原版／Go及普通比較／配置／減員／投影／世界回歸均通過。
+
+[獨立核對](../../preserved/original-battle-support-audit-r1.json)、[成果](../images/original-battle-go-support-r1.png)、[來源](../images/original-battle-go-support-r1.json)與[永久保存](../../preserved/README.md#原戰場凝滯複製go資料保存)為入口。固定30函式7358行IDA9.4 bytes重新對原MZ核對，沒有開新IDA切片。工具在既有Pillow11.3.0映像用`tools/original-battle-support.py freeze|audit|publish|archive|verify --project --out`，保存另加`--archive`；Go1.24.13、掛載與重生命令列在保存內execution-r1.json。
+
+限制：僅原25種複製目標；原複製中間算式仍執行，再由Go獨立重算核對。超領導的戰後保存路徑尚未解，Store上限不變。敵方特殊、守軍／頭目橋接、規則／AI整合、新兵姿勢、超word動畫、戰中續接及一般Go入口保持未完成。這是Engine畫面，不是新增X11驗收；正式197來源七程式、923核心、535素材、1071美術保持，完整戰鬥後才進Rust。
+
 2026-11-03接續原戰場玩家攻擊術的Go資料接管，先涵蓋原selector0／1／2／3／5／7，保留原選術、選敵與既有HD演出。研究沿既有battle-r1下`original-battle-spells-r1`，沿player-fireball-r1的IDA27函式與既有法術控制，不重畫美術。先審查2497-byte wrapper、219CC動畫倒數、21BD2直接減員、法術次數及取消退款，再補READY。凝滯／複製與敵方特殊另保留停止線；一般Go入口保持停用。
 
 #### 玩家六攻擊術Go資料 READY

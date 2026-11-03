@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-03凝滯／複製依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)完成298來源隔離候選。Go接六行動計數及複製正式兵數，原選單／HD演出保持。六組原控制／Go、46原指令、24模型、26種拒絕及火球／普通回歸通過；兩條混合編成施法後勝利、實際F7及獨立程序Continue已驗。`ORIGINAL-CLONE-GROWTH-20261103`只按已提交複製紀錄增加回傳上限，不全面相信RAM或目前rows。[永久保存](preserved/README.md#原戰場凝滯複製go資料保存)不依賴workplace。新增複製目標及超領導保存、敵方特殊、守軍／頭目、規則／AI整合、戰中續接、新兵姿勢、超word動畫及一般入口仍待完成。正式197來源七程式、923核心、535素材、1071美術保持，完整戰鬥後才進Rust。
+
 2026-11-03原戰場六攻擊術依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)完成296來源隔離候選。Go接火球／雷火／殺鬼／暗殺／滅半／地震的正式兵數及扣次，原選單與HD演出保持。十一組原控制／Go、暗殺成功／失敗、Esc／Space取消及混合編成施法後17動作勝利、實際F7與獨立程序Continue已驗。`ORIGINAL-SPELL-CANCEL-20261103`區分選敵Esc不退款與Space退款；原中間相容算式仍保留，不稱整段脫離x86。[永久保存](preserved/README.md#原戰場六攻擊術go資料保存)不依賴workplace。剩凝滯／複製、敵方特殊、守軍／頭目、規則／AI整合、戰中續接、新兵姿勢、超word動畫及一般入口。正式197來源七程式、923核心、535素材及1071美術保持；完整戰鬥後才進Rust。
 
 2026-11-03使用者確認先完成完整戰鬥，再重寫為不依賴DOS EXE的Rust獨立版。現階段Go接回原版／HD操作，完成雙方行動、連續回合、勝敗／撤退、戰果保存及冷讀後才進Rust階段；這是已確認順序，不重問。現況與完成範圍以[CONTEXT](CONTEXT.md)及[030](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)為準，不能把單次攻擊當完整戰鬥。

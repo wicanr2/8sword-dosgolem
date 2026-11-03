@@ -1,5 +1,32 @@
 # 必要資料永久保存
 
+## 原戰場凝滯複製Go資料保存
+
+本批1302檔／466物件，壓縮53027980 bytes。298來源候選、初版／最終測試程式、固定輸入、30函式IDA匯出、未縮PNG／state、兩份F7及獨立程序Continue、額外行動輸入失敗均已保存。完整物件在本機`preserved/original-battle-support-r1/`，不進Git；快取排除，不重新生成原圖。
+
+[清理收據](original-battle-support-cleanup-r1.json)只刪逐SHA已保存的失敗副本／舊二進位及本批Go快取，共197681915 bytes。現行候選、成功收據、舊cohort核對基線及永久物件保持。[清理後核對](original-battle-support-post-cleanup-audit-r1.json)與[收尾核對](original-battle-support-integrity-r1.json)另列。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)、[核對](original-battle-support-audit-r1.json)、[逐檔清單](original-battle-support-r1.json)、[脫離workplace核對](original-battle-support-verification-r1.json)、[成果](../docs/images/original-battle-go-support-r1.png)及[圖片來源](../docs/images/original-battle-go-support-r1.json)為入口。
+
+六組原版／Go的兵數、HP、行動計數、次數、seed及完整Frame相同。46組原指令／flags、24複製模型及26種拒絕通過；空格共用raw不去重，scaled小於原兵數時不進動畫亦不減兵。複製局40→80，勝後65民兵／1道士／1弓箭手；凝滯局16次普通動作勝利，65民兵／2雙頭鬼／1弓箭手。兩份真正F7及新程序Continue保持軍隊、位置、資源與法術次數。
+
+`ORIGINAL-CLONE-GROWTH-20261103`只依已提交的複製紀錄放寬初始兵數上限，無紀錄／假身份／未提交／超出增量仍拒絕。最初額外行動等待是測試輸入問題；完整失敗保留，最終按原picker進場及實際游標逐鍵操作。各cohort的正式Go來源相同，只有測試變動，核對器逐SHA確認。
+
+[控制器](../internal/ownedworld/original_battle_support.go)、[抽驗](../internal/ownedworld/original_battle_support_test.go)、[回傳限制](../internal/ownedworld/original_army_projection.go)與[工具](../tools/original-battle-support.py)使用既有Go1.24.13／Pillow11.3.0映像。工具的`freeze`固定來源，`audit`核對7358行MZ bytes、公式、計數、成對畫面及F7冷讀，`publish`生成縮圖，`archive`保存去重物件。掛載、版本、二進位SHA、cohort說明及重生命令在保存內execution-r1.json。
+
+獨立核對只掛保存及工具：
+
+```bash
+timeout 180 docker run --rm --init --network none --user 1000:1000 \
+  --memory 1g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword/tools:/tools:ro \
+  -v /home/anr2/cht/8sword/preserved:/archive:ro \
+  sc-cht-hdtools:pillow11.3.0-r2 python /tools/original-battle-support.py \
+  verify --archive /archive --out /tmp/新核對.json
+```
+
+還原依逐檔清單驗stored_sha256、解壓、原大小／SHA及mode，寫到新目的地，拒絕覆寫不同內容。原中間複製算式仍保留；新增目標、超領導保存、敵方特殊、守軍／頭目、規則／AI整合、戰中續接及一般入口未完成。原197來源七程式、923核心、535素材及1071美術保持。
+
 ## 原戰場六攻擊術Go資料保存
 
 本批2446檔／481物件，壓縮106352762 bytes，保存296來源候選、五份測試程式、固定原版輸入、27函式IDA匯出、完整PNG／state、混合編成F7與獨立程序Continue、四輪輸入診斷失敗。物件位於本機`preserved/original-battle-spells-r1/`，不進Git；編譯快取排除。原圖及既有HD素材仍沿永久圖庫，不重新生成。

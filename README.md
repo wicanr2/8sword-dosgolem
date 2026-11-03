@@ -56,7 +56,11 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版與HD的Go法術兵力，以及施法後世界保存](docs/images/original-battle-go-spells-r1.png)
 
-火球、雷火、殺鬼、暗殺、滅半與地震已在隔離候選接上Go兵力，保留原選術、選敵及HD演出。十一組原版對照與一條混合編成施法後勝利、F7及獨立程序重開已通過。圖為明示施法者／次數配置的完成幀及戰後地圖，法術中間相容算式仍保留。範圍見[六術限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)與[圖片來源](docs/images/original-battle-go-spells-r1.json)。凝滯／複製、敵方特殊及一般Go入口仍待完成。
+火球、雷火、殺鬼、暗殺、滅半與地震已在隔離候選接上Go兵力，保留原選術、選敵及HD演出。十一組原版對照與一條混合編成施法後勝利、F7及獨立程序重開已通過。圖為明示施法者／次數配置的完成幀及戰後地圖，法術中間相容算式仍保留。範圍見[六術限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)與[圖片來源](docs/images/original-battle-go-spells-r1.json)。
+
+![原版與HD的Go複製兵力，以及戰後保存](docs/images/original-battle-go-support-r1.png)
+
+凝滯的行動計數與複製兵力也已接入同一候選。六組原版對照及兩條混合編成的完整戰鬥、F7與獨立程序重開通過。明示複製局民兵40→80，戰勝後剩65；增兵依施法紀錄保存。圖為受控配置的完成幀，範圍見[兩術限定驗收](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)與[來源](docs/images/original-battle-go-support-r1.json)。超領導保存、敵方特殊及一般Go入口仍待完成。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 

@@ -3015,3 +3015,14 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 
 - 功能提交`91345903bc64ba4c62b57fdcd73899ef04174501`已推送origin/main，主機git ls-remote回讀一致。完整保存物件已由.gitignore排除，沒有原版檔案或候選二進位加入Git。
 - 逐SHA保存清理後獨立核對不變，backlink檢查及git diff --check通過。本批Go容器已全數移除；其他專案容器與映像保持。收尾只追加提交紀錄，不改production來源。
+## 2026-11-03：凝滯、複製與戰後增量接入
+
+- 沿復古重製／規格閘門、原GUI及文件路由接續Go後端，保留原版／HD戰場。固定PAM／i64與永久IDA9.4三十函式的7358行bytes重驗，先補READY再實作，不開新IDA切片、不改架構或重問已定風格。
+- Go接DS:8E46六行動計數的初始化／比較／增減，保留INC／DEC的CF與原flags。凝滯照六陣位逐次增加，不去重空格共用raw。複製按原門檻計scaled，正式after=max(before,scaled)，動畫數字獨立；原中間算式只作兼容核對。
+- 原13751至1375D直接回寫戰後兵數，推翻沒有增兵路徑的初始數量上限。以`ORIGINAL-CLONE-GROWTH-20261103`回填，只認已提交複製紀錄的delta；原身份、六隊、未記錄增兵及Store領導檢查維持。
+- 六組原控制／Go：凝滯HD、複製HD、12號只重寫、原版模式、Space退款及50兵scaled35完全跳過動畫。兵數／HP／行動計數／次數／seed／完整Frame相同，每組五次hold重試不改RAM或cycles。46原指令控制、24模型、26種拒絕及既有普通／火球抽驗通過。
+- 兩條混合編成均經正常原選單、普通後續行動、世界結算、F7與獨立程序Continue。複製40→80，17普通動作後65民兵／1道士／1弓箭手；凝滯16普通動作後65民兵／2雙頭鬼／1弓箭手。兩局金615、戰績37，所用術3→2。編成／學習是fixture，本場native，formation僅驗存檔標記。
+- 第一輪凝滯額外選敵停在BIOS等鍵，沒有新增減員。保留來源／binary／state／記錄後，只修測試picker進場重通知及逐游標鍵入；不改正式Go來源、亂數或規則。重跑凝滯通過，先前複製完整勝局保留，最終火球原版對照亦通過。cohort非測試來源逐SHA相同。
+- [核對](preserved/original-battle-support-audit-r1.json)、[限定結果](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)、[成果](docs/images/original-battle-go-support-r1.png)及[保存](preserved/README.md#原戰場凝滯複製go資料保存)已掛README、CONTEXT與AGENTS，十項runtime定位及兩個標記回填backlink。沒有將Engine Frame稱為新X11驗收。
+- 1302檔／466物件永久保存，壓縮53027980 bytes。未掛workplace的只讀核對通過；原版、完整state／PNG及二進位僅本機保存。逐SHA已保存的舊副本36550563 bytes與1706檔本批快取161131352 bytes已清理，共197681915 bytes；核對基線、現行候選及成功收據保持。
+- 正式197來源七程式、923核心、535素材及1071美術保持。新增複製目標、超領導保存、敵方特殊、守軍／頭目、規則／AI整合、戰中續接、新兵姿勢、超word動畫及一般入口仍未完成；完整戰鬥後才進Rust。Docker工作均有界、自動移除，沒有新增映像或清理其他專案。
