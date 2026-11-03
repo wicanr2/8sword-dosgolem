@@ -2971,3 +2971,8 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 - 完整成功／失敗候選、state及PNG永久保存2165檔／404物件，壓縮63421387 bytes，脫離workplace逐SHA核對通過。原版資料及完整物件不進Git。法術／特殊、世界獎勵／敗戰重置／F7、擴充規則／AI及一般入口仍待完成，完整戰鬥後才進Rust。
 
 - 收尾核對292來源、16個新連結、七個runtime回填、Python語法及Go格式通過；本批無root-owned檔或錯建的.md目錄。只清本批185147331 bytes快取及逐SHA已保存的1611檔／106302691 bytes舊候選與失敗副本。一次性容器均移除，未建新映像，其他專案容器／映像保持。
+
+### 本輪提交與遠端核對
+
+- 功能提交`a792ca9ac13f887c297383616a6857417ea3421a`已推送origin/main，主機git ls-remote回讀一致。完整本機物件、原版資料與state未加入Git。
+- 收尾提交只追加推送紀錄，沒有變更已驗production來源；工作樹在收尾後核對。
