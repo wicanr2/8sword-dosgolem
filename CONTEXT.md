@@ -14,7 +14,15 @@
 
 ## 最近驗證
 
-最新為[凝滯複製Go資料](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)。298來源隔離候選接管六個行動計數與複製兵力，原選單、HD提示及普通回合保持。六組原版／Go的兵數、HP、計數、次數、seed與完整Frame相同；46組原指令、24複製模型、26種新拒絕及既有火球／普通戰鬥回歸通過。[核對](preserved/original-battle-support-audit-r1.json)、[成果](docs/images/original-battle-go-support-r1.png)與[保存](preserved/README.md#原戰場凝滯複製go資料保存)為入口。
+最新為[敵方八分派Go資料](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)。300來源隔離候選接管敵方特殊兵數、六行動計數、額外行動與複製，原版／HD戰場、選敵及動畫保持。十三組原控制／Go的兵數、HP、計數、seed及完整Frame相同；46計數原指令、12 alias原指令、60傷害模型、34拒絕及既有普通／法術／輔助術／世界回歸通過。[核對](preserved/original-battle-enemy-audit-r1.json)、[成果](docs/images/original-battle-go-enemy-r1.png)及[保存](preserved/README.md#原戰場敵方特殊go資料保存)為入口。
+
+全新增100野狼／10女弓箭手完成受術，原玩家種類／兵數24 bytes保持0。另一局明示74民兵／2野狼／2弓箭手，以及敵3名原12號／10狐狸；固定敵先手與首次分派1，兩種新兵各2→0，三次普通動作後戰勝，剩71民兵、金519、戰績8。真正F7與獨立程序Continue保持軍隊、六數值、位置及次數。本場規則native，Store的formation只驗保存標記；沒有宣稱自然敵軍或新X11驗收。
+
+`ORIGINAL-MOTION-REAR-20261103`修正後排目標的永久換位。原版依來源及後排目標走獨立矩陣，不能一概用target%3；72組隔離原分支與修正後完整勝局已驗。十三組特殊返回對照沿修正前cohort，敵方控制器來源相同；唯一正式差異為目的列純函式及呼叫，核對器精確逆轉後比對舊SHA，最終來源另重跑完整世界及回歸。原5分派前一格判定保持；第八分派原亂數不可自然選中，只作受控測試。詳細來源與勘誤見[研究紀錄](RESEARCH-LOG.md#敵方特殊與後排換位的go接管)。
+
+下一步接守軍／頭目的原版戰場交接，再整合規則／策略AI、戰中續接與一般入口。新增複製目標、超領導保存、新兵姿勢及超word動畫仍待完成。正式197來源七程式、923核心、535素材、1071美術保持；完整戰鬥後才進Rust。
+
+前輪為[凝滯複製Go資料](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)。298來源隔離候選接管六個行動計數與複製兵力，原選單、HD提示及普通回合保持。六組原版／Go的兵數、HP、計數、次數、seed與完整Frame相同；46組原指令、24複製模型、26種新拒絕及既有火球／普通戰鬥回歸通過。[核對](preserved/original-battle-support-audit-r1.json)、[成果](docs/images/original-battle-go-support-r1.png)與[保存](preserved/README.md#原戰場凝滯複製go資料保存)為入口。
 
 複製明示40民兵／1道士／1狼／1女弓箭手，40→80後17次普通行動取勝，剩65民兵／1道士／1弓箭手。凝滯明示74民兵／2雙頭鬼／1狼／1弓箭手，16次普通行動取勝，剩65民兵／2雙頭鬼／1弓箭手。兩局實際F7及獨立程序Continue後，軍隊、六數值、位置與所用術2次保持。學習及編成是fixture，本場規則native；Store的formation僅驗保存標記。
 

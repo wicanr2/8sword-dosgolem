@@ -60,7 +60,11 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版與HD的Go複製兵力，以及戰後保存](docs/images/original-battle-go-support-r1.png)
 
-凝滯的行動計數與複製兵力也已接入同一候選。六組原版對照及兩條混合編成的完整戰鬥、F7與獨立程序重開通過。明示複製局民兵40→80，戰勝後剩65；增兵依施法紀錄保存。圖為受控配置的完成幀，範圍見[兩術限定驗收](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)與[來源](docs/images/original-battle-go-support-r1.json)。超領導保存、敵方特殊及一般Go入口仍待完成。
+凝滯的行動計數與複製兵力也已接入同一候選。六組原版對照及兩條混合編成的完整戰鬥、F7與獨立程序重開通過。明示複製局民兵40→80，戰勝後剩65；增兵依施法紀錄保存。圖為受控配置的完成幀，範圍見[兩術限定驗收](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)與[來源](docs/images/original-battle-go-support-r1.json)。超領導保存及一般Go入口仍待完成。
+
+![原版與HD的敵方特殊，以及戰後地圖](docs/images/original-battle-go-enemy-r1.png)
+
+敵方八種特殊分派已接上Go兵數與行動計數，保留原選敵、動畫及回合。十三組原版對照通過；含新增兵種的完整勝局也已完成F7與獨立程序讀檔。圖為明示敵軍／分派配置的完成幀，並非自然遭遇或動畫中間幀。另修正原後排目標的近戰換位，見[敵方特殊限定驗收](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)及[圖片來源](docs/images/original-battle-go-enemy-r1.json)。守軍／頭目、規則／AI整合、戰中續接與一般Go入口仍待完成。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 

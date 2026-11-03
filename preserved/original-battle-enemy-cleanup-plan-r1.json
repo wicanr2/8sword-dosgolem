@@ -1,0 +1,3041 @@
+{
+  "status": "verified-narrow-cleanup-plan",
+  "archived": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/go.sum",
+      "bytes": 3969,
+      "sha256": "6b7664629ffd9efe6f50b9a23484b8a90d0cae047a29a820513e332c1801f6b3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/go.mod",
+      "bytes": 544,
+      "sha256": "f5bfbdbb9f5fb1dd96e0612139a11b593a165376bef5817d51e217f25e56cadb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/tools/heroine-check.go",
+      "bytes": 3717,
+      "sha256": "b4047714bff3af4600ed2c3eac8af7d31af1ab6861d71bffc21d377fa4fe7364"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/tools/gui-check.go",
+      "bytes": 49062,
+      "sha256": "9b43154d2fe06da810d7c5a5a8310be533ad03ea2d510e31f2997fccd7aef5fd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/tools/music-check.go",
+      "bytes": 5419,
+      "sha256": "2cdbd35f56c43e403de2e1b761188bccb7863ac38a7927268f67586b1789dc9a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/tools/story-prelude-check.go",
+      "bytes": 3832,
+      "sha256": "c29cb66caa31aea245cc32574341839071a8c8f05c4af63ce744dfbbc6eb9eb0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/tools/museum-check.go",
+      "bytes": 3989,
+      "sha256": "7e03f942e93aaf6d0f730911c3af90892e7b86d7172317dc1796e21cffee13e1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/troops.go",
+      "bytes": 8903,
+      "sha256": "42db86bbd33718e1b2eaca0f6d01475467a354d9587ee9f024fd35993c2c8d0b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_presentation.go",
+      "bytes": 2615,
+      "sha256": "1139b16ba2b5c1f859a23103daa8f16ee0f90e21bd49128ee36d0728ff90e528"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/owned_army_guard.go",
+      "bytes": 744,
+      "sha256": "8a4849e9e0f762775393a6b3ef3cfaca8835b2ae9165d546d37f10f8670fa3de"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_glyphs.go",
+      "bytes": 8272,
+      "sha256": "9277ef4416350e4a28aef0f96ddcee5bb47bc090a6f3cf9e82f1d5b2895b62c2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_publisher.go",
+      "bytes": 4796,
+      "sha256": "de04b9a56b7f5ec12c45f3ad759dfbf2aff6f8110e42b338d2fc44484bd97f8f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics.go",
+      "bytes": 13804,
+      "sha256": "ac661dc9c5e2430e7b9785624d07452070e7a38b3ed9eccc2aa33a18271b40de"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_owned_render_test.go",
+      "bytes": 2912,
+      "sha256": "1e621b158988bb1075d0b95e74c117017a4809663bc91be34a370e853d2c3d7b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/music_intro_test.go",
+      "bytes": 3262,
+      "sha256": "7d874e028b512922c780e130c75fcf435fc94f591e5960e0966d455fec5e62ca"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/tracker.go",
+      "bytes": 15377,
+      "sha256": "0df17e117e640cec6a73dbfd883f0dae07a0a1285a863fb3da2e52800cd107cb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_runtime_test.go",
+      "bytes": 18073,
+      "sha256": "8bd7382768411d4c9d925f08d5454c4ac9cf7f9da43b01639487271e34ec054d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark_pending_test.go",
+      "bytes": 2151,
+      "sha256": "7447a7526d7d27c09bd98a3dc810494a78341719a45fb3725e9810e2a3de6201"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/font_choices.go",
+      "bytes": 7074,
+      "sha256": "68a17e2e87ea1fd0a0cd83f0b90eba528e5bb009a6c339774c13e3b4d773506f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/buildings.go",
+      "bytes": 4243,
+      "sha256": "6907a61aea82f875a2cbc8d3e9d854c6831924c7a470d0b495f689290eb358c6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_intro_masked_test.go",
+      "bytes": 4286,
+      "sha256": "7a8dc8566a118634572a338b2276cab6774a18b0a3be4e7da3046ca8ad1c80fd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_glyphs_test.go",
+      "bytes": 9046,
+      "sha256": "e022eceb15831357e95360005eaef86f40fbea484c6b3ffbd02e7508e40a8b68"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_man01_test.go",
+      "bytes": 4820,
+      "sha256": "568b10a97035526707cce3de12b9df01b6f6c3f4deda886cd8ec0e092c4650c0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_ring_test.go",
+      "bytes": 3347,
+      "sha256": "1a7b786d997b9a6be612fa3f3a7371a82c21ce8bdc727095b29dd8a07f4d5fb4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/buildings_test.go",
+      "bytes": 11191,
+      "sha256": "7eebe7cc2330602166959d8a70e3b15ccc6f1ab644e7f779111c98f1c5dac5ac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/music_assets.go",
+      "bytes": 4668,
+      "sha256": "12399ceccf1d6a83b2e8c34a2113952def423a606d0ba5c62e86c4904fbd89e9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_captions_test.go",
+      "bytes": 3481,
+      "sha256": "571cbae2c1e3b1d47e733de1bf97cad68da4a024218687d2e38dad52853f3563"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_adapter.go",
+      "bytes": 10077,
+      "sha256": "d898c6112fd0b5674a81afb78a7014b09d9677a7099a0f3ccea181c992f6d0c5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_chest.go",
+      "bytes": 3793,
+      "sha256": "67f85fadc081dbabe6210c2f477de27ced518efa4408c75cddda5198cff8ae0f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark52_test.go",
+      "bytes": 4964,
+      "sha256": "3af0b02dba3156719ff24e192164bf088899a803fdaff97369ad03d0a4a6e592"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_heroine.go",
+      "bytes": 15633,
+      "sha256": "934d16069bc5f30e9f3141a62715c95e2ce106660e8ef5536e4046d4362984b3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_man11_test.go",
+      "bytes": 4649,
+      "sha256": "ba51dc5c2d024e22a91f9c165c85b02f73e5870b9b0a00f0aacd7fd7bc4a2d68"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark48_test.go",
+      "bytes": 6972,
+      "sha256": "b72e671e624d20d505333edc9fc6c76e28c5ee4c2f87bd7706e206dc0109208e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_museum_lifecycle.go",
+      "bytes": 6071,
+      "sha256": "33b56982bfc1ba59096418e52ce9a0e4994f37090b5a6847267e92e3d37769cd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/font_choices_test.go",
+      "bytes": 3050,
+      "sha256": "dd2ccf8eb46030df266b555904745742bd43ad99ed26fd6dd635275d0768ac11"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_swords_test.go",
+      "bytes": 3339,
+      "sha256": "6a1f719bde7d25284cd8b10aee101511720cb147905e3d99ebafdd4b96126418"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_publisher_icon.go",
+      "bytes": 3808,
+      "sha256": "381e3b2a5748626bd0893b72023dbeaa48fd2453681487981079b8b484fa7052"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_rules_test.go",
+      "bytes": 2101,
+      "sha256": "ace20598c6d1186fd0435887f65124b311113eb06d6e77606b829045803f52f1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_encounter_test.go",
+      "bytes": 5274,
+      "sha256": "dfd8d1482b5e295b691c9ac9f2d2c0a7383e18a7966c87d9ac0e5c38fd5a48b8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/army_man21.go",
+      "bytes": 3541,
+      "sha256": "824498ee1ec18a6c82cdb73b0b9e98707c260ebf1379da085987197cbc981463"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_result_test.go",
+      "bytes": 4762,
+      "sha256": "716b5ee94f790fe1731b3cd34592b8fdade6b8a142b4d9d1b8e60ff957ff1992"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_duel.go",
+      "bytes": 1682,
+      "sha256": "8af460e365d6bc737154acbc3a7eb697934d71f7dbefe667ebc15fada4e7c069"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_effects.go",
+      "bytes": 3288,
+      "sha256": "977f284c1e40be05506934b0f7b917ec2efdd7f6b6763f37191c9ee87c9e44c6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_transactions.go",
+      "bytes": 3810,
+      "sha256": "3224fb2e8328cea9c14ea310f3b2b6366f1dadeb60b951748131a72e253941e5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/story_background_test.go",
+      "bytes": 1716,
+      "sha256": "64091812098cc91e9b13b0b41b7d6e3eff9592580e3455cb3c1438e4265bf663"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_markers_test.go",
+      "bytes": 4424,
+      "sha256": "01ba3f1a92e8333bcbc440db8bd3a656526133095003c30de9a0fc910c8b6286"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_direct.go",
+      "bytes": 9813,
+      "sha256": "eb5e44391ffb1ed9a2c3a05623b6e096636af68d690d909c1dc20faa413ba27e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/recruitment_icons.go",
+      "bytes": 1077,
+      "sha256": "96bc02d2053cc79bb05a85282f8f1dc33abb5a7bca206242d93b5bf20239183d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_scene.go",
+      "bytes": 8896,
+      "sha256": "f1ff5ee7157b50c268e3f9626e4df952ef86333ac596b2ef8d858e6ba9041536"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_militia.go",
+      "bytes": 3433,
+      "sha256": "d0c4d21e8022e26ab79ae146a361c7c20d7fcc56e383620f85eea636c1ffa815"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/owned_combat.go",
+      "bytes": 16588,
+      "sha256": "04df44d4b19f3457880469bf565c0ef7865fc0c39174d1bcd1eb02d9d7143479"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics_objects_test.go",
+      "bytes": 2576,
+      "sha256": "d3023540788f3f2db25ea5dfea83fe5087cac85d794c901079245b49af175323"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/spell_cues.go",
+      "bytes": 8389,
+      "sha256": "350402a7825a0123e07feb317cc3063ca1daa410d1c80adcad47a4391647d69d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_chest_test.go",
+      "bytes": 4707,
+      "sha256": "e3c45c36fda9f752d53449864fc676e9b135dc50ed97b5bdd0fc4f3505de106b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_render.go",
+      "bytes": 8852,
+      "sha256": "285cd010d7a31795e8dc995f2c851d8eb898a5ab533ad551f5fbb67370ad5ff0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_heroine_test.go",
+      "bytes": 5699,
+      "sha256": "ebccc2ee578afe7f103e5e7cedf8ffd0fb4e90ff678b330844ebcb7a27625322"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_reveal.go",
+      "bytes": 9218,
+      "sha256": "d329734c0749db2c31eeb31f9fcab74d8999d17641896123fda290a8b05c1927"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/tracker_test.go",
+      "bytes": 3151,
+      "sha256": "aebe98bd85b2f466b6981dab62736290ce0ddbb50ba1c7cddac728ff60d61a08"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics_ui.go",
+      "bytes": 3400,
+      "sha256": "c212227197282b8c4b4c7626cafbfba54dfd6d6e0003856854367319884ccf8a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_palace_background.go",
+      "bytes": 4666,
+      "sha256": "33b99cf4334fe98c6d842d47052e0fbd19b5ed013881355ee0ad0f11b0773596"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/spell_cues_test.go",
+      "bytes": 11548,
+      "sha256": "3149f6d1ff56ce323f0074afa89061d6fb57b6dce8b0adb2b8610e0f0c44ebc4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/completion_assets.go",
+      "bytes": 5971,
+      "sha256": "33aac7ab7a4ccb2e720f57a8703d7c2e56500d31ce9a9672204d24df03655b6e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/presentation_observers_test.go",
+      "bytes": 6489,
+      "sha256": "e048b954d89f37f845d654483293d25ce37444eac492728a14d744c5c9a034bd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_story_test.go",
+      "bytes": 4340,
+      "sha256": "547cb5c41576bd51027cb8089877ba070d0c8308c21465604162c3aca4668f87"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_publisher_icon_test.go",
+      "bytes": 5967,
+      "sha256": "abde261bc744f17766307a9db482b0ef0f4d6feae67281fa40de7c2f7bd118bf"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_ai_policy.go",
+      "bytes": 6535,
+      "sha256": "54ac5e33643b4f11079284d397a1bb7fd7dafa90d5b41c8966bbbb3e6dd9fa5a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_rules.go",
+      "bytes": 12916,
+      "sha256": "c2004d466b2a33634c034600b0a28e6fe3aabc10f908cfbd5cc2d388badcac1a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_title_test.go",
+      "bytes": 4261,
+      "sha256": "a24a9daec1d095eef1e2db2a4552f4a23326e218830d5560e34628b3b5c299e3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/engine.go",
+      "bytes": 23530,
+      "sha256": "ba26b5928e37f94ff436d42ea3a1cc4aec225d55bdda23f459c66ffc3f505a6d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_ai_runtime_test.go",
+      "bytes": 15003,
+      "sha256": "09e1ccef87bfa168b9e18d884534db13b89b40230e20037aa27d0999663f3590"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark55_test.go",
+      "bytes": 4814,
+      "sha256": "f58c9d882b6ef986f4d6cd157a3d4fe834ce20e54e244e8701ea747ae3fed540"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_duel_test.go",
+      "bytes": 2108,
+      "sha256": "190b76fbeb908bbe2c39c30d25687ed255900e3b30c715ea301aec83945a7f12"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_direct.go",
+      "bytes": 6582,
+      "sha256": "9e8a430de5c66deb5f29e666a2043b54a9023ec53cd076729c9e09e178165f84"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_pair_test.go",
+      "bytes": 5600,
+      "sha256": "b53775f769f61ae03a1ad02faa57aa94d520e0453ece4b5f635afe0a3797fb62"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_intro_masked.go",
+      "bytes": 1174,
+      "sha256": "33eaf71f829bfccac71bbf7d7cb1fb6d75a7655d88b4ddb0ed24608b1878857f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark49_test.go",
+      "bytes": 4814,
+      "sha256": "f7d58f38dbec72e406d0a2ae55825ad45d4088fbb6d33e644bf6f0c598bddb2e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics_objects.go",
+      "bytes": 1982,
+      "sha256": "403f541efebbe91fcfbb11489614fb6f487e0f2adc9f38febad062c86abadc4c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics_ui_test.go",
+      "bytes": 2266,
+      "sha256": "79d13ebc57be9215a8313d1c4bbf2a9fcec24076d3013e7ef21e3304be931681"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/army_man21_test.go",
+      "bytes": 5204,
+      "sha256": "aac8a14e4b67876e472cf3b975a12cb4a3cddc48ebb29a4f273783c55122b608"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_intro.go",
+      "bytes": 23456,
+      "sha256": "cb737b6b25a15f3cf38aa7a7a734837305896849cc50bc62c9a180a3634e71f4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_direct_masked_test.go",
+      "bytes": 10403,
+      "sha256": "294a1ddb6595ff7ec97ab71d3296b0c16cccbfeeebabe8daaa28262023b6d348"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/story_prelude_test.go",
+      "bytes": 7795,
+      "sha256": "aa5c85ecb37d4a9f72c4fd5399e8b83096a98f7ea2851fc46ab0e4929f87d743"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_friendly_man21_test.go",
+      "bytes": 5677,
+      "sha256": "d3442ca0560cb73089900db2ed8ef1ec5a53dfe94799a264de0f04bfac23cd8a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_compat.go",
+      "bytes": 8992,
+      "sha256": "8cf3846d7356500fbaca7144e73e7fccac013f2e65e4cf74a2df357e7b6451af"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_portrait_test.go",
+      "bytes": 2816,
+      "sha256": "f193fbe84059e367bce65e364116f4e382d5785296cc814cc30bda60dcb7a71c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_captions.go",
+      "bytes": 8569,
+      "sha256": "4a814f378395f7344538d78a0a426e4ff6416465f406f9616453c614a67f95e1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/music_intro.go",
+      "bytes": 2990,
+      "sha256": "4b1642f8c44f10a6e6f2ae422480ab9792d6d1b3a8f20a19231b974a3aa5affc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_story.go",
+      "bytes": 11225,
+      "sha256": "80372f3895a52e0ab6fd65af834a90fa0d6660bec0681f152ef7212cbdfe0b7f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark51.go",
+      "bytes": 4406,
+      "sha256": "e9bced62792a797a96df84c8df4bf0958316cbde10244fa4404ca640e36577c5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_ring.go",
+      "bytes": 1681,
+      "sha256": "4ce7ff443360bc4f02cc32118cdd0e33f9dfcb9f01f913656d9e23fbf05e01c6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_effects_test.go",
+      "bytes": 3408,
+      "sha256": "0589d6a86aff2abe0734751f6ccd85b7fdb090125a3ab9fd2ebd11eea0279fac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_actors.go",
+      "bytes": 11107,
+      "sha256": "191593a9198b90858d318c994311a12ccdd1972b4096baf46182f53937db8cec"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_transactions_test.go",
+      "bytes": 3305,
+      "sha256": "0c15da7d92d2c605c10163f661ad09e521f7ad59e5e5d611febecb2457ebda01"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_bitmap_rows_test.go",
+      "bytes": 2370,
+      "sha256": "f7e8405135df2a7bae1adb1c6c4c8eb3279d45580344f47f85ecc15b1dc4f555"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_museum_layers.go",
+      "bytes": 6107,
+      "sha256": "7ca08438118ea8962d66a4a52d3c30351ce2a9abeda4f317d806ccb5a1e90312"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/music_sources.go",
+      "bytes": 2075,
+      "sha256": "2e614c3e2506759bd3fcaaf722620f0d770c94c3312b0be728d521d39aa04d97"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/recruitment_building_test.go",
+      "bytes": 3200,
+      "sha256": "d13fb3cbbe2b2629a423ad0986fdf8c2dc89ed0c39c9273d86d7276cb525d044"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_effects_test.go",
+      "bytes": 5008,
+      "sha256": "ad2739a6f46d31e3d7baad2e54cd264c1cae268becf76fb36b910df3e303853c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_encounter.go",
+      "bytes": 7755,
+      "sha256": "290a4b5ed2b7afa2df99eeaab1b22eb00cd00ec28b1dba9de09e12a2df1430d1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_man06_test.go",
+      "bytes": 4579,
+      "sha256": "5deebe8b347a2310e44a735f9bf2526885b5937c5524de59f08bee6b39fa405a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_vfx_test.go",
+      "bytes": 5055,
+      "sha256": "00270df04dc68b60421ff6f3dbfab7bf50d408ccc2e2ddc5a02d1075c845cb70"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_masked.go",
+      "bytes": 5715,
+      "sha256": "70b630e52b804deeddcf14ebd85feb8f1b769b63ec7d4c6e4e62e43e6a10a71b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_guard.go",
+      "bytes": 3595,
+      "sha256": "c29a9cac96f14683796b2da367a1c4c1d2c8739567ec7005f368437e1bd105f0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmarks_test.go",
+      "bytes": 1962,
+      "sha256": "b0cb7c73746f04fa13d125c97e48c305f97e1c7612aabe26a3242938413a9c55"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_museum_test.go",
+      "bytes": 9728,
+      "sha256": "1aa5bbcbab984366453e6b8175ffb1ca89069b1b018174c6dd9f3ba1fb816c18"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_direct_masked_rows_test.go",
+      "bytes": 9565,
+      "sha256": "ad31ed238a47c04f96417c39f3d099d73e250c2823cb75df4d857c59613c1720"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark54_test.go",
+      "bytes": 4814,
+      "sha256": "875effe75b59e0290ab2ae9e29c39b746fe1ff5c40171420e9da95d66a7a4ec3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_man21_test.go",
+      "bytes": 4694,
+      "sha256": "4991e6fa1790624c250cde91e37980cec2a262d6d32b68f1c7605a76f30e59ba"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_pages.go",
+      "bytes": 4802,
+      "sha256": "51d96e05929fc99a98bed54c2960c9c307d3f2959e0c113df1d55ba4219897c2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_pages_test.go",
+      "bytes": 4550,
+      "sha256": "08366ab96ebbaa7bd43733e123874446cfc0961ed64dbe64f64fe55644ccaa84"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_fault_test.go",
+      "bytes": 5586,
+      "sha256": "2430ccbbffa732e9c2ae9f0eb2a1cf8b0ef2a0302a0e60505bf8240ced61e458"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/music_test.go",
+      "bytes": 7509,
+      "sha256": "6c7ae9b6e08b614e0eb2aa6ccd3ba5e6eb7366ca303ca830d167c737e92bae5e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics_actor_test.go",
+      "bytes": 10260,
+      "sha256": "56929d4112926d8bf457473ae8c16d6fd8afb09356f449042888493804ceab47"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark56.go",
+      "bytes": 3970,
+      "sha256": "f3008caf4b68651c541aeb5d7908cb3b3596a799eae02e6dc94e926bbf882a2f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics_assets.go",
+      "bytes": 15778,
+      "sha256": "7b3ad1a3afa53100bc41e3d3ecdd2a9c739787e6576ec9ed616509c606b2ce14"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics_test.go",
+      "bytes": 12961,
+      "sha256": "3d75cecb4aece5cc5a8c484f25127a606d1d11d43739ed1776a2907d029df248"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/story_prelude_correction_test.go",
+      "bytes": 3521,
+      "sha256": "5de568a06d83c436f5810f595b56ce330c52a68c7ed5456c69c73ea57f9bf995"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_masked_rows.go",
+      "bytes": 6585,
+      "sha256": "08f2f2ce19ad972f88f7a6de3fc27b8f4c1adb378d16676d12943ae136718b24"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/story_background.go",
+      "bytes": 2222,
+      "sha256": "156c865aea394686f43bf4f72ab4a2aa4dc9399da6e58906a7a2a9bdbb170326"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_runtime_test.go",
+      "bytes": 5489,
+      "sha256": "bc8c73ad8f5fd76eefab7c684633571478e24421e3e981a2c3f79452ba6a7d64"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_step_clock_test.go",
+      "bytes": 3906,
+      "sha256": "48198dfbc46b73fc1bc267dd7c14d985b89311d9f7cd2159109955a6287ed885"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/record.go",
+      "bytes": 2688,
+      "sha256": "0a60de162f02fa45e07cb49f952c91825ac7089460a2e47aa8bc0e49795cd629"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark52.go",
+      "bytes": 3970,
+      "sha256": "7293c9c3808bdb2880fa720a93f20803430168859b8fa12b4cc64dc6b758bdee"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/record_test.go",
+      "bytes": 1607,
+      "sha256": "b8b5703060bce8ff773341ca2f5f74401461ee3aa513a9ca99d1c887e1aa4062"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_background_batch_test.go",
+      "bytes": 12518,
+      "sha256": "e76e9b01ce6de101ee950586e7ac14083f7595da67916890580f20c8787e4038"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_background.go",
+      "bytes": 2186,
+      "sha256": "fe7e7dfabe00444ea8cfcbfe129df960311a9ce2de42ddb7174cd199ee41235a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_vfx_draw.go",
+      "bytes": 3319,
+      "sha256": "79536955deee944aea9e4870f3e87e7d12fe98d2a5a8fa76d0be65945ca9da63"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/assets.go",
+      "bytes": 3926,
+      "sha256": "191487924098e20b631f63d8d3ad3f576b04e4db297ded27f35f6e52f8409048"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_pair.go",
+      "bytes": 3184,
+      "sha256": "668cee657e48f929cd6cbf4200db1b8cd8721b70033c2dc41939f0cc6dacbceb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_militia_test.go",
+      "bytes": 3737,
+      "sha256": "74964f69e7525571d77eb4785b33f4d074ab27c0e392e25940bc8f09c37b5c77"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_swords.go",
+      "bytes": 2188,
+      "sha256": "ecdf5c88dd2dc6a24c51e7ccbd31c9940263bc9a94fcfa73194d8f8e07b75884"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_encounter_batch_test.go",
+      "bytes": 12760,
+      "sha256": "6c85b369c43a3835535e7d838b7407b00107793bc1263976ced2122d7dea9484"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/music.go",
+      "bytes": 9322,
+      "sha256": "5d94b5ef8d0e3dca5c4037da0dac964d354f154cb981c1cb834a72a69f87274e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/poster_toolbar.go",
+      "bytes": 16336,
+      "sha256": "160db14738f89e7e62fb689ac303ae4d4d0f3d7dfb4c621a5bef22a7b06d96cf"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/story_background_correction_test.go",
+      "bytes": 1743,
+      "sha256": "82f75b5183ee671eb8d5b973ce478e778deb0d30100bdb27f03d5bca9413a151"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_quake_test.go",
+      "bytes": 7419,
+      "sha256": "e4d01a95a3e92dfd1566e761e495854a8f93bfc0095113020632031c8806ce34"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark48.go",
+      "bytes": 3970,
+      "sha256": "bba2ca7cbb75b4afcd0a743ea89dea39639b9660da2f9707b9ca64cc59cf2c06"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/console_test.go",
+      "bytes": 2537,
+      "sha256": "c7d677890cb352abe7f957176220664a57937ed34ab7f4f8a63a876aceb14f9d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark51_test.go",
+      "bytes": 11994,
+      "sha256": "9d5858577f5f22f68b4a93a7d6dc572e5fe40bb1ac8e85ba59bdcc147815fa6f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_glyphs.go",
+      "bytes": 7951,
+      "sha256": "ac61a9883409e06f209d3d11196f628932974bd4dccc2e73350df639e6a26205"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_masked.go",
+      "bytes": 10158,
+      "sha256": "b7301e3ad72cb03ef4d320f26cbd1c952da8ff939cdded5b30098966fbd8ea9f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_castle_test.go",
+      "bytes": 5265,
+      "sha256": "ce6eb568a8b701dd418807530c5f354c6c7e5560e2df210a5e31147580c4bd81"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/presentation_palette.go",
+      "bytes": 4038,
+      "sha256": "77fa6c94fc42c6c38c9e9ab15f20cfb3f856f81e31ede172c4b6e302a9cafd71"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/console.go",
+      "bytes": 3400,
+      "sha256": "bb1204911cb9c6f2aba00ed746561916808aaa04c61fe46235e64129c8a0ee60"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_render_reference_test.go",
+      "bytes": 3330,
+      "sha256": "d702659f6f709b9a0aedf86e4ba4aa6ae7a585bf2a1d50789ee052079afaf905"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_bitmap_rows.go",
+      "bytes": 3213,
+      "sha256": "b3078dbece57899bbd7200c7f0b3b31589fb3c0307384e9b018839df74107ce2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/owned_army_guard_test.go",
+      "bytes": 1835,
+      "sha256": "ca076080decbe066f249f1a053337d81fa087ea360c859f9498392eeb7c805b2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_background_test.go",
+      "bytes": 2399,
+      "sha256": "1aee397d4712c4a94d07adde182e9d45ff4302c53ae68b8a96084820f5941c71"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_assets.go",
+      "bytes": 4451,
+      "sha256": "3ef81f9de914b10124db7ab32f77cfd3f336b304a16bd5cd2e45b0dcec1f3db1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_friendly_man21.go",
+      "bytes": 6059,
+      "sha256": "b1c58f10ce36b9b8158487d555b082b02d749825a15c501f992b005f23353c7b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/font_moe_test.go",
+      "bytes": 1816,
+      "sha256": "49e8a8dc0c8917b2e99d6c8960a7cd5e26ee8b7c7bd8e885001b6f4d5e95925d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_compat_test.go",
+      "bytes": 8831,
+      "sha256": "e36b841c1d8a0c152798357f7c31a9e75da833aed4131e7e656a86d2fd804e83"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_direct_runtime_test.go",
+      "bytes": 6603,
+      "sha256": "c03e6648a4232fe593dbcfde0ed3c212324b8e56cd22811a42c787f467f7d9dd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/item_icons.go",
+      "bytes": 4797,
+      "sha256": "06ae818f816a578deb44e10282bb85ad3a1c801689f0e3f490fd20f64203c99c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_castle.go",
+      "bytes": 7589,
+      "sha256": "9411b22a4e91b5987720f4a31c8ea0f6af7b0f610f64080c060102ea5b578a10"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/completion_assets_test.go",
+      "bytes": 13293,
+      "sha256": "e703db1adfd2c510de43175c262b8241fbd2d27c9b6c1dbd13017d22414e668b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_ai.go",
+      "bytes": 7285,
+      "sha256": "8fe3f29c24ea702ced1bac8017991b775253bdb5e7156f77c0aa6e5d3b82f24d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/story_prelude.go",
+      "bytes": 6737,
+      "sha256": "3d0f3b901024bec8a50d93297695b95be39e32e87e3ce643480fab3666c99abe"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/presentation_observers.go",
+      "bytes": 3932,
+      "sha256": "56e3a32a9e27a998ecbd81d1ef0e4bef41cc974f5db60c0a2d0c72690cf482f3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_reveal_test.go",
+      "bytes": 7712,
+      "sha256": "81af029d160408ed3cf318dcfff84254387642d8a1d02e0ea58dfd263ba50f05"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_ai_policy_test.go",
+      "bytes": 7086,
+      "sha256": "b0d0e0bac88b2cd698dfb1206b1b0830c4d69274a4af4c743a46f55e59abe8ac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_vfx_runtime_test.go",
+      "bytes": 11589,
+      "sha256": "b045d34c6d3540ee540ca84d11c58c426cd22827250ba0697d1747a821707514"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/recruitment_building.go",
+      "bytes": 3096,
+      "sha256": "56b3d4333c844573a727523339224d67742991cc2881c809c9f86976c4f0683e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_scene.go",
+      "bytes": 22619,
+      "sha256": "831fcedf23d9c2e82e96282c4b3be369173f9bfc5a168978b9b065c7f26dfaa9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/story_prelude_assets.go",
+      "bytes": 3152,
+      "sha256": "07874ca4beb5349449c8dc498ab3a0ef75d9c4b9bac687cc0089c5c778e1633b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_title.go",
+      "bytes": 7438,
+      "sha256": "cd523747f952ba244604f38646c1502f3e9bba14792bfe11c44b3fd45fb2c8c5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_vfx.go",
+      "bytes": 9527,
+      "sha256": "7cae39e2035794e759baa28cddc21da7bfffadda33d9ad9bf224d338427fdf7c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/owned_combat_test.go",
+      "bytes": 9108,
+      "sha256": "63700daa65925a753a0b07b1298dbc3823308d569243058f52524f71e5a89b13"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_museum_assets.go",
+      "bytes": 8888,
+      "sha256": "17b225d6b4cf853991e030e8b50d55cf21814f507c4b7e825ec23e22dfe4eca8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark55.go",
+      "bytes": 3970,
+      "sha256": "88795b70682bb7b2c35a7acf956cfb37730c77dc95b5730b45784d7dc396700d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_encounter10_test.go",
+      "bytes": 4949,
+      "sha256": "6e018efba109b7742fa00573bf208e75ad2552418b2ee876de7e41c4c27d2c3a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark49.go",
+      "bytes": 3970,
+      "sha256": "8cd7809e1f0dcdf59a2ef3593816f42444973ea6d1724199f89fac69017b0933"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_markers.go",
+      "bytes": 4649,
+      "sha256": "6a6ae57f58da00a2c1aa5e13721fa8af8014d26d75f5652e687db635bdb5760c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/overlay_reference_test.go",
+      "bytes": 826,
+      "sha256": "553447ddff2c38e2e32d253053bd612240cebfe0ec4c5c8d8fbdaca1c45512f5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_effects.go",
+      "bytes": 8033,
+      "sha256": "bd728f51c018aa3906da310696773a6649451e450d48a04aa7570affc96ce321"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_museum.go",
+      "bytes": 16381,
+      "sha256": "3f090d5bc0fdec25f64eab07e43827a106e78381adde6e1c35f091f7e8eae45a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_encounter7_test.go",
+      "bytes": 4918,
+      "sha256": "a6d6259bc25c23c0014befcbe14141c1bd49add2d266e38063f0ca8e15e6fa80"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/spell_cues_draw.go",
+      "bytes": 6354,
+      "sha256": "2740615ce9fb8f56465038a29716a2007657257ec267c07dc0d25912d845aaa0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/presentation_palette_test.go",
+      "bytes": 5236,
+      "sha256": "cac2879461d5af8683d0bb42ee58faa6eb660ccc53f352c7887de6494c46a246"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/graphics_actor.go",
+      "bytes": 6220,
+      "sha256": "258ffb5da4dbac699d9c912cd93ff3c7137a30f45fc9e1cd0c9668019656a7e7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark56_test.go",
+      "bytes": 4964,
+      "sha256": "78da6dcb9381ddd562e2c53a370dbece434401a78fc8a76446db25d2327ff99d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/troops_test.go",
+      "bytes": 11225,
+      "sha256": "1cb40408f2cb60623e31bb088c920835fb2ff4c25cc1747d4d82c0ca447576b3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/source_recruitment.go",
+      "bytes": 2786,
+      "sha256": "b003499e1680ee9195382d31f29b2f74a607245b73c62ea0fe77d7d32af389d4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_encounter_batch.go",
+      "bytes": 7706,
+      "sha256": "ab895abdaa2b7f6beba6c5797afeea7a23f58a1f8ebdae117bf58354ddebd2f2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_input.go",
+      "bytes": 734,
+      "sha256": "e3b16218e9131071f9514bdcc6192e402e109720593410e938d759765da5deef"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_palace_background_test.go",
+      "bytes": 7940,
+      "sha256": "7fa0554d957d67884349146ed80bb9a47135478a7b8eba2eab26fd867e25042c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/intro_publisher_test.go",
+      "bytes": 4385,
+      "sha256": "dc0b5d36fcae3aef043e3d6fd8cebbb7e153187cc9c971790db734ed7c3d4262"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/map_landmark54.go",
+      "bytes": 3970,
+      "sha256": "daa0b4aa23e4599a2a8afd3848fcb35ff61e6606a2dbc517075cf7cdb6b40514"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_quake.go",
+      "bytes": 5288,
+      "sha256": "0c433a4caeb7c9749f83ad9b7a658f522442cb896cbbc68c4c010d00b26792aa"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/item_icons_test.go",
+      "bytes": 12581,
+      "sha256": "c4511a51222ed75453c1929076d611a90261fabb3570a6b036529c8d52cfe93f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_actors_test.go",
+      "bytes": 3781,
+      "sha256": "fd6ea5fdcf00b44cf9249b35b87e76510dbf167521d5f25fde6be4a6d182af2a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_rules_runtime_test.go",
+      "bytes": 9821,
+      "sha256": "cb5c05d8abb1e48f765563c3843590b5eed25c3518d5980aa5b1a88260eb0056"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/battle_background_batch.go",
+      "bytes": 4509,
+      "sha256": "05aa1f29e63a6d61a91cf65e5212d3f88a6899f05195a21c10c5eaf61b474df5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/font_preferences.go",
+      "bytes": 1238,
+      "sha256": "fa6ac20e9733393e97c488dbb032f0afa64fd4e47abd4b2282b5cb134a043df4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/poster_toolbar_test.go",
+      "bytes": 8314,
+      "sha256": "d411a15ee1d2677f80987c68f5f5504a9590dd49c4ae4402b3fedc43031563cd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/eightsword/ending_portrait.go",
+      "bytes": 3832,
+      "sha256": "19dcb98837e52174d6aa68ad3ce93edf3e4900ce745a7ef67b70b62e11e30106"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/native_import_test.go",
+      "bytes": 5131,
+      "sha256": "51daa42a236e271a9ff6466b8e75daf747f26f13cca4c6653786b1b7afbfedae"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/openkb-hd-art.go",
+      "bytes": 4784,
+      "sha256": "272c84a3982bbdb2528bcaf0135ddd6e43bc186d50dae4dadcd8626203ad2cab"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-army-presence.go",
+      "bytes": 7566,
+      "sha256": "5c252deae7f1c5546c196e7cc2e91c9a18a80cf9c1d0ae086b5c96e6863650b3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/summon-data.go",
+      "bytes": 2248,
+      "sha256": "6a56ff38be5677312840e355c6614c4f8df18811fe1955409d9bc903b04ff960"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/reinforcement-camps.go",
+      "bytes": 6347,
+      "sha256": "dffbc6c310ffe82655eee85b33fcf4795ee2b29ea26123e244ccdc103eb39cd3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/owned-battle-ui_draw.go",
+      "bytes": 5575,
+      "sha256": "6adce433ac7894d3072acf1501cc8b84b7b41cf7f2dfab182c8e9eb1441c535f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/monthly-native-save.go",
+      "bytes": 3163,
+      "sha256": "5c86eb7fe1ba27f682263401fbb33b50bdd126a3accc94d260a1c1548223a846"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-native-checkpoint.go",
+      "bytes": 7071,
+      "sha256": "7fa9b7d052d5e9f457bbf6a4debeda145a214c2c7fc541fd130917487faa9488"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/owned-army-ui.go",
+      "bytes": 10046,
+      "sha256": "65ce48cab265065c0586e370672fb9a7315816f754f86a1e44c1aa854dc9227c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/owned-army-model.go",
+      "bytes": 11322,
+      "sha256": "fc2eefd93775dafe07819191d54d8e8f3398e9830d12684fcd1408b07300f449"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/alchemy-native-save.go",
+      "bytes": 3161,
+      "sha256": "49ed48e8ed3981a66747f41ad74fb55bdc786dd858bb2d3bdddc717eaa3d906f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_actions_test.go",
+      "bytes": 14943,
+      "sha256": "476098ee4f4042e6cb1c3ed76fbfd26086918ef1d2486efd6104b60f4ee900a7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-controlled-battle.go",
+      "bytes": 5803,
+      "sha256": "1393fa409217761f922d5224c2f481ec1835d9905c2786892ef899d4280a91cf"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_setup_test.go",
+      "bytes": 17627,
+      "sha256": "9d5c616c210403371eab127fab8f46d4941815dd69d6e88ddac993f44f48952b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_support_test.go",
+      "bytes": 12494,
+      "sha256": "f6e2c6defa6560cdf82574df178c812091ed06b2dd471355847a690c58c70def"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/annihilation-origin.go",
+      "bytes": 5598,
+      "sha256": "567e238c8b20306670547d9ac1f495b44a4e6d3dc29e4de385ade0e9a957df0a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/treasure-data.go",
+      "bytes": 1816,
+      "sha256": "582c5c7ccade855b8050dc5167a68ee8c113781181ae5c4004d1716a345c34dc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_enemy.go",
+      "bytes": 22168,
+      "sha256": "99f71c35faded4d12ceaae5727a1114d8f891b555111b5fc4fa4193a89011f38"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/alchemy-ui.go",
+      "bytes": 1418,
+      "sha256": "804fb53031b1f4b0ebe63a8ac32c073f369da3c599fc6befc2d3b30297ada9c8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-refusal-rng.go",
+      "bytes": 4246,
+      "sha256": "1d5b6b43083bd8c6dbaec1f37819203f5c06fbc034ee88fd195ce75850b343c5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-paired-progress.go",
+      "bytes": 16383,
+      "sha256": "b74984dbddb6b9305841753af59b6bf0d533fb833d81071fb4bba9211b2c3b57"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_setup.go",
+      "bytes": 9134,
+      "sha256": "0af6134d063cebcc4c8c1c2bc9131c4fdd4fbc59a03c46e1b3c1ce962b333aca"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_recruit_quantity_test.go",
+      "bytes": 13379,
+      "sha256": "5e401b6204ca0d6ae3970c69841e1e75a19256cfc1c3bd04b9b5723a529971ac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/world-army-review_draw.go",
+      "bytes": 2906,
+      "sha256": "e35414e25035fcbc31c40743508fe7c1d0357887021624747d262c1059c912ac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_rounds_test.go",
+      "bytes": 13778,
+      "sha256": "9a85d73070a9705f99ed45b4cb84d163362c0e03af664f71124368c047c5db1d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/recruit_presentation_test.go",
+      "bytes": 3232,
+      "sha256": "7054923548d6822c084d3a924ff14c71942d7741659e544004d0454a2b38aec4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/summon-store.go",
+      "bytes": 4021,
+      "sha256": "d57ffc3b162ebd870c3076e3632a19e196587dbc97ed19a055bafa81b0537cff"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/treasure-ui.go",
+      "bytes": 1456,
+      "sha256": "0d328df221b34fd79cb11ed578e12a378f7230865d88e72e6eb56063b05e7758"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_rounds_sites.go",
+      "bytes": 5100,
+      "sha256": "a940b2c022d5a2d0793c22047ddc9fd1754024ec9504100c2c336571c4dfa04b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/guarded-battle.go",
+      "bytes": 10684,
+      "sha256": "b3d50f6cd723d9c67dabb01dcf6bc909c2427ef1912ca15930ea9e4ee105c653"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/alchemy-port.go",
+      "bytes": 7421,
+      "sha256": "f1c2d388d8b18dd11f559ade0e28d1a238c39f5bd35f85f7836980d9fd8cb67f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/guarded-store.go",
+      "bytes": 6753,
+      "sha256": "b48fcee981fa1df5c3d8c49009a69e5e75471011163197fd1c44d8fe0fd944d8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/annihilation-roam.go",
+      "bytes": 1581,
+      "sha256": "ac87238ee4c5c88ca57a0cdf53e778f5f7c80663de497288e8dd398b196c1501"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-owned-world.go",
+      "bytes": 13343,
+      "sha256": "7de4b33fe1dc33b7c887a0c8cccf614ba0b18767f4e90b1bf930cd7d5704ad3b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-camp-stock-save.go",
+      "bytes": 8440,
+      "sha256": "3070ada992a08eb61260dc5aa1080026c19d562965636c97b1ffa3a73f9bd45a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_army_fields_test.go",
+      "bytes": 8725,
+      "sha256": "edca018bd559f27f535b1284108db7cc62715e7d0bc903a74793048bdd27b7d1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_army_fields.go",
+      "bytes": 7830,
+      "sha256": "c0f35dec377adc687cba5f67a768e1f894d940f039fb1747706b62c783bbdcfd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/summon-port.go",
+      "bytes": 7515,
+      "sha256": "310987c5399388238e9eeaa0e3569b31ef40ad84e97f1d0ffe0103adc9f33ad9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-owned-encounter.go",
+      "bytes": 12888,
+      "sha256": "47088629614c1505cb1eb38f43279ec5d7c8c858e2cf9933836e529ed598071c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/native_import.go",
+      "bytes": 6203,
+      "sha256": "0bd13f1caf576fcd3af202b17855a2e7a5af6cde36bb400516ceb21f16752105"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_support.go",
+      "bytes": 8436,
+      "sha256": "54dd82ef68620a0b51693f01ac488e61c09b2ab83d0d1c1b380175664d497fec"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/recruit-native-main.go",
+      "bytes": 3234,
+      "sha256": "b79e8a425e00d6d3bfd3813fffe9cdf33dbef6d89c02d53fcde45fd2d8c30981"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-world-army-dismiss.go",
+      "bytes": 8969,
+      "sha256": "1ef97925ea6583ec32817fee0fe146a4edee84cf81a7feed0a2022051476a63d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/origin-map.go",
+      "bytes": 3736,
+      "sha256": "db42a5097b52b6fc63a268f8d87f78b58d2f9fc81d77909cfe8330a918e306b7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/monthly-store.go",
+      "bytes": 4413,
+      "sha256": "d6e4970bf100fcb052619c3653a4179e0419f2c47c1c01d69e2104863d098846"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_world_test.go",
+      "bytes": 14193,
+      "sha256": "9d6e12b77164f3aa6975c00ebe2236efecae8e143f5a475ef377c1aa1aca493b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/owned-army-ui_draw.go",
+      "bytes": 14187,
+      "sha256": "fedee56bace5b26b43ff2dc10f3654ff92710e87b72c84dff52faa7463364587"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/normal-encounter-ui.go",
+      "bytes": 11616,
+      "sha256": "f476c8c2f3d10cc2705b91be192a7a7c160fd47d217fe7e678882441e77050c9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_army_review.go",
+      "bytes": 10770,
+      "sha256": "6861d8aed754da59ecb8a6a738a91af728d9e6117f92c9addb0df8bb5e76a848"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/native-checkpoint-port.go",
+      "bytes": 6324,
+      "sha256": "5a55fa427c97883c8e1af27782a8e1d4732f15196ccd4d73eaa9aad584422f11"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/reinforcement-ui.go",
+      "bytes": 9433,
+      "sha256": "3c2f22ee03b0d5f25f2936bf5d6e8c75aeeca083eecdfb5487faaef0c7bbda70"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/summon-native-save.go",
+      "bytes": 3211,
+      "sha256": "84392ff59e3c190c6c1c8c87e849b1b15de1c40107941f849e5219a9caf434bb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/initialization.go",
+      "bytes": 367,
+      "sha256": "39f93be461048dc687ea3c249533f51d0392aeb26e9f812739536f4d1eab88cc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_army_projection_test.go",
+      "bytes": 15239,
+      "sha256": "70b1518d132717e2fdf20385287090fabea0efe28603fc642309e2d008601274"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_recruit_quantity.go",
+      "bytes": 10479,
+      "sha256": "dc25022bc642925cd574035419518f8ec4d0fa6499c5cb836bafabba09568108"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-world-army-review.go",
+      "bytes": 6142,
+      "sha256": "b367e8e2dc6b17f7ae52cf5429579265e92de199a8e4587c6e0d5079f39d75bc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/monthly-ui.go",
+      "bytes": 1227,
+      "sha256": "1d104f7b51dd48d74260a060823b1139e150a6432fda2b90579e872bf0ebe049"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_rounds.go",
+      "bytes": 21218,
+      "sha256": "e431465114a0eb83b776d4731b33984dd2139dc5cd61be8d21830a9d7e65dd9a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/refusal-rng-ui.go",
+      "bytes": 3520,
+      "sha256": "07b65c677eb59316b03477eb608fe2e27741652036620fc30065cc6265a0febb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/sword-guards.go",
+      "bytes": 4083,
+      "sha256": "44238603489c22420027a6ded8187f10c4eb61c74d3e7750c92d163ae9c299c4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/alchemy-store.go",
+      "bytes": 4022,
+      "sha256": "fe05d8e13945f205c731142a8df56254462211178d5294946820f6ebfce36ec6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/world-army-dismiss_draw.go",
+      "bytes": 2448,
+      "sha256": "79b62a623e4e129645605dcce4a4dadd9fca68fe9f0657585b5f8f3c26365b6f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/rear-actions.go",
+      "bytes": 3004,
+      "sha256": "858518a1d726f08793e11d5c5c8acac006fa2707ee6683e9f56acb3fb0ac2c0a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/native-checkpoint-ui.go",
+      "bytes": 1372,
+      "sha256": "100789605027a2e55121e96459ce9952e378fc169dd2dd924a24c3dd77c84c50"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_enemy_test.go",
+      "bytes": 10640,
+      "sha256": "a6bd845f5ec10cac42f243dec50cd454c3565bcadf85af6f1b74da4ee8337b22"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_army_projection.go",
+      "bytes": 9066,
+      "sha256": "310c7c8c09fc578aa4c35d73c9627d68276e29d6896e01574540071099e4eafa"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_world.go",
+      "bytes": 10474,
+      "sha256": "7c7d3ee9df961bddf995433da92997459177be13139c816064c869e32c392228"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/battle-resume-ui.go",
+      "bytes": 3804,
+      "sha256": "9b194444d388ac95aaac4988181b2468282ad3de26c35fa39e4fe928875cd531"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/treasure-port.go",
+      "bytes": 7056,
+      "sha256": "bb657db7d294cd2f368da6b84fdb60dffe66a8f455c672204ad8a60bfec35853"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_reinforcement_quantity_test.go",
+      "bytes": 9681,
+      "sha256": "f40df08ee5c2173a569749573b83ab1e999bb6769fa20823dabf1d0124a81256"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_army_dismiss_test.go",
+      "bytes": 12873,
+      "sha256": "3cfa60ea6658095ece5cf408207dd95b638beed7a74a2e9f05ea962d67012919"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_bridge.go",
+      "bytes": 5024,
+      "sha256": "e9fc2ab7fc9d3b9c9a7bebcf7843181b096822f48586226368bd0de71130ce82"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/sword-lifecycle.go",
+      "bytes": 1420,
+      "sha256": "f6c4818b74051f7eb3976e228137a9b615d77358d5defdfc6af5369097393899"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_army_dismiss.go",
+      "bytes": 10610,
+      "sha256": "b1da241040af4f717002e1c57c842ccb38bdb1fafcd6316be9f3da80b8aa3957"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-monthly.go",
+      "bytes": 3484,
+      "sha256": "d4267c766328230cd03762b14cd1076910418d97847c598a896a2d794620463d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/treasure-native-save.go",
+      "bytes": 3171,
+      "sha256": "2d95da1ef97d536066e031cd216ea39a130179460be6f8c62774b3f1fee62bd7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/summon-ui.go",
+      "bytes": 1347,
+      "sha256": "399870b70480f30f1e3335f246659afcad41bbd4537b6fd84672c1c209ee0a1a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/owned-battle-ui.go",
+      "bytes": 6674,
+      "sha256": "108d1561b8709e468cae0743b8bfb75c9abfc47b7fa7832b3d4c771170a2e205"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/camp-stock-port.go",
+      "bytes": 3295,
+      "sha256": "0f63ba0d9edd4aca42a3b6a29d8fdb7f329cef19fbc94e05e120108c71467337"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/monthly-wide-ui.go",
+      "bytes": 2914,
+      "sha256": "70fe107b7cbe1324e486db8c7a183b364e773de6ae35acdc0efe59cc18659057"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/alchemy-data.go",
+      "bytes": 1612,
+      "sha256": "54e843a703f356ce8e03b37beee67a9d678a9344542f30ccaa6d920f280748b1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-camp-stock.go",
+      "bytes": 2638,
+      "sha256": "3082cb4f78621f2e60899d2c985973b93d7ccb5d9faff439258bb3a46d4a65d9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_casualties_test.go",
+      "bytes": 14527,
+      "sha256": "dde60888727fc3ff33b956f07a54e0964e09ed5500b25787e402f7916670fe88"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_spells_test.go",
+      "bytes": 20676,
+      "sha256": "62fa45109eaba479b4e9ed782c1ec07ca2aa52d888149eeda37b9b2f91f6ae06"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/recruit-icons-ui.go",
+      "bytes": 5412,
+      "sha256": "d8b57255077ed2df2d6399df6f264d4747bf0fb98d937e10c828adcf95cc1b01"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_reinforcement_quantity.go",
+      "bytes": 7621,
+      "sha256": "e767980a7e2dc146db4d6f06f22b126dd0f10a538bb6a5a2cbb0000fc53b4008"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_casualties.go",
+      "bytes": 15823,
+      "sha256": "0ada1041ed6b4ec314ffb2f93637b7724aca171098979ceb55d76eb2eb447e8b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/world-army-review_main.go",
+      "bytes": 16875,
+      "sha256": "e1f1c039bd6601002163da97bdb682fc6d144b781ab5121bef193e18fc4bda54"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/monthly-port.go",
+      "bytes": 6924,
+      "sha256": "d3713a5bd2f54800ff99b641e3b856c620098b700e08d2c6cafc72f3ce0afd62"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-native-progress.go",
+      "bytes": 2854,
+      "sha256": "0e6a5cd69cfb857caa3a7b48e7caf362225ce2aa00aaa02482a573e903e2bb73"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-owned-defeat.go",
+      "bytes": 11877,
+      "sha256": "3c586990060d425c9948c5db104dad29d83ddcd3da874c5cb48622f42ba9de18"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/battle-resume-pins.go",
+      "bytes": 198,
+      "sha256": "8a6eecb438e4ceb4bc7b6c82278da97f786f59d154416308fb81d67e63752b15"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/guarded-layout.go",
+      "bytes": 788,
+      "sha256": "c384d3b77380d57f317bc424b6af96459df9cb864f6fb2f10fc90f97c1a2dde8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-world-army-port.go",
+      "bytes": 9804,
+      "sha256": "ec99b71036286802b9f24c015b27dc9c26a450384c041a35e98cef124c9a7eb5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_army_review_test.go",
+      "bytes": 8537,
+      "sha256": "2bca0566d7766dd4dbd96ec441cbdeb459d9ea1e00ef89c80f36cc2fad039da5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-runtime-enemy.go",
+      "bytes": 6633,
+      "sha256": "3e02e01b8a6b4a545912c2f8681d05f3072394ec2fee174db919b7ca15fdeaae"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_spells.go",
+      "bytes": 15609,
+      "sha256": "da119713ef2fc61591365f178e372a36b5a0fe4049ef96a58556293d41207082"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_bridge_test.go",
+      "bytes": 14116,
+      "sha256": "8ddcea14e09ef7017b557f0a51d033792aff3e1f7642c2a21c18729f2862d4bc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/original_battle_actions.go",
+      "bytes": 8631,
+      "sha256": "33cf09f95e91441beba41daa42b4149665a94ceb30175e42d9368e3c6272b2b4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/treasure-store.go",
+      "bytes": 3854,
+      "sha256": "a6e733833184a35e336cd26a6d23a490da39fd8542a4bc4af315bfd024e615bc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/internal/ownedworld/research-battle-resume.go",
+      "bytes": 16360,
+      "sha256": "88c6f664b614e461bd9a6b264af8ff9f48d1c8fa8edbae112d22f16f75814583"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/cmd/8sword/main.go",
+      "bytes": 22725,
+      "sha256": "597e019ae9714336669bef842715009f2e70c2b15d7a5c91ce1affbc24bb2602"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/cmd/8sword-replay/main.go",
+      "bytes": 3698,
+      "sha256": "7a39131be154ccf10b67f25ec42a36355e1af99b413cf249a91e3adfd75afcab"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/source/cmd/8sword-owned/main.go",
+      "bytes": 301,
+      "sha256": "7709b9af19a77dd6be4c1a45209574dbb80e43676e3f11a9b89f5275c313cc81"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/go.sum",
+      "bytes": 3969,
+      "sha256": "6b7664629ffd9efe6f50b9a23484b8a90d0cae047a29a820513e332c1801f6b3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/go.mod",
+      "bytes": 544,
+      "sha256": "f5bfbdbb9f5fb1dd96e0612139a11b593a165376bef5817d51e217f25e56cadb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/tools/heroine-check.go",
+      "bytes": 3717,
+      "sha256": "b4047714bff3af4600ed2c3eac8af7d31af1ab6861d71bffc21d377fa4fe7364"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/tools/gui-check.go",
+      "bytes": 49062,
+      "sha256": "9b43154d2fe06da810d7c5a5a8310be533ad03ea2d510e31f2997fccd7aef5fd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/tools/music-check.go",
+      "bytes": 5419,
+      "sha256": "2cdbd35f56c43e403de2e1b761188bccb7863ac38a7927268f67586b1789dc9a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/tools/story-prelude-check.go",
+      "bytes": 3832,
+      "sha256": "c29cb66caa31aea245cc32574341839071a8c8f05c4af63ce744dfbbc6eb9eb0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/tools/museum-check.go",
+      "bytes": 3989,
+      "sha256": "7e03f942e93aaf6d0f730911c3af90892e7b86d7172317dc1796e21cffee13e1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/troops.go",
+      "bytes": 8903,
+      "sha256": "42db86bbd33718e1b2eaca0f6d01475467a354d9587ee9f024fd35993c2c8d0b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_presentation.go",
+      "bytes": 2615,
+      "sha256": "1139b16ba2b5c1f859a23103daa8f16ee0f90e21bd49128ee36d0728ff90e528"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/owned_army_guard.go",
+      "bytes": 744,
+      "sha256": "8a4849e9e0f762775393a6b3ef3cfaca8835b2ae9165d546d37f10f8670fa3de"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_glyphs.go",
+      "bytes": 8272,
+      "sha256": "9277ef4416350e4a28aef0f96ddcee5bb47bc090a6f3cf9e82f1d5b2895b62c2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_publisher.go",
+      "bytes": 4796,
+      "sha256": "de04b9a56b7f5ec12c45f3ad759dfbf2aff6f8110e42b338d2fc44484bd97f8f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics.go",
+      "bytes": 13804,
+      "sha256": "ac661dc9c5e2430e7b9785624d07452070e7a38b3ed9eccc2aa33a18271b40de"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_owned_render_test.go",
+      "bytes": 2912,
+      "sha256": "1e621b158988bb1075d0b95e74c117017a4809663bc91be34a370e853d2c3d7b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/music_intro_test.go",
+      "bytes": 3262,
+      "sha256": "7d874e028b512922c780e130c75fcf435fc94f591e5960e0966d455fec5e62ca"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/tracker.go",
+      "bytes": 15377,
+      "sha256": "0df17e117e640cec6a73dbfd883f0dae07a0a1285a863fb3da2e52800cd107cb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_runtime_test.go",
+      "bytes": 18073,
+      "sha256": "8bd7382768411d4c9d925f08d5454c4ac9cf7f9da43b01639487271e34ec054d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark_pending_test.go",
+      "bytes": 2151,
+      "sha256": "7447a7526d7d27c09bd98a3dc810494a78341719a45fb3725e9810e2a3de6201"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/font_choices.go",
+      "bytes": 7074,
+      "sha256": "68a17e2e87ea1fd0a0cd83f0b90eba528e5bb009a6c339774c13e3b4d773506f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/buildings.go",
+      "bytes": 4243,
+      "sha256": "6907a61aea82f875a2cbc8d3e9d854c6831924c7a470d0b495f689290eb358c6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_intro_masked_test.go",
+      "bytes": 4286,
+      "sha256": "7a8dc8566a118634572a338b2276cab6774a18b0a3be4e7da3046ca8ad1c80fd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_glyphs_test.go",
+      "bytes": 9046,
+      "sha256": "e022eceb15831357e95360005eaef86f40fbea484c6b3ffbd02e7508e40a8b68"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_man01_test.go",
+      "bytes": 4820,
+      "sha256": "568b10a97035526707cce3de12b9df01b6f6c3f4deda886cd8ec0e092c4650c0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_ring_test.go",
+      "bytes": 3347,
+      "sha256": "1a7b786d997b9a6be612fa3f3a7371a82c21ce8bdc727095b29dd8a07f4d5fb4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/buildings_test.go",
+      "bytes": 11191,
+      "sha256": "7eebe7cc2330602166959d8a70e3b15ccc6f1ab644e7f779111c98f1c5dac5ac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/music_assets.go",
+      "bytes": 4668,
+      "sha256": "12399ceccf1d6a83b2e8c34a2113952def423a606d0ba5c62e86c4904fbd89e9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_captions_test.go",
+      "bytes": 3481,
+      "sha256": "571cbae2c1e3b1d47e733de1bf97cad68da4a024218687d2e38dad52853f3563"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_adapter.go",
+      "bytes": 10077,
+      "sha256": "d898c6112fd0b5674a81afb78a7014b09d9677a7099a0f3ccea181c992f6d0c5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_chest.go",
+      "bytes": 3793,
+      "sha256": "67f85fadc081dbabe6210c2f477de27ced518efa4408c75cddda5198cff8ae0f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark52_test.go",
+      "bytes": 4964,
+      "sha256": "3af0b02dba3156719ff24e192164bf088899a803fdaff97369ad03d0a4a6e592"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_heroine.go",
+      "bytes": 15633,
+      "sha256": "934d16069bc5f30e9f3141a62715c95e2ce106660e8ef5536e4046d4362984b3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_man11_test.go",
+      "bytes": 4649,
+      "sha256": "ba51dc5c2d024e22a91f9c165c85b02f73e5870b9b0a00f0aacd7fd7bc4a2d68"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark48_test.go",
+      "bytes": 6972,
+      "sha256": "b72e671e624d20d505333edc9fc6c76e28c5ee4c2f87bd7706e206dc0109208e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_museum_lifecycle.go",
+      "bytes": 6071,
+      "sha256": "33b56982bfc1ba59096418e52ce9a0e4994f37090b5a6847267e92e3d37769cd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/font_choices_test.go",
+      "bytes": 3050,
+      "sha256": "dd2ccf8eb46030df266b555904745742bd43ad99ed26fd6dd635275d0768ac11"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_swords_test.go",
+      "bytes": 3339,
+      "sha256": "6a1f719bde7d25284cd8b10aee101511720cb147905e3d99ebafdd4b96126418"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_publisher_icon.go",
+      "bytes": 3808,
+      "sha256": "381e3b2a5748626bd0893b72023dbeaa48fd2453681487981079b8b484fa7052"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_rules_test.go",
+      "bytes": 2101,
+      "sha256": "ace20598c6d1186fd0435887f65124b311113eb06d6e77606b829045803f52f1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_encounter_test.go",
+      "bytes": 5274,
+      "sha256": "dfd8d1482b5e295b691c9ac9f2d2c0a7383e18a7966c87d9ac0e5c38fd5a48b8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/army_man21.go",
+      "bytes": 3541,
+      "sha256": "824498ee1ec18a6c82cdb73b0b9e98707c260ebf1379da085987197cbc981463"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_result_test.go",
+      "bytes": 4762,
+      "sha256": "716b5ee94f790fe1731b3cd34592b8fdade6b8a142b4d9d1b8e60ff957ff1992"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_duel.go",
+      "bytes": 1682,
+      "sha256": "8af460e365d6bc737154acbc3a7eb697934d71f7dbefe667ebc15fada4e7c069"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_effects.go",
+      "bytes": 3288,
+      "sha256": "977f284c1e40be05506934b0f7b917ec2efdd7f6b6763f37191c9ee87c9e44c6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_transactions.go",
+      "bytes": 3810,
+      "sha256": "3224fb2e8328cea9c14ea310f3b2b6366f1dadeb60b951748131a72e253941e5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/story_background_test.go",
+      "bytes": 1716,
+      "sha256": "64091812098cc91e9b13b0b41b7d6e3eff9592580e3455cb3c1438e4265bf663"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_markers_test.go",
+      "bytes": 4424,
+      "sha256": "01ba3f1a92e8333bcbc440db8bd3a656526133095003c30de9a0fc910c8b6286"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_direct.go",
+      "bytes": 9813,
+      "sha256": "eb5e44391ffb1ed9a2c3a05623b6e096636af68d690d909c1dc20faa413ba27e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/recruitment_icons.go",
+      "bytes": 1077,
+      "sha256": "96bc02d2053cc79bb05a85282f8f1dc33abb5a7bca206242d93b5bf20239183d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_scene.go",
+      "bytes": 8896,
+      "sha256": "f1ff5ee7157b50c268e3f9626e4df952ef86333ac596b2ef8d858e6ba9041536"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_militia.go",
+      "bytes": 3433,
+      "sha256": "d0c4d21e8022e26ab79ae146a361c7c20d7fcc56e383620f85eea636c1ffa815"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/owned_combat.go",
+      "bytes": 16588,
+      "sha256": "04df44d4b19f3457880469bf565c0ef7865fc0c39174d1bcd1eb02d9d7143479"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics_objects_test.go",
+      "bytes": 2576,
+      "sha256": "d3023540788f3f2db25ea5dfea83fe5087cac85d794c901079245b49af175323"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/spell_cues.go",
+      "bytes": 8389,
+      "sha256": "350402a7825a0123e07feb317cc3063ca1daa410d1c80adcad47a4391647d69d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_chest_test.go",
+      "bytes": 4707,
+      "sha256": "e3c45c36fda9f752d53449864fc676e9b135dc50ed97b5bdd0fc4f3505de106b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_render.go",
+      "bytes": 8852,
+      "sha256": "285cd010d7a31795e8dc995f2c851d8eb898a5ab533ad551f5fbb67370ad5ff0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_heroine_test.go",
+      "bytes": 5699,
+      "sha256": "ebccc2ee578afe7f103e5e7cedf8ffd0fb4e90ff678b330844ebcb7a27625322"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_reveal.go",
+      "bytes": 9218,
+      "sha256": "d329734c0749db2c31eeb31f9fcab74d8999d17641896123fda290a8b05c1927"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/tracker_test.go",
+      "bytes": 3151,
+      "sha256": "aebe98bd85b2f466b6981dab62736290ce0ddbb50ba1c7cddac728ff60d61a08"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics_ui.go",
+      "bytes": 3400,
+      "sha256": "c212227197282b8c4b4c7626cafbfba54dfd6d6e0003856854367319884ccf8a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_palace_background.go",
+      "bytes": 4666,
+      "sha256": "33b99cf4334fe98c6d842d47052e0fbd19b5ed013881355ee0ad0f11b0773596"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/spell_cues_test.go",
+      "bytes": 11548,
+      "sha256": "3149f6d1ff56ce323f0074afa89061d6fb57b6dce8b0adb2b8610e0f0c44ebc4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/completion_assets.go",
+      "bytes": 5971,
+      "sha256": "33aac7ab7a4ccb2e720f57a8703d7c2e56500d31ce9a9672204d24df03655b6e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/presentation_observers_test.go",
+      "bytes": 6489,
+      "sha256": "e048b954d89f37f845d654483293d25ce37444eac492728a14d744c5c9a034bd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_story_test.go",
+      "bytes": 4340,
+      "sha256": "547cb5c41576bd51027cb8089877ba070d0c8308c21465604162c3aca4668f87"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_publisher_icon_test.go",
+      "bytes": 5967,
+      "sha256": "abde261bc744f17766307a9db482b0ef0f4d6feae67281fa40de7c2f7bd118bf"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_ai_policy.go",
+      "bytes": 6535,
+      "sha256": "54ac5e33643b4f11079284d397a1bb7fd7dafa90d5b41c8966bbbb3e6dd9fa5a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_rules.go",
+      "bytes": 12916,
+      "sha256": "c2004d466b2a33634c034600b0a28e6fe3aabc10f908cfbd5cc2d388badcac1a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_title_test.go",
+      "bytes": 4261,
+      "sha256": "a24a9daec1d095eef1e2db2a4552f4a23326e218830d5560e34628b3b5c299e3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/engine.go",
+      "bytes": 23530,
+      "sha256": "ba26b5928e37f94ff436d42ea3a1cc4aec225d55bdda23f459c66ffc3f505a6d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_ai_runtime_test.go",
+      "bytes": 15003,
+      "sha256": "09e1ccef87bfa168b9e18d884534db13b89b40230e20037aa27d0999663f3590"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark55_test.go",
+      "bytes": 4814,
+      "sha256": "f58c9d882b6ef986f4d6cd157a3d4fe834ce20e54e244e8701ea747ae3fed540"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_duel_test.go",
+      "bytes": 2108,
+      "sha256": "190b76fbeb908bbe2c39c30d25687ed255900e3b30c715ea301aec83945a7f12"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_direct.go",
+      "bytes": 6582,
+      "sha256": "9e8a430de5c66deb5f29e666a2043b54a9023ec53cd076729c9e09e178165f84"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_pair_test.go",
+      "bytes": 5600,
+      "sha256": "b53775f769f61ae03a1ad02faa57aa94d520e0453ece4b5f635afe0a3797fb62"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_intro_masked.go",
+      "bytes": 1174,
+      "sha256": "33eaf71f829bfccac71bbf7d7cb1fb6d75a7655d88b4ddb0ed24608b1878857f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark49_test.go",
+      "bytes": 4814,
+      "sha256": "f7d58f38dbec72e406d0a2ae55825ad45d4088fbb6d33e644bf6f0c598bddb2e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics_objects.go",
+      "bytes": 1982,
+      "sha256": "403f541efebbe91fcfbb11489614fb6f487e0f2adc9f38febad062c86abadc4c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics_ui_test.go",
+      "bytes": 2266,
+      "sha256": "79d13ebc57be9215a8313d1c4bbf2a9fcec24076d3013e7ef21e3304be931681"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/army_man21_test.go",
+      "bytes": 5204,
+      "sha256": "aac8a14e4b67876e472cf3b975a12cb4a3cddc48ebb29a4f273783c55122b608"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_intro.go",
+      "bytes": 23456,
+      "sha256": "cb737b6b25a15f3cf38aa7a7a734837305896849cc50bc62c9a180a3634e71f4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_direct_masked_test.go",
+      "bytes": 10403,
+      "sha256": "294a1ddb6595ff7ec97ab71d3296b0c16cccbfeeebabe8daaa28262023b6d348"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/story_prelude_test.go",
+      "bytes": 7795,
+      "sha256": "aa5c85ecb37d4a9f72c4fd5399e8b83096a98f7ea2851fc46ab0e4929f87d743"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_friendly_man21_test.go",
+      "bytes": 5677,
+      "sha256": "d3442ca0560cb73089900db2ed8ef1ec5a53dfe94799a264de0f04bfac23cd8a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_compat.go",
+      "bytes": 8992,
+      "sha256": "8cf3846d7356500fbaca7144e73e7fccac013f2e65e4cf74a2df357e7b6451af"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_portrait_test.go",
+      "bytes": 2816,
+      "sha256": "f193fbe84059e367bce65e364116f4e382d5785296cc814cc30bda60dcb7a71c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_captions.go",
+      "bytes": 8569,
+      "sha256": "4a814f378395f7344538d78a0a426e4ff6416465f406f9616453c614a67f95e1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/music_intro.go",
+      "bytes": 2990,
+      "sha256": "4b1642f8c44f10a6e6f2ae422480ab9792d6d1b3a8f20a19231b974a3aa5affc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_story.go",
+      "bytes": 11225,
+      "sha256": "80372f3895a52e0ab6fd65af834a90fa0d6660bec0681f152ef7212cbdfe0b7f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark51.go",
+      "bytes": 4406,
+      "sha256": "e9bced62792a797a96df84c8df4bf0958316cbde10244fa4404ca640e36577c5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_ring.go",
+      "bytes": 1681,
+      "sha256": "4ce7ff443360bc4f02cc32118cdd0e33f9dfcb9f01f913656d9e23fbf05e01c6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_effects_test.go",
+      "bytes": 3408,
+      "sha256": "0589d6a86aff2abe0734751f6ccd85b7fdb090125a3ab9fd2ebd11eea0279fac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_actors.go",
+      "bytes": 11107,
+      "sha256": "191593a9198b90858d318c994311a12ccdd1972b4096baf46182f53937db8cec"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_transactions_test.go",
+      "bytes": 3305,
+      "sha256": "0c15da7d92d2c605c10163f661ad09e521f7ad59e5e5d611febecb2457ebda01"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_bitmap_rows_test.go",
+      "bytes": 2370,
+      "sha256": "f7e8405135df2a7bae1adb1c6c4c8eb3279d45580344f47f85ecc15b1dc4f555"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_museum_layers.go",
+      "bytes": 6107,
+      "sha256": "7ca08438118ea8962d66a4a52d3c30351ce2a9abeda4f317d806ccb5a1e90312"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/music_sources.go",
+      "bytes": 2075,
+      "sha256": "2e614c3e2506759bd3fcaaf722620f0d770c94c3312b0be728d521d39aa04d97"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/recruitment_building_test.go",
+      "bytes": 3200,
+      "sha256": "d13fb3cbbe2b2629a423ad0986fdf8c2dc89ed0c39c9273d86d7276cb525d044"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_effects_test.go",
+      "bytes": 5008,
+      "sha256": "ad2739a6f46d31e3d7baad2e54cd264c1cae268becf76fb36b910df3e303853c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_encounter.go",
+      "bytes": 7755,
+      "sha256": "290a4b5ed2b7afa2df99eeaab1b22eb00cd00ec28b1dba9de09e12a2df1430d1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_man06_test.go",
+      "bytes": 4579,
+      "sha256": "5deebe8b347a2310e44a735f9bf2526885b5937c5524de59f08bee6b39fa405a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_vfx_test.go",
+      "bytes": 5055,
+      "sha256": "00270df04dc68b60421ff6f3dbfab7bf50d408ccc2e2ddc5a02d1075c845cb70"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_masked.go",
+      "bytes": 5715,
+      "sha256": "70b630e52b804deeddcf14ebd85feb8f1b769b63ec7d4c6e4e62e43e6a10a71b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_guard.go",
+      "bytes": 3595,
+      "sha256": "c29a9cac96f14683796b2da367a1c4c1d2c8739567ec7005f368437e1bd105f0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmarks_test.go",
+      "bytes": 1962,
+      "sha256": "b0cb7c73746f04fa13d125c97e48c305f97e1c7612aabe26a3242938413a9c55"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_museum_test.go",
+      "bytes": 9728,
+      "sha256": "1aa5bbcbab984366453e6b8175ffb1ca89069b1b018174c6dd9f3ba1fb816c18"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_direct_masked_rows_test.go",
+      "bytes": 9565,
+      "sha256": "ad31ed238a47c04f96417c39f3d099d73e250c2823cb75df4d857c59613c1720"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark54_test.go",
+      "bytes": 4814,
+      "sha256": "875effe75b59e0290ab2ae9e29c39b746fe1ff5c40171420e9da95d66a7a4ec3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_man21_test.go",
+      "bytes": 4694,
+      "sha256": "4991e6fa1790624c250cde91e37980cec2a262d6d32b68f1c7605a76f30e59ba"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_pages.go",
+      "bytes": 4802,
+      "sha256": "51d96e05929fc99a98bed54c2960c9c307d3f2959e0c113df1d55ba4219897c2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_pages_test.go",
+      "bytes": 4550,
+      "sha256": "08366ab96ebbaa7bd43733e123874446cfc0961ed64dbe64f64fe55644ccaa84"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_fault_test.go",
+      "bytes": 5586,
+      "sha256": "2430ccbbffa732e9c2ae9f0eb2a1cf8b0ef2a0302a0e60505bf8240ced61e458"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/music_test.go",
+      "bytes": 7509,
+      "sha256": "6c7ae9b6e08b614e0eb2aa6ccd3ba5e6eb7366ca303ca830d167c737e92bae5e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics_actor_test.go",
+      "bytes": 10260,
+      "sha256": "56929d4112926d8bf457473ae8c16d6fd8afb09356f449042888493804ceab47"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark56.go",
+      "bytes": 3970,
+      "sha256": "f3008caf4b68651c541aeb5d7908cb3b3596a799eae02e6dc94e926bbf882a2f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics_assets.go",
+      "bytes": 15778,
+      "sha256": "7b3ad1a3afa53100bc41e3d3ecdd2a9c739787e6576ec9ed616509c606b2ce14"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics_test.go",
+      "bytes": 12961,
+      "sha256": "3d75cecb4aece5cc5a8c484f25127a606d1d11d43739ed1776a2907d029df248"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/story_prelude_correction_test.go",
+      "bytes": 3521,
+      "sha256": "5de568a06d83c436f5810f595b56ce330c52a68c7ed5456c69c73ea57f9bf995"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_masked_rows.go",
+      "bytes": 6585,
+      "sha256": "08f2f2ce19ad972f88f7a6de3fc27b8f4c1adb378d16676d12943ae136718b24"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/story_background.go",
+      "bytes": 2222,
+      "sha256": "156c865aea394686f43bf4f72ab4a2aa4dc9399da6e58906a7a2a9bdbb170326"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_runtime_test.go",
+      "bytes": 5489,
+      "sha256": "bc8c73ad8f5fd76eefab7c684633571478e24421e3e981a2c3f79452ba6a7d64"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_step_clock_test.go",
+      "bytes": 3906,
+      "sha256": "48198dfbc46b73fc1bc267dd7c14d985b89311d9f7cd2159109955a6287ed885"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/record.go",
+      "bytes": 2688,
+      "sha256": "0a60de162f02fa45e07cb49f952c91825ac7089460a2e47aa8bc0e49795cd629"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark52.go",
+      "bytes": 3970,
+      "sha256": "7293c9c3808bdb2880fa720a93f20803430168859b8fa12b4cc64dc6b758bdee"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/record_test.go",
+      "bytes": 1607,
+      "sha256": "b8b5703060bce8ff773341ca2f5f74401461ee3aa513a9ca99d1c887e1aa4062"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_background_batch_test.go",
+      "bytes": 12518,
+      "sha256": "e76e9b01ce6de101ee950586e7ac14083f7595da67916890580f20c8787e4038"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_background.go",
+      "bytes": 2186,
+      "sha256": "fe7e7dfabe00444ea8cfcbfe129df960311a9ce2de42ddb7174cd199ee41235a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_vfx_draw.go",
+      "bytes": 3319,
+      "sha256": "79536955deee944aea9e4870f3e87e7d12fe98d2a5a8fa76d0be65945ca9da63"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/assets.go",
+      "bytes": 3926,
+      "sha256": "191487924098e20b631f63d8d3ad3f576b04e4db297ded27f35f6e52f8409048"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_pair.go",
+      "bytes": 3184,
+      "sha256": "668cee657e48f929cd6cbf4200db1b8cd8721b70033c2dc41939f0cc6dacbceb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_militia_test.go",
+      "bytes": 3737,
+      "sha256": "74964f69e7525571d77eb4785b33f4d074ab27c0e392e25940bc8f09c37b5c77"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_swords.go",
+      "bytes": 2188,
+      "sha256": "ecdf5c88dd2dc6a24c51e7ccbd31c9940263bc9a94fcfa73194d8f8e07b75884"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_encounter_batch_test.go",
+      "bytes": 12760,
+      "sha256": "6c85b369c43a3835535e7d838b7407b00107793bc1263976ced2122d7dea9484"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/music.go",
+      "bytes": 9322,
+      "sha256": "5d94b5ef8d0e3dca5c4037da0dac964d354f154cb981c1cb834a72a69f87274e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/poster_toolbar.go",
+      "bytes": 16336,
+      "sha256": "160db14738f89e7e62fb689ac303ae4d4d0f3d7dfb4c621a5bef22a7b06d96cf"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/story_background_correction_test.go",
+      "bytes": 1743,
+      "sha256": "82f75b5183ee671eb8d5b973ce478e778deb0d30100bdb27f03d5bca9413a151"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_quake_test.go",
+      "bytes": 7419,
+      "sha256": "e4d01a95a3e92dfd1566e761e495854a8f93bfc0095113020632031c8806ce34"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark48.go",
+      "bytes": 3970,
+      "sha256": "bba2ca7cbb75b4afcd0a743ea89dea39639b9660da2f9707b9ca64cc59cf2c06"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/console_test.go",
+      "bytes": 2537,
+      "sha256": "c7d677890cb352abe7f957176220664a57937ed34ab7f4f8a63a876aceb14f9d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark51_test.go",
+      "bytes": 11994,
+      "sha256": "9d5858577f5f22f68b4a93a7d6dc572e5fe40bb1ac8e85ba59bdcc147815fa6f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_glyphs.go",
+      "bytes": 7951,
+      "sha256": "ac61a9883409e06f209d3d11196f628932974bd4dccc2e73350df639e6a26205"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_masked.go",
+      "bytes": 10158,
+      "sha256": "b7301e3ad72cb03ef4d320f26cbd1c952da8ff939cdded5b30098966fbd8ea9f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_castle_test.go",
+      "bytes": 5265,
+      "sha256": "ce6eb568a8b701dd418807530c5f354c6c7e5560e2df210a5e31147580c4bd81"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/presentation_palette.go",
+      "bytes": 4038,
+      "sha256": "77fa6c94fc42c6c38c9e9ab15f20cfb3f856f81e31ede172c4b6e302a9cafd71"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/console.go",
+      "bytes": 3400,
+      "sha256": "bb1204911cb9c6f2aba00ed746561916808aaa04c61fe46235e64129c8a0ee60"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_render_reference_test.go",
+      "bytes": 3330,
+      "sha256": "d702659f6f709b9a0aedf86e4ba4aa6ae7a585bf2a1d50789ee052079afaf905"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_bitmap_rows.go",
+      "bytes": 3213,
+      "sha256": "b3078dbece57899bbd7200c7f0b3b31589fb3c0307384e9b018839df74107ce2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/owned_army_guard_test.go",
+      "bytes": 1835,
+      "sha256": "ca076080decbe066f249f1a053337d81fa087ea360c859f9498392eeb7c805b2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_background_test.go",
+      "bytes": 2399,
+      "sha256": "1aee397d4712c4a94d07adde182e9d45ff4302c53ae68b8a96084820f5941c71"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_assets.go",
+      "bytes": 4451,
+      "sha256": "3ef81f9de914b10124db7ab32f77cfd3f336b304a16bd5cd2e45b0dcec1f3db1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_friendly_man21.go",
+      "bytes": 6059,
+      "sha256": "b1c58f10ce36b9b8158487d555b082b02d749825a15c501f992b005f23353c7b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/font_moe_test.go",
+      "bytes": 1816,
+      "sha256": "49e8a8dc0c8917b2e99d6c8960a7cd5e26ee8b7c7bd8e885001b6f4d5e95925d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_compat_test.go",
+      "bytes": 8831,
+      "sha256": "e36b841c1d8a0c152798357f7c31a9e75da833aed4131e7e656a86d2fd804e83"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_direct_runtime_test.go",
+      "bytes": 6603,
+      "sha256": "c03e6648a4232fe593dbcfde0ed3c212324b8e56cd22811a42c787f467f7d9dd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/item_icons.go",
+      "bytes": 4797,
+      "sha256": "06ae818f816a578deb44e10282bb85ad3a1c801689f0e3f490fd20f64203c99c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_castle.go",
+      "bytes": 7589,
+      "sha256": "9411b22a4e91b5987720f4a31c8ea0f6af7b0f610f64080c060102ea5b578a10"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/completion_assets_test.go",
+      "bytes": 13293,
+      "sha256": "e703db1adfd2c510de43175c262b8241fbd2d27c9b6c1dbd13017d22414e668b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_ai.go",
+      "bytes": 7285,
+      "sha256": "8fe3f29c24ea702ced1bac8017991b775253bdb5e7156f77c0aa6e5d3b82f24d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/story_prelude.go",
+      "bytes": 6737,
+      "sha256": "3d0f3b901024bec8a50d93297695b95be39e32e87e3ce643480fab3666c99abe"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/presentation_observers.go",
+      "bytes": 3932,
+      "sha256": "56e3a32a9e27a998ecbd81d1ef0e4bef41cc974f5db60c0a2d0c72690cf482f3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_reveal_test.go",
+      "bytes": 7712,
+      "sha256": "81af029d160408ed3cf318dcfff84254387642d8a1d02e0ea58dfd263ba50f05"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_ai_policy_test.go",
+      "bytes": 7086,
+      "sha256": "b0d0e0bac88b2cd698dfb1206b1b0830c4d69274a4af4c743a46f55e59abe8ac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_vfx_runtime_test.go",
+      "bytes": 11589,
+      "sha256": "b045d34c6d3540ee540ca84d11c58c426cd22827250ba0697d1747a821707514"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/recruitment_building.go",
+      "bytes": 3096,
+      "sha256": "56b3d4333c844573a727523339224d67742991cc2881c809c9f86976c4f0683e"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_scene.go",
+      "bytes": 22619,
+      "sha256": "831fcedf23d9c2e82e96282c4b3be369173f9bfc5a168978b9b065c7f26dfaa9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/story_prelude_assets.go",
+      "bytes": 3152,
+      "sha256": "07874ca4beb5349449c8dc498ab3a0ef75d9c4b9bac687cc0089c5c778e1633b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_title.go",
+      "bytes": 7438,
+      "sha256": "cd523747f952ba244604f38646c1502f3e9bba14792bfe11c44b3fd45fb2c8c5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_vfx.go",
+      "bytes": 9527,
+      "sha256": "7cae39e2035794e759baa28cddc21da7bfffadda33d9ad9bf224d338427fdf7c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/owned_combat_test.go",
+      "bytes": 9108,
+      "sha256": "63700daa65925a753a0b07b1298dbc3823308d569243058f52524f71e5a89b13"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_museum_assets.go",
+      "bytes": 8888,
+      "sha256": "17b225d6b4cf853991e030e8b50d55cf21814f507c4b7e825ec23e22dfe4eca8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark55.go",
+      "bytes": 3970,
+      "sha256": "88795b70682bb7b2c35a7acf956cfb37730c77dc95b5730b45784d7dc396700d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_encounter10_test.go",
+      "bytes": 4949,
+      "sha256": "6e018efba109b7742fa00573bf208e75ad2552418b2ee876de7e41c4c27d2c3a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark49.go",
+      "bytes": 3970,
+      "sha256": "8cd7809e1f0dcdf59a2ef3593816f42444973ea6d1724199f89fac69017b0933"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_markers.go",
+      "bytes": 4649,
+      "sha256": "6a6ae57f58da00a2c1aa5e13721fa8af8014d26d75f5652e687db635bdb5760c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/overlay_reference_test.go",
+      "bytes": 826,
+      "sha256": "553447ddff2c38e2e32d253053bd612240cebfe0ec4c5c8d8fbdaca1c45512f5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_effects.go",
+      "bytes": 8033,
+      "sha256": "bd728f51c018aa3906da310696773a6649451e450d48a04aa7570affc96ce321"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_museum.go",
+      "bytes": 16381,
+      "sha256": "3f090d5bc0fdec25f64eab07e43827a106e78381adde6e1c35f091f7e8eae45a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_encounter7_test.go",
+      "bytes": 4918,
+      "sha256": "a6d6259bc25c23c0014befcbe14141c1bd49add2d266e38063f0ca8e15e6fa80"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/spell_cues_draw.go",
+      "bytes": 6354,
+      "sha256": "2740615ce9fb8f56465038a29716a2007657257ec267c07dc0d25912d845aaa0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/presentation_palette_test.go",
+      "bytes": 5236,
+      "sha256": "cac2879461d5af8683d0bb42ee58faa6eb660ccc53f352c7887de6494c46a246"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/graphics_actor.go",
+      "bytes": 6220,
+      "sha256": "258ffb5da4dbac699d9c912cd93ff3c7137a30f45fc9e1cd0c9668019656a7e7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark56_test.go",
+      "bytes": 4964,
+      "sha256": "78da6dcb9381ddd562e2c53a370dbece434401a78fc8a76446db25d2327ff99d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/troops_test.go",
+      "bytes": 11225,
+      "sha256": "1cb40408f2cb60623e31bb088c920835fb2ff4c25cc1747d4d82c0ca447576b3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/source_recruitment.go",
+      "bytes": 2786,
+      "sha256": "b003499e1680ee9195382d31f29b2f74a607245b73c62ea0fe77d7d32af389d4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_encounter_batch.go",
+      "bytes": 7706,
+      "sha256": "ab895abdaa2b7f6beba6c5797afeea7a23f58a1f8ebdae117bf58354ddebd2f2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_input.go",
+      "bytes": 734,
+      "sha256": "e3b16218e9131071f9514bdcc6192e402e109720593410e938d759765da5deef"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_palace_background_test.go",
+      "bytes": 7940,
+      "sha256": "7fa0554d957d67884349146ed80bb9a47135478a7b8eba2eab26fd867e25042c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/intro_publisher_test.go",
+      "bytes": 4385,
+      "sha256": "dc0b5d36fcae3aef043e3d6fd8cebbb7e153187cc9c971790db734ed7c3d4262"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/map_landmark54.go",
+      "bytes": 3970,
+      "sha256": "daa0b4aa23e4599a2a8afd3848fcb35ff61e6606a2dbc517075cf7cdb6b40514"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_quake.go",
+      "bytes": 5288,
+      "sha256": "0c433a4caeb7c9749f83ad9b7a658f522442cb896cbbc68c4c010d00b26792aa"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/item_icons_test.go",
+      "bytes": 12581,
+      "sha256": "c4511a51222ed75453c1929076d611a90261fabb3570a6b036529c8d52cfe93f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_actors_test.go",
+      "bytes": 3781,
+      "sha256": "fd6ea5fdcf00b44cf9249b35b87e76510dbf167521d5f25fde6be4a6d182af2a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_rules_runtime_test.go",
+      "bytes": 9821,
+      "sha256": "cb5c05d8abb1e48f765563c3843590b5eed25c3518d5980aa5b1a88260eb0056"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/battle_background_batch.go",
+      "bytes": 4509,
+      "sha256": "05aa1f29e63a6d61a91cf65e5212d3f88a6899f05195a21c10c5eaf61b474df5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/font_preferences.go",
+      "bytes": 1238,
+      "sha256": "fa6ac20e9733393e97c488dbb032f0afa64fd4e47abd4b2282b5cb134a043df4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/poster_toolbar_test.go",
+      "bytes": 8314,
+      "sha256": "d411a15ee1d2677f80987c68f5f5504a9590dd49c4ae4402b3fedc43031563cd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/eightsword/ending_portrait.go",
+      "bytes": 3832,
+      "sha256": "19dcb98837e52174d6aa68ad3ce93edf3e4900ce745a7ef67b70b62e11e30106"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/native_import_test.go",
+      "bytes": 5131,
+      "sha256": "51daa42a236e271a9ff6466b8e75daf747f26f13cca4c6653786b1b7afbfedae"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/openkb-hd-art.go",
+      "bytes": 4784,
+      "sha256": "272c84a3982bbdb2528bcaf0135ddd6e43bc186d50dae4dadcd8626203ad2cab"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-army-presence.go",
+      "bytes": 7566,
+      "sha256": "5c252deae7f1c5546c196e7cc2e91c9a18a80cf9c1d0ae086b5c96e6863650b3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/summon-data.go",
+      "bytes": 2248,
+      "sha256": "6a56ff38be5677312840e355c6614c4f8df18811fe1955409d9bc903b04ff960"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/reinforcement-camps.go",
+      "bytes": 6347,
+      "sha256": "dffbc6c310ffe82655eee85b33fcf4795ee2b29ea26123e244ccdc103eb39cd3"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/owned-battle-ui_draw.go",
+      "bytes": 5575,
+      "sha256": "6adce433ac7894d3072acf1501cc8b84b7b41cf7f2dfab182c8e9eb1441c535f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/monthly-native-save.go",
+      "bytes": 3163,
+      "sha256": "5c86eb7fe1ba27f682263401fbb33b50bdd126a3accc94d260a1c1548223a846"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-native-checkpoint.go",
+      "bytes": 7071,
+      "sha256": "7fa9b7d052d5e9f457bbf6a4debeda145a214c2c7fc541fd130917487faa9488"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/owned-army-ui.go",
+      "bytes": 10046,
+      "sha256": "65ce48cab265065c0586e370672fb9a7315816f754f86a1e44c1aa854dc9227c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/owned-army-model.go",
+      "bytes": 11322,
+      "sha256": "fc2eefd93775dafe07819191d54d8e8f3398e9830d12684fcd1408b07300f449"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/alchemy-native-save.go",
+      "bytes": 3161,
+      "sha256": "49ed48e8ed3981a66747f41ad74fb55bdc786dd858bb2d3bdddc717eaa3d906f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_actions_test.go",
+      "bytes": 14943,
+      "sha256": "476098ee4f4042e6cb1c3ed76fbfd26086918ef1d2486efd6104b60f4ee900a7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-controlled-battle.go",
+      "bytes": 5803,
+      "sha256": "1393fa409217761f922d5224c2f481ec1835d9905c2786892ef899d4280a91cf"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_setup_test.go",
+      "bytes": 17627,
+      "sha256": "9d5c616c210403371eab127fab8f46d4941815dd69d6e88ddac993f44f48952b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_support_test.go",
+      "bytes": 12494,
+      "sha256": "f6e2c6defa6560cdf82574df178c812091ed06b2dd471355847a690c58c70def"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/annihilation-origin.go",
+      "bytes": 5598,
+      "sha256": "567e238c8b20306670547d9ac1f495b44a4e6d3dc29e4de385ade0e9a957df0a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/treasure-data.go",
+      "bytes": 1816,
+      "sha256": "582c5c7ccade855b8050dc5167a68ee8c113781181ae5c4004d1716a345c34dc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_enemy.go",
+      "bytes": 22168,
+      "sha256": "99f71c35faded4d12ceaae5727a1114d8f891b555111b5fc4fa4193a89011f38"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/alchemy-ui.go",
+      "bytes": 1418,
+      "sha256": "804fb53031b1f4b0ebe63a8ac32c073f369da3c599fc6befc2d3b30297ada9c8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-refusal-rng.go",
+      "bytes": 4246,
+      "sha256": "1d5b6b43083bd8c6dbaec1f37819203f5c06fbc034ee88fd195ce75850b343c5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-paired-progress.go",
+      "bytes": 16383,
+      "sha256": "b74984dbddb6b9305841753af59b6bf0d533fb833d81071fb4bba9211b2c3b57"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_setup.go",
+      "bytes": 9134,
+      "sha256": "0af6134d063cebcc4c8c1c2bc9131c4fdd4fbc59a03c46e1b3c1ce962b333aca"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_recruit_quantity_test.go",
+      "bytes": 13379,
+      "sha256": "5e401b6204ca0d6ae3970c69841e1e75a19256cfc1c3bd04b9b5723a529971ac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/world-army-review_draw.go",
+      "bytes": 2906,
+      "sha256": "e35414e25035fcbc31c40743508fe7c1d0357887021624747d262c1059c912ac"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_rounds_test.go",
+      "bytes": 13778,
+      "sha256": "9a85d73070a9705f99ed45b4cb84d163362c0e03af664f71124368c047c5db1d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/recruit_presentation_test.go",
+      "bytes": 3232,
+      "sha256": "7054923548d6822c084d3a924ff14c71942d7741659e544004d0454a2b38aec4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/summon-store.go",
+      "bytes": 4021,
+      "sha256": "d57ffc3b162ebd870c3076e3632a19e196587dbc97ed19a055bafa81b0537cff"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/treasure-ui.go",
+      "bytes": 1456,
+      "sha256": "0d328df221b34fd79cb11ed578e12a378f7230865d88e72e6eb56063b05e7758"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_rounds_sites.go",
+      "bytes": 5100,
+      "sha256": "a940b2c022d5a2d0793c22047ddc9fd1754024ec9504100c2c336571c4dfa04b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/guarded-battle.go",
+      "bytes": 10684,
+      "sha256": "b3d50f6cd723d9c67dabb01dcf6bc909c2427ef1912ca15930ea9e4ee105c653"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/alchemy-port.go",
+      "bytes": 7421,
+      "sha256": "f1c2d388d8b18dd11f559ade0e28d1a238c39f5bd35f85f7836980d9fd8cb67f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/guarded-store.go",
+      "bytes": 6753,
+      "sha256": "b48fcee981fa1df5c3d8c49009a69e5e75471011163197fd1c44d8fe0fd944d8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/annihilation-roam.go",
+      "bytes": 1581,
+      "sha256": "ac87238ee4c5c88ca57a0cdf53e778f5f7c80663de497288e8dd398b196c1501"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-owned-world.go",
+      "bytes": 13343,
+      "sha256": "7de4b33fe1dc33b7c887a0c8cccf614ba0b18767f4e90b1bf930cd7d5704ad3b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-camp-stock-save.go",
+      "bytes": 8440,
+      "sha256": "3070ada992a08eb61260dc5aa1080026c19d562965636c97b1ffa3a73f9bd45a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_army_fields_test.go",
+      "bytes": 8725,
+      "sha256": "edca018bd559f27f535b1284108db7cc62715e7d0bc903a74793048bdd27b7d1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_army_fields.go",
+      "bytes": 7830,
+      "sha256": "c0f35dec377adc687cba5f67a768e1f894d940f039fb1747706b62c783bbdcfd"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/summon-port.go",
+      "bytes": 7515,
+      "sha256": "310987c5399388238e9eeaa0e3569b31ef40ad84e97f1d0ffe0103adc9f33ad9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-owned-encounter.go",
+      "bytes": 12888,
+      "sha256": "47088629614c1505cb1eb38f43279ec5d7c8c858e2cf9933836e529ed598071c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/native_import.go",
+      "bytes": 6203,
+      "sha256": "0bd13f1caf576fcd3af202b17855a2e7a5af6cde36bb400516ceb21f16752105"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_support.go",
+      "bytes": 8436,
+      "sha256": "54dd82ef68620a0b51693f01ac488e61c09b2ab83d0d1c1b380175664d497fec"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/recruit-native-main.go",
+      "bytes": 3234,
+      "sha256": "b79e8a425e00d6d3bfd3813fffe9cdf33dbef6d89c02d53fcde45fd2d8c30981"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-world-army-dismiss.go",
+      "bytes": 8969,
+      "sha256": "1ef97925ea6583ec32817fee0fe146a4edee84cf81a7feed0a2022051476a63d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/origin-map.go",
+      "bytes": 3736,
+      "sha256": "db42a5097b52b6fc63a268f8d87f78b58d2f9fc81d77909cfe8330a918e306b7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/monthly-store.go",
+      "bytes": 4413,
+      "sha256": "d6e4970bf100fcb052619c3653a4179e0419f2c47c1c01d69e2104863d098846"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_world_test.go",
+      "bytes": 14193,
+      "sha256": "9d6e12b77164f3aa6975c00ebe2236efecae8e143f5a475ef377c1aa1aca493b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/owned-army-ui_draw.go",
+      "bytes": 14187,
+      "sha256": "fedee56bace5b26b43ff2dc10f3654ff92710e87b72c84dff52faa7463364587"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/normal-encounter-ui.go",
+      "bytes": 11616,
+      "sha256": "f476c8c2f3d10cc2705b91be192a7a7c160fd47d217fe7e678882441e77050c9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_army_review.go",
+      "bytes": 10770,
+      "sha256": "6861d8aed754da59ecb8a6a738a91af728d9e6117f92c9addb0df8bb5e76a848"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/native-checkpoint-port.go",
+      "bytes": 6324,
+      "sha256": "5a55fa427c97883c8e1af27782a8e1d4732f15196ccd4d73eaa9aad584422f11"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/reinforcement-ui.go",
+      "bytes": 9433,
+      "sha256": "3c2f22ee03b0d5f25f2936bf5d6e8c75aeeca083eecdfb5487faaef0c7bbda70"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/summon-native-save.go",
+      "bytes": 3211,
+      "sha256": "84392ff59e3c190c6c1c8c87e849b1b15de1c40107941f849e5219a9caf434bb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/initialization.go",
+      "bytes": 367,
+      "sha256": "39f93be461048dc687ea3c249533f51d0392aeb26e9f812739536f4d1eab88cc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_army_projection_test.go",
+      "bytes": 15239,
+      "sha256": "70b1518d132717e2fdf20385287090fabea0efe28603fc642309e2d008601274"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_recruit_quantity.go",
+      "bytes": 10479,
+      "sha256": "dc25022bc642925cd574035419518f8ec4d0fa6499c5cb836bafabba09568108"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-world-army-review.go",
+      "bytes": 6142,
+      "sha256": "b367e8e2dc6b17f7ae52cf5429579265e92de199a8e4587c6e0d5079f39d75bc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/monthly-ui.go",
+      "bytes": 1227,
+      "sha256": "1d104f7b51dd48d74260a060823b1139e150a6432fda2b90579e872bf0ebe049"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_rounds.go",
+      "bytes": 21218,
+      "sha256": "e431465114a0eb83b776d4731b33984dd2139dc5cd61be8d21830a9d7e65dd9a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/refusal-rng-ui.go",
+      "bytes": 3520,
+      "sha256": "07b65c677eb59316b03477eb608fe2e27741652036620fc30065cc6265a0febb"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/sword-guards.go",
+      "bytes": 4083,
+      "sha256": "44238603489c22420027a6ded8187f10c4eb61c74d3e7750c92d163ae9c299c4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/alchemy-store.go",
+      "bytes": 4022,
+      "sha256": "fe05d8e13945f205c731142a8df56254462211178d5294946820f6ebfce36ec6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/world-army-dismiss_draw.go",
+      "bytes": 2448,
+      "sha256": "79b62a623e4e129645605dcce4a4dadd9fca68fe9f0657585b5f8f3c26365b6f"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/rear-actions.go",
+      "bytes": 3004,
+      "sha256": "858518a1d726f08793e11d5c5c8acac006fa2707ee6683e9f56acb3fb0ac2c0a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/native-checkpoint-ui.go",
+      "bytes": 1372,
+      "sha256": "100789605027a2e55121e96459ce9952e378fc169dd2dd924a24c3dd77c84c50"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_enemy_test.go",
+      "bytes": 10911,
+      "sha256": "cc8acb69d614d7ffc9f8effd61f4443e4f404cfeb232e4977716fee68ffa5184"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_army_projection.go",
+      "bytes": 9066,
+      "sha256": "310c7c8c09fc578aa4c35d73c9627d68276e29d6896e01574540071099e4eafa"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_world.go",
+      "bytes": 10474,
+      "sha256": "7c7d3ee9df961bddf995433da92997459177be13139c816064c869e32c392228"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/battle-resume-ui.go",
+      "bytes": 3804,
+      "sha256": "9b194444d388ac95aaac4988181b2468282ad3de26c35fa39e4fe928875cd531"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/treasure-port.go",
+      "bytes": 7056,
+      "sha256": "bb657db7d294cd2f368da6b84fdb60dffe66a8f455c672204ad8a60bfec35853"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_reinforcement_quantity_test.go",
+      "bytes": 9681,
+      "sha256": "f40df08ee5c2173a569749573b83ab1e999bb6769fa20823dabf1d0124a81256"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_army_dismiss_test.go",
+      "bytes": 12873,
+      "sha256": "3cfa60ea6658095ece5cf408207dd95b638beed7a74a2e9f05ea962d67012919"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_bridge.go",
+      "bytes": 5024,
+      "sha256": "e9fc2ab7fc9d3b9c9a7bebcf7843181b096822f48586226368bd0de71130ce82"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/sword-lifecycle.go",
+      "bytes": 1420,
+      "sha256": "f6c4818b74051f7eb3976e228137a9b615d77358d5defdfc6af5369097393899"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_army_dismiss.go",
+      "bytes": 10610,
+      "sha256": "b1da241040af4f717002e1c57c842ccb38bdb1fafcd6316be9f3da80b8aa3957"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-monthly.go",
+      "bytes": 3484,
+      "sha256": "d4267c766328230cd03762b14cd1076910418d97847c598a896a2d794620463d"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/treasure-native-save.go",
+      "bytes": 3171,
+      "sha256": "2d95da1ef97d536066e031cd216ea39a130179460be6f8c62774b3f1fee62bd7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/summon-ui.go",
+      "bytes": 1347,
+      "sha256": "399870b70480f30f1e3335f246659afcad41bbd4537b6fd84672c1c209ee0a1a"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/owned-battle-ui.go",
+      "bytes": 6674,
+      "sha256": "108d1561b8709e468cae0743b8bfb75c9abfc47b7fa7832b3d4c771170a2e205"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/camp-stock-port.go",
+      "bytes": 3295,
+      "sha256": "0f63ba0d9edd4aca42a3b6a29d8fdb7f329cef19fbc94e05e120108c71467337"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/monthly-wide-ui.go",
+      "bytes": 2914,
+      "sha256": "70fe107b7cbe1324e486db8c7a183b364e773de6ae35acdc0efe59cc18659057"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/alchemy-data.go",
+      "bytes": 1612,
+      "sha256": "54e843a703f356ce8e03b37beee67a9d678a9344542f30ccaa6d920f280748b1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-camp-stock.go",
+      "bytes": 2638,
+      "sha256": "3082cb4f78621f2e60899d2c985973b93d7ccb5d9faff439258bb3a46d4a65d9"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_casualties_test.go",
+      "bytes": 14527,
+      "sha256": "dde60888727fc3ff33b956f07a54e0964e09ed5500b25787e402f7916670fe88"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_spells_test.go",
+      "bytes": 20734,
+      "sha256": "2c300c9380b5a266b12793a294aeef1b65672b7ca4687158fdfa23d6000272db"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/recruit-icons-ui.go",
+      "bytes": 5412,
+      "sha256": "d8b57255077ed2df2d6399df6f264d4747bf0fb98d937e10c828adcf95cc1b01"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_reinforcement_quantity.go",
+      "bytes": 7621,
+      "sha256": "e767980a7e2dc146db4d6f06f22b126dd0f10a538bb6a5a2cbb0000fc53b4008"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_casualties.go",
+      "bytes": 15823,
+      "sha256": "0ada1041ed6b4ec314ffb2f93637b7724aca171098979ceb55d76eb2eb447e8b"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/world-army-review_main.go",
+      "bytes": 16875,
+      "sha256": "e1f1c039bd6601002163da97bdb682fc6d144b781ab5121bef193e18fc4bda54"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/monthly-port.go",
+      "bytes": 6924,
+      "sha256": "d3713a5bd2f54800ff99b641e3b856c620098b700e08d2c6cafc72f3ce0afd62"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-native-progress.go",
+      "bytes": 2854,
+      "sha256": "0e6a5cd69cfb857caa3a7b48e7caf362225ce2aa00aaa02482a573e903e2bb73"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-owned-defeat.go",
+      "bytes": 11877,
+      "sha256": "3c586990060d425c9948c5db104dad29d83ddcd3da874c5cb48622f42ba9de18"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/battle-resume-pins.go",
+      "bytes": 198,
+      "sha256": "8a6eecb438e4ceb4bc7b6c82278da97f786f59d154416308fb81d67e63752b15"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/guarded-layout.go",
+      "bytes": 788,
+      "sha256": "c384d3b77380d57f317bc424b6af96459df9cb864f6fb2f10fc90f97c1a2dde8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-world-army-port.go",
+      "bytes": 9804,
+      "sha256": "ec99b71036286802b9f24c015b27dc9c26a450384c041a35e98cef124c9a7eb5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_army_review_test.go",
+      "bytes": 8537,
+      "sha256": "2bca0566d7766dd4dbd96ec441cbdeb459d9ea1e00ef89c80f36cc2fad039da5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-runtime-enemy.go",
+      "bytes": 6633,
+      "sha256": "3e02e01b8a6b4a545912c2f8681d05f3072394ec2fee174db919b7ca15fdeaae"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_spells.go",
+      "bytes": 15609,
+      "sha256": "da119713ef2fc61591365f178e372a36b5a0fe4049ef96a58556293d41207082"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_bridge_test.go",
+      "bytes": 14116,
+      "sha256": "8ddcea14e09ef7017b557f0a51d033792aff3e1f7642c2a21c18729f2862d4bc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/original_battle_actions.go",
+      "bytes": 8631,
+      "sha256": "33cf09f95e91441beba41daa42b4149665a94ceb30175e42d9368e3c6272b2b4"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/treasure-store.go",
+      "bytes": 3854,
+      "sha256": "a6e733833184a35e336cd26a6d23a490da39fd8542a4bc4af315bfd024e615bc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/internal/ownedworld/research-battle-resume.go",
+      "bytes": 16360,
+      "sha256": "88c6f664b614e461bd9a6b264af8ff9f48d1c8fa8edbae112d22f16f75814583"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/cmd/8sword/main.go",
+      "bytes": 22725,
+      "sha256": "597e019ae9714336669bef842715009f2e70c2b15d7a5c91ce1affbc24bb2602"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/cmd/8sword-replay/main.go",
+      "bytes": 3698,
+      "sha256": "7a39131be154ccf10b67f25ec42a36355e1af99b413cf249a91e3adfd75afcab"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/source/cmd/8sword-owned/main.go",
+      "bytes": 301,
+      "sha256": "7709b9af19a77dd6be4c1a45209574dbb80e43676e3f11a9b89f5275c313cc81"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/initial-input-failed/ownedworld.test",
+      "bytes": 17078560,
+      "sha256": "8bc3420de5fb3983efa210596b0c3c5e56e6fd4f5acf66d7740bf1819b830605"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/fixture-boundary-failed/ownedworld.test",
+      "bytes": 17078712,
+      "sha256": "cbf7600156f3bc342dee72023eb6bd0d9f8f6621d21f7d3ee417dbe928b07c39"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/first-passing-cohort/ownedworld.test",
+      "bytes": 17094792,
+      "sha256": "3e45a71d0840cf894e1f7c96a6e7be4c018a6d4bb9da7c03553ae05882a1e3fc"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/ownedworld.test",
+      "bytes": 17145888,
+      "sha256": "33c9f1061cfb9d3eacb81b0a13ee915b1a3bfa5ec657ad3bcfa6bf3e834b2170"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/motion-research.test",
+      "bytes": 17156112,
+      "sha256": "171b34b263d4d75a3c45f1935501812a23d285f4dbde1d8575af806e72b24639"
+    }
+  ],
+  "build_cache_path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/build-cache",
+  "build_cache_files": 1777,
+  "build_cache_bytes": 228167696,
+  "preserved_verification": "original-battle-enemy-verification-r1.json",
+  "kept": [
+    "ownedworld-final.test",
+    "current source and receipts",
+    "all permanent objects",
+    "approved artwork",
+    "other projects and shared Go module cache"
+  ]
+}

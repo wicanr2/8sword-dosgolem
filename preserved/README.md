@@ -1,5 +1,34 @@
 # 必要資料永久保存
 
+## 原戰場敵方特殊Go資料保存
+
+本批2010檔／513去重物件，壓縮85329591 bytes。本機`preserved/original-battle-enemy-r1/`保存300來源候選、初版／最終測試程式、固定輸入、50份函式匯出、完整PNG／state、F7進度、獨立程序Continue，以及配置與後排換位的失敗證據。完整原資料與物件排除Git，縮圖與索引沿私人倉庫保存；快取不保存，沒有重畫素材。
+
+[清理計畫](original-battle-enemy-cleanup-plan-r1.json)與[結果](original-battle-enemy-cleanup-r1.json)只刪605份已保存且逐SHA核對的舊副本，以及1777份本批Go快取，共317840209 bytes。現行來源／最終測試程式、所有永久物件與定稿圖保持；[清理後核對](original-battle-enemy-post-cleanup-audit-r1.json)及[收尾核對](original-battle-enemy-integrity-r1.json)另列。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)、[獨立核對](original-battle-enemy-audit-r1.json)、[逐檔清單](original-battle-enemy-r1.json)、[脫離workplace核對](original-battle-enemy-verification-r1.json)、[成果](../docs/images/original-battle-go-enemy-r1.png)及[圖片來源](../docs/images/original-battle-go-enemy-r1.json)為入口。[控制器](../internal/ownedworld/original_battle_enemy.go)、[抽驗](../internal/ownedworld/original_battle_enemy_test.go)、[換位模型](../internal/ownedworld/original_battle_rounds.go)與[工具](../tools/original-battle-enemy.py)可回查完整來源。
+
+十三組原版／Go對照通過，含八分派、原版模式、兩種施法者、固定失敗與原亂數分派。第八分派不由已知亂數區間選中，只作受控驗證。46計數原指令、12 alias原指令、60傷害模型、34拒絕及72原換位分支通過。換位分支只替代畫圖／傷害callee，不當完整戰鬥oracle。全新增軍隊受術時，原種類／兵數欄保持0。
+
+混合局明示74民兵／2狼／2弓箭手及敵3名原12號／10狐狸，敵先手及首次分派1為fixture。特殊使兩種新兵各2→0，三次普通動作後取勝，剩71民兵、金519、戰績8。真正F7及獨立程序Continue保持軍隊、世界數值、位置與次數。本場native規則，formation只驗存檔標記；一般玩家入口保持停止，沒有新增X11或自然敵軍驗收。
+
+`ORIGINAL-MOTION-REAR-20261103`否定後排目標一律target%3的舊假設。十三組特殊返回樣本沿修正前cohort，敵方控制器完全相同；核對器只允許精確的目的列純函式與呼叫變更，逆轉後比對原SHA。最終來源另驗72原分支、完整勝局與既有普通／法術／輔助術／世界回歸。最初兩輪失敗來自配置早於原敵軍生成，原先的鍵盤等待判讀已撤回；全state與來源均保留。
+
+工具在固定Pillow11.3.0容器使用`freeze|audit|publish|archive|verify --project --out`，保存另加`--archive`。完整Go1.24.13 Docker命令、掛載、配額、種子、cohort與失敗分類在保存內execution-r1.json。`audit`對12279行IDA bytes、公式、Frame、原9張地圖及成對F7冷讀作獨立核對。還原依逐檔清單解壓對應物件，先核對stored SHA、原SHA及大小，依原mode寫至新目的地，不覆寫不同檔案。
+
+不掛workplace的核對命令如下。輸出檔須使用尚未存在的名稱。
+
+```bash
+timeout 180 docker run --rm --init --network none --user 1000:1000 \
+  --memory 1g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword/tools:/tools:ro \
+  -v /home/anr2/cht/8sword/preserved:/archive:ro \
+  -v /home/anr2/cht/8sword/preserved:/out \
+  sc-cht-hdtools:pillow11.3.0-r2 \
+  python /tools/original-battle-enemy.py verify \
+  --archive /archive --out /out/original-battle-enemy-verification-r2.json
+```
+
 ## 原戰場凝滯複製Go資料保存
 
 本批1302檔／466物件，壓縮53027980 bytes。298來源候選、初版／最終測試程式、固定輸入、30函式IDA匯出、未縮PNG／state、兩份F7及獨立程序Continue、額外行動輸入失敗均已保存。完整物件在本機`preserved/original-battle-support-r1/`，不進Git；快取排除，不重新生成原圖。

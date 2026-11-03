@@ -1,0 +1,235 @@
+{
+  "status": "passed-original-battle-enemy-integrity",
+  "post_cleanup_audit_equal": true,
+  "new_links_checked": [
+    {
+      "document": "AGENTS.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "document": "AGENTS.md",
+      "target": "tools/prepare-runtime-enemy.py"
+    },
+    {
+      "document": "AGENTS.md",
+      "target": "tools/research-runtime-enemy.go"
+    },
+    {
+      "document": "AGENTS.md",
+      "target": "tools/probe-runtime-enemy.go"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "preserved/original-battle-enemy-audit-r1.json"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "docs/images/original-battle-go-enemy-r1.png"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "RESEARCH-LOG.md#敵方特殊與後排換位的go接管"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/images/original-battle-go-enemy-r1.png"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/images/original-battle-go-enemy-r1.json"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "preserved/runtime-enemy-audit-r1.json"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "preserved/original-battle-enemy-audit-r1.json"
+    },
+    {
+      "document": "WORKLOG.md",
+      "target": "preserved/runtime-enemy-integrity-r1.json"
+    },
+    {
+      "document": "WORKLOG.md",
+      "target": "preserved/original-battle-enemy-audit-r1.json"
+    },
+    {
+      "document": "WORKLOG.md",
+      "target": "preserved/original-battle-enemy-verification-r1.json"
+    },
+    {
+      "document": "WORKLOG.md",
+      "target": "preserved/original-battle-enemy-cleanup-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-enemy-cleanup-plan-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-enemy-cleanup-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-enemy-post-cleanup-audit-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-enemy-integrity-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-enemy-audit-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-enemy-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "original-battle-enemy-verification-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../docs/images/original-battle-go-enemy-r1.png"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../docs/images/original-battle-go-enemy-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../internal/ownedworld/original_battle_enemy.go"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../internal/ownedworld/original_battle_enemy_test.go"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../tools/original-battle-enemy.py"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../docs/images/rear-actions-enemy-r1.png"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../tools/prepare-runtime-enemy.py"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../tools/research-runtime-enemy.go"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "../tools/probe-runtime-enemy.go"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "runtime-enemy-audit-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "runtime-enemy-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "runtime-enemy-verification-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "runtime-enemy-integrity-r1.json"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../internal/ownedworld/original_battle_enemy.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../internal/ownedworld/original_battle_enemy_test.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../tools/original-battle-enemy.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../preserved/original-battle-enemy-audit-r1.json"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../images/original-battle-go-enemy-r1.png"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../images/original-battle-go-enemy-r1.json"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../internal/ownedworld/original_battle_enemy.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../internal/ownedworld/original_battle_enemy_test.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../tools/original-battle-enemy.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../images/rear-actions-enemy-r1.png"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../preserved/runtime-enemy-audit-r1.json"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../tools/prepare-runtime-enemy.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../tools/research-runtime-enemy.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../tools/probe-runtime-enemy.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "../../preserved/runtime-enemy-audit-r1.json"
+    }
+  ],
+  "new_sources_and_documents_uid": 1000,
+  "research_root_owned_or_md_directories": [],
+  "formal_runtime_unchanged": true,
+  "private_github_push_record": "WORKLOG.md",
+  "docker_scope": "All task containers used --rm; no persistent container created.",
+  "remaining_scope": [
+    "Explicit enemy roster, first-side and selector fixtures; not natural enemy acquisition.",
+    "Selector7 is not selected by observed original remainder340 mapping; controlled dispatch only.",
+    "Original intermediate arithmetic and animation retained; Go owns final counts/counters.",
+    "Special-return pairs precede the exact rear-target helper edit; 72 isolated original branches and a final-source world chain verify that edit.",
+    "Engine frames; no new X11 acceptance.",
+    "Guard/boss bridges, rules/AI integration, dynamic poses, wide animation, mid-battle save and general startup remain open."
+  ]
+}

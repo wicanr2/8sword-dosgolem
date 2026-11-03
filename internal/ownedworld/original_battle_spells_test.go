@@ -205,6 +205,10 @@ func spellEncounter(t *testing.T, e *game.Engine, selector int, cancel string, g
 			return
 		}
 		pickerNode = int(at)
+		if cancel == "pass" {
+			o.PressScan(" ")
+			return
+		}
 		if cast && (cancel == "target" || cancel == "target-space") {
 			if cancel == "target-space" {
 				o.PressScan(" ")

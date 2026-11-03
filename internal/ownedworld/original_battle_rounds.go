@@ -27,6 +27,7 @@ type originalRoundSwap struct {
 	BeforeA, BeforeB uint16
 }
 type originalBattleRounds struct {
+	EnemySpells          *originalBattleEnemy
 	Spells               *originalBattleSpells
 	AllowWorld, Released bool
 	Actions              *originalBattleActions
@@ -62,6 +63,9 @@ func (r *originalBattleRounds) begin(m *dg.Machine) (bool, error) {
 }
 
 func (r *originalBattleRounds) checkProjection(m *dg.Machine) error {
+	if r.EnemySpells != nil && r.EnemySpells.Active {
+		return r.EnemySpells.projection(m)
+	}
 	if r.Spells != nil && r.Spells.Active {
 		return r.Spells.projection(m)
 	}
@@ -145,6 +149,9 @@ func (r *originalBattleRounds) compare(m *dg.Machine, s originalRoundSite) (bool
 }
 
 func (r *originalBattleRounds) currentRows() [2][6]ArmyStack {
+	if r.EnemySpells != nil && r.EnemySpells.Active {
+		return r.EnemySpells.Rows
+	}
 	if r.Spells != nil && r.Spells.Active {
 		return r.Spells.Rows
 	}
@@ -315,9 +322,8 @@ func (r *originalBattleRounds) enter(m *dg.Machine, side int, ip uint16) (bool, 
 	*c = originalBattleCasualties{Actions: a, Player: side == 0, Direct: direct, Rows: r.Rows, HP: r.HP, Projected: r.Projected, HPWords: r.HPWords, Started: true, EntrySP: cpu.R[dg.SP], EntryBP: cpu.R[dg.BP], DisplayValue: target.Count, Record: originalCasualtyRecord{Player: side == 0, Target: t, Before: target.Count, After: target.Count}}
 	r.MotionAfter = r.Slots
 	if !direct {
-		from, to := int(ss), int(ts%3)
 		var err error
-		r.MotionAfter[side], err = roundMotionPlan(r.Rows[side], r.Slots[side], from, to)
+		r.MotionAfter[side], err = roundMotionPlanForTarget(r.Rows[side], r.Slots[side], int(ss), int(ts))
 		if err != nil {
 			return false, err
 		}
@@ -329,6 +335,22 @@ func (r *originalBattleRounds) enter(m *dg.Machine, side int, ip uint16) (bool, 
 	}
 	a.Target = &c.Record.Target
 	return false, nil
+}
+
+// Original rear-target cases in sub_21EA0/sub_22DBC return to the source
+// row except 0->4 and 2->3, which end on the middle front row.
+func roundMotionPlanForTarget(rows [6]ArmyStack, slots [6]uint16, from, target int) ([6]uint16, error) {
+	if from < 0 || from >= 3 || target < 0 || target >= 6 {
+		return slots, errors.New("round motion source/target bounds")
+	}
+	to := target
+	if target >= 3 {
+		to = from
+		if (from == 0 && target == 4) || (from == 2 && target == 3) {
+			to = 1
+		}
+	}
+	return roundMotionPlan(rows, slots, from, to)
 }
 
 // Original 22F55/23607 and symmetric player branches: an empty destination

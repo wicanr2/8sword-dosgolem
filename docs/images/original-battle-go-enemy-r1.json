@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "sha256": "f47c9655ad7f6e38c515bb82b5e7278c545de33f7bdfa08c0ba1c5575d768015",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/enemy-r1/native-mode-mode-1/frame.png",
+      "sha256": "e3892037b210bfdbcfb621a660405014b761eb68dd0cffa1f97083df17db7763"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/enemy-r1/selector-1-hd-mode-1/frame.png",
+      "sha256": "02bc4ed0865993035ca20f040b7e3a2b6191265a0efa78349e524404620167d8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-enemy-r1/enemy-world-r1/map.png",
+      "sha256": "39b1c942e0aea9af6253fd1d606d693955275665d0ec4eea0ff196dbfac603f7"
+    }
+  ],
+  "actual_window": false,
+  "animation_midframe": false,
+  "general_player_entry": false,
+  "scope": "Controlled enemy fixtures; original/HD completion frames and postbattle map."
+}
