@@ -98,6 +98,7 @@ type originalBattleSetup struct {
 	Plan                    originalSetupPlan
 	Phase                   string
 	FormationCalls, HPCalls uint64
+	Actions                 *originalBattleActions
 }
 
 func (x *originalBattleSetup) rows(m *dg.Machine) ([2][6]ArmyStack, error) {
@@ -221,9 +222,12 @@ func installOriginalBattleSetup(e *game.Engine, catalog game.OwnedCombatCatalog,
 	}
 	if preview != nil {
 		// An expanded setup is never allowed to fall through to native actions.
-		swordOnHostInstruction(e.Oracle, oracle.Far(0xf67, 0x35), func(*dg.Machine) (bool, error) {
+		swordOnHostInstruction(e.Oracle, oracle.Far(0xf67, 0x35), func(m *dg.Machine) (bool, error) {
 			if x.Phase != "ready" {
 				return false, &worldArmyPortFault{"setup preview phase"}
+			}
+			if x.Actions != nil {
+				return x.Actions.begin(m)
 			}
 			return false, errOriginalBattleSetupHeld
 		})
@@ -245,7 +249,7 @@ func composeOriginalBattleSetup(e *game.Engine, x *originalBattleSetup, art *hdU
 		}
 		s := x.Plan.Rows[0][raw]
 		p, ok := x.Catalog.Profiles[s.Unit]
-		if !ok || p.NativeKind != 0 {
+		if !ok || p.NativeKind != 0 || s.Count == 0 {
 			continue
 		}
 		im := art.Images[s.Unit]

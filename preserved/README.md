@@ -1,5 +1,19 @@
 # 必要資料永久保存
 
+## Go存活與原版敵方選敵保存
+
+本批1574檔／382物件，壓縮58424602 bytes；成功、失敗與診斷來源均保留，編譯快取不保存。
+
+[本批清理](original-battle-actions-cleanup-r1.json)只刪逐SHA確認已保存的舊候選副本與本批編譯快取；現行候選及固定輸入保持。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)、[核對](original-battle-actions-audit-r1.json)、[逐檔清單](original-battle-actions-r1.json)、[脫離workplace核對](original-battle-actions-verification-r1.json)及[收尾核對](original-battle-actions-integrity-r1.json)為入口。287來源隔離候選讓原存活及敵方選敵讀Go兵數，保留原版／原版HD戰場。新增ID不進原種類、兵數或圖片表。混合與全新增編成可被原版電腦選為目標，但仍在出手前停止。
+
+65組原指令對照、80次新增ID的32位兵數比較、各類拒絕、原投影19種拒絕回歸，以及原版／HD正常冷啟動選敵通過。原版暫時目標代碼造成的非軍隊word讀取已有IDA及動態證據，Go相容分支保留原重抽與seed。兩案新兵測試明示typed override及敵先手原參數1，各五次暫停重試保持RAM、cycles、seed與選敵；尚未驗新增兵玩家半回合、攻擊、減員、法術、完整戰果或GUI。
+
+入口為[Go控制器](../internal/ownedworld/original_battle_actions.go)、[抽驗](../internal/ownedworld/original_battle_actions_test.go)、[IDA匯出](../tools/export-original-battle-actions-ida.py)、[準備／核對／保存](../tools/original-battle-actions.py)、[成果圖](../docs/images/original-battle-extended-target-r1.png)與[來源](../docs/images/original-battle-extended-target-r1.json)。完整候選、固定資料、14函式IDA bytes、成功／失敗來源及測試程式、各組state與未縮PNG保存在本機`preserved/original-battle-actions-r1/`，不進Git。縮小成果沿既有私人倉庫保存。原197來源七程式、923核心、535素材及1071美術保持。
+
+固定Pillow11.3.0 r2容器用`original-battle-actions.py prepare|freeze|audit|publish|archive|verify`，參數見`--help`。研究沿`battle-r1/original-battle-actions-r1`，Go1.24.13、IDA9.4、唯讀掛載與UID1000／network none／配額見保存內`execution-r1.json`及WORKLOG。保存用`archive --project /project --archive /archive --out /archive/original-battle-actions-r1.json`；不掛workplace的驗證用`verify --archive /archive --out /out/新核對.json`。清理前先逐SHA核對本批，不依賴workplace副本。
+
 ## 原戰場初始陣位與HP接管保存
 
 本批544檔／402物件，壓縮42763026 bytes，已完成不掛workplace的逐SHA及大小核對。

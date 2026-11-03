@@ -1,0 +1,116 @@
+{
+  "status": "passed-original-battle-actions-integrity",
+  "source_files": 287,
+  "archived_files_checked": 1574,
+  "positive_link_control": true,
+  "new_links_checked": 25,
+  "source_matches_tested_candidate": true,
+  "python_AST": true,
+  "source_UID": 1000,
+  "root_owned_or_md_directories": 0,
+  "detached_verification": true,
+  "publication_SHA": true,
+  "runtime_backlinks": 6,
+  "links": [
+    [
+      "AGENTS.md",
+      "docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed"
+    ],
+    [
+      "AGENTS.md",
+      "preserved/README.md#go存活與原版敵方選敵保存"
+    ],
+    [
+      "CONTEXT.md",
+      "docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed"
+    ],
+    [
+      "CONTEXT.md",
+      "preserved/original-battle-actions-audit-r1.json"
+    ],
+    [
+      "CONTEXT.md",
+      "docs/images/original-battle-extended-target-r1.png"
+    ],
+    [
+      "CONTEXT.md",
+      "preserved/README.md#go存活與原版敵方選敵保存"
+    ],
+    [
+      "README.md",
+      "docs/images/original-battle-extended-target-r1.png"
+    ],
+    [
+      "README.md",
+      "docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed"
+    ],
+    [
+      "README.md",
+      "docs/images/original-battle-extended-target-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed"
+    ],
+    [
+      "preserved/README.md",
+      "original-battle-actions-audit-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "original-battle-actions-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "original-battle-actions-verification-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/export-original-battle-actions-ida.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/original-battle-actions.py"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/original-battle-extended-target-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "../docs/images/original-battle-extended-target-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/export-original-battle-actions-ida.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../tools/original-battle-actions.py"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../preserved/original-battle-actions-audit-r1.json"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../../preserved/README.md#go存活與原版敵方選敵保存"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/original-battle-extended-target-r1.png"
+    ],
+    [
+      "docs/spec/030-battle-expansion-proposal.md",
+      "../images/original-battle-extended-target-r1.json"
+    ],
+    [
+      "RESEARCH-LOG.md",
+      "preserved/README.md#go存活與原版敵方選敵保存"
+    ],
+    [
+      "RESEARCH-LOG.md",
+      "docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed"
+    ]
+  ]
+}

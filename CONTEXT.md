@@ -12,9 +12,13 @@
 
 ## 最近驗證
 
-最新為[原戰場初始陣位與HP接管](docs/spec/030-battle-expansion-proposal.md#初始陣位與hp限定-conformed)。285來源隔離候選由Go配置初始陣位及HP；12組原helper、12種拒絕、八種32位兵數模型、原版／HD四條正常冷啟動行動段通過。含新兵的兩張原版HD初始畫面已獨立逐byte重建，沿用已批准女弓箭手、木棍農民及透明素材；新兵身份與完整HP不進原固定表。[核對](preserved/original-battle-setup-audit-r1.json)、[成果圖](docs/images/original-battle-extended-setup-r1.png)與[保存](preserved/README.md#原戰場初始陣位與hp接管保存)為入口。
+最新為[Go存活與原版敵方選敵](docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)。287來源隔離候選接管13處兵數比較；65組原指令對照、80次新增ID的32位兵數比較、各種拒絕、兩組中間代碼相容讀取及原版／HD正常冷啟動選敵對照通過。原版的暫時目標代碼曾造成表外word讀取，已按IDA與動態資料流保留，畫面、選敵與seed保持一致。[核對](preserved/original-battle-actions-audit-r1.json)、[成果圖](docs/images/original-battle-extended-target-r1.png)與[保存](preserved/README.md#go存活與原版敵方選敵保存)為入口。
 
-含新兵的畫面在0F67:0035、原回合前暫停，各五次重試RAM／cycles保持且原回合入口為0。這只完成初始資料與原戰場呈現，不是可戰鬥或GUI驗收；原存活判斷仍讀原word，新增ID的選敵、減員、法術與完整戰果尚未接。下一步沿已匯出sub_2055E／sub_205A2及原選隊consumer接Go資料，閘與一般玩家入口護欄保持。新兵藝術沿troop-presentation-fix-r1，不重畫或退回舊版。
+混合與全新增編成均能讓原版電腦選到新增兵種。兩案明示typed override及原回合先手參數1，不能稱自然新增兵戰鬥。原種類／兵數欄保持0，原軍隊影子不改；各五次重試保持RAM、cycles、seed與選敵。隔離候選的閘延至敵方執行器入口，扣兵及全部新增兵玩家半回合仍停止。下一步接Go減員、原演出中的兵數顯示與玩家行動；兩次原傷害helper及動畫倒數寫入不可重複結算。一般Go玩家入口、法術與完整世界戰果保持未完成。
+
+前輪為[原戰場初始陣位與HP接管](docs/spec/030-battle-expansion-proposal.md#初始陣位與hp限定-conformed)。285來源隔離候選由Go配置初始陣位及HP；12組原helper、12種拒絕、八種32位兵數模型、原版／HD四條正常冷啟動行動段通過。含新兵的兩張原版HD初始畫面已獨立逐byte重建，沿用已批准女弓箭手、木棍農民及透明素材；新兵身份與完整HP不進原固定表。[核對](preserved/original-battle-setup-audit-r1.json)、[成果圖](docs/images/original-battle-extended-setup-r1.png)與[保存](preserved/README.md#原戰場初始陣位與hp接管保存)為入口。
+
+該初始候選在0F67:0035、原回合前暫停，各五次重試RAM／cycles保持且原回合入口為0。這只完成當時的初始資料與原戰場呈現，不是可戰鬥或GUI驗收。預設初始閘保持；後續選敵只由上列新候選限定提升。新兵藝術沿troop-presentation-fix-r1，不重畫或退回舊版。
 
 
 前輪為[募兵透明與openKB身份修正](docs/spec/030-battle-expansion-proposal.md#募兵圖示透明與openkb身份修正)。原店及新增兵種數量輸入已移除圖示金邊／綠底；弓箭手改為中國古風美女，槍兵改為持削尖木棍的布衣農民。兩張完整透明原圖與三份提示追加永久圖庫，1071檔獨立核對通過。283來源隔離候選、透明合成模型及四張正常GUI逐RGB核對通過；六張其他新增圖、數值、規則、存檔、原197來源七程式／923核心／535素材保持。[核對](preserved/troop-presentation-fix-audit-r1.json)、[成果圖](docs/images/troop-presentation-corrected-r1.png)與[保存](preserved/README.md#募兵透明與openkb身份修正保存)為入口。

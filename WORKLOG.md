@@ -2908,3 +2908,21 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 
 
 主提交d62e22cfc8fe696a4d478b6e1b5f7ec354de920c已推送私人origin/main，git ls-remote回讀同SHA，工作樹乾淨。暫存空白檢查通過，本輪Docker容器已結束並移除，其他專案資源未動。此行另作文件收尾提交，不改程式、資料保存或限定驗收範圍。
+
+
+## 2026-11-03：Go存活與原版敵方選敵
+
+- 接續使用者「ok go」，開工HEAD為`e02fed08e6969c7f6ce75f6dc0696c8a435e0ca1`。路由命中復古重製、spec閘門、IDA窄查及驗證／交接，沿既有Go工具鏈，不重新生成美術或新增戰鬥介面。
+- `export-original-battle-actions-ida.py`在既有IDA9.4 py312-v1、UID1000、HOME=/home/ubuntu、network none、2GiB／2CPU／128程序及100秒外層逾時執行。唯讀PAM.i64先複製/tmp，保留14個原函式的bytes、xref、operand及file offset，不改原名與資料庫。
+- READY先定13個兵數比較與敵方出手入口。第一輪控制在玩家半回合被過早攔下；保留失敗來源、程式及log，原兵控制恢復原玩家選單，新兵測試則明示將原先手參數0改1，新增兵玩家半回合仍封鎖。
+- 第二輪查到原近戰暫時目標代碼0沒有加7便映射，1FD44實際BX=9D94，讀DS:F47E為0。回到RE／READY後才加入嚴格來源檢查的相容word比較，保留原重抽，不以修正原版行為讓測試通過。診斷來源與log另存transient-diagnostic。
+- 最終287來源候選通過65組原指令比較、80次新增ID的32位兵數比較、10種比較拒絕、五種投影拒絕、六種出手閘拒絕、預覽戰果回寫拒絕及兩組相容讀取對照。原native-only投影19拒絕回歸通過。
+- 正常冷啟動Continue、地圖按鍵遇敵及原確認，原版／HD各抽原控制與Go至首個敵方執行器，完整Frame、原列、選敵與seed保持。新兵混合及全新增編成另用typed override與受控敵先手參數，電腦選到2野狼及3農民槍兵。各五次重試RAM、cycles、seed、選敵與原影子保持。
+- Go測試在Go1.24.13映像、UID1000、network none、3GiB／2CPU／192程序及360秒外層逾時執行。唯讀掛載923核心、固定module cache、原版與r69素材；可寫目錄僅本批。先gofmt、凍結來源，再`go test -modfile=/out/probe.mod -c -o /out/ownedworld.test ./internal/ownedworld`，以Xvfb執行`^TestOriginalBattlePresence`及`^TestOriginalArmyProjectionModels$`。完整命令與映像SHA見保存內execution-r1.json。
+- `original-battle-actions.py audit`在固定Pillow11.3.0 r2容器獨立核對287來源、原PAM／IDA bytes、旗標公式、正常控制Frame及新兵原列隔離。030作限定CONFORMED，六定位回填、CONTEXT與README同步，不提升實際攻擊、減員或完整回合。
+- 新增README縮小成果與來源JSON。完整PNG、state、三輪候選與診斷程式永久保存1574檔／382物件，壓縮58424602 bytes。原197來源七程式、923核心、535素材、1071美術及一般Go入口護欄保持。
+- 下一段沿本批已匯出的雙傷害helper、倒數兵數及玩家執行器接Go結算。新兵玩家半回合、攻擊、法術、完整世界戰果、GUI與戰中存檔仍未驗；不能將受控敵先手宣稱為自然新兵戰鬥。
+
+- 脫離workplace逐SHA驗證1574檔／382物件通過；收尾核對287來源、25個新連結、六個runtime回填、Python語法及UID1000通過。Go格式與Git空白檢查通過。
+- 依既有清理授權，只刪本批164103436 bytes編譯快取，以及逐SHA證明已永久保存的1070檔／57965297 bytes舊候選、失敗及診斷副本。現行來源、程式、固定輸入與成功收據保留。保存物件加入忽略規則，完整遊戲、state與程式未加入Git。
+- 所有本批一次性容器已移除；沒有新建映像，未動其他專案的容器或映像。共享主機仍有其他專案工作，均保留。

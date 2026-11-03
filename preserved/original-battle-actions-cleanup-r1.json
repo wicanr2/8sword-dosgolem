@@ -1,0 +1,18 @@
+{
+  "status": "passed-local-original-battle-actions-cleanup",
+  "archive_manifest_sha256": "6138f921b6bcc96df7c8f1835d807e6f4c450819be24bcaa2586d30365392007",
+  "archived_files_deleted": 1070,
+  "archived_bytes_deleted": 57965297,
+  "cache_files_deleted": 1720,
+  "cache_bytes_deleted": 164103436,
+  "scopes": [
+    "first-failed",
+    "second-failed",
+    "transient-diagnostic",
+    "ida-first",
+    "export-first.py",
+    "build-cache"
+  ],
+  "all_archived_files_SHA_checked_before_delete": true,
+  "other_projects_or_images_changed": false
+}

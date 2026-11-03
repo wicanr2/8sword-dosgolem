@@ -3026,3 +3026,16 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 - 正常原版／HD四路冷啟動遇敵，固定seed，初始maps／HP及首個敵方普通行動後的全Frame、原軍隊／待扣HP／seed相同。新增ID的兩案只跑至0035回合前，各五次重試RAM／cycles不變，原sub_205E6未進。標準圖像庫解碼RGBA後，由Python獨立重建整張Frame，分別新增1／5個sprite，逐byte相同。
 
 本輪沒有遊戲執行失敗。首個source manifest在gofmt前產生，新增拒絕／原始素材測試後的SHA核對識別到格式差異。保留原manifest及兩版Go程式，另比對主機Go函式2180列指令／標頭，保持常數與暫存器、只正規化分支及PC-relative data位移，結果相同；不稱binary逐byte相同，亦未修改DOS EXE。產品只接初始資料與呈現，原存活判斷、選敵、減員、法術、GUI與完整世界戰果仍待接。入口見[030限定結果](docs/spec/030-battle-expansion-proposal.md#初始陣位與hp限定-conformed)及[永久保存](preserved/README.md#原戰場初始陣位與hp接管保存)。
+
+
+## 2026-11-03：原版存活、選敵與減員消費端窄查
+
+輸入為PAM.AY，SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；PAM.i64，SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA Pro9.4資料庫521函式，選取14函式匯出。IDA地址為MZ線性base10000，file offset逐指令列出；dosgolem runtime CS0F67的IP為IDA線性減1E570，DS為1E88。工具與完整證據見[永久入口](preserved/README.md#go存活與原版敵方選敵保存)。
+
+- 已證實：sub_2055E／sub_205A2各查六筆原隊兵數，返回1代表全滅。sub_1FB6C依來源存活、行動次數及原亂數挑目標，對位活隊會影響前排選擇。本輪只接兩個全滅consumer及十一個敵方來源／目標consumer的比較，不改原亂數、回合或兵種分類。
+- 已證實：1FD17對位活隊成立時，1FD1E–1FD24把0至2陣位號寫[bp-4]；1FD37–1FD44卻先當7至12目標代碼映射。動態正常控制取得BX9D94、[bp-4]=[bp-6]=0、DS:F47E=0。原版因此重抽後才於1FD5F–1FD65補7。舊「所有BX均原隊索引」由此否定；完整原資料與失敗收據保留，新增範圍檢查後保留這次相容讀取。原版／HD最後Frame、目標與seed相同，沒有修原版的中間行為。
+- 已證實：sub_22DBC在原種類0時直接返回，故不能讓新增兵種原列為0後就執行原攻擊。該函式先呼叫sub_1FAA2，encoded1走早返，其餘依位置再呼叫sub_22B96，後者再次呼叫同傷害helper。原兩次呼叫及pending HP不能隨意合併。
+- 已證實：sub_22B96及sub_217B0的動畫倒數反覆寫原兵數；sub_21000只繪玩家兵數。sub_21BD2／sub_21E3C為另一組直接扣兵分支，不能當成普通減員helper。這些消費端本輪只匯出，不提升Go接管或全遊戲語意。
+- 限定實作：Go讀typed兵數產生cmp-zero旗標，原25種保留完整word的零、符號與同位旗標；新增兵種只傳存活布林值，未寫假種類或兵數。13站完整函式bytes、段暫存器、原隊／局部資料流及投影均守門。敵方普通／遠程入口只記錄原選敵，扣兵前返回固定host error。
+- 動態抽樣：65原指令對照、80新增ID讀取、兩組相容指令、兩組原版／HD冷啟動選敵對照及兩案新兵目標通過。新兵兩案明示typed override與原先手參數1，各五次重試不變；不稱自然玩家路徑、實際攻擊或完整回合。正常原軍隊控制沒有先手注入。
+- 回填標記`ORIGINAL-BATTLE-PRESENCE-20261103`及六個不可變runtime定位列入[索引](docs/spec/ai-resolution-backlinks-r1.json)，[030限定結果](docs/spec/030-battle-expansion-proposal.md#存活與敵方選敵限定-conformed)保留前輪初始0035閘的歷史與預設契約。

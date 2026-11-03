@@ -1,0 +1,25 @@
+{
+  "status": "passed-original-battle-actions-audit",
+  "source_files": 287,
+  "ida_functions": 14,
+  "native_comparison_pairs": 65,
+  "extended_uint32_reads": 80,
+  "comparison_refusals": 10,
+  "held_model_refusals": 5,
+  "target_gate_refusals": 6,
+  "held_capture_refusal": true,
+  "transient_alias_pairs": 2,
+  "cold_native_HD_pairs": 2,
+  "expanded_enemy_targets": 2,
+  "controlled_enemy_first_argument": true,
+  "held_retries_each": 5,
+  "native_projection_regression_refusals": 19,
+  "new_ids_in_original_tables": 0,
+  "ordinary_player_entry_disabled": true,
+  "not_verified": [
+    "expanded player turn/attack/casualties/spells",
+    "complete battle",
+    "GUI",
+    "world battle save lifecycle"
+  ]
+}

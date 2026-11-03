@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "output_sha256": "749eafd8fbcd2d3b95966775529810a6d6e39d972c541e0f0e51da3c52cf2ec9",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-actions-r1/expanded-r1/0/frame.png",
+      "sha256": "72b09c59d2580644b806c5c63edb7214dd62135b3c933e5ed0319e8e8cf88724",
+      "target": {
+        "IP": 18508,
+        "Caller": 6168,
+        "SourceSlot": 0,
+        "TargetSlot": 0,
+        "SourceRaw": 0,
+        "TargetRaw": 0,
+        "Source": {
+          "unit": "native:06",
+          "count": 11
+        },
+        "Target": {
+          "unit": "openkb:wolf",
+          "count": 2
+        }
+      }
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-actions-r1/expanded-r1/1/frame.png",
+      "sha256": "a9d6ecce041c59526de7d30b3a81040aac95cacfb2e433097a04802445c783c5",
+      "target": {
+        "IP": 18508,
+        "Caller": 6168,
+        "SourceSlot": 0,
+        "TargetSlot": 0,
+        "SourceRaw": 0,
+        "TargetRaw": 0,
+        "Source": {
+          "unit": "native:06",
+          "count": 11
+        },
+        "Target": {
+          "unit": "openkb:pike",
+          "count": 3
+        }
+      }
+    }
+  ],
+  "actual_window_verified": false,
+  "playable": false,
+  "controlled_typed_override": true,
+  "controlled_enemy_first_argument": true,
+  "scope": "Original HD enemy selection only; held before damage; original RNG retained."
+}

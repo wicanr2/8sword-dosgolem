@@ -22,6 +22,42 @@ type originalArmyProjection struct {
 	Phase                     string
 	EntrySP, EntryBP, Result  uint16
 	Entries, Copies, Captures uint64
+	HeldPreview               bool
+}
+
+// Expanded identities have no native representation. This opt-in encoder is
+// restricted to held battle research, whose result path must never commit.
+func originalHeldProjectionBytes(rows [6]ArmyStack, catalog game.OwnedCombatCatalog) ([24]byte, error) {
+	var raw [24]byte
+	if err := catalog.Validate(); err != nil {
+		return raw, err
+	}
+	seen := map[string]bool{}
+	for i, s := range rows {
+		if s.Unit == "" && s.Count == 0 {
+			continue
+		}
+		p, ok := catalog.Profiles[s.Unit]
+		if !ok || s.Count == 0 || seen[s.Unit] {
+			return raw, errors.New("held projection identity/count")
+		}
+		seen[s.Unit] = true
+		if p.NativeKind == 0 {
+			if !originalOpenKBID(s.Unit) {
+				return raw, errors.New("held projection extension")
+			}
+			continue
+		}
+		if s.Unit != fmt.Sprintf("native:%02d", p.NativeKind) || p.NativeKind > 25 || s.Count > 32767 {
+			return raw, errors.New("held projection native bounds")
+		}
+		binary.LittleEndian.PutUint16(raw[i*4:], p.NativeKind)
+		binary.LittleEndian.PutUint16(raw[i*4+2:], uint16(s.Count))
+	}
+	if len(seen) == 0 {
+		return raw, errors.New("held projection empty army")
+	}
+	return raw, nil
 }
 
 func originalArmyProjectionBytes(rows [6]ArmyStack, catalog game.OwnedCombatCatalog) ([24]byte, error) {
@@ -89,6 +125,9 @@ func (x *originalArmyProjection) execute(m *dg.Machine, ip uint16) (bool, error)
 		return fail("wrapper/cleanup bytes")
 	}
 	encoded, err := originalArmyProjectionBytes(x.Input, x.Catalog)
+	if x.HeldPreview {
+		encoded, err = originalHeldProjectionBytes(x.Input, x.Catalog)
+	}
 	if err != nil || encoded != x.Encoded {
 		return fail("typed army changed")
 	}
@@ -117,6 +156,9 @@ func (x *originalArmyProjection) execute(m *dg.Machine, ip uint16) (bool, error)
 		x.Phase = "projected"
 		x.Copies++
 	case 0x3745:
+		if x.HeldPreview {
+			return fail("held preview cannot capture or commit")
+		}
 		if x.Phase != "projected" || x.Captures != 0 {
 			return fail("capture phase")
 		}
@@ -140,10 +182,17 @@ func (x *originalArmyProjection) execute(m *dg.Machine, ip uint16) (bool, error)
 }
 
 func installOriginalArmyProjection(e *game.Engine, catalog game.OwnedCombatCatalog, rows [6]ArmyStack) (*originalArmyProjection, error) {
+	return installOriginalArmyProjectionMode(e, catalog, rows, false)
+}
+
+func installOriginalArmyProjectionMode(e *game.Engine, catalog game.OwnedCombatCatalog, rows [6]ArmyStack, heldPreview bool) (*originalArmyProjection, error) {
 	if !e.PAMLoaded || e.BattleRulesMode() != "native" {
 		return nil, errors.New("original army projection requires loaded PAM/native rules")
 	}
 	raw, err := originalArmyProjectionBytes(rows, catalog)
+	if heldPreview {
+		raw, err = originalHeldProjectionBytes(rows, catalog)
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -151,7 +200,7 @@ func installOriginalArmyProjection(e *game.Engine, catalog game.OwnedCombatCatal
 	if err != nil {
 		return nil, err
 	}
-	x := &originalArmyProjection{Code: code, Catalog: catalog, Input: rows, Encoded: raw}
+	x := &originalArmyProjection{Code: code, Catalog: catalog, Input: rows, Encoded: raw, HeldPreview: heldPreview}
 	for _, ip := range []uint16{0x32e0, 0x3365, 0x3745} {
 		ip := ip
 		swordOnHostInstruction(e.Oracle, oracle.Far(0x110, ip), func(m *dg.Machine) (bool, error) { return x.execute(m, ip) })
