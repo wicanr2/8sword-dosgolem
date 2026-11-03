@@ -219,6 +219,42 @@ CONFORMED只限錯誤入口撤回與匯入／存檔保持。原版戰場的新�
 
 ### 原版戰場與Go後端橋接 DRAFT
 
+2026-11-03接續原戰場玩家攻擊術的Go資料接管，先涵蓋原selector0／1／2／3／5／7，保留原選術、選敵與既有HD演出。研究沿既有battle-r1下`original-battle-spells-r1`，沿player-fireball-r1的IDA27函式與既有法術控制，不重畫美術。先審查2497-byte wrapper、219CC動畫倒數、21BD2直接減員、法術次數及取消退款，再補READY。凝滯／複製與敵方特殊另保留停止線；一般Go入口保持停用。
+
+#### 玩家六攻擊術Go資料 READY
+
+固定PAM／PAM.i64與IDA9.4沿前節。沿永久27函式匯出的原名、bytes、原file offset與MZ線性位址，不混用runtime0F67的IP。入口為[Go攻擊術](../../internal/ownedworld/original_battle_spells.go)、[抽驗](../../internal/ownedworld/original_battle_spells_test.go)與[準備／保存](../../tools/original-battle-spells.py)。
+
+- 僅明確安裝新控制器時，334的sub_1E8A4容許原後排10／12號施法者，綁定原caller1CFE、來源陣位、Go rows、原投影、HP word及2497 bytes。保留原選術／選敵；凝滯4、複製6在扣次前拒絕，本批不宣稱這兩術已接Go資料。
+- 31E的sub_1E88E只接受原選術caller02CC，Go檢查selector與原次數後扣一次，再回原menu。選敵時按Space回0EFE，由原wrapper加回一次；Esc則設348B8撤退旗標、回原游標值，已扣次數不退。結束驗其他次數不變、選定術淨扣0或1。學習旗標及自然取得不由本批改寫；測試配置明示。
+- 六術數量由Go獨立計算，並與原相容計算的8E76核對後才處理減員。26B0為原係數，26AE為暗殺門檻因子，不改成猜測名稱。0／1為((casterCount/3+1)×factor)/(HP/10)+2，factor在12號為2×stat+2，其餘為5×stat+5。2在目標類型6至15時用(casterCount+1)×factor/(HP/10)+2，factor在12號為4×stat+6，其餘10×stat+10；不合類型仍沿原factor直接效果，且整次無合類型時原wrapper不出效果。不能自行按術名限制目標。
+- 3沿原rand的一次固定LCG及原remainder50，低於10×26AE+10才全滅；失敗不補效果，不重投。5為targetCount/2+1。7在兵數<50時全滅，其餘為6×count/(12號20，其餘10)+10×26B0+1。算式每個原截斷順序保留；乘積、amount或畫面數值超出已驗word範圍即拒絕，不用原16位溢位猜補大數量。
+- 219CC在runtime345C接受原caller074A與0516，21BD2在3662接受0C59。來源／目標陣位與原隊索引均驗Go maps；本批目標限原25種敵軍，新增敵軍仍不進原表。玩家其他新增部隊可留Go，施法者本身仍限原10／12。原相容中間計算保留，不能稱整段已脫離x86。
+- Go正式損失為min(amount,before)，每個效果只提交一次。219CC的動畫倒數另存，核對每次寫入及死亡清列；21BD2直接減員亦經同一Go正式rows。原HP word不因這兩個函式減員而另扣，Go pending HP依原契約保持。後續普通行動、存活、排序與戰果讀更新後Go資料，不能退回初始Plan。
+- 原版／HD抽同初始狀態與預先固定seed的原控制／Go比較，核對六術次數、目標、正式兵數、原HP word、完整Frame與seed；另抽選術／目標取消及暗殺固定門檻。用原按鍵進menu，明示施法者／學習／次數配置，不稱自然學會。至少一案接普通後續行動與既有世界F7保存；原七程式與一般入口保持。
+
+#### 玩家六攻擊術Go資料限定 CONFORMED
+
+`ORIGINAL-SPELL-DATA-20261103`：296來源隔離候選接管火球0、雷火1、殺鬼2、暗殺3、滅半5、地震7的正式兵數與一次扣次。原選術、選敵、HD演出與動畫倒數順序保持。Go獨立算出效果並核對原相容算式，更新後rows交後續普通行動、補位及世界結算；原相容中間運算仍執行，不能稱整段法術已移除x86。
+
+| dosgolem runtime CS:IP | IDA MZ原名／線性位址 | 本批接管 |
+|---|---|---|
+| 0F67:0334 | sub_1E8A4／1E8A4 | 原後排10／12施法者、2497 bytes與caller1CFE |
+| 0F67:031E | sub_1E88E／1E88E | 原caller02CC選定術扣一次 |
+| 0F67:345C | sub_219CC／219CC | 六術中五術共用的正式損失及獨立動畫倒數 |
+| 0F67:3662 | sub_21BD2／21BD2 | 地震逐隊直接減員 |
+| 0F67:283E | sub_20DAE／20DAE | 保留原選敵與Esc／Space分流 |
+
+十一組原控制／Go對照涵蓋六術HD、火球原版模式、暗殺固定失敗、選術Esc、選敵Esc與選敵Space。每組原兵數、HP word、次數、seed及完整Frame相同；Go每個效果只提交一次，各五次返回閘重試不變RAM或cycles。雷火與地震各實際處理兩隊。固定seed為0x12345678，暗殺成功／失敗只改明示26AE門檻4／0，兩者抽到同一20746，不重擲。13算式與9超界拒絕、13掛點拒絕、有效入口、既有普通比較／減員／排序／投影／世界拒絕回歸通過。
+
+`ORIGINAL-SPELL-CANCEL-20261103`追加勘誤：不能把所有「選敵取消」視為退款。sub_20DAE的20E4E由Space設var_4=1，20F71回0EFE；sub_1E8A4的1E91B及1E935才退款。Esc在20EBA設byte_348B8，20F78回游標值，1E93C轉早退，已扣次數不退。兩種原版／Go結果均已動態驗證。原文「目標取消時原wrapper加回」僅適用Space，不外推Esc。
+
+一條混合編成垂直鏈明示74民兵、2名原12號施法者、1野狼與1女弓箭手；首發火球後，原選單以Space略過後續施法。17次普通行動取勝，剩60民兵、2施法者及1弓箭手；金615、戰績37。真正F7及獨立程序Continue後，Go剩兵、世界數值、位置及火球3→2保持。存檔規則標記formation只驗保存身份，本場規則仍native，不能稱已套結陣。
+
+原PAM及i64雜湊沿本節，永久27函式的6715行IDA9.4 bytes已重新對原MZ重定位核對。[獨立核對](../../preserved/original-battle-spells-audit-r1.json)、[成果](../images/original-battle-go-spells-r1.png)、[來源](../images/original-battle-go-spells-r1.json)及[永久保存](../../preserved/README.md#原戰場六攻擊術go資料保存)為入口。既有Pillow11.3.0容器使用`tools/original-battle-spells.py freeze|audit|publish|archive|verify --project --out`，保存另加`--archive`；Go1.24.13映像、RO掛載及重生環境列在保存內execution-r1.json。
+
+明示學習旗標、原係數與次數配置只驗共用機制，不稱自然習得。施法者限原10／12、敵軍限原25種，其他新玩家兵種維持Go資料。凝滯／複製、敵方特殊、守軍／頭目、規則／AI整合、新兵動態姿勢、超word動畫、戰中續接及一般Go入口仍未完成。本批為Engine畫面，沒有新增X11驗收。正式197來源七程式、923核心、r69全535素材及1071美術保持。
+
 2026-11-03接續普通回合的原世界結算與F7。研究沿既有battle-r1下`original-battle-world-r1`；先沿永久owned-world／owned-defeat的原版資料流及native-checkpoint契約，查證原1796結算中的Go剩兵判定、世界數值、原結算畫面、全滅去向與成對保存。不重開已驗普通回合；正式入口保持停止。新增工具及來源在本節補READY後索引，未達READY不接一般玩家路徑。
 
 #### 原世界結算與F7 READY

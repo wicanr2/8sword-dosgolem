@@ -1,0 +1,12 @@
+{
+  "status": "passed-original-battle-spells-integrity",
+  "source_files": 296,
+  "original_pairs": 11,
+  "artifact_sources_sha_verified": true,
+  "post_cleanup_audit_equal": true,
+  "cleanup_saved_files": 1322,
+  "freed_bytes": 374377502,
+  "owners": "1000:1000",
+  "formal_runtime_unchanged": true,
+  "general_player_entry_disabled": true
+}

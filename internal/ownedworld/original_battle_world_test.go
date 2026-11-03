@@ -3,6 +3,7 @@ package ownedworld
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"image/png"
 	"os"
 	"path/filepath"
@@ -125,7 +126,7 @@ func TestOriginalBattleWorldCold(t *testing.T) {
 		}
 	}
 	must(e.Oracle.SaveStateFile(filepath.Join(dir, "continued.state")))
-	setupWrite(t, filepath.Join(dir, "receipt.json"), map[string]any{"status": "passed-original-battle-world-process-cold", "world_sha256": worldDigest(snap.World), "resources": pairWorldResources(snap.World), "location": checkpointLocation(e.Oracle), "snapshot_loaded": false, "separate_process": true})
+	setupWrite(t, filepath.Join(dir, "receipt.json"), map[string]any{"status": "passed-original-battle-world-process-cold", "world_sha256": worldDigest(snap.World), "resources": pairWorldResources(snap.World), "location": checkpointLocation(e.Oracle), "charges_hex": fmt.Sprintf("%x", e.Oracle.Bytes(oracle.Far(0x1e88, 0x2aa8), 16)), "snapshot_loaded": false, "separate_process": true})
 }
 
 func TestOriginalBattleWorld(t *testing.T) {

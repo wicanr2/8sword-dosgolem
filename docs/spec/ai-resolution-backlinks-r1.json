@@ -1221,5 +1221,87 @@
       "scope": "Two original/Go pairs, mixed-army ordinary victory, both annihilation options, promotion/caps, five actual F7 saves and five independent-process Continue checks.",
       "not_closed": "Guards/bosses, specials/spells, rules/AI integration, original battle mid-save, poses, wide animation and general owned startup."
     }
+  ],
+  "original_battle_spell_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:0334",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:0334",
+      "original_name": "sub_1E8A4",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Original spell menu retained; Go owns native caster spell results and current rows.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-SPELL-DATA-20261103",
+      "receipt": "preserved/original-battle-spells-audit-r1.json",
+      "scope": "Eleven original/Go pairs; mixed army cast, ordinary victory, source F7 and separate-process Continue.",
+      "not_closed": "Freeze/clone, enemy specials, guard/boss adapters, rules/AI integration, mid-battle resume, dynamic poses, wide animation and general startup."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:031E",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:031E",
+      "original_name": "sub_1E88E",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go consumes the selected charge once along original caller02CC.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-SPELL-DATA-20261103",
+      "receipt": "preserved/original-battle-spells-audit-r1.json",
+      "scope": "Eleven original/Go pairs; mixed army cast, ordinary victory, source F7 and separate-process Continue.",
+      "not_closed": "Freeze/clone, enemy specials, guard/boss adapters, rules/AI integration, mid-battle resume, dynamic poses, wide animation and general startup."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:345C",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:345C",
+      "original_name": "sub_219CC",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go authoritative spell loss is separate from original animation countdown.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-SPELL-DATA-20261103",
+      "receipt": "preserved/original-battle-spells-audit-r1.json",
+      "scope": "Eleven original/Go pairs; mixed army cast, ordinary victory, source F7 and separate-process Continue.",
+      "not_closed": "Freeze/clone, enemy specials, guard/boss adapters, rules/AI integration, mid-battle resume, dynamic poses, wide animation and general startup."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:3662",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:3662",
+      "original_name": "sub_21BD2",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Go applies quake direct loss once per original target.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-SPELL-DATA-20261103",
+      "receipt": "preserved/original-battle-spells-audit-r1.json",
+      "scope": "Eleven original/Go pairs; mixed army cast, ordinary victory, source F7 and separate-process Continue.",
+      "not_closed": "Freeze/clone, enemy specials, guard/boss adapters, rules/AI integration, mid-battle resume, dynamic poses, wide animation and general startup."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:283E",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:283E",
+      "original_name": "sub_20DAE",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Original target Esc retreats without refund; Space cancels with refund.",
+      "evidence": "docs/spec/030-battle-expansion-proposal.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-SPELL-CANCEL-20261103",
+      "receipt": "preserved/original-battle-spells-audit-r1.json",
+      "scope": "Eleven original/Go pairs; mixed army cast, ordinary victory, source F7 and separate-process Continue.",
+      "not_closed": "Freeze/clone, enemy specials, guard/boss adapters, rules/AI integration, mid-battle resume, dynamic poses, wide animation and general startup."
+    }
   ]
 }

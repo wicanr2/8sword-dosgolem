@@ -1,0 +1,439 @@
+{
+  "status": "passed-original-battle-spells-audit",
+  "source_files": 296,
+  "ida_functions": 27,
+  "ida_lines": 6715,
+  "original_pairs": 11,
+  "frames_counts_HP_charges_seed_equal": true,
+  "spells": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "rows": [
+    {
+      "name": "fireball-hd",
+      "selector": 0,
+      "effects": 1,
+      "charges": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 2608237732,
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    },
+    {
+      "name": "thunder-hd",
+      "selector": 1,
+      "effects": 2,
+      "charges": [
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 2608237732,
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    },
+    {
+      "name": "exorcism-hd",
+      "selector": 2,
+      "effects": 1,
+      "charges": [
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 2608237732,
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    },
+    {
+      "name": "assassination-hd",
+      "selector": 3,
+      "effects": 1,
+      "charges": [
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 1359644887,
+      "frame_sha256": "11931c93277f5af00722357050b1d7300cf393031e018e72fc3f0ff742923a24"
+    },
+    {
+      "name": "assassination-fail-hd",
+      "selector": 3,
+      "effects": 0,
+      "charges": [
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 1359644887,
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    },
+    {
+      "name": "halve-hd",
+      "selector": 5,
+      "effects": 1,
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3
+      ],
+      "seed": 2608237732,
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    },
+    {
+      "name": "quake-hd",
+      "selector": 7,
+      "effects": 2,
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "seed": 3601613336,
+      "frame_sha256": "5b15c62fec576b235a4bdbaae554ff69ed1d03a2e1af29172c7543b5eabb0409"
+    },
+    {
+      "name": "fireball-native",
+      "selector": 0,
+      "effects": 1,
+      "charges": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 2608237732,
+      "frame_sha256": "c75bd6a9213adee41680427790348a0ed6b0a533870947542a63cf40b7ae76a0"
+    },
+    {
+      "name": "cancel-menu",
+      "selector": 0,
+      "effects": 0,
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 2608237732,
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    },
+    {
+      "name": "cancel-target",
+      "selector": 0,
+      "effects": 0,
+      "charges": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 2608237732,
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    },
+    {
+      "name": "cancel-target-space",
+      "selector": 0,
+      "effects": 0,
+      "charges": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "seed": 2608237732,
+      "frame_sha256": "1579eda831097e89ddab3e8fff6aa0c31868cb569df940c1f3263fde2190014f"
+    }
+  ],
+  "models": 13,
+  "model_refusals": 9,
+  "hook_refusals": 13,
+  "held_retries_per_pair": 5,
+  "world": {
+    "battle_rules_applied": "native",
+    "charges_hex": "02000300030003000300030003000300",
+    "checkpoint_saves": 1,
+    "controlled_abi_fixture": true,
+    "initial": [
+      {
+        "unit": "native:01",
+        "count": 74
+      },
+      {
+        "unit": "native:12",
+        "count": 2
+      },
+      {
+        "unit": "openkb:wolf",
+        "count": 1
+      },
+      {
+        "unit": "openkb:arcr",
+        "count": 1
+      },
+      {
+        "unit": "",
+        "count": 0
+      },
+      {
+        "unit": "",
+        "count": 0
+      }
+    ],
+    "location": {
+      "map_name": "map01.ay",
+      "map_sha256": "65e0d60935df36329e800f78a5355facadd132c2e0fb65137a1ee7b45077b4be",
+      "raw_words": {
+        "DS:56C4": 4,
+        "DS:56CA": 0,
+        "DS:56CC": 0,
+        "DS:56CE": 0,
+        "DS:56D0": 1,
+        "DS:56D2": 2,
+        "DS:56D6": 0,
+        "DS:56DC": 6,
+        "DS:8E12": 40,
+        "DS:8E44": 42
+      }
+    },
+    "ordinary_actions": 17,
+    "records": [
+      {
+        "Selector": 0,
+        "Caster": 5,
+        "Effects": [
+          {
+            "selector": 0,
+            "Source": 5,
+            "Target": 1,
+            "Raw": 1,
+            "Amount": 5,
+            "Before": 33,
+            "After": 28,
+            "Display": [
+              33,
+              32,
+              31,
+              30,
+              29,
+              28
+            ],
+            "Planned": [
+              33,
+              32,
+              31,
+              30,
+              29,
+              28
+            ],
+            "Updates": 1
+          }
+        ],
+        "BeforeCharges": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "AfterCharges": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "Random": null
+      },
+      {
+        "Selector": -1,
+        "Caster": 5,
+        "Effects": null,
+        "BeforeCharges": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "AfterCharges": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "Random": null
+      },
+      {
+        "Selector": -1,
+        "Caster": 5,
+        "Effects": null,
+        "BeforeCharges": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "AfterCharges": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "Random": null
+      },
+      {
+        "Selector": -1,
+        "Caster": 5,
+        "Effects": null,
+        "BeforeCharges": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "AfterCharges": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "Random": null
+      }
+    ],
+    "remaining": [
+      {
+        "unit": "native:01",
+        "count": 60
+      },
+      {
+        "unit": "native:12",
+        "count": 2
+      },
+      {
+        "unit": "openkb:arcr",
+        "count": 1
+      },
+      {
+        "unit": "",
+        "count": 0
+      },
+      {
+        "unit": "",
+        "count": 0
+      },
+      {
+        "unit": "",
+        "count": 0
+      }
+    ],
+    "resources": {
+      "rank": 1,
+      "merit": 37,
+      "monthly_pay": 100,
+      "gold": 615,
+      "leadership": 100,
+      "spell_power": 0
+    },
+    "result": "win",
+    "status": "passed-original-spell-world",
+    "stored_rules": "formation",
+    "world_sha256": "e98b3067a5a6e660f37a6e7da1bca77dacc0f3fc494a430a9474cf4bcd96f196"
+  },
+  "separate_process_Continue": true,
+  "formal_runtime_unchanged": true,
+  "general_player_entry_disabled": true,
+  "limits": [
+    "Controlled caster/learned/stat/charge fixtures; not natural spell acquisition.",
+    "Original intermediate arithmetic remains as a checked compatibility calculation.",
+    "Native caster kinds 10/12 and native enemy profiles only.",
+    "Freeze/clone and enemy specials, guard/boss adapters, rules/AI integration, wide animation and battle mid-save remain open.",
+    "Engine frames; no new actual window acceptance."
+  ]
+}

@@ -48,11 +48,15 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 普通戰鬥已在隔離候選接通玩家近戰、女弓箭手射擊、敵軍行動與連續回合。上圖為明示測試編成：左側經32次行動取勝，1000野狼剩603、10弓箭手保持；中間全滅，右側正常Esc撤退。三案都已交回Go剩兵並保存，重新開啟後數量一致。原兵種另以原版／HD正常按鍵冷啟動對照，最終畫面、兵數、HP word與seed相同。
 
-這批是Engine畫面與軍隊保存抽驗；存檔使用明示擴充規則／領導力配置。法術、特殊行動及新兵受擊／死亡姿勢仍待完成，一般Go玩家入口保持停用。初始、選敵與單次近戰證據保存在規格與永久保存，現況見[普通戰鬥驗收](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)與[圖片來源](docs/images/original-battle-go-rounds-r1.json)。
+這批是Engine畫面與軍隊保存抽驗；存檔使用明示擴充規則／領導力配置。其餘法術、特殊行動及新兵受擊／死亡姿勢仍待完成，一般Go玩家入口保持停用。初始、選敵與單次近戰證據保存在規格與永久保存，現況見[普通戰鬥驗收](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)與[圖片來源](docs/images/original-battle-go-rounds-r1.json)。
 
 ![Go世界戰果、晉級及全滅回起點的原版HD畫面](docs/images/original-battle-world-f7-r1.png)
 
-隨機遭遇的戰果與F7也已接入隔離候選。上圖使用明示編成：74民兵、2野狼與2女弓箭手取勝後剩58民兵、2弓箭手，獲115金與37戰績；全滅後沿原選單回起點。另抽晉級與30000上限。五份戰後進度均實際F7保存，再由獨立程序Continue重開，軍隊、世界數值及位置一致。原版／Go的撤退與全滅對照也相同。範圍見[世界結算限定驗收](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)及[圖片來源](docs/images/original-battle-world-f7-r1.json)。守軍／頭目、法術／特殊、戰中續接及一般Go入口仍待完成。
+隨機遭遇的戰果與F7也已接入隔離候選。上圖使用明示編成：74民兵、2野狼與2女弓箭手取勝後剩58民兵、2弓箭手，獲115金與37戰績；全滅後沿原選單回起點。另抽晉級與30000上限。五份戰後進度均實際F7保存，再由獨立程序Continue重開，軍隊、世界數值及位置一致。原版／Go的撤退與全滅對照也相同。範圍見[世界結算限定驗收](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)及[圖片來源](docs/images/original-battle-world-f7-r1.json)。守軍／頭目、其餘法術／特殊、戰中續接及一般Go入口仍待完成。
+
+![原版與HD的Go法術兵力，以及施法後世界保存](docs/images/original-battle-go-spells-r1.png)
+
+火球、雷火、殺鬼、暗殺、滅半與地震已在隔離候選接上Go兵力，保留原選術、選敵及HD演出。十一組原版對照與一條混合編成施法後勝利、F7及獨立程序重開已通過。圖為明示施法者／次數配置的完成幀及戰後地圖，法術中間相容算式仍保留。範圍見[六術限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)與[圖片來源](docs/images/original-battle-go-spells-r1.json)。凝滯／複製、敵方特殊及一般Go入口仍待完成。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 

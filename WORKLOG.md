@@ -2998,3 +2998,16 @@ README新增[原版／HD成果](docs/images/original-army-go-data-r1.png)，[來
 
 - 功能提交`bb99637c0066fbccb4df4c3bd6dec12f2b49c980`已推送origin/main，主機git ls-remote回讀一致。只提交來源、文件、縮小成果圖與清單，完整本機保存物件未入Git。
 - 收尾只追加此紀錄，未改production來源；工作樹在收尾提交後核對。
+## 2026-11-03：原戰場六攻擊術Go資料接管
+
+- 接續已確認順序，先完成原版／HD戰鬥，之後才做Rust獨立版。路由命中復古重製、規格閘門、原GUI與文件職責，沿reverse-engineer-retro-game-remake技能及現有030，不重開架構訪談。正式197來源七程式／923核心／r69全535素材／1071美術保持。
+- 沿永久player-fireball-r1的27函式IDA9.4匯出，6715行bytes重新對固定PAM重定位核對。補READY後實作六術Go扣次、獨立數量計算、正式rows與動畫倒數分離；原選術／選敵及HD演出保持。原相容算式仍執行，只作核對，沒有宣稱整段法術脫離x86。
+- 測試前固定seed0x12345678及12:00，明示原12號施法者、學習旗標、26B0／26AE及各術3次。十一組原版／Go比較兵數、HP、次數、seed及完整Frame；六術HD、火球原版模式、暗殺失敗、選術Esc及選敵Esc／Space均通過。雷火／地震各兩目標。暗殺成功及失敗抽同一20746，只改預先固定門檻，不重擲。
+- 輸入診斷四輪先停在選敵；改為讀原20E16的實際游標，每次確認後只送一步。沒有注入目標／跳IP。未用Go映像的Python替代固定Pillow工具；缺PIL與未用import屬工具／編譯問題，修正後乾淨重跑，不列產品缺陷。
+- 稽核抓到「目標取消一律退款」前提錯誤。原20EBA／20F78的Esc撤退不退款，Space走20E4E／20F71回0EFE再由1E935退款。先回原bytes補READY及`ORIGINAL-SPELL-CANCEL-20261103`，另加Space成對動態驗證；Go控制器沒有改原行為。
+- 13算式／9超界拒絕、13掛點拒絕與有效入口通過。既有普通比較、存活、減員、初始配置、投影、近戰換位及世界拒絕抽樣回歸通過。最後只補施法入口inactive／done拒絕，正常入口及五種錯誤狀態另驗，六術效果邏輯保持。
+- 混合74民兵／2原12號／1野狼／1女弓箭手首發火球後，17次普通行動取勝，剩60民兵／2施法者／1女弓箭手，金615／戰績37。原F7保存至DOS close，獨立程序Continue的Go軍隊、六數值、位置及火球2次保持。Store的formation只驗標記保存，本場仍native。
+- [獨立核對](preserved/original-battle-spells-audit-r1.json)、[限定契約](docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)、[成果](docs/images/original-battle-go-spells-r1.png)與[保存入口](preserved/README.md#原戰場六攻擊術go資料保存)已掛README、CONTEXT及AGENTS。五項runtime不可變鍵及兩個勘誤標記回填backlink台帳。
+- 2446檔／481去重物件永久保存，壓縮106352762 bytes。只掛工具與preserved、未掛workplace，逐物件SHA／大小／解壓核對通過。完整原圖、原版、state與候選二進位只留本機；Git只保存來源、索引、收據與縮小成果。
+- 清理逐SHA已保存的四份舊失敗研究及四份舊測試程式155818743 bytes，另刪本批1770檔Go快取218558759 bytes，共374377502 bytes。現行候選、輸入、成功收據與永久物件保持。容器均有界且自動移除，未建映像或清理其他專案。
+- 未完成：凝滯／複製、敵方特殊、守軍／頭目交接、規則／AI整合、戰中續接、新兵姿勢、超word動畫及一般Go入口。Engine畫面未冒稱新X11驗收，未宣稱完整戰鬥或Rust完成。

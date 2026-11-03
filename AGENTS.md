@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-03原戰場六攻擊術依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)完成296來源隔離候選。Go接火球／雷火／殺鬼／暗殺／滅半／地震的正式兵數及扣次，原選單與HD演出保持。十一組原控制／Go、暗殺成功／失敗、Esc／Space取消及混合編成施法後17動作勝利、實際F7與獨立程序Continue已驗。`ORIGINAL-SPELL-CANCEL-20261103`區分選敵Esc不退款與Space退款；原中間相容算式仍保留，不稱整段脫離x86。[永久保存](preserved/README.md#原戰場六攻擊術go資料保存)不依賴workplace。剩凝滯／複製、敵方特殊、守軍／頭目、規則／AI整合、戰中續接、新兵姿勢、超word動畫及一般入口。正式197來源七程式、923核心、535素材及1071美術保持；完整戰鬥後才進Rust。
+
 2026-11-03使用者確認先完成完整戰鬥，再重寫為不依賴DOS EXE的Rust獨立版。現階段Go接回原版／HD操作，完成雙方行動、連續回合、勝敗／撤退、戰果保存及冷讀後才進Rust階段；這是已確認順序，不重問。現況與完成範圍以[CONTEXT](CONTEXT.md)及[030](docs/spec/030-battle-expansion-proposal.md#原版戰場與go後端橋接-draft)為準，不能把單次攻擊當完整戰鬥。
 
 2026-11-03原隨機遭遇的世界結算／F7依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)完成294來源隔離候選。Go接剩兵、獎勵、撤退扣款與晉級數值，原結算畫面、全滅去向及F7保留。兩組原版對照、五次實際F7與五份獨立程序Continue通過；混合勝利剩58民兵／2弓箭手，金615、戰績37。跨兩列目的格空時只交換兩端，見`ORIGINAL-MOTION-EMPTY-20261103`，不可再套所有情況都輪移的舊假設。[保存入口](preserved/README.md#原世界結算與f7保存)不依賴workplace。守軍／頭目、法術／特殊、規則／AI整合、戰中續接及一般Go入口仍待完成；原197來源七程式、923核心、535素材與1071美術保持，完整戰鬥後才轉Rust。

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "sha256": "8a6e9dea9c3c13c192508f1c432a387b04ccaf1523e8cd8ea7cadddd3e5d9b18",
+  "inputs": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-spells-r1/casts-r1/fireball-native-mode-1/frame.png",
+      "sha256": "5e80dd38bf0b1b82108c8e53fce8bd6d2f929d2bc5f87ec16389455452856af8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-spells-r1/casts-r1/fireball-hd-mode-1/frame.png",
+      "sha256": "d7155c4a557df664f7a03f0d4e3d91968f4a4023e972b3c66867b34b7276cff5"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-spells-r1/spell-world-r1/map.png",
+      "sha256": "39b1c942e0aea9af6253fd1d606d693955275665d0ec4eea0ff196dbfac603f7"
+    }
+  ],
+  "actual_window": false,
+  "spell_animation_midframe": false,
+  "general_player_entry": false,
+  "scope": "Controlled spell fixtures; original battlefield completion frames and postbattle map."
+}

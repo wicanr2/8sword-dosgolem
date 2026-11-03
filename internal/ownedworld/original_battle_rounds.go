@@ -27,6 +27,7 @@ type originalRoundSwap struct {
 	BeforeA, BeforeB uint16
 }
 type originalBattleRounds struct {
+	Spells               *originalBattleSpells
 	AllowWorld, Released bool
 	Actions              *originalBattleActions
 	Rows                 [2][6]ArmyStack
@@ -61,6 +62,9 @@ func (r *originalBattleRounds) begin(m *dg.Machine) (bool, error) {
 }
 
 func (r *originalBattleRounds) checkProjection(m *dg.Machine) error {
+	if r.Spells != nil && r.Spells.Active {
+		return r.Spells.projection(m)
+	}
 	c := r.Actions.Casualties
 	if c != nil && c.Started {
 		return c.checkProjection(m)
@@ -141,6 +145,9 @@ func (r *originalBattleRounds) compare(m *dg.Machine, s originalRoundSite) (bool
 }
 
 func (r *originalBattleRounds) currentRows() [2][6]ArmyStack {
+	if r.Spells != nil && r.Spells.Active {
+		return r.Spells.Rows
+	}
 	if c := r.Actions.Casualties; c != nil && c.Started {
 		return c.Rows
 	}
@@ -357,6 +364,9 @@ func roundMotionPlan(rows [6]ArmyStack, slots [6]uint16, from, to int) ([6]uint1
 
 func (r *originalBattleRounds) playerGate(m *dg.Machine, ip uint16) (bool, error) {
 	if ip == 0x334 {
+		if r.Spells != nil {
+			return r.Spells.begin(m)
+		}
 		return false, errors.New("round special/spell not yet admitted")
 	}
 	if ip == 0x211a {

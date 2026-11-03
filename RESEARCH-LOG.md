@@ -3078,3 +3078,14 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 - 五份Go結果均實際F7至DOS close，原2987-byte人物檔與九地圖被既有checkpoint綁定；五個新程序各從檔案Continue，軍隊、數值與位置保持，沒有LoadState。原opaque軍隊影子24 bytes保持，擴充ID留在Go附檔。
 - 亂數邊界：局部退戰LCG的Before／After／Value已核對，但整段返回後還會合法變更seed；只比較局部規則及最後原oracle，不因兩個不同階段seed不相同而深入骰序。這是稽核器前提修正，Go及原收據不改。
 - 限制：只接原隨機遭遇一次完整往返，未接可重複一般入口、守軍／頭目、法術／特殊、擴充規則／AI、原戰場戰中續接、超word動畫與新兵動態姿勢。Engine畫面不冒稱X11視窗；過早result-panel取樣不作結算對話證據。七項不可變runtime定位及勘誤已回填[索引](docs/spec/ai-resolution-backlinks-r1.json)。
+## 2026-11-03：原戰場六攻擊術Go資料與取消分流
+
+原PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，PAM.i64 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。沿永久player-fireball-r1的IDA9.4匯出，不重新反組譯；27函式6715行bytes逐一對原MZ重定位核對。IDA base10000、original_file_offset及dosgolem runtime0F67分開標示，原名不改。[030契約](docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)、[獨立核對](preserved/original-battle-spells-audit-r1.json)及[永久保存](preserved/README.md#原戰場六攻擊術go資料保存)為入口。
+
+- 已證實於抽樣範圍：sub_1E8A4的caller1CFE保留原選術／選敵，sub_1E88E在caller02CC由Go扣次。219CC的動畫減員與21BD2的地震直接減員交Go正式rows，動畫顯示序列獨立，每個效果提交一次。原相容算式仍執行，Go獨立重算及核對，不稱全部法術算式已移除x86。
+- 算式沿原截斷順序。殺鬼非6至15類目標仍承受factor，不能按名稱自行拒絕。滅半為count/2+1，地震49／50分界及12號／10號除數保持；超原word乘積、amount或畫面範圍拒絕，不推論32位動畫相容。
+- `ORIGINAL-SPELL-CANCEL-20261103`勘誤已證實：20DAE的20E4E由Space設var_4=1，20F71回0EFE，1E8A4的1E91B／1E935退款。Esc走20EBA設byte_348B8，20F78回游標值，1E93C早退且不退款。原版及Go動態結果一致，取代早期將目標取消一概當退款的稽核假設；未修改原行為。
+- 原版／Go十一對：六術HD、火球原版、暗殺失敗、選術Esc及選敵Esc／Space。兵數、HP、次數、seed、完整Frame相同；雷火與地震各兩隊。暗殺門檻4／0在執行前明示，同一固定seed抽到20746，46在成功門檻50內、失敗門檻10外，不重投。
+- 學習旗標、26B0=2、26AE及各術3次均為明示ABI fixture，未宣稱自然習得。混合74民兵／2原12號／1狼／1弓箭手首發火球後17次普通行動取勝，剩60／2／1，金615、戰績37；F7及獨立程序Continue後軍隊、位置、世界資源及火球2次保持。本場規則native，存檔formation標記僅驗保存身份。
+- 測試工具限制：進術前整串方向鍵與實際游標不同步，最終以原20E16讀鍵點的游標逐步確認移動；沒有改原menu、注入目標或搬IP。四輪失敗來源／state／PNG與最終工具永久保存。前述原控制／Go為Engine畫面，沒有新增X11驗收。
+- 未閉合：凝滯／複製、敵方特殊、原守軍／頭目交接、規則／AI整合、新兵姿勢、超word動畫、戰中續接及一般玩家入口。五項不可變runtime定位回填[索引](docs/spec/ai-resolution-backlinks-r1.json)，標記`ORIGINAL-SPELL-DATA-20261103`限定提升，不代表完整戰鬥或Rust已完成。

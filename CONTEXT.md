@@ -14,7 +14,13 @@
 
 ## 最近驗證
 
-最新為[原世界結算與F7](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)。294來源隔離候選保留原結算畫面、全滅去向、原地圖返回及F7，Go處理剩兵、獎勵／扣款與晉級數值。原版模式普通撤退、HD全滅浪跡各一組原版／Go對照，完整地圖Frame、六數值、位置與seed相同。五份Go戰後進度各經實際F7、關閉Store、獨立程序Continue，軍隊、六數值及位置保持。[核對](preserved/original-battle-world-audit-r1.json)、[成果](docs/images/original-battle-world-f7-r1.png)與[永久保存](preserved/README.md#原世界結算與f7保存)為入口。
+最新為[原戰場六攻擊術Go資料](docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)。296來源隔離候選接管火球、雷火、殺鬼、暗殺、滅半及地震的正式減員、動畫倒數與扣次，保留原選單及HD演出。十一組原版／Go對照的兵數、HP、次數、seed及完整Frame相同，含原版模式、暗殺失敗及三種取消操作；13模型、9算式拒絕、13掛點拒絕與普通戰鬥回歸通過。[核對](preserved/original-battle-spells-audit-r1.json)、[成果](docs/images/original-battle-go-spells-r1.png)與[保存](preserved/README.md#原戰場六攻擊術go資料保存)為入口。
+
+混合編成明示74民兵、2名原12號施法者、1野狼及1女弓箭手。首發火球後繼續17次普通行動取勝，剩60民兵、2施法者及1弓箭手；金615、戰績37。實際F7及獨立程序Continue後，軍隊、世界數值、位置及火球3→2保持。原版選敵Esc會撤退且不退法術次數，Space才退款，見`ORIGINAL-SPELL-CANCEL-20261103`。
+
+原相容中間算式仍保留，由Go獨立重算及核對後接正式兵數，不能稱整段法術脫離x86。下一步為凝滯／複製與敵方特殊，其後接守軍／頭目、規則／AI整合、戰中續接及一般入口。新兵動態姿勢與超word動畫仍未完成。正式197來源七程式、923核心、535素材及1071美術保持；完整戰鬥後再進Rust。
+
+前輪為[原世界結算與F7](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)。294來源隔離候選保留原結算畫面、全滅去向、原地圖返回及F7，Go處理剩兵、獎勵／扣款與晉級數值。原版模式普通撤退、HD全滅浪跡各一組原版／Go對照，完整地圖Frame、六數值、位置與seed相同。五份Go戰後進度各經實際F7、關閉Store、獨立程序Continue，軍隊、六數值及位置保持。[核對](preserved/original-battle-world-audit-r1.json)、[成果](docs/images/original-battle-world-f7-r1.png)與[永久保存](preserved/README.md#原世界結算與f7保存)為入口。
 
 明示74民兵／2野狼／2女弓箭手編成符合領導100，經17動作取勝，剩58民兵／2弓箭手，金500→615、戰績0→37。原兵種全滅走浪跡，混合全滅走原選單回起點，都不領獎或扣撤退金。另以Merit1999及金錢／月薪／法術能力接近上限的存檔fixture，驗升2級、戰績2036、金錢／月薪／法術能力30000、領導200。這是明示測試編成與數值，沒有宣稱自然招募或自然晉級。
 

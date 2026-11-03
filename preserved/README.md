@@ -1,5 +1,30 @@
 # 必要資料永久保存
 
+## 原戰場六攻擊術Go資料保存
+
+本批2446檔／481物件，壓縮106352762 bytes，保存296來源候選、五份測試程式、固定原版輸入、27函式IDA匯出、完整PNG／state、混合編成F7與獨立程序Continue、四輪輸入診斷失敗。物件位於本機`preserved/original-battle-spells-r1/`，不進Git；編譯快取排除。原圖及既有HD素材仍沿永久圖庫，不重新生成。
+
+[清理收據](original-battle-spells-cleanup-r1.json)只移除逐SHA已保存的舊失敗副本／舊二進位及本批Go快取，共374377502 bytes。現行候選、固定輸入及成功收據保持。[清理後核對](original-battle-spells-post-cleanup-audit-r1.json)與[收尾核對](original-battle-spells-integrity-r1.json)另列。
+
+[030限定結果](../docs/spec/030-battle-expansion-proposal.md#玩家六攻擊術go資料限定-conformed)、[核對](original-battle-spells-audit-r1.json)、[逐檔清單](original-battle-spells-r1.json)、[脫離workplace核對](original-battle-spells-verification-r1.json)、[成果](../docs/images/original-battle-go-spells-r1.png)與[圖片來源](../docs/images/original-battle-go-spells-r1.json)為入口。十一組原版／Go的兵數、HP、次數、seed及完整Frame相同；混合編成施法後17次普通行動取勝，剩60民兵、2施法者、1女弓箭手，實際F7及新程序Continue保持。
+
+取消分流以`ORIGINAL-SPELL-CANCEL-20261103`回填：原選敵Esc撤退不退款，Space取消才退款。原版及Go都已驗，不把稽核器早期「取消一律退款」前提當作產品缺陷。舊整串送鍵及游標等待失敗完整保存；最終按原讀鍵點、實際游標逐步送鍵，不改原選單或UI。
+
+[控制器](../internal/ownedworld/original_battle_spells.go)、[抽驗](../internal/ownedworld/original_battle_spells_test.go)與[準備／核對／保存](../tools/original-battle-spells.py)沿既有Go1.24.13及Pillow11.3.0映像。`freeze`凍結來源，`audit`核對6715行MZ bytes、十一對狀態欄與完整Frame、獨立公式及實際F7冷讀，`publish`生成縮小成果，`archive`保存去重物件。完整環境、唯讀掛載、二進位SHA、分批測試說明及重生命令保存在execution-r1.json。
+
+獨立核對只掛工具及保存，原workplace不在容器內：
+
+```bash
+timeout 180 docker run --rm --init --network none --user 1000:1000 \
+  --memory 1g --cpus 2 --pids-limit 64 \
+  -v /home/anr2/cht/8sword/tools:/tools:ro \
+  -v /home/anr2/cht/8sword/preserved:/archive:ro \
+  sc-cht-hdtools:pillow11.3.0-r2 python /tools/original-battle-spells.py \
+  verify --archive /archive --out /tmp/新核對.json
+```
+
+還原按清單原路徑與mode逐物件驗stored_sha256、gzip解壓、原大小與SHA，寫到新的可寫目的地，遇到不同內容不覆寫。原中間相容算式仍保留；六術僅限定原施法者10／12及原25種敵軍。自然習得、凝滯／複製、敵方特殊、守軍／頭目、規則／AI串接、戰中續接與一般入口仍未完成。正式197來源七程式、923核心、535素材與1071美術不變。
+
 ## 原世界結算與F7保存
 
 本批3070檔／445物件，壓縮72403861 bytes，完整成功／失敗來源、原版證據、state、未縮PNG、F7人物檔與九地圖、五個獨立程序冷讀均已保存。完整物件只存本機`preserved/original-battle-world-r1/`，不進Git；編譯快取排除。
