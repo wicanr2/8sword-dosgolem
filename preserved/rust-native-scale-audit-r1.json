@@ -1,0 +1,50 @@
+{
+  "status": "passed-rust-native-scale-audit",
+  "size": [
+    1280,
+    880
+  ],
+  "rows": [
+    {
+      "font": "noto",
+      "sha256": "fd245f9cafe4d49dfa2b42fe68494b678fc1ddebaf3ef25b2699ef560c33a3a4",
+      "pixels_equal": true
+    },
+    {
+      "font": "lishu",
+      "sha256": "bc337eccb305d233bb750dcdeb7ac4d057b49039374df9888ec0f1992055840c",
+      "pixels_equal": true
+    },
+    {
+      "font": "caoshu",
+      "sha256": "6a7788c0733f48aefdf4803f85693395aaf9f178f7f15574308d4e8253791f4c",
+      "pixels_equal": true
+    }
+  ],
+  "receipt": {
+    "status": "passed-rust-production-scale-capture",
+    "size": [
+      1280,
+      880
+    ],
+    "binary_sha256": "853509afccb28c9054bf5ac078ae3fabdb664c1de7a34bcc185bf0b3c3d11a99",
+    "files": [
+      {
+        "font": "noto",
+        "sha256": "fd245f9cafe4d49dfa2b42fe68494b678fc1ddebaf3ef25b2699ef560c33a3a4"
+      },
+      {
+        "font": "lishu",
+        "sha256": "bc337eccb305d233bb750dcdeb7ac4d057b49039374df9888ec0f1992055840c"
+      },
+      {
+        "font": "caoshu",
+        "sha256": "6a7788c0733f48aefdf4803f85693395aaf9f178f7f15574308d4e8253791f4c"
+      }
+    ],
+    "input": "XTest toolbar clicks at production-scaled coordinates; XGetImage captures; no diagnostics or memory injection",
+    "limits": "Visual and scaled geometry check; not native pixel parity"
+  },
+  "comparison": "XGetImage RGB equals native framebuffer nearest resize; no memory injection",
+  "visual_review": "Noto and lishu reviewed; battlefield complete, toolbar and status bounded"
+}

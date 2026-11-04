@@ -68,3 +68,49 @@
 執行期以既有Rust1.99.1基底，只掛唯讀crate與`rust-battle-core-r1/native`輸出子目錄。原版PAM、Go來源與匯出程式留在該子目錄之外。格式檢查沿既有`mm45-rust-desktop:1.99.1-r3`的rustfmt1.10.0，映像SHA為`ac10129fb2667f9be114a19db5b7a3837ba1a4457627420aec3044792715b8e1`，沒有另建工具映像或下載依賴。
 
 隔離聲明勘誤：前輪與本輪早期Rust測試雖然沒有讀取EXE或呼叫模擬器，輸出掛載仍涵蓋含PAM／Go來源的研究目錄。「沒有掛載EXE／Go」的舊文字不夠精確。本輪最終測試已縮到native子目錄，真正不讓Rust執行容器看到這些輸入；限定完成以這次收據為準。既有未移植玩家分支仍依工作表接續，不因本輪動作資料鏈通過就提升完整回合或獨立遊戲聲明。
+
+## 獨立執行期定案
+
+使用者追加確認：Rust執行檔應直接遊玩，包含繪圖、聲音、輸入、邏輯及存檔。正式執行期只需要原生執行檔、平台媒體函式庫及合法素材包；不啟動、不載入也不連接dosgolem、dosgolem-rust、DOSBox、Go helper或DOS EXE。這些工具只供開發對照。平台媒體函式庫不負責遊戲規則，Rust直接管理畫布與音訊緩衝。
+
+第一個桌面樣本以原版HD戰場幾何與既有批准素材實作普通戰鬥，軍隊為明示測試配置；不冒稱已有世界、新遊戲、法術或保存。世界與保存依WORKLIST接續，不用媒體樣本替代完整獨立版驗收。
+
+## 原生普通回合與桌面媒體
+
+### 原版證據與範圍
+
+沿固定PAM及IDA9.4 MZ base10000h。`sub_205E6`／執行期`0F67:2076`控制雙側交替；`sub_2068A`／`0F67:211A`與`sub_206DA`／`0F67:216A`重設每側六個行動計數為1，反覆呼叫`sub_1FF1C`／`0F67:19AC`及`sub_1FB6C`／`0F67:15FC`。證據沿前輪ida-rounds.json與ida-actions.json，不改原函式名、位址或資料庫。新抽驗需保留原bytes、輸出工具與地址基準。
+
+已證實：從前排0至2掃描，按raw列計數消耗行動，近戰換位後不重複出手；前排完成後再找後排射手。每次成功出手後整理對側，下一次從前排重新掃描。Space消耗當前隊而不攻擊；Esc撤退；錯誤目標繼續等待同一隊，不再次消耗。前排射手與後排射手的略過會保留原subcall的activity標記，不能一概把每次Space當成完成一次攻擊。
+
+玩家近戰可攻擊存活前排；後排3／4要求前排全空，後排5要求前五格全空。射手可攻擊任何存活敵格。原10／12特殊分派尚未移植，普通樣本拒絕含兩種施法者的編成。來源與目標按先前相容域明確拒絕，不截斷兵數。
+
+敵方普通選敵已證實的可見優先：近戰同前排有活目標時鎖同列；否則從活前排選，前排全空才從後排選；射手從六格活目標選。Rust使用原LCG helper公式`seed×214013+2531011`，回傳高16位的低15位。原先手參數明示輸入，不重新猜先手。非軍隊alias讀取與額外ambient rand的整段呼叫序列不作本輪exact聲明；控制器對拍使用同一已選目標，原生自主選敵另驗合法集合與固定seed重播。此限制依共同RND停止線保留，不把相同seed數字當逐骰一致。
+
+### 原生視窗、畫布與音訊
+
+使用現有SDL2作視窗、輸入、紋理提交與PCM播放，Rust本身重繪完整畫布。SDL2以[streaming texture契約](https://wiki.libsdl.org/SDL2/SDL_UpdateTexture)及[renderer契約](https://wiki.libsdl.org/SDL2/SDL_CreateRenderer)輸出，不從原版RGB取底。音訊沿[SDL_QueueAudio](https://wiki.libsdl.org/SDL2/SDL_QueueAudio)的非平面PCM佇列，先核對取得的48000Hz／雙聲道／S16LE格式；以位元組計算佇列水位，不能混成sample數。這是平台API契約，不做DOS硬體時序考古。
+
+只讀取已批准背景、透明部隊與三字型，離線轉成有尺寸、長度及校驗檢查的RGBA／字模素材。音樂沿正式OGG契約，直接讀取已批准戰鬥曲，由[libsndfile的檔案與frame讀取API](https://libsndfile.github.io/libsndfile/api.html)在記憶體解碼，再送SDL；PCM只作記憶體及研究擷取，不作正式素材檔。原始PNG／OGG及來源SHA仍保存，投影工具只在建置／分析期使用。執行期沒有Python、FFmpeg、Go或原版檔案依賴。素材缺漏、尺寸／長度錯誤明確停止。此內部素材投影不是新存檔格式。
+
+戰場保持1920×1200原版HD座標，字型／音樂工具列與狀態列置於遊戲外圍，不裁切戰場。方向鍵／Enter選敵，Space略過、Esc撤退；字型按鈕與F10支援Noto900／隸書／草書。原生樣本只用既有站姿與命中提示，額外手繪姿勢不阻塞媒體接線。
+
+### 驗收
+
+原生回合以原Go控制器正常遇敵捕獲的來源隊、兩側slots、行動計數與兵數／HP逐步對照，不能再從記錄提供sourceRaw來冒充排程。敵方目標在對拍時明示控制，自主選敵另驗可重播。桌面樣本只掛Rust來源與轉換素材，沒有DOS EXE、Go或模擬器。用真正視窗輸入完成普通戰鬥／撤退、切換三字型與音樂；紋理讀回比畫布，音訊驗非零樣本與佇列有進展。SDL dummy輸出不稱人耳確認。
+
+### 原生普通回合與桌面媒體限定 CONFORMED
+
+預設1280×880視窗另以XGetImage擷取Noto／隸書／草書，逐RGB等於原生畫布nearest縮放；工具列以縮放後實際座標點選。詳見[預設比例核對](../../preserved/rust-native-scale-audit-r1.json)。此項只涵蓋該比例、字型與初始普通戰場。
+
+四場原版介面Go收據包含勝利、近戰略過後全滅、撤退及後排射手略過後全滅。Rust自行決定來源隊與半回合，71次選隊的兩側slots、當側六行動計數、HP與來源相同；42次攻擊、6次實際Space及一次Esc後的結果、剩兵與陣位相同。重複進入選敵只驗等待，不重扣行動。收據以picker實際返回值記Space，不能在OnCall先假定輸入已完成。18個Rust測試及原生CLI通過，201組算式、309組位置與既有40動作保持。
+
+原生執行檔直接開SDL2視窗，透過X11鍵盤及工具列滑鼠完成32動作勝局、2動作全滅與未出手撤退。Noto900／隸書／草書與音樂開關均抽驗；六張紋理讀回與Rust RGBA畫布相同。敵軍全滅後右側、玩家全滅後左側，共2304000背景像素與素材原圖相同，沒有殘留部隊或原版底圖。文字使用固定安全寬高，過長加省略號。滑鼠採[SDL logical size既有座標映射](https://wiki.libsdl.org/SDL2/SDL_RenderSetLogicalSize)，不重複換算；擷取先核對輸出尺寸，避免視窗調整造成讀回緩衝越界。
+
+實際載入〈刀祭〉OGG，48000Hz雙聲道、2633140 frames，約54.857秒。Rust/libsndfile解碼後交SDL播放；六份實際佇列PCM均非零，與FFmpeg獨立解碼的相同前綴最大差不超過2個16-bit量化單位。dummy裝置有消耗進展；沒有新的人耳確認、循環接點或實機音效驗收。
+
+實作入口為[控制器](../../internal/remake-rust/src/controller.rs)、[桌面畫布](../../internal/remake-rust/src/desktop.rs)、[素材載入](../../internal/remake-rust/src/media_assets.rs)、[SDL介接](../../internal/remake-rust/src/sdl.rs)與[OGG解碼](../../internal/remake-rust/src/sndfile.rs)。[Go收據工具](../../internal/ownedworld/rust_controller_reference_test.go)只供開發對照；[X11抽驗](../../tools/rust-native-gui.py)不改遊戲記憶體。來源、幾何、校驗、音訊與正式基線由[核對工具](../../tools/rust-native-player.py)驗證，詳見[核對收據](../../preserved/rust-native-player-audit-r1.json)、[研究索引](../../RESEARCH-LOG.md#rust原生普通回合與媒體)及[永久保存](../../preserved/README.md#rust原生普通回合與媒體保存)。
+
+[Docker入口](../../tools/rust-native-player.sh)提供test／build／run。執行期只有原生binary、素材與SDL2／libsndfile等平台函式庫；不需crate、Go、PAM或dosgolem。沿既有mm45 Rust1.99.1映像，SDL2 2.26.5及libsndfile1.2.0，不下載Rust crate或重建映像。這次只驗Linux x86_64開發樣本；動態連結名稱與fd介接尚未移植其他平台。
+
+普通回合及原生音畫樣本已完成。軍隊固定為測試配置，沒有世界、新遊戲、法術／特殊、原版完整選單、存檔、海報、AI／規則工具列或完整通關聲明。舊Go原版／HD路徑及保存格式保持；後續依WORKLIST移植，不再重跑本批普通樣本或全量HD。

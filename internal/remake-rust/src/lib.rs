@@ -3,11 +3,23 @@
 
 pub mod battle;
 pub mod catalog;
+pub mod controller;
+pub mod media_assets;
+
+#[cfg(feature = "desktop")]
+pub mod desktop;
 pub mod formation;
 pub mod replay;
+#[cfg(feature = "desktop")]
+mod sdl;
+#[cfg(feature = "desktop")]
+mod sndfile;
 
 #[cfg(test)]
 mod native_tests;
+
+#[cfg(test)]
+mod controller_tests;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct AttackInput {

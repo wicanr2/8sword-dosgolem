@@ -20,9 +20,13 @@
 
 開發環境完成還原後，執行 `bash tools/original-player.sh build`，再用 `bash tools/original-player.sh run <Go世界進度絕對路徑> <新的暫存目錄絕對路徑>`。開始畫面選繼續；只接受已匯入的世界進度。新遊戲建立、戰中重啟及AI／規則工具列尚未接入此入口，原版播放器保持既有功能。
 
-Rust原生核心已接33種兵種、初始陣位、補位、近戰換位及雙方普通攻擊。201組算式、309組位置向量與三場戰鬥的40個普通行動核對通過，包含勝利、全滅與撤退。`bash tools/remake-rust.sh`在Docker內重建，執行容器只掛Rust來源與獨立輸出子目錄，不掛DOS EXE或Go研究檔。見[限定驗收](docs/spec/031-rust-independent-remake.md#兵種與普通行動移植限定-conformed)與[核對收據](preserved/rust-battle-core-audit-r1.json)。
+Rust已能獨立執行普通戰鬥，直接繪製既有HD背景與透明部隊、播放OGG音樂，並在工具列切換Noto900／隸書／草書。回合、選隊、敵方普通選敵、兵數及HP由Rust處理。執行期需要原生執行檔、素材包及SDL2／libsndfile等平台函式庫，不需要dosgolem、Go或DOS EXE。
 
-目前行動順序與選隊仍取自既有記錄，Rust自行計算每次兵數、HP及結果。原生回合控制器、世界、原版式介面及存檔依[工作表](WORKLIST.md)接續，尚非可玩的獨立版。
+![Rust原生普通戰鬥與三字型工具列](docs/images/rust-native-battle-r1.png)
+
+上圖是原生視窗的明示測試編成，1000野狼與10女弓箭手對抗三隊原兵種。普通勝利、全滅、撤退、工具列與音訊佇列已抽驗；四場回合對照含71次選隊與42次攻擊。33種兵種、201組算式及309組位置向量保持。這是Linux開發樣本，世界、新遊戲、法術與存檔尚待移植，未提供完整遊戲包。詳見[限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)、[核對收據](preserved/rust-native-player-audit-r1.json)及[圖片來源](docs/images/rust-native-battle-r1.json)。
+
+開發環境完成[素材還原](preserved/README.md#rust原生普通回合與媒體保存)後，執行`bash tools/rust-native-player.sh build`，再用`bash tools/rust-native-player.sh run`開啟樣本。需Linux X11及音訊裝置；`run --mute`可靜音。方向鍵選敵、Enter出手、Space略過、Esc撤退、R重開。`bash tools/remake-rust.sh`核對Rust測試與CLI。其餘移植依[工作表](WORKLIST.md)接續。
 
 ## 部隊管理與Go資料
 

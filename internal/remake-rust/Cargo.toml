@@ -6,6 +6,9 @@ publish = false
 description = "神州八劍 Rust 獨立重製核心"
 license-file = "../../LICENSE"
 
+[features]
+desktop = []
+
 [lib]
 path = "src/lib.rs"
 

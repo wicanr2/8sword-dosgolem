@@ -125,6 +125,10 @@ func roundKeys(o *oracle.Oracle, start, target uint16) error {
 }
 
 func roundEncounter(t *testing.T, e *game.Engine, skip bool, retreat ...bool) error {
+	return roundEncounterObserved(t, e, skip, retreat, nil)
+}
+
+func roundEncounterObserved(t *testing.T, e *game.Engine, skip bool, retreat []bool, returned func(*oracle.Oracle)) error {
 	t.Helper()
 	prompt := false
 	e.Oracle.OnCall(oracle.Far(0x110, 0x16e0), func(*oracle.Oracle) {
@@ -198,6 +202,9 @@ func roundEncounter(t *testing.T, e *game.Engine, skip bool, retreat ...bool) er
 	e.Oracle.SetStepGuard(func(o *oracle.Oracle) error {
 		r := o.Regs()
 		if pending && r.CS == picker.CS && r.IP == picker.IP && r.SP == picker.SP && r.SS == picker.SS {
+			if returned != nil {
+				returned(o)
+			}
 			pending = false
 		}
 		if !released && o.Steps() > startSteps+100000 {

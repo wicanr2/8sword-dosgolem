@@ -1,0 +1,67 @@
+{
+  "status": "passed-scoped-rust-native-cleanup",
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/build-cache",
+      "files": 1701,
+      "bytes": 156358137,
+      "preserved": false,
+      "cache": true
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/native/rust-target",
+      "files": 649,
+      "bytes": 117314277,
+      "preserved": false,
+      "cache": true
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/native/gui-r1",
+      "files": 6,
+      "bytes": 18386148,
+      "preserved": true,
+      "cache": false
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/native/gui-r2",
+      "files": 25,
+      "bytes": 94011026,
+      "preserved": true,
+      "cache": false
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/native/gui-r3",
+      "files": 11,
+      "bytes": 47232459,
+      "preserved": true,
+      "cache": false
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/native/gui-r4",
+      "files": 25,
+      "bytes": 94356626,
+      "preserved": true,
+      "cache": false
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/controller-reference.test",
+      "files": 1,
+      "bytes": 17726584,
+      "preserved": true,
+      "cache": false
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/native/8sword-remake-before-buffering",
+      "files": 1,
+      "bytes": 728520,
+      "preserved": true,
+      "cache": false
+    }
+  ],
+  "bytes": 546113777,
+  "current_binary_sha256": "853509afccb28c9054bf5ac078ae3fabdb664c1de7a34bcc185bf0b3c3d11a99",
+  "compressed_bytes": 86707326,
+  "files": 738,
+  "objects": 467,
+  "other_projects_touched": false
+}

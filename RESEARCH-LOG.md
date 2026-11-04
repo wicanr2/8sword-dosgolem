@@ -3181,3 +3181,26 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 READY因此增加已提交Go死亡ID的Actor生命週期命令。只移除該ID的來源Actor cell，保留Material、Effect與Text；在下一筆來源命令生成RGB前提交，同一死亡狀態冪等，合法站姿可重新啟用。原CPU、兵力交易與原繪圖命令不加特例。診斷版只加事件記錄，沒有改計算或注入死亡結果；完整失敗圖、overlay來源與binary另存cohort。
 
 驗證方法勘誤：第一次Actor清除已有效。後續把停用組的舊佔位圖當成空背景，錯把死亡區域差異判為殘影。r6的來源cell、重建RGB與PNG顯示新兵已消失；獨立依已批准背景PNG重建兩幀158400像素，全部相同。額外材質資格／快取試驗未改變正常圖片，全部留研究cohort，正式候選恢復逐SHA相同的最小Actor清除版本。九對完整guest、七對Frame、三份F7／另程序Continue及八份材質重建通過，限定結果見[030](docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿限定-conformed)。
+
+
+## Rust原生普通回合與媒體
+
+2026-11-04。輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；原IDA資料庫SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。本輪只讀既有IDA Pro9.4匯出，不重建i64或改名。`ida-rounds.json` SHA為`a032d3d6a2fd8e001906f9b59159627f4db5c886ebae0d98b806b9f637c58683`，`ida-actions.json`為`8aa62b2e395b7cd8c92190e268519fedf09ef55fac84a5a82531b4b7a8b78ae3`；完整原bytes及file_offset已複製入本批evidence，經永久保存索引可回查。
+
+IDA位址空間為MZ linear base10000h；執行期戰鬥段0F67的IP為IDA linear減1E570h。DS為執行期1E88，PAM MZ body加1D780h為DS資料起點；表格位址不是IDA linear。原名稱與運算元均保留。
+
+| 定位 | 推論等級 | 語意與來源 |
+|---|---|---|
+| IDA sub_205E6；runtime 0F67:2076 | 已證實 | 雙側交替與勝敗／撤退控制；ida-rounds bytes及四場原版介面Go收據。 |
+| IDA sub_2068A／sub_206DA；runtime 0F67:211A／216A | 已證實 | 各側六行動計數重設為1，持續掃描並整理對側；同上匯出及71次來源／pending比對。 |
+| IDA sub_1FF1C；runtime 0F67:19AC | 已證實 | 前排掃描、後排射手、Space消耗、Esc撤退與不合法目標等待。回傳activity不能與實際攻擊等同。 |
+| IDA sub_1FB6C；runtime 0F67:15FC | 已證實 | 敵方普通來源、同前排鎖定與其餘合法選敵集合；ida-actions及實際原選敵輸出。 |
+| runtime DS:703C／708A／709A | 已證實 | 原陣位座標、四組補位順序及12節點方向表，直接讀固定PAM bytes。Rust POSITIONS使用既有HD倍率24／6，NAVIGATION保留表值。 |
+| IDA sub_20DAE；runtime 0F67:283E | 已證實 | 選敵返回AX=0EFEh才表示Space。`mov byte_348B8,1`原bytes `C6 06 38 71 01`對應runtime DS:7138撤退旗標。不能在OnCall假定輸入已執行。 |
+| 整段RNG呼叫順序 | 未知，非本輪阻塞 | 原LCG公式沿已驗Go rand helper，但alias讀取及ambient呼叫未逐次同步。Rust自主普通選敵驗合法集合及固定seed重播；原版介面對拍傳入已選目標，不宣稱整段骰序exact。 |
+
+[031](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)依RE→READY→implementation→同狀態比較完成限定提升。四場原版介面Go測試走正常Continue與遭遇，軍隊明示fixture、開局seed固定一次，沒有挑結果；比較來源由原版排程決定，傷害沿先前已對拍Go控制器。Rust沒有注入預期來源、HP或兵數，只接實際玩家／敵方目標輸入，再逐步比來源、slots、pending及HP。42次行動與最後勝敗／撤退相同。
+
+Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2的streaming texture、logical size與QueueAudio契約，以及libsndfile檔案／frame API由官方文件提供，見031連結。播放器不啟動FFmpeg、Python或Go。〈刀祭〉2633140 frames；本輪只驗解碼、長度、非零內容與裝置消耗，dummy不是人耳證據。
+
+原生1920×1320視窗六張紋理讀回逐RGBA相同。預設1280×880的XGetImage三字型畫面，另與原生畫布nearest縮放逐RGB相同；工具列滑鼠使用縮放後實際座標，確認沒有重複logical映射。完整世界、法術／特殊與保存尚待，不以普通戰鬥樣本替代正常世界玩家路徑。

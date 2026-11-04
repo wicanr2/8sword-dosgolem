@@ -1,0 +1,8 @@
+{
+  "status": "passed-detached-rust-native-player",
+  "files": 738,
+  "objects": 467,
+  "mounts": ["preserved:/archive:read-only", "tools:/tools:read-only", "temporary tmpfs:/check"],
+  "workplace_mounted": false,
+  "original_or_go_mounted": false
+}

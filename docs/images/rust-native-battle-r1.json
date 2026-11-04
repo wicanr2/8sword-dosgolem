@@ -1,0 +1,20 @@
+{
+  "source_path": "workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/native/gui-r5/win/frame-001.ppm",
+  "source_sha256": "e75aedc402b24fa7966050be7fee1763f97bd3d5db9dd6623d0a9de1c3e01d77",
+  "preview_sha256": "abd9d91210d894f372c77d722c3af3b89620cc38121d12a0b3255839746c2a1d",
+  "source_size": [
+    1920,
+    1320
+  ],
+  "preview_size": [
+    1200,
+    825
+  ],
+  "capture": "Rust native SDL renderer; readback equals Rust RGBA canvas; XTest keyboard/mouse",
+  "fixture": "1000 openkb:wolf and 10 female openkb:arcr vs native06=11, native16=35, native11=29",
+  "runtime": "No Go, dosgolem or DOS executable; SDL2 and libsndfile platform libraries",
+  "evidence": "preserved/rust-native-player-audit-r1.json",
+  "scale_evidence": "preserved/rust-native-scale-audit-r1.json",
+  "rights": "Approved derived artwork screenshot in private repository; full originals local",
+  "limits": "Ordinary battle sample only. No world, spell, save or full-game claim."
+}

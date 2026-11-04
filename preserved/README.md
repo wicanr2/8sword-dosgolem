@@ -1167,3 +1167,18 @@ Rust執行容器只掛唯讀crate及native子目錄，沒有PAM、Go來源／匯
 [清理收據](rust-battle-core-cleanup-r1.json)只移除本批Go與兩份Rust建置快取254219517 bytes，原生binary先保存及核對SHA後保留。正式197來源七程式、923核心、535素材、1071美術與Go存檔格式保持，沒有Release。
 
 本批[文件與擁有權核對](rust-battle-core-integrity-r1.json)另存。
+
+## Rust原生普通回合與媒體保存
+
+[031限定驗收](../docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)、[核對](rust-native-player-audit-r1.json)及[預設比例核對](rust-native-scale-audit-r1.json)保存四場71次來源選取／42次攻擊／6次略過、18個Rust測試，以及普通勝利／全滅／撤退的原生視窗。六張SDL讀回同Rust畫布，三字型的1280×880 XGetImage亦同原生畫布縮放。OGG直接由原生程式解碼播放；技術音訊驗證不等於人耳確認。軍隊為fixture，世界、法術與存檔仍待。
+
+[批次清單](rust-native-player-r1.json)的files列原路徑、bytes、SHA與mode，objects對應本機`rust-native-player-r1/<SHA>.gz`。完整316份Go對照來源、Rust crate、OGG／RGBA／字模媒體、binary、原PNG／PPM／音訊、IDA原匯出與失敗前版收據留在此處，不加入Git。清理workplace不影響保存。還原時解壓到另一個空目錄，依files相對路徑核對SHA與mode，不覆寫原始輸入；只恢復native子目錄即可執行原生樣本，Go／PAM只供開發對照。原始批准PNG與完整字型仍按artwork及既有catalog保存。
+
+[工具](../tools/rust-native-player.py)在既有Pillow11.3.0-r2、UID1000、network none容器內使用。`prepare --project /project --assets /assets --work <候選>`從已驗原圖及字型產生新的native/pack；候選須有native目錄，pack須不存在。`audio`只在建置期核對FFmpeg參考PCM並複製原OGG；執行期不需FFmpeg或Python。`audit --project /project --out <新JSON>`核對來源、素材、測試、GUI、音訊及197／7／923／535基線。完整命令、來源與映像雜湊見批次execution-r1.json。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-native-player-r1.json`建立本機保存。[脫離工作區核對](rust-native-player-detached-r1.json)僅掛唯讀preserved、工具與暫存tmpfs，執行`verify --archive /archive --out <新JSON>`逐物件解壓核對，不掛遊戲、Go、workplace或核心。
+
+[原生入口](../tools/rust-native-player.sh)提供test／build／run，[X11工具](../tools/rust-native-gui.py)預設跑三條普通戰鬥，`--scale-check`擷取預設視窗。建置只掛Rust crate與native輸出；一般run只掛binary、媒體及平台顯示／音訊介面。Linux樣本使用Rust1.99.1、SDL2 2.26.5及libsndfile1.2.0，沒有新Rust依賴、Docker image、Release或存檔格式。README圖片與[來源索引](../docs/images/rust-native-battle-r1.json)只保存縮圖及證據連結。
+
+
+本批738檔／467物件，壓縮86707326 bytes。脫離工作區逐物件核對後，移除2350份Go／Rust快取及已保存的舊GUI擷取、舊binary，共546113777 bytes，約520.8 MiB。[清理收據](rust-native-player-cleanup-r1.json)與[清理後核對](rust-native-player-postcleanup-audit-r1.json)另存；當前原生binary、媒體及最終GUI保留。[文件與擁有權核對](rust-native-player-integrity-r1.json)為收尾入口。

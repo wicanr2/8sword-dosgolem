@@ -1,0 +1,17 @@
+{
+  "status": "passed-rust-native-player-integrity",
+  "positive_control": true,
+  "checked_links": 34,
+  "checked_files": 13,
+  "postcleanup_matches": true,
+  "source_output_uid": 1000,
+  "project_containers_left": 0,
+  "original_asset_objects_not_in_git": true,
+  "formal_baseline_counts": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "limitations": "Linux fixture battle and technical audio; no full game or human-hearing claim"
+}

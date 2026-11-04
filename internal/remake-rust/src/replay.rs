@@ -38,6 +38,117 @@ fn six<T: FromStr>(text: &str) -> Result<[T; 6], String> {
 }
 
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+pub struct ControllerCount {
+    pub battles: usize,
+    pub offers: usize,
+    pub actions: usize,
+    pub skips: usize,
+}
+
+pub fn check_controller(catalog: &Catalog, text: &str) -> Result<ControllerCount, String> {
+    use crate::controller::Controller;
+    let mut current: Option<Controller<'_>> = None;
+    let mut count = ControllerCount::default();
+    for (line_number, line) in text.lines().enumerate() {
+        if line.starts_with('#') || line.trim().is_empty() {
+            continue;
+        }
+        let f: Vec<_> = line.split('\t').collect();
+        let bad = || format!("回合控制第 {} 行不符", line_number + 1);
+        match f[0] {
+            "START" if f.len() == 5 => {
+                if current.is_some() {
+                    return Err(bad());
+                }
+                let first = match f[2] {
+                    "0" => Side::Player,
+                    "1" => Side::Enemy,
+                    _ => return Err(bad()),
+                };
+                current = Some(
+                    Controller::new(
+                        catalog,
+                        [parse_rows(f[3])?, parse_rows(f[4])?],
+                        first,
+                        Modifiers::default(),
+                    )
+                    .map_err(|e| format!("{} {e:?}", bad()))?,
+                );
+                count.battles += 1;
+            }
+            "OFFER" if f.len() == 9 => {
+                let c = current.as_mut().ok_or_else(bad)?;
+                let actor = c
+                    .next_actor()
+                    .map_err(|e| format!("{} {e:?}", bad()))?
+                    .ok_or_else(bad)?;
+                let side: usize = f[1].parse().map_err(|_| bad())?;
+                if side >= 2
+                    || actor.side.index() != side
+                    || actor.slot != f[2].parse().map_err(|_| bad())?
+                    || actor.raw != f[3].parse().map_err(|_| bad())?
+                    || c.slots() != &[six(f[4])?, six(f[5])?]
+                    || c.remaining()[side] != six(f[6])?
+                    || c.battle().hp() != &[six(f[7])?, six(f[8])?]
+                {
+                    return Err(format!(
+                        "{} actor={actor:?} slots={:?} remaining={:?}",
+                        bad(),
+                        c.slots(),
+                        c.remaining()
+                    ));
+                }
+                count.offers += 1;
+            }
+            "ATTACK" if f.len() == 2 => {
+                current
+                    .as_mut()
+                    .ok_or_else(bad)?
+                    .attack(f[1].parse().map_err(|_| bad())?)
+                    .map_err(|e| format!("{} {e:?}", bad()))?;
+                count.actions += 1;
+            }
+            "SKIP" if f.len() == 1 => {
+                current
+                    .as_mut()
+                    .ok_or_else(bad)?
+                    .skip()
+                    .map_err(|e| format!("{} {e:?}", bad()))?;
+                count.skips += 1;
+            }
+            "RETREAT" if f.len() == 1 => {
+                current
+                    .as_mut()
+                    .ok_or_else(bad)?
+                    .retreat()
+                    .map_err(|_| bad())?;
+            }
+            "END" if f.len() == 6 => {
+                let mut c = current.take().ok_or_else(bad)?;
+                let expected = match f[1] {
+                    "win" => Outcome::Win,
+                    "loss" => Outcome::Loss,
+                    "retreat" => Outcome::Retreat,
+                    _ => return Err(bad()),
+                };
+                if c.next_actor().map_err(|_| bad())?.is_some()
+                    || c.battle().outcome() != Some(expected)
+                    || c.battle().rows() != &[parse_rows(f[2])?, parse_rows(f[3])?]
+                    || c.slots() != &[six(f[4])?, six(f[5])?]
+                {
+                    return Err(bad());
+                }
+            }
+            _ => return Err(bad()),
+        }
+    }
+    if current.is_some() || count.battles == 0 {
+        return Err("回合控制記錄未結束".into());
+    }
+    Ok(count)
+}
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
 pub struct ModelCount {
     pub setup: usize,
     pub sort: usize,
