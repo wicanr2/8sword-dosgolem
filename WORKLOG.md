@@ -3185,3 +3185,15 @@ Rust移植火球、雷火、殺鬼、暗殺、凝滯、滅半、複製、地震�
 
 
 收尾核對25個本輪連結、8個新增來源／圖片、擁有權、格式與工具語法通過；清理後CLI及audit保持，沒有本專案殘留容器。功能提交`760a81783255ce6331b45a7704e9500ba3fb88e9`已推送私人GitHub main，遠端SHA核對一致。Git僅提交來源、核對／保存索引與批准縮圖，完整72.6 MB物件留本機。
+
+## 2026-11-04 Rust敵方八分派
+
+沿remake規格閘門、031及既有原版證據移植敵方八分派，未啟動新IDA／原版程式，未重跑全量HD。Rust接原分段抽選、合法目標、固定減員、暗殺、六slot額外行動與複製，保留滅半錯位及selector7受控停止線。
+
+384組現行Go模型、13份永久原版／Go成對收據及29個Rust測試通過。原生XTest固定seed1，敵雷火消滅兩種新兵、三普通行動勝利剩71民兵；第二次敵殺鬼無適合目標。再戰撤退與隸書切換通過，四張同幀SDL讀回相同。只掛native及單一輸入工具，執行期不見Go、PAM或dosgolem。README已加入成果圖。
+
+工具修正：prepare最初錯假設原控制收據也有rows，改核對兩側原有units_hex等欄位；未變遊戲。測試最初錯假設勝局敵只施法一次，實際第二次無效殺鬼正常返回，依同一seed與逐動作記錄修正測試，不改玩法或重選seed。格式化後Go模型重生相同。
+
+完整432檔／425物件已保存，壓縮30815524 bytes，脫離工作區逐SHA核對通過。清除2354份Go／Rust快取共277450708 bytes，約264.6 MiB，保留native binary／pack。全專案未見root-owned檔案或.md目錄；本批容器--rm收尾，其他專案容器保持。來源、實際掛載與工具版本見[核對](preserved/rust-enemy-spells-audit-r1.json)，[清理](preserved/rust-enemy-spells-cleanup-r1.json)與[完整性](preserved/rust-enemy-spells-integrity-r1.json)另存。
+
+Go正式197來源／7程式、923核心、535素材及1071美術不改。GitHub主機憑證與private repo核對通過；本輪程式與批准成果圖納入Git提交，完整素材及binary由.gitignore留在本機。[清理後核對](preserved/rust-enemy-spells-postcleanup-audit-r1.json)通過。下一步戰中保存、其餘原式選單及世界／管理／募兵／結局，不稱完整獨立遊戲或發布Release。

@@ -1,6 +1,6 @@
 use crate::battle::{Modifiers, Outcome, Side, Stack};
 use crate::catalog::{Catalog, UnitId};
-use crate::controller::{Controller, NAVIGATION, OriginalRng, POSITIONS};
+use crate::controller::{Controller, EnemyConfig, NAVIGATION, OriginalRng, POSITIONS};
 use crate::media_assets::{Font, MediaPack, checksum};
 use crate::sdl::Sdl;
 use crate::spells::{Spell, SpellBook, SpellResult};
@@ -28,6 +28,7 @@ const MAP_SPELLS: [&str; 8] = [
 struct SpellView {
     cursor: usize,
     animation: Option<(SpellResult, Instant)>,
+    side: Side,
 }
 fn menu_label(frame: &mut [u8], font: &Font, value: &str, x: i32, y: i32) -> Result<(), String> {
     let mut pos = x;
@@ -81,6 +82,7 @@ fn begin_spell_animation(
 ) {
     *message = result.spell.name().to_owned();
     view.animation = Some((result, now));
+    view.side = Side::Player;
     *seen = None;
     *ready = now + Duration::from_millis(480);
 }
@@ -202,21 +204,53 @@ fn battle_controller(
     weak: bool,
     spells: bool,
     taoist: bool,
+    enemy_spells: bool,
 ) -> Result<Controller<'_>, String> {
-    let rows = roster(weak, spells, taoist);
-    let c = if spells {
-        Controller::with_spells(
+    let mut rows = roster(weak, spells, taoist);
+    if enemy_spells {
+        if !spells {
+            rows[0] = [Stack::default(); 6];
+            for (raw, name, count) in [
+                (0, "native:01", 74),
+                (1, "openkb:wolf", 2),
+                (2, "openkb:arcr", 2),
+            ] {
+                rows[0][raw] = Stack {
+                    unit: Some(UnitId::parse(name).map_err(|e| e.to_string())?),
+                    count,
+                };
+            }
+        }
+        rows[1] = [Stack::default(); 6];
+        rows[1][0] = Stack {
+            unit: Some(UnitId::parse("native:12")?),
+            count: 3,
+        };
+        rows[1][1] = Stack {
+            unit: Some(UnitId::parse("native:16")?),
+            count: 10,
+        };
+    }
+    let book = SpellBook {
+        enabled: true,
+        charges: [3; 8],
+        stat_26b0: 2,
+        stat_26ae: 4,
+    };
+    let c = if enemy_spells {
+        Controller::with_enemy_spells(
             catalog,
             rows,
-            Side::Player,
+            Side::Enemy,
             Modifiers::default(),
-            SpellBook {
-                enabled: true,
-                charges: [3; 8],
-                stat_26b0: 2,
+            spells.then_some(book),
+            EnemyConfig {
                 stat_26ae: 4,
+                shifted_alias: 0,
             },
         )
+    } else if spells {
+        Controller::with_spells(catalog, rows, Side::Player, Modifiers::default(), book)
     } else {
         Controller::new(catalog, rows, Side::Player, Modifiers::default())
     };
@@ -329,7 +363,20 @@ fn compose(
                 }
             }
             if result.spell == Spell::Freeze {
-                border(&mut frame, [0, TOP, 816, 1200], [120, 225, 255]);
+                border(
+                    &mut frame,
+                    [
+                        if spell_view.side == Side::Player {
+                            0
+                        } else {
+                            816
+                        },
+                        TOP,
+                        816,
+                        1200,
+                    ],
+                    [120, 225, 255],
+                );
             }
         }
     }
@@ -428,6 +475,7 @@ fn wav(path: &Path, pcm: &[u8]) -> Result<(), String> {
 pub fn run(args: &[String]) -> Result<(), String> {
     let (mut assets, mut capture) = (None, None);
     let (mut mute, mut weak, mut spells, mut taoist) = (false, false, false, false);
+    let mut enemy_spells = false;
     let mut scale = 2.0 / 3.0;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -463,6 +511,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             "--mute" => mute = true,
             "--weak" => weak = true,
             "--spells" => spells = true,
+            "--enemy-spells" => enemy_spells = true,
             "--taoist" => {
                 spells = true;
                 taoist = true;
@@ -484,14 +533,15 @@ pub fn run(args: &[String]) -> Result<(), String> {
     }
     let assets = assets.ok_or("請指定--assets素材包")?;
     let mut pack = MediaPack::load(&assets)?;
-    if spells {
+    if spells || enemy_spells {
         pack.load_spell_assets(&assets)?;
     }
     let catalog = Catalog::builtin()?;
-    let mut c = battle_controller(&catalog, weak, spells, taoist)?;
+    let mut c = battle_controller(&catalog, weak, spells, taoist, enemy_spells)?;
     let mut spell_view = SpellView {
         cursor: 0,
         animation: None,
+        side: Side::Player,
     };
     let mut rng = OriginalRng { seed };
     let sdl = Sdl::open(W, H, scale, mute)?;
@@ -546,7 +596,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 capture_next = true;
             }
             if key == 114 || key == 82 {
-                c = battle_controller(&catalog, weak, spells, taoist)?;
+                c = battle_controller(&catalog, weak, spells, taoist, enemy_spells)?;
                 spell_view.animation = None;
                 seen = None;
                 ready = now;
@@ -686,11 +736,24 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     enemy_ready = now + Duration::from_millis(180);
                 }
                 if actor.side == Side::Enemy && now >= enemy_ready {
-                    let target = c.enemy_target(&mut rng).map_err(|e| format!("{e:?}"))?;
-                    let action = c.attack(target).map_err(|e| format!("{e:?}"))?;
-                    message = format!("損失 {}", action.loss);
-                    seen = None;
-                    ready = now + Duration::from_millis(140);
+                    if c.is_enemy_caster() {
+                        let result = c.enemy_cast(&mut rng).map_err(|e| format!("{e:?}"))?;
+                        begin_spell_animation(
+                            &mut spell_view,
+                            result,
+                            &mut message,
+                            &mut seen,
+                            &mut ready,
+                            now,
+                        );
+                        spell_view.side = Side::Enemy;
+                    } else {
+                        let target = c.enemy_target(&mut rng).map_err(|e| format!("{e:?}"))?;
+                        let action = c.attack(target).map_err(|e| format!("{e:?}"))?;
+                        message = format!("損失 {}", action.loss);
+                        seen = None;
+                        ready = now + Duration::from_millis(140);
+                    }
                 }
             }
         }
@@ -737,7 +800,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 &path.join(format!("audio-{captures:03}.wav")),
                 &captured_audio,
             )?;
-            let capture_state = format!(
+            let mut capture_state = format!(
                 "frame_hash\t{:016x}\nfont\t{}\nsequence\t{}\nspell_returns\t{}\narmy\t{}\nhp\t{}\ncharges\t{}\nfx\t{}\n",
                 checksum(&frame),
                 ["noto", "lishu", "caoshu"][font],
@@ -765,6 +828,20 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     |(_, start)| now.duration_since(*start) < Duration::from_millis(480)
                 )
             );
+            capture_state.push_str(&format!(
+                "enemy_returns\t{}\nenemy_army\t{}\nspell\t{}\n",
+                c.enemy_returns(),
+                c.battle().rows()[1]
+                    .iter()
+                    .map(|s| s.count.to_string())
+                    .collect::<Vec<_>>()
+                    .join(","),
+                spell_view
+                    .animation
+                    .as_ref()
+                    .map(|(r, _)| r.spell.index().to_string())
+                    .unwrap_or_default()
+            ));
             fs::write(
                 path.join(format!("capture-{captures:03}.tsv")),
                 capture_state,
@@ -794,7 +871,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     Some(Outcome::Loss) => "loss",
                     Some(Outcome::Retreat) => "retreat",
                 };
-                let targets = if c.current().is_some() {
+                let targets = if c.current().is_some() && !c.is_enemy_caster() {
                     c.legal_targets()
                         .map_err(|e| format!("{e:?}"))?
                         .iter()
@@ -841,6 +918,20 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         .animation
                         .as_ref()
                         .is_some_and(|(_, start)| start.elapsed() < Duration::from_millis(480))
+                );
+                let data = format!(
+                    "{data}enemy_returns\t{}\nenemy_army\t{}\nspell\t{}\n",
+                    c.enemy_returns(),
+                    c.battle().rows()[1]
+                        .iter()
+                        .map(|s| s.count.to_string())
+                        .collect::<Vec<_>>()
+                        .join(","),
+                    spell_view
+                        .animation
+                        .as_ref()
+                        .map(|(r, _)| r.spell.index().to_string())
+                        .unwrap_or_default()
                 );
                 let data = format!(
                     "{data}army\t{}\nhp\t{}\nremaining\t{}\n",

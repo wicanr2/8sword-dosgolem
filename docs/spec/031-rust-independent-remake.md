@@ -149,3 +149,26 @@ READY補充：沿既有ida-rounds.json的原sub_20724／runtime0F67:21B4，2074B
 [核對](../../preserved/rust-player-spells-audit-r2.json)、[工具](../../tools/rust-player-spells.py)、[GUI抽驗](../../tools/rust-player-spells-gui.py)、[研究記錄](../../RESEARCH-LOG.md#rust玩家八種法術)及[永久保存](../../preserved/README.md#rust玩家八術保存)為入口。最終GUI3只掛單一Python輸入工具與native子目錄，不見Go／PAM／核心；前兩版工具目錄有舊Go助手可見，只留診斷。執行期仍只有Rust、媒體及平台函式庫。
 
 玩家法術、原式選術與原生施法後普通戰鬥樣本已完成。敵方八分派、戰中保存、世界／管理／募兵與結局依WORKLIST續接，不以本批代表抽驗稱完整獨立遊戲。
+
+## Rust敵方八分派 READY
+
+本切片沿030敵方八分派CONFORMED與[既有Go控制器](../../internal/ownedworld/original_battle_enemy.go)移植。原PAM、資料庫、IDA9.4與位址基準沿本檔。已證實的原函式為sub_1F266，runtime 0F67:0CF6；原bytes與檔案偏移保存在original-battle-enemy-r1的ida-spells-r4.json。原counter初始化sub_206DA、掃描sub_1FB6C與增量1F519沿原收據。此輪不重開原版硬體或全量HD驗收。
+
+- 原生控制器明示啟用敵術；普通入口仍拒絕敵10／12。敵方後排施法者消耗自身raw行動計數一次，自動施法後整理玩家陣位並重掃；無玩家術書亦可施敵術，不扣玩家次數。
+- 已證實：rand%340按100／150／220／270／300／310／330分段選0至6；330至339保留初值0。selector7無自然入口，只供明示受控對照，不加入自然抽選。
+- 0／3從六格拒絕抽樣選活玩家；2只選活原6至15種，無適合隊則返回；6選存活敵軍。5保留原1F532的6FB4位移錯位：slot>0用玩家前一slot判存活，slot0讀明示alias所指兩軍raw。alias限0至11，本樣本沿PAM初始化word0，並在收據記載；不是依術名修正原版錯位。沒有合法候選或128次內未選到時拒絕，不以無限迴圈卡住。
+- 敵0／1固定減5人，kind12減2；2減15或6；3在rand%50小於26AE×10+10時清隊；5減count/2+1或count/3+1；7對每個活玩家，少於50清隊，否則減count×6/10+1或/20+1。沿Go相容域拒絕word乘積超界。HP及普通攻擊序號不變，顯示倒數沿既有收據。5可能選到空格，保留零數量效果，不復活、不改HP。
+- 4依敵方六slots逐次增加對應raw計數，空raw alias不去重；6沿已驗clone_plan增加敵軍，弱複製不減少兵數。所有操作與RNG先在副本驗證，拒絕不部分提交。敵軍新增種類仍拒絕；玩家新增種類可受術，2的種類剋制不包含新增種類。
+- RNG只接本次分派／選敵／暗殺所需抽樣，沒有把動畫的ambient rand移入規則。受控對照使用原已選selector／target／gate；不宣稱整段原版骰序一致。
+
+驗收以現行Go函式重生邊界向量，再由13份原版／Go成對收據重建同狀態效果、兵數、倒數、HP保持、行動計數與複製。正常Rust視窗沿原HD配置自動敵施法並續打，抽一條新增兵受術至普通勝局。戰中保存及世界仍依WORKLIST接續，不新增保存格式。本節來源與實作入口須掛入RESEARCH-LOG及永久保存索引。
+
+### 敵方八分派限定 CONFORMED
+
+[敵術](../../internal/remake-rust/src/enemy.rs)已接回原生控制器與[桌面戰場](../../internal/remake-rust/src/desktop.rs)。29個測試、[384組Go模型及13份既有原版介面向量](../../internal/remake-rust/enemy-reference.tsv)通過；含原錯位、空目標、六slot重複計數、弱複製、暗殺失敗及拒絕原子性。Go只重生純函式模型，13組原版／Go成對收據由永久保存恢復，兩側軍隊bytes、HP、計數、selector、seed與Frame雜湊相同。沒有新做原版整機執行。
+
+原生XTest輸入以seed1完成敵方雷火、新增野狼／女弓箭手死亡、三個普通行動勝利，剩71民兵。第二次敵殺鬼無適合目標，正常返回。再戰後撤退與隸書切換保持，四張同幀畫布與SDL讀回相同。測試編成及先手為明示配置，沒有RAM／IP注入。此結果與Go既有混合勝局的戰場兵數相同，不提升為世界保存相同。
+
+原式畫面由Rust直接繪製，執行與GUI只掛native子目錄及單一輸入工具，看不到Go／PAM／模擬器。建置只掛唯讀crate與native；格式化另允許Rust工作樹寫入。OGG、三字型及PON沿前輪批准素材，未新增音訊或完整動畫相位聲明。[核對](../../preserved/rust-enemy-spells-audit-r1.json)、[來源／保存工具](../../tools/rust-enemy-spells.py)、[GUI工具](../../tools/rust-enemy-spells-gui.py)、[研究](../../RESEARCH-LOG.md#rust敵方八分派)與[永久保存](../../preserved/README.md#rust敵方八分派保存)記錄完整範圍。
+
+玩家／敵方施法及普通戰鬥樣本已完成；戰中保存、世界、原式管理／募兵、結局及其餘工具列依WORKLIST續接，不稱完整獨立遊戲。

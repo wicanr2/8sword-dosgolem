@@ -1,0 +1,153 @@
+{
+  "status": "passed-rust-enemy-document-integrity",
+  "links": [
+    {
+      "source": "AGENTS.md",
+      "target": "docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "preserved/rust-enemy-spells-audit-r1.json"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "preserved/README.md#rust敵方八分派保存"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "source": "CONTEXT.md",
+      "target": "docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed"
+    },
+    {
+      "source": "CONTEXT.md",
+      "target": "docs/images/rust-enemy-spells-r1.png"
+    },
+    {
+      "source": "CONTEXT.md",
+      "target": "preserved/rust-enemy-spells-audit-r1.json"
+    },
+    {
+      "source": "CONTEXT.md",
+      "target": "preserved/README.md#rust敵方八分派保存"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/images/rust-enemy-spells-r1.png"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed"
+    },
+    {
+      "source": "README.md",
+      "target": "preserved/rust-enemy-spells-audit-r1.json"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/images/rust-enemy-spells-r1.json"
+    },
+    {
+      "source": "README.md",
+      "target": "preserved/README.md#rust敵方八分派保存"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "tools/rust-enemy-spells.py"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "preserved/rust-enemy-spells-audit-r1.json"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "preserved/README.md#rust敵方八分派保存"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../preserved/rust-enemy-spells-audit-r1.json"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../tools/rust-enemy-spells.py"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../tools/rust-enemy-spells-gui.py"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../RESEARCH-LOG.md#rust敵方八分派"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../preserved/README.md#rust敵方八分派保存"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "rust-enemy-spells-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "rust-enemy-spells-audit-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../RESEARCH-LOG.md#rust敵方八分派"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/rust-enemy-spells.py"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "rust-enemy-spells-detached-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "rust-enemy-spells-cleanup-r1.json"
+    }
+  ],
+  "new_files": {
+    "internal/remake-rust/src/enemy.rs": "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea",
+    "internal/remake-rust/src/enemy_tests.rs": "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607",
+    "internal/remake-rust/enemy-reference.tsv": "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2",
+    "internal/ownedworld/rust_enemy_reference_test.go": "3b74490fdd2e0c298d3da58d0d74d206f0a06cefa9c75a8f1a26bb832f1ba235",
+    "tools/rust-enemy-spells.py": "fc933fbf18951b48878ed60407e06d5a68fe03ff553fe47ec1aa52170e96642e",
+    "tools/rust-enemy-spells-gui.py": "9548c2f94f1b788734aec4302c1dc854b2aff4488e3bf2165151bbd2beafe52e",
+    "docs/images/rust-enemy-spells-r1.png": "3e676e1c2d00d0b333af37aab91dbefce22db685fa149903fced847b92c4778d"
+  },
+  "root_owned_or_md_directories_found": 0,
+  "root_check_command": "find /repo -user root -o -type d -name *.md",
+  "project_container_cleanup": "No 8sword workload container remains; other project containers retained",
+  "standalone_cli": "Passed with only readonly native directory mounted, network none",
+  "formal_baseline": [
+    197,
+    7,
+    923,
+    535,
+    1071
+  ]
+}

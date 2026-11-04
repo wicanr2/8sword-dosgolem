@@ -53,5 +53,10 @@ fn verify() -> Result<(), String> {
     println!(
         "玩家八術：{models}組模型、{cases}份既有原版介面收據通過；--battle --spells啟動施法樣本。世界與存檔待接。"
     );
+    let (models, cases) =
+        eightsword_remake::replay::check_enemy(&catalog, include_str!("../enemy-reference.tsv"))?;
+    println!(
+        "敵方八分派：{models}組模型、{cases}份既有原版介面收據通過；--battle --enemy-spells啟動敵術樣本。"
+    );
     Ok(())
 }

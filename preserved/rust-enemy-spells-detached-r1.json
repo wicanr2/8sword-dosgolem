@@ -1,0 +1,10 @@
+{
+  "status": "passed-detached-rust-enemy",
+  "files": 432,
+  "objects": 425,
+  "mounts": ["preserved:readonly", "single verification tool:readonly", "tmpfs:/tmp"],
+  "workplace_or_project_mounted": false,
+  "network": "none",
+  "uid": 1000,
+  "verification": "Every stored SHA-256, decompressed length and original SHA-256 matched."
+}

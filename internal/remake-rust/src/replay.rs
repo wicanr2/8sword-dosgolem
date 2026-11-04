@@ -388,6 +388,122 @@ pub struct ReplayCount {
     pub retreats: usize,
 }
 
+/// Inherited original-interface choices are inputs, never expected state writes.
+pub fn check_enemy(catalog: &Catalog, text: &str) -> Result<(usize, usize), String> {
+    use crate::controller::{Controller, EnemyConfig, enemy_amount};
+    use crate::spells::{Spell, SpellResult};
+    let (mut models, mut cases) = (0, 0);
+    let mut current: Option<Controller<'_>> = None;
+    let mut result: Option<SpellResult> = None;
+    let mut effect_index = 0;
+    for (line_number, line) in text.lines().enumerate() {
+        if line.starts_with('#') || line.trim().is_empty() {
+            continue;
+        }
+        let f: Vec<_> = line.split('\t').collect();
+        let bad = || format!("敵術向量第{}行不符", line_number + 1);
+        let num = |i: usize| f[i].parse::<u32>().map_err(|_| bad());
+        match f[0] {
+            "AMOUNT" if f.len() == 5 => {
+                let spell = *Spell::ALL.get(num(1)? as usize).ok_or_else(bad)?;
+                let actual = enemy_amount(spell, num(2)?.try_into().map_err(|_| bad())?, num(3)?);
+                if f[4] == "ERR" {
+                    if actual.is_ok() {
+                        return Err(bad());
+                    }
+                } else if actual.map_err(|_| bad())? != num(4)? as u16 {
+                    return Err(bad());
+                }
+                models += 1;
+            }
+            "CASE" if f.len() == 11 => {
+                if current.is_some() {
+                    return Err(bad());
+                }
+                let p = format!("native:01=70,native:06=30,-=0,-=0,-=0,-=0");
+                let e = format!("native:{:02}=50,native:16=10,-=0,-=0,-=0,-=0", num(2)?);
+                let mut c = Controller::with_enemy_spells(
+                    catalog,
+                    [parse_rows(&p)?, parse_rows(&e)?],
+                    Side::Enemy,
+                    Modifiers::default(),
+                    None,
+                    EnemyConfig {
+                        stat_26ae: num(4)?.try_into().map_err(|_| bad())?,
+                        shifted_alias: 0,
+                    },
+                )
+                .map_err(|_| bad())?;
+                c.next_actor().map_err(|_| bad())?;
+                c.attack(0).map_err(|_| bad())?;
+                let actor = c.next_actor().map_err(|_| bad())?.ok_or_else(bad)?;
+                if actor.slot != 5 || c.remaining()[1] != [0, 0, 1, 1, 1, 1] {
+                    return Err(bad());
+                }
+                let hp = *c.battle().hp();
+                let seq = c.battle().sequence();
+                let optional = |i| {
+                    if f[i] == "-" {
+                        Ok(None)
+                    } else {
+                        num(i).map(Some)
+                    }
+                };
+                result = Some(
+                    c.enemy_cast_choice(
+                        *Spell::ALL.get(num(3)? as usize).ok_or_else(bad)?,
+                        optional(5)?.map(|n| n as usize),
+                        optional(6)?.map(|n| n as u16),
+                    )
+                    .map_err(|e| format!("{} {e:?}", bad()))?,
+                );
+                let expected_hp: Vec<u64> = numbers(f[10])?;
+                if c.battle().rows() != &[parse_rows(f[7])?, parse_rows(f[8])?]
+                    || c.remaining()[1] != six::<u16>(f[9])?
+                    || c.battle().hp() != &hp
+                    || hp.iter().flatten().copied().collect::<Vec<_>>() != expected_hp
+                    || c.battle().sequence() != seq
+                    || c.enemy_returns() != 1
+                {
+                    return Err(bad());
+                }
+                current = Some(c);
+                effect_index = 0;
+                cases += 1;
+            }
+            "EFFECT" if f.len() == 8 => {
+                let e = result
+                    .as_ref()
+                    .and_then(|r| r.effects.get(effect_index))
+                    .ok_or_else(bad)?;
+                if e.side.index() != num(1)? as usize
+                    || e.slot != num(2)? as usize
+                    || e.raw != num(3)? as usize
+                    || e.before != num(4)?
+                    || e.after != num(5)?
+                    || u32::from(e.amount) != num(6)?
+                    || e.display != numbers::<u16>(f[7])?
+                {
+                    return Err(bad());
+                }
+                effect_index += 1;
+            }
+            "END" if f.len() == 1 => {
+                if current.take().is_none()
+                    || result.take().ok_or_else(bad)?.effects.len() != effect_index
+                {
+                    return Err(bad());
+                }
+            }
+            _ => return Err(bad()),
+        }
+    }
+    if current.is_some() || models == 0 || cases == 0 {
+        return Err("敵術向量不完整".into());
+    }
+    Ok((models, cases))
+}
+
 /// Consume recorded choices only. Expected count/HP fields are compared after
 /// resolution; they are never injected into the next native state.
 pub fn check_battles(catalog: &Catalog, text: &str) -> Result<ReplayCount, String> {

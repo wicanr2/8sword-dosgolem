@@ -2,6 +2,9 @@ use crate::battle::{ActionResult, Battle, BattleError, Modifiers, Outcome, Rows,
 use crate::catalog::Catalog;
 use crate::formation::{initial_formation, motion_plan, sort_plan};
 use crate::spells::{Spell, SpellBook, SpellEffect, SpellError, SpellResult, amount, clone_plan};
+#[path = "enemy.rs"]
+mod enemy;
+pub use enemy::{EnemyConfig, enemy_amount, enemy_selector};
 
 // Original PAM MZ body + 1D780h + DS:708A/708E/7092/7096.
 const ORDERS: [[u8; 3]; 4] = [[2, 4, 5], [1, 3, 5], [1, 4, 5], [0, 3, 5]];
@@ -91,6 +94,8 @@ pub struct Controller<'a> {
     book: Option<SpellBook>,
     selected_spell: Option<Spell>,
     spell_returns: u64,
+    enemy_config: Option<EnemyConfig>,
+    enemy_returns: u64,
 }
 
 impl<'a> Controller<'a> {
@@ -100,7 +105,7 @@ impl<'a> Controller<'a> {
         first: Side,
         modifiers: Modifiers,
     ) -> Result<Self, ControlError> {
-        Self::create(catalog, rows, first, modifiers, None)
+        Self::create(catalog, rows, first, modifiers, None, None)
     }
     pub fn with_spells(
         catalog: &'a Catalog,
@@ -112,7 +117,7 @@ impl<'a> Controller<'a> {
         if book.stat_26ae > 6552 {
             return Err(ControlError::Spell(SpellError::Range));
         }
-        Self::create(catalog, rows, first, modifiers, Some(book))
+        Self::create(catalog, rows, first, modifiers, Some(book), None)
     }
     fn create(
         catalog: &'a Catalog,
@@ -120,13 +125,19 @@ impl<'a> Controller<'a> {
         first: Side,
         modifiers: Modifiers,
         book: Option<SpellBook>,
+        enemy_config: Option<EnemyConfig>,
     ) -> Result<Self, ControlError> {
         for (side, army) in rows.iter().enumerate() {
             for stack in army {
                 if stack.count > 32767
-                    || stack
-                        .unit
-                        .is_some_and(|id| id.is_native_caster() && (side == 1 || book.is_none()))
+                    || stack.unit.is_some_and(|id| {
+                        id.is_native_caster()
+                            && if side == 1 {
+                                enemy_config.is_none()
+                            } else {
+                                book.is_none()
+                            }
+                    })
                 {
                     return Err(ControlError::UnsupportedArmy);
                 }
@@ -146,6 +157,8 @@ impl<'a> Controller<'a> {
             book,
             selected_spell: None,
             spell_returns: 0,
+            enemy_config,
+            enemy_returns: 0,
         };
         c.remaining[first.index()] = [1; 6];
         Ok(c)
@@ -218,7 +231,10 @@ impl<'a> Controller<'a> {
                         ranged,
                     };
                     self.actor = Some(actor);
-                    if caster && !self.book.as_ref().is_some_and(SpellBook::available) {
+                    if caster
+                        && self.side == Side::Player
+                        && !self.book.as_ref().is_some_and(SpellBook::available)
+                    {
                         self.finish_cast()?;
                         continue;
                     }
@@ -254,6 +270,9 @@ impl<'a> Controller<'a> {
     }
     pub fn legal_targets(&self) -> Result<Vec<usize>, ControlError> {
         let actor = self.actor.ok_or(ControlError::NoActor)?;
+        if self.is_enemy_caster() {
+            return Err(ControlError::WrongPhase);
+        }
         if self.is_caster() {
             return if self.selected_spell.is_some() {
                 self.spell_targets()
@@ -288,7 +307,7 @@ impl<'a> Controller<'a> {
     }
     fn attack_inner(&mut self, target: usize) -> Result<ActionResult, ControlError> {
         let actor = self.actor.ok_or(ControlError::NoActor)?;
-        if self.is_caster() {
+        if self.is_caster() || self.is_enemy_caster() {
             return Err(ControlError::WrongPhase);
         }
         if target >= 6 || !self.legal_targets()?.contains(&target) {

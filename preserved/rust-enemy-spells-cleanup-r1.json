@@ -1,0 +1,15 @@
+{
+  "status": "passed-scoped-rust-enemy-cleanup",
+  "removed": [
+    "workplace/probe-20261023/graphics-first/battle-r1/rust-enemy-spells-r1/build-cache",
+    "workplace/probe-20261023/graphics-first/battle-r1/rust-enemy-spells-r1/native/rust-target"
+  ],
+  "files": 2354,
+  "bytes": 277450708,
+  "native_binary_and_media_retained": true,
+  "archive_files": 432,
+  "archive_objects": 425,
+  "compressed_bytes": 30815524,
+  "detached_verification": "preserved/rust-enemy-spells-detached-r1.json",
+  "docker_policy": "All workload containers use --rm; no image was rebuilt or globally pruned"
+}

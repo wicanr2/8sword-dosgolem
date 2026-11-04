@@ -1,0 +1,45 @@
+{
+  "source": "Native Rust SDL framebuffer and identical renderer readback",
+  "image_sha256": "3e676e1c2d00d0b333af37aab91dbefce22db685fa149903fced847b92c4778d",
+  "sources": [
+    {
+      "label": "enemy-thunder",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/rust-enemy-spells-r1/native/gui/frame-001.ppm",
+      "sha256": "c4da86459b10abde0c34f7e797b75e3f40a02d45747c5bdbb99ad2080b6a5dee",
+      "captured": {
+        "frame_hash": "8ccd148eee53d120",
+        "font": "noto",
+        "sequence": "1",
+        "spell_returns": "0",
+        "army": "71,0,0,0,0,0",
+        "hp": "1770,6,20,0,0,0",
+        "charges": "",
+        "fx": "true",
+        "enemy_returns": "1",
+        "enemy_army": "3,10,0,0,0,0",
+        "spell": "1"
+      }
+    },
+    {
+      "label": "native-win",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/rust-enemy-spells-r1/native/gui/frame-002.ppm",
+      "sha256": "74aa538eba800dca51aa61fd6b626d36f95dce33c1785461c8a16227cf71352a",
+      "captured": {
+        "frame_hash": "1c1cf132768344d7",
+        "font": "noto",
+        "sequence": "3",
+        "spell_returns": "0",
+        "army": "71,0,0,0,0,0",
+        "hp": "1770,6,20,0,0,0",
+        "charges": "",
+        "fx": "false",
+        "enemy_returns": "2",
+        "enemy_army": "0,0,0,0,0,0",
+        "spell": "2"
+      }
+    }
+  ],
+  "seed": 1,
+  "roster": "74 militia, 2 wolves, 2 female archers versus 3 double-headed ghosts and 10 native16",
+  "controlled_memory_or_ip": false
+}

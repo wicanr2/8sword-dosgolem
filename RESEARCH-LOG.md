@@ -3227,3 +3227,23 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 同一張畫布的原式錨點與雙欄結構已接，底板簡化、PON四幀命中共用，不冒稱完整原版圖案或動畫相位。地圖術右欄是零次數fixture。世界、新遊戲、保存、敵方特殊分派及其餘UI尚待，原式Go入口及正式197／7／923／535／1071保持。
 
 來源、工具版本與具體SHA見[核對](preserved/rust-player-spells-audit-r2.json)、[規格](docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)及[永久保存](preserved/README.md#rust玩家八術保存)。
+
+## Rust敵方八分派
+
+2026-11-04。沿既有原版／Go成對收據及IDA9.4匯出移植，沒有新啟動原版或IDA。PAM.AY SHA-256為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，資料庫SHA為`a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA MZ linear base10000h，runtime戰鬥CS0F67之IP為linear減1E570h；runtime DS為1E88，PAM MZ body加1D780h為DS資料起點。
+
+| 原始定位 | 等級 | 行為與證據 |
+|---|---|---|
+| IDA sub_1F266，1F28C至1F306；runtime0F67:0CF6 | 已證實 | rand%340分段為0至6；330至339保持初值0。selector7沒有自然寫入入口。原bytes沿ida-spells-r4.json，13組原版成對收據含受控7與自然2。 |
+| IDA1F30C／1F43C／1F49C／1F586 | 已證實 | 六slot拒絕抽樣，依原活兵／種類選敵或複製己方。暗殺先選隊、再取rand%50；本輪對拍傳入原選定target／gate，不假裝整段骰序相同。 |
+| IDA1F532原operand [bx+6FB4h]，1F53A | 已證實 | 滅半活兵判斷錯一個slot；slot0指向前置word。沿Go原12組alias指令收據保留，不自行修正。 |
+| runtime DS:6FB4；PAM原始檔偏移154532 | 已證實初始化資料 | 原bytes0000；本樣本alias0。新批evidence/alias-initial.json保存PAM SHA、檔案偏移與bytes。世界後續所有間接寫入未知，不把初始化值當全遊戲常數。 |
+| IDA1F519原operand [bx-7188h] | 已證實 | 依敵六slots逐次增加runtime DS:8E78 raw行動計數，空列重複亦保留；46組舊原指令及Rust重掃測試。 |
+| IDA1F32D至1F34A／1F3E4至1F3FE／1F476至1F498／1F908至1F9E8 | 已證實 | 敵術固定減員、剋制與地震分段沿originalEnemyAmount；不共用玩家算式。384組Go模型與原成對效果重算通過。 |
+| IDA1F5A7至1F687 | 已證實 | 複製原分段、弱複製不減兵，HP保持；沿originalClonePlan及兩份成對複製收據。 |
+
+[Rust敵術](internal/remake-rust/src/enemy.rs)、[控制器](internal/remake-rust/src/controller.rs)與[向量重播](internal/remake-rust/src/replay.rs)逐項比兵數、顯示倒數、完整HP與敵raw計數。API拒絕不部分提交，RNG亦先在副本運算；無合法候選或128次拒絕抽樣未命中時停止，避免原迴圈無限等待。對照入口不進自然抽選，第八分派保持不可自然抽到。
+
+原生視窗以seed1在執行前固定，不重投或挑選結果。XTest完成敵雷火與普通勝局，敵術返回兩次，第二次殺鬼無適合目標。四份同幀擷取與SDL讀回相同；新增部隊清除、再戰撤退及隸書均已抽樣。這是明示戰鬥配置，不是世界正常遭遇或完整通關證據。
+
+入口為[031限定驗收](docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed)、[Go模型匯出](internal/ownedworld/rust_enemy_reference_test.go)、[固定向量](internal/remake-rust/enemy-reference.tsv)、[資料工具](tools/rust-enemy-spells.py)、[核對](preserved/rust-enemy-spells-audit-r1.json)及[永久保存](preserved/README.md#rust敵方八分派保存)。完整原bytes、舊收據、來源與binary留本機保存，原世界與Go保存格式不變。

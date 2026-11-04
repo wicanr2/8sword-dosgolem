@@ -1200,3 +1200,15 @@ Rust執行容器只掛唯讀crate及native子目錄，沒有PAM、Go來源／匯
 本批536檔／456物件，壓縮72563611 bytes，脫離工作區逐物件核對通過。[清理收據](rust-player-spells-cleanup-r1.json)移除2322份Go／Rust快取及已保存的舊GUI1／2／binary，共564831567 bytes，約538.7 MiB；當前binary、pack及GUI3保持。[清理後核對](rust-player-spells-postcleanup-audit-r1.json)與[文件／擁有權核對](rust-player-spells-integrity-r1.json)另存。
 
 執行記錄勘誤：execution-r1.json的rust_mounts把來源概括為唯讀，但格式化／release建置實際允許Rust工作樹寫入；最後前排單測、格式檢查及直接CLI分別用唯讀crate或native。最終GUI3只見單一Python工具與native，無Go／PAM。精確掛載記於本批integrity，原記錄保留，不把工作樹可寫說成原版資料可寫。
+
+## Rust敵方八分派保存
+
+[完整索引](rust-enemy-spells-r1.json)、[核對](rust-enemy-spells-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed)及[研究](../RESEARCH-LOG.md#rust敵方八分派)為入口。29測試、384模型與13組舊原版／Go成對收據通過，原生敵術、新兵死亡、三普通行動勝利、隸書及再戰撤退已抽驗。正式197／7／923／535及1071美術保持，未改Go存檔，沒有Release。
+
+完整候選Go來源、Rust crate、原始IDA匯出、13組原版／Go收據、模型、binary、批准素材投影及四組原生擷取，壓縮存於本機`preserved/rust-enemy-spells-r1/<SHA256>.gz`。索引記錄每檔原路徑、大小、權限、原始及壓縮SHA。只有研究工作區快取排除；完整圖像、OGG與binary不加入Git或公開包。
+
+[工具](../tools/rust-enemy-spells.py)在Pillow11.3.0-r2、UID1000、network none容器使用。`prepare --project /project`從永久來源恢復新批次與媒體；`vectors --project /project`合成384個Go模型及13個原版案例，已有檔必須逐bytes相同。Go模型以本批probe.mod、source及唯讀/core／gomodcache，在既有Go1.24工具鏈執行`xvfb-run -a go test -modfile=/work/probe.mod ./internal/ownedworld -run '^TestRustEnemyReference$' -count=1 -v`，輸出由EIGHTSWORD_RUST_ENEMY_REFERENCE指定。Rust建置使用唯讀crate與可寫native，GUI只掛單一Python工具與native，不見Go／PAM。
+
+`audit --project /project --out <新JSON>`核對來源、模型、29測試、圖片及基線。`archive --project /project --archive /project/preserved --out /project/preserved/rust-enemy-spells-r1.json`逐SHA保存；`verify --archive /archive --out <新JSON>`只掛唯讀preserved與工具，即可在看不到工作區時核對。[脫離核對](rust-enemy-spells-detached-r1.json)與[清理](rust-enemy-spells-cleanup-r1.json)另存。
+
+還原目前樣本時，依索引把路徑尾段`rust-enemy-spells-r1/native/`下的檔案解壓到同名候選native目錄，逐SHA核對並套用記錄的權限。使用[啟動器](../tools/rust-native-player.sh)的`run --enemy-spells --seed 1`，可重播明示樣本。執行期只有binary、pack及SDL2／libsndfile等平台函式庫；Python與Go只供開發驗證。世界與保存依WORKLIST續接。
