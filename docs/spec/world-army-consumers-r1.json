@@ -531,5 +531,33 @@
     "receipt": "preserved/original-battle-session-audit-r1.json",
     "level": "proven-in-sampled-scope",
     "scope": "Six typed partial-checkpoint models; no-F7 history Store model; controlled four-row actual victory/cold ending. Not a natural retreat."
+  },
+  "original_battle_art_bridge": {
+    "marker": "ORIGINAL-BATTLE-ART-20261104",
+    "evidence": "docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿限定-conformed",
+    "receipt": "preserved/original-battle-art-audit-r1.json",
+    "level": "proven-in-sampled-scope",
+    "functions": [
+      {
+        "original_name": "sub_21168",
+        "ida_mz_linear": "0x21168",
+        "level": "proven",
+        "semantic_note": "Player standing wrapper maps arg0 slot through DS6FB6, branches on count, uses DS703C coordinates, and ends at21200."
+      },
+      {
+        "original_name": "sub_24043",
+        "ida_mz_linear": "0x24043",
+        "level": "proven",
+        "semantic_note": "Original source-sized background restore; initial owned first-row fixture uses8x25 template."
+      },
+      {
+        "original_name": "sub_24246",
+        "ida_mz_linear": "0x24246",
+        "level": "proven",
+        "semantic_note": "Original masked image primitive; standing wrapper returns to0F67:2C50."
+      }
+    ],
+    "scope": "Original primitive bytes and selected runtime callers retained; Go source-scene actor lifecycle only.",
+    "not_closed": "Action poses, other special-effect deaths and general startup."
   }
 }

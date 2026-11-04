@@ -3164,3 +3164,20 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 結局history沿既有WorldEncounter，但明確綁最近checkpoint來源。六隊中的合法空格允許0／0，至少一隊且緊縮，ghost kind／count、ID26、超signed word與history不符拒絕。未F7削弱再勝的Store模型保留完整舊checkpoint；實際四隊checkpoint另由原最後四隊各400明示配置，再真正F7／勝利／冷讀／原確認／完整HD結局退出0。這不是自然撤退或自然通關。
 
 [030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)、[核對](preserved/original-battle-session-audit-r1.json)與[永久保存](preserved/README.md#原戰場守軍連續生命週期保存)記錄級別及限制。仍限guard-only session；新兵圖像、隨機／守軍交替、全滅／空軍隊與一般入口未驗。原正式七程式、核心與素材保持。
+
+## 原戰場新兵的來源材質
+
+2026-11-04。輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4沿唯讀資料庫的暫存副本，MZ linear基準10000h；runtime battle CS0F67h、graphics CS14D2h分列。兩callee與六wrapper保存原名、bytes、檔案偏移、xref與分級索引，未改名或patch資料庫。
+
+- 已證實：sub_21168／runtime0F67:2BF8從arg0取得slot，經DS6FB6取得raw；IDA21181讀`[si+56EAh]`。原兵數0時，211F5呼叫sub_24043／runtime14D2:0423，返回0F67:2C8A；非零時211BB呼叫sub_24246／14D2:0626，返回2C50。站姿wrapper的retf為0F67:2C90，座標來自DS703C。新ID留Go，原表為0，因此只按圖片hash別名找不到這些站姿。
+- 已證實的失敗勘誤：一隻狼在第一隊，首次站姿即被固定11×50限制拒絕，尚未出手或死亡。保留的retreat-failed.state、far frame及source head `08001900`顯示背景範本為8 byte×25；同caller、座標23／50及合法Go新兵。330次原626觀察的28份唯一原圖則全為11×50。這推翻了「423背景範本一律11×50」的假設，不推翻兵數或死亡邏輯。
+- READY補正後，typed selection分材質、清除與不介入。423只接受已綁定wrapper的8×25或11×50，626只接受11×50。Go來源畫布將新兵部隊區域提交為88×50，沿已知隱藏背景材質清除或寫入alpha Actor；原始HostCall的相容狀態仍用原geometry，不寫guest header或額外跳轉。RGB後端沿既有047批次，不讀最終VGA畫面再覆圖。
+- 已知限制：sub_23AFC／runtime0F67:558C另有kind0動作早退，本批不改該判定、等待或手繪姿態。八種新圖沿已批准512 PNG，Go裁alpha邊界後等比放入264×300材質；人物、透明邊緣與原圖來源保持。這不代表八種新兵已有完整手繪攻擊動畫。
+
+實作、抽驗與永久資料入口為[030](docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿-ready)、[來源畫布API](internal/eightsword/source_battle_art.go)、[Go綁定](internal/ownedworld/original_battle_art.go)及[核對與保存工具](tools/original-battle-art.py)。初次失敗、前後來源及binary均保留；完成聲明依限定收據，不由本節推升一般入口。
+
+第二次失敗追加：獨立像素核對在已死狼的slot1抓到747／618仍有人物，目視未察覺。唯讀r2／r3診斷顯示最後一次狼wrapper仍讀1兵；之後casualty已Committed、ClearStage2、DisplayValue0，currentRows也為0。下一筆423返回0F67:5583，座標35／100，是sub_23A42攻擊者移動圖的還原，沒有死狼原23／100區域的完整重繪。這足以否定「Go兵數未更新」與「只要擴大站姿wrapper就能清除全部殘圖」兩個解釋。
+
+READY因此增加已提交Go死亡ID的Actor生命週期命令。只移除該ID的來源Actor cell，保留Material、Effect與Text；在下一筆來源命令生成RGB前提交，同一死亡狀態冪等，合法站姿可重新啟用。原CPU、兵力交易與原繪圖命令不加特例。診斷版只加事件記錄，沒有改計算或注入死亡結果；完整失敗圖、overlay來源與binary另存cohort。
+
+驗證方法勘誤：第一次Actor清除已有效。後續把停用組的舊佔位圖當成空背景，錯把死亡區域差異判為殘影。r6的來源cell、重建RGB與PNG顯示新兵已消失；獨立依已批准背景PNG重建兩幀158400像素，全部相同。額外材質資格／快取試驗未改變正常圖片，全部留研究cohort，正式候選恢復逐SHA相同的最小Actor清除版本。九對完整guest、七對Frame、三份F7／另程序Continue及八份材質重建通過，限定結果見[030](docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿限定-conformed)。

@@ -14,7 +14,13 @@
 
 ## 最近驗證
 
-最新為[原戰場守軍連續生命週期](docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)。306來源隔離候選可在同一程序取消→撤退→再戰勝利→重訪空守軍提示→F7。三階段原控制／Go的完整Frame、NPC、旗標、資源及seed相同，兩場交戰的剩兵也同；混合軍隊另完成同一路徑，兩份F7由獨立程序Continue讀回。[核對](preserved/original-battle-session-audit-r1.json)、[成果](docs/images/original-battle-session-go-r1.png)與[永久保存](preserved/README.md#原戰場守軍連續生命週期保存)為入口。
+最新為[原戰場新兵站姿](docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿限定-conformed)。310來源隔離候選將八種已批准HD新兵接進Go來源畫布，原wrapper決定slot／raw，RGB前提交透明材質。第一隊的8×25背景範本由Go畫布展為88×50，guest相容狀態維持原尺寸；死亡依已提交Go列移除Actor cell，保留背景、文字與法術層。[核對](preserved/original-battle-art-audit-r1.json)、[成果](docs/images/original-battle-new-units-go-r1.png)與[永久保存](preserved/README.md#原戰場新兵站姿保存)為入口。
+
+原兵種、20狼／20女弓箭手，以及第一隊一隻狼三案均沿同程序取消、撤退、再戰勝利、空訪及F7，三份另程序Continue保持。九對完整guest快照相同，七對戰場Frame僅新兵佔用區域有差，八材質獨立重建相同。狼死亡清4400個Actor cell；兩幀158400像素與HD背景獨立重建相同。停用組有舊佔位圖，死亡區域改比背景原圖；額外材質／快取試驗未提升。十種指令拒絕、三種壞材質及既有Go繪圖／PCM回歸通過。軍隊／位置為fixture，畫面是Engine Frame，沒有新X11或自然通關聲明。
+
+下一步補新兵手繪攻擊姿態、其餘特殊術的死亡呈現、隨機／守軍共用生命週期及守軍全滅／空軍隊，再接一般入口與規則／策略AI；戰中續接、超領導及超word動畫仍待。原版模式、正式197來源七程式、923核心、535素材及1071美術保持，完整戰鬥後才進Rust。這次只提升站姿、原重繪與普通死亡抽驗。
+
+前輪為[原戰場守軍連續生命週期](docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)。306來源隔離候選可在同一程序取消→撤退→再戰勝利→重訪空守軍提示→F7。三階段原控制／Go的完整Frame、NPC、旗標、資源及seed相同，兩場交戰的剩兵也同；混合軍隊另完成同一路徑，兩份F7由獨立程序Continue讀回。[核對](preserved/original-battle-session-audit-r1.json)、[成果](docs/images/original-battle-session-go-r1.png)與[永久保存](preserved/README.md#原戰場守軍連續生命週期保存)為入口。
 
 `ORIGINAL-GUARD-SESSION-20261104`只在已驗原25EE返回後開放下一場，重新綁定最新Go軍隊並就地清除八個控制器狀態，既有掛點與指標保持。一次取消、兩場交戰及一次空守軍訪問共四次返回；取消／空訪不提交或領獎。原守軍五隊不改，1000民兵／200弓箭手、領導30000、戰績10000及6／4起點為fixture。固定此操作序列，撤退金500→450，勝利月薪100→120，剩992民兵／200弓箭手；混合局另有20狼／20女弓箭手保持。原控制取消時仍是30民兵影子，第一次進戰才配置比較軍隊，所以不宣稱整機同狀態。
 

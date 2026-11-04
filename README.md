@@ -6,7 +6,7 @@
 
 以 Go 版 dosgolem 執行原版 DOS 程式，接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI、民兵結陣與弓箭手壓制規則。兵種及招募接管目前沿 Go 開發；先完成原版／HD完整戰鬥，再重寫成不依賴DOS EXE的Rust獨立版。
 
-既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。玩家使用原版或原版HD戰場，保留原版配置、選單、操作與戰鬥流程。新增兵種的Go後端接回這套戰場仍待完成。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
+既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。玩家使用原版或原版HD戰場，保留原版配置、選單、操作與戰鬥流程。新增兵種已在隔離候選接上戰鬥資料與透明站姿，一般玩家入口仍待整合。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
 
 先前的獨立卡片戰鬥介面已撤回，`8sword-owned`的一般玩家啟動已停用。Go兵力、AI、招募與存檔研究保留，後續接入同一套原版戰場，不提供另一個Go戰鬥模式。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
 
@@ -33,6 +33,10 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 原店與新增兵種均沿原版四位數輸入、刪字、Enter／Esc及錯誤提示，由Go計算金錢、領導用量及容量，再成對保存。既有購兵、取消、超量及冷讀證據保持，見[原店接入](docs/spec/030-battle-expansion-proposal.md#原店數量輸入與go計算限定-conformed)與[新增兵種接入](docs/spec/030-battle-expansion-proposal.md#新增兵種沿原數量輸入限定-conformed)。新版畫面只驗呈現，不另宣稱本輪重驗全部交易。
 
 ## 戰場與Go後端
+
+![原版HD戰場的新兵站姿與陣亡後背景](docs/images/original-battle-new-units-go-r1.png)
+
+八種新增兵種的透明站姿已接進隔離候選的 Go 來源畫布，在產生畫面前決定材質。圖中野狼與女弓箭手沿原陣位顯示，野狼陣亡後清除圖像。原兵種、混合編成、連續交戰及 F7／獨立讀檔已抽驗。這是明示軍隊與位置的引擎畫面；新兵手繪攻擊姿態與一般玩家入口仍待完成。見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿限定-conformed)及[圖片來源](docs/images/original-battle-new-units-go-r1.json)。
 
 原版模式保留原繪圖途徑；HD模式由Go繪製同一套戰場，使用已批准的HD背景、部隊與法術效果。兩者沿用原版戰鬥選單與按鍵。下圖是既有原兵種的同狀態比較。新增兵種的普通戰鬥已在隔離候選接入，一般玩家入口仍待完成。
 

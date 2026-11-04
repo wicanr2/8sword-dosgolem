@@ -1,0 +1,132 @@
+{
+  "status": "passed-original-battle-art-integrity",
+  "related_links": [
+    {
+      "document": "CONTEXT.md",
+      "target": "preserved/original-battle-art-audit-r1.json"
+    },
+    {
+      "document": "CONTEXT.md",
+      "target": "docs/images/original-battle-new-units-go-r1.png"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/images/original-battle-new-units-go-r1.png"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/images/original-battle-new-units-go-r1.json"
+    },
+    {
+      "document": "WORKLOG.md",
+      "target": "preserved/original-battle-art-audit-r1.json"
+    },
+    {
+      "document": "WORKLOG.md",
+      "target": "docs/images/original-battle-new-units-go-r1.png"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "internal/eightsword/source_battle_art.go"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "internal/ownedworld/original_battle_art.go"
+    },
+    {
+      "document": "RESEARCH-LOG.md",
+      "target": "tools/original-battle-art.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "tools/probe-owned-battle-art_test.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "tools/export-owned-battle-art-ida.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "internal/eightsword/source_battle_art.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "internal/ownedworld/original_battle_art.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "tools/original-battle-art.py"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "tools/source-battle-art.patch"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "internal/ownedworld/original_battle_art_test.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "internal/eightsword/source_battle_art_test.go"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "preserved/original-battle-art-audit-r1.json"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "docs/images/original-battle-new-units-go-r1.png"
+    },
+    {
+      "document": "docs/spec/030-battle-expansion-proposal.md",
+      "target": "docs/images/original-battle-new-units-go-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "preserved/original-battle-art-audit-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "preserved/original-battle-art-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "preserved/original-battle-art-detached-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "tools/original-battle-art.py"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "preserved/original-battle-art-cleanup-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "preserved/original-battle-art-postcleanup-audit-r1.json"
+    },
+    {
+      "document": "preserved/README.md",
+      "target": "preserved/original-battle-art-integrity-r1.json"
+    }
+  ],
+  "indexed_new_files": 16,
+  "positive_control": "tools/original-battle-session.py",
+  "source_art_audits_equal": true,
+  "edited_file_UID": 1000,
+  "root_owned_or_md_directories": [],
+  "current_binaries": [
+    "art.test",
+    "engine.test"
+  ],
+  "archive_files": 3026,
+  "archive_objects": 578,
+  "unpromoted_trials_frames_identical": [
+    "on-r4",
+    "on-r5",
+    "on-r6"
+  ],
+  "project_containers_after_batch": [],
+  "Docker_images_created": [],
+  "tool_AST_parse": "passed"
+}

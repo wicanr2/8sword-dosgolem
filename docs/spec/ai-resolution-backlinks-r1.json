@@ -1873,5 +1873,71 @@
       "scope": "Guard-only same-process cancel, retreat, rematch victory and empty visit; three native phase comparisons; two F7 and process-cold reads.",
       "not_closed": "Random/guard interchange, new-unit art, guard empty-army/loss, rules/AI integration, battle resume and general startup."
     }
+  ],
+  "original_battle_art_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:2BF8",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:2BF8",
+      "original_name": "sub_21168",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Bind original standing slot/raw to typed Go artwork.",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-ART-20261104",
+      "receipt": "preserved/original-battle-art-audit-r1.json",
+      "scope": "Eight transparent tiles, standing/redraw and ordinary death; nine guest pairs, seven Frame pairs and three separate cold reads.",
+      "not_closed": "Hand-drawn action poses, other special-effect deaths and general startup."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:0F67:2C90",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "0F67:2C90",
+      "original_name": "sub_21168",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Retain original far return and end the per-wrapper art context.",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-ART-20261104",
+      "receipt": "preserved/original-battle-art-audit-r1.json",
+      "scope": "Eight transparent tiles, standing/redraw and ordinary death; nine guest pairs, seven Frame pairs and three separate cold reads.",
+      "not_closed": "Hand-drawn action poses, other special-effect deaths and general startup."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:14D2:0423",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "14D2:0423",
+      "original_name": "sub_24043",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Adapt validated background geometry into the Go source scene.",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-ART-20261104",
+      "receipt": "preserved/original-battle-art-audit-r1.json",
+      "scope": "Eight transparent tiles, standing/redraw and ordinary death; nine guest pairs, seven Frame pairs and three separate cold reads.",
+      "not_closed": "Hand-drawn action poses, other special-effect deaths and general startup."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:dosgolem-runtime-CS-IP:14D2:0626",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "dosgolem runtime CS:IP",
+      "original_address": "14D2:0626",
+      "original_name": "sub_24246",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Select typed artwork before RGB submission in the paired original image branch.",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/030-battle-expansion-proposal.md",
+      "required_correction": "ORIGINAL-BATTLE-ART-20261104",
+      "receipt": "preserved/original-battle-art-audit-r1.json",
+      "scope": "Eight transparent tiles, standing/redraw and ordinary death; nine guest pairs, seven Frame pairs and three separate cold reads.",
+      "not_closed": "Hand-drawn action poses, other special-effect deaths and general startup."
+    }
   ]
 }

@@ -1,0 +1,126 @@
+{
+  "status": "passed-original-battle-art-audit",
+  "source_files": 310,
+  "source_manifest_sha256": "a301b47218cff1353b9f46c6a338ba0b50380ed0141db01ced2dd492638450fd",
+  "source_scene_patch_sha256": "7d643c0a0f965e7923ff5ea751e40cff3cf691bec3cad988718868ed3a674a35",
+  "ida_functions": 8,
+  "ida_lines": 679,
+  "full_guest_state_pairs": 9,
+  "battle_frame_pairs": 7,
+  "independent_dead_background_pixels": 158400,
+  "worlds": [
+    {
+      "units": "mixed",
+      "commands": 28,
+      "captures": 2,
+      "army": [
+        {
+          "unit": "native:01",
+          "count": 992
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "openkb:wolf",
+          "count": 20
+        },
+        {
+          "unit": "openkb:arcr",
+          "count": 20
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "F7": true,
+      "separate_process_Continue": true
+    },
+    {
+      "units": "native",
+      "commands": 0,
+      "captures": 2,
+      "army": [
+        {
+          "unit": "native:01",
+          "count": 992
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "F7": true,
+      "separate_process_Continue": true
+    },
+    {
+      "units": "fragile",
+      "commands": 30,
+      "captures": 3,
+      "army": [
+        {
+          "unit": "native:01",
+          "count": 988
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "openkb:arcr",
+          "count": 20
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "F7": true,
+      "separate_process_Continue": true
+    }
+  ],
+  "tiles": 8,
+  "binding_refusals": 10,
+  "initial_small_restore_scaffold": true,
+  "formal_runtime_unchanged": true,
+  "general_entry_disabled": true,
+  "schema_unchanged": true,
+  "initial_seed": 305419896,
+  "limits": [
+    "Standing/redraw/background-clear only; new hand-drawn action poses remain pending.",
+    "Frames are Engine output; no new X11 acceptance. Position and armies are explicit fixtures; not natural recruitment or clear.",
+    "No additional block-by-block PCM comparison; full guest snapshots match.",
+    "Differences are confined to live/dead new-unit footprints. Disabled control can retain obsolete native placeholders; dead regions use the independent HD background reference.",
+    "General startup, random/guard coordinator and rules/AI integration remain pending."
+  ]
+}

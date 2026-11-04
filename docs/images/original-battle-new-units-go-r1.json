@@ -1,0 +1,15 @@
+{
+  "sha256": "76fdd3806fd06571280fef593173eba03e053c5ce4df3a1c36366f522e4193b7",
+  "sources": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art-world-r1/mixed/on/hd-mixed-go/battle-000.png",
+      "sha256": "708799921b8e192f6d33166d31561a5af98672859b139a9c9a3a9b125d506e03"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art-world-r1/fragile/on/hd-mixed-go/battle-001.png",
+      "sha256": "79c6018f77d115a4299fd14eae6a7bedd129c3beb1b005bd332fca485d18d09d"
+    }
+  ],
+  "actual_window": false,
+  "general_entry": false
+}

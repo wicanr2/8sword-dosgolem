@@ -2769,3 +2769,56 @@ READY補正：第一次實戰的取消／撤退／勝利均成功，重訪已清
 首輪三階段已通過，但清空地點仍dispatch至2DDE而被拒絕；依原12F4E至12F87補READY後，容許已驗空守軍提示。核對器最初沿用前輪單戰的400金假設，原控制與本輪固定序列皆為450，修正驗證fixture，不改規則或重投。完整失敗、前後來源與binary均保留。
 
 [成果](../images/original-battle-session-go-r1.png)、[來源](../images/original-battle-session-go-r1.json)、[永久保存](../../preserved/README.md#原戰場守軍連續生命週期保存)及[研究紀錄](../../RESEARCH-LOG.md#原戰場守軍的連續生命週期)為入口。正式197來源七程式、923核心、535素材與1071美術保持。隨機與守軍交替的一般session、新兵圖像、守軍全滅／空軍隊、規則／AI整合、超領導、超word動畫、戰中續接與一般入口仍待，沒有新增X11或自然通關聲明。完整戰鬥後才進Rust。
+
+
+#### 原戰場新兵圖像 DRAFT
+
+2026-11-04。沿mm3的直接接管方法，來源為`/home/anr2/cht/mm3/docs/re/direct-render-methodology.md`及047的來源畫布，問題是新兵NativeKind0仍讀原暫存圖，不是新兵資料未進Go。既有composeOriginalBattleSetup只作持有預覽。先查PAM的高階部隊繪圖父層、原14D2:0626指令、slot／方向／姿勢及回復背景邊界，固定bytes／caller後才綁定已保存HD素材。禁止先畫暫存圖再覆新兵，也不為新兵改原kind索引。原版模式與資料／RNG／保存保持。
+
+研究沿既有workplace的original-battle-art-r1，先以唯讀觀察取得輸入與來源，IDA9.4唯讀資料庫暫存副本窄查。未READY前不接正式路徑；新材質只作用明確候選，不重生成已批准主圖。工具、READY與保存入口後續接回本節。
+
+唯讀觀察入口：[probe-owned-battle-art_test.go](../../tools/probe-owned-battle-art_test.go)。只複製至研究候選，執行TestResearchOwnedBattleArt，沿既有Go1.24.13／923核心，EIGHTSWORD_SESSION_CASE=hd-mixed-go。不得作正式接入或獨立畫面完成聲明。
+
+[IDA窄查](../../tools/export-owned-battle-art-ida.py)只匯出sub_24246與sub_24043及原xref父函式，合併分級索引，不改正式DB或命名。沿既有IDA9.4 py312-v1、UID1000、HOME=/home/ubuntu，唯讀正式PAM.i64的/tmp副本。
+
+
+#### 原戰場新兵站姿 READY
+
+固定PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`，IDA9.4 MZ linear基準10000h。兩callee及六wrapper窄查、330次唯讀bitmap觀察已足夠。新兵站姿來源有兩種：有原暫存圖時畫錯圖，原兵數0時則根本只還原背景。不是單一ByNative材質別名即可補齊。
+
+- 已證實：sub_21168／runtime0F67:2BF8，以arg0 slot→DS6FB6 raw，21181讀DS56EA兵數。零時用sub_24043／runtime14D2:0423還原背景，返回0F67:2C8A；非零用sub_24246／14D2:0626，返回2C50。目的座標為DS703C起每slot兩byte的x／y。wrapper retf在2C90。sub_23AFC的動作另有kind0早退，本輪不改該判定、等待或姿勢流程。
+- 在明確HD候選安裝Go resolver，wrapper來源bytes／segment／far frame／slot／raw與Go列綁定後，僅對NativeKind0的新兵及其背景還原命令提交264×300透明材質。死亡／空格保持純背景；原兵種、其他caller、非A000、錯尺寸／座標／背景不取得資格。未知來源或壞新兵材質拒絕，不把擴充ID寫入原kind或圖檔表。
+- 將新材質加入047同一份來源畫布的Actor cell，在RGB批次生成前決定，不在Engine.Frame之後覆蓋。背景與圖像仍按透明度合成。使用既有已批准UI圖像的完整alpha人物；Go從包內原PNG重建264×300材質，不重畫、不改535素材／1071美術。只保證站姿及既有wrapper重繪／還原，手繪動作及新數字／名稱層不由本輪外推。
+- 引擎增加可選API檔，既有source_scene.go在根目錄保持原SHA；隔離候選依固定準備器只插入命令接點與關閉清理。沒有接點的正式Engine拒絕新resolver，原七程式仍沿舊197來源。全部新增材質與resolver隨Engine關閉釋放，不修改guest RAM、CPU、旗標、步數、RNG、規則、時鐘、音訊或存檔。
+- 代表抽驗兩種新兵的初始、受擊／清除及同程序重進，八種材質與透明／越界拒絕模型；新／舊候選從相同固定seed與輸入比較完整state、PCM及Go戰果，改圖區域以外保持。原兵種與原版模式代表回歸；沿既有F7與獨立Continue，不逐兵種重跑完整GUI。圖片明示Engine Frame，不冒稱新X11或自然取得。
+
+實作入口為[來源畫布API](../../internal/eightsword/source_battle_art.go)、[Go新兵綁定](../../internal/ownedworld/original_battle_art.go)及[準備／驗證](../../tools/original-battle-art.py)。實際可用性與限制依後續收據限定，不提升一般玩家入口。
+
+候選插點以[固定patch](../../tools/source-battle-art.patch)保存，只改研究副本source_scene.go。新兵若暫時讀到非零原快取兵數，亦接受同一wrapper的0626／2C50成對分支；兩路都在RGB生成前選新材質，不改guest或原數值。
+
+驗收範圍補正：遊戲狀態以啟用／停用新材質的完整guest快照、原種完整Frame及混合局圖像區域外像素比較；PCM另沿047既有回歸，不宣稱本批新增新兵局逐塊音訊對拍。站姿抽驗另放入一隻野狼，確認死亡後原背景還原命令清除人物。這是測試配置，不改原兵種規則。
+
+[玩家路徑與材質抽驗](../../internal/ownedworld/original_battle_art_test.go)與[引擎封裝拒絕測試](../../internal/eightsword/source_battle_art_test.go)隨310來源候選保存。`original-battle-art.py freeze`固定來源並套已核對patch，`audit`獨立核對，`publish`產生README成果，`archive`保存完整批次，`verify --archive --out`只靠永久目錄核對。沿Pillow11.3.0-r2／UID1000容器；Go1.24.13使用923核心及r69。完整掛載與參數記入批次execution-r1.json。
+
+READY勘誤：一隻狼放第一隊的抽驗，在首次站姿、尚未出手時即拒絕。失敗state／far frame證實同一2C8A呼叫的背景範本可為8 byte×25，而原生部隊圖與後續背景範本為11 byte×50。原先固定11×50的輸入假設不足，不能把本次失敗歸為死亡規則。僅對同一已驗wrapper／座標及新兵，423接受8×25或11×50；626仍只接受11×50。Go來源畫布將這一筆新兵站姿或已死新兵清除提交為完整88×50區域，從既有隱藏背景材質還原，再按選擇提交Actor。原始HostCall仍按原8×25計算相容狀態，沒有改guest header、RAM、步數或原版模式。空白選擇不改原命令；清除選擇不得同時帶材質，兩者使用typed selection區分。最初失敗與來源另存cohort，不覆寫。
+
+第二項READY勘誤：逐像素核對在狼已死的slot1抓到殘圖。唯讀來源請求顯示最後一次狼站姿仍有1兵；Go casualty提交0兵後，原版只還原敵方攻擊者移動位置，沒有再呼叫死狼站姿wrapper。不能只靠該wrapper判斷清除，也不改原死亡規則。每筆來源命令可另附已提交Go列的死亡新兵ID，作為Actor生命週期命令。Go只移除該ID的Actor cell，保留背景Material、文字及法術Effect；同一死亡狀態冪等，重新取得有效站姿才可再次出現。此命令在Go來源畫布、RGB產生前處理，不掃最終Frame或額外改guest。沒有該死亡ID或沒有安裝接點時，原命令保持。第一次失敗像素747／618、診斷來源及後續修正全部保存。
+
+#### 原戰場新兵站姿限定 CONFORMED
+
+`ORIGINAL-BATTLE-ART-20261104`依[獨立核對](../../preserved/original-battle-art-audit-r1.json)完成310來源隔離候選。IDA9.4的八函式679行bytes逐項核對原MZ，PAM／i64、Go1.24.13／923核心／r69及位址基準沿READY，原符號保持。
+
+| runtime CS:IP | IDA MZ原定位 | 本批已驗責任 |
+|---|---|---|
+| 0F67:2BF8 | sub_21168／21168 | slot／raw／座標綁Go新兵站姿 |
+| 0F67:2C90 | sub_21168／21200 | 原retf清除本次wrapper資格 |
+| 14D2:0423 | sub_24043／24043 | 背景命令轉Go新兵區域 |
+| 14D2:0626 | sub_24246／24246 | 同wrapper圖源分支在RGB前選材質 |
+
+八種透明材質由已批准PNG重建，獨立程式逐像素相同。原兵種、20狼／20女弓箭手及第一隊一隻狼三案，均從固定0x12345678種子走原確認取消、撤退、再戰勝利、空訪及F7，再由獨立程序Continue讀回。九對完整guest快照與戰後地圖相同，七對戰場Frame差異只在新兵曾佔用區域，原兵種兩幀完整相同。三份軍隊、資源及位置保持，schema未改。
+
+普通戰鬥中狼死亡後，Go來源畫布移除4400個Actor cell。兩個死亡後Frame共158400像素，與獨立依HD背景PNG重建的同區域完全相同。停用新兵材質的控制組留有原暫存圖，死亡區域改以背景原圖驗證。額外材質資格／快取試驗沒有改變圖片，未提升；候選保留Actor生命週期的最小修正。兩項真實邊界缺口、診斷版及誤判基準均保存。
+
+三種壞材質、十種指令綁定拒絕，封裝原子性、輸入不可變、原版模式拒絕、關閉釋放，以及退休命令不改其他圖層／冪等模型通過。既有來源繪圖回歸的完整狀態與PCM相同，HD原生像素寫入為0；未新增新兵局逐塊PCM比較。
+
+[成果](../images/original-battle-new-units-go-r1.png)、[圖片來源](../images/original-battle-new-units-go-r1.json)、[永久保存](../../preserved/README.md#原戰場新兵站姿保存)與[研究紀錄](../../RESEARCH-LOG.md#原戰場新兵的來源材質)為入口。這是Engine Frame及明示軍隊／位置，沒有新X11或自然取得聲明。原版模式、正式197來源七程式、923核心、535素材及1071美術保持。手繪攻擊姿態、其餘特殊術死亡呈現、一般入口、隨機／守軍共用生命週期及規則／AI仍待，完整戰鬥後才進Rust。

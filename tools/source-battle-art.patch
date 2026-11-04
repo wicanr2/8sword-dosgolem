@@ -1,0 +1,41 @@
+--- a/internal/eightsword/source_scene.go
++++ b/internal/eightsword/source_scene.go
+@@ -111,6 +111,7 @@
+ 		return p.composeSpellCues(p.composeBattleVFX(p.cached))
+ 	}
+ 	return install, frame, func() {
++		p.closeOwnedBattleArt()
+ 		if p.unsubscribe != nil {
+ 			p.unsubscribe()
+ 		}
+@@ -123,6 +124,7 @@
+ 		return
+ 	}
+ 	p.bound = true
++	p.bindOwnedBattleArt()
+ 	art := p.graphicsAssets()
+ 	o := p.e.Oracle
+ 	seg := t.stringSeg
+@@ -347,6 +349,12 @@
+ 					effect = id
+ 				}
+ 			}
++			ownedActor, ownedRegion := p.ownedBattleArt(c.entry, first, w, h, x, y, dest, mode)
++			if ownedRegion {
++				// Only the Go scene expands the initial 8x25 restore scaffold.
++				// The independent guest HostCall keeps its original geometry.
++				w, h, actor = 11, 50, ownedActor
++			}
+ 			entryStep := o.Steps()
+ 			p.active++
+ 			apply = func() {
+@@ -363,6 +371,9 @@
+ 							p.scene.Pixels[at] = p.scene.Pixels[at+0x4000*8]
+ 						}
+ 						if c.kind == 0 {
++							if ownedActor != 0 {
++								p.scene.Pixels[at].Actor = graphicCell{ownedActor, uint32(local)}
++							}
+ 							continue
+ 						}
+ 						pix := &p.scene.Pixels[at]

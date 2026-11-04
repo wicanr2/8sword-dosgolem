@@ -1,0 +1,70 @@
+{
+  "status": "passed-original-battle-art-scoped-cleanup",
+  "archived_binaries": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art-diagnostics-r2.test",
+      "bytes": 17596416,
+      "sha256": "fcf0b16e702cc35e8c25efc12f4734f5f71f944e30ef4266945639489077e5be"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art-diagnostics-r3.test",
+      "bytes": 17600920,
+      "sha256": "3b0076ea0b104eaaf68b04b1e2138d92739a27522164ccaf9cd13728e4d4f2a0"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art-eligibility-r4.test",
+      "bytes": 17605568,
+      "sha256": "0e55e8aa41568ad8c4f0df6cf66e3bc4a745a5d501c85a41f6d10fd07dff11d6"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art-eligibility-r5.test",
+      "bytes": 17605456,
+      "sha256": "2ecc42a5c05e7c397175e18bdef33906ab767d36849ff69a60642c2f11649a4c"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art-eligibility-r6.test",
+      "bytes": 17606280,
+      "sha256": "0bab440331719e5398c2b901c7bbff9eea8dfabe6e1783252a8b99bf66ec3705"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art-research.test",
+      "bytes": 17629600,
+      "sha256": "07730288a38da0f8cfc0226c77d9b6252ddcfd897855aba282bc9dd91b9ec360"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art.test-before-retire-r1",
+      "bytes": 17596224,
+      "sha256": "d665683e57c4e5e5e625b6de26b23ca8c3d79cdff687ce58790850c12d7bee31"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/art.test-before-small-restore-r1",
+      "bytes": 17591416,
+      "sha256": "1ffa9480eb8f3b1f275bf5f09899675fcae534c8e697d413a5d1c884de824f81"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/engine.test-before-retire-r1",
+      "bytes": 10626928,
+      "sha256": "5a429a78bd7ae59b0e131959144b7aaaf2d9a837196f4d8c2c0c4b57fdfd5ee2"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/engine.test-before-small-restore-r1",
+      "bytes": 10619816,
+      "sha256": "10cd3cfbe0b77a573748e8ccb8a0b23344c0c490837d02dfb57d0c0c43676ac8"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-art-r1/research.test",
+      "bytes": 17551152,
+      "sha256": "5c4d8d61beaa1a8a8c92479ff8320d7a75efdbcfd1a6d1b3c6d22b6ccff1f314"
+    }
+  ],
+  "cache_files": 1872,
+  "cache_bytes": 356449056,
+  "reclaimed_bytes": 536078832,
+  "preserved_files": 3026,
+  "preserved_objects": 578,
+  "retained": [
+    "art.test",
+    "engine.test"
+  ],
+  "scope": "Only this batch build-cache and archived obsolete test binaries; no global Docker prune or other projects."
+}
