@@ -86,6 +86,8 @@ func originalGuardFlags(raw []byte) ([16]byte, error) {
 }
 
 type originalBattleGuard struct {
+	Session                                                   *originalBattleSession
+	ClearedVisit                                              bool
 	Engine                                                    *game.Engine
 	Port                                                      *worldArmyPort
 	Projection                                                *originalArmyProjection
@@ -141,6 +143,11 @@ func (g *originalBattleGuard) begin(m *dg.Machine) (bool, error) {
 	if sp > 65520 || m.Read16(0x1e880+sp) != 0x25ee || m.Read16(0x1e880+sp+2) != 0x110 {
 		return false, errors.New("original guard caller")
 	}
+	if g.Session != nil && g.Returned {
+		if err := g.Session.rearm(m); err != nil {
+			return false, err
+		}
+	}
 	if g.Active && !g.Captured && c.R[dg.SP] == g.EntrySP && c.R[dg.BP] == g.EntryBP {
 		return false, g.data(m)
 	}
@@ -161,7 +168,11 @@ func (g *originalBattleGuard) begin(m *dg.Machine) (bool, error) {
 	if bound.Context.Region == 0 && bound.Context.Index == 4 && !g.Ending {
 		return false, errors.New("original final guard handoff pending")
 	}
-	if old, ok := s.World.Encounters[bound.key()]; ok && (old.Cleared || old.Enemy != bound.Rows) && !(g.Ending && bound.key() == "guarded:00:04" && old.Cleared && old.Enemy == bound.Rows) {
+	clearedVisit := false
+	if old, ok := s.World.Encounters[bound.key()]; ok {
+		clearedVisit = g.Session != nil && bound.key() != "guarded:00:04" && old.Cleared && bound.Rows == [6]ArmyStack{}
+	}
+	if old, ok := s.World.Encounters[bound.key()]; ok && (old.Cleared || old.Enemy != bound.Rows) && !clearedVisit && !(g.Ending && bound.key() == "guarded:00:04" && old.Cleared && old.Enemy == bound.Rows) {
 		return false, errors.New("original guard cleared/changed record")
 	}
 	overlay, err := originalGuardOverlayMode(s, g.Ending)
@@ -190,6 +201,7 @@ func (g *originalBattleGuard) begin(m *dg.Machine) (bool, error) {
 	g.Before, g.Guard, g.Expected, g.NPC, g.Flags, g.Shadow = s, bound, expected, npc, flags, shadow
 	g.EntrySP, g.EntryBP = c.R[dg.SP], c.R[dg.BP]
 	g.Active = true
+	g.ClearedVisit = clearedVisit
 	if rec, ok := s.World.Encounters[bound.key()]; g.Ending && bound.key() == "guarded:00:04" && ok && rec.Cleared {
 		g.Replay, g.Committed = true, true
 		g.CommittedToken = s.Token
@@ -209,6 +221,9 @@ func (g *originalBattleGuard) frame(m *dg.Machine, ip uint16) error {
 	return g.data(m)
 }
 func (g *originalBattleGuard) presence(m *dg.Machine) (bool, error) {
+	if g.ClearedVisit {
+		return false, errors.New("cleared guard attempted battle")
+	}
 	if err := g.frame(m, 0x3048); err != nil {
 		return false, err
 	}
@@ -371,6 +386,9 @@ func (g *originalBattleGuard) reward(m *dg.Machine, ip uint16) (bool, error) {
 	return true, nil
 }
 func (g *originalBattleGuard) finish(m *dg.Machine) (bool, error) {
+	if g.Session != nil && !g.Captured {
+		return g.Session.cancelFinish(m)
+	}
 	if err := g.frame(m, 0x32ad); err != nil {
 		return false, err
 	}
@@ -409,6 +427,13 @@ func (g *originalBattleGuard) commitWorld() (bool, error) {
 	record := WorldEncounter{Enemy: g.Enemy, Cleared: g.Rounds.Result == "win"}
 	if record.Cleared {
 		record.Enemy = g.Guard.Rows
+		if g.final() {
+			var err error
+			record.Enemy, err = originalEndingCheckpoint(g.Before.Bytes.Native)
+			if err != nil {
+				return false, err
+			}
+		}
 	}
 	w.Encounters[g.Guard.key()] = record
 	s, err := g.Port.Store.Commit(g.Before.Token, w)
@@ -497,6 +522,9 @@ func installOriginalBattleGuardMode(e *game.Engine, p *worldArmyPort, x *origina
 	})
 	swordOnHostInstruction(e.Oracle, oracle.Far(0x110, 0x32ad), g.finish)
 	swordOnHostInstruction(e.Oracle, oracle.Far(0x110, 0x25ee), func(m *dg.Machine) (bool, error) {
+		if g.Session != nil {
+			return g.Session.mapReturn(m)
+		}
 		if !g.Committed {
 			return false, nil
 		}

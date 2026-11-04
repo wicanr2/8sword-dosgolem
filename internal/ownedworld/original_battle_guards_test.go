@@ -329,7 +329,14 @@ func originalGuardFight(t *testing.T, e *game.Engine, retreat bool, owner *origi
 	return originalGuardFightLimit(t, e, retreat, owner, 220000000)
 }
 func originalGuardFightLimit(t *testing.T, e *game.Engine, retreat bool, owner *originalBattleGuard, budget uint64) error {
+	return originalGuardRun(t, e, retreat, owner, budget, false)
+}
+func originalGuardRun(t *testing.T, e *game.Engine, retreat bool, owner *originalBattleGuard, budget uint64, cancel bool) error {
 	t.Helper()
+	initialReturns := uint64(0)
+	if owner != nil && owner.Session != nil {
+		initialReturns = owner.Session.Returns
+	}
 	entered, started, pending, entering := false, false, false, false
 	phase, finished := true, false
 	e.Oracle.OnCall(oracle.Far(0x110, 0x2dde), func(*oracle.Oracle) { entered = true })
@@ -339,12 +346,16 @@ func originalGuardFightLimit(t *testing.T, e *game.Engine, retreat bool, owner *
 	e.Oracle.OnCall(oracle.Far(0x160a, 0x87), func(o *oracle.Oracle) {
 		if phase && entered && (!started || finished) && o.Steps()-last > 50000 {
 			last = o.Steps()
-			o.PressKey(oracle.KeyEnter)
+			if cancel {
+				o.PressKey(oracle.KeyEscape)
+			} else {
+				o.PressKey(oracle.KeyEnter)
+			}
 		}
 	})
 	if owner == nil {
 		swordOnHostInstruction(e.Oracle, oracle.Far(0x110, 0x25ee), func(*dg.Machine) (bool, error) {
-			if phase && started {
+			if phase && (started || cancel && entered) {
 				return false, errOriginalGuardMapHeld
 			}
 			return false, nil
@@ -428,7 +439,7 @@ func originalGuardFightLimit(t *testing.T, e *game.Engine, retreat bool, owner *
 	start := e.Oracle.Steps()
 	e.Oracle.SetStepGuard(func(o *oracle.Oracle) error {
 		r := o.Regs()
-		if owner != nil && (owner.Returned || owner.EndingHandoff) {
+		if owner != nil && (owner.EndingHandoff || owner.Returned && (owner.Session == nil || owner.Session.Returns > initialReturns)) {
 			return errOriginalGuardMapHeld
 		}
 		if pending && r.CS == picker.CS && r.IP == picker.IP && r.SP == picker.SP {

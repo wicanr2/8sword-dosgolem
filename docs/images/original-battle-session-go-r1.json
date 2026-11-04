@@ -1,0 +1,15 @@
+{
+  "sha256": "1d02719498946d920256966853a029564f4e91c2e90f531506edaef693f0d741",
+  "sources": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-session-r1/sessions-r1/hd-native-go/win.png",
+      "sha256": "bec410d9e67670515d306ec546b2f14930e70ff722d8833c516784665bd054b7"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-session-r1/ending-r1/hd-partial-go/process-cold/END7.AY.png",
+      "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+    }
+  ],
+  "actual_window": false,
+  "general_entry": false
+}

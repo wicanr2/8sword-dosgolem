@@ -29,21 +29,43 @@ func originalEndingRecord(p progressPairSnapshot, rec WorldEncounter) error {
 		}
 	}
 	if rec.Cleared {
-		for i, row := range rec.Enemy {
-			kind, err := guardSavedWord(p.Bytes.Native, guardNPCAt(0, 4)+i*4)
-			if err != nil {
-				return err
-			}
-			count, err := guardSavedWord(p.Bytes.Native, guardNPCAt(0, 4)+i*4+2)
-			if err != nil {
-				return err
-			}
-			if kind < 1 || kind > 25 || count == 0 || row.Unit != fmt.Sprintf("native:%02d", kind) || row.Count != uint32(count) {
-				return errors.New("ending replay checkpoint roster")
-			}
+		rows, err := originalEndingCheckpoint(p.Bytes.Native)
+		if err != nil {
+			return err
+		}
+		if rows != rec.Enemy {
+			return errors.New("ending replay checkpoint roster")
 		}
 	}
 	return nil
+}
+
+func originalEndingCheckpoint(native []byte) ([6]ArmyStack, error) {
+	var rows [6]ArmyStack
+	empty, alive := false, false
+	for i := range rows {
+		kind, err := guardSavedWord(native, guardNPCAt(0, 4)+i*4)
+		if err != nil {
+			return rows, err
+		}
+		count, err := guardSavedWord(native, guardNPCAt(0, 4)+i*4+2)
+		if err != nil {
+			return rows, err
+		}
+		if kind == 0 && count == 0 {
+			empty = true
+			continue
+		}
+		if empty || kind < 1 || kind > 25 || count == 0 || count > 32767 {
+			return rows, errors.New("ending checkpoint row bounds/packing")
+		}
+		rows[i] = ArmyStack{fmt.Sprintf("native:%02d", kind), uint32(count)}
+		alive = true
+	}
+	if !alive {
+		return rows, errors.New("ending checkpoint has no living guard")
+	}
+	return rows, nil
 }
 
 func (g *originalBattleGuard) final() bool {

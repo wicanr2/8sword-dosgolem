@@ -14,7 +14,15 @@
 
 ## 最近驗證
 
-最新為[原戰場結局守軍](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)。304來源隔離候選保持原確認、八劍檢查及原版HD戰場，Go在結局播放前成對保存剩兵與最終守軍紀錄。原版／Go的完整最終戰，六資源、NPC、八劍、seed、返回軍隊及首次選敵Frame相同。另含20名新增女弓箭手的完整勝局通過；兩條Go進度另開程序Continue、移動／確認後完整播放HD結局，退出碼均0，沒有再次戰鬥或提交。三次進戰前真正F7、16掛點拒絕、15紀錄拒絕、實際缺劍提示、journal恢復及既有回歸已驗。[核對](preserved/original-battle-ending-audit-r1.json)、[成果](docs/images/original-battle-ending-go-r1.png)與[永久保存](preserved/README.md#原戰場結局守軍保存)為入口。
+最新為[原戰場守軍連續生命週期](docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)。306來源隔離候選可在同一程序取消→撤退→再戰勝利→重訪空守軍提示→F7。三階段原控制／Go的完整Frame、NPC、旗標、資源及seed相同，兩場交戰的剩兵也同；混合軍隊另完成同一路徑，兩份F7由獨立程序Continue讀回。[核對](preserved/original-battle-session-audit-r1.json)、[成果](docs/images/original-battle-session-go-r1.png)與[永久保存](preserved/README.md#原戰場守軍連續生命週期保存)為入口。
+
+`ORIGINAL-GUARD-SESSION-20261104`只在已驗原25EE返回後開放下一場，重新綁定最新Go軍隊並就地清除八個控制器狀態，既有掛點與指標保持。一次取消、兩場交戰及一次空守軍訪問共四次返回；取消／空訪不提交或領獎。原守軍五隊不改，1000民兵／200弓箭手、領導30000、戰績10000及6／4起點為fixture。固定此操作序列，撤退金500→450，勝利月薪100→120，剩992民兵／200弓箭手；混合局另有20狼／20女弓箭手保持。原控制取消時仍是30民兵影子，第一次進戰才配置比較軍隊，所以不宣稱整機同狀態。
+
+`ORIGINAL-FINAL-CHECKPOINT-20261104`接通最終守軍部分編成冷讀：已勝history綁最近F7的合法非空NPC編成，允許一至六隊；未F7多次削弱仍保留該checkpoint來源。六個模型、七種壞編成拒絕及一次未F7削弱後勝利的Store模型通過。實際最終四隊為原六隊最後四隊的受控checkpoint，真正F7後戰勝、獨立程序Continue／原確認重播完整HD結局，退出0且world／token保持。沒有稱自然撤退生成或自然通關。13種重新待命拒絕與既有回歸通過，schema保持。
+
+下一步補新兵初始／動態圖像、隨機戰與守軍共用的生命週期、守軍全滅／空軍隊及一般入口，再整合規則／策略AI與戰中續接。此輪僅明確安裝守軍session，沒有開放一般Go入口，也沒有把資料驗收當外觀完成。正式197來源七程式、923核心、535素材與1071美術保持，完整戰鬥後才進Rust。
+
+前輪為[原戰場結局守軍](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)。304來源隔離候選保持原確認、八劍檢查及原版HD戰場，Go在結局播放前成對保存剩兵與最終守軍紀錄。原版／Go的完整最終戰，六資源、NPC、八劍、seed、返回軍隊及首次選敵Frame相同。另含20名新增女弓箭手的完整勝局通過；兩條Go進度另開程序Continue、移動／確認後完整播放HD結局，退出碼均0，沒有再次戰鬥或提交。三次進戰前真正F7、16掛點拒絕、15紀錄拒絕、實際缺劍提示、journal恢復及既有回歸已驗。[核對](preserved/original-battle-ending-audit-r1.json)、[成果](docs/images/original-battle-ending-go-r1.png)與[永久保存](preserved/README.md#原戰場結局守軍保存)為入口。
 
 `ORIGINAL-FINAL-GUARD-WORLD-20261104`：原329B呼叫結局早於一般獎勵，這兩場月薪100、金500、戰績10000、等級1、法術能力0保持。原六隊最終守軍不改；軍隊、八劍、領導30000及59／52鄰近位置為fixture，不稱自然通關。沿既有WorldEncounter與schema，未F7的opaque NPC保留前次存檔；冷讀保留原確認並在3048辨識勝利紀錄後接326E。重播須從原checkpoint移動／確認，不是舊卡片return-phase自動續播。Go頭目record亦可恢復未F7的劍旗標。
 

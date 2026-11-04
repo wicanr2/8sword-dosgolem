@@ -3151,3 +3151,16 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 後續以[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)、[核對工具](tools/original-battle-ending.py)與[永久保存](preserved/README.md#原戰場結局守軍保存)記錄實際完成範圍。一般玩家入口、同程序多戰／取消重進與戰中續接仍不在本片段內。
 
 本輪成果目視追加：`ORIGINAL-FINAL-FRAME-PRESENTATION-20261104`確認混合局首次選敵Frame仍有原暫存站姿；composeOriginalBattleSetup只是既有持有預覽合成，未接整段實戰。資料勝局與冷讀仍有效，新增兵種的初始／受擊／死亡圖像不在本輪完成範圍。README成果移除該張混合戰場示意，原PNG永久保留。
+
+
+## 原戰場守軍的連續生命週期
+
+2026-11-04。輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。沿已保存IDA9.4匯出，不新增全檔分析。IDA MZ linear基準10000h、runtime world CS0110h分列；原名稱／bytes／xref及級別保持。
+
+原sub_12DDE的12E0D／12FC8可不進戰而回132AD，12F80至12F87則可直接far return。12F4E至12F87在NPC全空時顯示原提示，仍會重訪dispatcher。先前「清地點不再進2DDE」的實作假設被實際重訪推翻，並非新地圖規則。明確session只接受已清record與RAM六隊全空，保留提示，25EE只記訪問而不提交或領獎。原caller鍵與原位址未改。
+
+原控制／Go的取消、撤退、勝利三階段，完整Frame／NPC／旗標／資源／seed相同，後兩段原軍隊資料也同。取消時原影子30民兵，第一次實戰才配置1000／200，因此只證明不開戰路徑等價，不稱整機同狀態。固定此序列原控制與Go皆扣金50；前輪單戰扣100的歷史收據保留，核對器不以舊結果猜新操作序列。兩份Go軍隊完成同程序兩戰／空訪／F7及獨立Continue。
+
+結局history沿既有WorldEncounter，但明確綁最近checkpoint來源。六隊中的合法空格允許0／0，至少一隊且緊縮，ghost kind／count、ID26、超signed word與history不符拒絕。未F7削弱再勝的Store模型保留完整舊checkpoint；實際四隊checkpoint另由原最後四隊各400明示配置，再真正F7／勝利／冷讀／原確認／完整HD結局退出0。這不是自然撤退或自然通關。
+
+[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)、[核對](preserved/original-battle-session-audit-r1.json)與[永久保存](preserved/README.md#原戰場守軍連續生命週期保存)記錄級別及限制。仍限guard-only session；新兵圖像、隨機／守軍交替、全滅／空軍隊與一般入口未驗。原正式七程式、核心與素材保持。

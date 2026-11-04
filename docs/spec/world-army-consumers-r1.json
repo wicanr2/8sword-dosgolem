@@ -516,5 +516,20 @@
       }
     ],
     "not_closed": "In-process multiple battles/cancel re-entry and general startup. Previous card return-phase evidence remains historical."
+  },
+  "original_guard_session_bridge": {
+    "marker": "ORIGINAL-GUARD-SESSION-20261104",
+    "evidence": "docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed",
+    "receipt": "preserved/original-battle-session-audit-r1.json",
+    "level": "proven-in-sampled-scope",
+    "scope": "Guard-only same-process cancel, retreat, rematch victory, cleared visit and F7. Original far frame and fixed sources retained.",
+    "not_closed": "Random/guard interchange and general startup; no new-unit art acceptance."
+  },
+  "original_final_checkpoint_bridge": {
+    "marker": "ORIGINAL-FINAL-CHECKPOINT-20261104",
+    "evidence": "docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed",
+    "receipt": "preserved/original-battle-session-audit-r1.json",
+    "level": "proven-in-sampled-scope",
+    "scope": "Six typed partial-checkpoint models; no-F7 history Store model; controlled four-row actual victory/cold ending. Not a natural retreat."
   }
 }

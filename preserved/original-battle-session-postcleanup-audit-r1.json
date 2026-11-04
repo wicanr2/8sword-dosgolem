@@ -1,0 +1,142 @@
+{
+  "status": "passed-original-battle-session-audit",
+  "source_files": 306,
+  "source_manifest_sha256": "4af33296a91b546154e2d6789b9e32438c4ac81bc5323bc12b4d693bc50bf302",
+  "ida_functions": 27,
+  "ida_lines": 6264,
+  "original_Go_phase_comparisons": 3,
+  "session_worlds": [
+    {
+      "name": "hd-native-go",
+      "returns": 4,
+      "cancels": 1,
+      "cleared_visits": 1,
+      "battles": 2,
+      "resources": [
+        1,
+        10000,
+        120,
+        450,
+        30000,
+        0
+      ],
+      "army": [
+        {
+          "unit": "native:01",
+          "count": 992
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "world_sha256": "4a0f39ed0eb4e036a265a057f1a983477773f72b32e782c8af35f3101386f1c9",
+      "F7_saves": 1,
+      "separate_process_Continue": true
+    },
+    {
+      "name": "hd-mixed-go",
+      "returns": 4,
+      "cancels": 1,
+      "cleared_visits": 1,
+      "battles": 2,
+      "resources": [
+        1,
+        10000,
+        120,
+        450,
+        30000,
+        0
+      ],
+      "army": [
+        {
+          "unit": "native:01",
+          "count": 992
+        },
+        {
+          "unit": "native:03",
+          "count": 200
+        },
+        {
+          "unit": "openkb:wolf",
+          "count": 20
+        },
+        {
+          "unit": "openkb:arcr",
+          "count": 20
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "world_sha256": "0f1a94be9e300492c5328621ee8711ec20dbb34f467e8354b17f62aac2e365e7",
+      "F7_saves": 1,
+      "separate_process_Continue": true
+    }
+  ],
+  "rearm_refusals": 13,
+  "partial_checkpoint_models": 6,
+  "partial_checkpoint_refusals": 7,
+  "no_F7_depleted_victory_retains_checkpoint": true,
+  "partial_checkpoint_actual_battle_and_process_cold_ending": true,
+  "partial_enemy_initial": [
+    {
+      "unit": "native:10",
+      "count": 400
+    },
+    {
+      "unit": "native:25",
+      "count": 400
+    },
+    {
+      "unit": "native:15",
+      "count": 400
+    },
+    {
+      "unit": "native:20",
+      "count": 400
+    },
+    {
+      "unit": "",
+      "count": 0
+    },
+    {
+      "unit": "",
+      "count": 0
+    }
+  ],
+  "formal_runtime_unchanged": true,
+  "general_entry_disabled": true,
+  "schema_unchanged": true,
+  "initial_seed": 305419896,
+  "limits": [
+    "Guard-only session; random/guard interchange and general startup not integrated.",
+    "Position, armies, leadership30000 and merit10000 are explicit fixtures. Ordinary native guard roster unchanged.",
+    "Cancel comparison concerns the noncombat path only: native shadow still has 30 militia; the custom native army is injected at the first battle entry. Not full-guest-state parity.",
+    "Partial final guard is a controlled four-row checkpoint derived from the original last four rows; not a natural prior retreat.",
+    "No-F7 final history retention is a Store model; not an additional full final battle.",
+    "New-unit standing/action art remains pending; data results do not prove appearance.",
+    "Engine Frames only; no new X11 or natural-clear acceptance."
+  ]
+}

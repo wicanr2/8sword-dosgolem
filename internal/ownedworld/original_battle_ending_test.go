@@ -303,6 +303,21 @@ func TestOriginalEndingWorld(t *testing.T) {
 	for i := 0; i < 8; i++ {
 		e.Oracle.WriteU16(oracle.Far(0x1e88, 0x275a+uint16(i*2)), 1)
 	}
+	partial := name == "hd-partial-go"
+	if partial {
+		// Controlled checkpoint after a prior retreat: retain the original last
+		// four native rows, compacted; do not inject a win or instruction pointer.
+		raw := e.Oracle.Bytes(oracle.Far(0x1e88, 0x36be), 24)
+		for i := 0; i < 6; i++ {
+			kind, count := uint16(0), uint16(0)
+			if i < 4 {
+				kind = binary.LittleEndian.Uint16(raw[(i+2)*4:])
+				count = binary.LittleEndian.Uint16(raw[(i+2)*4+2:])
+			}
+			e.Oracle.WriteU16(oracle.Far(0x1e88, 0x36be+uint16(i*4)), kind)
+			e.Oracle.WriteU16(oracle.Far(0x1e88, 0x36c0+uint16(i*4)), count)
+		}
+	}
 	cp, err := installNativeCheckpoint(e, port, filepath.Join(dir, "scratch"))
 	must(err)
 	setupPress(t, e, 0x41)
@@ -362,7 +377,7 @@ func TestOriginalEndingWorld(t *testing.T) {
 	if resources != [6]uint16{1, 10000, 100, 500, 30000, 0} {
 		t.Fatal("ending incorrectly awarded", resources)
 	}
-	receipt := map[string]any{"case": name, "player": player, "resources": resources, "NPC_hex": fmt.Sprintf("%x", e.Oracle.Bytes(oracle.Far(0x1e88, 0x365e), 1008)), "swords_hex": fmt.Sprintf("%x", e.Oracle.Bytes(oracle.Far(0x1e88, 0x275a), 16)), "seed": originalSeed(e.Oracle), "prebattle_F7_saves": cp.Saves, "controlled_position": [2]uint16{59, 52}, "native_guard_unmodified": true, "controlled_swords": 8, "world_before": worldDigest(before.World)}
+	receipt := map[string]any{"case": name, "player": player, "resources": resources, "NPC_hex": fmt.Sprintf("%x", e.Oracle.Bytes(oracle.Far(0x1e88, 0x365e), 1008)), "swords_hex": fmt.Sprintf("%x", e.Oracle.Bytes(oracle.Far(0x1e88, 0x275a), 16)), "seed": originalSeed(e.Oracle), "prebattle_F7_saves": cp.Saves, "controlled_position": [2]uint16{59, 52}, "native_guard_unmodified": !partial, "controlled_partial_checkpoint": partial, "controlled_swords": 8, "world_before": worldDigest(before.World)}
 	receipt["native_returned_hex"] = fmt.Sprintf("%x", e.Oracle.Bytes(oracle.Far(0x1e88, 0x56e8), 24))
 	if !native {
 		if !owner.EndingHandoff || !owner.Committed || owner.Replay || owner.Rounds.Result != "win" {

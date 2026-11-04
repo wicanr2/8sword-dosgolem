@@ -2724,3 +2724,48 @@ r1同底圖重播抽看顯示，來源Actor cell涵蓋整個圖像矩形，單�
 `ORIGINAL-FINAL-FRAME-PRESENTATION-20261104`呈現限制：本批首次選敵Frame的新增兵種資料已由Go提供，但實際Engine.Frame仍沿原暫存姿態；composeOriginalBattleSetup的自有圖像合成只在先前持有預覽使用，尚未接整段玩家戰鬥。不能以兵數正確或前導預覽稱站姿與動態外觀已完成。混合局原PNG保持作證據，README只展示原兵種戰場與結局。後續須補新兵初始圖像、受擊／死亡及動態姿態，再開一般入口。
 
 冷讀停止線追加：originalEndingRecord對已勝history目前要求checkpoint六隊均有合法native kind與正數兵數。本批完整原六隊兩局符合；最終守軍受損撤退、F7後再勝的殘兵checkpoint重播尚未支援，先拒絕並保留資料，不宣稱所有最終守軍生命週期閉合。此項隨後續多戰與取消重進補接。
+
+
+#### 原戰場守軍連續生命週期 DRAFT
+
+2026-11-04。沿前兩批27函式IDA9.4匯出，固定PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。原sub_12DDE的IDA12E0D／12FC8不進戰而回132AD，12F80至12F87亦可直接返回；原父caller仍125EE。runtime分別為0110:32AD／2F80／25EE，MZ linear基準10000h，不混用位址。
+
+已查證：目前Go控制器一次綁定後不重設setup、projection、rounds、casualty、spell、support及enemy物件；下一次會因舊phase拒絕。原取消未到309E，所以不能要求reward或Go結算。已證實原最終NPC每隊kind／count均為0才是空格，少於六隊仍是合法守軍；存讀應依合法非空編成，不要求每格存活。原獎勵與八劍／結局時序沿既有READY，不重查傷害或繪圖。
+
+#### 原戰場守軍連續生命週期 READY
+
+證據足以實作以下窄範圍，仍只明確安裝於隔離候選。原確認、原版／HD戰場、原六陣位及F7不改；本輪不接隨機戰與守軍混用的一般入口，也不聲稱新兵圖像完成。
+
+- 只有已綁定守軍在原25EE返回、frame與NPC／旗標／影子／資源核對成功後，才可標為待命。未到309E的返回只在全部控制器未開戰時視為取消／未進戰，不提交world、不領獎；32AD取消與2F80直接返回都經原far return。已開戰卻未完成或未提交仍拒絕。
+- 下次2DDE先驗來源及25EE caller，從最新成對進度重建Go軍隊與守軍overlay，核對完整RAM投影。驗證全部成功後才就地重設八個既有控制器；保存原指標與已註冊掛點，不重複安裝、不模擬新CPU。清除上一場HP、投影、目標、施法／敵方特殊、複製增量及行動計數。未完成效果、pending交易、錯誤frame／來源或投影改寫拒絕且不改記憶體。
+- 用單調場次／返回計數與每場結果區分前後戰。取消不改Store token；撤退只扣一次，下一場讀取殘兵；勝利只領一次一般守軍月薪。重訪已清地點交原地圖流程，不重開獎勵。一般原版存檔與formal runtime保持。
+- 最終已勝record的Enemy改以最近F7的合法非空最終NPC編成作重播來源。無F7的多次削弱仍以該checkpoint為準；F7已保存四隊時則保留四隊。原kind／count必須同時為0或合法native1–25／正數有界，至少一隊；不接受全空checkpoint、幽靈兵數、新ID或history不符。冷讀依同一原確認與3048→326E，不再戰鬥或提交，不加schema。
+- 抽驗同一程序原確認取消→原守軍撤退→再戰勝利→F7／獨立Continue；原版控制與Go的原兵種流程代表比較，混合軍隊另抽。最終部分NPC／不經F7再勝以受控狀態及模型縮小範圍，至少一條實際部分編成勝利與獨立程序HD結局重播。固定seed在移動前設，不重投；注入位置或兵數明示，不稱自然通關。
+
+入口為[生命週期](../../internal/ownedworld/original_battle_session.go)、[抽驗](../../internal/ownedworld/original_battle_session_test.go)、[既有結局](../../internal/ownedworld/original_battle_ending.go)，保存與核對接回本節。失敗分類與場次收據放既有workplace的original-battle-session-r1，不建立新的根目錄。
+
+[凍結／核對／保存](../../tools/original-battle-session.py)沿Pillow11.3.0-r2／UID1000容器執行`freeze|audit|publish|archive|verify --project --out`，永久保存另設`--archive`；Go1.24.13沿923核心與r69。完整掛載與場次參數記入保存批次execution-r1.json。
+
+READY補正：第一次實戰的取消／撤退／勝利均成功，重訪已清地點仍會再呼叫sub_12DDE。原IDA12F4E至12F87在NPC全空時顯示原提示並直接far return；不能假定地點不再dispatch。明確session模式允許Cleared且RAM六隊全空的普通守軍進原提示，另記cleared-visit，不提交、不領獎；若走入3048開戰閘門則拒絕。原未明確session的護欄保持。
+
+
+#### 原戰場守軍連續生命週期限定 CONFORMED
+
+`ORIGINAL-GUARD-SESSION-20261104`與`ORIGINAL-FINAL-CHECKPOINT-20261104`依[獨立核對](../../preserved/original-battle-session-audit-r1.json)限定完成306來源隔離候選。固定PAM／i64及Go1.24.13／IDA9.4沿READY，27函式6264行bytes重對MZ核對；原定位與語意級別保留，不新增反組譯命名。
+
+| runtime CS:IP | IDA MZ原定位 | 本批已驗責任 |
+|---|---|---|
+| 0110:2DDE | sub_12DDE／12DDE | 已返回才驗最新Store與RAM並就地重新待命，保留掛點指標 |
+| 0110:32AD | sub_12DDE／132AD | 未開戰取消經原epilogue；不要求獎勵、不提交 |
+| 0110:2F80 | sub_12DDE／12F80 | 空守軍原提示後直接far return，交25EE驗證 |
+| 0110:25EE | sub_12446／125EE | 驗證一次返回，區分取消、戰果與已清地點訪問 |
+
+同一Engine依原按鍵取消→撤退→再戰勝利→空守軍提示→F7。原控制／Go三階段完整Frame、NPC、旗標、六資源與seed相同，撤退／勝利的原軍隊資料亦同。取消控制在第一次32E0才配置比較軍隊，取消前原影子為30民兵，故僅比較不開戰路徑，不冒稱整機same-state。固定0x12345678種子後不重投；軍隊、領導30000、戰績10000及6／4起點為fixture，原五隊守軍不改。
+
+本序列撤退前擊倒30猴妖，四隊殘兵為40僵屍／30狐狸／40矮人／20無頭妖；扣金500→450，同原控制。再戰勝利加月薪100→120，金450／戰績10000／等級1保持，剩992民兵／200弓箭手。混合局另20狼／20女弓箭手，10次普通動作後同樣剩992民兵且新兵保持；兩局都真正F7，再由獨立程序Continue核對軍隊、資源、位置與守軍。每局一次取消、兩場交戰及一次空訪共四次返回，取消／空訪不提交，空訪亦未再領月薪。新兵圖像仍未整段接入，不以正確資料稱外觀完成。
+
+13種重新待命拒絕保留Go控制器與guest，成功模型讀取31民兵的新進度，清除上一場施法、複製增量與敵方計數且指標保持。六種一至六隊checkpoint模型、七種幽靈／越界／空編成／history拒絕通過。未F7削弱至四隊再勝的Store模型證實history仍綁前次六隊checkpoint，不用當次殘兵取代重播來源。實際部分編成另明示取原最終最後四隊各400，進戰前真正F7，正常戰鬥勝利、獨立Continue／原確認後完整HD結局退出0，world／token保持；沒有宣稱自然撤退生成該四隊。舊結局／守軍與普通、法術、輔助、敵方特殊回歸通過。
+
+首輪三階段已通過，但清空地點仍dispatch至2DDE而被拒絕；依原12F4E至12F87補READY後，容許已驗空守軍提示。核對器最初沿用前輪單戰的400金假設，原控制與本輪固定序列皆為450，修正驗證fixture，不改規則或重投。完整失敗、前後來源與binary均保留。
+
+[成果](../images/original-battle-session-go-r1.png)、[來源](../images/original-battle-session-go-r1.json)、[永久保存](../../preserved/README.md#原戰場守軍連續生命週期保存)及[研究紀錄](../../RESEARCH-LOG.md#原戰場守軍的連續生命週期)為入口。正式197來源七程式、923核心、535素材與1071美術保持。隨機與守軍交替的一般session、新兵圖像、守軍全滅／空軍隊、規則／AI整合、超領導、超word動畫、戰中續接與一般入口仍待，沒有新增X11或自然通關聲明。完整戰鬥後才進Rust。

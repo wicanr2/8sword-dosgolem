@@ -1,0 +1,20 @@
+{
+  "removed_binaries": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-session-r1/cleared-revisit-refused-r1/ownedworld.test",
+      "sha256": "3e7dd92e73251bef7ad5a4666fa83c7f3ae7e1cbd0f9c775ec95d2caf2898227",
+      "bytes": 17511192,
+      "permanent_batch": "original-battle-session-r1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-ending-r1/ownedworld-final.test",
+      "sha256": "f3cff8173d582a94cbce7a8e78ce9a891f2c0086965d2ffd3bae0676c8ff68ad",
+      "bytes": 17415472,
+      "permanent_batch": "original-battle-ending-r1"
+    }
+  ],
+  "cache_files": 1698,
+  "cache_bytes": 154395034,
+  "total_bytes": 189321698,
+  "scope": "Only this task Go cache and SHA-verified archived obsolete binaries; current test binary and permanent objects retained. No other projects or Docker resources pruned."
+}

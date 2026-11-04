@@ -74,6 +74,10 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 最終守軍已接通Go戰果保存與既有HD結局。原版完整勝局對照通過；含新增女弓箭手的勝局也已另開程序讀檔，經原確認重播結局至退出碼0，沒有重打或重領獎。圖為明示軍隊、八劍及鄰近位置的Engine畫面，原守軍六隊保持，不代表自然通關。範圍見[結局守軍驗收](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)與[圖片來源](docs/images/original-battle-ending-go-r1.json)。新增兵種這輪驗證資料與戰果，戰場站姿及動態圖像仍待接線；一般Go入口尚未開放。
 
+![同一程序守軍取消、撤退後再戰勝利，以及部分編成讀檔後的HD結局](docs/images/original-battle-session-go-r1.png)
+
+守軍已在同一程序接通取消、撤退、再戰勝利、空守軍提示與F7，保留原操作。原版三階段對照、含新增兵種的資料路徑及兩份獨立讀檔通過；最終守軍剩四隊的受控存檔也能戰勝後重播完整HD結局。圖為明示配置的Engine畫面，並非自然通關；新兵站姿與動態圖像仍待接線。範圍見[連續生命週期驗收](docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)與[圖片來源](docs/images/original-battle-session-go-r1.json)。一般Go入口尚未開放。
+
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 
 需要研究匯入時，先按[永久保存入口](preserved/README.md#go軍隊命令與原版進度匯入保存)準備合法本機資料，再建置並指定新的目的地：

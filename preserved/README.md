@@ -1108,3 +1108,16 @@ timeout 300s docker run --rm --network none \
 本批保存1427檔／462物件，壓縮47819005 bytes。已逐SHA保存後清除四個舊binary與1750份Go快取，回收280103331 bytes，約267.1 MiB；[清理收據](original-battle-ending-cleanup-r1.json)與[清理後核對](original-battle-ending-postcleanup-audit-r1.json)保持通過。最終測試binary、來源及永久物件保留。
 
 本批結局冷讀限戰前checkpoint六隊皆存活。最終守軍受損撤退、F7後再勝的殘兵checkpoint重播仍待接線；資料保留並拒絕，不當作完整生命週期已驗。
+
+
+## 原戰場守軍連續生命週期保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)與[核對](original-battle-session-audit-r1.json)保存306來源、前後binary／失敗、原版與Go的三階段比較、兩個同程序兩戰／空訪／F7／獨立Continue、部分最終編成實戰及獨立HD結局。完整原PNG、VM／RAM、九圖、原版／IDA來源與UI素材留本機，不進Git；README縮圖與索引沿私人倉庫記錄。
+
+[批次清單](original-battle-session-r1.json)的files列出原路徑、SHA、bytes與mode，objects指向本目錄`original-battle-session-r1/<SHA>.gz`。[脫離工作區驗證](original-battle-session-detached-r1.json)逐物件解壓核對，不需要workplace、核心或原版掛載。還原時依files相對路徑，從objects指定gzip解壓到另一個空目錄，不覆寫來源。既有923核心／r69素材沿初批及前輪保存。
+
+[工具](../tools/original-battle-session.py)沿固定Pillow11.3.0-r2／UID1000／network none容器，以`freeze|audit|publish --project /project --out <新輸出>`凍結、核對及發圖；`archive --project /project --archive /project/preserved --out /project/preserved/original-battle-session-r1.json`保存。獨立核對只掛唯讀preserved與tools，執行`verify --archive /archive --out <新JSON>`。Go1.24.13、掛載、配額、測試名稱／參數與固定seed見批次execution-r1.json。
+
+本輪只接明確守軍session；原取消、殘兵再戰、空守軍提示與F7保持。取消原影子30民兵，進戰才注入比較軍隊，所以不聲稱整機same-state。最終四隊為原最後四隊的受控checkpoint，未F7保留來源另以Store模型驗證，不能冒稱自然撤退。新兵圖像與一般入口尚未接入，完整戰鬥後才進Rust。
+
+本批保存1085檔／480物件，壓縮39554886 bytes。逐SHA確認永久物件後刪兩個過期binary與1698份Go快取，回收189321698 bytes，約180.6 MiB。[清理收據](original-battle-session-cleanup-r1.json)與[清理後核對](original-battle-session-postcleanup-audit-r1.json)保持，現行binary及永久物件保留。
