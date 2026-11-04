@@ -3,6 +3,7 @@ use crate::catalog::{Catalog, UnitId};
 use crate::controller::{Controller, NAVIGATION, OriginalRng, POSITIONS};
 use crate::media_assets::{Font, MediaPack, checksum};
 use crate::sdl::Sdl;
+use crate::spells::{Spell, SpellBook, SpellResult};
 use std::fs::{self, OpenOptions};
 use std::io::{BufWriter, Write};
 use std::path::{Path, PathBuf};
@@ -13,6 +14,76 @@ const H: usize = 1320;
 const TOP: i32 = 48;
 const GOLD: [u8; 3] = [255, 241, 181];
 pub const UI_TEXT: &str = "字型 隸書 草書 音樂 開 關 再戰 待選敵軍 勝利 全軍覆沒 撤退 出手 略過 方向鍵選敵 Enter Space Esc R F10 損失";
+
+const MAP_SPELLS: [&str; 8] = [
+    "造橋術",
+    "煉金術",
+    "召兵術",
+    "跳躍術",
+    "停時術",
+    "鳥瞰術",
+    "涉水術",
+    "傳送術",
+];
+struct SpellView {
+    cursor: usize,
+    animation: Option<(SpellResult, Instant)>,
+}
+fn menu_label(frame: &mut [u8], font: &Font, value: &str, x: i32, y: i32) -> Result<(), String> {
+    let mut pos = x;
+    for ch in value.chars() {
+        let width = if ch.is_ascii() { 24 } else { 48 };
+        if pos + width > x + 264 {
+            return Err("法術欄位超界".into());
+        }
+        glyph(frame, font, ch, [pos, y, width, 84], GOLD)?;
+        pos += width;
+    }
+    Ok(())
+}
+fn spaced_spell(value: &str) -> String {
+    format!(
+        " {} ",
+        value
+            .chars()
+            .map(|c| c.to_string())
+            .collect::<Vec<_>>()
+            .join(" ")
+    )
+}
+fn sprite(frame: &mut [u8], image: &crate::media_assets::Image, x: i32, y: i32) {
+    for yy in 0..image.height {
+        for xx in 0..image.width {
+            let dx = x + xx as i32;
+            let dy = y + yy as i32;
+            if dx < 0 || dy < 0 || dx >= W as i32 || dy >= H as i32 {
+                continue;
+            }
+            let src = (yy * image.width + xx) * 4;
+            let a = u32::from(image.pixels[src + 3]);
+            let dst = (dy as usize * W + dx as usize) * 4;
+            for c in 0..3 {
+                frame[dst + c] = ((u32::from(image.pixels[src + c]) * a
+                    + u32::from(frame[dst + c]) * (255 - a)
+                    + 127)
+                    / 255) as u8;
+            }
+        }
+    }
+}
+fn begin_spell_animation(
+    view: &mut SpellView,
+    result: SpellResult,
+    message: &mut String,
+    seen: &mut Option<(u64, usize, usize)>,
+    ready: &mut Instant,
+    now: Instant,
+) {
+    *message = result.spell.name().to_owned();
+    view.animation = Some((result, now));
+    *seen = None;
+    *ready = now + Duration::from_millis(480);
+}
 
 fn fill(frame: &mut [u8], rect: [i32; 4], color: [u8; 3]) {
     let [x, y, w, h] = rect;
@@ -96,7 +167,7 @@ fn text(
     }
     Ok(())
 }
-fn roster(weak: bool) -> [[Stack; 6]; 2] {
+fn roster(weak: bool, spells: bool, taoist: bool) -> [[Stack; 6]; 2] {
     let mut rows = [[Stack::default(); 6]; 2];
     for (side, raw, name, count) in [
         (0, 0, "openkb:wolf", if weak { 2 } else { 1000 }),
@@ -110,7 +181,46 @@ fn roster(weak: bool) -> [[Stack; 6]; 2] {
             count,
         };
     }
+    if spells {
+        rows[0] = [Stack::default(); 6];
+        for (raw, name, count) in [
+            (0, "native:01", 74),
+            (1, if taoist { "native:10" } else { "native:12" }, 2),
+            (2, "openkb:wolf", 1),
+            (3, "openkb:arcr", 1),
+        ] {
+            rows[0][raw] = Stack {
+                unit: Some(UnitId::parse(name).expect("fixed spell fixture")),
+                count,
+            };
+        }
+    }
     rows
+}
+fn battle_controller(
+    catalog: &Catalog,
+    weak: bool,
+    spells: bool,
+    taoist: bool,
+) -> Result<Controller<'_>, String> {
+    let rows = roster(weak, spells, taoist);
+    let c = if spells {
+        Controller::with_spells(
+            catalog,
+            rows,
+            Side::Player,
+            Modifiers::default(),
+            SpellBook {
+                enabled: true,
+                charges: [3; 8],
+                stat_26b0: 2,
+                stat_26ae: 4,
+            },
+        )
+    } else {
+        Controller::new(catalog, rows, Side::Player, Modifiers::default())
+    };
+    c.map_err(|e| format!("{e:?}"))
 }
 fn compose(
     pack: &MediaPack,
@@ -120,6 +230,8 @@ fn compose(
     music: bool,
     cursor: usize,
     message: &str,
+    spell_view: &SpellView,
+    now: Instant,
 ) -> Result<Vec<u8>, String> {
     let mut frame = vec![0u8; W * H * 4];
     fill(&mut frame, [0, 0, W as i32, H as i32], [9, 36, 29]);
@@ -205,6 +317,36 @@ fn compose(
             border(&mut frame, [x + 3, y + TOP + 3, 258, 294], [255, 101, 70]);
         }
     }
+    if let Some((result, start)) = &spell_view.animation {
+        let elapsed = now.duration_since(*start).as_millis();
+        if elapsed < 480 {
+            for effect in &result.effects {
+                let [x, y] = POSITIONS[effect.side.index() * 6 + effect.slot];
+                if result.spell == Spell::Clone {
+                    border(&mut frame, [x, y + TOP, 264, 300], [120, 255, 220]);
+                } else if let Some(image) = pack.spell_fx.get((elapsed as usize / 120) % 4) {
+                    sprite(&mut frame, image, x, y + TOP);
+                }
+            }
+            if result.spell == Spell::Freeze {
+                border(&mut frame, [0, TOP, 816, 1200], [120, 225, 255]);
+            }
+        }
+    }
+    if c.is_caster() && c.selected_spell().is_none() {
+        let book = c.spell_book().ok_or("缺少法術資料")?;
+        for (i, spell) in Spell::ALL.iter().enumerate() {
+            let y = TOP + 120 + i as i32 * 120;
+            fill(&mut frame, [96, y, 1200, 120], [12, 49, 36]);
+            if i == spell_view.cursor {
+                fill(&mut frame, [240, y + 18, 360, 84], [119, 44, 41]);
+            }
+            menu_label(&mut frame, font, &spaced_spell(spell.name()), 240, y + 18)?;
+            menu_label(&mut frame, font, &book.charges[i].to_string(), 504, y + 18)?;
+            menu_label(&mut frame, font, &spaced_spell(MAP_SPELLS[i]), 816, y + 18)?;
+            menu_label(&mut frame, font, "0", 1104, y + 18)?;
+        }
+    }
     let status = if let Some(outcome) = c.battle().outcome() {
         match outcome {
             Outcome::Win => "勝利",
@@ -212,6 +354,20 @@ fn compose(
             Outcome::Retreat => "撤退",
         }
         .to_owned()
+    } else if c.is_caster() {
+        if let Some(spell) = c.selected_spell() {
+            format!(
+                "{}  {}",
+                spell.name(),
+                if spell == Spell::Clone {
+                    "選擇同袍"
+                } else {
+                    "選擇敵軍"
+                }
+            )
+        } else {
+            "選擇法術  方向鍵選術 Enter確認 Space略過 Esc撤退".into()
+        }
     } else if let Some(actor) = c.current() {
         let row = c.battle().rows()[actor.side.index()][actor.raw];
         let name = &catalog.get(row.unit.ok_or("部隊名稱無效")?).name;
@@ -271,7 +427,7 @@ fn wav(path: &Path, pcm: &[u8]) -> Result<(), String> {
 
 pub fn run(args: &[String]) -> Result<(), String> {
     let (mut assets, mut capture) = (None, None);
-    let (mut mute, mut weak) = (false, false);
+    let (mut mute, mut weak, mut spells, mut taoist) = (false, false, false, false);
     let mut scale = 2.0 / 3.0;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -306,6 +462,11 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
             "--mute" => mute = true,
             "--weak" => weak = true,
+            "--spells" => spells = true,
+            "--taoist" => {
+                spells = true;
+                taoist = true;
+            }
             _ => return Err("桌面參數無效".into()),
         }
         i += 1;
@@ -321,10 +482,17 @@ pub fn run(args: &[String]) -> Result<(), String> {
             return Err("擷取目錄必須存在".into());
         }
     }
-    let pack = MediaPack::load(&assets.ok_or("請指定--assets素材包")?)?;
+    let assets = assets.ok_or("請指定--assets素材包")?;
+    let mut pack = MediaPack::load(&assets)?;
+    if spells {
+        pack.load_spell_assets(&assets)?;
+    }
     let catalog = Catalog::builtin()?;
-    let mut c = Controller::new(&catalog, roster(weak), Side::Player, Modifiers::default())
-        .map_err(|e| format!("{e:?}"))?;
+    let mut c = battle_controller(&catalog, weak, spells, taoist)?;
+    let mut spell_view = SpellView {
+        cursor: 0,
+        animation: None,
+    };
     let mut rng = OriginalRng { seed };
     let sdl = Sdl::open(W, H, scale, mute)?;
     let (mut font, mut music, mut cursor) = (0usize, !mute, 1usize);
@@ -378,8 +546,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 capture_next = true;
             }
             if key == 114 || key == 82 {
-                c = Controller::new(&catalog, roster(weak), Side::Player, Modifiers::default())
-                    .map_err(|e| format!("{e:?}"))?;
+                c = battle_controller(&catalog, weak, spells, taoist)?;
+                spell_view.animation = None;
                 seen = None;
                 ready = now;
                 message.clear();
@@ -392,6 +560,84 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 continue;
             }
             if c.current().is_some_and(|actor| actor.side == Side::Player) && now >= ready {
+                if c.is_caster() {
+                    if c.selected_spell().is_none() {
+                        match key {
+                            1073741906 => spell_view.cursor = (spell_view.cursor + 7) % 8,
+                            1073741905 => spell_view.cursor = (spell_view.cursor + 1) % 8,
+                            13 => match c.select_spell(Spell::ALL[spell_view.cursor]) {
+                                Ok(Some(result)) => begin_spell_animation(
+                                    &mut spell_view,
+                                    result,
+                                    &mut message,
+                                    &mut seen,
+                                    &mut ready,
+                                    now,
+                                ),
+                                Ok(None) => {
+                                    cursor = c.current().ok_or("施法者消失")?.slot + 7;
+                                }
+                                Err(crate::controller::ControlError::NoCharge) => {}
+                                Err(e) => return Err(format!("{e:?}")),
+                            },
+                            32 => {
+                                c.skip().map_err(|e| format!("{e:?}"))?;
+                                seen = None;
+                            }
+                            27 => {
+                                c.retreat().map_err(|e| format!("{e:?}"))?;
+                                seen = None;
+                            }
+                            _ => {}
+                        }
+                    } else {
+                        match key {
+                            1073741906 | 1073741905 | 1073741904 | 1073741903 => {
+                                let direction = match key {
+                                    1073741906 => 0,
+                                    1073741905 => 1,
+                                    1073741904 => 2,
+                                    _ => 3,
+                                };
+                                let next = NAVIGATION[cursor][direction];
+                                if next != 0 {
+                                    cursor = usize::from(next);
+                                }
+                            }
+                            13 => {
+                                let clone = c.selected_spell() == Some(Spell::Clone);
+                                let target = if clone && (7..=12).contains(&cursor) {
+                                    Some(cursor - 7)
+                                } else if !clone && (1..=6).contains(&cursor) {
+                                    Some(cursor - 1)
+                                } else {
+                                    None
+                                };
+                                if let Some(target) = target {
+                                    match c.target_spell(target, &mut rng) {
+                                        Ok(result) => begin_spell_animation(
+                                            &mut spell_view,
+                                            result,
+                                            &mut message,
+                                            &mut seen,
+                                            &mut ready,
+                                            now,
+                                        ),
+                                        Err(crate::controller::ControlError::InvalidTarget) => {}
+                                        Err(e) => return Err(format!("{e:?}")),
+                                    }
+                                }
+                            }
+                            32 | 27 => {
+                                c.cancel_spell_target(key == 27)
+                                    .map_err(|e| format!("{e:?}"))?;
+                                seen = None;
+                            }
+                            _ => {}
+                        }
+                    }
+                    continue;
+                }
                 match key {
                     1073741906 | 1073741905 | 1073741904 | 1073741903 => {
                         let direction = match key {
@@ -468,7 +714,17 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
             last_queue = sdl.queued();
         }
-        let frame = compose(&pack, &catalog, &c, font, music, cursor, &message)?;
+        let frame = compose(
+            &pack,
+            &catalog,
+            &c,
+            font,
+            music,
+            cursor,
+            &message,
+            &spell_view,
+            now,
+        )?;
         let readback = sdl.draw(&frame, capture_next)?;
         if capture_next {
             let path = capture.as_ref().ok_or("擷取路徑消失")?;
@@ -481,6 +737,39 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 &path.join(format!("audio-{captures:03}.wav")),
                 &captured_audio,
             )?;
+            let capture_state = format!(
+                "frame_hash\t{:016x}\nfont\t{}\nsequence\t{}\nspell_returns\t{}\narmy\t{}\nhp\t{}\ncharges\t{}\nfx\t{}\n",
+                checksum(&frame),
+                ["noto", "lishu", "caoshu"][font],
+                c.battle().sequence(),
+                c.spell_returns(),
+                c.battle().rows()[0]
+                    .iter()
+                    .map(|s| s.count.to_string())
+                    .collect::<Vec<_>>()
+                    .join(","),
+                c.battle().hp()[0]
+                    .iter()
+                    .map(|n| n.to_string())
+                    .collect::<Vec<_>>()
+                    .join(","),
+                c.spell_book()
+                    .map(|b| b
+                        .charges
+                        .iter()
+                        .map(|n| n.to_string())
+                        .collect::<Vec<_>>()
+                        .join(","))
+                    .unwrap_or_default(),
+                spell_view.animation.as_ref().is_some_and(
+                    |(_, start)| now.duration_since(*start) < Duration::from_millis(480)
+                )
+            );
+            fs::write(
+                path.join(format!("capture-{captures:03}.tsv")),
+                capture_state,
+            )
+            .map_err(|e| e.to_string())?;
             capture_next = false;
         }
         frames += 1;
@@ -523,6 +812,53 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     if music { "on" } else { "off" },
                     checksum(&frame),
                     pack.music.frames
+                );
+                let data = format!(
+                    "{data}phase\t{}\nspell_cursor\t{}\nspell_returns\t{}\ncharges\t{}\n",
+                    if c.is_caster() {
+                        if c.selected_spell().is_some() {
+                            "spell-target"
+                        } else {
+                            "spell-menu"
+                        }
+                    } else {
+                        "ordinary"
+                    },
+                    spell_view.cursor,
+                    c.spell_returns(),
+                    c.spell_book()
+                        .map(|b| b
+                            .charges
+                            .iter()
+                            .map(|n| n.to_string())
+                            .collect::<Vec<_>>()
+                            .join(","))
+                        .unwrap_or_default()
+                );
+                let data = format!(
+                    "{data}fx\t{}\n",
+                    spell_view
+                        .animation
+                        .as_ref()
+                        .is_some_and(|(_, start)| start.elapsed() < Duration::from_millis(480))
+                );
+                let data = format!(
+                    "{data}army\t{}\nhp\t{}\nremaining\t{}\n",
+                    c.battle().rows()[0]
+                        .iter()
+                        .map(|s| s.count.to_string())
+                        .collect::<Vec<_>>()
+                        .join(","),
+                    c.battle().hp()[0]
+                        .iter()
+                        .map(|n| n.to_string())
+                        .collect::<Vec<_>>()
+                        .join(","),
+                    c.remaining()[0]
+                        .iter()
+                        .map(|n| n.to_string())
+                        .collect::<Vec<_>>()
+                        .join(",")
                 );
                 fs::write(path.join("status.tmp"), data)
                     .and_then(|_| fs::rename(path.join("status.tmp"), path.join("status.tsv")))

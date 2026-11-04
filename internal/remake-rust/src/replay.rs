@@ -23,6 +23,160 @@ pub fn parse_rows(text: &str) -> Result<[Stack; 6], String> {
     values.try_into().map_err(|_| "軍隊必須有六列".into())
 }
 
+pub fn check_spells(catalog: &Catalog, text: &str) -> Result<(usize, usize), String> {
+    use crate::controller::{Controller, OriginalRng};
+    use crate::spells::{Spell, SpellBook, SpellEffect};
+    let mut models = 0;
+    let mut cases = 0;
+    let mut effects: Vec<SpellEffect> = Vec::new();
+    let mut at = 0;
+    for (number, line) in text.lines().enumerate() {
+        if line.starts_with('#') || line.trim().is_empty() {
+            continue;
+        }
+        let f: Vec<_> = line.split('\t').collect();
+        let bad = || format!("法術參考第{}行不符", number + 1);
+        let n = |i: usize| f[i].parse::<u64>().map_err(|_| bad());
+        match f[0] {
+            "AMOUNT" if f.len() == 9 => {
+                let spell = *Spell::ALL.get(n(1)? as usize).ok_or_else(bad)?;
+                let actual = crate::spells::amount(
+                    spell,
+                    n(2)? as u8,
+                    n(3)? as u32,
+                    n(4)? as u32,
+                    n(5)?,
+                    n(6)? as u8,
+                    n(7)? as u16,
+                );
+                if f[8] == "ERR" {
+                    if actual.is_ok() {
+                        return Err(bad());
+                    }
+                } else if actual.map_err(|_| bad())? != n(8)? as u16 {
+                    return Err(bad());
+                }
+                models += 1;
+            }
+            "CLONE" if f.len() == 4 => {
+                let actual = crate::spells::clone_plan(n(1)? as u8, n(2)? as u32);
+                if f[3] == "ERR" {
+                    if actual.is_ok() {
+                        return Err(bad());
+                    }
+                } else {
+                    let expected: Vec<u32> = numbers(f[3])?;
+                    let (scaled, after, factor) = actual.map_err(|_| bad())?;
+                    if expected != [scaled, after, u32::from(factor)] {
+                        return Err(bad());
+                    }
+                }
+                models += 1;
+            }
+            "CASE" if f.len() == 13 => {
+                let mut rows = [[Stack::default(); 6]; 2];
+                rows[0][0] = Stack {
+                    unit: Some(UnitId::parse("native:01")?),
+                    count: n(3)? as u32,
+                };
+                rows[0][1] = Stack {
+                    unit: Some(UnitId::parse(&format!("native:{:02}", n(2)?))?),
+                    count: 2,
+                };
+                for (raw, id, count) in [
+                    (0, "native:06", 11),
+                    (1, "native:16", 35),
+                    (2, "native:11", 29),
+                ] {
+                    rows[1][raw] = Stack {
+                        unit: Some(UnitId::parse(id)?),
+                        count,
+                    };
+                }
+                let mut c = Controller::with_spells(
+                    catalog,
+                    rows,
+                    Side::Player,
+                    Modifiers::default(),
+                    SpellBook {
+                        enabled: true,
+                        charges: [3; 8],
+                        stat_26b0: 2,
+                        stat_26ae: n(6)? as u16,
+                    },
+                )
+                .map_err(|_| bad())?;
+                c.next_actor().map_err(|_| bad())?;
+                c.attack(0).map_err(|_| bad())?;
+                c.next_actor().map_err(|_| bad())?;
+                if !c.is_caster() {
+                    return Err(bad());
+                }
+                let hp = *c.battle().hp();
+                let seq = c.battle().sequence();
+                let mut rng = OriginalRng { seed: n(7)? as u32 };
+                effects.clear();
+                at = 0;
+                if f[5] == "menu" {
+                    c.retreat().map_err(|_| bad())?;
+                } else {
+                    let spell = *Spell::ALL.get(n(4)? as usize).ok_or_else(bad)?;
+                    let result = c
+                        .select_spell(spell)
+                        .map_err(|e| format!("{} {e:?}", bad()))?;
+                    if let Some(result) = result {
+                        effects = result.effects;
+                    } else if f[5] == "target" || f[5] == "target-space" {
+                        c.cancel_spell_target(f[5] == "target").map_err(|_| bad())?;
+                    } else {
+                        effects = c
+                            .target_spell(if spell == Spell::Clone { 0 } else { 1 }, &mut rng)
+                            .map_err(|e| format!("{} {e:?}", bad()))?
+                            .effects;
+                    }
+                }
+                if c.battle().rows() != &[parse_rows(f[9])?, parse_rows(f[10])?]
+                    || c.spell_book().ok_or_else(bad)?.charges.as_slice()
+                        != numbers::<u16>(f[11])?.as_slice()
+                    || c.battle().hp() != &hp
+                    || c.battle().sequence() != seq
+                    || rng.seed != n(8)? as u32
+                {
+                    return Err(format!("{} state", bad()));
+                }
+                if f[12] != "-" && c.remaining()[0] != six(f[12])? {
+                    return Err(format!("{} counters", bad()));
+                }
+                cases += 1;
+            }
+            "EFFECT" if f.len() == 8 => {
+                let e = effects.get(at).ok_or_else(bad)?;
+                if e.side.index() != n(1)? as usize
+                    || e.slot != n(2)? as usize
+                    || e.raw != n(3)? as usize
+                    || u64::from(e.amount) != n(4)?
+                    || u64::from(e.before) != n(5)?
+                    || u64::from(e.after) != n(6)?
+                    || e.display != numbers::<u16>(f[7])?
+                {
+                    return Err(bad());
+                }
+                at += 1;
+            }
+            "END" if f.len() == 1 => {
+                if at != effects.len() {
+                    return Err(bad());
+                }
+            }
+            _ => return Err(bad()),
+        }
+    }
+    if models == 0 || cases == 0 {
+        return Err("法術參考不完整".into());
+    }
+    Ok((models, cases))
+}
+
 fn numbers<T: FromStr>(text: &str) -> Result<Vec<T>, String> {
     if text == "-" {
         return Ok(Vec::new());

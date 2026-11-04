@@ -47,6 +47,11 @@ fn verify() -> Result<(), String> {
         "原生普通回合：{}場、{}次選隊、{}次攻擊、{}次略過通過。",
         controller.battles, controller.offers, controller.actions, controller.skips
     );
-    println!("--battle 啟動原生普通戰鬥樣本；世界流程、法術與存檔待接。");
+    println!("--battle 啟動原生普通戰鬥樣本；世界流程與存檔待接。");
+    let (models, cases) =
+        eightsword_remake::replay::check_spells(&catalog, include_str!("../spell-reference.tsv"))?;
+    println!(
+        "玩家八術：{models}組模型、{cases}份既有原版介面收據通過；--battle --spells啟動施法樣本。世界與存檔待接。"
+    );
     Ok(())
 }

@@ -1,0 +1,44 @@
+{
+  "status": "passed-scoped-rust-player-spells-cleanup",
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/build-cache",
+      "files": 1690,
+      "bytes": 144083927,
+      "cache": true,
+      "preserved": false
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native/rust-target",
+      "files": 632,
+      "bytes": 110920341,
+      "cache": true,
+      "preserved": false
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native/gui-r1",
+      "files": 30,
+      "bytes": 131711906,
+      "cache": false,
+      "preserved": true
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native/gui-r2",
+      "files": 40,
+      "bytes": 177244633,
+      "cache": false,
+      "preserved": true
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native/8sword-before-capture-state",
+      "files": 1,
+      "bytes": 870760,
+      "cache": false,
+      "preserved": true
+    }
+  ],
+  "bytes": 564831567,
+  "compressed_bytes": 72563611,
+  "current_binary_sha256": "9d56e3faf04b6f2b09133f6fda4c443d25f36069b8d8d328dd2224b089ae2fbd",
+  "other_projects_touched": false
+}

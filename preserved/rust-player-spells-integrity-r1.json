@@ -1,0 +1,25 @@
+{
+  "status": "passed-rust-player-spells-integrity",
+  "checked_links": 25,
+  "positive_control": true,
+  "checked_files": 8,
+  "postcleanup_audit_equal": true,
+  "source_and_output_uid": 1000,
+  "project_containers_left": 0,
+  "execution_record_correction": {
+    "field": "execution.rust_mounts in initial audit",
+    "recorded": "crate read-only",
+    "actual_format_and_release": "Rust worktree read-write; native output read-write",
+    "actual_targeted_test_and_fmt": "crate read-only",
+    "actual_final_gui": "single Python input script read-only; native output read-write",
+    "actual_postcleanup_cli": "native output read-only",
+    "original_input_or_go_runtime_dependency": false
+  },
+  "formal_baseline_counts": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "scope": "Player spell sample and original-style selection; no native world/save/enemy-special completion"
+}

@@ -3163,3 +3163,22 @@ CONTEXT收斂為唯一目前狀態表，歷程仍在WORKLOG與Git。下一步接
 
 
 收尾核對34個本輪連結及13個新來源／圖片檔、Rust格式、Python／shell語法、擁有權與清理後CLI通過；沒有本專案殘留容器。功能提交`010d2458d07ee64368b1aa804fbdac7202b601e1`已推送私人GitHub main。第一次push由GitHub回傳Internal Server Error，遠端仍為舊SHA；相同commit重試成功，沒有修改歷史或包裝成產品問題。完整原始輸入及86.7 MB物件留本機，Git只提交來源、清單與批准縮圖。README補明33種為資料移植，原生媒體包目前限定樣本五種部隊。
+
+
+## 2026-11-04 Rust玩家八術與原式選術
+
+沿使用者「繼續」推進既定Rust獨立版。命中remake、規格閘門、文件職責、README及驗收路由，讀目前狀態後補031 READY，不重開既有全量HD或Go戰鬥矩陣。沒有subagent、網路下載或新Docker image。原版／HD與Go正式基線不改。
+
+Rust移植火球、雷火、殺鬼、暗殺、凝滯、滅半、複製、地震。單一啟用旗標與八次數、原係數、目標等待、Space退款及Esc不退款保留。凝滯依六slots增加raw行動計數，空別名不去重；複製沿原分段與max(old,scaled)。法術只改正式兵數、不改pending HP。回查既有sub_20724，補READY後抽驗孤軍施法者無次數可前移普通近戰；raw普通API仍不能直接把後排施法者當普通來源。
+
+317份Go候選只新增純模型匯出，2352組參考由Rust重算相同。15份既有原版／Go成對法術收據從preserved按SHA取回，含八術、暗殺失敗、複製不增兵及取消，Rust從初始軍隊／首個普通動作重建後比數量、次數、HP保持及顯示倒數。23個Rust測試與CLI通過；前排孤軍在READY補充後另重跑代表單測。沒有新原版執行或整段RNG序列聲明。
+
+原生視窗接原式兩欄八列，三字型可切換，底板簡化、右欄地圖術僅零次數fixture。批准01／10／12站姿與PON四幀命中由Rust合成；不從原RGB取底、不呼叫Go或模擬器。XTest完成火球後17動作勝利，剩60民兵／2雙頭鬼／1女弓箭手。另一局道士複製74→103，接凝滯、雷火、Space退款與選術Esc撤退；第三局目標Esc仍扣一次。11張畫布同SDL讀回，未稱原版完整動畫或世界保存相同。
+
+工具問題分開保存：Go模型初次缺DISPLAY，在同一工具鏈補回Xvfb後同命令通過。GUI1在送Space後立即讀舊phase，原生下一幀已退款並交敵方；工具改等spell_returns更新，GUI2通過。週期status仍可能晚於擷取畫面，於Rust加入capture-N.tsv，以同一now、軍隊、HP、次數、FX及RGBA雜湊綁圖；GUI3三條路徑乾淨重跑通過。這是取樣工具與證據時點修正，不是將正常等待列為產品缺陷。
+
+早期GUI1／2掛整個tools而可見舊Go助手，但程式未讀用。最終GUI3只掛單一Python輸入工具與native輸出，才作無Go／PAM掛載的最終證據。另一項記錄勘誤為execution-r1.json概括來源唯讀，實際rustfmt／release建置使用可寫Rust工作樹，最後單測／fmt檢查／CLI分別只掛唯讀crate或native；不影響無原版依賴結論，原記錄與精確更正保留於integrity。
+
+完整源碼、收據、媒體、原圖、IDA匯出及binary保存536檔／456物件／72563611壓縮bytes；只掛唯讀preserved、單一驗證工具及tmpfs逐物件解壓核對。之後僅刪本批2322份Go／Rust快取與已保存的舊GUI／binary，共564831567 bytes，當前原生binary與素材保留；清理後audit相同。README新增四格實際擷取與--spells／--taoist入口。正式197來源七程式／923核心／535素材／1071原圖及Go保存格式保持。
+
+下一步為Rust敵方八分派、戰中保存，再接世界／原式管理／募兵與結局。本輪是玩家法術狀態與介面樣本，不稱完整遊戲。身分及私人GitHub倉庫已核對，沒有Release；功能與保存索引隨本輪提交。

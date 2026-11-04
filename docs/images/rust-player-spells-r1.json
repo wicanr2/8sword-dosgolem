@@ -1,0 +1,39 @@
+{
+  "source_size": [
+    1920,
+    1320
+  ],
+  "preview_size": [
+    1200,
+    896
+  ],
+  "sources": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native/gui-r3/fireball-win/frame-001.ppm",
+      "sha256": "066e84ef797e9e9c9af51039d32d2ef1df2e48cb474a9e00dfc0fae7f8ddf818",
+      "label": "原式八列選術"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native/gui-r3/fireball-win/frame-004.ppm",
+      "sha256": "b5f03fdacb86623243ec31562f7a529be411f274b48fcf2600e34f24cc28f782",
+      "label": "火球術命中"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native/gui-r3/support/frame-001.ppm",
+      "sha256": "7f72e4b06d666acef37bced26e2e469224766d13147d329374c262298a991284",
+      "label": "道士複製增兵"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native/gui-r3/support/frame-003.ppm",
+      "sha256": "02d88ac5127afc3739dcde0161a2515ed0b1c095fa8814e54a2f64a424eb2291",
+      "label": "雷火術群體命中"
+    }
+  ],
+  "preview_sha256": "f1cd6b1c70b35c37f3d5186e38af6940d7b7bf21ee7885577c92922c18c157d0",
+  "caption_font_sha256": "3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151",
+  "capture": "Rust native SDL; XTest input; per-frame capture TSV, RGBA hash and renderer readback agree",
+  "fixture": "74 militia, two native12 or native10 casters, one wolf, one female archer; original three enemy squads; seed0x12345678",
+  "evidence": "preserved/rust-player-spells-audit-r2.json",
+  "scope": "Player eight-spell sample. Simplified backing, approved PON impact. Right-column map spells display zero fixture counts, no map logic. No enemy specials, world or save completion.",
+  "rights": "Approved artwork screenshot; full originals and media local; private repository"
+}

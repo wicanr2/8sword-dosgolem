@@ -116,12 +116,61 @@ impl<'a> Battle<'a> {
         Ok(Outcome::Retreat)
     }
 
+    /// Original spell count updates leave the ordinary pending-HP pool intact.
+    pub(crate) fn spell_counts(
+        &mut self,
+        updates: &[(Side, usize, u32)],
+    ) -> Result<(), BattleError> {
+        if self.outcome().is_some() {
+            return Err(BattleError::Finished);
+        }
+        let mut seen = Vec::new();
+        for &(side, raw, count) in updates {
+            if raw >= 6 {
+                return Err(BattleError::InvalidSlot);
+            }
+            if count > 32767 {
+                return Err(BattleError::CompatibilityRange);
+            }
+            if self.rows[side.index()][raw].count == 0 {
+                return Err(BattleError::DeadStack);
+            }
+            if seen.contains(&(side, raw)) {
+                return Err(BattleError::InvalidSlot);
+            }
+            seen.push((side, raw));
+        }
+        for &(side, raw, count) in updates {
+            self.rows[side.index()][raw].count = count;
+        }
+        Ok(())
+    }
+
     pub fn attack(
         &mut self,
         side: Side,
         source_raw: usize,
         target_raw: usize,
         modifiers: Modifiers,
+    ) -> Result<ActionResult, BattleError> {
+        self.attack_inner(side, source_raw, target_raw, modifiers, false)
+    }
+    pub(crate) fn attack_front_caster(
+        &mut self,
+        side: Side,
+        source_raw: usize,
+        target_raw: usize,
+        modifiers: Modifiers,
+    ) -> Result<ActionResult, BattleError> {
+        self.attack_inner(side, source_raw, target_raw, modifiers, true)
+    }
+    fn attack_inner(
+        &mut self,
+        side: Side,
+        source_raw: usize,
+        target_raw: usize,
+        modifiers: Modifiers,
+        front_caster: bool,
     ) -> Result<ActionResult, BattleError> {
         if self.outcome().is_some() {
             return Err(BattleError::Finished);
@@ -138,7 +187,7 @@ impl<'a> Battle<'a> {
         }
         let source_id = source.unit.ok_or(BattleError::InvalidArmy)?;
         let target_id = target.unit.ok_or(BattleError::InvalidArmy)?;
-        if source_id.is_native_caster() {
+        if source_id.is_native_caster() && !front_caster {
             return Err(BattleError::UnsupportedSpecial);
         }
         if source.count > u32::from(u16::MAX) || target.count > 32767 {

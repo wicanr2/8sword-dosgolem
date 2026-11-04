@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-04 Rust玩家八術依[031限定驗收](docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)完成。23測試、2352 Go模型、15既有原版介面收據通過，原式兩欄八列、目標Space退款／Esc不退款、凝滯空raw重複計數及法術不改pending HP保持。XTest火球後17動作勝利，複製74→103／凝滯／雷火與取消已抽驗；11張同幀狀態及SDL讀回一致。底板簡化、PON共用，不稱完整動畫相位。最終GUI只掛一個輸入工具與native，看不到Go/PAM。入口為[工具](tools/rust-player-spells.py)、[核對](preserved/rust-player-spells-audit-r2.json)與[保存](preserved/README.md#rust玩家八術保存)，原生run加--spells／--taoist。下一步敵方八分派、保存及世界，不重驗已驗音畫。正式197／7／923／535／1071與Go存檔不改，無Release。唯一現況見CONTEXT。
+
 2026-11-04 Rust普通回合與原生音畫依[031限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)完成。四場71次選隊、42次攻擊、6次略過及18測試通過；Rust自行排程。原生SDL視窗以X11輸入完成普通勝利／全滅／撤退、三字型及音樂工具列，六張紋理讀回同畫布。OGG直接解碼播放，dummy只證明技術輸出。執行期為原生binary＋媒體＋平台函式庫，不需dosgolem、Go或DOS EXE。入口為[原生工具](tools/rust-native-player.sh)、[核對](preserved/rust-native-player-audit-r1.json)與[永久保存](preserved/README.md#rust原生普通回合與媒體保存)。這是明示編成的普通戰鬥樣本；世界、法術／特殊、完整原式選單與保存待接，不稱完整獨立遊戲。唯一現況見CONTEXT，下一步見WORKLIST；不重開已驗HD及普通矩陣。正式197／7／923／535／1071與Go保存格式保持。
 
 2026-11-04 Rust兵種與普通行動依[031限定驗收](docs/spec/031-rust-independent-remake.md#兵種與普通行動移植限定-conformed)完成。33種兵種、309組初始化／補位／換位、201組算式、40個既有普通行動及12個測試通過，含勝利／全滅／撤退。只取既有選隊順序，Rust自行算兵數／逐次HP／倒數與結果；原生半回合控制、選敵、原式GUI及保存尚未接，不稱完整回合完成。最後Rust容器只掛crate與native子目錄，真正看不到PAM／Go；前輪寬掛載聲明依031勘誤。入口為[工具](tools/remake-rust.sh)、[核對](preserved/rust-battle-core-audit-r1.json)及[永久保存](preserved/README.md#rust兵種與普通行動保存)。下一步依[WORKLIST](WORKLIST.md)接原生回合控制；不重開已驗Go／HD矩陣。正式197來源七程式、923核心、535素材、1071美術及Go保存格式保持。

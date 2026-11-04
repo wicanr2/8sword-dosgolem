@@ -6,7 +6,7 @@
 
 以 Go 版 dosgolem 執行原版 DOS 程式，接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI、民兵結陣與弓箭手壓制規則。兵種及招募接管目前沿 Go 開發；先完成原版／HD完整戰鬥，再重寫成不依賴DOS EXE的Rust獨立版。
 
-既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。玩家使用原版或原版HD戰場，保留原版配置、選單、操作與戰鬥流程。Go開發入口已串接原版管理與連續戰鬥，Rust獨立重製已開始。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
+既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。玩家使用原版或原版HD戰場，保留原版配置、選單、操作與戰鬥流程。Go開發入口已串接原版管理與連續戰鬥，Rust已有普通戰鬥與玩家施法原生樣本。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
 
 先前的獨立卡片戰鬥介面已撤回。[原版操作開發入口](tools/original-player.sh)以Go提供兵力、管理、招募及保存，保留同一套原版HD戰場。未準備來源畫布的直接建置仍在讀寫進度前拒絕。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
 
@@ -24,9 +24,17 @@ Rust已能獨立執行普通戰鬥，直接繪製既有HD背景與透明部隊�
 
 ![Rust原生普通戰鬥與三字型工具列](docs/images/rust-native-battle-r1.png)
 
-上圖是原生視窗的明示測試編成，1000野狼與10女弓箭手對抗三隊原兵種。普通勝利、全滅、撤退、工具列與音訊佇列已抽驗；四場回合對照含71次選隊與42次攻擊。33種兵種資料、201組算式及309組位置向量保持。這是Linux開發樣本，世界、新遊戲、法術與存檔尚待移植，未提供完整遊戲包。詳見[限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)、[核對收據](preserved/rust-native-player-audit-r1.json)及[圖片來源](docs/images/rust-native-battle-r1.json)。
+上圖是原生視窗的明示測試編成，1000野狼與10女弓箭手對抗三隊原兵種。普通勝利、全滅、撤退、工具列與音訊佇列已抽驗；四場回合對照含71次選隊與42次攻擊。33種兵種資料、201組算式及309組位置向量保持。這是Linux開發樣本，世界、新遊戲、敵方特殊與存檔尚待移植，未提供完整遊戲包。詳見[限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)、[核對收據](preserved/rust-native-player-audit-r1.json)及[圖片來源](docs/images/rust-native-battle-r1.json)。
 
 開發環境完成[素材還原](preserved/README.md#rust原生普通回合與媒體保存)後，執行`bash tools/rust-native-player.sh build`，再用`bash tools/rust-native-player.sh run`開啟樣本。需Linux X11及音訊裝置；`run --mute`可靜音。方向鍵選敵、Enter出手、Space略過、Esc撤退、R重開。`bash tools/remake-rust.sh`核對Rust測試與CLI。其餘移植依[工作表](WORKLIST.md)接續。
+
+## Rust原生戰鬥法術
+
+Rust玩家八種戰鬥法術已接入原生樣本，沿原版兩欄八列、選術、選敵與取消方式。火球後的17動作勝局、複製、凝滯、雷火及退款／撤退已經視窗抽驗。下圖為明示軍隊及法術次數配置；底板簡化，命中特效沿既有批准素材，右欄地圖術顯示零次數配置，尚未接世界效果。
+
+![Rust原生八種戰鬥法術與HD命中](docs/images/rust-player-spells-r1.png)
+
+使用`bash tools/rust-native-player.sh run --spells`開啟雙頭鬼施法樣本，`run --taoist`改用道士。方向鍵選術、Enter確認；選敵時Space退款，Esc撤退且不退款。23個Rust測試、2,352組Go模型及15份既有原版介面收據通過，原生程式不需Go或DOS執行器。範圍見[玩家八術驗收](docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)、[核對](preserved/rust-player-spells-audit-r2.json)與[圖片來源](docs/images/rust-player-spells-r1.json)。敵方特殊分派與世界／存檔依工作表接續。
 
 ## 部隊管理與Go資料
 

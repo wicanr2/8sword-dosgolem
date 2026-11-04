@@ -14,12 +14,15 @@ pub mod replay;
 mod sdl;
 #[cfg(feature = "desktop")]
 mod sndfile;
+pub mod spells;
 
 #[cfg(test)]
 mod native_tests;
 
 #[cfg(test)]
 mod controller_tests;
+#[cfg(test)]
+mod spell_tests;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct AttackInput {

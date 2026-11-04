@@ -1182,3 +1182,21 @@ Rust執行容器只掛唯讀crate及native子目錄，沒有PAM、Go來源／匯
 
 
 本批738檔／467物件，壓縮86707326 bytes。脫離工作區逐物件核對後，移除2350份Go／Rust快取及已保存的舊GUI擷取、舊binary，共546113777 bytes，約520.8 MiB。[清理收據](rust-native-player-cleanup-r1.json)與[清理後核對](rust-native-player-postcleanup-audit-r1.json)另存；當前原生binary、媒體及最終GUI保留。[文件與擁有權核對](rust-native-player-integrity-r1.json)為收尾入口。
+
+
+## Rust玩家八術保存
+
+[031限定驗收](../docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)、[初次核對](rust-player-spells-audit-r1.json)及[最終核對](rust-player-spells-audit-r2.json)保存八種玩家法術、23個Rust測試、2352組Go模型及15份既有原版介面收據。XTest完成火球後17動作勝利、複製／凝滯／雷火、Space退款與Esc撤退，11張原生畫布與SDL讀回相同。每張另有同幀capture-N.tsv，週期status只作較晚觀察，不能混稱同幀。
+
+[批次清單](rust-player-spells-r1.json)的files列相對路徑、bytes、SHA及mode，objects對應本機`rust-player-spells-r1/<SHA>.gz`。完整317份Go對照來源、Rust crate、原版法術收據、IDA原匯出、媒體、binary、PNG／PPM／音訊、工具前版收據均留本機，不加入Git。完整原圖仍在artwork及既有catalog，不依賴workplace。解壓到另一個空目錄，按files路徑核對原SHA及mode，不覆寫來源；原生遊玩只須native/8sword-remake與native/pack及平台函式庫。
+
+[工具](../tools/rust-player-spells.py)在既有Pillow11.3.0-r2、UID1000、network none容器執行。`prepare --project /project`從已保存來源建立新的候選目錄；`vectors --project /project`把Go匯出的spell-models.tsv與原收據合成固定參考；已有參考必須逐bytes相同。`media --project /project --assets /assets`建立批准素材投影，保留前輪OGG及三字型，再加原01／10／12與PON四幀；不重畫原圖。`audit --project /project --out <新JSON>`核對資料、來源、測試、GUI同幀狀態及正式基線，完整參數見本批execution-r1.json。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-player-spells-r1.json`建立本機保存。[脫離工作區核對](rust-player-spells-detached-r1.json)只掛唯讀preserved與工具、暫存tmpfs，執行`verify --archive /archive --out <新JSON>`逐物件解壓核對，不看workplace、Go、核心或遊戲。
+
+[啟動器](../tools/rust-native-player.sh)已指向本批native子目錄，test／build沿既有Rust1.99.1及SDL2／libsndfile映像，run加--spells使用雙頭鬼，加--taoist使用道士，都是明示fixture。最終[GUI抽驗](../tools/rust-player-spells-gui.py)只掛單一Python輸入工具與native輸出，不見Go／PAM；執行期沒有這個Python工具依賴。首次Go模型缺DISPLAY，補回原工具鏈Xvfb後同命令通過，屬環境問題。沒有新存檔格式或Release。
+
+
+本批536檔／456物件，壓縮72563611 bytes，脫離工作區逐物件核對通過。[清理收據](rust-player-spells-cleanup-r1.json)移除2322份Go／Rust快取及已保存的舊GUI1／2／binary，共564831567 bytes，約538.7 MiB；當前binary、pack及GUI3保持。[清理後核對](rust-player-spells-postcleanup-audit-r1.json)與[文件／擁有權核對](rust-player-spells-integrity-r1.json)另存。
+
+執行記錄勘誤：execution-r1.json的rust_mounts把來源概括為唯讀，但格式化／release建置實際允許Rust工作樹寫入；最後前排單測、格式檢查及直接CLI分別用唯讀crate或native。最終GUI3只見單一Python工具與native，無Go／PAM。精確掛載記於本批integrity，原記錄保留，不把工作樹可寫說成原版資料可寫。

@@ -3204,3 +3204,26 @@ IDA位址空間為MZ linear base10000h；執行期戰鬥段0F67的IP為IDA linea
 Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2的streaming texture、logical size與QueueAudio契約，以及libsndfile檔案／frame API由官方文件提供，見031連結。播放器不啟動FFmpeg、Python或Go。〈刀祭〉2633140 frames；本輪只驗解碼、長度、非零內容與裝置消耗，dummy不是人耳證據。
 
 原生1920×1320視窗六張紋理讀回逐RGBA相同。預設1280×880的XGetImage三字型畫面，另與原生畫布nearest縮放逐RGB相同；工具列滑鼠使用縮放後實際座標，確認沒有重複logical映射。完整世界、法術／特殊與保存尚待，不以普通戰鬥樣本替代正常世界玩家路徑。
+
+
+## Rust玩家八種法術
+
+2026-11-04。PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，IDA資料庫SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`保持。只讀既有IDA9.4匯出及永久原版／Go收據，沒有新開IDA或執行原版。`ida-spells-r4.json`與provenance經原批次gzip SHA核對後存入新批evidence；補位沿已保存ida-rounds.json，不改原名、operand或i64。IDA為MZ linear base10000h，runtime戰鬥CS0F67之IP為linear減1E570h；下列DS是runtime1E88，PAM MZ body加1D780h為資料起點。
+
+| 原始定位 | 等級 | 已證實行為及來源 |
+|---|---|---|
+| IDA sub_1E5B2／1E692；runtime0042／0122 | 已證實 | 原雙欄八列、上下循環、Enter有次數才扣、Space回FF、Esc回EFE；原bytes及既有取消成對收據。標籤DS:2A38每列12 bytes，地圖術標籤2AB8。 |
+| IDA sub_1E8A4／1E88E；runtime0334／031E | 已證實 | 八分派、一次扣次、目標Space退款與Esc撤退不退款。26AA是共用啟用旗標，不是逐術學習陣列；26B0／26AE是已驗原係數，不補猜測名稱。 |
+| IDA1EACC至1EB03 | 已證實 | 殺鬼術先看是否有6至15種類；無合類時扣次但不出效果，有合類時仍可選其他敵種。 |
+| IDA1ECC2至1ECE5；原operand [bx-71BAh] | 已證實 | 凝滯依六個slots對DS:8E46 raw計數逐次加值，空raw別名不去重。不是敵方減速。 |
+| IDA1ED68至1EECF與Go originalClonePlan | 已證實 | 複製分段factor及10／20除數，弱施法者可不增加正式兵數；沿原倒數／累加序列，不加pending HP。 |
+| IDA sub_219CC／21BD2；runtime345C／3662 | 已證實 | 正式減兵與動畫倒數分離，法術不額外扣pending HP。原版／Go十五份代表收據及15份Rust重算保持。 |
+| IDA sub_20724之2074B至207AB；runtime21B4 | 已證實控制流 | 沒有其他普通隊且術次數全零，原10／12才容許前移；前排sub_1FF1C走普通近戰。Rust代表單測通過，沒有新增整段孤軍原版動態對拍。 |
+
+[向量](internal/remake-rust/spell-reference.tsv)包含2352組目前Go純函式輸出與15份已驗原版介面收據。Go本輪只匯出模型，沒有重跑原版或重新選seed。Rust以固定初始軍隊及首個普通動作重建施法點，獨立計算數量、次數、顯示倒數、凝滯計數與HP保持；暗殺使用已記錄Random.Before，一次取值、不重投。普通序號與施法返回計數分開。
+
+原生視窗XTest完成火球後17動作勝利，60民兵／2雙頭鬼／1女弓箭手保持；道士74→103複製、凝滯、雷火與兩種取消亦通過。GUI早期週期status晚於擷取畫面，最終加入capture-N.tsv，在組圖同一個now、狀態與RGBA雜湊記錄，11張各自和SDL讀回相同。前兩版工具目錄仍含Go助手可見，但未讀用；最終GUI3收窄為單一Python輸入檔與native輸出，沒有Go／PAM／核心掛載。
+
+同一張畫布的原式錨點與雙欄結構已接，底板簡化、PON四幀命中共用，不冒稱完整原版圖案或動畫相位。地圖術右欄是零次數fixture。世界、新遊戲、保存、敵方特殊分派及其餘UI尚待，原式Go入口及正式197／7／923／535／1071保持。
+
+來源、工具版本與具體SHA見[核對](preserved/rust-player-spells-audit-r2.json)、[規格](docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)及[永久保存](preserved/README.md#rust玩家八術保存)。

@@ -111,6 +111,7 @@ pub struct MediaPack {
     pub units: BTreeMap<UnitId, Image>,
     pub fonts: Vec<Font>,
     pub music: Music,
+    pub spell_fx: Vec<Image>,
 }
 impl MediaPack {
     pub fn load(root: &Path) -> Result<Self, String> {
@@ -145,7 +146,23 @@ impl MediaPack {
             units,
             fonts,
             music: Music::load(&root.join("music.ogg"))?,
+            spell_fx: Vec::new(),
         })
+    }
+    pub fn load_spell_assets(&mut self, root: &Path) -> Result<(), String> {
+        let mut units = Vec::new();
+        for kind in [1, 10, 12] {
+            units.push((
+                UnitId::parse(&format!("native:{kind:02}"))?,
+                Image::load(&root.join(format!("unit_native_{kind:02}.rgba")), 264, 300)?,
+            ));
+        }
+        let effects = (0..4)
+            .map(|i| Image::load(&root.join(format!("spell-impact-{i}.rgba")), 264, 300))
+            .collect::<Result<Vec<_>, _>>()?;
+        self.units.extend(units);
+        self.spell_fx = effects;
+        Ok(())
     }
 }
 

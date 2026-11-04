@@ -1,0 +1,9 @@
+{
+  "status": "passed-detached-rust-player-spells",
+  "files": 536,
+  "objects": 456,
+  "mounts": ["preserved:/archive:read-only", "single verifier:/tools/check.py:read-only", "temporary tmpfs:/check"],
+  "workplace_mounted": false,
+  "core_mounted": false,
+  "original_executed": false
+}

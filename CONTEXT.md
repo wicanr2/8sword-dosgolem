@@ -16,21 +16,27 @@
 | Rust資料與普通行動 | 限定完成。33種typed兵種、201組算式、309組陣位／補位／換位及既有40動作保持。見[031](docs/spec/031-rust-independent-remake.md#兵種與普通行動移植限定-conformed)。 |
 | Rust普通回合 | 限定完成。四場原版介面Go記錄的71次來源選取、42次攻擊、6次略過及一次撤退相同；Rust自行排程，不從記錄提供來源隊。 |
 | Rust原生視窗與音樂 | 普通戰鬥樣本完成。原版HD戰場幾何、透明部隊、三字型及音樂工具列；32動作勝利、2動作全滅及撤退經X11輸入通過。 |
-| Rust完整遊戲 | 未完成。世界、新遊戲、管理／募兵、法術／特殊、完整原版選單、保存、結局及其餘工具列待移植。 |
+| Rust完整遊戲 | 未完成。世界、新遊戲、管理／募兵、敵方特殊、其餘原版選單、保存、結局及其餘工具列待移植。 |
 | 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。GUI使用明示編成；SDL dummy不等於人耳確認。 |
 | 可選精修 | 新兵額外手繪動作、特殊死亡呈現、循環音樂接點與其餘平台驗收依後續範圍處理。 |
 
 ## 最近驗證與入口
 
-最新[031限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)含18個Rust測試、原生CLI、四場排程對照及三條原生視窗結果。六張SDL紋理讀回與Rust畫布相同；勝利後敵側及全滅後玩家側共2304000背景像素正確清除部隊。預設1000野狼／10女弓箭手及弱軍為測試配置，不稱世界遭遇或自然通關。
+最新為[玩家八術限定驗收](docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)。23個Rust測試、2352組現行Go模型及15份既有原版介面收據通過，涵蓋八術、暗殺失敗、取消與顯示倒數。凝滯保留重複空raw的六次加值；減兵與複製保留pending HP。玩家最後只剩施法者且無次數時，可沿已證實原補位前移並普通近戰。
+
+XTest輸入完成火球後17次普通行動勝利，剩60民兵／2雙頭鬼／1女弓箭手；另一局道士複製74→103、凝滯、雷火、選敵Space退款與選術Esc撤退。第三局選敵Esc不退款。11張擷取逐張保存同一幀的軍隊、HP、次數、FX及RGBA雜湊，並與SDL讀回核對。底板簡化、共用PON四幀命中，不稱完整原版動畫相位一致。
+
+[目前核對](preserved/rust-player-spells-audit-r2.json)、[保存](preserved/README.md#rust玩家八術保存)及[圖](docs/images/rust-player-spells-r1.png)為入口。原生工具run加--spells使用雙頭鬼，--taoist使用道士；均為明示軍隊／學習旗標／係數／次數配置。右欄地圖術只顯示零次數，尚未接世界功能。敵方特殊與存檔尚未完成，未新增格式或Release。
+
+既有[普通回合與媒體限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)含原生CLI、四場排程對照及三條原生視窗結果。六張SDL紋理讀回與Rust畫布相同；勝利後敵側及全滅後玩家側共2304000背景像素正確清除部隊。預設1000野狼／10女弓箭手及弱軍為測試配置，不稱世界遭遇或自然通關。
 
 OGG〈刀祭〉由Rust透過libsndfile解碼，再由SDL播放。2633140 frames／48000Hz雙聲道，約54.857秒；六份佇列擷取非靜音，對FFmpeg相同前綴差異不超2個16-bit量化單位，裝置佇列有消耗。沒有新的人耳、音效或循環接點驗收。
 
 程式在[internal/remake-rust](internal/remake-rust)，[原生入口](tools/rust-native-player.sh)提供test／build／run。只掛Rust crate與native輸出建置；GUI只掛原生binary／媒體所在native子目錄與輸入工具，看不到Go、PAM或模擬器。一般啟動只需執行檔、媒體及SDL2／libsndfile等平台函式庫。目前只驗Linux x86_64開發樣本，沒有Release。
 
-[核對](preserved/rust-native-player-audit-r1.json)、[保存與還原](preserved/README.md#rust原生普通回合與媒體保存)、[README畫面](docs/images/rust-native-battle-r1.png)及[研究來源](RESEARCH-LOG.md#rust原生普通回合與媒體)為本輪入口。完整素材與binary留本機preserved，不依賴workplace；可刪的是已逐SHA保存的快取。
+[前輪音畫核對](preserved/rust-native-player-audit-r1.json)與[普通樣本保存](preserved/README.md#rust原生普通回合與媒體保存)保持。完整素材與binary留本機preserved，不依賴workplace；可刪的是已逐SHA保存的快取。
 
-下一步先接Rust法術／特殊、原版完整選單與保存，再串世界／原式管理／募兵與結局。補足READY規格後沿同機制代表抽驗，不重跑已驗普通戰鬥、全量HD或DOS硬體時序。
+下一步先接Rust敵方特殊分派、其餘原版選單與保存，再串世界／原式管理／募兵與結局。補足READY規格後沿同機制代表抽驗，不重跑已驗普通戰鬥、全量HD或DOS硬體時序。
 
 ## 保持的Go入口與基線
 

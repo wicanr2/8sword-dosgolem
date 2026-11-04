@@ -2,7 +2,7 @@
 set -euo pipefail
 task_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 task_crate="$task_root/internal/remake-rust"
-task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-native-player-r1/native"
+task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-player-spells-r1/native"
 task_image=mm45-rust-desktop:1.99.1-r3
 test -d "$task_crate"; test -d "$task_native"
 [[ "$(id -u)" == 1000 ]]
@@ -40,5 +40,5 @@ case "$task_action" in
    "${task_options[@]}" --mount "type=bind,src=$task_native/8sword-remake,dst=/player,readonly" \
    --mount "type=bind,src=$task_native/pack,dst=/media,readonly" "$task_image" /player --battle --assets /media "$@"
   ;;
- *) echo '用法：bash tools/rust-native-player.sh test|build|run [--mute] [--weak]' >&2; exit 2 ;;
+ *) echo '用法：bash tools/rust-native-player.sh test|build|run [--mute] [--weak|--spells|--taoist]' >&2; exit 2 ;;
 esac
