@@ -50,6 +50,14 @@ Rust玩家八種戰鬥法術已接入原生樣本，沿原版兩欄八列、選�
 
 準備一個既有可寫目錄，使用`bash tools/rust-native-player.sh run --save-dir /絕對路徑/進度`。按F7後可關閉視窗，再以`run --save-dir /絕對路徑/進度 --continue`續接。原生檢查點不含DOS或模擬器快照；這是開發用戰中保存，Go進度保持，完整世界保存與匯入仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed)、[核對](preserved/rust-battle-checkpoint-audit-r2.json)、[圖片來源](docs/images/rust-battle-checkpoint-r1.json)及[還原入口](preserved/README.md#rust戰中檢查點保存)。
 
+## Rust地圖移動預覽
+
+Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理八方向、環繞、山地／水域阻擋及探索。下圖是原起點附近走路、山地受阻、F7後，以另一程序冷讀的原生視窗，使用隸書；存讀前後的完整畫布相同。
+
+![Rust原生HD地圖與隸書，獨立程序冷讀](docs/images/rust-world-preview-r1.png)
+
+還原[本批媒體](preserved/README.md#rust世界資料與移動保存)後，用`bash tools/rust-native-player.sh world`開啟預覽。方向鍵及Home／PageUp／End／PageDown移動；工具列可切字型、音樂及存檔。加`--save-dir /既有絕對路徑`啟用F7，加`--continue`冷讀。這是獨立的移動預覽，遇到營地、遭遇、月結等尚未接入事件會停止；右側管理選單尚未作用。40個Rust測試及880組原指令案例通過，完整世界遊戲與世界保存仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)及[圖片來源](docs/images/rust-world-preview-r1.json)。
+
 ## 部隊管理與Go資料
 
 F2軍隊檢閱、F3解雇與營地募兵沿用原版管理方式。原版與HD維持相同版面、選隊、數量輸入、Enter／Esc及返回流程；Go在後端提供六隊資料，處理兵數、月薪、領導用量、扣款、庫存與保存。原店＋可選增援分頁的既有方案保持。

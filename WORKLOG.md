@@ -3211,3 +3211,21 @@ Go正式197來源／7程式、923核心、535素材及1071美術不改。GitHub�
 [最終核對](preserved/rust-battle-checkpoint-audit-r2.json)、[永久索引](preserved/rust-battle-checkpoint-r1.json)及[完整性](preserved/rust-battle-checkpoint-integrity-r1.json)記錄完整來源。125檔／95物件、壓縮35230545 bytes，脫離工作區逐SHA核對通過。清除690份rust-target快取共132757989 bytes，約126.6 MiB；binary、pack、GUI與實際檢查點保持，125份保存來源清理後仍逐SHA一致。全專案未見root-owned檔案或.md目錄；本批--rm容器完成，未動其他專案容器／映像。
 
 README新增原生存讀對照及穩定使用入口。主機gh憑證與private repo核對通過；程式、文件及批准成果圖納入Git提交，完整素材、binary與檢查點由.gitignore留本機。正式197／7／923／535／1071與Go格式不改，未建立Release。下一步Rust世界資料、正常移動／事件及世界進度保存，再接原式管理／募兵與結局，不重開已驗音畫及戰中矩陣。
+
+## 2026-11-04 Rust世界資料與移動預覽
+
+命中復古重製、IDA、規格閘門與README路由，載入既有技能及當前階段的驗證／交接reference。沿使用者確認的Rust獨立版，先由DRAFT追世界地形、手動移動與事件控制流，再限定READY為不猜補事件的開發預覽。完整世界、正式schema、管理／募兵與戰鬥往返保持DRAFT。
+
+原PAM與正式i64唯讀，IDA9.4在容器/tmp副本分析，完成後正式DB SHA不變。既有locked-v1不存在，沿專案py312-v1映像及/opt/ida-pro-9.4/idat，不建重複映像。r1錯誤定位到password／menu，保留診斷，後續r2至r5才作移動及幾何證據。原名稱、bytes、offset與位址基準保持；索引與推論等級在RESEARCH-LOG。
+
+新Go探針在dosgolem直接執行10C32／10D72及12446地形區段，880組受控案例。格式化後以同一Go容器重跑並逐bytes比較輸出相同；不是正常原版世界同狀態。Go只在建置期投影批准65地形、12主角及框架。Rust直接解碼八圖，與既有Python逐格校驗一致；48k雙聲道〈遨遊〉3840000 frames由Rust/libsndfile解碼、SDL排隊。沒有新增人耳或逐相位聲明。
+
+原生--world-preview可走八方向、環繞、受阻、揭露3×3及明示F7；預覽world-preview.chk與battle.chk分開，不含軍隊或資源。40個Rust測試及既有所有向量通過，release建置最後只掛唯讀crate及native。兩個GUI程序以固定seed1、正常XTest走路／山地受阻、切隸書、關音樂、工具列F7及冷讀，八張畫布與SDL讀回一致。保存點及後續營地邊界兩路狀態相同，事件不提交且不能由方向鍵／F7繞過。主角先取方向首幀，管理標籤只呈現原位置。
+
+診斷與修正：初次GUI命令用了image沒有的python名稱，改python3；屬環境命令錯誤。單測遭遇seed初值不對，改由LCG逆式構造next rand=1000，未調遊戲公式或反覆挑seed。第一次GUI完整通過；補讀回狀態後的最終重跑暴露status.tsv被讀到寫一半，改完整暫存後rename並以相同seed／按鍵乾淨重跑通過。文件驗證最初在收據尚未生成時檢查自連結，先建立pending收據後同一檢查通過。這些均未列成原版或遊戲規則缺陷。
+
+[核對](preserved/rust-world-audit-r1.json)、[永久索引](preserved/rust-world-r1.json)、[脫離核對](preserved/rust-world-detached-r1.json)、[清理](preserved/rust-world-cleanup-r1.json)及[完整性](preserved/rust-world-integrity-r1.json)記錄完整結果。266檔／207物件，壓縮24293828 bytes；只掛唯讀preserved與單一工具，在tmpfs逐原始／壓縮SHA核對通過。原PAM／i64沿既有catalog保存，本批媒體、地圖、原指令收據、來源、binary與診斷亦已永久保存。
+
+保存驗證後刪本批Go／Rust快取及兩份舊GUI診斷，2569檔／604915126 bytes，約576.9 MiB；現行binary、pack、八份GUI、來源／證據保持。213份仍在工作區的保存來源逐SHA相同，33條新增路由／文件連結與錨點通過，全專案沒有root-owned檔案或.md目錄。Docker依本批bind來源檢查，無執行中或已停止容器；既有其他專案容器／映像未動，未建立新映像。
+
+README加入原生地圖冷讀成果圖，執行器新增world命令，原run保持戰鬥樣本。Bash／Python語法檢查通過。主機gh憑證及private repo已確認，完整媒體／binary留本機，不加入Git；沒有Release。正式197／7／923／535／1071與Go保存不改。下一步沿既有Go遭遇及戰果證據，補Rust READY後接移動→原式戰場→回場與完整世界保存，再接原式管理／募兵。

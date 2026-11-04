@@ -12,10 +12,10 @@ use std::io::{BufWriter, Write};
 use std::path::{Path, PathBuf};
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
-const W: usize = 1920;
-const H: usize = 1320;
-const TOP: i32 = 48;
-const GOLD: [u8; 3] = [255, 241, 181];
+pub(crate) const W: usize = 1920;
+pub(crate) const H: usize = 1320;
+pub(crate) const TOP: i32 = 48;
+pub(crate) const GOLD: [u8; 3] = [255, 241, 181];
 pub const UI_TEXT: &str = "字型 隸書 草書 音樂 開 關 再戰 待選敵軍 勝利 全軍覆沒 撤退 出手 略過 方向鍵選敵 Enter Space Esc R F10 損失";
 
 const MAP_SPELLS: [&str; 8] = [
@@ -55,7 +55,7 @@ fn spaced_spell(value: &str) -> String {
             .join(" ")
     )
 }
-fn sprite(frame: &mut [u8], image: &crate::media_assets::Image, x: i32, y: i32) {
+pub(crate) fn sprite(frame: &mut [u8], image: &crate::media_assets::Image, x: i32, y: i32) {
     for yy in 0..image.height {
         for xx in 0..image.width {
             let dx = x + xx as i32;
@@ -90,7 +90,7 @@ fn begin_spell_animation(
     *ready = now + Duration::from_millis(480);
 }
 
-fn fill(frame: &mut [u8], rect: [i32; 4], color: [u8; 3]) {
+pub(crate) fn fill(frame: &mut [u8], rect: [i32; 4], color: [u8; 3]) {
     let [x, y, w, h] = rect;
     for yy in y.max(0)..(y + h).min(H as i32) {
         for xx in x.max(0)..(x + w).min(W as i32) {
@@ -99,7 +99,7 @@ fn fill(frame: &mut [u8], rect: [i32; 4], color: [u8; 3]) {
         }
     }
 }
-fn border(frame: &mut [u8], r: [i32; 4], color: [u8; 3]) {
+pub(crate) fn border(frame: &mut [u8], r: [i32; 4], color: [u8; 3]) {
     let [x, y, w, h] = r;
     for q in [
         [x, y, w, 2],
@@ -110,7 +110,7 @@ fn border(frame: &mut [u8], r: [i32; 4], color: [u8; 3]) {
         fill(frame, q, color)
     }
 }
-fn glyph(
+pub(crate) fn glyph(
     frame: &mut [u8],
     font: &Font,
     ch: char,
@@ -145,7 +145,7 @@ fn glyph(
     }
     Ok(())
 }
-fn text(
+pub(crate) fn text(
     frame: &mut [u8],
     font: &Font,
     value: &str,
@@ -449,7 +449,7 @@ fn compose(
     )?;
     Ok(frame)
 }
-fn ppm(path: &Path, pixels: &[u8]) -> Result<(), String> {
+pub(crate) fn ppm(path: &Path, pixels: &[u8]) -> Result<(), String> {
     let f = OpenOptions::new()
         .create_new(true)
         .write(true)

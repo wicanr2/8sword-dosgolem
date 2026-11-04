@@ -1,5 +1,18 @@
 fn main() {
     let args: Vec<_> = std::env::args().collect();
+    if args.get(1).is_some_and(|arg| arg == "--world-preview") {
+        #[cfg(feature = "desktop")]
+        if let Err(err) = eightsword_remake::world_desktop::run(&args[2..]) {
+            eprintln!("{err}");
+            std::process::exit(1);
+        }
+        #[cfg(not(feature = "desktop"))]
+        {
+            eprintln!("此建置未包含desktop功能");
+            std::process::exit(2);
+        }
+        return;
+    }
     if args.get(1).is_some_and(|arg| arg == "--battle") {
         #[cfg(feature = "desktop")]
         if let Err(err) = eightsword_remake::desktop::run(&args[2..]) {
@@ -61,5 +74,6 @@ fn verify() -> Result<(), String> {
     println!(
         "原生戰中檢查點：--save-dir <既有目錄>，F7存檔；--continue由保存的戰鬥續接。舊Go／世界進度不變。"
     );
+    println!("--world-preview開啟八圖資料與手動移動預覽；事件／月結／世界戰鬥與正式世界保存待接。");
     Ok(())
 }

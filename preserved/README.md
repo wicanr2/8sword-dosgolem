@@ -1222,3 +1222,13 @@ Rust執行容器只掛唯讀crate及native子目錄，沒有PAM、Go來源／匯
 `archive --project /project --archive /project/preserved --out /project/preserved/rust-battle-checkpoint-r1.json`保存資料；`verify --archive /archive --out <新JSON>`只需唯讀preserved與單一工具即可核對每個原始及壓縮SHA。[脫離核對](rust-battle-checkpoint-detached-r1.json)與[清理](rust-battle-checkpoint-cleanup-r1.json)另存。
 
 還原時按索引解壓`rust-battle-checkpoint-r1/native/`下的binary及pack至同名候選目錄，逐SHA核對並套用記錄權限。需要重建時還原rust-source為crate，使用既有Rust1.99.1／SDL2／libsndfile映像，不需要Go或PAM。以[啟動器](../tools/rust-native-player.sh)的`run --save-dir <既有可寫絕對路徑>`啟用F7／工具列，`run --save-dir <同一路徑> --continue`續接；battle.chk僅為可替換的原生開發檢查點。保存樣本與Go／完整世界保存不互通；媒體游標不保存，硬中斷留下的lock拒絕寫入，不自行刪除。
+
+## Rust世界資料與移動保存
+
+[完整索引](rust-world-r1.json)、[核對](rust-world-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)與[研究](../RESEARCH-LOG.md#rust世界資料與手動移動)保存八圖資料、880組原指令案例、40測試與兩個GUI程序的八份擷取。完整Rust crate、原Go探針、五份IDA輸出、批准素材投影、OGG、binary、預覽檢查點及診斷逐SHA壓縮在本機`preserved/rust-world-r1/<SHA256>.gz`，不依賴workplace。原PAM及正式i64沿既有catalog永久保存，雜湊亦記在本批IDA輸出；未把這些來源加入Git。
+
+[資料工具](../tools/rust-world.py)在UID1000、network none、Pillow11.3.0-r2容器使用。`prepare --project /project --game /game --assets /assets`從前批永久媒體、唯讀原版資料及批准素材建立新批次，原始輸入形狀及PAM雜湊不符即拒絕；已重建核對八圖、起始資料及〈遨遊〉十份輸入。`fonts --project /project --out <新JSON>`沿原永久字型補地圖選單字。Go快取投影與原CPU探針的環境、命令及掛載在本批execution.json；原版及正式i64均唯讀，只有輸出可寫。
+
+`freeze --project /project`固定Rust、Go探針及工具來源。`audit --project /project --out <新JSON>`核對八圖解碼、素材、880向量、測試、GUI畫布與基線。`archive --project /project --archive /project/preserved --out /project/preserved/rust-world-r1.json`保存全部資料，只排除可重生Go／Rust快取；`verify --archive /archive --out <新JSON>`只掛唯讀preserved與單一工具即可逐物件核對。[脫離核對](rust-world-detached-r1.json)、[清理](rust-world-cleanup-r1.json)與[文件核對](rust-world-integrity-r1.json)另存。
+
+還原時按索引把`rust-world-r1/native/`下的binary及pack解壓到同名候選目錄，逐SHA核對並套用記錄權限。使用[啟動器](../tools/rust-native-player.sh)的`world --save-dir <既有可寫絕對路徑>`開啟預覽，F7後關閉，再加`--continue`冷讀。`run`仍開既有戰鬥樣本。world-preview.chk與battle.chk互不覆蓋，完整世界保存與舊Go匯入尚待。GUI只掛native及單一輸入工具；執行期只有Rust、媒體與SDL2／libsndfile。事件邊界會停止，不能把此預覽當完整遊戲，沒有Release。

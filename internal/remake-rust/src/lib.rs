@@ -16,6 +16,9 @@ mod sdl;
 #[cfg(feature = "desktop")]
 mod sndfile;
 pub mod spells;
+pub mod world;
+#[cfg(feature = "desktop")]
+pub mod world_desktop;
 
 #[cfg(test)]
 mod native_tests;

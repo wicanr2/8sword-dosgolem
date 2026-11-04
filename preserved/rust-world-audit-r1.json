@@ -1,0 +1,1062 @@
+{
+  "status": "passed-rust-world-audit",
+  "crate": {
+    "spell-reference.tsv": "4c057fb2c0432204d0c675f0bd5d9fb524d2a0f6984b134f9efe2246a90f182a",
+    "battle-replay.tsv": "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235",
+    "Cargo.toml": "cdb32c522e36f7957f667dc5c33260449f70fc7c7b768f7a8434cec8da439c57",
+    "battle-models.tsv": "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109",
+    "controller-reference.tsv": "50b1e6a4fb06fd2ec1bc73440dee98fb433faa9546711df323bb60084d5f4c13",
+    "Cargo.lock": "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61",
+    "world-reference.tsv": "0728fe90b5a18e6eebd7f0cb2c4ad88418144e4467f6a181b262645d10a9df04",
+    "unit-catalog.tsv": "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af",
+    "enemy-reference.tsv": "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2",
+    "reference.tsv": "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf",
+    "src/enemy_tests.rs": "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607",
+    "src/lib.rs": "775fb4342ff9be418f2a3e5c12bce931ae2df70b66062763cfdacaf55d0dd697",
+    "src/world_desktop.rs": "c69d5f31304891be3e791bb7b660d70bbfa65b334339bd1f60535adf17e98af0",
+    "src/catalog.rs": "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469",
+    "src/controller.rs": "151b9f70fc51169d953a428088bd6085b5739aca3734cda111c8119847e76674",
+    "src/sndfile.rs": "7bf9b76d1f02b10cebb3610a9ea160c02446ba16cd4482c4dfb28e18ad33ee21",
+    "src/sdl.rs": "887fba917bb5baa09621acf10249c8342848eee70e7bb62211b8d2ea06578208",
+    "src/native_tests.rs": "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59",
+    "src/media_assets.rs": "5dc9f7c000de7ab2af96c797283a7e71241eb37343ded01d280f95f5311c7ae2",
+    "src/main.rs": "4f374f138126ffc88a11e5dfbd79ed3458c10b331a3a78554ac72a5797931cd1",
+    "src/checkpoint.rs": "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc",
+    "src/controller_tests.rs": "4e8e35fd70ff7b30eb6ed3b25f4cccadffaf9c832279ac4155ebe886cfd72ccf",
+    "src/spells.rs": "54083224e26f56245e7fef9fe56c5bf441bf9709f81897260e7241a45c646c11",
+    "src/checkpoint_store.rs": "104aa80e1fe7534a69cb69906c2d64762d863c5cd17cf26a26578cfff2a7fc63",
+    "src/formation.rs": "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898",
+    "src/enemy.rs": "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea",
+    "src/checkpoint_tests.rs": "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48",
+    "src/desktop.rs": "8a88e7780985ccd77220ee9944272487aafe2d56cf37104d52c2744597e6c14c",
+    "src/spell_tests.rs": "d355b30799fa9cede41988d2df72d3d578fa3a8fd50d72d4655ee9cc8b639610",
+    "src/world.rs": "97e8625fc05eeadfd4ea128bb83669c2a690a6ae3886e0a04baa8d677f71f6aa",
+    "src/replay.rs": "292203c75b5e717ba76b4d833b7a698ac10396465284ea78253e735f1dbf2063",
+    "src/battle.rs": "74dcf522965d2a6fd4866e9ce3b37b8ef83383f3406a9ead9f3f1cfa9ca7e7cb"
+  },
+  "binary_sha256": "0586adbc48e3a3bc3943835edb9176a8ece48f0e3dcea962dd9abaa029dd8cb7",
+  "baseline_counts": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "gui": {
+    "status": "passed-rust-world-gui",
+    "binary_sha256": "0586adbc48e3a3bc3943835edb9176a8ece48f0e3dcea962dd9abaa029dd8cb7",
+    "fixed_seed": 1,
+    "checkpoint_hash": "c52c4aad0e61f70d",
+    "final_hash": "776105481de10a0d",
+    "runs": [
+      {
+        "name": "control",
+        "exit": 0,
+        "inputs": [
+          {
+            "key": 65481,
+            "before": {
+              "actions": "0",
+              "x": "40",
+              "y": "40",
+              "remaining": "324",
+              "seed": "1",
+              "state_hash": "86ef8bf1c2c130f3",
+              "font": "0",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "0",
+              "readback_equal": "true",
+              "queued_bytes": "38400",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65364,
+            "before": {
+              "actions": "0",
+              "x": "40",
+              "y": "40",
+              "remaining": "324",
+              "seed": "1",
+              "state_hash": "86ef8bf1c2c130f3",
+              "font": "0",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "76800",
+              "drains": "1",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65364,
+            "before": {
+              "actions": "1",
+              "x": "40",
+              "y": "41",
+              "remaining": "323",
+              "seed": "2745024",
+              "state_hash": "67010322de5986f7",
+              "font": "0",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "115200",
+              "drains": "2",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65363,
+            "before": {
+              "actions": "2",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "3357800067",
+              "state_hash": "d881382c06983c51",
+              "font": "0",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "153600",
+              "drains": "4",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65481,
+            "before": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "0f6e98e7b4443226",
+              "font": "0",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "192000",
+              "drains": "5",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "click": [
+              450,
+              20
+            ],
+            "before": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "0f6e98e7b4443226",
+              "font": "0",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "230400",
+              "drains": "6",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "click": [
+              1000,
+              20
+            ],
+            "before": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "06f217daf8938795",
+              "font": "1",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65481,
+            "before": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "c52c4aad0e61f70d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "click": [
+              1530,
+              20
+            ],
+            "before": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "c52c4aad0e61f70d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65361,
+            "before": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "c52c4aad0e61f70d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65362,
+            "before": {
+              "actions": "4",
+              "x": "39",
+              "y": "42",
+              "remaining": "321",
+              "seed": "3884216597",
+              "state_hash": "f2cb37df238e0cee",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65362,
+            "before": {
+              "actions": "5",
+              "x": "39",
+              "y": "41",
+              "remaining": "320",
+              "seed": "3403800452",
+              "state_hash": "8819868d130d4649",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65361,
+            "before": {
+              "actions": "6",
+              "x": "39",
+              "y": "40",
+              "remaining": "319",
+              "seed": "1030492215",
+              "state_hash": "c21c8cfbe861b289",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65361,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65481,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65364,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "4",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65476,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "4",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "click": [
+              700,
+              20
+            ],
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "4",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65481,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "d9d3fdcd3b658b68",
+              "font": "2",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "4",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65307,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "d9d3fdcd3b658b68",
+              "font": "2",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "5",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000"
+            }
+          }
+        ],
+        "captures": [
+          {
+            "label": "start-noto",
+            "number": 1,
+            "captured": {
+              "actions": "0",
+              "x": "40",
+              "y": "40",
+              "remaining": "324",
+              "seed": "1",
+              "state_hash": "86ef8bf1c2c130f3",
+              "font": "0",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "76800",
+              "drains": "1",
+              "music_frames": "3840000",
+              "frame_hash": "a8c9e0f2122bde6b"
+            }
+          },
+          {
+            "label": "blocked-mountain",
+            "number": 2,
+            "captured": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "0f6e98e7b4443226",
+              "font": "0",
+              "music": "true",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "230400",
+              "drains": "6",
+              "music_frames": "3840000",
+              "frame_hash": "7f40c310af0f6577"
+            }
+          },
+          {
+            "label": "save-lishu",
+            "number": 3,
+            "captured": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "c52c4aad0e61f70d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000",
+              "frame_hash": "86e01fe9294dfe86"
+            }
+          },
+          {
+            "label": "camp-boundary",
+            "number": 4,
+            "captured": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "4",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000",
+              "frame_hash": "dfb3cded08e80b87"
+            }
+          },
+          {
+            "label": "caoshu",
+            "number": 5,
+            "captured": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "d9d3fdcd3b658b68",
+              "font": "2",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "5",
+              "readback_equal": "true",
+              "queued_bytes": "268800",
+              "drains": "7",
+              "music_frames": "3840000",
+              "frame_hash": "dea0e51951deac08"
+            }
+          }
+        ],
+        "final": {
+          "actions": "7",
+          "x": "38",
+          "y": "40",
+          "remaining": "318",
+          "seed": "752224798",
+          "state_hash": "d9d3fdcd3b658b68",
+          "font": "2",
+          "music": "false",
+          "pending": "Some(Terrain(51))",
+          "saves": "1",
+          "loaded": "false",
+          "captures": "5",
+          "readback_equal": "true",
+          "queued_bytes": "268800",
+          "drains": "7",
+          "music_frames": "3840000"
+        }
+      },
+      {
+        "name": "continue",
+        "exit": 0,
+        "inputs": [
+          {
+            "key": 65481,
+            "before": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "c52c4aad0e61f70d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "0",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65361,
+            "before": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "c52c4aad0e61f70d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65362,
+            "before": {
+              "actions": "4",
+              "x": "39",
+              "y": "42",
+              "remaining": "321",
+              "seed": "3884216597",
+              "state_hash": "f2cb37df238e0cee",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65362,
+            "before": {
+              "actions": "5",
+              "x": "39",
+              "y": "41",
+              "remaining": "320",
+              "seed": "3403800452",
+              "state_hash": "8819868d130d4649",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65361,
+            "before": {
+              "actions": "6",
+              "x": "39",
+              "y": "40",
+              "remaining": "319",
+              "seed": "1030492215",
+              "state_hash": "c21c8cfbe861b289",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65361,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65481,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65364,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65476,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "click": [
+              700,
+              20
+            ],
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65481,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "d9d3fdcd3b658b68",
+              "font": "2",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          },
+          {
+            "key": 65307,
+            "before": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "d9d3fdcd3b658b68",
+              "font": "2",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000"
+            }
+          }
+        ],
+        "captures": [
+          {
+            "label": "cold-lishu",
+            "number": 1,
+            "captured": {
+              "actions": "3",
+              "x": "40",
+              "y": "42",
+              "remaining": "322",
+              "seed": "415139642",
+              "state_hash": "c52c4aad0e61f70d",
+              "font": "1",
+              "music": "false",
+              "pending": "None",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000",
+              "frame_hash": "86e01fe9294dfe86"
+            }
+          },
+          {
+            "label": "camp-boundary",
+            "number": 2,
+            "captured": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "776105481de10a0d",
+              "font": "1",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000",
+              "frame_hash": "dfb3cded08e80b87"
+            }
+          },
+          {
+            "label": "caoshu",
+            "number": 3,
+            "captured": {
+              "actions": "7",
+              "x": "38",
+              "y": "40",
+              "remaining": "318",
+              "seed": "752224798",
+              "state_hash": "d9d3fdcd3b658b68",
+              "font": "2",
+              "music": "false",
+              "pending": "Some(Terrain(51))",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "0",
+              "drains": "0",
+              "music_frames": "3840000",
+              "frame_hash": "dea0e51951deac08"
+            }
+          }
+        ],
+        "final": {
+          "actions": "7",
+          "x": "38",
+          "y": "40",
+          "remaining": "318",
+          "seed": "752224798",
+          "state_hash": "d9d3fdcd3b658b68",
+          "font": "2",
+          "music": "false",
+          "pending": "Some(Terrain(51))",
+          "saves": "0",
+          "loaded": "true",
+          "captures": "3",
+          "readback_equal": "true",
+          "queued_bytes": "0",
+          "drains": "0",
+          "music_frames": "3840000"
+        }
+      }
+    ]
+  },
+  "inputs": {
+    "maps": {
+      "MAP1.AY": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "MAP2.AY": "73b6e6a515ad50c4853750ed0a744c2b62502331f4fce288612a676594e242a9",
+      "MAP3.AY": "c4a317089b4a1c2c548b3db9355e2d5b5507439ab671c6f31e519dd954dddf24",
+      "MAP4.AY": "ee87b3cddc33422a00cafe658cbc3132b28864cf281e922c3a1528d2985cb60a",
+      "MAP5.AY": "623cdbaecdba70bbde68c55f92461e22a1007a9d7629708ffb248117ea3e2e0f",
+      "MAP6.AY": "95a88d1843db86f9a12572a2826b9d701260dcdf86e1937cdeaf5d76322a203f",
+      "MAP7.AY": "f601a09175c0d4955f4692fd899d17242f0418435f0b3ae8c2bf0fe62e953c07",
+      "MAP8.AY": "b48e7c95e54afc437963451eda648390a8e9d1c38e220043cb5e042013d5ec0a"
+    },
+    "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+    "music": {
+      "id": 2,
+      "title": "遨遊",
+      "score_sha256": "a9491914a2d9625b1f541d4bef5df0f348d43d0cb6b5c4c5f50a5a48b581c3c7",
+      "bank_sha256": "bacae5dd8e2817d654f79d3679eb1e36e67a3203da5e299554ae767709c05166",
+      "file": "music-mwlk-batch-r1.ogg",
+      "sha256": "9ef427c4dc0f845ae048177aa0a4c73e1ec7490a127e5b2c7e779bcf0131aae8",
+      "sample_rate": 48000,
+      "channels": 2,
+      "frames": 3840000,
+      "loop_start_frame": 0,
+      "loop_end_frame": 3840000,
+      "rights": "original-derived-local"
+    },
+    "initial_data": [
+      "START\t0\t40\t40",
+      "START\t1\t36\t36",
+      "START\t2\t16\t5",
+      "START\t3\t66\t4",
+      "START\t4\t23\t18",
+      "START\t5\t40\t4",
+      "START\t6\t18\t5",
+      "START\t7\t15\t5",
+      "CLOCK\t324\t1\t3",
+      "MENU\t59\t12\t  檢  視  主  角   ",
+      "MENU\t59\t39\t  檢  閱  軍  隊   ",
+      "MENU\t59\t66\t  解  雇  軍  隊   ",
+      "MENU\t59\t93\t  使  用  法  術   ",
+      "MENU\t59\t120\t  查  看  地  圖   ",
+      "MENU\t59\t147\t  搜  尋  物  品   ",
+      "MENU\t59\t174\t  存  取  遊  戲   "
+    ]
+  },
+  "execution": {
+    "date": "2026-11-04",
+    "images": {
+      "rust": "mm45-rust-desktop:1.99.1-r3",
+      "go": "dosgolem-go-ebiten:1.24-r1",
+      "pillow": "sc-cht-hdtools:pillow11.3.0-r2",
+      "ida": "ida-pro-9.4-idapython:py312-v1"
+    },
+    "policy": "UID1000; network none; bounded timeout/memory/cpu/pids; --rm; GUI/IDA/Go use --init",
+    "ida_mounts": "PAM.i64 directory, original game and single exporter read-only; only batch evidence writable; copy DB to container /tmp",
+    "go_mounts": "Repository, baseline runtime source, module cache, original game, approved media read-only; batch output/cache writable",
+    "rust_format_mounts": "Rust crate writable for cargo fmt; native output writable; no repository/Go/PAM mounted",
+    "rust_final_mounts": "Rust crate read-only; native output/cache writable; no repository/Go/PAM",
+    "gui_mounts": "Single rust-world-gui.py read-only and native writable; Rust binary and media only at runtime; no repo/Go/PAM",
+    "commands": {
+      "oracle": "xvfb-run -a go test -modfile=/out/probe.mod ./internal/ownedworld ./internal/eightsword -run ^TestRustWorld(Reference|Media)$ -count=1 -v",
+      "oracle_env": [
+        "EIGHTSWORD_RUST_WORLD_REFERENCE=/out/world-reference-final.tsv",
+        "EIGHTSWORD_RUST_WORLD_PAM=/game/PAM.AY",
+        "EIGHTSWORD_RUST_WORLD_MEDIA=/out/native/pack",
+        "EIGHTSWORD_TEST_ORIG=/game",
+        "EIGHTSWORD_TEST_SOURCE_ASSETS=/assets"
+      ],
+      "rust": [
+        "cargo fmt --all --check",
+        "cargo test --offline --locked --features desktop",
+        "cargo run --offline --locked --features desktop -- --self-check",
+        "cargo build --offline --locked --release --features desktop"
+      ],
+      "assets": "/out/8sword-remake --world-preview --assets /out/pack --check-only",
+      "gui": "python3 /input.py"
+    },
+    "limits": "Original routine controls only; no full original world same-state. Preview stops at unresolved events. No release."
+  },
+  "limits": [
+    "Bounded world movement preview; events, monthly and battle handoff remain DRAFT.",
+    "880 controlled original CPU cases; no original full world same-state or natural new-game claim.",
+    "RNG excludes original UI ambient calls. Event preflight keeps previous state and halts.",
+    "Development world checkpoint separate from battle/Go save; no army/resources or old save import.",
+    "Approved HD caches and OGG; no new human listening or animation timing acceptance."
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "status": "passed-detached-rust-world",
+  "files": 266,
+  "objects": 207,
+  "method": "rust-world.py verify；僅掛唯讀preserved與單一工具，輸出至容器tmpfs，逐物件解壓核對原始及壓縮SHA；收據抄錄工具標準輸出。"
+}

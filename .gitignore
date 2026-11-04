@@ -138,3 +138,5 @@ __pycache__/
 battle.chk
 .battle-checkpoint.lock
 .battle-*.tmp
+/preserved/rust-world-r1/
+world-preview.chk

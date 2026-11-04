@@ -3263,3 +3263,23 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 原生新建檢查點329／364／368 bytes，完整SHA見GUI收據及[核對](preserved/rust-battle-checkpoint-audit-r2.json)。樣本seed在執行前固定，冷讀直接取保存seed；沒有重投、RAM或IP注入。字型隸書、音樂關與游標亦恢復。動畫／音訊游標不保存，冷讀重新開始媒體，未冒稱原版F7或原版續接parity。
 
 入口為[031](docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed)、[編碼](internal/remake-rust/src/checkpoint.rs)、[檔案提交](internal/remake-rust/src/checkpoint_store.rs)、[GUI工具](tools/rust-checkpoint-gui.py)、[資料工具](tools/rust-battle-checkpoint.py)及[永久保存](preserved/README.md#rust戰中檢查點保存)。本輪不新增完整世界schema，舊Go保存、舊卡片快照及原版檔保持；世界及匯入另依工作表。
+
+## Rust世界資料與手動移動
+
+2026-11-04，原PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，正式PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。兩者沿既有catalog保存；此次只在IDA9.4容器複製DB到/tmp，正式輸入唯讀且完成後雜湊不變。資料庫521函式；匯出保留原名稱、原bytes、檔案偏移、operand與xref。位址基準為IDA MZ linear base10000h；世界runtime CS0110 IP為linear減10000h，DS1E88偏移另列。PAM檔案DS起點為MZ header paragraphs×16+1D780h，不能與IDA linear混用。
+
+| 原始定位 | 推論等級與語意 | 證據與限制 |
+|---|---|---|
+| sub_10B38／10BDC／10C32／10D72 | 已證實：手動八方向、Space、70×80環繞、受阻回退保留朝向。 | IDA r2／r3及100個原CPU MOVE／ROLLBACK案例。DS8CBA鍵碼、8E12／8E44座標、56C4朝向、56CC自動模式；預覽排除自動行走。 |
+| sub_12446，受控runtime0110:246B至24DE | 已證實：2／11–14水域、15–30山地、46竹林、60–62硬阻擋；DS56CE船三態、26B6山地、26B4竹林。 | 780個原CPU地形×船×兩旗標案例，原記憶體輸出與Rust一致。後續49／50／51／53–59／65事件與船2上岸控制流由IDA保留，52不在分派。 |
+| sub_13AEC／13A8C／13ABC | 已證實：70×80環繞索引；地形ASCII−48、PMAP索引再−1。 | 八份MAP1–8壓縮資料解為5761 bytes及5600格，Rust與既有Python逐格校驗一致。MAP00–08為未壓縮探索進度，初始格為ASCII48；不混當地形。 |
+| sub_13B40／11F60／11F20 | 已證實：中心4／4揭露3×3，viewport畫7×7，格xbyte=8×col−7、y=25×row−13。 | IDA r3–r5；HD沿xbyte×24／y×6，即24／72起點、192×150格。地圖框架由批准Go素材快取投影，Rust執行自行繪製。 |
+| sub_15F7E／15FE6／13BC8 | 已證實：四朝向各三幀；hero xbyte25／y87；右列七個20-byte Big5字串由DS3DE讀取，座標DS46A。 | 預覽只用各方向首幀，不聲稱原相位時間。七標籤沿x59及y12+27×row，功能未接。 |
+| sub_1151C | 已證實控制流：rank1至5以rand除640／576／512／448／384，商等於1且朝向前一格地形小於47才接遭遇。 | IDA既有匯出及本次主迴圈呼叫證據；受阻亦呼叫。Rust只含遭遇所需抽樣，不聲稱原UI／動畫ambient亂數序列；未知事件先回邊界不提交。 |
+| world-preview.chk／原生GUI | 自有工程契約，非原版存檔parity。 | 5648-byte有界型別、地圖指紋、探索bitset與校驗；兩程序從同一F7保存點輸入相同按鍵，畫布／狀態／seed相同，事件不部分提交。 |
+
+本批五個IDA輸出包含r1錯誤函式定位診斷；r1選到password／menu，不當作移動證據。有效移動及繪圖資料流取r2至r5，舊輸出原樣保存。IDA間接讀寫依資料流查證，沒有把直接xref缺項解讀成沒有寫入。
+
+880案例由[Go原指令探針](internal/ownedworld/rust_world_reference_test.go)在dosgolem執行；都是明示受控局部入口，沒有正常原版世界或完整遭遇同狀態聲明。GUI則從PAM投影起點以正常XTest方向鍵走路，不注入RAM／IP。seed1在啟動前固定，冷讀用保存seed；遭遇邊界單測以LCG逆式構造next rand=1000，不反覆挑seed。40測試包含既有35戰鬥／保存測試。
+
+[031](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)、[資料工具](tools/rust-world.py)、[IDA工具](tools/export-rust-world-ida.py)及[永久保存](preserved/README.md#rust世界資料與移動保存)為入口。正式世界與事件保持DRAFT，下一步沿既有Go遭遇／戰果證據移植，不重開無關硬體、全量美術或已驗移動矩陣。

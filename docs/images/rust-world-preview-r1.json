@@ -1,0 +1,36 @@
+{
+  "source": "native/gui/continue/frame-001.ppm",
+  "source_sha256": "cb93226401696cdbb0648931298828fc9ddd4eb2a75e6a4cd9be3df1c979260d",
+  "output_sha256": "a7f4eff5d11f845d4a2ef79f8fd4dd3261bc7bc816059b3c2ecfae4d3ac1f64e",
+  "source_canvas": [
+    1920,
+    1320
+  ],
+  "output": [
+    1280,
+    880
+  ],
+  "resize": "Lanczos, documentation only; no exact-state comparison at resized resolution",
+  "scenario": "Rust standalone world preview; fixed original start data; normal keys; map1 40,42; one blocked mountain; cold F7 resume",
+  "fixed_seed": 1,
+  "state": {
+    "actions": "3",
+    "x": "40",
+    "y": "42",
+    "remaining": "322",
+    "seed": "415139642",
+    "state_hash": "c52c4aad0e61f70d",
+    "font": "1",
+    "music": "false",
+    "pending": "None",
+    "saves": "0",
+    "loaded": "true",
+    "captures": "1",
+    "readback_equal": "true",
+    "queued_bytes": "0",
+    "drains": "0",
+    "music_frames": "3840000",
+    "frame_hash": "86e01fe9294dfe86"
+  },
+  "rights": "Approved HD research result; full media and binary local only"
+}

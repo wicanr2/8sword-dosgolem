@@ -100,6 +100,15 @@ pub struct Sdl {
 }
 impl Sdl {
     pub fn open(width: usize, height: usize, scale: f64, mute: bool) -> Result<Self, String> {
+        Self::open_named(width, height, scale, mute, "神州八劍・Rust 原生普通戰鬥")
+    }
+    pub fn open_named(
+        width: usize,
+        height: usize,
+        scale: f64,
+        mute: bool,
+        title: &str,
+    ) -> Result<Self, String> {
         unsafe {
             if SDL_Init(0x20 | if mute { 0 } else { 0x10 }) != 0 {
                 return Err(error());
@@ -112,7 +121,7 @@ impl Sdl {
                 width,
                 height,
             };
-            let title = CString::new("神州八劍・Rust 原生普通戰鬥").map_err(|e| e.to_string())?;
+            let title = CString::new(title).map_err(|e| e.to_string())?;
             s.window = SDL_CreateWindow(
                 title.as_ptr(),
                 0x2fff0000,

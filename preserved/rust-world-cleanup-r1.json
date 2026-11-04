@@ -1,0 +1,28 @@
+{
+  "status": "passed-scoped-cleanup",
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-world-r1/go-cache",
+      "files": 1740,
+      "bytes": 209186856
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-world-r1/native/rust-target",
+      "files": 776,
+      "bytes": 182797060
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-world-r1/native/gui-diagnostic-r1",
+      "files": 30,
+      "bytes": 121685026
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-world-r1/native/gui-diagnostic-r2",
+      "files": 23,
+      "bytes": 91246184
+    }
+  ],
+  "bytes": 604915126,
+  "files": 2569,
+  "kept": "Current binary, pack, final GUI, source/evidence and permanent archive; no other project resources removed"
+}

@@ -15,24 +15,24 @@ pub fn check_directory(dir: &Path) -> Result<(), String> {
     }
     Ok(())
 }
-fn read_file(path: &Path) -> Result<Vec<u8>, String> {
+fn read_file(path: &Path, limit: u64) -> Result<Vec<u8>, String> {
     let st = path.symlink_metadata().map_err(|e| e.to_string())?;
-    if !st.is_file() || st.len() > LIMIT {
+    if !st.is_file() || st.len() > limit {
         return Err("存檔檔案不合法".into());
     }
     let f = File::open(path).map_err(|e| e.to_string())?;
     let mut bytes = Vec::new();
-    f.take(LIMIT + 1)
+    f.take(limit + 1)
         .read_to_end(&mut bytes)
         .map_err(|e| e.to_string())?;
-    if bytes.len() as u64 > LIMIT {
+    if bytes.len() as u64 > limit {
         return Err("存檔過大".into());
     }
     Ok(bytes)
 }
 pub fn load<'a>(dir: &Path, catalog: &'a Catalog) -> Result<Checkpoint<'a>, String> {
     check_directory(dir)?;
-    Checkpoint::decode(catalog, &read_file(&dir.join(NAME))?)
+    Checkpoint::decode(catalog, &read_file(&dir.join(NAME), LIMIT)?)
 }
 fn fresh(path: &Path) -> Result<File, String> {
     let mut options = OpenOptions::new();
@@ -61,8 +61,36 @@ pub fn save(dir: &Path, checkpoint: &Checkpoint<'_>) -> Result<(), String> {
     save_inner(dir, checkpoint, false)
 }
 fn save_inner(dir: &Path, checkpoint: &Checkpoint<'_>, interrupt: bool) -> Result<(), String> {
-    check_directory(dir)?;
     let raw = checkpoint.encode()?;
+    save_named(
+        dir,
+        NAME,
+        &raw,
+        LIMIT,
+        |b| Checkpoint::decode(checkpoint.catalog(), b).map(|_| ()),
+        interrupt,
+    )
+}
+pub(crate) fn read_named(dir: &Path, name: &str, limit: u64) -> Result<Vec<u8>, String> {
+    check_directory(dir)?;
+    if ![NAME, "world-preview.chk"].contains(&name) || limit > 8192 {
+        return Err("檢查點槽位錯誤".into());
+    }
+    read_file(&dir.join(name), limit)
+}
+pub(crate) fn save_named(
+    dir: &Path,
+    name: &str,
+    raw: &[u8],
+    limit: u64,
+    validate: impl Fn(&[u8]) -> Result<(), String>,
+    interrupt: bool,
+) -> Result<(), String> {
+    check_directory(dir)?;
+    if ![NAME, "world-preview.chk"].contains(&name) || limit > 8192 || raw.len() as u64 > limit {
+        return Err("檢查點槽位錯誤".into());
+    }
+    validate(raw)?;
     let lock = dir.join(".battle-checkpoint.lock");
     let _lock_file = fresh(&lock)?;
     let temp = dir.join(format!(
@@ -75,10 +103,10 @@ fn save_inner(dir: &Path, checkpoint: &Checkpoint<'_>, interrupt: bool) -> Resul
         temp,
         owns_temp: false,
     };
-    let path = dir.join(NAME);
+    let path = dir.join(name);
     match path.symlink_metadata() {
         Ok(_) => {
-            Checkpoint::decode(checkpoint.catalog(), &read_file(&path)?)?;
+            validate(&read_file(&path, limit)?)?;
         }
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
         Err(e) => return Err(e.to_string()),
