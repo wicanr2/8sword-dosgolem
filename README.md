@@ -20,7 +20,9 @@
 
 開發環境完成還原後，執行 `bash tools/original-player.sh build`，再用 `bash tools/original-player.sh run <Go世界進度絕對路徑> <新的暫存目錄絕對路徑>`。開始畫面選繼續；只接受已匯入的世界進度。新遊戲建立、戰中重啟及AI／規則工具列尚未接入此入口，原版播放器保持既有功能。
 
-Rust第一段原生傷害與減員核心已完成201組Go參考向量比較，測試不掛載DOS EXE、Go或遊戲素材。`bash tools/remake-rust.sh`在Docker內重建及核對。這是[獨立核心](docs/spec/031-rust-independent-remake.md)的起步，完整回合、世界、原版式介面及存檔依[工作表](WORKLIST.md)接續，尚非可玩的獨立版。
+Rust原生核心已接33種兵種、初始陣位、補位、近戰換位及雙方普通攻擊。201組算式、309組位置向量與三場戰鬥的40個普通行動核對通過，包含勝利、全滅與撤退。`bash tools/remake-rust.sh`在Docker內重建，執行容器只掛Rust來源與獨立輸出子目錄，不掛DOS EXE或Go研究檔。見[限定驗收](docs/spec/031-rust-independent-remake.md#兵種與普通行動移植限定-conformed)與[核對收據](preserved/rust-battle-core-audit-r1.json)。
+
+目前行動順序與選隊仍取自既有記錄，Rust自行計算每次兵數、HP及結果。原生回合控制器、世界、原版式介面及存檔依[工作表](WORKLIST.md)接續，尚非可玩的獨立版。
 
 ## 部隊管理與Go資料
 

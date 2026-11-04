@@ -10,15 +10,21 @@
 
 `cmd/8sword`與原七程式仍走既有原版／HD路徑。`cmd/8sword-owned`未加準備建置標記時，在讀寫進度前拒絕；`-import-only`保持。[original-player.sh](tools/original-player.sh)只啟用套過來源畫布patch的原版操作候選，`owned-player.sh run`轉交同一入口。候選只接受已匯入且不在舊卡片戰中的世界進度，開始畫面選Continue。所有既有v1至v5資料保留，不刪附檔或降級交給原版固定表。
 
-[原版管理與Go資料接管](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)、HD新兵欄位與原數量輸入，以及原版戰場的限定完整鏈已抽驗。下一步依[031](docs/spec/031-rust-independent-remake.md)移植Rust typed兵種、雙方完整回合、原版式UI及保存；海報／AI與規則工具列、新遊戲及剩餘分支依WORKLIST接續。擴充ID不寫入原25種索引，原版模式新兵呈現未處理。
+[原版管理與Go資料接管](docs/spec/030-battle-expansion-proposal.md#原版部隊管理方式定案與go資料接管)、HD新兵欄位與原數量輸入，以及原版戰場的限定完整鏈已抽驗。Rust typed兵種與雙側普通行動亦已完成限定移植。下一步依[031](docs/spec/031-rust-independent-remake.md)接原生回合控制、原版式UI及保存；海報／AI與規則工具列、新遊戲及剩餘分支依WORKLIST接續。擴充ID不寫入原25種索引，原版模式新兵呈現未處理。
 
 ## 最近驗證
 
-最新為[共用生命週期限定驗收](docs/spec/030-battle-expansion-proposal.md#原版操作整合限定-conformed)與[Rust原生核心](docs/spec/031-rust-independent-remake.md#移植驗收-conformed)。原版管理、原店／增援數量輸入、月結、寶箱、煉金、召兵、原版戰鬥及F7直接安裝於同一入口，不呼叫舊卡片factory。314份Go來源候選的同程序F2／F3取消、隨機撤退→守軍勝利→隨機撤退、實際F7及獨立程序Continue通過；六隊與資源、位置相同。守軍勝後月薪200→220、民兵1000→978；新增20狼／20女弓箭手保持。軍隊／座標為fixture，seed在開局前固定一次。
+最新為[031兵種與普通行動](docs/spec/031-rust-independent-remake.md#兵種與普通行動移植限定-conformed)。Rust已解析33種兵種的名稱、費用、領導用量、階級、攻擊、HP及射擊旗標，新增八種ID不轉成原kind。六隊初始化、HP、補位與近戰換位通過37／128／144共309組現行Go函式向量；201組算式保持。按既有記錄選隊，Rust獨立算完32動作勝局、8動作敗局及撤退，40動作的兵數、逐次HP、顯示倒數與結果相同，12個測試及CLI通過。
+
+這是普通行動狀態鏈，尚未接原生半回合順序、選隊／選敵、原式GUI或存檔。不能把按記錄重播當成正常玩家路徑或完整回合控制器完成。敵方近戰的兩次pending HP與一次正式減員保留；空陣位可共用最後空列，所有實際索引仍限六隊。原兵種特殊10／12與超相容域普通攻擊明確拒絕，32位兵數與64位HP保留，不截斷。
+
+[核對](preserved/rust-battle-core-audit-r1.json)、[來源工具](tools/rust-battle-core.py)、[Rust工具](tools/remake-rust.sh)及[永久保存](preserved/README.md#rust兵種與普通行動保存)為入口。最終Rust容器只掛唯讀crate與native輸出子目錄，看不到PAM／Go來源；前輪「沒有掛載EXE／Go」需依031勘誤限縮，當時只是程式沒有使用它們。正式197來源七程式、923核心、535素材、1071美術及Go保存schema不改，未新增原版執行或GUI驗收。
+
+前輪為[共用生命週期限定驗收](docs/spec/030-battle-expansion-proposal.md#原版操作整合限定-conformed)與[Rust原生核心](docs/spec/031-rust-independent-remake.md#移植驗收-conformed)。原版管理、原店／增援數量輸入、月結、寶箱、煉金、召兵、原版戰鬥及F7直接安裝於同一入口，不呼叫舊卡片factory。314份Go來源候選的同程序F2／F3取消、隨機撤退→守軍勝利→隨機撤退、實際F7及獨立程序Continue通過；六隊與資源、位置相同。守軍勝後月薪200→220、民兵1000→978；新增20狼／20女弓箭手保持。軍隊／座標為fixture，seed在開局前固定一次。
 
 實際Xvfb視窗以X11按鍵進Continue、F2、F3及取消返回通過，畫布與提交SHA相同，取消保持token。Go物件只安裝一次，後續就地重設；原25種固定表不接擴充ID。新入口使用原版戰鬥規則，尚未串策略AI／擴充規則工具列、新遊戲建立與戰中續接；不把既有個別模組測試當成本輪全部世界事件重驗。[核對](preserved/original-player-integration-audit-r1.json)、[保存](preserved/README.md#原版操作整合與rust起步保存)及[操作圖](docs/images/original-player-integrated-r1.png)為入口。
 
-Rust以既有1.99.1工具鏈、無第三方依賴移植玩家普通傷害及正式減員。201組Go輸入／輸出與拒絕向量、兩個Rust測試及原生CLI通過，容器沒有原版EXE、Go或素材掛載。這證明移植一致，沒有宣稱整款原版parity或獨立遊戲完成。後續以WORKLIST為準，直接推進Rust typed兵種、雙方完整回合、原版六隊UI及存檔；不再為逐兵種美術或硬體時序重開Go驗收。
+前輪Rust以既有1.99.1工具鏈、無第三方依賴移植玩家普通傷害及正式減員。201組Go輸入／輸出與拒絕向量、兩個Rust測試及原生CLI通過；程式沒有讀EXE或呼叫Go，掛載隔離聲明依本輪勘誤。這證明移植一致，沒有宣稱整款原版parity或獨立遊戲完成。後續以WORKLIST為準，不再為逐兵種美術或硬體時序重開Go驗收。
 
 本輪收尾方向：使用者要求加速接完並執行Rust重製。必要項集中在原戰場的隨機／守軍共用生命週期、正常管理與保存入口，以及代表勝敗／撤退抽驗；已驗素材與公式不重開。新兵額外手繪動作列為Rust階段精修，不以逐兵種／逐場景驗收延後重製。AI／規則既有規格保留，獨立版再接同一套工具列；本輪不新增玩法決策。
 

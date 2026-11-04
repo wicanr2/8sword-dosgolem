@@ -1,0 +1,10 @@
+{
+  "status": "passed-rust-battle-core-integrity",
+  "document": "docs/spec/031-rust-independent-remake.md",
+  "checked_links": 26,
+  "ownership_entries": 722,
+  "root_owned_entries": 0,
+  "markdown_directories": 0,
+  "python_syntax": true,
+  "positive_control": "README -> CONTEXT"
+}

@@ -1,0 +1,310 @@
+# Go production planner reference, not a save format
+SETUP	-=0,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	5,5,5,5,5,5	5,5,5,5,5,5	0,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:01=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	750,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:02=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	1200,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:03=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	5,5,5,5,5,0	5,5,5,5,5,5	1200,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:04=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	1800,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:05=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	2700,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:06=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	450,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:07=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	600,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:08=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	900,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:09=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	1200,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:10=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	5,5,5,5,5,0	5,5,5,5,5,5	1500,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:11=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	600,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:12=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	5,5,5,5,5,0	5,5,5,5,5,5	1200,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:13=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	1200,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:14=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	1800,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:15=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	2700,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:16=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	600,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:17=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	900,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:18=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	1350,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:19=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	1800,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:20=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	3000,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:21=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	900,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:22=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	1500,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:23=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	2100,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:24=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	5,5,5,5,5,0	5,5,5,5,5,5	2700,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:25=30,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	3600,0,0,0,0,0	0,0,0,0,0,0
+SETUP	openkb:arcr=4294967295,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	5,5,5,5,5,0	5,5,5,5,5,5	42949672950,0,0,0,0,0	0,0,0,0,0,0
+SETUP	openkb:pike=4294967295,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	42949672950,0,0,0,0,0	0,0,0,0,0,0
+SETUP	openkb:wolf=4294967295,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	12884901885,0,0,0,0,0	0,0,0,0,0,0
+SETUP	openkb:skel=4294967295,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	12884901885,0,0,0,0,0	0,0,0,0,0,0
+SETUP	openkb:troll=4294967295,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	214748364750,0,0,0,0,0	0,0,0,0,0,0
+SETUP	openkb:drui=4294967295,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	107374182375,0,0,0,0,0	0,0,0,0,0,0
+SETUP	openkb:vamp=4294967295,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	128849018850,0,0,0,0,0	0,0,0,0,0,0
+SETUP	openkb:drag=4294967295,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	0,5,5,5,5,5	5,5,5,5,5,5	858993459000,0,0,0,0,0	0,0,0,0,0,0
+SETUP	native:01=30,native:10=2,native:03=10,native:12=2,openkb:arcr=20,native:25=1	native:10=2,native:12=2,native:24=10,-=0,-=0,-=0	0,5,4,2,3,1	5,5,5,2,1,0	750,100,400,80,200,120	100,80,900,0,0,0
+SETUP	native:01=30,native:01=1,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	ERR
+SETUP	native:01=0,-=0,-=0,-=0,-=0,-=0	-=0,-=0,-=0,-=0,-=0,-=0	ERR
+SORT	native:01=0,native:03=0,native:10=0,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=0,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=0,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=0,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=0,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=0,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=0,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=0,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=1,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=1,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=1,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=1,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=1,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=1,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=0,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=0,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=0,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,4,5
+SORT	native:01=1,native:03=0,native:10=0,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=0,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,4,5
+SORT	native:01=0,native:03=1,native:10=0,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=0,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	3,1,2,0,4,5
+SORT	native:01=1,native:03=1,native:10=0,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=0,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=1,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=1,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,4,5
+SORT	native:01=1,native:03=0,native:10=1,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=1,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,4,5
+SORT	native:01=0,native:03=1,native:10=1,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=1,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	3,1,2,0,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=1,openkb:arcr=0,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=0,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=0,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=0,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=0,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=0,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=0,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=0,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=0,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=1,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=1,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=1,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=1,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=1,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=1,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=0,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=0,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=0,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,4,5
+SORT	native:01=1,native:03=0,native:10=0,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=0,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,4,5
+SORT	native:01=0,native:03=1,native:10=0,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=0,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	3,1,2,0,4,5
+SORT	native:01=1,native:03=1,native:10=0,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=0,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=1,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=1,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,4,5
+SORT	native:01=1,native:03=0,native:10=1,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=0,native:10=1,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,4,5
+SORT	native:01=0,native:03=1,native:10=1,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=0,native:03=1,native:10=1,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	3,1,2,0,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=1,openkb:arcr=1,native:25=0	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+SORT	native:01=0,native:03=0,native:10=0,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=0,native:03=0,native:10=0,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=1,native:03=0,native:10=0,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=1,native:03=0,native:10=0,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=0,native:03=1,native:10=0,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=0,native:03=1,native:10=0,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=1,native:03=1,native:10=0,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=1,native:03=1,native:10=0,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=0,native:03=0,native:10=1,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,5,2,3,1,4
+SORT	native:01=0,native:03=0,native:10=1,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,5,2,3,1,4
+SORT	native:01=1,native:03=0,native:10=1,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,5,2,3,1,4
+SORT	native:01=1,native:03=0,native:10=1,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,5,2,3,1,4
+SORT	native:01=0,native:03=1,native:10=1,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,5,4
+SORT	native:01=0,native:03=1,native:10=1,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,5,4
+SORT	native:01=1,native:03=1,native:10=1,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,5,4
+SORT	native:01=1,native:03=1,native:10=1,native:12=0,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,5,4
+SORT	native:01=0,native:03=0,native:10=0,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=0,native:03=0,native:10=0,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,5,1,4,2
+SORT	native:01=1,native:03=0,native:10=0,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=1,native:03=0,native:10=0,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,5,1,4,2
+SORT	native:01=0,native:03=1,native:10=0,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=0,native:03=1,native:10=0,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	3,1,5,0,4,2
+SORT	native:01=1,native:03=1,native:10=0,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=1,native:03=1,native:10=0,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=0,native:03=0,native:10=1,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,5,2,3,1,4
+SORT	native:01=0,native:03=0,native:10=1,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,5,4
+SORT	native:01=1,native:03=0,native:10=1,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,5,2,3,1,4
+SORT	native:01=1,native:03=0,native:10=1,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,1,5,4
+SORT	native:01=0,native:03=1,native:10=1,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,5,4
+SORT	native:01=0,native:03=1,native:10=1,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	3,1,2,0,5,4
+SORT	native:01=1,native:03=1,native:10=1,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,5,4
+SORT	native:01=1,native:03=1,native:10=1,native:12=1,openkb:arcr=0,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,5,4
+SORT	native:01=0,native:03=0,native:10=0,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=0,native:03=0,native:10=0,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=1,native:03=0,native:10=0,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=1,native:03=0,native:10=0,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=0,native:03=1,native:10=0,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=0,native:03=1,native:10=0,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=1,native:03=1,native:10=0,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=1,native:03=1,native:10=0,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=0,native:03=0,native:10=1,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,5,2,3,4,1
+SORT	native:01=0,native:03=0,native:10=1,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,5,2,3,4,1
+SORT	native:01=1,native:03=0,native:10=1,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,5,2,3,4,1
+SORT	native:01=1,native:03=0,native:10=1,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,5,2,3,4,1
+SORT	native:01=0,native:03=1,native:10=1,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	5,1,2,0,4,3
+SORT	native:01=0,native:03=1,native:10=1,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	5,1,2,0,4,3
+SORT	native:01=1,native:03=1,native:10=1,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,5,4,3
+SORT	native:01=1,native:03=1,native:10=1,native:12=0,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,5,4,3
+SORT	native:01=0,native:03=0,native:10=0,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=0,native:03=0,native:10=0,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,5,1,4,2
+SORT	native:01=1,native:03=0,native:10=0,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=1,native:03=0,native:10=0,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,5,1,4,2
+SORT	native:01=0,native:03=1,native:10=0,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=0,native:03=1,native:10=0,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	3,1,5,0,4,2
+SORT	native:01=1,native:03=1,native:10=0,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,5,3,4,2
+SORT	native:01=1,native:03=1,native:10=0,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,5,3,4,2
+SORT	native:01=0,native:03=0,native:10=1,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,5,2,3,4,1
+SORT	native:01=0,native:03=0,native:10=1,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	5,3,2,0,4,1
+SORT	native:01=1,native:03=0,native:10=1,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,5,2,3,4,1
+SORT	native:01=1,native:03=0,native:10=1,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,3,2,5,4,1
+SORT	native:01=0,native:03=1,native:10=1,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	5,1,2,3,4,0
+SORT	native:01=0,native:03=1,native:10=1,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	3,1,2,5,4,0
+SORT	native:01=1,native:03=1,native:10=1,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	false	0,1,2,3,4,5
+SORT	native:01=1,native:03=1,native:10=1,native:12=1,openkb:arcr=1,native:25=1	0,1,2,3,4,5	2,4,5,1,3,5,1,4,5,0,3,5	true	0,1,2,3,4,5
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	0	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	1	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	2	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	3	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	4	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	5	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	0	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	1	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	2	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	3	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	4	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	5	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	0	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	1	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	2	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	3	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	4	ERR
+MOTION	-=0,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	5	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	0	0,1,2,3,4,5
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	1	1,0,2,3,4,5
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	2	2,1,0,3,4,5
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	3	0,1,2,3,4,5
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	4	1,0,2,3,4,5
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	5	0,1,2,3,4,5
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	0	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	1	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	2	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	3	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	4	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	5	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	0	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	1	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	2	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	3	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	4	ERR
+MOTION	native:01=30,-=0,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	5	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	0	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	1	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	2	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	3	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	4	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	5	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	0	1,0,2,3,4,5
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	1	0,1,2,3,4,5
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	2	0,2,1,3,4,5
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	3	0,1,2,3,4,5
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	4	0,1,2,3,4,5
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	5	0,1,2,3,4,5
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	0	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	1	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	2	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	3	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	4	ERR
+MOTION	-=0,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	5	ERR
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	0	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	1	1,0,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	2	2,1,0,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	3	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	4	1,0,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	0	5	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	0	1,0,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	1	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	2	0,2,1,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	3	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	4	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	1	5	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	0	ERR
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	1	ERR
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	2	ERR
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	3	ERR
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	4	ERR
+MOTION	native:01=30,native:02=30,-=0,-=0,-=0,-=0	0,1,2,3,4,5	2	5	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	0	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	1	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	2	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	3	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	4	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	5	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	0	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	1	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	2	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	3	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	4	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	5	ERR
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	0	2,1,0,3,4,5
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	1	0,2,1,3,4,5
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	2	0,1,2,3,4,5
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	3	0,2,1,3,4,5
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	4	0,1,2,3,4,5
+MOTION	-=0,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	5	0,1,2,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	0	0,1,2,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	1	1,0,2,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	2	1,2,0,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	3	0,1,2,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	4	1,0,2,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	5	0,1,2,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	0	ERR
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	1	ERR
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	2	ERR
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	3	ERR
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	4	ERR
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	5	ERR
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	0	2,0,1,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	1	0,2,1,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	2	0,1,2,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	3	0,2,1,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	4	0,1,2,3,4,5
+MOTION	native:01=30,-=0,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	5	0,1,2,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	0	ERR
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	1	ERR
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	2	ERR
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	3	ERR
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	4	ERR
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	5	ERR
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	0	1,0,2,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	1	0,1,2,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	2	0,2,1,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	3	0,1,2,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	4	0,1,2,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	5	0,1,2,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	0	2,1,0,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	1	0,2,1,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	2	0,1,2,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	3	0,2,1,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	4	0,1,2,3,4,5
+MOTION	-=0,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	5	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	0	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	1	1,0,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	2	1,2,0,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	3	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	4	1,0,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	0	5	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	0	1,0,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	1	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	2	0,2,1,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	3	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	4	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	1	5	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	0	2,0,1,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	1	0,2,1,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	2	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	3	0,2,1,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	4	0,1,2,3,4,5
+MOTION	native:01=30,native:02=30,native:03=30,-=0,-=0,-=0	0,1,2,3,4,5	2	5	0,1,2,3,4,5

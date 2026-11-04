@@ -1,0 +1,54 @@
+{
+  "status": "passed-rust-battle-core-audit",
+  "models": {
+    "SETUP": 37,
+    "SORT": 128,
+    "MOTION": 144
+  },
+  "source": {
+    "sources": {
+      "army-catalog.json": "21902471f97d7c545db15a51905067bdbe3b8cfb2f9623a936eba862f273e2da",
+      "combat-catalog.json": "96a0b0e19f93e24ba942d10bc7bbb7e9a78a5a10cc9ce0fcf02fd3896940de13",
+      "PAM.AY": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "expanded-receipt.json": "d87320518930e8954910d9b4427c4291239d6d4077bc51be88a76823f7a925e2"
+    },
+    "steps": 40,
+    "scenarios": 3,
+    "kind": "Go migration reference; original evidence scope inherited; no new DOS run"
+  },
+  "tests_passed": 12,
+  "cli": "   Compiling eightsword-remake v0.1.0 (/crate)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.75s\n     Running `/out/rust-target/debug/8sword-remake --self-check`\nRust 原生核心：33種兵種、201組算式、309組陣位／補位／換位通過。\n3場戰鬥的40個普通行動通過；勝利1、全滅1、撤退1。執行期不需DOS EXE。\n目前按既有記錄的選隊順序重播，原生回合控制、操作介面與存檔待接。\n",
+  "crate_files": {
+    "battle-replay.tsv": "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235",
+    "Cargo.toml": "f4d9890aa15ac9372788b81589704e82282292e4754837fa49be38d540165a04",
+    "battle-models.tsv": "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109",
+    "Cargo.lock": "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61",
+    "unit-catalog.tsv": "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af",
+    "reference.tsv": "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf",
+    "src/lib.rs": "6262528756b0fcc335bf2aee7683309ad7b384508bc89dbe4a1a794817f76e05",
+    "src/catalog.rs": "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469",
+    "src/native_tests.rs": "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59",
+    "src/main.rs": "ff0b09713b5fd7e87bb1cd07a3904bdcea4875d7c27b0ffb60a2b460e83773ab",
+    "src/formation.rs": "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898",
+    "src/replay.rs": "8365bb24191bc0ec10ecf1a3fc248a46acff0d2d288fdd0b7d1d08f4e2ed184f",
+    "src/battle.rs": "bd6433db48a39d03d69cec48be47daed9183bd24f7ddfe819f300d3eb6e6ced7"
+  },
+  "native_binary_sha256": "945322a93ede95c148d07e2386df03aa1eb8dd3c0f0118b65f8d36f133b78bfc",
+  "runtime_mounts": [
+    "crate:read-only",
+    "native output only:read-write"
+  ],
+  "original_executable_mounted": false,
+  "go_mounted": false,
+  "formal_baseline_counts": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "limits": [
+    "Only native catalog/setup/sort/motion/ordinary state transitions.",
+    "Captured action order and selection; no autonomous scheduler, AI, original-style GUI or save integration.",
+    "Model vectors compare current Go helpers. Whole-action records inherit existing original-interface evidence; no fresh DOS oracle run."
+  ]
+}

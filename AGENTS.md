@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-04 Rust兵種與普通行動依[031限定驗收](docs/spec/031-rust-independent-remake.md#兵種與普通行動移植限定-conformed)完成。33種兵種、309組初始化／補位／換位、201組算式、40個既有普通行動及12個測試通過，含勝利／全滅／撤退。只取既有選隊順序，Rust自行算兵數／逐次HP／倒數與結果；原生半回合控制、選敵、原式GUI及保存尚未接，不稱完整回合完成。最後Rust容器只掛crate與native子目錄，真正看不到PAM／Go；前輪寬掛載聲明依031勘誤。入口為[工具](tools/remake-rust.sh)、[核對](preserved/rust-battle-core-audit-r1.json)及[永久保存](preserved/README.md#rust兵種與普通行動保存)。下一步依[WORKLIST](WORKLIST.md)接原生回合控制；不重開已驗Go／HD矩陣。正式197來源七程式、923核心、535素材、1071美術及Go保存格式保持。
+
 2026-11-04原版操作整合依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原版操作整合限定-conformed)完成314來源候選。同一組控制器串接F2／F3、隨機撤退→守軍勝利→隨機撤退、F7及獨立程序Continue；實際視窗原管理操作亦已抽驗。直接安裝既有服務，不進舊卡片factory。[開發入口](tools/original-player.sh)以準備來源建置繼續已匯入的世界進度；未準備原始建置及舊卡片戰中進度拒絕。完整限定戰鬥已有代表證據，依使用者確認開始[031 Rust獨立核心](docs/spec/031-rust-independent-remake.md)，201組Go向量及兩個Rust測試通過，不掛載DOS EXE／Go。下一步按[WORKLIST](WORKLIST.md)移植typed兵種、雙方完整回合、原版六隊UI及保存；AI／規則工具列、新遊戲與剩餘分支不冒稱完成。額外手繪動作移Rust精修，不重開全量美術驗收。[永久保存](preserved/README.md#原版操作整合與rust起步保存)含1518檔，不依賴workplace；正式197來源七程式、923核心、535素材及1071美術保持。
 
 2026-11-04新兵站姿依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿限定-conformed)完成310來源隔離候選。八種透明材質進Go來源畫布，原wrapper綁slot／raw，RGB前選圖；第一隊8×25背景範本由Go畫布展88×50，guest維持原尺寸。普通死亡依Go已提交列移除Actor。九對完整guest、七對Frame、八材質重建、三份F7／獨立Continue及158400死亡背景像素已驗。停用組有舊佔位圖，死亡區域比獨立背景；材質／快取額外試驗未提升。[保存與工具](preserved/README.md#原戰場新兵站姿保存)不依賴workplace。手繪攻擊姿態、其他特殊術死亡呈現、一般入口與隨機／守軍協調仍待；正式197來源七程式、923核心、535素材及1071美術保持，完整戰鬥後才進Rust。

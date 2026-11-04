@@ -1,0 +1,21 @@
+{
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-core-r1/build-cache",
+      "bytes": 143904408
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-core-r1/rust-target",
+      "bytes": 63288795
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-core-r1/native/rust-target",
+      "bytes": 47026314
+    }
+  ],
+  "total_bytes": 254219517,
+  "preserved_files": 348,
+  "preserved_objects": 346,
+  "kept_native_binary": true,
+  "other_projects_untouched": true
+}

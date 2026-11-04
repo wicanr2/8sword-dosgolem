@@ -1150,3 +1150,20 @@ timeout 300s docker run --rm --network none \
 [Rust工具](../tools/remake-rust.sh)使用既有`rust:1.99.1-slim-bookworm`，只掛唯讀crate及輸出目錄，在network none容器跑cargo test與原生CLI。crate位於`internal/remake-rust`，無第三方依賴，不以DOS EXE為執行期依賴。這是算式移植，尚無獨立可玩UI或新存檔格式。
 
 [清理收據](original-player-integration-cleanup-r1.json)保存後僅移除本批Go／Rust快取213420852 bytes；當前Go入口、測試程式與原生RustCLI保留。其他專案容器、映像與快取未清理，沒有Release或正式包。
+
+
+## Rust兵種與普通行動保存
+
+[031限定驗收](../docs/spec/031-rust-independent-remake.md#兵種與普通行動移植限定-conformed)與[獨立核對](rust-battle-core-audit-r1.json)保存33種兵種投影、37組陣位、128組補位、144組近戰矩陣，以及201組既有算式與三場40動作。12個Rust測試及CLI通過。勝利／全滅／撤退按既有選隊記錄重播，兵數與逐次HP由Rust重算；不稱原生回合控制、AI或正常GUI完成。
+
+[批次清單](rust-battle-core-r1.json)共348檔／346物件，壓縮11526565 bytes。完整Go來源315檔、模型匯出程式、Rust來源、原記錄、PAM輸入、二進位及工具參數留本機`rust-battle-core-r1/<SHA>.gz`，不加入Git。files列原路徑、SHA、bytes與mode，objects列gzip與壓縮SHA。解壓至新的空目錄，按相對路徑還原並核對原SHA／mode，不覆寫來源。原始輸入及既有素材仍按前輪保存恢復。
+
+[脫離工作區核對](rust-battle-core-detached-r1.json)只掛唯讀preserved與tools，使用tmpfs保存暫存JSON；沒有workplace、遊戲或核心掛載。執行[工具](../tools/rust-battle-core.py)的`verify --archive /archive --out <新JSON>`，逐物件解壓核對。本輪固定使用Pillow11.3.0-r2、UID1000與network none。`archive --project /project --archive /project/preserved --out /project/preserved/rust-battle-core-r1.json`建立保存，`audit --project /project --out <新JSON>`核對來源、資料投影、測試及正式197／7／923／535基線。
+
+候選目錄為`workplace/probe-20261023/graphics-first/battle-r1/rust-battle-core-r1`。`prepare --project /project --work <空目錄> --crate <Rust crate>`先驗前輪保存SHA，再建立固定資料、完整記錄及native輸出子目錄；不覆寫已有資料。`freeze`建立Go來源副本並套既有來源畫布patch，原Go模型匯出測試的環境與命令見批次execution-r1.json。`models`把新匯出的battle-models.tsv固定到crate。來源crate在`internal/remake-rust`，由[Docker入口](../tools/remake-rust.sh)執行。
+
+Rust執行容器只掛唯讀crate及native子目錄，沒有PAM、Go來源／匯出程式或模擬器。前輪寬輸出掛載曾讓研究檔可見，隔離聲明已在031及WORKLOG勘誤；本批最終窄掛載測試才作無EXE／Go掛載證據。格式檢查沿既有mm45 Rust映像的rustfmt，建置／執行沿既有Rust1.99.1基底；不新建工具映像或下載依賴。
+
+[清理收據](rust-battle-core-cleanup-r1.json)只移除本批Go與兩份Rust建置快取254219517 bytes，原生binary先保存及核對SHA後保留。正式197來源七程式、923核心、535素材、1071美術與Go存檔格式保持，沒有Release。
+
+本批[文件與擁有權核對](rust-battle-core-integrity-r1.json)另存。
