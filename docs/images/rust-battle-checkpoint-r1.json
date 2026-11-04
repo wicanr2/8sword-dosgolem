@@ -1,0 +1,101 @@
+{
+  "image_sha256": "d042996524d3b55707e316a373795b226d8b5062d79392c3a665781bfcf06786",
+  "sources": [
+    {
+      "run": "ordinary-control",
+      "label": "saved-wait",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/frame-001.ppm",
+      "sha256": "2848946e431ef2b48ae998eb32c82a7a908b586b1934066d3c8bfeff1687616d",
+      "captured": {
+        "frame_hash": "7a8dab310f9080f1",
+        "font": "lishu",
+        "sequence": "0",
+        "spell_returns": "0",
+        "army": "1000,10,0,0,0,0",
+        "hp": "3000,100,0,0,0,0",
+        "charges": "",
+        "fx": "false",
+        "enemy_returns": "0",
+        "enemy_army": "11,35,29,0,0,0",
+        "spell": "",
+        "checkpoint_hash": "a23b972993815a80",
+        "seed": "305419896",
+        "saves": "1",
+        "loaded": "false"
+      }
+    },
+    {
+      "run": "ordinary-continue",
+      "label": "cold-wait",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/frame-001.ppm",
+      "sha256": "2848946e431ef2b48ae998eb32c82a7a908b586b1934066d3c8bfeff1687616d",
+      "captured": {
+        "frame_hash": "7a8dab310f9080f1",
+        "font": "lishu",
+        "sequence": "0",
+        "spell_returns": "0",
+        "army": "1000,10,0,0,0,0",
+        "hp": "3000,100,0,0,0,0",
+        "charges": "",
+        "fx": "false",
+        "enemy_returns": "0",
+        "enemy_army": "11,35,29,0,0,0",
+        "spell": "",
+        "checkpoint_hash": "a23b972993815a80",
+        "seed": "305419896",
+        "saves": "0",
+        "loaded": "true"
+      }
+    },
+    {
+      "run": "support-control",
+      "label": "paid-saved",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/frame-002.ppm",
+      "sha256": "1cd8b8708c87c06fef74d77c7eefa5d7b189fd992ad3a0768fa4e5dd1b6cf0ed",
+      "captured": {
+        "frame_hash": "046425ff2861aa48",
+        "font": "noto",
+        "sequence": "3",
+        "spell_returns": "2",
+        "army": "94,2,0,1,0,0",
+        "hp": "1326,100,0,10,0,0",
+        "charges": "2,3,3,3,2,3,2,3",
+        "fx": "false",
+        "enemy_returns": "0",
+        "enemy_army": "11,35,29,0,0,0",
+        "spell": "4",
+        "checkpoint_hash": "374fb07364b5b30e",
+        "seed": "3080048918",
+        "saves": "2",
+        "loaded": "false"
+      }
+    },
+    {
+      "run": "paid-continue",
+      "label": "paid-cold",
+      "source": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/frame-001.ppm",
+      "sha256": "1cd8b8708c87c06fef74d77c7eefa5d7b189fd992ad3a0768fa4e5dd1b6cf0ed",
+      "captured": {
+        "frame_hash": "046425ff2861aa48",
+        "font": "noto",
+        "sequence": "3",
+        "spell_returns": "2",
+        "army": "94,2,0,1,0,0",
+        "hp": "1326,100,0,10,0,0",
+        "charges": "2,3,3,3,2,3,2,3",
+        "fx": "false",
+        "enemy_returns": "0",
+        "enemy_army": "11,35,29,0,0,0",
+        "spell": "",
+        "checkpoint_hash": "374fb07364b5b30e",
+        "seed": "3080048918",
+        "saves": "0",
+        "loaded": "true"
+      }
+    }
+  ],
+  "layout": "上列普通存檔／冷續接；下列已扣次選敵存檔／冷續接",
+  "runtime": "native Rust; SDL readback equals framebuffer",
+  "fixture": true,
+  "controlled_memory_or_ip": false
+}

@@ -5,6 +5,9 @@ use crate::spells::{Spell, SpellBook, SpellEffect, SpellError, SpellResult, amou
 #[path = "enemy.rs"]
 mod enemy;
 pub use enemy::{EnemyConfig, enemy_amount, enemy_selector};
+#[path = "checkpoint.rs"]
+mod checkpoint;
+pub use checkpoint::{Checkpoint, ViewState};
 
 // Original PAM MZ body + 1D780h + DS:708A/708E/7092/7096.
 const ORDERS: [[u8; 3]; 4] = [[2, 4, 5], [1, 3, 5], [1, 4, 5], [0, 3, 5]];

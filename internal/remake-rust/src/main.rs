@@ -47,16 +47,19 @@ fn verify() -> Result<(), String> {
         "原生普通回合：{}場、{}次選隊、{}次攻擊、{}次略過通過。",
         controller.battles, controller.offers, controller.actions, controller.skips
     );
-    println!("--battle 啟動原生普通戰鬥樣本；世界流程與存檔待接。");
+    println!("--battle 啟動原生普通戰鬥樣本；世界流程與世界存檔待接。");
     let (models, cases) =
         eightsword_remake::replay::check_spells(&catalog, include_str!("../spell-reference.tsv"))?;
     println!(
-        "玩家八術：{models}組模型、{cases}份既有原版介面收據通過；--battle --spells啟動施法樣本。世界與存檔待接。"
+        "玩家八術：{models}組模型、{cases}份既有原版介面收據通過；--battle --spells啟動施法樣本。世界流程與世界存檔待接。"
     );
     let (models, cases) =
         eightsword_remake::replay::check_enemy(&catalog, include_str!("../enemy-reference.tsv"))?;
     println!(
         "敵方八分派：{models}組模型、{cases}份既有原版介面收據通過；--battle --enemy-spells啟動敵術樣本。"
+    );
+    println!(
+        "原生戰中檢查點：--save-dir <既有目錄>，F7存檔；--continue由保存的戰鬥續接。舊Go／世界進度不變。"
     );
     Ok(())
 }

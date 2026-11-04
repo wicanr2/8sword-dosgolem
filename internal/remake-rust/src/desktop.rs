@@ -1,6 +1,9 @@
 use crate::battle::{Modifiers, Outcome, Side, Stack};
 use crate::catalog::{Catalog, UnitId};
-use crate::controller::{Controller, EnemyConfig, NAVIGATION, OriginalRng, POSITIONS};
+use crate::checkpoint_store;
+use crate::controller::{
+    Checkpoint, Controller, EnemyConfig, NAVIGATION, OriginalRng, POSITIONS, ViewState,
+};
 use crate::media_assets::{Font, MediaPack, checksum};
 use crate::sdl::Sdl;
 use crate::spells::{Spell, SpellBook, SpellResult};
@@ -266,6 +269,8 @@ fn compose(
     message: &str,
     spell_view: &SpellView,
     now: Instant,
+    checkpoint_enabled: bool,
+    notice: Option<&str>,
 ) -> Result<Vec<u8>, String> {
     let mut frame = vec![0u8; W * H * 4];
     fill(&mut frame, [0, 0, W as i32, H as i32], [9, 36, 29]);
@@ -293,6 +298,10 @@ fn compose(
     ] {
         border(&mut frame, [x, 2, 232, 44], [206, 170, 74]);
         text(&mut frame, font, label, x + 10, 4, 38, 210)?;
+    }
+    if checkpoint_enabled {
+        border(&mut frame, [1480, 2, 232, 44], [206, 170, 74]);
+        text(&mut frame, font, "F7存檔", 1490, 4, 38, 210)?;
     }
     for side in 0..2 {
         for slot in 0..6 {
@@ -394,7 +403,9 @@ fn compose(
             menu_label(&mut frame, font, "0", 1104, y + 18)?;
         }
     }
-    let status = if let Some(outcome) = c.battle().outcome() {
+    let status = if let Some(notice) = notice {
+        notice.to_owned()
+    } else if let Some(outcome) = c.battle().outcome() {
         match outcome {
             Outcome::Win => "勝利",
             Outcome::Loss => "全軍覆沒",
@@ -426,7 +437,11 @@ fn compose(
     text(
         &mut frame,
         font,
-        "方向鍵選敵 Enter出手 Space略過 Esc撤退 R再戰 F10字型",
+        if checkpoint_enabled {
+            "方向鍵選敵 Enter出手 Space略過 Esc撤退 R再戰 F10字型 F7存檔"
+        } else {
+            "方向鍵選敵 Enter出手 Space略過 Esc撤退 R再戰 F10字型"
+        },
         18,
         1288,
         28,
@@ -474,6 +489,7 @@ fn wav(path: &Path, pcm: &[u8]) -> Result<(), String> {
 
 pub fn run(args: &[String]) -> Result<(), String> {
     let (mut assets, mut capture) = (None, None);
+    let (mut save_dir, mut continuing, mut seed_given) = (None, false, false);
     let (mut mute, mut weak, mut spells, mut taoist) = (false, false, false, false);
     let mut enemy_spells = false;
     let mut scale = 2.0 / 3.0;
@@ -484,6 +500,11 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
+            "--save-dir" => {
+                i += 1;
+                save_dir = Some(PathBuf::from(args.get(i).ok_or("缺少存檔目錄")?));
+            }
+            "--continue" => continuing = true,
             "--assets" => {
                 i += 1;
                 assets = Some(PathBuf::from(args.get(i).ok_or("缺少素材路徑")?));
@@ -501,6 +522,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     .map_err(|_| "縮放值無效")?;
             }
             "--seed" => {
+                seed_given = true;
                 i += 1;
                 seed = args
                     .get(i)
@@ -520,6 +542,12 @@ pub fn run(args: &[String]) -> Result<(), String> {
         }
         i += 1;
     }
+    if continuing && (weak || spells || taoist || enemy_spells || seed_given) {
+        return Err("續接時使用保存的軍隊與種子，請移除樣本與seed參數".into());
+    }
+    if let Some(dir) = &save_dir {
+        checkpoint_store::check_directory(dir)?;
+    }
     if !scale.is_finite() || !(0.5..=1.0).contains(&scale) {
         return Err("縮放值必須介於0.5與1".into());
     }
@@ -531,25 +559,71 @@ pub fn run(args: &[String]) -> Result<(), String> {
             return Err("擷取目錄必須存在".into());
         }
     }
+    let catalog = Catalog::builtin()?;
+    let restored = if continuing {
+        Some(checkpoint_store::load(
+            save_dir.as_deref().ok_or("續接需要--save-dir")?,
+            &catalog,
+        )?)
+    } else {
+        None
+    };
+    if let Some(s) = &restored {
+        weak = s.view.scenario & 1 != 0;
+        spells = s.view.scenario & 2 != 0;
+        taoist = s.view.scenario & 4 != 0;
+        enemy_spells = s.view.scenario & 8 != 0;
+    }
+    let scenario = u8::from(weak)
+        | (u8::from(spells) << 1)
+        | (u8::from(taoist) << 2)
+        | (u8::from(enemy_spells) << 3);
     let assets = assets.ok_or("請指定--assets素材包")?;
     let mut pack = MediaPack::load(&assets)?;
     if spells || enemy_spells {
         pack.load_spell_assets(&assets)?;
     }
-    let catalog = Catalog::builtin()?;
-    let mut c = battle_controller(&catalog, weak, spells, taoist, enemy_spells)?;
+    let (mut c, mut rng, view) = if let Some(s) = restored {
+        (s.controller, s.rng, s.view)
+    } else {
+        (
+            battle_controller(&catalog, weak, spells, taoist, enemy_spells)?,
+            OriginalRng { seed },
+            ViewState::default(),
+        )
+    };
+    for row in c.battle().rows().iter().flatten().filter(|r| r.count > 0) {
+        if !row.unit.is_some_and(|id| pack.units.contains_key(&id)) {
+            return Err("存活部隊缺少素材".into());
+        }
+    }
     let mut spell_view = SpellView {
-        cursor: 0,
+        cursor: usize::from(view.spell_cursor),
         animation: None,
         side: Side::Player,
     };
-    let mut rng = OriginalRng { seed };
     let sdl = Sdl::open(W, H, scale, mute)?;
-    let (mut font, mut music, mut cursor) = (0usize, !mute, 1usize);
+    let (mut font, mut music, mut cursor) = (
+        usize::from(view.font),
+        view.music && !mute,
+        usize::from(view.cursor),
+    );
+    sdl.pause_music(!music);
     let mut message = String::new();
-    let mut seen = None;
+    let mut seen = if continuing {
+        c.current().map(|a| (c.half_turn(), a.side.index(), a.raw))
+    } else {
+        None
+    };
     let mut ready = Instant::now();
-    let mut enemy_ready = Instant::now();
+    let mut enemy_ready = Instant::now() + Duration::from_millis(180);
+    let (mut save_requested, mut saves, mut last_saved) = (false, 0u64, String::new());
+    let mut notice = continuing.then(|| {
+        (
+            "讀檔 OK".to_owned(),
+            Instant::now() + Duration::from_millis(1200),
+        )
+    });
     let (mut frames, mut captures, mut queued_bytes, mut drains) = (0u64, 0u64, 0u64, 0u64);
     let mut last_queue = 0;
     let (mut audio_position, mut captured_audio) = (0usize, Vec::new());
@@ -583,6 +657,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     if (1200..1432).contains(&x) {
                         key = 114;
                     }
+                    if save_dir.is_some() && (1480..1712).contains(&x) {
+                        key = 1073741888;
+                    }
                 }
             }
             if key == 1073741891 {
@@ -594,6 +671,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
             if key == 1073741893 && capture.is_some() {
                 capture_next = true;
+            }
+            if key == 1073741888 && save_dir.is_some() {
+                save_requested = true;
+                continue;
             }
             if key == 114 || key == 82 {
                 c = battle_controller(&catalog, weak, spells, taoist, enemy_spells)?;
@@ -725,6 +806,31 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 }
             }
         }
+        if save_requested && now >= ready {
+            let state = Checkpoint {
+                controller: c.clone(),
+                rng,
+                view: ViewState {
+                    font: font as u8,
+                    music,
+                    cursor: cursor as u8,
+                    spell_cursor: spell_view.cursor as u8,
+                    scenario,
+                },
+            };
+            match checkpoint_store::save(save_dir.as_deref().ok_or("缺少存檔目錄")?, &state) {
+                Ok(()) => {
+                    saves += 1;
+                    last_saved = format!("{:016x}", checksum(&state.encode()?));
+                    notice = Some(("存檔 OK".into(), now + Duration::from_millis(1200)));
+                }
+                Err(e) => {
+                    eprintln!("存檔失敗：{e}");
+                    notice = Some(("存檔失敗".into(), now + Duration::from_millis(1200)));
+                }
+            }
+            save_requested = false;
+        }
         if now >= ready && c.battle().outcome().is_none() {
             if let Some(actor) = c.next_actor().map_err(|e| format!("{e:?}"))? {
                 let key = (c.half_turn(), actor.side.index(), actor.raw);
@@ -787,6 +893,11 @@ pub fn run(args: &[String]) -> Result<(), String> {
             &message,
             &spell_view,
             now,
+            save_dir.is_some(),
+            notice
+                .as_ref()
+                .filter(|(_, until)| now < *until)
+                .map(|(text, _)| text.as_str()),
         )?;
         let readback = sdl.draw(&frame, capture_next)?;
         if capture_next {
@@ -841,6 +952,22 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     .as_ref()
                     .map(|(r, _)| r.spell.index().to_string())
                     .unwrap_or_default()
+            ));
+            let state = Checkpoint {
+                controller: c.clone(),
+                rng,
+                view: ViewState {
+                    font: font as u8,
+                    music,
+                    cursor: cursor as u8,
+                    spell_cursor: spell_view.cursor as u8,
+                    scenario,
+                },
+            };
+            capture_state.push_str(&format!(
+                "checkpoint_hash\t{:016x}\nseed\t{}\nsaves\t{saves}\nloaded\t{continuing}\n",
+                checksum(&state.encode()?),
+                rng.seed
             ));
             fs::write(
                 path.join(format!("capture-{captures:03}.tsv")),
@@ -950,6 +1077,22 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         .map(|n| n.to_string())
                         .collect::<Vec<_>>()
                         .join(",")
+                );
+                let state = Checkpoint {
+                    controller: c.clone(),
+                    rng,
+                    view: ViewState {
+                        font: font as u8,
+                        music,
+                        cursor: cursor as u8,
+                        spell_cursor: spell_view.cursor as u8,
+                        scenario,
+                    },
+                };
+                let data = format!(
+                    "{data}checkpoint_hash\t{:016x}\nlast_saved\t{last_saved}\nseed\t{}\nsaves\t{saves}\nloaded\t{continuing}\nsave_requested\t{save_requested}\n",
+                    checksum(&state.encode()?),
+                    rng.seed
                 );
                 fs::write(path.join("status.tmp"), data)
                     .and_then(|_| fs::rename(path.join("status.tmp"), path.join("status.tsv")))

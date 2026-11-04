@@ -80,6 +80,48 @@ pub struct Battle<'a> {
 }
 
 impl<'a> Battle<'a> {
+    pub(crate) fn restore_native(
+        catalog: &'a Catalog,
+        rows: Rows,
+        hp: [[u64; 6]; 2],
+        sequence: u64,
+        retreat: bool,
+    ) -> Result<Self, BattleError> {
+        for side in 0..2 {
+            let mut seen = Vec::new();
+            for raw in 0..6 {
+                let row = rows[side][raw];
+                if row.count > 32767 {
+                    return Err(BattleError::CompatibilityRange);
+                }
+                if let Some(id) = row.unit {
+                    if seen.contains(&id)
+                        || hp[side][raw]
+                            > catalog
+                                .get(id)
+                                .hp
+                                .checked_mul(32767)
+                                .ok_or(BattleError::Overflow)?
+                    {
+                        return Err(BattleError::InvalidArmy);
+                    }
+                    seen.push(id);
+                } else if row.count != 0 || hp[side][raw] != 0 {
+                    return Err(BattleError::InvalidArmy);
+                }
+            }
+        }
+        Ok(Self {
+            catalog,
+            rows,
+            hp,
+            sequence,
+            exit: retreat.then_some(Outcome::Retreat),
+        })
+    }
+    pub(crate) fn retreated(&self) -> bool {
+        self.exit == Some(Outcome::Retreat)
+    }
     pub fn new(catalog: &'a Catalog, rows: Rows) -> Result<Self, BattleError> {
         let formation = initial_formation(catalog, &rows)?;
         Ok(Self {

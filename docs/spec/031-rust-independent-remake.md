@@ -172,3 +172,34 @@ READY補充：沿既有ida-rounds.json的原sub_20724／runtime0F67:21B4，2074B
 原式畫面由Rust直接繪製，執行與GUI只掛native子目錄及單一輸入工具，看不到Go／PAM／模擬器。建置只掛唯讀crate與native；格式化另允許Rust工作樹寫入。OGG、三字型及PON沿前輪批准素材，未新增音訊或完整動畫相位聲明。[核對](../../preserved/rust-enemy-spells-audit-r1.json)、[來源／保存工具](../../tools/rust-enemy-spells.py)、[GUI工具](../../tools/rust-enemy-spells-gui.py)、[研究](../../RESEARCH-LOG.md#rust敵方八分派)與[永久保存](../../preserved/README.md#rust敵方八分派保存)記錄完整範圍。
 
 玩家／敵方施法及普通戰鬥樣本已完成；戰中保存、世界、原式管理／募兵、結局及其餘工具列依WORKLIST續接，不稱完整獨立遊戲。
+
+## Rust戰中檢查點
+
+範圍沿使用者已確認的Rust獨立執行與保存需求，先讓既有原生戰鬥樣本能關閉後續打。這是可替換的原生開發檢查點，不改Go v5／原版保存、不訂定完整世界存檔格式，也不承諾直接讀舊卡片或dosgolem快照。後續世界進度與匯入相容性另依工作表處理。
+
+已確認：Go research-battle-resume.go保存DOSGOLEM-M／D v3的記憶體、暫存器、DOS與原版frame；不能表達脫離執行器後的Rust排程續接。Rust需要保存Battle rows／pending HP／ordinary sequence／retreat，Controller slots／remaining／side／actor／scan／half_turn／modifiers／book／selected_spell／雙方術返回計數／enemy_config，以及目前LCG seed。只存剩兵會重排出手、遺失額外行動，或再扣一次已選法術。
+
+本輪僅新增開發檢查點內部編碼與F7／冷啟動入口。來源為本檔已CONFORMED的Rust狀態與原生回合證據；不是新解原版F7戰中規則。採既有原生素材容器相同的有界、版本標記與校驗方法。正式世界schema仍未決，不能由本段推導舊Go進度已相容。
+
+### 開發檢查點 READY
+
+證據審查：所需狀態均可由當前Rust型別取得；不需猜測原版或重開RE。PAM、IDA版本與位址基準沿本檔；初始陣位、雙側計數、待結算HP、選術扣次、空raw alias及LCG的已證實範圍不變。codec與檔案提交是自有工程契約，不能標成原版存檔parity。
+
+1. 檔案僅含版本化typed資料，不含指標、暫存器、x86、RGB畫面、原版檔案或音訊。標頭8SBCHK01、u32 payload長度、catalog指紋、明示小端整數及尾端FNV64校驗，最大4096 bytes；完整檔SHA由研究收據另記。FNV只偵測意外損壞，不稱防竄改認證。
+2. 保存兩軍各六row的規範UnitId字串、u32數量與u64 pending HP。允許死隊保留ID及HP；None必須count／HP均零。拒絕未知／重複ID、超相容域、slots越界、活raw遺失或重複、異常actor／scan／selected_spell、錯誤catalog指紋與未知版本。剩兵或複製後HP不得按兵數重算。
+3. 原生Controller所有規則欄位逐值保存，含已消耗來源行動、六raw計數、空列alias、雙方返回計數及待選法術。載入不呼叫next_actor、不再扣次、不先攻擊；目前seed完整恢復。視窗另存字型、音樂開關、選敵節點、選術游標與明示樣本種類。動畫及音訊播放游標不保存，讀回重新開始媒體，不重做傷害。
+4. `--save-dir`接受既有一般目錄，F7或工具列存檔使用固定battle.chk。動作演出期間先排入存檔請求，待演出結束、下一次規則步進前提交。目標等待可保存已扣次狀態。`--continue`明示由該檔啟動，不依賴Go／PAM／dosgolem；未提供保存目錄時不隱式寫入。
+5. 寫入使用獨占lock、同目錄新建暫存檔、完整寫入與sync，再rename及sync目錄。既有無效檔案不直接覆蓋；符號連結、目錄、超長或損壞輸入拒絕。提交前失敗保持舊檔，暫存與lock由有界擁有者收尾；過期lock拒絕而不擅自刪除。讀取完整驗證後才替換狀態，缺素材亦拒絕。
+6. 驗收：逐狀態編碼往返與冷載後相同輸入／seed的後續結果；普通等待、敵回合、凝滯額外行動、複製、待選術與退款、勝敗／撤退均抽樣。另測截斷、校驗、語意越界、版本／catalog、鎖與提交前中斷。正常XTest視窗保存、關閉、獨立程序Continue、續打，至少驗普通與法術分支。原版行為證據沿既有向量，不新增整機原版對拍聲明。
+
+### 開發檢查點限定 CONFORMED
+
+[狀態編碼](../../internal/remake-rust/src/checkpoint.rs)、[檔案提交](../../internal/remake-rust/src/checkpoint_store.rs)及[視窗入口](../../internal/remake-rust/src/desktop.rs)完成。35個Rust測試通過，包含每個普通邊界的往返及後續同輸入／seed結果、敵施法、凝滯alias、複製HP、已付費目標等待、退款、勝敗／撤退及損壞／版本／catalog／語意拒絕。受控提交前中斷與鎖衝突保持舊檔；損壞或連結目的拒絕覆寫。這些是原生保存測試，不稱原版存檔parity。
+
+[正常GUI抽驗](../../tools/rust-checkpoint-gui.py)啟動五個獨立程序。普通戰保存字型隸書、音樂關與已移動的選敵游標，32行動勝局與冷啟動後續打的完整檢查點雜湊相同。另一條道士複製、凝滯後按F7，保存剩餘額外行動；再於火球已扣一次、尚未選敵時保存。兩個獨立冷讀都能Space退款一次、接續至相同撤退，三路最後雜湊相同。未注入RAM、IP或重新設定冷讀seed。
+
+三個存讀點的未縮放畫布逐RGBA相同；11份擷取各與SDL讀回相同。演出中F7排隊與工具列滑鼠存檔均已驗。battle.chk實例329／364／368 bytes，Linux新建權限0600。缺保存目錄、Continue另給seed、損壞檢查點三案均在SDL建立前拒絕。工具列第一次抽驗漏算X11視窗原點，補XTranslateCoordinates後同一輸入流程通過，沒有更改遊戲命中區。
+
+程式建置只掛唯讀Rust crate與native輸出；GUI只掛單一輸入工具及native，看不到Go／PAM／模擬器。OGG及圖像沿批准素材，冷讀重新開始音樂與演出，不保存媒體時間。[核對](../../preserved/rust-battle-checkpoint-audit-r2.json)、[資料工具](../../tools/rust-battle-checkpoint.py)、[研究](../../RESEARCH-LOG.md#rust原生戰中檢查點)及[永久保存](../../preserved/README.md#rust戰中檢查點保存)記錄具體雜湊、掛載與收據。
+
+本節從DRAFT經欄位審查、READY、實作與原生同狀態驗證完成限定提升。世界進度、舊Go匯入、正常新遊戲與世界GUI仍待；正式世界schema不由開發檢查點定案。未改Go存檔或正式197／7／923／535／1071基線，沒有Release。

@@ -131,3 +131,10 @@ __pycache__/
 /preserved/rust-player-spells-r1/
 
 /preserved/rust-enemy-spells-r1/
+
+/preserved/rust-battle-checkpoint-r1/
+
+# 原生開發檢查點與提交中間檔留在本機。
+battle.chk
+.battle-checkpoint.lock
+.battle-*.tmp

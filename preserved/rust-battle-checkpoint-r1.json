@@ -1,0 +1,1137 @@
+{
+  "files": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/evidence/inherited-audit.json",
+      "bytes": 23858,
+      "sha256": "9a81234a6dd240d7be6a318115270f96483de411ec4a70065719955d90c1cf54",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/execution.json",
+      "bytes": 1934,
+      "sha256": "8068684e3d948013c665c9be2d2d5d9595e64ecd1a2b1a1fa1341e8a12abd343",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/media.json",
+      "bytes": 1957,
+      "sha256": "0b085471eb084270268defa1b623797bb06b3cd93e3830a2ad8848f56dbb9c74",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/8sword-remake",
+      "bytes": 960920,
+      "sha256": "164d7f0a9dce0203c1ee7b4b36d80e8479aecf6cc3a3a6830bb49568efde531f",
+      "mode": 493
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/build-final.log",
+      "bytes": 109,
+      "sha256": "bd67ef59f457fc1304f4a65a81db41606d1dcd29f7cc0483d60350de65913cd8",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/build.log",
+      "bytes": 110,
+      "sha256": "aae68112daf45b5a2678ed35eed12ea0f51c8ef27878537c11ad4e382defe86e",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/cli.log",
+      "bytes": 729,
+      "sha256": "b83bb441f6539fc0ee202a35d38cf6d8689fb49879f3b6eb98a589c195734526",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/audio-001.wav",
+      "bytes": 384044,
+      "sha256": "c4714e977fd096dcff2b8c6d20659ad3ada713a8205eb4ca67e90fca61cf9cbd",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/audio-002.wav",
+      "bytes": 960044,
+      "sha256": "c6fe7fc733be55c0840e298aa710b1f36d40a45a640ce8e5399c9afa92c98cc0",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/capture-001.tsv",
+      "bytes": 255,
+      "sha256": "9bf138db7c49bf4dd870ced2e2b33e70a1c4e2d8321336972b49c2a00fda0697",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/capture-002.tsv",
+      "bytes": 254,
+      "sha256": "fc807c69e82250d454d9d43e44bb5f03aef67ac364e828a69ea1adfc7ca68faa",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/frame-001.ppm",
+      "bytes": 7603217,
+      "sha256": "b4b1c45fb81a967fc7826823469a65d8279ad46cc88d8aacb5d9909541666062",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/frame-002.ppm",
+      "bytes": 7603217,
+      "sha256": "00b32ed64da87493d56408e86c3bbf6169fb54d257aa4df519dcc13fffb9eab5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/player.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/readback-001.ppm",
+      "bytes": 7603217,
+      "sha256": "b4b1c45fb81a967fc7826823469a65d8279ad46cc88d8aacb5d9909541666062",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/readback-002.ppm",
+      "bytes": 7603217,
+      "sha256": "00b32ed64da87493d56408e86c3bbf6169fb54d257aa4df519dcc13fffb9eab5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-continue/status.tsv",
+      "bytes": 512,
+      "sha256": "64e101418b4051736ef7ec91e61121aee0cab25d2c85e38e18acb454594debb1",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/extra-store/battle.chk",
+      "bytes": 364,
+      "sha256": "7448aa53af946900368b4984a1912c3e763853c431c3cdfd2f684f106af46ac8",
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/audio-001.wav",
+      "bytes": 44,
+      "sha256": "4872b61c768dff943f9e021453d816f06e35adc8edd88ef183301f03e31b94a5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/audio-002.wav",
+      "bytes": 44,
+      "sha256": "4872b61c768dff943f9e021453d816f06e35adc8edd88ef183301f03e31b94a5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/capture-001.tsv",
+      "bytes": 242,
+      "sha256": "c2cb767fd8bc85b6b92a1c2c592ded80bc67159a6a8c84c13ab347aede0c12bb",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/capture-002.tsv",
+      "bytes": 239,
+      "sha256": "c84f63741618af86b0737ba7589e73f4aadbacd44d4601dfe8a9d61e6ac8dbfb",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/frame-001.ppm",
+      "bytes": 7603217,
+      "sha256": "2848946e431ef2b48ae998eb32c82a7a908b586b1934066d3c8bfeff1687616d",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/frame-002.ppm",
+      "bytes": 7603217,
+      "sha256": "1080868185e32a6562e9a92306625c7ed763bcc2420daebfb7cc032f15b65aac",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/player.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/readback-001.ppm",
+      "bytes": 7603217,
+      "sha256": "2848946e431ef2b48ae998eb32c82a7a908b586b1934066d3c8bfeff1687616d",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/readback-002.ppm",
+      "bytes": 7603217,
+      "sha256": "1080868185e32a6562e9a92306625c7ed763bcc2420daebfb7cc032f15b65aac",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-continue/status.tsv",
+      "bytes": 488,
+      "sha256": "a435ee15c103eb928f7097c23b6d1f9c12d83f2a3d328682c6f8c7a4ad8d0b33",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/audio-001.wav",
+      "bytes": 192044,
+      "sha256": "2e19d58a5629f2b1d07a36c762745bd1bd62896442894078074f57ceadf46409",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/audio-002.wav",
+      "bytes": 192044,
+      "sha256": "2e19d58a5629f2b1d07a36c762745bd1bd62896442894078074f57ceadf46409",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/capture-001.tsv",
+      "bytes": 243,
+      "sha256": "9fc2589f928132d04ff1be4251e494729c5ae908169a63da28505dcb73cfc57b",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/capture-002.tsv",
+      "bytes": 240,
+      "sha256": "1aa3c8f4eb5ebc37c10096bf010e43505745c451746159cf2ff648a58ccab695",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/frame-001.ppm",
+      "bytes": 7603217,
+      "sha256": "2848946e431ef2b48ae998eb32c82a7a908b586b1934066d3c8bfeff1687616d",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/frame-002.ppm",
+      "bytes": 7603217,
+      "sha256": "1080868185e32a6562e9a92306625c7ed763bcc2420daebfb7cc032f15b65aac",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/player.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/readback-001.ppm",
+      "bytes": 7603217,
+      "sha256": "2848946e431ef2b48ae998eb32c82a7a908b586b1934066d3c8bfeff1687616d",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/readback-002.ppm",
+      "bytes": 7603217,
+      "sha256": "1080868185e32a6562e9a92306625c7ed763bcc2420daebfb7cc032f15b65aac",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-control/status.tsv",
+      "bytes": 510,
+      "sha256": "89299a0c1c9822d88bf76c3aaa61e44b64ae95b60a09a312f5e22dbb6b431737",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/ordinary-store/battle.chk",
+      "bytes": 329,
+      "sha256": "186d7c311a6d2728e7b368163a390d2114909ea6de71bbe2f74e88a82e8d318b",
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/audio-001.wav",
+      "bytes": 384044,
+      "sha256": "c4714e977fd096dcff2b8c6d20659ad3ada713a8205eb4ca67e90fca61cf9cbd",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/audio-002.wav",
+      "bytes": 921644,
+      "sha256": "e139a12dcc707c2dd3733cb9dd79b6cb3d71c70321623de847dd701feeb9a285",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/capture-001.tsv",
+      "bytes": 255,
+      "sha256": "b1b119d49326cd8388f670eab42123dbea7fa6b956b0847036ca552e069d24bf",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/capture-002.tsv",
+      "bytes": 254,
+      "sha256": "fc807c69e82250d454d9d43e44bb5f03aef67ac364e828a69ea1adfc7ca68faa",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/frame-001.ppm",
+      "bytes": 7603217,
+      "sha256": "1cd8b8708c87c06fef74d77c7eefa5d7b189fd992ad3a0768fa4e5dd1b6cf0ed",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/frame-002.ppm",
+      "bytes": 7603217,
+      "sha256": "00b32ed64da87493d56408e86c3bbf6169fb54d257aa4df519dcc13fffb9eab5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/player.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/readback-001.ppm",
+      "bytes": 7603217,
+      "sha256": "1cd8b8708c87c06fef74d77c7eefa5d7b189fd992ad3a0768fa4e5dd1b6cf0ed",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/readback-002.ppm",
+      "bytes": 7603217,
+      "sha256": "00b32ed64da87493d56408e86c3bbf6169fb54d257aa4df519dcc13fffb9eab5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-continue/status.tsv",
+      "bytes": 511,
+      "sha256": "7d8bbf46cd8fbfe33fae7c344bf8d70450a12f69fae6b2dacd6cdd5db614f473",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/paid-store/battle.chk",
+      "bytes": 368,
+      "sha256": "93611f6a23bd57d8721195e93224e1052f71ead05e2d50cd77e062f8d367d393",
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/receipt.json",
+      "bytes": 248905,
+      "sha256": "8c00db20c8979c0c0549d18a4379e1e62936ec7b02aa60df281146719c0bb26f",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/audio-001.wav",
+      "bytes": 960044,
+      "sha256": "c6fe7fc733be55c0840e298aa710b1f36d40a45a640ce8e5399c9afa92c98cc0",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/audio-002.wav",
+      "bytes": 960044,
+      "sha256": "c6fe7fc733be55c0840e298aa710b1f36d40a45a640ce8e5399c9afa92c98cc0",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/audio-003.wav",
+      "bytes": 960044,
+      "sha256": "c6fe7fc733be55c0840e298aa710b1f36d40a45a640ce8e5399c9afa92c98cc0",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/capture-001.tsv",
+      "bytes": 257,
+      "sha256": "cbd9533e35570c3d3b0a7f7fb2ca319f87264da967234093b78af07079a34e87",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/capture-002.tsv",
+      "bytes": 257,
+      "sha256": "1c92b879020eb796e044bc28e686a8bfdc7001b1fa6d393f5edd8a56df9e2843",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/capture-003.tsv",
+      "bytes": 256,
+      "sha256": "1c61f8c7447cd5ce22817eac93c952788fb9f0f7e2bfafc537e988f73e69b732",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/frame-001.ppm",
+      "bytes": 7603217,
+      "sha256": "b4b1c45fb81a967fc7826823469a65d8279ad46cc88d8aacb5d9909541666062",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/frame-002.ppm",
+      "bytes": 7603217,
+      "sha256": "1cd8b8708c87c06fef74d77c7eefa5d7b189fd992ad3a0768fa4e5dd1b6cf0ed",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/frame-003.ppm",
+      "bytes": 7603217,
+      "sha256": "00b32ed64da87493d56408e86c3bbf6169fb54d257aa4df519dcc13fffb9eab5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/player.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/readback-001.ppm",
+      "bytes": 7603217,
+      "sha256": "b4b1c45fb81a967fc7826823469a65d8279ad46cc88d8aacb5d9909541666062",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/readback-002.ppm",
+      "bytes": 7603217,
+      "sha256": "1cd8b8708c87c06fef74d77c7eefa5d7b189fd992ad3a0768fa4e5dd1b6cf0ed",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/readback-003.ppm",
+      "bytes": 7603217,
+      "sha256": "00b32ed64da87493d56408e86c3bbf6169fb54d257aa4df519dcc13fffb9eab5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-control/status.tsv",
+      "bytes": 532,
+      "sha256": "cedbcec53eb8a0752bdb271067817bb7f433c2ec88cef0e88c68420ef5788c65",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui/support-store/battle.chk",
+      "bytes": 368,
+      "sha256": "93611f6a23bd57d8721195e93224e1052f71ead05e2d50cd77e062f8d367d393",
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui-first/ordinary-control/player.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/gui-first/ordinary-control/status.tsv",
+      "bytes": 504,
+      "sha256": "d3856c08a7a0782dde8021cdaf2b3f6b1197d584faabd3615ab13141c717e186",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/background.rgba",
+      "bytes": 9216024,
+      "sha256": "c6faea4ca9ef89aeae2419ccb9ee558fd8d2a64b646548b2d737ceff316ab2f8",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/font-NOTICE.txt",
+      "bytes": 229,
+      "sha256": "fccf145c93b6d931a48374b3c89075899d4a78ab7731be2d8e79b9c8b7328c8c",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/font-caoshu.bin",
+      "bytes": 1578520,
+      "sha256": "6adbc647c332e31b99a4576c03fe3fe93f2ea13ba32c833c0f69d6f8d05ea35a",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/font-choice-caoshu-LICENSE.txt",
+      "bytes": 4406,
+      "sha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/font-choice-lishu-LICENSE.txt",
+      "bytes": 115,
+      "sha256": "7fee8149f68d8690d3d05f2d64172a33f7b6de0bba216413553895bdfba3503b",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/font-choice-lishu-NOTICE.txt",
+      "bytes": 504,
+      "sha256": "e18c80c8a92e3f747f9a14cd3328f5ac640cc373a84719c9a1aa9f1d92bcd143",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/font-lishu.bin",
+      "bytes": 1578520,
+      "sha256": "831d6a247b42718b6520713fa0d7ecbfe4042d195c7f98b0c4b7ec4945a70b2e",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/font-noto.bin",
+      "bytes": 1578520,
+      "sha256": "44e9cd7859cda5c987c9c02787b2c08b08e74034ff030bb0a558e9a7b4467b7c",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/music.ogg",
+      "bytes": 1325192,
+      "sha256": "62ca844a3508c94dc4cfff4ea8df6eda481fb3b84cf7e15e9bcb8f1f6a9b4976",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/spell-impact-0.rgba",
+      "bytes": 316824,
+      "sha256": "45cdbf6d6544e45b5805f4bf20827d0b877e7b86163fb180cb7d60498b5bfed0",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/spell-impact-1.rgba",
+      "bytes": 316824,
+      "sha256": "de99b20e9cabf88aeb8786392a0792d8de1aaf5489fa8ed02d9744a2cd1d0a32",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/spell-impact-2.rgba",
+      "bytes": 316824,
+      "sha256": "bdfd62962d62c0ee1e18e58dd3ff26f2112fb27221405696a9a18d74ae0eaaf4",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/spell-impact-3.rgba",
+      "bytes": 316824,
+      "sha256": "6bf7611b927e402afe6f5733eb7ac94eab9524c02b5103a32ace16e91be843cf",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/unit_native_01.rgba",
+      "bytes": 316824,
+      "sha256": "b1fa452eda8b143ae6c9b681c4d6be907efcb7909f64908311489a77a3029ed5",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/unit_native_06.rgba",
+      "bytes": 316824,
+      "sha256": "b95c78295e998bf3fda949182d6fc19ec226d8fe1246a8cdf2b836c483851df6",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/unit_native_10.rgba",
+      "bytes": 316824,
+      "sha256": "34f04b22ec74df908370e4fb2f43b8ce304792b7727c59835e45797e1692071b",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/unit_native_11.rgba",
+      "bytes": 316824,
+      "sha256": "30487cce2b8f0f8c0610c75687441c50e98429dbba3c85245097a33b461d317e",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/unit_native_12.rgba",
+      "bytes": 316824,
+      "sha256": "5515ec3b834d84a725245f132287dda447bf5068c2518cc259095107fd91cff7",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/unit_native_16.rgba",
+      "bytes": 316824,
+      "sha256": "c13a8af97c0c862f46f0fdc6f0505936f56163293758d7fc4b374c8e180da44b",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/unit_openkb_arcr.rgba",
+      "bytes": 316824,
+      "sha256": "9d7a203af3b61ce5e783889d2cdb20f22cdb7f57a35220d6472eb8aee7201ea6",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/pack/unit_openkb_wolf.rgba",
+      "bytes": 316824,
+      "sha256": "c45b431e8f2fcb48f9ba2e820197f1bfb4ac141fecf9159f59d23b717a5392f8",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/refusal/bad/battle.chk",
+      "bytes": 6,
+      "sha256": "f526795c95399cea27c055c842c3d6ab018ed0fa4f66f701c28ab22dec28237b",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/refusals.json",
+      "bytes": 396,
+      "sha256": "5b259c051dd0bdd5d2adc0b3a1e0e1e7576617602d1c648be01fcefc016762e3",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/tests-first.log",
+      "bytes": 3585,
+      "sha256": "4594316ac78bd392ccd9b3a95e853a1d9e9f206db27a556c432f2e07e3b0d914",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/tests.log",
+      "bytes": 3585,
+      "sha256": "f0c91b42fe839f55fcf2a6776c87deaaf1fa71b1f23a17c415b928ea6a609303",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/Cargo.lock",
+      "bytes": 161,
+      "sha256": "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/Cargo.toml",
+      "bytes": 277,
+      "sha256": "cdb32c522e36f7957f667dc5c33260449f70fc7c7b768f7a8434cec8da439c57",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/battle-models.tsv",
+      "bytes": 31211,
+      "sha256": "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/battle-replay.tsv",
+      "bytes": 2799,
+      "sha256": "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/controller-reference.tsv",
+      "bytes": 7124,
+      "sha256": "50b1e6a4fb06fd2ec1bc73440dee98fb433faa9546711df323bb60084d5f4c13",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/enemy-reference.tsv",
+      "bytes": 9931,
+      "sha256": "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/reference.tsv",
+      "bytes": 6419,
+      "sha256": "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/spell-reference.tsv",
+      "bytes": 72962,
+      "sha256": "4c057fb2c0432204d0c675f0bd5d9fb524d2a0f6984b134f9efe2246a90f182a",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/battle.rs",
+      "bytes": 9721,
+      "sha256": "74dcf522965d2a6fd4866e9ce3b37b8ef83383f3406a9ead9f3f1cfa9ca7e7cb",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/catalog.rs",
+      "bytes": 3896,
+      "sha256": "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/checkpoint.rs",
+      "bytes": 13563,
+      "sha256": "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/checkpoint_store.rs",
+      "bytes": 6317,
+      "sha256": "28e183df57c26e268bffc160f4ff815babdc63bea0a13683153a99fe1e8a547b",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/checkpoint_tests.rs",
+      "bytes": 7726,
+      "sha256": "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/controller.rs",
+      "bytes": 21775,
+      "sha256": "151b9f70fc51169d953a428088bd6085b5739aca3734cda111c8119847e76674",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/controller_tests.rs",
+      "bytes": 3576,
+      "sha256": "4e8e35fd70ff7b30eb6ed3b25f4cccadffaf9c832279ac4155ebe886cfd72ccf",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/desktop.rs",
+      "bytes": 41310,
+      "sha256": "a7319a1642f45c3c7f6efb76ff7ebb4b367ac5b490546441d837bdde86ca7933",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/enemy.rs",
+      "bytes": 10801,
+      "sha256": "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/enemy_tests.rs",
+      "bytes": 5941,
+      "sha256": "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/formation.rs",
+      "bytes": 4573,
+      "sha256": "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/lib.rs",
+      "bytes": 4304,
+      "sha256": "ade49a7398a7f1c930e84ba3b8b153d546c8a8ce381612371beb5db382743d12",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/main.rs",
+      "bytes": 2834,
+      "sha256": "657b749f41fc4713bb217bfe883f11ffd05a35d85135233cb2501d884f9f8fbd",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/media_assets.rs",
+      "bytes": 6626,
+      "sha256": "5dc9f7c000de7ab2af96c797283a7e71241eb37343ded01d280f95f5311c7ae2",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/native_tests.rs",
+      "bytes": 7707,
+      "sha256": "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/replay.rs",
+      "bytes": 23404,
+      "sha256": "292203c75b5e717ba76b4d833b7a698ac10396465284ea78253e735f1dbf2063",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/sdl.rs",
+      "bytes": 8803,
+      "sha256": "df1816252f84ec066a4648f0cdb2f00e0477d07361af6c4d8dc0b773cd223c23",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/sndfile.rs",
+      "bytes": 2787,
+      "sha256": "7bf9b76d1f02b10cebb3610a9ea160c02446ba16cd4482c4dfb28e18ad33ee21",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/spell_tests.rs",
+      "bytes": 4281,
+      "sha256": "d355b30799fa9cede41988d2df72d3d578fa3a8fd50d72d4655ee9cc8b639610",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/src/spells.rs",
+      "bytes": 4385,
+      "sha256": "54083224e26f56245e7fef9fe56c5bf441bf9709f81897260e7241a45c646c11",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/rust-source/unit-catalog.tsv",
+      "bytes": 1149,
+      "sha256": "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af",
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/tools/rust-battle-checkpoint.py",
+      "bytes": 4707,
+      "sha256": "e407a0340e2b65df5bec9b55553171bda6eb3ddff1899987d48d21776cedf238",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/tools/rust-checkpoint-gui.py",
+      "bytes": 10248,
+      "sha256": "49f6d499ac988b9801455bde2628abdb533ccc584cd896a0650340aea1021edc",
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/tools/rust-native-player.sh",
+      "bytes": 3086,
+      "sha256": "0dc0f07625d028f36b443ac636de9c55c3429e440980aa3e960edead49c8f255",
+      "mode": 436
+    }
+  ],
+  "objects": {
+    "9a81234a6dd240d7be6a318115270f96483de411ec4a70065719955d90c1cf54": {
+      "file": "9a81234a6dd240d7be6a318115270f96483de411ec4a70065719955d90c1cf54.gz",
+      "stored_sha256": "337775e2588b0b8433fd2853dcf7901fd86e9997d691dd858aef9b52427d6259"
+    },
+    "8068684e3d948013c665c9be2d2d5d9595e64ecd1a2b1a1fa1341e8a12abd343": {
+      "file": "8068684e3d948013c665c9be2d2d5d9595e64ecd1a2b1a1fa1341e8a12abd343.gz",
+      "stored_sha256": "5f7b2fe5154bb817e9415464daa622596829ee91fc6bfde4264e38acbb065274"
+    },
+    "0b085471eb084270268defa1b623797bb06b3cd93e3830a2ad8848f56dbb9c74": {
+      "file": "0b085471eb084270268defa1b623797bb06b3cd93e3830a2ad8848f56dbb9c74.gz",
+      "stored_sha256": "765382d6127fabd9f7aaad5804fa2033023cb43e419933e9fa7fcbc88c2ad577"
+    },
+    "164d7f0a9dce0203c1ee7b4b36d80e8479aecf6cc3a3a6830bb49568efde531f": {
+      "file": "164d7f0a9dce0203c1ee7b4b36d80e8479aecf6cc3a3a6830bb49568efde531f.gz",
+      "stored_sha256": "a0d41a2e9d3846369ee16bf78120d32a8ea4804da650547a45391a7baf33c904"
+    },
+    "bd67ef59f457fc1304f4a65a81db41606d1dcd29f7cc0483d60350de65913cd8": {
+      "file": "bd67ef59f457fc1304f4a65a81db41606d1dcd29f7cc0483d60350de65913cd8.gz",
+      "stored_sha256": "4f9fa13c7b3cf722d5b0293f1df9749fdf49daa581cabb88f5d81d3c43db5281"
+    },
+    "aae68112daf45b5a2678ed35eed12ea0f51c8ef27878537c11ad4e382defe86e": {
+      "file": "aae68112daf45b5a2678ed35eed12ea0f51c8ef27878537c11ad4e382defe86e.gz",
+      "stored_sha256": "03b8db173231debf53daffcb6dc8dcb9e8600982e6bb8103cbc5b7ccbc9d86fb"
+    },
+    "b83bb441f6539fc0ee202a35d38cf6d8689fb49879f3b6eb98a589c195734526": {
+      "file": "b83bb441f6539fc0ee202a35d38cf6d8689fb49879f3b6eb98a589c195734526.gz",
+      "stored_sha256": "d477e20521c7f8b0a608b6db455a8a374faaa341580472467ae21a01940cc3f2"
+    },
+    "c4714e977fd096dcff2b8c6d20659ad3ada713a8205eb4ca67e90fca61cf9cbd": {
+      "file": "c4714e977fd096dcff2b8c6d20659ad3ada713a8205eb4ca67e90fca61cf9cbd.gz",
+      "stored_sha256": "75d466c99a5d0f2368336beda5784f88d32b0272c43a6bb0e266d32ef2d05a4f"
+    },
+    "c6fe7fc733be55c0840e298aa710b1f36d40a45a640ce8e5399c9afa92c98cc0": {
+      "file": "c6fe7fc733be55c0840e298aa710b1f36d40a45a640ce8e5399c9afa92c98cc0.gz",
+      "stored_sha256": "6b289a0f0e3ddb3f5c827e34c3fc7afd9158edfc9f3a9f85e1d2c6e337887ae7"
+    },
+    "9bf138db7c49bf4dd870ced2e2b33e70a1c4e2d8321336972b49c2a00fda0697": {
+      "file": "9bf138db7c49bf4dd870ced2e2b33e70a1c4e2d8321336972b49c2a00fda0697.gz",
+      "stored_sha256": "ab3e25ed484370f7074746fc7bffde3f4721ecbdbfe7df7665f10d724efcdaf6"
+    },
+    "fc807c69e82250d454d9d43e44bb5f03aef67ac364e828a69ea1adfc7ca68faa": {
+      "file": "fc807c69e82250d454d9d43e44bb5f03aef67ac364e828a69ea1adfc7ca68faa.gz",
+      "stored_sha256": "4a52feb4d8dc63932b000f179e794f16a87db690be78323f8f2ffa8a4e9545eb"
+    },
+    "b4b1c45fb81a967fc7826823469a65d8279ad46cc88d8aacb5d9909541666062": {
+      "file": "b4b1c45fb81a967fc7826823469a65d8279ad46cc88d8aacb5d9909541666062.gz",
+      "stored_sha256": "3665779eaaf42e1d061bb471fd0fc5b1c987493e343e1a5dd63b868b5f7c4ea3"
+    },
+    "00b32ed64da87493d56408e86c3bbf6169fb54d257aa4df519dcc13fffb9eab5": {
+      "file": "00b32ed64da87493d56408e86c3bbf6169fb54d257aa4df519dcc13fffb9eab5.gz",
+      "stored_sha256": "e88889b05cea613bc1bf47eb16998e28de1cf8cb88b040bb664910c23a4112ae"
+    },
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
+      "file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.gz",
+      "stored_sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    "64e101418b4051736ef7ec91e61121aee0cab25d2c85e38e18acb454594debb1": {
+      "file": "64e101418b4051736ef7ec91e61121aee0cab25d2c85e38e18acb454594debb1.gz",
+      "stored_sha256": "29a3f3d0b3625467764def48c3e8674a2927ffdbda0a6767b0680ba1fd0d05d6"
+    },
+    "7448aa53af946900368b4984a1912c3e763853c431c3cdfd2f684f106af46ac8": {
+      "file": "7448aa53af946900368b4984a1912c3e763853c431c3cdfd2f684f106af46ac8.gz",
+      "stored_sha256": "4f0e30b2beb786a12030bb44009777a47564f11cf56109784fc1d572566eb295"
+    },
+    "4872b61c768dff943f9e021453d816f06e35adc8edd88ef183301f03e31b94a5": {
+      "file": "4872b61c768dff943f9e021453d816f06e35adc8edd88ef183301f03e31b94a5.gz",
+      "stored_sha256": "57c9800fbe560c1e8ec2f6edb4e05471fdde60d50ce39bdebadda3dfbe301ff5"
+    },
+    "c2cb767fd8bc85b6b92a1c2c592ded80bc67159a6a8c84c13ab347aede0c12bb": {
+      "file": "c2cb767fd8bc85b6b92a1c2c592ded80bc67159a6a8c84c13ab347aede0c12bb.gz",
+      "stored_sha256": "7bcc028f541fb07865aa9dc65c2301307560a72672d73dde120505f1268486c8"
+    },
+    "c84f63741618af86b0737ba7589e73f4aadbacd44d4601dfe8a9d61e6ac8dbfb": {
+      "file": "c84f63741618af86b0737ba7589e73f4aadbacd44d4601dfe8a9d61e6ac8dbfb.gz",
+      "stored_sha256": "614a8c0659579a9e897b245db777687a50b0e6ed9c1783aa32a57c2826036c2b"
+    },
+    "2848946e431ef2b48ae998eb32c82a7a908b586b1934066d3c8bfeff1687616d": {
+      "file": "2848946e431ef2b48ae998eb32c82a7a908b586b1934066d3c8bfeff1687616d.gz",
+      "stored_sha256": "a457aa9ff15fcefcc852027aeee5ece53e63d2f4a07bdb1cea3c900a4de3037c"
+    },
+    "1080868185e32a6562e9a92306625c7ed763bcc2420daebfb7cc032f15b65aac": {
+      "file": "1080868185e32a6562e9a92306625c7ed763bcc2420daebfb7cc032f15b65aac.gz",
+      "stored_sha256": "30ff7869080cf0f317e519ab0356b47181e348d104ff921703c445780896c046"
+    },
+    "a435ee15c103eb928f7097c23b6d1f9c12d83f2a3d328682c6f8c7a4ad8d0b33": {
+      "file": "a435ee15c103eb928f7097c23b6d1f9c12d83f2a3d328682c6f8c7a4ad8d0b33.gz",
+      "stored_sha256": "5c2ce2ebc92f0aa697635a22715ec00f6db606704c9624ffbb43be363ee7edd7"
+    },
+    "2e19d58a5629f2b1d07a36c762745bd1bd62896442894078074f57ceadf46409": {
+      "file": "2e19d58a5629f2b1d07a36c762745bd1bd62896442894078074f57ceadf46409.gz",
+      "stored_sha256": "07b499f161598787e2a81ca4d8786d339486dc13f788fcc84e0465bb52ac9737"
+    },
+    "9fc2589f928132d04ff1be4251e494729c5ae908169a63da28505dcb73cfc57b": {
+      "file": "9fc2589f928132d04ff1be4251e494729c5ae908169a63da28505dcb73cfc57b.gz",
+      "stored_sha256": "e91cbb3b8f184fa4c618a074329f46d277158c208e5940f5b2767ad0c530af23"
+    },
+    "1aa3c8f4eb5ebc37c10096bf010e43505745c451746159cf2ff648a58ccab695": {
+      "file": "1aa3c8f4eb5ebc37c10096bf010e43505745c451746159cf2ff648a58ccab695.gz",
+      "stored_sha256": "1fb997a842945bdc08bcc01981e898e46ad171e232dbec09d227fcbf27f5260d"
+    },
+    "89299a0c1c9822d88bf76c3aaa61e44b64ae95b60a09a312f5e22dbb6b431737": {
+      "file": "89299a0c1c9822d88bf76c3aaa61e44b64ae95b60a09a312f5e22dbb6b431737.gz",
+      "stored_sha256": "e207ea61a3fafa3c06a8b58f6403b5ef18b010d3364ee035ac5bf8e4e6087f47"
+    },
+    "186d7c311a6d2728e7b368163a390d2114909ea6de71bbe2f74e88a82e8d318b": {
+      "file": "186d7c311a6d2728e7b368163a390d2114909ea6de71bbe2f74e88a82e8d318b.gz",
+      "stored_sha256": "1c01b7f3121965fc809ed98fb4be8ec9ce130138eaaf5b660622c7d3d7edfad7"
+    },
+    "e139a12dcc707c2dd3733cb9dd79b6cb3d71c70321623de847dd701feeb9a285": {
+      "file": "e139a12dcc707c2dd3733cb9dd79b6cb3d71c70321623de847dd701feeb9a285.gz",
+      "stored_sha256": "28b284b88b431aa80d5d93b4c562c9c233aed9fe2a7893842c221675b4c0cf99"
+    },
+    "b1b119d49326cd8388f670eab42123dbea7fa6b956b0847036ca552e069d24bf": {
+      "file": "b1b119d49326cd8388f670eab42123dbea7fa6b956b0847036ca552e069d24bf.gz",
+      "stored_sha256": "63ea79fafa5e8f1b73df189e419376ab73d50c69d86a2d3bd553d363636213d9"
+    },
+    "1cd8b8708c87c06fef74d77c7eefa5d7b189fd992ad3a0768fa4e5dd1b6cf0ed": {
+      "file": "1cd8b8708c87c06fef74d77c7eefa5d7b189fd992ad3a0768fa4e5dd1b6cf0ed.gz",
+      "stored_sha256": "1eecdb196ac86cdb4c8b3b46c44a85eb3e76fd7c1f69dda4af61fe01ebc8ad88"
+    },
+    "7d8bbf46cd8fbfe33fae7c344bf8d70450a12f69fae6b2dacd6cdd5db614f473": {
+      "file": "7d8bbf46cd8fbfe33fae7c344bf8d70450a12f69fae6b2dacd6cdd5db614f473.gz",
+      "stored_sha256": "95b647dc66e54feb87a7c8c5e7ef4b78fbddfe9d096a01aad1c7133b087c3213"
+    },
+    "93611f6a23bd57d8721195e93224e1052f71ead05e2d50cd77e062f8d367d393": {
+      "file": "93611f6a23bd57d8721195e93224e1052f71ead05e2d50cd77e062f8d367d393.gz",
+      "stored_sha256": "051e7e176a84041ad98f9eecd340b14648dfcb2b49325a783117a9f463f879d6"
+    },
+    "8c00db20c8979c0c0549d18a4379e1e62936ec7b02aa60df281146719c0bb26f": {
+      "file": "8c00db20c8979c0c0549d18a4379e1e62936ec7b02aa60df281146719c0bb26f.gz",
+      "stored_sha256": "ed6f103b7c628ca6a62d043f1fb7d08d01933fa01603906f1dfb29715b70542f"
+    },
+    "cbd9533e35570c3d3b0a7f7fb2ca319f87264da967234093b78af07079a34e87": {
+      "file": "cbd9533e35570c3d3b0a7f7fb2ca319f87264da967234093b78af07079a34e87.gz",
+      "stored_sha256": "95ce823bcf68e3ea87c7707dda822e1cc3cc045d38e7a6be46f3536c854fe645"
+    },
+    "1c92b879020eb796e044bc28e686a8bfdc7001b1fa6d393f5edd8a56df9e2843": {
+      "file": "1c92b879020eb796e044bc28e686a8bfdc7001b1fa6d393f5edd8a56df9e2843.gz",
+      "stored_sha256": "a6aeb9c135ae5a3567227eca14dd5fb5fc1acb71b4cdf94b84ec3ddd99c23566"
+    },
+    "1c61f8c7447cd5ce22817eac93c952788fb9f0f7e2bfafc537e988f73e69b732": {
+      "file": "1c61f8c7447cd5ce22817eac93c952788fb9f0f7e2bfafc537e988f73e69b732.gz",
+      "stored_sha256": "659f23775499c6354876f57ce97a783c380a1ff035eee7ee97a3768a912a67d7"
+    },
+    "cedbcec53eb8a0752bdb271067817bb7f433c2ec88cef0e88c68420ef5788c65": {
+      "file": "cedbcec53eb8a0752bdb271067817bb7f433c2ec88cef0e88c68420ef5788c65.gz",
+      "stored_sha256": "8ea3ef9057fa44c22abd5851dfbeb58b9a85ed94a2f7567690664c1e29e4d9a6"
+    },
+    "d3856c08a7a0782dde8021cdaf2b3f6b1197d584faabd3615ab13141c717e186": {
+      "file": "d3856c08a7a0782dde8021cdaf2b3f6b1197d584faabd3615ab13141c717e186.gz",
+      "stored_sha256": "f427940ba1629e6ef5226f7abd341e0848b218e6383db74fbd5c3adfda161d89"
+    },
+    "c6faea4ca9ef89aeae2419ccb9ee558fd8d2a64b646548b2d737ceff316ab2f8": {
+      "file": "c6faea4ca9ef89aeae2419ccb9ee558fd8d2a64b646548b2d737ceff316ab2f8.gz",
+      "stored_sha256": "08e39855ecdac359190a0bea525f5a1df2d85fc5b4ed9f7cfc4a913dc4201b10"
+    },
+    "fccf145c93b6d931a48374b3c89075899d4a78ab7731be2d8e79b9c8b7328c8c": {
+      "file": "fccf145c93b6d931a48374b3c89075899d4a78ab7731be2d8e79b9c8b7328c8c.gz",
+      "stored_sha256": "30a9dc4326cf0d4367845b1b23979eaf8082ff4282bd0b48fc40c6a9063b12f1"
+    },
+    "6adbc647c332e31b99a4576c03fe3fe93f2ea13ba32c833c0f69d6f8d05ea35a": {
+      "file": "6adbc647c332e31b99a4576c03fe3fe93f2ea13ba32c833c0f69d6f8d05ea35a.gz",
+      "stored_sha256": "46caf40e6d222d5adccaae7ec82c68aab1ae8ab2d811127ea77abdcfecb0b75c"
+    },
+    "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc": {
+      "file": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc.gz",
+      "stored_sha256": "c96bc8c32bc718362de41de762dd29f735e1f181fd5acdbcb3aa2c3d3dcaa598"
+    },
+    "7fee8149f68d8690d3d05f2d64172a33f7b6de0bba216413553895bdfba3503b": {
+      "file": "7fee8149f68d8690d3d05f2d64172a33f7b6de0bba216413553895bdfba3503b.gz",
+      "stored_sha256": "754fe7631f6b771b5689bea9efb55eeb73b07f39fc6245fbc6b11a03046b9632"
+    },
+    "e18c80c8a92e3f747f9a14cd3328f5ac640cc373a84719c9a1aa9f1d92bcd143": {
+      "file": "e18c80c8a92e3f747f9a14cd3328f5ac640cc373a84719c9a1aa9f1d92bcd143.gz",
+      "stored_sha256": "9b954449fd8daf5cf41369701e6f08795167ced5abb2c4315f9b57f6b4d7b1ef"
+    },
+    "831d6a247b42718b6520713fa0d7ecbfe4042d195c7f98b0c4b7ec4945a70b2e": {
+      "file": "831d6a247b42718b6520713fa0d7ecbfe4042d195c7f98b0c4b7ec4945a70b2e.gz",
+      "stored_sha256": "89ae0126f225597f6316df9bbebee2ca6642b0cb69faae49e37caaaf8edd155e"
+    },
+    "44e9cd7859cda5c987c9c02787b2c08b08e74034ff030bb0a558e9a7b4467b7c": {
+      "file": "44e9cd7859cda5c987c9c02787b2c08b08e74034ff030bb0a558e9a7b4467b7c.gz",
+      "stored_sha256": "32ad3d2e02ede3956d299780501f43598e17850b8d251a0559a53b086748f4a9"
+    },
+    "62ca844a3508c94dc4cfff4ea8df6eda481fb3b84cf7e15e9bcb8f1f6a9b4976": {
+      "file": "62ca844a3508c94dc4cfff4ea8df6eda481fb3b84cf7e15e9bcb8f1f6a9b4976.gz",
+      "stored_sha256": "8f147302ae9f2332a082dd64b8627c8f52bc47fcd1ba7ed4acf47c070b5bb657"
+    },
+    "45cdbf6d6544e45b5805f4bf20827d0b877e7b86163fb180cb7d60498b5bfed0": {
+      "file": "45cdbf6d6544e45b5805f4bf20827d0b877e7b86163fb180cb7d60498b5bfed0.gz",
+      "stored_sha256": "363d7af46494f25a757cb2e1cb68ecf489aee0e65b0c710bb892e095be2edac4"
+    },
+    "de99b20e9cabf88aeb8786392a0792d8de1aaf5489fa8ed02d9744a2cd1d0a32": {
+      "file": "de99b20e9cabf88aeb8786392a0792d8de1aaf5489fa8ed02d9744a2cd1d0a32.gz",
+      "stored_sha256": "2d99670556511ef76d59bc4934deac085f766a5227c49b2a0cd9852d2f326368"
+    },
+    "bdfd62962d62c0ee1e18e58dd3ff26f2112fb27221405696a9a18d74ae0eaaf4": {
+      "file": "bdfd62962d62c0ee1e18e58dd3ff26f2112fb27221405696a9a18d74ae0eaaf4.gz",
+      "stored_sha256": "1fec8dee62e5a9265ea19dac7b557ce764469d6736ac0fd65b2e10605ba14eef"
+    },
+    "6bf7611b927e402afe6f5733eb7ac94eab9524c02b5103a32ace16e91be843cf": {
+      "file": "6bf7611b927e402afe6f5733eb7ac94eab9524c02b5103a32ace16e91be843cf.gz",
+      "stored_sha256": "fea40206551e9b1621aae6fc14f1dc6465c11c000979ef459aaa27f514abcb23"
+    },
+    "b1fa452eda8b143ae6c9b681c4d6be907efcb7909f64908311489a77a3029ed5": {
+      "file": "b1fa452eda8b143ae6c9b681c4d6be907efcb7909f64908311489a77a3029ed5.gz",
+      "stored_sha256": "759fd1769037e6da796be6b0f70e386b9b66e869efb0de4629b7f472a3f4c963"
+    },
+    "b95c78295e998bf3fda949182d6fc19ec226d8fe1246a8cdf2b836c483851df6": {
+      "file": "b95c78295e998bf3fda949182d6fc19ec226d8fe1246a8cdf2b836c483851df6.gz",
+      "stored_sha256": "afd543c8eb953b23691fd7a03772b34a1c1585453b382395fd0c30e61cbf5683"
+    },
+    "34f04b22ec74df908370e4fb2f43b8ce304792b7727c59835e45797e1692071b": {
+      "file": "34f04b22ec74df908370e4fb2f43b8ce304792b7727c59835e45797e1692071b.gz",
+      "stored_sha256": "c33abb65e54d911e3875202c59bf442153ce094570358bd692dd3a511e987344"
+    },
+    "30487cce2b8f0f8c0610c75687441c50e98429dbba3c85245097a33b461d317e": {
+      "file": "30487cce2b8f0f8c0610c75687441c50e98429dbba3c85245097a33b461d317e.gz",
+      "stored_sha256": "d91f2ad09fa3464f53ca20470dfd5195d9cc70e95232ec4b92e99e585317a494"
+    },
+    "5515ec3b834d84a725245f132287dda447bf5068c2518cc259095107fd91cff7": {
+      "file": "5515ec3b834d84a725245f132287dda447bf5068c2518cc259095107fd91cff7.gz",
+      "stored_sha256": "7e90771ad6425e2629291c40262e1f5e436412cf9ede4dd56a65f5c706e01c70"
+    },
+    "c13a8af97c0c862f46f0fdc6f0505936f56163293758d7fc4b374c8e180da44b": {
+      "file": "c13a8af97c0c862f46f0fdc6f0505936f56163293758d7fc4b374c8e180da44b.gz",
+      "stored_sha256": "59887bcbbb6486bf96286c85670cb59fc2a7710f5474d88e34c351b49e4a563c"
+    },
+    "9d7a203af3b61ce5e783889d2cdb20f22cdb7f57a35220d6472eb8aee7201ea6": {
+      "file": "9d7a203af3b61ce5e783889d2cdb20f22cdb7f57a35220d6472eb8aee7201ea6.gz",
+      "stored_sha256": "5c9c0fc0a26a1c5c08cec1f953f42e7c7c1595cb57a4abd5d5b2a58b65085eeb"
+    },
+    "c45b431e8f2fcb48f9ba2e820197f1bfb4ac141fecf9159f59d23b717a5392f8": {
+      "file": "c45b431e8f2fcb48f9ba2e820197f1bfb4ac141fecf9159f59d23b717a5392f8.gz",
+      "stored_sha256": "172269ee86e7d3d6af8b039947b6c2393d74014586f220aab1ad724365506e36"
+    },
+    "f526795c95399cea27c055c842c3d6ab018ed0fa4f66f701c28ab22dec28237b": {
+      "file": "f526795c95399cea27c055c842c3d6ab018ed0fa4f66f701c28ab22dec28237b.gz",
+      "stored_sha256": "6087352bca976e146b94289a3155359df4b18bbad5b9be3624a6255fae63505d"
+    },
+    "5b259c051dd0bdd5d2adc0b3a1e0e1e7576617602d1c648be01fcefc016762e3": {
+      "file": "5b259c051dd0bdd5d2adc0b3a1e0e1e7576617602d1c648be01fcefc016762e3.gz",
+      "stored_sha256": "61ed1913b72afdb85ddd78996b182e4816536ea7a005f2b4f57b25470d90a3e4"
+    },
+    "4594316ac78bd392ccd9b3a95e853a1d9e9f206db27a556c432f2e07e3b0d914": {
+      "file": "4594316ac78bd392ccd9b3a95e853a1d9e9f206db27a556c432f2e07e3b0d914.gz",
+      "stored_sha256": "7a0b2c17e9a1c34d9d052e15bfe25d011c07c749285060e025d476a73b1bcd37"
+    },
+    "f0c91b42fe839f55fcf2a6776c87deaaf1fa71b1f23a17c415b928ea6a609303": {
+      "file": "f0c91b42fe839f55fcf2a6776c87deaaf1fa71b1f23a17c415b928ea6a609303.gz",
+      "stored_sha256": "bdfb1ba52ed99aef635633ca4d667d9b1d009e7848511b46e7f36f9cd588047e"
+    },
+    "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61": {
+      "file": "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61.gz",
+      "stored_sha256": "f7ebd628f91d85d0c06f7b324cc388eef8289bc746822308b6f0c5a12645df0f"
+    },
+    "cdb32c522e36f7957f667dc5c33260449f70fc7c7b768f7a8434cec8da439c57": {
+      "file": "cdb32c522e36f7957f667dc5c33260449f70fc7c7b768f7a8434cec8da439c57.gz",
+      "stored_sha256": "25d10d778a7d6e2b928d387967092fc90cf8cc42897b6c377dd66dc03850429b"
+    },
+    "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109": {
+      "file": "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109.gz",
+      "stored_sha256": "b258f1ea4c438c907b8fc8bae1f59fda66e3b1671a1026f3c157d3da349c9687"
+    },
+    "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235": {
+      "file": "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235.gz",
+      "stored_sha256": "d05021065d5d0dc3855dfd7415bfbcdab5bf12171af8db3fed6f5d19614569ec"
+    },
+    "50b1e6a4fb06fd2ec1bc73440dee98fb433faa9546711df323bb60084d5f4c13": {
+      "file": "50b1e6a4fb06fd2ec1bc73440dee98fb433faa9546711df323bb60084d5f4c13.gz",
+      "stored_sha256": "783aec01fa688421a0a6505a1e72a5ebe13637caabc23f02af37f0a8df9007da"
+    },
+    "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2": {
+      "file": "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2.gz",
+      "stored_sha256": "d5ac7116774e293f4a0c9490bc296c4989c898d248c3fdbaac989c1ea1c87141"
+    },
+    "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf": {
+      "file": "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf.gz",
+      "stored_sha256": "50a0f05b03d28269a2fc53c0b6dd2d254cf6a465bcf18a9cf9dc9e2367dc7b27"
+    },
+    "4c057fb2c0432204d0c675f0bd5d9fb524d2a0f6984b134f9efe2246a90f182a": {
+      "file": "4c057fb2c0432204d0c675f0bd5d9fb524d2a0f6984b134f9efe2246a90f182a.gz",
+      "stored_sha256": "d93a9e32619a4455764f9989532218375e2272b4db980b1e6bc05640adef9822"
+    },
+    "74dcf522965d2a6fd4866e9ce3b37b8ef83383f3406a9ead9f3f1cfa9ca7e7cb": {
+      "file": "74dcf522965d2a6fd4866e9ce3b37b8ef83383f3406a9ead9f3f1cfa9ca7e7cb.gz",
+      "stored_sha256": "3c25574d9ecefca7db28138f12b8978cdb7326248ce4a0baf093006ab30ad6d2"
+    },
+    "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469": {
+      "file": "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469.gz",
+      "stored_sha256": "e0c37a1502370e46416e1d2e608b467441e48401fa6772237d3dca54a1d6b6ae"
+    },
+    "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc": {
+      "file": "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc.gz",
+      "stored_sha256": "24a42324689206b9e325dcf7f4666f6ced8f1e4de67c0455fe78bd2eb0684b04"
+    },
+    "28e183df57c26e268bffc160f4ff815babdc63bea0a13683153a99fe1e8a547b": {
+      "file": "28e183df57c26e268bffc160f4ff815babdc63bea0a13683153a99fe1e8a547b.gz",
+      "stored_sha256": "ba8cdbe4449fd5e0d813a8633c22b9f7b314f95d0921b47e7d800bcf7d61d143"
+    },
+    "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48": {
+      "file": "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48.gz",
+      "stored_sha256": "a6750f0d70dcee9c4c47f1bedbe014fea0d0c6ea7f8aee9048b7156a510b56c5"
+    },
+    "151b9f70fc51169d953a428088bd6085b5739aca3734cda111c8119847e76674": {
+      "file": "151b9f70fc51169d953a428088bd6085b5739aca3734cda111c8119847e76674.gz",
+      "stored_sha256": "057f41704e4b6fb203cbc02d9ae7477def9e7483cdbfe974bf72cbf1399d6597"
+    },
+    "4e8e35fd70ff7b30eb6ed3b25f4cccadffaf9c832279ac4155ebe886cfd72ccf": {
+      "file": "4e8e35fd70ff7b30eb6ed3b25f4cccadffaf9c832279ac4155ebe886cfd72ccf.gz",
+      "stored_sha256": "cd8997b3c7213f7c050032483b61a106d17ccccc6935715f330fed40e5f95d03"
+    },
+    "a7319a1642f45c3c7f6efb76ff7ebb4b367ac5b490546441d837bdde86ca7933": {
+      "file": "a7319a1642f45c3c7f6efb76ff7ebb4b367ac5b490546441d837bdde86ca7933.gz",
+      "stored_sha256": "bef36f0d824dc0a473dcfa4b9cd4dc0f83a73b87761f842a310631bbe59a8f21"
+    },
+    "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea": {
+      "file": "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea.gz",
+      "stored_sha256": "15d3fa27bb3245f38a4494961068e33179d58b7300c7d9bee859ed8a84b5bcb6"
+    },
+    "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607": {
+      "file": "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607.gz",
+      "stored_sha256": "e7b65949ad8004f4715d90acafcf578291c5af2dcc28cef6ba8c4a9fbe69c1a8"
+    },
+    "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898": {
+      "file": "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898.gz",
+      "stored_sha256": "86eed5096b043c01d1962a69e8e8701ddd06ed33a2cc81c64fd721a9653bef8e"
+    },
+    "ade49a7398a7f1c930e84ba3b8b153d546c8a8ce381612371beb5db382743d12": {
+      "file": "ade49a7398a7f1c930e84ba3b8b153d546c8a8ce381612371beb5db382743d12.gz",
+      "stored_sha256": "e582e4acfe21dfc9528516902ffd74a7ee136e796a9c4d64831968caab5d966e"
+    },
+    "657b749f41fc4713bb217bfe883f11ffd05a35d85135233cb2501d884f9f8fbd": {
+      "file": "657b749f41fc4713bb217bfe883f11ffd05a35d85135233cb2501d884f9f8fbd.gz",
+      "stored_sha256": "2288508bbe2a7750db1e04700e0954b5c8b7430faa6906b8f1bbf4cdf0a7116d"
+    },
+    "5dc9f7c000de7ab2af96c797283a7e71241eb37343ded01d280f95f5311c7ae2": {
+      "file": "5dc9f7c000de7ab2af96c797283a7e71241eb37343ded01d280f95f5311c7ae2.gz",
+      "stored_sha256": "c3e97abd8df4d547822d0268a6c646d5507e33e0a6b53e77874bd6beecab5c0e"
+    },
+    "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59": {
+      "file": "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59.gz",
+      "stored_sha256": "96b70ebc115e77897cc0e34a86f043144d2cfde94c1e82e7290af58f2ab0286e"
+    },
+    "292203c75b5e717ba76b4d833b7a698ac10396465284ea78253e735f1dbf2063": {
+      "file": "292203c75b5e717ba76b4d833b7a698ac10396465284ea78253e735f1dbf2063.gz",
+      "stored_sha256": "dd7d77e4d00262210de052903442acad028b1244c509d6bc0e9bdd90e5493424"
+    },
+    "df1816252f84ec066a4648f0cdb2f00e0477d07361af6c4d8dc0b773cd223c23": {
+      "file": "df1816252f84ec066a4648f0cdb2f00e0477d07361af6c4d8dc0b773cd223c23.gz",
+      "stored_sha256": "2714c0be3fdeb06eaffcd758cb358516b01a373ea0f64a9c70f18bd25459f0e2"
+    },
+    "7bf9b76d1f02b10cebb3610a9ea160c02446ba16cd4482c4dfb28e18ad33ee21": {
+      "file": "7bf9b76d1f02b10cebb3610a9ea160c02446ba16cd4482c4dfb28e18ad33ee21.gz",
+      "stored_sha256": "2c6874979469c9351cf6f52a25cf96018a05383c3cdaa2a331c7a3b7762140d5"
+    },
+    "d355b30799fa9cede41988d2df72d3d578fa3a8fd50d72d4655ee9cc8b639610": {
+      "file": "d355b30799fa9cede41988d2df72d3d578fa3a8fd50d72d4655ee9cc8b639610.gz",
+      "stored_sha256": "32d944f03203dcbc449bbd83e29b75f8a7dc58e33f0c0689760dcec534382f62"
+    },
+    "54083224e26f56245e7fef9fe56c5bf441bf9709f81897260e7241a45c646c11": {
+      "file": "54083224e26f56245e7fef9fe56c5bf441bf9709f81897260e7241a45c646c11.gz",
+      "stored_sha256": "3b935e489ba7fbb4df7d7da6982493178628dcae47531cec5a0b83ce03094786"
+    },
+    "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af": {
+      "file": "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af.gz",
+      "stored_sha256": "5c3bbde812458941f8591ebc2675704bc33890829bfe05014777a8362fe7b74e"
+    },
+    "e407a0340e2b65df5bec9b55553171bda6eb3ddff1899987d48d21776cedf238": {
+      "file": "e407a0340e2b65df5bec9b55553171bda6eb3ddff1899987d48d21776cedf238.gz",
+      "stored_sha256": "c0cc4ba3f8f95036d4ac8d92938aaf721ab2308eef584e6833f32d67c13591d0"
+    },
+    "49f6d499ac988b9801455bde2628abdb533ccc584cd896a0650340aea1021edc": {
+      "file": "49f6d499ac988b9801455bde2628abdb533ccc584cd896a0650340aea1021edc.gz",
+      "stored_sha256": "a466b176411cc1638a8072607d683fe5dd3fcec92e12f584923b5b8e4af83cbb"
+    },
+    "0dc0f07625d028f36b443ac636de9c55c3429e440980aa3e960edead49c8f255": {
+      "file": "0dc0f07625d028f36b443ac636de9c55c3429e440980aa3e960edead49c8f255.gz",
+      "stored_sha256": "7e855d08c03c75dd12a99f5eb61b7838cc38fed683bb3908acc7e842656e0dcf"
+    }
+  },
+  "rights": "Full media, native checkpoints, captures and binary local only; no release"
+}

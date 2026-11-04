@@ -1,0 +1,216 @@
+{
+  "status": "passed-rust-checkpoint-integrity",
+  "archived_files_present_after_cleanup": 125,
+  "new_links": [
+    {
+      "source": "AGENTS.md",
+      "target": "docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "preserved/rust-battle-checkpoint-audit-r2.json"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "preserved/README.md#rust戰中檢查點保存"
+    },
+    {
+      "source": "CONTEXT.md",
+      "target": "docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed"
+    },
+    {
+      "source": "CONTEXT.md",
+      "target": "preserved/rust-battle-checkpoint-audit-r2.json"
+    },
+    {
+      "source": "CONTEXT.md",
+      "target": "preserved/README.md#rust戰中檢查點保存"
+    },
+    {
+      "source": "CONTEXT.md",
+      "target": "docs/images/rust-battle-checkpoint-r1.png"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/images/rust-battle-checkpoint-r1.png"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed"
+    },
+    {
+      "source": "README.md",
+      "target": "preserved/rust-battle-checkpoint-audit-r2.json"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/images/rust-battle-checkpoint-r1.json"
+    },
+    {
+      "source": "README.md",
+      "target": "preserved/README.md#rust戰中檢查點保存"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "internal/remake-rust/src/checkpoint_tests.rs"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "preserved/rust-battle-checkpoint-audit-r2.json"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "internal/remake-rust/src/checkpoint.rs"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "internal/remake-rust/src/checkpoint_store.rs"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "tools/rust-checkpoint-gui.py"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "tools/rust-battle-checkpoint.py"
+    },
+    {
+      "source": "RESEARCH-LOG.md",
+      "target": "preserved/README.md#rust戰中檢查點保存"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../internal/remake-rust/src/checkpoint.rs"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../internal/remake-rust/src/checkpoint_store.rs"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../tools/rust-checkpoint-gui.py"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../preserved/rust-battle-checkpoint-audit-r2.json"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../tools/rust-battle-checkpoint.py"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../RESEARCH-LOG.md#rust原生戰中檢查點"
+    },
+    {
+      "source": "docs/spec/031-rust-independent-remake.md",
+      "target": "../../preserved/README.md#rust戰中檢查點保存"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/research-native-checkpoint.go"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/native-checkpoint-port.go"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/native-checkpoint-ui.go"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/probe-native-checkpoint.go"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/research-native-checkpoint_test.go"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/prepare-native-checkpoint.py"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/check-native-checkpoint.py"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/native-checkpoint.sh"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/export-native-checkpoint-ida.py"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "native-checkpoint-audit-r2.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "native-checkpoint-audit-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "native-checkpoint-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "native-checkpoint-verification-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "native-checkpoint-integrity-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "rust-battle-checkpoint-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "rust-battle-checkpoint-audit-r2.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../RESEARCH-LOG.md#rust原生戰中檢查點"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "../tools/rust-battle-checkpoint.py"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "rust-battle-checkpoint-detached-r1.json"
+    },
+    {
+      "source": "preserved/README.md",
+      "target": "rust-battle-checkpoint-cleanup-r1.json"
+    }
+  ],
+  "new_file_sha256": {
+    "internal/remake-rust/src/checkpoint.rs": "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc",
+    "internal/remake-rust/src/checkpoint_store.rs": "28e183df57c26e268bffc160f4ff815babdc63bea0a13683153a99fe1e8a547b",
+    "internal/remake-rust/src/checkpoint_tests.rs": "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48",
+    "tools/rust-battle-checkpoint.py": "e407a0340e2b65df5bec9b55553171bda6eb3ddff1899987d48d21776cedf238",
+    "tools/rust-checkpoint-gui.py": "49f6d499ac988b9801455bde2628abdb533ccc584cd896a0650340aea1021edc",
+    "docs/images/rust-battle-checkpoint-r1.png": "d042996524d3b55707e316a373795b226d8b5062d79392c3a665781bfcf06786"
+  },
+  "root_owned_or_md_directories_found": 0,
+  "docker_cleanup": "Own bounded --rm containers completed; no other project resources removed",
+  "standalone_cli": "Passed with only readonly native mounted, network none",
+  "baseline": [
+    197,
+    7,
+    923,
+    535,
+    1071
+  ]
+}

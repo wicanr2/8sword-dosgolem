@@ -3197,3 +3197,17 @@ Rust移植火球、雷火、殺鬼、暗殺、凝滯、滅半、複製、地震�
 完整432檔／425物件已保存，壓縮30815524 bytes，脫離工作區逐SHA核對通過。清除2354份Go／Rust快取共277450708 bytes，約264.6 MiB，保留native binary／pack。全專案未見root-owned檔案或.md目錄；本批容器--rm收尾，其他專案容器保持。來源、實際掛載與工具版本見[核對](preserved/rust-enemy-spells-audit-r1.json)，[清理](preserved/rust-enemy-spells-cleanup-r1.json)與[完整性](preserved/rust-enemy-spells-integrity-r1.json)另存。
 
 Go正式197來源／7程式、923核心、535素材及1071美術不改。GitHub主機憑證與private repo核對通過；本輪程式與批准成果圖納入Git提交，完整素材及binary由.gitignore留在本機。[清理後核對](preserved/rust-enemy-spells-postcleanup-audit-r1.json)通過。下一步戰中保存、其餘原式選單及世界／管理／募兵／結局，不稱完整獨立遊戲或發布Release。
+
+## 2026-11-04 Rust原生戰中檢查點
+
+命中remake規格閘門與文件職責路由，沿已確認Rust獨立執行／保存需求，先由DRAFT核對原生欄位，再將開發檢查點轉READY後實作。Go v5與dosgolem快照保持；完整世界schema及匯入未定案，不由這個開發檢查點替代。
+
+新增有界typed編碼、catalog指紋、完整Controller／RNG／視窗偏好及獨占暫存提交。F7與工具列啟用需明示save-dir，演出中請求延至下一步規則前提交；Continue直接讀保存狀態。35個Rust測試與既有全部向量通過；普通、敵術、凝滯／複製、已扣次目標等待、退款、勝敗／撤退及檔案拒絕／提交中斷均抽驗。
+
+五個GUI程序、11張同幀SDL讀回通過。普通不重開與冷續接均32行動勝利，完整檢查點雜湊相同；兩個特殊冷讀點保留額外行動／已扣次選敵，Space一次退款後與原程序相同撤退。三組冷讀前後逐RGBA一致，字型隸書、音樂關與游標恢復。329／364／368-byte保存檔均UID1000／GID1000及0600，三個CLI拒絕在SDL前完成。
+
+工具問題：第一次工具列點擊漏算X11視窗原點，改XTranslateCoordinates後同流程通過，未改產品命中區。整理用Python重複鍵修正，收據準備後乾淨重跑核對；產品測試未因此改規則或挑seed。Rust格式檢查、release建置、獨立CLI及啟動器bash語法檢查通過。
+
+[最終核對](preserved/rust-battle-checkpoint-audit-r2.json)、[永久索引](preserved/rust-battle-checkpoint-r1.json)及[完整性](preserved/rust-battle-checkpoint-integrity-r1.json)記錄完整來源。125檔／95物件、壓縮35230545 bytes，脫離工作區逐SHA核對通過。清除690份rust-target快取共132757989 bytes，約126.6 MiB；binary、pack、GUI與實際檢查點保持，125份保存來源清理後仍逐SHA一致。全專案未見root-owned檔案或.md目錄；本批--rm容器完成，未動其他專案容器／映像。
+
+README新增原生存讀對照及穩定使用入口。主機gh憑證與private repo核對通過；程式、文件及批准成果圖納入Git提交，完整素材、binary與檢查點由.gitignore留本機。正式197／7／923／535／1071與Go格式不改，未建立Release。下一步Rust世界資料、正常移動／事件及世界進度保存，再接原式管理／募兵與結局，不重開已驗音畫及戰中矩陣。

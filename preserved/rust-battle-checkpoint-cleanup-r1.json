@@ -1,0 +1,14 @@
+{
+  "status": "passed-scoped-rust-checkpoint-cleanup",
+  "removed": [
+    "workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native/rust-target"
+  ],
+  "files": 690,
+  "bytes": 132757989,
+  "native_binary_media_gui_and_checkpoints_retained": true,
+  "archive_files": 125,
+  "archive_objects": 95,
+  "compressed_bytes": 35230545,
+  "root_owned_or_md_directories_found": 0,
+  "docker_cleanup": "All own --rm workload containers completed; no image rebuilt or global prune; other project containers retained"
+}

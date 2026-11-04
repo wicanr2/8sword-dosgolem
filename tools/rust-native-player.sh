@@ -2,7 +2,7 @@
 set -euo pipefail
 task_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 task_crate="$task_root/internal/remake-rust"
-task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-enemy-spells-r1/native"
+task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-battle-checkpoint-r1/native"
 task_image=mm45-rust-desktop:1.99.1-r3
 test -d "$task_crate"; test -d "$task_native"
 [[ "$(id -u)" == 1000 ]]
@@ -26,7 +26,20 @@ case "$task_action" in
  run)
   test -f "$task_native/8sword-remake"; test -d "$task_native/pack"
   test -d /tmp/.X11-unix; test -n "${DISPLAY:-}"
+  task_run_args=(); task_save_bound=false
+  while (($#)); do
+   if [[ "$1" = --save-dir ]]; then
+    test "$#" -ge 2; test "$task_save_bound" = false; test -d "$2"; test ! -L "$2"
+    [[ "$2" = /* ]]
+    task_save_dir="$2"; task_save_bound=true; task_run_args+=(--save-dir /saves); shift 2
+   else
+    task_run_args+=("$1"); shift
+   fi
+  done
   task_options=(-e "DISPLAY=$DISPLAY" --mount 'type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix,readonly')
+  if [[ "$task_save_bound" = true ]]; then
+   task_options+=(--mount "type=bind,src=$task_save_dir,dst=/saves")
+  fi
   if [[ -n "${XAUTHORITY:-}" ]] && test -f "$XAUTHORITY"; then
    task_options+=(--mount "type=bind,src=$XAUTHORITY,dst=/run/xauthority,readonly" -e XAUTHORITY=/run/xauthority)
   fi
@@ -38,7 +51,7 @@ case "$task_action" in
   fi
   exec timeout -k 10s 2h docker run --rm --init --network none --user "$(id -u):$(id -g)" --memory 2g --cpus 2 --pids-limit 128 \
    "${task_options[@]}" --mount "type=bind,src=$task_native/8sword-remake,dst=/player,readonly" \
-   --mount "type=bind,src=$task_native/pack,dst=/media,readonly" "$task_image" /player --battle --assets /media "$@"
+   --mount "type=bind,src=$task_native/pack,dst=/media,readonly" "$task_image" /player --battle --assets /media "${task_run_args[@]}"
   ;;
- *) echo '用法：bash tools/rust-native-player.sh test|build|run [--mute] [--weak|--spells|--taoist|--enemy-spells]' >&2; exit 2 ;;
+ *) echo '用法：bash tools/rust-native-player.sh test|build|run [--mute] [--weak|--spells|--taoist|--enemy-spells] [--save-dir <既有絕對路徑> [--continue]]' >&2; exit 2 ;;
 esac

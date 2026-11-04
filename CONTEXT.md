@@ -17,21 +17,26 @@
 | Rust普通回合 | 限定完成。四場原版介面Go記錄的71次來源選取、42次攻擊、6次略過及一次撤退相同；Rust自行排程，不從記錄提供來源隊。 |
 | Rust原生視窗與音樂 | 普通戰鬥樣本完成。原版HD戰場幾何、透明部隊、三字型及音樂工具列；32動作勝利、2動作全滅及撤退經X11輸入通過。 |
 | Rust敵方特殊 | 八分派限定完成。384組Go模型、13份既有原版／Go收據及原生自動施法至普通勝局通過；第八分派只保留受控入口。 |
-| Rust完整遊戲 | 未完成。世界、新遊戲、管理／募兵、其餘原版選單、保存、結局及其餘工具列待移植。 |
+| Rust戰中檢查點 | 開發樣本限定完成。F7／工具列存檔、關閉後Continue、額外行動及已扣次選敵均經視窗抽驗；35測試、五獨立程序及11擷取通過。 |
+| Rust完整遊戲 | 未完成。世界、新遊戲、管理／募兵、其餘原版選單、世界進度保存、結局及其餘工具列待移植。 |
 | 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。GUI使用明示編成；SDL dummy不等於人耳確認。 |
 | 可選精修 | 新兵額外手繪動作、特殊死亡呈現、循環音樂接點與其餘平台驗收依後續範圍處理。 |
 
 ## 最近驗證與入口
 
-最新為[敵方八分派限定驗收](docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed)。29個Rust測試、384組現行Go模型與13份既有成對收據通過。保留原抽選分段、暗殺判定、凝滯空raw重複計數、弱複製及滅半的前一slot錯位判定；不扣玩家次數、不改pending HP。第八分派無自然抽選入口，未自行加入。alias沿PAM初始化0明示配置，不推論世界所有寫入。
+最新為[原生開發檢查點限定驗收](docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed)。35個Rust測試、五個獨立GUI程序及11張同幀擷取通過。普通戰留在程序打完與關閉後續接均32行動勝利，完整檢查點雜湊相同；凝滯額外行動與已扣次選敵亦能冷讀，Space只退款一次，後續撤退結果相同。三個存讀點畫布與SDL讀回、冷讀前後逐RGBA相同。
 
-原生視窗以seed1及正常XTest輸入完成敵雷火、兩種新增單位死亡、三個普通行動勝利、切隸書、R再戰與Esc撤退；剩71民兵。第二次敵施法為無適合目標的殺鬼術，正常返回而不扣兵。四張同幀畫布與SDL讀回相同；[成果圖](docs/images/rust-enemy-spells-r1.png)、[核對](preserved/rust-enemy-spells-audit-r1.json)與[永久保存](preserved/README.md#rust敵方八分派保存)為入口。`run --enemy-spells --seed 1`可重播明示樣本，世界／存檔尚待。
+原生工具`run --save-dir <既有可寫絕對路徑>`啟用F7／工具列存檔，`run --save-dir <同一路徑> --continue`續接；讀回取保存的樣本、種子、游標、字型與音樂開關。選術待選敵不重新扣次；演出中F7排入請求，下一次規則步進前才提交。檔案是原生開發用battle.chk，不含VM；不是Go v5或完整世界存檔相容實作。[核對](preserved/rust-battle-checkpoint-audit-r2.json)、[保存](preserved/README.md#rust戰中檢查點保存)與[成果圖](docs/images/rust-battle-checkpoint-r1.png)為入口。動畫與音樂游標不保存，冷讀重新開始媒體。
+
+[敵方八分派限定驗收](docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed)的384組現行Go模型與13份既有成對收據保持。原抽選分段、暗殺判定、凝滯空raw重複計數、弱複製及滅半錯位判定不改；第八分派只受控。alias沿PAM初始化0明示配置，不推論世界所有寫入。
+
+原生視窗以seed1及正常XTest輸入完成敵雷火、兩種新增單位死亡、三個普通行動勝利、切隸書、R再戰與Esc撤退；剩71民兵。第二次敵施法為無適合目標的殺鬼術，正常返回而不扣兵。四張同幀畫布與SDL讀回相同；[成果圖](docs/images/rust-enemy-spells-r1.png)、[核對](preserved/rust-enemy-spells-audit-r1.json)與[永久保存](preserved/README.md#rust敵方八分派保存)為入口。`run --enemy-spells --seed 1`可重播明示樣本，世界與世界保存尚待。
 
 [玩家八術限定驗收](docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)的2352組現行Go模型及15份既有原版介面收據保持，涵蓋八術、暗殺失敗、取消與顯示倒數。凝滯保留重複空raw的六次加值；減兵與複製保留pending HP。玩家最後只剩施法者且無次數時，可沿已證實原補位前移並普通近戰。
 
 XTest輸入完成火球後17次普通行動勝利，剩60民兵／2雙頭鬼／1女弓箭手；另一局道士複製74→103、凝滯、雷火、選敵Space退款與選術Esc撤退。第三局選敵Esc不退款。11張擷取逐張保存同一幀的軍隊、HP、次數、FX及RGBA雜湊，並與SDL讀回核對。底板簡化、共用PON四幀命中，不稱完整原版動畫相位一致。
 
-[玩家法術核對](preserved/rust-player-spells-audit-r2.json)、[保存](preserved/README.md#rust玩家八術保存)及[圖](docs/images/rust-player-spells-r1.png)保持。原生工具run加--spells使用雙頭鬼，--taoist使用道士；均為明示軍隊／學習旗標／係數／次數配置。右欄地圖術只顯示零次數，尚未接世界功能。存檔尚未完成，未新增格式或Release。
+[玩家法術核對](preserved/rust-player-spells-audit-r2.json)、[保存](preserved/README.md#rust玩家八術保存)及[圖](docs/images/rust-player-spells-r1.png)保持。原生工具run加--spells使用雙頭鬼，--taoist使用道士；均為明示軍隊／學習旗標／係數／次數配置。右欄地圖術只顯示零次數，尚未接世界功能。世界存檔尚未完成，未新增世界格式或Release。
 
 既有[普通回合與媒體限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)含原生CLI、四場排程對照及三條原生視窗結果。六張SDL紋理讀回與Rust畫布相同；勝利後敵側及全滅後玩家側共2304000背景像素正確清除部隊。預設1000野狼／10女弓箭手及弱軍為測試配置，不稱世界遭遇或自然通關。
 
@@ -41,7 +46,7 @@ OGG〈刀祭〉由Rust透過libsndfile解碼，再由SDL播放。2633140 frames�
 
 [前輪音畫核對](preserved/rust-native-player-audit-r1.json)與[普通樣本保存](preserved/README.md#rust原生普通回合與媒體保存)保持。完整素材與binary留本機preserved，不依賴workplace；可刪的是已逐SHA保存的快取。
 
-下一步先接Rust戰中保存及其餘原版選單，再串世界／原式管理／募兵與結局。補足READY規格後沿同機制代表抽驗，不重跑已驗普通戰鬥、全量HD或DOS硬體時序。
+下一步移植Rust世界資料、正常移動／事件及世界進度保存，再串原式管理／募兵、其餘選單與結局。補足READY規格後沿同機制代表抽驗，不重跑已驗普通戰鬥、戰中檢查點、全量HD或DOS硬體時序。
 
 ## 保持的Go入口與基線
 

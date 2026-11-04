@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-04 Rust原生戰中檢查點依[031限定驗收](docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed)完成。35測試、五獨立GUI程序與11擷取通過；普通戰兩路32動作勝利、凝滯額外行動及已扣次選敵冷讀／退款後結果相同，三個存讀點逐RGBA一致。F7／工具列及run --save-dir <既有絕對路徑> --continue可用，保留seed、actor、pending HP、空raw計數、游標、字型及音樂開關。這是可替換開發檢查點，不是Go v5／世界存檔相容；媒體重新開始。入口為[核對](preserved/rust-battle-checkpoint-audit-r2.json)與[保存](preserved/README.md#rust戰中檢查點保存)。下一步Rust世界資料／移動／事件與世界保存，再接原式管理及結局，不重驗全量音畫或戰中矩陣。正式197／7／923／535／1071及Go格式保持；唯一現況見CONTEXT。
+
 2026-11-04 Rust敵方八分派依[031限定驗收](docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed)完成。29測試、384現行Go模型與13既有原版成對收據通過；原抽選分段、暗殺、凝滯重複raw、複製與滅半錯位判定保持，第八分派只受控。原生XTest以seed1完成敵雷火、新增兩兵死亡、三普通行動勝利、隸書及再戰撤退，四張同幀SDL讀回一致。入口為[核對](preserved/rust-enemy-spells-audit-r1.json)、[保存](preserved/README.md#rust敵方八分派保存)及run --enemy-spells。普通及玩家八術保持；下一步戰中保存、世界／原式管理與結局，不重驗全量音畫。正式197／7／923／535／1071、Go保存格式保持，無Release。唯一現況見CONTEXT。
 
 2026-11-04 Rust玩家八術依[031限定驗收](docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)完成。23測試、2352 Go模型、15既有原版介面收據通過，原式兩欄八列、目標Space退款／Esc不退款、凝滯空raw重複計數及法術不改pending HP保持。XTest火球後17動作勝利，複製74→103／凝滯／雷火與取消已抽驗；11張同幀狀態及SDL讀回一致。底板簡化、PON共用，不稱完整動畫相位。最終GUI只掛一個輸入工具與native，看不到Go/PAM。入口為[工具](tools/rust-player-spells.py)、[核對](preserved/rust-player-spells-audit-r2.json)與[保存](preserved/README.md#rust玩家八術保存)，原生run加--spells／--taoist。下一步敵方八分派、保存及世界，不重驗已驗音畫。正式197／7／923／535／1071與Go存檔不改，無Release。唯一現況見CONTEXT。

@@ -1212,3 +1212,13 @@ Rust執行容器只掛唯讀crate及native子目錄，沒有PAM、Go來源／匯
 `audit --project /project --out <新JSON>`核對來源、模型、29測試、圖片及基線。`archive --project /project --archive /project/preserved --out /project/preserved/rust-enemy-spells-r1.json`逐SHA保存；`verify --archive /archive --out <新JSON>`只掛唯讀preserved與工具，即可在看不到工作區時核對。[脫離核對](rust-enemy-spells-detached-r1.json)與[清理](rust-enemy-spells-cleanup-r1.json)另存。
 
 還原目前樣本時，依索引把路徑尾段`rust-enemy-spells-r1/native/`下的檔案解壓到同名候選native目錄，逐SHA核對並套用記錄的權限。使用[啟動器](../tools/rust-native-player.sh)的`run --enemy-spells --seed 1`，可重播明示樣本。執行期只有binary、pack及SDL2／libsndfile等平台函式庫；Python與Go只供開發驗證。世界與保存依WORKLIST續接。
+
+## Rust戰中檢查點保存
+
+[完整索引](rust-battle-checkpoint-r1.json)、[核對](rust-battle-checkpoint-audit-r2.json)、[規格](../docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed)與[研究](../RESEARCH-LOG.md#rust原生戰中檢查點)為入口。35測試、五個獨立GUI程序及11擷取通過。完整Rust crate、工具、native binary、批准素材投影、檢查點、擷取、失敗診斷與執行記錄，逐SHA壓縮於本機`preserved/rust-battle-checkpoint-r1/<SHA256>.gz`。只排除可重生rust-target，不依賴workplace；完整音畫、binary及檢查點不入Git。
+
+[資料工具](../tools/rust-battle-checkpoint.py)在UID1000、network none、Pillow11.3.0-r2容器執行。`prepare --project /project`從前批永久來源恢復批准媒體；`freeze --project /project`保存當前Rust及工具來源；`audit --project /project --out <新JSON>`核對來源、35測試、原生CLI、11張同幀讀回及基線。具體建置與GUI掛載見本批execution.json；原生建置只掛crate與native，GUI只掛單一輸入工具與native。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-battle-checkpoint-r1.json`保存資料；`verify --archive /archive --out <新JSON>`只需唯讀preserved與單一工具即可核對每個原始及壓縮SHA。[脫離核對](rust-battle-checkpoint-detached-r1.json)與[清理](rust-battle-checkpoint-cleanup-r1.json)另存。
+
+還原時按索引解壓`rust-battle-checkpoint-r1/native/`下的binary及pack至同名候選目錄，逐SHA核對並套用記錄權限。需要重建時還原rust-source為crate，使用既有Rust1.99.1／SDL2／libsndfile映像，不需要Go或PAM。以[啟動器](../tools/rust-native-player.sh)的`run --save-dir <既有可寫絕對路徑>`啟用F7／工具列，`run --save-dir <同一路徑> --continue`續接；battle.chk僅為可替換的原生開發檢查點。保存樣本與Go／完整世界保存不互通；媒體游標不保存，硬中斷留下的lock拒絕寫入，不自行刪除。

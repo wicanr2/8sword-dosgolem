@@ -3247,3 +3247,19 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 原生視窗以seed1在執行前固定，不重投或挑選結果。XTest完成敵雷火與普通勝局，敵術返回兩次，第二次殺鬼無適合目標。四份同幀擷取與SDL讀回相同；新增部隊清除、再戰撤退及隸書均已抽樣。這是明示戰鬥配置，不是世界正常遭遇或完整通關證據。
 
 入口為[031限定驗收](docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed)、[Go模型匯出](internal/ownedworld/rust_enemy_reference_test.go)、[固定向量](internal/remake-rust/enemy-reference.tsv)、[資料工具](tools/rust-enemy-spells.py)、[核對](preserved/rust-enemy-spells-audit-r1.json)及[永久保存](preserved/README.md#rust敵方八分派保存)。完整原bytes、舊收據、來源與binary留本機保存，原世界與Go保存格式不變。
+
+## Rust原生戰中檢查點
+
+2026-11-04。本輪是自有Rust狀態保存，不新增原版語意或執行原版。PAM.AY SHA-256仍為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，IDA資料庫SHA仍為`a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`；既有IDA9.4 MZ linear base10000h、runtime0F67及DS1E88定位沿031，不混成新保存位址。
+
+| 來源 | 等級與結論 | 驗證 |
+|---|---|---|
+| Go research-battle-resume.go | 已證實實作：舊戰中續接包含DOSGOLEM-M／D記憶體與執行期frame。不能當作Rust獨立控制器的序列化資料。 | 直接讀型別、decodeResumeImage及原保存schema；未改舊檔。 |
+| Rust Battle／Controller | 已證實自有狀態：rows與pending HP分開；剩餘行動、slots、scan、已消耗actor及待選法術均影響下一步。 | [編碼往返測試](internal/remake-rust/src/checkpoint_tests.rs)逐普通邊界與後續等價輸入比完整型別及seed。 |
+| Rust checkpoint.rs | 自有工程契約：8SBCHK01、有界payload、catalog指紋與FNV64；不存CPU、圖片或指標。 | 截斷、版本、校驗、重新校驗後語意越界與異版catalog拒絕；FNV不作防竄改認證。 |
+| Rust checkpoint_store.rs | 自有工程契約：獨占lock、新建暫存、sync、rename、目錄sync；不覆寫損壞／連結目的。 | 中斷前舊檔保持、鎖衝突、目錄、連結與超大檔測試。不是斷電硬體試驗；硬中斷殘留lock採拒絕寫入。 |
+| 原生XTest保存／冷續接 | 已證實限定樣本：兩普通勝局與三條特殊續接最後狀態相同。 | 普通兩路32行動勝利；複製／凝滯後及已扣次選敵的兩個冷讀點，退款後同一撤退。五程序、11擷取、三組冷讀前後逐RGBA相同。 |
+
+原生新建檢查點329／364／368 bytes，完整SHA見GUI收據及[核對](preserved/rust-battle-checkpoint-audit-r2.json)。樣本seed在執行前固定，冷讀直接取保存seed；沒有重投、RAM或IP注入。字型隸書、音樂關與游標亦恢復。動畫／音訊游標不保存，冷讀重新開始媒體，未冒稱原版F7或原版續接parity。
+
+入口為[031](docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed)、[編碼](internal/remake-rust/src/checkpoint.rs)、[檔案提交](internal/remake-rust/src/checkpoint_store.rs)、[GUI工具](tools/rust-checkpoint-gui.py)、[資料工具](tools/rust-battle-checkpoint.py)及[永久保存](preserved/README.md#rust戰中檢查點保存)。本輪不新增完整世界schema，舊Go保存、舊卡片快照及原版檔保持；世界及匯入另依工作表。
