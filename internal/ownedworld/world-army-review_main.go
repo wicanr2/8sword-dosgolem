@@ -59,7 +59,7 @@ var armyReviewTitle = "神州八劍・軍隊試作・檢閱"
 
 // Player combat must use the original battlefield. The former card UI remains
 // research source until its backend can drive the verified original interface.
-var ErrOriginalBattlefieldPending = errors.New("原版／原版HD戰場的Go後端橋接尚未完成；卡片戰鬥入口已停用，既有進度保留")
+var ErrOriginalBattlefieldPending = errors.New("此建置未啟用原版操作整合；請用 tools/original-player.sh 建置來源畫布候選。既有進度保留")
 
 type armyReviewApp struct {
 	Extra                                                                      armyScreenExtra
@@ -122,14 +122,7 @@ func (g *armyReviewApp) bind() error {
 			return e
 		}
 		g.Port = p
-		if _, e = installOriginalRecruitQuantity(g.Engine, p); e != nil {
-			return e
-		}
-		g.OriginalReview, e = installOriginalArmyReview(g.Engine, p)
-		if e != nil {
-			return e
-		}
-		g.Extra, e = armyReviewExtraFactory(g.Engine, p)
+		g.OriginalReview, g.Extra, e = installOriginalPlayerServices(g.Engine, p, flag.Lookup("scratch").Value.String(), flag.Lookup("ui-assets").Value.String())
 		if e != nil {
 			return e
 		}
@@ -187,6 +180,9 @@ func (g *armyReviewApp) view() string {
 	return "intro"
 }
 func (g *armyReviewApp) Update() error {
+	if g.Engine.Exited {
+		return ebiten.Termination
+	}
 	if err := g.bind(); err != nil {
 		return err
 	}
@@ -394,7 +390,7 @@ func runArmyReview() error {
 	if !*owned {
 		return errors.New("Go軍隊命令不接受owned=false，原版模式請用8sword")
 	}
-	if !*nativeImportOnly {
+	if !*nativeImportOnly && originalPlayerBuild != "original-ui-r1" {
 		return ErrOriginalBattlefieldPending
 	}
 	if os.Getuid() != 1000 || (*scratch == "" && !*nativeImportOnly) || *scale < 0.5 || *scale > 2 {
@@ -432,6 +428,9 @@ func runArmyReview() error {
 		return e
 	}
 	defer store.Close()
+	if snap.World.Battle != nil {
+		return errors.New("舊卡片戰中進度尚未返回世界，保留原檔並用原研究工具恢復")
+	}
 	fonts, e := loadArmyUIFonts(*pack)
 	if e != nil {
 		return e
@@ -445,7 +444,7 @@ func runArmyReview() error {
 	}
 	// The adapter explicitly owns the sidecar and the guard. The original DOS
 	// executor receives only a separate native shadow with the same opaque bytes.
-	if e = materializeResumeCheckpoint(*root, *input, *scratch, store, snap); e != nil {
+	if e = materializeNativeCheckpoint(*root, *input, *scratch, snap); e != nil {
 		return e
 	}
 	engine, e := game.Open(game.Options{Root: *root, Assets: *assets, Saves: *scratch, HD: true})
@@ -498,7 +497,7 @@ func runArmyReview() error {
 		player.Play()
 	}
 	ebiten.SetTPS(30)
-	ebiten.SetWindowTitle(armyReviewTitle)
+	ebiten.SetWindowTitle("神州八劍・原版HD操作・Go資料")
 	ebiten.SetWindowSize(int(1920**scale), int(1200**scale))
 	if e = ebiten.RunGame(g); e != nil {
 		return e
@@ -509,5 +508,5 @@ func runArmyReview() error {
 	return nil
 }
 
-// Run handles import-only operations while the original battlefield bridge is pending.
+// Run accepts native imports or a prepared original-interface candidate build.
 func Run() error { return runArmyReview() }

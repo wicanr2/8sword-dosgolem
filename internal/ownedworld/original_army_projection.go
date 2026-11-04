@@ -259,12 +259,20 @@ func installOriginalArmyProjection(e *game.Engine, catalog game.OwnedCombatCatal
 }
 
 func installOriginalArmyProjectionMode(e *game.Engine, catalog game.OwnedCombatCatalog, rows [6]ArmyStack, heldPreview bool) (*originalArmyProjection, error) {
+	return installOriginalArmyProjectionAdmission(e, catalog, rows, heldPreview, false)
+}
+
+func installOriginalArmyProjectionAdmission(e *game.Engine, catalog game.OwnedCombatCatalog, rows [6]ArmyStack, heldPreview, allowEmpty bool) (*originalArmyProjection, error) {
 	if !e.PAMLoaded || e.BattleRulesMode() != "native" {
 		return nil, errors.New("original army projection requires loaded PAM/native rules")
 	}
 	raw, err := originalArmyProjectionBytes(rows, catalog)
 	if heldPreview {
 		raw, err = originalHeldProjectionBytes(rows, catalog)
+	}
+	if allowEmpty && rows == ([6]ArmyStack{}) {
+		raw = [24]byte{}
+		err = catalog.Validate()
 	}
 	if err != nil {
 		return nil, err

@@ -1,0 +1,14 @@
+[package]
+name = "eightsword-remake"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "神州八劍 Rust 獨立重製核心"
+license-file = "../../LICENSE"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "8sword-remake"
+path = "src/main.rs"

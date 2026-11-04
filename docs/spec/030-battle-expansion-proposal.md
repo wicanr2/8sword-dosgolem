@@ -2822,3 +2822,27 @@ READY勘誤：一隻狼放第一隊的抽驗，在首次站姿、尚未出手時
 三種壞材質、十種指令綁定拒絕，封裝原子性、輸入不可變、原版模式拒絕、關閉釋放，以及退休命令不改其他圖層／冪等模型通過。既有來源繪圖回歸的完整狀態與PCM相同，HD原生像素寫入為0；未新增新兵局逐塊PCM比較。
 
 [成果](../images/original-battle-new-units-go-r1.png)、[圖片來源](../images/original-battle-new-units-go-r1.json)、[永久保存](../../preserved/README.md#原戰場新兵站姿保存)與[研究紀錄](../../RESEARCH-LOG.md#原戰場新兵的來源材質)為入口。這是Engine Frame及明示軍隊／位置，沒有新X11或自然取得聲明。原版模式、正式197來源七程式、923核心、535素材及1071美術保持。手繪攻擊姿態、其餘特殊術死亡呈現、一般入口、隨機／守軍共用生命週期及規則／AI仍待，完整戰鬥後才進Rust。
+
+#### 原戰場共用戰鬥生命週期 READY
+
+2026-11-04依使用者加速收尾要求，沿已確認原戰場、Go後端與完整戰鬥後進Rust順序。固定PAM／i64、Go1.24.13／923核心及r69沿前節。既有IDA `ida-guard-world.json`的sub_1151C已足夠：拒戰後11780跳回11719，同樣經1171A呼叫sub_132E0、返回171D及172B獎勵，沒有第二套戰場caller。原隨機確認、拒戰／追擊、空軍隊扣款與rand保持；原守軍沿2DDE／309E／25EE。
+
+- 單一投影、setup、actions、casualty、rounds、spells、support及enemy物件只安裝一次。於隨機1650或守軍2DDE進入時，在前場完整返回、資源／影子／NPC／旗標及Store一致後就地重新待命；不在每場註冊新hook。隨機只用171D／0BD3，守軍只用309E／25EE。兩套結算可共存，依原caller分流，禁止將隨機獎勵給守軍。
+- 每場讀最新Go軍隊。空軍隊允許到原存在判斷與原提示，禁止進battle setup。隨機存在／空軍隊扣款沿已驗armyPresence，拒戰rand沿原流程；取消不提交，空軍隊只扣一次。隨機0BD3及守軍25EE分別核對各自返回，未提交效果、過期Store、舊frame或未知caller拒絕。
+- 既有世界管理的operand guard只在確定已由Go接管的1900／1CD8讓相應控制器執行；其他未知索引、原helper逃逸與新增ID固定表護欄保持。共用控制器提供[新協調器](../../internal/ownedworld/original_player_battles.go)，原七程式與卡片入口停止線不因建立它而解除。
+- 同程序抽一條隨機戰→守軍→隨機戰，以及取消／撤退、空軍隊與F7／獨立Continue；原控制與Go沿既有同機制代表抽樣。位置／軍隊fixture明示，不重做全素材或全部兵種。一般玩家接線再依同一實作加入管理／保存模組，不重新走舊卡片factory。
+
+入口為[協調器](../../internal/ownedworld/original_player_battles.go)、[抽驗](../../internal/ownedworld/original_player_battles_test.go)；來源與結果沿workplace的original-player-integration-r1，核對／保存工具接回本節。未達本節抽驗不稱共用入口完成。
+
+
+#### 原版操作整合限定 CONFORMED
+
+沿共用生命週期READY接入[協調器](../../internal/ownedworld/original_player_battles.go)、[直接服務安裝](../../internal/ownedworld/original_player_services.go)及[抽驗](../../internal/ownedworld/original_player_battles_test.go)。原版F2／F3、原店與增援數量輸入、月結／寶箱／煉金／召兵、戰鬥及F7同一入口明確安裝，沒有呼叫舊卡片factory。來源畫布patch沿前輪；原版模式與正式197來源七程式保持。
+
+同程序以正常按鍵完成F2／F3取消、隨機撤退→守軍勝利→隨機撤退與F7；另一程序從Continue讀回相同軍隊、六資源及位置。只在每場入口重新綁最新Go軍隊，就地重設原八個控制器，沒有重裝掛點。軍隊1000民兵／200原弓箭手／20狼／20女弓箭手、領導30000、戰績10000及兩次座標更動為fixture，seed在整段開始前固定一次。守軍勝局剩978民兵，月薪200→220；最終F7軍隊保持978／200／20／20。
+
+[視窗工具](../../tools/original-player-gui.py)以X11事件操作Continue、F2、F3與取消；擷取畫布及presented SHA相同、取消token保持。它沒有獨立擷取X伺服器像素，不稱新增逐RGB的實窗對拍。[啟動器](../../tools/original-player.sh)僅對套來源patch的準備建置開放，未加標記的原始建置在IO前拒絕。`owned-player.sh run`轉交同入口，不能誤用舊卡片binary。
+
+[核對工具](../../tools/original-player-integration.py)提供freeze／audit／archive／verify，固定Go1.24.13及既有Docker限額；完整命令記在本機保存的execution-r1.json。證據見[整合核對](../../preserved/original-player-integration-audit-r1.json)、[永久入口](../../preserved/README.md#原版操作整合與rust起步保存)。不新增存檔schema，不重驗既有全部世界事件。只限已匯入世界進度的HD開發入口；新遊戲、守軍空軍隊／全滅專項、超領導／超word、戰中續接及AI／規則工具列仍列[工作表](../../WORKLIST.md)。原版完整戰鬥已具代表證據，依使用者確認開始[031 Rust獨立重製](031-rust-independent-remake.md)，不再因可選美術矩陣延後。
+
+勘誤：首輪三場工具的隨機選敵Esc callback未在返回後停用，使守軍也撤退；收據明示retreat，不能當勝局。工具加active生命週期並斷言守軍win後，同容器命令乾淨重跑通過。保留首輪完整資料。GUI兩次失敗分別為缺libXtst與Enter早於主選單；沿既有libX11及等待實際scene後通過，屬隔離工具／時序問題。

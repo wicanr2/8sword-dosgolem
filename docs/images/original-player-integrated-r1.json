@@ -1,0 +1,8 @@
+{
+  "source": "workplace/probe-20261023/graphics-first/battle-r1/original-player-integration-r1/gui-r1/frame-001-army-noto.png",
+  "sha256": "d5dfee27ea762b75ea91a590893acfb5807a9ece23ba65396dcd9e7765b8ad5f",
+  "window_running": true,
+  "capture": "Engine F12 submitted canvas in Xvfb application; no independent XGetImage RGB comparison.",
+  "army_and_location_fixtures": true,
+  "general_release": false
+}

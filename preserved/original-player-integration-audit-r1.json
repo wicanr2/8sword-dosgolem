@@ -1,0 +1,390 @@
+{
+  "status": "passed-original-player-integration-audit",
+  "source_files": 314,
+  "chain": {
+    "F2_F3_original": true,
+    "F7": 1,
+    "army": [
+      {
+        "unit": "native:01",
+        "count": 978
+      },
+      {
+        "unit": "native:03",
+        "count": 200
+      },
+      {
+        "unit": "openkb:wolf",
+        "count": 20
+      },
+      {
+        "unit": "openkb:arcr",
+        "count": 20
+      },
+      {
+        "unit": "",
+        "count": 0
+      },
+      {
+        "unit": "",
+        "count": 0
+      }
+    ],
+    "events": [
+      {
+        "army": [
+          {
+            "unit": "native:01",
+            "count": 1000
+          },
+          {
+            "unit": "native:03",
+            "count": 200
+          },
+          {
+            "unit": "openkb:wolf",
+            "count": 20
+          },
+          {
+            "unit": "openkb:arcr",
+            "count": 20
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          }
+        ],
+        "event": "prepare",
+        "mode": "random",
+        "sequence": 1,
+        "token": "6ff8848eac6e17ad7caae5e05532ccd87b9c00b116a88dc49030fdc8a00a64dc"
+      },
+      {
+        "event": "return",
+        "mode": "random",
+        "sequence": 1,
+        "token": "50aa670ac8d42ad6113f367bfa076644cfe3b663dbc550a9916934d5f6d7f733"
+      },
+      {
+        "army": [
+          {
+            "unit": "native:01",
+            "count": 1000
+          },
+          {
+            "unit": "native:03",
+            "count": 200
+          },
+          {
+            "unit": "openkb:wolf",
+            "count": 20
+          },
+          {
+            "unit": "openkb:arcr",
+            "count": 20
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          }
+        ],
+        "event": "prepare",
+        "mode": "guard",
+        "sequence": 2,
+        "token": "50aa670ac8d42ad6113f367bfa076644cfe3b663dbc550a9916934d5f6d7f733"
+      },
+      {
+        "army": [
+          {
+            "unit": "native:01",
+            "count": 978
+          },
+          {
+            "unit": "native:03",
+            "count": 200
+          },
+          {
+            "unit": "openkb:wolf",
+            "count": 20
+          },
+          {
+            "unit": "openkb:arcr",
+            "count": 20
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          }
+        ],
+        "event": "prepare",
+        "mode": "random",
+        "sequence": 3,
+        "token": "04b47313c699c8b4d7ddcdbab0817217fb95e17c8dea9dca30f56cce77059d11"
+      },
+      {
+        "event": "return",
+        "mode": "random",
+        "sequence": 3,
+        "token": "b9fe28045bedede520bfcb0e2fec51c07021708d2e7dd7dab035ac906662280c"
+      }
+    ],
+    "initial_seed": 305419896,
+    "legacy_card_controller": false,
+    "location": {
+      "map_name": "map01.ay",
+      "map_sha256": "b6a978bccd0889f3044e997817004c93879811897165de838ce1d110bf071367",
+      "raw_words": {
+        "DS:56C4": 4,
+        "DS:56CA": 0,
+        "DS:56CC": 0,
+        "DS:56CE": 0,
+        "DS:56D0": 1,
+        "DS:56D2": 2,
+        "DS:56D6": 0,
+        "DS:56DC": 6,
+        "DS:8E12": 40,
+        "DS:8E44": 42
+      }
+    },
+    "phases": [
+      {
+        "army": [
+          {
+            "unit": "native:01",
+            "count": 1000
+          },
+          {
+            "unit": "native:03",
+            "count": 200
+          },
+          {
+            "unit": "openkb:wolf",
+            "count": 20
+          },
+          {
+            "unit": "openkb:arcr",
+            "count": 20
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          }
+        ],
+        "mode": "random",
+        "resources": {
+          "rank": 2,
+          "merit": 10000,
+          "monthly_pay": 200,
+          "gold": 459,
+          "leadership": 30000,
+          "spell_power": 6
+        },
+        "round_result": "retreat",
+        "sequence": 1,
+        "world_sha256": "c9a5cfc29b09111da3e628599f10b01a41e03dc4090aa85e216990b240bf8ec3"
+      },
+      {
+        "army": [
+          {
+            "unit": "native:01",
+            "count": 978
+          },
+          {
+            "unit": "native:03",
+            "count": 200
+          },
+          {
+            "unit": "openkb:wolf",
+            "count": 20
+          },
+          {
+            "unit": "openkb:arcr",
+            "count": 20
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          }
+        ],
+        "mode": "guard",
+        "resources": {
+          "rank": 2,
+          "merit": 10000,
+          "monthly_pay": 220,
+          "gold": 459,
+          "leadership": 30000,
+          "spell_power": 6
+        },
+        "round_result": "win",
+        "sequence": 2,
+        "world_sha256": "22cdae50e3729d7a5cb71b813ba479a9b21289591a177713afea1d6e65f970a0"
+      },
+      {
+        "army": [
+          {
+            "unit": "native:01",
+            "count": 978
+          },
+          {
+            "unit": "native:03",
+            "count": 200
+          },
+          {
+            "unit": "openkb:wolf",
+            "count": 20
+          },
+          {
+            "unit": "openkb:arcr",
+            "count": 20
+          },
+          {
+            "unit": "",
+            "count": 0
+          },
+          {
+            "unit": "",
+            "count": 0
+          }
+        ],
+        "mode": "random",
+        "resources": {
+          "rank": 3,
+          "merit": 10000,
+          "monthly_pay": 320,
+          "gold": 345,
+          "leadership": 30000,
+          "spell_power": 15
+        },
+        "round_result": "retreat",
+        "sequence": 3,
+        "world_sha256": "5801795ef5e7a13b2ae2cf14693849b1d112d970e8b4ff4cba1014d7f47f8601"
+      }
+    ],
+    "position_fixtures": true,
+    "resources": {
+      "rank": 3,
+      "merit": 10000,
+      "monthly_pay": 320,
+      "gold": 345,
+      "leadership": 30000,
+      "spell_power": 15
+    },
+    "same_process": true,
+    "status": "passed-original-player-chain",
+    "world_sha256": "f982b48b6f252dfc3c2589d5c4a21a8863157850c82750d17365b7fcb78330f7"
+  },
+  "cold": {
+    "army": [
+      {
+        "unit": "native:01",
+        "count": 978
+      },
+      {
+        "unit": "native:03",
+        "count": 200
+      },
+      {
+        "unit": "openkb:wolf",
+        "count": 20
+      },
+      {
+        "unit": "openkb:arcr",
+        "count": 20
+      },
+      {
+        "unit": "",
+        "count": 0
+      },
+      {
+        "unit": "",
+        "count": 0
+      }
+    ],
+    "legacy_card_controller": false,
+    "location": {
+      "map_name": "map01.ay",
+      "map_sha256": "b6a978bccd0889f3044e997817004c93879811897165de838ce1d110bf071367",
+      "raw_words": {
+        "DS:56C4": 4,
+        "DS:56CA": 0,
+        "DS:56CC": 0,
+        "DS:56CE": 0,
+        "DS:56D0": 1,
+        "DS:56D2": 2,
+        "DS:56D6": 0,
+        "DS:56DC": 6,
+        "DS:8E12": 40,
+        "DS:8E44": 42
+      }
+    },
+    "resources": {
+      "rank": 3,
+      "merit": 10000,
+      "monthly_pay": 320,
+      "gold": 345,
+      "leadership": 30000,
+      "spell_power": 15
+    },
+    "separate_process": true,
+    "snapshot_loaded": false,
+    "status": "passed-original-player-process-cold",
+    "world_sha256": "f982b48b6f252dfc3c2589d5c4a21a8863157850c82750d17365b7fcb78330f7"
+  },
+  "GUI": {
+    "status": "passed-original-player-gui",
+    "input": "X11 key events",
+    "F2": true,
+    "F3": true,
+    "cancel_preserves_token": true,
+    "canvas_matches_presented": true,
+    "capture": "frame-001-army-noto.png",
+    "initial_token": "0ab442b2383346541ca8ccf22cf964f05a01e77bc7175ba597012ffb9eda295c",
+    "final_token": "0ab442b2383346541ca8ccf22cf964f05a01e77bc7175ba597012ffb9eda295c",
+    "legacy_card": false,
+    "limits": "Native original F2/F3 presentation sampling; no new full battle X11 or natural recruitment claim."
+  },
+  "Rust": {
+    "status": "passed-rust-native-kernel",
+    "vectors": 201,
+    "tests_passed": 2,
+    "rustc": "1.99.1 (58cf8f9c3 2026-10-13)",
+    "image": "sha256:24707e70a4f1e23d9a7b25202ec43126d28a52294b96aad5c670df1fd1f1d400",
+    "network": "none",
+    "mounts": [
+      "/crate",
+      "/out"
+    ],
+    "original_executable_mounted": false,
+    "go_mounted": false,
+    "executable_sha256": "e8f3c7d007b3b9afbbe13b8a62ab757db285d0c56e96841c961889fffaf8efc6",
+    "reference_sha256": "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf"
+  },
+  "source_manifest_sha256": "1b16228c3e95867279d06fcb54002e96218a596b6371f58a94dd9956f03d2774",
+  "formal_runtime_unchanged": true,
+  "schema_unchanged": true,
+  "limits": [
+    "Engine normal-input sampling with explicit army/coordinate fixtures; not natural clear.",
+    "Original battle rules only. Native rules/AI toolbar and hand-drawn action poses move to the Rust phase.",
+    "Prepared development entry continues an imported world save. New-game creation and mid-battle restart are not enabled."
+  ]
+}

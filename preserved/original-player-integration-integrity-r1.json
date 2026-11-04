@@ -1,0 +1,15 @@
+{
+  "status": "passed-original-player-integration-integrity",
+  "indexed_documents": [
+    "WORKLIST.md",
+    "docs/spec/031-rust-independent-remake.md"
+  ],
+  "checked_links": 15,
+  "ownership_entries": 2018,
+  "uid": 1000,
+  "gid": 1000,
+  "positive_control": "README -> CONTEXT",
+  "root_owned_entries": 0,
+  "markdown_directories": 0,
+  "python_syntax": true
+}

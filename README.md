@@ -6,11 +6,21 @@
 
 以 Go 版 dosgolem 執行原版 DOS 程式，接入 HD 圖像、Noto 粗字與 HD 音樂。劇情、事件、戰鬥結算及存檔仍由原版程式控制，另提供可選的 Go 目標策略 AI、民兵結陣與弓箭手壓制規則。兵種及招募接管目前沿 Go 開發；先完成原版／HD完整戰鬥，再重寫成不依賴DOS EXE的Rust獨立版。
 
-既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。玩家使用原版或原版HD戰場，保留原版配置、選單、操作與戰鬥流程。新增兵種已在隔離候選接上戰鬥資料與透明站姿，一般玩家入口仍待整合。現況與限制集中在[目前狀態](CONTEXT.md)，驗證範圍見[階段抽樣](preserved/phase-closeout-audit-r1.json)與[正常玩家路徑補驗](preserved/recruit-gui-diagnosis-audit-r2.json)。
+既有HD與已接功能已完成代表抽樣，正常新遊戲、募兵、軍隊檢閱、自然遇敵撤退與存退讀通過，三字型與偏好保存亦已驗。玩家使用原版或原版HD戰場，保留原版配置、選單、操作與戰鬥流程。Go開發入口已串接原版管理與連續戰鬥，Rust獨立重製已開始。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
 
-先前的獨立卡片戰鬥介面已撤回，`8sword-owned`的一般玩家啟動已停用。Go兵力、AI、招募與存檔研究保留，後續接入同一套原版戰場，不提供另一個Go戰鬥模式。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
+先前的獨立卡片戰鬥介面已撤回。[原版操作開發入口](tools/original-player.sh)以Go提供兵力、管理、招募及保存，保留同一套原版HD戰場。未準備來源畫布的直接建置仍在讀寫進度前拒絕。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
+
+## 原版操作整合與獨立重製
+
+![整合入口沿原版F2呈現Go軍隊與HD新增兵種](docs/images/original-player-integrated-r1.png)
+
+同一程序已抽驗原版F2／F3、隨機戰撤退、守軍勝利、再次隨機戰、F7及獨立程序讀檔。上圖為整合視窗透過正常按鍵擷取的軍隊頁，軍隊與位置採明示測試配置。見[驗收](preserved/original-player-integration-audit-r1.json)及[保存／重建入口](preserved/README.md#原版操作整合與rust起步保存)。
+
+開發環境完成還原後，執行 `bash tools/original-player.sh build`，再用 `bash tools/original-player.sh run <Go世界進度絕對路徑> <新的暫存目錄絕對路徑>`。開始畫面選繼續；只接受已匯入的世界進度。新遊戲建立、戰中重啟及AI／規則工具列尚未接入此入口，原版播放器保持既有功能。
+
+Rust第一段原生傷害與減員核心已完成201組Go參考向量比較，測試不掛載DOS EXE、Go或遊戲素材。`bash tools/remake-rust.sh`在Docker內重建及核對。這是[獨立核心](docs/spec/031-rust-independent-remake.md)的起步，完整回合、世界、原版式介面及存檔依[工作表](WORKLIST.md)接續，尚非可玩的獨立版。
 
 ## 部隊管理與Go資料
 
@@ -24,7 +34,7 @@ F2已在隔離候選接上原兵種的Go資料，保留原版部隊圖、兵種�
 
 F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回。上圖解雇31民兵後留下1矮人；原影子仍為30民兵。原版／HD畫面、長按Enter、空軍隊、Noto／隸書及重新開啟進度已抽驗。這組原25種抽驗見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原版f3與go解雇交易限定-conformed)與[圖片來源](docs/images/original-army-dismiss-go-r1.json)。
 
-八種新增兵種已沿原版兩欄三列接入隔離HD候選的F2／F3，保留方向鍵、選取、名稱、兵數與月薪。[既有欄位驗收](docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)包含取消、解雇、三字型與冷讀；新增兵種的原版戰場與完整玩家入口仍待接。
+八種新增兵種已沿原版兩欄三列接入隔離HD候選的F2／F3，保留方向鍵、選取、名稱、兵數與月薪。[既有欄位驗收](docs/spec/030-battle-expansion-proposal.md#原版式hd軍隊欄位限定-conformed)包含取消、解雇、三字型與冷讀；新增兵種也已接原版HD戰場，整合入口範圍見上節。
 
 ![募兵透明圖示、女弓箭手與持削尖木棍農民的實際HD視窗](docs/images/troop-presentation-corrected-r1.png)
 
@@ -36,9 +46,9 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版HD戰場的新兵站姿與陣亡後背景](docs/images/original-battle-new-units-go-r1.png)
 
-八種新增兵種的透明站姿已接進隔離候選的 Go 來源畫布，在產生畫面前決定材質。圖中野狼與女弓箭手沿原陣位顯示，野狼陣亡後清除圖像。原兵種、混合編成、連續交戰及 F7／獨立讀檔已抽驗。這是明示軍隊與位置的引擎畫面；新兵手繪攻擊姿態與一般玩家入口仍待完成。見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿限定-conformed)及[圖片來源](docs/images/original-battle-new-units-go-r1.json)。
+八種新增兵種的透明站姿已接進隔離候選的 Go 來源畫布，在產生畫面前決定材質。圖中野狼與女弓箭手沿原陣位顯示，野狼陣亡後清除圖像。原兵種、混合編成、連續交戰及 F7／獨立讀檔已抽驗。這是明示軍隊與位置的引擎畫面；新兵額外手繪攻擊姿態列入Rust階段。見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場新兵站姿限定-conformed)及[圖片來源](docs/images/original-battle-new-units-go-r1.json)。
 
-原版模式保留原繪圖途徑；HD模式由Go繪製同一套戰場，使用已批准的HD背景、部隊與法術效果。兩者沿用原版戰鬥選單與按鍵。下圖是既有原兵種的同狀態比較。新增兵種的普通戰鬥已在隔離候選接入，一般玩家入口仍待完成。
+原版模式保留原繪圖途徑；HD模式由Go繪製同一套戰場，使用已批准的HD背景、部隊與法術效果。兩者沿用原版戰鬥選單與按鍵。下圖是既有原兵種的同狀態比較。新增兵種的普通戰鬥已接入原版HD開發入口。
 
 ![原版戰場與同配置的HD戰場](docs/images/battle-original-hd-r1.png)
 
@@ -46,17 +56,17 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 隔離候選已將原25種六隊資料及雙側普通傷害算式接Go，保留原戰場選單、演出與回合。原版／HD各抽原控制與Go的正常冷啟動遇敵，首個敵方普通行動後完整畫面一致。正常Esc返回後30民兵剩16，Go保存後新Store冷讀一致，原人物檔保持。亂數種子預先固定；上圖是Engine畫面，未新增實際視窗驗收。
 
-新增兵種在原戰場的固定表隔離、其餘規則與完整世界戰果仍待接。此輪只完成原25種資料進出與剩兵保存，尚未開放Go軍隊玩家入口。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)與[圖片來源](docs/images/original-army-projection-r1.json)。
+這張比較圖的驗收限原25種資料進出與剩兵保存；後續新兵及世界戰果的證據見下列各節，整合入口見上節。範圍見[限定驗收](docs/spec/030-battle-expansion-proposal.md#原25種六隊投影限定-conformed)與[圖片來源](docs/images/original-army-projection-r1.json)。
 
 ![新增兵種在原版HD戰場完成普通戰鬥的勝利、全滅與撤退](docs/images/original-battle-go-rounds-r1.png)
 
 普通戰鬥已在隔離候選接通玩家近戰、女弓箭手射擊、敵軍行動與連續回合。上圖為明示測試編成：左側經32次行動取勝，1000野狼剩603、10弓箭手保持；中間全滅，右側正常Esc撤退。三案都已交回Go剩兵並保存，重新開啟後數量一致。原兵種另以原版／HD正常按鍵冷啟動對照，最終畫面、兵數、HP word與seed相同。
 
-這批是Engine畫面與軍隊保存抽驗；存檔使用明示擴充規則／領導力配置。其餘法術、特殊行動及新兵受擊／死亡姿勢仍待完成，一般Go玩家入口保持停用。初始、選敵與單次近戰證據保存在規格與永久保存，現況見[普通戰鬥驗收](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)與[圖片來源](docs/images/original-battle-go-rounds-r1.json)。
+這批是Engine畫面與軍隊保存抽驗；存檔使用明示擴充規則／領導力配置。法術與特殊行動另有下列驗收；新兵額外動作列入Rust階段。初始、選敵與單次近戰證據保存在規格與永久保存，現況見[普通戰鬥驗收](docs/spec/030-battle-expansion-proposal.md#連續普通戰鬥限定-conformed)與[圖片來源](docs/images/original-battle-go-rounds-r1.json)。
 
 ![Go世界戰果、晉級及全滅回起點的原版HD畫面](docs/images/original-battle-world-f7-r1.png)
 
-隨機遭遇的戰果與F7也已接入隔離候選。上圖使用明示編成：74民兵、2野狼與2女弓箭手取勝後剩58民兵、2弓箭手，獲115金與37戰績；全滅後沿原選單回起點。另抽晉級與30000上限。五份戰後進度均實際F7保存，再由獨立程序Continue重開，軍隊、世界數值及位置一致。原版／Go的撤退與全滅對照也相同。範圍見[世界結算限定驗收](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)及[圖片來源](docs/images/original-battle-world-f7-r1.json)。守軍／頭目、其餘法術／特殊、戰中續接及一般Go入口仍待完成。
+隨機遭遇的戰果與F7也已接入隔離候選。上圖使用明示編成：74民兵、2野狼與2女弓箭手取勝後剩58民兵、2弓箭手，獲115金與37戰績；全滅後沿原選單回起點。另抽晉級與30000上限。五份戰後進度均實際F7保存，再由獨立程序Continue重開，軍隊、世界數值及位置一致。原版／Go的撤退與全滅對照也相同。範圍見[世界結算限定驗收](docs/spec/030-battle-expansion-proposal.md#原世界結算與f7限定-conformed)及[圖片來源](docs/images/original-battle-world-f7-r1.json)。戰中續接尚待Rust階段接入。
 
 ![原版與HD的Go法術兵力，以及施法後世界保存](docs/images/original-battle-go-spells-r1.png)
 
@@ -64,23 +74,23 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版與HD的Go複製兵力，以及戰後保存](docs/images/original-battle-go-support-r1.png)
 
-凝滯的行動計數與複製兵力也已接入同一候選。六組原版對照及兩條混合編成的完整戰鬥、F7與獨立程序重開通過。明示複製局民兵40→80，戰勝後剩65；增兵依施法紀錄保存。圖為受控配置的完成幀，範圍見[兩術限定驗收](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)與[來源](docs/images/original-battle-go-support-r1.json)。超領導保存及一般Go入口仍待完成。
+凝滯的行動計數與複製兵力也已接入同一候選。六組原版對照及兩條混合編成的完整戰鬥、F7與獨立程序重開通過。明示複製局民兵40→80，戰勝後剩65；增兵依施法紀錄保存。圖為受控配置的完成幀，範圍見[兩術限定驗收](docs/spec/030-battle-expansion-proposal.md#凝滯複製go資料限定-conformed)與[來源](docs/images/original-battle-go-support-r1.json)。超領導保存仍列入後續驗收。
 
 ![原版與HD的敵方特殊，以及戰後地圖](docs/images/original-battle-go-enemy-r1.png)
 
-敵方八種特殊分派已接上Go兵數與行動計數，保留原選敵、動畫及回合。十三組原版對照通過；含新增兵種的完整勝局也已完成F7與獨立程序讀檔。圖為明示敵軍／分派配置的完成幀，並非自然遭遇或動畫中間幀。另修正原後排目標的近戰換位，見[敵方特殊限定驗收](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)及[圖片來源](docs/images/original-battle-go-enemy-r1.json)。規則／AI整合、戰中續接與一般Go入口仍待完成。
+敵方八種特殊分派已接上Go兵數與行動計數，保留原選敵、動畫及回合。十三組原版對照通過；含新增兵種的完整勝局也已完成F7與獨立程序讀檔。圖為明示敵軍／分派配置的完成幀，並非自然遭遇或動畫中間幀。另修正原後排目標的近戰換位，見[敵方特殊限定驗收](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)及[圖片來源](docs/images/original-battle-go-enemy-r1.json)。規則／AI工具列與戰中續接列入Rust工作表。
 
 ![原版守軍勝利、HD撤退殘兵與頭目勝利的戰後地圖](docs/images/original-battle-guards-go-r1.png)
 
-一般守軍與頭目也已在隔離候選沿用原確認、戰場與獎勵頁，由Go保存殘兵、月薪及劍旗標。兩組原版對照與四條F7／獨立程序讀檔通過，未F7重開也能恢復Go紀錄。圖為明示軍隊／位置的戰後地圖，原守軍編成保持。範圍見[守軍限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)及[圖片來源](docs/images/original-battle-guards-go-r1.json)。同程序多戰與一般玩家入口仍待接續。
+一般守軍與頭目也已在隔離候選沿用原確認、戰場與獎勵頁，由Go保存殘兵、月薪及劍旗標。兩組原版對照與四條F7／獨立程序讀檔通過，未F7重開也能恢復Go紀錄。圖為明示軍隊／位置的戰後地圖，原守軍編成保持。範圍見[守軍限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)及[圖片來源](docs/images/original-battle-guards-go-r1.json)。同程序多戰已接入上節整合入口。
 
 ![原版HD最終守軍戰與讀檔後完整HD結局](docs/images/original-battle-ending-go-r1.png)
 
-最終守軍已接通Go戰果保存與既有HD結局。原版完整勝局對照通過；含新增女弓箭手的勝局也已另開程序讀檔，經原確認重播結局至退出碼0，沒有重打或重領獎。圖為明示軍隊、八劍及鄰近位置的Engine畫面，原守軍六隊保持，不代表自然通關。範圍見[結局守軍驗收](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)與[圖片來源](docs/images/original-battle-ending-go-r1.json)。新增兵種這輪驗證資料與戰果，戰場站姿及動態圖像仍待接線；一般Go入口尚未開放。
+最終守軍已接通Go戰果保存與既有HD結局。原版完整勝局對照通過；含新增女弓箭手的勝局也已另開程序讀檔，經原確認重播結局至退出碼0，沒有重打或重領獎。圖為明示軍隊、八劍及鄰近位置的Engine畫面，原守軍六隊保持，不代表自然通關。範圍見[結局守軍驗收](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)與[圖片來源](docs/images/original-battle-ending-go-r1.json)。這張圖的驗收範圍是資料與戰果；新兵透明站姿及整合入口另有上節證據。
 
 ![同一程序守軍取消、撤退後再戰勝利，以及部分編成讀檔後的HD結局](docs/images/original-battle-session-go-r1.png)
 
-守軍已在同一程序接通取消、撤退、再戰勝利、空守軍提示與F7，保留原操作。原版三階段對照、含新增兵種的資料路徑及兩份獨立讀檔通過；最終守軍剩四隊的受控存檔也能戰勝後重播完整HD結局。圖為明示配置的Engine畫面，並非自然通關；新兵站姿與動態圖像仍待接線。範圍見[連續生命週期驗收](docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)與[圖片來源](docs/images/original-battle-session-go-r1.json)。一般Go入口尚未開放。
+守軍已在同一程序接通取消、撤退、再戰勝利、空守軍提示與F7，保留原操作。原版三階段對照、含新增兵種的資料路徑及兩份獨立讀檔通過；最終守軍剩四隊的受控存檔也能戰勝後重播完整HD結局。圖為明示配置的Engine畫面，並非自然通關；新兵透明站姿另有上節驗收。範圍見[連續生命週期驗收](docs/spec/030-battle-expansion-proposal.md#原戰場守軍連續生命週期限定-conformed)與[圖片來源](docs/images/original-battle-session-go-r1.json)。原版HD開發入口的限定範圍見上節。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 
@@ -147,7 +157,7 @@ bash tools/owned-player.sh import /絕對路徑/原版存檔 /絕對路徑/新�
 
 左側為原版解碼，右側為HD素材。正式r65共525檔，已登錄290筆彩色來源對應，包含本輪新增的17筆；43筆單色與編輯圖集已入包，不新增顯示模式。原版／HD狀態及音訊、47張完整畫面與正常視窗已抽驗。X圖集的部分格位與單色對應保留推論等級；A.A與六份RIL仍未分類，不計入333筆。現況見[接入清單](artwork/graphics-integration-r65.json)及[限定驗收](docs/spec/054-all-graphics-hd.md#r65限定驗收-conformed)，初批[美術清單](artwork/all-graphics-hd-coverage-r1.json)保持歷史。
 
-完整原圖、提示、程式與驗收證據已作永久保存；525檔素材可從保存物件獨立還原。過期workspace資料及快取已依授權清理，結果見[保存與清理紀錄](preserved/README.md#已授權清理)。反組譯重製方向尚未定案。
+完整原圖、提示、程式與驗收證據已作永久保存；525檔素材可從保存物件獨立還原。過期workspace資料及快取已依授權清理，結果見[保存與清理紀錄](preserved/README.md#已授權清理)。已確認沿原版操作推進不依賴DOS EXE的Rust獨立重製，範圍見[工作表](WORKLIST.md)。
 
 ![r65實際視窗與教育部隸書](docs/images/completion-runtime-lishu-r65.png)
 

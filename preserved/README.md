@@ -1133,3 +1133,20 @@ timeout 300s docker run --rm --network none \
 源圖層與原命令的guest相容狀態分開驗證；死亡區域以獨立HD背景作基準，不能把停用組的舊佔位圖當背景。只完成站姿、原重繪及普通死亡抽驗，手繪攻擊姿態、其他特殊術呈現與一般入口仍待，未新增X11或自然通關聲明。
 
 本批3026檔／578物件，壓縮157001407 bytes。[清理收據](original-battle-art-cleanup-r1.json)、[清理後核對](original-battle-art-postcleanup-audit-r1.json)及[文件／擁有權核對](original-battle-art-integrity-r1.json)另存；現行測試程式保留，舊程式先逐SHA確認保存後才移除。
+
+
+## 原版操作整合與Rust起步保存
+
+[030整合驗收](../docs/spec/030-battle-expansion-proposal.md#原版操作整合限定-conformed)、[031 Rust核心](../docs/spec/031-rust-independent-remake.md)與[獨立核對](original-player-integration-audit-r1.json)保存同程序F2／F3、隨機撤退→守軍勝利→隨機撤退、F7及另一程序Continue。實際視窗管理操作另有正常X11按鍵及F12畫布，不稱獨立X像素對拍。Rust無EXE／Go掛載，201組Go向量、兩個測試及原生CLI通過；完整獨立遊戲仍按[工作表](../WORKLIST.md)接續。
+
+[清單](original-player-integration-r1.json)共1518檔／436物件，壓縮41660040 bytes。完整原資料、來源副本、二進位、收據、PNG及失敗工具資料存本機`original-player-integration-r1/<SHA>.gz`，不加入Git。files列原路徑、SHA、bytes與mode；objects列gzip名稱及壓縮SHA。恢復時解壓至另一空目錄的相對路徑，核對解壓SHA與mode，不覆寫來源。314份Go來源的正式source_scene以受控patch建立，未修改正式197來源七程式／923核心／535素材；1071原圖沿前輪保存。
+
+[脫離工作區驗證](original-player-integration-detached-r2.json)只掛preserved及tools，不掛workplace、遊戲、核心或模組。使用既有Pillow11.3.0-r2、UID1000及network none執行[工具](../tools/original-player-integration.py)的`verify --archive /archive --out <新JSON>`，逐物件解壓核對。初次驗證r1結果亦保留，但其輸出掛載含整個專案，最終隔離證據以r2為準。
+
+工具的`freeze --project /project`產生新的候選來源；`audit --project /project --out <新JSON>`核對正式基線、Go來源、三場結果、F7／冷讀、GUI及Rust收據。`archive --project /project --archive /project/preserved --out /project/preserved/original-player-integration-r1.json`建立本機保存。Go／Xvfb完整參數、初始固定seed與錯誤分類見批次execution-r1.json。來源路徑為`workplace/probe-20261023/graphics-first/battle-r1/original-player-integration-r1`，原始遊戲與既有923核心／r69素材按前輪保存恢復。
+
+[Go入口](../tools/original-player.sh)提供build與run，run只接受已匯入的世界進度及新的scratch目錄；未準備建置、舊卡片戰中進度及owned=false拒絕。開始畫面選Continue。`owned-player.sh run`轉交此入口。字型仍可F10切換；AI／規則工具列、新遊戲建立與戰中續接待Rust。
+
+[Rust工具](../tools/remake-rust.sh)使用既有`rust:1.99.1-slim-bookworm`，只掛唯讀crate及輸出目錄，在network none容器跑cargo test與原生CLI。crate位於`internal/remake-rust`，無第三方依賴，不以DOS EXE為執行期依賴。這是算式移植，尚無獨立可玩UI或新存檔格式。
+
+[清理收據](original-player-integration-cleanup-r1.json)保存後僅移除本批Go／Rust快取213420852 bytes；當前Go入口、測試程式與原生RustCLI保留。其他專案容器、映像與快取未清理，沒有Release或正式包。

@@ -71,6 +71,8 @@ type worldArmyPortFault struct{ Reason string }
 func (f *worldArmyPortFault) Error() string { return "world army port: " + f.Reason }
 
 type worldArmyPort struct {
+	PlayerBattles            *originalPlayerBattles
+	OriginalCheckpoint       *nativeCheckpointPort
 	RecruitQuantity          *originalRecruitQuantity
 	OriginalReview           *originalArmyReview
 	OriginalDismiss          *originalArmyDismiss
@@ -174,7 +176,7 @@ func installWorldArmyPort(e *game.Engine, store *progressPairStore, snap progres
 	for _, ip := range worldArmyReadGuards {
 		ip := ip
 		swordOnCall(e.Oracle, oracle.Far(0x110, ip), func(*oracle.Oracle) {
-			if p.OriginalReview.acceptsRead(ip) || p.OriginalDismiss.acceptsRead(ip) {
+			if p.OriginalReview.acceptsRead(ip) || p.OriginalDismiss.acceptsRead(ip) || p.PlayerBattles.acceptsRead(ip) {
 				return
 			}
 			fail(fmt.Sprintf("unsupported world army operand at 0110:%04X", ip))

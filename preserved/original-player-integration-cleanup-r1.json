@@ -1,0 +1,26 @@
+{
+  "detached": {
+    "status": "passed-detached-original-player-integration",
+    "files": 1518,
+    "objects": 436
+  },
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-player-integration-r1/build-cache",
+      "bytes": 183734593
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-player-integration-r1/rust-target",
+      "bytes": 29686259
+    }
+  ],
+  "total_bytes": 213420852,
+  "kept": [
+    "source",
+    "8sword-original-player",
+    "player.test",
+    "8sword-remake-kernel",
+    "all saved receipts and inputs"
+  ],
+  "scope": "Current integration batch Go/Rust caches only; other projects untouched."
+}

@@ -2,8 +2,7 @@
 # All build and import workloads remain inside bounded Docker.
 set -euo pipefail
 if [[ "${1:-}" == run ]]; then
- printf '%s\n' '原版／原版HD戰場的Go後端橋接尚未完成。卡片戰鬥玩家入口已停用，既有進度保留；原版播放器沿cmd/8sword。' >&2
- exit 2
+ exec bash "$(dirname -- "${BASH_SOURCE[0]}")/original-player.sh" "$@"
 fi
 task_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 task_work="$task_root/workplace/probe-20261023/graphics-first/battle-r1/owned-player-r1"
@@ -52,5 +51,5 @@ case "${1:-}" in
    dosgolem-go-ebiten:1.24-r1 xvfb-run -a /pack/8sword-owned -root /game -input /pack/inputs \
    -session "/sessions/$task_name" -import-native /native -import-only
   ;;
- *) printf '%s\n' '用法：owned-player.sh prepare | build | import <原版存檔目錄> <新的Go進度目錄>；run 暫停使用，待接回原版戰場。' >&2; exit 2 ;;
+ *) printf '%s\n' '用法：owned-player.sh prepare | build | import <原版存檔目錄> <新的Go進度目錄> | run <Go世界進度> <新的暫存目錄>；run 轉交 original-player.sh。' >&2; exit 2 ;;
 esac

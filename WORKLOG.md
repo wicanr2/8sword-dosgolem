@@ -3115,3 +3115,16 @@ README、CONTEXT及分級位址索引已更新。正式197來源七程式、923�
 收尾保存3026檔／578物件，壓縮157001407 bytes；只掛唯讀preserved與tools逐物件解壓／SHA驗證通過。逐SHA確認後刪11個過期測試binary與1872份本輪Go快取，回收536078832 bytes，約511.2 MiB。現行art.test／engine.test及全部永久物件保留，清理後audit相同。27個相關連結、16個新增檔案入口、四筆新位址回填、工具語法及UID1000核對通過；三份未提升材質／快取／診斷試驗的全部PNG與候選相同。收尾沒有本專案容器，沒有新建Docker image或清理其他專案。
 
 2026-11-04推送紀錄：功能提交`b63b12c73c3afbe6e3a29b6eeccdf830eea5d33d`已推送私人GitHub main，遠端SHA核對相同，功能提交後工作樹乾淨。27檔來源、成果、保存清單及證據索引入庫；完整157.00 MB物件留本機。此段只追加推送紀錄。
+
+
+## 2026-11-04 原版操作整合與Rust起步
+
+使用者要求加速接完並開始remake。依路由重讀spec閘門與文件職責，沿用現有Go／Pillow及Rust Docker，不建立重複映像；本輪無subagent。建立唯一WORKLIST並由README／CONTEXT／AGENTS索引，原版battle UI及管理操作保持。
+
+Go新增共用隨機／守軍協調器，原八控制器只安裝一次，入口重新綁最新Go軍隊並就地重設。原F2／F3、招募、月結、寶箱、煉金、召兵及F7直接安裝，不走舊卡片factory。314來源候選完成原管理取消、隨機撤退→守軍勝利→隨機撤退、F7與獨立程序Continue；勝局民兵1000→978，新增20狼／20女弓箭手保持。世界資源與位置冷讀相同。實際Xvfb視窗Continue、F2、F3及取消通過，提交畫布SHA相同；沒有獨立X像素擷取。新入口只允許準備來源建置繼續匯入的世界進度，未開新遊戲或戰中重啟。
+
+勘誤：首輪輸入工具保留了隨機戰Esc callback，導致守軍也撤退。原收據沒有偽稱win；修正active生命週期與加win斷言後乾淨重跑通過。GUI第一次缺libXtst，改沿既有libX11事件；第二次Enter早於主選單，改等待實際scene。兩項是環境／工具問題。Rust映像無rustfmt，但既有compiler、cargo及linker可正常建置；沒有為格式化下載未鎖版工具。
+
+依已確認順序開始Rust獨立核心。新增internal/remake-rust、031 READY及CONFORMED，只移植有證據的玩家普通傷害／減員，保留先除後乘、encoded+1及pending HP與正式兵數分離。201組Go向量、兩個Rust測試及CLI通過，容器沒有DOS EXE、Go或遊戲素材。這不是獨立遊戲完成；typed兵種、雙方回合、原版式UI、保存、世界與工具列依WORKLIST續接。額外手繪姿勢與全量美術矩陣不阻塞此階段。
+
+保存1518檔／436物件／41660040壓縮bytes，完整來源、PNG、失敗前版、程式與收據留本機preserved，r2只掛preserved及tools逐物件解壓核對。確認原生binary已保存後，僅刪本批Go與Rust快取213420852 bytes。正式197來源七程式、923核心、535素材及1071美術不改。私人GitHub倉庫狀態已核對，不發布Release；程式、核對與README成果圖隨本輪提交。Docker均有界且--rm，GUI的app與Xvfb在finally收掉，未停止其他專案工作。
