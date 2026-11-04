@@ -2687,3 +2687,40 @@ r1同底圖重播抽看顯示，來源Actor cell涵蓋整個圖像矩形，單�
 後續閉合：本輪當時列為 DRAFT 的傳回起點，現已由[後續驗收](#全軍覆沒傳回起點的限定conformed)接入隔離 Go；其餘待辦保持。勘誤標記：`ORIGIN-RETURN-GO-20261101`。
 
 完整證據、可重建命令與權利分類見[永久保存](../../preserved/README.md#全軍覆沒浪跡江湖保存)，縮圖見[全滅](../images/annihilation-roam-loss-r1.png)與[返回地圖](../images/annihilation-roam-returned-r1.png)，[來源](../images/annihilation-roam-runtime-r1.json)保留完整原 PNG SHA。傳回起點仍 DRAFT，尚未處理其地圖切換、重設及保存交接；其餘特殊分派、守軍、自然新增兵種營地與正式整合仍待續。依使用者代表抽驗要求，本分支停止擴大測試。
+
+
+#### 原戰場結局守軍 READY
+
+2026-11-04。沿前節固定PAM／i64與已保存IDA9.4的sub_12DDE，MZ基準10000h、執行期0110h。原1326E至1329C在最終六隊全空時先設DS56E2=1並於329B呼叫sub_1020E，未先執行11ABE。因此本橋接在329B先成對提交Go勝利紀錄與剩兵，六資源保持，不補發一般守軍月薪。原確認、八劍檢查、六隊編成及原版／HD戰場保持。
+
+- 結局模式明確安裝，普通守軍模式仍拒絕0區4。繼承309E收取與NPC投影，在329B核對來源、frame、Go勝利／敵軍全空、八旗標、DS56E2及未領獎後提交。020E核對原329F返回frame，才停止候選玩法掛點；Engine結局、Go繪圖與音樂保持。
+- 沿既有WorldEncounter與paired journal，不加schema。最終record保留原六隊歷史，Cleared表示已勝；提交前中斷維持舊進度，提交後冷讀可重播。原opaque NPC仍留前次F7，冷讀的結局模式保留該六隊供原確認及八劍檢查；3048辨識已提交record後清NPC並直接接326E，不再進戰、不再提交或領獎。此重播需從原checkpoint移動／確認，不宣稱既有卡片return-phase自動續播。
+- 起始位置、八劍、大軍隊為明示配置，原最終六隊不改。先實際F7保存可冷讀的鄰近位置與八劍，再正常移動／確認／選敵至Go勝利；另程序Continue同一路徑重播結局至退出碼0。缺劍不進戰，來源／frame／NPC／未勝／資源／重複提交代表拒絕。不把受控位置稱自然通關。
+- 同程序多戰、一般啟動、規則／AI及戰中續接保持待辦。正式197來源七程式、923核心、535素材與1071美術保持。實作入口為[結局橋接](../../internal/ownedworld/original_battle_ending.go)、[抽驗](../../internal/ownedworld/original_battle_ending_test.go)；收據與保存工具接回本節。
+
+[凍結／核對／保存工具](../../tools/original-battle-ending.py)沿固定Pillow11.3.0容器使用`freeze|audit|publish|archive|verify --project --out`，保存／獨立核對另設`--archive`。隔離研究位於`workplace/probe-20261023/graphics-first/battle-r1/original-battle-ending-r1`，Go1.24.13沿923核心；具體掛載與參數記入保存批次的execution-r1.json。
+
+
+#### 原戰場結局守軍限定 CONFORMED
+
+`ORIGINAL-FINAL-GUARD-WORLD-20261104`：依[獨立核對](../../preserved/original-battle-ending-audit-r1.json)限定完成304來源隔離候選。固定PAM／i64及工具版本沿READY，既有27函式6264行bytes重新對原MZ重定位核對。沒有恢復卡片戰鬥，也未開一般Go入口。
+
+| dosgolem runtime CS:IP | IDA MZ原名／線性位址 | 已驗責任 |
+|---|---|---|
+| 0110:329B | sub_12DDE／1329B | 核對最終勝利、全空NPC、八旗標與DS56E2後，成對提交Go剩兵及Cleared record |
+| 0110:020E | sub_1020E／1020E | 核對原329F far frame與來源後交PAE；停候選玩法掛點，保留Engine的Go HD、音樂及結局 |
+
+原最終六隊為native19×500、24×500、10×400、25×400、15×400、20×400，未改編成。原版HD完整原控制／Go各46次普通動作，返回剩兵836猛虎、323飛龍、350石人、895弓箭手；六資源、504 NPC word、八旗標、seed、返回軍隊與首次選敵完整Frame相同。兵種名稱不作規則證據，識別仍沿原native ID。明示起始1000 native19、600 native20、500 native25、1000 native03、600 native24、20 native18；混合局最後一隊換20 openkb:arcr，完成另一個Go勝局。初始八劍、領導30000、戰績10000及59／52位置為fixture，沒有注入IP、戰鬥stub或強制勝利。
+
+三場均以真正F7保存進戰前八劍及鄰近位置。原結局早於一般獎勵，兩個Go勝局的月薪100、金500、戰績10000、等級1、法術能力0保持。兩條Go進度另開程序Continue，從該checkpoint正常移動／確認，3048依已提交record清NPC並接326E，沒有再進戰、沒有第二筆提交。原opaque NPC留前次F7，Go WorldEncounter是已勝權威；這是原確認重播，不冒稱舊卡片return-phase自動續播。原版模式最終戰未新增抽驗。
+
+兩次HD演出均到END7並完整退出0，實際亦通過END8／END9來源階段。Go字形列、遮罩與直接繪圖計數皆非零，PAE重用PAM位址沒有誤觸玩法掛點。world／token保持。16個掛點拒絕、15個record拒絕、缺八劍的原提示與不進戰、intent-durable恢復與冪等、未F7頭目record補旗標，以及既有投影／守軍／普通／法術／輔助／敵方特殊回歸通過。返回重試與中斷為受控模型，不冒稱更多正常GUI戰鬥。
+
+首次重複兵種fixture由既有validator拒絕；首個220M步數上限停在正常動畫；冷讀第一次在初始移動期間已到預期結局停點，但setupPress將sentinel當Fatal。只修fixture與測試輸入／phase，未放寬正式規則。所有失敗、前後binary與cohort保留；最終非測試來源與完整實戰cohort逐SHA相同，不為測試新增production分支。
+
+[README成果](../images/original-battle-ending-go-r1.png)、[來源](../images/original-battle-ending-go-r1.json)、[研究紀錄](../../RESEARCH-LOG.md#原戰場結局守軍與播放交接)與[永久保存](../../preserved/README.md#原戰場結局守軍保存)為入口。完整原PNG／state留本機，未新增X11或自然通關聲明。正式197來源七程式、923核心、535素材與1071美術保持。同程序多戰／取消重進、守軍全滅／空軍隊、規則／AI整合、戰中續接及一般入口仍待；完整戰鬥後才進Rust。
+
+
+`ORIGINAL-FINAL-FRAME-PRESENTATION-20261104`呈現限制：本批首次選敵Frame的新增兵種資料已由Go提供，但實際Engine.Frame仍沿原暫存姿態；composeOriginalBattleSetup的自有圖像合成只在先前持有預覽使用，尚未接整段玩家戰鬥。不能以兵數正確或前導預覽稱站姿與動態外觀已完成。混合局原PNG保持作證據，README只展示原兵種戰場與結局。後續須補新兵初始圖像、受擊／死亡及動態姿態，再開一般入口。
+
+冷讀停止線追加：originalEndingRecord對已勝history目前要求checkpoint六隊均有合法native kind與正數兵數。本批完整原六隊兩局符合；最終守軍受損撤退、F7後再勝的殘兵checkpoint重播尚未支援，先拒絕並保留資料，不宣稱所有最終守軍生命週期閉合。此項隨後續多戰與取消重進補接。

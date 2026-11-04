@@ -1,0 +1,118 @@
+{
+  "status": "passed-original-battle-ending-audit",
+  "source_files": 304,
+  "ida_functions": 27,
+  "ida_lines": 6264,
+  "source_manifest_sha256": "ba49a76c540d7729061d73f80fe439197143bf595c7773426de0ffdf4ee3333d",
+  "original_final_guard_roster_unchanged": true,
+  "original_Go_comparison": [
+    "resources",
+    "NPC",
+    "eight_swords",
+    "seed",
+    "returned_army",
+    "first_target_picker_frame"
+  ],
+  "worlds": [
+    {
+      "name": "hd-native-go",
+      "actions": 46,
+      "remaining": [
+        {
+          "unit": "native:19",
+          "count": 836
+        },
+        {
+          "unit": "native:20",
+          "count": 323
+        },
+        {
+          "unit": "native:25",
+          "count": 350
+        },
+        {
+          "unit": "native:03",
+          "count": 895
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "resources": [
+        1,
+        10000,
+        100,
+        500,
+        30000,
+        0
+      ],
+      "world_sha256": "847ab5860863f2c5cda3cb82558ee0fed6173a328f71958d762ff3183ed97748",
+      "ending_exit_code": 0,
+      "separate_process_replay_without_battle": true
+    },
+    {
+      "name": "hd-mixed-go",
+      "actions": 49,
+      "remaining": [
+        {
+          "unit": "native:19",
+          "count": 836
+        },
+        {
+          "unit": "native:20",
+          "count": 323
+        },
+        {
+          "unit": "native:25",
+          "count": 351
+        },
+        {
+          "unit": "native:03",
+          "count": 895
+        },
+        {
+          "unit": "",
+          "count": 0
+        },
+        {
+          "unit": "",
+          "count": 0
+        }
+      ],
+      "resources": [
+        1,
+        10000,
+        100,
+        500,
+        30000,
+        0
+      ],
+      "world_sha256": "489860dfd2fe1c1c1dd0ab8e6c6df1b7cbce40749827342b6f3d45c9f571edca",
+      "ending_exit_code": 0,
+      "separate_process_replay_without_battle": true
+    }
+  ],
+  "hook_refusals": 16,
+  "record_refusals": 15,
+  "actual_missing_swords_refused": true,
+  "interrupted_commit_recovered": true,
+  "no_victory_salary_before_ending": true,
+  "prebattle_F7_saves": 3,
+  "separate_process_replays": 2,
+  "schema_unchanged": true,
+  "formal_runtime_unchanged": true,
+  "general_entry_disabled": true,
+  "limits": [
+    "Armies, leadership30000, merit10000, eight swords and adjacent position are explicit fixtures; not a natural clear.",
+    "HD original/Go final battle sampled; native mode final battle not newly sampled.",
+    "Cold Continue returns to prebattle F7 checkpoint; move/confirm at final guard replays ending, without another battle or transaction. Not automatic return-phase resume.",
+    "Engine Frames only; no new actual-window acceptance.",
+    "New-unit standing/action art is not integrated into Engine.Frame; mixed first-picker frames still use the original temporary pose. Data results do not prove appearance.",
+    "In-process repeated battles/cancel re-entry, rules/AI integration, battle resume and general startup remain open."
+  ]
+}

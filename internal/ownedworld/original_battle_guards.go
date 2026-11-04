@@ -17,6 +17,9 @@ var errOriginalGuardHeld = errors.New("original guard result committed; held bef
 // The existing WorldEncounter record owns guard survivors between F7 saves.
 // Restore only those records into the original opaque NPC/sword projection.
 func originalGuardOverlay(p progressPairSnapshot) ([]byte, error) {
+	return originalGuardOverlayMode(p, false)
+}
+func originalGuardOverlayMode(p progressPairSnapshot, ending bool) ([]byte, error) {
 	out := bytes.Clone(p.Bytes.Native)
 	if _, err := savedSwords(out); err != nil {
 		return nil, err
@@ -26,8 +29,16 @@ func originalGuardOverlay(p progressPairSnapshot) ([]byte, error) {
 			continue
 		}
 		var region, index int
-		if _, err := fmt.Sscanf(key, "guarded:%02d:%02d", &region, &index); err != nil || region < 0 || region > 7 || index < 0 || index >= len(guardedCoordinates[region]) || key != fmt.Sprintf("guarded:%02d:%02d", region, index) || region == 0 && index == 4 {
+		if _, err := fmt.Sscanf(key, "guarded:%02d:%02d", &region, &index); err != nil || region < 0 || region > 7 || index < 0 || index >= len(guardedCoordinates[region]) || key != fmt.Sprintf("guarded:%02d:%02d", region, index) || region == 0 && index == 4 && !ending {
 			return nil, errors.New("original guard record identity/ending")
+		}
+		if region == 0 && index == 4 {
+			if err := originalEndingRecord(p, rec); err != nil {
+				return nil, err
+			}
+			if rec.Cleared {
+				continue
+			} // Preserve the checkpoint roster for original confirmation/replay.
 		}
 		rows := rec.Enemy
 		if rec.Cleared {
@@ -91,6 +102,9 @@ type originalBattleGuard struct {
 	Active, Captured, RewardActive, Committed, Returned, Hold bool
 	Monthly, Power, Sword                                     bool
 	Random                                                    *originalRandPlan
+	Ending, Replay, EndingPrepared, EndingHandoff             bool
+	EndingSP                                                  uint16
+	CommittedToken                                            string
 	Choice                                                    uint16
 	Events                                                    []map[string]any
 }
@@ -144,13 +158,13 @@ func (g *originalBattleGuard) begin(m *dg.Machine) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	if bound.Context.Region == 0 && bound.Context.Index == 4 {
+	if bound.Context.Region == 0 && bound.Context.Index == 4 && !g.Ending {
 		return false, errors.New("original final guard handoff pending")
 	}
-	if old, ok := s.World.Encounters[bound.key()]; ok && (old.Cleared || old.Enemy != bound.Rows) {
+	if old, ok := s.World.Encounters[bound.key()]; ok && (old.Cleared || old.Enemy != bound.Rows) && !(g.Ending && bound.key() == "guarded:00:04" && old.Cleared && old.Enemy == bound.Rows) {
 		return false, errors.New("original guard cleared/changed record")
 	}
-	overlay, err := originalGuardOverlay(s)
+	overlay, err := originalGuardOverlayMode(s, g.Ending)
 	if err != nil {
 		return false, err
 	}
@@ -176,6 +190,10 @@ func (g *originalBattleGuard) begin(m *dg.Machine) (bool, error) {
 	g.Before, g.Guard, g.Expected, g.NPC, g.Flags, g.Shadow = s, bound, expected, npc, flags, shadow
 	g.EntrySP, g.EntryBP = c.R[dg.SP], c.R[dg.BP]
 	g.Active = true
+	if rec, ok := s.World.Encounters[bound.key()]; g.Ending && bound.key() == "guarded:00:04" && ok && rec.Cleared {
+		g.Replay, g.Committed = true, true
+		g.CommittedToken = s.Token
+	}
 	g.Projection.Guard = bound
 	g.Events = append(g.Events, map[string]any{"event": "bound", "key": bound.key(), "context": bound.Context, "enemy": bound.Rows})
 	return false, nil
@@ -196,6 +214,9 @@ func (g *originalBattleGuard) presence(m *dg.Machine) (bool, error) {
 	}
 	if g.Captured || g.Projection.Phase != "" {
 		return false, errors.New("original guard presence phase")
+	}
+	if g.Replay {
+		return g.replay(m)
 	}
 	v := uint16(1)
 	for _, row := range g.Projection.Input {
@@ -369,6 +390,9 @@ func (g *originalBattleGuard) finish(m *dg.Machine) (bool, error) {
 	} else if g.Monthly || g.Power || g.Sword || (g.Rounds.Result == "retreat" && g.Random == nil) || (g.Rounds.Result == "loss" && (g.Choice < 1 || g.Choice > 2)) {
 		return false, errors.New("original guard failure outcome")
 	}
+	return g.commitWorld()
+}
+func (g *originalBattleGuard) commitWorld() (bool, error) {
 	w := cloneCampWorld(g.Before.World)
 	if w.Revision == math.MaxUint64 {
 		return false, errors.New("original guard revision")
@@ -393,6 +417,7 @@ func (g *originalBattleGuard) finish(m *dg.Machine) (bool, error) {
 	}
 	g.Port.Current = s
 	g.Committed = true
+	g.CommittedToken = s.Token
 	g.Events = append(g.Events, map[string]any{"event": "committed", "key": g.Guard.key(), "token": s.Token, "resources": g.Expected})
 	if g.Hold {
 		return false, errOriginalGuardHeld
@@ -400,6 +425,9 @@ func (g *originalBattleGuard) finish(m *dg.Machine) (bool, error) {
 	return false, nil
 }
 func installOriginalBattleGuard(e *game.Engine, p *worldArmyPort, x *originalArmyProjection, r *originalBattleRounds) (*originalBattleGuard, error) {
+	return installOriginalBattleGuardMode(e, p, x, r, false)
+}
+func installOriginalBattleGuardMode(e *game.Engine, p *worldArmyPort, x *originalArmyProjection, r *originalBattleRounds, ending bool) (*originalBattleGuard, error) {
 	if !e.PAMLoaded || p == nil || p.Store == nil || x == nil || r == nil || x.Rounds != r || x.Phase != "" || x.GuardOnly || r.Active || e.BattleRulesMode() != "native" {
 		return nil, errors.New("original guard install lifecycle")
 	}
@@ -414,7 +442,7 @@ func installOriginalBattleGuard(e *game.Engine, p *worldArmyPort, x *originalArm
 	if s.World.Battle != nil || s.World.Army.Slots != x.Input {
 		return nil, errors.New("original guard install army")
 	}
-	overlay, err := originalGuardOverlay(s)
+	overlay, err := originalGuardOverlayMode(s, ending)
 	if err != nil {
 		return nil, err
 	}
@@ -448,7 +476,7 @@ func installOriginalBattleGuard(e *game.Engine, p *worldArmyPort, x *originalArm
 	}
 	x.GuardOnly = true
 	r.AllowWorld = true
-	g := &originalBattleGuard{Engine: e, Port: p, Projection: x, Rounds: r, Code: code, NPC: npc, Flags: flags}
+	g := &originalBattleGuard{Engine: e, Port: p, Projection: x, Rounds: r, Code: code, NPC: npc, Flags: flags, Ending: ending}
 	swordOnHostInstruction(e.Oracle, oracle.Far(0x110, 0x2dde), g.begin)
 	swordOnHostInstruction(e.Oracle, oracle.Far(0x110, 0x3048), g.presence)
 	swordOnHostInstruction(e.Oracle, oracle.Far(0x110, 0x309e), g.afterBattle)
@@ -484,5 +512,8 @@ func installOriginalBattleGuard(e *game.Engine, p *worldArmyPort, x *originalArm
 		g.Returned = true
 		return false, nil
 	})
+	if ending {
+		installOriginalEndingHooks(g)
+	}
 	return g, nil
 }

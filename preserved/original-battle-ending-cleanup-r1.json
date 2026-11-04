@@ -1,0 +1,32 @@
+{
+  "removed_binaries": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-ending-r1/ownedworld.test",
+      "bytes": 17409688,
+      "sha256": "36cafe720ff3feac2682c8ec8f00a7111c68ed622b8dffef48862e2fdfe05cf0",
+      "permanent_batch": "original-battle-ending-r1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-ending-r1/first-passing-cohort/ownedworld.test",
+      "bytes": 17394976,
+      "sha256": "4fb38902810ccb66f411a5288b83cb7accf70544851dc014422edf6204199ff7",
+      "permanent_batch": "original-battle-ending-r1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-ending-r1/runtime-cohort/ownedworld.test",
+      "bytes": 17409688,
+      "sha256": "36cafe720ff3feac2682c8ec8f00a7111c68ed622b8dffef48862e2fdfe05cf0",
+      "permanent_batch": "original-battle-ending-r1"
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-guards-r1/ownedworld-final.test",
+      "bytes": 17315384,
+      "sha256": "7f32c0998c05dc2961c61e01110b2a4f0b96d379b6ec0916101540184933b76f",
+      "permanent_batch": "original-battle-guards-r1"
+    }
+  ],
+  "cache_files": 1750,
+  "cache_bytes": 210573595,
+  "total_bytes": 280103331,
+  "scope": "Only this task Go cache and SHA-verified permanently archived obsolete binaries. Current final binary and all permanent objects retained; no other projects or Docker resources pruned."
+}

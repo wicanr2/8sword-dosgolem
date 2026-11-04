@@ -497,5 +497,24 @@
       }
     ],
     "not_closed": "Final guard and general startup remain disabled. sub_132B4 retains its original calls; deep helper semantics are not promoted."
+  },
+  "original_final_guard_battlefield_bridge": {
+    "marker": "ORIGINAL-FINAL-GUARD-WORLD-20261104",
+    "evidence": "docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed",
+    "receipt": "preserved/original-battle-ending-audit-r1.json",
+    "scope": "Original battlefield final guard victory and confirmed existing ending playback; Go record survives cold Continue without a second battle/reward.",
+    "functions": [
+      {
+        "original_name": "sub_12DDE",
+        "ida_mz_linear": "0x12DDE",
+        "level": "proven-in-sampled-scope"
+      },
+      {
+        "original_name": "sub_1020E",
+        "ida_mz_linear": "0x1020E",
+        "level": "proven-in-sampled-scope"
+      }
+    ],
+    "not_closed": "In-process multiple battles/cancel re-entry and general startup. Previous card return-phase evidence remains historical."
   }
 }

@@ -1093,3 +1093,18 @@ timeout 300s docker run --rm --network none \
 保存器用同一組Docker唯讀專案與可寫`preserved/`掛載，執行`archive --project /project --archive /archive --out /archive/reinforcement-camps-r1.json`。獨立核對以`verify --archive /archive --out /out/新核對.json`執行，只掛保存目錄及工具。Go來源還原與清單的原路徑對應；每個物件為gzip，先核對`stored_sha256`、解壓大小及原SHA，再以原`mode`寫至新的目的地，遇不同檔案不覆寫。現有`prepare`直接從父版`sword-guards-r1`重建輸入，`freeze`只更新列明的patch及新增工具。
 
 增援批次共711檔／521去重物件、壓縮36268844 bytes；提案共23檔／20物件、壓縮3230733 bytes。[首次核對](reinforcement-camps-audit-r1.json)、[收尾核對](reinforcement-camps-integrity-r1.json)、[來源SHA更正](reinforcement-camps-source-check-r1.json)與[快取清理](reinforcement-camps-cleanup-r1.json)另存。提案的[縮圖與HTML來源](../docs/images/openkb-camp-proposal-runtime-r1.json)為歷史比較，不代表尚待重選。
+
+
+## 原戰場結局守軍保存
+
+[030限定驗收](../docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)與[核對](original-battle-ending-audit-r1.json)保存原版HD最終戰對照、混合軍隊勝局、兩個獨立程序Continue／原確認／完整HD結局及原PNG／state。完整原始資料、來源cohort、binary、原版／IDA匯出、缺劍與失敗診斷留本機，不加入Git；小型README成果與索引沿私人倉庫記錄。
+
+[批次清單](original-battle-ending-r1.json)的`files`列出原路徑、SHA、bytes與mode，`objects`指向本目錄`original-battle-ending-r1/<SHA>.gz`。逐物件解壓核對見[脫離工作區驗證](original-battle-ending-detached-r1.json)。還原依files的相對路徑，從objects指定的gzip解壓到另一個空目錄；不覆寫來源資料。既有923核心、r69素材與音源沿[初批保存](#初批保存)及前輪批次，不另複製完整工具鏈。
+
+工具為[original-battle-ending.py](../tools/original-battle-ending.py)。沿Pillow11.3.0-r2／UID1000／network none容器，`freeze --project /project`凍結來源，`audit --project /project --out <新JSON>`核對，`publish --project /project --out <圖片目錄>`產生縮圖；`archive --project /project --archive /project/preserved --out /project/preserved/original-battle-ending-r1.json`保存。脫離workplace時只掛唯讀preserved及唯讀tools，執行`verify --archive /archive --out <新JSON>`，不需核心或原資料掛載。Go1.24.13、923核心、原版與r69的具體掛載、配額、測試參數及固定seed見批次內execution-r1.json。
+
+最終守軍勝利先提交Go紀錄，原opaque NPC保留前次F7供原確認重播。兩次重播world／token保持，退出碼0；原結局早於獎勵，沒有補月薪。新兵初始／動態圖像尚未接整段Engine.Frame，混合局原PNG僅證明資料勝局，README只展示原兵種戰場與結局。沒有新X11、自然通關或一般玩家入口驗收。
+
+本批保存1427檔／462物件，壓縮47819005 bytes。已逐SHA保存後清除四個舊binary與1750份Go快取，回收280103331 bytes，約267.1 MiB；[清理收據](original-battle-ending-cleanup-r1.json)與[清理後核對](original-battle-ending-postcleanup-audit-r1.json)保持通過。最終測試binary、來源及永久物件保留。
+
+本批結局冷讀限戰前checkpoint六隊皆存活。最終守軍受損撤退、F7後再勝的殘兵checkpoint重播仍待接線；資料保留並拒絕，不當作完整生命週期已驗。

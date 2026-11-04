@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-04原戰場結局守軍依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)完成304來源隔離候選。原版HD最終戰完整原控制／Go對照、含女弓箭手勝局、兩條獨立程序讀檔重播至結局退出0已驗。329B先提交Go剩兵／Cleared record，020E驗原329F frame後停玩法掛點，Engine的Go HD／音樂／PAE保持；原結局早於獎勵，不補一般守軍月薪。三次進戰前F7、31拒絕、實際缺劍、journal恢復及回歸通過。[保存與工具](preserved/README.md#原戰場結局守軍保存)不依賴workplace。冷讀從原checkpoint移動／確認，再於3048識別已勝record並跳過戰鬥；不是舊卡片return-phase自動續播。未F7的劍依Go頭目record恢復，不信舊opaque覆蓋Go。目視確認新兵初始圖像仍沿原暫存站姿，持有預覽合成尚未接整段戰鬥，不稱外觀完成。下一步同程序取消重進／多戰、新兵圖像、全滅／空軍隊、規則／AI及一般入口；正式197來源七程式、923核心、535素材與1071美術保持，完整戰鬥後才進Rust。
+
 2026-11-03原戰場守軍／頭目依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)完成302來源隔離候選。原確認、戰場、獎勵頁與F7保持，Go接殘兵、月薪及八劍。兩組原版對照、四條未F7新Engine恢復及四次F7／獨立程序Continue通過。Go record是未F7前NPC／劍旗標的權威，冷啟動先投影RAM，原F7才同步opaque checkpoint；沿既有schema，不把舊NPC回蓋Go。16個八區模型、19拒絕、journal恢復及既有隨機戰回歸已驗。[保存與工具](preserved/README.md#原戰場守軍與頭目保存)不依賴workplace。結局守軍、同程序取消重進／多戰、全滅／空軍隊、規則／AI整合及一般入口仍待接續；正式197來源七程式、923核心、535素材、1071美術保持，完整戰鬥後才進Rust。
 
 2026-11-03敵方八分派依[030限定驗收](docs/spec/030-battle-expansion-proposal.md#敵方八分派go資料限定-conformed)完成300來源隔離候選。Go接兵數、六行動計數、額外行動與複製，原版／HD操作及動畫保持。十三組原控制、46計數原指令、12 alias原指令、60模型、34拒絕、全新增軍隊受術及混合勝局F7／新程序Continue通過。後排近戰依`ORIGINAL-MOTION-REAR-20261103`矩陣，不可再套target%3；72原分支及最終完整勝局已驗。原5分派錯位判定保持，第八分派只作受控抽驗。[永久保存](preserved/README.md#原戰場敵方特殊go資料保存)不依賴workplace，工具及Docker重生契約均在入口。守軍／頭目、規則／AI整合、超領導保存、新兵姿勢、超word動畫、戰中續接及一般入口仍待完成；正式197來源七程式、923核心、535素材與1071美術保持，完整戰鬥後才進Rust。

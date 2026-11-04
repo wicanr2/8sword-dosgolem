@@ -3137,3 +3137,17 @@ Go使用固定typed CombatCatalog的原25種Attack／HP並核對原70CE／70D0�
 失敗分類：第一輪原版已贏且敵軍全空，停在獎勵getch，測試輸入漏戰後Enter；之後原版停止回呼未限制driver phase，阻止了map advance，均只改測試。其他失敗為ArmyStack型別誤用、model未保留原敵軍歷史、混合fixture未用既有formation保存標記、IDA讀中文索引使用ASCII。原版程序、時鐘、原守軍編成與規則未因這些錯誤改動。完整失敗檔均[永久保存](preserved/README.md#原戰場守軍與頭目保存)。
 
 [030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)、[核對](preserved/original-battle-guards-audit-r1.json)與[回填台帳](docs/spec/ai-resolution-backlinks-r1.json)為入口。只驗0區守軍0／頭目1的勝利與撤退；全滅／空軍隊、26AA=1完整路徑、其他區實戰、同程序取消重進／多戰、結局守軍及一般入口仍待驗或接續。原197來源七程式、923核心、535素材與1071美術保持，沒有新X11或自然取得聲明。
+
+
+## 原戰場結局守軍與播放交接
+
+2026-11-04。輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。沿前輪已保存IDA9.4匯出，不新增整檔逆向。IDA MZ linear基準10000h；dosgolem執行期world CS=0110h，兩者分列。
+
+- 已證實原控制流：sub_12DDE的IDA1326E至1329C掃最終六隊，13295寫DS56E2=1，1329B的push CS與1329C的call sub_1020E先於132A7的call sub_11ABE。對應runtime0110:329B／020E，原返回329F。真正結局正常退出前沒有一般守軍獎勵，不替它加月薪。
+- 限定動態已證實：原六隊保持native19×500、24×500、10×400、25×400、15×400、20×400。原版HD與Go的完整勝局相同，含六資源、504個NPC word、八劍、seed、返回軍隊及首次選敵完整Frame。起始軍隊、領導30000、戰績10000、八劍及59／52鄰近位置為fixture，未注入IP或替代battle函式，不稱自然通關。
+- 保存契約：Go在329B提交既有WorldEncounter清除紀錄與剩兵；原opaque NPC仍屬前次F7。冷讀結局模式保留原六隊供確認及八劍檢查，3048只對已提交最終record跳過戰鬥，清NPC並接原326E檢查。重播須從原checkpoint移動／確認，不冒稱舊卡片return-phase自動續播。尚未F7的頭目record也供應八劍旗標，避免舊opaque word覆蓋Go資料。格式未改。
+- 020E驗證已提交、原bytes、329F far frame與DS56E2後，停候選玩法掛點；Engine的HD、Go來源繪圖、音樂與PAE結局保持。原名與原位址保留，語意只附加於索引。
+
+後續以[030限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)、[核對工具](tools/original-battle-ending.py)與[永久保存](preserved/README.md#原戰場結局守軍保存)記錄實際完成範圍。一般玩家入口、同程序多戰／取消重進與戰中續接仍不在本片段內。
+
+本輪成果目視追加：`ORIGINAL-FINAL-FRAME-PRESENTATION-20261104`確認混合局首次選敵Frame仍有原暫存站姿；composeOriginalBattleSetup只是既有持有預覽合成，未接整段實戰。資料勝局與冷讀仍有效，新增兵種的初始／受擊／死亡圖像不在本輪完成範圍。README成果移除該張混合戰場示意，原PNG永久保留。

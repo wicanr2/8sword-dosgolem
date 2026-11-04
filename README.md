@@ -68,7 +68,11 @@ F3也已接上Go交易，保留方向鍵選隊、Enter整隊解雇與Esc返回�
 
 ![原版守軍勝利、HD撤退殘兵與頭目勝利的戰後地圖](docs/images/original-battle-guards-go-r1.png)
 
-一般守軍與頭目也已在隔離候選沿用原確認、戰場與獎勵頁，由Go保存殘兵、月薪及劍旗標。兩組原版對照與四條F7／獨立程序讀檔通過，未F7重開也能恢復Go紀錄。圖為明示軍隊／位置的戰後地圖，原守軍編成保持。範圍見[守軍限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)及[圖片來源](docs/images/original-battle-guards-go-r1.json)。結局守軍、同程序多戰與一般玩家入口仍待接續。
+一般守軍與頭目也已在隔離候選沿用原確認、戰場與獎勵頁，由Go保存殘兵、月薪及劍旗標。兩組原版對照與四條F7／獨立程序讀檔通過，未F7重開也能恢復Go紀錄。圖為明示軍隊／位置的戰後地圖，原守軍編成保持。範圍見[守軍限定驗收](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)及[圖片來源](docs/images/original-battle-guards-go-r1.json)。同程序多戰與一般玩家入口仍待接續。
+
+![原版HD最終守軍戰與讀檔後完整HD結局](docs/images/original-battle-ending-go-r1.png)
+
+最終守軍已接通Go戰果保存與既有HD結局。原版完整勝局對照通過；含新增女弓箭手的勝局也已另開程序讀檔，經原確認重播結局至退出碼0，沒有重打或重領獎。圖為明示軍隊、八劍及鄰近位置的Engine畫面，原守軍六隊保持，不代表自然通關。範圍見[結局守軍驗收](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)與[圖片來源](docs/images/original-battle-ending-go-r1.json)。新增兵種這輪驗證資料與戰果，戰場站姿及動態圖像仍待接線；一般Go入口尚未開放。
 
 `cmd/8sword`是目前的玩家入口，操作見[研究環境與執行](#研究環境與執行)。`cmd/8sword-owned`暫時只提供原版進度匯入工具；普通啟動會在讀寫進度前停止，既有Go進度保留。請勿將含新增兵種的附檔刪除後交給原版播放器，否則無法保留新增部隊。
 

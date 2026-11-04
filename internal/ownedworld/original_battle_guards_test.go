@@ -18,6 +18,9 @@ import (
 var errOriginalGuardMapHeld = errors.New("original guard map returned")
 
 func originalGuardControllers(t *testing.T, e *game.Engine, p *worldArmyPort, player [6]ArmyStack) (*originalBattleGuard, *originalBattleEnemy) {
+	return originalGuardControllersMode(t, e, p, player, false)
+}
+func originalGuardControllersMode(t *testing.T, e *game.Engine, p *worldArmyPort, player [6]ArmyStack, ending bool) (*originalBattleGuard, *originalBattleEnemy) {
 	t.Helper()
 	must := func(err error) {
 		t.Helper()
@@ -40,7 +43,7 @@ func originalGuardControllers(t *testing.T, e *game.Engine, p *worldArmyPort, pl
 	must(err)
 	enemy, err := installOriginalBattleEnemy(e, r)
 	must(err)
-	g, err := installOriginalBattleGuard(e, p, x, r)
+	g, err := installOriginalBattleGuardMode(e, p, x, r, ending)
 	must(err)
 	return g, enemy
 }
@@ -323,6 +326,9 @@ func TestOriginalGuardCommittedRetry(t *testing.T) {
 // Normal original confirmation and picker keys; only the initial position and
 // army are fixtures. No IP injection, battle stub, forced result or reroll.
 func originalGuardFight(t *testing.T, e *game.Engine, retreat bool, owner *originalBattleGuard) error {
+	return originalGuardFightLimit(t, e, retreat, owner, 220000000)
+}
+func originalGuardFightLimit(t *testing.T, e *game.Engine, retreat bool, owner *originalBattleGuard, budget uint64) error {
 	t.Helper()
 	entered, started, pending, entering := false, false, false, false
 	phase, finished := true, false
@@ -350,7 +356,7 @@ func originalGuardFight(t *testing.T, e *game.Engine, retreat bool, owner *origi
 	var picker oracle.Regs
 	e.Oracle.OnCall(oracle.Far(0xf67, 0x283f), func(*oracle.Oracle) { entering = false })
 	e.Oracle.OnCall(oracle.Far(0xf67, 0x283e), func(o *oracle.Oracle) {
-		if entering {
+		if !phase || entering {
 			return
 		}
 		entering = true
@@ -374,7 +380,7 @@ func originalGuardFight(t *testing.T, e *game.Engine, retreat bool, owner *origi
 		}
 	})
 	e.Oracle.OnCall(oracle.Far(0xf67, 0x28a6), func(o *oracle.Oracle) {
-		if !pending {
+		if !phase || !pending {
 			return
 		}
 		r := o.Regs()
@@ -422,20 +428,37 @@ func originalGuardFight(t *testing.T, e *game.Engine, retreat bool, owner *origi
 	start := e.Oracle.Steps()
 	e.Oracle.SetStepGuard(func(o *oracle.Oracle) error {
 		r := o.Regs()
-		if owner != nil && owner.Returned {
+		if owner != nil && (owner.Returned || owner.EndingHandoff) {
 			return errOriginalGuardMapHeld
 		}
 		if pending && r.CS == picker.CS && r.IP == picker.IP && r.SP == picker.SP {
 			pending = false
 		}
-		if o.Steps() > start+220000000 {
+		if o.Steps() > start+budget {
 			return errors.New("original guard input budget")
 		}
 		return nil
 	})
-	setupPress(t, e, 0x4b)
 	var err error
-	for {
+	if err = e.Key(0x4b, true); err != nil {
+		e.Oracle.SetStepGuard(nil)
+		phase = false
+		return err
+	}
+	// A completed final guard can reach the held playback entry during this
+	// first key press. Return that sentinel instead of setupPress calling Fatal.
+	for n := 0; n < 40; n++ {
+		if n == 10 {
+			_ = e.Key(0x4b, false)
+		}
+		err = catchWorldArmyFault(func() error { return e.AdvanceCycles(30000) })
+		e.RenderAudio()
+		if err != nil {
+			break
+		}
+	}
+	_ = e.Key(0x4b, false)
+	for err == nil {
 		err = catchWorldArmyFault(func() error { return e.AdvanceCycles(100000) })
 		e.RenderAudio()
 		if err != nil {

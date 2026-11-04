@@ -1,6 +1,6 @@
 # 目前狀態
 
-核對日期：2026-11-03。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
+核對日期：2026-11-04。唯一現況以本檔為準；歷程見[WORKLOG](WORKLOG.md)，規則見[AGENTS](AGENTS.md)，完整證據入口見[永久保存](preserved/README.md)。歷史批次的「待驗」不單獨構成新工作。
 
 ## 有效決定與優先工作
 
@@ -14,7 +14,13 @@
 
 ## 最近驗證
 
-最新為[原戰場一般守軍與頭目](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)。302來源隔離候選保留原確認、原版／HD戰場、獎勵頁及地圖清理，Go接殘兵、月薪及八劍旗標。原版守軍勝利、HD守軍撤退兩組原控制／Go的完整地圖Frame、NPC、旗標、資源及seed相同。另兩條含新兵的HD守軍／頭目勝局通過，四次真正F7與四個獨立程序Continue保持軍隊、位置、資源、NPC與旗標。[核對](preserved/original-battle-guards-audit-r1.json)、[成果](docs/images/original-battle-guards-go-r1.png)及[永久保存](preserved/README.md#原戰場守軍與頭目保存)為入口。
+最新為[原戰場結局守軍](docs/spec/030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)。304來源隔離候選保持原確認、八劍檢查及原版HD戰場，Go在結局播放前成對保存剩兵與最終守軍紀錄。原版／Go的完整最終戰，六資源、NPC、八劍、seed、返回軍隊及首次選敵Frame相同。另含20名新增女弓箭手的完整勝局通過；兩條Go進度另開程序Continue、移動／確認後完整播放HD結局，退出碼均0，沒有再次戰鬥或提交。三次進戰前真正F7、16掛點拒絕、15紀錄拒絕、實際缺劍提示、journal恢復及既有回歸已驗。[核對](preserved/original-battle-ending-audit-r1.json)、[成果](docs/images/original-battle-ending-go-r1.png)與[永久保存](preserved/README.md#原戰場結局守軍保存)為入口。
+
+`ORIGINAL-FINAL-GUARD-WORLD-20261104`：原329B呼叫結局早於一般獎勵，這兩場月薪100、金500、戰績10000、等級1、法術能力0保持。原六隊最終守軍不改；軍隊、八劍、領導30000及59／52鄰近位置為fixture，不稱自然通關。沿既有WorldEncounter與schema，未F7的opaque NPC保留前次存檔；冷讀保留原確認並在3048辨識勝利紀錄後接326E。重播須從原checkpoint移動／確認，不是舊卡片return-phase自動續播。Go頭目record亦可恢復未F7的劍旗標。
+
+下一步是同程序取消重進／多戰、守軍全滅／空軍隊及一般入口，再整合規則／策略AI與戰中續接。原版模式最終戰、其他七區及26AA=1完整路徑未新增實戰驗收；超領導、新兵初始圖像／動態姿態及超word動畫仍待。正式197來源七程式、923核心、535素材與1071美術保持，完整戰鬥後才進Rust。詳細來源見[研究紀錄](RESEARCH-LOG.md#原戰場結局守軍與播放交接)。 本輪目視確認Engine.Frame仍沿原暫存站姿，先前composeOriginalBattleSetup只屬持有預覽；新兵外觀尚未完成，不將正確兵數當外觀驗收。 冷讀最終已勝record目前要求戰前checkpoint六隊皆存活；先傷敵撤退、F7後再勝的殘兵checkpoint重播仍須補接，檔案會保留並拒絕。
+
+前輪為[原戰場一般守軍與頭目](docs/spec/030-battle-expansion-proposal.md#原戰場一般守軍與頭目限定-conformed)。302來源隔離候選保留原確認、原版／HD戰場、獎勵頁及地圖清理，Go接殘兵、月薪及八劍旗標。原版守軍勝利、HD守軍撤退兩組原控制／Go的完整地圖Frame、NPC、旗標、資源及seed相同。另兩條含新兵的HD守軍／頭目勝局通過，四次真正F7與四個獨立程序Continue保持軍隊、位置、資源、NPC與旗標。[核對](preserved/original-battle-guards-audit-r1.json)、[成果](docs/images/original-battle-guards-go-r1.png)及[永久保存](preserved/README.md#原戰場守軍與頭目保存)為入口。
 
 明示1000民兵／200原弓箭手、領導30000、戰績10000及0區鄰近位置，原守軍五隊不改。勝利月薪100→120，金500／戰績10000／等級1保持；撤退前擊倒30猴妖，另四隊殘兵保留，金500→400。混合局另加20狼／20女弓箭手，普通守軍勝後983民兵／200原弓箭手／20女弓箭手；頭目勝後989／200／20，第一旗標0→1。Store的formation只是沿既有新兵保存標記，本場規則native。
 

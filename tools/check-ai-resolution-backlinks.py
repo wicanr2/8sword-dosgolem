@@ -131,3 +131,15 @@ for v in guard_rows:
  assert v['original_address']in evidence.read_text()and v['original_name']in evidence.read_text()
  assert v['required_correction']in older.read_text()and v['scope']and v['not_closed']
 print('Original guard/boss battlefield backlinks passed:',len(guard_rows))
+
+ending_rows=d.get('original_battle_ending_resolutions',[])
+assert len(ending_rows)==2 and len({v['key']for v in ending_rows})==2
+for v in ending_rows:
+ assert v['platform_module']=='dos16/PAM.AY'and v['module_sha256']=='83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0'
+ assert v['address_space']=='dosgolem runtime CS:IP'and v['level']=='proven-in-sampled-scope'
+ assert v['key']==v['platform_module']+':'+v['module_sha256']+':dosgolem-runtime-CS-IP:'+v['original_address']
+ evidence=r/v['evidence'];older=r/v['older_spec'];receipt=r/v['receipt']
+ assert evidence.is_file()and older.is_file()and receipt.is_file()
+ assert v['original_address']in evidence.read_text()and v['original_name']in evidence.read_text()
+ assert v['required_correction']in older.read_text()and v['scope']and v['not_closed']
+print('Original final-guard/ending backlinks passed:',len(ending_rows))
