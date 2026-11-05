@@ -1,0 +1,45 @@
+{
+  "status": "passed-rust-character-cleanup",
+  "removed": [
+    {
+      "path": "native/rust-target",
+      "files": 820,
+      "bytes": 190629043,
+      "archived": false
+    },
+    {
+      "path": "native/gui-before-return-fix",
+      "files": 36,
+      "bytes": 121724835,
+      "archived": true
+    },
+    {
+      "path": "native/scaled-before-return-fix",
+      "files": 6,
+      "bytes": 1151609,
+      "archived": true
+    },
+    {
+      "path": "before-return-fix.png",
+      "files": 1,
+      "bytes": 488765,
+      "archived": true
+    },
+    {
+      "path": "before-return-fix.json",
+      "files": 1,
+      "bytes": 6634,
+      "archived": true
+    }
+  ],
+  "bytes": 314000886,
+  "kept": [
+    "native/8sword-remake",
+    "native/pack",
+    "native/gui",
+    "native/scaled",
+    "rust-source",
+    "evidence",
+    "IDA exporters and scaled-smoke.py"
+  ]
+}

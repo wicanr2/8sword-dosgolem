@@ -1,0 +1,41 @@
+{
+  "status": "passed-rust-character-integrity",
+  "root_owned": [],
+  "markdown_directories": [],
+  "links": [
+    "docs/images/rust-character-r1.json",
+    "docs/images/rust-character-r1.png",
+    "preserved/rust-character-audit-r1.json",
+    "preserved/rust-character-cleanup-r1.json",
+    "preserved/rust-character-detached-r1.json",
+    "preserved/rust-character-integrity-r1.json",
+    "preserved/rust-character-r1.json",
+    "tools/export-rust-character-ida.py",
+    "tools/rust-character.py"
+  ],
+  "positive_control": "tools/rust-treasure.py",
+  "source_media_binary_unchanged_after_cleanup": true,
+  "media": 136,
+  "scaled": {
+    "status": "passed-scaled-character-mouse",
+    "scale": "2/3",
+    "pixels": [
+      1280,
+      880
+    ],
+    "same_returned_checkpoint": true,
+    "screens": {
+      "character": "84ee53078415a749f55193a35fe55cfeb32f6c1ea75de7ad10e386ec2bd5f292",
+      "swords": "a7f3fc09546d117d732bb0f94546c0c6dd7f03a0ecdbaea5413529ec43bd5880",
+      "returned": "3ca27a4e0ae889a6f41a187c8ddcf9d41dc8de3914dfbd0ddb4ea14917c451cc"
+    },
+    "binary_sha256": "af8dfcc30233340d7c45c6c99cb1cd1ef30894886b36eaf494657d60ba0e1671",
+    "capture": "External X11; not native SDL readback"
+  },
+  "archive": {
+    "files": 300,
+    "objects": 255,
+    "compressed_bytes": 29255531
+  },
+  "release": false
+}

@@ -46,6 +46,7 @@ pub fn digit_box(i: usize) -> Rect {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Screen {
     World,
+    Character,
     Prompt,
     Army,
     Report,
@@ -106,6 +107,7 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         }
     }
     match screen {
+        Screen::Character => {}
         Screen::Report => {}
         Screen::Treasure => {
             for (i, r) in TREASURE_CHOICES.iter().enumerate() {
@@ -118,6 +120,7 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
             if Rect(1392, 120, 504, 1080).contains(x, y) {
                 let row = (y - 120) / 162;
                 return match row {
+                    0 => Some(Action::Key(1073741882)),
                     1 => Some(Action::Key(1073741883)),
                     2 => Some(Action::Key(1073741884)),
                     6 => Some(Action::Key(1073741888)),

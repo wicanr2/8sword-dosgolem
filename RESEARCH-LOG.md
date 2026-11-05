@@ -3351,3 +3351,16 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 正常GUI原30民兵／500金／100領導、seed1走27步至60／41。取消後原值30保持，再Space開啟；三字型可切，F7待選冷讀逐狀態／畫布相同。金分支530／100，領導分支500／103，只清index4、30民兵及其他79箱保持；領取自動保存後冷讀不重領。前批真v3月報後檔讀回305金／30民兵／工程月結1再存v4。九份同幀畫布等於SDL讀回；2／3縮放選領導，保存檔等於原生分支，兩張外部X11圖另列。
 
 入口為[031](docs/spec/031-rust-independent-remake.md#寶箱資源限定-conformed)、[位址索引](docs/spec/treasure-address-index-r1.json)、[IDA工具](tools/export-rust-treasure-ida.py)、[核對](preserved/rust-treasure-audit-r1.json)、[資料工具](tools/rust-treasure.py)、[GUI](tools/rust-treasure-gui.py)及[永久保存](preserved/README.md#rust寶箱資源保存)。不提升其他劇情、守軍、原日曆或完整世界保存，不聲稱整段原RNG序列一致。
+
+## Rust F1人物資料
+
+輸入PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、正式PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4，MZ線性base10000h；DS基址2D780h與runtime DS1E88屬不同座標，runtime code0110之IP為線性位址減10000h。檔案offset另列，不混用。
+
+| 等級 | 原始定位與結論 |
+|---|---|
+| 已證實 | sub_17242於172A8至172D6取DS0492起六個12-byte標籤；X=3 byte、Y=63起每18。原dosgolem正常F1收據Source1170至1230同字串與座標。 |
+| 已證實 | 17304／17317／1732A／1733D／17368／1737B讀word_2DC72至word_2DC7C，即DS04F2至04FC的六資源，X=14 byte。第五欄有DS26B8物品倍增分支；現旅程沒有此物品，保留未移植界線，不給玩家隱藏加成。 |
+| 已證實 | 173F0是sub_17242內Enter比較，不能當函式入口。172E0寶物標題DS04DA，17493八大名劍標題DS04E6。175BD呼叫sub_1844C，其1845A／18472接受Enter或Esc，然後175C4返回；修正原型的雙向切頁假設。 |
+| 已證實 | 批准頭像MAN.AY record68、native24,13,80,40；master hero-portrait-r3.png SHA b97e3a9c908db0ce66b5579478fa40551e93d8ff9d91622cf89427eed4fa1e41，技術縮放240×240供Rust直接讀。原master與1071美術不改。 |
+
+[匯出器](tools/export-rust-character-ida.py)保留原始名稱、運算元、bytes、xref與檔案偏移；兩函式371行由獨立MZ重定位核對，正式DB只讀。原文字收據從永久catalog還原，不以新Rust測試當原版oracle。完整RE、早期失敗／原型與最終GUI沿[永久保存](preserved/README.md#rust-f1人物資料保存)，驗收為[031](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)。物品、劍取得及完整世界未由本輪證實。

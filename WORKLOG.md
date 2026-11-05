@@ -3301,3 +3301,17 @@ Rust新增treasure.rs與80目錄／七規則TSV；原式灰底金字紅選取、
 README新增寶箱兩分支及冷讀圖，CONTEXT／WORKLIST下一步改其餘原式選單與世界事件。主機gh憑證與private repo已確認；完整素材／binary／來源留本機preserved，只推索引、核對與成果圖，無Release。既有197／7／923／535／1071及Go格式保持，不重跑全量HD或月報。
 
 收尾補強交易前的座標、身份與剩值驗證；異常資料在加值前拒絕，整份狀態保持。修改後重新完成63測試、五程序九擷取與縮放抽驗，最終binary與核對及成果圖一致。322檔／247物件永久保存，壓縮31287876 bytes；只掛唯讀preserved、單一工具及tmpfs的[脫離核對](preserved/rust-treasure-detached-r1.json)通過。移除可重建Rust快取及已保存診斷，共326613778 bytes，約311.5 MiB。[完整性核對](preserved/rust-treasure-integrity-r1.json)確認來源、135媒體、binary、位址索引與11個入口連結，沒有root-owned檔案或專案容器殘留。
+
+## 2026-11-05 Rust F1人物資料
+
+使用者確認繼續。命中復古重製、READY實作、文件及IDA路由，讀逆向技能、spec-gated、文件職責、驗證交接、README標準及IDA工具契約。沿固定原正常F1文字收據、PAM標籤與批准武將頭像，先DRAFT與IDA讀取端，再READY。沒有重開Go／HD或寶箱矩陣。
+
+新增character.rs與編譯期八標籤／六欄幾何，F1及右欄第一列開頁；原兩頁標題及Enter／Esc行為、原式欄位與透明度不變的武將頭像、三字型、滑鼠與F7接同一旅程。人物頁唯讀，v4不改；物品與八劍尚未取得，保留空欄，不冒稱完成。README新增原起點、隸書與寶箱後530金／103領導力圖；現況與下一步改F5地圖總覽。
+
+IDA初查把原掛點173F0當函式入口而被assert拒絕；從正式唯讀DB的新/tmp副本查包含函式，確認sub_17242。初實作把第二次Enter當雙向切頁，補查175BD消費端及sub_1844C後推翻；先追加READY勘誤，再修正第二Enter返回地圖。原型GUI／縮放、舊匯出與log保留，正式DB未改名或寫回。一次apply_patch因空標題不符而整批拒絕，分開補正；一次Docker stdin漏-i未執行任何腳本，後續補正。這些不列產品規則驗收。
+
+最終65測試、fmt、release與self-check通過；IDA371行bytes逐重定位核對。四個正常輸入GUI程序共八SDL擷取逐RGBA同Rust畫布，三字型、F1／Enter／Esc、滑鼠、世界狀態不變及F7／獨立冷讀通過。兩份前批真正寶箱進度分別顯示530金及103領導力，無RAM／IP／增兵或獎勵注入。預設2／3縮放另驗1280×880進頁、八劍、返回與F7，三張外部X11與原生SDL證據分列。
+
+沿既有Rust1.99.1／SDL2／libsndfile、Pillow11.3.0-r2與IDA py312-v1 image，未建立新image。所有工作UID1000、network none、CPU／記憶體／PID與外層逾時有界，GUI的Xvfb在finally結束；最終Rust建置只掛crate與native，GUI只掛單一工具與本批，沒有Go／PAM執行依賴。主機gh憑證及private repo確認，只推程式、索引與成果圖，不發布Release。保存及清理收據於本節續記。
+
+[完整索引](preserved/rust-character-r1.json)、[脫離核對](preserved/rust-character-detached-r1.json)、[清理](preserved/rust-character-cleanup-r1.json)與[完整性](preserved/rust-character-integrity-r1.json)已保存。300檔／255物件、壓縮29255531 bytes；僅掛唯讀preserved、單一工具與tmpfs逐原始／壓縮SHA通過。移除820份Rust快取及44份已保存診斷，共314000886 bytes，約299.5 MiB；binary、136份媒體及最終證據保持。來源／圖／binary與9個入口連結核對，find未發現root-owned檔案或.md目錄，無專案容器殘留。正式197／7／923／535／1071與Go保存格式保持。

@@ -1288,3 +1288,17 @@ Go探針使用唯讀來源／原版／核心／module cache與可寫批次，`GO
 目前[啟動器](../tools/rust-native-player.sh)指向rust-treasure-r1/native。依索引解壓binary及pack到同名路徑，核對SHA與權限，再用`journey --save-dir <既有可寫絕對路徑>`遊玩，加`--continue`續接；F7可保存寶箱待選，領取後自動保存，不重領。v4讀v1至v3，不讀Go進度；完整世界及手機未完成，沒有Release。執行期只有Rust、媒體與SDL2／libsndfile等平台函式庫。
 
 本批322檔／247物件，壓縮31287876 bytes。脫離工作區核對通過後，移除Rust快取及已保存診斷，共326613778 bytes，約311.5 MiB。目前binary、135份媒體、最終GUI、縮放擷取、來源及IDA證據保持。
+
+## Rust F1人物資料保存
+
+[完整索引](rust-character-r1.json)、[核對](rust-character-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)、[研究](../RESEARCH-LOG.md#rust-f1人物資料)為入口。65測試、兩函式371行IDA bytes、四程序八SDL擷取與預設縮放通過。完整crate、136份媒體、批准頭像投影、binary、前批真正v4檔、最終與早期GUI／縮放及IDA診斷逐SHA壓縮於本機`preserved/rust-character-r1/<SHA256>.gz`，不依賴workplace。完整原版資料及binary不入Git或公開包。
+
+[資料工具](../tools/rust-character.py)在Pillow11.3.0-r2、UID1000及network none容器使用。先在既有battle-r1建立rust-character-r1/evidence；[IDA匯出器](../tools/export-rust-character-ida.py)只需原game目錄掛/game唯讀、正式DB目錄掛/source唯讀、本批掛/out可寫，匯出器單檔唯讀。沿ida-pro-9.4-idapython:py312-v1，先複製DB到/tmp，再`idat -A -L/out/ida.log -S/export.py /tmp/PAM.i64`；驗521函式探針、原始SHA及JSON，正式DB保持。
+
+`prepare --project /project`恢復前批媒體與真正寶箱後v4檔，依固定PAM抽八標籤，從artwork/approved的批准master投影240×240頭像；character-layout.tsv複製到crate後才建置。三字型沿[字型工具](../tools/rust-world.py)的`fonts --project /project --work <本批> --out <新JSON>`補字。`freeze --project /project`保存crate與四份工具；`audit --project /project --out <新JSON>`驗原始IDA bytes、來源、65測試、GUI及正式基線。建置只掛crate唯讀與native可寫，最終GUI只見本批與輸入工具，具體命令與限制在execution.json。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-character-r1.json`保存資料；`verify --archive /archive --out <新JSON>`僅掛唯讀preserved、單一工具與tmpfs即可逐原始／壓縮SHA核對。[脫離核對](rust-character-detached-r1.json)、[清理](rust-character-cleanup-r1.json)與[完整性](rust-character-integrity-r1.json)另存。原型來源與診斷先存後刪，只有可重建Rust快取不保存。
+
+目前[啟動器](../tools/rust-native-player.sh)指向rust-character-r1/native。依索引解壓binary及pack到同名路徑、核對SHA與權限後，用`journey --save-dir <既有可寫絕對路徑>`遊玩，加`--continue`續接。F1或右欄第一列檢視，Enter看八劍、第二Enter返回，Esc隨時返回；頁內可F7，冷讀回地圖後再F1顯示相同值。保存仍v4，不讀Go進度。寶物／八劍空欄、完整世界與手機仍待，沒有Release。執行期只有Rust、媒體及SDL2／libsndfile等平台函式庫。
+
+本批300檔／255物件，壓縮29255531 bytes。脫離工作區核對通過後，清除820份可重建Rust快取與44份已保存診斷，共314000886 bytes，約299.5 MiB。目前binary、136份媒體、最終GUI／縮放與RE來源保持。

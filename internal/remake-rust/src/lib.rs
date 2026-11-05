@@ -3,6 +3,7 @@
 
 pub mod battle;
 pub mod catalog;
+pub mod character;
 pub mod checkpoint_store;
 pub mod controller;
 pub mod media_assets;

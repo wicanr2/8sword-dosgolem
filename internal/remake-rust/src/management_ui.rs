@@ -8,6 +8,7 @@ use crate::world::WorldData;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Page {
     World,
+    Character,
     Review,
     Dismiss,
     Shop,
@@ -21,6 +22,7 @@ pub struct Manager {
     pub extra: bool,
     pub digits: String,
     pub message: String,
+    pub swords: bool,
 }
 impl Default for Manager {
     fn default() -> Self {
@@ -30,6 +32,7 @@ impl Default for Manager {
             extra: false,
             digits: String::new(),
             message: String::new(),
+            swords: false,
         }
     }
 }
@@ -52,6 +55,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Character => Some(Screen::Character),
             Page::Treasure => Some(Screen::Treasure),
             Page::Monthly => Some(Screen::Report),
             Page::Review | Page::Dismiss => Some(Screen::Army),
@@ -93,12 +97,27 @@ impl Manager {
         if self.page == Page::World {
             if j.phase() == "world" {
                 self.page = match key {
+                    1073741882 => Page::Character,
                     1073741883 => Page::Review,
                     1073741884 => Page::Dismiss,
                     _ => return Ok(()),
                 };
                 self.selected = 0;
+                self.swords = false;
                 self.message.clear();
+            }
+            return Ok(());
+        }
+        if self.page == Page::Character {
+            if key == 13 {
+                if self.swords {
+                    self.page = Page::World;
+                } else {
+                    self.swords = true;
+                }
+            }
+            if key == 27 {
+                self.page = Page::World;
             }
             return Ok(());
         }
@@ -230,11 +249,43 @@ pub fn draw(
     catalog: &Catalog,
     pack: &MediaPack,
     building: &Image,
+    portrait: &Image,
 ) -> Result<(), String> {
     if ui.page == Page::World {
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::Character {
+        fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
+        sprite(f, portrait, 72, 126);
+        for row in crate::character::fields(j.resources)? {
+            field(
+                f,
+                font,
+                &row.label,
+                row.label_box.0,
+                row.label_box.1,
+                row.label_box.2,
+            )?;
+            field(
+                f,
+                font,
+                &row.value.to_string(),
+                row.value_box.0,
+                row.value_box.1,
+                row.value_box.2,
+            )?;
+        }
+        field(
+            f,
+            font,
+            crate::character::heading(ui.swords)?,
+            648,
+            282,
+            288,
+        )?;
+        return Ok(());
+    }
     if ui.page == Page::Treasure {
         let p = j.treasure.pending.ok_or("缺少寶箱選項")?;
         let amount = j.treasure.amounts[usize::from(p.index)];

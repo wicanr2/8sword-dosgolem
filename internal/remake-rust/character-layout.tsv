@@ -1,0 +1,9 @@
+# fixed PAM F1 labels; original x-byte *24, y *6 +48
+STAT	0	72	426	336	等    級 :
+STAT	1	72	534	336	經    驗 :
+STAT	2	72	642	336	月    薪 :
+STAT	3	72	750	336	現    金 :
+STAT	4	72	858	336	領導能力 :
+STAT	5	72	966	336	法術能力 :
+HEADING	0	寶    物 :
+HEADING	1	八大名劍 :

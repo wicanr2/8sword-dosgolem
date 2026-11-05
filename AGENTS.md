@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-05 Rust F1依[031限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)完成。原式六欄與批准武將頭像、三字型、F1／Enter／Esc與滑鼠、F7及冷讀通過；65測試、371行IDA bytes、四程序八SDL擷取及預設縮放已驗。寶物／八劍目前空欄，初頁Enter看八劍、第二頁Enter返回；不是雙向切換。保存v4不改，執行只見Rust及媒體／平台庫。[現況](CONTEXT.md)、[工具](tools/rust-character.py)與[永久保存](preserved/README.md#rust-f1人物資料保存)為入口。下一步F5地圖總覽與世界事件，不重跑F1／寶箱／月報或HD矩陣。原197／7／923／535／1071保持，沒有Release。
+
 2026-11-05 Rust寶箱依[031限定驗收](docs/spec/031-rust-independent-remake.md#寶箱資源限定-conformed)接入journey。63測試、80資料／七Go案例、五程序九SDL擷取及預設縮放通過。原起點27步到60／41、取消、兩分支530金或500金／103領導，待選／已領冷讀不重領；真正v3月報後檔可存v4。IDA9.4新解sub_145FA掃描順序，533原bytes及十一索引語意核對，原DB唯讀不改名。[工具](tools/rust-treasure.py)、[核對](preserved/rust-treasure-audit-r1.json)及[保存](preserved/README.md#rust寶箱資源保存)不依賴workplace。下一步其餘原式選單／世界事件，不重開寶箱／月報／HD。完整世界、原日曆／守軍、手機仍待；正式197／7／923／535／1071及Go格式保持，CONTEXT為唯一現況。
 
 2026-11-05 Rust玩家月報與補貨依[031限定驗收](docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)接入journey。58測試、六Go收支／720補貨向量及三程序八擷取通過。原起點30民兵正常324步、四次撤退後月報235＋100−30＝305；自動保存與月報冷讀同狀態／畫布，返回不重扣。營地最後一步先購兵再月結已由核心驗，真正v2營地檔可讀並存v3。三cap與初始值不同，已分開；未開增援不預建。[工具](tools/rust-monthly.py)、[核對](preserved/rust-monthly-audit-r1.json)及[保存](preserved/README.md#rust玩家月報與補貨保存)為入口。只限玩家財務／營地，42處NPC增兵、原日曆六相位與完整世界仍待。下一步寶箱資源，不重開月報／HD；正式197／7／923／535／1071與Go格式保持，CONTEXT為唯一現況。
