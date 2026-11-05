@@ -155,6 +155,7 @@ impl<'a> Journey<'a> {
             || self.cue.is_some()
             || self.camps.pending.is_some()
             || self.treasure.pending.is_some()
+            || self.survey.bird
         {
             return Err("不在月結邊界".into());
         }
@@ -181,6 +182,8 @@ impl<'a> Journey<'a> {
             s.army = [Stack::default(); 6];
         }
         s.world.remaining = 324;
+        s.survey.stopped = false;
+        s.survey.tempo = 6;
         s.month.months = s.month.months.checked_add(1).ok_or("月結次數超界")?;
         s.month.pending = Some(Report {
             budget: b,

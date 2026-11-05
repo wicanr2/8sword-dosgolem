@@ -153,6 +153,7 @@ pub struct Journey<'a> {
     pub treasure: crate::treasure::Treasure,
     pub magic: crate::world_magic::Magic,
     pub resource_notice: Option<crate::resource_spells::Notice>,
+    pub survey: crate::survey_spells::Survey,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -176,10 +177,13 @@ impl<'a> Journey<'a> {
             treasure: crate::treasure::Treasure::default(),
             magic: crate::world_magic::Magic::default(),
             resource_notice: None,
+            survey: crate::survey_spells::Survey::default(),
         }
     }
     pub fn phase(&self) -> &'static str {
-        if self.resource_notice.is_some() {
+        if self.survey.bird {
+            "birdseye"
+        } else if self.resource_notice.is_some() {
             "resource-result"
         } else if self.magic.direction {
             "bridge-direction"
@@ -208,6 +212,7 @@ impl<'a> Journey<'a> {
             || self.magic.direction
             || self.magic.shop.is_some()
             || self.resource_notice.is_some()
+            || self.survey.bird
         {
             return Err("遭遇尚未完成".into());
         }
@@ -331,6 +336,7 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        self.survey.validate(self)?;
         if let Some(n) = &self.resource_notice {
             n.validate(self, catalog)?;
         }
@@ -399,7 +405,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN006".to_vec();
+        let mut b = b"8SJRN007".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -474,6 +480,11 @@ impl<'a> Journey<'a> {
             b.extend(n.uses_before.to_le_bytes());
             put_army(&mut b, &n.army_before);
         }
+        b.extend([
+            u8::from(self.survey.stopped),
+            self.survey.tempo,
+            u8::from(self.survey.bird),
+        ]);
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -488,7 +499,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN003"
                 && &b[..8] != b"8SJRN004"
                 && &b[..8] != b"8SJRN005"
-                && &b[..8] != b"8SJRN006")
+                && &b[..8] != b"8SJRN006"
+                && &b[..8] != b"8SJRN007")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -643,7 +655,7 @@ impl<'a> Journey<'a> {
                     .push(u16::from_le_bytes(r.take(2)?.try_into().unwrap()));
             }
         }
-        let resource_notice = if &b[..8] == b"8SJRN006" {
+        let resource_notice = if &b[..8] >= b"8SJRN006" {
             match r.byte()? {
                 0 => None,
                 1 => Some(crate::resource_spells::Notice {
@@ -658,6 +670,20 @@ impl<'a> Journey<'a> {
         } else {
             None
         };
+        let mut survey = crate::survey_spells::Survey::default();
+        if &b[..8] == b"8SJRN007" {
+            survey.stopped = match r.byte()? {
+                0 => false,
+                1 => true,
+                _ => return Err("停時旗標錯誤".into()),
+            };
+            survey.tempo = r.byte()?;
+            survey.bird = match r.byte()? {
+                0 => false,
+                1 => true,
+                _ => return Err("鳥瞰旗標錯誤".into()),
+            };
+        }
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -676,6 +702,7 @@ impl<'a> Journey<'a> {
             treasure,
             magic,
             resource_notice,
+            survey,
         };
         s.validate(catalog, data)?;
         Ok(s)

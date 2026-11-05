@@ -21,6 +21,7 @@ pub enum Page {
     MagicShop,
     Message,
     ResourceResult,
+    Bird,
 }
 pub struct Manager {
     pub page: Page,
@@ -44,6 +45,10 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.survey.bird {
+            self.page = Page::Bird;
+            return;
+        }
         if j.resource_notice.is_some() {
             self.page = Page::ResourceResult;
             return;
@@ -73,6 +78,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Bird => Some(Screen::Minimap),
             Page::ResourceResult => Some(Screen::Report),
             Page::Magic => Some(Screen::Magic),
             Page::Bridge => Some(Screen::Bridge),
@@ -178,6 +184,12 @@ impl Manager {
                     if self.selected == 0 {
                         j.begin_bridge()?;
                         self.page = Page::Bridge;
+                    } else if self.selected == 4 {
+                        j.cast_stop_time()?;
+                        self.page = Page::World;
+                    } else if self.selected == 5 {
+                        j.begin_bird_view()?;
+                        self.page = Page::Bird;
                     } else {
                         j.cast_resource(c, self.selected as u8)?;
                         self.page = Page::ResourceResult;
@@ -203,6 +215,14 @@ impl Manager {
             }
             if key == 27 {
                 j.close_magic_shop(c, data)?;
+                self.page = Page::World;
+                self.message.clear();
+            }
+            return Ok(());
+        }
+        if self.page == Page::Bird {
+            if key == 13 || key == 27 {
+                j.close_bird_view()?;
                 self.page = Page::World;
                 self.message.clear();
             }
@@ -469,9 +489,14 @@ pub fn draw(
         }
         return Ok(());
     }
-    if ui.page == Page::Minimap {
+    if matches!(ui.page, Page::Minimap | Page::Bird) {
         fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
-        for (i, code) in crate::minimap::cells(data, &j.world)?.iter().enumerate() {
+        let cells = if ui.page == Page::Bird {
+            crate::minimap::all_cells(data, &j.world)?
+        } else {
+            crate::minimap::cells(data, &j.world)?
+        };
+        for (i, code) in cells.iter().enumerate() {
             let r = crate::minimap::cell(crate::world::Position {
                 x: (i % 70) as u8,
                 y: (i / 70) as u8,

@@ -125,6 +125,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let treasure_before = journey.treasure.amounts;
         let magic_before = journey.magic.clone();
         let notice_before = journey.resource_notice.is_some();
+        let survey_before = journey.survey.clone();
         let mut snap = false;
         ui.sync(&journey);
         for e in sdl.events() {
@@ -315,13 +316,15 @@ pub fn run(args: &[String]) -> Result<(), String> {
         }
         if magic_before.direction && !journey.magic.direction
             || !notice_before && journey.resource_notice.is_some()
+            || magic_before.charges[4] > journey.magic.charges[4]
         {
             bridge_flash = Some(now);
         }
         if (month_before != (journey.month.months, journey.month.pending.is_some())
             || treasure_before != journey.treasure.amounts
             || magic_before != journey.magic
-            || notice_before != journey.resource_notice.is_some())
+            || notice_before != journey.resource_notice.is_some()
+            || survey_before != journey.survey)
             && store.is_some()
         {
             save_requested = true;
@@ -432,6 +435,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         .is_some_and(|n| n.spell == 2)
                     {
                         [98, 231, 204]
+                    } else if journey.magic.selected == 4 {
+                        [160, 188, 255]
                     } else {
                         [255, 205, 82]
                     },
@@ -538,6 +543,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 Page::MagicShop => ("購買一次", "離開商店", ""),
                 Page::Message => ("返回地圖", "返回地圖", ""),
                 Page::ResourceResult => ("返回地圖", "返回地圖", ""),
+                Page::Bird => ("返回地圖", "返回地圖", ""),
                 Page::Minimap => ("返回地圖", "返回地圖", ""),
                 Page::Character => (if ui.swords { "返回" } else { "查看八劍" }, "返回", ""),
                 Page::Review => ("返回", "返回", ""),
@@ -741,6 +747,17 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let status = format!(
             "{status}resource_spell\t{:?}\n",
             journey.resource_notice.as_ref().map(|n| n.spell)
+        );
+        let status = format!(
+            "{status}stopped\t{}\ntempo\t{}\nbird\t{}\nexplored\t{}\nworld_hash\t{:016x}\n",
+            journey.survey.stopped,
+            journey.survey.tempo,
+            journey.survey.bird,
+            journey.world.explored[usize::from(journey.world.area)]
+                .iter()
+                .map(|n| n.count_ones())
+                .sum::<u32>(),
+            checksum(&journey.world.encode(&data)?)
         );
         if let Some(d) = &capture {
             if snap {

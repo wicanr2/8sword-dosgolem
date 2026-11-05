@@ -487,3 +487,35 @@ Space原時鐘加一，因此世界剩餘步數驗證改為正u16，65535再加�
 既有IDA9.4匯出的兩術／分派與三商店函式逐MZ重定位核原bytes，原版受控案例以明示roll核規則，不將整段UI seed_after套作局部一次RNG。正式原始DB不改，沒有新原版執行。Rust最終建置只見crate／native，GUI只見native與單一腳本，沒有PAM／Go／RAM掛載；[核對](../../preserved/rust-resource-spells-audit-r1.json)、[圖片來源](../images/rust-resource-spells-r1.json)、[資料工具](../../tools/rust-resource-spells.py)與[永久保存](../../preserved/README.md#rust世界資源法術保存)收錄完整來源。
 
 v6追加可重算的結果待確認紀錄，v1至v5遷移預設無提示；有目錄時開店／交易／施法與關閉提示原子保存。其他五地圖術、七寶物、跨區／守軍／八劍／日曆／結局及手機仍待，不稱完整獨立遊戲或Release。正式197來源七程式、923核心、535素材及1071美術保持。
+
+## 停時與鳥瞰 DRAFT
+
+沿既有remaining-spells-r1原版收據與IDA9.4匯出，補停時術、鳥瞰術至Rust原店／F4／保存。研究沿battle-r1/rust-survey-spells-r1，以[資料工具](../../tools/rust-survey-spells.py)保存固定輸入與查核；原版快照只解碼，不重新執行DOS。跨區尚未接，沿前輪明示商店附近的測試進度，不能稱自然取得。
+
+### 停時與鳥瞰 READY
+
+固定PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，PAM.i64為a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。沿既有IDA9.4 MZ線性base10000h，runtime CS0110 IP=IDA線性−10000h，DS1E88另列；保留原名、bytes與檔案偏移。以下靜態控制流為已證實；原版受控快照只驗明列欄位，沒有新原版自然遊玩聲明。
+
+| 規則 | 證據與契約 |
+|---|---|
+| 停時 | sub_16E32的16E39..16E42遇DS56CA=1立即返回；否則依rank1..5把DS56DA乘8／10／12／15／18再整除6，DS56DC設該因數，DS56CA設1。分派sub_168CE的168F5一律扣所選次數，因此重複施放仍耗一次且不延長。 |
+| 月末重設 | sub_12446的1283B..12847重設剩324、tempo6及停時flag0。Rust沿既有月報開始點重設，不能把工程月份當原日曆六相位；月底正常步、營地、寶箱與法術商店共用begin_month。 |
+| 安全域 | 初次停時只接受remaining*factor<=32767的原正數中間域，超界拒絕且次數／時鐘不變；不默默實作word回繞。已有停時則不再乘，仍可正常耗次；世界Space的正u16既有契約保持。升級不改已設定tempo。 |
+| 鳥瞰 | sub_180D8從完整地圖far pointer逐70×80格讀取，與F5同一地形分組、幾何及位置標記；不寫探索圖。鳥瞰只顯示目前區域全貌，Enter／Esc關閉，不支援點圖移動。八方向／Space不結束。300毫秒標記為既有UI近似，不稱原busy-loop週期。 |
+| 共用入口 | 原店offer4／5各100，五種已接地圖術共用容量；jump3、水6、傳送7及戰鬥術商品仍拒絕。F4原八列及鍵鼠確認保持，不預贈法術。兩術皆不抽規則RNG、不走移動／遭遇，不改位置、軍隊、金錢或探索；只有購買與既有商店返回有原先尾段。 |
+
+旅程v7追加stopped／tempo／bird三欄，預設false／6／false，讀v1至v6。停時flag與tempo只允許契約組合；鳥瞰待關閉與其他事件互斥。鳥瞰先扣一次並保存bird=true，冷讀續看同圖，關閉只清bird再保存，不重扣；探索遮罩逐bytes保持。停時與既有法術一樣有目錄才自動保存，F7可用；不改Go保存與WorldState獨立preview格式。
+
+驗收：既有原版map-4／map-5快照的欄位與探索圖核對、五rank與非整除／重複施法／溢位／月底重設、全圖色號與F5探索區別、待鳥瞰及停時後冷讀、真正v6遷移。GUI抽原店買／F4、停時一次與重複、鳥瞰全圖／返回F5／F7及獨立程序，三字型與預設縮放至少一份；只按機制抽樣，不重跑已驗HD、普通戰鬥或月報全矩陣。
+
+### 停時與鳥瞰限定 CONFORMED
+
+[核心](../../internal/remake-rust/src/survey_spells.rs)、[原版向量](../../internal/remake-rust/survey-stop-reference.tsv)及[測試](../../internal/remake-rust/src/survey_spells_tests.rs)接入原生旅程，91測試通過。包含原版324→432向量、五階級及非整除／正數乘積邊界、同月重施耗次、月底flag／tempo重設與冷讀、鳥瞰不改世界、待關閉冷讀、v6形狀遷移、互斥與壞狀態拒絕。
+
+既有原版map-4快照確認rank1、remaining324→432、tempo6→8、flag0→1、2→1次；map-5快照的原探索資料逐bytes保持。Go只解既有快照的RAM，沒有重新執行DOS。原完整map1與已解碼native素材相同；Rust全圖5600色號hash `ac676fdf19f22a0b`同原RAM分類，與標記閃動分開。原bytes逐MZ重定位再核，舊函式名與原始DB保持。
+
+[GUI](../../tools/rust-survey-spells-gui.py)四程序10SDL擷取逐RGBA同讀回。以[例程](../../internal/remake-rust/examples/survey_spells_fixture.rs)先讀前批真正v6、只移到停時商店旁，保留425金／30民兵／原RNG與兩次造橋，保存v7供視窗抽驗。正常走入商店購術後110步施放成146、tempo8，冷讀保持；再原地購一次，重施仍146並耗次。該進度只移至鳥瞰店旁，購術後125金／145步，施法不動世界bytes；鳥瞰冷讀同畫布、關閉後F5仍原9格。這是明示後區位置的測試鏈，不稱自然跨區取得。
+
+三字型與F7通過。預設2／3縮放另驗1280×880鳥瞰／探索／返回與滑鼠F7，保存逐bytes同原生返回進度；外部X11與十份SDL原生讀回分開。位置300毫秒閃動為既有UI近似，不聲稱busy-loop週期一致。停時藍色光環只讀UI時間，原則與既有法術相同。
+
+v7追加stopped／tempo／bird，讀v1至v6；鳥瞰先扣並保存，關閉只清畫面旗標，不重扣或永久揭圖。原生執行只需要Rust、138份媒體與平台函式庫，最終建置只掛crate／native、GUI只掛native與單一腳本，原RAM與Go工具不在執行掛載。見[核對](../../preserved/rust-survey-spells-audit-r1.json)、[圖片來源](../images/rust-survey-spells-r1.json)、[資料工具](../../tools/rust-survey-spells.py)及[永久保存](../../preserved/README.md#rust停時與鳥瞰保存)。正式197來源七程式、923核心、535素材及1071美術保持；跳躍／涉水／傳送、七寶物、跨區、完整日曆／守軍／結局與手機仍待，沒有Release。

@@ -3,6 +3,9 @@ use crate::catalog::Catalog;
 use crate::journey::Journey;
 use crate::media_assets::checksum;
 use crate::world::{Boundary, Position, WalkResult, WorldData};
+pub fn supported(offer: u8) -> bool {
+    matches!(offer, 0 | 1 | 2 | 4 | 5)
+}
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Shop {
     pub area: u8,
@@ -109,7 +112,9 @@ impl Magic {
     pub(crate) fn validate(&self, j: &Journey<'_>, d: &WorldData) -> Result<(), String> {
         self.view(d)?;
         if self.selected >= 8
-            || self.charges[3..].iter().any(|n| *n != 0)
+            || [self.charges[3], self.charges[6], self.charges[7]]
+                .iter()
+                .any(|n| *n != 0)
             || (!self.book
                 && (self.charges != [0; 8] || self.direction || !self.bridges.is_empty()))
             || self.charges.iter().map(|n| u64::from(*n)).sum::<u64>() + u64::from(self.direction)
@@ -132,7 +137,7 @@ impl Magic {
             let s = shops()
                 .get(usize::from(p.index))
                 .ok_or("法術商店索引超界")?;
-            if s.offer > 2
+            if !supported(s.offer)
                 || (j.world.area, j.world.position.x, j.world.position.y) != (s.area, s.x, s.y)
                 || d.tile(s.area, j.world.position)? != 53
             {
@@ -170,10 +175,9 @@ impl<'a> Journey<'a> {
     }
     pub(crate) fn open_magic_shop(&mut self, d: &WorldData, key: u16) -> Result<bool, String> {
         let (at, _) = crate::world::motion(self.world.position, key, self.world.facing, false)?;
-        let Some(i) = shops()
-            .iter()
-            .position(|s| s.area == self.world.area && s.x == at.x && s.y == at.y && s.offer <= 2)
-        else {
+        let Some(i) = shops().iter().position(|s| {
+            s.area == self.world.area && s.x == at.x && s.y == at.y && supported(s.offer)
+        }) else {
             return Ok(false);
         };
         self.world = self.world.event_step(d, key, 53)?;
@@ -191,7 +195,7 @@ impl<'a> Journey<'a> {
         let s = shops()
             .get(usize::from(p.index))
             .ok_or("法術商店索引錯誤")?;
-        if s.offer > 2 {
+        if !supported(s.offer) {
             return Err("未接法術商品".into());
         }
         Ok(usize::from(s.offer))

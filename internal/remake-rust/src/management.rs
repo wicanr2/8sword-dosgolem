@@ -144,6 +144,7 @@ impl<'a> Journey<'a> {
             || self.magic.shop.is_some()
             || self.magic.direction
             || self.resource_notice.is_some()
+            || self.survey.bird
             || slot >= 6
             || self.army[slot].count == 0
         {

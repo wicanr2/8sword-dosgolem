@@ -250,7 +250,7 @@ fn pending_direction_cold_completion_does_not_double_spend_and_v4_migrates() {
     assert_eq!(cold, j);
     let old = Journey::new(&d, 1);
     let mut raw = old.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 8 - 32);
+    raw.truncate(raw.len() - 8 - 35);
     raw[..8].copy_from_slice(b"8SJRN004");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), old);

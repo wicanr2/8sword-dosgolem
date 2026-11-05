@@ -1,5 +1,8 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-05 Rust停時／鳥瞰依[031限定驗收](docs/spec/031-rust-independent-remake.md#停時與鳥瞰限定-conformed)接入。91測試、原版兩術快照、5600格全圖hash、四程序10SDL擷取與預設縮放通過。110→146步，同月再施仍146且耗次，月底重設；鳥瞰只暫時全圖，冷讀不重扣，返回F5仍原9格。v7讀v1至v6，只移測試商店位置，不稱自然跨區取得。[工具](tools/rust-survey-spells.py)、[核對](preserved/rust-survey-spells-audit-r1.json)與[永久保存](preserved/README.md#rust停時與鳥瞰保存)為入口。剩跳躍／涉水／傳送、七寶物、跨區、守軍與結局按WORKLIST續做；不重跑既有HD及月報矩陣。正式197／7／923／535與1071美術保持，無Release。
+
+
 2026-11-05 Rust煉金／召兵依[031限定驗收](docs/spec/031-rust-independent-remake.md#世界資源法術限定-conformed)接入。85測試、五個既有原版受控案例、六IDA函式bytes、五程序12SDL擷取與預設縮放通過。原店共用容量、F4一次RNG／扣次、安全金錢／六隊與提示冷讀已接；v6讀v1至v5。GUI從真正v5明示移至後區商店旁及領導1000，來源RNG保持，不稱自然取得；民兵30→50後原式出手、撤退及回場296金／50人冷讀已驗。[工具](tools/rust-resource-spells.py)、[核對](preserved/rust-resource-spells-audit-r1.json)與[永久保存](preserved/README.md#rust世界資源法術保存)不依賴workplace。其餘五術／七寶物、跨區、守軍與結局續按WORKLIST；不重跑既有HD／普通戰鬥矩陣。正式197／7／923／535及1071美術保持，無Release。
 
 

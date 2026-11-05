@@ -1344,3 +1344,17 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 目前[啟動器](../tools/rust-native-player.sh)指向rust-resource-spells-r1/native。按完整索引將native的binary與pack解壓至同名路徑，核SHA及權限後，用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`續接。F4選術，結果Enter／Esc返回；有目錄時自動保存與F7並用，v6讀v1至v5，不讀Go進度。只接造橋／煉金／召兵，其他五術與跨區仍待，沒有Release。
 
 本批331檔／281物件，壓縮39246467 bytes。獨立核對通過後，清除980份Rust快取及已保存初輪GUI／fixture診斷，共356072878 bytes，約339.6 MiB。最終binary、138媒體、GUI／縮放、fixture與來源保持；本案無殘留容器，沒有建立新image。
+
+## Rust停時與鳥瞰保存
+
+[完整索引](rust-survey-spells-r1.json)、[核對](rust-survey-spells-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#停時與鳥瞰限定-conformed)與[研究](../RESEARCH-LOG.md#rust停時與鳥瞰)為入口。91測試、既有原版兩術快照、原5600格投影hash、四程序10SDL擷取與預設縮放通過。完整crate、四工具、138媒體、binary、Rust fixture／v6與v7進度、原快照／RAM／IDA及縮放來源逐SHA壓縮在本機`preserved/rust-survey-spells-r1/<SHA256>.gz`，不依賴workplace；完整runtime及原始資料不入Git或公開包。
+
+[資料工具](../tools/rust-survey-spells.py)在Pillow11.3.0-r2、UID1000與network none使用。在既有battle-r1建立rust-survey-spells-r1/evidence及native/pack後，`prepare --project /project`由永久索引還原138媒體、真正v6、remaining-spells-r1的map-4／map-5快照與既有IDA。沿[Go解碼器](../tools/decode-rust-world-magic-original.go)在Go1.24.13以輸入／輸出兩參數抽四份RAM，不執行DOS；命名stop-entry-ram.bin等。`reference`核四時鐘欄位／探索與5600格投影hash，生成survey-stop-reference.tsv後複製至crate。三字型仍由[字型工具](../tools/rust-world.py)fonts補字。
+
+建置使用mm45-rust-desktop:1.99.1-r3的offline／locked桌面模式，只掛crate唯讀與native可寫，包含[開發fixture](../internal/remake-rust/examples/survey_spells_fixture.rs)及玩家程式。fixture以媒體、原進度、新輸出目錄、stop或bird四參數只移商店旁位置，保留時鐘／RNG／資源／兵力；`<媒體> oracle`兩參數核原圖全格分類hash。不新增產品旗標；自然跨區仍未接。最終GUI只見native與單一腳本，沒有PAM／RAM／Go掛載，命令在execution.json。
+
+`freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核原bytes、91測試、原版欄位／全格hash、GUI／縮放、媒體與正式基線。`images`建立README圖及來源。`archive --project /project --archive /project/preserved --out /project/preserved/rust-survey-spells-r1.json`保存本批；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-survey-spells-detached-r1.json)、[清理](rust-survey-spells-cleanup-r1.json)及[完整性](rust-survey-spells-integrity-r1.json)另存。只排除可重建快取。
+
+目前[啟動器](../tools/rust-native-player.sh)指向rust-survey-spells-r1/native。按索引將native的binary與pack還原到同名路徑、核SHA與權限，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。F4施法，鳥瞰Enter／Esc返回；有目錄時自動保存與F7並用。v7讀v1至v6，不讀Go；完整日曆、三地圖術、跨區等依WORKLIST接續，沒有Release。
+
+本批293檔／274物件，壓縮31848477 bytes。脫離工作區核對通過後，移除546份可重建Rust快取，共176296807 bytes，約168.1 MiB。完整原始輸入、來源、138媒體、binary、最終GUI／縮放與fixture保持；本案無殘留容器，沒有建立新image。

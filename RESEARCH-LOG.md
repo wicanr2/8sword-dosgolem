@@ -3400,3 +3400,13 @@ PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、
 - 商店沿前批sub_1512C／15354／154B0，offer1／2各100與三術共容量；其餘五術及戰鬥術商品保持邊界。F4結果先提交後等Enter／Esc，v6用施法前seed／金／六隊／次數重算驗證，冷讀不施法第二次。
 - 原版五案例比較明示roll。初測誤將整段UI seed_after當局部一次RNG，已依既有OriginalRng一次契約修正測試；正式程式無修改RNG，也不為對齊重擲。既有UI ambient rand仍排除，沒有原版完整骰序聲明。
 - 85測試與五程序12SDL讀回通過，含明示後區商店位置及領導1000。煉金加55金、民兵30→50、兩結果冷讀及原式出手／撤退後296金／50人冷讀保持。例程只產測試進度，不新增產品捷徑；跨區與自然取得仍未接。預設縮放外部X11三張圖另存，沒有手機驗收。
+
+## Rust停時與鳥瞰
+
+證據等級：固定PAM／既有IDA9.4與兩術原版受控快照為已證實；GUI採明示商店位置，非自然跨區取得，也沒有新原版執行。[031](docs/spec/031-rust-independent-remake.md#停時與鳥瞰限定-conformed)、[核對](preserved/rust-survey-spells-audit-r1.json)及[永久保存](preserved/README.md#rust停時與鳥瞰保存)為入口。
+
+- PAM.AY SHA-256：83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0；固定PAM.i64：a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。既有IDA9.4的MZ線性base10000h，檔案偏移獨立，runtime CS0110 IP=IDA線性−10000h、DS1E88另列；本輪逐bytes再核，原名與DB保持。
+- sub_16E32的16E39先讀DS56CA，已1即返回；其餘rank1..5將DS56DA乘8／10／12／15／18整除6，DS56DC改該因數並設flag1。sub_168CE仍在168F5扣次；同月重複施放不能延長，但仍耗次。sub_12446的1283B..12847月底重設324／6／0，Rust接既有begin_month；不因這三欄就宣稱原日曆六相位完成。
+- remaining-spells-r1原版map-4 entry／final由Go1.24.13標準Gob解RAM，確認rank1、324→432、tempo6→8、flag0→1及2→1次。只核既有快照，不跑原版或修改選擇／RNG。原中間signed正數域外在Rust拒絕，不猜word回繞結果。
+- sub_180D8從完整地圖指標讀70×80，sub_18292的F5才用探索圖；兩者沿相同分類／幾何。map-5原版前後完整地圖與探索圖均逐bytes保持。原完整圖同native MAP1，5600格分類hash ac676fdf19f22a0b亦同Rust輸出；此hash不含閃動標記。300ms是原生UI近似，不稱原busy-loop週期。
+- 91測試含初施／重施／溢位、月底冷讀、全圖與探索差別、v6形狀與互斥。四程序10SDL讀回，110→146、再施146、鳥瞰冷讀與原9格保持；預設縮放另驗。真正v6先由Rust例程讀入，只移商店位置後保存v7供GUI，不說GUI直接讀原v6或自然通關。

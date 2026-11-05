@@ -46,11 +46,17 @@ pub fn cell(position: Position) -> Result<Rect, String> {
     ))
 }
 pub fn cells(data: &WorldData, state: &WorldState) -> Result<Vec<u8>, String> {
+    project(data, state, false)
+}
+pub fn all_cells(data: &WorldData, state: &WorldState) -> Result<Vec<u8>, String> {
+    project(data, state, true)
+}
+fn project(data: &WorldData, state: &WorldState, full: bool) -> Result<Vec<u8>, String> {
     state.encode(data)?;
     let mask = &state.explored[usize::from(state.area)];
     (0..5600)
         .map(|i| {
-            if mask[i / 8] & (1 << (i % 8)) == 0 {
+            if !full && mask[i / 8] & (1 << (i % 8)) == 0 {
                 Ok(0)
             } else {
                 color(data.tile(

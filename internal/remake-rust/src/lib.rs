@@ -27,6 +27,7 @@ mod sdl;
 #[cfg(feature = "desktop")]
 mod sndfile;
 pub mod spells;
+pub mod survey_spells;
 pub mod treasure;
 pub mod world;
 #[cfg(feature = "desktop")]
