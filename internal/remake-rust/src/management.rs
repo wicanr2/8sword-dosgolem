@@ -85,7 +85,8 @@ impl Default for CampState {
 impl CampState {
     pub(crate) fn validate(&self, c: &Catalog) -> Result<(), String> {
         for (i, site) in camps().iter().enumerate() {
-            if self.stock[i] > site.stock {
+            let bound = site.stock.max(crate::monthly::caps()[i]);
+            if self.stock[i] > bound {
                 return Err("營地原庫存超界".into());
             }
             if let Some(ex) = self.extras[i] {
@@ -94,9 +95,7 @@ impl CampState {
                 }
                 let p = c.get(UnitId::parse(&format!("native:{:02}", site.kind))?);
                 for (n, id) in EXTRA.iter().enumerate() {
-                    let max = u64::from(site.stock)
-                        .checked_mul(p.gold)
-                        .ok_or("庫存超界")?
+                    let max = u64::from(bound).checked_mul(p.gold).ok_or("庫存超界")?
                         / c.get(UnitId::parse(id)?).gold;
                     if u64::from(ex[n]) > max {
                         return Err("營地增援超界".into());
@@ -140,6 +139,7 @@ impl<'a> Journey<'a> {
         if self.battle.is_some()
             || self.cue.is_some()
             || self.camps.pending.is_some()
+            || self.month.pending.is_some()
             || slot >= 6
             || self.army[slot].count == 0
         {
@@ -244,12 +244,19 @@ impl<'a> Journey<'a> {
         }
         Ok(())
     }
-    pub fn close_camp(&mut self, data: &WorldData) -> Result<Option<Boundary>, String> {
+    pub fn close_camp(
+        &mut self,
+        data: &WorldData,
+        catalog: &Catalog,
+    ) -> Result<Option<Boundary>, String> {
         let mut s = self.clone();
         let i = s.camp_index()?;
         let tile = 54 + (i / 24) as u8;
         if s.world.remaining <= 1 {
-            return Err("月結尚未接入".into());
+            s.camps.pending = None;
+            s.begin_month(catalog, data, tile)?;
+            *self = s;
+            return Ok(None);
         }
         s.world.remaining -= 1;
         s.camps.pending = None;

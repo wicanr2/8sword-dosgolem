@@ -1,0 +1,7 @@
+# name gold income six_unit=count due charged after disbanded
+native	500	100	native:01=30	30	30	570	0
+mixed	500	100	native:01=30,openkb:wolf=5	230	230	370	0
+bankrupt	0	100	native:01=30,openkb:wolf=5	230	0	100	1
+large	500	100	native:01=30,openkb:wolf=2500	100030	0	600	1
+wide-paid	30000	10000	native:01=30,openkb:wolf=999	39990	39990	10	0
+wide-income	30000	30000	native:01=30,openkb:wolf=5	230	230	30000	0

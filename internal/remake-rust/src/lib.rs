@@ -16,6 +16,7 @@ pub mod journey_desktop;
 pub mod management;
 #[cfg(feature = "desktop")]
 pub(crate) mod management_ui;
+pub mod monthly;
 pub mod pointer;
 pub mod replay;
 #[cfg(feature = "desktop")]

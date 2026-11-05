@@ -112,6 +112,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut save_requested = false;
     'game: loop {
         let now = Instant::now();
+        let month_before = (journey.month.months, journey.month.pending.is_some());
         let mut snap = false;
         ui.sync(&journey);
         for e in sdl.events() {
@@ -283,7 +284,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 }
                 if boundary.is_none() {
                     if let Some(k) = key_motion(key) {
-                        boundary = journey.walk(&data, k)?;
+                        boundary = journey.travel(&data, k, &catalog)?;
                     }
                 }
             }
@@ -292,6 +293,11 @@ pub fn run(args: &[String]) -> Result<(), String> {
             cp.view.font = journey.world.font;
             cp.view.music = journey.world.music;
             cp.view.cursor = cursor as u8;
+        }
+        if month_before != (journey.month.months, journey.month.pending.is_some())
+            && store.is_some()
+        {
+            save_requested = true;
         }
         if save_requested && now >= ready {
             if boundary.is_none() {
@@ -467,6 +473,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 Page::Dismiss => ("解雇整隊", "返回", ""),
                 Page::Shop => ("輸入數量", "離開營地", ""),
                 Page::Quantity => ("確認購買", "取消", "清空"),
+                Page::Monthly => ("返回地圖", "返回地圖", "返回地圖"),
                 Page::World => {
                     if journey.battle.is_some() {
                         (
@@ -614,13 +621,15 @@ pub fn run(args: &[String]) -> Result<(), String> {
             boundary
         );
         let status = format!(
-            "{status}selected\t{}\nextra\t{}\ndigits\t{}\nused\t{}\ncamp\t{:?}\nmessage\t{}\n",
+            "{status}selected\t{}\nextra\t{}\ndigits\t{}\nused\t{}\ncamp\t{:?}\nmessage\t{}\nmonths\t{}\nmonthly\t{:?}\n",
             ui.selected,
             ui.extra,
             ui.digits,
             journey.used(&catalog)?,
             journey.camps.pending,
-            ui.message
+            ui.message,
+            journey.month.months,
+            journey.month.pending.as_ref().map(|r| r.budget)
         );
         if let Some(d) = &capture {
             if snap {

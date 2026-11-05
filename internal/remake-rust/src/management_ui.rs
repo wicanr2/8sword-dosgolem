@@ -12,6 +12,7 @@ pub enum Page {
     Dismiss,
     Shop,
     Quantity,
+    Monthly,
 }
 pub struct Manager {
     pub page: Page,
@@ -33,6 +34,10 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.month.pending.is_some() {
+            self.page = Page::Monthly;
+            return;
+        }
         if self.page == Page::World && j.camps.pending.is_some() {
             self.page = Page::Shop;
             self.extra = false;
@@ -42,6 +47,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Monthly => Some(Screen::Report),
             Page::Review | Page::Dismiss => Some(Screen::Army),
             Page::Shop | Page::Quantity => Some(Screen::Shop {
                 extra: self.extra,
@@ -90,6 +96,14 @@ impl Manager {
             }
             return Ok(());
         }
+        if self.page == Page::Monthly {
+            if [13, 27, 32].contains(&key) {
+                j.close_month(data)?;
+                self.page = Page::World;
+                self.message.clear();
+            }
+            return Ok(());
+        }
         if matches!(self.page, Page::Review | Page::Dismiss) {
             if key == 27 || self.page == Page::Review && (key == 13 || key == 32) {
                 self.page = Page::World;
@@ -128,7 +142,7 @@ impl Manager {
         }
         if self.page == Page::Shop {
             if key == 27 {
-                j.close_camp(data)?;
+                j.close_camp(data, c)?;
                 self.page = Page::World;
                 self.message.clear();
                 return Ok(());
@@ -199,6 +213,39 @@ pub fn draw(
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::Monthly {
+        let b = j.month.pending.as_ref().ok_or("缺少月報")?.budget;
+        fill(f, [24, 120, 1872, 1116], [8, 36, 25]);
+        border(f, [24, 120, 1872, 1116], [206, 170, 74]);
+        text(f, font, "神州八劍 每月收支統計", 60, 150, 48, 1800)?;
+        for (i, (label, value)) in [
+            ("月初金錢", b.before),
+            ("月薪收入", b.income),
+            ("軍費應付", b.due),
+            ("軍費實付", b.charged),
+            ("現金餘額", b.after),
+        ]
+        .iter()
+        .enumerate()
+        {
+            let y = 264 + i as i32 * 156;
+            fill(f, [80, y, 1760, 116], [20, 56, 41]);
+            text(f, font, label, 120, y + 24, 48, 720)?;
+            text(f, font, &value.to_string(), 944, y + 24, 48, 880)?;
+        }
+        if b.disbanded {
+            text(
+                f,
+                font,
+                "金錢不足 全軍離隊 本次軍費免收",
+                96,
+                1080,
+                42,
+                1728,
+            )?;
+        }
+        return Ok(());
+    }
     fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
     if matches!(ui.page, Page::Review | Page::Dismiss) {
         for (i, s) in j.army.iter().enumerate() {

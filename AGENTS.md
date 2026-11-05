@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-05 Rust玩家月報與補貨依[031限定驗收](docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)接入journey。58測試、六Go收支／720補貨向量及三程序八擷取通過。原起點30民兵正常324步、四次撤退後月報235＋100−30＝305；自動保存與月報冷讀同狀態／畫布，返回不重扣。營地最後一步先購兵再月結已由核心驗，真正v2營地檔可讀並存v3。三cap與初始值不同，已分開；未開增援不預建。[工具](tools/rust-monthly.py)、[核對](preserved/rust-monthly-audit-r1.json)及[保存](preserved/README.md#rust玩家月報與補貨保存)為入口。只限玩家財務／營地，42處NPC增兵、原日曆六相位與完整世界仍待。下一步寶箱資源，不重開月報／HD；正式197／7／923／535／1071與Go格式保持，CONTEXT為唯一現況。
+
 2026-11-05 Rust原式管理與滑鼠依[031限定驗收](docs/spec/031-rust-independent-remake.md#原式管理與滑鼠限定-conformed)接入journey。F2／F3兩欄三列、原店＋八增援、透明圖示、金錢／用量／庫存及v2保存已接；53測試、120原列／50地點及四個純滑鼠程序18擷取通過。原起點購兵、超量拒絕、營地冷讀、三字型檢閱、解雇、世界冷讀、選敵出手／撤退及前批v1實檔轉入均抽驗。鍵鼠共用命令，放開一次提交；僅journey新增滑鼠，手機建置／觸控真機未驗。[工具](tools/rust-controls.py)、[核對](preserved/rust-controls-audit-r1.json)與[保存](preserved/README.md#rust原式管理與滑鼠保存)不依賴workplace。下一步月結與世界事件，舊管理／HD矩陣不重開。正式197／7／923／535／1071、Go格式保持；CONTEXT為唯一現況。
 
 2026-11-05 Rust普通遭遇與回場依[031限定驗收](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)完成開發旅程。46測試、320原CPU生成與三份舊結算向量通過；原重複兵種清理是刪隊，不合兵。原起點30民兵正常遇敵、原式戰場、戰中F7冷讀、撤退回場及全滅浪跡，四程序12擷取通過。`tools/rust-native-player.sh journey`啟動；journey.chk保存地圖／軍隊／六資源與typed戰中狀態，不含守軍／物品／營地，也不匯入Go。圖像音訊由Rust直接處理，無Go／PAM執行依賴。[核對](preserved/rust-journey-audit-r1.json)與[保存](preserved/README.md#rust普通遭遇與回場保存)不依賴workplace。下一步原式F2／F3及原店＋增援募兵，不重驗普通遭遇或全量HD。正式197／7／923／535／1071與Go格式保持，CONTEXT為唯一現況。

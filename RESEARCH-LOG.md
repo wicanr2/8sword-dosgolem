@@ -3317,3 +3317,19 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 正常滑鼠GUI從30民兵／500金走入39／38營地，買野狼1及民兵1後為31民兵＋1野狼、459金；原店2999及狼74獨立保存。超量9999不交易，冷讀不補貨。F3選狼解雇不退款，另一程序讀回31民兵／459金。再點選合法敵隊只移游標，確認才攻擊，正常撤退後345金／31民兵。前批v1樣本則撤退回30民兵／375金。四程序18份擷取逐RGBA對上SDL讀回，沒有RAM、IP、座標或增兵注入。
 
 53測試、固定原列／地形核對及GUI代表抽驗足以提升本節限定範圍。沒有重新調原版RNG、全量兵種GUI或全部HD。入口為[031](docs/spec/031-rust-independent-remake.md#原式管理與滑鼠限定-conformed)、[核對](preserved/rust-controls-audit-r1.json)、[工具](tools/rust-controls.py)、[GUI](tools/rust-controls-gui.py)、[成果來源](docs/images/rust-controls-r1.json)及[永久保存](preserved/README.md#rust原式管理與滑鼠保存)。
+
+## Rust玩家月報與補貨
+
+2026-11-05。來源PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`及PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`保持。沿monthly-r1的IDA9.4／521函式匯出及monthly-wide-r1六個既有Go控制，不重開IDA或全原版流程。IDA為MZ linear base10000h，runtime CS0110與DS1E88偏移獨立記錄；PAM檔案DS起點為MZ header paragraphs×16+1D780h。
+
+| 定位 | 等級與結論 | 本輪證據與界線 |
+|---|---|---|
+| runtime0110:26DF／26ED、2803、2810至284D | 既有已證實控制流：減DS56DA，達界限月結；玩家財務、324重設與等待。 | 030已驗Go橋接及固定IDA匯出。Rust只接玩家軍隊、財務與營地；42處NPC增兵與原日曆六相位保持未移植，工程次數不冒稱原日期。 |
+| Go research-monthly.planMonthlyBudget | 已驗工程契約：Gold×count軍費，先加DS04F6收入；嚴格不足才清軍、實付0，恰足保軍，最終金封頂30000。 | 六個固定Go月報與Rust逐欄相同；含100030軍費不足、39990實付及60000合計封頂。不稱原版16位元回繞一致。 |
+| PAM DS3A56+group×F0h+row×Ah | 已證實原120補貨上限，與DS3EFE原庫存分開。 | 720既有Go前後原庫存向量逐列核對。index51初始1200／cap800，index54與66初始600／cap1000；Rust驗證採兩者較大界，補貨仍取cap。 |
+| Go refillMonthlyCamps／refillReinforcements | 已驗工程契約：補max(stock/10,10)，原／新增各取獨立cap，未綁增援不建立。 | 原120列有種類才補；新增cap=PAM cap×原價／新增價。冷讀與一次確認測試包含全部已綁庫存，不重補。 |
+| journey v3／月報UI | 自有工程契約：待完成步、原軍隊快照與完整收支、原子保存。 | 58測試與三程序八同幀讀回，舊v2營地保持；v1沿既有測試。讀報表先重算，非原版／Go或完整世界保存格式。 |
+
+正常滑鼠路徑從原30民兵／500金及seed1開始，於40／40、40／41往返324步；四次正常遇敵確認後撤退，不攻擊、不注入倒數。財務前235、收入100、應付實付30、餘額305，30民兵保持。月報已自動保存後才顯示，三字型各擷取；另一程序讀回相同狀態與畫布，兩路關閉後actions324／剩324、金305，不重扣。第三程序讀前批真正v2營地檔，31民兵／1狼、459金及原庫存2999保持，離店保存v3。
+
+營地最後一步先購兵後月結由明示核心資料驗證，未稱自然高階營地完整旅程；資金不足清軍與增援補貨由來源向量及模型驗，沒有新的不足GUI或守軍／日曆對拍。入口為[031](docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)、[核對](preserved/rust-monthly-audit-r1.json)、[工具](tools/rust-monthly.py)、[GUI](tools/rust-monthly-gui.py)、[成果來源](docs/images/rust-monthly-r1.json)及[永久保存](preserved/README.md#rust玩家月報與補貨保存)。

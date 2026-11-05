@@ -1258,3 +1258,19 @@ Go探針使用唯讀來源／原版／核心／module cache與可寫批次，`GO
 目前[啟動器](../tools/rust-native-player.sh)指向`rust-controls-r1/native`。依索引解壓同名路徑的binary及pack、核對SHA並套用權限，再用`journey --save-dir <既有可寫絕對路徑>`開啟；F7後關閉，加`--continue`續接。滑鼠操作只加入journey，run／world仍為各自舊樣本。v2開發檢查點保存獨立庫存與營地待完成步，支援前批無營地交易v1；不匯入Go存檔，未聲稱完整世界schema。執行期只需Rust執行檔、媒體與SDL2／libsndfile等平台函式庫，沒有Release。
 
 本批369檔／254物件，壓縮79843655 bytes；只掛唯讀preserved與單一工具的脫離核對通過。保存後移除已保存診斷及可重建Rust快取，共623611179 bytes，約594.7 MiB；目前binary、135份媒體與最終GUI保持。
+
+## Rust玩家月報與補貨保存
+
+[完整索引](rust-monthly-r1.json)、[核對](rust-monthly-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)及[研究](../RESEARCH-LOG.md#rust玩家月報與補貨)為入口。58測試、六Go月報／720補貨向量、正常324步跨月及三程序八擷取通過。完整crate、原始向量、既有IDA／Go收據、135份媒體、binary、兩版舊檢查點與新v3樣本，逐SHA壓縮於本機`preserved/rust-monthly-r1/<SHA256>.gz`，不依賴workplace。完整執行期素材及binary不入Git或公開包。
+
+[資料工具](../tools/rust-monthly.py)在UID1000、network none、Pillow11.3.0-r2容器使用。`prepare --project /project`恢復前批媒體與v1／v2實檔，從固定PAM讀120補貨上限，從既有monthly-wide-r1收據抽六組收支及720原庫存前後向量，保留原IDA9.4匯出。三字型由[既有字型工具](../tools/rust-world.py)的fonts動作補字。`images --project /project --out <新PNG>`建立README圖與狀態來源。
+
+`freeze --project /project`固定crate、工具與媒體SHA；`audit --project /project --out <新JSON>`核對來源、58測試、6／720向量、GUI讀回與正式基線。Rust建置僅見唯讀crate與可寫本批，最終GUI僅見單一輸入工具與本批，無Go／PAM掛載，具體命令見本批execution.json。原店cap與初始庫存有三列不同；兩者保留，不用初始值代替cap。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-monthly-r1.json`保存資料；`verify --archive /archive --out <新JSON>`僅掛唯讀preserved與單一工具逐原始／壓縮SHA核對。[脫離核對](rust-monthly-detached-r1.json)、[清理](rust-monthly-cleanup-r1.json)與[完整性](rust-monthly-integrity-r1.json)另存。僅排除可重建rust-target，所有目前來源與素材保持。
+
+現行[啟動器](../tools/rust-native-player.sh)指向`rust-monthly-r1/native`。按索引解壓同名native路徑的binary及pack、核對SHA並套用權限，再用`journey --save-dir <既有可寫絕對路徑>`遊玩，加`--continue`續接。有目錄時月報提交及關閉自動保存；冷讀待確認月報不重收費。v3可讀v1／v2，不讀Go保存；只接玩家財務及營地補貨，42守軍增兵、原日曆相位與完整世界schema仍待，沒有Release。
+
+預設2／3縮放另保存scaled-smoke.py、native/scaled/receipt.json及兩張1280×880外部X11圖。縮放滑鼠返回後檢查點與原生尺寸逐bytes相同；兩輪初始化視窗診斷也保存。此證據與三程序八份原生SDL讀回分開，不宣稱手機真機驗收。
+
+本批250檔／229物件，壓縮28512039 bytes。脫離工作區核對通過後，移除792份Rust快取與四份已保存縮放診斷，共178683808 bytes，約170.4 MiB。原生binary、135份媒體、最終GUI及縮放擷取保持。

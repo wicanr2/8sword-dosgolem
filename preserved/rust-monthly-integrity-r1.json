@@ -1,0 +1,35 @@
+{
+  "status": "passed-rust-monthly-integrity",
+  "root_owned": [],
+  "markdown_directories": [],
+  "links": [
+    "docs/images/rust-monthly-r1.json",
+    "docs/images/rust-monthly-r1.png",
+    "preserved/rust-monthly-audit-r1.json",
+    "preserved/rust-monthly-cleanup-r1.json",
+    "preserved/rust-monthly-detached-r1.json",
+    "preserved/rust-monthly-integrity-r1.json",
+    "preserved/rust-monthly-r1.json",
+    "tools/rust-monthly-gui.py",
+    "tools/rust-monthly.py"
+  ],
+  "positive_control": "tools/rust-controls.py",
+  "source_media_binary_unchanged_after_cleanup": true,
+  "media": 135,
+  "scaled": {
+    "status": "passed-scaled-monthly-mouse",
+    "scale": "2/3",
+    "pixels": [
+      1280,
+      880
+    ],
+    "same_returned_checkpoint": true,
+    "screens": {
+      "report": "7b27fab41c33b7c3e8df43d695da5ccd2d870726417952a482bf51b5978289f8",
+      "returned": "773927839c132b3b351f50e0d4a39a43f99afc2ad53d1eeedd7224ea9a3e3d33"
+    },
+    "binary_sha256": "b9156daa3d4f4f76425d675e2ca9b3d88e30fc729c5a6048a6df2e791acece4d",
+    "capture": "External X11; not native SDL readback"
+  },
+  "release": false
+}

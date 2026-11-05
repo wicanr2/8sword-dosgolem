@@ -1,0 +1,33 @@
+{
+  "status": "passed-rust-monthly-cleanup",
+  "removed": [
+    {
+      "path": "native/rust-target",
+      "files": 792,
+      "bytes": 178670784,
+      "archived": false
+    },
+    {
+      "path": "native/scaled-diagnostic-r1",
+      "files": 2,
+      "bytes": 6512,
+      "archived": true
+    },
+    {
+      "path": "native/scaled-diagnostic-r2",
+      "files": 2,
+      "bytes": 6512,
+      "archived": true
+    }
+  ],
+  "bytes": 178683808,
+  "kept": [
+    "native/8sword-remake",
+    "native/pack",
+    "native/gui",
+    "native/scaled",
+    "rust-source",
+    "evidence",
+    "scaled-smoke.py"
+  ]
+}

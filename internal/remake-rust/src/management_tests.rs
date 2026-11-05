@@ -30,7 +30,7 @@ fn native_and_independent_extra_stocks_buy_merge_and_dismiss_without_refund() {
     let saved = j.encode(&c, &d).unwrap();
     let mut cold = Journey::decode(&c, &d, &saved).unwrap();
     assert_eq!(cold, j);
-    cold.close_camp(&d).unwrap();
+    cold.close_camp(&d, &c).unwrap();
     let gold = cold.resources[3];
     cold.dismiss(1).unwrap();
     assert_eq!(cold.resources[3], gold);
@@ -90,8 +90,8 @@ fn old_no_camp_v1_migrates_but_new_bad_camp_bindings_are_refused() {
     let c = Catalog::builtin().unwrap();
     let j = Journey::new(&d, 1);
     let mut raw = j.encode(&c, &d).unwrap();
-    assert_eq!(&raw[..8], b"8SJRN002");
-    raw.truncate(raw.len() - 8 - 609);
+    assert_eq!(&raw[..8], b"8SJRN003");
+    raw.truncate(raw.len() - 8 - 609 - 17);
     raw[..8].copy_from_slice(b"8SJRN001");
     raw.extend(checksum(&raw).to_le_bytes());
     let migrated = Journey::decode(&c, &d, &raw).unwrap();

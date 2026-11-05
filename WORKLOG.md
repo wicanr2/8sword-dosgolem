@@ -3267,3 +3267,19 @@ README新增旅程四格成果圖與穩定journey使用入口，舊run／world�
 README新增管理與滑鼠四格圖、操作表及目前還原入口；CONTEXT收束成唯一現況，舊驗證詳情回WORKLOG與031。完整媒體、binary、來源及診斷在本機preserved逐SHA保存，Git只收索引、核對與成果圖。主機gh auth及private repo確認，無Release；下一步月結與世界事件，不重開管理／滑鼠／HD矩陣。
 
 [核對](preserved/rust-controls-audit-r1.json)、[索引](preserved/rust-controls-r1.json)、[脫離核對](preserved/rust-controls-detached-r1.json)、[清理](preserved/rust-controls-cleanup-r1.json)及[完整性](preserved/rust-controls-integrity-r1.json)保存收尾。369檔／254物件，壓縮79843655 bytes；只掛唯讀preserved、單一工具及暫存tmpfs逐原始／壓縮SHA核對。移除814份Rust快取及108份已保存診斷，共623611179 bytes，約594.7 MiB，保留目前binary、135份媒體、最終GUI與固定來源。專案容器已清空，其他專案的san5靜態服務未動。
+
+## 2026-11-05 Rust玩家月報與營地補貨
+
+使用者確認繼續。命中復古重製、READY實作及文件路由，載入逆向技能、spec-gated、文件職責、README標準與驗證交接reference。先查030月結／寬數值CONFORMED、現行Go research-monthly／monthly-port／reinforcement-camps及固定IDA匯出，再寫031 DRAFT／READY。明確只移植玩家財務與營地；42處NPC增兵與原日曆相位因Rust尚無消費者而保留限制，不猜補。
+
+Rust新增monthly.rs及三份固定TSV：120個PAM cap、六組Go收支及720補貨向量。cap有三列不同於初始庫存，驗證採兩者最大值，補貨取真正cap。正常最後一步、營地離店及月報確認依序接財務／庫存、324重設、探索／遭遇／action；營地先交易再結算。月報沿批准玉綠金框與五列數字，鍵鼠與三字型共用；journey v3追加原軍隊、收支、待確認步及工程次數，讀v1／v2，有目錄時報表前及關閉後各原子保存。
+
+58測試及self-check通過，包含六Go月報、720補貨、恰足／不足、增援、cap差異、同狀態冷讀、拒絕原子性、舊v2轉入與營地最後一步。正常GUI原30民兵／500金、seed1走324步，四次遇敵正常撤退；月報235＋100−30＝305，軍隊保持30。報表自動保存後取原檔冷讀，完整狀態與畫布相同；兩路返回同狀態，無重扣。第三程序讀前批v2營地檔，31民兵／1狼、459金及原店2999保持，離店保存v3。三程序八擷取逐RGBA等於SDL讀回，無RAM／IP／倒數或增兵注入。
+
+既有Rust1.99.1／SDL2／libsndfile及Pillow11.3.0-r2映像沿用，UID1000、network none、CPU／記憶體／PID與外層逾時有界；建置只掛唯讀crate及本批，最終GUI只掛單一輸入工具及本批，無Go／PAM。GUI工具生成首次漏docker -i，stdin未傳入，導致檔案未產生；後續-v把缺檔建為root-owned空目錄。僅刪除已確認的該空目錄，補-i生成UID1000檔，改--mount避免缺來源自建後乾淨重跑。沒有產品規則失敗，沒有另建image或動其他專案資源。
+
+README新增月報／獨立冷讀圖及目前還原入口，CONTEXT與WORKLIST改以寶箱資源為下一步。主機gh憑證及private repo確認；完整素材、binary與來源在本機preserved，Git只收索引、核對與成果圖。沒有Release，不重驗已完成管理／HD／月報矩陣。
+
+另補預設2／3縮放的1280×880視窗。初次固定一秒查窗過早，第二次取到初始化階段已失效windowID，XSetInputFocus報BadWindow；回查試玩路由後，改等同一視窗穩定再操作，同容器／同命令乾淨通過。兩張外部X11圖已目視，字與數字完整；縮放滑鼠返回後檢查點逐bytes等於原生尺寸結果。這是獨立縮放抽驗，不混入八份SDL讀回；完整腳本及兩輪診斷一併保存。
+
+[核對](preserved/rust-monthly-audit-r1.json)、[索引](preserved/rust-monthly-r1.json)、[脫離核對](preserved/rust-monthly-detached-r1.json)、[清理](preserved/rust-monthly-cleanup-r1.json)與[完整性](preserved/rust-monthly-integrity-r1.json)保存交接。250檔／229物件、壓縮28512039 bytes；只掛唯讀preserved、單一工具與tmpfs逐原始／壓縮SHA核對通過。移除792份Rust快取與四份已保存診斷，共178683808 bytes，約170.4 MiB；目前binary、135媒體、GUI及縮放來源保持。正式197／7／923／535／1071及Go保存格式不變，無專案容器殘留。

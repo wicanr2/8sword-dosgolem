@@ -47,6 +47,7 @@ pub enum Screen {
     World,
     Prompt,
     Army,
+    Report,
     Shop { extra: bool, quantity: bool },
     Battle { finished: bool },
 }
@@ -102,6 +103,7 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         }
     }
     match screen {
+        Screen::Report => {}
         Screen::World => {
             if Rect(1392, 120, 504, 1080).contains(x, y) {
                 let row = (y - 120) / 162;

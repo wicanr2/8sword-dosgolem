@@ -292,6 +292,12 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn camp_fixture() -> Self {
+        let mut d = Self::flat_fixture();
+        d.maps[0][38 * 70 + 39] = 54;
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn flat_fixture() -> Self {
         Self {
             maps: std::array::from_fn(|_| vec![1; 5600]),
@@ -534,6 +540,20 @@ impl WorldState {
     }
     pub(crate) fn walk_site(&mut self, data: &WorldData, tile: u8) -> Result<WalkResult, String> {
         self.walk_inner(data, 0x3920, true, Some(tile))
+    }
+    pub(crate) fn monthly_step(&self, data: &WorldData, key: u16) -> Result<Self, String> {
+        // The regular preflight must prove this is exactly the last valid step.
+        let mut probe = self.clone();
+        if probe.walk_encounter(data, key)? != WalkResult::Boundary(Boundary::Monthly) {
+            return Err("非月末有效移動".into());
+        }
+        let mut s = self.clone();
+        let (target, face) = motion(s.position, key, s.facing, false)?;
+        let (_, boat) = guard(data.tile(s.area, target)?, s.boat, s.mountain, s.bamboo)?;
+        s.position = target;
+        s.facing = face;
+        s.boat = boat;
+        Ok(s)
     }
     fn walk_inner(
         &mut self,

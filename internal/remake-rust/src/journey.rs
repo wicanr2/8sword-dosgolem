@@ -118,7 +118,7 @@ fn compact(rows: [Stack; 6]) -> [Stack; 6] {
     }
     out
 }
-fn army_ok(rows: &[Stack; 6], native: bool) -> bool {
+pub(crate) fn army_ok(rows: &[Stack; 6], native: bool) -> bool {
     let mut empty = false;
     let mut seen = Vec::new();
     for s in rows {
@@ -149,6 +149,7 @@ pub struct Journey<'a> {
     pub battle: Option<Checkpoint<'a>>,
     pub battles: u64,
     pub camps: CampState,
+    pub month: crate::monthly::Monthly,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -168,10 +169,13 @@ impl<'a> Journey<'a> {
             battle: None,
             battles: 0,
             camps: CampState::default(),
+            month: crate::monthly::Monthly::default(),
         }
     }
     pub fn phase(&self) -> &'static str {
-        if self.battle.is_some() {
+        if self.month.pending.is_some() {
+            "monthly"
+        } else if self.battle.is_some() {
             "battle"
         } else if self.cue.is_some() {
             "prompt"
@@ -182,7 +186,11 @@ impl<'a> Journey<'a> {
         }
     }
     pub fn walk(&mut self, data: &WorldData, key: u16) -> Result<Option<Boundary>, String> {
-        if self.cue.is_some() || self.battle.is_some() || self.camps.pending.is_some() {
+        if self.cue.is_some()
+            || self.battle.is_some()
+            || self.camps.pending.is_some()
+            || self.month.pending.is_some()
+        {
             return Err("遭遇尚未完成".into());
         }
         match self.world.walk_encounter(data, key)? {
@@ -193,9 +201,6 @@ impl<'a> Journey<'a> {
                 Ok(None)
             }
             WalkResult::Boundary(Boundary::Terrain(tile @ 54..=58)) => {
-                if self.world.remaining <= 1 {
-                    return Ok(Some(Boundary::Monthly));
-                }
                 let (target, facing) =
                     crate::world::motion(self.world.position, key, self.world.facing, false)?;
                 if let Some((i, _)) = camps().iter().enumerate().find(|(i, c)| {
@@ -310,11 +315,11 @@ impl<'a> Journey<'a> {
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
         self.world.encode(data)?;
         self.camps.validate(catalog)?;
+        self.month.validate(self, catalog, data)?;
         if let Some(i) = self.camps.pending {
             let c = camps()[i];
             if self.battle.is_some()
                 || self.cue.is_some()
-                || self.world.remaining <= 1
                 || self.world.area != c.area
                 || self.world.position.x != c.x
                 || self.world.position.y != c.y
@@ -370,7 +375,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN002".to_vec();
+        let mut b = b"8SJRN003".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -401,6 +406,17 @@ impl<'a> Journey<'a> {
             }
         }
         b.push(self.camps.pending.map(|i| i as u8).unwrap_or(255));
+        b.extend(crate::monthly::fingerprint().to_le_bytes());
+        b.extend(self.month.months.to_le_bytes());
+        b.push(u8::from(self.month.pending.is_some()));
+        if let Some(r) = &self.month.pending {
+            let m = r.budget;
+            for n in [m.before, m.income, m.due, m.charged, m.after] {
+                b.extend(n.to_le_bytes());
+            }
+            b.extend([u8::from(m.disbanded), r.tile]);
+            put_army(&mut b, &r.army_before);
+        }
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 16384 {
             return Err("旅程檢查點過大".into());
@@ -410,7 +426,7 @@ impl<'a> Journey<'a> {
     pub fn decode(catalog: &'a Catalog, data: &WorldData, b: &[u8]) -> Result<Self, String> {
         if b.len() < 5730
             || b.len() > 16384
-            || (&b[..8] != b"8SJRN001" && &b[..8] != b"8SJRN002")
+            || (&b[..8] != b"8SJRN001" && &b[..8] != b"8SJRN002" && &b[..8] != b"8SJRN003")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -448,7 +464,7 @@ impl<'a> Journey<'a> {
             Some(Checkpoint::decode(catalog, r.take(n)?)?)
         };
         let mut camps = CampState::default();
-        if &b[..8] == b"8SJRN002" {
+        if &b[..8] != b"8SJRN001" {
             if r.q()? != camp_fingerprint() {
                 return Err("營地版本不符".into());
             }
@@ -471,6 +487,43 @@ impl<'a> Journey<'a> {
                 n => Some(usize::from(n)),
             };
         }
+        let mut month = crate::monthly::Monthly::default();
+        if &b[..8] == b"8SJRN003" {
+            if r.q()? != crate::monthly::fingerprint() {
+                return Err("補貨上限版本不符".into());
+            }
+            month.months = r.q()?;
+            match r.byte()? {
+                0 => {}
+                1 => {
+                    let before = r.q()?;
+                    let income = r.q()?;
+                    let due = r.q()?;
+                    let charged = r.q()?;
+                    let after = r.q()?;
+                    let disbanded = match r.byte()? {
+                        0 => false,
+                        1 => true,
+                        _ => return Err("月報旗標錯誤".into()),
+                    };
+                    let tile = r.byte()?;
+                    let army_before = r.army()?;
+                    month.pending = Some(crate::monthly::Report {
+                        budget: crate::monthly::Budget {
+                            before,
+                            income,
+                            due,
+                            charged,
+                            after,
+                            disbanded,
+                        },
+                        tile,
+                        army_before,
+                    });
+                }
+                _ => return Err("月報狀態錯誤".into()),
+            }
+        }
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -485,6 +538,7 @@ impl<'a> Journey<'a> {
             battle,
             battles,
             camps,
+            month,
         };
         s.validate(catalog, data)?;
         Ok(s)
