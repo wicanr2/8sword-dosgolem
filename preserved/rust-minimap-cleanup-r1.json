@@ -1,0 +1,63 @@
+{
+  "status": "passed-rust-minimap-cleanup",
+  "removed": [
+    {
+      "path": "go-cache",
+      "files": 489,
+      "bytes": 43169098,
+      "archived": false
+    },
+    {
+      "path": "native/rust-target",
+      "files": 440,
+      "bytes": 120937083,
+      "archived": false
+    },
+    {
+      "path": "native/gui-wide-mount",
+      "files": 28,
+      "bytes": 106501650,
+      "archived": true
+    },
+    {
+      "path": "native/gui-phase-capture-r0",
+      "files": 17,
+      "bytes": 76037233,
+      "archived": true
+    },
+    {
+      "path": "native/scaled-wide-mount",
+      "files": 5,
+      "bytes": 898170,
+      "archived": true
+    },
+    {
+      "path": "wide-mount-image.png",
+      "files": 1,
+      "bytes": 410036,
+      "archived": true
+    },
+    {
+      "path": "wide-mount-image.json",
+      "files": 1,
+      "bytes": 6778,
+      "archived": true
+    },
+    {
+      "path": "rust-minimap-tool.tmp",
+      "files": 1,
+      "bytes": 9102,
+      "archived": true
+    }
+  ],
+  "bytes": 347969150,
+  "kept": [
+    "native/8sword-remake",
+    "native/pack",
+    "native/gui",
+    "native/scaled",
+    "rust-source",
+    "evidence",
+    "IDA exporters and scaled-smoke.py"
+  ]
+}

@@ -3315,3 +3315,17 @@ IDA初查把原掛點173F0當函式入口而被assert拒絕；從正式唯讀DB�
 沿既有Rust1.99.1／SDL2／libsndfile、Pillow11.3.0-r2與IDA py312-v1 image，未建立新image。所有工作UID1000、network none、CPU／記憶體／PID與外層逾時有界，GUI的Xvfb在finally結束；最終Rust建置只掛crate與native，GUI只掛單一工具與本批，沒有Go／PAM執行依賴。主機gh憑證及private repo確認，只推程式、索引與成果圖，不發布Release。保存及清理收據於本節續記。
 
 [完整索引](preserved/rust-character-r1.json)、[脫離核對](preserved/rust-character-detached-r1.json)、[清理](preserved/rust-character-cleanup-r1.json)與[完整性](preserved/rust-character-integrity-r1.json)已保存。300檔／255物件、壓縮29255531 bytes；僅掛唯讀preserved、單一工具與tmpfs逐原始／壓縮SHA通過。移除820份Rust快取及44份已保存診斷，共314000886 bytes，約299.5 MiB；binary、136份媒體及最終證據保持。來源／圖／binary與9個入口連結核對，find未發現root-owned檔案或.md目錄，無專案容器殘留。正式197／7／923／535／1071與Go保存格式保持。
+
+## 2026-11-05 Rust F5地圖總覽
+
+使用者確認繼續。命中復古重製、READY實作、文件與IDA路由，讀逆向技能、spec-gated、文件職責、驗證交接及IDA工具契約；擷取相位問題另回查正常玩家試玩路由。先查sub_18292，再補1847E／23DCA與已知1844C的最小消費鏈，追加READY後才進Rust。不重驗Go／HD或F1矩陣。
+
+新增minimap.rs、66色號與12格原稀疏參考；讀既有八圖與700-byte探索遮罩，原格投影12×12，座標與白／黑標記由Rust直接畫。F5／右欄第五列、Enter／Esc與滑鼠返回、字型／音樂與F7共用既有命令，沒有點圖傳送；保存v4不改。原起點走三步後43／40，探索展開，圖已加入README；下一步F4地圖術與世界事件。
+
+原版只恢復既有dosgolem收據：catalog中的final.state是raw物件，誤再解壓導致SHA拒絕；改依codec後通過。首次直接Gob解碼少讀外層LE64段長，被型別檢查拒絕；查當前internal/state/state.go及machine/state.go，按真實契約讀分段、四word Seg、magic／version後成功。一次試圖在唯讀tools掛載修改來源而失敗，後續依賴的缺檔解碼亦未執行；改由檔案編輯與單檔唯讀掛載後乾淨重跑。初始整格單色assert遇到原標記八次plot中的中間狀態，依既定排除標記契約，只核806256非標記像素，原型來源保留。這些是工具／擷取問題，不列Rust產品規則失敗。
+
+68測試、fmt、release及self-check通過，237行IDA bytes同固定PAM。最終兩程序八份SDL同幀讀回一致，原起點、三步行走、三字型、鍵鼠、F7及獨立冷讀通過；兩相位只差主角144像素。窄掛載重跑遇到截圖鍵跨300毫秒相位，改按實際capture metadata有界選取所需相位，保留反相探針，不調遊戲或RNG。正式八份包含一份反相探針。預設2／3縮放另驗1280×880滑鼠進頁／返回／F7與相同保存bytes，外部X11圖獨立記錄。
+
+沿Rust1.99.1／SDL2／libsndfile、Pillow11.3.0-r2、IDA py312-v1與Go1.24.13既有image；Go僅解碼原收據，不作runtime。全部UID1000、network none、資源與外層逾時有界。初次GUI寬掛本批，後續最終重跑僅掛native與單一輸入工具，真正看不到Go解碼器／cache或原RAM；縮放也依相同窄掛載重跑，舊資料留診斷。Xvfb在finally結束；無新image。主機gh憑證及private repo已確認，完整媒體／binary與RE留本機，只推程式、索引與成果圖，沒有Release。保存及清理續記於本節。
+
+[永久索引](preserved/rust-minimap-r1.json)、[脫離核對](preserved/rust-minimap-detached-r1.json)、[清理](preserved/rust-minimap-cleanup-r1.json)及[完整性](preserved/rust-minimap-integrity-r1.json)已保存。315檔／266物件、壓縮26167183 bytes；僅掛唯讀preserved、單一工具及tmpfs逐原始／壓縮SHA通過。移除929份Go／Rust快取與53份已保存診斷，共347969150 bytes，約331.8 MiB；目前binary、136媒體及最終證據保持。來源／圖／binary與10個入口連結核對；find無root-owned檔案或.md目錄，無專案容器殘留。正式197／7／923／535／1071與Go保存格式不改。

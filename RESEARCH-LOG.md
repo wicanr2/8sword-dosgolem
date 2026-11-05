@@ -3364,3 +3364,17 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 | 已證實 | 批准頭像MAN.AY record68、native24,13,80,40；master hero-portrait-r3.png SHA b97e3a9c908db0ce66b5579478fa40551e93d8ff9d91622cf89427eed4fa1e41，技術縮放240×240供Rust直接讀。原master與1071美術不改。 |
 
 [匯出器](tools/export-rust-character-ida.py)保留原始名稱、運算元、bytes、xref與檔案偏移；兩函式371行由獨立MZ重定位核對，正式DB只讀。原文字收據從永久catalog還原，不以新Rust測試當原版oracle。完整RE、早期失敗／原型與最終GUI沿[永久保存](preserved/README.md#rust-f1人物資料保存)，驗收為[031](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)。物品、劍取得及完整世界未由本輪證實。
+
+## Rust F5地圖總覽
+
+PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4，MZ線性base10000h；runtime0110 IP為線性減10000h，DS1E88另列。正式DB唯讀、查詢/tmp副本，原名與運算元不改。
+
+| 等級 | 原始定位與結論 |
+|---|---|
+| 已證實 | sub_18292的182B8讀dword_2D74A目前已探索圖，減48後分類；18379／18382／18389處理70格、CRLF與80列。原收據runtime1E84A指向9C00:0000，位置DS8E12／8E44為41／40，12格可見、5588格未知。 |
+| 已證實 | 182D3至18363的66項分類如031 READY；sub_1847E的18489／1849E算100+4x、13+2y，sub_23DCA八次plot填4×2；Rust投影為12×12，保留原分組，不重畫新素材。 |
+| 已證實 | 183CF取DS04FE位置標籤，183E3／1840A讀座標；18414至18433交替15與0。18443呼叫sub_1844C，只以Enter或Esc返回。 |
+| 已證實收據 | catalog的owned-modal-r12/final.state與13-minimap-native.png，按raw／gzip codec及原SHA還原；最外層gzip後為LE64段長與機器Gob，Seg是四word。只解碼，不跑原機器。806256非標記像素等於來源分類；原標記格可有部分白／黑plot，整格144點另排除。 |
+| 原生近似 | Rust UI採300毫秒白／黑交替，不推進世界，不稱原busy-loop的硬體時序一致。 |
+
+[匯出器](tools/export-rust-minimap-ida.py)、[收據解碼器](tools/decode-rust-minimap-original.go)、[資料工具](tools/rust-minimap.py)及[永久保存](preserved/README.md#rust-f5地圖總覽保存)保存來源、237行bytes、原收據、兩份codec來源、初次查詢與最終證據。[031驗收](docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)限當前探索投影及鍵鼠，不提升完整世界或其他區域自然取得。

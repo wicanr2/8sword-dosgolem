@@ -47,6 +47,7 @@ pub fn digit_box(i: usize) -> Rect {
 pub enum Screen {
     World,
     Character,
+    Minimap,
     Prompt,
     Army,
     Report,
@@ -108,6 +109,7 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
     }
     match screen {
         Screen::Character => {}
+        Screen::Minimap => {}
         Screen::Report => {}
         Screen::Treasure => {
             for (i, r) in TREASURE_CHOICES.iter().enumerate() {
@@ -123,6 +125,7 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
                     0 => Some(Action::Key(1073741882)),
                     1 => Some(Action::Key(1073741883)),
                     2 => Some(Action::Key(1073741884)),
+                    4 => Some(Action::Key(1073741886)),
                     6 => Some(Action::Key(1073741888)),
                     _ => None,
                 };

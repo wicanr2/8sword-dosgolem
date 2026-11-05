@@ -112,8 +112,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let (mut audio, mut audio_battle) = (0, false);
     let (mut drains, mut last_queue, mut queued_bytes) = (0u64, 0u32, 0u64);
     let mut save_requested = false;
+    let view_clock = Instant::now();
     'game: loop {
         let now = Instant::now();
+        let marker_light = view_clock.elapsed().as_millis() / 300 % 2 == 0;
         let month_before = (journey.month.months, journey.month.pending.is_some());
         let treasure_before = journey.treasure.amounts;
         let mut snap = false;
@@ -201,7 +203,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 _ => {}
             }
 
-            if ui.page != Page::World || [1073741882, 1073741883, 1073741884].contains(&key) {
+            if ui.page != Page::World
+                || [1073741882, 1073741883, 1073741884, 1073741886].contains(&key)
+            {
                 if key != 0 {
                     ui.key(key, &mut journey, &catalog, &data);
                 }
@@ -478,10 +482,13 @@ pub fn run(args: &[String]) -> Result<(), String> {
             &battle_pack,
             &building,
             &portrait,
+            &data,
+            marker_light,
         )?;
         fill(&mut frame, [0, 1250, 1920, 70], [9, 36, 29]);
         let (ok, back, skip) =
             match ui.page {
+                Page::Minimap => ("返回地圖", "返回地圖", ""),
                 Page::Character => (if ui.swords { "返回" } else { "查看八劍" }, "返回", ""),
                 Page::Review => ("返回", "返回", ""),
                 Page::Dismiss => ("解雇整隊", "返回", ""),
@@ -592,7 +599,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
         };
         let status = format!(
             "phase\t{}\nactions\t{}\nx\t{}\ny\t{}\nsteps\t{}\ngold\t{}\nmerit\t{}\narmy\t{}\nenemy\t{}\nseed\t{}\nactor\t{actor}\nraw\t{raw}\ntargets\t{targets}\ncursor\t{cursor}\noutcome\t{outcome}\nsequence\t{sequence}\nbattles\t{}\nfont\t{}\nmusic\t{}\nstate_hash\t{:016x}\nsaves\t{saves}\nloaded\t{continuing}\ncaptures\t{}\nreadback_equal\t{equal}\nqueued_bytes\t{queued_bytes}\ndrains\t{drains}\npending\t{:?}\n",
-            if ui.page == Page::Character {
+            if ui.page == Page::Minimap {
+                "minimap"
+            } else if ui.page == Page::Character {
                 "character"
             } else if ui.page == Page::Review {
                 "review"
@@ -658,7 +667,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 .join(",")
         );
         let status = format!(
-            "{status}resources\t{}\ncharacter_swords\t{}\n",
+            "{status}resources\t{}\ncharacter_swords\t{}\nminimap_light\t{marker_light}\n",
             journey
                 .resources
                 .iter()

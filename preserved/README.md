@@ -1302,3 +1302,17 @@ Go探針使用唯讀來源／原版／核心／module cache與可寫批次，`GO
 目前[啟動器](../tools/rust-native-player.sh)指向rust-character-r1/native。依索引解壓binary及pack到同名路徑、核對SHA與權限後，用`journey --save-dir <既有可寫絕對路徑>`遊玩，加`--continue`續接。F1或右欄第一列檢視，Enter看八劍、第二Enter返回，Esc隨時返回；頁內可F7，冷讀回地圖後再F1顯示相同值。保存仍v4，不讀Go進度。寶物／八劍空欄、完整世界與手機仍待，沒有Release。執行期只有Rust、媒體及SDL2／libsndfile等平台函式庫。
 
 本批300檔／255物件，壓縮29255531 bytes。脫離工作區核對通過後，清除820份可重建Rust快取與44份已保存診斷，共314000886 bytes，約299.5 MiB。目前binary、136份媒體、最終GUI／縮放與RE來源保持。
+
+## Rust F5地圖總覽保存
+
+[完整索引](rust-minimap-r1.json)、[核對](rust-minimap-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)與[研究](../RESEARCH-LOG.md#rust-f5地圖總覽)為入口。68測試、237行IDA bytes、原收據806256非標記像素、兩程序八份SDL擷取及預設縮放通過。完整crate、136份媒體、binary、v4樣本、原收據／RAM、codec來源、新舊IDA、GUI與診斷逐SHA壓縮在本機`preserved/rust-minimap-r1/<SHA256>.gz`，不依賴workplace。完整原始資料及runtime媒體／binary不入Git或公開包。
+
+[資料工具](../tools/rust-minimap.py)在Pillow11.3.0-r2、UID1000、network none使用。先在既有battle-r1建立rust-minimap-r1/evidence，以[IDA匯出器](../tools/export-rust-minimap-ida.py)讀原game掛/game唯讀、正式DB目錄掛/source唯讀、本批掛/out可寫；複製DB到/tmp，再`idat -A -L/out/ida.log -S/export.py /tmp/PAM.i64`。沿既有ida-pro-9.4-idapython:py312-v1，核521函式探針／SHA／JSON，不改正式DB。
+
+先按catalog的codec恢復owned-modal-r12的final.state、13-minimap-native.png、13-minimap.json與owned-receipt.json到evidence；[Go解碼器](../tools/decode-rust-minimap-original.go)在Go1.24.13容器只讀/in/final.state，輸出/out/evidence/original-ram.bin，不執行DOS。`prepare --project /project`恢復前批136媒體，核原地圖色號／像素並產生兩份TSV，複製至crate後才建置。字型沿[字型工具](../tools/rust-world.py)fonts補字。`freeze --project /project`保存crate與五工具；`audit --project /project --out <新JSON>`核來源、68測試、同幀畫面、144點相位差及基線；命令與掛載見execution.json。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-minimap-r1.json`保存資料；`verify --archive /archive --out <新JSON>`只掛唯讀preserved、單一工具及tmpfs即可逐原始／壓縮SHA核對。[脫離核對](rust-minimap-detached-r1.json)、[清理](rust-minimap-cleanup-r1.json)及[完整性](rust-minimap-integrity-r1.json)另存。只排除可重建Go／Rust cache；舊寬掛載及相位診斷先保存再刪。
+
+目前[啟動器](../tools/rust-native-player.sh)指向rust-minimap-r1/native。依索引還原binary及pack至同名路徑、核SHA與權限，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`續接。F5或右欄第五列開圖，Enter／Esc／返回鈕關閉，工具列及F7可用；不支援點圖移動。保存仍v4，冷讀回地圖再F5；最終GUI只掛native及單一工具，執行期只有Rust、媒體與SDL2／libsndfile等平台庫。完整世界與手機仍待，沒有Release。
+
+本批315檔／266物件，壓縮26167183 bytes。脫離工作區核對通過後，移除929份Go／Rust快取與53份已保存診斷，共347969150 bytes，約331.8 MiB。目前binary、136份媒體、最終GUI／縮放、來源與RE證據保持。

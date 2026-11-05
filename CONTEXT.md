@@ -27,12 +27,18 @@
 | Rust玩家月報與補貨 | 限定完成。58測試、六組既有Go收支及720補貨向量，正常324步跨月、自動保存／獨立冷讀與三字型通過。三程序八擷取；v3保留待確認月報，讀v1／v2。守軍增兵與原日曆相位未接。 |
 | Rust寶箱資源 | 限定完成。80原值／座標、七Go向量與63測試通過。原起點27步、取消及兩選項、待選／已領冷讀；五程序九SDL擷取，另驗預設縮放。v4支援v1至v3。 |
 | Rust F1人物資料 | 限定完成。六資源與批准武將頭像、寶物／八劍空欄、原式Enter／Esc及滑鼠已接。65測試、371行IDA bytes、四程序八SDL擷取及預設縮放通過；v4不改。物品取得與效果未接。 |
+| Rust F5地圖總覽 | 限定完成。原色號分組、探索遮罩、位置標記與鍵鼠返回已接；68測試、237行IDA bytes、兩程序八SDL擷取與預設縮放通過。v4不改，閃動不推進世界。 |
 | 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。早期戰鬥樣本採明示編成，本輪旅程從原起點起步；SDL dummy不等於人耳確認。 |
 | 可選精修 | 新兵額外手繪動作、特殊死亡呈現、循環音樂接點與其餘平台驗收依後續範圍處理。 |
 
 ## 最近驗證與入口
 
-最新為[F1人物資料限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)。F1與右欄第一列可開原式六欄及批准武將頭像，初頁Enter看八劍，第二頁Enter返回地圖，Esc兩頁皆返回。四程序八SDL擷取、三字型、原起點與真正寶箱後530金／103領導力、F7及獨立冷讀通過；預設2／3縮放滑鼠另驗。頁面不改世界時間、RNG、資源或軍隊，保存仍v4。[核對](preserved/rust-character-audit-r1.json)、[保存](preserved/README.md#rust-f1人物資料保存)、[成果圖](docs/images/rust-character-r1.png)及[工具](tools/rust-character.py)為入口。
+最新為[F5地圖總覽限定驗收](docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)。F5或右欄第五列顯示目前區域的已探索地形，未探索區為黑；位置按原分組白／黑閃動，Enter／Esc或滑鼠返回。原起點40／40，正常三步後43／40與探索擴展、三字型、F7及獨立冷讀通過，兩程序八份SDL擷取相同；預設2／3縮放另驗。頁面不改時間、RNG、資源、軍隊或探索，保存仍v4。
+
+68測試包含66色號、5600格遮罩／區域隔離、12格原收據及頁面唯讀。IDA四函式237行bytes核對；既有dosgolem收據的806256個非標記像素同來源分類與幾何，不是新原版遊玩對拍。標記採300毫秒原生UI近似，沒有逐週期聲明。最終Rust建置僅掛crate／native，GUI僅掛單一工具及native，看不到本批Go解碼器或原版RAM。[核對](preserved/rust-minimap-audit-r1.json)、[保存](preserved/README.md#rust-f5地圖總覽保存)、[圖](docs/images/rust-minimap-r1.png)與[工具](tools/rust-minimap.py)為入口。
+
+
+前批[F1人物資料限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)。F1與右欄第一列可開原式六欄及批准武將頭像，初頁Enter看八劍，第二頁Enter返回地圖，Esc兩頁皆返回。四程序八SDL擷取、三字型、原起點與真正寶箱後530金／103領導力、F7及獨立冷讀通過；預設2／3縮放滑鼠另驗。頁面不改世界時間、RNG、資源或軍隊，保存仍v4。[核對](preserved/rust-character-audit-r1.json)、[保存](preserved/README.md#rust-f1人物資料保存)、[成果圖](docs/images/rust-character-r1.png)及[工具](tools/rust-character.py)為入口。
 
 65測試通過，新增人物欄位邊界、檢視不改保存及事件間隔離。IDA9.4核對sub_17242與sub_1844C共371行原bytes；原0110:73F0是函式內掛點，不是函式起點。寶物／八劍當前無取得資料，僅保留原標題空欄；物品效果與八劍取得未由本輪提升。
 
@@ -40,7 +46,7 @@
 
 63測試包含七Go案例、80身份、取消／空箱／重複拒絕、最後一步先領或取消再月報、冷讀及異常狀態。IDA9.4新補座標寫入端：sub_145FA由上到下、由左到右掃字元107，八圖各十箱；第一圖順序與原RAM相同。533行原bytes及十一行索引語意核對，原DB唯讀不改名。v4保存80值及待選資料，讀此前未開放寶箱的v1至v3，不讀Go。[核對](preserved/rust-treasure-audit-r1.json)、[保存](preserved/README.md#rust寶箱資源保存)、[圖](docs/images/rust-treasure-r1.png)及[工具](tools/rust-treasure.py)為入口。
 
-下一步補F5地圖總覽與其餘世界事件，再接地圖術、守軍／八劍、日曆與結局；不重跑F1、寶箱、月報或既有HD。完整世界schema、手機及Release仍待。
+下一步補F4地圖術與其餘世界事件，再接地圖術、守軍／八劍、日曆與結局；不重跑F1／F5、寶箱、月報或既有HD。完整世界schema、手機及Release仍待。
 
 前批[玩家月報與補貨限定驗收](docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)保持。正常324步、305金月報、自動保存與獨立程序冷讀已驗；本輪不重跑月報矩陣。
 

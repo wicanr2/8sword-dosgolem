@@ -1,0 +1,41 @@
+{
+  "status": "passed-rust-minimap-integrity",
+  "root_owned": [],
+  "markdown_directories": [],
+  "links": [
+    "docs/images/rust-minimap-r1.json",
+    "docs/images/rust-minimap-r1.png",
+    "preserved/rust-minimap-audit-r1.json",
+    "preserved/rust-minimap-cleanup-r1.json",
+    "preserved/rust-minimap-detached-r1.json",
+    "preserved/rust-minimap-integrity-r1.json",
+    "preserved/rust-minimap-r1.json",
+    "tools/decode-rust-minimap-original.go",
+    "tools/export-rust-minimap-ida.py",
+    "tools/rust-minimap.py"
+  ],
+  "positive_control": "tools/rust-character.py",
+  "source_media_binary_unchanged_after_cleanup": true,
+  "media": 136,
+  "scaled": {
+    "status": "passed-scaled-minimap-mouse",
+    "scale": "2/3",
+    "pixels": [
+      1280,
+      880
+    ],
+    "same_returned_checkpoint": true,
+    "screens": {
+      "minimap": "a9756e93e34c7aaf598c1c5aa08d83d354d116330077dde8fd4e89f5d5ea4c05",
+      "returned": "b786c2fb7ed8e4568f7842f1be982aed0145f5e43b0a8485278c7636216ef805"
+    },
+    "binary_sha256": "045301529f832be8f0b8fc8804ab4d87960232fcb3729a51933c35472af29397",
+    "capture": "External X11; not native SDL readback"
+  },
+  "archive": {
+    "files": 315,
+    "objects": 266,
+    "compressed_bytes": 26167183
+  },
+  "release": false
+}

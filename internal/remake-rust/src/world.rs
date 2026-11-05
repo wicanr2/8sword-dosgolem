@@ -292,6 +292,18 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn minimap_fixture() -> Self {
+        let mut d = Self::flat_fixture();
+        for line in include_str!("../minimap-reference.tsv")
+            .lines()
+            .filter(|s| !s.starts_with('#'))
+        {
+            let f: Vec<usize> = line.split('\t').map(|s| s.parse().unwrap()).collect();
+            d.maps[0][f[1] * 70 + f[0]] = f[2] as u8;
+        }
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn treasure_fixture() -> Self {
         let mut d = Self::flat_fixture();
         for s in crate::treasure::sites() {

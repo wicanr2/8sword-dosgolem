@@ -26,7 +26,7 @@ Rust已能獨立執行普通戰鬥，直接繪製既有HD背景與透明部隊�
 
 上圖是原生視窗的明示測試編成，1000野狼與10女弓箭手對抗三隊原兵種。普通勝利、全滅、撤退、工具列與音訊佇列已抽驗；四場回合對照含71次選隊與42次攻擊。33種兵種資料、201組算式及309組位置向量保持。這是Linux開發樣本，世界、新遊戲與世界存檔尚待移植，未提供完整遊戲包。詳見[限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)、[核對收據](preserved/rust-native-player-audit-r1.json)及[圖片來源](docs/images/rust-native-battle-r1.json)。
 
-開發環境完成[目前原生資料包還原](preserved/README.md#rust-f1人物資料保存)後，執行`bash tools/rust-native-player.sh build`，再用`bash tools/rust-native-player.sh run`開啟樣本。需Linux X11及音訊裝置；`run --mute`可靜音。方向鍵選敵、Enter出手、Space略過、Esc撤退、R重開。`bash tools/remake-rust.sh`核對Rust測試與CLI。其餘移植依[工作表](WORKLIST.md)接續。
+開發環境完成[目前原生資料包還原](preserved/README.md#rust-f5地圖總覽保存)後，執行`bash tools/rust-native-player.sh build`，再用`bash tools/rust-native-player.sh run`開啟樣本。需Linux X11及音訊裝置；`run --mute`可靜音。方向鍵選敵、Enter出手、Space略過、Esc撤退、R重開。`bash tools/remake-rust.sh`核對Rust測試與CLI。其餘移植依[工作表](WORKLIST.md)接續。
 
 ## Rust原生戰鬥法術
 
@@ -56,7 +56,7 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 ![Rust原生HD地圖與隸書，獨立程序冷讀](docs/images/rust-world-preview-r1.png)
 
-還原[目前原生資料包](preserved/README.md#rust-f1人物資料保存)後，用`bash tools/rust-native-player.sh world`開啟預覽。方向鍵及Home／PageUp／End／PageDown移動；工具列可切字型、音樂及存檔。加`--save-dir /既有絕對路徑`啟用F7，加`--continue`冷讀。這是獨立的移動預覽，遇到營地、遭遇、月結等尚未接入事件會停止；右側管理選單尚未作用。40個Rust測試及880組原指令案例通過，完整世界遊戲與世界保存仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)及[圖片來源](docs/images/rust-world-preview-r1.json)。
+還原[目前原生資料包](preserved/README.md#rust-f5地圖總覽保存)後，用`bash tools/rust-native-player.sh world`開啟預覽。方向鍵及Home／PageUp／End／PageDown移動；工具列可切字型、音樂及存檔。加`--save-dir /既有絕對路徑`啟用F7，加`--continue`冷讀。這是獨立的移動預覽，遇到營地、遭遇、月結等尚未接入事件會停止；右側管理選單尚未作用。40個Rust測試及880組原指令案例通過，完整世界遊戲與世界保存仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)及[圖片來源](docs/images/rust-world-preview-r1.json)。
 
 ## Rust普通遭遇與回場
 
@@ -64,7 +64,7 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 ![Rust普通遭遇、原式戰場及回場](docs/images/rust-journey-r1.png)
 
-還原[目前原生資料包](preserved/README.md#rust-f1人物資料保存)後，以`bash tools/rust-native-player.sh journey --save-dir /既有絕對路徑`開啟。地圖方向鍵移動、Space等待；遇敵後方向鍵選擇、Enter確認。戰中方向鍵選敵、Enter出手、Space略過、Esc撤退，終局按Enter回場；F7存檔，下次加`--continue`續接。這是有界開發旅程，守軍、完整世界保存與結局仍待，玩家月報見下節。既有46測試、320原指令案例及四程序12擷取見[限定驗收](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)、[核對](preserved/rust-journey-audit-r1.json)及[圖片來源](docs/images/rust-journey-r1.json)；管理與滑鼠已加入下節。
+還原[目前原生資料包](preserved/README.md#rust-f5地圖總覽保存)後，以`bash tools/rust-native-player.sh journey --save-dir /既有絕對路徑`開啟。地圖方向鍵移動、Space等待；遇敵後方向鍵選擇、Enter確認。戰中方向鍵選敵、Enter出手、Space略過、Esc撤退，終局按Enter回場；F7存檔，下次加`--continue`續接。這是有界開發旅程，守軍、完整世界保存與結局仍待，玩家月報見下節。既有46測試、320原指令案例及四程序12擷取見[限定驗收](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)、[核對](preserved/rust-journey-audit-r1.json)及[圖片來源](docs/images/rust-journey-r1.json)；管理與滑鼠已加入下節。
 
 ## Rust原式管理與滑鼠
 
@@ -100,13 +100,21 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 圖中從原起點正常走27步到60／41寶箱，沒有位置或獎勵注入。價值30可使500金增至530，或使領導力100增至103；軍隊及其他寶箱保持。63測試、80箱資料及七組既有Go案例通過；五程序九份SDL擷取，另驗預設縮放滑鼠領取。見[限定驗收](docs/spec/031-rust-independent-remake.md#寶箱資源限定-conformed)、[核對](preserved/rust-treasure-audit-r1.json)、[圖片來源](docs/images/rust-treasure-r1.json)與[目前還原入口](preserved/README.md#rust寶箱資源保存)。仍沿`journey --save-dir /既有絕對路徑`與`--continue`，v4可讀舊v1至v3；完整世界及Go存檔匯入另待。
 
+## Rust地圖總覽
+
+按F5或點右欄「查看地圖」，可檢視目前區域的探索紀錄。原版地形分組、座標欄與閃動位置標記保留；未探索區保持黑色。Enter、Esc與滑鼠按鈕可返回，開圖不消耗時間或亂數。
+
+![Rust F5地圖總覽、正常探索、草書與獨立冷讀](docs/images/rust-minimap-r1.png)
+
+上圖從原起點40／40走三步到43／40，再以另一程序讀檔開圖。Noto900、隸書、草書與預設縮放滑鼠已抽驗；F7沿既有v4保存。見[限定驗收](docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)、[核對](preserved/rust-minimap-audit-r1.json)、[圖片來源](docs/images/rust-minimap-r1.json)及[目前還原入口](preserved/README.md#rust-f5地圖總覽保存)。僅接目前已探索區域，其他區域自然抵達與完整世界仍待。
+
 ## Rust人物資料
 
 Rust旅程已接F1人物資料，顯示原版六欄與已批准的武將頭像。可按F1或點右欄「檢視主角」；Enter查看八劍頁，再按Enter返回，Esc亦可返回。工具列可切Noto900、隸書與草書，F7保存仍沿既有v4。
 
 ![Rust原式人物資料與隸書，寶箱後的金錢及領導力](docs/images/rust-character-r1.png)
 
-圖中原起點與前批正常寶箱進度的530金／103領導力均由Rust資料顯示。四程序八份擷取、預設縮放滑鼠及獨立冷讀已抽驗；檢視不推進時間或亂數。寶物與八劍目前保留空欄，取得與效果尚待接。見[限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)、[核對](preserved/rust-character-audit-r1.json)、[圖片來源](docs/images/rust-character-r1.json)及[目前還原入口](preserved/README.md#rust-f1人物資料保存)。
+圖中原起點與前批正常寶箱進度的530金／103領導力均由Rust資料顯示。四程序八份擷取、預設縮放滑鼠及獨立冷讀已抽驗；檢視不推進時間或亂數。寶物與八劍目前保留空欄，取得與效果尚待接。見[限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)、[核對](preserved/rust-character-audit-r1.json)、[圖片來源](docs/images/rust-character-r1.json)及[目前還原入口](preserved/README.md#rust-f5地圖總覽保存)。
 
 ## 部隊管理與Go資料
 

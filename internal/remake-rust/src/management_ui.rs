@@ -9,6 +9,7 @@ use crate::world::WorldData;
 pub enum Page {
     World,
     Character,
+    Minimap,
     Review,
     Dismiss,
     Shop,
@@ -56,6 +57,7 @@ impl Manager {
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
             Page::Character => Some(Screen::Character),
+            Page::Minimap => Some(Screen::Minimap),
             Page::Treasure => Some(Screen::Treasure),
             Page::Monthly => Some(Screen::Report),
             Page::Review | Page::Dismiss => Some(Screen::Army),
@@ -98,6 +100,7 @@ impl Manager {
             if j.phase() == "world" {
                 self.page = match key {
                     1073741882 => Page::Character,
+                    1073741886 => Page::Minimap,
                     1073741883 => Page::Review,
                     1073741884 => Page::Dismiss,
                     _ => return Ok(()),
@@ -105,6 +108,12 @@ impl Manager {
                 self.selected = 0;
                 self.swords = false;
                 self.message.clear();
+            }
+            return Ok(());
+        }
+        if self.page == Page::Minimap {
+            if key == 13 || key == 27 {
+                self.page = Page::World;
             }
             return Ok(());
         }
@@ -250,11 +259,34 @@ pub fn draw(
     pack: &MediaPack,
     building: &Image,
     portrait: &Image,
+    data: &WorldData,
+    marker_light: bool,
 ) -> Result<(), String> {
     if ui.page == Page::World {
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::Minimap {
+        fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
+        for (i, code) in crate::minimap::cells(data, &j.world)?.iter().enumerate() {
+            let r = crate::minimap::cell(crate::world::Position {
+                x: (i % 70) as u8,
+                y: (i / 70) as u8,
+            })?;
+            fill(f, r.array(), crate::minimap::RGB[usize::from(*code)]);
+        }
+        let marker = crate::minimap::cell(j.world.position)?;
+        fill(
+            f,
+            marker.array(),
+            crate::minimap::RGB[if marker_light { 15 } else { 0 }],
+        );
+        field(f, font, " 現 在 位 置 :", 408, 1086, 336)?;
+        field(f, font, &j.world.position.x.to_string(), 768, 1086, 96)?;
+        field(f, font, "，", 864, 1086, 48)?;
+        field(f, font, &j.world.position.y.to_string(), 912, 1086, 96)?;
+        return Ok(());
+    }
     if ui.page == Page::Character {
         fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
         sprite(f, portrait, 72, 126);
