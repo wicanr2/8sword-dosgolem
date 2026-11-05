@@ -79,6 +79,7 @@ unsafe extern "C" {
     fn SDL_PauseAudioDevice(device: u32, pause: c_int);
     fn SDL_QueueAudio(device: u32, data: *const c_void, len: u32) -> c_int;
     fn SDL_GetQueuedAudioSize(device: u32) -> u32;
+    fn SDL_ClearQueuedAudio(device: u32);
 }
 fn error() -> String {
     unsafe {
@@ -258,6 +259,11 @@ impl Sdl {
     pub fn pause_music(&self, paused: bool) {
         if self.audio != 0 {
             unsafe { SDL_PauseAudioDevice(self.audio, i32::from(paused)) }
+        }
+    }
+    pub fn clear_music(&self) {
+        if self.audio != 0 {
+            unsafe { SDL_ClearQueuedAudio(self.audio) }
         }
     }
 }

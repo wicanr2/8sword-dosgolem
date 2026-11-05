@@ -164,6 +164,17 @@ impl MediaPack {
         self.spell_fx = effects;
         Ok(())
     }
+    pub fn load_native_units(&mut self, root: &Path) -> Result<(), String> {
+        let mut units = Vec::new();
+        for kind in 1..=25 {
+            units.push((
+                UnitId::parse(&format!("native:{kind:02}"))?,
+                Image::load(&root.join(format!("unit_native_{kind:02}.rgba")), 264, 300)?,
+            ));
+        }
+        self.units.extend(units);
+        Ok(())
+    }
 }
 
 #[cfg(test)]

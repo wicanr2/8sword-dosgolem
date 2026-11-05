@@ -3229,3 +3229,23 @@ README新增原生存讀對照及穩定使用入口。主機gh憑證與private r
 保存驗證後刪本批Go／Rust快取及兩份舊GUI診斷，2569檔／604915126 bytes，約576.9 MiB；現行binary、pack、八份GUI、來源／證據保持。213份仍在工作區的保存來源逐SHA相同，33條新增路由／文件連結與錨點通過，全專案沒有root-owned檔案或.md目錄。Docker依本批bind來源檢查，無執行中或已停止容器；既有其他專案容器／映像未動，未建立新映像。
 
 README加入原生地圖冷讀成果圖，執行器新增world命令，原run保持戰鬥樣本。Bash／Python語法檢查通過。主機gh憑證及private repo已確認，完整媒體／binary留本機，不加入Git；沒有Release。正式197／7／923／535／1071與Go保存不改。下一步沿既有Go遭遇及戰果證據，補Rust READY後接移動→原式戰場→回場與完整世界保存，再接原式管理／募兵。
+
+## 2026-11-05 Rust普通遭遇與回場
+
+以f00c36f為前一個已推送HEAD，命中復古重製規格閘門、文件職責與驗證／README路由，載入既有逆向技能及當前reference。目標為移動→普通遭遇→原式戰場→回場及原生開發保存，不重開已驗全量HD、硬體時序或整段原版亂數呼叫序列。
+
+先讀永久IDA9.4匯出與030 Go世界結算。新增DRAFT與READY，移植132E0普通生成、接受／拒戰追擊、勝利／撤退／升級／全滅回場。320個原CPU案例揭露初稿把重複隊伍當合兵的錯誤：原版1364E–136B4沒有加數量，會刪除重複列且保留掃描前進與末格行為；修READY後才改Rust，逐隊與後seed通過。三組既有Go結算與原版／Go撤退收據恢復成固定向量，含615金／37戰績、459金及升級封頂。它們不是新整機原版實驗，原畫面ambient seed另留來源，不混稱同一串規則亂數。
+
+新增Journey單檔typed狀態與journey.chk，包含地圖、六隊、六資源、遭遇、生成seed及完整Controller；與battle.chk／world-preview.chk／Go v5分開。地圖與戰場共用一個SDL視窗、舊原式畫布及透明素材，音樂切場清除前段佇列。原25種站姿從批准troop／battle清單補齊，非執行期Go生成。未知守軍／營地／月結／上岸及完整世界schema仍待。
+
+46個Rust測試通過，包含320原生成、三舊結算、拒戰／追擊、戰中往返與同seed冷讀、一次結算、勝利／兩全滅去向及壞檢查點拒絕。勝利模型明示1000野狼，沒有宣稱原30民兵自然勝利。最後cargo fmt --check／test／self-check／release只掛唯讀crate與可寫native，不見Go／PAM；格式化先前另允許crate寫入。Go1.24.13探針格式化後重跑，輸出逐bytes相同。
+
+最終四個GUI程序12份擷取與SDL讀回一致。原30民兵、500金、seed1，正常Space等待第60次遭遇；Enter進原式戰場，切隸書／關音樂／F7後關閉。獨立程序續接不重生敵軍，兩路Esc撤退／Enter回場均保留30民兵、金375、完整狀態／畫布相同。第三程序冷讀回場相同；第四程序再戰、略過至全滅、右選浪跡並回場，軍隊清空而金保持375。無RAM／IP或增兵注入，視窗以WM_DELETE正常關閉。
+
+環境與診斷：第一次Go建置因主機CPU數使預設並行超過pids上限，記錄resource temporarily unavailable；改GOMAXPROCS=2及go test -p 2後同源乾淨通過，不降掉vet。初版媒體準備誤以新增openKB目錄含原25種站姿，開SDL前即因unit_native_02缺失拒絕；核對實際troop／battle清單後補齊19種並驗全部25檔，不用佔位圖。追擊單測seed常數打錯，改為逆LCG算出的0xf5b8f641，確定next rand=9000。截圖檢查發現全滅提示覆蓋舊操作列，清底重畫後同seed／同按鍵重跑通過。文件patch兩次因預期行不符未套用，改正定位後重做，無產品規則影響。
+
+最初prepare整個專案掛載可寫，只用Python讀PAM並建立本批；execution如實記錄。後續以唯讀專案與僅輸出可寫乾淨重建，102份基底媒體及PAM初值逐bytes相同；所有原指令工作都明確把PAM及核心唯讀掛載。原始雜湊與正式197／7／923／535及1071美術不改。沒有新建Docker image或改動其他專案容器／映像。
+
+[核對](preserved/rust-journey-audit-r1.json)、[永久索引](preserved/rust-journey-r1.json)、[脫離核對](preserved/rust-journey-detached-r1.json)、[清理](preserved/rust-journey-cleanup-r1.json)與[完整性](preserved/rust-journey-integrity-r1.json)保存證據。347檔／232物件、壓縮43714025 bytes；只掛唯讀preserved與單一工具，在容器tmpfs逐原始／壓縮SHA核對通過。保存後清除2672份Go／Rust快取及舊GUI診斷，共719052752 bytes，約685.7 MiB；目前binary、pack、最終GUI與來源保持，完整原圖及音訊不靠workplace保存。
+
+README新增旅程四格成果圖與穩定journey使用入口，舊run／world樣本仍可用。主機gh憑證及private repo已確認，資料包與binary留本機，不加入Git，沒有Release。接續原式F2／F3、原店與增援募兵，再接守軍及其他世界事件／結局；不重跑本輪已通過的普通遭遇與回場矩陣。

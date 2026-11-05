@@ -26,7 +26,7 @@ Rust已能獨立執行普通戰鬥，直接繪製既有HD背景與透明部隊�
 
 上圖是原生視窗的明示測試編成，1000野狼與10女弓箭手對抗三隊原兵種。普通勝利、全滅、撤退、工具列與音訊佇列已抽驗；四場回合對照含71次選隊與42次攻擊。33種兵種資料、201組算式及309組位置向量保持。這是Linux開發樣本，世界、新遊戲與世界存檔尚待移植，未提供完整遊戲包。詳見[限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)、[核對收據](preserved/rust-native-player-audit-r1.json)及[圖片來源](docs/images/rust-native-battle-r1.json)。
 
-開發環境完成[素材還原](preserved/README.md#rust原生普通回合與媒體保存)後，執行`bash tools/rust-native-player.sh build`，再用`bash tools/rust-native-player.sh run`開啟樣本。需Linux X11及音訊裝置；`run --mute`可靜音。方向鍵選敵、Enter出手、Space略過、Esc撤退、R重開。`bash tools/remake-rust.sh`核對Rust測試與CLI。其餘移植依[工作表](WORKLIST.md)接續。
+開發環境完成[目前原生資料包還原](preserved/README.md#rust普通遭遇與回場保存)後，執行`bash tools/rust-native-player.sh build`，再用`bash tools/rust-native-player.sh run`開啟樣本。需Linux X11及音訊裝置；`run --mute`可靜音。方向鍵選敵、Enter出手、Space略過、Esc撤退、R重開。`bash tools/remake-rust.sh`核對Rust測試與CLI。其餘移植依[工作表](WORKLIST.md)接續。
 
 ## Rust原生戰鬥法術
 
@@ -56,7 +56,15 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 ![Rust原生HD地圖與隸書，獨立程序冷讀](docs/images/rust-world-preview-r1.png)
 
-還原[本批媒體](preserved/README.md#rust世界資料與移動保存)後，用`bash tools/rust-native-player.sh world`開啟預覽。方向鍵及Home／PageUp／End／PageDown移動；工具列可切字型、音樂及存檔。加`--save-dir /既有絕對路徑`啟用F7，加`--continue`冷讀。這是獨立的移動預覽，遇到營地、遭遇、月結等尚未接入事件會停止；右側管理選單尚未作用。40個Rust測試及880組原指令案例通過，完整世界遊戲與世界保存仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)及[圖片來源](docs/images/rust-world-preview-r1.json)。
+還原[目前原生資料包](preserved/README.md#rust普通遭遇與回場保存)後，用`bash tools/rust-native-player.sh world`開啟預覽。方向鍵及Home／PageUp／End／PageDown移動；工具列可切字型、音樂及存檔。加`--save-dir /既有絕對路徑`啟用F7，加`--continue`冷讀。這是獨立的移動預覽，遇到營地、遭遇、月結等尚未接入事件會停止；右側管理選單尚未作用。40個Rust測試及880組原指令案例通過，完整世界遊戲與世界保存仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)及[圖片來源](docs/images/rust-world-preview-r1.json)。
+
+## Rust普通遭遇與回場
+
+原生旅程已串接地圖遭遇、確認、原式HD戰場、撤退與全滅回場。下圖依序是遭遇提示、戰中、撤退回地圖及全滅選項；使用原起點與30民兵，沒有增兵或記憶體注入。戰中與回場F7均可在另一程序續接，沒有重生敵軍或重扣金錢。
+
+![Rust普通遭遇、原式戰場及回場](docs/images/rust-journey-r1.png)
+
+還原[目前原生資料包](preserved/README.md#rust普通遭遇與回場保存)後，以`bash tools/rust-native-player.sh journey --save-dir /既有絕對路徑`開啟。地圖方向鍵移動、Space等待；遇敵後方向鍵選擇、Enter確認。戰中方向鍵選敵、Enter出手、Space略過、Esc撤退，終局按Enter回場；F7存檔，下次加`--continue`續接。這是有界開發旅程，營地／管理、月結、守軍、完整世界保存與結局仍待。46測試、320原指令案例及四程序12擷取通過，見[限定驗收](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)、[核對](preserved/rust-journey-audit-r1.json)及[圖片來源](docs/images/rust-journey-r1.json)。
 
 ## 部隊管理與Go資料
 

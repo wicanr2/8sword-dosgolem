@@ -3283,3 +3283,20 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 880案例由[Go原指令探針](internal/ownedworld/rust_world_reference_test.go)在dosgolem執行；都是明示受控局部入口，沒有正常原版世界或完整遭遇同狀態聲明。GUI則從PAM投影起點以正常XTest方向鍵走路，不注入RAM／IP。seed1在啟動前固定，冷讀用保存seed；遭遇邊界單測以LCG逆式構造next rand=1000，不反覆挑seed。40測試包含既有35戰鬥／保存測試。
 
 [031](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)、[資料工具](tools/rust-world.py)、[IDA工具](tools/export-rust-world-ida.py)及[永久保存](preserved/README.md#rust世界資料與移動保存)為入口。正式世界與事件保持DRAFT，下一步沿既有Go遭遇／戰果證據移植，不重開無關硬體、全量美術或已驗移動矩陣。
+
+## Rust普通遭遇與回場
+
+2026-11-05。PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`，IDA9.4／521函式。沿永久owned-world-r1的ida-world-r3.json及original-battle-world-r1的ida-defeat-r2.json，不重開無關RE或硬體。IDA MZ linear base10000h；world runtime0110 IP=linear−10000h；runtime DS1E88偏移獨立記錄；file_offset與原bytes保留在匯出，不覆寫原名。
+
+| 定位 | 等級與結論 | 證據與界線 |
+|---|---|---|
+| sub_132E0，IDA13542–136B4／runtime0110:3542–36B4 | 已證實：普通生成三至六隊，rank／區域與三次rand決定種類、數量。 | [原指令探針](internal/ownedworld/rust_journey_reference_test.go)320個固定rank／area／seed案例；[Rust](internal/remake-rust/src/journey.rs)逐隊及後seed相同。是局部入口，非正常原版世界同狀態。 |
+| IDA1364E–136B4原bytes | 已證實訂正：重複種類是刪隊，不合兵；雙六格掃描，刪除格至第4格左移，第5格不清零，掃描仍前進。 | 初稿曾誤作相加，seed2的原結果僅native21×20推翻該推論；補查IDA指令後修READY再改程式。保留原結果，若仍形成非法編成由Controller拒絕，不補猜測合兵。 |
+| sub_1151C，IDA linear11713／1177A及1173A分支 | 已證實：接受先手修飾0，拒絕時rand/8192==1才追擊並設1。 | 既有原Controller向量及Go refusalGate；本輪Rust拒戰／追擊單測。追擊seed由LCG逆式構造next rand=9000，不反覆重投。 |
+| sub_11796／sub_19856 | 已證實玩家規則與既有Go工程契約：勝利金／command÷2、撤退gold/(rand/2730+3)、嚴格門檻且最多升一級、五項資源安全封頂30000。 | 三份既有Go收據重建獎勵、撤退及升級封頂；撤退另保留原版對照。只比較該次Random.Before／After，原畫面ambient seed另記，不混稱整段序列。Go安全加值不稱原版word回繞parity。 |
+| PAM DS04F2六words、054A十二words、05B2六words、26AE／26B2／26B8 | 已證實固定初值：rank1、0戰績、04F6=100、500金、100領導、04FC=0；30民兵；六門檻及初始敵術係數0。 | 原PAM逐word投影及批次pam-initial.json。未知欄位仍保留偏移，不依舊導覽名自行擴充語意。 |
+| journey.chk／同窗切場 | 自有工程契約：單檔typed地圖／軍隊／資源／遭遇／Controller及RNG原子保存，無CPU或畫面快照。 | 46測試、四個獨立GUI程序12擷取；戰中及回場冷讀完整狀態／畫布一致，不重生敵軍或重付戰果。非完整世界schema及舊Go匯入。 |
+
+正常原生GUI以原30民兵與seed1等待第60次遭遇，進原式戰場、保存／關閉／冷讀、撤退500→375金回場；另一冷讀直接恢復回場軍隊與資源。再戰全滅並選浪跡，空軍隊且金不重扣。全部為普通XTest輸入，沒有記憶體或IP注入；核心勝利測試明示1000野狼，不冒稱自然新遊戲勝局。
+
+25種原兵站姿依批准troop／battle清單及逐PNG SHA投影，透明區直接透底。地圖與戰場在同一Rust／SDL視窗，OGG由Rust解碼；切場清除前一音訊佇列，未新增人耳或原演出逐相位聲明。遭遇／戰果文字簡化，未知特殊格／月結／上岸仍停邊界。入口為[031](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)、[核對](preserved/rust-journey-audit-r1.json)、[資料工具](tools/rust-journey.py)及[永久保存](preserved/README.md#rust普通遭遇與回場保存)。

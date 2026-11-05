@@ -291,6 +291,18 @@ mod tests {
     }
 }
 impl WorldData {
+    #[cfg(test)]
+    pub(crate) fn flat_fixture() -> Self {
+        Self {
+            maps: std::array::from_fn(|_| vec![1; 5600]),
+            starts: [Position { x: 40, y: 40 }; 8],
+            remaining: 324,
+            rank: 1,
+            facing: 3,
+            menu: Vec::new(),
+            fingerprint: 123,
+        }
+    }
     pub fn load(root: &Path) -> Result<Self, String> {
         let mut maps: [Vec<u8>; 8] = std::array::from_fn(|_| Vec::new());
         let mut binding = Vec::new();
@@ -484,7 +496,7 @@ impl WorldState {
         s.reveal();
         s
     }
-    fn reveal(&mut self) {
+    pub(crate) fn reveal(&mut self) {
         for dy in -1..=1 {
             for dx in -1..=1 {
                 let x = (i32::from(self.position.x) + dx).rem_euclid(70) as usize;
@@ -511,6 +523,21 @@ impl WorldState {
         }
     }
     pub fn walk(&mut self, data: &WorldData, key: u16) -> Result<WalkResult, String> {
+        self.walk_inner(data, key, false)
+    }
+    pub(crate) fn walk_encounter(
+        &mut self,
+        data: &WorldData,
+        key: u16,
+    ) -> Result<WalkResult, String> {
+        self.walk_inner(data, key, true)
+    }
+    fn walk_inner(
+        &mut self,
+        data: &WorldData,
+        key: u16,
+        commit_encounter: bool,
+    ) -> Result<WalkResult, String> {
         self.validate()?;
         if ![
             0x4700, 0x4800, 0x4900, 0x4b00, 0x4d00, 0x4f00, 0x5000, 0x5100, 0x3920,
@@ -556,9 +583,13 @@ impl WorldState {
             )?
             .0;
             if data.tile(s.area, ahead)? < 47 {
-                return Ok(WalkResult::Boundary(Boundary::Encounter(
-                    (s.rng.next15() / 2341) as u8,
-                )));
+                let cue = (s.rng.next15() / 2341) as u8;
+                if commit_encounter {
+                    s.actions = s.actions.checked_add(1).ok_or("世界操作次數超界")?;
+                    s.reveal();
+                    *self = s;
+                }
+                return Ok(WalkResult::Boundary(Boundary::Encounter(cue)));
             }
         }
         s.actions = s.actions.checked_add(1).ok_or("世界操作次數超界")?;

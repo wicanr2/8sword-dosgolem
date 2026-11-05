@@ -8,15 +8,15 @@ use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
 pub const UI_TEXT: &str =
     "字型 隸書 草書 音樂 開 關 F7存檔 存檔失敗 地圖 移動 方向鍵 Space Esc 遇見怪物 月報 船 STOP";
-struct Pack {
+pub(crate) struct Pack {
     frame: Image,
     tiles: Vec<Image>,
     heroes: Vec<Image>,
-    fonts: Vec<Font>,
-    music: Music,
+    pub(crate) fonts: Vec<Font>,
+    pub(crate) music: Music,
 }
 impl Pack {
-    fn load(root: &Path) -> Result<Self, String> {
+    pub(crate) fn load(root: &Path) -> Result<Self, String> {
         Ok(Self {
             frame: Image::load(&root.join("world-frame.rgba"), 1920, 1200)?,
             tiles: (0..65)
@@ -33,7 +33,7 @@ impl Pack {
         })
     }
 }
-fn compose(
+pub(crate) fn compose(
     pack: &Pack,
     data: &WorldData,
     s: &WorldState,
@@ -131,7 +131,7 @@ fn compose(
     )?;
     Ok(f)
 }
-fn key_motion(key: i32) -> Option<u16> {
+pub(crate) fn key_motion(key: i32) -> Option<u16> {
     Some(match key {
         1073741898 | 1073741919 => 0x4700, // Home / keypad7
         1073741906 | 1073741920 => 0x4800,

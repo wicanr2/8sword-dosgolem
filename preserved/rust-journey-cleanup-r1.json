@@ -1,0 +1,33 @@
+{
+  "status": "passed-scoped-cleanup",
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-journey-r1/go-cache",
+      "files": 1777,
+      "bytes": 156545993
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-journey-r1/native/rust-target",
+      "files": 792,
+      "bytes": 197186785
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-journey-r1/native/gui-missing-art-diagnostic",
+      "files": 1,
+      "bytes": 70
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-journey-r1/native/gui-before-final-core",
+      "files": 51,
+      "bytes": 182659959
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-journey-r1/native/gui-before-footer-fix",
+      "files": 51,
+      "bytes": 182659945
+    }
+  ],
+  "files": 2672,
+  "bytes": 719052752,
+  "kept": "Current native binary, full pack, final GUI, source/evidence and permanent archive; other projects untouched"
+}

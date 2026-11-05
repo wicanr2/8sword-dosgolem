@@ -1,5 +1,18 @@
 fn main() {
     let args: Vec<_> = std::env::args().collect();
+    if args.get(1).is_some_and(|arg| arg == "--journey") {
+        #[cfg(feature = "desktop")]
+        if let Err(e) = eightsword_remake::journey_desktop::run(&args[2..]) {
+            eprintln!("{e}");
+            std::process::exit(1);
+        }
+        #[cfg(not(feature = "desktop"))]
+        {
+            eprintln!("此建置未包含desktop功能");
+            std::process::exit(2);
+        }
+        return;
+    }
     if args.get(1).is_some_and(|arg| arg == "--world-preview") {
         #[cfg(feature = "desktop")]
         if let Err(err) = eightsword_remake::world_desktop::run(&args[2..]) {

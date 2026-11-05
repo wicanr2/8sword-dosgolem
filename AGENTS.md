@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-05 Rust普通遭遇與回場依[031限定驗收](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)完成開發旅程。46測試、320原CPU生成與三份舊結算向量通過；原重複兵種清理是刪隊，不合兵。原起點30民兵正常遇敵、原式戰場、戰中F7冷讀、撤退回場及全滅浪跡，四程序12擷取通過。`tools/rust-native-player.sh journey`啟動；journey.chk保存地圖／軍隊／六資源與typed戰中狀態，不含守軍／物品／營地，也不匯入Go。圖像音訊由Rust直接處理，無Go／PAM執行依賴。[核對](preserved/rust-journey-audit-r1.json)與[保存](preserved/README.md#rust普通遭遇與回場保存)不依賴workplace。下一步原式F2／F3及原店＋增援募兵，不重驗普通遭遇或全量HD。正式197／7／923／535／1071與Go格式保持，CONTEXT為唯一現況。
+
 2026-11-04 Rust世界資料與手動移動依[031限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)完成預覽。八圖直接解碼、880原CPU案例、40測試、兩程序八擷取與F7冷讀通過。Rust直接畫65地形／12主角／原框架，三字型及〈遨遊〉可用；`tools/rust-native-player.sh world`開啟，原run仍為戰鬥樣本。營地／遭遇／上岸／月結停在未提交邊界，七項管理標籤尚未接；world-preview.chk不含軍隊或資源，不是正式世界schema。下一步沿Go既有證據補遭遇／戰果READY，串原式戰場與回場，再接管理／募兵，不重跑移動或HD矩陣。[核對](preserved/rust-world-audit-r1.json)與[保存](preserved/README.md#rust世界資料與移動保存)不依賴workplace；正式197／7／923／535／1071與Go格式保持。CONTEXT仍為唯一現況。
 
 2026-11-04 Rust原生戰中檢查點依[031限定驗收](docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed)完成。35測試、五獨立GUI程序與11擷取通過；普通戰兩路32動作勝利、凝滯額外行動及已扣次選敵冷讀／退款後結果相同，三個存讀點逐RGBA一致。F7／工具列及run --save-dir <既有絕對路徑> --continue可用，保留seed、actor、pending HP、空raw計數、游標、字型及音樂開關。這是可替換開發檢查點，不是Go v5／世界存檔相容；媒體重新開始。入口為[核對](preserved/rust-battle-checkpoint-audit-r2.json)與[保存](preserved/README.md#rust戰中檢查點保存)。下一步Rust世界資料／移動／事件與世界保存，再接原式管理及結局，不重驗全量音畫或戰中矩陣。正式197／7／923／535／1071及Go格式保持；唯一現況見CONTEXT。

@@ -236,3 +236,33 @@ READY補充：沿既有ida-rounds.json的原sub_20724／runtime0F67:21B4，2074B
 [核對](../../preserved/rust-world-audit-r1.json)、[資料工具](../../tools/rust-world.py)、[IDA匯出工具](../../tools/export-rust-world-ida.py)、[原指令向量](../../internal/remake-rust/world-reference.tsv)、[圖片來源](../images/rust-world-preview-r1.json)、[研究](../../RESEARCH-LOG.md#rust世界資料與手動移動)及[永久保存](../../preserved/README.md#rust世界資料與移動保存)為入口。五份IDA輸出中r1為錯誤定位診斷，正式移動與幾何證據取r2至r5；不把r1菜單函式當作移動證據。
 
 正式世界、事件與戰鬥往返保持DRAFT；軍隊、資源、管理／募兵、新遊戲、結局及完整世界存檔尚待。此限定完成不提升為完整可玩或舊進度相容，Go基線與保存格式保持，沒有Release。
+
+## Rust普通遭遇與回場 DRAFT
+
+沿使用者確認的Rust獨立版與原式戰場，本輪接移動、遭遇確認、普通敵軍生成、戰鬥、勝敗／撤退及原生開發保存。來源為既有owned-world-r1的IDA9.4 ida-world-r3.json、030原世界結算CONFORMED與目前Go original_battle_world.go。PAM與正式i64雜湊、IDA MZ base10000h、world runtime0110與DS1E88沿前節。需補敵軍生成原指令對照後才提升該算式的驗收。
+
+### 普通遭遇與開發旅程 READY
+
+證據審查：sub_132E0的13542至136B4為獨立普通敵軍生成；sub_1151C的11713／1177A將先手修飾設0／1，既有Rust回合向量已核對0為玩家先手、1為敵軍先手。拒戰rand/8192等於1才追擊；其餘直接回場。原世界結算依030已證實Go橋接，安全封頂是既有Go工程契約，不稱原版word回繞一致。
+
+- 手動走路仍沿前節。開發旅程在正常遭遇時提交本步位置、步數、探索與兩次規則rand，進確認階段；其餘未知特殊格／月結／上岸保持原未提交邊界。舊world-preview不變。遭遇cue只作識別，不模仿原版臨時替換地圖圖塊的逐相位演出。確認保留兩選項及方向鍵／Enter，拒戰按原追擊商值，不猜補安全逃跑。
+- 普通生成每隊先取a=max(1,rank−rand/5462)，kind=5×(rand/8192)+a+5，count=(rand/1000/a)×(area+1)+10。先生成三隊，再從index3開始檢查rand/4682>index才多生成，最多六隊。勘誤：320組原指令與1364E–136B4原bytes證實重複種類清理不相加，依雙重六格掃描把被刪位置至第4格左移，位置5不清零，掃描仍前進。保留原結果，不自行改善成合兵；若結果仍有重複或非法編成，由既有Controller拒絕，未部分提交。亂數先後保持，不呼叫Go或x86。rank1–5／area0–7，word相容域與未知ID拒絕。
+- 新旅程初值由PAM投影：六隊30民兵、rank1／merit0／DS04F6=100／gold500／leadership100／DS04FC=0，門檻0／2000／5000／8000／12000／30000。數值保留原偏移名稱，不擅自命名未知欄位。敵方施法係數取原初值，玩家術書尚未接管理路徑；不能由該開發入口加入未學術。
+- 勝利依進戰前敵軍算金與command/2戰績，兩項安全封頂30000；撤退只取一次rand，扣gold/(rand/2730+3)。勝利及存活撤退最多升一級，須merit嚴格大於該級門檻；升級04F6與leadership各加100、04FC加新rank×3，均封頂。剩兵依raw穩定緊密化；原世界位置保持。全滅兩選項：回首圖起點40／40、方向3或原地浪跡，空軍隊不再進戰；原回場／重新揭露3×3，不猜補新增部隊。
+- 原生戰場沿目前Rust Controller及同一套原式HD畫布、透明兵種、選敵／攻擊／略過／撤退。所有原25種敵軍都有已批准圖像；敵10／12沿已驗八分派。戰果先顯示，再由正常確認回場；關閉視窗不冒充撤退。沒有另外開卡片戰場。
+- journey.chk是可替換的開發旅程檢查點，與battle.chk／world-preview.chk／Go v5分開。單檔保存地圖、六隊、六資源、遭遇階段與初始敵軍、完整typed Controller／RNG／視窗偏好，最大16384 bytes；地圖與catalog指紋、長度、版本及校驗必須一致。F7在規則邊界保存，冷讀不重新生成敵軍、不重算已付戰果，提交沿既有同目錄lock／sync／rename。此格式只覆蓋本節，不是包含物品、守軍、劇情、營地的正式世界schema，也不匯入舊Go進度。
+- 驗收：固定seed原生成區段與Rust逐隊／後seed比較；Go既有撤退／獎勵與升級向量；往返／中途戰鬥的檢查點與壞狀態拒絕；正常GUI從原起點與原30民兵走到遭遇、進原式戰場撤退、回場F7及另一程序續接。勝利／全滅另以明示軍隊核心或GUI樣本驗，不把增兵樣本稱自然新遊戲。守軍、募兵及完整遊戲另依WORKLIST。
+
+### 普通遭遇與回場限定 CONFORMED
+
+[旅程核心](../../internal/remake-rust/src/journey.rs)及[原生視窗](../../internal/remake-rust/src/journey_desktop.rs)接通原起點、普通遭遇、原式戰場與回場。原25種站姿沿批准的troop／battle素材清單投影，沒有用Go在執行期生成圖片。地圖與戰場共用同一個SDL視窗，音樂切換時清除前一場佇列；沒有x86、Go或PAM執行依賴。
+
+46個Rust測試、[320組新原CPU生成向量](../../internal/remake-rust/generator-reference.tsv)及[三組既有Go世界結算向量](../../internal/remake-rust/settlement-reference.tsv)通過。原重複清理保留刪隊／不合兵的行為，逐隊與最後seed相同。三組世界資源結果含勝利615金／37戰績、撤退459金及升級封頂；撤退另有原版／Go成對收據。只比較該次結算使用的Random.Before／After，不拿原畫面後續ambient seed當規則序列。勝利與兩種全滅去向均由實際Rust Controller產生終局後接世界，勝利軍隊為明示1000野狼測試配置。
+
+[GUI工具](../../tools/rust-journey-gui.py)以seed1及原30民兵起步，正常Space等待第60次出現遭遇，方向／Enter進戰。切隸書／關音樂／F7保存戰中，新程序讀回的完整旅程與原生畫布相同。兩路Esc撤退、Enter回場都保留30民兵、金500→375，完整世界狀態及畫布相同；回場F7再由第三程序冷讀一致。第四程序沿回場進度再次正常遭遇、略過出手至全滅，右鍵選浪跡後回場，軍隊為空且金保持375。四程序12份擷取與SDL讀回相同，沒有RAM／IP或額外增兵注入。
+
+旅程檢查點保存地圖、原軍隊、六資源、初始敵軍、生成seed、遭遇階段及既有完整戰中typed編碼；戰中冷讀不重生敵軍，回場後不重付或重扣戰果。儲存格式與其他兩種開發檢查點分開，損壞、異版、壞編成及失效綁定拒絕。此輪沒有舊Go存檔匯入、完整世界schema或正式發行聲明。
+
+入口為[核對](../../preserved/rust-journey-audit-r1.json)、[資料／保存工具](../../tools/rust-journey.py)、[來源探針](../../internal/ownedworld/rust_journey_reference_test.go)、[成果圖來源](../images/rust-journey-r1.json)、[研究](../../RESEARCH-LOG.md#rust普通遭遇與回場)及[永久保存](../../preserved/README.md#rust普通遭遇與回場保存)。啟動器新增`journey`，舊`run`／`world`保持原樣本職責。原生遭遇提示與戰果文字簡化、主角與兵種用既有站姿，不冒稱完整原版演出或跨整段同狀態對拍。
+
+下一步為原式F2／F3、原店與增援募兵，再接其餘世界事件與結局。守軍、月結、地圖術、未知特殊格、完整新遊戲及完整世界保存仍待；不重開已驗普通遭遇、戰鬥算式或全量HD矩陣。

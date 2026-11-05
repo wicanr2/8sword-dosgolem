@@ -1232,3 +1232,15 @@ Rust執行容器只掛唯讀crate及native子目錄，沒有PAM、Go來源／匯
 `freeze --project /project`固定Rust、Go探針及工具來源。`audit --project /project --out <新JSON>`核對八圖解碼、素材、880向量、測試、GUI畫布與基線。`archive --project /project --archive /project/preserved --out /project/preserved/rust-world-r1.json`保存全部資料，只排除可重生Go／Rust快取；`verify --archive /archive --out <新JSON>`只掛唯讀preserved與單一工具即可逐物件核對。[脫離核對](rust-world-detached-r1.json)、[清理](rust-world-cleanup-r1.json)與[文件核對](rust-world-integrity-r1.json)另存。
 
 還原時按索引把`rust-world-r1/native/`下的binary及pack解壓到同名候選目錄，逐SHA核對並套用記錄權限。使用[啟動器](../tools/rust-native-player.sh)的`world --save-dir <既有可寫絕對路徑>`開啟預覽，F7後關閉，再加`--continue`冷讀。`run`仍開既有戰鬥樣本。world-preview.chk與battle.chk互不覆蓋，完整世界保存與舊Go匯入尚待。GUI只掛native及單一輸入工具；執行期只有Rust、媒體與SDL2／libsndfile。事件邊界會停止，不能把此預覽當完整遊戲，沒有Release。
+
+## Rust普通遭遇與回場保存
+
+[完整索引](rust-journey-r1.json)、[核對](rust-journey-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)及[研究](../RESEARCH-LOG.md#rust普通遭遇與回場)為入口。46測試、320原CPU生成案例、三份既有Go結算向量及四程序12份擷取通過。完整Rust crate、原指令向量與探針、IDA來源匯出、原版／Go結算收據、25種原兵站姿、地圖、OGG、三字型、binary、旅程檢查點及診斷，逐SHA壓縮在本機`preserved/rust-journey-r1/<SHA256>.gz`，不依賴workplace。原PAM／正式i64仍在既有catalog，完整執行期素材與binary不加入Git或公開包。
+
+[資料工具](../tools/rust-journey.py)在Pillow11.3.0-r2、UID1000、network none容器使用。`prepare --project /project`從rust-world-r1永久保存還原基底及既有IDA匯出，投影PAM初值；`media --project /project --assets /assets --out <新JSON>`按已批准troop／battle清單補齊25種原兵種站姿，先驗535素材基線及逐PNG雜湊。`vectors --project /project`恢復三份Go世界結算及一份原版撤退收據，產生固定settlement.tsv。字型由前批[工具](../tools/rust-world.py)的fonts動作，以本批--work補字；原字型完整來源仍依既有catalog保存。
+
+Go探針使用唯讀來源／原版／核心／module cache與可寫批次，`GOMAXPROCS=2 xvfb-run -a go test -p 2 -modfile=/out/probe.mod ./internal/ownedworld -run ^TestRustJourneyReference$ -count=1 -v`，輸出由EIGHTSWORD_RUST_JOURNEY_REFERENCE及PAM由EIGHTSWORD_RUST_WORLD_PAM指定。最後重跑逐bytes相同。`freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核對320向量、三份結算、46測試、完整素材、GUI及正式基線，具體掛載在本批execution.json。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-journey-r1.json`保存資料；`verify --archive /archive --out <新JSON>`只需唯讀preserved與單一工具，即可逐原始／壓縮SHA核對。[脫離核對](rust-journey-detached-r1.json)、[清理](rust-journey-cleanup-r1.json)及[完整性](rust-journey-integrity-r1.json)另存。只排除可重生Go／Rust快取；舊GUI診斷先保存再清除。
+
+目前[啟動器](../tools/rust-native-player.sh)指向本批native。還原索引中`rust-journey-r1/native/`的binary及pack到同名候選路徑，逐SHA核對並套用權限後，使用`journey --save-dir <既有可寫絕對路徑>`；F7後關閉，再加`--continue`續接。`run`與`world`仍開各自舊樣本。journey.chk保存本輪地圖、六隊、六資源、遭遇與typed戰中狀態，不含CPU快照；與另兩個開發檢查點及Go v5分開，尚未接守軍／營地／物品等完整世界狀態，不稱完整遊戲保存。GUI只見native及單一輸入工具，執行期不需Go／PAM／dosgolem。沒有Release。

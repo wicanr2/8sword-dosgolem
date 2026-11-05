@@ -28,10 +28,10 @@ const MAP_SPELLS: [&str; 8] = [
     "涉水術",
     "傳送術",
 ];
-struct SpellView {
-    cursor: usize,
-    animation: Option<(SpellResult, Instant)>,
-    side: Side,
+pub(crate) struct SpellView {
+    pub(crate) cursor: usize,
+    pub(crate) animation: Option<(SpellResult, Instant)>,
+    pub(crate) side: Side,
 }
 fn menu_label(frame: &mut [u8], font: &Font, value: &str, x: i32, y: i32) -> Result<(), String> {
     let mut pos = x;
@@ -259,7 +259,7 @@ fn battle_controller(
     };
     c.map_err(|e| format!("{e:?}"))
 }
-fn compose(
+pub(crate) fn compose(
     pack: &MediaPack,
     catalog: &Catalog,
     c: &Controller<'_>,

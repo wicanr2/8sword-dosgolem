@@ -2,7 +2,7 @@
 set -euo pipefail
 task_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 task_crate="$task_root/internal/remake-rust"
-task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-world-r1/native"
+task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-journey-r1/native"
 task_image=mm45-rust-desktop:1.99.1-r3
 test -d "$task_crate"; test -d "$task_native"
 [[ "$(id -u)" == 1000 ]]
@@ -23,8 +23,9 @@ case "$task_action" in
       cp /out/rust-target/release/8sword-remake /out/8sword-remake
     fi' sh "$task_action"
   ;;
- run|world)
+ run|world|journey)
   task_mode=--battle; if [[ "$task_action" = world ]]; then task_mode=--world-preview; fi
+  if [[ "$task_action" = journey ]]; then task_mode=--journey; fi
   test -f "$task_native/8sword-remake"; test -d "$task_native/pack"
   test -d /tmp/.X11-unix; test -n "${DISPLAY:-}"
   task_run_args=(); task_save_bound=false
@@ -54,5 +55,5 @@ case "$task_action" in
    "${task_options[@]}" --mount "type=bind,src=$task_native/8sword-remake,dst=/player,readonly" \
    --mount "type=bind,src=$task_native/pack,dst=/media,readonly" "$task_image" /player "$task_mode" --assets /media "${task_run_args[@]}"
   ;;
- *) echo '用法：bash tools/rust-native-player.sh test|build|run|world [--mute] [--save-dir <既有絕對路徑> [--continue]]；run另可用--weak|--spells|--taoist|--enemy-spells' >&2; exit 2 ;;
+ *) echo '用法：bash tools/rust-native-player.sh test|build|run|world|journey [--mute] [--save-dir <既有絕對路徑> [--continue]]；run另可用--weak|--spells|--taoist|--enemy-spells' >&2; exit 2 ;;
 esac

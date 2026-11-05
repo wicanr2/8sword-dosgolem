@@ -1,0 +1,6 @@
+{
+  "status": "passed-detached-rust-journey",
+  "files": 347,
+  "objects": 232,
+  "method": "rust-journey.py verify；只掛唯讀preserved及單一工具，輸出到容器tmpfs，逐原始及壓縮SHA核對。此收據抄錄工具標準輸出。"
+}
