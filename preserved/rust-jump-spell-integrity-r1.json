@@ -1,0 +1,26 @@
+{
+  "status": "passed-rust-jump-spell-integrity",
+  "binary_sha256": "b12085e6dacdc3a2118e7d2e2a9af62cbe3531a5aa97e84b4d52ddbb1af20e20",
+  "files": 337,
+  "objects": 292,
+  "index_sha256": "6c07f311b9601273d83f703c05297276a75ea1d09526f8d11b06fa90e603fd6a",
+  "audit_sha256": "96516c64c7a2739b7b0e5a605111eb8564aac54cac04961efbf69075f5abf0c4",
+  "image_sha256": "f417291d0c384b8b4cb08b2b752cb9bf0d3bf789b15f128bc18a0b21f5a3d91a",
+  "source_and_eight_tools_match_archive": true,
+  "linked_targets": 42,
+  "positive_control": "README -> CONTEXT.md found before scoped new-link verification; report self-link resolved after write",
+  "root_owned_or_md_directories": 0,
+  "python_ast": "passed",
+  "bash_syntax": "passed",
+  "rust_cache_removed": true,
+  "no_new_image": true,
+  "containers": "All batch containers used --rm; no project container remains; other projects untouched",
+  "limits": [
+    "Controlled actual shop initial position only; no natural cross-area acquisition",
+    "Original1445cases skip GUI and12446 tail",
+    "Flying cold GUI proof uses actual takeoff auto checkpoint; no runtime memory/IP injection",
+    "250ms cadence and approved hero reuse are native presentation; original fourth animation not reproduced",
+    "Special shoreline/natural world progression remains pending"
+  ],
+  "resolution_backlink": "passed JUMP-RESOLVED-20261105: same fixed PAM SHA/IDA base; old DRAFT references current CONFORMED and player chain"
+}

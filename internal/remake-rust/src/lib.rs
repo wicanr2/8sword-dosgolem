@@ -14,6 +14,7 @@ pub mod formation;
 pub mod journey;
 #[cfg(feature = "desktop")]
 pub mod journey_desktop;
+pub mod jump_spell;
 pub mod management;
 #[cfg(feature = "desktop")]
 pub(crate) mod management_ui;

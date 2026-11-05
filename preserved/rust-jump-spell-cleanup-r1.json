@@ -1,0 +1,8 @@
+{
+  "status": "passed-rust-jump-spell-cache-cleanup",
+  "removed": "workplace/probe-20261023/graphics-first/battle-r1/rust-jump-spell-r1/native/rust-target",
+  "files": 954,
+  "bytes": 341580894,
+  "archive_verified_before_deletion": true,
+  "kept": "Full sources,binary,138media,original states/RAM/IDA,1445case vectors,all native/scaled proof and harness race evidence; only rebuildable Rust cache removed"
+}

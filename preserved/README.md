@@ -1385,6 +1385,21 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 
 `freeze --project /project`固定來源，`audit --project /project --out <新JSON>`核來源、102測試、原bytes／prompt、字形、同幀SDL、縮放保存及正式基線；`images`產生[成果圖](../docs/images/rust-water-spell-r1.png)與[來源](../docs/images/rust-water-spell-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-water-spell-r1.json`保存全批；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs核對逐物件。[脫離核對](rust-water-spell-detached-r1.json)、[清理](rust-water-spell-cleanup-r1.json)與[完整性](rust-water-spell-integrity-r1.json)保存收尾結果。
 
-目前[啟動器](../tools/rust-native-player.sh)指向rust-water-spell-r1/native。依索引還原native binary／pack至同名路徑，核SHA與mode，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。涉水在F4，普通上岸左右選是／否，Enter確認、Esc否；F7保存待選與已揭地形。v9讀v1至v8，WorldState與Go格式不改。[實作](../internal/remake-rust/src/travel_spells.rs)、[測試](../internal/remake-rust/src/water_spell_tests.rs)與[向量](../internal/remake-rust/shore-reference.tsv)可回查；特殊地點上岸、跳躍與自然出口仍待。
+本批歷史路徑為rust-water-spell-r1/native；現行[啟動器](../tools/rust-native-player.sh)與還原入口見[Rust跳躍術保存](#rust跳躍術保存)。依索引還原native binary／pack至同名路徑，核SHA與mode，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。涉水在F4，普通上岸左右選是／否，Enter確認、Esc否；F7保存待選與已揭地形。v9讀v1至v8，WorldState與Go格式不改。[實作](../internal/remake-rust/src/travel_spells.rs)、[測試](../internal/remake-rust/src/water_spell_tests.rs)與[向量](../internal/remake-rust/shore-reference.tsv)可回查；特殊地點上岸、跳躍與自然出口仍待。
 
 本批466檔／321物件，壓縮40777685 bytes。脫離workplace逐物件核對後，只移除1251份可重建Rust快取，共360379048 bytes。完整原始資料、媒體、執行檔與所有來源／證據保持；沒有建立新image或留下本案容器。
+
+
+## Rust跳躍術保存
+
+[完整索引](rust-jump-spell-r1.json)、[核對](rust-jump-spell-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#跳躍術限定-conformed)與[研究](../RESEARCH-LOG.md#rust跳躍術)為入口。109測試、1445組新dosgolem起跳／位移／落地／探索向量、七IDA函式393行MZ bytes、四程序13份SDL擷取及預設縮放通過。完整crate、八工具、138媒體、binary、Rust例程、v9／v10進度、原版快照／RAM／IDA、首次途中滑鼠存檔競速的腳本與擷取，逐SHA保存在本機`preserved/rust-jump-spell-r1/<SHA256>.gz`，不依賴workplace。完整原始資料與runtime不入Git或公開包，沒有Release。
+
+[資料工具](../tools/rust-jump-spell.py)在Pillow11.3.0-r2、UID1000、network none使用。在既有battle-r1建立rust-jump-spell-r1/evidence及native/pack後，`prepare --project /project`還原上批138媒體、真正v9與map-3快照。[IDA匯出](../tools/export-rust-jump-ida.py)使用本案已驗py312-v1映像、唯讀官方PAM.i64及原PAM；[原指令探針](../tools/rust-jump-reference.go)在Go1.24.13、固定923來源的dosgolem唯讀掛載下，執行B85、C32、1FBB、2014與13B40。1445組明示起始旗標、座標、地形／箱量與鍵碼，核局部位移／落地與700-byte探索遮罩，沒有原版GUI、12446尾段或整段亂數對拍聲明。`reference`核activation與向量形狀，生成資料後將jump-reference.tsv複製至crate；字型沿rust-world.py的fonts補字。
+
+建置使用mm45-rust-desktop:1.99.1-r3，只掛crate唯讀及native可寫，以offline／locked桌面模式編譯玩家與[開發例程](../internal/remake-rust/examples/jump_spell_fixture.rs)。例程`<媒體> <v9進度> <新目錄>`只移到原跳躍商店；`<媒體> <進度> inspect`只讀回原生保存階段／位置／hash。後者用來核起跳已提交檔，沒有調整phase、IP、次數或RNG。[一般GUI](../tools/rust-jump-spell-gui.py)與[縮放GUI](../tools/rust-jump-spell-scaled.py)各只掛native與單一腳本，看不到Go／PAM／RAM。首次在三格跳躍中用滑鼠F7時跨過落地，最終工具立即保存起跳自動提交的檔案再做較慢操作；產品binary與250毫秒節奏保持。掛載、配額及分類見保存內execution.json。
+
+`freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核來源、109測試、原bytes、同幀SDL、字形、縮放保存與正式基線。`images`產生[成果圖](../docs/images/rust-jump-spell-r1.png)與[來源](../docs/images/rust-jump-spell-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-jump-spell-r1.json`保存全批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-jump-spell-detached-r1.json)、[清理](rust-jump-spell-cleanup-r1.json)與[完整性](rust-jump-spell-integrity-r1.json)保存收尾結果。
+
+現行[啟動器](../tools/rust-native-player.sh)指向rust-jump-spell-r1/native。依索引還原native binary／pack至同名路徑，核SHA及mode，再以`journey --save-dir <既有可寫絕對路徑>`開啟，加`--continue`冷讀。原店50金，F4跳躍後選方向；途中自動前進，不接受改向。F7／工具列及階段自動保存沿既有進度目錄，v10讀v1至v9，WorldState與Go格式保持。[實作](../internal/remake-rust/src/jump_spell.rs)、[測試](../internal/remake-rust/src/jump_spell_tests.rs)與[向量](../internal/remake-rust/jump-reference.tsv)可回查；自然世界進度與特殊地點上岸仍待。
+
+本批337檔／292物件，壓縮41008140 bytes。脫離workplace逐物件核對後，只移除954份可重建Rust快取，共341580894 bytes。完整來源、媒體、執行檔及證據保持，沒有建立新image或留下本案容器。

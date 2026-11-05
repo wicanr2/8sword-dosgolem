@@ -5,6 +5,7 @@ pub struct Travel {
     /// Native modal transaction: its single charge is already committed.
     pub teleport: Option<u8>,
     pub shore: Option<Shore>,
+    pub jump: crate::jump_spell::Jump,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Shore {

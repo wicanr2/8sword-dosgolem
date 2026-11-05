@@ -24,6 +24,7 @@ pub enum Page {
     Bird,
     Teleport,
     Shore,
+    Flight,
 }
 pub struct Manager {
     pub page: Page,
@@ -47,6 +48,13 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if matches!(j.travel_spell.jump, crate::jump_spell::Jump::Flying { .. }) {
+            self.page = Page::Flight;
+            return;
+        }
+        if self.page == Page::Flight {
+            self.page = Page::World;
+        }
         if j.travel_spell.shore.is_some() {
             self.page = Page::Shore;
             return;
@@ -88,6 +96,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Flight => Some(Screen::Report),
             Page::Shore => Some(Screen::Shore),
             Page::Teleport => Some(Screen::Teleport),
             Page::Bird => Some(Screen::Minimap),
@@ -199,6 +208,9 @@ impl Manager {
                     } else if self.selected == 4 {
                         j.cast_stop_time()?;
                         self.page = Page::World;
+                    } else if self.selected == 3 {
+                        j.cast_jump()?;
+                        self.page = Page::World;
                     } else if self.selected == 6 {
                         j.cast_water()?;
                         self.page = Page::World;
@@ -236,6 +248,9 @@ impl Manager {
                 self.page = Page::World;
                 self.message.clear();
             }
+            return Ok(());
+        }
+        if self.page == Page::Flight {
             return Ok(());
         }
         if self.page == Page::Shore {
@@ -429,7 +444,7 @@ pub fn draw(
     data: &WorldData,
     marker_light: bool,
 ) -> Result<(), String> {
-    if ui.page == Page::World {
+    if matches!(ui.page, Page::World | Page::Flight) {
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];

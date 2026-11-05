@@ -292,6 +292,14 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn jump_fixture(tile: u8) -> Self {
+        let mut d = Self::flat_fixture();
+        for m in &mut d.maps {
+            m.fill(tile);
+        }
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn water_event_fixture(tile: u8) -> Self {
         let mut d = Self::water_fixture();
         d.maps[0][40 * 70 + 43] = tile;

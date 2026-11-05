@@ -118,6 +118,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut save_requested = false;
     let view_clock = Instant::now();
     let mut bridge_flash: Option<Instant> = None;
+    let mut jump_at = Instant::now() + Duration::from_millis(250);
     'game: loop {
         let now = Instant::now();
         let marker_light = view_clock.elapsed().as_millis() / 300 % 2 == 0;
@@ -127,6 +128,14 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let notice_before = journey.resource_notice.is_some();
         let survey_before = journey.survey.clone();
         let travel_before = journey.travel_spell.clone();
+        if matches!(
+            journey.travel_spell.jump,
+            crate::jump_spell::Jump::Flying { .. }
+        ) && now >= jump_at
+        {
+            journey.advance_jump(&data)?;
+            jump_at = now + Duration::from_millis(250);
+        }
         let mut snap = false;
         ui.sync(&journey);
         for e in sdl.events() {
@@ -312,6 +321,14 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 }
             }
         }
+        if !matches!(travel_before.jump, crate::jump_spell::Jump::Flying { .. })
+            && matches!(
+                journey.travel_spell.jump,
+                crate::jump_spell::Jump::Flying { .. }
+            )
+        {
+            jump_at = now + Duration::from_millis(250);
+        }
         if let Some(cp) = &mut journey.battle {
             cp.view.font = journey.world.font;
             cp.view.music = journey.world.music;
@@ -428,6 +445,14 @@ pub fn run(args: &[String]) -> Result<(), String> {
             )?
         };
         if journey.battle.is_none() && matches!(ui.page, Page::World | Page::ResourceResult) {
+            if journey.travel_spell.jump != crate::jump_spell::Jump::Idle {
+                map.spell_cue(
+                    &mut frame,
+                    &journey.world,
+                    Duration::from_millis(240),
+                    [255, 205, 82],
+                );
+            }
             if journey.world.boat > 0 {
                 map.spell_cue(
                     &mut frame,
@@ -552,6 +577,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         fill(&mut frame, [0, 1250, 1920, 70], [9, 36, 29]);
         let (ok, back, skip) =
             match ui.page {
+                Page::Flight => ("跳躍中", "", ""),
                 Page::Shore => ("確認選擇", "不上岸", ""),
                 Page::Teleport => ("確認傳送", "取消傳送", ""),
                 Page::Magic => ("施展法術", "返回地圖", ""),
@@ -765,7 +791,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
             journey.resource_notice.as_ref().map(|n| n.spell)
         );
         let status = format!(
-            "{status}boat\t{}\nshore_yes\t{:?}\narea\t{}\nteleport_target\t{:?}\nstopped\t{}\ntempo\t{}\nbird\t{}\nexplored\t{}\nworld_hash\t{:016x}\n",
+            "{status}jump\t{:?}\nboat\t{}\nshore_yes\t{:?}\narea\t{}\nteleport_target\t{:?}\nstopped\t{}\ntempo\t{}\nbird\t{}\nexplored\t{}\nworld_hash\t{:016x}\n",
+            journey.travel_spell.jump,
             journey.world.boat,
             journey.travel_spell.shore.map(|p| p.yes),
             journey.world.area,

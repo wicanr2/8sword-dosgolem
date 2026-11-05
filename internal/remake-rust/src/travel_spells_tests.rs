@@ -117,7 +117,7 @@ fn malformed_pending_fields_reject_and_real_v7_layout_migrates() {
     let mut j = ready(&d);
     j.magic.charges[7] = 0;
     let mut v7 = j.encode(&c, &d).unwrap();
-    v7.truncate(v7.len() - 12);
+    v7.truncate(v7.len() - 15);
     v7[..8].copy_from_slice(b"8SJRN007");
     v7.extend(checksum(&v7).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &v7).unwrap(), j);
@@ -138,12 +138,12 @@ fn malformed_pending_fields_reject_and_real_v7_layout_migrates() {
                     moved: false,
                 })
             }
-            _ => bad.magic.charges[3] = 1,
+            _ => bad.magic.charges[3] = 4,
         }
         assert!(bad.encode(&c, &d).is_err(), "{n}");
     }
     let mut raw = j.encode(&c, &d).unwrap();
-    let at = raw.len() - 12;
+    let at = raw.len() - 15;
     raw[at] = 254;
     let end = raw.len() - 8;
     let hash = checksum(&raw[..end]);

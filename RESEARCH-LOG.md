@@ -3446,3 +3446,28 @@ PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、
 追加勘誤：首次原生試作只在上岸結果後揭圖，漏掉原prompt前的sub_11F60／13B40。新查直接寫入端足以否定「待選world_hash完全不變」的驗收假設；修正為只保留位置／步數／RNG／actions，探索允許增加。舊來源、binary、完整視窗與九欄前版向量另存本批，不以改寫歷史隱去差異。
 
 原商店位於第5區34／44與第8區35／38，分別受山地／竹林包圍。開發例程先以真正v8只移到原商店實購，再讀實購已施法進度，只移到同區原圖普通水岸。兩次都是明示測試位置，沒有改原圖、資源、兵種、次數或RNG。這不構成自然取得／自然離店的證據。[Rust例程](internal/remake-rust/examples/water_spell_fixture.rs)不連入玩家旗標；正式執行直接由Rust處理音畫、狀態、輸入與保存，沒有Go／DOS runtime。
+
+
+## Rust跳躍術
+
+2026-11-05。PAM.AY SHA256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，官方唯讀PAM.i64 SHA256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4 py312-v1沿本案已驗映像，資料庫521函式不改名，另複製tmp後匯出七函式393行。位址採IDA MZ base10000h；runtime CS0110 IP=IDAlinear−10000h，DS1E88偏移另列。[匯出器](tools/export-rust-jump-ida.py)、[原指令探針](tools/rust-jump-reference.go)、[資料／核對工具](tools/rust-jump-spell.py)與[永久保存](preserved/README.md#rust跳躍術保存)為入口。
+
+| 等級 | 原始定位與語意 | 證據與限制 |
+|---|---|---|
+| 已證實 | 16908設DS56CC=1，168F5扣一次；10B85至10B8C把1變2。 | 原bytes與既有dosgolem map-3快照。 |
+| 已證實 | 10B76至10B92在2時不取新鍵；10C32沿舊方向移一格。10BBC至10BC7在2時跳過12446。 | 完整控制流；途中及落地不走12446的時鐘、RNG、地點／遇敵尾段。沒有整段原版GUI亂數序列聲明。 |
+| 已證實 | 11FBB至11FDA只於有效圖形1或3至10清0。12014於120A0至120A7按原寶箱量，把空箱59回1，未領箱回59。 | 原指令以受控欄位跑B85、C32、1FBB、2014及13B40；1445組包含17組地形／箱量、八方向／Space、五座標與兩種起始階段，見[向量](internal/remake-rust/jump-reference.tsv)。 |
+| 已證實 | 每格經13B40揭3×3；10D64至10D6B在非移動鍵時把2退回1。 | 1445組700-byte探索遮罩hash同Rust；Space委派既有原生尾段，其他非移動鍵未提升原版時鐘對拍。 |
+| 原生保存契約 | v10保留Idle／Ready／Flying舊鍵，讀v1至v9；飛行不允許玩法輸入改向。 | [實作](internal/remake-rust/src/jump_spell.rs)、[測試](internal/remake-rust/src/jump_spell_tests.rs)。途中保存是原生擴充，原版飛行迴圈不讀F7。 |
+| 原生呈現近似 | 每格250毫秒、金色光環、批准主角圖重用。 | 沒有原版wall-clock、第四動畫姿或完整原版畫面一致聲明；不為硬體時序另開RE。 |
+
+無落點時原旗標2保持，自動前進按70／80環繞；Rust逐幀有界計算並保留相同行為，不用任意步數限制取消跳躍。斜向560格循環的3×3覆蓋2800格，由70與80的最大公因數10、五個鄰格餘數類導出，並驗保存與RNG不變。原指令探針的飛行起點與地形是明示受控欄位，只證明局部規則，不冒稱所有組合都自然可達。
+
+GUI只把真正v9起始位置移到第4區67／70原跳躍店。實購後75金、30民兵與原RNG保持；向西越兩山格後在64／70落地，全程不再搬位置。原商店起的購買／使用／離店已驗，沒有自然跨區抵達的聲明。[開發例程](internal/remake-rust/examples/jump_spell_fixture.rs)另提供只讀檢查進度，沒有新增玩家旗標。完整音畫與原版資料保持本機，不入公開封包。
+
+
+跳躍回填台帳依`re-resolution-backlinks.md`核對；不可變鍵沿本節完整PAM.AY SHA256與IDA MZ base10000h，沒有跨overlay配對。
+
+| 不可變鍵 | 語意與等級 | 舊規格／勘誤標記 | 新證據／玩家鏈 |
+|---|---|---|---|
+| DOS／PAM.AY `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`／IDA10B38、10C32、11F60／runtime DS56CC | 待跳、自動移動與有效圖形落地，已證實 | 031移動法術DRAFT，`JUMP-RESOLVED-20261105` | 031跳躍術限定CONFORMED；實購、越山、途中冷讀及落地普通移動 |

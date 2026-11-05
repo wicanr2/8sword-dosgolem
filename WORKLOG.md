@@ -3387,3 +3387,18 @@ Rust接原店實購、F4、藍色光環、一般水岸詢問、拒絕受阻尾�
 [核對](preserved/rust-water-spell-audit-r1.json)、[完整索引](preserved/rust-water-spell-r1.json)、[脫離核對](preserved/rust-water-spell-detached-r1.json)、[清理](preserved/rust-water-spell-cleanup-r1.json)與[完整性](preserved/rust-water-spell-integrity-r1.json)為入口。466檔／321物件、壓縮40777685 bytes完整保存於本機preserved；完整原始資料與runtime不入Git。核對後只移除1251份可重建Rust快取360379048 bytes，約343.7 MiB。來源、138媒體、執行檔及全部證據保留。本批--rm容器均結束，其他專案不動，沒有新image或Release。
 
 本輪基準HEAD為e8859d4564ba4ffb9c8f7f32160a9312ae380aca。實作、文件、索引及成果圖同提交推送origin/main，實際SHA見Git歷程。下一步跳躍、特殊地點上岸與自然出口／世界事件；不重開已驗HD、普通戰及一般涉水矩陣。
+
+
+## 2026-11-05 Rust跳躍術
+
+使用者繼續既有Rust重製，沿復古遊戲路由載入spec-gated、文件職責與verification／README規則，並用IDA9.4補原跳躍控制流及空寶箱。七函式393行MZ bytes保留原名、operand、xref與位址空間；原map-3快照確認一次扣次。新dosgolem跑B85、C32、1FBB、2014及13B40，1445組控制欄位涵蓋17地形／箱量、Ready／Flying、八方向／Space與五組座標；位移、有效圖形、落地旗標及700-byte探索遮罩同Rust。原版GUI與12446尾段沒有新整段對拍。
+
+Rust接Idle／Ready／Flying舊鍵、原店50金／F4、八方向越障、逐格揭圖、空箱落地與途中保存；v10讀v1至v9。飛行不走普通步數／RNG／地點尾段，沒有合適地面時依原70／80環繞，不補停止規則。250毫秒每格、金色標記與批准主角圖重用為原生呈現，原第四姿未另製。其他功能鍵沿既有原生UI，不稱原版非移動鍵時鐘完整對拍。
+
+真正v9只移到第4區67／70原商店，實購後75金、30民兵、108步及已耗次資料保持。Ready Space再開原店，向西按一次穿66／70與65／70兩山格，在64／70草地落地。起跳已提交檔實際為66／70、Flying舊鍵19200；另一程序忽略改向／Enter，續跳到同一落點，state_hash及完整畫布相同。落地冷讀F2，再正常走63／70才扣107步；預設2／3縮放滑鼠保存逐bytes等於原生尺寸落地分支。沒有第二次位置改動或自然跨區抵達聲明。
+
+109測試、1445原指令向量、self-check、四程序13SDL同幀讀回、三字型及預設縮放通過。舊壞資料測試把charge3當未接，隨支援提升改驗跳躍容量超額；最終109測試乾淨通過。首次途中滑鼠F7與落地競速而取得Idle，保留腳本、完整擷取及檔案；最終工具立即保留實際起跳自動提交檔，再做較慢操作，同binary與250毫秒節奏保持。GUI飛行冷讀證據使用自動保存，不以事後改記憶體、IP或方向取得。最終建置僅見crate唯讀／native可寫，GUI僅見native及單一腳本，沒有PAM／RAM／Go。
+
+[核對](preserved/rust-jump-spell-audit-r1.json)、[完整索引](preserved/rust-jump-spell-r1.json)、[脫離核對](preserved/rust-jump-spell-detached-r1.json)、[清理](preserved/rust-jump-spell-cleanup-r1.json)與[完整性](preserved/rust-jump-spell-integrity-r1.json)為入口。337檔／292物件、壓縮41008140 bytes完整保存在本機preserved，完整原始資料與runtime不入Git。核對後只移除954份可重建Rust快取341580894 bytes，約325.8 MiB。來源、138媒體、binary與全部證據保留。本批--rm容器均結束，其他專案不動，沒有新image或Release；197來源七程式、923核心、535素材、1071美術與Go格式保持。
+
+本輪基準HEAD為22c4e85995f07d81082d655f75cbb436c30823cb。實作、文件、索引及成果圖同提交推送origin/main，實際SHA見Git歷程。八地圖術有基本效果，下一步特殊地點上岸、自然出口與世界事件，不重開已驗HD、普通戰及基本法術矩陣。

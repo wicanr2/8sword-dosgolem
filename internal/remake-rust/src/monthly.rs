@@ -123,6 +123,14 @@ impl<'a> Journey<'a> {
     ) -> Result<Option<Boundary>, String> {
         let view = self.magic.view(d)?;
         let mut s = self.clone();
+        if s.phase() == "world"
+            && s.travel_spell.jump == crate::jump_spell::Jump::Ready
+            && key != 0x3920
+        {
+            s.jump_move(&view, key)?;
+            *self = s;
+            return Ok(None);
+        }
         let out = s.walk(&view, key)?;
         if out == Some(Boundary::BoatExit) && s.world.plain_shore(&view, key)? {
             s.world = s.world.prepare_shore(&view, key)?;
@@ -165,6 +173,10 @@ impl<'a> Journey<'a> {
             || self.survey.bird
             || self.travel_spell.teleport.is_some()
             || self.travel_spell.shore.is_some()
+            || matches!(
+                self.travel_spell.jump,
+                crate::jump_spell::Jump::Flying { .. }
+            )
         {
             return Err("不在月結邊界".into());
         }

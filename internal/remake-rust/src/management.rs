@@ -147,6 +147,10 @@ impl<'a> Journey<'a> {
             || self.survey.bird
             || self.travel_spell.teleport.is_some()
             || self.travel_spell.shore.is_some()
+            || matches!(
+                self.travel_spell.jump,
+                crate::jump_spell::Jump::Flying { .. }
+            )
             || slot >= 6
             || self.army[slot].count == 0
         {
