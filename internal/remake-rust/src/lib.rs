@@ -34,6 +34,7 @@ pub mod treasure;
 pub mod world;
 #[cfg(feature = "desktop")]
 pub mod world_desktop;
+pub mod world_exits;
 pub mod world_magic;
 
 #[cfg(test)]

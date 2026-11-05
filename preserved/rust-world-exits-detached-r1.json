@@ -1,0 +1,15 @@
+{
+  "status": "passed-detached-rust-world-exits",
+  "files": 399,
+  "objects": 321,
+  "mounts": ["preserved:/archive:ro", "tools/rust-world-exits.py:/verify.py:ro", "tmpfs:/report:rw"],
+  "uid": 1000,
+  "network": "none",
+  "restore_without_workplace": {
+    "status": "passed-restore-without-workplace",
+    "files": 139,
+    "binary_sha256": "6b2e22c67ad34a953949f80383fa5988f5135aa8d987f35cc3708fde728617ac",
+    "binary_mode": "0o755",
+    "mounts": ["preserved:/project/preserved:ro", "tools:/project/tools:ro", "tmpfs:/restored:rw"]
+  }
+}

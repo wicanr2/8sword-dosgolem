@@ -1400,6 +1400,20 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 
 `freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核來源、109測試、原bytes、同幀SDL、字形、縮放保存與正式基線。`images`產生[成果圖](../docs/images/rust-jump-spell-r1.png)與[來源](../docs/images/rust-jump-spell-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-jump-spell-r1.json`保存全批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-jump-spell-detached-r1.json)、[清理](rust-jump-spell-cleanup-r1.json)與[完整性](rust-jump-spell-integrity-r1.json)保存收尾結果。
 
-現行[啟動器](../tools/rust-native-player.sh)指向rust-jump-spell-r1/native。依索引還原native binary／pack至同名路徑，核SHA及mode，再以`journey --save-dir <既有可寫絕對路徑>`開啟，加`--continue`冷讀。原店50金，F4跳躍後選方向；途中自動前進，不接受改向。F7／工具列及階段自動保存沿既有進度目錄，v10讀v1至v9，WorldState與Go格式保持。[實作](../internal/remake-rust/src/jump_spell.rs)、[測試](../internal/remake-rust/src/jump_spell_tests.rs)與[向量](../internal/remake-rust/jump-reference.tsv)可回查；自然世界進度與特殊地點上岸仍待。
+本批歷史路徑為rust-jump-spell-r1/native，現行啟動與還原見[Rust自然出口與跳躍遭遇保存](#rust自然出口與跳躍遭遇保存)。依本批索引還原native binary／pack至同名路徑，核SHA及mode，再以`journey --save-dir <既有可寫絕對路徑>`開啟，加`--continue`冷讀。原店50金，F4跳躍後選方向；途中自動前進，不接受改向。F7／工具列及階段自動保存沿既有進度目錄，v10讀v1至v9，WorldState與Go格式保持。[實作](../internal/remake-rust/src/jump_spell.rs)、[測試](../internal/remake-rust/src/jump_spell_tests.rs)與[向量](../internal/remake-rust/jump-reference.tsv)可回查；自然世界進度與特殊地點上岸仍待。
 
 本批337檔／292物件，壓縮41008140 bytes。脫離workplace逐物件核對後，只移除954份可重建Rust快取，共341580894 bytes。完整來源、媒體、執行檔及證據保持，沒有建立新image或留下本案容器。
+
+## Rust自然出口與跳躍遭遇保存
+
+[完整索引](rust-world-exits-r1.json)、[核對](rust-world-exits-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#自然出口與跳躍遭遇限定-conformed)及[研究](../RESEARCH-LOG.md#rust自然出口與跳躍遭遇)為現行入口。116測試、468原指令出口數值、540受控遭遇prefix、十函式996行MZ bytes及六程序16份SDL擷取通過。完整crate、工具、138媒體、binary、v10／待月報／待跳躍遭遇進度與原版／GUI證據，逐SHA保存本機`preserved/rust-world-exits-r1/<SHA256>.gz`，刪除workplace仍能還原。完整原始素材與runtime不進Git或Release。
+
+[資料工具](../tools/rust-world-exits.py)限Pillow11.3.0-r2、UID1000、network none使用。`prepare --project /project`從上批還原138媒體與真正v10。原版對照由[IDA匯出](../tools/export-rust-world-exits-ida.py)及[原指令探針](../tools/rust-world-exits-reference.go)重生；後者沿固定dosgolem核心、Go1.24.13與唯讀PAM，執行實際10BDC／10C32／12649..126E3及139F2。出口跳過明列loader／draw／music IO，遭遇明示兩個roll取代_rand，停在敵軍／GUI生成前。原DB／PAM雜湊、位址基準、掛載及配額見保存內execution.json及ida-exits.json。
+
+最終建置用mm45-rust-desktop:1.99.1-r3、offline／locked，只掛crate唯讀與native可寫；[開發例程](../internal/remake-rust/examples/world_exits_fixture.rs)不進玩家入口，明示位置、month remaining1或jump Ready／固定seed。真正v10的資源／軍隊保持，未稱自然取得。[GUI](../tools/rust-world-exits-gui.py)只掛native及單一腳本，不能看PAM／Go／RAM；鍵鼠操作後核月報、遭遇提示與續跳的保存／獨立冷讀。舊跳躍RNG保持已依031勘誤，1445局部向量保持原證據範圍。
+
+`freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核116測試、來源／MZ bytes／SDL與正式基線，`images`產生[成果圖](../docs/images/rust-world-exits-r1.png)及[來源](../docs/images/rust-world-exits-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-world-exits-r1.json`保存本批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件查核。[脫離核對](rust-world-exits-detached-r1.json)、[清理](rust-world-exits-cleanup-r1.json)與[完整性](rust-world-exits-integrity-r1.json)記錄收尾。
+
+現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-world-exits-r1/native。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-world-exits.py restore --project /project`，從本批永久物件還原binary與138媒體，核SHA及mode。再以`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`啟動，已有進度加`--continue`。v10讀v1至v9；WorldState與Go保存不改，無新增產品測試旗標。特殊地點上岸、空軍隊失金、七寶物、守軍／八劍、日曆及結局仍待。
+
+本批399檔／321物件，壓縮43210876 bytes；脫離workplace核對及139個執行期檔案的獨立還原均通過。只刪本批1454份可重建Rust快取，共421723535 bytes，約402.2 MiB。完整來源、媒體、binary與證據保留，未建立新image，本案容器均已結束。

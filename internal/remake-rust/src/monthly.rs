@@ -146,6 +146,11 @@ impl<'a> Journey<'a> {
             *self = s;
             return Ok(None);
         }
+        if let Some(Boundary::Terrain(tile @ (49 | 50))) = out {
+            s.cross_exit(d, key, tile, c)?;
+            *self = s;
+            return Ok(None);
+        }
         if out == Some(Boundary::Terrain(59)) {
             s.open_treasure(d, key, c)?;
             *self = s;

@@ -48,7 +48,7 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
-        if matches!(j.travel_spell.jump, crate::jump_spell::Jump::Flying { .. }) {
+        if j.phase() == "jump-flight" {
             self.page = Page::Flight;
             return;
         }

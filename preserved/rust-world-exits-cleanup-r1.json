@@ -1,0 +1,12 @@
+{
+  "status": "passed-scoped-cache-cleanup",
+  "removed": "workplace/probe-20261023/graphics-first/battle-r1/rust-world-exits-r1/native/rust-target",
+  "files": 1454,
+  "bytes": 421723535,
+  "archive_files": 399,
+  "archive_objects": 321,
+  "archive_compressed_bytes": 43210876,
+  "kept": "full source,138 media,binary,fixtures,original and GUI evidence",
+  "other_projects_untouched": true,
+  "new_images": false
+}

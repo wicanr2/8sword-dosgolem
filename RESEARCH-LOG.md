@@ -3471,3 +3471,24 @@ GUI只把真正v9起始位置移到第4區67／70原跳躍店。實購後75金�
 | 不可變鍵 | 語意與等級 | 舊規格／勘誤標記 | 新證據／玩家鏈 |
 |---|---|---|---|
 | DOS／PAM.AY `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`／IDA10B38、10C32、11F60／runtime DS56CC | 待跳、自動移動與有效圖形落地，已證實 | 031移動法術DRAFT，`JUMP-RESOLVED-20261105` | 031跳躍術限定CONFORMED；實購、越山、途中冷讀及落地普通移動 |
+
+## Rust自然出口與跳躍遭遇
+
+2026-11-05。PAM.AY與PAM.i64的SHA-256、IDA9.4及MZ base10000h沿上一節固定輸入；runtime CS0110 IP=IDA線性−10000h，runtime DS1E88偏移另列。[匯出器](tools/export-rust-world-exits-ida.py)保留十函式996行bytes、原名／xref／operand；[原指令探針](tools/rust-world-exits-reference.go)使用固定dosgolem核心及Go1.24.13。原DB仍521函式，不覆寫名稱或上游檔案。完整來源見[永久保存](preserved/README.md#rust自然出口與跳躍遭遇保存)。
+
+| 等級 | 原始定位與語意 | 可重現證據與限制 |
+|---|---|---|
+| 已證實 | 原八圖共有13出口，49後退6處／50前進7處，第八圖沒有出口；八原起點均tile1。 | [typed表](internal/remake-rust/world-exits.tsv)、實際Huffman解碼清點；載入時核預期錨點、所有出口及落點。 |
+| 已證實，本版本限定 | sub_139F2入口139F5 bytes E98700跳13A7F，AX=1；原密碼支線不會執行。 | IDA bytes與原指令探針實際執行139F2，不額外加守軍／劍數條件。 |
+| 已證實 | sub_12446的12649..126D6先切區／重載／設定原起點，126DF才扣步。49在12650先揭離開點；50沒有該次揭圖。10BDC處理Space先加一。 | 468原指令數值向量涵蓋13出口×9鍵×remaining1／2×boat0／1；明列IO helper跳過，停在126E3，原月報GUI未執行。原橋／探索重載沿14542、14878、1479A已驗證據。 |
+| 已證實，推翻舊說 | 10BC1只跳12446；10BD0仍呼叫1151C，1151C不讀跳躍flag。 | 540原指令prefix涵蓋flag0／1／2、五rank、六前方地形與六roll邊界。兩個roll明示取代_rand，遇敵時停11606；不稱整段seed呼叫序列或敵軍GUI對拍。 |
+| 已證實 | 1151C按rank以640／576／512／448／384取商；商1且前方tile<47時抽第二個roll，cue=roll/2341。1172F戰後重畫可清可落地的Flying。 | [向量](internal/remake-rust/jump-encounter-reference.tsv)、原控制流與Rust116測試；原生提示／戰鬥保存後續跳已經視窗抽驗。 |
+| 尚未接入 | boat2特殊出口上岸；空軍隊遭遇的1168B第三次rand與失金；完整世界事件／七寶物／守軍／八劍。 | 不把一般地形上岸、非空軍隊遭遇或13出口提升為完整世界。 |
+
+勘誤 `JUMP-RNG-CORRECTION-20261105`：上一節把12446當成遭遇尾段所在，錯將「略過12446」外推成「不抽RNG／不遇敵」。新1151C完整讀取端及10BD0呼叫足以推翻該說。舊1445向量未執行10BD0，只證明局部位移／落地／探索；舊GUI的RNG保持證明了當時的錯誤實作，不再作現行契約。原始證據保留，031舊READY加本標記，CONTEXT／README及新測試改讀本節。
+
+| 不可變鍵 | 新語意 | 舊規格與必要勘誤 | 現行玩家鏈 |
+|---|---|---|---|
+| DOS／PAM.AY `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`／IDA MZ base10000h／10BD0、1151C | 跳躍仍執行遭遇，已證實 | 031跳躍術READY／限定CONFORMED，`JUMP-RNG-CORRECTION-20261105` | [新限定CONFORMED](docs/spec/031-rust-independent-remake.md#自然出口與跳躍遭遇限定-conformed)，遇敵提示F7／冷讀、進戰撤退、沿舊方向續跳及落地 |
+
+GUI初始位置、monthly remaining1、jump Ready／seed均由獨立Rust開發例程明示設定。此後走正常XTest鍵鼠，沒有執行期RAM／IP注入。六程序16份SDL畫布／讀回；跨區月報及跳躍戰後續跳的獨立程序最終state_hash與畫布相同。這是受控初始狀態的玩家鏈，不是自然抵達商店／出口或完整通關。原音畫素材及runtime只存本機。

@@ -292,6 +292,29 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn exits_fixture() -> Self {
+        let mut d = Self::flat_fixture();
+        d.starts = [
+            (40, 40),
+            (36, 36),
+            (16, 5),
+            (66, 4),
+            (23, 18),
+            (40, 4),
+            (18, 5),
+            (15, 5),
+        ]
+        .map(|(x, y)| Position { x, y });
+        for a in 0..8 {
+            d.maps[a][0] = 2;
+        }
+        for e in crate::world_exits::exits() {
+            d.maps[usize::from(e.area)]
+                [usize::from(e.position.y) * 70 + usize::from(e.position.x)] = e.tile;
+        }
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn jump_fixture(tile: u8) -> Self {
         let mut d = Self::flat_fixture();
         for m in &mut d.maps {
@@ -478,7 +501,7 @@ impl WorldData {
         {
             return Err("地圖起始版本不符".into());
         }
-        Ok(Self {
+        let data = Self {
             maps,
             starts,
             remaining,
@@ -486,7 +509,9 @@ impl WorldData {
             facing,
             menu,
             fingerprint: checksum(&binding),
-        })
+        };
+        crate::world_exits::validate(&data)?;
+        Ok(data)
     }
     pub fn tile(&self, area: u8, p: Position) -> Result<u8, String> {
         if p.x >= 70 || p.y >= 80 {
@@ -740,6 +765,20 @@ impl WorldState {
                 s.remaining -= 1;
             }
         }
+        let result = s.encounter_tail(data, blocked)?;
+        if commit_encounter || !matches!(result, WalkResult::Boundary(Boundary::Encounter(_))) {
+            *self = s;
+        }
+        Ok(result)
+    }
+    /// sub_1151C runs after ordinary movement and every jump cell alike.
+    pub(crate) fn encounter_tail(
+        &mut self,
+        data: &WorldData,
+        blocked: bool,
+    ) -> Result<WalkResult, String> {
+        self.validate()?;
+        let mut s = self.clone();
         let divisor = [640, 576, 512, 448, 384][usize::from(s.rank - 1)];
         let roll = s.rng.next15();
         if roll / divisor == 1 {
@@ -757,11 +796,9 @@ impl WorldState {
             .0;
             if data.tile(s.area, ahead)? < 47 {
                 let cue = (s.rng.next15() / 2341) as u8;
-                if commit_encounter {
-                    s.actions = s.actions.checked_add(1).ok_or("世界操作次數超界")?;
-                    s.reveal();
-                    *self = s;
-                }
+                s.actions = s.actions.checked_add(1).ok_or("世界操作次數超界")?;
+                s.reveal();
+                *self = s;
                 return Ok(WalkResult::Boundary(Boundary::Encounter(cue)));
             }
         }

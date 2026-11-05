@@ -1,0 +1,14 @@
+# area x y tile; actual fixed eight-map census, not every region has two exits
+0	3	64	50
+1	10	31	50
+1	60	76	49
+2	31	26	49
+2	41	77	50
+3	44	49	50
+3	10	69	49
+4	10	25	49
+4	32	61	50
+5	11	43	49
+5	59	59	50
+6	58	38	49
+6	40	64	50

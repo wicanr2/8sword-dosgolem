@@ -128,11 +128,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let notice_before = journey.resource_notice.is_some();
         let survey_before = journey.survey.clone();
         let travel_before = journey.travel_spell.clone();
-        if matches!(
-            journey.travel_spell.jump,
-            crate::jump_spell::Jump::Flying { .. }
-        ) && now >= jump_at
-        {
+        let phase_before = journey.phase();
+        let area_before = journey.world.area;
+        if phase_before == "jump-flight" && now >= jump_at {
             journey.advance_jump(&data)?;
             jump_at = now + Duration::from_millis(250);
         }
@@ -321,12 +319,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 }
             }
         }
-        if !matches!(travel_before.jump, crate::jump_spell::Jump::Flying { .. })
-            && matches!(
-                journey.travel_spell.jump,
-                crate::jump_spell::Jump::Flying { .. }
-            )
-        {
+        if phase_before != "jump-flight" && journey.phase() == "jump-flight" {
             jump_at = now + Duration::from_millis(250);
         }
         if let Some(cp) = &mut journey.battle {
@@ -345,7 +338,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
             || magic_before != journey.magic
             || notice_before != journey.resource_notice.is_some()
             || survey_before != journey.survey
-            || travel_before != journey.travel_spell)
+            || travel_before != journey.travel_spell
+            || area_before != journey.world.area
+            || phase_before == "jump-flight" && journey.phase() != "jump-flight")
             && store.is_some()
         {
             save_requested = true;

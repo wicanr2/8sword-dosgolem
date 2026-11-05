@@ -76,8 +76,6 @@ impl<'a> Journey<'a> {
                 || self.magic.shop.is_some()
                 || self.survey.bird
                 || self.resource_notice.is_some()
-                || self.battle.is_some()
-                || self.cue.is_some()
                 || self.camps.pending.is_some()
                 || self.month.pending.is_some()
                 || self.treasure.pending.is_some()
@@ -121,12 +119,13 @@ impl<'a> Journey<'a> {
         s.world.facing = face;
         s.travel_spell.jump = jump;
         s.world.reveal();
+        s.run_encounter_tail(d)?;
         s.validate_jump(d)?;
         *self = s;
         Ok(())
     }
     pub fn advance_jump(&mut self, d: &WorldData) -> Result<(), String> {
-        if !matches!(self.travel_spell.jump, Jump::Flying { .. }) {
+        if self.phase() != "jump-flight" {
             return Err("沒有自動前進的跳躍".into());
         }
         let view = self.magic.view(d)?;

@@ -54,7 +54,7 @@ fn original_1445_arm_move_landing_and_reveal_vectors_match() {
     assert_eq!(count, 1445);
 }
 #[test]
-fn jumps_bypass_terrain_events_clock_rng_and_boat_without_free_world_actions() {
+fn jumps_bypass_terrain_events_clock_and_boat_but_run_encounter_tail() {
     let c = Catalog::builtin().unwrap();
     for tile in [2, 11, 15, 46, 49, 52, 53, 60, 65] {
         let d = WorldData::jump_fixture(tile);
@@ -67,9 +67,9 @@ fn jumps_bypass_terrain_events_clock_rng_and_boat_without_free_world_actions() {
         assert_eq!(j.phase(), "jump-flight");
         j.advance_jump(&d).unwrap();
         assert_eq!(j.world.position.x, 42);
-        assert_eq!(j.world.rng, old.rng);
+        assert_ne!(j.world.rng, old.rng);
         assert_eq!(j.world.remaining, 1);
-        assert_eq!(j.world.actions, old.actions);
+        assert_eq!(j.world.actions, old.actions + 2);
         assert_eq!(j.world.boat, 2);
         assert!(j.month.pending.is_none());
         assert!(j.cue.is_none());
@@ -92,6 +92,8 @@ fn no_landing_keeps_wrapping_without_inventing_an_escape_or_spending() {
     let d = WorldData::jump_fixture(15);
     let c = Catalog::builtin().unwrap();
     let mut j = ready(&d);
+    // Empty army keeps this bounded movement stress case outside battle prompts.
+    j.army = [crate::battle::Stack::default(); 6];
     let old = j.world.clone();
     j.cast_jump().unwrap();
     j.travel(&d, 0x4900, &c).unwrap();
@@ -100,7 +102,8 @@ fn no_landing_keeps_wrapping_without_inventing_an_escape_or_spending() {
     }
     assert_eq!(j.world.position, old.position);
     assert_eq!(j.world.remaining, old.remaining);
-    assert_eq!(j.world.rng, old.rng);
+    assert_ne!(j.world.rng, old.rng);
+    assert_eq!(j.world.actions, old.actions + 560);
     assert!(matches!(j.travel_spell.jump, Jump::Flying { key: 0x4900 }));
     assert_eq!(j.magic.charges[3], 1);
     assert_eq!(
@@ -162,7 +165,7 @@ fn cold_flying_preserves_key_and_rejects_malformed_phases_and_reads_v9() {
         let mut b = j.clone();
         match n {
             0 => b.magic.book = false,
-            1 => b.cue = Some(0),
+            1 => b.magic.direction = true,
             2 => b.survey.bird = true,
             3 => b.world.facing = 2,
             4 => b.travel_spell.jump = Jump::Flying { key: 0x3920 },

@@ -1,0 +1,24 @@
+{
+  "status": "passed-rust-world-exits-integrity",
+  "frozen_crate_files": 87,
+  "frozen_tools": 6,
+  "new_links_checked": 53,
+  "positive_link_control": "README -> CONTEXT",
+  "old_ready_and_conformed_correction_guard": true,
+  "python_ast": true,
+  "bash_syntax": true,
+  "root_owned_or_md_directory_find_output": [],
+  "final_gui_mounts": [
+    "native:/native:rw",
+    "single GUI script:/runner.py:ro"
+  ],
+  "project_containers_remaining": 0,
+  "other_projects_untouched": true,
+  "baseline": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "binary_sha256": "6b2e22c67ad34a953949f80383fa5988f5135aa8d987f35cc3708fde728617ac"
+}

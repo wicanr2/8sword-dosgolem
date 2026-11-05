@@ -3402,3 +3402,15 @@ Rust接Idle／Ready／Flying舊鍵、原店50金／F4、八方向越障、逐格
 [核對](preserved/rust-jump-spell-audit-r1.json)、[完整索引](preserved/rust-jump-spell-r1.json)、[脫離核對](preserved/rust-jump-spell-detached-r1.json)、[清理](preserved/rust-jump-spell-cleanup-r1.json)與[完整性](preserved/rust-jump-spell-integrity-r1.json)為入口。337檔／292物件、壓縮41008140 bytes完整保存在本機preserved，完整原始資料與runtime不入Git。核對後只移除954份可重建Rust快取341580894 bytes，約325.8 MiB。來源、138媒體、binary與全部證據保留。本批--rm容器均結束，其他專案不動，沒有新image或Release；197來源七程式、923核心、535素材、1071美術與Go格式保持。
 
 本輪基準HEAD為22c4e85995f07d81082d655f75cbb436c30823cb。實作、文件、索引及成果圖同提交推送origin/main，實際SHA見Git歷程。八地圖術有基本效果，下一步特殊地點上岸、自然出口與世界事件，不重開已驗HD、普通戰及基本法術矩陣。
+
+## 2026-11-05 Rust自然出口與跳躍遭遇
+
+使用者繼續Rust重製。沿復古遊戲／反組譯進入實作路由、IDA9.4技能、文件職責及驗收規則，補原圖13出口與跳躍遭遇。先寫DRAFT／READY再接production。十個原函式996行MZ bytes保留原名／operand／xref，原PAM與官方DB雜湊保持。468原指令出口數值、540受控roll遭遇prefix及Rust116測試通過，IO與局部停止點明列在研究及execution.json，不稱全程原版GUI或RNG parity。
+
+勘誤 `JUMP-RNG-CORRECTION-20261105`：前輪以略過12446推論跳躍不抽RNG，漏了10BD0的1151C呼叫。共用尾段已補回每格，提示／戰鬥暫停自動前進，返回沿舊方向續跳；全滅回起點可落地。舊1445位移／探索收據保留，RNG／actions保持的舊斷言撤回，031與現況加回填標記。
+
+六程序16份SDL擷取均同讀回。75金／30民兵／107步的真正v10只指定出口鄰格，前進到區1的36／36、後退到區0的40／40，均106步。月報另設remaining1，先跨區才收支75＋100−30＝145、重設324步；待選F7及另一程序確認返回／F2保持。跳躍另設原店位置、Ready與seed0x5578f641，正常向西到66／70遇敵並至少700毫秒不前進；提示F7／冷讀、進戰撤退後越65／70至64／70，57金／107步／30民兵。兩程序最終state_hash與完整畫布相同。
+
+環境／腳本失敗另列：Go模組需-mod=mod；初版探針的10BDC沒有按far-call傳key參數，改按原呼叫與實際retf；Rust測試cue型別由u16轉u8。一次建置複製與探索GUI同時執行，得到Text file busy，兩工作改為順序並以同命令乾淨重跑。補資產缺少預期出口的拒絕後再重建，最終116測試及GUI均對最終binary；初版GUI另存gui-first，不作最終掛載聲明。最終建置只見crate唯讀／native可寫，GUI只見native與單一腳本，無PAM／Go／RAM；SDL dummy只證解碼／佇列，不稱人耳驗收。
+
+[核對](preserved/rust-world-exits-audit-r1.json)、[永久索引](preserved/rust-world-exits-r1.json)、[脫離核對](preserved/rust-world-exits-detached-r1.json)、[清理](preserved/rust-world-exits-cleanup-r1.json)與[完整性](preserved/rust-world-exits-integrity-r1.json)為入口。完整來源、138媒體、binary、fixture與所有原版／GUI證據先存本機preserved，再只清可重建Rust快取；數量與bytes見索引及清理收據。正式197來源七程式、923核心、535素材及1071美術保持，無新image／Release。本輪基準HEAD為2c80bdbdcb4ad958d6f96ae4d97ca2641aee118a，實作／文件／索引／成果圖同提交推送origin/main，實際SHA見Git歷程。下一步特殊地點上岸、空軍隊失金與世界事件，不重跑本鏈或既有HD矩陣。

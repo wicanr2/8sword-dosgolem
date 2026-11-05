@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-05 Rust自然出口與跳躍遭遇依[031限定驗收](docs/spec/031-rust-independent-remake.md#自然出口與跳躍遭遇限定-conformed)完成。13原圖出口、原起點、橋／探索、先切區後月報及v10保存已接。116測試、468原版出口／540受控遭遇prefix、十IDA函式996行bytes與六程序16份SDL擷取通過。`JUMP-RNG-CORRECTION-20261105`推翻舊跳躍RNG／actions保持；10BD0仍呼叫1151C，已補逐格遭遇，提示／戰鬥暫停、返回續跳。舊1445向量只證位移／落地／探索。GUI明示位置、月底步數或待跳seed，不稱自然抵達或完整通關。建置只見crate／native，GUI只見native與單一腳本；[保存／還原](preserved/README.md#rust自然出口與跳躍遭遇保存)及[CONTEXT](CONTEXT.md)為現況。下一步特殊上岸、空軍隊失金與世界事件；不重跑已驗矩陣。正式197／7／923／535／1071保持，無Release。
+
 2026-11-05 Rust跳躍術依[031限定驗收](docs/spec/031-rust-independent-remake.md#跳躍術限定-conformed)接入。109測試、1445原指令／探索向量、七函式393行bytes、四程序13SDL擷取及預設縮放通過。原店實購／F4、沿舊鍵越山、空箱落地、途中自動保存／冷讀及v10已接。真正v9只移到原商店，後續正常購買施法離店；不稱自然跨區抵達。GUI途中保存採起跳已提交檔，原第四姿與250毫秒節奏不稱原版一致。[工具](tools/rust-jump-spell.py)、[核對](preserved/rust-jump-spell-audit-r1.json)與[保存](preserved/README.md#rust跳躍術保存)為入口。八地圖術基本效果已接；下一步特殊地點上岸、自然出口與世界事件，不重開已驗HD／普通戰／基本法術矩陣。197／7／923／535及1071美術保持，沒有Release。
 
 2026-11-05 Rust涉水術依[031一般地形限定驗收](docs/spec/031-rust-independent-remake.md#涉水術限定-conformed)接入。102測試、90組原指令／探索遮罩、六函式701行bytes、五程序14SDL擷取及預設縮放通過。原店實購／F4、入水、是／否上岸與v9冷讀已接，藍色光環顯示狀態。原prompt前揭落點3×3，拒絕亦保留，已修正首次試作並補原指令證據。真正v8只移商店、實購施法後再移原圖岸邊，不稱自然取得；待選位置／方向保留原生中間態，不稱逐幀原版一致。[工具](tools/rust-water-spell.py)、[核對](preserved/rust-water-spell-audit-r1.json)及[保存](preserved/README.md#rust涉水術保存)為入口。下一步跳躍、特殊地點上岸及自然出口，不重開已驗HD／普通戰與一般涉水矩陣。197／7／923／535及1071美術保持，沒有Release。

@@ -186,7 +186,9 @@ impl<'a> Journey<'a> {
         if matches!(
             self.travel_spell.jump,
             crate::jump_spell::Jump::Flying { .. }
-        ) {
+        ) && self.cue.is_none()
+            && self.battle.is_none()
+        {
             "jump-flight"
         } else if self.travel_spell.shore.is_some() {
             "shore"
@@ -342,6 +344,11 @@ impl<'a> Journey<'a> {
         }
         s.world.rank = s.resources[0] as u8;
         s.world.reveal();
+        if matches!(s.travel_spell.jump, crate::jump_spell::Jump::Flying { .. })
+            && crate::jump_spell::landable(s.jump_tile(&s.magic.view(data)?, s.world.position)?)
+        {
+            s.travel_spell.jump = crate::jump_spell::Jump::Idle;
+        }
         s.battles = s.battles.checked_add(1).ok_or("戰鬥次數超界")?;
         s.cue = None;
         s.battle = None;
