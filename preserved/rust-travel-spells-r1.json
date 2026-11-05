@@ -1,0 +1,3435 @@
+{
+  "files": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/gui-scale-attempt-1.py",
+      "sha256": "8641f2b18669faaf76bdc4d640ac7391a1d509d96680e223bf7ed72062e73b04",
+      "bytes": 9410,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/gui-scale-attempt-2.py",
+      "sha256": "543d81ba82f3994541874ddfe6d99e651ae1156141c9a1a340ca2533a2977c6a",
+      "bytes": 9416,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/ida-probe.json",
+      "sha256": "0d4c7298ddfed6b5b56ca12bb294f7ad35a8857b0093204b093d0825a0e5c8d6",
+      "bytes": 221,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/ida-travel.json",
+      "sha256": "4ff55c5b91e700124d347d95c84dbf5205e791f873dc4b3ef9637d88dbe0156f",
+      "bytes": 1482293,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/source.json",
+      "sha256": "246fd45148bc150729a7ed89ddc7fcb14f6db9b3f0547feb1fb55a806c3267c5",
+      "bytes": 1028,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/teleport-entry-ram.bin",
+      "sha256": "d8691a990e47a1fdf5af2638c638e6ca1cbf93b0483b45dbf74c6c85250c91a4",
+      "bytes": 1048576,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/teleport-entry.state",
+      "sha256": "4cc2e3593a35e3c0d1c7d015ca63978fd2654b943da272db3dc569efdcfd8957",
+      "bytes": 175697,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/teleport-final-ram.bin",
+      "sha256": "1314f4bd8c69fed864bc82178f3594370b4ab7b27f0060bcd0e6417aebb2c171",
+      "bytes": 1048576,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/teleport-final.state",
+      "sha256": "5fe525da0274399c134c3a4803aee0a5f7c064dbe02d482601036512f56364e0",
+      "bytes": 170373,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/evidence/teleport-receipt.json",
+      "sha256": "d918ac67f9045695c768032b6cab29f31dfc49ed003f38d7535868c870a92ae3",
+      "bytes": 8595,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/execution.json",
+      "sha256": "9e66d0894c4f4fa23b34d419cdde38ac98ffd7af11db8b02dad0d5ac226971f6",
+      "bytes": 3060,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/fonts-with-regions.json",
+      "sha256": "d9033bc8176761c4842d381e9d6eebaf0af72a7693a6ed610c753cf5eee15809",
+      "bytes": 1391,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/fonts.json",
+      "sha256": "89b7398817b3635d3909d9e91816f696cdbfc3f523af7a4b99bde30e8bd12d52",
+      "bytes": 1376,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/ida-stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/ida.log",
+      "sha256": "3d48e371cc4baf0e7315943897e2f65bde53aa835462791eb3e4ffec023cf21b",
+      "bytes": 3068,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/media.json",
+      "sha256": "ec253eb228a32952981650f32bfd040666c7939c3de32f8df73af1d131fc3c80",
+      "bytes": 12510,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/8sword-remake",
+      "sha256": "62efbb8a296e0a9431bd463381253327b3d49ff6f9aa101046cf4be9ee0fb3a5",
+      "bytes": 1290264,
+      "mode": 493
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/build.log",
+      "sha256": "b76cd2617c785c9fec00dfe9ed06d7faf56cea3e9ccf52084fdcb7e094fd491a",
+      "bytes": 109,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/fixture-teleport/fixture.tsv",
+      "sha256": "8e0889f95fae176b126a3b591a1a245da2b05d4e8256f5fcb24a8caa210b38e1",
+      "bytes": 142,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/fixture-teleport/journey.chk",
+      "sha256": "b6c1787f7413165e01ff025fd319cda0257f7b240b2cb51b08fb2e0f2348da29",
+      "bytes": 6640,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/capture-001.tsv",
+      "sha256": "4f0743f338025552cabe446c1ccaa637ed672b6f40754efc0d4972a4db6914a7",
+      "bytes": 1085,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/capture-002.tsv",
+      "sha256": "84fce722bf1ecaf0e72d4f7636f434579df7615b54f1c6d21f0075307836e90c",
+      "bytes": 1086,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/capture-003.tsv",
+      "sha256": "a8a46f9e19fd78fbf79b37b69a138ef68f977f713db03d692c8fa72e98dd258c",
+      "bytes": 1086,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/frame-001.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/frame-002.ppm",
+      "sha256": "80685812a9baa6c1cabd9e16970cdc2704782d245c232bac3321f74c77d76e74",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/frame-003.ppm",
+      "sha256": "857fe8dd3c31e951a8c82439de0a71646c880257132abecfe51ec88ddec127c5",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/readback-001.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/readback-002.ppm",
+      "sha256": "80685812a9baa6c1cabd9e16970cdc2704782d245c232bac3321f74c77d76e74",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/readback-003.ppm",
+      "sha256": "857fe8dd3c31e951a8c82439de0a71646c880257132abecfe51ec88ddec127c5",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival/status.tsv",
+      "sha256": "12a189adec09987783ba7c0e7393af37828b65f56c4429f5f1f01b1b2fd6989c",
+      "bytes": 1059,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/arrival-store/journey.chk",
+      "sha256": "ad23f8cee0d0da66f2db3d5834cee2315cc61ea06a38a1fbd664599561c17706",
+      "bytes": 6636,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel/capture-001.tsv",
+      "sha256": "31829687ab6da3a0f18fbbc107c29f8609f731839c5af499c6c1fb93902ac2ee",
+      "bytes": 1096,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel/capture-002.tsv",
+      "sha256": "909649257a46a2472d98a793e7f18b448fe692f7e9a7b70ffd8f1739217408bb",
+      "bytes": 1092,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel/frame-001.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel/frame-002.ppm",
+      "sha256": "b3601b7ae145f47244c3de38a4db26fcba0696746155057928538ef1c89d0672",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel/readback-001.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel/readback-002.ppm",
+      "sha256": "b3601b7ae145f47244c3de38a4db26fcba0696746155057928538ef1c89d0672",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel/status.tsv",
+      "sha256": "f70527268d1e8c6c9adad0b0eb6a27da0bedaa85dfff627b69094a104ec4674e",
+      "bytes": 1065,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/cancel-store/journey.chk",
+      "sha256": "509d96479c195d3429429b8e4aac301c6c7186d1c485c38f0129a9ee43aa97f6",
+      "bytes": 6640,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/capture-001.tsv",
+      "sha256": "9ea7631b16755832acb15b8b3ae3fd53387f0e63853d10ec8daec46ab081a0e0",
+      "bytes": 1098,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/capture-002.tsv",
+      "sha256": "32229d18bd05e3fec18671bca1bee739cd5e83b2ee3f272d0f4a42c7204425a8",
+      "bytes": 1099,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/capture-003.tsv",
+      "sha256": "7151eb9c0b80e1d7c02c81140162b27ff4db0b1fe683d2d0f9f7231cd193dcd8",
+      "bytes": 1098,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/capture-004.tsv",
+      "sha256": "38c558e3564b293128c428c6d5fee804fb8f91b0932fbd17c7e4bb3f90790f01",
+      "bytes": 1088,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/frame-001.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/frame-002.ppm",
+      "sha256": "9bb22a8730e9d0a7d915fa663b05378417bc86fc9ad5091cd91d4d1bc62d047d",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/frame-003.ppm",
+      "sha256": "bec91eaf21f6c7a0c625227aef112310b23df4a47e9a0b784a3336610d61624c",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/frame-004.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/readback-001.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/readback-002.ppm",
+      "sha256": "9bb22a8730e9d0a7d915fa663b05378417bc86fc9ad5091cd91d4d1bc62d047d",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/readback-003.ppm",
+      "sha256": "bec91eaf21f6c7a0c625227aef112310b23df4a47e9a0b784a3336610d61624c",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/readback-004.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending/status.tsv",
+      "sha256": "8000fa5c750be21caed5feb78f870b658c74ef669483cd1ad5c9a5056ebd2331",
+      "bytes": 1060,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/pending-store/journey.chk",
+      "sha256": "5c4cd7857b22f1e57b3272fc20f19630724531b17fa434469ad68f9d4bc20a28",
+      "bytes": 6636,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase/capture-001.tsv",
+      "sha256": "68552c97c9ae08e6bf6e15c4176d264bddc920470c53490ede904c27ec5181b0",
+      "bytes": 1136,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase/capture-002.tsv",
+      "sha256": "481831522009a887a4c6ec482144b3ae438bb3b7c46ac2918377c3d510d427e8",
+      "bytes": 1099,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase/frame-001.ppm",
+      "sha256": "f2191102a21d8fc0b7951ef509c4f0544374cf0a540cce566a6df641874ef720",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase/frame-002.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase/readback-001.ppm",
+      "sha256": "f2191102a21d8fc0b7951ef509c4f0544374cf0a540cce566a6df641874ef720",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase/readback-002.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase/status.tsv",
+      "sha256": "eb947cf447b88f4588d0d87ccd7a1dacfbef277d4a5e815917d69ca625888d16",
+      "bytes": 1070,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/purchase-store/journey.chk",
+      "sha256": "e75e74530c44b50b604cdafeed4432b097485eebfef6aeabf4ce8cf6637be61b",
+      "bytes": 6640,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui/receipt.json",
+      "sha256": "078dfdbe4e981cc9d85d1f34f12d6bff40df2d5e09a48ebdb46a56211c653b3a",
+      "bytes": 72861,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/capture-001.tsv",
+      "sha256": "4cc9bbc4c2ecadd759705ab88421cae1581a9fad6a04da6d407b79ba44030a92",
+      "bytes": 1084,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/capture-002.tsv",
+      "sha256": "fe77c069382348cc163983cdc57f55d6d5d116125938e5c4c378c3177ddf5587",
+      "bytes": 1086,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/capture-003.tsv",
+      "sha256": "78ff7e3e1ab9c1f31e4f0bcc826c5403c4c03f075eed00519b4a049a8e5f251f",
+      "bytes": 1086,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/frame-001.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/frame-002.ppm",
+      "sha256": "80685812a9baa6c1cabd9e16970cdc2704782d245c232bac3321f74c77d76e74",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/frame-003.ppm",
+      "sha256": "857fe8dd3c31e951a8c82439de0a71646c880257132abecfe51ec88ddec127c5",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/readback-001.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/readback-002.ppm",
+      "sha256": "80685812a9baa6c1cabd9e16970cdc2704782d245c232bac3321f74c77d76e74",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/readback-003.ppm",
+      "sha256": "857fe8dd3c31e951a8c82439de0a71646c880257132abecfe51ec88ddec127c5",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival/status.tsv",
+      "sha256": "f2c85c3700712251fffb74716eb0738c043da955bc65fda8c2d05bd062d21085",
+      "bytes": 1059,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/arrival-store/journey.chk",
+      "sha256": "ad23f8cee0d0da66f2db3d5834cee2315cc61ea06a38a1fbd664599561c17706",
+      "bytes": 6636,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/cancel/player.log",
+      "sha256": "148b77c03905736cbb27e2d15b013a27da82f1ae3b268c57983c5acc1daef03c",
+      "bytes": 13,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/cancel-store/journey.chk",
+      "sha256": "e75e74530c44b50b604cdafeed4432b097485eebfef6aeabf4ce8cf6637be61b",
+      "bytes": 6640,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/capture-001.tsv",
+      "sha256": "31829687ab6da3a0f18fbbc107c29f8609f731839c5af499c6c1fb93902ac2ee",
+      "bytes": 1096,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/capture-002.tsv",
+      "sha256": "19004b5f10d7e66a0403b7ae9a20e96be032a96131b2b2e6ce83349451e6bffa",
+      "bytes": 1099,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/capture-003.tsv",
+      "sha256": "8f179c542a117fbdc41d8055dc1e781baa43374d488df00288626da6cb3d7e7c",
+      "bytes": 1099,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/capture-004.tsv",
+      "sha256": "9d7d6aae3974d76b41b042d2e471eea194cdec017a1d831d6d19d6520b188a37",
+      "bytes": 1086,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/frame-001.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/frame-002.ppm",
+      "sha256": "9bb22a8730e9d0a7d915fa663b05378417bc86fc9ad5091cd91d4d1bc62d047d",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/frame-003.ppm",
+      "sha256": "bec91eaf21f6c7a0c625227aef112310b23df4a47e9a0b784a3336610d61624c",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/frame-004.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/readback-001.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/readback-002.ppm",
+      "sha256": "9bb22a8730e9d0a7d915fa663b05378417bc86fc9ad5091cd91d4d1bc62d047d",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/readback-003.ppm",
+      "sha256": "bec91eaf21f6c7a0c625227aef112310b23df4a47e9a0b784a3336610d61624c",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/readback-004.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending/status.tsv",
+      "sha256": "8058f703e0de44189cb183667f4c0686be4cc5861ee0e729e17dbe185d8a986f",
+      "bytes": 1059,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/pending-store/journey.chk",
+      "sha256": "5c4cd7857b22f1e57b3272fc20f19630724531b17fa434469ad68f9d4bc20a28",
+      "bytes": 6636,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase/capture-001.tsv",
+      "sha256": "bf1055eb1dc076e5706d8e4cf58177246e6db0b1115f1d9e6511a5b06a79b9fc",
+      "bytes": 1137,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase/capture-002.tsv",
+      "sha256": "eede473d7aac12b297fbcd673a13d15ea4db312c513c758c75e794aa5c6c960f",
+      "bytes": 1098,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase/frame-001.ppm",
+      "sha256": "f2191102a21d8fc0b7951ef509c4f0544374cf0a540cce566a6df641874ef720",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase/frame-002.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase/readback-001.ppm",
+      "sha256": "f2191102a21d8fc0b7951ef509c4f0544374cf0a540cce566a6df641874ef720",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase/readback-002.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase/status.tsv",
+      "sha256": "2f2128b6f45cf253894978e6498615af78ba7ccfbc824e6af7addc096408ba7d",
+      "bytes": 1070,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-1/purchase-store/journey.chk",
+      "sha256": "e75e74530c44b50b604cdafeed4432b097485eebfef6aeabf4ce8cf6637be61b",
+      "bytes": 6640,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/capture-001.tsv",
+      "sha256": "d6e3863f158ab5ceeb5b3d27d228634ffe6dfc11fe41dcee36d06710b1071f58",
+      "bytes": 1085,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/capture-002.tsv",
+      "sha256": "81e23d6cfc51984c3f7a1abef14686746722ca5363fb2844ba8a9738b5751268",
+      "bytes": 1086,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/capture-003.tsv",
+      "sha256": "a8a46f9e19fd78fbf79b37b69a138ef68f977f713db03d692c8fa72e98dd258c",
+      "bytes": 1086,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/frame-001.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/frame-002.ppm",
+      "sha256": "80685812a9baa6c1cabd9e16970cdc2704782d245c232bac3321f74c77d76e74",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/frame-003.ppm",
+      "sha256": "857fe8dd3c31e951a8c82439de0a71646c880257132abecfe51ec88ddec127c5",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/readback-001.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/readback-002.ppm",
+      "sha256": "80685812a9baa6c1cabd9e16970cdc2704782d245c232bac3321f74c77d76e74",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/readback-003.ppm",
+      "sha256": "857fe8dd3c31e951a8c82439de0a71646c880257132abecfe51ec88ddec127c5",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival/status.tsv",
+      "sha256": "d6ec90c43315b7406982cdca5b2d1c9a06d7b1baf076a6517a32e292f0ee9056",
+      "bytes": 1058,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/arrival-store/journey.chk",
+      "sha256": "ad23f8cee0d0da66f2db3d5834cee2315cc61ea06a38a1fbd664599561c17706",
+      "bytes": 6636,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/cancel/player.log",
+      "sha256": "c0c6b83a9f237445e2dde4d713d91d7072521442fb78fe049e4a561a90467685",
+      "bytes": 37,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/cancel-store/journey.chk",
+      "sha256": "e75e74530c44b50b604cdafeed4432b097485eebfef6aeabf4ce8cf6637be61b",
+      "bytes": 6640,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/capture-001.tsv",
+      "sha256": "5652944b9d07f975e7fe8342187392fa27d6a84b63429af8803fc64b132b63be",
+      "bytes": 1097,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/capture-002.tsv",
+      "sha256": "64ae8f5cc0025ec58f793358e5583c546b6d5a62d976bf44fb00c5fc316095e3",
+      "bytes": 1099,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/capture-003.tsv",
+      "sha256": "dafc306ad592230901f174d6942119ea06b5afdced5a115d4b286e4a48746ff7",
+      "bytes": 1098,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/capture-004.tsv",
+      "sha256": "065a7530ab03ca9bd694c681e8c2157219b596c5ad7f6cb55556e7b69721b1ca",
+      "bytes": 1087,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/frame-001.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/frame-002.ppm",
+      "sha256": "9bb22a8730e9d0a7d915fa663b05378417bc86fc9ad5091cd91d4d1bc62d047d",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/frame-003.ppm",
+      "sha256": "bec91eaf21f6c7a0c625227aef112310b23df4a47e9a0b784a3336610d61624c",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/frame-004.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/readback-001.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/readback-002.ppm",
+      "sha256": "9bb22a8730e9d0a7d915fa663b05378417bc86fc9ad5091cd91d4d1bc62d047d",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/readback-003.ppm",
+      "sha256": "bec91eaf21f6c7a0c625227aef112310b23df4a47e9a0b784a3336610d61624c",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/readback-004.ppm",
+      "sha256": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending/status.tsv",
+      "sha256": "205147fa4569bdceb705bb514ae30057443fca3372133467b2cb7e5b89f7b3fc",
+      "bytes": 1059,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/pending-store/journey.chk",
+      "sha256": "5c4cd7857b22f1e57b3272fc20f19630724531b17fa434469ad68f9d4bc20a28",
+      "bytes": 6636,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase/capture-001.tsv",
+      "sha256": "6d992f15900866ab2402ade2206d626f3689fca7cee8c2994162f4fd19401d8c",
+      "bytes": 1137,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase/capture-002.tsv",
+      "sha256": "7bfa9128631892b1beb409de9f13821434d2220a83592b157bc37427b80f2428",
+      "bytes": 1099,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase/frame-001.ppm",
+      "sha256": "f2191102a21d8fc0b7951ef509c4f0544374cf0a540cce566a6df641874ef720",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase/frame-002.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase/readback-001.ppm",
+      "sha256": "f2191102a21d8fc0b7951ef509c4f0544374cf0a540cce566a6df641874ef720",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase/readback-002.ppm",
+      "sha256": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase/status.tsv",
+      "sha256": "8dccbe2844c26f5124d93560fe239cf1c3eb0a205f7e3575967f634313e9ff17",
+      "bytes": 1071,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/gui-scale-attempt-2/purchase-store/journey.chk",
+      "sha256": "e75e74530c44b50b604cdafeed4432b097485eebfef6aeabf4ce8cf6637be61b",
+      "bytes": 6640,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/legacy-v7.chk",
+      "sha256": "d823973c1ca7f36c59d02d2fb44e451f1f60b51e77a970a524e6352d972de4c1",
+      "bytes": 6639,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/background.rgba",
+      "sha256": "c6faea4ca9ef89aeae2419ccb9ee558fd8d2a64b646548b2d737ceff316ab2f8",
+      "bytes": 9216024,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/font-NOTICE.txt",
+      "sha256": "fccf145c93b6d931a48374b3c89075899d4a78ab7731be2d8e79b9c8b7328c8c",
+      "bytes": 229,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/font-caoshu.bin",
+      "sha256": "67d8feaa1193760162828665e479403668a3e0d2ffc7c5ac668e66fd445ed1da",
+      "bytes": 2414920,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/font-choice-caoshu-LICENSE.txt",
+      "sha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc",
+      "bytes": 4406,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/font-choice-lishu-LICENSE.txt",
+      "sha256": "7fee8149f68d8690d3d05f2d64172a33f7b6de0bba216413553895bdfba3503b",
+      "bytes": 115,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/font-choice-lishu-NOTICE.txt",
+      "sha256": "e18c80c8a92e3f747f9a14cd3328f5ac640cc373a84719c9a1aa9f1d92bcd143",
+      "bytes": 504,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/font-lishu.bin",
+      "sha256": "02dc5e32ce233200fd0740e31d229f38ff1ea2757622f595e4a4f7c13045ce40",
+      "bytes": 2414920,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/font-noto.bin",
+      "sha256": "a7611c5e1b00ddd4746a3e4671d295d26be73f70695077cad9e5e9f899b25f95",
+      "bytes": 2414920,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/hero-portrait.rgba",
+      "sha256": "a405e8694c65a984a24e81c06dd2c9fe11a9eeb219230d0b0cd996c899b2e422",
+      "bytes": 230424,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/magic-book.rgba",
+      "sha256": "80fbad6fabeac0d82e51f54bd009ecf1bb15ea735bc181e1e094a3bc4f389377",
+      "bytes": 36888,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/magic-building.rgba",
+      "sha256": "0046daf4cc9d656f37fa3060349c4b97add1e635605e26862c21702b2b1168fc",
+      "bytes": 3225624,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-00.rgba",
+      "sha256": "582bbcf8d56d57bbb3ac24725e41a9507ad1925b3b6a9ddb198981ddf294f0a9",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-01.rgba",
+      "sha256": "cb4c81ccf2d5a1d2fda534350d7d4d1544cc53721a3cf57646fcf232cd03e072",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-02.rgba",
+      "sha256": "f231e7a417b8d55694805b6e342c19a434fa9bfe3e5fb67aef98783f5a838a6f",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-03.rgba",
+      "sha256": "9d4c82f76f852509e55328159c632b9f4c91526795339c4eb7ef601ab72c018e",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-04.rgba",
+      "sha256": "05d266ae05402610f007395802a5ef4cc612fba2a65100e157772d9af72011b9",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-05.rgba",
+      "sha256": "8581a91dada08c92810bea20c62dfd398483eb74621c4671c6893a507e1d79ae",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-06.rgba",
+      "sha256": "82ab7d48e65101c639a4c9011bb98b9a8f2d9832274fdfac6ff1a6e5cf8ead4d",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-07.rgba",
+      "sha256": "22dd405ea58ec90bb689e8882496ecb501f4113d711240af8b6fb36ee70e0fc5",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-08.rgba",
+      "sha256": "7f6a6916c5e66dc7fffee1685a4fd13a2c1bdcc250aca32bee8c8303d1d0bd78",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-09.rgba",
+      "sha256": "3ec2580e92b50280b9c2627ac4fd27ec7ce2a88874a7bc75ebdb0e461ddda89b",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-10.rgba",
+      "sha256": "6ba2a1eb6b8167cba5c4b7f6e693a862d60b773c7ecb0f80ae89fe53216ed02c",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-hero-11.rgba",
+      "sha256": "2a6694bc110213bd5e2baf083384663783f1d86ad30e4d67ff2006de9525b94d",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-00.rgba",
+      "sha256": "6effc2b7ebba05249fef9ae85259cbe8763be2741adfaceddab64818b6c9ff67",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-01.rgba",
+      "sha256": "a3dbe40a666e557023071e7d08325a04d4df3ef9c6e25099d81f758db3b1d265",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-02.rgba",
+      "sha256": "3b48aac520e7f768dcb6dacfd6ab48411a1e3c7b40925d57a10a8eaac852b212",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-03.rgba",
+      "sha256": "e7f3791538390a698b9364c49b4a858ae1fef0f7309ed3e7a1927ec8ad4cc8aa",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-04.rgba",
+      "sha256": "e9d46a6723902b6caf5f6efc8e71e052214642357da482c39b682deeab4e585e",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-05.rgba",
+      "sha256": "7166c620b0a6545de15d8f096881ae35233eff1ab299aab33e75cabc558c7449",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-06.rgba",
+      "sha256": "d54d6a3bf751fb3c75512c37e0f3069b30191f135fde8a34eda4fcb99295a121",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-07.rgba",
+      "sha256": "b7db58bc326d7a90c48edcb7bac220afe9e1506d4bbd8ffc56187bae496991ce",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-08.rgba",
+      "sha256": "3e9d8953d56b18588418779af85c95d65f659e7d36eef3ad3a6e2718dd480803",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-09.rgba",
+      "sha256": "bda4dc7c0c2c101243f91dd6018020f34cdfef30ee1df921061bc01a0fffdbf1",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-10.rgba",
+      "sha256": "8aca2ac70b0a6eb320d12058236ffb90336a59c834086939c5499e91e844c14d",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-11.rgba",
+      "sha256": "28587cd4ba905a6e3afc707a5f9132240537624188dc767305ff697e73bd16db",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-12.rgba",
+      "sha256": "45dfbd3865cbfa4221099d830c37fd6a2247573cafb954152a9db690b54cfb5e",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-13.rgba",
+      "sha256": "1cc181118c0696964dccf4c0781759de3c02399b22bbe4a1714ea7bea565caf1",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-14.rgba",
+      "sha256": "ce9e03ccb38d6ff18824fce27a995d72995619defd26d7221d6d6f0ff5773113",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-15.rgba",
+      "sha256": "0d2db684ec4268b72bcb480992e52fafd2700bb73e93d3852479157889b200a5",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-16.rgba",
+      "sha256": "53d10f8da68ca147f2397eaeef65dc93ab5fda84792416a4e18ba9e8ae51b448",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-17.rgba",
+      "sha256": "26d68780d98cb9187c60370be85bbfdd85fff7f41ec395e8653255fc77c76c46",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-18.rgba",
+      "sha256": "9fb5c05dd804f5d4a8a220270f2f97e3d531608a17fc97a84cd2f3c2030ed954",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-19.rgba",
+      "sha256": "3183652a286bdd40ad6c47ef18a57143f9579f88cb8ec517d58195843a8d72c3",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-20.rgba",
+      "sha256": "d1b78094cc5dacad90c3faae9e636ab7b56b1a24727c3db35dedee8f57cce1f3",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-21.rgba",
+      "sha256": "58237667527519d999cc4cf6fb6b97880f60fb84f865e916acf109256bed8de8",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-22.rgba",
+      "sha256": "4ca7804f6a22e55fdd3edd644b45461c4e2b113a76b0f1ef2df744162fd22861",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-23.rgba",
+      "sha256": "fa17254caccdd4a93ee15c073397c5aea1741c1abb2cb8c46a9455147467b768",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-24.rgba",
+      "sha256": "8928701cc34334682155c2daf0c2de02e101525bd41e5243f7f733a509f9f58a",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-25.rgba",
+      "sha256": "46e80f093559fa7ac5dfc8a5b444a9136abe28831b7d70969f70bbbb50d41588",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-26.rgba",
+      "sha256": "30ae74714c6c0fde3edb39895c3e35af52fa3f6e25244adba0e668d1246e9e2a",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-27.rgba",
+      "sha256": "567599d9f0cf30c8af76f888261816f328cb035fe8e6ea528a0bba2950b4cfeb",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-28.rgba",
+      "sha256": "3028764c6901a4e6dafc093361ab8455993d0d02a843f63738d41fc3b2ad1281",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-29.rgba",
+      "sha256": "b43cfece3b50c3961d005649ca41de5944f72ecd0cfc44bf52efcea58081df83",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-30.rgba",
+      "sha256": "b852d4240d4964338c144d4ef761a381f8b6b061caa366fbfda71cb4ce52bf1f",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-31.rgba",
+      "sha256": "18f3f89307a1817c4b136bafbabde6d285cf0e0ed0c5b05dcc46b2573c56c48b",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-32.rgba",
+      "sha256": "170e540f3705dc09aba0af1064364d2b7aefe75c92fe94fea37f826c478f30f7",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-33.rgba",
+      "sha256": "0fb584e458c848c38c17fbd31251836c7f6d5b609d2391ea92c31f20046fabc0",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-34.rgba",
+      "sha256": "95f6110e239d537799275a846f8d7964f3ef9f05423c1576cc3de4e662a5437f",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-35.rgba",
+      "sha256": "3b8d0e2fdf0722a9a63d2f2d670c4c3ea76aef35d98ef3c3343412aedaab01ab",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-36.rgba",
+      "sha256": "9df87c14171d7da4069b3213f18da9a151d1a254bb8ac62fb4adc6047666c94c",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-37.rgba",
+      "sha256": "410ef0436bb782304afdfc41d1d096eb5aafb3f34d5ad4c7111d7b2d4888741c",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-38.rgba",
+      "sha256": "e3e225ac3962427c9652e37da17c625e29c63673ac411029eb7f56958b00f8ce",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-39.rgba",
+      "sha256": "103a47d98efd7d34a74a4c35863e2d4df21a6fb0702f64b30e1df4eb99c33ddd",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-40.rgba",
+      "sha256": "517e320e2136946acac80c45a02450675d71ab45036744fdcb061bf0fb656d4c",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-41.rgba",
+      "sha256": "62f52885b8a9bf0fa4d1073a1addc10adb79a880c32f8f691e7ccf5bb82ed5ee",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-42.rgba",
+      "sha256": "c524c7569cb6110f1aa3c7b97eaf63652f74d445b0168dfd0b39ab58d82a5138",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-43.rgba",
+      "sha256": "056d4c9b86106badc357b999cf2a10884c990bede46149a68353bdb343ed9e7a",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-44.rgba",
+      "sha256": "7e91df1185c9771973c9fd99633d27ee399a2e89f52a8f42bd2e8059e514d83a",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-45.rgba",
+      "sha256": "dcbc168ecfa3338f8e750aa14353c1c574c9128058cb3a54fa74206af96f4f7c",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-46.rgba",
+      "sha256": "43c86c5f8d9296e398117a0e28e12f66c35f7e19098b261c962344a6ac4f7dc5",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-47.rgba",
+      "sha256": "296dbcf041bdd5a66ed5e0f7f25c92360426b80a8e8cdec5c815137d9cc9fddd",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-48.rgba",
+      "sha256": "c0ed6dc49b6189342d1d74019434cbf25ae7e7d44d32a0eeb9683576208d9e1c",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-49.rgba",
+      "sha256": "b2adfc523309b3bd56ccf0cfa8dab7fbf19cf661d5b0e6e2c57caae54f8b813b",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-50.rgba",
+      "sha256": "e7de3d22e1132d4d6ada121ed7cbaf3379216dcf5bf1b534735537aa7e952b89",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-51.rgba",
+      "sha256": "048bf50f3759ce8ba1a1e93db851b4eda77328fb4bfa779409d642ce4f16448d",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-52.rgba",
+      "sha256": "877ae752989fabca8c4d873ad6ec50596f883d41555be230adcdc0c691c39e01",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-53.rgba",
+      "sha256": "5cbbfa52d96a6e4c6cfaab22f57ba980934ca2a9c67b125206d9fdbabe921286",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-54.rgba",
+      "sha256": "d2c83623af04602204a95e5d3fe209d8af12097c3867e3c55a637c2f61bbfde3",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-55.rgba",
+      "sha256": "876e0f56d0cc3c8fdc6a82529396379adc49d7898b982240979cc22c3cdaf104",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-56.rgba",
+      "sha256": "44265aedb3f9f4f6c418edf1a73a7bab3decf21820507afb5ca1b9ef420c0555",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-57.rgba",
+      "sha256": "5ca69e093e5c9d5cf730b3f1fcc3c5392a704ed150e7cdcaf5572856195b1ae6",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-58.rgba",
+      "sha256": "6688eecb85efe7e2dcf0115471cb27190f60bad9225f7255755b0c8d29058116",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-59.rgba",
+      "sha256": "96a2a7fe8a1f9bf78764695c657470d68d2b1a6ad1c08f3384ec417345fbc48b",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-60.rgba",
+      "sha256": "e2c18e533746487031fc8bbb0e99c9be83a92f78bfb4fe911b9ab967594e4601",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-61.rgba",
+      "sha256": "25ce5fdc36dd22284de8559f02dad60ca6d3945afba9048c85492d3a72b5c44a",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-62.rgba",
+      "sha256": "b9cef06cc63eae9d7a4044813a60a3539fb740ef6f31dcfcd85d4c8181a7305d",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-63.rgba",
+      "sha256": "1765c1b24006090ae88c27dca2909e95510b2fd44200a7860d297bf16785bfc0",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map-tile-64.rgba",
+      "sha256": "31c8283862330107da1bba96cd4f41943809bbc64ae8a64e8337b14a118854cd",
+      "bytes": 115224,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map1.ay",
+      "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+      "bytes": 2564,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map2.ay",
+      "sha256": "73b6e6a515ad50c4853750ed0a744c2b62502331f4fce288612a676594e242a9",
+      "bytes": 2133,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map3.ay",
+      "sha256": "c4a317089b4a1c2c548b3db9355e2d5b5507439ab671c6f31e519dd954dddf24",
+      "bytes": 1808,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map4.ay",
+      "sha256": "ee87b3cddc33422a00cafe658cbc3132b28864cf281e922c3a1528d2985cb60a",
+      "bytes": 2540,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map5.ay",
+      "sha256": "623cdbaecdba70bbde68c55f92461e22a1007a9d7629708ffb248117ea3e2e0f",
+      "bytes": 2639,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map6.ay",
+      "sha256": "95a88d1843db86f9a12572a2826b9d701260dcdf86e1937cdeaf5d76322a203f",
+      "bytes": 1960,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map7.ay",
+      "sha256": "f601a09175c0d4955f4692fd899d17242f0418435f0b3ae8c2bf0fe62e953c07",
+      "bytes": 2559,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/map8.ay",
+      "sha256": "b48e7c95e54afc437963451eda648390a8e9d1c38e220043cb5e042013d5ec0a",
+      "bytes": 2248,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/music.ogg",
+      "sha256": "62ca844a3508c94dc4cfff4ea8df6eda481fb3b84cf7e15e9bcb8f1f6a9b4976",
+      "bytes": 1325192,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/recruit-building.rgba",
+      "sha256": "37b80a9109a998261d452cba9a5ae4528cf19da13342403bd0c5636983614d1a",
+      "bytes": 3225624,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/spell-impact-0.rgba",
+      "sha256": "45cdbf6d6544e45b5805f4bf20827d0b877e7b86163fb180cb7d60498b5bfed0",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/spell-impact-1.rgba",
+      "sha256": "de99b20e9cabf88aeb8786392a0792d8de1aaf5489fa8ed02d9744a2cd1d0a32",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/spell-impact-2.rgba",
+      "sha256": "bdfd62962d62c0ee1e18e58dd3ff26f2112fb27221405696a9a18d74ae0eaaf4",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/spell-impact-3.rgba",
+      "sha256": "6bf7611b927e402afe6f5733eb7ac94eab9524c02b5103a32ace16e91be843cf",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_01.rgba",
+      "sha256": "b1fa452eda8b143ae6c9b681c4d6be907efcb7909f64908311489a77a3029ed5",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_02.rgba",
+      "sha256": "30798f62b4d9d7344e51bbfcc0e7c2042209d0a899d18edfe88b8a08e3ca36c8",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_03.rgba",
+      "sha256": "dde11d67d90e05598fd344aef2429f125b61da6171644eae3430a8e2537bba6b",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_04.rgba",
+      "sha256": "8dfe2eb3740fb4e270ba0c2890c1e5168be605366e3e029ff5034b0ad80e6484",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_05.rgba",
+      "sha256": "1e86efa89b194b28c79116d289934f62b5df96edf32c8b2c95149d3f1352946d",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_06.rgba",
+      "sha256": "b95c78295e998bf3fda949182d6fc19ec226d8fe1246a8cdf2b836c483851df6",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_07.rgba",
+      "sha256": "e8e4290e3f42126253affb49a65cd1849a644e60542dc4c2287e37c7e2d430d3",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_08.rgba",
+      "sha256": "32c558c379516d8a7817c4bde2acf83ebf18e55592e0fa1ea1996623910b2847",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_09.rgba",
+      "sha256": "e699be91a8fab7b1097714c9e27f0812df677ec7dcd863e9e010c033f397814c",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_10.rgba",
+      "sha256": "34f04b22ec74df908370e4fb2f43b8ce304792b7727c59835e45797e1692071b",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_11.rgba",
+      "sha256": "30487cce2b8f0f8c0610c75687441c50e98429dbba3c85245097a33b461d317e",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_12.rgba",
+      "sha256": "5515ec3b834d84a725245f132287dda447bf5068c2518cc259095107fd91cff7",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_13.rgba",
+      "sha256": "45824242d3b810fe688c8e064b51be4cc1927bc43c801c051320862cbda8da37",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_14.rgba",
+      "sha256": "7e6a89e0029eeda184ea76b638db0e0dac1244fabca3833d046e7a047bb3a9a4",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_15.rgba",
+      "sha256": "1cb17d6a8506598e05a810295a701f067dab9af44333d057b0afe2faa6d67bf3",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_16.rgba",
+      "sha256": "c13a8af97c0c862f46f0fdc6f0505936f56163293758d7fc4b374c8e180da44b",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_17.rgba",
+      "sha256": "2c3da3f69859122a9446736bd9956abb60b032cd6138b748ba60ec2544523043",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_18.rgba",
+      "sha256": "19348fd875f903af4d3469567cebe8a2435c702b060e640c0afd3c294a2275c5",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_19.rgba",
+      "sha256": "7197f5d31f5eae4306438771eee1e715e549f139d99e1cbb8728143e972b586b",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_20.rgba",
+      "sha256": "ea1e12608ab2103f6563dec9ec0fadf48979ee30816eb7d72375fc55743efe62",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_21.rgba",
+      "sha256": "6ad6046b6523591905e728c608269c6cbe0ac90a5c22b193ef72bf8a0f5ee2c1",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_22.rgba",
+      "sha256": "a98365c36d3cd78f4410fa6b80e2aa37f71ba64c71a121d5dda8f574e0a5febf",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_23.rgba",
+      "sha256": "21b53c2db06c2d0edbd4e050815cfc52ba72b1da5c7ddced1faba3251114c5bd",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_24.rgba",
+      "sha256": "169c2f12db4f72ddebba01676c0be7d6db81d5001cbaef75fafa5d96d72061ac",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_native_25.rgba",
+      "sha256": "3fed859e1c6d752a73774867854bef9c7cb33417b915ffdef4ccb3daafc6eb2a",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_openkb_arcr.rgba",
+      "sha256": "9d7a203af3b61ce5e783889d2cdb20f22cdb7f57a35220d6472eb8aee7201ea6",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_openkb_drag.rgba",
+      "sha256": "95aecb3793aa33e3871e33d21c06f91a081d29eac66f91e1dc54a020914242e8",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_openkb_drui.rgba",
+      "sha256": "99c3862b1eb91888abba44687f7c932e3f0b762ca3d7f69dd4694726ff157a0b",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_openkb_pike.rgba",
+      "sha256": "2d93dbd4e5692895f861af862de8c98b95992040084da60f5b3c5d3fdc726191",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_openkb_skel.rgba",
+      "sha256": "df32deb4e53ca15e6a6f1fd582997a834c27152e9e839b81f3cef179e9f78a27",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_openkb_troll.rgba",
+      "sha256": "d8f54cf2be2a735b18762abbffc74f4c42a4e6a5928fc800f17fc4ebbb7a9c14",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_openkb_vamp.rgba",
+      "sha256": "0b1b4ff8b893de2f0adf9fc3359725c391ad8b6235baf2f253b9db6bb51ce21f",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/unit_openkb_wolf.rgba",
+      "sha256": "c45b431e8f2fcb48f9ba2e820197f1bfb4ac141fecf9159f59d23b717a5392f8",
+      "bytes": 316824,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/world-frame.rgba",
+      "sha256": "8f6a44dd105af6ae9d02cc63c55b8ef0ef1e2b52a9c87fe3e825ecffb460d8b5",
+      "bytes": 9216024,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/world-music.ogg",
+      "sha256": "9ef427c4dc0f845ae048177aa0a4c73e1ec7490a127e5b2c7e779bcf0131aae8",
+      "bytes": 1727532,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/pack/world-start.tsv",
+      "sha256": "c2aae669343b975de45f2c6f454be511345382a2e7b5860572549c97c0ad3c37",
+      "bytes": 369,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/scaled/pending.png",
+      "sha256": "7a8dabb56f0e7c0ae1ac0b095da356e2ff7ed56c658aa7ab8cb73b77489695b2",
+      "bytes": 152881,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/scaled/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/scaled/receipt.json",
+      "sha256": "fa5cc86443245018b14b7a53f6680a0014d445ea9269c23e2706ea9503d740b4",
+      "bytes": 470,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/scaled/returned.png",
+      "sha256": "ac7ca37142b2435c78eb6bd497c111f12f33c229f01df9498eef150e712e9dce",
+      "bytes": 825987,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/scaled/saves/journey.chk",
+      "sha256": "509d96479c195d3429429b8e4aac301c6c7186d1c485c38f0129a9ee43aa97f6",
+      "bytes": 6640,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/self-check.log",
+      "sha256": "d220ecdf608285d519042f6a585aabcf091e824410e3e6fb42ca6136c0b15c7e",
+      "bytes": 1031,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/source-check.tsv",
+      "sha256": "d1b3a666955663a4cfc41c3d7f3b0ff5307d44f34c2bac58d6f7eb80f5f3e997",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/tests.log",
+      "sha256": "f8ab53e1f17c95cf7d4046f213ff033a72a4e3d5866f3b55625deb8f12acfc63",
+      "bytes": 9603,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/travel-fixture",
+      "sha256": "5ad3537d22166f2e9cd067276aa8afec7dcf27e219ee4be681f02ef9376bbf9d",
+      "bytes": 661704,
+      "mode": 493
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/Cargo.lock",
+      "sha256": "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61",
+      "bytes": 161,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/Cargo.toml",
+      "sha256": "cdb32c522e36f7957f667dc5c33260449f70fc7c7b768f7a8434cec8da439c57",
+      "bytes": 277,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/battle-models.tsv",
+      "sha256": "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109",
+      "bytes": 31211,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/battle-replay.tsv",
+      "sha256": "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235",
+      "bytes": 2799,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/camp-catalog.tsv",
+      "sha256": "109d7b5cd9f29fb1a16aca859b7d37b8b2e19dbf5320cf301689812420290d6a",
+      "bytes": 2059,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/character-layout.tsv",
+      "sha256": "f3a0501e554cc743f2d180150d5e0353dc3bf1d4479f3e3c97eceb63e949fddf",
+      "bytes": 291,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/controller-reference.tsv",
+      "sha256": "50b1e6a4fb06fd2ec1bc73440dee98fb433faa9546711df323bb60084d5f4c13",
+      "bytes": 7124,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/enemy-reference.tsv",
+      "sha256": "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2",
+      "bytes": 9931,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/examples/resource_spells_fixture.rs",
+      "sha256": "a3f305c8737ca7405340bbbc12c6f5232b82bbbcebd48a0bc1d82c4f74fcf0b4",
+      "bytes": 2089,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/examples/survey_spells_fixture.rs",
+      "sha256": "75c4e1caa872be67aa54e57a6c5c6996e02959931059f9d936270b1af69383d3",
+      "bytes": 2327,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/examples/travel_spells_fixture.rs",
+      "sha256": "a93828dce4ad756e2b76a08a34c92a7b649fe7ba65e9e682d45fe46fb535a90b",
+      "bytes": 2731,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/generator-reference.tsv",
+      "sha256": "fbc76b7d4d06f3b671d086b0b01cdd286e06cbce55084b438d0b0d8abbd99bb0",
+      "bytes": 17603,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/magic-bridge-reference.tsv",
+      "sha256": "d5e395dc6475ff87d2b8a3c0a83801c76547d059911c5c77b6e29794f2baaf7d",
+      "bytes": 354,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/magic-items.tsv",
+      "sha256": "5c25e6c3efa9f6af5295986316b9992d7cf7a09a9d08506091bfcd572c7bff51",
+      "bytes": 130,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/magic-names.tsv",
+      "sha256": "85be13ffac0d0aa7831f2f794b817cda241d7439860f85a1973023900421f109",
+      "bytes": 254,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/magic-shops.tsv",
+      "sha256": "6194c4cc0dd8a1ed90c62558c51aae635154fc689bb027a781df9a2ab5250aa8",
+      "bytes": 633,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/minimap-colors.tsv",
+      "sha256": "4a3dd2007cce2a04d5d8c098ee6b168873fc4bf3bcd5c7915c185b6fd43c33c7",
+      "bytes": 407,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/minimap-reference.tsv",
+      "sha256": "34d6fb84502e8859ff4a7ac92100ccdb80c2ba695a0b4a3892f0c5aef8ac9ddb",
+      "bytes": 304,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/monthly-caps.tsv",
+      "sha256": "927325e9e5e137b65465effe56b4a9439a29364eb464e13c424cbbf701d04b8c",
+      "bytes": 358,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/monthly-reference.tsv",
+      "sha256": "b939a22ad8181e720f68e66f5150be54a56962ce7e45ae6017c6909c06d7a57e",
+      "bytes": 405,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/monthly-stock.tsv",
+      "sha256": "61159609645bf1f9404c848f71bd6195c12e11bc542841f1de794a8ba5361492",
+      "bytes": 16301,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/reference.tsv",
+      "sha256": "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf",
+      "bytes": 6419,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/resource-spells-reference.tsv",
+      "sha256": "d648c802a79d826e7ef4fb9fd94fa5e885638d400ee11e65076c829bedbb7017",
+      "bytes": 229,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/settlement-reference.tsv",
+      "sha256": "d9fcb68249a087cea5a08cd5add9ae7eb169fd6077aef783d6c760c51601039a",
+      "bytes": 409,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/spell-reference.tsv",
+      "sha256": "4c057fb2c0432204d0c675f0bd5d9fb524d2a0f6984b134f9efe2246a90f182a",
+      "bytes": 72962,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/battle.rs",
+      "sha256": "74dcf522965d2a6fd4866e9ce3b37b8ef83383f3406a9ead9f3f1cfa9ca7e7cb",
+      "bytes": 9721,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/catalog.rs",
+      "sha256": "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469",
+      "bytes": 3896,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/character.rs",
+      "sha256": "327b95212c7e4a6cd2939e5ac2450100607fb2fd0075e7b98012fd7e02bde9bb",
+      "bytes": 4631,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/checkpoint.rs",
+      "sha256": "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc",
+      "bytes": 13563,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/checkpoint_store.rs",
+      "sha256": "3959a2686d77baa8fb23c7ab18e7437712a0ed02145ab7ec317f7e9ab0e37354",
+      "bytes": 7283,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/checkpoint_tests.rs",
+      "sha256": "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48",
+      "bytes": 7726,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/controller.rs",
+      "sha256": "151b9f70fc51169d953a428088bd6085b5739aca3734cda111c8119847e76674",
+      "bytes": 21775,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/controller_tests.rs",
+      "sha256": "4e8e35fd70ff7b30eb6ed3b25f4cccadffaf9c832279ac4155ebe886cfd72ccf",
+      "bytes": 3576,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/desktop.rs",
+      "sha256": "e3002a929efeaecaa56cf27ffdc448449b66e477b7e587f232f0eafaa9481911",
+      "bytes": 41475,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/enemy.rs",
+      "sha256": "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea",
+      "bytes": 10801,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/enemy_tests.rs",
+      "sha256": "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607",
+      "bytes": 5941,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/formation.rs",
+      "sha256": "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898",
+      "bytes": 4573,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/journey.rs",
+      "sha256": "80dc3a9784a6f14a9f60ef6ca2bef787be5ec070f9d069bd5fd979382513a003",
+      "bytes": 28642,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/journey_desktop.rs",
+      "sha256": "c6a3b483c8aca7ecd974ab4dc59b445470187a01e056682d42620dc6cf117541",
+      "bytes": 30883,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/journey_tests.rs",
+      "sha256": "10ced7c7c8b64067aaba40bb012cc296cd2d7238a17e3d22aa5615d05708a3bd",
+      "bytes": 8793,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/lib.rs",
+      "sha256": "e5adc3ed61cfa0e8d7e18702c1a77006c1d246a98b0211163f58db5a17b569c4",
+      "bytes": 4698,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/main.rs",
+      "sha256": "3ae01dd3d2bf176bcd9e90ffe1fc99e2f3a340df57b27fc9b876c12ff88fbe2f",
+      "bytes": 3825,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/management.rs",
+      "sha256": "d409598d1b69b527d7dfbe744fe4f2110b6b96e2a285103f36a68a7fbe771136",
+      "bytes": 9395,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/management_tests.rs",
+      "sha256": "281e61fe72754a85808f6fa4a8a6bec1c1113cccd1cc300c8a234166874e24b3",
+      "bytes": 4298,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/management_ui.rs",
+      "sha256": "045750d9f0778c985f5d7d79c72dfea573aaf7a79d9bbc6047b6793283080279",
+      "bytes": 26221,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/media_assets.rs",
+      "sha256": "93c7d3a013d0063a698e84b88899d539926b1a9659781048737b16446104b154",
+      "bytes": 7535,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/minimap.rs",
+      "sha256": "3840db4be3b09b616154c6f554ee10853856e3d4974e9f3a6e6c7eb350547d02",
+      "bytes": 5900,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/monthly.rs",
+      "sha256": "d270f6de5b5a6d617ccbd998e7288adb4ae9d3bf06113fdf0f0fab54cb80097b",
+      "bytes": 7182,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/monthly_tests.rs",
+      "sha256": "49e638ff3e76bb4a966addf26c441555db69c518c1569c2d2ec201674c287b95",
+      "bytes": 5565,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/native_tests.rs",
+      "sha256": "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59",
+      "bytes": 7707,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/pointer.rs",
+      "sha256": "cac6009df9cb2e984838267e8c8273da594b29cab88e1bafc486572cd306327b",
+      "bytes": 9873,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/replay.rs",
+      "sha256": "292203c75b5e717ba76b4d833b7a698ac10396465284ea78253e735f1dbf2063",
+      "bytes": 23404,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/resource_spells.rs",
+      "sha256": "ab42ad7a7cd235d96690e275f39a1f591962cb988924a570bf661c1c9f61e962",
+      "bytes": 6060,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/resource_spells_tests.rs",
+      "sha256": "7e6d27dcbf8dc15fbb447fd89c711574facfdd5c6c0e7334040258d7eee42fdf",
+      "bytes": 8576,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/sdl.rs",
+      "sha256": "b5bf2f61719e6f019cd9170fce5fe0faca799bf227a85140e9a555610a13e8c5",
+      "bytes": 9205,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/sndfile.rs",
+      "sha256": "7bf9b76d1f02b10cebb3610a9ea160c02446ba16cd4482c4dfb28e18ad33ee21",
+      "bytes": 2787,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/spell_tests.rs",
+      "sha256": "d355b30799fa9cede41988d2df72d3d578fa3a8fd50d72d4655ee9cc8b639610",
+      "bytes": 4281,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/spells.rs",
+      "sha256": "54083224e26f56245e7fef9fe56c5bf441bf9709f81897260e7241a45c646c11",
+      "bytes": 4385,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/survey_spells.rs",
+      "sha256": "09eb9b1bd83193bce70229ba7a64c80e86d8df7aaa0386f0141f384f4196a869",
+      "bytes": 3189,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/survey_spells_tests.rs",
+      "sha256": "ac6413378b793392790b1e178c03664cace433d905d11f7cb4d62b88e9b0ca7e",
+      "bytes": 6160,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/travel_spells.rs",
+      "sha256": "0437c0a9f1a1fec27bcbc6dc42a0e737b806c4c3522c36ad7fa82357c45988bd",
+      "bytes": 3144,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/travel_spells_tests.rs",
+      "sha256": "fbcd263276b67c16919089cb5e0ff8c3a62fde2935363c4d716accb5ee8bc8c4",
+      "bytes": 6235,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/treasure.rs",
+      "sha256": "8aef9f81911339dbfaa8486c4f08eb33fd99cc51b5d68d73c4655365a56bb425",
+      "bytes": 7179,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/treasure_tests.rs",
+      "sha256": "6e7d32166fa30cc94ccf11d30032ab1c71755366b19111d8f75629a99c4970a6",
+      "bytes": 5499,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/world.rs",
+      "sha256": "abad9602c0a1846c467172591febca731fc7f9fbbd6c06c1a595bd4e73bda372",
+      "bytes": 27068,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/world_desktop.rs",
+      "sha256": "4f74514753d137782733d41e0cb7a5ac0e74bd8274f115c1c0ecca9b19f9ea5f",
+      "bytes": 13981,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/world_magic.rs",
+      "sha256": "9c9649891410362382d7ad60621ebb9acbfee8bfad831c3f31f61b8a8b8dcb31",
+      "bytes": 10359,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/src/world_magic_tests.rs",
+      "sha256": "d9c00271a875cbc794d9c48ab24a795d7d0d479ba7d291f6dbf5bcaefd123825",
+      "bytes": 10624,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/survey-stop-reference.tsv",
+      "sha256": "c6a41b2033757f1ac17fe8901e87c7c7017a701e800b8284a2e5d93c18e0d957",
+      "bytes": 170,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/teleport-regions.tsv",
+      "sha256": "3182287baf10c25d9ab95e5a6f766df744c786ddf8b5a4ca8922929f799d1c1e",
+      "bytes": 187,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/treasure-catalog.tsv",
+      "sha256": "f857d69e8a0753f0452bc179265ad083033d10553bbc581cd1a2a337fb8598ac",
+      "bytes": 1147,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/treasure-reference.tsv",
+      "sha256": "42b9551820244cf60bb84e536d951c1408f9e0b71655067c807a272858fb7e84",
+      "bytes": 317,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/unit-catalog.tsv",
+      "sha256": "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af",
+      "bytes": 1149,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/rust-source/world-reference.tsv",
+      "sha256": "0728fe90b5a18e6eebd7f0cb2c4ad88418144e4467f6a181b262645d10a9df04",
+      "bytes": 20427,
+      "mode": 384
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/teleport-regions.tsv",
+      "sha256": "3182287baf10c25d9ab95e5a6f766df744c786ddf8b5a4ca8922929f799d1c1e",
+      "bytes": 187,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/tools/decode-rust-world-magic-original.go",
+      "sha256": "e953cbc894058b918b4c279f05daf938c8d544a9293a090335d001e55a93821c",
+      "bytes": 922,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/tools/export-rust-travel-spells-ida.py",
+      "sha256": "f87a0ad86ad95370a61f97329ee93d8b91191f7b8455545b03ee7f7a8b20fc1d",
+      "bytes": 2434,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/tools/rust-native-player.sh",
+      "sha256": "d901f7c005b5c4e0213cecc2b4cb27b58d2a502345649e29444c0d1956b74234",
+      "bytes": 3282,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/tools/rust-travel-spells-gui.py",
+      "sha256": "63b892f52a4ec37a64c125f365850b0b4f9e82b3ab7c5a60a501b68fc6f3e02e",
+      "bytes": 9305,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/tools/rust-travel-spells-scaled.py",
+      "sha256": "f07d68cff7d3b9da42e0318044ac632df94a20a090ef92b921552dc8014b7482",
+      "bytes": 4899,
+      "mode": 420
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/tools/rust-travel-spells.py",
+      "sha256": "b5bb78085cf48025a895a42d75a3927750b376ec06e309889ea2aa3e9d0837dd",
+      "bytes": 8917,
+      "mode": 436
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/tools/rust-world.py",
+      "sha256": "f615b2e9d063475124605a5846606e27f05fc64dc8fca06ace6718afa5313142",
+      "bytes": 8662,
+      "mode": 436
+    }
+  ],
+  "objects": {
+    "8641f2b18669faaf76bdc4d640ac7391a1d509d96680e223bf7ed72062e73b04": {
+      "file": "8641f2b18669faaf76bdc4d640ac7391a1d509d96680e223bf7ed72062e73b04.gz",
+      "stored_sha256": "6173b3d6a01171897942f47e7f5909c18d1d436363eac5efbda5ceae51428ee2"
+    },
+    "543d81ba82f3994541874ddfe6d99e651ae1156141c9a1a340ca2533a2977c6a": {
+      "file": "543d81ba82f3994541874ddfe6d99e651ae1156141c9a1a340ca2533a2977c6a.gz",
+      "stored_sha256": "39a69cea48435346622dd2e831b6cca5d401a91212e92ca23274286707a6ac6a"
+    },
+    "0d4c7298ddfed6b5b56ca12bb294f7ad35a8857b0093204b093d0825a0e5c8d6": {
+      "file": "0d4c7298ddfed6b5b56ca12bb294f7ad35a8857b0093204b093d0825a0e5c8d6.gz",
+      "stored_sha256": "40581d2437de07c00a8c4434068f2654e0acce2500e322d79834569bd44ea399"
+    },
+    "4ff55c5b91e700124d347d95c84dbf5205e791f873dc4b3ef9637d88dbe0156f": {
+      "file": "4ff55c5b91e700124d347d95c84dbf5205e791f873dc4b3ef9637d88dbe0156f.gz",
+      "stored_sha256": "9c04773f61aa0afd371ee09187ebdfa27f4f1cb6503399679cfe82ce2005ed6a"
+    },
+    "246fd45148bc150729a7ed89ddc7fcb14f6db9b3f0547feb1fb55a806c3267c5": {
+      "file": "246fd45148bc150729a7ed89ddc7fcb14f6db9b3f0547feb1fb55a806c3267c5.gz",
+      "stored_sha256": "57345ae7bf62464162c90089d01367394a3570e1a31767b87c76b0896f2225b8"
+    },
+    "d8691a990e47a1fdf5af2638c638e6ca1cbf93b0483b45dbf74c6c85250c91a4": {
+      "file": "d8691a990e47a1fdf5af2638c638e6ca1cbf93b0483b45dbf74c6c85250c91a4.gz",
+      "stored_sha256": "a5a23d3505306842ae5a000ba0ba3e6e70f3cd61174c326f1a2fccb43963b700"
+    },
+    "4cc2e3593a35e3c0d1c7d015ca63978fd2654b943da272db3dc569efdcfd8957": {
+      "file": "4cc2e3593a35e3c0d1c7d015ca63978fd2654b943da272db3dc569efdcfd8957.gz",
+      "stored_sha256": "0cd1b4c2972f261c2f121ca04ec915966e2a1be21ebe218b28cdcd7ecb444fd1"
+    },
+    "1314f4bd8c69fed864bc82178f3594370b4ab7b27f0060bcd0e6417aebb2c171": {
+      "file": "1314f4bd8c69fed864bc82178f3594370b4ab7b27f0060bcd0e6417aebb2c171.gz",
+      "stored_sha256": "8bde8e0ff5573c80bdc374bf39ce6a13182c503c75e7be2d4b0bd99c15ec0e62"
+    },
+    "5fe525da0274399c134c3a4803aee0a5f7c064dbe02d482601036512f56364e0": {
+      "file": "5fe525da0274399c134c3a4803aee0a5f7c064dbe02d482601036512f56364e0.gz",
+      "stored_sha256": "85d22826a16201e2871344d4bea97887a811a06f9bccdedf305e0fea6a5e1c79"
+    },
+    "d918ac67f9045695c768032b6cab29f31dfc49ed003f38d7535868c870a92ae3": {
+      "file": "d918ac67f9045695c768032b6cab29f31dfc49ed003f38d7535868c870a92ae3.gz",
+      "stored_sha256": "724317eb32ab07ec366a4e8bad5f19281a379cfa7a5794e2db0c812c0a4c87d8"
+    },
+    "9e66d0894c4f4fa23b34d419cdde38ac98ffd7af11db8b02dad0d5ac226971f6": {
+      "file": "9e66d0894c4f4fa23b34d419cdde38ac98ffd7af11db8b02dad0d5ac226971f6.gz",
+      "stored_sha256": "39c8883f06bf60201ac50fccd3c77c0c8f7c686ab93725a63c4c79f85d80c0ac"
+    },
+    "d9033bc8176761c4842d381e9d6eebaf0af72a7693a6ed610c753cf5eee15809": {
+      "file": "d9033bc8176761c4842d381e9d6eebaf0af72a7693a6ed610c753cf5eee15809.gz",
+      "stored_sha256": "3998e98790f1fcefd3712519a5fcd0edf5d1d00ba22c93f2370c6b067d0ee3c9"
+    },
+    "89b7398817b3635d3909d9e91816f696cdbfc3f523af7a4b99bde30e8bd12d52": {
+      "file": "89b7398817b3635d3909d9e91816f696cdbfc3f523af7a4b99bde30e8bd12d52.gz",
+      "stored_sha256": "4f3466e403f609a1f2e6da2124dbef7ae67af7572954016a2249ba7f9efcf1f1"
+    },
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
+      "file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.gz",
+      "stored_sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    "3d48e371cc4baf0e7315943897e2f65bde53aa835462791eb3e4ffec023cf21b": {
+      "file": "3d48e371cc4baf0e7315943897e2f65bde53aa835462791eb3e4ffec023cf21b.gz",
+      "stored_sha256": "1658e2b2a48b482044958916c588aecb99a52b306a4e170fbde7660468aaf795"
+    },
+    "ec253eb228a32952981650f32bfd040666c7939c3de32f8df73af1d131fc3c80": {
+      "file": "ec253eb228a32952981650f32bfd040666c7939c3de32f8df73af1d131fc3c80.gz",
+      "stored_sha256": "9217fb7841ea2d31df6ca64f946226f0343e9db26804b693b4a2fa63554fa74d"
+    },
+    "62efbb8a296e0a9431bd463381253327b3d49ff6f9aa101046cf4be9ee0fb3a5": {
+      "file": "62efbb8a296e0a9431bd463381253327b3d49ff6f9aa101046cf4be9ee0fb3a5.gz",
+      "stored_sha256": "faffc70e837414e6fc628fb19f88664c1a9f8225926e424103dd441a492b4270"
+    },
+    "b76cd2617c785c9fec00dfe9ed06d7faf56cea3e9ccf52084fdcb7e094fd491a": {
+      "file": "b76cd2617c785c9fec00dfe9ed06d7faf56cea3e9ccf52084fdcb7e094fd491a.gz",
+      "stored_sha256": "05add77ca5a907af2014951fc4c8b370150c95733bebe178686763150fe317a5"
+    },
+    "8e0889f95fae176b126a3b591a1a245da2b05d4e8256f5fcb24a8caa210b38e1": {
+      "file": "8e0889f95fae176b126a3b591a1a245da2b05d4e8256f5fcb24a8caa210b38e1.gz",
+      "stored_sha256": "96872be7e022ff897a0c18c2f5c429ca02ce3bd6f26245953cb6bbdacb33d1dc"
+    },
+    "b6c1787f7413165e01ff025fd319cda0257f7b240b2cb51b08fb2e0f2348da29": {
+      "file": "b6c1787f7413165e01ff025fd319cda0257f7b240b2cb51b08fb2e0f2348da29.gz",
+      "stored_sha256": "908ff3099a546a765ed257c018049939064d6b5cd750e4b528196614f11fdd47"
+    },
+    "4f0743f338025552cabe446c1ccaa637ed672b6f40754efc0d4972a4db6914a7": {
+      "file": "4f0743f338025552cabe446c1ccaa637ed672b6f40754efc0d4972a4db6914a7.gz",
+      "stored_sha256": "5c55aa9750676c8bef9e013a9c19b3fa9fb8193ee180c404d44cb59bc910f0ab"
+    },
+    "84fce722bf1ecaf0e72d4f7636f434579df7615b54f1c6d21f0075307836e90c": {
+      "file": "84fce722bf1ecaf0e72d4f7636f434579df7615b54f1c6d21f0075307836e90c.gz",
+      "stored_sha256": "48b01d8e9452a855530e4b5ed6f75d31ed96e62a6696eb7241e4b30956152fd5"
+    },
+    "a8a46f9e19fd78fbf79b37b69a138ef68f977f713db03d692c8fa72e98dd258c": {
+      "file": "a8a46f9e19fd78fbf79b37b69a138ef68f977f713db03d692c8fa72e98dd258c.gz",
+      "stored_sha256": "2e2b0e122bdb722a0397017524307093d82f0bf549852b1c6a7af7195ca3931e"
+    },
+    "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0": {
+      "file": "c29695aa12a1727d3c964ab4c7e55e76f2181361e6c47a1f9bfb7630f4d285f0.gz",
+      "stored_sha256": "65be946a69af4306294fb468bf93dec3c59c1d89d27c572c4bc10fdd81010c5f"
+    },
+    "80685812a9baa6c1cabd9e16970cdc2704782d245c232bac3321f74c77d76e74": {
+      "file": "80685812a9baa6c1cabd9e16970cdc2704782d245c232bac3321f74c77d76e74.gz",
+      "stored_sha256": "97812e0e3b31c26c25f346c3ac4e15ec168966ade0a355139336d69fcc327f9b"
+    },
+    "857fe8dd3c31e951a8c82439de0a71646c880257132abecfe51ec88ddec127c5": {
+      "file": "857fe8dd3c31e951a8c82439de0a71646c880257132abecfe51ec88ddec127c5.gz",
+      "stored_sha256": "311570a5a95f1510acc52c6be3b3891e5bfb76d81bbcd7a0f1062fc673db5da4"
+    },
+    "12a189adec09987783ba7c0e7393af37828b65f56c4429f5f1f01b1b2fd6989c": {
+      "file": "12a189adec09987783ba7c0e7393af37828b65f56c4429f5f1f01b1b2fd6989c.gz",
+      "stored_sha256": "96d778ae94aab9c1480e1e8c3a15fc7a315555308b5b9fb9efc1acdc4c74b2d4"
+    },
+    "ad23f8cee0d0da66f2db3d5834cee2315cc61ea06a38a1fbd664599561c17706": {
+      "file": "ad23f8cee0d0da66f2db3d5834cee2315cc61ea06a38a1fbd664599561c17706.gz",
+      "stored_sha256": "dfa5de032b6cf4f3ef45352e6e6b5c74807cd22a3cd4d35acb319ec4072d9cf0"
+    },
+    "31829687ab6da3a0f18fbbc107c29f8609f731839c5af499c6c1fb93902ac2ee": {
+      "file": "31829687ab6da3a0f18fbbc107c29f8609f731839c5af499c6c1fb93902ac2ee.gz",
+      "stored_sha256": "f5053cba587ab480c1a92b038a5ccc868582795b07d3c888f249a555a4b6e40a"
+    },
+    "909649257a46a2472d98a793e7f18b448fe692f7e9a7b70ffd8f1739217408bb": {
+      "file": "909649257a46a2472d98a793e7f18b448fe692f7e9a7b70ffd8f1739217408bb.gz",
+      "stored_sha256": "7f9556c84d155cea758aa53c115a13e05a2289dde3d2955cde22fa9915398a2e"
+    },
+    "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a": {
+      "file": "ac0f895224550cea88c8fd777cba21e932b93f16f7dc3c52d64494326e5a604a.gz",
+      "stored_sha256": "e1b637af3d17d4c609ecfffc927a9b639b922026cfa3c993bc2eeadce13812e8"
+    },
+    "b3601b7ae145f47244c3de38a4db26fcba0696746155057928538ef1c89d0672": {
+      "file": "b3601b7ae145f47244c3de38a4db26fcba0696746155057928538ef1c89d0672.gz",
+      "stored_sha256": "aefb469f92f1bc5980ea3dad9a19090d00ff85bded4d1c332f5f01e85e5d4d97"
+    },
+    "f70527268d1e8c6c9adad0b0eb6a27da0bedaa85dfff627b69094a104ec4674e": {
+      "file": "f70527268d1e8c6c9adad0b0eb6a27da0bedaa85dfff627b69094a104ec4674e.gz",
+      "stored_sha256": "24cf54fc337e8b99d31d78e57f9539d1581b9563a18d4e0ad643d478116e7375"
+    },
+    "509d96479c195d3429429b8e4aac301c6c7186d1c485c38f0129a9ee43aa97f6": {
+      "file": "509d96479c195d3429429b8e4aac301c6c7186d1c485c38f0129a9ee43aa97f6.gz",
+      "stored_sha256": "3119fa9e3dcdb25dc7232a2833489e3be4a7e6a4f42d6e968569aa8a94716607"
+    },
+    "9ea7631b16755832acb15b8b3ae3fd53387f0e63853d10ec8daec46ab081a0e0": {
+      "file": "9ea7631b16755832acb15b8b3ae3fd53387f0e63853d10ec8daec46ab081a0e0.gz",
+      "stored_sha256": "e30f4f12719979b10b85e7645d09f6824bc07dd463e7c354b397bcfee31aaeff"
+    },
+    "32229d18bd05e3fec18671bca1bee739cd5e83b2ee3f272d0f4a42c7204425a8": {
+      "file": "32229d18bd05e3fec18671bca1bee739cd5e83b2ee3f272d0f4a42c7204425a8.gz",
+      "stored_sha256": "31a63c2dea7d4453988c3f1586b1732dab405e6afeca02bc944843755b630f52"
+    },
+    "7151eb9c0b80e1d7c02c81140162b27ff4db0b1fe683d2d0f9f7231cd193dcd8": {
+      "file": "7151eb9c0b80e1d7c02c81140162b27ff4db0b1fe683d2d0f9f7231cd193dcd8.gz",
+      "stored_sha256": "2f0039cd5adbbe7a9db45be8745cf4239812e091edd411582dda8e1c02311a80"
+    },
+    "38c558e3564b293128c428c6d5fee804fb8f91b0932fbd17c7e4bb3f90790f01": {
+      "file": "38c558e3564b293128c428c6d5fee804fb8f91b0932fbd17c7e4bb3f90790f01.gz",
+      "stored_sha256": "da647a21c36851ebf2803fae2983d59d306091a4d20033e5039dde90aff569b5"
+    },
+    "9bb22a8730e9d0a7d915fa663b05378417bc86fc9ad5091cd91d4d1bc62d047d": {
+      "file": "9bb22a8730e9d0a7d915fa663b05378417bc86fc9ad5091cd91d4d1bc62d047d.gz",
+      "stored_sha256": "a78a5c2fddaa58e485872b0d3740aeefbaf0fc6a070dcb439dcabaa7c497020c"
+    },
+    "bec91eaf21f6c7a0c625227aef112310b23df4a47e9a0b784a3336610d61624c": {
+      "file": "bec91eaf21f6c7a0c625227aef112310b23df4a47e9a0b784a3336610d61624c.gz",
+      "stored_sha256": "42a16f5bc9aa7ad669f18aed19ccf0315a962b8742563ea85144966e4964d5e5"
+    },
+    "8000fa5c750be21caed5feb78f870b658c74ef669483cd1ad5c9a5056ebd2331": {
+      "file": "8000fa5c750be21caed5feb78f870b658c74ef669483cd1ad5c9a5056ebd2331.gz",
+      "stored_sha256": "92235d06e1a9b60f0e97d4a796525989a360a4318ac8e06ce8e6ad3516293db9"
+    },
+    "5c4cd7857b22f1e57b3272fc20f19630724531b17fa434469ad68f9d4bc20a28": {
+      "file": "5c4cd7857b22f1e57b3272fc20f19630724531b17fa434469ad68f9d4bc20a28.gz",
+      "stored_sha256": "e6c6ecd80526991bcd2f5aa277024d3cf5ec90c5d0026eda3f2706e294ceb5e3"
+    },
+    "68552c97c9ae08e6bf6e15c4176d264bddc920470c53490ede904c27ec5181b0": {
+      "file": "68552c97c9ae08e6bf6e15c4176d264bddc920470c53490ede904c27ec5181b0.gz",
+      "stored_sha256": "4d8100cc7898bd65972d0447c614fcedaaebd12e8817057f4ed8972c60522956"
+    },
+    "481831522009a887a4c6ec482144b3ae438bb3b7c46ac2918377c3d510d427e8": {
+      "file": "481831522009a887a4c6ec482144b3ae438bb3b7c46ac2918377c3d510d427e8.gz",
+      "stored_sha256": "6714400621d11138e1b59153089a4a77ad8f41cf251b1c8a5652bd7c0f82174a"
+    },
+    "f2191102a21d8fc0b7951ef509c4f0544374cf0a540cce566a6df641874ef720": {
+      "file": "f2191102a21d8fc0b7951ef509c4f0544374cf0a540cce566a6df641874ef720.gz",
+      "stored_sha256": "e818b94aae001cd3832e6bcab1008a11ecdc817ac4030cf7b568f4c4fe5e183a"
+    },
+    "eb947cf447b88f4588d0d87ccd7a1dacfbef277d4a5e815917d69ca625888d16": {
+      "file": "eb947cf447b88f4588d0d87ccd7a1dacfbef277d4a5e815917d69ca625888d16.gz",
+      "stored_sha256": "56c07ef9f483b4b2b88b021076eb8d38110bae0633b0b758b4660f72259592a0"
+    },
+    "e75e74530c44b50b604cdafeed4432b097485eebfef6aeabf4ce8cf6637be61b": {
+      "file": "e75e74530c44b50b604cdafeed4432b097485eebfef6aeabf4ce8cf6637be61b.gz",
+      "stored_sha256": "8e1d260ee36741391082a64755879a226f746f82068100d4dea43aae4a75042b"
+    },
+    "078dfdbe4e981cc9d85d1f34f12d6bff40df2d5e09a48ebdb46a56211c653b3a": {
+      "file": "078dfdbe4e981cc9d85d1f34f12d6bff40df2d5e09a48ebdb46a56211c653b3a.gz",
+      "stored_sha256": "fa52f90fc364e71b6cab6fedf4643756070a13c41e8d52621c28358d31b2a9ff"
+    },
+    "4cc9bbc4c2ecadd759705ab88421cae1581a9fad6a04da6d407b79ba44030a92": {
+      "file": "4cc9bbc4c2ecadd759705ab88421cae1581a9fad6a04da6d407b79ba44030a92.gz",
+      "stored_sha256": "381452e165f40953a4476c8c292c3c21fa131f2664003fb501526ed24c14e641"
+    },
+    "fe77c069382348cc163983cdc57f55d6d5d116125938e5c4c378c3177ddf5587": {
+      "file": "fe77c069382348cc163983cdc57f55d6d5d116125938e5c4c378c3177ddf5587.gz",
+      "stored_sha256": "a55f4b36e880dd0e4445231c984c80e65b3a5ae51245adc2e08c3aaeea2abe3c"
+    },
+    "78ff7e3e1ab9c1f31e4f0bcc826c5403c4c03f075eed00519b4a049a8e5f251f": {
+      "file": "78ff7e3e1ab9c1f31e4f0bcc826c5403c4c03f075eed00519b4a049a8e5f251f.gz",
+      "stored_sha256": "283c9797118a7e9d6dcdc8a232a68d78e88d4f308d11d0377fb611c64f5152d0"
+    },
+    "f2c85c3700712251fffb74716eb0738c043da955bc65fda8c2d05bd062d21085": {
+      "file": "f2c85c3700712251fffb74716eb0738c043da955bc65fda8c2d05bd062d21085.gz",
+      "stored_sha256": "0af7702db72fc153f07d31511615b3c5ece2d6fce1880c9b587f6d122692d56c"
+    },
+    "148b77c03905736cbb27e2d15b013a27da82f1ae3b268c57983c5acc1daef03c": {
+      "file": "148b77c03905736cbb27e2d15b013a27da82f1ae3b268c57983c5acc1daef03c.gz",
+      "stored_sha256": "30f60b6ba4f70c999f54ff2235a0370ccb0c214ecd4bb63e4de9542ffae97b63"
+    },
+    "19004b5f10d7e66a0403b7ae9a20e96be032a96131b2b2e6ce83349451e6bffa": {
+      "file": "19004b5f10d7e66a0403b7ae9a20e96be032a96131b2b2e6ce83349451e6bffa.gz",
+      "stored_sha256": "816863f262a41e3b71a96e7d71e0d8a1ffc97d579dc677184da24121328eec21"
+    },
+    "8f179c542a117fbdc41d8055dc1e781baa43374d488df00288626da6cb3d7e7c": {
+      "file": "8f179c542a117fbdc41d8055dc1e781baa43374d488df00288626da6cb3d7e7c.gz",
+      "stored_sha256": "c1b319100e6fe55708afc618971ed0d9b14ea7ef95f2f82cad2d8104fcbc37d7"
+    },
+    "9d7d6aae3974d76b41b042d2e471eea194cdec017a1d831d6d19d6520b188a37": {
+      "file": "9d7d6aae3974d76b41b042d2e471eea194cdec017a1d831d6d19d6520b188a37.gz",
+      "stored_sha256": "d8e113976b99b936f7ae4d8537f196a5dac754b4288e8679b598a19a29af2afe"
+    },
+    "8058f703e0de44189cb183667f4c0686be4cc5861ee0e729e17dbe185d8a986f": {
+      "file": "8058f703e0de44189cb183667f4c0686be4cc5861ee0e729e17dbe185d8a986f.gz",
+      "stored_sha256": "daebf57c6691ba5f8f65870f03c6405392a7cda9f9801ac426e17b4955cb720a"
+    },
+    "bf1055eb1dc076e5706d8e4cf58177246e6db0b1115f1d9e6511a5b06a79b9fc": {
+      "file": "bf1055eb1dc076e5706d8e4cf58177246e6db0b1115f1d9e6511a5b06a79b9fc.gz",
+      "stored_sha256": "1ec5d31e12f4cd2ac8e89a840efc97b78e80d99bcd223fd6806901878adb61f0"
+    },
+    "eede473d7aac12b297fbcd673a13d15ea4db312c513c758c75e794aa5c6c960f": {
+      "file": "eede473d7aac12b297fbcd673a13d15ea4db312c513c758c75e794aa5c6c960f.gz",
+      "stored_sha256": "d07d0a9c690230737db3b1b186f0d320350353edcf2c17159c5cdf9e749f6476"
+    },
+    "2f2128b6f45cf253894978e6498615af78ba7ccfbc824e6af7addc096408ba7d": {
+      "file": "2f2128b6f45cf253894978e6498615af78ba7ccfbc824e6af7addc096408ba7d.gz",
+      "stored_sha256": "9d4574f66afa9208d2b0177c4a3d5bff6304d8b512dca5ca1d7cdb0da2e55b3a"
+    },
+    "d6e3863f158ab5ceeb5b3d27d228634ffe6dfc11fe41dcee36d06710b1071f58": {
+      "file": "d6e3863f158ab5ceeb5b3d27d228634ffe6dfc11fe41dcee36d06710b1071f58.gz",
+      "stored_sha256": "865e2584d1a1c17f24f94659ff506180bef9bed7630222ce95001c513872129a"
+    },
+    "81e23d6cfc51984c3f7a1abef14686746722ca5363fb2844ba8a9738b5751268": {
+      "file": "81e23d6cfc51984c3f7a1abef14686746722ca5363fb2844ba8a9738b5751268.gz",
+      "stored_sha256": "548e7d08bc64a7d0f6fac06e557a4b820be9252b20c427762f2df155321b10e3"
+    },
+    "d6ec90c43315b7406982cdca5b2d1c9a06d7b1baf076a6517a32e292f0ee9056": {
+      "file": "d6ec90c43315b7406982cdca5b2d1c9a06d7b1baf076a6517a32e292f0ee9056.gz",
+      "stored_sha256": "be2cde48708eea83563625d31ca9adad15cb9662744051f1ddec9955d751090c"
+    },
+    "c0c6b83a9f237445e2dde4d713d91d7072521442fb78fe049e4a561a90467685": {
+      "file": "c0c6b83a9f237445e2dde4d713d91d7072521442fb78fe049e4a561a90467685.gz",
+      "stored_sha256": "9f6ac4340247d600ce47f18581d743ba78b120064d0ae968f65af388e0966647"
+    },
+    "5652944b9d07f975e7fe8342187392fa27d6a84b63429af8803fc64b132b63be": {
+      "file": "5652944b9d07f975e7fe8342187392fa27d6a84b63429af8803fc64b132b63be.gz",
+      "stored_sha256": "b5fc23b42e4b90918a8c6f3a962a1e14621220ad30b70d700b61981d90b822ff"
+    },
+    "64ae8f5cc0025ec58f793358e5583c546b6d5a62d976bf44fb00c5fc316095e3": {
+      "file": "64ae8f5cc0025ec58f793358e5583c546b6d5a62d976bf44fb00c5fc316095e3.gz",
+      "stored_sha256": "5a66c0b16735f9711c5b7b57901be680ffe8de238ff30f4b51c6e23d946d9a48"
+    },
+    "dafc306ad592230901f174d6942119ea06b5afdced5a115d4b286e4a48746ff7": {
+      "file": "dafc306ad592230901f174d6942119ea06b5afdced5a115d4b286e4a48746ff7.gz",
+      "stored_sha256": "08c0149dc4c31ff6d11d0c6ff6645e14c9e84d6b3a92fd7927a5c27e3a0665d4"
+    },
+    "065a7530ab03ca9bd694c681e8c2157219b596c5ad7f6cb55556e7b69721b1ca": {
+      "file": "065a7530ab03ca9bd694c681e8c2157219b596c5ad7f6cb55556e7b69721b1ca.gz",
+      "stored_sha256": "095dc890f656fdf61fc975494821a9335d9389e8150e8a956fa7aeb524cc85b6"
+    },
+    "205147fa4569bdceb705bb514ae30057443fca3372133467b2cb7e5b89f7b3fc": {
+      "file": "205147fa4569bdceb705bb514ae30057443fca3372133467b2cb7e5b89f7b3fc.gz",
+      "stored_sha256": "7916fd838b923ab4a3516dc5251a3b43bfb03667738803fab9fe6c10e56b9ef0"
+    },
+    "6d992f15900866ab2402ade2206d626f3689fca7cee8c2994162f4fd19401d8c": {
+      "file": "6d992f15900866ab2402ade2206d626f3689fca7cee8c2994162f4fd19401d8c.gz",
+      "stored_sha256": "f36ee0820f2378a62cdb7b9614f6fb1dd56ec27df33f75a913278c62c90441b1"
+    },
+    "7bfa9128631892b1beb409de9f13821434d2220a83592b157bc37427b80f2428": {
+      "file": "7bfa9128631892b1beb409de9f13821434d2220a83592b157bc37427b80f2428.gz",
+      "stored_sha256": "2c5f2ebf3a981bb36942e82162e84e4eca6fecc0e7fbdcfab7ba83eb3ffd589f"
+    },
+    "8dccbe2844c26f5124d93560fe239cf1c3eb0a205f7e3575967f634313e9ff17": {
+      "file": "8dccbe2844c26f5124d93560fe239cf1c3eb0a205f7e3575967f634313e9ff17.gz",
+      "stored_sha256": "49319e249b26e4d30ef31a6ce1f4840f211cfcd145db75ef2f2231824551d92a"
+    },
+    "d823973c1ca7f36c59d02d2fb44e451f1f60b51e77a970a524e6352d972de4c1": {
+      "file": "d823973c1ca7f36c59d02d2fb44e451f1f60b51e77a970a524e6352d972de4c1.gz",
+      "stored_sha256": "bbb481ba35766085a5a44c62a25afd7c37c22cb246296108f5cd01a3013e2771"
+    },
+    "c6faea4ca9ef89aeae2419ccb9ee558fd8d2a64b646548b2d737ceff316ab2f8": {
+      "file": "c6faea4ca9ef89aeae2419ccb9ee558fd8d2a64b646548b2d737ceff316ab2f8.gz",
+      "stored_sha256": "08e39855ecdac359190a0bea525f5a1df2d85fc5b4ed9f7cfc4a913dc4201b10"
+    },
+    "fccf145c93b6d931a48374b3c89075899d4a78ab7731be2d8e79b9c8b7328c8c": {
+      "file": "fccf145c93b6d931a48374b3c89075899d4a78ab7731be2d8e79b9c8b7328c8c.gz",
+      "stored_sha256": "30a9dc4326cf0d4367845b1b23979eaf8082ff4282bd0b48fc40c6a9063b12f1"
+    },
+    "67d8feaa1193760162828665e479403668a3e0d2ffc7c5ac668e66fd445ed1da": {
+      "file": "67d8feaa1193760162828665e479403668a3e0d2ffc7c5ac668e66fd445ed1da.gz",
+      "stored_sha256": "c733e34e23a43dda97c4bd7de20f35ea0e0bde76c8f89ad556bc2fed42ce3927"
+    },
+    "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc": {
+      "file": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc.gz",
+      "stored_sha256": "c96bc8c32bc718362de41de762dd29f735e1f181fd5acdbcb3aa2c3d3dcaa598"
+    },
+    "7fee8149f68d8690d3d05f2d64172a33f7b6de0bba216413553895bdfba3503b": {
+      "file": "7fee8149f68d8690d3d05f2d64172a33f7b6de0bba216413553895bdfba3503b.gz",
+      "stored_sha256": "754fe7631f6b771b5689bea9efb55eeb73b07f39fc6245fbc6b11a03046b9632"
+    },
+    "e18c80c8a92e3f747f9a14cd3328f5ac640cc373a84719c9a1aa9f1d92bcd143": {
+      "file": "e18c80c8a92e3f747f9a14cd3328f5ac640cc373a84719c9a1aa9f1d92bcd143.gz",
+      "stored_sha256": "9b954449fd8daf5cf41369701e6f08795167ced5abb2c4315f9b57f6b4d7b1ef"
+    },
+    "02dc5e32ce233200fd0740e31d229f38ff1ea2757622f595e4a4f7c13045ce40": {
+      "file": "02dc5e32ce233200fd0740e31d229f38ff1ea2757622f595e4a4f7c13045ce40.gz",
+      "stored_sha256": "4f858fe98bf47a291948adc0929ca8224dd2f756f9a5f702e6557b1c226d0b36"
+    },
+    "a7611c5e1b00ddd4746a3e4671d295d26be73f70695077cad9e5e9f899b25f95": {
+      "file": "a7611c5e1b00ddd4746a3e4671d295d26be73f70695077cad9e5e9f899b25f95.gz",
+      "stored_sha256": "0b5eed7a8ae558b56d90bee99c029adc5245bf98a149a12a6610248763a08452"
+    },
+    "a405e8694c65a984a24e81c06dd2c9fe11a9eeb219230d0b0cd996c899b2e422": {
+      "file": "a405e8694c65a984a24e81c06dd2c9fe11a9eeb219230d0b0cd996c899b2e422.gz",
+      "stored_sha256": "1f5eeaa13eb20354adbb212374e876e5bf105ee4ffe6d0d00d0ac3643d6ee284"
+    },
+    "80fbad6fabeac0d82e51f54bd009ecf1bb15ea735bc181e1e094a3bc4f389377": {
+      "file": "80fbad6fabeac0d82e51f54bd009ecf1bb15ea735bc181e1e094a3bc4f389377.gz",
+      "stored_sha256": "fb71a6d6fa27ba8b06fb67d8526d0ec998aa39d50ca289a3a0f2652930b548d2"
+    },
+    "0046daf4cc9d656f37fa3060349c4b97add1e635605e26862c21702b2b1168fc": {
+      "file": "0046daf4cc9d656f37fa3060349c4b97add1e635605e26862c21702b2b1168fc.gz",
+      "stored_sha256": "9f533cc0f4bd629db0aedaab31b386be5488adfdb6601fb732a8b0ce01bda314"
+    },
+    "582bbcf8d56d57bbb3ac24725e41a9507ad1925b3b6a9ddb198981ddf294f0a9": {
+      "file": "582bbcf8d56d57bbb3ac24725e41a9507ad1925b3b6a9ddb198981ddf294f0a9.gz",
+      "stored_sha256": "f5df34837e478c3b3487d31903f193a5f7a1bd6db2868eb208351c3368ad3a44"
+    },
+    "cb4c81ccf2d5a1d2fda534350d7d4d1544cc53721a3cf57646fcf232cd03e072": {
+      "file": "cb4c81ccf2d5a1d2fda534350d7d4d1544cc53721a3cf57646fcf232cd03e072.gz",
+      "stored_sha256": "19d7d65de5bef426dcfc287451284431f0c68a1f4e0f6195f0fdf3610fe22c7c"
+    },
+    "f231e7a417b8d55694805b6e342c19a434fa9bfe3e5fb67aef98783f5a838a6f": {
+      "file": "f231e7a417b8d55694805b6e342c19a434fa9bfe3e5fb67aef98783f5a838a6f.gz",
+      "stored_sha256": "baaf280cfad8813935410fc757215205c14df1a888f73e0116359634b5b64c3d"
+    },
+    "9d4c82f76f852509e55328159c632b9f4c91526795339c4eb7ef601ab72c018e": {
+      "file": "9d4c82f76f852509e55328159c632b9f4c91526795339c4eb7ef601ab72c018e.gz",
+      "stored_sha256": "c750cbe8de1b3ba18f135b64f224fcab7c1e7c0ec821f18836bfe582e68441f3"
+    },
+    "05d266ae05402610f007395802a5ef4cc612fba2a65100e157772d9af72011b9": {
+      "file": "05d266ae05402610f007395802a5ef4cc612fba2a65100e157772d9af72011b9.gz",
+      "stored_sha256": "1afd22bbab60d8067ded085a3e7ea5e62444d5ddabdf5605ea8b5c5e10be4767"
+    },
+    "8581a91dada08c92810bea20c62dfd398483eb74621c4671c6893a507e1d79ae": {
+      "file": "8581a91dada08c92810bea20c62dfd398483eb74621c4671c6893a507e1d79ae.gz",
+      "stored_sha256": "7e4654d049479001242aceaf4972707e43522ec22ee3036dfbf61a4994b002ea"
+    },
+    "82ab7d48e65101c639a4c9011bb98b9a8f2d9832274fdfac6ff1a6e5cf8ead4d": {
+      "file": "82ab7d48e65101c639a4c9011bb98b9a8f2d9832274fdfac6ff1a6e5cf8ead4d.gz",
+      "stored_sha256": "2c7f43133b5e2df15377b7abce5e5f6cabb953b9a7cf6e25342f2ae2af492e33"
+    },
+    "22dd405ea58ec90bb689e8882496ecb501f4113d711240af8b6fb36ee70e0fc5": {
+      "file": "22dd405ea58ec90bb689e8882496ecb501f4113d711240af8b6fb36ee70e0fc5.gz",
+      "stored_sha256": "3e7e861aa89cc6271267df35f550a1e647f480cbc7afb9b71de161a87b876daa"
+    },
+    "7f6a6916c5e66dc7fffee1685a4fd13a2c1bdcc250aca32bee8c8303d1d0bd78": {
+      "file": "7f6a6916c5e66dc7fffee1685a4fd13a2c1bdcc250aca32bee8c8303d1d0bd78.gz",
+      "stored_sha256": "f43ac26855487b6e6954df7a1017860e9296a6580ac9f95a243e176ed26f7586"
+    },
+    "3ec2580e92b50280b9c2627ac4fd27ec7ce2a88874a7bc75ebdb0e461ddda89b": {
+      "file": "3ec2580e92b50280b9c2627ac4fd27ec7ce2a88874a7bc75ebdb0e461ddda89b.gz",
+      "stored_sha256": "abcc34ca8def8a0f37c64b0e0fc8392214d6b461f1651f637713e7648bfa6757"
+    },
+    "6ba2a1eb6b8167cba5c4b7f6e693a862d60b773c7ecb0f80ae89fe53216ed02c": {
+      "file": "6ba2a1eb6b8167cba5c4b7f6e693a862d60b773c7ecb0f80ae89fe53216ed02c.gz",
+      "stored_sha256": "b020dbab586225946d43ccec407c05b51ab74b3daf61db080986f8f6f4746812"
+    },
+    "2a6694bc110213bd5e2baf083384663783f1d86ad30e4d67ff2006de9525b94d": {
+      "file": "2a6694bc110213bd5e2baf083384663783f1d86ad30e4d67ff2006de9525b94d.gz",
+      "stored_sha256": "d83c86d0071a66376d417915fbfb4850da12081ad65d30579849d49c4411566a"
+    },
+    "6effc2b7ebba05249fef9ae85259cbe8763be2741adfaceddab64818b6c9ff67": {
+      "file": "6effc2b7ebba05249fef9ae85259cbe8763be2741adfaceddab64818b6c9ff67.gz",
+      "stored_sha256": "98c430e0101f27cbb3ed19072bf191bcb8d8708a7dd6710062f0ceee655baaf1"
+    },
+    "a3dbe40a666e557023071e7d08325a04d4df3ef9c6e25099d81f758db3b1d265": {
+      "file": "a3dbe40a666e557023071e7d08325a04d4df3ef9c6e25099d81f758db3b1d265.gz",
+      "stored_sha256": "3182eab0f0152263040506b9a19b6cee3432cfdb4a93a99c4e12580ee3a59911"
+    },
+    "3b48aac520e7f768dcb6dacfd6ab48411a1e3c7b40925d57a10a8eaac852b212": {
+      "file": "3b48aac520e7f768dcb6dacfd6ab48411a1e3c7b40925d57a10a8eaac852b212.gz",
+      "stored_sha256": "e6d9b523f8062cca21cda189af02811018282736e1a5f1d46caef68fdec37321"
+    },
+    "e7f3791538390a698b9364c49b4a858ae1fef0f7309ed3e7a1927ec8ad4cc8aa": {
+      "file": "e7f3791538390a698b9364c49b4a858ae1fef0f7309ed3e7a1927ec8ad4cc8aa.gz",
+      "stored_sha256": "ebe1767402788677570d2cd1a5a77c6b71bdd67f9b017bdbb24a31dc10631a33"
+    },
+    "e9d46a6723902b6caf5f6efc8e71e052214642357da482c39b682deeab4e585e": {
+      "file": "e9d46a6723902b6caf5f6efc8e71e052214642357da482c39b682deeab4e585e.gz",
+      "stored_sha256": "8baebe8020a620a681a0025a5ea11a82b6ac1981cf0b716919dd3a0ccaea7678"
+    },
+    "7166c620b0a6545de15d8f096881ae35233eff1ab299aab33e75cabc558c7449": {
+      "file": "7166c620b0a6545de15d8f096881ae35233eff1ab299aab33e75cabc558c7449.gz",
+      "stored_sha256": "2adc57260ac5d742bb369a38738e8567139b97fba568f72d4f741e0cdad927e0"
+    },
+    "d54d6a3bf751fb3c75512c37e0f3069b30191f135fde8a34eda4fcb99295a121": {
+      "file": "d54d6a3bf751fb3c75512c37e0f3069b30191f135fde8a34eda4fcb99295a121.gz",
+      "stored_sha256": "60ac0c6c37f0c1231799891d42d1178a540d38c353767fbdb6b169d029778363"
+    },
+    "b7db58bc326d7a90c48edcb7bac220afe9e1506d4bbd8ffc56187bae496991ce": {
+      "file": "b7db58bc326d7a90c48edcb7bac220afe9e1506d4bbd8ffc56187bae496991ce.gz",
+      "stored_sha256": "e6e0cbc9478482a7206752556364b9a66b37e8bf82eae51421e494c177cef6bc"
+    },
+    "3e9d8953d56b18588418779af85c95d65f659e7d36eef3ad3a6e2718dd480803": {
+      "file": "3e9d8953d56b18588418779af85c95d65f659e7d36eef3ad3a6e2718dd480803.gz",
+      "stored_sha256": "d05dee33fb1f4c89fdda9bed450f08e49f8b6ad7fcc4cf5c8da8047418999095"
+    },
+    "bda4dc7c0c2c101243f91dd6018020f34cdfef30ee1df921061bc01a0fffdbf1": {
+      "file": "bda4dc7c0c2c101243f91dd6018020f34cdfef30ee1df921061bc01a0fffdbf1.gz",
+      "stored_sha256": "4d0d2d317b86f202d97e6f4de8ba0528bc049fd741f2865b1ce904b7ce34c162"
+    },
+    "8aca2ac70b0a6eb320d12058236ffb90336a59c834086939c5499e91e844c14d": {
+      "file": "8aca2ac70b0a6eb320d12058236ffb90336a59c834086939c5499e91e844c14d.gz",
+      "stored_sha256": "4200b3124162df32b9b858c5163686663e90f8ead1902fccb4e77f92d250802d"
+    },
+    "28587cd4ba905a6e3afc707a5f9132240537624188dc767305ff697e73bd16db": {
+      "file": "28587cd4ba905a6e3afc707a5f9132240537624188dc767305ff697e73bd16db.gz",
+      "stored_sha256": "70dc81ae4467e971a001b60aa766daddb81937ae1a2e9e03bc922a7db1d5e827"
+    },
+    "45dfbd3865cbfa4221099d830c37fd6a2247573cafb954152a9db690b54cfb5e": {
+      "file": "45dfbd3865cbfa4221099d830c37fd6a2247573cafb954152a9db690b54cfb5e.gz",
+      "stored_sha256": "3e8c12042a7aa957d49a5be0a5abe796033fbe2d7303d662a8195b23bcbc0f18"
+    },
+    "1cc181118c0696964dccf4c0781759de3c02399b22bbe4a1714ea7bea565caf1": {
+      "file": "1cc181118c0696964dccf4c0781759de3c02399b22bbe4a1714ea7bea565caf1.gz",
+      "stored_sha256": "dd35b338bbf12c25eec1324ad6bd09a8a65b33795b109538bad35edede61ebe1"
+    },
+    "ce9e03ccb38d6ff18824fce27a995d72995619defd26d7221d6d6f0ff5773113": {
+      "file": "ce9e03ccb38d6ff18824fce27a995d72995619defd26d7221d6d6f0ff5773113.gz",
+      "stored_sha256": "e8335fa443b42c6539c3bdf64929ebfd3574477c99f34a4135c9a5b7bcf302f5"
+    },
+    "0d2db684ec4268b72bcb480992e52fafd2700bb73e93d3852479157889b200a5": {
+      "file": "0d2db684ec4268b72bcb480992e52fafd2700bb73e93d3852479157889b200a5.gz",
+      "stored_sha256": "7bc9a4741cb68026ae73733728d07c2842a5929798cb252b9319d36376008b07"
+    },
+    "53d10f8da68ca147f2397eaeef65dc93ab5fda84792416a4e18ba9e8ae51b448": {
+      "file": "53d10f8da68ca147f2397eaeef65dc93ab5fda84792416a4e18ba9e8ae51b448.gz",
+      "stored_sha256": "0d159ea2503495e5cd278f49d9ad5fe6fd4226848de4a08af363f4ae7b5224c2"
+    },
+    "26d68780d98cb9187c60370be85bbfdd85fff7f41ec395e8653255fc77c76c46": {
+      "file": "26d68780d98cb9187c60370be85bbfdd85fff7f41ec395e8653255fc77c76c46.gz",
+      "stored_sha256": "bd8a4dc5226fcff71c41177a585095806dc8b81be9aa976da8939f05b9b7fa00"
+    },
+    "9fb5c05dd804f5d4a8a220270f2f97e3d531608a17fc97a84cd2f3c2030ed954": {
+      "file": "9fb5c05dd804f5d4a8a220270f2f97e3d531608a17fc97a84cd2f3c2030ed954.gz",
+      "stored_sha256": "0a60026eddb83fe781c7f9fd63406d687caff41dbfb809d0e5120200da604880"
+    },
+    "3183652a286bdd40ad6c47ef18a57143f9579f88cb8ec517d58195843a8d72c3": {
+      "file": "3183652a286bdd40ad6c47ef18a57143f9579f88cb8ec517d58195843a8d72c3.gz",
+      "stored_sha256": "486885ee5736d2d39f79329c7dfd868b4c98a5d38fa94b76fda7517628990b9d"
+    },
+    "d1b78094cc5dacad90c3faae9e636ab7b56b1a24727c3db35dedee8f57cce1f3": {
+      "file": "d1b78094cc5dacad90c3faae9e636ab7b56b1a24727c3db35dedee8f57cce1f3.gz",
+      "stored_sha256": "b66ea58d106168680eabbbb6539e67c5da40b9ac8a10050835b9d0107ead18df"
+    },
+    "58237667527519d999cc4cf6fb6b97880f60fb84f865e916acf109256bed8de8": {
+      "file": "58237667527519d999cc4cf6fb6b97880f60fb84f865e916acf109256bed8de8.gz",
+      "stored_sha256": "6560f496abaf856dafab2bae23ecd31bd6bc01e624629b42fac63fca03107008"
+    },
+    "4ca7804f6a22e55fdd3edd644b45461c4e2b113a76b0f1ef2df744162fd22861": {
+      "file": "4ca7804f6a22e55fdd3edd644b45461c4e2b113a76b0f1ef2df744162fd22861.gz",
+      "stored_sha256": "09cec1b5c0581f8338d96796dd1efa5b48375f99351f7d650048b0d8894ef0a0"
+    },
+    "fa17254caccdd4a93ee15c073397c5aea1741c1abb2cb8c46a9455147467b768": {
+      "file": "fa17254caccdd4a93ee15c073397c5aea1741c1abb2cb8c46a9455147467b768.gz",
+      "stored_sha256": "5af4cd8cc054ff6fe9c858b55463960c076b7ac34bb23c5a6b7ab7e210f176b4"
+    },
+    "8928701cc34334682155c2daf0c2de02e101525bd41e5243f7f733a509f9f58a": {
+      "file": "8928701cc34334682155c2daf0c2de02e101525bd41e5243f7f733a509f9f58a.gz",
+      "stored_sha256": "2c6922e5462b30d26ecc98505620872693c0b820886007c94a59a08ec5cd9311"
+    },
+    "46e80f093559fa7ac5dfc8a5b444a9136abe28831b7d70969f70bbbb50d41588": {
+      "file": "46e80f093559fa7ac5dfc8a5b444a9136abe28831b7d70969f70bbbb50d41588.gz",
+      "stored_sha256": "8cd54169e47283b805e83dd1bcc6f7fae7bea5678d1cbba69c253626880f831b"
+    },
+    "30ae74714c6c0fde3edb39895c3e35af52fa3f6e25244adba0e668d1246e9e2a": {
+      "file": "30ae74714c6c0fde3edb39895c3e35af52fa3f6e25244adba0e668d1246e9e2a.gz",
+      "stored_sha256": "e8551ca09828046af3dd769931a7ee9b724e7fb95d6a8e0b45ddf801748ee55b"
+    },
+    "567599d9f0cf30c8af76f888261816f328cb035fe8e6ea528a0bba2950b4cfeb": {
+      "file": "567599d9f0cf30c8af76f888261816f328cb035fe8e6ea528a0bba2950b4cfeb.gz",
+      "stored_sha256": "392bd6ce6e3ec2e072efff6ad9d83d06e2995fccab6ea9508263ffb5d79fdfc5"
+    },
+    "3028764c6901a4e6dafc093361ab8455993d0d02a843f63738d41fc3b2ad1281": {
+      "file": "3028764c6901a4e6dafc093361ab8455993d0d02a843f63738d41fc3b2ad1281.gz",
+      "stored_sha256": "e3da177a0d67a8826a905b8e26c3805937290c92ff2587e7ede0e78e26b3bc86"
+    },
+    "b43cfece3b50c3961d005649ca41de5944f72ecd0cfc44bf52efcea58081df83": {
+      "file": "b43cfece3b50c3961d005649ca41de5944f72ecd0cfc44bf52efcea58081df83.gz",
+      "stored_sha256": "e5f02c3cb48449fcd672ad93090e409fd2dea415512b35d9ba330005451f6c34"
+    },
+    "b852d4240d4964338c144d4ef761a381f8b6b061caa366fbfda71cb4ce52bf1f": {
+      "file": "b852d4240d4964338c144d4ef761a381f8b6b061caa366fbfda71cb4ce52bf1f.gz",
+      "stored_sha256": "d80502e2c6cc6a007431e7876c7288102d5ba07fdf899f448aa42dde0bfba007"
+    },
+    "18f3f89307a1817c4b136bafbabde6d285cf0e0ed0c5b05dcc46b2573c56c48b": {
+      "file": "18f3f89307a1817c4b136bafbabde6d285cf0e0ed0c5b05dcc46b2573c56c48b.gz",
+      "stored_sha256": "3d1e945b5637d5542f8ec0de34a2fc28a37887dff19e1516a189819e6424ebf1"
+    },
+    "170e540f3705dc09aba0af1064364d2b7aefe75c92fe94fea37f826c478f30f7": {
+      "file": "170e540f3705dc09aba0af1064364d2b7aefe75c92fe94fea37f826c478f30f7.gz",
+      "stored_sha256": "dcf9c5ee33dad025f90551378d3952a7335eeda51b3351535c4189ad65d67a47"
+    },
+    "0fb584e458c848c38c17fbd31251836c7f6d5b609d2391ea92c31f20046fabc0": {
+      "file": "0fb584e458c848c38c17fbd31251836c7f6d5b609d2391ea92c31f20046fabc0.gz",
+      "stored_sha256": "e6dffb06e435c89de2d18118e712519801fdd45b770718d1888a99798b00e167"
+    },
+    "95f6110e239d537799275a846f8d7964f3ef9f05423c1576cc3de4e662a5437f": {
+      "file": "95f6110e239d537799275a846f8d7964f3ef9f05423c1576cc3de4e662a5437f.gz",
+      "stored_sha256": "e5515016935456711fbb87c34ec47b561cc3d4eeea3af12882380785b1e4de91"
+    },
+    "3b8d0e2fdf0722a9a63d2f2d670c4c3ea76aef35d98ef3c3343412aedaab01ab": {
+      "file": "3b8d0e2fdf0722a9a63d2f2d670c4c3ea76aef35d98ef3c3343412aedaab01ab.gz",
+      "stored_sha256": "249ab52645a983b075cdb208925bc352b1af12376e04c4f2b0e598bf9627d563"
+    },
+    "9df87c14171d7da4069b3213f18da9a151d1a254bb8ac62fb4adc6047666c94c": {
+      "file": "9df87c14171d7da4069b3213f18da9a151d1a254bb8ac62fb4adc6047666c94c.gz",
+      "stored_sha256": "9e695a51674aadbd08548c91e647980a4c719458a92d01574b6fde40e9c335c8"
+    },
+    "410ef0436bb782304afdfc41d1d096eb5aafb3f34d5ad4c7111d7b2d4888741c": {
+      "file": "410ef0436bb782304afdfc41d1d096eb5aafb3f34d5ad4c7111d7b2d4888741c.gz",
+      "stored_sha256": "362dfd5335f9a92fa0d868f84f533e5b52d6e136168441780f76e6dd4b183ac5"
+    },
+    "e3e225ac3962427c9652e37da17c625e29c63673ac411029eb7f56958b00f8ce": {
+      "file": "e3e225ac3962427c9652e37da17c625e29c63673ac411029eb7f56958b00f8ce.gz",
+      "stored_sha256": "56e4d055e1a67ee9b09933914d1649c9f300642f0b7655db8aaabb9f9f73de00"
+    },
+    "103a47d98efd7d34a74a4c35863e2d4df21a6fb0702f64b30e1df4eb99c33ddd": {
+      "file": "103a47d98efd7d34a74a4c35863e2d4df21a6fb0702f64b30e1df4eb99c33ddd.gz",
+      "stored_sha256": "6830cb0fd83be696c1a583c7490ce74e7dab583bea796e47a6c7f4cffa31cbb4"
+    },
+    "517e320e2136946acac80c45a02450675d71ab45036744fdcb061bf0fb656d4c": {
+      "file": "517e320e2136946acac80c45a02450675d71ab45036744fdcb061bf0fb656d4c.gz",
+      "stored_sha256": "818337d2ca20403a8e11139acbb340b60eebde79c97826f3aa615fbdd5d1f957"
+    },
+    "62f52885b8a9bf0fa4d1073a1addc10adb79a880c32f8f691e7ccf5bb82ed5ee": {
+      "file": "62f52885b8a9bf0fa4d1073a1addc10adb79a880c32f8f691e7ccf5bb82ed5ee.gz",
+      "stored_sha256": "69210ca205c901fbca46e037b462075b6312de0620e0a682c7a9b94121e67947"
+    },
+    "c524c7569cb6110f1aa3c7b97eaf63652f74d445b0168dfd0b39ab58d82a5138": {
+      "file": "c524c7569cb6110f1aa3c7b97eaf63652f74d445b0168dfd0b39ab58d82a5138.gz",
+      "stored_sha256": "14875fd890ef78e14fe664d0376e50164f814bbfb08e66c37b331fdc10a899f9"
+    },
+    "056d4c9b86106badc357b999cf2a10884c990bede46149a68353bdb343ed9e7a": {
+      "file": "056d4c9b86106badc357b999cf2a10884c990bede46149a68353bdb343ed9e7a.gz",
+      "stored_sha256": "89e30ce985b1e41ca79a6f06bcbe6550ac34a68dd76eddba81df57093e3db453"
+    },
+    "7e91df1185c9771973c9fd99633d27ee399a2e89f52a8f42bd2e8059e514d83a": {
+      "file": "7e91df1185c9771973c9fd99633d27ee399a2e89f52a8f42bd2e8059e514d83a.gz",
+      "stored_sha256": "063ba15f4962f5ed0b3fc2699e5dcc73574252019ee5d01b1f1f6f7f09c1bc9a"
+    },
+    "dcbc168ecfa3338f8e750aa14353c1c574c9128058cb3a54fa74206af96f4f7c": {
+      "file": "dcbc168ecfa3338f8e750aa14353c1c574c9128058cb3a54fa74206af96f4f7c.gz",
+      "stored_sha256": "e8d6f0ed4883bc86eb5944f87400e3c56b68e27f5b91a768f9e81be82284ba19"
+    },
+    "43c86c5f8d9296e398117a0e28e12f66c35f7e19098b261c962344a6ac4f7dc5": {
+      "file": "43c86c5f8d9296e398117a0e28e12f66c35f7e19098b261c962344a6ac4f7dc5.gz",
+      "stored_sha256": "47a2154805ee2d71ac353843956f934a2211e1f3773b0153534b093d67753f7d"
+    },
+    "296dbcf041bdd5a66ed5e0f7f25c92360426b80a8e8cdec5c815137d9cc9fddd": {
+      "file": "296dbcf041bdd5a66ed5e0f7f25c92360426b80a8e8cdec5c815137d9cc9fddd.gz",
+      "stored_sha256": "0a7234581c3aac4655fbe384f269d5da540b5e3fc2adbb91fa28d5f158b0e4a9"
+    },
+    "c0ed6dc49b6189342d1d74019434cbf25ae7e7d44d32a0eeb9683576208d9e1c": {
+      "file": "c0ed6dc49b6189342d1d74019434cbf25ae7e7d44d32a0eeb9683576208d9e1c.gz",
+      "stored_sha256": "a39805423a2ca9a86e9f2efe02bb2359d5443dd3efde73ee39abce8c9161c57f"
+    },
+    "b2adfc523309b3bd56ccf0cfa8dab7fbf19cf661d5b0e6e2c57caae54f8b813b": {
+      "file": "b2adfc523309b3bd56ccf0cfa8dab7fbf19cf661d5b0e6e2c57caae54f8b813b.gz",
+      "stored_sha256": "d5d6f1f1872573270094e64c6f9235244f2ae0e7295bb1c5271513a27f3e70ea"
+    },
+    "e7de3d22e1132d4d6ada121ed7cbaf3379216dcf5bf1b534735537aa7e952b89": {
+      "file": "e7de3d22e1132d4d6ada121ed7cbaf3379216dcf5bf1b534735537aa7e952b89.gz",
+      "stored_sha256": "25965dbb65a496f8e0dfa60d3428f808a0d908ff5ea0aa49101bf8710f529b96"
+    },
+    "048bf50f3759ce8ba1a1e93db851b4eda77328fb4bfa779409d642ce4f16448d": {
+      "file": "048bf50f3759ce8ba1a1e93db851b4eda77328fb4bfa779409d642ce4f16448d.gz",
+      "stored_sha256": "9aefd40551489dd456725ca5d4a6f32451c1a29cb61469246d106c03ec6d9a78"
+    },
+    "877ae752989fabca8c4d873ad6ec50596f883d41555be230adcdc0c691c39e01": {
+      "file": "877ae752989fabca8c4d873ad6ec50596f883d41555be230adcdc0c691c39e01.gz",
+      "stored_sha256": "3f8f6e0ed5707bb81dee65f9db9d1f7a640a7a3c77e8633e2c31253e2318d6bb"
+    },
+    "5cbbfa52d96a6e4c6cfaab22f57ba980934ca2a9c67b125206d9fdbabe921286": {
+      "file": "5cbbfa52d96a6e4c6cfaab22f57ba980934ca2a9c67b125206d9fdbabe921286.gz",
+      "stored_sha256": "55f982f8303e7269ce981c408be3c34edf61001a887b184c27438ee35b68e613"
+    },
+    "d2c83623af04602204a95e5d3fe209d8af12097c3867e3c55a637c2f61bbfde3": {
+      "file": "d2c83623af04602204a95e5d3fe209d8af12097c3867e3c55a637c2f61bbfde3.gz",
+      "stored_sha256": "b9c86ec7337dfaacd8731369a411de534f0fef5d94b8c3aa8c03e0753c396653"
+    },
+    "876e0f56d0cc3c8fdc6a82529396379adc49d7898b982240979cc22c3cdaf104": {
+      "file": "876e0f56d0cc3c8fdc6a82529396379adc49d7898b982240979cc22c3cdaf104.gz",
+      "stored_sha256": "a0d6efc8f36f95b2a212b63c94cd068958c1cb6982986692dafe4a3d3dfebcc9"
+    },
+    "44265aedb3f9f4f6c418edf1a73a7bab3decf21820507afb5ca1b9ef420c0555": {
+      "file": "44265aedb3f9f4f6c418edf1a73a7bab3decf21820507afb5ca1b9ef420c0555.gz",
+      "stored_sha256": "d55c9e54e62f3ca2912f7c03ebc36bc0b7bf48554901db8807a9be2bdd9be4e0"
+    },
+    "5ca69e093e5c9d5cf730b3f1fcc3c5392a704ed150e7cdcaf5572856195b1ae6": {
+      "file": "5ca69e093e5c9d5cf730b3f1fcc3c5392a704ed150e7cdcaf5572856195b1ae6.gz",
+      "stored_sha256": "9b48a3690a116af130816390ac28083d1c81cb5461a63326c8d09618b7389b25"
+    },
+    "6688eecb85efe7e2dcf0115471cb27190f60bad9225f7255755b0c8d29058116": {
+      "file": "6688eecb85efe7e2dcf0115471cb27190f60bad9225f7255755b0c8d29058116.gz",
+      "stored_sha256": "dbf3e6bb6963eb516847034046a3ec30eb02daf71e7ef223ba27418a1cee645c"
+    },
+    "96a2a7fe8a1f9bf78764695c657470d68d2b1a6ad1c08f3384ec417345fbc48b": {
+      "file": "96a2a7fe8a1f9bf78764695c657470d68d2b1a6ad1c08f3384ec417345fbc48b.gz",
+      "stored_sha256": "484d8fb106655d9321fffe6bacffd95de0cbdcb17d7ad8e940d995ef92b9a11d"
+    },
+    "e2c18e533746487031fc8bbb0e99c9be83a92f78bfb4fe911b9ab967594e4601": {
+      "file": "e2c18e533746487031fc8bbb0e99c9be83a92f78bfb4fe911b9ab967594e4601.gz",
+      "stored_sha256": "6d2462032c825759c2db9a2dc9853d50f8257870a9f5064f196ee7b462d3966e"
+    },
+    "25ce5fdc36dd22284de8559f02dad60ca6d3945afba9048c85492d3a72b5c44a": {
+      "file": "25ce5fdc36dd22284de8559f02dad60ca6d3945afba9048c85492d3a72b5c44a.gz",
+      "stored_sha256": "1085fdfa1f4a15fdbe9688a15903f20f1a6debe6ffcaf835f0bde9313e8a7d1b"
+    },
+    "b9cef06cc63eae9d7a4044813a60a3539fb740ef6f31dcfcd85d4c8181a7305d": {
+      "file": "b9cef06cc63eae9d7a4044813a60a3539fb740ef6f31dcfcd85d4c8181a7305d.gz",
+      "stored_sha256": "7f71c57813c7d422e9cd4362a3d0981f4537ae2df2da8acf6d3a33710cb56870"
+    },
+    "1765c1b24006090ae88c27dca2909e95510b2fd44200a7860d297bf16785bfc0": {
+      "file": "1765c1b24006090ae88c27dca2909e95510b2fd44200a7860d297bf16785bfc0.gz",
+      "stored_sha256": "4efd032bdae5151ed844fc7774967baf7e1bee56e3a324570b35abf68e86f47f"
+    },
+    "31c8283862330107da1bba96cd4f41943809bbc64ae8a64e8337b14a118854cd": {
+      "file": "31c8283862330107da1bba96cd4f41943809bbc64ae8a64e8337b14a118854cd.gz",
+      "stored_sha256": "a1b123977c413e2f7df99ef89780ca9f0b29ec0f55b2d7dfc4e58644ca94e80c"
+    },
+    "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a": {
+      "file": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a.gz",
+      "stored_sha256": "b1c723ac77ab4b2569eee9563fecde2543737e1c8b5cb3447eaa590bf6b114ae"
+    },
+    "73b6e6a515ad50c4853750ed0a744c2b62502331f4fce288612a676594e242a9": {
+      "file": "73b6e6a515ad50c4853750ed0a744c2b62502331f4fce288612a676594e242a9.gz",
+      "stored_sha256": "ed04057ca78189aa07a25b7cd8b64427728d7682802ed4f239124114b866b8c5"
+    },
+    "c4a317089b4a1c2c548b3db9355e2d5b5507439ab671c6f31e519dd954dddf24": {
+      "file": "c4a317089b4a1c2c548b3db9355e2d5b5507439ab671c6f31e519dd954dddf24.gz",
+      "stored_sha256": "5ddb2ed5d2b16c0aaff558b0389c5f88e7c66b36fc7a2258cab78a85cde479cc"
+    },
+    "ee87b3cddc33422a00cafe658cbc3132b28864cf281e922c3a1528d2985cb60a": {
+      "file": "ee87b3cddc33422a00cafe658cbc3132b28864cf281e922c3a1528d2985cb60a.gz",
+      "stored_sha256": "0219f8ba17a2e008e3c26105fe3c1a4e45463e73da37aa722902ca55195e2746"
+    },
+    "623cdbaecdba70bbde68c55f92461e22a1007a9d7629708ffb248117ea3e2e0f": {
+      "file": "623cdbaecdba70bbde68c55f92461e22a1007a9d7629708ffb248117ea3e2e0f.gz",
+      "stored_sha256": "844e2a6ca873c0475e838c4e79b2ac364088fffceb64955f925184beb601ca63"
+    },
+    "95a88d1843db86f9a12572a2826b9d701260dcdf86e1937cdeaf5d76322a203f": {
+      "file": "95a88d1843db86f9a12572a2826b9d701260dcdf86e1937cdeaf5d76322a203f.gz",
+      "stored_sha256": "3343458a1a2afd1d7fc0e159daed3573d43cf08268a5ca951c2e1787da56b65a"
+    },
+    "f601a09175c0d4955f4692fd899d17242f0418435f0b3ae8c2bf0fe62e953c07": {
+      "file": "f601a09175c0d4955f4692fd899d17242f0418435f0b3ae8c2bf0fe62e953c07.gz",
+      "stored_sha256": "927516b9555b7073756ff9a8451dbd3807e5edd921425696f8f054d3f5f62e0e"
+    },
+    "b48e7c95e54afc437963451eda648390a8e9d1c38e220043cb5e042013d5ec0a": {
+      "file": "b48e7c95e54afc437963451eda648390a8e9d1c38e220043cb5e042013d5ec0a.gz",
+      "stored_sha256": "7a4d2b4df80fe810d6f68a698a9bface97bf3ae32a53f3a9c81c91c2d99409a5"
+    },
+    "62ca844a3508c94dc4cfff4ea8df6eda481fb3b84cf7e15e9bcb8f1f6a9b4976": {
+      "file": "62ca844a3508c94dc4cfff4ea8df6eda481fb3b84cf7e15e9bcb8f1f6a9b4976.gz",
+      "stored_sha256": "8f147302ae9f2332a082dd64b8627c8f52bc47fcd1ba7ed4acf47c070b5bb657"
+    },
+    "37b80a9109a998261d452cba9a5ae4528cf19da13342403bd0c5636983614d1a": {
+      "file": "37b80a9109a998261d452cba9a5ae4528cf19da13342403bd0c5636983614d1a.gz",
+      "stored_sha256": "b291eae8dd937d77d5634bdad10b56446f286312b603d5d768a0314e29bb4250"
+    },
+    "45cdbf6d6544e45b5805f4bf20827d0b877e7b86163fb180cb7d60498b5bfed0": {
+      "file": "45cdbf6d6544e45b5805f4bf20827d0b877e7b86163fb180cb7d60498b5bfed0.gz",
+      "stored_sha256": "363d7af46494f25a757cb2e1cb68ecf489aee0e65b0c710bb892e095be2edac4"
+    },
+    "de99b20e9cabf88aeb8786392a0792d8de1aaf5489fa8ed02d9744a2cd1d0a32": {
+      "file": "de99b20e9cabf88aeb8786392a0792d8de1aaf5489fa8ed02d9744a2cd1d0a32.gz",
+      "stored_sha256": "2d99670556511ef76d59bc4934deac085f766a5227c49b2a0cd9852d2f326368"
+    },
+    "bdfd62962d62c0ee1e18e58dd3ff26f2112fb27221405696a9a18d74ae0eaaf4": {
+      "file": "bdfd62962d62c0ee1e18e58dd3ff26f2112fb27221405696a9a18d74ae0eaaf4.gz",
+      "stored_sha256": "1fec8dee62e5a9265ea19dac7b557ce764469d6736ac0fd65b2e10605ba14eef"
+    },
+    "6bf7611b927e402afe6f5733eb7ac94eab9524c02b5103a32ace16e91be843cf": {
+      "file": "6bf7611b927e402afe6f5733eb7ac94eab9524c02b5103a32ace16e91be843cf.gz",
+      "stored_sha256": "fea40206551e9b1621aae6fc14f1dc6465c11c000979ef459aaa27f514abcb23"
+    },
+    "b1fa452eda8b143ae6c9b681c4d6be907efcb7909f64908311489a77a3029ed5": {
+      "file": "b1fa452eda8b143ae6c9b681c4d6be907efcb7909f64908311489a77a3029ed5.gz",
+      "stored_sha256": "759fd1769037e6da796be6b0f70e386b9b66e869efb0de4629b7f472a3f4c963"
+    },
+    "30798f62b4d9d7344e51bbfcc0e7c2042209d0a899d18edfe88b8a08e3ca36c8": {
+      "file": "30798f62b4d9d7344e51bbfcc0e7c2042209d0a899d18edfe88b8a08e3ca36c8.gz",
+      "stored_sha256": "8690b0d897d3847fdf11acb5b2400a21c8faa931272302ba69383c7d04a35398"
+    },
+    "dde11d67d90e05598fd344aef2429f125b61da6171644eae3430a8e2537bba6b": {
+      "file": "dde11d67d90e05598fd344aef2429f125b61da6171644eae3430a8e2537bba6b.gz",
+      "stored_sha256": "f8090f13c6c9df6e730be0edc6f6e2a468d9bda16a48f528096e11c9f6977ecc"
+    },
+    "8dfe2eb3740fb4e270ba0c2890c1e5168be605366e3e029ff5034b0ad80e6484": {
+      "file": "8dfe2eb3740fb4e270ba0c2890c1e5168be605366e3e029ff5034b0ad80e6484.gz",
+      "stored_sha256": "8bc184b3d78625041eea1da2c899030fb8d140c271fcbcab249a750cb61bf744"
+    },
+    "1e86efa89b194b28c79116d289934f62b5df96edf32c8b2c95149d3f1352946d": {
+      "file": "1e86efa89b194b28c79116d289934f62b5df96edf32c8b2c95149d3f1352946d.gz",
+      "stored_sha256": "028f64027db64ad096c1578179be63a47d2398e30ef461d5adee20d1c0c4f290"
+    },
+    "b95c78295e998bf3fda949182d6fc19ec226d8fe1246a8cdf2b836c483851df6": {
+      "file": "b95c78295e998bf3fda949182d6fc19ec226d8fe1246a8cdf2b836c483851df6.gz",
+      "stored_sha256": "afd543c8eb953b23691fd7a03772b34a1c1585453b382395fd0c30e61cbf5683"
+    },
+    "e8e4290e3f42126253affb49a65cd1849a644e60542dc4c2287e37c7e2d430d3": {
+      "file": "e8e4290e3f42126253affb49a65cd1849a644e60542dc4c2287e37c7e2d430d3.gz",
+      "stored_sha256": "d3fc8980dd3b8f12cb2eb906750b665c4d1a17ad388c244f2e07230eb27f7de4"
+    },
+    "32c558c379516d8a7817c4bde2acf83ebf18e55592e0fa1ea1996623910b2847": {
+      "file": "32c558c379516d8a7817c4bde2acf83ebf18e55592e0fa1ea1996623910b2847.gz",
+      "stored_sha256": "7ebb841f323c4a98b42bcf70b5407c73d1b95f7cb7cd6ff18457100e6cc59757"
+    },
+    "e699be91a8fab7b1097714c9e27f0812df677ec7dcd863e9e010c033f397814c": {
+      "file": "e699be91a8fab7b1097714c9e27f0812df677ec7dcd863e9e010c033f397814c.gz",
+      "stored_sha256": "d8b448e781c39dbef8dd11bd838b5c7ffa3aefe3b44a7ab335e09074e62881d5"
+    },
+    "34f04b22ec74df908370e4fb2f43b8ce304792b7727c59835e45797e1692071b": {
+      "file": "34f04b22ec74df908370e4fb2f43b8ce304792b7727c59835e45797e1692071b.gz",
+      "stored_sha256": "c33abb65e54d911e3875202c59bf442153ce094570358bd692dd3a511e987344"
+    },
+    "30487cce2b8f0f8c0610c75687441c50e98429dbba3c85245097a33b461d317e": {
+      "file": "30487cce2b8f0f8c0610c75687441c50e98429dbba3c85245097a33b461d317e.gz",
+      "stored_sha256": "d91f2ad09fa3464f53ca20470dfd5195d9cc70e95232ec4b92e99e585317a494"
+    },
+    "5515ec3b834d84a725245f132287dda447bf5068c2518cc259095107fd91cff7": {
+      "file": "5515ec3b834d84a725245f132287dda447bf5068c2518cc259095107fd91cff7.gz",
+      "stored_sha256": "7e90771ad6425e2629291c40262e1f5e436412cf9ede4dd56a65f5c706e01c70"
+    },
+    "45824242d3b810fe688c8e064b51be4cc1927bc43c801c051320862cbda8da37": {
+      "file": "45824242d3b810fe688c8e064b51be4cc1927bc43c801c051320862cbda8da37.gz",
+      "stored_sha256": "8b9793b3c41cc17c575e8dec405574087b2ff2674f1eba9fd22c19de3d1b7cf1"
+    },
+    "7e6a89e0029eeda184ea76b638db0e0dac1244fabca3833d046e7a047bb3a9a4": {
+      "file": "7e6a89e0029eeda184ea76b638db0e0dac1244fabca3833d046e7a047bb3a9a4.gz",
+      "stored_sha256": "af4c81fcee70ef53f8682c27dc5a2b88d162ee8b9810dae35bc4d63f85bd4629"
+    },
+    "1cb17d6a8506598e05a810295a701f067dab9af44333d057b0afe2faa6d67bf3": {
+      "file": "1cb17d6a8506598e05a810295a701f067dab9af44333d057b0afe2faa6d67bf3.gz",
+      "stored_sha256": "7b61b7c3dc6c765bdf7be17babc680290626bd1cd567d1e5045044fd2a14f4fc"
+    },
+    "c13a8af97c0c862f46f0fdc6f0505936f56163293758d7fc4b374c8e180da44b": {
+      "file": "c13a8af97c0c862f46f0fdc6f0505936f56163293758d7fc4b374c8e180da44b.gz",
+      "stored_sha256": "59887bcbbb6486bf96286c85670cb59fc2a7710f5474d88e34c351b49e4a563c"
+    },
+    "2c3da3f69859122a9446736bd9956abb60b032cd6138b748ba60ec2544523043": {
+      "file": "2c3da3f69859122a9446736bd9956abb60b032cd6138b748ba60ec2544523043.gz",
+      "stored_sha256": "3900161b29ca364e9fe26df5cfa4d42c6fc0c6f114c814b555d25c048a87baeb"
+    },
+    "19348fd875f903af4d3469567cebe8a2435c702b060e640c0afd3c294a2275c5": {
+      "file": "19348fd875f903af4d3469567cebe8a2435c702b060e640c0afd3c294a2275c5.gz",
+      "stored_sha256": "d03c42e6a70d19f03f8a1030800d263e7f749ab398212465eee3d6f5ccd3aaa7"
+    },
+    "7197f5d31f5eae4306438771eee1e715e549f139d99e1cbb8728143e972b586b": {
+      "file": "7197f5d31f5eae4306438771eee1e715e549f139d99e1cbb8728143e972b586b.gz",
+      "stored_sha256": "fc3667d4056fa23837101a2201e026c3bc623defec021c556cb7291e983c5219"
+    },
+    "ea1e12608ab2103f6563dec9ec0fadf48979ee30816eb7d72375fc55743efe62": {
+      "file": "ea1e12608ab2103f6563dec9ec0fadf48979ee30816eb7d72375fc55743efe62.gz",
+      "stored_sha256": "69e43ffb5fb06bd6b233a0416379414751d44d8a15a23d3e81ad02ce72bc6b35"
+    },
+    "6ad6046b6523591905e728c608269c6cbe0ac90a5c22b193ef72bf8a0f5ee2c1": {
+      "file": "6ad6046b6523591905e728c608269c6cbe0ac90a5c22b193ef72bf8a0f5ee2c1.gz",
+      "stored_sha256": "28c2d4f0e30f0f24d07c536644faba8ac5b1210dc23de1cbc5e4b7affc0934e1"
+    },
+    "a98365c36d3cd78f4410fa6b80e2aa37f71ba64c71a121d5dda8f574e0a5febf": {
+      "file": "a98365c36d3cd78f4410fa6b80e2aa37f71ba64c71a121d5dda8f574e0a5febf.gz",
+      "stored_sha256": "9e225c494989a472e0bc00c7ba004e7fba91cbc56282bca43d9744377c569f40"
+    },
+    "21b53c2db06c2d0edbd4e050815cfc52ba72b1da5c7ddced1faba3251114c5bd": {
+      "file": "21b53c2db06c2d0edbd4e050815cfc52ba72b1da5c7ddced1faba3251114c5bd.gz",
+      "stored_sha256": "7fbfbc6e90ed5b25d51b9bd7a82dccb18c40c158f766fd281e5a34df437594e7"
+    },
+    "169c2f12db4f72ddebba01676c0be7d6db81d5001cbaef75fafa5d96d72061ac": {
+      "file": "169c2f12db4f72ddebba01676c0be7d6db81d5001cbaef75fafa5d96d72061ac.gz",
+      "stored_sha256": "ef101b464aeb87752491959b27f5151bdfced0e80d8036687f2bced87a81ac4b"
+    },
+    "3fed859e1c6d752a73774867854bef9c7cb33417b915ffdef4ccb3daafc6eb2a": {
+      "file": "3fed859e1c6d752a73774867854bef9c7cb33417b915ffdef4ccb3daafc6eb2a.gz",
+      "stored_sha256": "7a9ecd33d470296f0585291e50d1a1d0c6e642588d35038409352d132425a9f0"
+    },
+    "9d7a203af3b61ce5e783889d2cdb20f22cdb7f57a35220d6472eb8aee7201ea6": {
+      "file": "9d7a203af3b61ce5e783889d2cdb20f22cdb7f57a35220d6472eb8aee7201ea6.gz",
+      "stored_sha256": "5c9c0fc0a26a1c5c08cec1f953f42e7c7c1595cb57a4abd5d5b2a58b65085eeb"
+    },
+    "95aecb3793aa33e3871e33d21c06f91a081d29eac66f91e1dc54a020914242e8": {
+      "file": "95aecb3793aa33e3871e33d21c06f91a081d29eac66f91e1dc54a020914242e8.gz",
+      "stored_sha256": "113831b2bbd569a62b82fad26eba68afe0af64f33bb7601327a05f63f1ad5fb6"
+    },
+    "99c3862b1eb91888abba44687f7c932e3f0b762ca3d7f69dd4694726ff157a0b": {
+      "file": "99c3862b1eb91888abba44687f7c932e3f0b762ca3d7f69dd4694726ff157a0b.gz",
+      "stored_sha256": "e814e743d2117833ce9e178f7710d5ce9e88e572ab34dd99d07796d830d90ea0"
+    },
+    "2d93dbd4e5692895f861af862de8c98b95992040084da60f5b3c5d3fdc726191": {
+      "file": "2d93dbd4e5692895f861af862de8c98b95992040084da60f5b3c5d3fdc726191.gz",
+      "stored_sha256": "688d00f2ba0355c43e0e703b3b494731013f7e63407804415ea6ed6c5eadb5d1"
+    },
+    "df32deb4e53ca15e6a6f1fd582997a834c27152e9e839b81f3cef179e9f78a27": {
+      "file": "df32deb4e53ca15e6a6f1fd582997a834c27152e9e839b81f3cef179e9f78a27.gz",
+      "stored_sha256": "40d6e5f288516cc570741c16d21b7904707116f2164d14ff58563378a6f6d007"
+    },
+    "d8f54cf2be2a735b18762abbffc74f4c42a4e6a5928fc800f17fc4ebbb7a9c14": {
+      "file": "d8f54cf2be2a735b18762abbffc74f4c42a4e6a5928fc800f17fc4ebbb7a9c14.gz",
+      "stored_sha256": "5d657aed6ad105e84acd0db783c44740e5242a4dd79b8eb905d303d8260baf67"
+    },
+    "0b1b4ff8b893de2f0adf9fc3359725c391ad8b6235baf2f253b9db6bb51ce21f": {
+      "file": "0b1b4ff8b893de2f0adf9fc3359725c391ad8b6235baf2f253b9db6bb51ce21f.gz",
+      "stored_sha256": "d5c3de6fa4425ca80f5b10175c98bfdf4cd617cfc96fe64a76e0c07571ec0ae7"
+    },
+    "c45b431e8f2fcb48f9ba2e820197f1bfb4ac141fecf9159f59d23b717a5392f8": {
+      "file": "c45b431e8f2fcb48f9ba2e820197f1bfb4ac141fecf9159f59d23b717a5392f8.gz",
+      "stored_sha256": "172269ee86e7d3d6af8b039947b6c2393d74014586f220aab1ad724365506e36"
+    },
+    "8f6a44dd105af6ae9d02cc63c55b8ef0ef1e2b52a9c87fe3e825ecffb460d8b5": {
+      "file": "8f6a44dd105af6ae9d02cc63c55b8ef0ef1e2b52a9c87fe3e825ecffb460d8b5.gz",
+      "stored_sha256": "6676cefaea4f9a9d552f13482afa24377e701e855cd79336ee03262cc0335547"
+    },
+    "9ef427c4dc0f845ae048177aa0a4c73e1ec7490a127e5b2c7e779bcf0131aae8": {
+      "file": "9ef427c4dc0f845ae048177aa0a4c73e1ec7490a127e5b2c7e779bcf0131aae8.gz",
+      "stored_sha256": "6e2d3caf0f6a7792e2ae79ae72f65414cb4ada0ecb6ce9d18902605ac06bd9a5"
+    },
+    "c2aae669343b975de45f2c6f454be511345382a2e7b5860572549c97c0ad3c37": {
+      "file": "c2aae669343b975de45f2c6f454be511345382a2e7b5860572549c97c0ad3c37.gz",
+      "stored_sha256": "ce1f5e9a84fa507099b082299177cf918aaf51e71abedc3cd1886bde48a1c4f5"
+    },
+    "7a8dabb56f0e7c0ae1ac0b095da356e2ff7ed56c658aa7ab8cb73b77489695b2": {
+      "file": "7a8dabb56f0e7c0ae1ac0b095da356e2ff7ed56c658aa7ab8cb73b77489695b2.gz",
+      "stored_sha256": "2b4ecc23e1ddf05b26422a10daf8db54dea68a0f51a394bc0884e289649c9b8d"
+    },
+    "fa5cc86443245018b14b7a53f6680a0014d445ea9269c23e2706ea9503d740b4": {
+      "file": "fa5cc86443245018b14b7a53f6680a0014d445ea9269c23e2706ea9503d740b4.gz",
+      "stored_sha256": "0fa7e0234b939a1d6e0eecf375f7c3b4c3be0cd1e015cac2fb18b811252e4335"
+    },
+    "ac7ca37142b2435c78eb6bd497c111f12f33c229f01df9498eef150e712e9dce": {
+      "file": "ac7ca37142b2435c78eb6bd497c111f12f33c229f01df9498eef150e712e9dce.gz",
+      "stored_sha256": "5c8fdc69ad0b2b4ce8f7230192158fc5c02236bd811ab77a8a84122800c73c97"
+    },
+    "d220ecdf608285d519042f6a585aabcf091e824410e3e6fb42ca6136c0b15c7e": {
+      "file": "d220ecdf608285d519042f6a585aabcf091e824410e3e6fb42ca6136c0b15c7e.gz",
+      "stored_sha256": "d481c8cba97d55859d64461caeaf1d2b9357c90cef2b540558f3cf2bc82f07f9"
+    },
+    "d1b3a666955663a4cfc41c3d7f3b0ff5307d44f34c2bac58d6f7eb80f5f3e997": {
+      "file": "d1b3a666955663a4cfc41c3d7f3b0ff5307d44f34c2bac58d6f7eb80f5f3e997.gz",
+      "stored_sha256": "dc5f2ab59d6f4179b67cab2e478ea76f3b94c3afbfe93560deb5fa7245243ddc"
+    },
+    "f8ab53e1f17c95cf7d4046f213ff033a72a4e3d5866f3b55625deb8f12acfc63": {
+      "file": "f8ab53e1f17c95cf7d4046f213ff033a72a4e3d5866f3b55625deb8f12acfc63.gz",
+      "stored_sha256": "dda1484d6e43f4f0950d10df75b34c22d19868e150de548a22520bf6220a9abf"
+    },
+    "5ad3537d22166f2e9cd067276aa8afec7dcf27e219ee4be681f02ef9376bbf9d": {
+      "file": "5ad3537d22166f2e9cd067276aa8afec7dcf27e219ee4be681f02ef9376bbf9d.gz",
+      "stored_sha256": "2e1e1561f70eaeb1e72d75dc4a9571fd3e138e183fccbcb70e999d8247aa38c0"
+    },
+    "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61": {
+      "file": "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61.gz",
+      "stored_sha256": "f7ebd628f91d85d0c06f7b324cc388eef8289bc746822308b6f0c5a12645df0f"
+    },
+    "cdb32c522e36f7957f667dc5c33260449f70fc7c7b768f7a8434cec8da439c57": {
+      "file": "cdb32c522e36f7957f667dc5c33260449f70fc7c7b768f7a8434cec8da439c57.gz",
+      "stored_sha256": "25d10d778a7d6e2b928d387967092fc90cf8cc42897b6c377dd66dc03850429b"
+    },
+    "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109": {
+      "file": "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109.gz",
+      "stored_sha256": "b258f1ea4c438c907b8fc8bae1f59fda66e3b1671a1026f3c157d3da349c9687"
+    },
+    "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235": {
+      "file": "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235.gz",
+      "stored_sha256": "d05021065d5d0dc3855dfd7415bfbcdab5bf12171af8db3fed6f5d19614569ec"
+    },
+    "109d7b5cd9f29fb1a16aca859b7d37b8b2e19dbf5320cf301689812420290d6a": {
+      "file": "109d7b5cd9f29fb1a16aca859b7d37b8b2e19dbf5320cf301689812420290d6a.gz",
+      "stored_sha256": "255ee1e9b666b025cf14a89e8fec1715642cd7242f973b5bece66f1b5bea63b2"
+    },
+    "f3a0501e554cc743f2d180150d5e0353dc3bf1d4479f3e3c97eceb63e949fddf": {
+      "file": "f3a0501e554cc743f2d180150d5e0353dc3bf1d4479f3e3c97eceb63e949fddf.gz",
+      "stored_sha256": "53b1bfa665f0ca1c74cc1b06ad99879532986149a5d0bc12162f32fe97045ad3"
+    },
+    "50b1e6a4fb06fd2ec1bc73440dee98fb433faa9546711df323bb60084d5f4c13": {
+      "file": "50b1e6a4fb06fd2ec1bc73440dee98fb433faa9546711df323bb60084d5f4c13.gz",
+      "stored_sha256": "783aec01fa688421a0a6505a1e72a5ebe13637caabc23f02af37f0a8df9007da"
+    },
+    "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2": {
+      "file": "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2.gz",
+      "stored_sha256": "d5ac7116774e293f4a0c9490bc296c4989c898d248c3fdbaac989c1ea1c87141"
+    },
+    "a3f305c8737ca7405340bbbc12c6f5232b82bbbcebd48a0bc1d82c4f74fcf0b4": {
+      "file": "a3f305c8737ca7405340bbbc12c6f5232b82bbbcebd48a0bc1d82c4f74fcf0b4.gz",
+      "stored_sha256": "417c424be09576bf6189737f8db2522c1a19dafa5ddff9815d11f07006eb8134"
+    },
+    "75c4e1caa872be67aa54e57a6c5c6996e02959931059f9d936270b1af69383d3": {
+      "file": "75c4e1caa872be67aa54e57a6c5c6996e02959931059f9d936270b1af69383d3.gz",
+      "stored_sha256": "fa358ab66ee5a2d16baed1481e12d5420e6367ed85e7fae10f721a467883272e"
+    },
+    "a93828dce4ad756e2b76a08a34c92a7b649fe7ba65e9e682d45fe46fb535a90b": {
+      "file": "a93828dce4ad756e2b76a08a34c92a7b649fe7ba65e9e682d45fe46fb535a90b.gz",
+      "stored_sha256": "63d655f62a4b2cb63e5d0b71df3854386fbb8ea8ba679ffd9358b2999dcdc5d7"
+    },
+    "fbc76b7d4d06f3b671d086b0b01cdd286e06cbce55084b438d0b0d8abbd99bb0": {
+      "file": "fbc76b7d4d06f3b671d086b0b01cdd286e06cbce55084b438d0b0d8abbd99bb0.gz",
+      "stored_sha256": "d4b542217a2e831c73d11b8a8087e5b15349ff5f52ef6a68bc29a8a07410070e"
+    },
+    "d5e395dc6475ff87d2b8a3c0a83801c76547d059911c5c77b6e29794f2baaf7d": {
+      "file": "d5e395dc6475ff87d2b8a3c0a83801c76547d059911c5c77b6e29794f2baaf7d.gz",
+      "stored_sha256": "265a24fd7bb11025569920280b90eed9ebe12bb9f69ed95ea4d8785dad00d294"
+    },
+    "5c25e6c3efa9f6af5295986316b9992d7cf7a09a9d08506091bfcd572c7bff51": {
+      "file": "5c25e6c3efa9f6af5295986316b9992d7cf7a09a9d08506091bfcd572c7bff51.gz",
+      "stored_sha256": "f055fa4035083198868738e8c6d9af364049b04b384653e065f790a01b0ba6a8"
+    },
+    "85be13ffac0d0aa7831f2f794b817cda241d7439860f85a1973023900421f109": {
+      "file": "85be13ffac0d0aa7831f2f794b817cda241d7439860f85a1973023900421f109.gz",
+      "stored_sha256": "e4975be1d75c2a7adb3487efbb6ba09d3c97a231d3d2ba26b31759b4ba48b86a"
+    },
+    "6194c4cc0dd8a1ed90c62558c51aae635154fc689bb027a781df9a2ab5250aa8": {
+      "file": "6194c4cc0dd8a1ed90c62558c51aae635154fc689bb027a781df9a2ab5250aa8.gz",
+      "stored_sha256": "aad06a0a4ee1a026124350b1ae8c0d1e80a7cf4d13bf6666d170950496128c79"
+    },
+    "4a3dd2007cce2a04d5d8c098ee6b168873fc4bf3bcd5c7915c185b6fd43c33c7": {
+      "file": "4a3dd2007cce2a04d5d8c098ee6b168873fc4bf3bcd5c7915c185b6fd43c33c7.gz",
+      "stored_sha256": "d0312d177e7d485858bb8b11fdcf3b289d33919c9dd1666e3923df64c213f110"
+    },
+    "34d6fb84502e8859ff4a7ac92100ccdb80c2ba695a0b4a3892f0c5aef8ac9ddb": {
+      "file": "34d6fb84502e8859ff4a7ac92100ccdb80c2ba695a0b4a3892f0c5aef8ac9ddb.gz",
+      "stored_sha256": "4e6a785b7f171b1c17e653102785b55672a676820a2f8ecb03147cb46109bed7"
+    },
+    "927325e9e5e137b65465effe56b4a9439a29364eb464e13c424cbbf701d04b8c": {
+      "file": "927325e9e5e137b65465effe56b4a9439a29364eb464e13c424cbbf701d04b8c.gz",
+      "stored_sha256": "33cbd9957a4800dabaddeb4c28decd738bc3625ba7b151cd12e44c475478a2ec"
+    },
+    "b939a22ad8181e720f68e66f5150be54a56962ce7e45ae6017c6909c06d7a57e": {
+      "file": "b939a22ad8181e720f68e66f5150be54a56962ce7e45ae6017c6909c06d7a57e.gz",
+      "stored_sha256": "354733185600e7f5bddc888096193d515e1b99083a80e6a8897ced3ebc8944e0"
+    },
+    "61159609645bf1f9404c848f71bd6195c12e11bc542841f1de794a8ba5361492": {
+      "file": "61159609645bf1f9404c848f71bd6195c12e11bc542841f1de794a8ba5361492.gz",
+      "stored_sha256": "4fc60c279c82af7b2dac7c83e885c459e4864835eca79cd4fa0f9e342ed95193"
+    },
+    "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf": {
+      "file": "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf.gz",
+      "stored_sha256": "50a0f05b03d28269a2fc53c0b6dd2d254cf6a465bcf18a9cf9dc9e2367dc7b27"
+    },
+    "d648c802a79d826e7ef4fb9fd94fa5e885638d400ee11e65076c829bedbb7017": {
+      "file": "d648c802a79d826e7ef4fb9fd94fa5e885638d400ee11e65076c829bedbb7017.gz",
+      "stored_sha256": "a309bb59ac6d775dc5da241b3a38c1ce6532fe9e19e345057508603eb091b6ea"
+    },
+    "d9fcb68249a087cea5a08cd5add9ae7eb169fd6077aef783d6c760c51601039a": {
+      "file": "d9fcb68249a087cea5a08cd5add9ae7eb169fd6077aef783d6c760c51601039a.gz",
+      "stored_sha256": "4b0c6985f4d5d4e9c84fc8ab84147133ef9d672055d58a7d6a941eb11dd94383"
+    },
+    "4c057fb2c0432204d0c675f0bd5d9fb524d2a0f6984b134f9efe2246a90f182a": {
+      "file": "4c057fb2c0432204d0c675f0bd5d9fb524d2a0f6984b134f9efe2246a90f182a.gz",
+      "stored_sha256": "d93a9e32619a4455764f9989532218375e2272b4db980b1e6bc05640adef9822"
+    },
+    "74dcf522965d2a6fd4866e9ce3b37b8ef83383f3406a9ead9f3f1cfa9ca7e7cb": {
+      "file": "74dcf522965d2a6fd4866e9ce3b37b8ef83383f3406a9ead9f3f1cfa9ca7e7cb.gz",
+      "stored_sha256": "3c25574d9ecefca7db28138f12b8978cdb7326248ce4a0baf093006ab30ad6d2"
+    },
+    "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469": {
+      "file": "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469.gz",
+      "stored_sha256": "e0c37a1502370e46416e1d2e608b467441e48401fa6772237d3dca54a1d6b6ae"
+    },
+    "327b95212c7e4a6cd2939e5ac2450100607fb2fd0075e7b98012fd7e02bde9bb": {
+      "file": "327b95212c7e4a6cd2939e5ac2450100607fb2fd0075e7b98012fd7e02bde9bb.gz",
+      "stored_sha256": "7352cd9681aef649d3b73a6e39a17e61cad10de3ff5625bd309aee8c6d6754b5"
+    },
+    "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc": {
+      "file": "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc.gz",
+      "stored_sha256": "24a42324689206b9e325dcf7f4666f6ced8f1e4de67c0455fe78bd2eb0684b04"
+    },
+    "3959a2686d77baa8fb23c7ab18e7437712a0ed02145ab7ec317f7e9ab0e37354": {
+      "file": "3959a2686d77baa8fb23c7ab18e7437712a0ed02145ab7ec317f7e9ab0e37354.gz",
+      "stored_sha256": "aea46f1a205aa734421d8d7db04d9958978efcfffeef1bcfe510f82d27d75e5c"
+    },
+    "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48": {
+      "file": "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48.gz",
+      "stored_sha256": "a6750f0d70dcee9c4c47f1bedbe014fea0d0c6ea7f8aee9048b7156a510b56c5"
+    },
+    "151b9f70fc51169d953a428088bd6085b5739aca3734cda111c8119847e76674": {
+      "file": "151b9f70fc51169d953a428088bd6085b5739aca3734cda111c8119847e76674.gz",
+      "stored_sha256": "057f41704e4b6fb203cbc02d9ae7477def9e7483cdbfe974bf72cbf1399d6597"
+    },
+    "4e8e35fd70ff7b30eb6ed3b25f4cccadffaf9c832279ac4155ebe886cfd72ccf": {
+      "file": "4e8e35fd70ff7b30eb6ed3b25f4cccadffaf9c832279ac4155ebe886cfd72ccf.gz",
+      "stored_sha256": "cd8997b3c7213f7c050032483b61a106d17ccccc6935715f330fed40e5f95d03"
+    },
+    "e3002a929efeaecaa56cf27ffdc448449b66e477b7e587f232f0eafaa9481911": {
+      "file": "e3002a929efeaecaa56cf27ffdc448449b66e477b7e587f232f0eafaa9481911.gz",
+      "stored_sha256": "b89d534b1637e221dbd6c9649d4ec544198f4f960cd1f3bb4800fc47c2ec09e8"
+    },
+    "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea": {
+      "file": "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea.gz",
+      "stored_sha256": "15d3fa27bb3245f38a4494961068e33179d58b7300c7d9bee859ed8a84b5bcb6"
+    },
+    "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607": {
+      "file": "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607.gz",
+      "stored_sha256": "e7b65949ad8004f4715d90acafcf578291c5af2dcc28cef6ba8c4a9fbe69c1a8"
+    },
+    "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898": {
+      "file": "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898.gz",
+      "stored_sha256": "86eed5096b043c01d1962a69e8e8701ddd06ed33a2cc81c64fd721a9653bef8e"
+    },
+    "80dc3a9784a6f14a9f60ef6ca2bef787be5ec070f9d069bd5fd979382513a003": {
+      "file": "80dc3a9784a6f14a9f60ef6ca2bef787be5ec070f9d069bd5fd979382513a003.gz",
+      "stored_sha256": "ebe56bc9e83c4d9ec0796562986e29b9576602848fb5d46b29087206315842ab"
+    },
+    "c6a3b483c8aca7ecd974ab4dc59b445470187a01e056682d42620dc6cf117541": {
+      "file": "c6a3b483c8aca7ecd974ab4dc59b445470187a01e056682d42620dc6cf117541.gz",
+      "stored_sha256": "c08c4e181f0fe528a140c8f19665d01cc5bc7a9107de3328dd7319284fe2d86a"
+    },
+    "10ced7c7c8b64067aaba40bb012cc296cd2d7238a17e3d22aa5615d05708a3bd": {
+      "file": "10ced7c7c8b64067aaba40bb012cc296cd2d7238a17e3d22aa5615d05708a3bd.gz",
+      "stored_sha256": "b91b5e48bee3ed286243375f006e77e57afa0b3415ba1478a94784858ce8ff32"
+    },
+    "e5adc3ed61cfa0e8d7e18702c1a77006c1d246a98b0211163f58db5a17b569c4": {
+      "file": "e5adc3ed61cfa0e8d7e18702c1a77006c1d246a98b0211163f58db5a17b569c4.gz",
+      "stored_sha256": "951eecd4a5e661c3b3edfbfa5c8dd3c81b96bbae00be0c76cdb7feef36517365"
+    },
+    "3ae01dd3d2bf176bcd9e90ffe1fc99e2f3a340df57b27fc9b876c12ff88fbe2f": {
+      "file": "3ae01dd3d2bf176bcd9e90ffe1fc99e2f3a340df57b27fc9b876c12ff88fbe2f.gz",
+      "stored_sha256": "d1a649cc63c7d5094e1318115b3429a949fb2a1ca03c89de5924641d986c7e2a"
+    },
+    "d409598d1b69b527d7dfbe744fe4f2110b6b96e2a285103f36a68a7fbe771136": {
+      "file": "d409598d1b69b527d7dfbe744fe4f2110b6b96e2a285103f36a68a7fbe771136.gz",
+      "stored_sha256": "360958b2a5063aecb7538faf812296cd794eedc1b89c96463ade8ba035816a8f"
+    },
+    "281e61fe72754a85808f6fa4a8a6bec1c1113cccd1cc300c8a234166874e24b3": {
+      "file": "281e61fe72754a85808f6fa4a8a6bec1c1113cccd1cc300c8a234166874e24b3.gz",
+      "stored_sha256": "4b0313ee0d2fbdcc0e4064efbfaee64df54da127aa204e8270c7abd6155532ad"
+    },
+    "045750d9f0778c985f5d7d79c72dfea573aaf7a79d9bbc6047b6793283080279": {
+      "file": "045750d9f0778c985f5d7d79c72dfea573aaf7a79d9bbc6047b6793283080279.gz",
+      "stored_sha256": "68ca90d4291b4d10fe4249a23bbe1c32f4149e12d930e018f2ae6ad28b2db856"
+    },
+    "93c7d3a013d0063a698e84b88899d539926b1a9659781048737b16446104b154": {
+      "file": "93c7d3a013d0063a698e84b88899d539926b1a9659781048737b16446104b154.gz",
+      "stored_sha256": "bea390bf28995729f5bcc682746681f1667bed5c2ac06ac1c3c62274948e6a7b"
+    },
+    "3840db4be3b09b616154c6f554ee10853856e3d4974e9f3a6e6c7eb350547d02": {
+      "file": "3840db4be3b09b616154c6f554ee10853856e3d4974e9f3a6e6c7eb350547d02.gz",
+      "stored_sha256": "c1b5b0934cac6c364d5befeea8588d77c301ac2baa6ecba637b570230bacda8f"
+    },
+    "d270f6de5b5a6d617ccbd998e7288adb4ae9d3bf06113fdf0f0fab54cb80097b": {
+      "file": "d270f6de5b5a6d617ccbd998e7288adb4ae9d3bf06113fdf0f0fab54cb80097b.gz",
+      "stored_sha256": "a23786c02366722fc00816106f9e39b4219a75dd10c4a042b1252f2e3e2968e3"
+    },
+    "49e638ff3e76bb4a966addf26c441555db69c518c1569c2d2ec201674c287b95": {
+      "file": "49e638ff3e76bb4a966addf26c441555db69c518c1569c2d2ec201674c287b95.gz",
+      "stored_sha256": "cd39d07da14bea316b5008af14798d0de243a7b38bd71ecde3317b3718d71368"
+    },
+    "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59": {
+      "file": "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59.gz",
+      "stored_sha256": "96b70ebc115e77897cc0e34a86f043144d2cfde94c1e82e7290af58f2ab0286e"
+    },
+    "cac6009df9cb2e984838267e8c8273da594b29cab88e1bafc486572cd306327b": {
+      "file": "cac6009df9cb2e984838267e8c8273da594b29cab88e1bafc486572cd306327b.gz",
+      "stored_sha256": "83877f42c44acf4013d5d0d4393848a373480d00311c3f341dfd7a28a4b83419"
+    },
+    "292203c75b5e717ba76b4d833b7a698ac10396465284ea78253e735f1dbf2063": {
+      "file": "292203c75b5e717ba76b4d833b7a698ac10396465284ea78253e735f1dbf2063.gz",
+      "stored_sha256": "dd7d77e4d00262210de052903442acad028b1244c509d6bc0e9bdd90e5493424"
+    },
+    "ab42ad7a7cd235d96690e275f39a1f591962cb988924a570bf661c1c9f61e962": {
+      "file": "ab42ad7a7cd235d96690e275f39a1f591962cb988924a570bf661c1c9f61e962.gz",
+      "stored_sha256": "7158c450840072feff818077938bbcf9077ad1b553ecdf0d1455a0ee6a91bb08"
+    },
+    "7e6d27dcbf8dc15fbb447fd89c711574facfdd5c6c0e7334040258d7eee42fdf": {
+      "file": "7e6d27dcbf8dc15fbb447fd89c711574facfdd5c6c0e7334040258d7eee42fdf.gz",
+      "stored_sha256": "97e3f9d50bcd7a478dc042e0dfd78957b72855fe785d392a567310ff4ac33393"
+    },
+    "b5bf2f61719e6f019cd9170fce5fe0faca799bf227a85140e9a555610a13e8c5": {
+      "file": "b5bf2f61719e6f019cd9170fce5fe0faca799bf227a85140e9a555610a13e8c5.gz",
+      "stored_sha256": "f98f8fa7e464fe6d35d09a2d94769c5736612bde7d482cb06e1387fd2819d8a8"
+    },
+    "7bf9b76d1f02b10cebb3610a9ea160c02446ba16cd4482c4dfb28e18ad33ee21": {
+      "file": "7bf9b76d1f02b10cebb3610a9ea160c02446ba16cd4482c4dfb28e18ad33ee21.gz",
+      "stored_sha256": "2c6874979469c9351cf6f52a25cf96018a05383c3cdaa2a331c7a3b7762140d5"
+    },
+    "d355b30799fa9cede41988d2df72d3d578fa3a8fd50d72d4655ee9cc8b639610": {
+      "file": "d355b30799fa9cede41988d2df72d3d578fa3a8fd50d72d4655ee9cc8b639610.gz",
+      "stored_sha256": "32d944f03203dcbc449bbd83e29b75f8a7dc58e33f0c0689760dcec534382f62"
+    },
+    "54083224e26f56245e7fef9fe56c5bf441bf9709f81897260e7241a45c646c11": {
+      "file": "54083224e26f56245e7fef9fe56c5bf441bf9709f81897260e7241a45c646c11.gz",
+      "stored_sha256": "3b935e489ba7fbb4df7d7da6982493178628dcae47531cec5a0b83ce03094786"
+    },
+    "09eb9b1bd83193bce70229ba7a64c80e86d8df7aaa0386f0141f384f4196a869": {
+      "file": "09eb9b1bd83193bce70229ba7a64c80e86d8df7aaa0386f0141f384f4196a869.gz",
+      "stored_sha256": "3e94321de852dd5c3d3e926b68ff3144a7bf923455ac89848121554be7e15e8b"
+    },
+    "ac6413378b793392790b1e178c03664cace433d905d11f7cb4d62b88e9b0ca7e": {
+      "file": "ac6413378b793392790b1e178c03664cace433d905d11f7cb4d62b88e9b0ca7e.gz",
+      "stored_sha256": "e05d4e70eb5a98ce293d01799d3b57ddf0bf88e03d4bf4777f5a936fa227776f"
+    },
+    "0437c0a9f1a1fec27bcbc6dc42a0e737b806c4c3522c36ad7fa82357c45988bd": {
+      "file": "0437c0a9f1a1fec27bcbc6dc42a0e737b806c4c3522c36ad7fa82357c45988bd.gz",
+      "stored_sha256": "290d8abd5988032d39bf832e6190c07250a923529208c65be7c5f6a7afaea879"
+    },
+    "fbcd263276b67c16919089cb5e0ff8c3a62fde2935363c4d716accb5ee8bc8c4": {
+      "file": "fbcd263276b67c16919089cb5e0ff8c3a62fde2935363c4d716accb5ee8bc8c4.gz",
+      "stored_sha256": "fa846056c0a50a65e16b81c701e5a87436603ff2ed37025acec93a3fba9d70f2"
+    },
+    "8aef9f81911339dbfaa8486c4f08eb33fd99cc51b5d68d73c4655365a56bb425": {
+      "file": "8aef9f81911339dbfaa8486c4f08eb33fd99cc51b5d68d73c4655365a56bb425.gz",
+      "stored_sha256": "a23b566ca11b3b11dab9d4c8dae545b385742d44a85012b7eb97dc9c10503533"
+    },
+    "6e7d32166fa30cc94ccf11d30032ab1c71755366b19111d8f75629a99c4970a6": {
+      "file": "6e7d32166fa30cc94ccf11d30032ab1c71755366b19111d8f75629a99c4970a6.gz",
+      "stored_sha256": "15db11c37523dc2ade7383cbc99928b53eb4635d38c0915345ddfa2a14b6ab0a"
+    },
+    "abad9602c0a1846c467172591febca731fc7f9fbbd6c06c1a595bd4e73bda372": {
+      "file": "abad9602c0a1846c467172591febca731fc7f9fbbd6c06c1a595bd4e73bda372.gz",
+      "stored_sha256": "9817731b93d088534833b638be6d340c48076dee53ca0de68477c9ffb8f128b6"
+    },
+    "4f74514753d137782733d41e0cb7a5ac0e74bd8274f115c1c0ecca9b19f9ea5f": {
+      "file": "4f74514753d137782733d41e0cb7a5ac0e74bd8274f115c1c0ecca9b19f9ea5f.gz",
+      "stored_sha256": "891818c16c6eace7a0b798ced1b51c4667210ff1c8833d57d4b03e24e6584c0f"
+    },
+    "9c9649891410362382d7ad60621ebb9acbfee8bfad831c3f31f61b8a8b8dcb31": {
+      "file": "9c9649891410362382d7ad60621ebb9acbfee8bfad831c3f31f61b8a8b8dcb31.gz",
+      "stored_sha256": "9e3c464613d08bf6667e01dcf4e3ed185b252e3f7460c4791b45835fc017d9da"
+    },
+    "d9c00271a875cbc794d9c48ab24a795d7d0d479ba7d291f6dbf5bcaefd123825": {
+      "file": "d9c00271a875cbc794d9c48ab24a795d7d0d479ba7d291f6dbf5bcaefd123825.gz",
+      "stored_sha256": "d0319253e2f06cb45c5a175b333ce002fe6e7f5ba907d4e01ce3909588b2deb6"
+    },
+    "c6a41b2033757f1ac17fe8901e87c7c7017a701e800b8284a2e5d93c18e0d957": {
+      "file": "c6a41b2033757f1ac17fe8901e87c7c7017a701e800b8284a2e5d93c18e0d957.gz",
+      "stored_sha256": "3107580a4f16a2c6ce9ce3ad8f115b7f1bd830042f8e88e64e0ce2f844d4d540"
+    },
+    "3182287baf10c25d9ab95e5a6f766df744c786ddf8b5a4ca8922929f799d1c1e": {
+      "file": "3182287baf10c25d9ab95e5a6f766df744c786ddf8b5a4ca8922929f799d1c1e.gz",
+      "stored_sha256": "22ed1dfed5706e79bfd917811d0a6880e45d7723289add66df3b4597928198c1"
+    },
+    "f857d69e8a0753f0452bc179265ad083033d10553bbc581cd1a2a337fb8598ac": {
+      "file": "f857d69e8a0753f0452bc179265ad083033d10553bbc581cd1a2a337fb8598ac.gz",
+      "stored_sha256": "93ede4536c816798fb2102b38632b3edc4442a43edb45cc0b99291f1e44c7a14"
+    },
+    "42b9551820244cf60bb84e536d951c1408f9e0b71655067c807a272858fb7e84": {
+      "file": "42b9551820244cf60bb84e536d951c1408f9e0b71655067c807a272858fb7e84.gz",
+      "stored_sha256": "fb8fb8b5b3c69d23b111b845f016aeccd67bdf94ce3512d32f36a890816ee439"
+    },
+    "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af": {
+      "file": "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af.gz",
+      "stored_sha256": "5c3bbde812458941f8591ebc2675704bc33890829bfe05014777a8362fe7b74e"
+    },
+    "0728fe90b5a18e6eebd7f0cb2c4ad88418144e4467f6a181b262645d10a9df04": {
+      "file": "0728fe90b5a18e6eebd7f0cb2c4ad88418144e4467f6a181b262645d10a9df04.gz",
+      "stored_sha256": "c14ceeb179fc9659227518aca89ef971549690489392e324a19c35fccd43ccef"
+    },
+    "e953cbc894058b918b4c279f05daf938c8d544a9293a090335d001e55a93821c": {
+      "file": "e953cbc894058b918b4c279f05daf938c8d544a9293a090335d001e55a93821c.gz",
+      "stored_sha256": "624ca2d8a432f3fc7d987706c4693b500e809db2104edc84aa03f97172c00ecd"
+    },
+    "f87a0ad86ad95370a61f97329ee93d8b91191f7b8455545b03ee7f7a8b20fc1d": {
+      "file": "f87a0ad86ad95370a61f97329ee93d8b91191f7b8455545b03ee7f7a8b20fc1d.gz",
+      "stored_sha256": "ec18ce82b4760f604b31a209ba582a11d6039c29f2a9dd8352b9b820a9fc195b"
+    },
+    "d901f7c005b5c4e0213cecc2b4cb27b58d2a502345649e29444c0d1956b74234": {
+      "file": "d901f7c005b5c4e0213cecc2b4cb27b58d2a502345649e29444c0d1956b74234.gz",
+      "stored_sha256": "9eb6f20ca3c940a05eca558c4d9555faed0416f031a4b6e9809b32409c0bc982"
+    },
+    "63b892f52a4ec37a64c125f365850b0b4f9e82b3ab7c5a60a501b68fc6f3e02e": {
+      "file": "63b892f52a4ec37a64c125f365850b0b4f9e82b3ab7c5a60a501b68fc6f3e02e.gz",
+      "stored_sha256": "b10d6a0c0e23c92f8af1587a5455859edb71811da5266956a92640041ce162b3"
+    },
+    "f07d68cff7d3b9da42e0318044ac632df94a20a090ef92b921552dc8014b7482": {
+      "file": "f07d68cff7d3b9da42e0318044ac632df94a20a090ef92b921552dc8014b7482.gz",
+      "stored_sha256": "fe7b53e55867dd29192c81770fb4f0ee53726f7adbcf98a981cb0b4ba7d9f0c7"
+    },
+    "b5bb78085cf48025a895a42d75a3927750b376ec06e309889ea2aa3e9d0837dd": {
+      "file": "b5bb78085cf48025a895a42d75a3927750b376ec06e309889ea2aa3e9d0837dd.gz",
+      "stored_sha256": "1d24d2375ea9d8ad12d5ee5f01cceef074298ce293b47880ce3e3021ea07e14e"
+    },
+    "f615b2e9d063475124605a5846606e27f05fc64dc8fca06ace6718afa5313142": {
+      "file": "f615b2e9d063475124605a5846606e27f05fc64dc8fca06ace6718afa5313142.gz",
+      "stored_sha256": "729b8bd851549ca53b7899e9200c775bc49abcd14e714bca079854a649e178a2"
+    }
+  },
+  "rights": "Full original-derived assets and binary local only; no Release"
+}

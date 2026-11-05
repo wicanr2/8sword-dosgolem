@@ -22,6 +22,7 @@ pub enum Page {
     Message,
     ResourceResult,
     Bird,
+    Teleport,
 }
 pub struct Manager {
     pub page: Page,
@@ -45,6 +46,10 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.travel_spell.teleport.is_some() {
+            self.page = Page::Teleport;
+            return;
+        }
         if j.survey.bird {
             self.page = Page::Bird;
             return;
@@ -78,6 +83,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Teleport => Some(Screen::Teleport),
             Page::Bird => Some(Screen::Minimap),
             Page::ResourceResult => Some(Screen::Report),
             Page::Magic => Some(Screen::Magic),
@@ -187,6 +193,9 @@ impl Manager {
                     } else if self.selected == 4 {
                         j.cast_stop_time()?;
                         self.page = Page::World;
+                    } else if self.selected == 7 {
+                        j.begin_teleport()?;
+                        self.page = Page::Teleport;
                     } else if self.selected == 5 {
                         j.begin_bird_view()?;
                         self.page = Page::Bird;
@@ -217,6 +226,20 @@ impl Manager {
                 j.close_magic_shop(c, data)?;
                 self.page = Page::World;
                 self.message.clear();
+            }
+            return Ok(());
+        }
+        if self.page == Page::Teleport {
+            let area = j.travel_spell.teleport.ok_or("傳送階段遺失")?;
+            match key {
+                1073741906 => j.select_teleport((area + 7) % 8)?,
+                1073741905 => j.select_teleport((area + 1) % 8)?,
+                13 | 27 => {
+                    j.finish_teleport(data, key == 13)?;
+                    self.page = Page::World;
+                    self.message.clear();
+                }
+                _ => {}
             }
             return Ok(());
         }
@@ -447,6 +470,17 @@ pub fn draw(
         )?;
         if ui.page == Page::Message && j.magic.book && ui.message == "你找到魔法竹簡" {
             sprite(f, book, 312, 870);
+        }
+        return Ok(());
+    }
+    if ui.page == Page::Teleport {
+        fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
+        for (i, name) in crate::travel_spells::regions().iter().enumerate() {
+            let y = 186 + i as i32 * 120;
+            if j.travel_spell.teleport == Some(i as u8) {
+                fill(f, [552, y, 408, 84], [119, 44, 41]);
+            }
+            field(f, font, name, 576, y, 384)?;
         }
         return Ok(());
     }

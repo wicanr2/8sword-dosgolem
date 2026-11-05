@@ -53,6 +53,7 @@ pub enum Screen {
     Report,
     Treasure,
     Magic,
+    Teleport,
     Bridge,
     MagicShop,
     Shop { extra: bool, quantity: bool },
@@ -69,6 +70,7 @@ pub enum Action {
     Extra(bool),
     TreasureChoice(u8),
     MagicChoice(usize),
+    TeleportChoice(usize),
 }
 pub fn normalized(x: f32, y: f32) -> Option<(i32, i32)> {
     if !x.is_finite() || !y.is_finite() || !(0.0..1.0).contains(&x) || !(0.0..1.0).contains(&y) {
@@ -121,6 +123,11 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         }
     }
     match screen {
+        Screen::Teleport => {
+            if (552..984).contains(&x) && (186..1146).contains(&y) {
+                return Some(Action::TeleportChoice(((y - 186) / 120) as usize));
+            }
+        }
         Screen::Magic => {
             if (792..1224).contains(&x) && (186..1146).contains(&y) {
                 return Some(Action::MagicChoice(((y - 186) / 120) as usize));

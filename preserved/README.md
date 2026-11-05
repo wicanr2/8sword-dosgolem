@@ -1355,6 +1355,21 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 
 `freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核原bytes、91測試、原版欄位／全格hash、GUI／縮放、媒體與正式基線。`images`建立README圖及來源。`archive --project /project --archive /project/preserved --out /project/preserved/rust-survey-spells-r1.json`保存本批；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-survey-spells-detached-r1.json)、[清理](rust-survey-spells-cleanup-r1.json)及[完整性](rust-survey-spells-integrity-r1.json)另存。只排除可重建快取。
 
-目前[啟動器](../tools/rust-native-player.sh)指向rust-survey-spells-r1/native。按索引將native的binary與pack還原到同名路徑、核SHA與權限，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。F4施法，鳥瞰Enter／Esc返回；有目錄時自動保存與F7並用。v7讀v1至v6，不讀Go；完整日曆、三地圖術、跨區等依WORKLIST接續，沒有Release。
+本批歷史入口為rust-survey-spells-r1/native，現行[啟動器](../tools/rust-native-player.sh)與還原路徑見[Rust傳送術保存](#rust傳送術保存)。按索引將native的binary與pack還原到同名路徑、核SHA與權限，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。F4施法，鳥瞰Enter／Esc返回；有目錄時自動保存與F7並用。v7讀v1至v6，不讀Go；完整日曆、三地圖術、跨區等依WORKLIST接續，沒有Release。
 
 本批293檔／274物件，壓縮31848477 bytes。脫離工作區核對通過後，移除546份可重建Rust快取，共176296807 bytes，約168.1 MiB。完整原始輸入、來源、138媒體、binary、最終GUI／縮放與fixture保持；本案無殘留容器，沒有建立新image。
+
+
+## Rust傳送術保存
+
+[完整索引](rust-travel-spells-r1.json)、[核對](rust-travel-spells-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#傳送術限定-conformed)與[研究](../RESEARCH-LOG.md#rust傳送術)為入口。96測試、19函式3823行原MZ bytes、八原名／起點、四程序11份SDL擷取及預設縮放通過。完整crate、七工具、138媒體、binary、Rust開發例程、v7／v8進度、原版快照／RAM／IDA、兩份縮放腳本失敗前版與完整擷取，逐SHA保存於本機`preserved/rust-travel-spells-r1/<SHA256>.gz`，不依賴workplace；原始資料與完整執行期素材不入Git或公開包。
+
+[資料工具](../tools/rust-travel-spells.py)在Pillow11.3.0-r2、UID1000、network none使用。在既有battle-r1建立rust-travel-spells-r1/evidence及native/pack，`prepare --project /project`還原上批138媒體、真正v7及既有map-7快照。以[IDA匯出器](../tools/export-rust-travel-spells-ida.py)在既有IDA9.4 py312-v1映像匯出唯讀PAM.i64，檔案與資料庫SHA固定。原快照由[Go解碼器](../tools/decode-rust-world-magic-original.go)只抽RAM，再以`reference`核原欄位／字串及生成teleport-regions.tsv；三字型用[字型工具](../tools/rust-world.py)fonts補入實際TSV所需字元。
+
+建置使用mm45-rust-desktop:1.99.1-r3，只掛crate唯讀與native可寫，offline／locked桌面模式編譯玩家及[開發例程](../internal/remake-rust/examples/travel_spells_fixture.rs)。例程以`<媒體> <原進度> <新輸出目錄> teleport`只移原商店位置；山地寶物未接，故直接站在原商店使用Space，來源資源／兵力／RNG／時鐘保持。`<媒體> oracle`輸出八原名／起點，核對PAM bytes。這是受控初始位置，沒有新增玩家旗標或自然取得聲明。[原生GUI](../tools/rust-travel-spells-gui.py)與[縮放抽驗](../tools/rust-travel-spells-scaled.py)各只掛native與單一腳本，沒有DOS／Go runtime，命令與失敗分類見保存內execution.json。
+
+`freeze --project /project`固定來源，`audit --project /project --out <新JSON>`核來源、96測試、原bytes／八落點、字形、同幀SDL與縮放保存、正式基線。`images`產生[成果圖](../docs/images/rust-travel-spells-r1.png)及[來源](../docs/images/rust-travel-spells-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-travel-spells-r1.json`保存全批；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs核對逐物件。[脫離核對](rust-travel-spells-detached-r1.json)、[清理](rust-travel-spells-cleanup-r1.json)與[完整性](rust-travel-spells-integrity-r1.json)保存收尾結果。
+
+現行[啟動器](../tools/rust-native-player.sh)指向rust-travel-spells-r1/native。依索引還原native binary與pack到同名路徑，核SHA與mode，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。F4施法，選區後Enter／Esc或點選確認／取消；F7與工具列保存可保留待選。v8讀v1至v7，不讀Go。跳躍／涉水、自然出口、其餘寶物、守軍及結局按WORKLIST接續，沒有Release。
+
+本批372檔／299物件，壓縮34779883 bytes。脫離workplace逐物件核對後，移除1144份可重建Rust快取，共331568030 bytes。完整來源、媒體、執行檔及證據保持，沒有建立新image或留下本案容器。

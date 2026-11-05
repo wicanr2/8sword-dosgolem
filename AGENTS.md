@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-05 Rust傳送術依[031限定驗收](docs/spec/031-rust-independent-remake.md#傳送術限定-conformed)接入。96測試、19函式3823行原bytes、八原名／起點、四程序11SDL擷取及預設縮放通過。原店實購、八區原式鍵鼠選單、取消耗次、待選／到達冷讀、F2與正常走路已接；v8讀v1至v7。真正v7只移到山區原商店，未稱自然取得；原MAN48底圖／兩首音樂交替仍是呈現差異。[工具](tools/rust-travel-spells.py)、[核對](preserved/rust-travel-spells-audit-r1.json)與[保存](preserved/README.md#rust傳送術保存)為入口。下一步跳躍／涉水、自然出口與世界事件，不重開已驗HD／普通戰／傳送矩陣。正式197／7／923／535與1071美術保持，沒有Release。
+
 2026-11-05 Rust停時／鳥瞰依[031限定驗收](docs/spec/031-rust-independent-remake.md#停時與鳥瞰限定-conformed)接入。91測試、原版兩術快照、5600格全圖hash、四程序10SDL擷取與預設縮放通過。110→146步，同月再施仍146且耗次，月底重設；鳥瞰只暫時全圖，冷讀不重扣，返回F5仍原9格。v7讀v1至v6，只移測試商店位置，不稱自然跨區取得。[工具](tools/rust-survey-spells.py)、[核對](preserved/rust-survey-spells-audit-r1.json)與[永久保存](preserved/README.md#rust停時與鳥瞰保存)為入口。剩跳躍／涉水／傳送、七寶物、跨區、守軍與結局按WORKLIST續做；不重跑既有HD及月報矩陣。正式197／7／923／535與1071美術保持，無Release。
 
 

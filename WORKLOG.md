@@ -3359,3 +3359,16 @@ IDA初查把原掛點173F0當函式入口而被assert拒絕；從正式唯讀DB�
 - 預設2／3縮放三張1280×880外部X11圖、滑鼠鳥瞰／F5／返回／F7通過，保存bytes同原生程序。建置僅見crate與native，最終GUI僅見native與單一腳本，無PAM／Go／RAM runtime。README圖與來源、CONTEXT、WORKLIST、031及永久入口同步；完整來源與素材先保存再清快取。
 - 跳躍／涉水／傳送、七寶物、跨區、守軍／八劍、完整日曆與結局仍待，不重跑本輪或既有HD／月報矩陣，沒有Release。
 - 收尾：七IDA函式1008行bytes重新核對；正式197／7／923／535及1071美術保持。293檔／274物件壓縮31848477 bytes，脫離workplace逐SHA核對通過；清除546份Rust快取、176296807 bytes。新舊文件入口正對照、章節、Python／Bash語法與root-owned／誤建.md目錄通過；主機GitHub登入及私人倉庫已核對，本案容器清除，無Release。
+
+
+## 2026-11-05 Rust傳送術
+
+使用者繼續既有Rust獨立重製，沿復古遊戲路由載入spec-gated、README／文件職責及verification-and-handoff，並使用IDA9.4技能。先匯出跳躍／涉水消費端與傳送初始化，19函式3823行保留原名、bytes、operand、xref與位址基準；查得跳躍是舊鍵自動連續移動、涉水有上岸確認，故兩項保持DRAFT，先依READY完成傳送的垂直鏈。原版快照由既有永久保存還原，Go只抽RAM，沒有新DOS執行。
+
+Rust接原店200金、F4八區原式選單、鍵鼠選擇／確認／取消、清涉水及橋暫態、v8待選與到達冷讀。既有v7的425金／30民兵／兩次造橋只移到原傳送店55／77；原圖四周山地，改用站在原店按Space，不補發次數、爬山能力或金錢。確認掩日國40／40後保留111步，獨立冷讀可F2及走到41／40；取消保留位置但耗次。自然抵達、原MAN48背景及兩首音樂交替不在完成聲明內。
+
+96測試、self-check、原MZ bytes、八原名／起點、四程序11份SDL同幀讀回、三字型與預設2／3縮放通過。縮放取消的保存逐bytes等於scale1分支。最終建置只掛crate唯讀與native可寫，GUI只掛native及單一腳本，沒有PAM／Go／RAM。編譯新增enum與保存fixture的修正、dismiss漏掉待選護欄均在最終測試前完成；兩次縮放腳本失敗分別使用分數字串及不允許的capture-dir／scale組合，按環境／驗證腳本契約修正。保留失敗工具及完整擷取，產品binary相同，不列產品缺陷。
+
+[核對](preserved/rust-travel-spells-audit-r1.json)、[完整索引](preserved/rust-travel-spells-r1.json)、[脫離workplace驗證](preserved/rust-travel-spells-detached-r1.json)、[清理](preserved/rust-travel-spells-cleanup-r1.json)及[完整性](preserved/rust-travel-spells-integrity-r1.json)為入口。372檔／299物件、壓縮34779883 bytes保存於本機preserved，完整原始資料／runtime不入Git。核對後只移除1144份可重建Rust快取331568030 bytes，約316.2 MiB。完整來源、138媒體、執行檔、原版證據與GUI保留。root-owned與.md目錄檢查為零；本批--rm容器均結束，其他專案容器保持，沒有新image或Release。
+
+本輪基準HEAD為692c2f54c731f8ec6d9675d0c15b5c006d9bf2c9，實作、文件、索引與成果圖在同一提交推送origin/main，實際SHA見Git歷程。下一步接跳躍／涉水，再接自然出口與世界事件；不重開已驗HD／普通戰／傳送矩陣。

@@ -156,6 +156,7 @@ impl<'a> Journey<'a> {
             || self.camps.pending.is_some()
             || self.treasure.pending.is_some()
             || self.survey.bird
+            || self.travel_spell.teleport.is_some()
         {
             return Err("不在月結邊界".into());
         }

@@ -1,2 +1,5 @@
 # Unified diff 的上下文前綴會出現空格後接 Tab，保留補丁原始格式。
 tools/*.patch -whitespace
+
+# 原版區域名稱保留結尾空白，其間距屬畫面資料。
+internal/remake-rust/teleport-regions.tsv whitespace=-blank-at-eol

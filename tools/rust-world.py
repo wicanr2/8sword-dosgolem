@@ -40,6 +40,7 @@ def main():
    raw=gzip.decompress((r/'preserved'/idx['objects'][h]['path']).read_bytes());assert hashlib.sha256(raw).hexdigest()==h;faces[key]=ImageFont.truetype(io.BytesIO(raw),48,index=3 if key in ['noto','serif']else 0)
   wanted=(q/'native/pack/world-start.tsv').read_text()
   for p in(r/'internal/remake-rust/src').glob('*.rs'):wanted+=''.join(c for c in p.read_text()if ord(c)>127 and c.isprintable())
+  for p in(r/'internal/remake-rust').glob('*.tsv'):wanted+=''.join(c for c in p.read_text()if ord(c)>127 and c.isprintable())
   old=(q/'native/pack/font-noto.bin').read_bytes();chars={chr(struct.unpack_from('<I',old,i)[0])for i in range(12,len(old)-8,4100)}|set(wanted)-set('\n\t')
   rows=[]
   for key in ['noto','lishu','caoshu']:

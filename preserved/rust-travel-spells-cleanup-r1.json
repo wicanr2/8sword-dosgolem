@@ -1,0 +1,8 @@
+{
+  "status": "passed-rust-travel-spells-cache-cleanup",
+  "removed": "workplace/probe-20261023/graphics-first/battle-r1/rust-travel-spells-r1/native/rust-target",
+  "files": 1144,
+  "bytes": 331568030,
+  "archive_verified_before_deletion": true,
+  "kept": "Full sources,138media,binary,original snapshots/RAM/IDA,GUI attempts,final native and scaled proof; only rebuildable Rust cache removed"
+}

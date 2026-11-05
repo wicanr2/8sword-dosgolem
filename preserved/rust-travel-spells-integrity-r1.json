@@ -1,0 +1,23 @@
+{
+  "status": "passed-rust-travel-spells-integrity",
+  "binary_sha256": "62efbb8a296e0a9431bd463381253327b3d49ff6f9aa101046cf4be9ee0fb3a5",
+  "files": 372,
+  "objects": 299,
+  "index_sha256": "63f103d6939c6fa50fa540307033f2c7a27e2a62dac0d78b29e0cd7d7036acfd",
+  "audit_sha256": "621c6c521345eba732c3b49ded143a07ef029a1f07538ef32c02a5785c696fa4",
+  "readme_image_sha256": "1a7f3bbdfa18eb90b57b47153b3c94a30f6d8ffc3f04b5128bcd24c497c20e92",
+  "source_and_tools_match_archive": true,
+  "linked_targets": 35,
+  "positive_control": "README -> CONTEXT.md found before scoped new-link verification; report self-link resolved after write",
+  "root_owned_or_md_directories": 0,
+  "python_ast": "passed",
+  "bash_syntax": "passed",
+  "rust_cache_removed": true,
+  "no_new_image": true,
+  "containers": "All this batch used --rm. No project container remains; unrelated project containers left untouched.",
+  "limits": [
+    "Original default teleport receipt plus statically-derived other destinations; no eight original GUI runs",
+    "Controlled initial shop position; no natural mountain acquisition",
+    "MAN48 and original music alternation remain presentation limitations"
+  ]
+}

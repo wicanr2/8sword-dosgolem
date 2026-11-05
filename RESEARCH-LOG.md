@@ -3410,3 +3410,21 @@ PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、
 - remaining-spells-r1原版map-4 entry／final由Go1.24.13標準Gob解RAM，確認rank1、324→432、tempo6→8、flag0→1及2→1次。只核既有快照，不跑原版或修改選擇／RNG。原中間signed正數域外在Rust拒絕，不猜word回繞結果。
 - sub_180D8從完整地圖指標讀70×80，sub_18292的F5才用探索圖；兩者沿相同分類／幾何。map-5原版前後完整地圖與探索圖均逐bytes保持。原完整圖同native MAP1，5600格分類hash ac676fdf19f22a0b亦同Rust輸出；此hash不含閃動標記。300ms是原生UI近似，不稱原busy-loop週期。
 - 91測試含初施／重施／溢位、月底冷讀、全圖與探索差別、v6形狀與互斥。四程序10SDL讀回，110→146、再施146、鳥瞰冷讀與原9格保持；預設縮放另驗。真正v6先由Rust例程讀入，只移商店位置後保存v7供GUI，不說GUI直接讀原v6或自然通關。
+
+
+## Rust傳送術
+
+2026-11-05。輸入PAM.AY SHA256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；官方唯讀PAM.i64 SHA256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。工具為IDA Pro9.4的py312-v1映像，資料庫521函式，僅複製至容器tmp後匯出19函式3823行。位址採IDA MZ base10000h，runtime CS0110 IP=IDAlinear−10000h；runtime DS1E88偏移另列，不混用檔案偏移。原名、operand、bytes、xref及查詢命中保存在ida-travel.json，[匯出器](tools/export-rust-travel-spells-ida.py)與[來源核對](tools/rust-travel-spells.py)為入口。
+
+| 等級 | 原始定位與結論 | 證據 |
+|---|---|---|
+| 已證實 | sub_16EF6在DS2C1C＋12×區域取得八個帶空白的原名；16F79讀DS56D6起始游標。上下循環，Enter提交，Esc退出。 | 完整函式、原MZ字串與[編譯表](internal/remake-rust/teleport-regions.tsv)。 |
+| 已證實 | 1711F提交區域；14542／14878／1479A重載地圖、保存及讀取探索。17144前後讀DS03BE／03C0各四bytes起點；17156清DS56CE。 | IDA函式及Rust開發例程輸出八起點／八原名，直接比對PAM bytes。 |
+| 已證實 | 14878把探索字元100改50，full map由14542重載原檔。離開區橋不成為永久地形，目的區亦以原圖為準。 | 14542與14878直接資料流。Rust保留探索遮罩、移除離開／目的區橋patch；取消不重載。未稱額外原版跨區動態對拍。 |
+| 已證實 | dispatcher sub_168CE的16924呼叫傳送，168F5共用扣一次。Esc也經此返回；15F56／15CD0改音樂選擇，不呼叫世界步進。 | IDA靜態路徑。既有dosgolem original-map-r8/map-7預設區Enter快照確認40／40、324步、方向3保持，次數2→1。 |
+| 原生交易契約 | v8在選單開啟時扣一次並保存目的地；確認／取消／冷讀不重扣。選單只凍結玩法，字型／音樂／F7可用。 | [實作](internal/remake-rust/src/travel_spells.rs)、[測試](internal/remake-rust/src/travel_spells_tests.rs)與四程序GUI；不稱原版選單內RAM完全相同。 |
+| 待接 | 跳躍sub_10B38先將DS56CC由1→2，以舊鍵自動重複10C32且跳過12446；11F60遇地形1或3至10才清0。涉水12446的上岸是確認分支。 | 本批匯出只供下一切片，不把兩格跳或直接落地假設接入production。 |
+
+原版快照從[既有永久索引](preserved/remaining-spells-r1.json)還原，Go只解碼保存格式，沒有本輪DOS執行。預設區原版收據不能證明八目的地都經原版GUI，也不能證明整段UI的RNG序列一致。Rust直接使用八圖與起點表，開發例程只移動真正v7進度到第八區55／77商店；原圖四周皆山地，使用正常Space互動，沒有取得山地寶物或自然抵達的聲明。
+
+原版MAN48背景未另移植，原生重用既有原式底框。原版傳送切換兩首音樂的副作用尚未重現，維持既有地圖OGG；這是呈現限制，不稱音畫exact。完整來源及快照見[本批保存](preserved/README.md#rust傳送術保存)。

@@ -4,7 +4,7 @@ use crate::journey::Journey;
 use crate::media_assets::checksum;
 use crate::world::{Boundary, Position, WalkResult, WorldData};
 pub fn supported(offer: u8) -> bool {
-    matches!(offer, 0 | 1 | 2 | 4 | 5)
+    matches!(offer, 0 | 1 | 2 | 4 | 5 | 7)
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Shop {
@@ -112,9 +112,7 @@ impl Magic {
     pub(crate) fn validate(&self, j: &Journey<'_>, d: &WorldData) -> Result<(), String> {
         self.view(d)?;
         if self.selected >= 8
-            || [self.charges[3], self.charges[6], self.charges[7]]
-                .iter()
-                .any(|n| *n != 0)
+            || [self.charges[3], self.charges[6]].iter().any(|n| *n != 0)
             || (!self.book
                 && (self.charges != [0; 8] || self.direction || !self.bridges.is_empty()))
             || self.charges.iter().map(|n| u64::from(*n)).sum::<u64>() + u64::from(self.direction)

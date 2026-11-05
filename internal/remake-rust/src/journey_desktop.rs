@@ -126,6 +126,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let magic_before = journey.magic.clone();
         let notice_before = journey.resource_notice.is_some();
         let survey_before = journey.survey.clone();
+        let travel_before = journey.travel_spell.clone();
         let mut snap = false;
         ui.sync(&journey);
         for e in sdl.events() {
@@ -186,6 +187,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         Action::Extra(v) => ui.extra(&mut journey, &catalog, v),
                         Action::TreasureChoice(v) => journey.select_treasure(v)?,
                         Action::MagicChoice(v) => ui.selected = v,
+                        Action::TeleportChoice(v) => journey.select_teleport(v as u8)?,
                     }
                 }
             }
@@ -324,7 +326,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
             || treasure_before != journey.treasure.amounts
             || magic_before != journey.magic
             || notice_before != journey.resource_notice.is_some()
-            || survey_before != journey.survey)
+            || survey_before != journey.survey
+            || travel_before != journey.travel_spell)
             && store.is_some()
         {
             save_requested = true;
@@ -538,6 +541,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         fill(&mut frame, [0, 1250, 1920, 70], [9, 36, 29]);
         let (ok, back, skip) =
             match ui.page {
+                Page::Teleport => ("確認傳送", "取消傳送", ""),
                 Page::Magic => ("施展法術", "返回地圖", ""),
                 Page::Bridge => ("", "Space停用", ""),
                 Page::MagicShop => ("購買一次", "離開商店", ""),
@@ -749,7 +753,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
             journey.resource_notice.as_ref().map(|n| n.spell)
         );
         let status = format!(
-            "{status}stopped\t{}\ntempo\t{}\nbird\t{}\nexplored\t{}\nworld_hash\t{:016x}\n",
+            "{status}area\t{}\nteleport_target\t{:?}\nstopped\t{}\ntempo\t{}\nbird\t{}\nexplored\t{}\nworld_hash\t{:016x}\n",
+            journey.world.area,
+            journey.travel_spell.teleport,
             journey.survey.stopped,
             journey.survey.tempo,
             journey.survey.bird,
