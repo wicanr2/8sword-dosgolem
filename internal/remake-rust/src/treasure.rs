@@ -181,6 +181,8 @@ impl<'a> Journey<'a> {
         d: &WorldData,
         cancel: bool,
     ) -> Result<(), String> {
+        let view = self.magic.view(d)?;
+        let d = &view;
         self.treasure.validate_inner(self, d, cancel)?;
         let mut s = self.clone();
         let p = s.treasure.pending.take().ok_or("沒有待選寶箱")?;

@@ -1,5 +1,8 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-05 Rust世界造橋術依[031限定驗收](docs/spec/031-rust-independent-remake.md#世界造橋術限定-conformed)接入。原起點69步尋竹簡、138步到原店購3次、四步到岸邊，待方向冷讀後施法並走上橋；470金／2次／橋174與244保持。78測試、19函式1848行IDA bytes、既有原版受控造橋收據、四程序11SDL擷取與預設縮放通過。v5讀v1至v4；只接竹簡與造橋，其他物品／地圖術、守軍與結局續按WORKLIST，不重跑已驗矩陣。[工具](tools/rust-world-magic.py)、[核對](preserved/rust-world-magic-audit-r1.json)與[永久保存](preserved/README.md#rust世界造橋術保存)不依賴workplace；建置只見crate／native，最終GUI只見native與單一工具，沒有Go或DOS runtime。正式197／7／923／535及1071美術保持，無Release。
+
+
 2026-11-05 Rust F5依[031限定驗收](docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)完成。原探索遮罩、地形色號與座標欄、白／黑位置標記、三字型、F5／Enter／Esc與滑鼠、F7及冷讀已接；68測試、237行IDA bytes、兩程序八SDL擷取及預設縮放通過。頁面不改v4或世界，標記為300毫秒UI近似。最終GUI只掛native與輸入工具，Go／原RAM僅留開發證據。[現況](CONTEXT.md)、[工具](tools/rust-minimap.py)與[保存](preserved/README.md#rust-f5地圖總覽保存)為入口。下一步F4地圖術與世界事件，不重跑F1／F5或HD矩陣，197／7／923／535／1071保持，沒有Release。
 
 2026-11-05 Rust F1依[031限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)完成。原式六欄與批准武將頭像、三字型、F1／Enter／Esc與滑鼠、F7及冷讀通過；65測試、371行IDA bytes、四程序八SDL擷取及預設縮放已驗。寶物／八劍目前空欄，初頁Enter看八劍、第二頁Enter返回；不是雙向切換。保存v4不改，執行只見Rust及媒體／平台庫。[現況](CONTEXT.md)、[工具](tools/rust-character.py)與[永久保存](preserved/README.md#rust-f1人物資料保存)為入口。下一步F5地圖總覽與世界事件，不重跑F1／寶箱／月報或HD矩陣。原197／7／923／535／1071保持，沒有Release。

@@ -105,7 +105,7 @@ impl Monthly {
                 || j.cue.is_some()
                 || j.camps.pending.is_some()
                 || d.tile(j.world.area, j.world.position)? != r.tile
-                || matches!(r.tile, 49..=51 | 53 | 65)
+                || matches!(r.tile, 49..=51 | 65)
                 || j.treasure.pending.is_some()
             {
                 return Err("待確認月報狀態錯誤".into());
@@ -121,17 +121,22 @@ impl<'a> Journey<'a> {
         key: u16,
         c: &Catalog,
     ) -> Result<Option<Boundary>, String> {
+        let view = self.magic.view(d)?;
         let mut s = self.clone();
-        let out = s.walk(d, key)?;
+        let out = s.walk(&view, key)?;
         if out == Some(Boundary::Monthly) {
-            s.world = s.world.monthly_step(d, key)?;
-            let tile = d.tile(s.world.area, s.world.position)?;
-            s.begin_month(c, d, tile)?;
+            s.world = s.world.monthly_step(&view, key)?;
+            let tile = view.tile(s.world.area, s.world.position)?;
+            s.begin_month(c, &view, tile)?;
             *self = s;
             return Ok(None);
         }
         if out == Some(Boundary::Terrain(59)) {
             s.open_treasure(d, key, c)?;
+            *self = s;
+            return Ok(None);
+        }
+        if out == Some(Boundary::Terrain(53)) && s.open_magic_shop(&view, key)? {
             *self = s;
             return Ok(None);
         }
@@ -187,6 +192,8 @@ impl<'a> Journey<'a> {
         Ok(())
     }
     pub fn close_month(&mut self, d: &WorldData) -> Result<(), String> {
+        let view = self.magic.view(d)?;
+        let d = &view;
         let mut s = self.clone();
         let r = s.month.pending.take().ok_or("沒有待確認月報")?;
         match s.world.walk_site(d, r.tile)? {

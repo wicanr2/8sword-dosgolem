@@ -30,6 +30,7 @@ pub mod treasure;
 pub mod world;
 #[cfg(feature = "desktop")]
 pub mod world_desktop;
+pub mod world_magic;
 
 #[cfg(test)]
 mod native_tests;

@@ -16,6 +16,10 @@ pub enum Page {
     Quantity,
     Monthly,
     Treasure,
+    Magic,
+    Bridge,
+    MagicShop,
+    Message,
 }
 pub struct Manager {
     pub page: Page,
@@ -39,6 +43,14 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.magic.direction {
+            self.page = Page::Bridge;
+            return;
+        }
+        if j.magic.shop.is_some() {
+            self.page = Page::MagicShop;
+            return;
+        }
         if j.treasure.pending.is_some() {
             self.page = Page::Treasure;
             return;
@@ -56,6 +68,10 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Magic => Some(Screen::Magic),
+            Page::Bridge => Some(Screen::Bridge),
+            Page::MagicShop => Some(Screen::MagicShop),
+            Page::Message => Some(Screen::Report),
             Page::Character => Some(Screen::Character),
             Page::Minimap => Some(Screen::Minimap),
             Page::Treasure => Some(Screen::Treasure),
@@ -99,14 +115,76 @@ impl Manager {
         if self.page == Page::World {
             if j.phase() == "world" {
                 self.page = match key {
+                    1073741885 => {
+                        self.selected = usize::from(j.magic.selected);
+                        if j.magic.book {
+                            Page::Magic
+                        } else {
+                            self.message = "你不會使用法術".into();
+                            Page::Message
+                        }
+                    }
+                    1073741887 => {
+                        self.message = if j.search_book()? {
+                            "你找到魔法竹簡".into()
+                        } else {
+                            "這裡沒有寶物".into()
+                        };
+                        Page::Message
+                    }
                     1073741882 => Page::Character,
                     1073741886 => Page::Minimap,
                     1073741883 => Page::Review,
                     1073741884 => Page::Dismiss,
                     _ => return Ok(()),
                 };
-                self.selected = 0;
+                if self.page != Page::Magic {
+                    self.selected = 0;
+                }
                 self.swords = false;
+                if self.page != Page::Message {
+                    self.message.clear();
+                }
+            }
+            return Ok(());
+        }
+        if self.page == Page::Message {
+            if key == 13 || key == 27 {
+                self.page = Page::World;
+                self.message.clear();
+            }
+            return Ok(());
+        }
+        if self.page == Page::Magic {
+            match key {
+                1073741906 => self.selected = (self.selected + 7) % 8,
+                1073741905 => self.selected = (self.selected + 1) % 8,
+                27 => self.page = Page::World,
+                13 if j.magic.charges[self.selected] > 0 => {
+                    j.begin_bridge()?;
+                    self.page = Page::Bridge;
+                    self.message.clear();
+                }
+                _ => {}
+            }
+            return Ok(());
+        }
+        if self.page == Page::Bridge {
+            if let Some(k) = crate::world_desktop::key_motion(key) {
+                j.finish_bridge(data, k)?;
+                self.page = Page::World;
+                self.message.clear();
+            }
+            return Ok(());
+        }
+        if self.page == Page::MagicShop {
+            if key == 13 {
+                j.buy_bridge()?;
+                self.message = "已購入造橋術".into();
+            }
+            if key == 27 {
+                j.close_magic_shop(c, data)?;
+                self.page = Page::World;
                 self.message.clear();
             }
             return Ok(());
@@ -259,6 +337,8 @@ pub fn draw(
     pack: &MediaPack,
     building: &Image,
     portrait: &Image,
+    book: &Image,
+    magic_building: &Image,
     data: &WorldData,
     marker_light: bool,
 ) -> Result<(), String> {
@@ -266,6 +346,62 @@ pub fn draw(
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::Message || ui.page == Page::Bridge {
+        fill(f, [24, 684, 1344, 480], [82, 82, 82]);
+        border(f, [24, 684, 1344, 480], [206, 170, 74]);
+        text(
+            f,
+            font,
+            if ui.page == Page::Bridge {
+                "造橋術：請選擇方向"
+            } else {
+                &ui.message
+            },
+            96,
+            756,
+            48,
+            1200,
+        )?;
+        if ui.page == Page::Message && j.magic.book && ui.message == "你找到魔法竹簡" {
+            sprite(f, book, 312, 870);
+        }
+        return Ok(());
+    }
+    if ui.page == Page::Magic {
+        fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
+        for (i, (map, battle, _)) in crate::world_magic::names().iter().enumerate() {
+            let y = 186 + i as i32 * 120;
+            field(f, font, battle, 240, y, 264)?;
+            field(f, font, "0", 504, y, 96)?;
+            if ui.selected == i {
+                fill(f, [792, y, 312, 84], [119, 44, 41]);
+            }
+            field(f, font, map, 816, y, 288)?;
+            field(f, font, &j.magic.charges[i].to_string(), 1104, y, 120)?;
+        }
+        return Ok(());
+    }
+    if ui.page == Page::MagicShop {
+        sprite(f, magic_building, 24, 120);
+        fill(f, [24, 720, 1344, 450], [82, 82, 82]);
+        let lines = [
+            "法術 造橋術".into(),
+            "價格 10".into(),
+            format!(
+                "金錢 {}  次數 {}/{}",
+                j.resources[3], j.magic.charges[0], j.resources[5]
+            ),
+            if ui.message.is_empty() {
+                "是否購買？".into()
+            } else {
+                ui.message.clone()
+            },
+        ];
+        for (i, line) in lines.iter().enumerate() {
+            text(f, font, line, 72, 744 + i as i32 * 96, 42, 1248)?;
+        }
+        return Ok(());
+    }
     if ui.page == Page::Minimap {
         fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
         for (i, code) in crate::minimap::cells(data, &j.world)?.iter().enumerate() {
@@ -316,6 +452,10 @@ pub fn draw(
             282,
             288,
         )?;
+        if !ui.swords && j.magic.book {
+            sprite(f, book, 912, 282);
+            field(f, font, "魔 法 竹 簡", 1032, 282, 288)?;
+        }
         return Ok(());
     }
     if ui.page == Page::Treasure {

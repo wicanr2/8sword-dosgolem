@@ -16,6 +16,34 @@ pub(crate) struct Pack {
     pub(crate) music: Music,
 }
 impl Pack {
+    pub(crate) fn bridge_cue(&self, f: &mut [u8], s: &WorldState, elapsed: Duration) {
+        let progress = (elapsed.as_secs_f32() / 1.2).clamp(0.0, 1.0);
+        if progress >= 1.0 {
+            return;
+        }
+        let radius = 50.0 + 100.0 * progress;
+        for y in 540..751i32 {
+            for x in 520..873i32 {
+                let dx = (x - 696) as f32;
+                let dy = (y - 645) as f32 * 1.55;
+                let distance = (dx * dx + dy * dy).sqrt();
+                let edge = (1.0 - ((distance - radius) / 9.0).abs()).max(0.0);
+                let alpha = edge * (1.0 - progress) * 0.85;
+                if alpha > 0.0 {
+                    let at = (y as usize * W + x as usize) * 4;
+                    for (i, c) in [255.0, 205.0, 82.0].iter().enumerate() {
+                        f[at + i] = (f[at + i] as f32 * (1.0 - alpha) + c * alpha) as u8;
+                    }
+                }
+            }
+        }
+        sprite(
+            f,
+            &self.heroes[usize::from(s.facing - 1) * 3],
+            600,
+            TOP + 522,
+        );
+    }
     pub(crate) fn load(root: &Path) -> Result<Self, String> {
         Ok(Self {
             frame: Image::load(&root.join("world-frame.rgba"), 1920, 1200)?,

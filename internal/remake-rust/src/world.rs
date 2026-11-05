@@ -246,7 +246,7 @@ mod tests {
             assert_eq!(cold.walk(&d, key), s.walk(&d, key));
             assert_eq!(cold, s);
         }
-        for at in [0, 8, 16, 17, 18, 19, 20, 22, 23, 24, 25, 38, 39] {
+        for at in [0, 8, 16, 17, 18, 19, 22, 23, 24, 25, 38, 39] {
             let mut bad = raw.clone();
             bad[at] = 255;
             let n = bad.len() - 8;
@@ -291,6 +291,62 @@ mod tests {
     }
 }
 impl WorldData {
+    #[cfg(test)]
+    pub(crate) fn bridge_reference_fixture() -> Self {
+        let mut d = Self::flat_fixture();
+        for row in include_str!("../magic-bridge-reference.tsv")
+            .lines()
+            .filter(|s| !s.starts_with('#'))
+        {
+            let f: Vec<usize> = row.split('\t').map(|s| s.parse().unwrap()).collect();
+            d.maps[0][f[1] * 70 + f[0]] = f[2] as u8;
+        }
+        d
+    }
+    #[cfg(test)]
+    pub(crate) fn bridge_wrap_fixture() -> Self {
+        let mut d = Self::flat_fixture();
+        d.maps[0][79 * 70] = 2;
+        d.maps[0][78 * 70] = 14;
+        d
+    }
+    #[cfg(test)]
+    pub(crate) fn bridge_and_treasure_fixture() -> Self {
+        let mut d = Self::treasure_fixture();
+        d.maps[0][40 * 70 + 41] = 2;
+        d.maps[0][40 * 70 + 42] = 2;
+        d
+    }
+    #[cfg(test)]
+    pub(crate) fn magic_fixture(center: u8) -> Self {
+        let mut d = Self::flat_fixture();
+        for s in crate::world_magic::shops() {
+            d.maps[usize::from(s.area)][usize::from(s.y) * 70 + usize::from(s.x)] = 53;
+        }
+        for dy in -2i32..=2 {
+            for dx in -2i32..=2 {
+                let x = (40 + dx).rem_euclid(70) as usize;
+                let y = (40 + dy).rem_euclid(80) as usize;
+                d.maps[0][y * 70 + x] = if dx == 0 && dy == 0 { center } else { 2 };
+            }
+        }
+        d
+    }
+    /// Validated v5 patches are independent of the immutable input fingerprint.
+    pub fn with_bridges(&self, indices: &[u16]) -> Result<Self, String> {
+        if indices.len() > 44800 || indices.windows(2).any(|p| p[0] >= p[1]) {
+            return Err("橋格重複或順序錯誤".into());
+        }
+        let mut d = self.clone();
+        for index in indices {
+            let at = usize::from(*index);
+            if at >= 44800 || !(2..=14).contains(&self.maps[at / 5600][at % 5600]) {
+                return Err("橋格不屬原圖可改地形".into());
+            }
+            d.maps[at / 5600][at % 5600] = 52;
+        }
+        Ok(d)
+    }
     #[cfg(test)]
     pub(crate) fn minimap_fixture() -> Self {
         let mut d = Self::flat_fixture();
@@ -537,7 +593,7 @@ impl WorldState {
             || self.position.x >= 70
             || self.position.y >= 80
             || !(1..=4).contains(&self.facing)
-            || !(1..=324).contains(&self.remaining)
+            || self.remaining == 0
             || !(1..=5).contains(&self.rank)
             || self.boat > 2
             || self.font >= 3

@@ -75,6 +75,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let assets = assets.ok_or("缺少素材目錄")?;
     let data = WorldData::load(&assets)?;
     crate::treasure::validate_maps(&data)?;
+    crate::world_magic::validate_maps(&data)?;
     let catalog = Catalog::builtin()?;
     let mut journey = if continuing {
         Journey::load(
@@ -93,6 +94,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let building =
         crate::media_assets::Image::load(&assets.join("recruit-building.rgba"), 1344, 600)?;
     let portrait = crate::media_assets::Image::load(&assets.join("hero-portrait.rgba"), 240, 240)?;
+    let magic_book = crate::media_assets::Image::load(&assets.join("magic-book.rgba"), 96, 96)?;
+    let magic_building =
+        crate::media_assets::Image::load(&assets.join("magic-building.rgba"), 1344, 600)?;
     let sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
     let (mut boundary, mut choose, mut cursor, mut captures, mut saves) =
         (None, false, 7usize, 0u32, 0u32);
@@ -113,11 +117,13 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let (mut drains, mut last_queue, mut queued_bytes) = (0u64, 0u32, 0u64);
     let mut save_requested = false;
     let view_clock = Instant::now();
+    let mut bridge_flash: Option<Instant> = None;
     'game: loop {
         let now = Instant::now();
         let marker_light = view_clock.elapsed().as_millis() / 300 % 2 == 0;
         let month_before = (journey.month.months, journey.month.pending.is_some());
         let treasure_before = journey.treasure.amounts;
+        let magic_before = journey.magic.clone();
         let mut snap = false;
         ui.sync(&journey);
         for e in sdl.events() {
@@ -177,6 +183,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         Action::Choice(v) => choose = v,
                         Action::Extra(v) => ui.extra(&mut journey, &catalog, v),
                         Action::TreasureChoice(v) => journey.select_treasure(v)?,
+                        Action::MagicChoice(v) => ui.selected = v,
                     }
                 }
             }
@@ -204,7 +211,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
 
             if ui.page != Page::World
-                || [1073741882, 1073741883, 1073741884, 1073741886].contains(&key)
+                || [
+                    1073741882, 1073741883, 1073741884, 1073741885, 1073741886, 1073741887,
+                ]
+                .contains(&key)
             {
                 if key != 0 {
                     ui.key(key, &mut journey, &catalog, &data);
@@ -302,8 +312,12 @@ pub fn run(args: &[String]) -> Result<(), String> {
             cp.view.music = journey.world.music;
             cp.view.cursor = cursor as u8;
         }
+        if magic_before.direction && !journey.magic.direction {
+            bridge_flash = Some(now);
+        }
         if (month_before != (journey.month.months, journey.month.pending.is_some())
-            || treasure_before != journey.treasure.amounts)
+            || treasure_before != journey.treasure.amounts
+            || magic_before != journey.magic)
             && store.is_some()
         {
             save_requested = true;
@@ -378,6 +392,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             last_queue = sdl.queued();
         }
         let font = &map.fonts[usize::from(journey.world.font)];
+        let effective_map = journey.magic.view(&data)?;
         let mut frame = if let Some(cp) = &journey.battle {
             desktop::compose(
                 &battle_pack,
@@ -393,8 +408,19 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 None,
             )?
         } else {
-            world_desktop::compose(&map, &data, &journey.world, boundary, store.is_some())?
+            world_desktop::compose(
+                &map,
+                &effective_map,
+                &journey.world,
+                boundary,
+                store.is_some(),
+            )?
         };
+        if journey.phase() == "world" && ui.page == Page::World {
+            if let Some(start) = bridge_flash {
+                map.bridge_cue(&mut frame, &journey.world, now.duration_since(start));
+            }
+        }
         if let Some(cp) = &journey.battle {
             fill(&mut frame, [1200, 2, 240, 44], [9, 36, 29]);
             border(&mut frame, [1200, 2, 232, 44], [206, 170, 74]);
@@ -482,12 +508,18 @@ pub fn run(args: &[String]) -> Result<(), String> {
             &battle_pack,
             &building,
             &portrait,
-            &data,
+            &magic_book,
+            &magic_building,
+            &effective_map,
             marker_light,
         )?;
         fill(&mut frame, [0, 1250, 1920, 70], [9, 36, 29]);
         let (ok, back, skip) =
             match ui.page {
+                Page::Magic => ("施展法術", "返回地圖", ""),
+                Page::Bridge => ("", "Space停用", ""),
+                Page::MagicShop => ("購買一次", "離開商店", ""),
+                Page::Message => ("返回地圖", "返回地圖", ""),
                 Page::Minimap => ("返回地圖", "返回地圖", ""),
                 Page::Character => (if ui.swords { "返回" } else { "查看八劍" }, "返回", ""),
                 Page::Review => ("返回", "返回", ""),
@@ -599,7 +631,11 @@ pub fn run(args: &[String]) -> Result<(), String> {
         };
         let status = format!(
             "phase\t{}\nactions\t{}\nx\t{}\ny\t{}\nsteps\t{}\ngold\t{}\nmerit\t{}\narmy\t{}\nenemy\t{}\nseed\t{}\nactor\t{actor}\nraw\t{raw}\ntargets\t{targets}\ncursor\t{cursor}\noutcome\t{outcome}\nsequence\t{sequence}\nbattles\t{}\nfont\t{}\nmusic\t{}\nstate_hash\t{:016x}\nsaves\t{saves}\nloaded\t{continuing}\ncaptures\t{}\nreadback_equal\t{equal}\nqueued_bytes\t{queued_bytes}\ndrains\t{drains}\npending\t{:?}\n",
-            if ui.page == Page::Minimap {
+            if ui.page == Page::Magic {
+                "magic-menu"
+            } else if ui.page == Page::Message {
+                "message"
+            } else if ui.page == Page::Minimap {
                 "minimap"
             } else if ui.page == Page::Character {
                 "character"
@@ -675,6 +711,14 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 .collect::<Vec<_>>()
                 .join(","),
             ui.swords
+        );
+        let status = format!(
+            "{status}magic_book\t{}\nmagic_charges\t{:?}\nmagic_bridges\t{:?}\nmagic_direction\t{}\nmagic_shop\t{:?}\n",
+            journey.magic.book,
+            journey.magic.charges,
+            journey.magic.bridges,
+            journey.magic.direction,
+            journey.magic.shop
         );
         if let Some(d) = &capture {
             if snap {

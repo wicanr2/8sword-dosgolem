@@ -3329,3 +3329,13 @@ IDA初查把原掛點173F0當函式入口而被assert拒絕；從正式唯讀DB�
 沿Rust1.99.1／SDL2／libsndfile、Pillow11.3.0-r2、IDA py312-v1與Go1.24.13既有image；Go僅解碼原收據，不作runtime。全部UID1000、network none、資源與外層逾時有界。初次GUI寬掛本批，後續最終重跑僅掛native與單一輸入工具，真正看不到Go解碼器／cache或原RAM；縮放也依相同窄掛載重跑，舊資料留診斷。Xvfb在finally結束；無新image。主機gh憑證及private repo已確認，完整媒體／binary與RE留本機，只推程式、索引與成果圖，沒有Release。保存及清理續記於本節。
 
 [永久索引](preserved/rust-minimap-r1.json)、[脫離核對](preserved/rust-minimap-detached-r1.json)、[清理](preserved/rust-minimap-cleanup-r1.json)及[完整性](preserved/rust-minimap-integrity-r1.json)已保存。315檔／266物件、壓縮26167183 bytes；僅掛唯讀preserved、單一工具及tmpfs逐原始／壓縮SHA通過。移除929份Go／Rust快取與53份已保存診斷，共347969150 bytes，約331.8 MiB；目前binary、136媒體及最終證據保持。來源／圖／binary與10個入口連結核對；find無root-owned檔案或.md目錄，無專案容器殘留。正式197／7／923／535／1071與Go保存格式不改。
+
+## 2026-11-05：Rust世界竹簡與造橋術
+
+- 延續Rust獨立旅程。知識路由命中逆向、spec閘門、README與文件職責；沿reverse-engineer-retro-game-remake與IDA9.4技能查固定來源。原本優先看煉金／召兵，第一區資料只賣造橋／火球，收斂為自然取得竹簡及造橋的最小垂直鏈，READY後實作。
+- 新world_magic.rs接F6、竹簡F1圖示、原式F4兩欄八列、造橋原店／容量、等待方向與改圖。滑鼠選取再確認、字型與F7保持。旅程v5向後讀v1至v4，保存橋格與待方向，交易時自動保存。原先battle／Go格式保持，沒有Release。
+- 78項測試、19函式1848行IDA原bytes、46商店資料、八寶物位置與既有原版造橋受控收據核對通過。原版快照只解RAM，不重跑其他法術／HD。初始商店數量斷言依實際archive修正；世界自檢命令旗標由--check改為--check-only後乾淨重跑，均屬工具修正。
+- 四程序11SDL擷取從原起點正常行走，無狀態注入；含未學提示、竹簡／F1、原店購三次及滿額拒絕、F4環繞、待方向冷讀、走上新橋、最終冷讀及真正v4轉入。最終470金、2次與橋174／244保持。初輪XTest在關閉提示後未等狀態提交，補等待後以同binary完整重跑通過，診斷先保存。
+- 預設2／3縮放另驗法術選單／F1／返回／F7，三張1280×880外部X11圖及結果逐bytes相同；不冒充SDL原生讀回或手機驗收。金色施法光環只用UI時間。
+- 建置只見crate與native，最終GUI只掛native及單一腳本，無PAM／Go／DOS runtime。完整來源、138媒體、binary、v4／v5、IDA及快照先永久壓縮保存，再清可重建快取。README成果圖、CONTEXT、WORKLIST與031同步；其餘地圖術／物品、守軍／八劍與結局續做，不重開已驗HD矩陣。
+- 收尾：303檔／276物件壓縮36229603 bytes，獨立核對全數通過；回收236591456 bytes。文件入口／章節、三工具語法、UID與誤建.md目錄通過；正式基線不變，本案容器皆清除。GitHub主機登入及私人倉庫狀態已核對。

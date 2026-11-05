@@ -52,6 +52,9 @@ pub enum Screen {
     Army,
     Report,
     Treasure,
+    Magic,
+    Bridge,
+    MagicShop,
     Shop { extra: bool, quantity: bool },
     Battle { finished: bool },
 }
@@ -65,6 +68,7 @@ pub enum Action {
     Choice(bool),
     Extra(bool),
     TreasureChoice(u8),
+    MagicChoice(usize),
 }
 pub fn normalized(x: f32, y: f32) -> Option<(i32, i32)> {
     if !x.is_finite() || !y.is_finite() || !(0.0..1.0).contains(&x) || !(0.0..1.0).contains(&y) {
@@ -79,6 +83,15 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
     }
     for (i, r) in FOOTER.iter().enumerate() {
         if r.contains(x, y) {
+            if screen == Screen::Bridge {
+                return if i == 1 {
+                    Some(Action::Key(32))
+                } else if i == 3 {
+                    Some(Action::Key(1073741888))
+                } else {
+                    None
+                };
+            }
             if screen == Screen::World {
                 return Some(Action::Key([32, 27, 1073741883, 1073741888][i]));
             }
@@ -108,6 +121,12 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         }
     }
     match screen {
+        Screen::Magic => {
+            if (792..1224).contains(&x) && (186..1146).contains(&y) {
+                return Some(Action::MagicChoice(((y - 186) / 120) as usize));
+            }
+        }
+        Screen::MagicShop => {}
         Screen::Character => {}
         Screen::Minimap => {}
         Screen::Report => {}
@@ -118,14 +137,19 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
                 }
             }
         }
-        Screen::World => {
+        Screen::World | Screen::Bridge => {
+            if screen == Screen::Bridge && x >= 1392 {
+                return None;
+            }
             if Rect(1392, 120, 504, 1080).contains(x, y) {
                 let row = (y - 120) / 162;
                 return match row {
                     0 => Some(Action::Key(1073741882)),
                     1 => Some(Action::Key(1073741883)),
                     2 => Some(Action::Key(1073741884)),
+                    3 => Some(Action::Key(1073741885)),
                     4 => Some(Action::Key(1073741886)),
+                    5 => Some(Action::Key(1073741887)),
                     6 => Some(Action::Key(1073741888)),
                     _ => None,
                 };

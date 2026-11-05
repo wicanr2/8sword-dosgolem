@@ -1,0 +1,3211 @@
+{
+  "status": "passed-rust-world-magic-audit",
+  "crate": {
+    "magic-shops.tsv": "6194c4cc0dd8a1ed90c62558c51aae635154fc689bb027a781df9a2ab5250aa8",
+    "spell-reference.tsv": "4c057fb2c0432204d0c675f0bd5d9fb524d2a0f6984b134f9efe2246a90f182a",
+    "battle-replay.tsv": "5a9daafbd25d042cfdd00ec5f70ad13967cdcd3530248ee0235815a395b76235",
+    "Cargo.toml": "cdb32c522e36f7957f667dc5c33260449f70fc7c7b768f7a8434cec8da439c57",
+    "battle-models.tsv": "a236621b4f2dd6e1636de8ed9583225ede0c357d4f745a1bf03f624b9ece1109",
+    "generator-reference.tsv": "fbc76b7d4d06f3b671d086b0b01cdd286e06cbce55084b438d0b0d8abbd99bb0",
+    "magic-bridge-reference.tsv": "d5e395dc6475ff87d2b8a3c0a83801c76547d059911c5c77b6e29794f2baaf7d",
+    "controller-reference.tsv": "50b1e6a4fb06fd2ec1bc73440dee98fb433faa9546711df323bb60084d5f4c13",
+    "monthly-stock.tsv": "61159609645bf1f9404c848f71bd6195c12e11bc542841f1de794a8ba5361492",
+    "character-layout.tsv": "f3a0501e554cc743f2d180150d5e0353dc3bf1d4479f3e3c97eceb63e949fddf",
+    "Cargo.lock": "e90840724bd65e1b9728c442fdf28136aaf6355f4e9c590e51273a1889d09b61",
+    "world-reference.tsv": "0728fe90b5a18e6eebd7f0cb2c4ad88418144e4467f6a181b262645d10a9df04",
+    "settlement-reference.tsv": "d9fcb68249a087cea5a08cd5add9ae7eb169fd6077aef783d6c760c51601039a",
+    "unit-catalog.tsv": "c119c609d40b3616e506d6996052f5fada82b671bb6acd8e558a3c7319cea4af",
+    "magic-names.tsv": "85be13ffac0d0aa7831f2f794b817cda241d7439860f85a1973023900421f109",
+    "monthly-caps.tsv": "927325e9e5e137b65465effe56b4a9439a29364eb464e13c424cbbf701d04b8c",
+    "minimap-reference.tsv": "34d6fb84502e8859ff4a7ac92100ccdb80c2ba695a0b4a3892f0c5aef8ac9ddb",
+    "minimap-colors.tsv": "4a3dd2007cce2a04d5d8c098ee6b168873fc4bf3bcd5c7915c185b6fd43c33c7",
+    "camp-catalog.tsv": "109d7b5cd9f29fb1a16aca859b7d37b8b2e19dbf5320cf301689812420290d6a",
+    "treasure-catalog.tsv": "f857d69e8a0753f0452bc179265ad083033d10553bbc581cd1a2a337fb8598ac",
+    "magic-items.tsv": "5c25e6c3efa9f6af5295986316b9992d7cf7a09a9d08506091bfcd572c7bff51",
+    "treasure-reference.tsv": "42b9551820244cf60bb84e536d951c1408f9e0b71655067c807a272858fb7e84",
+    "enemy-reference.tsv": "4146051a9532b7a19bcec1e643b06d5a22134fee7548612cd8476f1d793d33d2",
+    "monthly-reference.tsv": "b939a22ad8181e720f68e66f5150be54a56962ce7e45ae6017c6909c06d7a57e",
+    "reference.tsv": "95abb1b181f50951aabcfebdba2aad1c114589fcf4e599d880241c2056793daf",
+    "src/management.rs": "e3edeca0e0c440a96d0b09b1a4b201bb4fb84c0eb359d2931567778f7d120019",
+    "src/enemy_tests.rs": "6d1d8589e6582915270b5633d6c4c1090c773c1b0eb68c9b2e80c8ab34e91607",
+    "src/lib.rs": "4c5f4d3cf0f7279780071d3a0c8b915da1481352490a332df29711cff5af407a",
+    "src/world_desktop.rs": "71a39717d1b702f0b573820a1a1f2a611d4555b5115db6b3928112cf97cd7b6b",
+    "src/catalog.rs": "094d08f8cc5536aacf574ea53c9a81d59a0ee1c36a2fd444d229b67fccf9b469",
+    "src/pointer.rs": "6db1f9847b1bd4e8854ac958ff05da11ce788c15c8e3f5c934bd035725278b11",
+    "src/controller.rs": "151b9f70fc51169d953a428088bd6085b5739aca3734cda111c8119847e76674",
+    "src/world_magic_tests.rs": "6f21ccbff79ce123485c06bd7c5e9742c8cefe2420b2b3ffbed0560b3198a2ee",
+    "src/sndfile.rs": "7bf9b76d1f02b10cebb3610a9ea160c02446ba16cd4482c4dfb28e18ad33ee21",
+    "src/sdl.rs": "b5bf2f61719e6f019cd9170fce5fe0faca799bf227a85140e9a555610a13e8c5",
+    "src/native_tests.rs": "6e67e96bbc5c8500b0eb665ac11919643ff31c153ff2e1ffc0a125e23881ca59",
+    "src/media_assets.rs": "93c7d3a013d0063a698e84b88899d539926b1a9659781048737b16446104b154",
+    "src/main.rs": "3ae01dd3d2bf176bcd9e90ffe1fc99e2f3a340df57b27fc9b876c12ff88fbe2f",
+    "src/management_ui.rs": "83a5ead552392eccc65002bcb44f17ece68b6961fa50b19844798d19bc8df1ea",
+    "src/world_magic.rs": "b4b8efe5794b25e175b2a72ad99a06a6749f1ae2eec796877aae44bdce3e7d64",
+    "src/checkpoint.rs": "ecf0c1c4594493cd65bfbd950bf758b0394c66cab34c70127a6366ea464a12dc",
+    "src/controller_tests.rs": "4e8e35fd70ff7b30eb6ed3b25f4cccadffaf9c832279ac4155ebe886cfd72ccf",
+    "src/monthly.rs": "0e6af891d447e2217c5ce8a99630a8afcf1e02da1b284f52858ef6181cb3067d",
+    "src/character.rs": "327b95212c7e4a6cd2939e5ac2450100607fb2fd0075e7b98012fd7e02bde9bb",
+    "src/monthly_tests.rs": "aa27c157db3c370d6f11dc33c0451117068d01f48acbded3e7f180767b46982f",
+    "src/treasure_tests.rs": "351ad9fb37e876f09dc968cdde1080ab8cc1bd3eef28e40b40eeade35c378725",
+    "src/journey.rs": "b7540cd6235184f3084209718dd1043e3e284c4984286bd43f97ec795cfcac52",
+    "src/spells.rs": "54083224e26f56245e7fef9fe56c5bf441bf9709f81897260e7241a45c646c11",
+    "src/checkpoint_store.rs": "3959a2686d77baa8fb23c7ab18e7437712a0ed02145ab7ec317f7e9ab0e37354",
+    "src/journey_desktop.rs": "93443f851003d34ecc75ceb30e295299567bd08cfd6f7ceaa2643672b6546d7e",
+    "src/formation.rs": "547c62763fe6efa77d304ecc5bbbccbfef7cb23004b84afff770db31a42db898",
+    "src/enemy.rs": "959ecac61400431a97a4415d51b45eb37470c6abc21fa96aed75e02a0ee3b7ea",
+    "src/checkpoint_tests.rs": "e76a791fb598d9e4eb03b6af1b7664d112ea1ea108fcb5808a9a4c9db73fff48",
+    "src/desktop.rs": "e3002a929efeaecaa56cf27ffdc448449b66e477b7e587f232f0eafaa9481911",
+    "src/spell_tests.rs": "d355b30799fa9cede41988d2df72d3d578fa3a8fd50d72d4655ee9cc8b639610",
+    "src/management_tests.rs": "5bb9ec6cbc91ac91a5975b2abb640334fe650e416272c8c014f3b5c60ba9995c",
+    "src/world.rs": "abad9602c0a1846c467172591febca731fc7f9fbbd6c06c1a595bd4e73bda372",
+    "src/replay.rs": "292203c75b5e717ba76b4d833b7a698ac10396465284ea78253e735f1dbf2063",
+    "src/journey_tests.rs": "10ced7c7c8b64067aaba40bb012cc296cd2d7238a17e3d22aa5615d05708a3bd",
+    "src/minimap.rs": "b944148a43df6b778cb67f76b40618656181da3dc3d4d1a865e0b96cf78a0f21",
+    "src/battle.rs": "74dcf522965d2a6fd4866e9ce3b37b8ef83383f3406a9ead9f3f1cfa9ca7e7cb",
+    "src/treasure.rs": "8aef9f81911339dbfaa8486c4f08eb33fd99cc51b5d68d73c4655365a56bb425"
+  },
+  "binary_sha256": "0bc529fcc5676ad8719edbf20a41309be3c29568285992b5b46ed528de1fea41",
+  "baseline": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "source": {
+    "status": "passed-world-magic-source",
+    "pam_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+    "items": [
+      [
+        0,
+        50,
+        60
+      ],
+      [
+        1,
+        27,
+        74
+      ],
+      [
+        2,
+        24,
+        47
+      ],
+      [
+        3,
+        60,
+        51
+      ],
+      [
+        4,
+        28,
+        44
+      ],
+      [
+        5,
+        60,
+        66
+      ],
+      [
+        2,
+        4,
+        45
+      ],
+      [
+        4,
+        23,
+        37
+      ]
+    ],
+    "shops": [
+      [
+        0,
+        0,
+        30,
+        7,
+        0
+      ],
+      [
+        0,
+        1,
+        60,
+        59,
+        8
+      ],
+      [
+        1,
+        0,
+        52,
+        13,
+        9
+      ],
+      [
+        1,
+        1,
+        53,
+        29,
+        8
+      ],
+      [
+        1,
+        2,
+        28,
+        46,
+        0
+      ],
+      [
+        1,
+        3,
+        3,
+        71,
+        1
+      ],
+      [
+        2,
+        0,
+        43,
+        2,
+        0
+      ],
+      [
+        2,
+        1,
+        21,
+        11,
+        8
+      ],
+      [
+        2,
+        2,
+        19,
+        35,
+        1
+      ],
+      [
+        2,
+        3,
+        61,
+        46,
+        9
+      ],
+      [
+        2,
+        4,
+        20,
+        64,
+        10
+      ],
+      [
+        2,
+        5,
+        30,
+        73,
+        2
+      ],
+      [
+        3,
+        0,
+        6,
+        6,
+        9
+      ],
+      [
+        3,
+        1,
+        26,
+        31,
+        2
+      ],
+      [
+        3,
+        2,
+        59,
+        41,
+        1
+      ],
+      [
+        3,
+        3,
+        38,
+        58,
+        11
+      ],
+      [
+        3,
+        4,
+        67,
+        70,
+        3
+      ],
+      [
+        3,
+        5,
+        6,
+        76,
+        10
+      ],
+      [
+        4,
+        0,
+        10,
+        8,
+        8
+      ],
+      [
+        4,
+        1,
+        30,
+        17,
+        2
+      ],
+      [
+        4,
+        2,
+        36,
+        34,
+        9
+      ],
+      [
+        4,
+        3,
+        34,
+        44,
+        6
+      ],
+      [
+        4,
+        4,
+        37,
+        70,
+        12
+      ],
+      [
+        4,
+        5,
+        54,
+        70,
+        4
+      ],
+      [
+        5,
+        0,
+        8,
+        4,
+        3
+      ],
+      [
+        5,
+        1,
+        44,
+        20,
+        11
+      ],
+      [
+        5,
+        2,
+        36,
+        46,
+        13
+      ],
+      [
+        5,
+        3,
+        22,
+        56,
+        10
+      ],
+      [
+        5,
+        4,
+        12,
+        75,
+        5
+      ],
+      [
+        5,
+        5,
+        56,
+        76,
+        2
+      ],
+      [
+        6,
+        0,
+        63,
+        5,
+        10
+      ],
+      [
+        6,
+        1,
+        4,
+        9,
+        5
+      ],
+      [
+        6,
+        2,
+        38,
+        29,
+        9
+      ],
+      [
+        6,
+        3,
+        15,
+        34,
+        11
+      ],
+      [
+        6,
+        4,
+        6,
+        39,
+        4
+      ],
+      [
+        6,
+        5,
+        23,
+        52,
+        3
+      ],
+      [
+        6,
+        6,
+        16,
+        70,
+        2
+      ],
+      [
+        6,
+        7,
+        65,
+        76,
+        14
+      ],
+      [
+        7,
+        0,
+        29,
+        15,
+        3
+      ],
+      [
+        7,
+        1,
+        65,
+        21,
+        12
+      ],
+      [
+        7,
+        2,
+        35,
+        38,
+        6
+      ],
+      [
+        7,
+        3,
+        41,
+        38,
+        14
+      ],
+      [
+        7,
+        4,
+        37,
+        55,
+        5
+      ],
+      [
+        7,
+        5,
+        8,
+        72,
+        15
+      ],
+      [
+        7,
+        6,
+        22,
+        73,
+        13
+      ],
+      [
+        7,
+        7,
+        55,
+        77,
+        7
+      ]
+    ],
+    "names": [
+      [
+        " 造 橋 術 ",
+        " 煉 金 術 ",
+        " 召 兵 術 ",
+        " 跳 躍 術 ",
+        " 停 時 術 ",
+        " 鳥 瞰 術 ",
+        " 涉 水 術 ",
+        " 傳 送 術 "
+      ],
+      [
+        " 火 球 術 ",
+        " 雷 火 術 ",
+        " 殺 鬼 術 ",
+        " 暗 殺 術 ",
+        " 凝 滯 術 ",
+        " 滅 半 術 ",
+        " 複 製 術 ",
+        " 地 震 術 "
+      ]
+    ],
+    "prices": [
+      10,
+      100,
+      100,
+      50,
+      100,
+      100,
+      100,
+      200
+    ],
+    "assets": [
+      {
+        "file": "magic-building.rgba",
+        "source": "live1-hd-r1.png",
+        "source_sha256": "a5012d0f66c0c55522df74865b4d9ca5fcaebd174967dd03d3b9adb3afbbb06c",
+        "sha256": "0046daf4cc9d656f37fa3060349c4b97add1e635605e26862c21702b2b1168fc"
+      },
+      {
+        "file": "magic-book.rgba",
+        "source": "man-12-r1.png",
+        "source_sha256": "cd52b94b43b0200bf86a89564c5b91c1d70dad5e2a28195c70cbd530cdc8a612",
+        "sha256": "80fbad6fabeac0d82e51f54bd009ecf1bb15ea735bc181e1e094a3bc4f389377"
+      }
+    ],
+    "grade": "PAM fixed tables and IDA control flow; all map shop counts, area0 shop RAM and eight item RAM triples checked"
+  },
+  "ida_lines_verified": 1848,
+  "gui": {
+    "status": "passed-rust-world-magic-gui",
+    "binary_sha256": "0bc529fcc5676ad8719edbf20a41309be3c29568285992b5b46ed528de1fea41",
+    "runs": [
+      {
+        "name": "fresh",
+        "exit": 0,
+        "command": [
+          "/out/native/8sword-remake",
+          "--journey",
+          "--assets",
+          "/out/native/pack",
+          "--capture-dir",
+          "/out/native/gui/fresh",
+          "--scale",
+          "1",
+          "--save-dir",
+          "/out/native/gui/fresh-store",
+          "--seed",
+          "1"
+        ],
+        "inputs": [
+          {
+            "mouse": [
+              1640,
+              680
+            ],
+            "release": [
+              1640,
+              680
+            ],
+            "before": {
+              "phase": "world",
+              "actions": "0",
+              "x": "40",
+              "y": "40",
+              "steps": "324",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "0",
+              "music": "true",
+              "state_hash": "c9d65cf39bc61e93",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "0",
+              "readback_equal": "true",
+              "queued_bytes": "38400",
+              "drains": "0",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,0",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "false",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65307
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "mouse": [
+              750,
+              900
+            ],
+            "release": [
+              750,
+              900
+            ],
+            "before": {
+              "phase": "prompt",
+              "actions": "60",
+              "x": "54",
+              "y": "68",
+              "steps": "264",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "2954628476",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "0",
+              "music": "true",
+              "state_hash": "30b04e8ac028fb96",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "0",
+              "readback_equal": "true",
+              "queued_bytes": "2496000",
+              "drains": "191",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,0",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "false",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65293
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "mouse": [
+              1640,
+              1010
+            ],
+            "release": [
+              1640,
+              1010
+            ],
+            "before": {
+              "phase": "world",
+              "actions": "69",
+              "x": "50",
+              "y": "60",
+              "steps": "255",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "3946230366",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "0",
+              "music": "true",
+              "state_hash": "9d4f35f91acf20a9",
+              "saves": "0",
+              "loaded": "false",
+              "captures": "0",
+              "readback_equal": "true",
+              "queued_bytes": "2918400",
+              "drains": "222",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,0",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "false",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "diagnostic_key": 65293
+          },
+          {
+            "diagnostic_key": 65470
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "mouse": [
+              450,
+              20
+            ],
+            "release": [
+              450,
+              20
+            ],
+            "before": {
+              "phase": "character",
+              "actions": "69",
+              "x": "50",
+              "y": "60",
+              "steps": "255",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "3946230366",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "0",
+              "music": "true",
+              "state_hash": "5063174575a31150",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "3072000",
+              "drains": "233",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65307
+          },
+          {
+            "diagnostic_key": 65475
+          },
+          {
+            "diagnostic_key": 65307
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "mouse": [
+              750,
+              900
+            ],
+            "release": [
+              750,
+              900
+            ],
+            "before": {
+              "phase": "prompt",
+              "actions": "130",
+              "x": "30",
+              "y": "48",
+              "steps": "194",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "3257732100",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "c296d8b3ee8a7bc4",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "5606400",
+              "drains": "413",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65293
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "mouse": [
+              750,
+              900
+            ],
+            "release": [
+              750,
+              900
+            ],
+            "before": {
+              "phase": "prompt",
+              "actions": "153",
+              "x": "9",
+              "y": "32",
+              "steps": "171",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "2135899695",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "49b1ea6704e3fcf1",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "6604800",
+              "drains": "464",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65293
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65361
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65360
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65363
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65366
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "diagnostic_key": 65367
+          },
+          {
+            "mouse": [
+              230,
+              1296
+            ],
+            "release": [
+              230,
+              1296
+            ],
+            "before": {
+              "phase": "magic-shop",
+              "actions": "206",
+              "x": "30",
+              "y": "7",
+              "steps": "118",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "721442213",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "b0de034909f837db",
+              "saves": "2",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "8832000",
+              "drains": "556",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "Some(PendingShop { index: 0, moved: true })"
+            }
+          },
+          {
+            "mouse": [
+              230,
+              1296
+            ],
+            "release": [
+              230,
+              1296
+            ],
+            "before": {
+              "phase": "magic-shop",
+              "actions": "206",
+              "x": "30",
+              "y": "7",
+              "steps": "118",
+              "gold": "490",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "721442213",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "045bdfd707463439",
+              "saves": "3",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "8870400",
+              "drains": "558",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "已購入造橋術",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,490,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[1, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "Some(PendingShop { index: 0, moved: true })"
+            }
+          },
+          {
+            "mouse": [
+              230,
+              1296
+            ],
+            "release": [
+              230,
+              1296
+            ],
+            "before": {
+              "phase": "magic-shop",
+              "actions": "206",
+              "x": "30",
+              "y": "7",
+              "steps": "118",
+              "gold": "480",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "721442213",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "94cd3eecc89977f0",
+              "saves": "4",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "8908800",
+              "drains": "560",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "已購入造橋術",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,480,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "Some(PendingShop { index: 0, moved: true })"
+            }
+          },
+          {
+            "mouse": [
+              230,
+              1296
+            ],
+            "release": [
+              230,
+              1296
+            ],
+            "before": {
+              "phase": "magic-shop",
+              "actions": "206",
+              "x": "30",
+              "y": "7",
+              "steps": "118",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "721442213",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "897aa84b18e8df06",
+              "saves": "5",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "8947200",
+              "drains": "562",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "已購入造橋術",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[3, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "Some(PendingShop { index: 0, moved: true })"
+            }
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "mouse": [
+              690,
+              1296
+            ],
+            "release": [
+              690,
+              1296
+            ],
+            "before": {
+              "phase": "magic-shop",
+              "actions": "206",
+              "x": "30",
+              "y": "7",
+              "steps": "118",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "721442213",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "897aa84b18e8df06",
+              "saves": "5",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "9024000",
+              "drains": "565",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "法術容量已滿",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[3, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "Some(PendingShop { index: 0, moved: true })"
+            }
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "diagnostic_key": 65365
+          },
+          {
+            "mouse": [
+              1640,
+              680
+            ],
+            "release": [
+              1640,
+              680
+            ],
+            "before": {
+              "phase": "world",
+              "actions": "211",
+              "x": "34",
+              "y": "3",
+              "steps": "113",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "2356896984",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "5ed364cf1dbd7c15",
+              "saves": "6",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "9216000",
+              "drains": "575",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[3, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65364
+          },
+          {
+            "mouse": [
+              230,
+              1296
+            ],
+            "release": [
+              230,
+              1296
+            ],
+            "before": {
+              "phase": "magic-menu",
+              "actions": "211",
+              "x": "34",
+              "y": "3",
+              "steps": "113",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "2356896984",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "5ed364cf1dbd7c15",
+              "saves": "6",
+              "loaded": "false",
+              "captures": "4",
+              "readback_equal": "true",
+              "queued_bytes": "9369600",
+              "drains": "583",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[3, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65307
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "mouse": [
+              1644,
+              1296
+            ],
+            "release": [
+              1644,
+              1296
+            ],
+            "before": {
+              "phase": "bridge-direction",
+              "actions": "211",
+              "x": "34",
+              "y": "3",
+              "steps": "113",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "2356896984",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "d1650fd53671acf0",
+              "saves": "7",
+              "loaded": "false",
+              "captures": "5",
+              "readback_equal": "true",
+              "queued_bytes": "9484800",
+              "drains": "589",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "true",
+              "magic_shop": "None"
+            }
+          }
+        ],
+        "captures": [
+          {
+            "label": "book",
+            "number": 1,
+            "captured": {
+              "phase": "message",
+              "actions": "69",
+              "x": "50",
+              "y": "60",
+              "steps": "255",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "3946230366",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "0",
+              "music": "true",
+              "state_hash": "5063174575a31150",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "2956800",
+              "drains": "225",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "你找到魔法竹簡",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "df7b107e2b217aec"
+            }
+          },
+          {
+            "label": "character-book",
+            "number": 2,
+            "captured": {
+              "phase": "character",
+              "actions": "69",
+              "x": "50",
+              "y": "60",
+              "steps": "255",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "3946230366",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "0",
+              "music": "true",
+              "state_hash": "5063174575a31150",
+              "saves": "1",
+              "loaded": "false",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "3072000",
+              "drains": "233",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "539f86b5bcb9fb6c"
+            }
+          },
+          {
+            "label": "shop",
+            "number": 3,
+            "captured": {
+              "phase": "magic-shop",
+              "actions": "206",
+              "x": "30",
+              "y": "7",
+              "steps": "118",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "721442213",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "897aa84b18e8df06",
+              "saves": "5",
+              "loaded": "false",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "9024000",
+              "drains": "565",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "法術容量已滿",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[3, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "Some(PendingShop { index: 0, moved: true })",
+              "frame_hash": "1571b2267fbe4aaa"
+            }
+          },
+          {
+            "label": "menu",
+            "number": 4,
+            "captured": {
+              "phase": "magic-menu",
+              "actions": "211",
+              "x": "34",
+              "y": "3",
+              "steps": "113",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "2356896984",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "5ed364cf1dbd7c15",
+              "saves": "6",
+              "loaded": "false",
+              "captures": "4",
+              "readback_equal": "true",
+              "queued_bytes": "9292800",
+              "drains": "579",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[3, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "bd117756866c7d1b"
+            }
+          },
+          {
+            "label": "pending",
+            "number": 5,
+            "captured": {
+              "phase": "bridge-direction",
+              "actions": "211",
+              "x": "34",
+              "y": "3",
+              "steps": "113",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "2356896984",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "d1650fd53671acf0",
+              "saves": "7",
+              "loaded": "false",
+              "captures": "5",
+              "readback_equal": "true",
+              "queued_bytes": "9484800",
+              "drains": "589",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "true",
+              "magic_shop": "None",
+              "frame_hash": "b12eb75c78b6505a"
+            }
+          }
+        ],
+        "final": {
+          "phase": "bridge-direction",
+          "actions": "211",
+          "x": "34",
+          "y": "3",
+          "steps": "113",
+          "gold": "470",
+          "merit": "0",
+          "army": "30,0,0,0,0,0",
+          "enemy": "=0,=0,=0,=0,=0,=0",
+          "seed": "2356896984",
+          "actor": "wait",
+          "raw": "-1",
+          "targets": "",
+          "cursor": "7",
+          "outcome": "None",
+          "sequence": "0",
+          "battles": "0",
+          "font": "1",
+          "music": "true",
+          "state_hash": "d1650fd53671acf0",
+          "saves": "8",
+          "loaded": "false",
+          "captures": "5",
+          "readback_equal": "true",
+          "queued_bytes": "9523200",
+          "drains": "591",
+          "pending": "None",
+          "selected": "0",
+          "extra": "false",
+          "digits": "",
+          "used": "30",
+          "camp": "None",
+          "message": "",
+          "months": "0",
+          "monthly": "None",
+          "leadership": "100",
+          "treasure": "None",
+          "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+          "resources": "1,0,100,470,100,3",
+          "character_swords": "false",
+          "minimap_light": "true",
+          "magic_book": "true",
+          "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+          "magic_bridges": "[]",
+          "magic_direction": "true",
+          "magic_shop": "None"
+        }
+      },
+      {
+        "name": "pending",
+        "exit": 0,
+        "command": [
+          "/out/native/8sword-remake",
+          "--journey",
+          "--assets",
+          "/out/native/pack",
+          "--capture-dir",
+          "/out/native/gui/pending",
+          "--scale",
+          "1",
+          "--save-dir",
+          "/out/native/gui/pending-store",
+          "--continue"
+        ],
+        "inputs": [
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "diagnostic_key": 65362
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "mouse": [
+              1644,
+              1296
+            ],
+            "release": [
+              1644,
+              1296
+            ],
+            "before": {
+              "phase": "world",
+              "actions": "212",
+              "x": "34",
+              "y": "2",
+              "steps": "112",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1342558267",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "9844089262c91283",
+              "saves": "1",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "499200",
+              "drains": "20",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65470
+          },
+          {
+            "diagnostic_key": 65481
+          }
+        ],
+        "captures": [
+          {
+            "label": "cast-color",
+            "number": 1,
+            "captured": {
+              "phase": "world",
+              "actions": "211",
+              "x": "34",
+              "y": "3",
+              "steps": "113",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "2356896984",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "b2523abe26f929d1",
+              "saves": "1",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "153600",
+              "drains": "4",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "bc4e1a335733f676"
+            }
+          },
+          {
+            "label": "bridge",
+            "number": 2,
+            "captured": {
+              "phase": "world",
+              "actions": "212",
+              "x": "34",
+              "y": "2",
+              "steps": "112",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1342558267",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "9844089262c91283",
+              "saves": "1",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "499200",
+              "drains": "20",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "715420010881f092"
+            }
+          },
+          {
+            "label": "anchor",
+            "number": 3,
+            "captured": {
+              "phase": "character",
+              "actions": "212",
+              "x": "34",
+              "y": "2",
+              "steps": "112",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1342558267",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "9844089262c91283",
+              "saves": "2",
+              "loaded": "true",
+              "captures": "3",
+              "readback_equal": "true",
+              "queued_bytes": "576000",
+              "drains": "25",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "efcdce4b100d8947"
+            }
+          }
+        ],
+        "final": {
+          "phase": "character",
+          "actions": "212",
+          "x": "34",
+          "y": "2",
+          "steps": "112",
+          "gold": "470",
+          "merit": "0",
+          "army": "30,0,0,0,0,0",
+          "enemy": "=0,=0,=0,=0,=0,=0",
+          "seed": "1342558267",
+          "actor": "wait",
+          "raw": "-1",
+          "targets": "",
+          "cursor": "7",
+          "outcome": "None",
+          "sequence": "0",
+          "battles": "0",
+          "font": "1",
+          "music": "true",
+          "state_hash": "9844089262c91283",
+          "saves": "2",
+          "loaded": "true",
+          "captures": "3",
+          "readback_equal": "true",
+          "queued_bytes": "576000",
+          "drains": "25",
+          "pending": "None",
+          "selected": "0",
+          "extra": "false",
+          "digits": "",
+          "used": "30",
+          "camp": "None",
+          "message": "",
+          "months": "0",
+          "monthly": "None",
+          "leadership": "100",
+          "treasure": "None",
+          "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+          "resources": "1,0,100,470,100,3",
+          "character_swords": "false",
+          "minimap_light": "false",
+          "magic_book": "true",
+          "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+          "magic_bridges": "[174, 244]",
+          "magic_direction": "false",
+          "magic_shop": "None"
+        }
+      },
+      {
+        "name": "cold",
+        "exit": 0,
+        "command": [
+          "/out/native/8sword-remake",
+          "--journey",
+          "--assets",
+          "/out/native/pack",
+          "--capture-dir",
+          "/out/native/gui/cold",
+          "--scale",
+          "1",
+          "--save-dir",
+          "/out/native/gui/cold-store",
+          "--continue"
+        ],
+        "inputs": [
+          {
+            "diagnostic_key": 65470
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "diagnostic_key": 65307
+          },
+          {
+            "mouse": [
+              1640,
+              680
+            ],
+            "release": [
+              1640,
+              680
+            ],
+            "before": {
+              "phase": "world",
+              "actions": "212",
+              "x": "34",
+              "y": "2",
+              "steps": "112",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1342558267",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "9844089262c91283",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "153600",
+              "drains": "4",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "mouse": [
+              708,
+              20
+            ],
+            "release": [
+              708,
+              20
+            ],
+            "before": {
+              "phase": "magic-menu",
+              "actions": "212",
+              "x": "34",
+              "y": "2",
+              "steps": "112",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1342558267",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "9844089262c91283",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "230400",
+              "drains": "6",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "diagnostic_key": 65307
+          },
+          {
+            "mouse": [
+              1644,
+              1296
+            ],
+            "release": [
+              1644,
+              1296
+            ],
+            "before": {
+              "phase": "world",
+              "actions": "212",
+              "x": "34",
+              "y": "2",
+              "steps": "112",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1342558267",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "2",
+              "music": "true",
+              "state_hash": "49fdab31fe344150",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "345600",
+              "drains": "10",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          }
+        ],
+        "captures": [
+          {
+            "label": "cold",
+            "number": 1,
+            "captured": {
+              "phase": "character",
+              "actions": "212",
+              "x": "34",
+              "y": "2",
+              "steps": "112",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1342558267",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "9844089262c91283",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "115200",
+              "drains": "3",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "efcdce4b100d8947"
+            }
+          },
+          {
+            "label": "caoshu",
+            "number": 2,
+            "captured": {
+              "phase": "magic-menu",
+              "actions": "212",
+              "x": "34",
+              "y": "2",
+              "steps": "112",
+              "gold": "470",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "1342558267",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "2",
+              "music": "true",
+              "state_hash": "49fdab31fe344150",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "2",
+              "readback_equal": "true",
+              "queued_bytes": "307200",
+              "drains": "9",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,470,100,3",
+              "character_swords": "false",
+              "minimap_light": "true",
+              "magic_book": "true",
+              "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[174, 244]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "b8e401eafd1dc363"
+            }
+          }
+        ],
+        "final": {
+          "phase": "world",
+          "actions": "212",
+          "x": "34",
+          "y": "2",
+          "steps": "112",
+          "gold": "470",
+          "merit": "0",
+          "army": "30,0,0,0,0,0",
+          "enemy": "=0,=0,=0,=0,=0,=0",
+          "seed": "1342558267",
+          "actor": "wait",
+          "raw": "-1",
+          "targets": "",
+          "cursor": "7",
+          "outcome": "None",
+          "sequence": "0",
+          "battles": "0",
+          "font": "2",
+          "music": "true",
+          "state_hash": "49fdab31fe344150",
+          "saves": "1",
+          "loaded": "true",
+          "captures": "2",
+          "readback_equal": "true",
+          "queued_bytes": "384000",
+          "drains": "12",
+          "pending": "None",
+          "selected": "0",
+          "extra": "false",
+          "digits": "",
+          "used": "30",
+          "camp": "None",
+          "message": "",
+          "months": "0",
+          "monthly": "None",
+          "leadership": "100",
+          "treasure": "None",
+          "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+          "resources": "1,0,100,470,100,3",
+          "character_swords": "false",
+          "minimap_light": "false",
+          "magic_book": "true",
+          "magic_charges": "[2, 0, 0, 0, 0, 0, 0, 0]",
+          "magic_bridges": "[174, 244]",
+          "magic_direction": "false",
+          "magic_shop": "None"
+        }
+      },
+      {
+        "name": "legacy",
+        "exit": 0,
+        "command": [
+          "/out/native/8sword-remake",
+          "--journey",
+          "--assets",
+          "/out/native/pack",
+          "--capture-dir",
+          "/out/native/gui/legacy",
+          "--scale",
+          "1",
+          "--save-dir",
+          "/out/native/gui/legacy-store",
+          "--continue"
+        ],
+        "inputs": [
+          {
+            "diagnostic_key": 65473
+          },
+          {
+            "diagnostic_key": 65481
+          },
+          {
+            "mouse": [
+              1644,
+              1296
+            ],
+            "release": [
+              1644,
+              1296
+            ],
+            "before": {
+              "phase": "message",
+              "actions": "3",
+              "x": "43",
+              "y": "40",
+              "steps": "321",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "415139642",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "f0739a7453b9fdba",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "153600",
+              "drains": "3",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "你不會使用法術",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,0",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "false",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None"
+            }
+          }
+        ],
+        "captures": [
+          {
+            "label": "legacy",
+            "number": 1,
+            "captured": {
+              "phase": "message",
+              "actions": "3",
+              "x": "43",
+              "y": "40",
+              "steps": "321",
+              "gold": "500",
+              "merit": "0",
+              "army": "30,0,0,0,0,0",
+              "enemy": "=0,=0,=0,=0,=0,=0",
+              "seed": "415139642",
+              "actor": "wait",
+              "raw": "-1",
+              "targets": "",
+              "cursor": "7",
+              "outcome": "None",
+              "sequence": "0",
+              "battles": "0",
+              "font": "1",
+              "music": "true",
+              "state_hash": "f0739a7453b9fdba",
+              "saves": "0",
+              "loaded": "true",
+              "captures": "1",
+              "readback_equal": "true",
+              "queued_bytes": "153600",
+              "drains": "3",
+              "pending": "None",
+              "selected": "0",
+              "extra": "false",
+              "digits": "",
+              "used": "30",
+              "camp": "None",
+              "message": "你不會使用法術",
+              "months": "0",
+              "monthly": "None",
+              "leadership": "100",
+              "treasure": "None",
+              "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+              "resources": "1,0,100,500,100,0",
+              "character_swords": "false",
+              "minimap_light": "false",
+              "magic_book": "false",
+              "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+              "magic_bridges": "[]",
+              "magic_direction": "false",
+              "magic_shop": "None",
+              "frame_hash": "951c038e1787a98f"
+            }
+          }
+        ],
+        "final": {
+          "phase": "message",
+          "actions": "3",
+          "x": "43",
+          "y": "40",
+          "steps": "321",
+          "gold": "500",
+          "merit": "0",
+          "army": "30,0,0,0,0,0",
+          "enemy": "=0,=0,=0,=0,=0,=0",
+          "seed": "415139642",
+          "actor": "wait",
+          "raw": "-1",
+          "targets": "",
+          "cursor": "7",
+          "outcome": "None",
+          "sequence": "0",
+          "battles": "0",
+          "font": "1",
+          "music": "true",
+          "state_hash": "f0739a7453b9fdba",
+          "saves": "1",
+          "loaded": "true",
+          "captures": "1",
+          "readback_equal": "true",
+          "queued_bytes": "192000",
+          "drains": "5",
+          "pending": "None",
+          "selected": "0",
+          "extra": "false",
+          "digits": "",
+          "used": "30",
+          "camp": "None",
+          "message": "你不會使用法術",
+          "months": "0",
+          "monthly": "None",
+          "leadership": "100",
+          "treasure": "None",
+          "chest_values": "50,60,40,70,30,40,60,50,40,60,90,100,80,80,100,90,80,70,100,90,100,120,140,120,140,100,120,140,120,100,180,200,150,140,180,170,124,200,220,190,260,280,300,240,320,260,200,240,260,280,360,320,370,300,350,400,280,340,370,300,450,400,360,350,400,420,440,460,400,370,500,600,400,600,500,400,600,400,500,600",
+          "resources": "1,0,100,500,100,0",
+          "character_swords": "false",
+          "minimap_light": "true",
+          "magic_book": "false",
+          "magic_charges": "[0, 0, 0, 0, 0, 0, 0, 0]",
+          "magic_bridges": "[]",
+          "magic_direction": "false",
+          "magic_shop": "None"
+        }
+      }
+    ],
+    "fixed_seed": 1,
+    "gameplay_input": "XTest normal world path, F6/F4, mouse purchases and original movement; F12 diagnostic capture",
+    "no_memory_or_ip_injection": true
+  },
+  "execution": {
+    "date": "2026-11-05",
+    "runtime_image": "mm45-rust-desktop:1.99.1-r3",
+    "runtime_image_sha256": "ac10129fb2667f9be114a19db5b7a3837ba1a4457627420aec3044792715b8e1",
+    "ida_image": "ida-pro-9.4-idapython:py312-v1",
+    "assets_image": "sc-cht-hdtools:pillow11.3.0-r2",
+    "build": "crate readonly at /crate + native writable at /out; cargo fmt --all --check; cargo test --offline --locked --features desktop; cargo build --offline --locked --release --features desktop; binary --self-check and --world-preview --check-only",
+    "gui": "native only at /out/native + one readonly XTest script /gui.py; network none, UID1000, memory2g, cpus2, pids128, init, outer timeout300s; Xvfb trapped in finally",
+    "original": "Inherited dosgolem snapshots only decoded by Go1.24.13, no new original execution; IDA database copied to tmp with originals readonly",
+    "rights": "Original-derived full media/binary/RAM local only; no Release",
+    "world_path": "seed1, default original start and 30 militia; 69 moves to book, 138 moves to bridge shop, 4 moves to shoreline, 1 move onto new bridge; XTest only",
+    "limits": [
+      "Other artifacts, seven world spells and battle spell purchase not connected",
+      "Linux desktop sampled; no original full journey RNG sequence or mobile acceptance"
+    ],
+    "validation_corrections": [
+      "Shop count assertion corrected from lookup maximum to actual archive counts before implementation.",
+      "XTest modal close waits corrected; no product failure.",
+      "World check flag corrected from --check to --check-only; clean rerun."
+    ]
+  },
+  "limits": [
+    "Bridge only; other world spells and other item pickups remain boundaries.",
+    "No original full journey RNG parity, mobile build or Release."
+  ]
+}

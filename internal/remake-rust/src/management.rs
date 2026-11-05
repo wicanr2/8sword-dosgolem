@@ -250,6 +250,8 @@ impl<'a> Journey<'a> {
         data: &WorldData,
         catalog: &Catalog,
     ) -> Result<Option<Boundary>, String> {
+        let view = self.magic.view(data)?;
+        let data = &view;
         let mut s = self.clone();
         let i = s.camp_index()?;
         let tile = 54 + (i / 24) as u8;

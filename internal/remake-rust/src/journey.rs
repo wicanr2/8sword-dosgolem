@@ -151,6 +151,7 @@ pub struct Journey<'a> {
     pub camps: CampState,
     pub month: crate::monthly::Monthly,
     pub treasure: crate::treasure::Treasure,
+    pub magic: crate::world_magic::Magic,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -172,10 +173,15 @@ impl<'a> Journey<'a> {
             camps: CampState::default(),
             month: crate::monthly::Monthly::default(),
             treasure: crate::treasure::Treasure::default(),
+            magic: crate::world_magic::Magic::default(),
         }
     }
     pub fn phase(&self) -> &'static str {
-        if self.treasure.pending.is_some() {
+        if self.magic.direction {
+            "bridge-direction"
+        } else if self.magic.shop.is_some() {
+            "magic-shop"
+        } else if self.treasure.pending.is_some() {
             "treasure"
         } else if self.month.pending.is_some() {
             "monthly"
@@ -195,6 +201,8 @@ impl<'a> Journey<'a> {
             || self.camps.pending.is_some()
             || self.month.pending.is_some()
             || self.treasure.pending.is_some()
+            || self.magic.direction
+            || self.magic.shop.is_some()
         {
             return Err("遭遇尚未完成".into());
         }
@@ -318,9 +326,11 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        self.magic.validate(self, data)?;
+        let view = self.magic.view(data)?;
         self.world.encode(data)?;
         self.camps.validate(catalog)?;
-        self.month.validate(self, catalog, data)?;
+        self.month.validate(self, catalog, &view)?;
         self.treasure.validate(self, data)?;
         if let Some(i) = self.camps.pending {
             let c = camps()[i];
@@ -381,7 +391,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN004".to_vec();
+        let mut b = b"8SJRN005".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -431,19 +441,37 @@ impl<'a> Journey<'a> {
         if let Some(p) = self.treasure.pending {
             b.extend([p.index, p.choice, u8::from(p.moved)]);
         }
+        b.extend(crate::world_magic::fingerprint().to_le_bytes());
+        b.extend([
+            u8::from(self.magic.book),
+            self.magic.selected,
+            u8::from(self.magic.direction),
+        ]);
+        for n in self.magic.charges {
+            b.extend(n.to_le_bytes());
+        }
+        b.extend([
+            self.magic.shop.map(|p| p.index).unwrap_or(255),
+            u8::from(self.magic.shop.is_some_and(|p| p.moved)),
+        ]);
+        b.extend((self.magic.bridges.len() as u16).to_le_bytes());
+        for n in &self.magic.bridges {
+            b.extend(n.to_le_bytes());
+        }
         b.extend(checksum(&b).to_le_bytes());
-        if b.len() > 16384 {
+        if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
         }
         Ok(b)
     }
     pub fn decode(catalog: &'a Catalog, data: &WorldData, b: &[u8]) -> Result<Self, String> {
         if b.len() < 5730
-            || b.len() > 16384
+            || b.len() > 131072
             || (&b[..8] != b"8SJRN001"
                 && &b[..8] != b"8SJRN002"
                 && &b[..8] != b"8SJRN003"
-                && &b[..8] != b"8SJRN004")
+                && &b[..8] != b"8SJRN004"
+                && &b[..8] != b"8SJRN005")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -505,7 +533,7 @@ impl<'a> Journey<'a> {
             };
         }
         let mut month = crate::monthly::Monthly::default();
-        if &b[..8] == b"8SJRN003" || &b[..8] == b"8SJRN004" {
+        if &b[..8] >= b"8SJRN003" {
             if r.q()? != crate::monthly::fingerprint() {
                 return Err("補貨上限版本不符".into());
             }
@@ -542,7 +570,7 @@ impl<'a> Journey<'a> {
             }
         }
         let mut treasure = crate::treasure::Treasure::default();
-        if &b[..8] == b"8SJRN004" {
+        if &b[..8] >= b"8SJRN004" {
             if r.q()? != crate::treasure::fingerprint() {
                 return Err("寶箱資料版本不符".into());
             }
@@ -568,6 +596,36 @@ impl<'a> Journey<'a> {
                 _ => return Err("寶箱階段錯誤".into()),
             }
         }
+        let mut magic = crate::world_magic::Magic::default();
+        if &b[..8] == b"8SJRN005" {
+            if r.q()? != crate::world_magic::fingerprint() {
+                return Err("世界法術資料版本不符".into());
+            }
+            let flag = |v: u8| match v {
+                0 => Ok(false),
+                1 => Ok(true),
+                _ => Err("法術旗標錯誤".to_string()),
+            };
+            magic.book = flag(r.byte()?)?;
+            magic.selected = r.byte()?;
+            magic.direction = flag(r.byte()?)?;
+            for n in &mut magic.charges {
+                *n = u16::from_le_bytes(r.take(2)?.try_into().unwrap());
+            }
+            let shop = r.byte()?;
+            let moved = flag(r.byte()?)?;
+            if shop != 255 {
+                magic.shop = Some(crate::world_magic::PendingShop { index: shop, moved });
+            } else if moved {
+                return Err("空商店移動旗標錯誤".into());
+            }
+            let n = u16::from_le_bytes(r.take(2)?.try_into().unwrap());
+            for _ in 0..n {
+                magic
+                    .bridges
+                    .push(u16::from_le_bytes(r.take(2)?.try_into().unwrap()));
+            }
+        }
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -584,6 +642,7 @@ impl<'a> Journey<'a> {
             camps,
             month,
             treasure,
+            magic,
         };
         s.validate(catalog, data)?;
         Ok(s)
@@ -594,7 +653,7 @@ impl<'a> Journey<'a> {
             dir,
             "journey.chk",
             &raw,
-            16384,
+            131072,
             |b| Self::decode(catalog, data, b).map(|_| ()),
             false,
         )
@@ -603,7 +662,7 @@ impl<'a> Journey<'a> {
         Self::decode(
             catalog,
             data,
-            &crate::checkpoint_store::read_named(dir, "journey.chk", 16384)?,
+            &crate::checkpoint_store::read_named(dir, "journey.chk", 131072)?,
         )
     }
 }

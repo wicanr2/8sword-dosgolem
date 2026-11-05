@@ -1,0 +1,31 @@
+{
+  "status": "passed-world-magic-integrity",
+  "new_links": {
+    "README.md": 3,
+    "CONTEXT.md": 2,
+    "WORKLIST.md": 0,
+    "WORKLOG.md": 0,
+    "RESEARCH-LOG.md": 1,
+    "AGENTS.md": 1,
+    "preserved/README.md": 7,
+    "docs/spec/031-rust-independent-remake.md": 8
+  },
+  "python_syntax": 3,
+  "root_owned_or_md_directories": [],
+  "files": 303,
+  "objects": 276,
+  "compressed_bytes": 36229603,
+  "positive_control": "Same scan validated established README docs/images/rust-minimap-r1.png link",
+  "runtime_media": 138,
+  "new_and_prior_links": {
+    "README.md": 11,
+    "CONTEXT.md": 6,
+    "WORKLIST.md": 0,
+    "WORKLOG.md": 0,
+    "RESEARCH-LOG.md": 3,
+    "AGENTS.md": 4,
+    "preserved/README.md": 10,
+    "docs/spec/031-rust-independent-remake.md": 11
+  },
+  "docker_cleanup": "No project containers by native bind or project root bind; all task containers --rm, no new images"
+}

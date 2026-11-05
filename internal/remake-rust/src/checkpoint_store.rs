@@ -73,7 +73,9 @@ fn save_inner(dir: &Path, checkpoint: &Checkpoint<'_>, interrupt: bool) -> Resul
 }
 pub(crate) fn read_named(dir: &Path, name: &str, limit: u64) -> Result<Vec<u8>, String> {
     check_directory(dir)?;
-    if ![NAME, "world-preview.chk", "journey.chk"].contains(&name) || limit > 16384 {
+    if ![NAME, "world-preview.chk", "journey.chk"].contains(&name)
+        || limit > if name == "journey.chk" { 131072 } else { 16384 }
+    {
         return Err("檢查點槽位錯誤".into());
     }
     read_file(&dir.join(name), limit)
@@ -88,7 +90,7 @@ pub(crate) fn save_named(
 ) -> Result<(), String> {
     check_directory(dir)?;
     if ![NAME, "world-preview.chk", "journey.chk"].contains(&name)
-        || limit > 16384
+        || limit > if name == "journey.chk" { 131072 } else { 16384 }
         || raw.len() as u64 > limit
     {
         return Err("檢查點槽位錯誤".into());

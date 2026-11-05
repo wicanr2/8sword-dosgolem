@@ -3378,3 +3378,14 @@ PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、
 | 原生近似 | Rust UI採300毫秒白／黑交替，不推進世界，不稱原busy-loop的硬體時序一致。 |
 
 [匯出器](tools/export-rust-minimap-ida.py)、[收據解碼器](tools/decode-rust-minimap-original.go)、[資料工具](tools/rust-minimap.py)及[永久保存](preserved/README.md#rust-f5地圖總覽保存)保存來源、237行bytes、原收據、兩份codec來源、初次查詢與最終證據。[031驗收](docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)限當前探索投影及鍵鼠，不提升完整世界或其他區域自然取得。
+
+## Rust世界造橋術
+
+證據等級：固定PAM表、IDA控制流與既有dosgolem造橋收據為已證實；跨區商店座標序與表索引只作固定資料核對，沒有新原版全程遊玩或完整RNG聲明。入口：[031](docs/spec/031-rust-independent-remake.md#世界造橋術限定-conformed)、[核對](preserved/rust-world-magic-audit-r1.json)及[永久保存](preserved/README.md#rust世界造橋術保存)。
+
+- 輸入PAM.AY SHA-256：83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0。唯讀PAM.i64 SHA-256：a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。IDA9.4以MZ base10000h匯出19函式1848行，檔案偏移依MZ header換算，runtime線性相差EF00h；runtime DS1E88對應IDA DS基準2D780h。完整bytes／原名／xref保留，不改正式DB。
+- sub_17FB4在八組DS260A區域／座標尋寶。首組0／50／60，命中寫DS26AA=1及DS04FC=3並清原位置區域；八組固定PAM與原RAM一致，第一區自然可走到。F6本身無扣步或亂數，重複不再取得；其餘七件效果不推測。
+- sub_1512C／15354／154B0確認商店地形53、DS3136的area*(area+1)+row索引、全部16術總次數容量與價錢。第一區只有造橋與火球商店，煉金在後區，故本輪改以自然造橋鏈實作。八圖實際數量2／4／6／6／6／6／8／8；查找上限2*(area+1)不能當archive count。初始資料工具曾用此上限作斷言，已依實際地圖修正，未進production。第一區兩座標與原RAM DS8D6C核對，其他區未作自然購買宣稱。
+- 造橋sub_1693C先相鄰，再按腳下3..10選中心或兩格前；sub_16AAC只將2..14寫成52。sub_13A8C／13ABC證實70／80環繞。斜向無改圖仍耗次；Esc繼續等，Space令sub_10BDC的DS56DA加一且耗次。Rust保持此差異，65535再加一拒絕，明示不做原word回繞。
+- remaining-spells-r1原版map-0 entry／final快照以Go1.24.13標準gob解碼，未重新執行DOS。原配置明示學會及2次，人物40／40，兩格水經Right變52；前後完整map只改41／40及42／40，次數2→1、位置與步數324保持。25格向量入Rust測試，不能稱該原配置是自然遊玩。
+- Rust原生GUI使用seed1、原起點、原30民兵及500金，沒有改記憶體／IP／位置。69步尋竹簡、138步到商店、購三次、四步到岸邊；待方向存檔冷讀施法，再走上新橋。四程序11SDL擷取，最終470金／2次／橋174及244保持；預設縮放另驗。78測試也含寶箱／月報接續與既有橋，橋修改不回寫原圖，v5保存獨立索引。
