@@ -124,6 +124,13 @@ impl<'a> Journey<'a> {
         let view = self.magic.view(d)?;
         let mut s = self.clone();
         let out = s.walk(&view, key)?;
+        if out == Some(Boundary::BoatExit) && s.world.plain_shore(&view, key)? {
+            s.world = s.world.prepare_shore(&view, key)?;
+            s.travel_spell.shore = Some(crate::travel_spells::Shore { key, yes: true });
+            s.travel_spell.validate(&s)?;
+            *self = s;
+            return Ok(None);
+        }
         if out == Some(Boundary::Monthly) {
             s.world = s.world.monthly_step(&view, key)?;
             let tile = view.tile(s.world.area, s.world.position)?;
@@ -157,6 +164,7 @@ impl<'a> Journey<'a> {
             || self.treasure.pending.is_some()
             || self.survey.bird
             || self.travel_spell.teleport.is_some()
+            || self.travel_spell.shore.is_some()
         {
             return Err("不在月結邊界".into());
         }

@@ -146,6 +146,7 @@ impl<'a> Journey<'a> {
             || self.resource_notice.is_some()
             || self.survey.bird
             || self.travel_spell.teleport.is_some()
+            || self.travel_spell.shore.is_some()
             || slot >= 6
             || self.army[slot].count == 0
         {

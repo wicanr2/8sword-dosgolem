@@ -23,6 +23,7 @@ pub enum Page {
     ResourceResult,
     Bird,
     Teleport,
+    Shore,
 }
 pub struct Manager {
     pub page: Page,
@@ -46,6 +47,10 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.travel_spell.shore.is_some() {
+            self.page = Page::Shore;
+            return;
+        }
         if j.travel_spell.teleport.is_some() {
             self.page = Page::Teleport;
             return;
@@ -83,6 +88,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Shore => Some(Screen::Shore),
             Page::Teleport => Some(Screen::Teleport),
             Page::Bird => Some(Screen::Minimap),
             Page::ResourceResult => Some(Screen::Report),
@@ -193,6 +199,9 @@ impl Manager {
                     } else if self.selected == 4 {
                         j.cast_stop_time()?;
                         self.page = Page::World;
+                    } else if self.selected == 6 {
+                        j.cast_water()?;
+                        self.page = Page::World;
                     } else if self.selected == 7 {
                         j.begin_teleport()?;
                         self.page = Page::Teleport;
@@ -226,6 +235,22 @@ impl Manager {
                 j.close_magic_shop(c, data)?;
                 self.page = Page::World;
                 self.message.clear();
+            }
+            return Ok(());
+        }
+        if self.page == Page::Shore {
+            let p = j.travel_spell.shore.ok_or("上岸待選遺失")?;
+            match key {
+                1073741904 | 1073741903 => j.select_shore(!p.yes)?,
+                13 | 27 => {
+                    if key == 27 {
+                        j.select_shore(false)?;
+                    }
+                    j.finish_shore(data, c)?;
+                    self.page = Page::World;
+                    self.message.clear();
+                }
+                _ => {}
             }
             return Ok(());
         }
@@ -470,6 +495,26 @@ pub fn draw(
         )?;
         if ui.page == Page::Message && j.magic.book && ui.message == "你找到魔法竹簡" {
             sprite(f, book, 312, 870);
+        }
+        return Ok(());
+    }
+    if ui.page == Page::Shore {
+        fill(f, [24, 684, 1344, 480], [82, 82, 82]);
+        border(f, [24, 684, 1344, 480], [206, 170, 74]);
+        text(f, font, "要 登 陸 嗎 ？ （ 是 ／ 否 ）", 96, 756, 42, 1200)?;
+        let p = j.travel_spell.shore.ok_or("缺少上岸選擇")?;
+        for (i, r) in crate::pointer::SHORE_CHOICES.iter().enumerate() {
+            if p.yes == (i == 0) {
+                fill(f, r.array(), [119, 44, 41]);
+            }
+            field(
+                f,
+                font,
+                if i == 0 { "是" } else { "否" },
+                r.0 + 48,
+                r.1 + 12,
+                r.2 - 96,
+            )?;
         }
         return Ok(());
     }

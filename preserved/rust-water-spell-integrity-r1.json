@@ -1,0 +1,24 @@
+{
+  "status": "passed-rust-water-spell-integrity",
+  "binary_sha256": "30b2a0fb5e74ae6dcbd5316a7f31a695da3f42f2ecd772c6e15723ed2b854958",
+  "files": 466,
+  "objects": 321,
+  "index_sha256": "d67c5831dfb02a14a3198894db23f53419f9f45415cd35a4c6effea5bd0b75d9",
+  "audit_sha256": "b1169ab3b969612cf9c13fd73849ca393dcf84dbfce68c2a49f097d13e4ad926",
+  "image_sha256": "1803e7be2feb87a290b573c5ef5577e62b2a36c9cec94cd8de662005bad301a3",
+  "source_and_eight_tools_match_archive": true,
+  "linked_targets": 40,
+  "positive_control": "README -> CONTEXT.md found before scoped new-link verification; report self-link resolved after write",
+  "root_owned_or_md_directories": 0,
+  "python_ast": "passed",
+  "bash_syntax": "passed",
+  "rust_cache_removed": true,
+  "no_new_image": true,
+  "containers": "All batch containers used --rm; no project container remains; other projects untouched",
+  "limits": [
+    "Controlled shop then bank positions; no natural acquisition",
+    "Original90cases skip GUI and RNG/event tail",
+    "Native modal retains pre-move position/direction with already-revealed target; not original prompt frame parity",
+    "Special-location shores and jump remain outside completion scope"
+  ]
+}

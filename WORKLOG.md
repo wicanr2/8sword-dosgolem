@@ -3372,3 +3372,18 @@ Rust接原店200金、F4八區原式選單、鍵鼠選擇／確認／取消、�
 [核對](preserved/rust-travel-spells-audit-r1.json)、[完整索引](preserved/rust-travel-spells-r1.json)、[脫離workplace驗證](preserved/rust-travel-spells-detached-r1.json)、[清理](preserved/rust-travel-spells-cleanup-r1.json)及[完整性](preserved/rust-travel-spells-integrity-r1.json)為入口。372檔／299物件、壓縮34779883 bytes保存於本機preserved，完整原始資料／runtime不入Git。核對後只移除1144份可重建Rust快取331568030 bytes，約316.2 MiB。完整來源、138媒體、執行檔、原版證據與GUI保留。root-owned與.md目錄檢查為零；本批--rm容器均結束，其他專案容器保持，沒有新image或Release。
 
 本輪基準HEAD為692c2f54c731f8ec6d9675d0c15b5c006d9bf2c9，實作、文件、索引與成果圖在同一提交推送origin/main，實際SHA見Git歷程。下一步接跳躍／涉水，再接自然出口與世界事件；不重開已驗HD／普通戰／傳送矩陣。
+
+
+## 2026-11-05 Rust涉水術
+
+使用者繼續既有Rust重製，沿復古遊戲路由載入spec-gated、文件職責與verification／README規則，並使用IDA9.4技能。先沿原sub_12446及sub_14442確認0／1／2、入水、左右／Enter／Esc與上岸是／否；六函式701行bytes保留原名、operand、xref與位址基準。原map-6快照確認activation與一次扣次；新dosgolem探針執行原10C32、255E至257B、10D72及13B40，90組結果／回退／700-byte探索遮罩與Rust一致。原版GUI與RNG尾段沒有新增整段對拍。
+
+Rust接原店實購、F4、藍色光環、一般水岸詢問、拒絕受阻尾段／遇敵、確認及月底、v9待選保存，讀v1至v8。兩座商店被山地／竹林圍住，故先指定第5區34／44商店，實購100金後125金、30民兵與實際次數施法；再只移到同區34／58原圖岸邊，正常往下入34／59水格。拒絕保持109步與125金，確認後34／58、108步／旗標0；到達冷讀F2及再入水受阻已驗。兩次位置明示受控，不稱自然取得／離店。
+
+最初探索處理漏prompt前sub_11F60／13B40；查到實際探索寫入後補READY與原指令mask向量，修正最終來源。舊crate、binary、GUI與九欄向量均保存。一次規則測試早於新十欄向量複製，屬驗證順序錯誤；同映像乾淨重跑102測試通過，不把索引錯誤列產品缺陷。原店水岸BFS首次失敗源於真實店外都是特殊地形，改成明示兩位置fixture，沒有授予寶物或改圖。待選位置／方向留在原生中間態，不稱原版prompt逐幀一致。
+
+102測試、self-check、90原指令向量、五程序14SDL同幀畫布、三字型及預設2／3縮放通過。縮放拒絕的保存逐bytes等於scale1分支。最終建置僅見crate唯讀與native可寫，GUI僅見native及單一腳本，沒有PAM／RAM／Go。原正式197來源七程式、923核心、535素材、1071美術及Go格式保持。
+
+[核對](preserved/rust-water-spell-audit-r1.json)、[完整索引](preserved/rust-water-spell-r1.json)、[脫離核對](preserved/rust-water-spell-detached-r1.json)、[清理](preserved/rust-water-spell-cleanup-r1.json)與[完整性](preserved/rust-water-spell-integrity-r1.json)為入口。466檔／321物件、壓縮40777685 bytes完整保存於本機preserved；完整原始資料與runtime不入Git。核對後只移除1251份可重建Rust快取360379048 bytes，約343.7 MiB。來源、138媒體、執行檔及全部證據保留。本批--rm容器均結束，其他專案不動，沒有新image或Release。
+
+本輪基準HEAD為e8859d4564ba4ffb9c8f7f32160a9312ae380aca。實作、文件、索引及成果圖同提交推送origin/main，實際SHA見Git歷程。下一步跳躍、特殊地點上岸與自然出口／世界事件；不重開已驗HD、普通戰及一般涉水矩陣。

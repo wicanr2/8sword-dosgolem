@@ -292,6 +292,19 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn water_event_fixture(tile: u8) -> Self {
+        let mut d = Self::water_fixture();
+        d.maps[0][40 * 70 + 43] = tile;
+        d
+    }
+    #[cfg(test)]
+    pub(crate) fn water_fixture() -> Self {
+        let mut d = Self::flat_fixture();
+        d.maps[0][40 * 70 + 41] = 2;
+        d.maps[0][40 * 70 + 42] = 11;
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn bridge_reference_fixture() -> Self {
         let mut d = Self::flat_fixture();
         for row in include_str!("../magic-bridge-reference.tsv")
@@ -651,6 +664,44 @@ impl WorldState {
         commit_encounter: bool,
         allowed_site: Option<u8>,
     ) -> Result<WalkResult, String> {
+        self.walk_policy(data, key, commit_encounter, allowed_site, false)
+    }
+    pub(crate) fn plain_shore(&self, data: &WorldData, key: u16) -> Result<bool, String> {
+        let mut probe = self.clone();
+        if probe.walk_encounter(data, key)? != WalkResult::Boundary(Boundary::BoatExit) {
+            return Ok(false);
+        }
+        let target = motion(self.position, key, self.facing, false)?.0;
+        Ok(!matches!(data.tile(self.area, target)?, 49..=51 | 53..=59 | 65))
+    }
+    pub(crate) fn prepare_shore(&self, data: &WorldData, key: u16) -> Result<Self, String> {
+        if !self.plain_shore(data, key)? {
+            return Err("非一般上岸入口".into());
+        }
+        let mut s = self.clone();
+        s.position = motion(self.position, key, self.facing, false)?.0;
+        s.reveal();
+        s.position = self.position;
+        Ok(s)
+    }
+    pub(crate) fn reject_shore(
+        &mut self,
+        data: &WorldData,
+        key: u16,
+    ) -> Result<WalkResult, String> {
+        if !self.plain_shore(data, key)? {
+            return Err("非已接一般上岸邊界".into());
+        }
+        self.walk_policy(data, key, true, None, true)
+    }
+    fn walk_policy(
+        &mut self,
+        data: &WorldData,
+        key: u16,
+        commit_encounter: bool,
+        allowed_site: Option<u8>,
+        reject_shore: bool,
+    ) -> Result<WalkResult, String> {
         self.validate()?;
         if ![
             0x4700, 0x4800, 0x4900, 0x4b00, 0x4d00, 0x4f00, 0x5000, 0x5100, 0x3920,
@@ -663,6 +714,7 @@ impl WorldState {
         let (target, face) = motion(s.position, key, s.facing, false)?;
         let tile = data.tile(s.area, target)?;
         let (blocked, boat) = guard(tile, s.boat, s.mountain, s.bamboo)?;
+        let blocked = blocked || reject_shore;
         s.facing = face;
         if !blocked {
             if s.boat == 2 && !matches!(tile, 2 | 11..=14) {

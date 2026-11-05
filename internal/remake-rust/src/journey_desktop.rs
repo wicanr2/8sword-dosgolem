@@ -188,6 +188,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         Action::TreasureChoice(v) => journey.select_treasure(v)?,
                         Action::MagicChoice(v) => ui.selected = v,
                         Action::TeleportChoice(v) => journey.select_teleport(v as u8)?,
+                        Action::ShoreChoice(v) => journey.select_shore(v)?,
                     }
                 }
             }
@@ -427,6 +428,14 @@ pub fn run(args: &[String]) -> Result<(), String> {
             )?
         };
         if journey.battle.is_none() && matches!(ui.page, Page::World | Page::ResourceResult) {
+            if journey.world.boat > 0 {
+                map.spell_cue(
+                    &mut frame,
+                    &journey.world,
+                    Duration::from_millis(240),
+                    [90, 200, 255],
+                );
+            }
             if let Some(start) = bridge_flash {
                 map.spell_cue(
                     &mut frame,
@@ -438,6 +447,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         .is_some_and(|n| n.spell == 2)
                     {
                         [98, 231, 204]
+                    } else if journey.magic.selected == 6 {
+                        [90, 200, 255]
                     } else if journey.magic.selected == 4 {
                         [160, 188, 255]
                     } else {
@@ -541,6 +552,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         fill(&mut frame, [0, 1250, 1920, 70], [9, 36, 29]);
         let (ok, back, skip) =
             match ui.page {
+                Page::Shore => ("確認選擇", "不上岸", ""),
                 Page::Teleport => ("確認傳送", "取消傳送", ""),
                 Page::Magic => ("施展法術", "返回地圖", ""),
                 Page::Bridge => ("", "Space停用", ""),
@@ -753,7 +765,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
             journey.resource_notice.as_ref().map(|n| n.spell)
         );
         let status = format!(
-            "{status}area\t{}\nteleport_target\t{:?}\nstopped\t{}\ntempo\t{}\nbird\t{}\nexplored\t{}\nworld_hash\t{:016x}\n",
+            "{status}boat\t{}\nshore_yes\t{:?}\narea\t{}\nteleport_target\t{:?}\nstopped\t{}\ntempo\t{}\nbird\t{}\nexplored\t{}\nworld_hash\t{:016x}\n",
+            journey.world.boat,
+            journey.travel_spell.shore.map(|p| p.yes),
             journey.world.area,
             journey.travel_spell.teleport,
             journey.survey.stopped,

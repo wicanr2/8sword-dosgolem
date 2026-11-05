@@ -43,6 +43,7 @@ pub fn digit_box(i: usize) -> Rect {
         120,
     )
 }
+pub const SHORE_CHOICES: [Rect; 2] = [Rect(264, 888, 360, 96), Rect(816, 888, 360, 96)];
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Screen {
     World,
@@ -54,6 +55,7 @@ pub enum Screen {
     Treasure,
     Magic,
     Teleport,
+    Shore,
     Bridge,
     MagicShop,
     Shop { extra: bool, quantity: bool },
@@ -71,6 +73,7 @@ pub enum Action {
     TreasureChoice(u8),
     MagicChoice(usize),
     TeleportChoice(usize),
+    ShoreChoice(bool),
 }
 pub fn normalized(x: f32, y: f32) -> Option<(i32, i32)> {
     if !x.is_finite() || !y.is_finite() || !(0.0..1.0).contains(&x) || !(0.0..1.0).contains(&y) {
@@ -123,6 +126,13 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         }
     }
     match screen {
+        Screen::Shore => {
+            for (i, r) in SHORE_CHOICES.iter().enumerate() {
+                if r.contains(x, y) {
+                    return Some(Action::ShoreChoice(i == 0));
+                }
+            }
+        }
         Screen::Teleport => {
             if (552..984).contains(&x) && (186..1146).contains(&y) {
                 return Some(Action::TeleportChoice(((y - 186) / 120) as usize));

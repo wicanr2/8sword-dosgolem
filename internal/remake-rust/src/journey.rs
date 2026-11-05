@@ -183,7 +183,9 @@ impl<'a> Journey<'a> {
         }
     }
     pub fn phase(&self) -> &'static str {
-        if self.travel_spell.teleport.is_some() {
+        if self.travel_spell.shore.is_some() {
+            "shore"
+        } else if self.travel_spell.teleport.is_some() {
             "teleport"
         } else if self.survey.bird {
             "birdseye"
@@ -218,6 +220,7 @@ impl<'a> Journey<'a> {
             || self.resource_notice.is_some()
             || self.survey.bird
             || self.travel_spell.teleport.is_some()
+            || self.travel_spell.shore.is_some()
         {
             return Err("遭遇尚未完成".into());
         }
@@ -348,6 +351,11 @@ impl<'a> Journey<'a> {
         }
         self.magic.validate(self, data)?;
         let view = self.magic.view(data)?;
+        if let Some(p) = self.travel_spell.shore {
+            if self.world.prepare_shore(&view, p.key)? != self.world {
+                return Err("上岸待選落點不符".into());
+            }
+        }
         self.world.encode(data)?;
         self.camps.validate(catalog)?;
         self.month.validate(self, catalog, &view)?;
@@ -411,7 +419,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN008".to_vec();
+        let mut b = b"8SJRN009".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -492,6 +500,9 @@ impl<'a> Journey<'a> {
             u8::from(self.survey.bird),
         ]);
         b.push(self.travel_spell.teleport.unwrap_or(255));
+        let shore = self.travel_spell.shore;
+        b.extend(shore.map_or(0, |p| p.key).to_le_bytes());
+        b.push(u8::from(shore.is_some_and(|p| p.yes)));
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -508,7 +519,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN005"
                 && &b[..8] != b"8SJRN006"
                 && &b[..8] != b"8SJRN007"
-                && &b[..8] != b"8SJRN008")
+                && &b[..8] != b"8SJRN008"
+                && &b[..8] != b"8SJRN009")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -692,7 +704,8 @@ impl<'a> Journey<'a> {
                 _ => return Err("鳥瞰旗標錯誤".into()),
             };
         }
-        let travel_spell = crate::travel_spells::Travel {
+        let mut travel_spell = crate::travel_spells::Travel {
+            shore: None,
             teleport: if &b[..8] >= b"8SJRN008" {
                 match r.byte()? {
                     255 => None,
@@ -703,6 +716,21 @@ impl<'a> Journey<'a> {
                 None
             },
         };
+        if &b[..8] >= b"8SJRN009" {
+            let key = u16::from_le_bytes(r.take(2)?.try_into().unwrap());
+            let yes = match r.byte()? {
+                0 => false,
+                1 => true,
+                _ => return Err("上岸選擇錯誤".into()),
+            };
+            if key == 0 {
+                if yes {
+                    return Err("空上岸仍有選擇".into());
+                }
+            } else {
+                travel_spell.shore = Some(crate::travel_spells::Shore { key, yes });
+            }
+        }
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }

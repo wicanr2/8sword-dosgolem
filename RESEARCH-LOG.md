@@ -3428,3 +3428,21 @@ PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、
 原版快照從[既有永久索引](preserved/remaining-spells-r1.json)還原，Go只解碼保存格式，沒有本輪DOS執行。預設區原版收據不能證明八目的地都經原版GUI，也不能證明整段UI的RNG序列一致。Rust直接使用八圖與起點表，開發例程只移動真正v7進度到第八區55／77商店；原圖四周皆山地，使用正常Space互動，沒有取得山地寶物或自然抵達的聲明。
 
 原版MAN48背景未另移植，原生重用既有原式底框。原版傳送切換兩首音樂的副作用尚未重現，維持既有地圖OGG；這是呈現限制，不稱音畫exact。完整來源及快照見[本批保存](preserved/README.md#rust傳送術保存)。
+
+
+## Rust涉水術
+
+2026-11-05。輸入PAM.AY SHA256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，官方唯讀PAM.i64 SHA256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4 py312-v1沿本案已驗映像，只複製到容器tmp；資料庫521函式不改名。位址為IDA MZ base10000h，runtime CS0110 IP=IDAlinear−10000h，runtime DS1E88偏移另列。[IDA匯出](tools/export-rust-water-ida.py)、[原指令探針](tools/rust-water-reference.go)、[資料／核對工具](tools/rust-water-spell.py)與[保存入口](preserved/README.md#rust涉水術保存)為索引。
+
+| 等級 | 原始定位與語意 | 證據與限制 |
+|---|---|---|
+| 已證實 | 1691C設DS56CE=1，168F5扣一次；1247A至12491讓水2／11至14由旗標1變2，0則回退。 | 原bytes與既有dosgolem map-6快照；880舊guard向量保持，不重跑整體矩陣。 |
+| 已證實 | 1250E至12519只對旗標2且非水／未受阻詢問。1255E至12576的1清旗標、0呼叫sub_10D72並設blocked。 | 新dosgolem90組結果／回退，含八方向、Space及五組邊界座標。只執行原常式，不含GUI與遇敵尾段。 |
+| 已證實 | sub_14442於1444D設初始是，僅4B00／4D00切換，1C0D確認，Esc在1452E至14535回0。 | IDA完整控制流，原型未改遊戲鍵碼。 |
+| 已證實 | 1251B的sub_11F60在提示前揭圖，中心呼叫sub_13B40，13B9E至13BA7寫入探索farptr。 | 新探針在原起點、落點提示前與結果返回後直接執行13B40，90組700-byte位元遮罩hash同Rust，見[向量](internal/remake-rust/shore-reference.tsv)。 |
+| 原生保存契約 | v9保留移動前位置／時間與已揭落點，存待上岸按鍵及是／否；回讀不重扣／重跑RNG。 | [實作](internal/remake-rust/src/travel_spells.rs)及[測試](internal/remake-rust/src/water_spell_tests.rs)，中間態不稱原版prompt RAM逐bytes相同。 |
+| 尚未接入 | 49至51、53至59與65特殊地點上岸；拒絕後原switch仍拿原tile分流。 | 保留BoatExit未提交邊界，不把拒絕當成普通地面事件。跳躍仍依前輪自動連續移動證據，未在本輪提升。 |
+
+追加勘誤：首次原生試作只在上岸結果後揭圖，漏掉原prompt前的sub_11F60／13B40。新查直接寫入端足以否定「待選world_hash完全不變」的驗收假設；修正為只保留位置／步數／RNG／actions，探索允許增加。舊來源、binary、完整視窗與九欄前版向量另存本批，不以改寫歷史隱去差異。
+
+原商店位於第5區34／44與第8區35／38，分別受山地／竹林包圍。開發例程先以真正v8只移到原商店實購，再讀實購已施法進度，只移到同區原圖普通水岸。兩次都是明示測試位置，沒有改原圖、資源、兵種、次數或RNG。這不構成自然取得／自然離店的證據。[Rust例程](internal/remake-rust/examples/water_spell_fixture.rs)不連入玩家旗標；正式執行直接由Rust處理音畫、狀態、輸入與保存，沒有Go／DOS runtime。

@@ -1,0 +1,8 @@
+{
+  "status": "passed-rust-water-spell-cache-cleanup",
+  "removed": "workplace/probe-20261023/graphics-first/battle-r1/rust-water-spell-r1/native/rust-target",
+  "files": 1251,
+  "bytes": 360379048,
+  "archive_verified_before_deletion": true,
+  "kept": "Full current and pre-reveal sources,binaries,138media,original states/RAM/IDA,90case vectors,all native/scaled proof; only rebuildable Rust cache removed"
+}

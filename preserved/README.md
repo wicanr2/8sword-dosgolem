@@ -1370,6 +1370,21 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 
 `freeze --project /project`固定來源，`audit --project /project --out <新JSON>`核來源、96測試、原bytes／八落點、字形、同幀SDL與縮放保存、正式基線。`images`產生[成果圖](../docs/images/rust-travel-spells-r1.png)及[來源](../docs/images/rust-travel-spells-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-travel-spells-r1.json`保存全批；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs核對逐物件。[脫離核對](rust-travel-spells-detached-r1.json)、[清理](rust-travel-spells-cleanup-r1.json)與[完整性](rust-travel-spells-integrity-r1.json)保存收尾結果。
 
-現行[啟動器](../tools/rust-native-player.sh)指向rust-travel-spells-r1/native。依索引還原native binary與pack到同名路徑，核SHA與mode，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。F4施法，選區後Enter／Esc或點選確認／取消；F7與工具列保存可保留待選。v8讀v1至v7，不讀Go。跳躍／涉水、自然出口、其餘寶物、守軍及結局按WORKLIST接續，沒有Release。
+本批歷史路徑為rust-travel-spells-r1/native；現行[啟動器](../tools/rust-native-player.sh)與還原入口見[Rust涉水術保存](#rust涉水術保存)。依索引還原native binary與pack到同名路徑，核SHA與mode，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。F4施法，選區後Enter／Esc或點選確認／取消；F7與工具列保存可保留待選。v8讀v1至v7，不讀Go。跳躍／涉水、自然出口、其餘寶物、守軍及結局按WORKLIST接續，沒有Release。
 
 本批372檔／299物件，壓縮34779883 bytes。脫離workplace逐物件核對後，移除1144份可重建Rust快取，共331568030 bytes。完整來源、媒體、執行檔及證據保持，沒有建立新image或留下本案容器。
+
+
+## Rust涉水術保存
+
+[完整索引](rust-water-spell-r1.json)、[核對](rust-water-spell-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#涉水術限定-conformed)與[研究](../RESEARCH-LOG.md#rust涉水術)為入口。102測試、90組原指令結果／回退／探索遮罩、六IDA函式701行MZ bytes、五程序14份SDL擷取及預設縮放通過。完整crate、八工具、138媒體、binary、Rust開發例程、v8／v9進度、原版快照／RAM／IDA與首次漏揭圖的來源／binary／GUI，逐SHA保存於本機`preserved/rust-water-spell-r1/<SHA256>.gz`，不依賴workplace。完整原始資料與runtime不入Git或公開包，沒有Release。
+
+[工具](../tools/rust-water-spell.py)在Pillow11.3.0-r2、UID1000、network none使用。在既有battle-r1建立rust-water-spell-r1/evidence及native/pack後，`prepare --project /project`還原上批138媒體、真正v8及map-6快照。以[IDA匯出器](../tools/export-rust-water-ida.py)在本案已驗py312-v1映像匯出唯讀PAM.i64。原快照沿既有Go解碼器抽RAM；[原指令探針](../tools/rust-water-reference.go)在Go1.24.13、固定923來源的dosgolem唯讀掛載下執行PAM的10C32、255E至257B、10D72與13B40，輸出90組上岸與700-byte探索遮罩hash。沒有原版GUI、RNG尾段或整段原版遊玩聲明。`reference`核原版activation與探針欄位，將shore-reference.tsv複製至crate；字型仍由rust-world.py的fonts補字。
+
+建置使用mm45-rust-desktop:1.99.1-r3，只掛crate唯讀與native可寫，以offline／locked桌面模式編譯玩家及[開發例程](../internal/remake-rust/examples/water_spell_fixture.rs)。例程`<媒體> <原進度> <新目錄> shop`只移到原涉水店；實購施法後，用同參數與`bank`只移到同區原圖水岸。兩次均保留其時點的資源、軍隊與RNG，不新增產品旗標或宣稱自然取得。[一般GUI](../tools/rust-water-spell-gui.py)與[縮放GUI](../tools/rust-water-spell-scaled.py)各只掛native與單一腳本，沒有Go／PAM／RAM。掛載、映像、配額及失敗分類見保存內execution.json。
+
+`freeze --project /project`固定來源，`audit --project /project --out <新JSON>`核來源、102測試、原bytes／prompt、字形、同幀SDL、縮放保存及正式基線；`images`產生[成果圖](../docs/images/rust-water-spell-r1.png)與[來源](../docs/images/rust-water-spell-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-water-spell-r1.json`保存全批；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs核對逐物件。[脫離核對](rust-water-spell-detached-r1.json)、[清理](rust-water-spell-cleanup-r1.json)與[完整性](rust-water-spell-integrity-r1.json)保存收尾結果。
+
+目前[啟動器](../tools/rust-native-player.sh)指向rust-water-spell-r1/native。依索引還原native binary／pack至同名路徑，核SHA與mode，再用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`冷讀。涉水在F4，普通上岸左右選是／否，Enter確認、Esc否；F7保存待選與已揭地形。v9讀v1至v8，WorldState與Go格式不改。[實作](../internal/remake-rust/src/travel_spells.rs)、[測試](../internal/remake-rust/src/water_spell_tests.rs)與[向量](../internal/remake-rust/shore-reference.tsv)可回查；特殊地點上岸、跳躍與自然出口仍待。
+
+本批466檔／321物件，壓縮40777685 bytes。脫離workplace逐物件核對後，只移除1251份可重建Rust快取，共360379048 bytes。完整原始資料、媒體、執行檔與所有來源／證據保持；沒有建立新image或留下本案容器。
