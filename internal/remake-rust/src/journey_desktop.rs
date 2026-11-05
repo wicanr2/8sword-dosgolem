@@ -124,6 +124,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let month_before = (journey.month.months, journey.month.pending.is_some());
         let treasure_before = journey.treasure.amounts;
         let magic_before = journey.magic.clone();
+        let notice_before = journey.resource_notice.is_some();
         let mut snap = false;
         ui.sync(&journey);
         for e in sdl.events() {
@@ -312,12 +313,15 @@ pub fn run(args: &[String]) -> Result<(), String> {
             cp.view.music = journey.world.music;
             cp.view.cursor = cursor as u8;
         }
-        if magic_before.direction && !journey.magic.direction {
+        if magic_before.direction && !journey.magic.direction
+            || !notice_before && journey.resource_notice.is_some()
+        {
             bridge_flash = Some(now);
         }
         if (month_before != (journey.month.months, journey.month.pending.is_some())
             || treasure_before != journey.treasure.amounts
-            || magic_before != journey.magic)
+            || magic_before != journey.magic
+            || notice_before != journey.resource_notice.is_some())
             && store.is_some()
         {
             save_requested = true;
@@ -416,9 +420,22 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 store.is_some(),
             )?
         };
-        if journey.phase() == "world" && ui.page == Page::World {
+        if journey.battle.is_none() && matches!(ui.page, Page::World | Page::ResourceResult) {
             if let Some(start) = bridge_flash {
-                map.bridge_cue(&mut frame, &journey.world, now.duration_since(start));
+                map.spell_cue(
+                    &mut frame,
+                    &journey.world,
+                    now.duration_since(start),
+                    if journey
+                        .resource_notice
+                        .as_ref()
+                        .is_some_and(|n| n.spell == 2)
+                    {
+                        [98, 231, 204]
+                    } else {
+                        [255, 205, 82]
+                    },
+                );
             }
         }
         if let Some(cp) = &journey.battle {
@@ -520,6 +537,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 Page::Bridge => ("", "Space停用", ""),
                 Page::MagicShop => ("購買一次", "離開商店", ""),
                 Page::Message => ("返回地圖", "返回地圖", ""),
+                Page::ResourceResult => ("返回地圖", "返回地圖", ""),
                 Page::Minimap => ("返回地圖", "返回地圖", ""),
                 Page::Character => (if ui.swords { "返回" } else { "查看八劍" }, "返回", ""),
                 Page::Review => ("返回", "返回", ""),
@@ -719,6 +737,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
             journey.magic.bridges,
             journey.magic.direction,
             journey.magic.shop
+        );
+        let status = format!(
+            "{status}resource_spell\t{:?}\n",
+            journey.resource_notice.as_ref().map(|n| n.spell)
         );
         if let Some(d) = &capture {
             if snap {

@@ -1330,3 +1330,17 @@ Go探針使用唯讀來源／原版／核心／module cache與可寫批次，`GO
 目前[啟動器](../tools/rust-native-player.sh)指向rust-world-magic-r1/native。依完整索引解壓native內的binary與pack到同名路徑，核SHA及權限後，用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`續接。F6尋寶、F4選術與方向、F1看竹簡；有目錄時交易／取得／施法自動保存，F7仍可用。v5讀v1至v4，不讀Go保存。原run／world保持既有樣本職責；其餘術、物品、世界與手機待續，沒有Release。
 
 本批303檔／276物件，壓縮36229603 bytes。脫離工作區核對通過後，清除861份Rust快取及已保存初輪GUI診斷，共236591456 bytes，約225.6 MiB。最終binary、138份媒體、正常GUI／縮放及RE證據保持；本案無殘留容器，沒有建立新image。
+
+## Rust世界資源法術保存
+
+[完整索引](rust-resource-spells-r1.json)、[核對](rust-resource-spells-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#世界資源法術限定-conformed)與[研究](../RESEARCH-LOG.md#rust世界資源法術)為入口。85測試、五既有原版受控案例、六IDA函式bytes、五程序12SDL擷取與預設縮放通過。完整crate、三工具、138份媒體、binary、Rust fixture與v5／v6進度、既有原版／IDA收據及診斷逐SHA壓縮於本機`preserved/rust-resource-spells-r1/<SHA256>.gz`，不依賴workplace；完整runtime媒體及binary不入Git或公開包。
+
+[資料工具](../tools/rust-resource-spells.py)在Pillow11.3.0-r2、UID1000與network none使用。在既有battle-r1建立rust-resource-spells-r1/evidence及native/pack後，`prepare --project /project`從永久索引還原138媒體、真正v5檔、alchemy-r1兩案例、summon-r1三案例及既有IDA匯出，生成resource-spells-reference.tsv後複製至crate。沒有新原版執行或DB寫入。三字型沿[既有工具](../tools/rust-world.py)fonts補字。
+
+Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3的offline／locked桌面建置，含[開發fixture](../internal/remake-rust/examples/resource_spells_fixture.rs)例程及玩家binary。fixture以媒體路徑、真正進度檔、新輸出目錄、alchemy或summon四參數產生明示商店旁位置與領導1000，保留來源RNG；不加入玩家旗標，也不作自然跨區證據。最終GUI只見native與單一腳本，沒有PAM／Go／RAM；命令與限制在execution.json。
+
+`freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核原bytes、來源、85測試、原生與縮放畫面、媒體及正式基線。`images`建立README圖與來源。`archive --project /project --archive /project/preserved --out /project/preserved/rust-resource-spells-r1.json`保存本批；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具與tmpfs逐物件核對。[脫離核對](rust-resource-spells-detached-r1.json)、[清理](rust-resource-spells-cleanup-r1.json)與[完整性](rust-resource-spells-integrity-r1.json)另存。只排除可重建Rust快取，已保存診斷才可刪。
+
+目前[啟動器](../tools/rust-native-player.sh)指向rust-resource-spells-r1/native。按完整索引將native的binary與pack解壓至同名路徑，核SHA及權限後，用`journey --save-dir <既有可寫絕對路徑>`，加`--continue`續接。F4選術，結果Enter／Esc返回；有目錄時自動保存與F7並用，v6讀v1至v5，不讀Go進度。只接造橋／煉金／召兵，其他五術與跨區仍待，沒有Release。
+
+本批331檔／281物件，壓縮39246467 bytes。獨立核對通過後，清除980份Rust快取及已保存初輪GUI／fixture診斷，共356072878 bytes，約339.6 MiB。最終binary、138媒體、GUI／縮放、fixture與來源保持；本案無殘留容器，沒有建立新image。

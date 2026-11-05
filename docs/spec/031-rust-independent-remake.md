@@ -456,3 +456,34 @@ Space原時鐘加一，因此世界剩餘步數驗證改為正u16，65535再加�
 - IDA9.4新匯出19函式1848行bytes，保留原名與位址。建置僅掛crate唯讀及native可寫，最終GUI只掛native與單一腳本，沒有PAM、原RAM或Go工具。完整來源、工具、138份媒體及收據見[永久保存](../../preserved/README.md#rust世界造橋術保存)與[核對](../../preserved/rust-world-magic-audit-r1.json)。正式197來源七程式、923核心、535素材及1071美術保持。
 
 這是Linux開發旅程的竹簡／造橋限定完成。七術、七物品、跨區與其他世界事件、守軍／八劍、日曆、結局及手機仍待；不稱完整獨立遊戲，不發布Release。
+
+## 世界資源法術 DRAFT
+
+本輪接煉金與召兵至Rust旅程，沿030既有alchemy-r1／summon-r1原版與Go收據，不重新逆向硬體或全量法術。跨區尚未接，商店與施法用明示位置的測試進度抽驗；不得稱自然取得或通關。來源與收據沿battle-r1/rust-resource-spells-r1並由[資料工具](../../tools/rust-resource-spells.py)保存。
+
+### 世界資源法術 READY
+
+證據審查沿固定PAM SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、i64 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。既有IDA9.4／MZ base10000h的sub_16B20與sub_16BEA、sub_168CE，以及前批sub_1512C／15354／154B0為已證實；檔案偏移依MZ header，runtime CS0110 IP=IDA線性−10000h，DS1E88另外列。保留原名、bytes與xref；沒有新原版執行聲明。
+
+| 範圍 | 輸入、規則與證據 |
+|---|---|
+| 煉金 | 16B56一次rand，16B5B..16B6F取roll/260，DS26AE=1另加40；16BD6加金，168CE返回扣次。沿Go alchemy-data.go安全封頂30000。兩份原版收據含23359→89與bonus129封頂，前後其他資源／軍隊保持。 |
+| 召兵 | 16C26一次rand，kind=roll/6600*5+rank，rank1..5數量20／16／12／8／4；DS26B0=1乘3/2。16D9E..16DFB先併同種，否則第一空隊；六隊滿不加入仍扣次。沿Go summon-data.go，保留新增兵ID、同類唯一與領導上限。三原版收據含合併、新隊bonus與滿隊；GUI目前無bonus物品，不開其取得。 |
+| 商店與F4 | 原offer1／2兩術各100，沿既有typed位置列及竹簡條件；三種已接地圖術合計不得超容量。其餘五術與戰鬥術商品仍為邊界。F4原八列、原鍵／滑鼠選取再確認；結果以原式下方面板、完整數值及召兵圖示呈現，三字型可用。 |
+| 統一狀態 | 施法一次推進一個規則RNG，不走移動／遭遇，不改位置、朝向、步數、探索、月結及營地。先以clone計算及驗證，再一起提交資源／軍隊／RNG／扣次；越界、超領導或未知ID拒絕且完全不提交，不截斷兵數或默默重擲。純payload函式可對bonus向量，正式旅程保持無bonus物品範圍。 |
+
+旅程v6追加可重算的結果待確認紀錄：術index、施法前seed、金錢、軍隊與次數。讀取時重算roll與結果、綁定現軍隊／金錢／扣次／seed；結果已提交才顯示，Enter／Esc關閉只清提示、不再施法。開商店、購買、施法及關閉提示沿既有有目錄才原子自動保存；無目錄只改記憶體。v1至v5無新提示，按原值遷移；不讀Go、不改Go保存。結果與其他事件／戰場互斥，最大128KiB保持。
+
+驗收含既有五個原版規則案例、全rank／roll分界、合併／空隊／滿隊、領導／32767安全域、壞提示與無次數拒絕、v5實檔轉入及提示冷讀不重給。GUI從前批真正v5檔衍生明示商店附近位置與足額領導的進度，只作測試資料，不新增產品旗標；實際走入原店、買／F4施法／F1或F2／F7／新程序Continue。至少一條召得兵的普通戰鬥／回場／保存鏈，以確認六隊仍供原式戰場使用。只按機制抽樣，不重跑已驗HD及普通戰鬥矩陣。
+
+### 世界資源法術限定 CONFORMED
+
+[核心](../../internal/remake-rust/src/resource_spells.rs)、[原版五案例](../../internal/remake-rust/resource-spells-reference.tsv)及[測試](../../internal/remake-rust/src/resource_spells_tests.rs)已接原生旅程。85測試通過，含五原版受控案例、全階級／除法邊界、bonus純算式、併同種／新隊／滿隊仍耗次、領導與32767安全域、失敗不動RNG、提示重算／互斥、舊v5真實橋格遷移。正式旅程沒有bonus物品取得；原版安全域外不套word回繞。
+
+[GUI](../../tools/rust-resource-spells-gui.py)五程序12份SDL讀回逐RGBA相同。由前批真正v5進度衍生，以[開發用Rust fixture](../../internal/remake-rust/examples/resource_spells_fixture.rs)明示改為商店旁位置與領導1000，保留原RNG、竹簡、兩次造橋與橋格。這是已披露的測試進度，不稱自然跨區取得；fixture不連入玩家入口。實際走入煉金商店買一次470→370，F4得55金成425；新程序讀結果畫布相同，關閉不重給。該進度再移至召兵店買一次成325，F4召20民兵合併30→50，結果再冷讀相同，F2以透明圖示顯示50。
+
+召兵結果關閉後正常走離商店並等待至遭遇，50民兵經原式戰場出手，再撤退回場；最後296金／50人保存及第五程序F2冷讀畫布相同。三字型通過；預設2／3縮放另驗1280×880法術結果、F1、滑鼠返回及F7，保存bytes等同原生程序。煉金金色、召兵青綠光環只用1.2秒UI時間，不改世界規則。
+
+既有IDA9.4匯出的兩術／分派與三商店函式逐MZ重定位核原bytes，原版受控案例以明示roll核規則，不將整段UI seed_after套作局部一次RNG。正式原始DB不改，沒有新原版執行。Rust最終建置只見crate／native，GUI只見native與單一腳本，沒有PAM／Go／RAM掛載；[核對](../../preserved/rust-resource-spells-audit-r1.json)、[圖片來源](../images/rust-resource-spells-r1.json)、[資料工具](../../tools/rust-resource-spells.py)與[永久保存](../../preserved/README.md#rust世界資源法術保存)收錄完整來源。
+
+v6追加可重算的結果待確認紀錄，v1至v5遷移預設無提示；有目錄時開店／交易／施法與關閉提示原子保存。其他五地圖術、七寶物、跨區／守軍／八劍／日曆／結局及手機仍待，不稱完整獨立遊戲或Release。正式197來源七程式、923核心、535素材及1071美術保持。

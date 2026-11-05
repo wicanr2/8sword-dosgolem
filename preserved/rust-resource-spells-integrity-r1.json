@@ -1,0 +1,21 @@
+{
+  "status": "passed-resource-spells-integrity",
+  "new_and_prior_links": {
+    "README.md": 12,
+    "CONTEXT.md": 6,
+    "WORKLIST.md": 0,
+    "WORKLOG.md": 0,
+    "RESEARCH-LOG.md": 3,
+    "AGENTS.md": 4,
+    "preserved/README.md": 9,
+    "docs/spec/031-rust-independent-remake.md": 10
+  },
+  "python_syntax": 2,
+  "root_owned_or_md_directories": [],
+  "files": 331,
+  "objects": 281,
+  "compressed_bytes": 39246467,
+  "runtime_media": 138,
+  "positive_control": "Same scan validates previous README rust-world-magic-r1.png link",
+  "docker_cleanup": "No project containers by native or root bind; --rm throughout, no new image"
+}

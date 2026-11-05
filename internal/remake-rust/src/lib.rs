@@ -21,6 +21,7 @@ pub mod minimap;
 pub mod monthly;
 pub mod pointer;
 pub mod replay;
+pub mod resource_spells;
 #[cfg(feature = "desktop")]
 mod sdl;
 #[cfg(feature = "desktop")]

@@ -141,6 +141,9 @@ impl<'a> Journey<'a> {
             || self.camps.pending.is_some()
             || self.month.pending.is_some()
             || self.treasure.pending.is_some()
+            || self.magic.shop.is_some()
+            || self.magic.direction
+            || self.resource_notice.is_some()
             || slot >= 6
             || self.army[slot].count == 0
         {

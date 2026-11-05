@@ -152,6 +152,7 @@ pub struct Journey<'a> {
     pub month: crate::monthly::Monthly,
     pub treasure: crate::treasure::Treasure,
     pub magic: crate::world_magic::Magic,
+    pub resource_notice: Option<crate::resource_spells::Notice>,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -174,10 +175,13 @@ impl<'a> Journey<'a> {
             month: crate::monthly::Monthly::default(),
             treasure: crate::treasure::Treasure::default(),
             magic: crate::world_magic::Magic::default(),
+            resource_notice: None,
         }
     }
     pub fn phase(&self) -> &'static str {
-        if self.magic.direction {
+        if self.resource_notice.is_some() {
+            "resource-result"
+        } else if self.magic.direction {
             "bridge-direction"
         } else if self.magic.shop.is_some() {
             "magic-shop"
@@ -203,6 +207,7 @@ impl<'a> Journey<'a> {
             || self.treasure.pending.is_some()
             || self.magic.direction
             || self.magic.shop.is_some()
+            || self.resource_notice.is_some()
         {
             return Err("遭遇尚未完成".into());
         }
@@ -326,6 +331,9 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        if let Some(n) = &self.resource_notice {
+            n.validate(self, catalog)?;
+        }
         self.magic.validate(self, data)?;
         let view = self.magic.view(data)?;
         self.world.encode(data)?;
@@ -391,7 +399,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN005".to_vec();
+        let mut b = b"8SJRN006".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -458,6 +466,14 @@ impl<'a> Journey<'a> {
         for n in &self.magic.bridges {
             b.extend(n.to_le_bytes());
         }
+        b.push(u8::from(self.resource_notice.is_some()));
+        if let Some(n) = &self.resource_notice {
+            b.push(n.spell);
+            b.extend(n.seed_before.to_le_bytes());
+            b.extend(n.gold_before.to_le_bytes());
+            b.extend(n.uses_before.to_le_bytes());
+            put_army(&mut b, &n.army_before);
+        }
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -471,7 +487,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN002"
                 && &b[..8] != b"8SJRN003"
                 && &b[..8] != b"8SJRN004"
-                && &b[..8] != b"8SJRN005")
+                && &b[..8] != b"8SJRN005"
+                && &b[..8] != b"8SJRN006")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -597,7 +614,7 @@ impl<'a> Journey<'a> {
             }
         }
         let mut magic = crate::world_magic::Magic::default();
-        if &b[..8] == b"8SJRN005" {
+        if &b[..8] >= b"8SJRN005" {
             if r.q()? != crate::world_magic::fingerprint() {
                 return Err("世界法術資料版本不符".into());
             }
@@ -626,6 +643,21 @@ impl<'a> Journey<'a> {
                     .push(u16::from_le_bytes(r.take(2)?.try_into().unwrap()));
             }
         }
+        let resource_notice = if &b[..8] == b"8SJRN006" {
+            match r.byte()? {
+                0 => None,
+                1 => Some(crate::resource_spells::Notice {
+                    spell: r.byte()?,
+                    seed_before: u32::from_le_bytes(r.take(4)?.try_into().unwrap()),
+                    gold_before: r.q()?,
+                    uses_before: u16::from_le_bytes(r.take(2)?.try_into().unwrap()),
+                    army_before: r.army()?,
+                }),
+                _ => return Err("法術結果旗標錯誤".into()),
+            }
+        } else {
+            None
+        };
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -643,6 +675,7 @@ impl<'a> Journey<'a> {
             month,
             treasure,
             magic,
+            resource_notice,
         };
         s.validate(catalog, data)?;
         Ok(s)

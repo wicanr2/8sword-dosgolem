@@ -1,5 +1,8 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-05 Rust煉金／召兵依[031限定驗收](docs/spec/031-rust-independent-remake.md#世界資源法術限定-conformed)接入。85測試、五個既有原版受控案例、六IDA函式bytes、五程序12SDL擷取與預設縮放通過。原店共用容量、F4一次RNG／扣次、安全金錢／六隊與提示冷讀已接；v6讀v1至v5。GUI從真正v5明示移至後區商店旁及領導1000，來源RNG保持，不稱自然取得；民兵30→50後原式出手、撤退及回場296金／50人冷讀已驗。[工具](tools/rust-resource-spells.py)、[核對](preserved/rust-resource-spells-audit-r1.json)與[永久保存](preserved/README.md#rust世界資源法術保存)不依賴workplace。其餘五術／七寶物、跨區、守軍與結局續按WORKLIST；不重跑既有HD／普通戰鬥矩陣。正式197／7／923／535及1071美術保持，無Release。
+
+
 2026-11-05 Rust世界造橋術依[031限定驗收](docs/spec/031-rust-independent-remake.md#世界造橋術限定-conformed)接入。原起點69步尋竹簡、138步到原店購3次、四步到岸邊，待方向冷讀後施法並走上橋；470金／2次／橋174與244保持。78測試、19函式1848行IDA bytes、既有原版受控造橋收據、四程序11SDL擷取與預設縮放通過。v5讀v1至v4；只接竹簡與造橋，其他物品／地圖術、守軍與結局續按WORKLIST，不重跑已驗矩陣。[工具](tools/rust-world-magic.py)、[核對](preserved/rust-world-magic-audit-r1.json)與[永久保存](preserved/README.md#rust世界造橋術保存)不依賴workplace；建置只見crate／native，最終GUI只見native與單一工具，沒有Go或DOS runtime。正式197／7／923／535及1071美術保持，無Release。
 
 

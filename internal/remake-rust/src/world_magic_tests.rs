@@ -250,7 +250,7 @@ fn pending_direction_cold_completion_does_not_double_spend_and_v4_migrates() {
     assert_eq!(cold, j);
     let old = Journey::new(&d, 1);
     let mut raw = old.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 8 - 31);
+    raw.truncate(raw.len() - 8 - 32);
     raw[..8].copy_from_slice(b"8SJRN004");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), old);
@@ -266,7 +266,7 @@ fn malformed_patches_phases_and_charges_are_rejected() {
             0 => bad.magic.bridges = vec![44800],
             1 => bad.magic.bridges = vec![0],
             2 => bad.magic.bridges = vec![2839, 2839],
-            3 => bad.magic.charges[1] = 1,
+            3 => bad.magic.charges[3] = 1,
             4 => bad.magic.charges[0] = 4,
             5 => {
                 bad.magic.direction = true;

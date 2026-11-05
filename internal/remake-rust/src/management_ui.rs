@@ -20,6 +20,7 @@ pub enum Page {
     Bridge,
     MagicShop,
     Message,
+    ResourceResult,
 }
 pub struct Manager {
     pub page: Page,
@@ -43,6 +44,10 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.resource_notice.is_some() {
+            self.page = Page::ResourceResult;
+            return;
+        }
         if j.magic.direction {
             self.page = Page::Bridge;
             return;
@@ -68,6 +73,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::ResourceResult => Some(Screen::Report),
             Page::Magic => Some(Screen::Magic),
             Page::Bridge => Some(Screen::Bridge),
             Page::MagicShop => Some(Screen::MagicShop),
@@ -148,6 +154,14 @@ impl Manager {
             }
             return Ok(());
         }
+        if self.page == Page::ResourceResult {
+            if key == 13 || key == 27 {
+                j.close_resource_notice(c)?;
+                self.page = Page::World;
+                self.message.clear();
+            }
+            return Ok(());
+        }
         if self.page == Page::Message {
             if key == 13 || key == 27 {
                 self.page = Page::World;
@@ -161,8 +175,13 @@ impl Manager {
                 1073741905 => self.selected = (self.selected + 1) % 8,
                 27 => self.page = Page::World,
                 13 if j.magic.charges[self.selected] > 0 => {
-                    j.begin_bridge()?;
-                    self.page = Page::Bridge;
+                    if self.selected == 0 {
+                        j.begin_bridge()?;
+                        self.page = Page::Bridge;
+                    } else {
+                        j.cast_resource(c, self.selected as u8)?;
+                        self.page = Page::ResourceResult;
+                    }
                     self.message.clear();
                 }
                 _ => {}
@@ -179,8 +198,8 @@ impl Manager {
         }
         if self.page == Page::MagicShop {
             if key == 13 {
-                j.buy_bridge()?;
-                self.message = "已購入造橋術".into();
+                j.buy_world_spell()?;
+                self.message = "已購入法術".into();
             }
             if key == 27 {
                 j.close_magic_shop(c, data)?;
@@ -346,6 +365,50 @@ pub fn draw(
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::ResourceResult {
+        let n = j.resource_notice.as_ref().ok_or("缺少法術結果")?;
+        let out = n.effect(j, catalog)?;
+        fill(f, [24, 684, 1344, 480], [82, 82, 82]);
+        border(f, [24, 684, 1344, 480], [206, 170, 74]);
+        if n.spell == 1 {
+            text(
+                f,
+                font,
+                &format!("煉金術 煉出金錢 {}", out.amount),
+                96,
+                756,
+                48,
+                1200,
+            )?;
+            text(f, font, &format!("現金 {}", out.gold), 96, 876, 48, 1200)?;
+        } else {
+            let id = crate::catalog::UnitId::parse(&format!("native:{:02}", out.kind))?;
+            sprite(f, pack.units.get(&id).ok_or("缺少召兵圖像")?, 72, 792);
+            text(
+                f,
+                font,
+                &format!("召兵術 {} {}人", catalog.get(id).name, out.count),
+                384,
+                756,
+                48,
+                936,
+            )?;
+            text(
+                f,
+                font,
+                if out.joined {
+                    "已加入部隊"
+                } else {
+                    "六隊已滿 無法加入"
+                },
+                384,
+                900,
+                48,
+                936,
+            )?;
+        }
+        return Ok(());
+    }
     if ui.page == Page::Message || ui.page == Page::Bridge {
         fill(f, [24, 684, 1344, 480], [82, 82, 82]);
         border(f, [24, 684, 1344, 480], [206, 170, 74]);
@@ -384,12 +447,16 @@ pub fn draw(
     if ui.page == Page::MagicShop {
         sprite(f, magic_building, 24, 120);
         fill(f, [24, 720, 1344, 450], [82, 82, 82]);
+        let offer = j.magic_offer()?;
+        let data = crate::world_magic::names();
         let lines = [
-            "法術 造橋術".into(),
-            "價格 10".into(),
+            format!("法術 {}", data[offer].0),
+            format!("價格 {}", data[offer].2),
             format!(
                 "金錢 {}  次數 {}/{}",
-                j.resources[3], j.magic.charges[0], j.resources[5]
+                j.resources[3],
+                j.magic.charges.iter().map(|n| u64::from(*n)).sum::<u64>(),
+                j.resources[5]
             ),
             if ui.message.is_empty() {
                 "是否購買？".into()

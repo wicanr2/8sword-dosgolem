@@ -109,10 +109,11 @@ impl Magic {
     pub(crate) fn validate(&self, j: &Journey<'_>, d: &WorldData) -> Result<(), String> {
         self.view(d)?;
         if self.selected >= 8
-            || self.charges[1..].iter().any(|n| *n != 0)
+            || self.charges[3..].iter().any(|n| *n != 0)
             || (!self.book
                 && (self.charges != [0; 8] || self.direction || !self.bridges.is_empty()))
-            || u64::from(self.charges[0]) + u64::from(self.direction) > j.resources[5]
+            || self.charges.iter().map(|n| u64::from(*n)).sum::<u64>() + u64::from(self.direction)
+                > j.resources[5]
             || self.shop.is_some() && self.direction
         {
             return Err("地圖法術資料超出已接範圍".into());
@@ -131,7 +132,7 @@ impl Magic {
             let s = shops()
                 .get(usize::from(p.index))
                 .ok_or("法術商店索引超界")?;
-            if s.offer != 0
+            if s.offer > 2
                 || (j.world.area, j.world.position.x, j.world.position.y) != (s.area, s.x, s.y)
                 || d.tile(s.area, j.world.position)? != 53
             {
@@ -171,7 +172,7 @@ impl<'a> Journey<'a> {
         let (at, _) = crate::world::motion(self.world.position, key, self.world.facing, false)?;
         let Some(i) = shops()
             .iter()
-            .position(|s| s.area == self.world.area && s.x == at.x && s.y == at.y && s.offer == 0)
+            .position(|s| s.area == self.world.area && s.x == at.x && s.y == at.y && s.offer <= 2)
         else {
             return Ok(false);
         };
@@ -183,21 +184,42 @@ impl<'a> Journey<'a> {
         Ok(true)
     }
     pub fn buy_bridge(&mut self) -> Result<(), String> {
-        if self.magic.shop.is_none() {
-            return Err("未在造橋術商店".into());
+        self.buy_world_spell()
+    }
+    pub fn magic_offer(&self) -> Result<usize, String> {
+        let p = self.magic.shop.ok_or("未在法術商店")?;
+        let s = shops()
+            .get(usize::from(p.index))
+            .ok_or("法術商店索引錯誤")?;
+        if s.offer > 2 {
+            return Err("未接法術商品".into());
         }
+        Ok(usize::from(s.offer))
+    }
+    pub fn buy_world_spell(&mut self) -> Result<(), String> {
+        let index = self.magic_offer()?;
+        let price = u64::from(names()[index].2);
         if !self.magic.book {
             return Err("你不會使用法術".into());
         }
-        if u64::from(self.magic.charges[0]) >= self.resources[5] {
+        if self
+            .magic
+            .charges
+            .iter()
+            .map(|n| u64::from(*n))
+            .sum::<u64>()
+            >= self.resources[5]
+        {
             return Err("法術容量已滿".into());
         }
-        if self.resources[3] < 10 {
+        if self.resources[3] < price {
             return Err("金錢不足".into());
         }
-        let count = self.magic.charges[0].checked_add(1).ok_or("法術次數超界")?;
-        self.resources[3] -= 10;
-        self.magic.charges[0] = count;
+        let count = self.magic.charges[index]
+            .checked_add(1)
+            .ok_or("法術次數超界")?;
+        self.resources[3] -= price;
+        self.magic.charges[index] = count;
         Ok(())
     }
     pub fn close_magic_shop(&mut self, c: &Catalog, d: &WorldData) -> Result<(), String> {

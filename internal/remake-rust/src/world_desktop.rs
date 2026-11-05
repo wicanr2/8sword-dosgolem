@@ -16,7 +16,13 @@ pub(crate) struct Pack {
     pub(crate) music: Music,
 }
 impl Pack {
-    pub(crate) fn bridge_cue(&self, f: &mut [u8], s: &WorldState, elapsed: Duration) {
+    pub(crate) fn spell_cue(
+        &self,
+        f: &mut [u8],
+        s: &WorldState,
+        elapsed: Duration,
+        color: [u8; 3],
+    ) {
         let progress = (elapsed.as_secs_f32() / 1.2).clamp(0.0, 1.0);
         if progress >= 1.0 {
             return;
@@ -31,8 +37,9 @@ impl Pack {
                 let alpha = edge * (1.0 - progress) * 0.85;
                 if alpha > 0.0 {
                     let at = (y as usize * W + x as usize) * 4;
-                    for (i, c) in [255.0, 205.0, 82.0].iter().enumerate() {
-                        f[at + i] = (f[at + i] as f32 * (1.0 - alpha) + c * alpha) as u8;
+                    for (i, c) in color.iter().enumerate() {
+                        f[at + i] =
+                            (f[at + i] as f32 * (1.0 - alpha) + f32::from(*c) * alpha) as u8;
                     }
                 }
             }
