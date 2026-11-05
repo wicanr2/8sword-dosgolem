@@ -1,0 +1,22 @@
+{
+  "status": "passed-rust-controls-integrity",
+  "source_and_binary_match_final_gui": true,
+  "media": 135,
+  "root_owned": [],
+  "markdown_directories": [],
+  "links": [
+    "docs/images/rust-controls-r1.json",
+    "docs/images/rust-controls-r1.png",
+    "preserved/rust-controls-audit-r1.json",
+    "preserved/rust-controls-cleanup-r1.json",
+    "preserved/rust-controls-detached-r1.json",
+    "preserved/rust-controls-integrity-r1.json",
+    "preserved/rust-controls-r1.json",
+    "tools/rust-controls-gui.py",
+    "tools/rust-controls.py"
+  ],
+  "positive_control": "tools/rust-journey.py",
+  "removed_bytes": 623611179,
+  "docker": "No remaining project containers; unrelated san5 container untouched",
+  "release": false
+}

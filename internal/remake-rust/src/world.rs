@@ -523,20 +523,24 @@ impl WorldState {
         }
     }
     pub fn walk(&mut self, data: &WorldData, key: u16) -> Result<WalkResult, String> {
-        self.walk_inner(data, key, false)
+        self.walk_inner(data, key, false, None)
     }
     pub(crate) fn walk_encounter(
         &mut self,
         data: &WorldData,
         key: u16,
     ) -> Result<WalkResult, String> {
-        self.walk_inner(data, key, true)
+        self.walk_inner(data, key, true, None)
+    }
+    pub(crate) fn walk_site(&mut self, data: &WorldData, tile: u8) -> Result<WalkResult, String> {
+        self.walk_inner(data, 0x3920, true, Some(tile))
     }
     fn walk_inner(
         &mut self,
         data: &WorldData,
         key: u16,
         commit_encounter: bool,
+        allowed_site: Option<u8>,
     ) -> Result<WalkResult, String> {
         self.validate()?;
         if ![
@@ -555,7 +559,7 @@ impl WorldState {
             if s.boat == 2 && !matches!(tile, 2 | 11..=14) {
                 return Ok(WalkResult::Boundary(Boundary::BoatExit));
             }
-            if matches!(tile,49..=51|53..=59|65) {
+            if matches!(tile,49..=51|53..=59|65) && allowed_site != Some(tile) {
                 return Ok(WalkResult::Boundary(Boundary::Terrain(tile)));
             }
             if key != 0x3920 && s.remaining == 1 {

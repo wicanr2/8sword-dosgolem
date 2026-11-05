@@ -1243,4 +1243,18 @@ Go探針使用唯讀來源／原版／核心／module cache與可寫批次，`GO
 
 `archive --project /project --archive /project/preserved --out /project/preserved/rust-journey-r1.json`保存資料；`verify --archive /archive --out <新JSON>`只需唯讀preserved與單一工具，即可逐原始／壓縮SHA核對。[脫離核對](rust-journey-detached-r1.json)、[清理](rust-journey-cleanup-r1.json)及[完整性](rust-journey-integrity-r1.json)另存。只排除可重生Go／Rust快取；舊GUI診斷先保存再清除。
 
-目前[啟動器](../tools/rust-native-player.sh)指向本批native。還原索引中`rust-journey-r1/native/`的binary及pack到同名候選路徑，逐SHA核對並套用權限後，使用`journey --save-dir <既有可寫絕對路徑>`；F7後關閉，再加`--continue`續接。`run`與`world`仍開各自舊樣本。journey.chk保存本輪地圖、六隊、六資源、遭遇與typed戰中狀態，不含CPU快照；與另兩個開發檢查點及Go v5分開，尚未接守軍／營地／物品等完整世界狀態，不稱完整遊戲保存。GUI只見native及單一輸入工具，執行期不需Go／PAM／dosgolem。沒有Release。
+本批歷史樣本可按索引還原`rust-journey-r1/native/`的binary及pack到同名候選路徑，逐SHA核對並套用權限。現行啟動器已指向下節原式管理與滑鼠批次。journey.chk v1保存本輪地圖、六隊、六資源、遭遇與typed戰中狀態，不含CPU快照；與另兩個開發檢查點及Go v5分開，未接守軍／營地／物品等完整世界狀態。GUI只見native及單一輸入工具，執行期不需Go／PAM／dosgolem。沒有Release。
+
+## Rust原式管理與滑鼠保存
+
+[完整索引](rust-controls-r1.json)、[核對](rust-controls-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#原式管理與滑鼠限定-conformed)及[研究](../RESEARCH-LOG.md#rust原式管理與滑鼠)為入口。53測試、120營地列／50募兵地點與四個滑鼠程序18擷取通過。完整Rust crate、八圖／33種透明站姿／城門／OGG／三字型、binary、兩版旅程檢查點、既有Go證據收據、GUI及診斷逐SHA壓縮於本機`preserved/rust-controls-r1/<SHA256>.gz`，不依賴workplace；完整媒體與binary不加入Git或公開包。
+
+[資料工具](../tools/rust-controls.py)在Pillow11.3.0-r2、UID1000、network none容器使用。`prepare --project /project`從前批永久媒體、原PAM與已批准城門建立新批次；`evidence --project /project`核對原120列、全部50募兵地形並恢復四份既有Go證據及真正v1戰中檔。`images --project /project --out <新PNG>`從已驗GUI建立README圖與來源JSON。三字型由[字型工具](../tools/rust-world.py)的`fonts --project /project --work <本批> --out <新JSON>`沿永久字型補字。
+
+`freeze --project /project`固定crate、工具及媒體雜湊。`audit --project /project --out <新JSON>`核對固定來源、53測試、GUI同幀讀回及正式基線；執行命令與掛載見本批execution.json。Rust建置只見唯讀crate及可寫批次，最終GUI只見單一輸入工具與本批資料，無Go／PAM掛載，不執行模擬器。Linux滑鼠已驗，手機及真實觸控未驗。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-controls-r1.json`保存資料；`verify --archive /archive --out <新JSON>`只掛唯讀preserved與單一工具，逐原始／壓縮SHA核對。[脫離核對](rust-controls-detached-r1.json)、[清理](rust-controls-cleanup-r1.json)及[完整性](rust-controls-integrity-r1.json)另存。只排除可重生Rust快取；診斷先保存再清除。
+
+目前[啟動器](../tools/rust-native-player.sh)指向`rust-controls-r1/native`。依索引解壓同名路徑的binary及pack、核對SHA並套用權限，再用`journey --save-dir <既有可寫絕對路徑>`開啟；F7後關閉，加`--continue`續接。滑鼠操作只加入journey，run／world仍為各自舊樣本。v2開發檢查點保存獨立庫存與營地待完成步，支援前批無營地交易v1；不匯入Go存檔，未聲稱完整世界schema。執行期只需Rust執行檔、媒體與SDL2／libsndfile等平台函式庫，沒有Release。
+
+本批369檔／254物件，壓縮79843655 bytes；只掛唯讀preserved與單一工具的脫離核對通過。保存後移除已保存診斷及可重建Rust快取，共623611179 bytes，約594.7 MiB；目前binary、135份媒體與最終GUI保持。

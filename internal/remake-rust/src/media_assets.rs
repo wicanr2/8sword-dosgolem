@@ -175,6 +175,22 @@ impl MediaPack {
         self.units.extend(units);
         Ok(())
     }
+    pub fn load_extra_units(&mut self, root: &Path) -> Result<(), String> {
+        let mut units = Vec::new();
+        for name in crate::management::EXTRA {
+            let id = UnitId::parse(name)?;
+            units.push((
+                id,
+                Image::load(
+                    &root.join(format!("unit_{}.rgba", name.replace(':', "_"))),
+                    264,
+                    300,
+                )?,
+            ));
+        }
+        self.units.extend(units);
+        Ok(())
+    }
 }
 
 #[cfg(test)]

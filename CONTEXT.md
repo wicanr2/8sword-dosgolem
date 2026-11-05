@@ -8,6 +8,8 @@
 
 部隊管理與戰場保留原版方式，不採卡片介面。F2、F3、原店與增援分頁保持既有定案；工具列保留原版／HD、Noto900／隸書／草書、海報、AI與規則選項。已批准素材及原版配色沿用，額外手繪動作不阻塞Rust移植。
 
+使用者追加滑鼠操作，方便後續手機移植。原生旅程的滑鼠與鍵盤共用操作命令，保留邏輯座標與正規化接口；目前只驗Linux滑鼠，不稱手機平台或真實觸控驗收。
+
 ## 目前狀態表
 
 | 範圍 | 狀態與證據 |
@@ -18,49 +20,24 @@
 | Rust原生視窗與音樂 | 普通戰鬥樣本完成。原版HD戰場幾何、透明部隊、三字型及音樂工具列；32動作勝利、2動作全滅及撤退經X11輸入通過。 |
 | Rust敵方特殊 | 八分派限定完成。384組Go模型、13份既有原版／Go收據及原生自動施法至普通勝局通過；第八分派只保留受控入口。 |
 | Rust戰中檢查點 | 開發樣本限定完成。F7／工具列存檔、關閉後Continue、額外行動及已扣次選敵均經視窗抽驗；35測試、五獨立程序及11擷取通過。 |
-| Rust世界資料與手動移動 | 預覽限定完成。八圖直接解析、880原CPU案例、40測試與兩程序八份擷取通過。原式HD地圖、三字型、〈遨遊〉、受阻／走路及F7冷讀已接。事件、月結、上岸、遭遇與管理尚未接。 |
-| Rust完整遊戲 | 未完成。世界、新遊戲、管理／募兵、其餘原版選單、世界進度保存、結局及其餘工具列待移植。 |
+| Rust世界資料與手動移動 | 預覽限定完成。八圖直接解析、880原CPU案例、40測試與兩程序八份擷取通過。原式HD地圖、三字型、〈遨遊〉、受阻／走路及F7冷讀已接。舊world入口仍為預覽，旅程擴充見下列。 |
+| Rust完整遊戲 | 未完成。其餘世界事件、新遊戲、原版選單、完整世界保存、結局及其餘工具列待移植。原式管理／募兵已接本輪開發旅程。 |
 | Rust普通遭遇與回場 | 開發旅程限定完成。原起點30民兵、普通敵軍生成、原式戰場、撤退／全滅與回場F7冷讀已接。46測試、320新原指令及三舊結算案例、四程序12擷取通過。 |
-| 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。GUI使用明示編成；SDL dummy不等於人耳確認。 |
+| Rust原式管理／募兵與滑鼠 | 開發旅程限定完成。F2／F3、原店及八種增援、獨立庫存與v2檢查點已接。53測試、120營地列／50地點核對及四個純滑鼠程序18擷取通過；舊v1實檔可轉入。 |
+| 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。早期戰鬥樣本採明示編成，本輪旅程從原起點起步；SDL dummy不等於人耳確認。 |
 | 可選精修 | 新兵額外手繪動作、特殊死亡呈現、循環音樂接點與其餘平台驗收依後續範圍處理。 |
 
 ## 最近驗證與入口
 
-最新為[普通遭遇與回場限定驗收](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)。Rust從原起點30民兵正常等待遇敵，確認後接既有原式戰場、雙方出手與敵術，結束後回同一地圖。46測試、320組新原CPU生成案例及三份既有Go結算向量通過；原重複兵種清理是刪隊，不相加。勝利、撤退、升級與兩種全滅去向已由核心抽驗，勝利採明示軍隊。
+最新為[原式管理與滑鼠限定驗收](docs/spec/031-rust-independent-remake.md#原式管理與滑鼠限定-conformed)。原起點30民兵、500金、seed1，以滑鼠走到39／38營地，先購野狼1再購民兵1，軍隊31民兵＋1野狼、金459；原店庫存2999、獨立野狼庫存74。超量9999拒絕且不扣款，營地F7後另一程序冷讀完整狀態相同。回場後沿原式F2三字型檢閱、F3選狼整隊解雇不退款，F7及第三程序冷讀一致。再以滑鼠確認遭遇、點敵隊／確認出手、撤退回場。第四程序讀前批真正v1戰中檔並存為v2。四程序18份同幀畫布與SDL讀回一致，無RAM／IP或增兵注入。
 
-四個獨立GUI程序、12份同幀擷取與SDL讀回一致。seed1／原30民兵的戰中F7與冷讀相同，兩路撤退回場均30民兵、500→375金；回場F7再冷讀一致。第四程序再戰、正常略過至全滅、選浪跡回場，空軍隊且金保持375。沒有RAM／IP或增兵注入。[核對](preserved/rust-journey-audit-r1.json)、[保存](preserved/README.md#rust普通遭遇與回場保存)、[圖](docs/images/rust-journey-r1.png)及[工具](tools/rust-journey.py)為入口。
+滑鼠按下／放開落在同一有效目標才執行一次；選隊與選敵先選取，再按確認。地圖點方向走一步、中心等待，募兵數量可用畫面數字鍵盤；字型、音樂、返回、略過及F7可點。`journey --save-dir <既有絕對路徑>`開啟，加`--continue`續接。v2保存120原庫存、已開增援庫存及營地待完成步，支援前批無營地交易v1；不讀Go進度。舊run／world入口仍為原開發樣本，這輪滑鼠範圍只限journey。[核對](preserved/rust-controls-audit-r1.json)、[永久保存](preserved/README.md#rust原式管理與滑鼠保存)、[圖](docs/images/rust-controls-r1.png)及[工具](tools/rust-controls.py)為入口。
 
-`bash tools/rust-native-player.sh journey --save-dir <既有絕對路徑>`開啟，F7後關閉，加`--continue`續接。journey.chk單檔包含地圖、軍隊、六資源、遭遇與完整typed戰中狀態；與battle.chk、world-preview.chk及Go v5分開，不是包含守軍／物品／營地的正式世界schema。尚未接的特殊格、月結、上岸等保持未提交邊界，管理與募兵為下一步。RNG不包含原版畫圖的ambient呼叫，不稱整段原版同狀態。
+營地原資料沿既有Go／IDA證據，另逐列核對PAM的120列及八圖全部50募兵地點；沒有重跑全量原版或宣稱新的原版逐像素對拍。月結、其餘特殊格、上岸、守軍／八劍及結局仍保留邊界。下一步取月結與世界事件的最小垂直鏈，不重驗這輪管理或全量HD。完整世界schema仍待審查，沒有手機產物或Release。
 
-前批[世界資料／手動移動預覽限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)的八圖、880原指令向量及40測試保持，舊world入口仍只作移動預覽。原式7×7視野、65地形、12方向站姿、框架、三字型與〈遨遊〉沿批准素材。沒有行走動畫時鐘或完整原版世界同狀態聲明。
+前批證據保持：[普通遭遇與回場](preserved/rust-journey-audit-r1.json)的46測試、320原指令及四程序12擷取；[世界移動](preserved/rust-world-audit-r1.json)的880原指令；[戰中檢查點](preserved/rust-battle-checkpoint-audit-r2.json)的五程序11擷取；[玩家八術](preserved/rust-player-spells-audit-r2.json)的2352模型／15收據及[敵方八分派](preserved/rust-enemy-spells-audit-r1.json)的384模型／13收據。這些歷史範圍與詳細命令留在031、WORKLOG與永久保存，不重新列為待辦。
 
-正常按鍵由原起點40／40走到40／42，山地受阻不扣步，切隸書／關音樂／工具列F7後關閉。第二程序Continue恢復同狀態及完整原生畫布；兩路相同按鍵到營地51邊界時停在38／40、318步，後續方向鍵與F7不能繞過或覆寫保存點。兩程序八張擷取與SDL讀回相同。[核對](preserved/rust-world-audit-r1.json)、[永久保存](preserved/README.md#rust世界資料與移動保存)、[成果圖](docs/images/rust-world-preview-r1.png)及[工具](tools/rust-world.py)為入口。
-
-使用`bash tools/rust-native-player.sh world [--save-dir <既有絕對路徑> [--continue]]`啟動。world-preview.chk只保存地圖預覽狀態，不含軍隊、資源或事件；與battle.chk／Go v5分開。事件、上岸、月結及遭遇預檢回傳未提交邊界；RNG不包含原UI ambient呼叫。右側七項管理標籤只沿原版位置，功能仍待。正式世界及schema保持DRAFT。
-
-前批[原生開發檢查點限定驗收](docs/spec/031-rust-independent-remake.md#開發檢查點限定-conformed)的35個測試保持，五個獨立GUI程序及11張同幀擷取為既有收據。普通戰留在程序打完與關閉後續接均32行動勝利，完整檢查點雜湊相同；凝滯額外行動與已扣次選敵亦能冷讀，Space只退款一次，後續撤退結果相同。三個存讀點畫布與SDL讀回、冷讀前後逐RGBA相同。
-
-原生工具`run --save-dir <既有可寫絕對路徑>`啟用F7／工具列存檔，`run --save-dir <同一路徑> --continue`續接；讀回取保存的樣本、種子、游標、字型與音樂開關。選術待選敵不重新扣次；演出中F7排入請求，下一次規則步進前才提交。檔案是原生開發用battle.chk，不含VM；不是Go v5或完整世界存檔相容實作。[核對](preserved/rust-battle-checkpoint-audit-r2.json)、[保存](preserved/README.md#rust戰中檢查點保存)與[成果圖](docs/images/rust-battle-checkpoint-r1.png)為入口。動畫與音樂游標不保存，冷讀重新開始媒體。
-
-[敵方八分派限定驗收](docs/spec/031-rust-independent-remake.md#敵方八分派限定-conformed)的384組現行Go模型與13份既有成對收據保持。原抽選分段、暗殺判定、凝滯空raw重複計數、弱複製及滅半錯位判定不改；第八分派只受控。alias沿PAM初始化0明示配置，不推論世界所有寫入。
-
-原生視窗以seed1及正常XTest輸入完成敵雷火、兩種新增單位死亡、三個普通行動勝利、切隸書、R再戰與Esc撤退；剩71民兵。第二次敵施法為無適合目標的殺鬼術，正常返回而不扣兵。四張同幀畫布與SDL讀回相同；[成果圖](docs/images/rust-enemy-spells-r1.png)、[核對](preserved/rust-enemy-spells-audit-r1.json)與[永久保存](preserved/README.md#rust敵方八分派保存)為入口。`run --enemy-spells --seed 1`可重播明示樣本，世界與世界保存尚待。
-
-[玩家八術限定驗收](docs/spec/031-rust-independent-remake.md#玩家八術限定-conformed)的2352組現行Go模型及15份既有原版介面收據保持，涵蓋八術、暗殺失敗、取消與顯示倒數。凝滯保留重複空raw的六次加值；減兵與複製保留pending HP。玩家最後只剩施法者且無次數時，可沿已證實原補位前移並普通近戰。
-
-XTest輸入完成火球後17次普通行動勝利，剩60民兵／2雙頭鬼／1女弓箭手；另一局道士複製74→103、凝滯、雷火、選敵Space退款與選術Esc撤退。第三局選敵Esc不退款。11張擷取逐張保存同一幀的軍隊、HP、次數、FX及RGBA雜湊，並與SDL讀回核對。底板簡化、共用PON四幀命中，不稱完整原版動畫相位一致。
-
-[玩家法術核對](preserved/rust-player-spells-audit-r2.json)、[保存](preserved/README.md#rust玩家八術保存)及[圖](docs/images/rust-player-spells-r1.png)保持。原生工具run加--spells使用雙頭鬼，--taoist使用道士；均為明示軍隊／學習旗標／係數／次數配置。右欄地圖術只顯示零次數，尚未接世界功能。世界存檔尚未完成，未新增世界格式或Release。
-
-既有[普通回合與媒體限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)含原生CLI、四場排程對照及三條原生視窗結果。六張SDL紋理讀回與Rust畫布相同；勝利後敵側及全滅後玩家側共2304000背景像素正確清除部隊。預設1000野狼／10女弓箭手及弱軍為測試配置，不稱世界遭遇或自然通關。
-
-OGG〈刀祭〉由Rust透過libsndfile解碼，再由SDL播放。2633140 frames／48000Hz雙聲道，約54.857秒；六份佇列擷取非靜音，對FFmpeg相同前綴差異不超2個16-bit量化單位，裝置佇列有消耗。沒有新的人耳、音效或循環接點驗收。
-
-程式在[internal/remake-rust](internal/remake-rust)，[原生入口](tools/rust-native-player.sh)提供test／build／run。只掛Rust crate與native輸出建置；GUI只掛原生binary／媒體所在native子目錄與輸入工具，看不到Go、PAM或模擬器。一般啟動只需執行檔、媒體及SDL2／libsndfile等平台函式庫。目前只驗Linux x86_64開發樣本，沒有Release。
-
-[前輪音畫核對](preserved/rust-native-player-audit-r1.json)與[普通樣本保存](preserved/README.md#rust原生普通回合與媒體保存)保持。完整素材與binary留本機preserved，不依賴workplace；可刪的是已逐SHA保存的快取。
-
-下一步沿既有Go證據接Rust原式F2／F3、原店與增援募兵，再接守軍、其餘世界事件與結局。完整世界保存先審查全部狀態，不把開發檢查點當正式schema。沿同機制代表抽驗，不重跑已驗移動、普通遭遇／回場、戰中矩陣、全量HD或DOS硬體時序。
+原生執行期只需Rust執行檔、媒體與SDL2／libsndfile等平台函式庫。建置及GUI不掛Go／PAM，沒有DOS或模擬器執行依賴。完整音畫及binary已逐SHA保存於本機preserved，不靠workplace；只驗Linux x86_64，沒有Release。
 
 ## 保持的Go入口與基線
 

@@ -13,6 +13,10 @@ pub mod formation;
 pub mod journey;
 #[cfg(feature = "desktop")]
 pub mod journey_desktop;
+pub mod management;
+#[cfg(feature = "desktop")]
+pub(crate) mod management_ui;
+pub mod pointer;
 pub mod replay;
 #[cfg(feature = "desktop")]
 mod sdl;

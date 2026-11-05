@@ -1,0 +1,56 @@
+{
+  "status": "passed-rust-controls-cleanup",
+  "removed": [
+    {
+      "path": "native/rust-target",
+      "files": 814,
+      "bytes": 210662317,
+      "archived": false
+    },
+    {
+      "path": "native/gui-diagnostic-r1",
+      "files": 5,
+      "bytes": 15207293,
+      "archived": true
+    },
+    {
+      "path": "native/gui-diagnostic-r2",
+      "files": 39,
+      "bytes": 152089090,
+      "archived": true
+    },
+    {
+      "path": "native/gui-before-prompt-fix",
+      "files": 61,
+      "bytes": 243480390,
+      "archived": true
+    },
+    {
+      "path": "gui",
+      "files": 1,
+      "bytes": 0,
+      "archived": true
+    },
+    {
+      "path": "preview.png",
+      "files": 1,
+      "bytes": 1651719,
+      "archived": true
+    },
+    {
+      "path": "camp-preview.png",
+      "files": 1,
+      "bytes": 520370,
+      "archived": true
+    }
+  ],
+  "bytes": 623611179,
+  "kept": [
+    "native/8sword-remake",
+    "native/pack",
+    "native/gui",
+    "rust-source",
+    "evidence"
+  ],
+  "scope": "only this project batch; no other Docker resources removed"
+}

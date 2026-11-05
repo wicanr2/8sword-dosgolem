@@ -3300,3 +3300,20 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 正常原生GUI以原30民兵與seed1等待第60次遭遇，進原式戰場、保存／關閉／冷讀、撤退500→375金回場；另一冷讀直接恢復回場軍隊與資源。再戰全滅並選浪跡，空軍隊且金不重扣。全部為普通XTest輸入，沒有記憶體或IP注入；核心勝利測試明示1000野狼，不冒稱自然新遊戲勝局。
 
 25種原兵站姿依批准troop／battle清單及逐PNG SHA投影，透明區直接透底。地圖與戰場在同一Rust／SDL視窗，OGG由Rust解碼；切場清除前一音訊佇列，未新增人耳或原演出逐相位聲明。遭遇／戰果文字簡化，未知特殊格／月結／上岸仍停邊界。入口為[031](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)、[核對](preserved/rust-journey-audit-r1.json)、[資料工具](tools/rust-journey.py)及[永久保存](preserved/README.md#rust普通遭遇與回場保存)。
+
+## Rust原式管理與滑鼠
+
+2026-11-05。沿既有PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`及PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`，未新增IDA工作或改名。既有IDA9.4地址基準為MZ linear base10000h，world runtime CS0110及DS1E88偏移分開記錄。PAM檔案DS起點仍為MZ header paragraphs×16+1D780h。
+
+| 定位／契約 | 等級與結論 | 本輪證據與界線 |
+|---|---|---|
+| IDA sub_175C6／1775A，Go original_army_fields／review／dismiss | 已證實的既有管理證據：兩欄三列、種類／數量／月薪，整隊刪除並穩定整理。 | Rust沿原圖錨點，月薪Gold×count、用量Command×count；三字型視窗抽驗。沿030限定證據，沒有新增原版逐像素對拍。 |
+| PAM DS3EFE+group×F0h+row×Ah | 已證實：5×24列，area／x／y／kind／stock。 | 120列逐word對上camp-stock-r1的mapping-r1.json；50有效列與八圖全部募兵地形54–58集合相同。typed資料見camp-catalog.tsv，原始檔唯讀。 |
+| Go owned-army-model及reinforcement-camps | 已驗工程契約：安全費用、領導、同類／空隊與獨立庫存。 | 首次開增援時才以當時原庫存×原價／新增價初始化，後續不重建。四份既有收據逐SHA恢復；Rust五測試含八新增種、同類、拒絕與冷讀。新旅程仍受9999及32767兵數界限約束，未宣稱原版word溢位一致。 |
+| 原10／12施法兵與既有Controller | 強推論範圍：未學術時提供停用且全零術書，沿已驗無次數略過／孤軍前移。 | 保留原PAM零初值；Rust模型可進戰及保存。沒有新學術流程、自然高階招募或該兵種完整世界旅程驗收。 |
+| pointer.rs及SDL事件 | 自有工程契約：滑鼠轉共用命令，邏輯座標及正規化接口。 | 放開同目標提交一次，拖到外部、重複放開、失焦及無效目標取消；選取與確認分離。四程序遊戲輸入純滑鼠，僅F12擷取用鍵盤；沒有手機／多指／真機聲明。 |
+| journey.chk 8SJRN002 | 自有有界開發格式，非原版或Go存檔相容。 | 追加原／增援庫存與營地待完成狀態，單檔原子提交。兩處新檢查點冷讀完整狀態相同，真正前批v1戰中檔可讀及存為v2；月結／物品／守軍仍未接。 |
+
+正常滑鼠GUI從30民兵／500金走入39／38營地，買野狼1及民兵1後為31民兵＋1野狼、459金；原店2999及狼74獨立保存。超量9999不交易，冷讀不補貨。F3選狼解雇不退款，另一程序讀回31民兵／459金。再點選合法敵隊只移游標，確認才攻擊，正常撤退後345金／31民兵。前批v1樣本則撤退回30民兵／375金。四程序18份擷取逐RGBA對上SDL讀回，沒有RAM、IP、座標或增兵注入。
+
+53測試、固定原列／地形核對及GUI代表抽驗足以提升本節限定範圍。沒有重新調原版RNG、全量兵種GUI或全部HD。入口為[031](docs/spec/031-rust-independent-remake.md#原式管理與滑鼠限定-conformed)、[核對](preserved/rust-controls-audit-r1.json)、[工具](tools/rust-controls.py)、[GUI](tools/rust-controls-gui.py)、[成果來源](docs/images/rust-controls-r1.json)及[永久保存](preserved/README.md#rust原式管理與滑鼠保存)。

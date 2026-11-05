@@ -2,7 +2,9 @@
 use crate::battle::{Modifiers, Outcome, Side, Stack};
 use crate::catalog::{Catalog, UnitId};
 use crate::controller::{Checkpoint, Controller, EnemyConfig, OriginalRng, ViewState};
+use crate::management::{CampState, camp_fingerprint, camps};
 use crate::media_assets::checksum;
+use crate::spells::SpellBook;
 use crate::world::{Boundary, WalkResult, WorldData, WorldState};
 use std::path::Path;
 pub const INITIAL: [u64; 6] = [1, 0, 100, 500, 100, 0];
@@ -146,6 +148,7 @@ pub struct Journey<'a> {
     pub enemy_first: bool,
     pub battle: Option<Checkpoint<'a>>,
     pub battles: u64,
+    pub camps: CampState,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -164,6 +167,7 @@ impl<'a> Journey<'a> {
             enemy_first: false,
             battle: None,
             battles: 0,
+            camps: CampState::default(),
         }
     }
     pub fn phase(&self) -> &'static str {
@@ -171,12 +175,14 @@ impl<'a> Journey<'a> {
             "battle"
         } else if self.cue.is_some() {
             "prompt"
+        } else if self.camps.pending.is_some() {
+            "camp"
         } else {
             "world"
         }
     }
     pub fn walk(&mut self, data: &WorldData, key: u16) -> Result<Option<Boundary>, String> {
-        if self.cue.is_some() || self.battle.is_some() {
+        if self.cue.is_some() || self.battle.is_some() || self.camps.pending.is_some() {
             return Err("遭遇尚未完成".into());
         }
         match self.world.walk_encounter(data, key)? {
@@ -186,12 +192,33 @@ impl<'a> Journey<'a> {
                 }
                 Ok(None)
             }
+            WalkResult::Boundary(Boundary::Terrain(tile @ 54..=58)) => {
+                if self.world.remaining <= 1 {
+                    return Ok(Some(Boundary::Monthly));
+                }
+                let (target, facing) =
+                    crate::world::motion(self.world.position, key, self.world.facing, false)?;
+                if let Some((i, _)) = camps().iter().enumerate().find(|(i, c)| {
+                    *i / 24 == usize::from(tile - 54)
+                        && c.kind > 0
+                        && c.area == self.world.area
+                        && c.x == target.x
+                        && c.y == target.y
+                }) {
+                    self.world.position = target;
+                    self.world.facing = facing;
+                    self.camps.pending = Some(i);
+                    Ok(None)
+                } else {
+                    Ok(Some(Boundary::Terrain(tile)))
+                }
+            }
             WalkResult::Boundary(b) => Ok(Some(b)),
             _ => Ok(None),
         }
     }
     pub fn choose(&mut self, catalog: &'a Catalog, accept: bool) -> Result<(), String> {
-        if self.cue.is_none() || self.battle.is_some() {
+        if self.cue.is_none() || self.battle.is_some() || self.camps.pending.is_some() {
             return Err("未在遭遇確認".into());
         }
         let mut s = self.clone();
@@ -208,12 +235,23 @@ impl<'a> Journey<'a> {
         s.generation_seed = s.world.rng.seed;
         s.enemy = generate(s.world.area, s.world.rank, &mut s.world.rng)?;
         s.enemy_first = first;
+        let book = self
+            .army
+            .iter()
+            .any(|s| s.unit.is_some_and(UnitId::is_native_caster))
+            .then_some(SpellBook {
+                enabled: false,
+                charges: [0; 8],
+                stat_26b0: 0,
+                stat_26ae: 0,
+            });
+        let scenario = if book.is_some() { 10 } else { 8 };
         let controller = Controller::with_enemy_spells(
             catalog,
             [s.army, s.enemy],
             if first { Side::Enemy } else { Side::Player },
             Modifiers::default(),
-            None,
+            book,
             EnemyConfig {
                 stat_26ae: 0,
                 shifted_alias: 0,
@@ -226,7 +264,7 @@ impl<'a> Journey<'a> {
             view: ViewState {
                 font: s.world.font,
                 music: s.world.music,
-                scenario: 8,
+                scenario,
                 ..ViewState::default()
             },
         });
@@ -271,6 +309,19 @@ impl<'a> Journey<'a> {
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
         self.world.encode(data)?;
+        self.camps.validate(catalog)?;
+        if let Some(i) = self.camps.pending {
+            let c = camps()[i];
+            if self.battle.is_some()
+                || self.cue.is_some()
+                || self.world.remaining <= 1
+                || self.world.area != c.area
+                || self.world.position.x != c.x
+                || self.world.position.y != c.y
+            {
+                return Err("營地待完成狀態錯誤".into());
+            }
+        }
         if self.resources[0] != u64::from(self.world.rank)
             || self.resources.iter().any(|n| *n > 30000)
             || !army_ok(&self.army, false)
@@ -283,7 +334,9 @@ impl<'a> Journey<'a> {
             if self.cue.is_none()
                 || cp.view.font != self.world.font
                 || cp.view.music != self.world.music
-                || cp.controller.spell_book().is_some()
+                || cp.controller.spell_book().is_some_and(|b| {
+                    b.enabled || b.charges != [0; 8] || b.stat_26b0 != 0 || b.stat_26ae != 0
+                })
             {
                 return Err("旅程戰場狀態錯誤".into());
             }
@@ -317,7 +370,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN001".to_vec();
+        let mut b = b"8SJRN002".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -337,6 +390,17 @@ impl<'a> Journey<'a> {
             .unwrap_or_default();
         b.extend((c.len() as u16).to_le_bytes());
         b.extend(c);
+        b.extend(camp_fingerprint().to_le_bytes());
+        for i in 0..120 {
+            b.extend(self.camps.stock[i].to_le_bytes());
+            b.push(u8::from(self.camps.extras[i].is_some()));
+            if let Some(rows) = self.camps.extras[i] {
+                for n in rows {
+                    b.extend(n.to_le_bytes());
+                }
+            }
+        }
+        b.push(self.camps.pending.map(|i| i as u8).unwrap_or(255));
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 16384 {
             return Err("旅程檢查點過大".into());
@@ -346,7 +410,7 @@ impl<'a> Journey<'a> {
     pub fn decode(catalog: &'a Catalog, data: &WorldData, b: &[u8]) -> Result<Self, String> {
         if b.len() < 5730
             || b.len() > 16384
-            || &b[..8] != b"8SJRN001"
+            || (&b[..8] != b"8SJRN001" && &b[..8] != b"8SJRN002")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -383,6 +447,30 @@ impl<'a> Journey<'a> {
         } else {
             Some(Checkpoint::decode(catalog, r.take(n)?)?)
         };
+        let mut camps = CampState::default();
+        if &b[..8] == b"8SJRN002" {
+            if r.q()? != camp_fingerprint() {
+                return Err("營地版本不符".into());
+            }
+            for i in 0..120 {
+                camps.stock[i] = u32::from_le_bytes(r.take(4)?.try_into().unwrap());
+                match r.byte()? {
+                    0 => {}
+                    1 => {
+                        let mut ex = [0; 8];
+                        for n in &mut ex {
+                            *n = u32::from_le_bytes(r.take(4)?.try_into().unwrap());
+                        }
+                        camps.extras[i] = Some(ex);
+                    }
+                    _ => return Err("增援狀態錯誤".into()),
+                }
+            }
+            camps.pending = match r.byte()? {
+                255 => None,
+                n => Some(usize::from(n)),
+            };
+        }
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -396,6 +484,7 @@ impl<'a> Journey<'a> {
             enemy_first,
             battle,
             battles,
+            camps,
         };
         s.validate(catalog, data)?;
         Ok(s)

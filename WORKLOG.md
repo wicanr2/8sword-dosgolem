@@ -3249,3 +3249,21 @@ README加入原生地圖冷讀成果圖，執行器新增world命令，原run保
 [核對](preserved/rust-journey-audit-r1.json)、[永久索引](preserved/rust-journey-r1.json)、[脫離核對](preserved/rust-journey-detached-r1.json)、[清理](preserved/rust-journey-cleanup-r1.json)與[完整性](preserved/rust-journey-integrity-r1.json)保存證據。347檔／232物件、壓縮43714025 bytes；只掛唯讀preserved與單一工具，在容器tmpfs逐原始／壓縮SHA核對通過。保存後清除2672份Go／Rust快取及舊GUI診斷，共719052752 bytes，約685.7 MiB；目前binary、pack、最終GUI與來源保持，完整原圖及音訊不靠workplace保存。
 
 README新增旅程四格成果圖與穩定journey使用入口，舊run／world樣本仍可用。主機gh憑證及private repo已確認，資料包與binary留本機，不加入Git，沒有Release。接續原式F2／F3、原店與增援募兵，再接守軍及其他世界事件／結局；不重跑本輪已通過的普通遭遇與回場矩陣。
+
+## 2026-11-05 Rust原式管理與滑鼠
+
+使用者確認繼續並追加滑鼠操作，以便未來手機移植。命中復古remake、READY實作與觸控路由，已讀逆向技能、spec-gated、文件職責、README標準與驗證交接reference；沿已定原版管理及增援方案，無新增產品取捨或訪談。先審查Go F2／F3、四位數募兵、120營地列與獨立增援初始化，補031 DRAFT／READY，再接Rust。
+
+新增management／management_ui／pointer，保留原式兩欄三列與批准透明圖像。F2供值、F3整隊解雇、原店／八增援、階級／金／用量／庫存及9999數量限制接同一旅程六隊；首次開增援才初始化且不重建。營地進入暫存位置，離店完成步數／探索與遭遇RNG。原10／12零次數術書沿既有Controller略過／孤軍前移。journey.chk寫v2追加庫存與營地狀態，可讀前批無營地交易v1，不讀Go檔。
+
+滑鼠點方向走一步，點部隊或敵隊先選取，再確認交易／出手；底列確認／返回／略過／F7及數字鍵盤可用。放開同一目標才提交一次，拖離放開、失焦及重複放開取消。邏輯座標與正規化入口供未來觸控；本輪只驗Linux旅程入口，run／world樣本保持，沒有手機建置或真機聲明。
+
+53測試及self-check通過，原營地120列逐word等於既有Go映射，50有效位置等於八圖全部募兵地形。Rust最終fmt／test／release只掛唯讀crate與可寫本批，不見Go／PAM；既有Rust1.99.1／SDL2／libsndfile及Pillow11.3.0-r2映像沿用，UID1000、network none、相稱記憶體／CPU／PID，無新image。
+
+最終四程序18擷取以XTest滑鼠操作，只有F12診斷用鍵盤。原30民兵／500金／seed1走入39／38營地，9999超量拒絕、買狼1及民兵1後31民兵＋1狼／459金，原庫存2999、獨立狼74；營地F7冷讀完整狀態同雜湊。離店後F2三字型、F3拖離取消／選狼解雇不退款、F7與第三程序冷讀一致。再遇敵點隊只選取，確認才出手，撤退回31民兵／345金。第四程序讀前批真v1戰中檔，撤退回30民兵／375金並存v2。18份畫布與SDL讀回一致，無RAM／IP或增兵注入。
+
+診斷：初次GUI工具把binary設在批次根而非native，改正路徑後通過。兩次腳本直接讀尚未刷新之status，分別在超量提示及等待遭遇時讀舊畫面；改為等待訊息／action或phase提交後同命令重跑，未調seed或規則。目視發現遭遇cue仍保留時，新確認按鈕誤畫入戰場；改為僅戰鬥前顯示，重新建置後同seed完整抽驗通過。先前擷取與診斷保留，不當成最終收據。
+
+README新增管理與滑鼠四格圖、操作表及目前還原入口；CONTEXT收束成唯一現況，舊驗證詳情回WORKLOG與031。完整媒體、binary、來源及診斷在本機preserved逐SHA保存，Git只收索引、核對與成果圖。主機gh auth及private repo確認，無Release；下一步月結與世界事件，不重開管理／滑鼠／HD矩陣。
+
+[核對](preserved/rust-controls-audit-r1.json)、[索引](preserved/rust-controls-r1.json)、[脫離核對](preserved/rust-controls-detached-r1.json)、[清理](preserved/rust-controls-cleanup-r1.json)及[完整性](preserved/rust-controls-integrity-r1.json)保存收尾。369檔／254物件，壓縮79843655 bytes；只掛唯讀preserved、單一工具及暫存tmpfs逐原始／壓縮SHA核對。移除814份Rust快取及108份已保存診斷，共623611179 bytes，約594.7 MiB，保留目前binary、135份媒體、最終GUI與固定來源。專案容器已清空，其他專案的san5靜態服務未動。
