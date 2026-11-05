@@ -105,7 +105,8 @@ impl Monthly {
                 || j.cue.is_some()
                 || j.camps.pending.is_some()
                 || d.tile(j.world.area, j.world.position)? != r.tile
-                || matches!(r.tile, 49..=51 | 53 | 59 | 65)
+                || matches!(r.tile, 49..=51 | 53 | 65)
+                || j.treasure.pending.is_some()
             {
                 return Err("待確認月報狀態錯誤".into());
             }
@@ -129,6 +130,11 @@ impl<'a> Journey<'a> {
             *self = s;
             return Ok(None);
         }
+        if out == Some(Boundary::Terrain(59)) {
+            s.open_treasure(d, key, c)?;
+            *self = s;
+            return Ok(None);
+        }
         *self = s;
         Ok(out)
     }
@@ -143,6 +149,7 @@ impl<'a> Journey<'a> {
             || self.battle.is_some()
             || self.cue.is_some()
             || self.camps.pending.is_some()
+            || self.treasure.pending.is_some()
         {
             return Err("不在月結邊界".into());
         }

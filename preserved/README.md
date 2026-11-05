@@ -1274,3 +1274,17 @@ Go探針使用唯讀來源／原版／核心／module cache與可寫批次，`GO
 預設2／3縮放另保存scaled-smoke.py、native/scaled/receipt.json及兩張1280×880外部X11圖。縮放滑鼠返回後檢查點與原生尺寸逐bytes相同；兩輪初始化視窗診斷也保存。此證據與三程序八份原生SDL讀回分開，不宣稱手機真機驗收。
 
 本批250檔／229物件，壓縮28512039 bytes。脫離工作區核對通過後，移除792份Rust快取與四份已保存縮放診斷，共178683808 bytes，約170.4 MiB。原生binary、135份媒體、最終GUI及縮放擷取保持。
+
+## Rust寶箱資源保存
+
+[完整索引](rust-treasure-r1.json)、[核對](rust-treasure-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#寶箱資源限定-conformed)及[研究](../RESEARCH-LOG.md#rust寶箱資源)為入口。63測試、80箱與七Go向量、五程序九SDL擷取及預設縮放領取通過。完整crate、135份媒體、binary、兩版舊檢查點、v4分支、IDA新舊匯出／診斷及原版／Go收據，逐SHA壓縮在本機`preserved/rust-treasure-r1/<SHA256>.gz`，不依賴workplace。完整執行期素材、binary、原版及DB不加入Git或公開包。
+
+[資料工具](../tools/rust-treasure.py)在UID1000、network none、Pillow11.3.0-r2容器使用。先在既有battle-r1建立rust-treasure-r1及evidence目錄，再以[IDA匯出器](../tools/export-rust-treasure-ida.py)取得座標寫入證據。IDA原PAM掛/game、正式DB目錄掛/source、位址索引目錄掛/index，全部唯讀；只把DB複製到/tmp，idat -A -S<匯出器路徑> /tmp/PAM.i64，/out只掛本批可寫。必須核對521函式正對照、輸入SHA與完整JSON，不以exit code代替。使用既有ida-pro-9.4-idapython:py312-v1，不搬運主機授權。
+
+`prepare --project /project`恢復前批媒體、真正v2／v3檔、七原版／Go案例與80初值；按已證實掃描順序讀八圖，各十箱且第一圖順序對上原RAM。只輸出正常行走的route.json供GUI輸入，未加入引擎自動尋路。`images --project /project --out <新PNG>`建立README成果與來源；字型仍沿[既有工具](../tools/rust-world.py)的fonts動作補字。
+
+`freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核對原始IDA bytes／索引、63測試、80資料／七規則、GUI與正式基線。`archive --project /project --archive /project/preserved --out /project/preserved/rust-treasure-r1.json`保存資料；`verify --archive /archive --out <新JSON>`只掛唯讀preserved、單一工具與tmpfs逐物件解壓核對。[脫離核對](rust-treasure-detached-r1.json)、[清理](rust-treasure-cleanup-r1.json)與[完整性](rust-treasure-integrity-r1.json)另存。原始及確定素材皆保存；只排除可重建Rust快取。
+
+目前[啟動器](../tools/rust-native-player.sh)指向rust-treasure-r1/native。依索引解壓binary及pack到同名路徑，核對SHA與權限，再用`journey --save-dir <既有可寫絕對路徑>`遊玩，加`--continue`續接；F7可保存寶箱待選，領取後自動保存，不重領。v4讀v1至v3，不讀Go進度；完整世界及手機未完成，沒有Release。執行期只有Rust、媒體與SDL2／libsndfile等平台函式庫。
+
+本批322檔／247物件，壓縮31287876 bytes。脫離工作區核對通過後，移除Rust快取及已保存診斷，共326613778 bytes，約311.5 MiB。目前binary、135份媒體、最終GUI、縮放擷取、來源及IDA證據保持。

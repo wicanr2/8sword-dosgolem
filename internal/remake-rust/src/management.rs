@@ -140,6 +140,7 @@ impl<'a> Journey<'a> {
             || self.cue.is_some()
             || self.camps.pending.is_some()
             || self.month.pending.is_some()
+            || self.treasure.pending.is_some()
             || slot >= 6
             || self.army[slot].count == 0
         {

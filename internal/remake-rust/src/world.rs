@@ -292,6 +292,14 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn treasure_fixture() -> Self {
+        let mut d = Self::flat_fixture();
+        for s in crate::treasure::sites() {
+            d.maps[usize::from(s.area)][usize::from(s.y) * 70 + usize::from(s.x)] = 59;
+        }
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn camp_fixture() -> Self {
         let mut d = Self::flat_fixture();
         d.maps[0][38 * 70 + 39] = 54;
@@ -546,6 +554,19 @@ impl WorldState {
         let mut probe = self.clone();
         if probe.walk_encounter(data, key)? != WalkResult::Boundary(Boundary::Monthly) {
             return Err("非月末有效移動".into());
+        }
+        let mut s = self.clone();
+        let (target, face) = motion(s.position, key, s.facing, false)?;
+        let (_, boat) = guard(data.tile(s.area, target)?, s.boat, s.mountain, s.bamboo)?;
+        s.position = target;
+        s.facing = face;
+        s.boat = boat;
+        Ok(s)
+    }
+    pub(crate) fn event_step(&self, data: &WorldData, key: u16, tile: u8) -> Result<Self, String> {
+        let mut probe = self.clone();
+        if probe.walk_encounter(data, key)? != WalkResult::Boundary(Boundary::Terrain(tile)) {
+            return Err("非已驗事件入口".into());
         }
         let mut s = self.clone();
         let (target, face) = motion(s.position, key, s.facing, false)?;

@@ -182,6 +182,131 @@
         "preserved/treasure-original-audit-r1.json",
         "preserved/treasure-audit-r1.json"
       ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 83708,
+        "file_offset": 23404,
+        "bytes": "8b76ec",
+        "instruction": "mov     si, [bp+var_14]; jumptable 0001477F case 107",
+        "operands": [
+          {
+            "index": 0,
+            "type": 1,
+            "value": 6
+          },
+          {
+            "index": 1,
+            "type": 4,
+            "value": 18446744073709551596
+          }
+        ]
+      },
+      "semantic_note": "寶箱字元107分支，以var_14乘4索引座標",
+      "level": "proven",
+      "evidence": [
+        "preserved/rust-treasure-audit-r1.json",
+        "docs/spec/031-rust-independent-remake.md#寶箱資源-ready"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 83718,
+        "file_offset": 23414,
+        "bytes": "8984608c",
+        "instruction": "mov     [si-73A0h], ax",
+        "operands": [
+          {
+            "index": 0,
+            "type": 4,
+            "value": 35936
+          },
+          {
+            "index": 1,
+            "type": 1,
+            "value": 0
+          }
+        ]
+      },
+      "semantic_note": "原operand [si-73A0h] 寫入寶箱x，16位位移為8C60h",
+      "level": "proven",
+      "evidence": [
+        "preserved/rust-treasure-audit-r1.json",
+        "docs/spec/031-rust-independent-remake.md#寶箱資源-ready"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 83725,
+        "file_offset": 23421,
+        "bytes": "8984628c",
+        "instruction": "mov     [si-739Eh], ax",
+        "operands": [
+          {
+            "index": 0,
+            "type": 4,
+            "value": 35938
+          },
+          {
+            "index": 1,
+            "type": 1,
+            "value": 0
+          }
+        ]
+      },
+      "semantic_note": "原operand [si-739Eh] 寫入寶箱y，16位位移為8C62h",
+      "level": "proven",
+      "evidence": [
+        "preserved/rust-treasure-audit-r1.json",
+        "docs/spec/031-rust-independent-remake.md#寶箱資源-ready"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 83793,
+        "file_offset": 23489,
+        "bytes": "837ef248",
+        "instruction": "cmp     [bp+var_E], 48h ; 'H'",
+        "operands": [
+          {
+            "index": 0,
+            "type": 4,
+            "value": 18446744073709551602
+          },
+          {
+            "index": 1,
+            "type": 5,
+            "value": 72
+          }
+        ]
+      },
+      "semantic_note": "內層x掃描原始72-byte列，包含CR/LF但只收字元107",
+      "level": "proven",
+      "evidence": [
+        "preserved/rust-treasure-audit-r1.json",
+        "docs/spec/031-rust-independent-remake.md#寶箱資源-ready"
+      ]
+    },
+    {
+      "original_location": {
+        "ida_linear": 83844,
+        "file_offset": 23540,
+        "bytes": "ff46ee",
+        "instruction": "inc     [bp+var_12]",
+        "operands": [
+          {
+            "index": 0,
+            "type": 4,
+            "value": 18446744073709551598
+          }
+        ]
+      },
+      "semantic_note": "完成一列後遞增y，外層共80列",
+      "level": "proven",
+      "evidence": [
+        "preserved/rust-treasure-audit-r1.json",
+        "docs/spec/031-rust-independent-remake.md#寶箱資源-ready"
+      ]
     }
   ],
   "fields": [

@@ -3283,3 +3283,21 @@ README新增月報／獨立冷讀圖及目前還原入口，CONTEXT與WORKLIST�
 另補預設2／3縮放的1280×880視窗。初次固定一秒查窗過早，第二次取到初始化階段已失效windowID，XSetInputFocus報BadWindow；回查試玩路由後，改等同一視窗穩定再操作，同容器／同命令乾淨通過。兩張外部X11圖已目視，字與數字完整；縮放滑鼠返回後檢查點逐bytes等於原生尺寸結果。這是獨立縮放抽驗，不混入八份SDL讀回；完整腳本及兩輪診斷一併保存。
 
 [核對](preserved/rust-monthly-audit-r1.json)、[索引](preserved/rust-monthly-r1.json)、[脫離核對](preserved/rust-monthly-detached-r1.json)、[清理](preserved/rust-monthly-cleanup-r1.json)與[完整性](preserved/rust-monthly-integrity-r1.json)保存交接。250檔／229物件、壓縮28512039 bytes；只掛唯讀preserved、單一工具與tmpfs逐原始／壓縮SHA核對通過。移除792份Rust快取與四份已保存診斷，共178683808 bytes，約170.4 MiB；目前binary、135媒體、GUI及縮放來源保持。正式197／7／923／535／1071及Go保存格式不變，無專案容器殘留。
+
+## 2026-11-05 Rust寶箱資源
+
+使用者確認繼續。命中復古重製、READY實作、文件及IDA路由；載入逆向技能、spec-gated、文件職責、驗證交接與README標準。沿030七個原版／Go寶箱控制及現行treasure-data／port／store。先補座標來源RE與031 DRAFT／READY，再接Rust；沒有更動已驗Go或HD矩陣。
+
+原PAM讀DS8C60超出檔案，改查原RAM及IDA資料流。IDA技能的catalog路徑是指向ida_94_official的symlink，容器內先查link再讀實際技能與工具契約；沿本專案既有py312-v1 image。新IDA／UID正對照為9.4、521函式及固定輸入SHA；DB從正式唯讀來源複製/tmp。sub_145FA證實row-major掃描字元107，八圖各十箱，第一圖與原RAM十點相同。原位移在IDA呈負值，query以16位operand匹配，保留原名／bytes／xref。追加五筆proven位址索引，匯出逐行合併十一筆語意；預期533行bytes由獨立MZ核對。
+
+Rust新增treasure.rs與80目錄／七規則TSV；原式灰底金字紅選取、兩選項、鍵鼠選擇／確認／取消與三字型接同一旅程。只清單一寶箱；取消保留，空箱不開，Space不扣步；最後一步領或取消後才月報。v4追加80值與待選步，支援前無寶箱的v1至v3，有目錄時領取原子保存。全世界schema、原日曆／NPC仍待。
+
+63測試通過，含七Go案例、80身份只清自身、取消／空箱／重領拒絕、冷讀、異常資料、原v3遷移與最後一步接月報。最終Rust fmt／test／release／self-check只見唯讀crate及本批，不見Go／PAM；既有Rust1.99.1／SDL2／libsndfile及Pillow11.3.0-r2沿用，UID1000、network none、資源與逾時有界，未新建image。
+
+最終五個GUI程序原起點30民兵、500金、100領導、seed1，正常滑鼠27步到60／41寶箱30。取消後Space重開，三字型及F7待選冷讀相同；金分支530金，領導分支103，軍隊與其他79箱不變，兩分支自動保存。金分支普通冷讀／空箱不重領，前批真正v3月報後進度保持305金再存v4。五程序九SDL同幀讀回一致，無RAM／IP／位置／獎勵注入；另2／3縮放滑鼠選領導，保存檔逐bytes等於原生分支，兩張外部X11圖分開列。較早無標題四格圖另存，README使用加說明的版本。
+
+環境診斷：idat -v無DB回初始化error2，但實際最小探針與正式查詢成功。加入中文位址索引後，IDA的ASCII locale使read_text失敗，改明示UTF-8讀寫，再從同一正式唯讀DB的全新/tmp副本乾淨通過。r0及失敗來源／log保持；未因退出碼或無JSON宣稱成功。幾次文字patch因完整行／格式化不符而未套用，改正上下文後才寫入，沒有產品規則失敗。
+
+README新增寶箱兩分支及冷讀圖，CONTEXT／WORKLIST下一步改其餘原式選單與世界事件。主機gh憑證與private repo已確認；完整素材／binary／來源留本機preserved，只推索引、核對與成果圖，無Release。既有197／7／923／535／1071及Go格式保持，不重跑全量HD或月報。
+
+收尾補強交易前的座標、身份與剩值驗證；異常資料在加值前拒絕，整份狀態保持。修改後重新完成63測試、五程序九擷取與縮放抽驗，最終binary與核對及成果圖一致。322檔／247物件永久保存，壓縮31287876 bytes；只掛唯讀preserved、單一工具及tmpfs的[脫離核對](preserved/rust-treasure-detached-r1.json)通過。移除可重建Rust快取及已保存診斷，共326613778 bytes，約311.5 MiB。[完整性核對](preserved/rust-treasure-integrity-r1.json)確認來源、135媒體、binary、位址索引與11個入口連結，沒有root-owned檔案或專案容器殘留。

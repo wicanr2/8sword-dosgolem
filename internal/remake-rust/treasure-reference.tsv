@@ -1,0 +1,8 @@
+# name gold lead amount choice after_gold after_lead consumed
+gold	500	1000	500	1	1000	1000	1
+leadership	500	1000	509	2	500	1050	1
+gold-cap	29990	1000	500	1	30000	1000	1
+leadership-cap	500	29990	509	2	500	30000	1
+gold-wrap	30000	1000	5000	1	30000	1000	1
+cancel	500	1000	500	0	500	1000	0
+empty	500	1000	0	1	500	1000	0

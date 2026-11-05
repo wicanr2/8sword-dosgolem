@@ -3333,3 +3333,21 @@ Rust直接讀批准RGBA／字模及OGG，不讀原RGB或執行x86繪圖。SDL2�
 正常滑鼠路徑從原30民兵／500金及seed1開始，於40／40、40／41往返324步；四次正常遇敵確認後撤退，不攻擊、不注入倒數。財務前235、收入100、應付實付30、餘額305，30民兵保持。月報已自動保存後才顯示，三字型各擷取；另一程序讀回相同狀態與畫布，兩路關閉後actions324／剩324、金305，不重扣。第三程序讀前批真正v2營地檔，31民兵／1狼、459金及原庫存2999保持，離店保存v3。
 
 營地最後一步先購兵後月結由明示核心資料驗證，未稱自然高階營地完整旅程；資金不足清軍與增援補貨由來源向量及模型驗，沒有新的不足GUI或守軍／日曆對拍。入口為[031](docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)、[核對](preserved/rust-monthly-audit-r1.json)、[工具](tools/rust-monthly.py)、[GUI](tools/rust-monthly-gui.py)、[成果來源](docs/images/rust-monthly-r1.json)及[永久保存](preserved/README.md#rust玩家月報與補貨保存)。
+
+## Rust寶箱資源
+
+2026-11-05。沿PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`及既有七組原版／Go收據。IDA9.4／521函式、MZ linear base10000h，runtime CS0110與DS1E88偏移獨立記錄；PAM檔案DS基準是header paragraphs×16+1D780h。
+
+| 定位 | 等級與結論 | 證據與界線 |
+|---|---|---|
+| sub_145FA，IDA146FC至14711 | 已證實：原字元107分支依var_14順序寫寶箱x／y。 | 原operand保留[si-73A0h]／[si-739Eh]，16位位移為8C60／8C62；不能只搜尋正值文字或把BSS當PAM固定表。新的完整124行及原RAM map1十點互證。 |
+| IDA14751至14792 | 已證實：y外層80列，x內層72 bytes，寶箱順序為逐列由左到右。 | 原72-byte列含CR/LF，字元107減48為tile59。八圖各十箱；Rust只收70個地形欄，與原掃描一致。 |
+| PAM DS4490、原[bx+si+4490h] | 已證實：8×10原值與單次清零。 | 80初值逐word同既有原版RAM；Go七案例沿030。Rust資源安全封頂30000，保留原30000＋5000回繞歸零為差異，未稱原溢位parity。 |
+| runtime0110:22E9／230E及原DS04F8／04FA | 已證實選擇：納入金錢，或amount/10整數商加領導力；Esc不清箱。 | 七Go向量、取消／空箱／封頂；Rust80身份只清自身，軍隊、其他四資源與營地保持。 |
+| 事件待選步／journey v4 | 自有工程契約：暫存步驟，選擇確認後接時間／遭遇，領取原子保存。 | v1至v3此前未開放寶箱，遷移補原初值；v4保存80值及待選身份。63測試、五程序九SDL擷取，最後一步與月報交接由核心樣本驗證。 |
+
+原始座標表在PAM檔案範圍外。首次讀固定檔表失敗後，查原RAM及IDA寫入端，確認為執行期掃描結果；沒有以排序推測直接接production。位址索引追加五個proven定位，新匯出器逐行合併已分級語意，十一行附索引；533行bytes獨立對MZ來源及relocation核對，原DB唯讀且未改名。
+
+正常GUI原30民兵／500金／100領導、seed1走27步至60／41。取消後原值30保持，再Space開啟；三字型可切，F7待選冷讀逐狀態／畫布相同。金分支530／100，領導分支500／103，只清index4、30民兵及其他79箱保持；領取自動保存後冷讀不重領。前批真v3月報後檔讀回305金／30民兵／工程月結1再存v4。九份同幀畫布等於SDL讀回；2／3縮放選領導，保存檔等於原生分支，兩張外部X11圖另列。
+
+入口為[031](docs/spec/031-rust-independent-remake.md#寶箱資源限定-conformed)、[位址索引](docs/spec/treasure-address-index-r1.json)、[IDA工具](tools/export-rust-treasure-ida.py)、[核對](preserved/rust-treasure-audit-r1.json)、[資料工具](tools/rust-treasure.py)、[GUI](tools/rust-treasure-gui.py)及[永久保存](preserved/README.md#rust寶箱資源保存)。不提升其他劇情、守軍、原日曆或完整世界保存，不聲稱整段原RNG序列一致。

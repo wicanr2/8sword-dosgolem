@@ -13,6 +13,7 @@ pub enum Page {
     Shop,
     Quantity,
     Monthly,
+    Treasure,
 }
 pub struct Manager {
     pub page: Page,
@@ -34,6 +35,10 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.treasure.pending.is_some() {
+            self.page = Page::Treasure;
+            return;
+        }
         if j.month.pending.is_some() {
             self.page = Page::Monthly;
             return;
@@ -47,6 +52,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Treasure => Some(Screen::Treasure),
             Page::Monthly => Some(Screen::Report),
             Page::Review | Page::Dismiss => Some(Screen::Army),
             Page::Shop | Page::Quantity => Some(Screen::Shop {
@@ -93,6 +99,22 @@ impl Manager {
                 };
                 self.selected = 0;
                 self.message.clear();
+            }
+            return Ok(());
+        }
+        if self.page == Page::Treasure {
+            match key {
+                13 | 27 => {
+                    j.finish_treasure(c, data, key == 27)?;
+                    self.page = Page::World;
+                    self.message.clear();
+                }
+                49 | 50 => j.select_treasure((key - 48) as u8)?,
+                1073741906 | 1073741905 | 1073741904 | 1073741903 => {
+                    let choice = j.treasure.pending.ok_or("沒有寶箱選項")?.choice;
+                    j.select_treasure(3 - choice)?;
+                }
+                _ => {}
             }
             return Ok(());
         }
@@ -213,6 +235,46 @@ pub fn draw(
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::Treasure {
+        let p = j.treasure.pending.ok_or("缺少寶箱選項")?;
+        let amount = j.treasure.amounts[usize::from(p.index)];
+        fill(f, [24, 684, 1344, 480], [82, 82, 82]);
+        border(f, [24, 684, 1344, 480], [206, 170, 74]);
+        text(
+            f,
+            font,
+            &format!("你得到一個寶箱，箱中物品價值 {}", amount),
+            72,
+            720,
+            42,
+            1248,
+        )?;
+        for (i, r) in crate::pointer::TREASURE_CHOICES.iter().enumerate() {
+            fill(
+                f,
+                r.array(),
+                if p.choice == i as u8 + 1 {
+                    [255, 90, 90]
+                } else {
+                    [82, 82, 82]
+                },
+            );
+            text(
+                f,
+                font,
+                &if i == 0 {
+                    "（1）納入自己總財產".into()
+                } else {
+                    format!("（2）分贈部隊，增加領導能力 {}", amount / 10)
+                },
+                r.0 + 12,
+                r.1 + 24,
+                42,
+                r.2 - 24,
+            )?;
+        }
+        return Ok(());
+    }
     if ui.page == Page::Monthly {
         let b = j.month.pending.as_ref().ok_or("缺少月報")?.budget;
         fill(f, [24, 120, 1872, 1116], [8, 36, 25]);

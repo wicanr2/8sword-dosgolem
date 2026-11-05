@@ -1,0 +1,57 @@
+{
+  "status": "passed-rust-treasure-cleanup",
+  "removed": [
+    {
+      "path": "native/rust-target",
+      "files": 804,
+      "bytes": 186721455,
+      "archived": false
+    },
+    {
+      "path": "native/gui-before-final-guard",
+      "files": 46,
+      "bytes": 137014502,
+      "archived": true
+    },
+    {
+      "path": "native/scaled-before-final-guard",
+      "files": 5,
+      "bytes": 1076138,
+      "archived": true
+    },
+    {
+      "path": "unlabelled-comparison.png",
+      "files": 1,
+      "bytes": 874705,
+      "archived": true
+    },
+    {
+      "path": "unlabelled-comparison.json",
+      "files": 1,
+      "bytes": 6441,
+      "archived": true
+    },
+    {
+      "path": "labelled-before-guard.png",
+      "files": 1,
+      "bytes": 914096,
+      "archived": true
+    },
+    {
+      "path": "labelled-before-guard.json",
+      "files": 1,
+      "bytes": 6441,
+      "archived": true
+    }
+  ],
+  "bytes": 326613778,
+  "kept": [
+    "native/8sword-remake",
+    "native/pack",
+    "native/gui",
+    "native/scaled",
+    "rust-source",
+    "evidence",
+    "IDA exporters and scaled-smoke.py"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "status": "passed-rust-treasure-integrity",
+  "root_owned": [],
+  "markdown_directories": [],
+  "links": [
+    "docs/images/rust-treasure-r1.json",
+    "docs/images/rust-treasure-r1.png",
+    "preserved/rust-treasure-audit-r1.json",
+    "preserved/rust-treasure-cleanup-r1.json",
+    "preserved/rust-treasure-detached-r1.json",
+    "preserved/rust-treasure-integrity-r1.json",
+    "preserved/rust-treasure-r1.json",
+    "tools/export-rust-treasure-ida.py",
+    "tools/rust-monthly.py",
+    "tools/rust-treasure-gui.py",
+    "tools/rust-treasure.py"
+  ],
+  "positive_control": "tools/rust-monthly.py",
+  "source_media_binary_unchanged_after_cleanup": true,
+  "media": 135,
+  "scaled": {
+    "status": "passed-scaled-treasure-mouse",
+    "scale": "2/3",
+    "pixels": [
+      1280,
+      880
+    ],
+    "same_returned_checkpoint": true,
+    "screens": {
+      "report": "2ad97fd4c0757e4b3062f8c1b82ad0daf430f1fc6d738aa4266f47c7e91de7bf",
+      "returned": "777f69199a651b8fbb7c9112738e344ae0c75267f81c875038e6eb4dcd8fb836"
+    },
+    "binary_sha256": "f15d5b893f963dddd2024b0e3cf977e23c077e97c1c68443030d73e082654bdd",
+    "capture": "External X11; not native SDL readback"
+  },
+  "archive": {
+    "files": 322,
+    "objects": 247,
+    "compressed_bytes": 31287876
+  },
+  "release": false
+}

@@ -34,6 +34,7 @@ pub fn offer_box(i: usize) -> Rect {
 }
 pub const TABS: [Rect; 2] = [Rect(96, 738, 360, 60), Rect(480, 738, 360, 60)];
 pub const CHOICES: [Rect; 2] = [Rect(144, 858, 432, 84), Rect(600, 858, 432, 84)];
+pub const TREASURE_CHOICES: [Rect; 2] = [Rect(72, 810, 1248, 96), Rect(72, 942, 1248, 96)];
 pub fn digit_box(i: usize) -> Rect {
     Rect(
         1416 + (i % 3) as i32 * 156,
@@ -48,6 +49,7 @@ pub enum Screen {
     Prompt,
     Army,
     Report,
+    Treasure,
     Shop { extra: bool, quantity: bool },
     Battle { finished: bool },
 }
@@ -60,6 +62,7 @@ pub enum Action {
     Target(usize),
     Choice(bool),
     Extra(bool),
+    TreasureChoice(u8),
 }
 pub fn normalized(x: f32, y: f32) -> Option<(i32, i32)> {
     if !x.is_finite() || !y.is_finite() || !(0.0..1.0).contains(&x) || !(0.0..1.0).contains(&y) {
@@ -104,6 +107,13 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
     }
     match screen {
         Screen::Report => {}
+        Screen::Treasure => {
+            for (i, r) in TREASURE_CHOICES.iter().enumerate() {
+                if r.contains(x, y) {
+                    return Some(Action::TreasureChoice((i + 1) as u8));
+                }
+            }
+        }
         Screen::World => {
             if Rect(1392, 120, 504, 1080).contains(x, y) {
                 let row = (y - 120) / 162;

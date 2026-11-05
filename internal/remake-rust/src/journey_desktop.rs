@@ -74,6 +74,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     }
     let assets = assets.ok_or("缺少素材目錄")?;
     let data = WorldData::load(&assets)?;
+    crate::treasure::validate_maps(&data)?;
     let catalog = Catalog::builtin()?;
     let mut journey = if continuing {
         Journey::load(
@@ -113,6 +114,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     'game: loop {
         let now = Instant::now();
         let month_before = (journey.month.months, journey.month.pending.is_some());
+        let treasure_before = journey.treasure.amounts;
         let mut snap = false;
         ui.sync(&journey);
         for e in sdl.events() {
@@ -171,6 +173,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         }
                         Action::Choice(v) => choose = v,
                         Action::Extra(v) => ui.extra(&mut journey, &catalog, v),
+                        Action::TreasureChoice(v) => journey.select_treasure(v)?,
                     }
                 }
             }
@@ -294,7 +297,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
             cp.view.music = journey.world.music;
             cp.view.cursor = cursor as u8;
         }
-        if month_before != (journey.month.months, journey.month.pending.is_some())
+        if (month_before != (journey.month.months, journey.month.pending.is_some())
+            || treasure_before != journey.treasure.amounts)
             && store.is_some()
         {
             save_requested = true;
@@ -474,6 +478,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 Page::Shop => ("輸入數量", "離開營地", ""),
                 Page::Quantity => ("確認購買", "取消", "清空"),
                 Page::Monthly => ("返回地圖", "返回地圖", "返回地圖"),
+                Page::Treasure => ("確認領取", "取消", ""),
                 Page::World => {
                     if journey.battle.is_some() {
                         (
@@ -621,7 +626,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             boundary
         );
         let status = format!(
-            "{status}selected\t{}\nextra\t{}\ndigits\t{}\nused\t{}\ncamp\t{:?}\nmessage\t{}\nmonths\t{}\nmonthly\t{:?}\n",
+            "{status}selected\t{}\nextra\t{}\ndigits\t{}\nused\t{}\ncamp\t{:?}\nmessage\t{}\nmonths\t{}\nmonthly\t{:?}\nleadership\t{}\ntreasure\t{:?}\nchest_values\t{}\n",
             ui.selected,
             ui.extra,
             ui.digits,
@@ -629,7 +634,16 @@ pub fn run(args: &[String]) -> Result<(), String> {
             journey.camps.pending,
             ui.message,
             journey.month.months,
-            journey.month.pending.as_ref().map(|r| r.budget)
+            journey.month.pending.as_ref().map(|r| r.budget),
+            journey.resources[4],
+            journey.treasure.pending,
+            journey
+                .treasure
+                .amounts
+                .iter()
+                .map(|n| n.to_string())
+                .collect::<Vec<_>>()
+                .join(",")
         );
         if let Some(d) = &capture {
             if snap {

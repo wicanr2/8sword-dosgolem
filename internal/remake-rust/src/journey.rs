@@ -150,6 +150,7 @@ pub struct Journey<'a> {
     pub battles: u64,
     pub camps: CampState,
     pub month: crate::monthly::Monthly,
+    pub treasure: crate::treasure::Treasure,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -170,10 +171,13 @@ impl<'a> Journey<'a> {
             battles: 0,
             camps: CampState::default(),
             month: crate::monthly::Monthly::default(),
+            treasure: crate::treasure::Treasure::default(),
         }
     }
     pub fn phase(&self) -> &'static str {
-        if self.month.pending.is_some() {
+        if self.treasure.pending.is_some() {
+            "treasure"
+        } else if self.month.pending.is_some() {
             "monthly"
         } else if self.battle.is_some() {
             "battle"
@@ -190,6 +194,7 @@ impl<'a> Journey<'a> {
             || self.battle.is_some()
             || self.camps.pending.is_some()
             || self.month.pending.is_some()
+            || self.treasure.pending.is_some()
         {
             return Err("遭遇尚未完成".into());
         }
@@ -316,6 +321,7 @@ impl<'a> Journey<'a> {
         self.world.encode(data)?;
         self.camps.validate(catalog)?;
         self.month.validate(self, catalog, data)?;
+        self.treasure.validate(self, data)?;
         if let Some(i) = self.camps.pending {
             let c = camps()[i];
             if self.battle.is_some()
@@ -375,7 +381,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN003".to_vec();
+        let mut b = b"8SJRN004".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -417,6 +423,14 @@ impl<'a> Journey<'a> {
             b.extend([u8::from(m.disbanded), r.tile]);
             put_army(&mut b, &r.army_before);
         }
+        b.extend(crate::treasure::fingerprint().to_le_bytes());
+        for n in self.treasure.amounts {
+            b.extend(n.to_le_bytes());
+        }
+        b.push(u8::from(self.treasure.pending.is_some()));
+        if let Some(p) = self.treasure.pending {
+            b.extend([p.index, p.choice, u8::from(p.moved)]);
+        }
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 16384 {
             return Err("旅程檢查點過大".into());
@@ -426,7 +440,10 @@ impl<'a> Journey<'a> {
     pub fn decode(catalog: &'a Catalog, data: &WorldData, b: &[u8]) -> Result<Self, String> {
         if b.len() < 5730
             || b.len() > 16384
-            || (&b[..8] != b"8SJRN001" && &b[..8] != b"8SJRN002" && &b[..8] != b"8SJRN003")
+            || (&b[..8] != b"8SJRN001"
+                && &b[..8] != b"8SJRN002"
+                && &b[..8] != b"8SJRN003"
+                && &b[..8] != b"8SJRN004")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -488,7 +505,7 @@ impl<'a> Journey<'a> {
             };
         }
         let mut month = crate::monthly::Monthly::default();
-        if &b[..8] == b"8SJRN003" {
+        if &b[..8] == b"8SJRN003" || &b[..8] == b"8SJRN004" {
             if r.q()? != crate::monthly::fingerprint() {
                 return Err("補貨上限版本不符".into());
             }
@@ -524,6 +541,33 @@ impl<'a> Journey<'a> {
                 _ => return Err("月報狀態錯誤".into()),
             }
         }
+        let mut treasure = crate::treasure::Treasure::default();
+        if &b[..8] == b"8SJRN004" {
+            if r.q()? != crate::treasure::fingerprint() {
+                return Err("寶箱資料版本不符".into());
+            }
+            for n in &mut treasure.amounts {
+                *n = u16::from_le_bytes(r.take(2)?.try_into().unwrap());
+            }
+            match r.byte()? {
+                0 => {}
+                1 => {
+                    let index = r.byte()?;
+                    let choice = r.byte()?;
+                    let moved = match r.byte()? {
+                        0 => false,
+                        1 => true,
+                        _ => return Err("寶箱移動旗標錯誤".into()),
+                    };
+                    treasure.pending = Some(crate::treasure::Pending {
+                        index,
+                        choice,
+                        moved,
+                    });
+                }
+                _ => return Err("寶箱階段錯誤".into()),
+            }
+        }
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -539,6 +583,7 @@ impl<'a> Journey<'a> {
             battles,
             camps,
             month,
+            treasure,
         };
         s.validate(catalog, data)?;
         Ok(s)
