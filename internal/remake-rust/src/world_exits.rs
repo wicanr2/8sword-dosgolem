@@ -101,7 +101,20 @@ impl<'a> Journey<'a> {
             .iter()
             .find(|e| e.area == s.world.area && e.position == s.world.position && e.tile == tile)
             .ok_or("出口不屬原圖清單")?;
-        if tile == 49 {
+        s.complete_exit(d, *site, key, false, c)?;
+        *self = s;
+        Ok(())
+    }
+    pub(crate) fn complete_exit(
+        &mut self,
+        d: &WorldData,
+        site: Exit,
+        key: u16,
+        blocked: bool,
+        c: &Catalog,
+    ) -> Result<(), String> {
+        let mut s = self.clone();
+        if site.tile == 49 {
             s.world.reveal();
         }
         let old = s.world.area;
@@ -113,11 +126,11 @@ impl<'a> Journey<'a> {
         });
         let view = s.magic.view(d)?;
         s.world.reveal();
-        if key != 0x3920 && s.world.remaining == 1 {
+        if !blocked && key != 0x3920 && s.world.remaining == 1 {
             let tile = view.tile(s.world.area, s.world.position)?;
             s.begin_month(c, &view, tile)?;
         } else {
-            if key != 0x3920 {
+            if !blocked && key != 0x3920 {
                 s.world.remaining -= 1;
             }
             s.run_encounter_tail(&view)?;

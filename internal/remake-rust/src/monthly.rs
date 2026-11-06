@@ -132,7 +132,7 @@ impl<'a> Journey<'a> {
             return Ok(None);
         }
         let out = s.walk(&view, key)?;
-        if out == Some(Boundary::BoatExit) && s.world.plain_shore(&view, key)? {
+        if out == Some(Boundary::BoatExit) && s.supported_shore(&view, key)? {
             s.world = s.world.prepare_shore(&view, key)?;
             s.travel_spell.shore = Some(crate::travel_spells::Shore { key, yes: true });
             s.travel_spell.validate(&s)?;

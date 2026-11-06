@@ -6,6 +6,8 @@ pub struct Travel {
     pub teleport: Option<u8>,
     pub shore: Option<Shore>,
     pub jump: crate::jump_spell::Jump,
+    /// Original shop fallback after declining shore. Zero/None in older saves.
+    pub refused_shop: Option<u16>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Shore {
@@ -25,6 +27,15 @@ pub fn regions() -> [&'static str; 8] {
 }
 impl Travel {
     pub(crate) fn validate(&self, j: &Journey<'_>) -> Result<(), String> {
+        if self.refused_shop.is_some()
+            && (self.shore.is_some()
+                || self.teleport.is_some()
+                || j.magic.shop.is_none()
+                || j.world.boat != 2
+                || !crate::jump_spell::DIRECTIONS.contains(&self.refused_shop.unwrap()))
+        {
+            return Err("拒絕上岸商店階段錯誤".into());
+        }
         if let Some(p) = self.shore {
             if j.world.boat != 2
                 || self.teleport.is_some()
@@ -92,7 +103,7 @@ impl<'a> Journey<'a> {
         self.travel_spell.validate(self)?;
         let p = self.travel_spell.shore.ok_or("沒有待確認上岸")?;
         let view = self.magic.view(d)?;
-        if !self.world.plain_shore(&view, p.key)? {
+        if !self.supported_shore(&view, p.key)? {
             return Err("上岸落點不符".into());
         }
         let mut s = self.clone();
@@ -103,6 +114,10 @@ impl<'a> Journey<'a> {
                 return Err(format!("上岸尚未接入：{b:?}"));
             }
         } else {
+            if s.refuse_special_shore(d, p.key, c)? {
+                *self = s;
+                return Ok(());
+            }
             match s.world.reject_shore(&view, p.key)? {
                 crate::world::WalkResult::Boundary(crate::world::Boundary::Encounter(cue)) => {
                     if s.army[0].count > 0 {

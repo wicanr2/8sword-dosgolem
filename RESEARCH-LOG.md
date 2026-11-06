@@ -3492,3 +3492,26 @@ GUI只把真正v9起始位置移到第4區67／70原跳躍店。實購後75金�
 | DOS／PAM.AY `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`／IDA MZ base10000h／10BD0、1151C | 跳躍仍執行遭遇，已證實 | 031跳躍術READY／限定CONFORMED，`JUMP-RNG-CORRECTION-20261105` | [新限定CONFORMED](docs/spec/031-rust-independent-remake.md#自然出口與跳躍遭遇限定-conformed)，遇敵提示F7／冷讀、進戰撤退、沿舊方向續跳及落地 |
 
 GUI初始位置、monthly remaining1、jump Ready／seed均由獨立Rust開發例程明示設定。此後走正常XTest鍵鼠，沒有執行期RAM／IP注入。六程序16份SDL畫布／讀回；跨區月報及跳躍戰後續跳的獨立程序最終state_hash與畫布相同。這是受控初始狀態的玩家鏈，不是自然抵達商店／出口或完整通關。原音畫素材及runtime只存本機。
+
+## Rust特殊地點上岸
+
+2026-11-06。輸入PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、官方PAM.i64 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA9.4沿本案已驗py312-v1，原DB唯讀複製至tmp，保留521函式原名；13函式1778行bytes／operand／xref另存。位址為IDA MZ base10000h，runtime CS0110 IP=IDA線性−10000h，runtime DS1E88偏移另列。[匯出器](tools/export-rust-special-shore-ida.py)、[原指令探針](tools/rust-special-shore-reference.go)、[資料工具](tools/rust-special-shore.py)與[永久保存](preserved/README.md#rust特殊地點上岸保存)為入口。
+
+| 等級 | 原始定位與語意 | 證據／邊界 |
+|---|---|---|
+| 已證實 | 1255E..1257B接受清boat，拒絕10D72回退並設blocked；後續分派仍使用舊var_10地形。 | dosgolem執行288組FLOW，9特殊地形×2選項×8方向×2剩餘步數；初始目標40／40與AX為受控輸入。consumer／loader／draw／music明列跳過，停時鐘／月報前，不稱原版GUI對拍。 |
+| 已證實 | 12649..126D6出口不檢查blocked，拒絕仍跨區且保持boat2；126D6的blocked令扣步／月報略過。 | 原指令FLOW及上一批已驗原起點／橋重載。水格進出原出口的接受／拒絕與冷讀由Rust驗證。 |
+| 已證實 | 159C4／15A54／15AE4／15B74／15C04只在目前座標匹配時才154EA；120B0的12328..1235D只處理相符非空箱。 | 12組LOOK執行五類營地與寶箱的匹配／不匹配查找，略過header／drawing。拒絕回原水格不相符，沒有交易或領取。 |
+| 已證實 | 15360／15365先設索引／商品0，1546A..1547A未匹配則不讀商品表，154A7回0。 | 16組LOOK覆蓋八區匹配／不匹配，匹配值與typed首店商品相同；缺項0由原指令回傳。1512C繼續原價格／容量／交易流程，Rust拒絕店顯示預設造橋，world仍在水格。 |
+| 已證實，漏接修正 | 12592、125A8、125B4、125C0、125CC、125D8在consumer前各有一次未使用_rand。 | FLOW記錄一次，Rust普通／上岸店與營地一併補回。其他原GUI helper內的rand呼叫數尚未作全程一致驗收。 |
+| 原生保存契約 | v11追加拒絕店方向word，依原水格、方向、face、實際店index及moved=false核綁定。 | 讀v1至v10；不修改WorldState或Go格式。待上岸與拒絕店F7／獨立冷讀同畫布及state_hash。 |
+| 尚未接入 | 51／65、未支援商品、從非水特殊點持boat2的組合。 | 保持邊界，後續事件各依新READY接入；不把一般岸地或本批成功案例外推所有世界事件。 |
+
+回填台帳的不可變鍵沿本節固定PAM.AY雜湊與IDA MZ base10000h，不跨overlay配對。
+
+| 原始定位 | 現行語意 | 舊規格／必要標記 | 玩家鏈 |
+|---|---|---|---|
+| 12592／125A8..125D8 | 店／營地進場先消耗一次rand，已證實 | 031原式管理READY、世界造橋READY，`WORLD-SHOP-RNG-20261106` | 普通及上岸入口，原交易／UI保持；舊跨事件seed不當現行數值 |
+| 1255E..126E3、15354、159C4..15C04、120B0 | 從水格進已支援特殊點，接受／拒絕後分流，已證實 | 031涉水READY，`SPECIAL-SHORE-RESOLVED-20261106` | 待上岸F7／冷讀、寶箱領取、預設店實購與冷讀、出口續行、原式募兵 |
+
+原八圖清點48處鄰水特殊格，包含未接51與不支援商品，沒有以48當完成數。GUI沿真正v10，只指定四組原水岸、boat2與seed1，保留75金／30民兵／兩次造橋／106步。之後僅XTest鍵鼠；七程序15份SDL畫布同讀回，待上岸及拒絕店的冷讀均與已提交檔相同。原始資料、完整素材及binary只在本機保存，不稱自然取得或完整通關。

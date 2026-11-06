@@ -117,7 +117,7 @@ fn malformed_pending_fields_reject_and_real_v7_layout_migrates() {
     let mut j = ready(&d);
     j.magic.charges[7] = 0;
     let mut v7 = j.encode(&c, &d).unwrap();
-    v7.truncate(v7.len() - 15);
+    v7.truncate(v7.len() - 17);
     v7[..8].copy_from_slice(b"8SJRN007");
     v7.extend(checksum(&v7).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &v7).unwrap(), j);

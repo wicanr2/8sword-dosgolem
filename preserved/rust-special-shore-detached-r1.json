@@ -1,0 +1,15 @@
+{
+  "status": "passed-detached-rust-special-shore",
+  "files": 507,
+  "objects": 330,
+  "mounts": ["preserved:/archive:ro", "single verification script:/verify.py:ro", "tmpfs:/report:rw"],
+  "uid": 1000,
+  "network": "none",
+  "restore_without_workplace": {
+    "status": "passed-restore-without-workplace",
+    "files": 139,
+    "binary_sha256": "e602d5d78288ef8a910e10b5031ee2f2ae7adb3a55aed50dae5ae90755191b74",
+    "binary_mode": "0o755",
+    "mounts": ["preserved:/project/preserved:ro", "tools:/project/tools:ro", "tmpfs:/restored:rw"]
+  }
+}

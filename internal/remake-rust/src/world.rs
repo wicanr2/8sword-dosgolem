@@ -292,6 +292,62 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn shore_vectors_fixture() -> Self {
+        let mut d = Self::special_shore_fixture();
+        for area in 0..8 {
+            for i in 0..5600 {
+                let p = Position {
+                    x: (i % 70) as u8,
+                    y: (i / 70) as u8,
+                };
+                if !matches!(d.maps[area][i], 49 | 50 | 53..=59) && p != d.starts[area] {
+                    d.maps[area][i] = 2;
+                }
+            }
+        }
+        d
+    }
+    #[cfg(test)]
+    pub(crate) fn special_shore_fixture() -> Self {
+        let mut d = Self::exits_fixture();
+        for s in crate::world_magic::shops() {
+            d.maps[usize::from(s.area)][usize::from(s.y) * 70 + usize::from(s.x)] = 53;
+        }
+        for (i, s) in crate::management::camps()
+            .iter()
+            .enumerate()
+            .filter(|(_, s)| s.kind > 0)
+        {
+            d.maps[usize::from(s.area)][usize::from(s.y) * 70 + usize::from(s.x)] =
+                54 + (i / 24) as u8;
+        }
+        for s in crate::treasure::sites() {
+            d.maps[usize::from(s.area)][usize::from(s.y) * 70 + usize::from(s.x)] = 59;
+        }
+        for a in 0..8 {
+            let positions: Vec<_> = d.maps[a]
+                .iter()
+                .enumerate()
+                .filter(|(_, t)| matches!(**t, 49 | 50 | 53..=59))
+                .map(|(i, _)| Position {
+                    x: (i % 70) as u8,
+                    y: (i / 70) as u8,
+                })
+                .collect();
+            for p in positions {
+                for key in [0x4d00, 0x4b00, 0x4800, 0x5000] {
+                    let from = motion(p, key, 3, true).unwrap().0;
+                    let at = usize::from(from.y) * 70 + usize::from(from.x);
+                    if d.maps[a][at] == 1 && from != d.starts[a] {
+                        d.maps[a][at] = 2;
+                        break;
+                    }
+                }
+            }
+        }
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn exits_fixture() -> Self {
         let mut d = Self::flat_fixture();
         d.starts = [
@@ -708,8 +764,9 @@ impl WorldState {
         Ok(!matches!(data.tile(self.area, target)?, 49..=51 | 53..=59 | 65))
     }
     pub(crate) fn prepare_shore(&self, data: &WorldData, key: u16) -> Result<Self, String> {
-        if !self.plain_shore(data, key)? {
-            return Err("非一般上岸入口".into());
+        let mut probe = self.clone();
+        if probe.walk_encounter(data, key)? != WalkResult::Boundary(Boundary::BoatExit) {
+            return Err("非上岸入口".into());
         }
         let mut s = self.clone();
         s.position = motion(self.position, key, self.facing, false)?.0;
@@ -722,8 +779,9 @@ impl WorldState {
         data: &WorldData,
         key: u16,
     ) -> Result<WalkResult, String> {
-        if !self.plain_shore(data, key)? {
-            return Err("非已接一般上岸邊界".into());
+        let mut probe = self.clone();
+        if probe.walk_encounter(data, key)? != WalkResult::Boundary(Boundary::BoatExit) {
+            return Err("非上岸拒絕邊界".into());
         }
         self.walk_policy(data, key, true, None, true)
     }

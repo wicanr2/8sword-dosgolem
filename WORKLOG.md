@@ -3414,3 +3414,15 @@ Rust接Idle／Ready／Flying舊鍵、原店50金／F4、八方向越障、逐格
 環境／腳本失敗另列：Go模組需-mod=mod；初版探針的10BDC沒有按far-call傳key參數，改按原呼叫與實際retf；Rust測試cue型別由u16轉u8。一次建置複製與探索GUI同時執行，得到Text file busy，兩工作改為順序並以同命令乾淨重跑。補資產缺少預期出口的拒絕後再重建，最終116測試及GUI均對最終binary；初版GUI另存gui-first，不作最終掛載聲明。最終建置只見crate唯讀／native可寫，GUI只見native與單一腳本，無PAM／Go／RAM；SDL dummy只證解碼／佇列，不稱人耳驗收。
 
 [核對](preserved/rust-world-exits-audit-r1.json)、[永久索引](preserved/rust-world-exits-r1.json)、[脫離核對](preserved/rust-world-exits-detached-r1.json)、[清理](preserved/rust-world-exits-cleanup-r1.json)與[完整性](preserved/rust-world-exits-integrity-r1.json)為入口。完整來源、138媒體、binary、fixture與所有原版／GUI證據先存本機preserved，再只清可重建Rust快取；數量與bytes見索引及清理收據。正式197來源七程式、923核心、535素材及1071美術保持，無新image／Release。本輪基準HEAD為2c80bdbdcb4ad958d6f96ae4d97ca2641aee118a，實作／文件／索引／成果圖同提交推送origin/main，實際SHA見Git歷程。下一步特殊地點上岸、空軍隊失金與世界事件，不重跑本鏈或既有HD矩陣。
+
+## 2026-11-06 Rust特殊地點上岸
+
+使用者繼續Rust重製。命中反組譯進實作路由，載入重製／IDA9.4技能、spec-gated、文件職責與抽樣驗收契約。原八圖清點48處鄰水特殊點，再以13函式1778行IDA bytes及dosgolem的288上岸分派／時鐘、28實際consumer查找確認範圍。先寫DRAFT／READY才實作，51／65及未支援商品保留邊界，不猜補守軍／世界事件。
+
+Rust接水格到原出口、已支援法術店／營地／寶箱的上岸選擇。接受後沿既有事件；拒絕營地／寶箱不成交，拒絕出口仍跨區且不扣步。拒絕店缺座標時沿原15354預設商品0，可買造橋；v11追加方向綁定、原地與boat2保持，讀v1至v10。`WORLD-SHOP-RNG-20261106`補回店／營地入口一次未使用rand，`SPECIAL-SHORE-RESOLVED-20261106`回填一般涉水舊邊界。原交易／算式／HD收據保持，舊跨事件seed值不作現行結果；沒有整段原版GUI或RNG序列一致聲明。
+
+122測試、self-check及七程序15SDL擷取通過。真正v10的75金／30民兵／兩次造橋／106步，僅指定原水岸、boat2與seed1。寶箱待上岸F7／冷讀、拒絕不領，再接受領40金成115／105步；原跳躍店拒絕後開造橋，冷讀實購10金成65金／三次造橋，106步與boat2保持。出口拒絕到下一區16／5而不扣步，冷讀可普通上岸到17／5；營地接受後顯示原式募兵及透明步兵。兩待選冷讀均同state_hash與畫布，無執行期RAM或IP注入。只稱受控初始水岸的後續正常輸入，不稱自然取得或通關。
+
+腳本／fixture修正另列：首次15354探針跳過prologue卻少放saved-BP，修正stack後乾淨重跑；兩測試選到未支援shop index，改以catalog offer1選取。合成多類營地圖有未使用／重疊座標，FLOW案例改核實際tile與水源條件，不改production規則。舊合成存檔測試依v11追加word調整截尾，全部122通過。來源審查再補待上岸decode的支援範圍檢查，最終重建／GUI重跑；較早來源、圖與GUI另存本批，不當最終binary證據。
+
+最終建置只掛crate唯讀與native可寫，GUI只掛native與單一腳本，沒有PAM／Go／RAM。原版探針／IDA只留開發證據；SDL dummy只證技術解碼／佇列。完整原始資料、媒體、binary與證據先逐SHA存[永久索引](preserved/rust-special-shore-r1.json)，再作[脫離核對](preserved/rust-special-shore-detached-r1.json)、[清理](preserved/rust-special-shore-cleanup-r1.json)及[完整性](preserved/rust-special-shore-integrity-r1.json)。基準197來源七程式、923核心、535素材及1071美術不改，無新image／Release；本案容器結束，其他專案不動。[核對](preserved/rust-special-shore-audit-r1.json)與[圖](docs/images/rust-special-shore-r1.png)為入口。本輪基準HEAD e6f5b374cb28eadf32ec5ee80ae394c6e770b01d，實作／文件／索引／成果圖一併提交推送origin/main，實際SHA見Git歷程。下一步空軍隊失金、51／65與其餘世界事件，不重跑本鏈。

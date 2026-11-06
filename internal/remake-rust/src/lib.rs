@@ -27,6 +27,7 @@ pub mod resource_spells;
 mod sdl;
 #[cfg(feature = "desktop")]
 mod sndfile;
+pub mod special_shore;
 pub mod spells;
 pub mod survey_spells;
 pub mod travel_spells;

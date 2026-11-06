@@ -1,0 +1,12 @@
+{
+  "status": "passed-scoped-cache-cleanup",
+  "removed": "workplace/probe-20261023/graphics-first/battle-r1/rust-special-shore-r1/native/rust-target",
+  "files": 1530,
+  "bytes": 450441801,
+  "archive_files": 507,
+  "archive_objects": 330,
+  "archive_compressed_bytes": 44414085,
+  "kept": "full Rust sources,138 media,binary,v10/v11 fixtures,original and GUI evidence",
+  "other_projects_untouched": true,
+  "new_images": false
+}

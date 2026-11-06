@@ -1414,6 +1414,20 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 
 `freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核116測試、來源／MZ bytes／SDL與正式基線，`images`產生[成果圖](../docs/images/rust-world-exits-r1.png)及[來源](../docs/images/rust-world-exits-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-world-exits-r1.json`保存本批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件查核。[脫離核對](rust-world-exits-detached-r1.json)、[清理](rust-world-exits-cleanup-r1.json)與[完整性](rust-world-exits-integrity-r1.json)記錄收尾。
 
-現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-world-exits-r1/native。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-world-exits.py restore --project /project`，從本批永久物件還原binary與138媒體，核SHA及mode。再以`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`啟動，已有進度加`--continue`。v10讀v1至v9；WorldState與Go保存不改，無新增產品測試旗標。特殊地點上岸、空軍隊失金、七寶物、守軍／八劍、日曆及結局仍待。
+本批歷史路徑為battle-r1/rust-world-exits-r1/native，現行入口見[Rust特殊地點上岸保存](#rust特殊地點上岸保存)。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-world-exits.py restore --project /project`，從本批永久物件還原binary與138媒體，核SHA及mode。再以`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`啟動，已有進度加`--continue`。v10讀v1至v9；WorldState與Go保存不改，無新增產品測試旗標。特殊地點上岸、空軍隊失金、七寶物、守軍／八劍、日曆及結局仍待。
 
 本批399檔／321物件，壓縮43210876 bytes；脫離workplace核對及139個執行期檔案的獨立還原均通過。只刪本批1454份可重建Rust快取，共421723535 bytes，約402.2 MiB。完整來源、媒體、binary與證據保留，未建立新image，本案容器均已結束。
+
+## Rust特殊地點上岸保存
+
+[完整索引](rust-special-shore-r1.json)、[核對](rust-special-shore-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#特殊地點上岸限定-conformed)與[研究](../RESEARCH-LOG.md#rust特殊地點上岸)為現行入口。122測試、288原指令分派／28consumer查找、13IDA函式1778行bytes及七程序15SDL擷取通過。完整crate、工具、138媒體、binary、真實v10／v11進度、原版／GUI證據逐SHA保存本機`preserved/rust-special-shore-r1/<SHA256>.gz`，不依賴workplace。完整原始素材與runtime不進Git或Release。
+
+[資料工具](../tools/rust-special-shore.py)限Pillow11.3.0-r2、UID1000、network none執行；`prepare --project /project`還原前批138媒體及真正v10。只掛固定輸入的[IDA匯出](../tools/export-rust-special-shore-ida.py)與[原指令探針](../tools/rust-special-shore-reference.go)重生證據，保持原名／bytes／operand／xref與位址空間。Go1.24.13只在開發探針使用：FLOW跳過明列IO／consumer、LOOK執行座標查找而跳過繪圖；不稱原版整段GUI／RNG一致。輸入雜湊、映像、掛載、配額與失敗分類見保存內execution.json。
+
+最終建置用mm45-rust-desktop:1.99.1-r3、offline／locked，只掛crate唯讀／native可寫。[開發例程](../internal/remake-rust/examples/special_shore_fixture.rs)參數`<媒體> <真正v10> <新目錄> treasure|shop|exit|camp`只指定原水岸位置、boat2與seed1，不連入玩家入口。[GUI](../tools/rust-special-shore-gui.py)只掛native與單一腳本，以正常鍵鼠抽驗待上岸、拒絕後預設造橋店及獨立冷讀、原出口續行與原式募兵。v11讀v1至v10，WorldState與Go保存不變。
+
+`freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核122測試、來源、原MZ bytes、SDL及基線；`images`產生[成果圖](../docs/images/rust-special-shore-r1.png)與[來源](../docs/images/rust-special-shore-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-special-shore-r1.json`保存本批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-special-shore-detached-r1.json)、[清理](rust-special-shore-cleanup-r1.json)及[完整性](rust-special-shore-integrity-r1.json)保存收尾。
+
+現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-special-shore-r1/native。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-special-shore.py restore --project /project`，依本批索引核SHA與mode，還原binary及138媒體。再以`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`遊玩，有進度加`--continue`。51／65、不支援商品、非水特殊點組合、空軍隊失金與其餘世界仍待，不稱完整遊戲。
+
+本批507檔／330物件，壓縮44414085 bytes；脫離workplace逐物件核對與139個執行期檔案還原均通過。只清本批1530份可重建Rust快取，共450441801 bytes，約429.6 MiB；完整來源、素材、binary、存檔與證據保持。沒有新image或殘留本案容器，其他專案不動。

@@ -134,7 +134,9 @@ impl Magic {
             let s = shops()
                 .get(usize::from(p.index))
                 .ok_or("法術商店索引超界")?;
-            if !supported(s.offer)
+            if j.travel_spell.refused_shop.is_some() {
+                j.validate_refused_shop(d)?;
+            } else if !supported(s.offer)
                 || (j.world.area, j.world.position.x, j.world.position.y) != (s.area, s.x, s.y)
                 || d.tile(s.area, j.world.position)? != 53
             {
@@ -178,6 +180,7 @@ impl<'a> Journey<'a> {
             return Ok(false);
         };
         self.world = self.world.event_step(d, key, 53)?;
+        self.world.rng.next15(); // Original12592 discarded entry roll.
         self.magic.shop = Some(PendingShop {
             index: i as u8,
             moved: key != 0x3920,
@@ -189,6 +192,9 @@ impl<'a> Journey<'a> {
     }
     pub fn magic_offer(&self) -> Result<usize, String> {
         let p = self.magic.shop.ok_or("未在法術商店")?;
+        if self.travel_spell.refused_shop.is_some() {
+            return Ok(0);
+        }
         let s = shops()
             .get(usize::from(p.index))
             .ok_or("法術商店索引錯誤")?;
@@ -228,6 +234,7 @@ impl<'a> Journey<'a> {
         let view = self.magic.view(d)?;
         let mut s = self.clone();
         let p = s.magic.shop.take().ok_or("沒有待完成法術商店")?;
+        s.travel_spell.refused_shop = None;
         if p.moved {
             if s.world.remaining == 1 {
                 s.begin_month(c, &view, 53)?;
