@@ -1,0 +1,19 @@
+{
+  "status": "passed-rust-npc-month-cleanup",
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-npc-month-r1/native/rust-target",
+      "files": 1326,
+      "bytes": 595599611
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-npc-month-r1/restore-check",
+      "files": 153,
+      "bytes": 158238681
+    }
+  ],
+  "total_files": 1479,
+  "total_bytes": 753838292,
+  "ownership_findings": [],
+  "scope": "Only this batch rust-target and temporary detached restoration. Permanent source,media,binary and accepted evidence retained; no global Docker prune."
+}

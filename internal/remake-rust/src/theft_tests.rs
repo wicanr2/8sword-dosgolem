@@ -6,6 +6,17 @@ use crate::{
     world::{Position, WorldData},
 };
 const SEED: u32 = 0x5578f641; // Inverse LCG, first next15=1000. Fixed before action.
+fn before_month_seed() -> u32 {
+    // Invert exactly the two independently observed month-end calls, keeping
+    // the existing theft comparison point fixed. No search or reroll.
+    let previous = |n: u32| n.wrapping_sub(2531011).wrapping_mul(0xb9b33155);
+    let seed = previous(previous(SEED));
+    let mut rng = crate::controller::OriginalRng { seed };
+    rng.next15();
+    rng.next15();
+    assert_eq!(rng.seed, SEED);
+    seed
+}
 fn empty<'a>(d: &WorldData) -> Journey<'a> {
     let mut j = Journey::new(d, SEED);
     j.army = [Stack::default(); 6];
@@ -150,6 +161,7 @@ fn event_return_routes_share_empty_army_receiver() {
                 j.finish_treasure(&c, &d, true).unwrap();
             }
             _ => {
+                j.world.rng.seed = before_month_seed();
                 j.world.remaining = 1;
                 j.begin_month(&c, &d, 1).unwrap();
                 j.close_month(&d).unwrap();
@@ -200,7 +212,7 @@ fn flying_theft_pauses_then_resumes_old_direction_without_recharge() {
 fn disbanded_monthly_army_can_be_robbed_after_confirmation() {
     let d = WorldData::flat_fixture();
     let c = Catalog::builtin().unwrap();
-    let mut j = Journey::new(&d, SEED);
+    let mut j = Journey::new(&d, before_month_seed());
     j.resources[3] = 0;
     j.resources[2] = 0;
     j.world.remaining = 1;

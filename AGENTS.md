@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-11 Rust守軍月結依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust守軍月結限定-conformed)完成。42處原槽位cap、零兵不復活、兩次RNG及v15保存已接；153測試、2520原指令向量、四原月結控制、1205行IDA重定位bytes與三程序九SDL擷取通過。真正v15只明示原城鄰格／月底一步／seed1／30民兵及受損守軍20／5／1，正常月結後26／10／10、116金／324步，月報及戰中冷讀相同，不稱自然取得。NPC-MONTH-RESOLVED-20261111閉合補兵；CALENDAR-NAMING-CORRECTION-20261111修正「六相位」為ceil(剩餘步數／tempo)行程條，呈現待接，不虛構年月。[核對](preserved/rust-npc-month-audit-r1.json)與[保存／還原](preserved/README.md#rust守軍月結保存)為現行142檔入口。下一步其餘寶物、新遊戲與工具列，不重驗已驗HD。正式197／7／923／535／1071與Go格式保持，無Release。
+
 2026-11-11 Rust最終戰／結局依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust最終守軍與結局限定-conformed)完成。150測試、36原版／HD三字型全幅核對與五程序17SDL擷取通過；v15讀v1至v14，勝後不加資源／不扣步直接結局。正常戰中F7／冷讀、結局模式／字型／音樂、結局F7／冷讀及完整退出已驗。初始六隊／八劍／seed1及原東鄰地形27站立位置明示受控，不稱自然通關。Rust直接畫typed命令／RGBA16及播放OGG，不含Go／DOS／x86；10ms來源時鐘與首段刀祭替代MFIG為呈現近似。[核對](preserved/rust-ending-audit-r1.json)與[永久保存／還原](preserved/README.md#rust最終戰與結局保存)為現行142檔入口，完整資料不依賴workplace。RUST-FINAL-GUARD-RESOLVED-20261111閉合舊停止線；後續NPC日曆、寶物、新遊戲及其餘工具列，不重跑已驗音畫。正式197／7／923／535／1071保持，無Release。
 
 2026-11-11 Rust守軍／頭目依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust守軍與頭目限定-conformed)完成。42原記錄、41處非最終守軍含八頭目、原式確認／戰場、殘兵再戰、月薪／容量／八劍與v14冷讀已接。146測試、1176原分流／52算式、六函式1565行bytes及七程序19SDL擷取通過；原分流最終有部隊兩例只核停止線。GUI從真正v13指定原城鄰格／seed1，戰鬥明示1000民兵／200弓箭手，不稱自然取得。撤退38→26金、再勝月薪100→120／容量3→4，普通戰不加金／經驗；頭目首劍與F1冷讀已驗。GUARDS-RESOLVED-20261111回填舊邊界。最終守軍缺劍／無兵提示保留，有部隊且劍齊的最終戰／結局仍待；NPC月結增兵、寶物與新遊戲續按WORKLIST。[永久保存／還原](preserved/README.md#rust守軍與頭目保存)不依賴workplace。正式197／7／923／535／1071保持，無Release。

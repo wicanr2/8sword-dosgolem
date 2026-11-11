@@ -1,4 +1,4 @@
-//! Spec031 player finances/camp refill. NPC growth/calendar phases remain outside this slice.
+//! Spec031 player finances, camp/NPC refill and the observed two month-end RNG calls.
 use crate::battle::Stack;
 use crate::catalog::{Catalog, UnitId};
 use crate::journey::Journey;
@@ -210,6 +210,8 @@ impl<'a> Journey<'a> {
         let mut s = self.clone();
         let b = plan(c, s.army, s.resources[3], s.resources[2])?;
         let before = s.army;
+        // Original sub16226, return CS0110:6494. Its result is unused.
+        s.world.rng.next15();
         for (i, site) in camps().iter().enumerate() {
             if site.kind == 0 {
                 continue;
@@ -225,10 +227,13 @@ impl<'a> Journey<'a> {
                 }
             }
         }
+        s.guards.refill_monthly()?;
         s.resources[3] = b.after;
         if b.disbanded {
             s.army = [Stack::default(); 6];
         }
+        // Original sub1716C, return CS0110:71B3, before resetting the month.
+        s.world.rng.next15();
         s.world.remaining = 324;
         s.survey.stopped = false;
         s.survey.tempo = 6;

@@ -3484,3 +3484,15 @@ Rust接最終原六隊、八劍門檻、勝利直接結局、撤退／全滅及v
 [核對](preserved/rust-ending-audit-r1.json)、[完整索引](preserved/rust-ending-r1.json)、[脫離核對](preserved/rust-ending-detached-r1.json)、[清理](preserved/rust-ending-cleanup-r1.json)及[成果圖](docs/images/rust-ending-r1.png)為入口。完整來源、材質、binary與證據先永久保存並核還原，再清本批可重建快取。正式197／7／923／535／1071保持，沒有Release或新image；本案容器收尾，其他專案不動。起始HEAD為66ca0552df98fd8e41527e67c14e0e56fe79d887，提交／推送見Git歷程。下一步NPC增兵與日曆、其餘寶物、新遊戲與其餘工具列。
 
 收尾：1697檔／734物件、101479514壓縮bytes已永久保存。142份執行期在看不到workplace的最小還原環境逐SHA驗證；只掛還原native、保存及擷取輸出另啟原生SDL，完成進度退出0，state_hash、完整畫布及保存bytes同封存樣本。移除本批2053份可重建快取／還原複本773376204 bytes。backlink護欄、啟動器語法及擁有權檢查通過。
+
+## 2026-11-11 Rust守軍月結
+
+起始HEAD為196fac9715df60d025a126afed71bf3c66adcbce。接續[031](docs/spec/031-rust-independent-remake.md#rust守軍月結限定-conformed)的DRAFT／來源審查／READY，Rust接42處守軍月結與前後兩次RNG，v15／WorldState／Go格式保持。2520原指令向量、252槽cap、四固定seed完整原月結及153測試通過；五IDA函式1205行MZ重定位bytes核對，原DB不改。
+
+最初直接比較IDA匯出與未重定位MZ，在far-call segment差1000h；依MZ relocation table重建IDA載入值後逐行通過，沒有跳過差異。新增兩次月結RNG使三個舊測試的比較前提失效：出口測試改驗兩次呼叫，無兵遇劫用反推兩次LCG保持原比較點，不搜尋或重擲seed。最初150通過／3失敗log保留在批次，最終153通過。
+
+三個Rust原生程序九份SDL擷取：真正v15保留六資源與魔法／已清首頭目，只明示原城鄰格、remaining1／seed1、30民兵與首守軍20／5／1。正常上移入城取消後月報116金／324步、守軍26／10／10；F7／月報冷讀相同，確認後原式戰場與戰中冷讀相同，撤退回場不重補。最終建置只掛crate唯讀／native可寫，GUI執行中查實只見native與一個腳本。沒有自然取得或全程RNG一致聲明。
+
+NPC-MONTH-RESOLVED-20261111與CALENDAR-NAMING-CORRECTION-20261111回填規格及位址索引，修正舊「六相位日曆」為原行程條資料流，不虛構年月或停用分支。README加入[成果圖](docs/images/rust-npc-month-r1.png)與現行還原入口。[核對](preserved/rust-npc-month-audit-r1.json)、[完整索引](preserved/rust-npc-month-r1.json)、[脫離核對](preserved/rust-npc-month-detached-r1.json)與[清理](preserved/rust-npc-month-cleanup-r1.json)為交接入口。下一步其餘寶物、新遊戲、工具列及行程條，不重開已驗HD。正式197／7／923／535／1071保持，沒有Release。
+
+收尾：327檔／309物件、59728067壓縮bytes永久保存。脫離workplace逐物件核對及142份執行期SHA／mode還原通過；還原原生程式載入月報，state_hash、完整SDL畫布與封存樣本相同，正常關閉退出0。只清本批1479份可重建快取與還原複本，共753838292 bytes，約718.9 MiB。原始來源、媒體、binary與擷取保持，其他專案不動。

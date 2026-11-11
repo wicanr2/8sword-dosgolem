@@ -810,3 +810,36 @@ GUI從真正v14保留六資源[1,0,120,38,1000,4]、魔法與101步。軍隊明�
 v15綁定命令包與結局遊標／原版HD模式，讀v1至v14；WorldState與Go格式不變。結局由Rust直接解碼命令、選材質、畫布混合、排程、播放OGG及保存，執行不含Go／DOS／x86繪圖。10毫秒穩定節點及3000cycles換算仍為呈現近似，不稱1049次換頁全保留或硬體wall-clock一致。首段HD以〈刀祭〉替代MFIG，依原MEND讀入節點切HD結局曲；dummy只證技術音訊，非人耳或MFIG樂譜一致。
 
 [繪圖與解析](../../internal/remake-rust/src/ending.rs)、[原生播放](../../internal/remake-rust/src/ending_desktop.rs)、[最終戰資料](../../internal/remake-rust/src/guards.rs)、[保存](../../internal/remake-rust/src/journey.rs)、[36畫布抽驗](../../internal/remake-rust/examples/ending_audit.rs)及[參考值](../../internal/remake-rust/ending-reference.tsv)為實作入口。[受控初始進度](../../internal/remake-rust/examples/ending_fixture.rs)、[GUI工具](../../tools/rust-ending-gui.py)、[資料／保存工具](../../tools/rust-ending.py)、[開發匯出器](../../tools/rust-ending-export.go)、[核對](../../preserved/rust-ending-audit-r1.json)、[成果圖](../images/rust-ending-r1.png)與[永久保存／還原](../../preserved/README.md#rust最終戰與結局保存)可重現。建置只見crate／native，最終GUI只見native／單一工具。其餘世界事件、NPC日曆、寶物、新遊戲、全程工具列及手機續依WORKLIST，不重開已驗音畫矩陣，沒有Release。
+
+## Rust守軍月結 DRAFT
+
+接續最終戰後的世界時間。範圍為42處守軍的月結增兵、月結亂數與現有月報／保存，不重開既有玩家財務、營地或HD矩陣。研究區沿battle-r1/rust-npc-month-r1，[準備／保存工具](../../tools/rust-npc-month.py)與[原版探針](../../tools/rust-npc-month-reference.go)為入口。原版日曆圖格呈現另待確認，不把「tempo=6」直接命名為六相位日曆。
+
+已存IDA9.4 MZ基址10000h之sub_12856在129F9至12DDC處理守軍；存活count先做16位元count+count/3，按相同槽位的原上限比較，再設最低10。零count跳過，不依kind查cap，不復活已清守軍。cap來自DS326E起的原表，與DS365E起的初始表對照；八區容量7／4／4／4／4／4／4／11。新增上限、符號回繞與重排後slot語意須由原指令控制核對後才READY。
+
+月結sub_12446依序呼叫sub_16058、sub_11F60、sub_16226、sub_12856，再結算玩家財務與重設324／tempo6。既有原版月結收據seed12345678h→5B3F58B2h對應兩次LCG，不能只因sub_16226可見一個_rand就猜全月只有一次。先在固定原版caller frame記錄實際_rand回傳caller及狀態，再決定Rust月報前後位置。PAM SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`與DB SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`保持；來源為既有monthly／world-exits的完整IDA函式，非攤平asm猜名。
+
+原生Guard rows與月報已在v15保存，是否需要新欄位以玩家可見資料流為準，不預建未解日曆。驗收採原指令全表／邊界、月結只提交一次、待確認F7／冷讀、守軍重訪與已清守軍保持的正常鍵鼠抽驗。未知／受控來源另列，不稱自然跨月取得所有軍隊或完整通關。
+
+## Rust守軍月結 READY
+
+來源審查完成。固定PAM的129F9起原指令執行十種count配置，覆蓋42處×六槽，共2520向量。252個cap count與現有guard-catalog初始count逐項相同，故可沿初始槽位count取cap；cap旁的word不作兵種ID。局部探針明示六byte區域變數與saved SI，包含正式軍隊不允許的空kind／正count算式邊界，不將其稱為合法玩家編成。
+
+- 補兵只看原槽位的正count。以signed16除3、word回繞相加、signed16與原槽位cap比較，再套最低10。24576以上的回繞結果會成10；不改兵種／次序／八劍。零count保持零，清空守軍不復活。重排後仍用目前槽位cap，兵數可能下降。
+- 整段原月結使用既有真實caller frame，seed在執行前固定12345678h；counter為0／35／375／65535的四案均只見兩次_rand，回傳0110:6494及0110:71B3，最後5B3F58B2h、324步與tempo6。Rust在補營地／守軍前及財務提交後各消耗一次next15，整筆仍在clone內檢查後提交。不宣稱其他原版UI的全程骰序一致。
+- 既有v15已保存守軍rows、世界RNG、月報與months，格式不變。月報建立時提交補兵，確認或冷讀不再補；舊v15已建立的月報按既存結果恢復，不追補過去月份。
+- sub_16226在16249有無條件跳躍，四counter案均未進停用分支；DS56E6只觀察到word遞增，不新增虛構年月。sub_16058按ceil(剩餘步數／tempo)畫行程條，不能稱原版六相位日曆。行程條呈現列後續UI工作，不阻塞本切片。
+
+實作入口為[月報](../../internal/remake-rust/src/monthly.rs)、[守軍](../../internal/remake-rust/src/guards.rs)及[2520參考值](../../internal/remake-rust/npc-month-reference.tsv)。抽驗須含槽位重排／上限、清空守軍、一次月結／存讀、真正v15移轉及原生月報後正常入城。最終建置只見crate／native，GUI只見native與單一輸入腳本。資料包及WorldState／Go格式不變。
+
+## Rust守軍月結限定 CONFORMED
+
+`NPC-MONTH-RESOLVED-20261111`。42處守軍月結沿READY接回Rust。2520原指令向量、252槽cap count、四案固定seed完整原月結，以及153測試通過。已存IDA9.4五函式共1205行bytes依PAM的MZ重定位表加1000h後核對；原DB／名稱不改。完整來源、探針、原控制前後快照、binary與媒體見[永久保存](../../preserved/README.md#rust守軍月結保存)，核對見[收據](../../preserved/rust-npc-month-audit-r1.json)。
+
+三程序九份SDL畫布與讀回一致。真正v15來源保留六資源[1,0,120,26,1000,4]、魔法與已清首頭目；初始明示原城草地鄰格5／5、remaining1、seed1、30民兵及首守軍20／5／1，其餘守軍不改。正常上移入城、取消後月報為26＋120−30＝116金、324步及守軍26／10／10。月報F7與另一程序冷讀的完整state_hash／畫布相同，確認不重補；Space重訪後原式戰場顯示26／10／10，戰中F7／第三程序冷讀相同，撤退回場仍一個月及相同守軍。沒有執行期RAM／IP注入，也不稱自然取得這份軍隊或完整通關。
+
+補兵只提交一次、零兵守軍不復活、重排後依slot cap、word回繞、壞輸入整筆回滾及舊待確認月報不追補另有核心抽驗。v15格式、141媒體與WorldState／Go格式保持；新增兩次月結RNG已補回依賴月結的出口與無兵遭遇測試，無兵測試明示反推兩步LCG以保持原比較點，不搜尋seed或重擲。
+
+`CALENDAR-NAMING-CORRECTION-20261111`：過去「原日曆六相位」沒有原指令支持。sub_16058使用ceil(剩餘步數／tempo)畫行程條；tempo6不是年月或六個日曆相位。DS56E6在sub_16226以word加一，但16249無條件跳過停用分支；四個counter控制包含35與375邊界，均走兩次RNG／普通月結。這部分只記已觀察資料流，不虛構原年月或重製未使用分支。原行程條呈現列UI待辦。
+
+[原生初始例程](../../internal/remake-rust/examples/npc_month_fixture.rs)、[GUI工具](../../tools/rust-npc-month-gui.py)、[來源／保存工具](../../tools/rust-npc-month.py)、[原指令工具](../../tools/rust-npc-month-reference.go)、[成果圖](../images/rust-npc-month-r1.png)及[圖片來源](../images/rust-npc-month-r1.json)為入口。最終建置只見crate／native，GUI已查實只掛native與單一腳本。下一步其餘寶物、新遊戲、全程工具列與行程條；正式197／7／923／535／1071保持，沒有Release。

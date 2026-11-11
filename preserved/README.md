@@ -1512,3 +1512,19 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 `archive --project /project --archive /project/preserved --out /project/preserved/rust-ending-r1.json`保存本批。`verify --archive /archive --out <新JSON>`只需preserved唯讀、單一工具與可寫輸出，不掛workplace。WorldState、Go保存、197來源／七程式／923核心／535素材與1071美術保持。下一步NPC增兵／日曆、其餘寶物、新遊戲及其餘工具列，不重開已驗音畫。
 
 本批1697檔／734物件，壓縮101479514 bytes。脫離workplace逐物件核對及142份執行期還原通過；還原包另於原生視窗載入完成進度，退出0，狀態、存檔及完整畫布與封存樣本相同。只清本批2053份Rust建置快取與還原驗證複本，共773376204 bytes，約737.5 MiB；永久來源、資料、binary與證據保持。沒有本案殘留容器或新image，其他專案不動。
+
+## Rust守軍月結保存
+
+[完整索引](rust-npc-month-r1.json)、[核對](rust-npc-month-audit-r1.json)、[脫離核對](rust-npc-month-detached-r1.json)與[清理](rust-npc-month-cleanup-r1.json)保存完整Rust來源、141媒體、binary、真正v15、原版受控快照及三程序九份SDL擷取。本機物件在`preserved/rust-npc-month-r1/`，不依賴workplace。原版衍生資料只留本機，沒有Release。
+
+現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-npc-month-r1/native，142份執行期檔案及平台函式庫即可遊玩開發旅程。清理workplace後，沿Docker-only用Pillow11.3.0-r2、UID1000、儲存庫/project可寫，執行`python /project/tools/rust-npc-month.py restore --project /project`還原binary與媒體；再以`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`開啟，既有進度加`--continue`。F7／滑鼠存檔、字型／音樂與原式六隊保持。v15格式不變，舊待確認月報不追補；新的月報在建立時補兵一次。
+
+[準備／保存工具](../tools/rust-npc-month.py)各動作須在設逾時、--rm、--network none、UID1000與資源界限的Docker執行。prepare還原上一批141媒體、真正v15及既有IDA／原月報frame，建立隔離Go探針；[原指令工具](../tools/rust-npc-month-reference.go)以固定923核心、原始PAM唯讀及固定seed核對2520算式與四個完整月結控制。原版只作開發對照，不進Rust執行期。
+
+建置以mm45-rust-desktop:1.99.1-r3只掛crate唯讀及native可寫，offline／locked；153測試與self-check通過。先用[初始例程](../internal/remake-rust/examples/npc_month_fixture.rs)從真正v15指定原城鄰格、月底一步、seed1、30民兵及首守軍20／5／1，不改其餘守軍或六資源／魔法。後續[GUI](../tools/rust-npc-month-gui.py)只掛native與一個腳本，正常取消攻城後月報、月報F7／冷讀、26／10／10守軍再戰、戰中F7／冷讀與撤退回場通過。沒有自然取得、全程RNG或年月日曆聲明。
+
+`freeze --project /project`保存crate／工具／媒體清單；`audit --project /project --out <新JSON>`核對來源、1205行IDA重定位bytes、153測試與九份SDL；`images --project /project --out <新PNG>`排版截圖。[成果圖](../docs/images/rust-npc-month-r1.png)標題兵數引用同幀狀態，原始全幅圖與讀回均保存。`archive --project /project --archive /project/preserved --out /project/preserved/rust-npc-month-r1.json`保存完整批次；`verify --archive /archive --out <新JSON>`只需preserved唯讀、單一工具與可寫輸出，不掛workplace。`restore --project /project --work <可寫新目錄>`可還原最小執行期，逐SHA及mode核對。
+
+NPC-MONTH-RESOLVED-20261111與CALENDAR-NAMING-CORRECTION-20261111的原位址、證據等級與限制見[031](../docs/spec/031-rust-independent-remake.md#rust守軍月結限定-conformed)及[研究記錄](../RESEARCH-LOG.md#2026-11-11-rust守軍月結與日曆名稱勘誤)。正式197／7／923／535／1071、WorldState及Go格式保持。下一步其餘寶物、新遊戲、全程工具列與原行程條呈現。
+
+收尾：327檔／309物件、59728067壓縮bytes永久保存。脫離workplace逐物件核對及142份執行期SHA／mode還原通過；還原原生程式載入月報，state_hash、完整SDL畫布與封存樣本相同，正常關閉退出0。只清本批1479份可重建快取與還原複本，共753838292 bytes，約718.9 MiB。原始來源、媒體、binary與擷取保持，其他專案不動。

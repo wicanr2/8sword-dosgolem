@@ -3577,3 +3577,18 @@ GUARDS-RESOLVED-20261111不可變鍵沿本節固定PAM雜湊＋IDA MZ base10000h
 PAE.AY SHA `8ae11b4c89f0361ed0a2d5b1859bbb4750047d37f0e26885e6903e4feb721a0c`沿既有053來源命令匯出，得到296個10ms穩定節點與46825ms虛擬時間，非1049次換頁全量收據。獨立原版／HD仍138507913步、原生PCM與完整最終客體相同、退出0。Rust從typed命令／原圖遮罩／材質自行重建九階段四模式，36全幅畫布hash相同；沒有x86繪圖或RGB影片輸入。
 
 標準Go1.24.13 image/color.Color.RGBA與image/draw的Src／Over為平台契約。RGBA8預乘原型使END2有33944像素差1色階；NRGBA8反推亦被精度等價檢查拒絕。最後8SEND003保存Color.RGBA完整預乘16位元，混合後才量化，原預期hash未改。失敗包、來源、binary、差分及log留存，不另開遊戲driver逆向。MFIG SHA `4d71e3d865b6e8cd4e8a88e6bcae9ba69a6fe8fe902f340e6e4679983e9db671`與MWAR不同，HD首段〈刀祭〉屬呈現替代；MEND源讀入cue與批准HD結局曲相接。原樂譜與硬體時序未提升為exact。
+
+## 2026-11-11 Rust守軍月結與日曆名稱勘誤
+
+依[031](docs/spec/031-rust-independent-remake.md#rust守軍月結限定-conformed)及[核對](preserved/rust-npc-month-audit-r1.json)。輸入PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，PAM.i64為a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。復用monthly／world-exits的IDA Pro9.4匯出，五函式1205行bytes依MZ重定位表加1000h後核對，沒有修改DB或覆蓋原名。以下IDA位址基準為MZ base10000h；runtime CS0110的IP為IDA線性減10000h，DS1E88另列偏移。
+
+| 等級 | 原始定位與證據 | 結論與限制 |
+|---|---|---|
+| 已證實，局部原指令 | sub_12856在129F9至12DDC遍歷八區7／4／4／4／4／4／4／11筆，每筆六槽；live count對應cap count偏移−03F0h。 | 正signed16 count加count/3，以word回繞，再按原槽位cap與最低10；不讀kind選cap，零count跳過。252槽count cap與typed初始值相同，旁邊word不能當kind；最終守軍末槽的旁word40與live kind20即為反例。 |
+| 已證實，限定月結 | sub_12446呼叫sub_16226、sub_12856、財務、sub_1716C後重設324／tempo6。 | 真實caller frame、固定seed12345678h的四counter控制，實際_rand回傳runtime0110:6494及0110:71B3，seed順序12345678h→B3E97B5Bh→5B3F58B2h。補兵前與財務後各一次，不宣稱其他UI全程RNG相同。 |
+| 已證實，固定版本 | sub_16226的16249無條件跳至16250再往16478，DS56E6以word遞增。 | counter0／35／375／65535皆普通月結，最後加一或回繞，不為停用分支新增玩法。 |
+| 已證實，呈現資料流 | sub_16058以剩餘步數與tempo計ceil後，從x2、y193畫原行程圖格。 | tempo6是行程條分母；沒有證據稱六個日曆相位。原行程條呈現後續再接，不虛構年月。 |
+
+NPC-MONTH-RESOLVED-20261111閉合舊NPC補兵待辦。CALENDAR-NAMING-CORRECTION-20261111推翻舊「原日曆六相位」名稱，舊記錄保留；新版CONTEXT／WORKLIST與031回填本結論。[位址索引](docs/spec/ai-resolution-backlinks-r1.json)保留固定來源雜湊、原名／位址、證據等級、限制及回查收據。
+
+2520算式向量包含正式狀態不允許的空kind正count邊界，只證算式。原月結從已存before-commit.state的真實frame接續，seed在執行前固定，不重擲；draw／IO沿來源，停止在原等待鍵之前。Rust三程序九SDL擷取則從真正v15明示原城鄰格、月底一步、seed1、30民兵及受損守軍20／5／1，後續全部正常鍵鼠。月報守軍26／10／10、116金／324步、待報冷讀、確認後攻城與戰中冷讀通過。清空守軍不復活、slot重排及壞輸入回滾由核心驗，沒有全圖逐城GUI或自然通關聲明。

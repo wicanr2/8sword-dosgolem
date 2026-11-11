@@ -62,6 +62,18 @@ pub fn sites() -> &'static [Site; 42] {
 pub fn fingerprint() -> u64 {
     checksum(include_str!("../guard-catalog.tsv").as_bytes())
 }
+/// PAM sub12856: signed word growth, original SLOT cap, then minimum ten.
+/// Counts above 24575 intentionally wrap before the signed comparison.
+pub fn monthly_growth(count: u32, cap: u32) -> Result<u32, String> {
+    if count > 32767 || cap > 32767 {
+        return Err("守軍月結超出原word已驗域".into());
+    }
+    if count == 0 {
+        return Ok(0);
+    }
+    let next = (count as u16).wrapping_add((count / 3) as u16) as i16;
+    Ok(next.min(cap as i16).max(10) as u32)
+}
 pub fn retreat_loss(gold: u64, roll: u16) -> u64 {
     gold / (u64::from(roll) / 2730 + 3)
 }
@@ -166,6 +178,16 @@ pub fn reward(
     Ok(before)
 }
 impl Guards {
+    pub(crate) fn refill_monthly(&mut self) -> Result<(), String> {
+        let mut rows = self.rows;
+        for (i, row) in rows.iter_mut().enumerate() {
+            for (slot, stack) in row.iter_mut().enumerate() {
+                stack.count = monthly_growth(stack.count, sites()[i].initial[slot].count)?;
+            }
+        }
+        self.rows = rows;
+        Ok(())
+    }
     pub(crate) fn validate(&self, j: &Journey<'_>, d: &WorldData) -> Result<(), String> {
         for (i, rows) in self.rows.iter().enumerate() {
             if !army_ok(rows, true)

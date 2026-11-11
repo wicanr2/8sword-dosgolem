@@ -54,7 +54,12 @@ fn all_468_original_exit_clock_vectors_follow_normal_travel_and_save() {
         if f[11] == 0 {
             assert_eq!(j.phase(), "monthly");
             assert_eq!(j.world.remaining, 324);
-            assert_eq!(j.world.rng, before.world.rng);
+            // Local exit vectors stopped at the month boundary. The separately
+            // observed month body consumes two calls before the report.
+            let mut rng = before.world.rng;
+            rng.next15();
+            rng.next15();
+            assert_eq!(j.world.rng, rng);
             j = Journey::decode(&c, &d, &j.encode(&c, &d).unwrap()).unwrap();
             j.close_month(&d).unwrap();
         } else {

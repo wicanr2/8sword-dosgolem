@@ -79,7 +79,9 @@ fn last_step_report_cold_resume_and_confirm_commit_exactly_once() {
     let c = Catalog::builtin().unwrap();
     let mut j = Journey::new(&d, 1);
     j.world.remaining = 1;
-    let rng = j.world.rng;
+    let mut rng = j.world.rng;
+    rng.next15();
+    rng.next15();
     assert_eq!(j.travel(&d, 0x5000, &c).unwrap(), None);
     assert_eq!(
         (j.phase(), j.resources[3], j.world.remaining, j.month.months),
@@ -157,4 +159,88 @@ fn v2_migrates_and_checked_impossible_reports_or_overflow_leave_state_intact() {
     j.travel(&d, 0x5000, &c).unwrap();
     j.month.pending.as_mut().unwrap().budget.due += 1;
     assert!(j.encode(&c, &d).is_err());
+}
+
+#[test]
+fn all_2520_original_npc_slot_vectors_include_word_wrap_and_zero_slots() {
+    let mut count = 0;
+    for line in include_str!("../npc-month-reference.tsv")
+        .lines()
+        .filter(|l| !l.starts_with('#'))
+    {
+        let v: Vec<u32> = line
+            .split_whitespace()
+            .map(|s| s.parse().unwrap())
+            .collect();
+        assert_eq!(v.len(), 6);
+        let site = crate::guards::sites()[v[1] as usize];
+        assert_eq!(site.initial[v[2] as usize].count, v[4], "{line}");
+        assert_eq!(
+            crate::guards::monthly_growth(v[3], v[4]).unwrap(),
+            v[5],
+            "{line}"
+        );
+        count += 1;
+    }
+    assert_eq!(count, 2520);
+}
+
+#[test]
+fn month_refills_current_slots_keeps_cleared_guards_and_commits_two_rng_calls_once() {
+    let d = WorldData::flat_fixture();
+    let c = Catalog::builtin().unwrap();
+    let mut j = Journey::new(&d, 0x12345678);
+    j.world.remaining = 1;
+    // A compacted survivor has moved into slot zero. Its kind does not select cap.
+    j.guards.rows[0] = [Stack::default(); 6];
+    j.guards.rows[0][0] = stack("native:16", 40);
+    j.guards.rows[0][1] = stack("native:21", 1);
+    j.guards.rows[1] = [Stack::default(); 6];
+    j.guards.swords[0] = true;
+    j.begin_month(&c, &d, 1).unwrap();
+    assert_eq!(j.guards.rows[0][0], stack("native:16", 30));
+    assert_eq!(j.guards.rows[0][1], stack("native:21", 10));
+    assert_eq!(j.guards.rows[0][2..], [Stack::default(); 4]);
+    assert_eq!(j.guards.rows[1], [Stack::default(); 6]);
+    assert!(j.guards.swords[0]);
+    assert_eq!(j.world.rng.seed, 0x5b3f58b2);
+    let raw = j.encode(&c, &d).unwrap();
+    assert_eq!(&raw[..8], b"8SJRN015");
+    let mut cold = Journey::decode(&c, &d, &raw).unwrap();
+    assert_eq!(cold, j);
+    let rows = j.guards.rows;
+    j.close_month(&d).unwrap();
+    cold.close_month(&d).unwrap();
+    assert_eq!(cold, j);
+    assert_eq!(j.guards.rows, rows);
+    assert_eq!(j.month.months, 1);
+    assert!(j.close_month(&d).is_err());
+    assert_eq!(
+        Journey::decode(&c, &d, &j.encode(&c, &d).unwrap()).unwrap(),
+        j
+    );
+}
+
+#[test]
+fn old_pending_month_is_not_retroactively_refilled_and_failed_month_is_atomic() {
+    let c = Catalog::builtin().unwrap();
+    let d = WorldData::flat_fixture();
+    let mut j = Journey::new(&d, 1);
+    j.world.remaining = 1;
+    j.guards.rows[41][0].count = 40000;
+    let old = j.clone();
+    assert!(j.begin_month(&c, &d, 1).is_err());
+    assert_eq!(j, old);
+    assert!(crate::guards::monthly_growth(1, 40000).is_err());
+    j.guards = crate::guards::Guards::default();
+    j.begin_month(&c, &d, 1).unwrap();
+    // Existing v15 reports already committed before this feature keep their rows/RNG.
+    j.guards.rows[0][0].count = 2;
+    j.world.rng.seed = 123;
+    let raw = j.encode(&c, &d).unwrap();
+    let mut cold = Journey::decode(&c, &d, &raw).unwrap();
+    assert_eq!(cold.guards.rows[0][0].count, 2);
+    assert_eq!(cold.world.rng.seed, 123);
+    cold.close_month(&d).unwrap();
+    assert_eq!(cold.guards.rows[0][0].count, 2);
 }

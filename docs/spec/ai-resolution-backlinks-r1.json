@@ -1957,5 +1957,39 @@
       "scope": "Original final roster; original handoff bytes; native final win/retreat/loss; five GUI runs and ending checkpoint cold resume.",
       "not_closed": "Full campaign, original RNG call-sequence parity, MFIG score parity, hardware wall-clock, remaining world systems."
     }
+  ],
+  "rust_npc_month_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:IDA-MZ-loader-linear:129F9",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "129F9",
+      "original_name": "sub_12856",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Positive signed16 count grows by one third with word wrap, then original SLOT cap and minimum10; zero stays zero. Month consumes two observed RNG calls.",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/031-rust-independent-remake.md",
+      "required_correction": "NPC-MONTH-RESOLVED-20261111",
+      "receipt": "preserved/rust-npc-month-audit-r1.json",
+      "scope": "2520 local instruction vectors,252 count caps,four real-frame month controls and native report/guard cold resumes.",
+      "not_closed": "Global UI RNG parity, full campaign, historical calendar behavior in other game versions, travel-bar rendering."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:IDA-MZ-loader-linear:16249",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "16249",
+      "original_name": "sub_16226",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Unconditional jump bypasses disabled branch; counter increments as word. Tempo6 is a divisor for travel progress, not evidence of six calendar phases.",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/031-rust-independent-remake.md",
+      "required_correction": "CALENDAR-NAMING-CORRECTION-20261111",
+      "receipt": "preserved/rust-npc-month-audit-r1.json",
+      "scope": "Fixed PAM source bytes and four controls with counter0/35/375/65535; no invented date or branch implementation.",
+      "not_closed": "Global UI RNG parity, full campaign, historical calendar behavior in other game versions, travel-bar rendering."
+    }
   ]
 }

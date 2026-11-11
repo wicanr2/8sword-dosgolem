@@ -30,7 +30,15 @@
 
 最終戰勝利後，Rust直接繪製並播放完整結局，支援工具列切換原版／HD、Noto900／隸書／草書及音樂。F7保存播放位置，重新啟動可續播；Esc或「離開」結束。原版與HD九階段、四種畫面模式的36張來源畫布已核對，正常勝後播放、結局冷讀及片尾退出經原生視窗抽驗。
 
-上圖是不同時刻的Linux Rust視窗，以既有v14進度明示配置軍隊、八劍、seed與最終守軍東鄰站立位置；原敵軍六隊保持，未稱自然通關。首段HD音樂採既有〈刀祭〉替代MFIG，後段使用HD結局曲。原版／HD同幀對照仍見上方，Rust實際擷取與限制見[驗收](docs/spec/031-rust-independent-remake.md#rust最終守軍與結局限定-conformed)、[來源](docs/images/rust-ending-r1.json)及[還原入口](preserved/README.md#rust最終戰與結局保存)。
+上圖是不同時刻的Linux Rust視窗，以既有v14進度明示配置軍隊、八劍、seed與最終守軍東鄰站立位置；原敵軍六隊保持，未稱自然通關。首段HD音樂採既有〈刀祭〉替代MFIG，後段使用HD結局曲。原版／HD同幀對照仍見上方，Rust實際擷取與限制見[驗收](docs/spec/031-rust-independent-remake.md#rust最終守軍與結局限定-conformed)、[來源](docs/images/rust-ending-r1.json)及[還原入口](preserved/README.md#rust守軍月結保存)。
+
+## Rust守軍月結
+
+42處守軍已接入每月補兵。存活隊伍依原槽位補兵並受該槽上限限制，已清空的守軍保持空城。月報建立時一次提交，F7或重新啟動不會重補。
+
+![Rust守軍月結、月報冷讀與補兵後原式戰場](docs/images/rust-npc-month-r1.png)
+
+上圖是Linux原生視窗抽驗，標題兵數來自同幀狀態記錄。測試明示月底一步、30民兵、原城鄰格與受損守軍20／5／1；正常取消攻城後月結為26／10／10，再進原式戰場及冷讀。153測試、2520組原指令補兵向量、四個完整原月結控制與三程序九份SDL擷取通過。詳見[驗收](docs/spec/031-rust-independent-remake.md#rust守軍月結限定-conformed)、[圖片來源](docs/images/rust-npc-month-r1.json)及[目前資料包還原](preserved/README.md#rust守軍月結保存)。
 
 ## 原版操作整合與獨立重製
 
@@ -44,9 +52,9 @@ Rust已能獨立執行普通戰鬥，直接繪製既有HD背景與透明部隊�
 
 ![Rust原生普通戰鬥與三字型工具列](docs/images/rust-native-battle-r1.png)
 
-上圖是原生視窗的明示測試編成，1000野狼與10女弓箭手對抗三隊原兵種。普通勝利、全滅、撤退、工具列與音訊佇列已抽驗；四場回合對照含71次選隊與42次攻擊。33種兵種資料、201組算式及309組位置向量保持。這是Linux開發樣本，世界、新遊戲與世界存檔尚待移植，未提供完整遊戲包。詳見[限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)、[核對收據](preserved/rust-native-player-audit-r1.json)及[圖片來源](docs/images/rust-native-battle-r1.json)。
+上圖是原生視窗的明示測試編成，1000野狼與10女弓箭手對抗三隊原兵種。普通勝利、全滅、撤退、工具列與音訊佇列已抽驗；四場回合對照含71次選隊與42次攻擊。33種兵種資料、201組算式及309組位置向量保持。這是Linux開發樣本，新遊戲與其餘世界系統仍待移植，未提供完整遊戲包。詳見[限定驗收](docs/spec/031-rust-independent-remake.md#原生普通回合與桌面媒體限定-conformed)、[核對收據](preserved/rust-native-player-audit-r1.json)及[圖片來源](docs/images/rust-native-battle-r1.json)。
 
-開發環境完成[目前原生資料包還原](preserved/README.md#rust最終戰與結局保存)後，執行`bash tools/rust-native-player.sh build`，再用`bash tools/rust-native-player.sh run`開啟樣本。需Linux X11及音訊裝置；`run --mute`可靜音。方向鍵選敵、Enter出手、Space略過、Esc撤退、R重開。`bash tools/remake-rust.sh`核對Rust測試與CLI。其餘移植依[工作表](WORKLIST.md)接續。
+開發環境完成[目前原生資料包還原](preserved/README.md#rust守軍月結保存)後，執行`bash tools/rust-native-player.sh build`，再用`bash tools/rust-native-player.sh run`開啟樣本。需Linux X11及音訊裝置；`run --mute`可靜音。方向鍵選敵、Enter出手、Space略過、Esc撤退、R重開。`bash tools/remake-rust.sh`核對Rust測試與CLI。其餘移植依[工作表](WORKLIST.md)接續。
 
 ## Rust原生戰鬥法術
 
@@ -76,7 +84,7 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 ![Rust原生HD地圖與隸書，獨立程序冷讀](docs/images/rust-world-preview-r1.png)
 
-還原[目前原生資料包](preserved/README.md#rust最終戰與結局保存)後，用`bash tools/rust-native-player.sh world`開啟預覽。方向鍵及Home／PageUp／End／PageDown移動；工具列可切字型、音樂及存檔。加`--save-dir /既有絕對路徑`啟用F7，加`--continue`冷讀。這是獨立的移動預覽，遇到營地、遭遇、月結等尚未接入事件會停止；右側管理選單尚未作用。40個Rust測試及880組原指令案例通過，完整世界遊戲與世界保存仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)及[圖片來源](docs/images/rust-world-preview-r1.json)。
+還原[目前原生資料包](preserved/README.md#rust守軍月結保存)後，用`bash tools/rust-native-player.sh world`開啟預覽。方向鍵及Home／PageUp／End／PageDown移動；工具列可切字型、音樂及存檔。加`--save-dir /既有絕對路徑`啟用F7，加`--continue`冷讀。這是獨立的移動預覽，遇到營地、遭遇、月結等尚未接入事件會停止；右側管理選單尚未作用。40個Rust測試及880組原指令案例通過，完整世界遊戲與世界保存仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資料手動移動預覽限定-conformed)、[核對](preserved/rust-world-audit-r1.json)及[圖片來源](docs/images/rust-world-preview-r1.json)。
 
 ## Rust普通遭遇與回場
 
@@ -84,7 +92,7 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 ![Rust普通遭遇、原式戰場及回場](docs/images/rust-journey-r1.png)
 
-還原[目前原生資料包](preserved/README.md#rust最終戰與結局保存)後，以`bash tools/rust-native-player.sh journey --save-dir /既有絕對路徑`開啟。地圖方向鍵移動、Space等待；遇敵後方向鍵選擇、Enter確認。戰中方向鍵選敵、Enter出手、Space略過、Esc撤退，終局按Enter回場；F7存檔，下次加`--continue`續接。這是有界開發旅程，守軍已接入下節，完整世界仍依工作表續接，最終戰與結局見下節。既有46測試、320原指令案例及四程序12擷取見[限定驗收](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)、[核對](preserved/rust-journey-audit-r1.json)及[圖片來源](docs/images/rust-journey-r1.json)；管理與滑鼠已加入下節。
+還原[目前原生資料包](preserved/README.md#rust守軍月結保存)後，以`bash tools/rust-native-player.sh journey --save-dir /既有絕對路徑`開啟。地圖方向鍵移動、Space等待；遇敵後方向鍵選擇、Enter確認。戰中方向鍵選敵、Enter出手、Space略過、Esc撤退，終局按Enter回場；F7存檔，下次加`--continue`續接。這是有界開發旅程，守軍已接入下節，完整世界仍依工作表續接，最終戰與結局見下節。既有46測試、320原指令案例及四程序12擷取見[限定驗收](docs/spec/031-rust-independent-remake.md#普通遭遇與回場限定-conformed)、[核對](preserved/rust-journey-audit-r1.json)及[圖片來源](docs/images/rust-journey-r1.json)；管理與滑鼠已加入下節。
 
 ## Rust原式管理與滑鼠
 
@@ -110,7 +118,7 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 ![Rust原生月報與獨立冷讀，以及舊營地進度轉入](docs/images/rust-monthly-r1.png)
 
-上列為正常走滿324步後的月報與另一程序冷讀，下列為返回檢閱及前批v2營地進度轉入。原起點30民兵途中四次撤退後仍完整，月報235＋100−30＝305金；三程序八份擷取與SDL讀回相同。58測試、六組既有Go收支與720補貨向量通過。這輪只接玩家財務／營地，守軍增兵與原日曆相位另待。見[限定驗收](docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)、[核對](preserved/rust-monthly-audit-r1.json)、[圖片來源](docs/images/rust-monthly-r1.json)及[目前資料包還原](preserved/README.md#rust玩家月報與補貨保存)。沿同一個`journey --save-dir /既有絕對路徑`入口，加`--continue`續接；v3支援舊v1／v2，仍非完整世界或Go存檔格式。
+上列為正常走滿324步後的月報與另一程序冷讀，下列為返回檢閱及前批v2營地進度轉入。原起點30民兵途中四次撤退後仍完整，月報235＋100−30＝305金；三程序八份擷取與SDL讀回相同。58測試、六組既有Go收支與720補貨向量通過。守軍增兵已見上節；原版行程條呈現仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)、[核對](preserved/rust-monthly-audit-r1.json)、[圖片來源](docs/images/rust-monthly-r1.json)及[目前資料包還原](preserved/README.md#rust玩家月報與補貨保存)。沿同一個`journey --save-dir /既有絕對路徑`入口，加`--continue`續接；v3支援舊v1／v2，仍非完整世界或Go存檔格式。
 
 ## Rust寶箱資源
 
@@ -126,7 +134,7 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 ![Rust F5地圖總覽、正常探索、草書與獨立冷讀](docs/images/rust-minimap-r1.png)
 
-上圖從原起點40／40走三步到43／40，再以另一程序讀檔開圖。Noto900、隸書、草書與預設縮放滑鼠已抽驗；F7沿既有v4保存。見[限定驗收](docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)、[核對](preserved/rust-minimap-audit-r1.json)、[圖片來源](docs/images/rust-minimap-r1.json)及[目前還原入口](preserved/README.md#rust最終戰與結局保存)。僅接目前已探索區域，其他區域自然抵達與完整世界仍待。
+上圖從原起點40／40走三步到43／40，再以另一程序讀檔開圖。Noto900、隸書、草書與預設縮放滑鼠已抽驗；F7沿既有v4保存。見[限定驗收](docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)、[核對](preserved/rust-minimap-audit-r1.json)、[圖片來源](docs/images/rust-minimap-r1.json)及[目前還原入口](preserved/README.md#rust守軍月結保存)。僅接目前已探索區域，其他區域自然抵達與完整世界仍待。
 
 
 ## Rust世界造橋術
@@ -137,7 +145,7 @@ Rust已能直接讀八張原地圖，繪製批准的HD地形與主角，處理�
 
 上圖從原起點正常行走，沒有位置、軍隊或法術次數注入。購三次花30金，施法後剩兩次，步行可走上新橋。四個獨立程序共11份SDL擷取通過，包含待選方向冷讀、完成後冷讀與真正v4進度轉入；預設縮放的滑鼠操作另驗。原版既有受控造橋收據也核對了改圖、扣次與位置／步數。這次只接造橋術，其餘地圖術與七件寶物待續。
 
-使用同一個`journey --save-dir /既有絕對路徑`入口。F6或右欄「搜尋物品」尋寶，F4或「使用法術」開選單；方向鍵選術、Enter確認後選造橋方向，也可用滑鼠。Esc離開法術選單，等待方向時Space結束且仍耗一次，沿原版語意。有指定目錄時取得、交易與施法會自動保存；F7仍可用，v5讀舊v1至v4，不讀Go進度。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界造橋術限定-conformed)、[核對](preserved/rust-world-magic-audit-r1.json)、[圖片來源](docs/images/rust-world-magic-r1.json)及[目前資料包還原](preserved/README.md#rust最終戰與結局保存)。
+使用同一個`journey --save-dir /既有絕對路徑`入口。F6或右欄「搜尋物品」尋寶，F4或「使用法術」開選單；方向鍵選術、Enter確認後選造橋方向，也可用滑鼠。Esc離開法術選單，等待方向時Space結束且仍耗一次，沿原版語意。有指定目錄時取得、交易與施法會自動保存；F7仍可用，v5讀舊v1至v4，不讀Go進度。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界造橋術限定-conformed)、[核對](preserved/rust-world-magic-audit-r1.json)、[圖片來源](docs/images/rust-world-magic-r1.json)及[目前資料包還原](preserved/README.md#rust守軍月結保存)。
 
 
 ## Rust煉金術與召兵術
@@ -148,7 +156,7 @@ F4已接煉金與召兵，沿原式八列選單及滑鼠選取再確認。商店
 
 上圖使用前批真正v5進度，明示移到後區商店旁並設領導力1000；該批未驗自然抵達商店，仍不稱自然取得。實際操作原店購買、F4施法後，煉金得到55金，召兵使民兵30→50；五個程序共12份SDL擷取，結果／回場冷讀與三字型通過。這50名民兵另已在原式戰場出手、撤退並保存；預設縮放的滑鼠返回也已抽驗。
 
-仍沿`journey --save-dir /既有絕對路徑`及`--continue`入口。施法結果Enter／Esc返回，v6可讀v1至v5，不讀Go進度。未接地圖術不販售，也不預贈法術次數。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資源法術限定-conformed)、[核對](preserved/rust-resource-spells-audit-r1.json)、[圖片來源](docs/images/rust-resource-spells-r1.json)與[目前資料包還原](preserved/README.md#rust最終戰與結局保存)。
+仍沿`journey --save-dir /既有絕對路徑`及`--continue`入口。施法結果Enter／Esc返回，v6可讀v1至v5，不讀Go進度。未接地圖術不販售，也不預贈法術次數。見[限定驗收](docs/spec/031-rust-independent-remake.md#世界資源法術限定-conformed)、[核對](preserved/rust-resource-spells-audit-r1.json)、[圖片來源](docs/images/rust-resource-spells-r1.json)與[目前資料包還原](preserved/README.md#rust守軍月結保存)。
 
 
 ## Rust停時術與鳥瞰術
@@ -159,7 +167,7 @@ F4已接停時與鳥瞰。停時按原階級比例延長本月剩餘步數；同
 
 上圖用前批真正v6進度衍生明示後區商店位置，沒有預贈次數。實際購買後，停時110→146步，重複仍146；鳥瞰顯示全圖，關閉後F5只顯示原9格。91測試、原版受控快照、四程序10份SDL擷取及預設縮放通過；鳥瞰冷讀保留畫面與已扣次，不重扣或永久揭圖。跨區尚未接，不稱自然取得。
 
-仍沿`journey --save-dir /既有絕對路徑`與`--continue`。原店兩術各100，已接地圖術共用容量；F7可保存鳥瞰待關閉狀態，v7讀v1至v6。原版月底重設已接玩家月報，完整日曆仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#停時與鳥瞰限定-conformed)、[核對](preserved/rust-survey-spells-audit-r1.json)、[圖片來源](docs/images/rust-survey-spells-r1.json)及[目前資料包還原](preserved/README.md#rust最終戰與結局保存)。
+仍沿`journey --save-dir /既有絕對路徑`與`--continue`。原店兩術各100，已接地圖術共用容量；F7可保存鳥瞰待關閉狀態，v7讀v1至v6。原版月底重設已接玩家月報，完整日曆仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#停時與鳥瞰限定-conformed)、[核對](preserved/rust-survey-spells-audit-r1.json)、[圖片來源](docs/images/rust-survey-spells-r1.json)及[目前資料包還原](preserved/README.md#rust守軍月結保存)。
 
 ## Rust傳送術
 
@@ -169,7 +177,7 @@ F4傳送沿原版八區選單。方向鍵上下循環，或點選目的地後確
 
 上圖由既有進度明示移到原版傳送商店，實際支付200金購入，沒有預贈次數。待選冷讀、三字型、鍵鼠切換目的地、抵達後冷讀與正常走路已抽驗；時間、亂數與軍隊不因傳送改變。重載地圖會清除離開區與目的區的造橋暫態，保留探索紀錄。傳送商店四周為山地，本批沒有以自然行走取得傳送的聲明。
 
-使用目前`journey`入口即可操作。v8讀v1至v7，待選保存不重扣次。特殊地點上岸、地圖出口及其餘世界事件仍待接；遊戲尚未完整重製。見[限定驗收](docs/spec/031-rust-independent-remake.md#傳送術限定-conformed)、[核對](preserved/rust-travel-spells-audit-r1.json)、[圖片來源](docs/images/rust-travel-spells-r1.json)及[目前資料包還原](preserved/README.md#rust最終戰與結局保存)。
+使用目前`journey`入口即可操作。v8讀v1至v7，待選保存不重扣次。特殊地點上岸、地圖出口及其餘世界事件仍待接；遊戲尚未完整重製。見[限定驗收](docs/spec/031-rust-independent-remake.md#傳送術限定-conformed)、[核對](preserved/rust-travel-spells-audit-r1.json)、[圖片來源](docs/images/rust-travel-spells-r1.json)及[目前資料包還原](preserved/README.md#rust守軍月結保存)。
 
 ## Rust涉水術
 
@@ -177,7 +185,7 @@ F4傳送沿原版八區選單。方向鍵上下循環，或點選目的地後確
 
 ![Rust涉水入水、隸書登陸選擇、拒絕與上岸冷讀](docs/images/rust-water-spell-r1.png)
 
-上圖分別指定原商店與同區原圖水岸位置，沿實購所得施法，沒有預贈次數或改地形。原商店被特殊地形圍住，目前未驗自然取得。一般地形上岸、探索紀錄、三字型、鍵鼠、冷讀及預設縮放已抽驗；特殊地點上岸仍待接。見[限定驗收](docs/spec/031-rust-independent-remake.md#涉水術限定-conformed)、[核對](preserved/rust-water-spell-audit-r1.json)、[圖片來源](docs/images/rust-water-spell-r1.json)及[目前資料包](preserved/README.md#rust最終戰與結局保存)。
+上圖分別指定原商店與同區原圖水岸位置，沿實購所得施法，沒有預贈次數或改地形。原商店被特殊地形圍住，目前未驗自然取得。一般地形上岸、探索紀錄、三字型、鍵鼠、冷讀及預設縮放已抽驗；特殊地點上岸見下節。見[限定驗收](docs/spec/031-rust-independent-remake.md#涉水術限定-conformed)、[核對](preserved/rust-water-spell-audit-r1.json)、[圖片來源](docs/images/rust-water-spell-r1.json)及[目前資料包](preserved/README.md#rust守軍月結保存)。
 
 ## Rust跳躍術
 
@@ -185,7 +193,7 @@ F4傳送沿原版八區選單。方向鍵上下循環，或點選目的地後確
 
 ![Rust跳躍待發、越山、途中冷讀與落地軍隊](docs/images/rust-jump-spell-r1.png)
 
-上圖只把既有進度起始位置移到原跳躍商店；實購50金後施法，向西越過兩格山地並落地。後續沒有移位置、改地形或預贈次數。待跳F7、途中保存／新程序續跳、落地冷讀、三字型與預設縮放已抽驗；自然跨區抵達商店仍待驗證。見[限定驗收](docs/spec/031-rust-independent-remake.md#跳躍術限定-conformed)、[核對](preserved/rust-jump-spell-audit-r1.json)、[圖片來源](docs/images/rust-jump-spell-r1.json)及[目前資料包](preserved/README.md#rust最終戰與結局保存)。
+上圖只把既有進度起始位置移到原跳躍商店；實購50金後施法，向西越過兩格山地並落地。後續沒有移位置、改地形或預贈次數。待跳F7、途中保存／新程序續跳、落地冷讀、三字型與預設縮放已抽驗；自然跨區抵達商店仍待驗證。見[限定驗收](docs/spec/031-rust-independent-remake.md#跳躍術限定-conformed)、[核對](preserved/rust-jump-spell-audit-r1.json)、[圖片來源](docs/images/rust-jump-spell-r1.json)及[目前資料包](preserved/README.md#rust守軍月結保存)。
 
 ## Rust自然跨區與跳躍遭遇
 
@@ -193,7 +201,7 @@ F4傳送沿原版八區選單。方向鍵上下循環，或點選目的地後確
 
 ![Rust原圖跨區、月報冷讀與跳躍遇敵戰場](docs/images/rust-world-exits-r1.png)
 
-上圖為Linux Rust原生視窗，以既有進度指定出口鄰格；月報另設最後一步，跳躍另設待跳與固定測試seed，後續均用正常鍵鼠。前進／後退、跨區月報冷讀、跳躍遭遇F7／冷讀與撤退續跳已抽驗。這是功能代表鏈，尚未驗自然抵達所有出口或完整通關。見[驗收](docs/spec/031-rust-independent-remake.md#自然出口與跳躍遭遇限定-conformed)、[核對](preserved/rust-world-exits-audit-r1.json)、[圖片來源](docs/images/rust-world-exits-r1.json)及[還原入口](preserved/README.md#rust最終戰與結局保存)。特殊地點上岸與空軍隊失金已接入下節；守軍／八劍與結局已接入下節。
+上圖為Linux Rust原生視窗，以既有進度指定出口鄰格；月報另設最後一步，跳躍另設待跳與固定測試seed，後續均用正常鍵鼠。前進／後退、跨區月報冷讀、跳躍遭遇F7／冷讀與撤退續跳已抽驗。這是功能代表鏈，尚未驗自然抵達所有出口或完整通關。見[驗收](docs/spec/031-rust-independent-remake.md#自然出口與跳躍遭遇限定-conformed)、[核對](preserved/rust-world-exits-audit-r1.json)、[圖片來源](docs/images/rust-world-exits-r1.json)及[還原入口](preserved/README.md#rust守軍月結保存)。特殊地點上岸與空軍隊失金已接入下節；守軍／八劍與結局已接入下節。
 
 ## Rust特殊地點上岸
 
@@ -201,7 +209,7 @@ F4傳送沿原版八區選單。方向鍵上下循環，或點選目的地後確
 
 ![Rust水岸寶箱、拒絕商店、跨區及原式募兵](docs/images/rust-special-shore-r1.png)
 
-上圖為Linux原生視窗，初始只指定原水岸、涉水狀態與固定測試seed，既有資源／軍隊／法術保留；後續均用正常鍵鼠。寶箱拒絕後再領取、法術店拒絕後實購、出口拒絕與另一程序續行、營地接受均已抽驗。v11讀v1至v10，不稱自然取得涉水或完整通關。見[驗收](docs/spec/031-rust-independent-remake.md#特殊地點上岸限定-conformed)、[核對](preserved/rust-special-shore-audit-r1.json)、[圖片來源](docs/images/rust-special-shore-r1.json)及[還原入口](preserved/README.md#rust最終戰與結局保存)。51／65、未支援商品、非水特殊點組合及其他世界事件仍待。
+上圖為Linux原生視窗，初始只指定原水岸、涉水狀態與固定測試seed，既有資源／軍隊／法術保留；後續均用正常鍵鼠。寶箱拒絕後再領取、法術店拒絕後實購、出口拒絕與另一程序續行、營地接受均已抽驗。v11讀v1至v10，不稱自然取得涉水或完整通關。見[驗收](docs/spec/031-rust-independent-remake.md#特殊地點上岸限定-conformed)、[核對](preserved/rust-special-shore-audit-r1.json)、[圖片來源](docs/images/rust-special-shore-r1.json)及[還原入口](preserved/README.md#rust守軍月結保存)。51提示、65守軍與結局已接入各節；未支援商品與非水特殊點組合仍待。
 
 ## Rust空軍隊遇敵失金
 
@@ -209,7 +217,7 @@ F4傳送沿原版八區選單。方向鍵上下循環，或點選目的地後確
 
 ![Rust原F3解雇、失金提示、獨立冷讀及正常移動](docs/images/rust-empty-army-r1.png)
 
-上圖從真正v11進度開始，只指定原起點與固定測試seed；30民兵經原F3實際解雇後，以正常Space遇敵，75金扣37剩38。三程序已抽驗待提示F7／冷讀、確認、空軍隊檢閱、人物金錢及後續移動，三字型均可用。這是受控初始位置與seed的玩家鏈，不稱自然通關。v12讀v1至v11，仍沿既有journey與F7入口。見[驗收](docs/spec/031-rust-independent-remake.md#空軍隊遇敵失金限定-conformed)、[核對](preserved/rust-empty-army-audit-r1.json)、[圖片來源](docs/images/rust-empty-army-r1.json)及[還原入口](preserved/README.md#rust最終戰與結局保存)。
+上圖從真正v11進度開始，只指定原起點與固定測試seed；30民兵經原F3實際解雇後，以正常Space遇敵，75金扣37剩38。三程序已抽驗待提示F7／冷讀、確認、空軍隊檢閱、人物金錢及後續移動，三字型均可用。這是受控初始位置與seed的玩家鏈，不稱自然通關。v12讀v1至v11，仍沿既有journey與F7入口。見[驗收](docs/spec/031-rust-independent-remake.md#空軍隊遇敵失金限定-conformed)、[核對](preserved/rust-empty-army-audit-r1.json)、[圖片來源](docs/images/rust-empty-army-r1.json)及[還原入口](preserved/README.md#rust守軍月結保存)。
 
 ## Rust地圖提示
 
@@ -217,7 +225,7 @@ F4傳送沿原版八區選單。方向鍵上下循環，或點選目的地後確
 
 ![Rust原圖提示、隸書、獨立冷讀與正常移動](docs/images/rust-map-notice-r1.png)
 
-上圖以既有進度指定原圖提示鄰格與固定seed，再正常走入落日城旗標。待提示與確認後各經另一程序冷讀，之後可正常移動；原軍隊與金錢保持。八圖131處提示資料已核對，原文留本機媒體包。這是受控起始位置後的玩家流程，尚未稱自然通關。見[驗收](docs/spec/031-rust-independent-remake.md#地圖51提示限定-conformed)、[核對](preserved/rust-map-notice-audit-r1.json)、[圖片來源](docs/images/rust-map-notice-r1.json)及[還原入口](preserved/README.md#rust最終戰與結局保存)。
+上圖以既有進度指定原圖提示鄰格與固定seed，再正常走入落日城旗標。待提示與確認後各經另一程序冷讀，之後可正常移動；原軍隊與金錢保持。八圖131處提示資料已核對，原文留本機媒體包。這是受控起始位置後的玩家流程，尚未稱自然通關。見[驗收](docs/spec/031-rust-independent-remake.md#地圖51提示限定-conformed)、[核對](preserved/rust-map-notice-audit-r1.json)、[圖片來源](docs/images/rust-map-notice-r1.json)及[還原入口](preserved/README.md#rust守軍月結保存)。
 
 ## Rust守軍與頭目
 
@@ -225,7 +233,7 @@ F4傳送沿原版八區選單。方向鍵上下循環，或點選目的地後確
 
 ![Rust原式攻城、戰中冷讀、光復提示與頭目名劍](docs/images/rust-guards-r1.png)
 
-上圖為Linux原生視窗，從既有進度指定原城鄰格與固定seed，戰鬥另明示1000民兵／200弓箭手；後續以正常鍵鼠作戰與存讀。戰中冷讀、撤退殘兵、再戰勝利、重訪與頭目名劍冷讀已抽驗，不稱自然招募或完整通關。42筆原守軍資料已接入，最終守軍在缺劍或無兵時保留原提示；劍齊且有部隊後的最終戰與結局仍待。見[驗收](docs/spec/031-rust-independent-remake.md#rust守軍與頭目限定-conformed)、[核對](preserved/rust-guards-audit-r1.json)、[圖片來源](docs/images/rust-guards-r1.json)及[還原入口](preserved/README.md#rust最終戰與結局保存)。
+上圖為Linux原生視窗，從既有進度指定原城鄰格與固定seed，戰鬥另明示1000民兵／200弓箭手；後續以正常鍵鼠作戰與存讀。戰中冷讀、撤退殘兵、再戰勝利、重訪與頭目名劍冷讀已抽驗，不稱自然招募或完整通關。42筆原守軍資料已接入，最終守軍在缺劍或無兵時保留原提示；劍齊且有部隊後的最終戰與結局見上節。見[驗收](docs/spec/031-rust-independent-remake.md#rust守軍與頭目限定-conformed)、[核對](preserved/rust-guards-audit-r1.json)、[圖片來源](docs/images/rust-guards-r1.json)及[還原入口](preserved/README.md#rust守軍月結保存)。
 
 ## Rust人物資料
 
@@ -233,7 +241,7 @@ Rust旅程已接F1人物資料，顯示原版六欄與已批准的武將頭像�
 
 ![Rust原式人物資料與隸書，寶箱後的金錢及領導力](docs/images/rust-character-r1.png)
 
-圖中原起點與前批正常寶箱進度的530金／103領導力均由Rust資料顯示。四程序八份擷取、預設縮放滑鼠及獨立冷讀已抽驗；檢視不推進時間或亂數。頭目名劍取得與顯示已接入上節；其餘寶物取得與效果仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)、[核對](preserved/rust-character-audit-r1.json)、[圖片來源](docs/images/rust-character-r1.json)及[目前還原入口](preserved/README.md#rust最終戰與結局保存)。
+圖中原起點與前批正常寶箱進度的530金／103領導力均由Rust資料顯示。四程序八份擷取、預設縮放滑鼠及獨立冷讀已抽驗；檢視不推進時間或亂數。頭目名劍取得與顯示已接入上節；其餘寶物取得與效果仍待。見[限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)、[核對](preserved/rust-character-audit-r1.json)、[圖片來源](docs/images/rust-character-r1.json)及[目前還原入口](preserved/README.md#rust守軍月結保存)。
 
 ## 部隊管理與Go資料
 
