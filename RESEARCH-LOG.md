@@ -3667,3 +3667,13 @@ Go1.24.13／固定923核心跑84個原指令向量：六個tempo、0／1／分�
 已證實的Rust同狀態範圍：177測試、六原生程序20全幅SDL讀回與20中央裁切；前版真正v16的state_hash8473f43c4b6a804c及世界中央畫面逐像素相同。開場略過／主頁／Continue、F1／F2／F5、海報鍵鼠與偏好冷讀、原式戰場及v15結局已抽驗。結局從保存F7的24688ms開始，仍為原版模式；不能以此稱自然通關或新增HD對拍。側翼切換不動世界seed／步數，159媒體中舊156逐SHA保持。
 
 SDL2本機/usr/include/SDL2/SDL_video.h為可用桌面界限契約來源，SDL_GetDisplayUsableBounds自2.0.5可用，回傳不含系統保留區的範圍。1920×1080中實際視窗[0,110,1920,860]與縮放點選／偏好保存／退出0通過，沒有以headless幾何取代真視窗。RUST-POSTER-RESOLVED-20261111只閉合Rust海報停止線；原版／HD、AI及規則的全程接線仍待。[規格](docs/spec/031-rust-independent-remake.md#rust全程海報工具列限定-conformed)、[核對](preserved/rust-poster-audit-r1.json)與[保存](preserved/README.md#rust全程海報工具列保存)為入口。
+
+## 2026-11-11 Rust策略AI工具列
+
+本輪移植030既有政策，不新增DOS逆向。已證實來源為battle_ai_policy.go SHA54ac5e33643b4f11079284d397a1bb7fd7dafa90d5b41c8966bbbb3e6dd9fa5a及battle_ai.go SHA8fe3f29c24ea702ced1bac8017991b775253bdb5e7156f77c0aa6e5d3b82f24d，完整來源與Go1.24.13匯出程式本機保存。原PAM／IDA位址與battleAIEntries、候選及效果證據沿030，不將Rust函式名當DOS原名。Go只用於開發參考，Rust執行為純typed評分及既有選敵／結算。
+
+已證實Go模型移植範圍：408 View包含八個永久保存的原版受控案例、384個固定原兵種及16個合成OpenKB欄位；逐候選slot／raw／count／amount／loss／eliminates與排序相同，並非408次新DOS對拍。估值沿Go word乘積截斷；Rust正式傷害仍按既有安全算式，不以估值替換兵力計算。特殊0／2／5才改目標，其他分派與原selector／gate保持；64個固定seed均比對RNG與pending HP。
+
+七原生程序20份全幅SDL及中央讀回通過。受控軍隊100猴妖／2僵屍對250名OpenKB弓箭手、seed1；原版首擊97／2，策略首擊100／0，兩側同七個目標roll，seed752224798，原目標slot0→slot1。正常v16旅程先Continue及正常移動／等待才自然遇敵，三次策略決策／零改選；F7冷讀同state_hash／中央畫面，模式重啟回native。受控編成不稱自然取得、整體策略或勝率改善。
+
+同前版真正v16世界中央逐像素相同。160執行期檔保持，只改poster-font六字，原16字墨／其他158媒體逐SHA相同；舊16字字集ASCII回退亦有正式視窗。RUST-AI-RESOLVED-20261111閉合Rust AI接線，規則及全程原版／HD仍待。[規格](docs/spec/031-rust-independent-remake.md#rust策略ai工具列限定-conformed)、[核對](preserved/rust-ai-audit-r1.json)與[永久保存](preserved/README.md#rust策略ai工具列保存)為入口。

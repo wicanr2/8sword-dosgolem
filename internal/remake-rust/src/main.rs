@@ -12,6 +12,7 @@ fn main() {
                     | "--seed"
                     | "--mute"
                     | "--skip-intro"
+                    | "--battle-ai"
             )
         })
     {

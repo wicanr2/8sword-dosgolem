@@ -1597,12 +1597,26 @@ archive以專案唯讀、preserved可寫執行`archive --project /project --arch
 
 ## Rust全程海報工具列保存
 
-[完整索引](rust-poster-r1.json)、[核對](rust-poster-audit-r1.json)、[脫離核對](rust-poster-detached-r1.json)與[清理](rust-poster-cleanup-r1.json)為現行入口。完整Rust來源、159媒體與binary、真正v16及v15 F7、Go原側翼函式與輸出、六程序20全幅SDL／中央讀回、預設縮放、各次腳本失敗與修正來源，保存在本機preserved/rust-poster-r1/，不依賴workplace。原定稿PNG及提示仍在[永久美術](../artwork/README.md)，全媒體只留本機，沒有Release。
+[完整索引](rust-poster-r1.json)、[核對](rust-poster-audit-r1.json)、[脫離核對](rust-poster-detached-r1.json)與[清理](rust-poster-cleanup-r1.json)為海報批次入口。完整Rust來源、159媒體與binary、真正v16及v15 F7、Go原側翼函式與輸出、六程序20全幅SDL／中央讀回、預設縮放、各次腳本失敗與修正來源，保存在本機preserved/rust-poster-r1/，不依賴workplace。原定稿PNG及提示仍在[永久美術](../artwork/README.md)，全媒體只留本機，沒有Release。
 
-[啟動器](../tools/rust-native-player.sh)指向workplace/probe-20261023/graphics-first/battle-r1/rust-poster-r1/native。清空workplace後，使用既有Pillow11.3.0-r2容器、UID1000、--rm／network none及相稱逾時與資源界限，將專案掛到/project，執行`python /project/tools/rust-poster.py restore --project /project`還原160份執行期檔。可加`--work <新的可寫目錄>`還原到其他位置。binary預設讀旁邊pack，SDL2／libsndfile與XDG保存、play／journey／run／world入口沿前批；執行期不需Go／DOS／x86。
+此批位於workplace/probe-20261023/graphics-first/battle-r1/rust-poster-r1/native；現行入口見[策略AI](#rust策略ai工具列保存)。清空workplace後，使用既有Pillow11.3.0-r2容器、UID1000、--rm／network none及相稱逾時與資源界限，將專案掛到/project，執行`python /project/tools/rust-poster.py restore --project /project`還原160份執行期檔。可加`--work <新的可寫目錄>`還原到其他位置。binary預設讀旁邊pack，SDL2／libsndfile與XDG保存、play／journey／run／world入口沿前批；執行期不需Go／DOS／x86。
 
 [資料工具](../tools/rust-poster.py)的prepare恢復舊156媒體與真進度，輸出固定Go原函式的panels.go及Noto工具列字集。以dosgolem-go-ebiten:1.24-r1、GO111MODULE=off、GOCACHE=/out/go-cache執行`go run /out/panels.go`，將既有批次掛/out可寫、docs/images掛/images唯讀，才產生兩份側翼RGBA。沿有界Docker參數，完整命令見execution.json。Go匯出僅限開發時，原圖不改；freeze固定crate／工具／媒體，audit核177測試、20全幅及中央像素、同狀態前版與舊媒體SHA，images只排版實際擷取。建置只掛crate／native，GUI只掛native與一支工具。完整映像、命令與限制見保存內execution.json；[GUI](../tools/rust-poster-gui.py)及保存內default-gui.py為輸入工具。
 
 archive以專案唯讀、preserved可寫執行`archive --project /project --archive /project/preserved --out /project/preserved/rust-poster-r1.json`。verify只掛preserved唯讀、此工具與可寫輸出，執行`verify --archive /archive --out <新JSON>`，不掛workplace。restore按SHA／mode還原binary與pack；明示測試fixture不屬執行期必需檔。海報偏好poster.json沿032 schema1，與v16／WorldState／Go格式分開。正式197／7／923／535／1071保持。全程原版／HD、AI與規則工具列仍待，[031](../docs/spec/031-rust-independent-remake.md#rust全程海報工具列限定-conformed)限定範圍不外推整體完成。
 
 收尾：1171檔／443去重物件、186690592壓縮bytes永久保存；全部物件脫離核對、160份執行期SHA／mode還原及正常鍵鼠操作／F7／退出0通過。六份中央及全幅SDL與已驗世界抽樣完全相同，44條額外還原證據另列脫離核對。只清本批3477檔，邏輯合計4673880605 bytes；排除仍保留的硬連結後可釋放內容4023054542 bytes，約3.75 GiB。擁有權與錯置.md目錄檢查為零，本批容器均退出，其他專案不動。
+
+## Rust策略AI工具列保存
+
+[完整索引](rust-ai-r1.json)、[核對](rust-ai-audit-r1.json)、[脫離核對](rust-ai-detached-r1.json)與[清理](rust-ai-cleanup-r1.json)為現行入口。本機preserved/rust-ai-r1/保存完整Rust來源、159媒體與binary、八個舊原版View、Go原候選器／完整匯出、408向量、真正v16與明示typed戰中檔、七程序20份全幅SDL／中央讀回及工具，不依賴workplace。完整音畫只留本機，原定稿及提示仍見[永久美術](../artwork/README.md)，沒有Release。
+
+[啟動器](../tools/rust-native-player.sh)指向workplace/probe-20261023/graphics-first/battle-r1/rust-ai-r1/native。清空workplace後，以Pillow11.3.0-r2 Docker、UID1000、--rm／network none與相稱逾時／資源界限，將專案掛/project，執行`python /project/tools/rust-ai.py restore --project /project`還原160份執行期檔；可加--work <新的可寫目錄>。binary直接讀旁邊pack，需SDL2／libsndfile，不需Go／DOS／x86。既有play／journey／run入口保持，--battle-ai native|target為本次程序選項，不寫AI偏好或v16／戰中格式；重啟native，海報偏好另沿前批。
+
+[資料工具](../tools/rust-ai.py)的prepare恢復159媒體、真v16、八個舊View，從固定Noto來源補六工具列字，舊16字墨保持；同時產出reference-go.go。以Go1.24.13既有映像、GO111MODULE=off、GOCACHE=/out/go-cache、批次掛/out可寫執行`go run /out/reference-go.go`產生408向量，拷入crate／ai-reference.tsv。匯出器直接含固定Go候選器，與[匯出主程式](../tools/rust-ai-reference-main.txt)分開保存；不是原版CPU或執行期依賴。fixture由crate/examples/ai_fixture.rs以原生API輸出，明示100猴妖／2僵屍對250名OpenKB弓箭手與seed1，不稱自然取得。
+
+freeze固定crate／工具／媒體清單，audit核183測試、408向量、64固定seed、20全幅SDL／中央像素、同狀態前版世界及158舊媒體／16舊字墨。images只排版實際視窗。[GUI](../tools/rust-ai-gui.py)正常Continue／遭遇、原式操作、切換／取消／隸書、F7及獨立冷讀、CLI target與舊16字包ASCII回退。建置只掛crate／native，GUI只掛native與一支工具；UID1000／network none，音訊dummy不是新的人耳確認。參數及映像SHA見保存內execution.json。
+
+archive以專案唯讀、preserved可寫執行`archive --project /project --archive /project/preserved --out /project/preserved/rust-ai-r1.json`。verify只掛preserved唯讀、此單一工具與可寫輸出，執行`verify --archive /archive --out <新JSON>`，不掛workplace。restore依SHA／mode還原最小160檔，另宣告的明示戰中fixture不屬執行期必需資料。[031](../docs/spec/031-rust-independent-remake.md#rust策略ai工具列限定-conformed)與030原證據保持；全程原版／HD及規則切換仍待。正式197／7／923／535／1071保持。
+
+收尾：807檔／420去重物件、303027080壓縮bytes永久保存，全部物件及160份執行期SHA／mode還原通過。還原後兩模式正常選敵／F7／退出0，五份同狀態中央與全幅SDL逐像素相同；第六份在wait半回合2與player半回合3之間擷取，不列同狀態像素比較。該對兵數／HP／seed／sequence相同，擷取前完整checkpoint_hash一致、執行終態完整checkpoint_hash亦一致，證據見脫離核對內adjacent_state_capture。54條還原證據另列，不混入原始索引。只清本批3150檔，邏輯合計2651055918 bytes；排除保留硬連結後可釋放內容1975634580 bytes，約1.84 GiB。擁有權及錯置.md目錄檢查為零，本批容器全數退出，其他專案不動。

@@ -52,6 +52,7 @@ pub struct Actor {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ControlError {
+    AI(&'static str),
     Battle(BattleError),
     InvalidTarget,
     NoActor,
@@ -102,6 +103,9 @@ pub struct Controller<'a> {
 }
 
 impl<'a> Controller<'a> {
+    pub(crate) fn ai_catalog(&self) -> &'a Catalog {
+        self.catalog
+    }
     pub fn new(
         catalog: &'a Catalog,
         rows: Rows,

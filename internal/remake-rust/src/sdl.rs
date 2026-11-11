@@ -115,6 +115,10 @@ pub struct Sdl {
     poster: RefCell<Option<crate::poster::Shell>>,
     capture: Option<PathBuf>,
     capture_index: Cell<u32>,
+    ai_mode: Cell<crate::ai::Mode>,
+    ai_trace: RefCell<Vec<crate::ai::Decision>>,
+    ai_decisions: Cell<u64>,
+    ai_changed: Cell<u64>,
 }
 impl Sdl {
     pub fn open(width: usize, height: usize, scale: f64, mute: bool) -> Result<Self, String> {
@@ -141,6 +145,10 @@ impl Sdl {
                 poster: RefCell::new(None),
                 capture: None,
                 capture_index: Cell::new(0),
+                ai_mode: Cell::new(crate::ai::Mode::Native),
+                ai_trace: RefCell::new(Vec::new()),
+                ai_decisions: Cell::new(0),
+                ai_changed: Cell::new(0),
             };
             let title = CString::new(title).map_err(|e| e.to_string())?;
             s.window = SDL_CreateWindow(
@@ -284,8 +292,11 @@ impl Sdl {
                             canvas_width,
                             self.height,
                         )?;
-                        std::fs::write(dir.join(format!("shell-{n:03}.tsv")), s.status())
-                            .map_err(|e| e.to_string())?;
+                        std::fs::write(
+                            dir.join(format!("shell-{n:03}.tsv")),
+                            format!("{}{}", s.status(), self.ai_status()),
+                        )
+                        .map_err(|e| e.to_string())?;
                     }
                     let mut center = Vec::with_capacity(pixels.len());
                     for y in 0..self.height {
@@ -380,6 +391,60 @@ impl Sdl {
         *self.poster.borrow_mut() = shell;
         self.capture = capture.map(Path::to_path_buf);
         Ok(())
+    }
+    pub fn set_battle_ai(&self, mode: crate::ai::Mode) {
+        self.ai_mode.set(mode);
+        if let Some(shell) = self.poster.borrow_mut().as_mut() {
+            shell.ai = mode;
+        }
+    }
+    pub fn battle_ai(&self) -> crate::ai::Mode {
+        self.poster
+            .borrow()
+            .as_ref()
+            .map_or(self.ai_mode.get(), |s| s.ai)
+    }
+    pub fn record_ai(&self, decision: Option<crate::ai::Decision>) {
+        if let Some(d) = decision {
+            self.ai_decisions.set(self.ai_decisions.get() + 1);
+            if d.original != d.selected {
+                self.ai_changed.set(self.ai_changed.get() + 1);
+            }
+            let mut trace = self.ai_trace.borrow_mut();
+            trace.push(d);
+            if trace.len() > 32 {
+                trace.remove(0);
+            }
+        }
+    }
+    pub fn ai_status(&self) -> String {
+        let trace = self.ai_trace.borrow();
+        let last = trace.last();
+        let base = format!(
+            "battle_ai\t{}\nai_decisions\t{}\nai_changed\t{}\nai_original_slot\t{}\nai_selected_slot\t{}\nai_route\t{}\nai_reason\t{}\n",
+            self.battle_ai().name(),
+            self.ai_decisions.get(),
+            self.ai_changed.get(),
+            last.map_or(-1, |d| d.original as i32),
+            last.map_or(-1, |d| d.selected as i32),
+            last.map_or("none", |d| d.route.name()),
+            last.map_or("none", |d| d.reason)
+        );
+        let candidates = last
+            .map(|d| {
+                d.candidates
+                    .iter()
+                    .map(|c| format!("{}:{}/{}:{}", c.slot, c.loss, c.count, c.amount))
+                    .collect::<Vec<_>>()
+                    .join(",")
+            })
+            .unwrap_or_default();
+        let recent = trace
+            .iter()
+            .map(|d| format!("{}:{}>{}", d.route.name(), d.original, d.selected))
+            .collect::<Vec<_>>()
+            .join(";");
+        format!("{base}ai_candidates\t{candidates}\nai_recent\t{recent}\n")
     }
     pub fn queued(&self) -> u32 {
         if self.audio == 0 {

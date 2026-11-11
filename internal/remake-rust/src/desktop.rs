@@ -492,6 +492,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let (mut save_dir, mut continuing, mut seed_given) = (None, false, false);
     let (mut mute, mut weak, mut spells, mut taoist) = (false, false, false, false);
     let mut enemy_spells = false;
+    let mut ai_mode = crate::ai::Mode::Native;
     let mut scale = 2.0 / 3.0;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -500,6 +501,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
+            "--battle-ai" => {
+                i += 1;
+                ai_mode = crate::ai::Mode::parse(args.get(i).ok_or("缺少AI模式")?)?;
+            }
             "--save-dir" => {
                 i += 1;
                 save_dir = Some(PathBuf::from(args.get(i).ok_or("缺少存檔目錄")?));
@@ -604,6 +609,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     };
     let mut sdl = Sdl::open(W, H, scale, mute)?;
     sdl.configure_poster(&assets, save_dir.as_deref(), capture.as_deref(), scale)?;
+    sdl.set_battle_ai(ai_mode);
     let (mut font, mut music, mut cursor) = (
         usize::from(view.font),
         view.music && !mute,
@@ -844,7 +850,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 }
                 if actor.side == Side::Enemy && now >= enemy_ready {
                     if c.is_enemy_caster() {
-                        let result = c.enemy_cast(&mut rng).map_err(|e| format!("{e:?}"))?;
+                        let (result, decision) = c
+                            .enemy_cast_ai(&mut rng, sdl.battle_ai())
+                            .map_err(|e| format!("{e:?}"))?;
+                        sdl.record_ai(decision);
                         begin_spell_animation(
                             &mut spell_view,
                             result,
@@ -855,7 +864,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         );
                         spell_view.side = Side::Enemy;
                     } else {
-                        let target = c.enemy_target(&mut rng).map_err(|e| format!("{e:?}"))?;
+                        let (target, decision) = c
+                            .enemy_target_ai(&mut rng, sdl.battle_ai())
+                            .map_err(|e| format!("{e:?}"))?;
+                        sdl.record_ai(decision);
                         let action = c.attack(target).map_err(|e| format!("{e:?}"))?;
                         message = format!("損失 {}", action.loss);
                         seen = None;
@@ -970,6 +982,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 checksum(&state.encode()?),
                 rng.seed
             ));
+            capture_state.push_str(&sdl.ai_status());
             fs::write(
                 path.join(format!("capture-{captures:03}.tsv")),
                 capture_state,
@@ -1095,9 +1108,12 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     checksum(&state.encode()?),
                     rng.seed
                 );
-                fs::write(path.join("status.tmp"), data)
-                    .and_then(|_| fs::rename(path.join("status.tmp"), path.join("status.tsv")))
-                    .map_err(|e| e.to_string())?;
+                fs::write(
+                    path.join("status.tmp"),
+                    format!("{data}{}", sdl.ai_status()),
+                )
+                .and_then(|_| fs::rename(path.join("status.tmp"), path.join("status.tsv")))
+                .map_err(|e| e.to_string())?;
             }
         }
         std::thread::sleep(Duration::from_millis(24));

@@ -19,6 +19,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let (mut continuing, mut mute, mut fixed) = (false, false, false);
     let mut start_menu = false;
     let mut skip_intro = false;
+    let mut ai_mode = crate::ai::Mode::Native;
     let mut scale = 2.0 / 3.0;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -27,6 +28,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
+            "--battle-ai" => {
+                i += 1;
+                ai_mode = crate::ai::Mode::parse(args.get(i).ok_or("缺少AI模式")?)?;
+            }
             "--assets" | "--capture-dir" | "--save-dir" => {
                 let k = args[i].as_str();
                 i += 1;
@@ -103,6 +108,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let map = Pack::load(&assets)?;
     let mut sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
     sdl.configure_poster(&assets, store.as_deref(), capture.as_deref(), scale)?;
+    sdl.set_battle_ai(ai_mode);
     let (mut journey, initial_captures, initial_saves) = if start_menu {
         let initial = if skip_intro {
             (0, true, 0)
@@ -471,17 +477,19 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     }
                     if a.side == Side::Enemy && now >= enemy_ready {
                         if cp.controller.is_enemy_caster() {
-                            let result = cp
+                            let (result, decision) = cp
                                 .controller
-                                .enemy_cast(&mut cp.rng)
+                                .enemy_cast_ai(&mut cp.rng, sdl.battle_ai())
                                 .map_err(|e| format!("{e:?}"))?;
+                            sdl.record_ai(decision);
                             spell_view.animation = Some((result, now));
                             ready = now + Duration::from_millis(480);
                         } else {
-                            let target = cp
+                            let (target, decision) = cp
                                 .controller
-                                .enemy_target(&mut cp.rng)
+                                .enemy_target_ai(&mut cp.rng, sdl.battle_ai())
                                 .map_err(|e| format!("{e:?}"))?;
+                            sdl.record_ai(decision);
                             cp.controller.attack(target).map_err(|e| format!("{e:?}"))?;
                             ready = now + Duration::from_millis(140);
                         }
@@ -931,6 +939,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             "{status}travel_ticks\t{}\n",
             crate::travelbar::cells(journey.world.remaining, journey.survey.tempo)?
         );
+        let status = format!("{status}{}", sdl.ai_status());
         if let Some(d) = &capture {
             if snap {
                 captures += 1;

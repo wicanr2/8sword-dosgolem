@@ -16,13 +16,20 @@ const MATTE: [u8; 4] = [8, 36, 23, 255];
 fn blank() -> Vec<u8> {
     MATTE.repeat(1024 * 1200)
 }
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+struct Menu {
+    ai: bool,
+    index: usize,
+}
 pub struct Shell {
     panels: Vec<Vec<u8>>,
     font: Font,
     from: Vec<u8>,
     started: Instant,
     id: usize,
-    menu: Option<usize>,
+    menu: Option<Menu>,
+    pub ai: crate::ai::Mode,
+    ai_chinese: bool,
     pressed: Option<i32>,
     held: BTreeSet<i32>,
     blocked: BTreeSet<i32>,
@@ -59,10 +66,18 @@ impl Shell {
         if !root.join("poster-font.bin").exists() {
             return Ok(None);
         }
-        let font = Font::load(&root.join("poster-font.bin"))?;
+        let mut font = Font::load(&root.join("poster-font.bin"))?;
         for ch in "海報龍虎延展經典封面關閉錯誤".chars() {
             if !font.glyphs.contains_key(&ch) {
                 return Err("海報工具列缺字".into());
+            }
+        }
+        let ai_chinese = "原版策略AI".chars().all(|c| font.glyphs.contains_key(&c));
+        if !ai_chinese {
+            let base = Font::load(&root.join("font-noto.bin"))?;
+            for ch in "AI nativearget".chars() {
+                font.glyphs
+                    .insert(ch, base.glyphs.get(&ch).ok_or("AI工具列缺字")?.clone());
             }
         }
         let mut error = String::new();
@@ -104,6 +119,8 @@ impl Shell {
             started: Instant::now(),
             id,
             menu: None,
+            ai: crate::ai::Mode::Native,
+            ai_chinese,
             pressed: None,
             held: BTreeSet::new(),
             blocked: BTreeSet::new(),
@@ -163,11 +180,42 @@ impl Shell {
         }
         result
     }
+    fn select_menu(&mut self, index: usize) {
+        if self.menu.is_some_and(|m| m.ai) {
+            self.ai = if index == 0 {
+                crate::ai::Mode::Native
+            } else {
+                crate::ai::Mode::Target
+            };
+            self.menu = None;
+        } else {
+            self.select(index);
+        }
+    }
+    fn ai_label(&self, mode: crate::ai::Mode) -> &'static str {
+        match (self.ai_chinese, mode) {
+            (true, crate::ai::Mode::Native) => "原版 AI",
+            (true, _) => "策略 AI",
+            (false, crate::ai::Mode::Native) => "AI native",
+            (false, _) => "AI target",
+        }
+    }
     fn hit(&self, x: i32, y: i32) -> Option<i32> {
-        if (2480..2920).contains(&x) && (2..46).contains(&y) {
+        if (2448..2704).contains(&x) && (2..46).contains(&y) {
             return Some(-1);
         }
-        if self.menu.is_some() && (2480..2920).contains(&x) && (50..194).contains(&y) {
+        if (2716..2920).contains(&x) && (2..46).contains(&y) {
+            return Some(-3);
+        }
+        if self.menu.is_some()
+            && (2480..2920).contains(&x)
+            && (50..(if self.menu.is_some_and(|m| m.ai) {
+                146
+            } else {
+                194
+            }))
+                .contains(&y)
+        {
             return Some((y - 50) / 48);
         }
         None
@@ -194,9 +242,20 @@ impl Shell {
             if let Some(i) = self.menu {
                 if b[13] == 0 {
                     match key {
-                        1073741906 => self.menu = Some((i + 2) % 3),
-                        1073741905 => self.menu = Some((i + 1) % 3),
-                        13 => self.select(i),
+                        1073741906 => {
+                            self.menu = Some(Menu {
+                                index: (i.index + if i.ai { 1 } else { 2 })
+                                    % if i.ai { 2 } else { 3 },
+                                ..i
+                            })
+                        }
+                        1073741905 => {
+                            self.menu = Some(Menu {
+                                index: (i.index + 1) % if i.ai { 2 } else { 3 },
+                                ..i
+                            })
+                        }
+                        13 => self.select_menu(i.index),
                         27 => self.menu = None,
                         _ => {}
                     }
@@ -220,15 +279,22 @@ impl Shell {
             if kind == 0x402 {
                 if let Some(pressed) = self.pressed.take() {
                     if hit == Some(pressed) {
-                        if pressed == -1 {
+                        if pressed == -1 || pressed == -3 {
                             self.menu = if self.menu.is_some() {
                                 None
                             } else {
-                                Some(self.id)
+                                Some(Menu {
+                                    ai: pressed == -3,
+                                    index: if pressed == -3 {
+                                        usize::from(self.ai == crate::ai::Mode::Target)
+                                    } else {
+                                        self.id
+                                    },
+                                })
                             };
                             self.blocked.extend(self.held.iter().copied());
                         } else if (0..3).contains(&pressed) {
-                            self.select(pressed as usize);
+                            self.select_menu(pressed as usize);
                         }
                     } else {
                         self.menu = None;
@@ -267,15 +333,23 @@ impl Shell {
         self.label(
             &mut out,
             &format!("海報 {}", LABELS[self.id]),
-            [2480, 2, 440, 44],
+            [2448, 2, 256, 44],
         )?;
-        if let Some(selected) = self.menu {
-            for (i, name) in LABELS.iter().enumerate() {
-                let rect = [2480, 50 + i as i32 * 48, 440, 48];
+        self.label(&mut out, self.ai_label(self.ai), [2716, 2, 204, 44])?;
+        if let Some(menu) = self.menu {
+            let names: Vec<&str> = if menu.ai {
+                vec![
+                    self.ai_label(crate::ai::Mode::Native),
+                    self.ai_label(crate::ai::Mode::Target),
+                ]
+            } else {
+                LABELS.to_vec()
+            };
+            for (i, name) in names.iter().enumerate() {
                 self.label(
                     &mut out,
-                    &format!("{}{name}", if i == selected { "* " } else { "  " }),
-                    rect,
+                    &format!("{}{name}", if i == menu.index { "* " } else { "  " }),
+                    [2480, 50 + i as i32 * 48, 440, 48],
                 )?;
             }
         }
@@ -314,10 +388,11 @@ impl Shell {
     }
     pub fn status(&self) -> String {
         format!(
-            "poster\t{}\nposter_menu\t{}\nposter_error\t{}\n",
+            "poster\t{}\nposter_menu\t{}\nposter_error\t{}\nai_chinese\t{}\n",
             IDS[self.id],
             self.menu.is_some(),
-            self.error
+            self.error,
+            self.ai_chinese
         )
     }
     pub fn elapsed(&self) -> u128 {
@@ -336,7 +411,7 @@ mod tests {
                 blank(),
             ],
             font: Font {
-                glyphs: "海報龍虎延展經典封面關閉錯誤* "
+                glyphs: "海報龍虎延展經典封面關閉錯誤* 原版策略AI nativearget"
                     .chars()
                     .map(|c| (c, vec![0; 4096]))
                     .collect(),
@@ -345,6 +420,8 @@ mod tests {
             started: Instant::now(),
             id: 1,
             menu: None,
+            ai: crate::ai::Mode::Native,
+            ai_chinese: true,
             pressed: None,
             held: BTreeSet::new(),
             blocked: BTreeSet::new(),
@@ -391,7 +468,13 @@ mod tests {
         assert!(s.menu.is_some());
         let mut key = event(0x300, 1073741905, 0);
         assert!(s.event(&mut key));
-        assert_eq!(s.menu, Some(2));
+        assert_eq!(
+            s.menu,
+            Some(Menu {
+                ai: false,
+                index: 2
+            })
+        );
         assert!(s.event(&mut event(0x301, 1073741905, 0)));
         assert!(s.event(&mut event(0x300, 27, 0)));
         assert!(s.menu.is_none());
@@ -408,7 +491,10 @@ mod tests {
         let before = s.panel_at(200);
         s.start_fade(2, 200);
         assert_eq!(before, s.panel_at(0));
-        s.menu = Some(0);
+        s.menu = Some(Menu {
+            ai: false,
+            index: 0,
+        });
         s.pressed = Some(1);
         let mut b = event(0x200, 0, 0);
         b[12] = 13;
@@ -428,5 +514,26 @@ mod tests {
         ] {
             assert!(preference(v).is_err());
         }
+    }
+    #[test]
+    fn ai_menu_is_session_only_and_keyboard_cancellation_does_not_change_mode() {
+        let mut s = shell();
+        let poster = s.id;
+        assert!(s.event(&mut event(0x401, 2800, 20)));
+        assert!(s.event(&mut event(0x402, 2800, 20)));
+        assert!(s.event(&mut event(0x300, 1073741905, 0)));
+        assert!(s.event(&mut event(0x301, 1073741905, 0)));
+        assert!(s.event(&mut event(0x300, 27, 0)));
+        assert!(s.event(&mut event(0x301, 27, 0)));
+        assert_eq!(s.ai, crate::ai::Mode::Native);
+        assert!(s.event(&mut event(0x401, 2800, 20)));
+        assert!(s.event(&mut event(0x402, 2800, 20)));
+        assert!(s.event(&mut event(0x300, 1073741905, 0)));
+        assert!(s.event(&mut event(0x301, 1073741905, 0)));
+        assert!(s.event(&mut event(0x300, 13, 0)));
+        assert!(s.event(&mut event(0x301, 13, 0)));
+        assert_eq!(s.ai, crate::ai::Mode::Target);
+        assert_eq!(s.id, poster);
+        assert!(s.menu.is_none());
     }
 }

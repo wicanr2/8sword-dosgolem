@@ -148,6 +148,14 @@ impl<'a> Controller<'a> {
         Ok(result)
     }
     pub fn enemy_cast(&mut self, rng: &mut OriginalRng) -> Result<SpellResult, ControlError> {
+        self.enemy_cast_ai(rng, crate::ai::Mode::Native)
+            .map(|v| v.0)
+    }
+    pub fn enemy_cast_ai(
+        &mut self,
+        rng: &mut OriginalRng,
+        mode: crate::ai::Mode,
+    ) -> Result<(SpellResult, Option<crate::ai::Decision>), ControlError> {
         let mut staged = self.clone();
         let mut random = *rng;
         staged.enemy_kind()?;
@@ -173,6 +181,16 @@ impl<'a> Controller<'a> {
         } else {
             None
         };
+        let decision = if mode == crate::ai::Mode::Target
+            && matches!(spell, Spell::Fireball | Spell::Exorcism | Spell::Halve)
+        {
+            target
+                .map(|n| staged.ai_decision(crate::ai::Route::Special(spell), n))
+                .transpose()?
+        } else {
+            None
+        };
+        let target = decision.as_ref().map(|d| d.selected).or(target);
         let gate = if spell == Spell::Assassination {
             Some(random.next15() % 50)
         } else {
@@ -181,7 +199,7 @@ impl<'a> Controller<'a> {
         let result = staged.resolve_enemy(spell, target, gate)?;
         *self = staged;
         *rng = random;
-        Ok(result)
+        Ok((result, decision))
     }
     fn resolve_enemy(
         &mut self,

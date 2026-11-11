@@ -2846,3 +2846,7 @@ READY勘誤：一隻狼放第一隊的抽驗，在首次站姿、尚未出手時
 [核對工具](../../tools/original-player-integration.py)提供freeze／audit／archive／verify，固定Go1.24.13及既有Docker限額；完整命令記在本機保存的execution-r1.json。證據見[整合核對](../../preserved/original-player-integration-audit-r1.json)、[永久入口](../../preserved/README.md#原版操作整合與rust起步保存)。不新增存檔schema，不重驗既有全部世界事件。只限已匯入世界進度的HD開發入口；新遊戲、守軍空軍隊／全滅專項、超領導／超word、戰中續接及AI／規則工具列仍列[工作表](../../WORKLIST.md)。原版完整戰鬥已具代表證據，依使用者確認開始[031 Rust獨立重製](031-rust-independent-remake.md)，不再因可選美術矩陣延後。
 
 勘誤：首輪三場工具的隨機選敵Esc callback未在返回後停用，使守軍也撤退；收據明示retreat，不能當勝局。工具加active生命週期並斷言守軍win後，同容器命令乾淨重跑通過。保留首輪完整資料。GUI兩次失敗分別為缺libXtst與Enter早於主選單；沿既有libX11及等待實際scene後通過，屬隔離工具／時序問題。
+
+## Rust策略AI移植入口
+
+Rust已依[031限定驗收](031-rust-independent-remake.md#rust策略ai工具列限定-conformed)移植本頁原選敵政策與工具列，標記RUST-AI-RESOLVED-20261111。183測試、408個Go View、64固定seed與七程序20份SDL通過。只將現有政策接到獨立typed控制器，不重新猜測DOS掛點；本頁Go政策、原版受控證據、模式不持久化與改選範圍保持。OpenKB參數屬明示合成延伸，不稱原版新兵種oracle。[核對](../../preserved/rust-ai-audit-r1.json)與[保存](../../preserved/README.md#rust策略ai工具列保存)為入口，規則與全程原版／HD仍待。

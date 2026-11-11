@@ -1015,3 +1015,30 @@ World預覽沿tempo6／未停時，Journey明確傳Survey.tempo／stopped；步�
 來源Go函式只在資料製作時執行，Rust執行直接讀校驗RGBA、字模與OGG，不含Go／DOS／x86執行依賴。建置只掛crate／native，GUI只掛native與一支工具，network none／UID1000；音訊dummy不等於新的人耳驗收。壞海報整組停用但原式遊戲／移動保持，缺少新工具列資產沿舊視窗。全程原版／HD、AI與規則工具列仍待，沒有Release。
 
 [呈現與選單](../../internal/remake-rust/src/poster.rs)、[SDL邊界](../../internal/remake-rust/src/sdl.rs)、[製作／核對／保存](../../tools/rust-poster.py)、[GUI](../../tools/rust-poster-gui.py)、[核對](../../preserved/rust-poster-audit-r1.json)、[成果圖](../images/rust-poster-r1.png)與[保存／還原](../../preserved/README.md#rust全程海報工具列保存)為入口。原條032的Go驗收保持，本限定項只補Rust全程海報；其餘選項不混稱完成。
+## Rust策略AI工具列 DRAFT
+
+沿030已確認「先全滅，再比減員比例，同分保留原目標」及原版AI預設。移植普通／遠程與特殊0／2／5選敵，不選擇法術種類、不改計算傷害／RNG／既有合法集。Rust無EXE，切入既有Controller::enemy_target及enemy_cast的typed選敵點；兩個桌面路徑都接同一政策。全程原版／HD與規則另行處理，不混稱完成。
+
+來源internal/eightsword/battle_ai_policy.go SHA54ac5e33643b4f11079284d397a1bb7fd7dafa90d5b41c8966bbbb3e6dd9fa5a及battle_ai.go SHA8fe3f29c24ea702ced1bac8017991b775253bdb5e7156f77c0aa6e5d3b82f24d；原PAM、IDA位址與八組成對效果沿030，這輪不重開DOS掛點。入口為[030政策](030-battle-expansion-proposal.md#首版可選目標策略ai的ready契約)、本節、tools/rust-ai.py與tools/rust-ai-gui.py，研究區沿battle-r1/rust-ai-r1。
+
+## Rust策略AI工具列 READY
+
+已審查030原版合法集、純Go候選器及Rust既有普通／敵方八分派。先用原選敵消耗原RNG，再純評分，成功後一次提交選敵結果；錯誤不提交RNG或部隊。不支援的暗殺／複製等分派保留原目標及roll，不硬加政策。普通傷害預估保持Go word乘積截斷及除數、encoded／減員規則，只作排序，不改Rust正式戰鬥計算。OpenKB普通兵沿同一已批准攻擊／HP欄位與遠程flag代入同式；殺鬼仍只認原6..15，滅半仍沿已驗錯位存活檢查，不另增規則。
+
+工具列沿目前2944外層，在右側現有空間將海報／AI並列，中央1920、字型與音樂不移動。原版AI／策略AI支援放開提交、鍵盤／取消／失焦，下一個選敵生效，已開始攻擊不重算。缺少新增中文字的舊16字海報包，沿030用ASCII的AI native／AI target回退；新包只補「原版策略AI」六字，原16字與所有遊戲字庫／美術保持。命令列--battle-ai native|target可選，非法值拒絕；模式不持久化、不改v16或戰中檢查點格式，冷讀由啟動參數決定，預設native。
+
+驗收純Go原函式產生的固定向量、八份已保存原版案例、同分／前排鎖定／空軍／特殊篩選、OpenKB有界資料與原RNG保持；既有177測試保持。GUI以真正v16正常Continue／移動／遇敵及原式戰場代表抽驗，另用明示typed戰中檢查點固定seed1驗改選、切回／取消、F10與F7冷讀。兩條桌面路徑皆須產生策略決策；不把受控檢查點稱自然取得或勝率改善。完整全幅SDL、來源、向量、檢查點與成功／失敗證據先永久保存，再清理本批快取。工具列診斷包括實際模式、最近有界決策、原／新目標及改選計數。
+
+## Rust策略AI工具列限定 CONFORMED
+
+`RUST-AI-RESOLVED-20261111`。Rust普通與遠程選敵、特殊0／2／5已接030既有「先全滅，再比減員比例，同分保留原目標」。兩條桌面路徑都在原typed選敵返回後評分，保留原RNG前綴、法術selector／gate與正式兵力計算；先完成驗證，再一次提交目標。原版AI預設，切換從下一次選敵生效，不重算既有攻擊。其他法術分派保持原選擇，沒有新戰術規則或跨法術選擇。
+
+183測試、408個純Go參考與64個固定法術seed通過。408包括八份既有原版受控View、384個固定原兵種View與16個OpenKB合成參數View，不稱408次原版CPU對拍。普通估值保留Go word截斷、encoded與減員算法，不代替Rust正式傷害。OpenKB代入已批准attack／HP／遠程欄，殺鬼仍限原6..15，滅半原錯位存活判定保持。未知／非法typed輸入以AI錯誤停止，沒有半次寫入或重擲。
+
+七原生程序20份全幅SDL讀回與中央裁切通過。明示戰中檢查點為100猴妖／2僵屍對250名OpenKB弓箭手、seed1、玩家先手；原版首擊97／2，策略首擊100／0，原目標slot0改slot1。兩模式同樣消耗七次原選敵roll，最終seed752224798；含F10隸書、選單取消／切回、F7、冷讀預設native與明示--battle-ai target。此軍隊不是自然取得，不能宣稱整體勝率提高。
+
+真正v16正常Continue、走路／等待、自然遭遇、原式戰場中產生三次策略決策／零改選，F7與獨立程序冷讀同state_hash及中央畫布。前版同真正v16的世界中央逐像素保持。AI模式不持久化，沒有新增AI偏好、v16或戰中格式；重啟預設native，可用啟動參數指定target。舊16字海報包以ASCII顯示AI native／AI target並正常改選。
+
+160份執行期檔數保持，159媒體中158逐SHA保持；poster-font只補原版策略AI六字，原16字墨不變，三種遊戲字庫及全部美術／音樂保持。策略選單在右側與海報並列，中央／字型／音樂位置不變。診斷明列實際模式、原／新陣位、候選分數、改選計數與最多32筆最近決策；來源、製作與執行期分開，原生執行不需Go／DOS／x86。正式197／7／923／535／1071保持，沒有Release。
+
+[純政策及介接](../../internal/remake-rust/src/ai.rs)、[敵方施法](../../internal/remake-rust/src/enemy.rs)、[工具列](../../internal/remake-rust/src/poster.rs)、[408參考](../../internal/remake-rust/ai-reference.tsv)、[明示檢查點](../../internal/remake-rust/examples/ai_fixture.rs)、[Go匯出主程式](../../tools/rust-ai-reference-main.txt)、[製作／核對／保存](../../tools/rust-ai.py)、[GUI](../../tools/rust-ai-gui.py)、[核對](../../preserved/rust-ai-audit-r1.json)、[成果圖](../images/rust-ai-r1.png)與[保存／還原](../../preserved/README.md#rust策略ai工具列保存)為入口。下一步規則與全程原版／HD，既有Go AI及原掛點證據保持，不重開已驗音畫或原版RE。

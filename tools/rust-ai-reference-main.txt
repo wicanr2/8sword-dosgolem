@@ -1,0 +1,22 @@
+// Appended only to the exact, frozen Go policy source in a Docker development exporter.
+func emit(v battleAIView,out *os.File) {
+ d,e:=evaluateBattleAI(v);if e!=nil&&!errors.Is(e,errBattleAINoTarget){panic(e)}
+ route:=0;switch v.Route {case "ranged":route=1;case "special":switch v.Selector{case 0:route=2;case 2:route=3;case 5:route=4;default:panic("selector")}}
+ if v.ShiftedSlotZero>=6{panic("alias")};alias:=0;if v.Friendly[v.ShiftedSlotZero].Count>0{alias=1}
+ nums:=[]uint16{uint16(route),v.SourceSlot,v.OriginalSlot,v.Divisor,uint16(alias)}
+ nums=append(nums,v.FriendlySlots[:]...);nums=append(nums,v.EnemySlots[:]...)
+ for _,army:=range [2][6]battleAIUnit{v.Friendly,v.Enemy}{for _,u:=range army{ranged:=uint16(0);if u.Kind==3||u.Kind==24{ranged=1};nums=append(nums,u.Kind,u.Count,v.Factors[u.Kind*2],v.Factors[u.Kind*2+1],ranged)}}
+ parts:=[]string{};for _,n:=range nums{parts=append(parts,strconv.Itoa(int(n)))};expected:="NONE";if e==nil{expected=strconv.Itoa(int(d.SuggestedSlot))};cs:=[]string{};for _,c:=range d.Candidates{el:=0;if c.Eliminates{el=1};cs=append(cs,fmt.Sprintf("%d,%d,%d,%d,%d,%d",c.Slot,c.Unit,c.Count,c.Amount,c.Loss,el))};fmt.Fprintf(out,"%s\t%s\t%s\n",strings.Join(parts,","),expected,strings.Join(cs,";"))
+}
+func main(){
+ out,e:=os.Create("/out/reference/ai-reference.tsv");if e!=nil{panic(e)};defer out.Close();fmt.Fprintln(out,"# Go policy view, selected slot, complete candidate scores; not a game save")
+ names:=[]string{"front-ranged-mixed","normal-choice","normal-locked","normal-rear-only","rear-ranged-mixed","special0-choice","special2-choice","special5-empty-original"}
+ for _,name:=range names{b,e:=os.ReadFile("/out/reference/"+name+".json");if e!=nil{panic(e)};var t struct{View battleAIView};if e=json.Unmarshal(b,&t);e!=nil{panic(e)};t.View.Formation=false;t.View.ArcherPressure=false;emit(t.View,out)}
+ b,e:=os.ReadFile("/out/reference/unit-catalog.tsv");if e!=nil{panic(e)};factors:=[52]uint16{};extras:=[][3]uint16{}
+ for _,line:=range strings.Split(string(b),"\n"){if line==""||strings.HasPrefix(line,"#"){continue};f:=strings.Split(line,"\t");a,_:=strconv.Atoi(f[5]);h,_:=strconv.Atoi(f[6]);if strings.HasPrefix(f[0],"native:"){n,_:=strconv.Atoi(strings.TrimPrefix(f[0],"native:"));factors[n*2]=uint16(a);factors[n*2+1]=uint16(h)}else{rr,_:=strconv.Atoi(f[7]);extras=append(extras,[3]uint16{uint16(a),uint16(h),uint16(rr)})}}
+ for i:=0;i<384;i++{v:=battleAIView{Factors:factors,Divisor:uint16(i%8),FriendlySlots:[6]uint16{0,1,2,3,4,5},EnemySlots:[6]uint16{0,1,2,3,4,5}};kinds:=[]uint16{1,6,15,21,24,25};for j:=0;j<6;j++{n:=uint16((i*17+j*31)%101+1);if (i+j)%4==0{n=0};v.Friendly[j]=battleAIUnit{kinds[j],n}};v.Friendly[0].Count=uint16(i%100+1);v.FriendlySlots[i%6],v.FriendlySlots[(i+3)%6]=v.FriendlySlots[(i+3)%6],v.FriendlySlots[i%6]
+  kind:=uint16(3);v.Route="ranged";v.SourceSlot=uint16(i%6);switch i%5{case 0:v.Route="normal";v.SourceSlot=uint16(i%3);kind=uint16(i%25+1);if kind==3||kind==24{kind=6};case 2,3,4:v.Route="special";v.Selector=[]uint16{0,2,5}[i%5-2];kind=uint16(10+2*(i%2));v.SourceSlot=uint16(3+i%3)};v.Enemy[0]=battleAIUnit{kind,uint16(i*37%1000+1)};v.EnemySlots[0],v.EnemySlots[v.SourceSlot]=v.EnemySlots[v.SourceSlot],v.EnemySlots[0];valid:=[]uint16{};for slot:=uint16(0);slot<6;slot++{v.OriginalSlot=slot;if _,e:=evaluateBattleAI(v);e==nil{valid=append(valid,slot)}};if len(valid)>0{v.OriginalSlot=valid[i%len(valid)]}else{v.OriginalSlot=0};emit(v,out)
+ }
+ for i,p:=range extras{for _,source:=range []bool{false,true}{v:=battleAIView{Route:"ranged",SourceSlot:0,OriginalSlot:0,Factors:factors,FriendlySlots:[6]uint16{0,1,2,3,4,5},EnemySlots:[6]uint16{0,1,2,3,4,5}};v.Friendly[0]=battleAIUnit{0,uint16(5+i)};v.Friendly[1]=battleAIUnit{21,69};v.Factors[1]=p[1];v.Enemy[0]=battleAIUnit{3,50};if source{v.Factors[6]=p[0]};emit(v,out)}}
+ receipt:=fmt.Sprintf("{\"status\":\"passed-fixed-go-ai-export\",\"vectors\":%d,\"original_saved_cases\":8,\"generated_native_views\":384,\"synthetic_openkb_stats\":16,\"rng\":\"none; fixed views\"}\n",8+384+2*len(extras));if e=os.WriteFile("/out/reference/receipt.json",[]byte(receipt),0644);e!=nil{panic(e)}
+}

@@ -1,0 +1,35 @@
+{
+  "status": "passed-project-scoped-cleanup",
+  "removed": [
+    {
+      "path": "native/rust-target",
+      "files": 2302,
+      "bytes": 857852320
+    },
+    {
+      "path": "go-cache",
+      "files": 316,
+      "bytes": 38570263
+    },
+    {
+      "path": "restore-check",
+      "files": 211,
+      "bytes": 587627747
+    },
+    {
+      "path": "native/legacy-pack",
+      "files": 159,
+      "bytes": 350980659
+    },
+    {
+      "path": "native/gui-before-unique-status-key",
+      "files": 162,
+      "bytes": 816024929
+    }
+  ],
+  "files": 3150,
+  "logical_bytes": 2651055918,
+  "reclaimable_content_bytes_excluding_retained_hardlinks": 1975634580,
+  "ownership_findings": [],
+  "scope": "Only rust-ai-r1; current160 runtime files, source, successful frames and full permanent evidence kept; no other project or global Docker cache pruning"
+}

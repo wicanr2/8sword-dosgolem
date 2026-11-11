@@ -1,6 +1,7 @@
 //! Spec031: native arithmetic migrated from the verified original-interface
 //! Go player helper. No executable, emulated CPU, global state or asset loader.
 
+pub mod ai;
 pub mod battle;
 pub mod catalog;
 pub mod character;
