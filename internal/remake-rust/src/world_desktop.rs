@@ -267,7 +267,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
         println!("MEDIA\t65\t12\t3\t{}", pack.music.frames);
         return Ok(());
     }
-    let sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 世界移動預覽")?;
+    let mut sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 世界移動預覽")?;
+    sdl.configure_poster(&assets, saves.as_deref(), capture.as_deref(), scale)?;
     let (mut pending, mut audio, mut captures, mut saved, mut readback_equal) =
         (None, 0, 0, 0, true);
     let (mut queued_bytes, mut drains, mut last_queue) = (0u64, 0u64, 0u32);

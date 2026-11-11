@@ -1,7 +1,18 @@
 use std::ffi::{CStr, CString, c_char, c_int, c_void};
 use std::ptr;
+use std::{
+    cell::{Cell, RefCell},
+    path::{Path, PathBuf},
+};
 
 const RGBA32: u32 = 0x16762004;
+#[repr(C)]
+struct DisplayRect {
+    x: i32,
+    y: i32,
+    w: i32,
+    h: i32,
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 struct AudioSpec {
@@ -33,6 +44,9 @@ unsafe extern "C" {
         flags: u32,
     ) -> *mut c_void;
     fn SDL_DestroyWindow(window: *mut c_void);
+    fn SDL_SetWindowSize(window: *mut c_void, w: c_int, h: c_int);
+    fn SDL_SetWindowPosition(window: *mut c_void, x: c_int, y: c_int);
+    fn SDL_GetDisplayUsableBounds(display: c_int, rect: *mut DisplayRect) -> c_int;
     fn SDL_CreateRenderer(window: *mut c_void, index: c_int, flags: u32) -> *mut c_void;
     fn SDL_DestroyRenderer(renderer: *mut c_void);
     fn SDL_RenderSetLogicalSize(renderer: *mut c_void, w: c_int, h: c_int) -> c_int;
@@ -98,6 +112,9 @@ pub struct Sdl {
     audio: u32,
     pub width: usize,
     pub height: usize,
+    poster: RefCell<Option<crate::poster::Shell>>,
+    capture: Option<PathBuf>,
+    capture_index: Cell<u32>,
 }
 impl Sdl {
     pub fn open(width: usize, height: usize, scale: f64, mute: bool) -> Result<Self, String> {
@@ -121,6 +138,9 @@ impl Sdl {
                 audio: 0,
                 width,
                 height,
+                poster: RefCell::new(None),
+                capture: None,
+                capture_index: Cell::new(0),
             };
             let title = CString::new(title).map_err(|e| e.to_string())?;
             s.window = SDL_CreateWindow(
@@ -178,6 +198,11 @@ impl Sdl {
                 if SDL_PollEvent(&mut e) == 0 {
                     break;
                 }
+                if let Some(shell) = self.poster.borrow_mut().as_mut() {
+                    if shell.event(&mut e.bytes) {
+                        continue;
+                    }
+                }
                 out.push(e)
             }
         }
@@ -187,21 +212,32 @@ impl Sdl {
         if pixels.len() != self.width * self.height * 4 {
             return Err("畫布長度不符".into());
         }
+        let shell = self.poster.borrow();
+        let full = shell
+            .as_ref()
+            .map(|s| s.compose(pixels, s.elapsed()))
+            .transpose()?;
+        let presented = full.as_deref().unwrap_or(pixels);
+        let canvas_width = if full.is_some() {
+            crate::poster::WIDTH
+        } else {
+            self.width
+        };
         unsafe {
             let mut target = ptr::null_mut();
             let mut pitch = 0;
             if SDL_LockTexture(self.texture, ptr::null(), &mut target, &mut pitch) != 0 {
                 return Err(error());
             }
-            if pitch < self.width as i32 * 4 || target.is_null() {
+            if pitch < canvas_width as i32 * 4 || target.is_null() {
                 SDL_UnlockTexture(self.texture);
                 return Err("紋理步幅無效".into());
             }
             for y in 0..self.height {
                 ptr::copy_nonoverlapping(
-                    pixels.as_ptr().add(y * self.width * 4),
+                    presented.as_ptr().add(y * canvas_width * 4),
                     target.cast::<u8>().add(y * pitch as usize),
-                    self.width * 4,
+                    canvas_width * 4,
                 )
             }
             SDL_UnlockTexture(self.texture);
@@ -215,27 +251,135 @@ impl Sdl {
                 if SDL_GetRendererOutputSize(self.renderer, &mut width, &mut height) != 0 {
                     return Err(error());
                 }
-                if width != self.width as i32 || height != self.height as i32 {
+                if width != canvas_width as i32 || height != self.height as i32 {
                     return Err("擷取時視窗尺寸須等於原生畫布".into());
                 }
-                let mut data = vec![0u8; pixels.len()];
+                let mut data = vec![0u8; presented.len()];
                 if SDL_RenderReadPixels(
                     self.renderer,
                     ptr::null(),
                     RGBA32,
                     data.as_mut_ptr().cast(),
-                    (self.width * 4) as i32,
+                    (canvas_width * 4) as i32,
                 ) != 0
                 {
                     return Err(error());
                 }
-                Some(data)
+                if let Some(s) = shell.as_ref() {
+                    if data != presented {
+                        return Err("海報全幅SDL讀回不符".into());
+                    }
+                    if let Some(dir) = &self.capture {
+                        let n = self.capture_index.get() + 1;
+                        self.capture_index.set(n);
+                        Self::ppm(
+                            &dir.join(format!("shell-frame-{n:03}.ppm")),
+                            presented,
+                            canvas_width,
+                            self.height,
+                        )?;
+                        Self::ppm(
+                            &dir.join(format!("shell-readback-{n:03}.ppm")),
+                            &data,
+                            canvas_width,
+                            self.height,
+                        )?;
+                        std::fs::write(dir.join(format!("shell-{n:03}.tsv")), s.status())
+                            .map_err(|e| e.to_string())?;
+                    }
+                    let mut center = Vec::with_capacity(pixels.len());
+                    for y in 0..self.height {
+                        center.extend_from_slice(
+                            &data[(y * canvas_width + 512) * 4..(y * canvas_width + 2432) * 4],
+                        );
+                    }
+                    Some(center)
+                } else {
+                    Some(data)
+                }
             } else {
                 None
             };
             SDL_RenderPresent(self.renderer);
             Ok(readback)
         }
+    }
+    fn ppm(path: &Path, pixels: &[u8], width: usize, height: usize) -> Result<(), String> {
+        use std::io::Write;
+        let f = std::fs::File::create(path).map_err(|e| e.to_string())?;
+        let mut out = std::io::BufWriter::new(f);
+        write!(out, "P6\n{width} {height}\n255\n").map_err(|e| e.to_string())?;
+        for p in pixels.chunks_exact(4) {
+            out.write_all(&p[..3]).map_err(|e| e.to_string())?;
+        }
+        out.flush().map_err(|e| e.to_string())
+    }
+    pub fn configure_poster(
+        &mut self,
+        root: &Path,
+        store: Option<&Path>,
+        capture: Option<&Path>,
+        scale: f64,
+    ) -> Result<(), String> {
+        let shell = match crate::poster::Shell::load(root, store) {
+            Ok(v) => v,
+            Err(e) => {
+                eprintln!("海報工具列：{e}");
+                None
+            }
+        };
+        if shell.is_none() {
+            return Ok(());
+        }
+        unsafe {
+            let new = SDL_CreateTexture(
+                self.renderer,
+                RGBA32,
+                1,
+                crate::poster::WIDTH as i32,
+                self.height as i32,
+            );
+            if new.is_null() {
+                return Err(error());
+            }
+            if SDL_RenderSetLogicalSize(
+                self.renderer,
+                crate::poster::WIDTH as i32,
+                self.height as i32,
+            ) != 0
+            {
+                SDL_DestroyTexture(new);
+                return Err(error());
+            }
+            SDL_DestroyTexture(self.texture);
+            self.texture = new;
+            let mut bounds = DisplayRect {
+                x: 0,
+                y: 0,
+                w: 0,
+                h: 0,
+            };
+            let fitted = if capture.is_none()
+                && SDL_GetDisplayUsableBounds(0, &mut bounds) == 0
+                && bounds.w > 0
+                && bounds.h > 0
+            {
+                scale
+                    .min(f64::from(bounds.w) / crate::poster::WIDTH as f64)
+                    .min(f64::from(bounds.h) / self.height as f64)
+            } else {
+                scale
+            };
+            SDL_SetWindowSize(
+                self.window,
+                (crate::poster::WIDTH as f64 * fitted) as i32,
+                (self.height as f64 * fitted) as i32,
+            );
+            SDL_SetWindowPosition(self.window, 0x2fff0000, 0x2fff0000);
+        }
+        *self.poster.borrow_mut() = shell;
+        self.capture = capture.map(Path::to_path_buf);
+        Ok(())
     }
     pub fn queued(&self) -> u32 {
         if self.audio == 0 {

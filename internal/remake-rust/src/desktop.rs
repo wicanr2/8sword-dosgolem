@@ -602,7 +602,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
         animation: None,
         side: Side::Player,
     };
-    let sdl = Sdl::open(W, H, scale, mute)?;
+    let mut sdl = Sdl::open(W, H, scale, mute)?;
+    sdl.configure_poster(&assets, save_dir.as_deref(), capture.as_deref(), scale)?;
     let (mut font, mut music, mut cursor) = (
         usize::from(view.font),
         view.music && !mute,

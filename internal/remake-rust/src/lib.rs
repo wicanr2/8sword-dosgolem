@@ -30,6 +30,8 @@ pub mod map_notice;
 pub mod minimap;
 pub mod monthly;
 pub mod pointer;
+#[cfg(feature = "desktop")]
+pub mod poster;
 pub mod replay;
 pub mod resource_spells;
 #[cfg(feature = "desktop")]

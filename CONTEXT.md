@@ -45,20 +45,21 @@
 | Rust原式開始選單 | 限定完成。原三項選單、新遊戲確認與原子保存、Continue、十首HD音樂欣賞、鍵鼠及三字型已接。167測試、92局部原指令、十函式2531行bytes與五程序17份SDL通過；v16及Go格式保持。 |
 | Rust完整開場 | 限定完成。21.254秒／588節點、館景／美女／光束／迎龍揭圖及五故事頁，同視窗進開始頁。171測試、18來源場景／72畫布、三程序15份SDL及新建／F7／獨立Continue通過；揭圖Esc先完成，其他略過採原生即時UI。 |
 | Rust原行程條 | 限定完成。54格及原三列正常／停時色、尾端清除與F7冷讀已接。173測試、84局部原指令、1924行IDA bytes及三程序八份SDL通過；156媒體保持，v16不改。 |
+| Rust全程海報工具列 | 限定完成。兩側512、三種海報／400ms切換、鍵鼠及偏好已接。177測試、六程序20份全幅SDL與預設縮放通過；中央與前版同狀態世界逐像素保持。全程原版／HD、AI／規則見下一步。 |
 | 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。早期戰鬥樣本採明示編成，本輪旅程從原起點起步；SDL dummy不等於人耳確認。 |
 | 可選精修 | 新兵額外手繪動作、特殊死亡呈現、循環音樂接點與其餘平台驗收依後續範圍處理。 |
 
 ## 最近驗證與入口
 
-最新為[Rust原行程條限定驗收](docs/spec/031-rust-independent-remake.md#rust原行程條限定-conformed)。Rust按ceil(剩餘步數／Survey.tempo)直接畫54格，沿原三列正常與停時配色。每幀清尾端，取代沒有原畫面依據的步數數字。原位置x_byte2／y193對應HD x48／y1206，1296×18；不新增素材或世界狀態。
+最新為[Rust全程海報工具列限定驗收](docs/spec/031-rust-independent-remake.md#rust全程海報工具列限定-conformed)。共用呈現層將既有1920×1320中央畫布放在2944×1320外層，沿032已批准的雙512側翼、三種海報與內側漸淡。400ms切換與快速重選、下拉鍵鼠／取消／失焦、偏好原子保存及中央滑鼠座標轉換已接，不改遊戲輸入或時鐘。
 
-173測試、84局部原指令及五函式1924行IDA重定位bytes通過。DS56CA已由停時設1／月底清0及存讀端證實。三原生程序八份SDL擷取，七個世界畫面的行程條逐像素同來源色列；月報覆蓋條，返回後再核正常54格。真正v16正常走五步323→318、54→53格，F4停時、F7／獨立冷讀及正常月結恢復324步／tempo6已驗。停時初始明示竹簡、一次術、容量3、remaining1與seed1，不稱自然學會。
+177測試、六原生程序20份全幅SDL及20中央裁切通過。開場略過→開始頁→Continue、F1／F2／F5、地圖、原式戰場、原版結局與真壞海報已驗；海報／隸書F7冷讀及正常移動保持。前版真正v16的同state_hash中央畫面逐像素相同。戰鬥仍採既有seed1樣本，結局採原v15 F7的24688ms，不稱自然通關。另驗1920×1080下預設視窗[0,110,1920,860]與縮放點選／保存／退出0。
 
-與前版真正v16同state_hash的SDL畫布比較，除行程條及移除數字區外零像素差異。156媒體逐SHA保持，binary加媒體仍157檔，三字型889字模及完整開場保持。v16／WorldState／Go格式與RNG不改。原指令只驗局部計算及繪圖呼叫，原primitive沿047，沒有新增VGA全畫面oracle；非法超長狀態只限呈現54格。
+159媒體加binary共160檔，舊156逐SHA保持，只增兩張預製側翼與固定Noto工具列16字，三種遊戲字庫889字模保持。v16／WorldState／Go格式不改；poster.json沿032既有schema1獨立保存。Rust執行只讀RGBA／字模／OGG，不需Go、DOS或x86。建置只掛crate／native，GUI只掛native與一支工具。
 
-開發入口為`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`，開場Esc略過，開發可加`--skip-intro`。建置只掛crate／native，GUI只掛native與一支輸入工具；執行期不需Go、DOS或x86。[核對](preserved/rust-travelbar-audit-r1.json)、[成果圖](docs/images/rust-travelbar-r1.png)、[資料／來源工具](tools/rust-travelbar.py)及[永久保存／還原](preserved/README.md#rust原行程條保存)為現行入口。
+開發入口為`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`；開場Esc略過，開發可加`--skip-intro`。現行還原與全部完整資料見[永久保存](preserved/README.md#rust全程海報工具列保存)，[核對](preserved/rust-poster-audit-r1.json)、[成果圖](docs/images/rust-poster-r1.png)及[製作工具](tools/rust-poster.py)為入口。缺少新工具列資產沿舊畫布，壞海報只停用側翼，遊戲可繼續。
 
-TRAVELBAR-RESOLVED-20261111閉合原行程條呈現，CALENDAR-NAMING-CORRECTION-20261111保持，不虛構年月。下一步全程工具列，之後按WORKLIST收束未支援特殊點及平台／交付。不重驗已驗開場、HD、戰鬥、世界法術、寶物或結局。前批[完整開場](preserved/rust-intro-audit-r1.json)及[結局](preserved/rust-ending-audit-r1.json)保持，歷史細節見WORKLOG及031，沒有Release。
+RUST-POSTER-RESOLVED-20261111閉合Rust海報；下一步全程原版／HD、AI與規則工具列，之後收束未支援特殊點及平台／交付。前批開場、行程條、普通戰、世界法術、寶物及結局保持，不重跑全量矩陣。正式197／7／923／535／1071保持，沒有Release。
 
 ## 保持的Go入口與基線
 

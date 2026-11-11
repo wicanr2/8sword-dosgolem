@@ -101,7 +101,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
     crate::world_magic::validate_maps(&data)?;
     let catalog = Catalog::builtin()?;
     let map = Pack::load(&assets)?;
-    let sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
+    let mut sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
+    sdl.configure_poster(&assets, store.as_deref(), capture.as_deref(), scale)?;
     let (mut journey, initial_captures, initial_saves) = if start_menu {
         let initial = if skip_intro {
             (0, true, 0)

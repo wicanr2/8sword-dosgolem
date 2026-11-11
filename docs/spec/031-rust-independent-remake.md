@@ -990,3 +990,28 @@ World預覽沿tempo6／未停時，Journey明確傳Survey.tempo／stopped；步�
 與前版同一真正v16／state_hash的完整SDL畫布比較，差異只在條與已移除數字的明列區域，其他像素零差異。156媒體逐SHA完全保持，157執行期檔不增資產；新條不改RNG或玩法。非法超長狀態只限畫54格，tempo0拒絕，不外推非法值的原版signed行為。
 
 [計算／繪圖](../../internal/remake-rust/src/travelbar.rs)、[84參考](../../internal/remake-rust/travelbar-reference.tsv)、[受控初始例程](../../internal/remake-rust/examples/travelbar_fixture.rs)、[來源探針](../../tools/rust-travelbar-reference.go)、[IDA查詢](../../tools/export-rust-travelbar-ida.py)、[GUI](../../tools/rust-travelbar-gui.py)、[資料／保存工具](../../tools/rust-travelbar.py)、[核對](../../preserved/rust-travelbar-audit-r1.json)、[成果圖](../images/rust-travelbar-r1.png)與[保存／還原](../../preserved/README.md#rust原行程條保存)為入口。CALENDAR-NAMING-CORRECTION-20261111保持，此條不是原年月。下一步全程工具列，不重開已驗音畫／玩法。正式197／7／923／535／1071保持，沒有Release。
+## Rust全程海報工具列 DRAFT
+
+沿032使用者已確認的雙512側翼、完整中央遊戲、龍虎延展／經典封面／關閉與400ms淡入。Rust現有1920×1320中央畫布含48頂列與72底列，保留已驗幾何；外層為2944×1320，側翼只畫y48..1248。這是既有排版在Rust的移植，不重新設計美術。中央font／music等控制仍在原位置，外層將滑鼠x減512再送入既有命令；側翼與海報選單獨占其輸入，不改seed、步數、軍隊或v16。
+
+本輪只移植全程海報選單與共用呈現，不稱全程原版／HD或AI／規則已接。原圖／裁切／取樣／smoothstep沿032與internal/eightsword/poster_toolbar.go，原圖SHA分別f14552801e98d4171befeb1220a9626c9e2e7a25efdad011896d2d3abfcba341及2d666efbb2b1fc714e92b82f078c3fd4139b7c690fce794b95c99c8b2725c55d。只用已保存原圖，無新增DOS逆向需求。
+
+## Rust全程海報工具列 READY
+
+審查032與Go現行makePosterPanels，已證實可由固定原圖生成1024×1200側翼，雙線性取樣兩次正數round，內側112px smoothstep至(8,36,23)。開發工具獨立生成校驗RGBA封包；Rust只讀已校驗的RGBA與工具列Noto字集，不依賴Go、PNG解碼或DOS。缺件保持舊1920畫布，實際壞件只停海報並顯示錯誤，遊戲繼續。全程字型及音樂沿既有控制。
+
+海報偏好沿032 schema1的三ID，以存檔目錄內poster.json保存，與journey.chk／battle.chk分開；無存檔目錄時只留本次程序。解析限4096bytes、固定欄位／值，拒絕symlink；原子新temp寫入後rename，錯誤可見但不終止遊戲。下拉支援滑鼠放開提交、上下鍵／Enter確認、Esc或外點取消，失焦關閉；選單按鍵及側翼拖曳不進世界。再次切換從當前混合圖起算400ms，單調時鐘不改遊戲時鐘。關閉只清側翼，幾何不變。
+
+中央原畫布逐RGBA保留，SDL擷取同時保存2944全幅與中央讀回，紀錄海報ID／選單／錯誤；全幅擷取不以中央裁切冒充。驗收涵蓋淡入起中終與快速重選、原圖製作hash、輸入隔離、偏好與壞件，以及正常開場→主頁→Continue→F1／F2／F5→地圖、戰鬥與結局代表。沿固定v16與seed，不重跑舊全量HD或戰鬥矩陣。入口沿本規格、032、CONTEXT；工具為tools/rust-poster.py及tools/rust-poster-gui.py，研究區沿battle-r1/rust-poster-r1。
+
+## Rust全程海報工具列限定 CONFORMED
+
+`RUST-POSTER-RESOLVED-20261111`。共用SDL呈現層已接2944×1320外層，中央1920×1320逐RGBA保持，兩側各512×1200沿032既有原圖／裁切／smoothstep。龍虎延展／經典封面／關閉、400ms混合、快速重選、鍵鼠取消／確認、失焦及原子偏好已接。按鍵與滑鼠先由外層判定所有權，中央滑鼠x減512；外側按下拖進遊戲不會提交，中央拖出則送無命中release以清按壓。
+
+177測試與六原生程序20份完整SDL讀回通過，涵蓋開場略過→開始頁→Continue→F1／F2／F5、地圖、原式戰場、原版結局及真壞海報。20組全幅2944畫布／SDL讀回相同，中央裁切同既有自有畫布；前版同真正v16與state_hash的世界整幅中央逐像素相同。真正v16正常走路、F7、海報與隸書冷讀通過，沒有改seed／步數／軍隊。戰鬥仍用既有seed1開發樣本，結局讀已保存v15 F7的24688ms，不稱自然通關。完整開場／HD矩陣未重跑。
+
+另以1920×1080桌面驗預設視窗為[0,110,1920,860]，縮放滑鼠正常選經典封面並保存，退出0。SDL2本機標頭的GetDisplayUsableBounds契約提供可用桌面界限，只縮放／置中實體視窗，不改邏輯畫布或遊戲座標。159媒體加binary共160檔，舊156媒體逐SHA保持，只增兩張側翼與固定Noto工具列16字，不改三種遊戲字庫。v16／WorldState／Go格式保持；海報偏好獨立poster.json沿032 schema1。
+
+來源Go函式只在資料製作時執行，Rust執行直接讀校驗RGBA、字模與OGG，不含Go／DOS／x86執行依賴。建置只掛crate／native，GUI只掛native與一支工具，network none／UID1000；音訊dummy不等於新的人耳驗收。壞海報整組停用但原式遊戲／移動保持，缺少新工具列資產沿舊視窗。全程原版／HD、AI與規則工具列仍待，沒有Release。
+
+[呈現與選單](../../internal/remake-rust/src/poster.rs)、[SDL邊界](../../internal/remake-rust/src/sdl.rs)、[製作／核對／保存](../../tools/rust-poster.py)、[GUI](../../tools/rust-poster-gui.py)、[核對](../../preserved/rust-poster-audit-r1.json)、[成果圖](../images/rust-poster-r1.png)與[保存／還原](../../preserved/README.md#rust全程海報工具列保存)為入口。原條032的Go驗收保持，本限定項只補Rust全程海報；其餘選項不混稱完成。

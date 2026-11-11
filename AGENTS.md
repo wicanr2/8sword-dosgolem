@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-11 Rust全程海報工具列依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust全程海報工具列限定-conformed)完成。沿032雙512側翼、三海報與400ms混合，鍵鼠／取消／失焦、偏好及中央座標轉換已接；177測試、六程序20全幅SDL與預設縮放通過。真正v16與前版同狀態中央逐像素保持，戰鬥沿seed1樣本，結局沿v15 F7，不稱自然通關。159媒體＋binary共160檔，舊156與v16／WorldState／Go格式保持，海報偏好獨立沿schema1。RUST-POSTER-RESOLVED-20261111只閉合海報，下一步全程原版／HD、AI與規則工具列，不重驗已驗HD／玩法。[核對](preserved/rust-poster-audit-r1.json)與[現行保存／還原](preserved/README.md#rust全程海報工具列保存)為入口。正式197／7／923／535／1071保持，無Release。
+
 2026-11-11 Rust原行程條依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust原行程條限定-conformed)完成。54格按ceil(剩餘步數／tempo)直接繪製，沿原三列正常／停時配色，清除縮短尾端；173測試、84原指令、五函式1924行bytes與三程序八份SDL通過。正常323→318步、54→53格，F4停時、F7／獨立冷讀及月底恢復324步／54格已驗。停時初始明示一術／竹簡／容量3／remaining1／seed1，不稱自然學會。156媒體逐SHA保持，157份執行期檔；v16／WorldState／Go格式不改。TRAVELBAR-RESOLVED-20261111閉合呈現待辦，保留日曆命名勘誤。下一步全程工具列，不重跑已驗音畫／玩法。[核對](preserved/rust-travelbar-audit-r1.json)與[保存／還原](preserved/README.md#rust原行程條保存)為現行入口。正式197／7／923／535／1071保持，無Release。
 
 2026-11-11 Rust完整開場依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust完整開場限定-conformed)接入預設play。發行商／標題、博物館／美女／光束、逐點迎龍與五故事頁沿21.254秒／588來源節點，再接同視窗主選單。171測試、18來源場景四模式72畫布、三程序15份SDL與正常新建／移動／F7／獨立Continue通過；揭圖Esc先呈現完整圖。156媒體＋binary共157檔，三字型883舊字模保持，各加6字；v16／WorldState／Go格式不變。INTRO-RESOLVED-20261111閉合開場邊界，原行程條與全程工具列仍待，不重跑已驗音畫／玩法。[核對](preserved/rust-intro-audit-r1.json)與[永久保存／還原](preserved/README.md#rust完整開場保存)為現行入口。正式197／7／923／535／1071保持，無Release。

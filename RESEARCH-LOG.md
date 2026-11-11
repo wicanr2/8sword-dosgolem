@@ -3659,3 +3659,11 @@ Go1.24.13／固定923核心跑84個原指令向量：六個tempo、0／1／分�
 真正v16源自前輪正常新建／一步／F7，正常再走五步323→318、54→53；F4停時、F7／冷讀與正常月底後恢復324／tempo6已經三程序八SDL抽驗。停時fixture只明示竹簡、一次停時術、容量3、remaining1及seed1，不稱自然學會。七世界頁的條逐像素同來源色列，月報頁覆蓋條，不把被遮住的區域當成失敗；首次audit誤假設月報也可見，修正核對腳本後同批既有截圖通過，產品未改。
 
 前版同狀態整幅SDL只在行程條及已移除數字區改變，其他像素零差異，156媒體逐SHA保持。原數字並無原版畫面支持，原版新世界圖顯示此處是行程條。`TRAVELBAR-RESOLVED-20261111`回填031呈現待辦；CALENDAR-NAMING-CORRECTION-20261111保持，不虛構原年月。[規格](docs/spec/031-rust-independent-remake.md#rust原行程條限定-conformed)、[核對](preserved/rust-travelbar-audit-r1.json)、[位址索引](docs/spec/ai-resolution-backlinks-r1.json)與[保存](preserved/README.md#rust原行程條保存)為入口。
+
+## 2026-11-11 Rust全程海報工具列
+
+本輪移植既有032呈現契約，不新增DOS玩法逆向。已證實來源為internal/eightsword/poster_toolbar.go，SHA `160db14738f89e7e62fb689ac303ae4d4d0f3d7dfb4c621a5bef22a7b06d96cf`，保留makePosterPanels原函式。封面／延展PNG SHA沿032，Noto來源SHA `3cffb10242b4b7e6edd439ebf3bd7e392345525e093ea08149e0a0158a1b5151`、TTC index3。Go1.24.13僅作開發匯出，逐原函式的雙線性／兩次正數round／內112px smoothstep製作兩張RGBA；Rust直接讀包，不在執行期呼叫Go。
+
+已證實的Rust同狀態範圍：177測試、六原生程序20全幅SDL讀回與20中央裁切；前版真正v16的state_hash8473f43c4b6a804c及世界中央畫面逐像素相同。開場略過／主頁／Continue、F1／F2／F5、海報鍵鼠與偏好冷讀、原式戰場及v15結局已抽驗。結局從保存F7的24688ms開始，仍為原版模式；不能以此稱自然通關或新增HD對拍。側翼切換不動世界seed／步數，159媒體中舊156逐SHA保持。
+
+SDL2本機/usr/include/SDL2/SDL_video.h為可用桌面界限契約來源，SDL_GetDisplayUsableBounds自2.0.5可用，回傳不含系統保留區的範圍。1920×1080中實際視窗[0,110,1920,860]與縮放點選／偏好保存／退出0通過，沒有以headless幾何取代真視窗。RUST-POSTER-RESOLVED-20261111只閉合Rust海報停止線；原版／HD、AI及規則的全程接線仍待。[規格](docs/spec/031-rust-independent-remake.md#rust全程海報工具列限定-conformed)、[核對](preserved/rust-poster-audit-r1.json)與[保存](preserved/README.md#rust全程海報工具列保存)為入口。

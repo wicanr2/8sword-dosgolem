@@ -1583,9 +1583,9 @@ archive用`--archive /project/preserved --out /project/preserved/rust-intro-r1.j
 
 ## Rust原行程條保存
 
-[完整索引](rust-travelbar-r1.json)、[核對](rust-travelbar-audit-r1.json)、[脫離核對](rust-travelbar-detached-r1.json)與[清理](rust-travelbar-cleanup-r1.json)為現行入口。本機`preserved/rust-travelbar-r1/`保存完整Rust來源、156媒體與binary、原指令向量、五函式IDA匯出、原圖格、真正v16初始檔、三程序八份完整SDL、前版同狀態畫面及工具。完整素材不進Git；原始定稿與提示仍見[永久美術](../artwork/README.md)，不依賴workplace。
+[完整索引](rust-travelbar-r1.json)、[核對](rust-travelbar-audit-r1.json)、[脫離核對](rust-travelbar-detached-r1.json)與[清理](rust-travelbar-cleanup-r1.json)為行程條批次入口。本機`preserved/rust-travelbar-r1/`保存完整Rust來源、156媒體與binary、原指令向量、五函式IDA匯出、原圖格、真正v16初始檔、三程序八份完整SDL、前版同狀態畫面及工具。完整素材不進Git；原始定稿與提示仍見[永久美術](../artwork/README.md)，不依賴workplace。
 
-[啟動器](../tools/rust-native-player.sh)指向`workplace/probe-20261023/graphics-first/battle-r1/rust-travelbar-r1/native`。清空workplace後，以既有Pillow11.3.0-r2容器、UID1000、--rm、network none與相稱逾時／資源界限，將專案掛到/project，執行`python /project/tools/rust-travelbar.py restore --project /project`還原157份執行期檔。可加`--work <新的可寫絕對目錄>`還原到其他位置。原生binary預設讀旁邊pack；完整開場及play／journey／run／world入口、XDG保存與SDL2／libsndfile需求沿前批，無Go／DOS／x86執行依賴。
+此批位於`workplace/probe-20261023/graphics-first/battle-r1/rust-travelbar-r1/native`；現行入口見[全程海報](#rust全程海報工具列保存)。清空workplace後，以既有Pillow11.3.0-r2容器、UID1000、--rm、network none與相稱逾時／資源界限，將專案掛到/project，執行`python /project/tools/rust-travelbar.py restore --project /project`還原157份執行期檔。可加`--work <新的可寫絕對目錄>`還原到其他位置。原生binary預設讀旁邊pack；完整開場及play／journey／run／world入口、XDG保存與SDL2／libsndfile需求沿前批，無Go／DOS／x86執行依賴。
 
 173測試、84原指令及五函式1924行MZ重定位bytes通過。原行程條54格、正常／停時三列色與清尾端由Rust直接畫，156媒體逐SHA同前批；v16／WorldState／Go格式與RNG保持。三原生程序八SDL包含正常323→318步、54→53格，正常F4停時、F7／獨立冷讀及月底恢復324步／54格。停時fixture只明示竹簡／一次術／容量3／remaining1／seed1，正常施法才生成tempo8及stopped，不稱自然學會。七個世界條逐像素等於來源色列，月報覆蓋條；前版相同state_hash畫布在條與移除數字區外零差異。
 
@@ -1594,3 +1594,15 @@ archive用`--archive /project/preserved --out /project/preserved/rust-intro-r1.j
 archive以專案唯讀、preserved可寫執行`archive --project /project --archive /project/preserved --out /project/preserved/rust-travelbar-r1.json`。verify只掛preserved唯讀、此單一工具及可寫輸出，執行`verify --archive /archive --out <新JSON>`，不掛workplace。restore逐SHA與mode還原binary及pack，額外驗證fixture不屬執行期必需檔。原57-byte圖格與完整舊圖只留本機。保存及還原驗證後才清本批快取／還原副本，正式197／7／923／535／1071保持，無Release。見[031限定範圍](../docs/spec/031-rust-independent-remake.md#rust原行程條限定-conformed)。
 
 收尾：349檔／336去重物件、103116531壓縮bytes永久保存。全部物件脫離核對、157份執行期SHA／mode還原與正常移動／存檔／退出0通過，三份同狀態完整SDL畫布相同；額外16條還原測試證據另列脫離核對，不混入原始清單。只清本批2141份快取、還原及已核封存IDA工作拷貝，共1089109944 bytes，約1.01 GiB。擁有權與錯置.md目錄檢查為零；本批容器均已退出，其他專案不動。
+
+## Rust全程海報工具列保存
+
+[完整索引](rust-poster-r1.json)、[核對](rust-poster-audit-r1.json)、[脫離核對](rust-poster-detached-r1.json)與[清理](rust-poster-cleanup-r1.json)為現行入口。完整Rust來源、159媒體與binary、真正v16及v15 F7、Go原側翼函式與輸出、六程序20全幅SDL／中央讀回、預設縮放、各次腳本失敗與修正來源，保存在本機preserved/rust-poster-r1/，不依賴workplace。原定稿PNG及提示仍在[永久美術](../artwork/README.md)，全媒體只留本機，沒有Release。
+
+[啟動器](../tools/rust-native-player.sh)指向workplace/probe-20261023/graphics-first/battle-r1/rust-poster-r1/native。清空workplace後，使用既有Pillow11.3.0-r2容器、UID1000、--rm／network none及相稱逾時與資源界限，將專案掛到/project，執行`python /project/tools/rust-poster.py restore --project /project`還原160份執行期檔。可加`--work <新的可寫目錄>`還原到其他位置。binary預設讀旁邊pack，SDL2／libsndfile與XDG保存、play／journey／run／world入口沿前批；執行期不需Go／DOS／x86。
+
+[資料工具](../tools/rust-poster.py)的prepare恢復舊156媒體與真進度，輸出固定Go原函式的panels.go及Noto工具列字集。以dosgolem-go-ebiten:1.24-r1、GO111MODULE=off、GOCACHE=/out/go-cache執行`go run /out/panels.go`，將既有批次掛/out可寫、docs/images掛/images唯讀，才產生兩份側翼RGBA。沿有界Docker參數，完整命令見execution.json。Go匯出僅限開發時，原圖不改；freeze固定crate／工具／媒體，audit核177測試、20全幅及中央像素、同狀態前版與舊媒體SHA，images只排版實際擷取。建置只掛crate／native，GUI只掛native與一支工具。完整映像、命令與限制見保存內execution.json；[GUI](../tools/rust-poster-gui.py)及保存內default-gui.py為輸入工具。
+
+archive以專案唯讀、preserved可寫執行`archive --project /project --archive /project/preserved --out /project/preserved/rust-poster-r1.json`。verify只掛preserved唯讀、此工具與可寫輸出，執行`verify --archive /archive --out <新JSON>`，不掛workplace。restore按SHA／mode還原binary與pack；明示測試fixture不屬執行期必需檔。海報偏好poster.json沿032 schema1，與v16／WorldState／Go格式分開。正式197／7／923／535／1071保持。全程原版／HD、AI與規則工具列仍待，[031](../docs/spec/031-rust-independent-remake.md#rust全程海報工具列限定-conformed)限定範圍不外推整體完成。
+
+收尾：1171檔／443去重物件、186690592壓縮bytes永久保存；全部物件脫離核對、160份執行期SHA／mode還原及正常鍵鼠操作／F7／退出0通過。六份中央及全幅SDL與已驗世界抽樣完全相同，44條額外還原證據另列脫離核對。只清本批3477檔，邏輯合計4673880605 bytes；排除仍保留的硬連結後可釋放內容4023054542 bytes，約3.75 GiB。擁有權與錯置.md目錄檢查為零，本批容器均退出，其他專案不動。

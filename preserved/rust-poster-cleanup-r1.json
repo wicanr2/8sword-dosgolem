@@ -1,0 +1,55 @@
+{
+  "status": "passed-project-scoped-cleanup",
+  "removed": [
+    {
+      "path": "native/rust-target",
+      "files": 2242,
+      "bytes": 814279583
+    },
+    {
+      "path": "go-cache",
+      "files": 346,
+      "bytes": 39112661
+    },
+    {
+      "path": "restore-check",
+      "files": 202,
+      "bytes": 583854126
+    },
+    {
+      "path": "native/bad-pack",
+      "files": 159,
+      "bytes": 346065448
+    },
+    {
+      "path": "native/gui-first",
+      "files": 110,
+      "bytes": 616414317
+    },
+    {
+      "path": "native/gui-second",
+      "files": 117,
+      "bytes": 655052783
+    },
+    {
+      "path": "native/gui-third",
+      "files": 134,
+      "bytes": 732414819
+    },
+    {
+      "path": "native/gui-pre-fade-test",
+      "files": 163,
+      "bytes": 886678746
+    },
+    {
+      "path": "native/default-gui-before-fade-refactor",
+      "files": 4,
+      "bytes": 8122
+    }
+  ],
+  "files": 3477,
+  "logical_bytes": 4673880605,
+  "reclaimable_content_bytes_excluding_retained_hardlinks": 4023054542,
+  "ownership_findings": [],
+  "scope": "Only rust-poster-r1; keep current160 runtime files, successful full frames and full permanent source/assets/evidence; no other project/cache prune"
+}
