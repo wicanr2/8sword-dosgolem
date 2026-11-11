@@ -542,6 +542,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 &journey.world,
                 boundary,
                 store.is_some(),
+                journey.survey.tempo,
+                journey.survey.stopped,
             )?
         };
         if journey.battle.is_none() && matches!(ui.page, Page::World | Page::ResourceResult) {
@@ -923,6 +925,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
             journey.item_flags(),
             journey.item_modifiers(),
             journey.displayed_leadership()
+        );
+        let status = format!(
+            "{status}travel_ticks\t{}\n",
+            crate::travelbar::cells(journey.world.remaining, journey.survey.tempo)?
         );
         if let Some(d) = &capture {
             if snap {

@@ -3643,3 +3643,19 @@ PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0
 `INTRO-RESOLVED-20261111`閉合031「完整PREDELLA開場待移植」停止線，舊段落為當時範圍，現況以CONTEXT及本節為準。[核對](preserved/rust-intro-audit-r1.json)、[規格](docs/spec/031-rust-independent-remake.md#rust完整開場限定-conformed)、[永久保存](preserved/README.md#rust完整開場保存)與[成果圖](docs/images/rust-intro-r1.png)為入口。原行程條、全程工具列及平台／Release仍待，不重開已驗HD或玩法。
 
 開場音訊勘誤：初次原生視窗畫面通過，但分開檢查phase=intro發現queued_bytes全0。CurrentCue只在Mix更新，開發匯出沒有呼叫混音；先前非零計數只屬世界音樂。改以已觀察有效Start cycle1439578／Stop65088413、同正常prefix首Frame1380007及真正handoff快照65142016換算。V2增加19ms／21236ms兩純音訊節點至590，原588圖形節點與72RGBA核對不變；完整初版音訊為0的資料另存prototype。這是來源事件編譯修正，不深入PCM／DAC硬體時鐘。
+## 2026-11-11 Rust原行程條
+
+輸入PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`及正式DB SHA `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`，IDA Pro9.4 py312-v1探針驗UID1000／521函式，正式輸入唯讀，只分析一次性拷貝。五函式1924行bytes依MZ表加1000h核對；IDA線性MZ base10000h，runtime CS0110 IP=linear−10000h，DS1E88偏移另列。原名／operand／位址保持。
+
+| 等級 | 原定位 | 已接用途 |
+|---|---|---|
+| 已證實 | sub_16058／16058，16063..160A4 | (DS56DA＋DS56DC−1)／DS56DC取filled；前段從x_byte2選7000:FEFF＋19×DS56CA，到filled＋1，y193。 |
+| 已證實 | 160A6..160D5 | 從filled＋2到55畫空圖7000:FEEC，保證原合法域54格；Rust先清整條再填當前格數，避免少格殘影。 |
+| 已證實 | sub_16E32／16E39及16EEE、sub_12446／12847 | DS56CA為停時旗標，停時設1、月底清0；讀寫端及存讀端同查，不能把條的選色套rank／boat。 |
+| 已證實，沿既有原來源 | 7000:FEEC起57bytes，SHA `7f37917ef66590b3d7fe5f6b9b939b36bfcadcce15e8859919ad8f6d10ba505f` | 每筆19bytes、1×3圖，原色列正常2／14／10、停時12／14／13、空0。沿047五平面解碼／全像素覆寫契約；原圖僅本機保存，Rust直接畫標準色列。 |
+
+Go1.24.13／固定923核心跑84個原指令向量：六個tempo、0／1／分母前後／滿格前後與雙停時旗標。明示BP／SP／四byte locals與返回frame，實際執行16063..160D5，僅攔2438F繪圖呼叫以讀取來源參數；沒有RNG。Rust173測試含84條格數、原位置及RGBA hash，非法超長只限54格，tempo0拒絕，這個呈現保護不冒充原非法word域一致。
+
+真正v16源自前輪正常新建／一步／F7，正常再走五步323→318、54→53；F4停時、F7／冷讀與正常月底後恢復324／tempo6已經三程序八SDL抽驗。停時fixture只明示竹簡、一次停時術、容量3、remaining1及seed1，不稱自然學會。七世界頁的條逐像素同來源色列，月報頁覆蓋條，不把被遮住的區域當成失敗；首次audit誤假設月報也可見，修正核對腳本後同批既有截圖通過，產品未改。
+
+前版同狀態整幅SDL只在行程條及已移除數字區改變，其他像素零差異，156媒體逐SHA保持。原數字並無原版畫面支持，原版新世界圖顯示此處是行程條。`TRAVELBAR-RESOLVED-20261111`回填031呈現待辦；CALENDAR-NAMING-CORRECTION-20261111保持，不虛構原年月。[規格](docs/spec/031-rust-independent-remake.md#rust原行程條限定-conformed)、[核對](preserved/rust-travelbar-audit-r1.json)、[位址索引](docs/spec/ai-resolution-backlinks-r1.json)與[保存](preserved/README.md#rust原行程條保存)為入口。

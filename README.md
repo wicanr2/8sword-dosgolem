@@ -6,7 +6,7 @@
 
 本專案保留Go版dosgolem原版／HD播放器，並開發不依賴DOS EXE的Rust獨立版。Go入口沿原版操作，提供HD圖像、音樂、三種中文字型及可選AI／規則；Rust直接處理世界、戰鬥、輸入、音畫與存檔，目前已接開始選單、新遊戲、續玩及結局。
 
-既有HD及已接功能採代表抽樣。戰場與部隊管理保留原版配置、選單及操作；Rust的完整開場、新建、正常移動、軍隊檢閱、存檔與獨立程序續玩已有原生視窗證據。全程工具列、原行程條及正式交付仍待，現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
+既有HD及已接功能採代表抽樣。戰場與部隊管理保留原版配置、選單及操作；Rust的完整開場、新建、正常移動、軍隊檢閱、存檔與獨立程序續玩已有原生視窗證據。原行程條已接，全程工具列及正式交付仍待。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
 
 先前的獨立卡片戰鬥介面已撤回。[原版操作開發入口](tools/original-player.sh)以Go提供兵力、管理、招募及保存，保留同一套原版HD戰場。未準備來源畫布的直接建置仍在讀寫進度前拒絕。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
 
@@ -18,9 +18,17 @@
 
 Rust已接「繼續上次進度」、「開始新遊戲」、「音樂欣賞」。新遊戲先確認，取消保留舊進度；確認後從原起點以500金、30民兵開始。音樂欣賞可播放十首已定稿HD曲目，工具列可切換Noto900、隸書與草書。鍵盤與滑鼠共用選取、確認操作。
 
-完成[現行資料包還原](preserved/README.md#rust完整開場保存)後，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔亦可直接執行，預設讀取旁邊的`pack/`，存檔放在`$XDG_DATA_HOME/8sword-remake/`或`$HOME/.local/share/8sword-remake/`。目前只驗Linux，需SDL2／libsndfile平台函式庫；不需dosgolem、Go或DOS EXE。
+完成[現行資料包還原](preserved/README.md#rust原行程條保存)後，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔亦可直接執行，預設讀取旁邊的`pack/`，存檔放在`$XDG_DATA_HOME/8sword-remake/`或`$HOME/.local/share/8sword-remake/`。目前只驗Linux，需SDL2／libsndfile平台函式庫；不需dosgolem、Go或DOS EXE。
 
 上圖來自Linux原生視窗。新遊戲、取消、正常移動／F2／F7、獨立程序續玩、既有v16冷讀與損壞進度重建已抽驗，五程序17份SDL讀回與167測試通過。主頁底板沿既有原生配色簡化，字串與位置保留原版；完整開場見下方。見[驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)、[核對](preserved/rust-start-audit-r1.json)與[圖片來源](docs/images/rust-start-r1.json)。
+
+## Rust原行程條
+
+![Rust正常行程條縮短、停時換色與新月恢復](docs/images/rust-travelbar-r1.png)
+
+地圖下方已恢復原版54格行程條。正常移動會縮短，停時術換成原版暖色，月底後恢復正常色與滿格；存檔續玩保留相同狀態。三種字型共用同一條圖形。
+
+上圖來自Linux原生視窗，底部放大實際行程條。正常323→318步、54→53格已抽驗；停時案例明示提供竹簡與一次法術、設定月底前一步，再由正常F4施法與走路完成月結，不稱自然學會。173測試、84個原指令案例與三程序八份SDL讀回通過。見[限定驗收](docs/spec/031-rust-independent-remake.md#rust原行程條限定-conformed)、[核對](preserved/rust-travelbar-audit-r1.json)、[圖片來源](docs/images/rust-travelbar-r1.json)與[保存／還原](preserved/README.md#rust原行程條保存)。
 
 ## Rust完整開場
 

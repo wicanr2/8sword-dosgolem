@@ -74,6 +74,8 @@ pub(crate) fn compose(
     s: &WorldState,
     pending: Option<Boundary>,
     save: bool,
+    tempo: u8,
+    stopped: bool,
 ) -> Result<Vec<u8>, String> {
     let mut f = vec![0; W * H * 4];
     fill(&mut f, [0, 0, W as i32, H as i32], [9, 36, 29]);
@@ -137,16 +139,7 @@ pub(crate) fn compose(
         border(&mut f, [1480, 2, 232, 44], [206, 170, 74]);
         text(&mut f, font, "F7存檔", 1490, 4, 38, 210)?;
     }
-    // Original remaining-travel number is below the map frame.
-    text(
-        &mut f,
-        font,
-        &s.remaining.to_string(),
-        24,
-        TOP + 1146,
-        36,
-        240,
-    )?;
+    crate::travelbar::draw(&mut f, s.remaining, tempo, stopped)?;
     let status = match pending {
         Some(Boundary::Terrain(t)) => format!("STOP {t}"),
         Some(Boundary::BoatExit) => "STOP 船".into(),
@@ -343,7 +336,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
             last_queue = sdl.queued();
         }
-        let frame = compose(&pack, &data, &state, pending, saves.is_some())?;
+        let frame = compose(&pack, &data, &state, pending, saves.is_some(), 6, false)?;
         let back = sdl.draw(&frame, snap)?;
         if let Some(pixels) = &back {
             readback_equal &= *pixels == frame;

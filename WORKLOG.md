@@ -3539,3 +3539,15 @@ NPC-MONTH-RESOLVED-20261111與CALENDAR-NAMING-CORRECTION-20261111回填規格及
 音訊收尾發現初版開場無聲：來源CurrentCue須經Mix更新，先前只檢查到回世界後的非零佇列。已保留silent prototype及GUI，改用原Start／Stop事件。以正常prefix與handoff快照核cycle基準，增加19ms／21236ms兩純音訊節點，封包590runtime節點／193847684bytes，原588圖形與72RGBA保持。最終GUI單獨檢查開場queued_bytes，不再把世界音樂當開場輸出。
 
 收尾：1049檔／811去重物件、434834758壓縮bytes永久保存。逐物件脫離核對與157份執行期SHA／mode還原通過；還原binary正常完整開場有聲、主選單全幅SDL及state_hash同已驗樣本，正常新建／移動／F7／退出0。清本批3780份快取、還原與已核封存prototype，共3034947941 bytes，約2.83 GiB。本案容器已收尾，完整原圖、來源與有效／失敗證據已保存，其他專案不動。
+
+## 2026-11-11 Rust原行程條
+
+起點fb3dc3871815ffe302e32919b29e7fc79aa9f8cb。路由沿規格閘門、文件職責、README與RE閉合回鏈；先查原sub_16058及DS56CA讀寫端，DRAFT→READY後接Rust，未重開已驗開場／HD／戰鬥。IDA locked-v1不存在，確認既有py312-v1的entrypoint／runtime並成功探針，不另建映像。UID1000、9.4、521函式、PAM／DB SHA及五函式1924行重定位bytes均核對。
+
+84原指令涵蓋六tempo及分母／滿格邊界、雙停時色，僅攔原繪圖call；沿047 primitive，不宣稱新VGA oracle。173測試／release／self-check通過，Rust直接畫54格三列色與空尾端，刪沒有原圖依據的數字。156媒體逐SHA保持，v16／WorldState／Go格式不改。建置只掛crate／native。
+
+三程序八SDL、七個可見條逐像素核對；正常v16走五步323→318、54→53。明示竹簡／一次術／容量3／remaining1／seed1後正常F4停時，F7／獨立冷讀全畫布相同，正常一步月報後返回324步／54格。月報本來覆蓋條，初次audit誤當可見區，修正核對腳本沿同批截圖通過，產品未改。與前版同一state_hash畫布在條／移除數字區外零像素差異。GUI只掛native與單一工具，沒有Go或DOS runtime。
+
+TRAVELBAR-RESOLVED-20261111回填031、RESEARCH及不可變位址索引，保留舊CALENDAR命名勘誤與當時停止線。README新增實際視窗及行程條放大圖，下一步全程工具列；不稱完整遊戲或自然通關。完整來源／媒體／原圖／工具／失敗核對資料永久保存後再清本批快取，收尾數字見下列。
+
+收尾：349檔／336去重物件、103116531壓縮bytes永久保存。全部物件脫離核對、157份執行期SHA／mode還原與正常移動／存檔／退出0通過，三份同狀態完整SDL畫布相同；額外16條還原測試證據另列脫離核對，不混入原始清單。只清本批2141份快取、還原及已核封存IDA工作拷貝，共1089109944 bytes，約1.01 GiB。擁有權與錯置.md目錄檢查為零；本批容器均已退出，其他專案不動。

@@ -44,6 +44,7 @@ mod start_desktop;
 pub mod survey_spells;
 pub mod theft;
 pub mod travel_spells;
+pub mod travelbar;
 pub mod treasure;
 pub mod world;
 #[cfg(feature = "desktop")]

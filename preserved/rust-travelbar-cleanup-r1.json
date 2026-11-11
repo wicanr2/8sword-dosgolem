@@ -1,0 +1,30 @@
+{
+  "status": "passed-project-scoped-cleanup",
+  "removed": [
+    {
+      "path": "native/rust-target",
+      "files": 1216,
+      "bytes": 643941855
+    },
+    {
+      "path": "go-cache",
+      "files": 753,
+      "bytes": 54810878
+    },
+    {
+      "path": "restore-check",
+      "files": 171,
+      "bytes": 388365432
+    },
+    {
+      "path": "ida",
+      "files": 1,
+      "bytes": 1991779
+    }
+  ],
+  "files": 2141,
+  "bytes": 1089109944,
+  "root_owned_or_md_directory_findings": [],
+  "kept": "157 current runtime files, source, actual images and receipts; full source/art/audio/IDA copy preserved locally",
+  "scope": "Only rust-travelbar-r1; no other project or global Docker cache cleanup"
+}

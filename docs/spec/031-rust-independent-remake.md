@@ -967,3 +967,26 @@ Rust以來源索引畫布與typed圖層直接著色、字模所有權混合、�
 [Rust場景解析／繪圖](../../internal/remake-rust/src/intro.rs)、[同視窗播放](../../internal/remake-rust/src/intro_desktop.rs)、[版本](../../internal/remake-rust/intro-plan.tsv)、[72核對](../../internal/remake-rust/intro-reference.tsv)、[實際資料例程](../../internal/remake-rust/examples/intro_compare.rs)、[來源匯出](../../tools/rust-intro-export.go)、[資料／保存工具](../../tools/rust-intro.py)、[GUI](../../tools/rust-intro-gui.py)、[核對](../../preserved/rust-intro-audit-r1.json)、[成果圖](../images/rust-intro-r1.png)與[永久保存／還原](../../preserved/README.md#rust完整開場保存)為入口。後續原行程條及全程工具列，不重跑已驗開場、HD、世界或戰鬥矩陣。正式197／7／923／535／1071保持，沒有Release。
 
 開場音訊補證：V1的CurrentCue欄位須經混音才更新，不作原生時間軸權威。V2依有效Start／Stop事件及正常prefix的首Frame cycle1380007、已保存handoff cycle65142016，加入19ms開始與21236ms停止兩個純音訊節點，runtime共590節點，588個來源圖形節點及72畫布保持。GUI明確檢查開場本身queued_bytes大於0，不由回世界後的音樂佇列推稱開場有聲。
+## Rust原行程條 DRAFT
+
+接回sub_16058的54個原行程圖格，原版位置x_byte2／y193。先核ceil(剩餘步數／tempo)、尾端清除及DS56CA圖格選擇的讀寫端，沿既有IDA9.4證據；沒有證據的顏色旗標先不映射到rank／boat。格式、玩法與存檔v16不改，停時術及月底既有資料為唯一權威。入口為[資料／保存工具](../../tools/rust-travelbar.py)、[原指令](../../tools/rust-travelbar-reference.go)與[IDA查詢](../../tools/export-rust-travelbar-ida.py)，研究區沿battle-r1/rust-travelbar-r1。READY後才接Rust世界畫面，正常走路跨格、停時／月底及冷讀代表抽驗，不重跑已驗HD或開場。
+## Rust原行程條 READY
+
+PAM／正式DB SHA沿031；IDA9.4在唯讀DB拷貝匯出五函式及DS56CA直接xref，原名／位址／bytes／operand保持。sub_16058的16063..160D5按(remaining＋tempo−1)／tempo畫54格，前段從x_byte2至filled＋1選7000:FEFF＋19×DS56CA，後段到55選7000:FEEC，y193。DS56CA由sub_16E32／16EEE設1、月結sub_12446／12847清0，為已保存Survey.stopped；不是rank或boat。84組原指令涵蓋六tempo、0／1／分母前後／滿格前後及雙旗標，實際走原分支，只攔繪圖far call。無RNG；不冒稱新增VGA逐像素oracle，五平面契約沿047。
+
+原圖格1×3且每筆19bytes，原色號正常三列2／14／10、停時12／14／13、空格0；54格×8logical pixel，原x16／y193，HD為x48／y1206，1296×18，含頂部48。原正常世界圖沒有目前Rust顯示的剩餘步數數字，此數字佔用條的位置，改由已驗原行程條呈現。來源57-byte圖留本機，Rust以三列標準色與54格直接畫，不發布原圖檔，也不先繪舊字再疊圖。
+
+World預覽沿tempo6／未停時，Journey明確傳Survey.tempo／stopped；步數、停時、月底與v16保存沿現有唯一資料，不新增世界欄位。先清完整54格再填現有格數，避免縮短後殘影；非法超長保存只把呈現限制54格，不改遊戲數值，tempo0拒絕以防除零。0步作純呈現邊界，不宣稱正式世界可保存0步。字型不影響圖格。
+
+驗收84個原指令格數／位置與來源色列RGBA hash、畫布邊界／超長保護，及正常移動跨6步分段、停時月末／新月、F7／獨立冷讀與三字型代表抽驗。停止時間測試可從真正v16只明示remaining1／tempo8／stopped及seed1，其他資源保留，不稱自然施法；正常移動及月報後恢復tempo6／54格才是可玩證據。不重跑開場、世界法術或全量HD。
+## Rust原行程條限定 CONFORMED
+
+`TRAVELBAR-RESOLVED-20261111`。原世界行程條已由Rust按ceil(剩餘步數／Survey.tempo)直接繪製54格；原x_byte2／y193換為x48／y1206、1296×18，三列正常2／14／10與停時12／14／13配色保持。每幀先清尾端，取消佔位步數數字，無原版字圖先呈現再疊HD。World預覽固定tempo6／未停時，Journey沿現有Survey資料，v16與WorldState／Go格式保持。
+
+173測試、84局部原指令格數／位置／三色列RGBA hash及五函式1924行IDA重定位bytes通過。IDA9.4以UID1000、521函式及原PAM／DB SHA探針確認既有py312-v1，再只查正式DB拷貝；未改名或回寫。DS56CA由sub_16E32／16EEE設1，月結12847清0，原存讀亦保留，沒有誤用rank／boat。原84案只配置locals／回傳frame及攔繪圖far call，不含新VGA硬體對拍，primitive契約沿047。
+
+三原生程序八份SDL擷取通過，七份世界頁行程條逐像素同原圖格色列，月報頁確認遮住條，不把它當可見條核對。真正v16正常走五步323→318、54→53格，原式F4停時、F7／獨立冷讀及月底走一步／確認後324步、tempo6／正常54格已驗。停時初始只明示remaining1、seed1、竹簡／一個停時術與容量3；正常施法才產生stopped及tempo8，不稱自然學會。三字型已有代表畫面。
+
+與前版同一真正v16／state_hash的完整SDL畫布比較，差異只在條與已移除數字的明列區域，其他像素零差異。156媒體逐SHA完全保持，157執行期檔不增資產；新條不改RNG或玩法。非法超長狀態只限畫54格，tempo0拒絕，不外推非法值的原版signed行為。
+
+[計算／繪圖](../../internal/remake-rust/src/travelbar.rs)、[84參考](../../internal/remake-rust/travelbar-reference.tsv)、[受控初始例程](../../internal/remake-rust/examples/travelbar_fixture.rs)、[來源探針](../../tools/rust-travelbar-reference.go)、[IDA查詢](../../tools/export-rust-travelbar-ida.py)、[GUI](../../tools/rust-travelbar-gui.py)、[資料／保存工具](../../tools/rust-travelbar.py)、[核對](../../preserved/rust-travelbar-audit-r1.json)、[成果圖](../images/rust-travelbar-r1.png)與[保存／還原](../../preserved/README.md#rust原行程條保存)為入口。CALENDAR-NAMING-CORRECTION-20261111保持，此條不是原年月。下一步全程工具列，不重開已驗音畫／玩法。正式197／7／923／535／1071保持，沒有Release。
