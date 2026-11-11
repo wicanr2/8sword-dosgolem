@@ -15,6 +15,7 @@ pub mod ending;
 mod ending_desktop;
 pub mod formation;
 pub mod guards;
+pub mod items;
 pub mod journey;
 #[cfg(feature = "desktop")]
 pub mod journey_desktop;

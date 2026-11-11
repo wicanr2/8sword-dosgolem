@@ -1991,5 +1991,39 @@
       "scope": "Fixed PAM source bytes and four controls with counter0/35/375/65535; no invented date or branch implementation.",
       "not_closed": "Global UI RNG parity, full campaign, historical calendar behavior in other game versions, travel-bar rendering."
     }
+  ],
+  "rust_item_resolutions": [
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:IDA-MZ-loader-linear:18079",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "18079",
+      "original_name": "sub_17FB4",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Indexed eight item names,MAN12..19 graphics,ownership and seven passive consumers are mapped into Rust v16.",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/052-man-item-icons.md",
+      "required_correction": "ITEMS-RESOLVED-20261111",
+      "receipt": "preserved/rust-items-audit-r1.json",
+      "scope": "32 local original searches,192 token formula vectors,17 IDA functions,and native item/cold/battle paths.",
+      "not_closed": "Natural acquisition of every item,global UI RNG parity,invalid native resource wrap,full campaign."
+    },
+    {
+      "key": "dos16/PAM.AY:83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0:IDA-MZ-loader-linear:17FC6",
+      "platform_module": "dos16/PAM.AY",
+      "module_sha256": "83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0",
+      "address_space": "IDA MZ loader linear",
+      "original_address": "17FC6",
+      "original_name": "sub_17FB4",
+      "level": "proven-in-sampled-scope",
+      "semantic": "Every local F6 search calls sub16226 once and consumes one original rand,including empty/repeated searches.",
+      "evidence": "RESEARCH-LOG.md",
+      "older_spec": "docs/spec/031-rust-independent-remake.md",
+      "required_correction": "SEARCH-RNG-CORRECTION-20261111",
+      "receipt": "preserved/rust-items-audit-r1.json",
+      "scope": "32 local original searches,192 token formula vectors,17 IDA functions,and native item/cold/battle paths.",
+      "not_closed": "Natural acquisition of every item,global UI RNG parity,invalid native resource wrap,full campaign."
+    }
   ]
 }

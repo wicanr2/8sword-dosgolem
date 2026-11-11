@@ -112,13 +112,14 @@ fn learned<'a>(d: &WorldData) -> Journey<'a> {
     j
 }
 #[test]
-fn book_is_found_once_at_original_location_and_does_not_spend_time_or_rng() {
+fn book_is_found_once_without_spending_time_and_search_consumes_one_roll() {
     let d = WorldData::magic_fixture(1);
     let mut j = Journey::new(&d, 1);
     assert!(!j.search_book().unwrap());
     assert!(j.begin_bridge().is_err());
     j.world.position = Position { x: 50, y: 60 };
-    let w = j.world.clone();
+    let mut w = j.world.clone();
+    w.rng.next15();
     assert!(j.search_book().unwrap());
     assert_eq!(j.resources[5], 3);
     assert_eq!(j.world, w);
@@ -129,7 +130,7 @@ fn book_is_found_once_at_original_location_and_does_not_spend_time_or_rng() {
         if i > 0 {
             j.world.area = a;
             j.world.position = Position { x, y };
-            assert!(j.search_book().is_err());
+            assert!(j.search_book().unwrap());
         }
     }
 }
@@ -250,7 +251,7 @@ fn pending_direction_cold_completion_does_not_double_spend_and_v4_migrates() {
     assert_eq!(cold, j);
     let old = Journey::new(&d, 1);
     let mut raw = old.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 8 - 42 - 2 - 1 - 1 - crate::guards::SUFFIX);
+    raw.truncate(raw.len() - 8 - 42 - 2 - 1 - 1 - crate::guards::SUFFIX - crate::items::SUFFIX);
     raw[..8].copy_from_slice(b"8SJRN004");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), old);

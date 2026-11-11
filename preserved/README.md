@@ -1528,3 +1528,21 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 NPC-MONTH-RESOLVED-20261111與CALENDAR-NAMING-CORRECTION-20261111的原位址、證據等級與限制見[031](../docs/spec/031-rust-independent-remake.md#rust守軍月結限定-conformed)及[研究記錄](../RESEARCH-LOG.md#2026-11-11-rust守軍月結與日曆名稱勘誤)。正式197／7／923／535／1071、WorldState及Go格式保持。下一步其餘寶物、新遊戲、全程工具列與原行程條呈現。
 
 收尾：327檔／309物件、59728067壓縮bytes永久保存。脫離workplace逐物件核對及142份執行期SHA／mode還原通過；還原原生程式載入月報，state_hash、完整SDL畫布與封存樣本相同，正常關閉退出0。只清本批1479份可重建快取與還原複本，共753838292 bytes，約718.9 MiB。原始來源、媒體、binary與擷取保持，其他專案不動。
+
+## Rust八寶物保存
+
+[完整索引](rust-items-r1.json)、[核對](rust-items-audit-r1.json)、[脫離核對](rust-items-detached-r1.json)與[清理](rust-items-cleanup-r1.json)保存完整Rust來源、148媒體、binary、真正v15與新v16、IDA拷貝／匯出、原指令收據及三程序九份有效SDL擷取。物件留本機`preserved/rust-items-r1/`，不依賴workplace；原版衍生資料不進公開包，沒有Release。批准器物的完整原PNG／提示仍依[永久美術](../artwork/README.md)保存，不重畫或刪除原圖。
+
+現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-items-r1/native。清空workplace後，在Pillow11.3.0-r2 Docker內以UID1000將儲存庫掛/project可寫，執行`python /project/tools/rust-items.py restore --project /project`還原149份執行期檔案。再用`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`，已有進度加`--continue`。F6或右側第六列搜尋、F1看物品、工具列換三字型／音樂、F7存檔。v16讀v1至v15，冷讀不重搜；WorldState與Go格式不變。
+
+[資料工具](../tools/rust-items.py)動作均須在有逾時、--rm、--network none、UID1000與資源界限的Docker執行。prepare恢復前批141媒體、真正v15、原IDA證據及正式DB拷貝；[IDA查詢](../tools/export-rust-items-ida.py)只在一次性DB執行，正式PAM／DB唯讀。現存py312-v1的UID、IDA9.4、521函式與輸入SHA probe通過，沒有新建image。原指令以[探針](../tools/rust-items-reference.go)及固定923核心生成32搜尋／192令牌向量，初始seed12345678h固定、不重擲。只略過gfx／wait及配置stack locals，原sub16226／_rand實際執行。
+
+assets動作在可寫工作樹整理八名稱及參考值，從批准MAN清單核SHA後增加七份96×96透明圖示。再用既有`rust-world.py fonts --project /project --work <本批> --out <新JSON>`補字；三字型各849舊字模逐格保持，只加12字至861。原圖快取沿Rust既有Pillow LANCZOS，不稱與Go快取逐像素相同。
+
+建置以mm45-rust-desktop:1.99.1-r3只掛crate唯讀／native可寫，offline／locked；160測試與self-check通過。以[初始例程](../internal/remake-rust/examples/items_fixture.rs)保留真正v15六資源／魔法／324步，明示原令牌位置、seed1及六件前物品。後續[GUI](../tools/rust-items-gui.py)只掛native與單一腳本，正常尋得／F1／三字型／F7冷讀／重搜及另明示八物品／1000民兵的原式戰鬥出手／撤退通過，沒有自然取得全部物品聲明。
+
+freeze保存crate／工具／媒體清單；`audit --project /project --out <新JSON>`核160測試、4252行MZ重定位bytes、舊字模保持與九份SDL；`images --project /project --out <新PNG>`只排版[實際截圖](../docs/images/rust-items-r1.png)。archive動作使用`--archive /project/preserved --out /project/preserved/rust-items-r1.json`；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及可寫輸出，不掛workplace。`restore --project /project --work <可寫新目錄>`還原最小執行期，再逐SHA與mode核對。最初壞資料測試的尾段偏移與GUI未選敵輸入錯誤、log及gui-first一併保存，不作有效產品失敗或驗收收據。
+
+ITEMS-RESOLVED-20261111及SEARCH-RNG-CORRECTION-20261111的原名／位址、推論等級、公式與限制見[031](../docs/spec/031-rust-independent-remake.md#rust八寶物限定-conformed)與[研究記錄](../RESEARCH-LOG.md#2026-11-11-rust八寶物)。正式197／7／923／535／1071保持，後續新遊戲／原式開始選單與其餘工具列不重開已驗HD。
+
+收尾：373檔／335物件、61278742壓縮bytes永久保存。脫離workplace逐物件核對與149份執行期SHA／mode還原通過；還原native正常開F1，八寶物與已驗完整SDL畫布／state_hash相同，正常關閉退出0。清本批1530份可重建快取及還原複本，共784872355 bytes，約748.5 MiB。完整來源、素材、binary與有效／失敗證據保持，本案容器收尾，其他專案不動。

@@ -119,7 +119,7 @@ impl Notice {
             j.resources[4],
             self.spell,
             rng.next15(),
-            false,
+            j.has_item(if self.spell == 1 { 2 } else { 3 }),
         )
     }
     pub(crate) fn validate(&self, j: &Journey<'_>, c: &Catalog) -> Result<(), String> {

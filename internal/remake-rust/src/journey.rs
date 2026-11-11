@@ -1,5 +1,5 @@
 //! Spec031 bounded random-encounter journey. No guest state or executable.
-use crate::battle::{Modifiers, Outcome, Side, Stack};
+use crate::battle::{Outcome, Side, Stack};
 use crate::catalog::{Catalog, UnitId};
 use crate::controller::{Checkpoint, Controller, EnemyConfig, OriginalRng, ViewState};
 use crate::management::{CampState, camp_fingerprint, camps};
@@ -158,6 +158,7 @@ pub struct Journey<'a> {
     pub theft: Option<crate::theft::Theft>,
     pub map_notice: Option<crate::map_notice::Notice>,
     pub guards: crate::guards::Guards,
+    pub artifacts: u8,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -186,6 +187,7 @@ impl<'a> Journey<'a> {
             theft: None,
             map_notice: None,
             guards: crate::guards::Guards::default(),
+            artifacts: 0,
         }
     }
     pub fn phase(&self) -> &'static str {
@@ -314,18 +316,18 @@ impl<'a> Journey<'a> {
             .then_some(SpellBook {
                 enabled: false,
                 charges: [0; 8],
-                stat_26b0: 0,
-                stat_26ae: 0,
+                stat_26b0: u16::from(s.has_item(3)),
+                stat_26ae: u16::from(s.has_item(2)),
             });
         let scenario = if book.is_some() { 10 } else { 8 };
         let controller = Controller::with_enemy_spells(
             catalog,
             [s.army, s.enemy],
             if first { Side::Enemy } else { Side::Player },
-            Modifiers::default(),
+            s.item_modifiers(),
             book,
             EnemyConfig {
-                stat_26ae: 0,
+                stat_26ae: u16::from(s.has_item(2)),
                 shifted_alias: 0,
             },
         )
@@ -392,6 +394,9 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        if self.artifacts & !crate::items::MASK != 0 {
+            return Err("寶物旗標錯誤".into());
+        }
         self.guards.validate(self, data)?;
         if let Some(n) = self.map_notice {
             n.validate(self, data)?;
@@ -442,11 +447,19 @@ impl<'a> Journey<'a> {
                 .guards
                 .pending
                 .is_some_and(|p| p.stage == crate::guards::Stage::Battle);
-            if (!guarded && self.cue.is_none())
+            if cp.controller.modifiers() != self.item_modifiers()
+                || cp
+                    .controller
+                    .enemy_config()
+                    .is_some_and(|e| e.stat_26ae != u16::from(self.has_item(2)))
+                || (!guarded && self.cue.is_none())
                 || cp.view.font != self.world.font
                 || cp.view.music != self.world.music
                 || cp.controller.spell_book().is_some_and(|b| {
-                    b.enabled || b.charges != [0; 8] || b.stat_26b0 != 0 || b.stat_26ae != 0
+                    b.enabled
+                        || b.charges != [0; 8]
+                        || b.stat_26b0 != u16::from(self.has_item(3))
+                        || b.stat_26ae != u16::from(self.has_item(2))
                 })
             {
                 return Err("旅程戰場狀態錯誤".into());
@@ -482,7 +495,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN015".to_vec();
+        let mut b = b"8SJRN016".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -608,6 +621,8 @@ impl<'a> Journey<'a> {
             b.extend(p.elapsed_ms.to_le_bytes());
             b.push(u8::from(p.hd));
         }
+        b.extend(crate::items::fingerprint().to_le_bytes());
+        b.push(self.artifacts);
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -631,7 +646,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN012"
                 && &b[..8] != b"8SJRN013"
                 && &b[..8] != b"8SJRN014"
-                && &b[..8] != b"8SJRN015")
+                && &b[..8] != b"8SJRN015"
+                && &b[..8] != b"8SJRN016")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -957,6 +973,14 @@ impl<'a> Journey<'a> {
                 _ => return Err("結局狀態錯誤".into()),
             }
         }
+        let artifacts = if &b[..8] >= b"8SJRN016" {
+            if r.q()? != crate::items::fingerprint() {
+                return Err("寶物資料版本錯誤".into());
+            }
+            r.byte()?
+        } else {
+            0
+        };
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -980,6 +1004,7 @@ impl<'a> Journey<'a> {
             theft,
             map_notice,
             guards,
+            artifacts,
         };
         s.validate(catalog, data)?;
         Ok(s)

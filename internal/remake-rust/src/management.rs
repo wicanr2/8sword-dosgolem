@@ -210,10 +210,11 @@ impl<'a> Journey<'a> {
             .or_else(|| self.army.iter().position(|s| s.count == 0))
             .ok_or("已滿六隊")?;
         let used = self.used(c)?;
-        let remaining = self.resources[4].checked_sub(used).ok_or("超出領導用量")?;
+        let ceiling =
+            crate::items::recruit_ceiling(self.resources[4], used, p.command, self.has_item(7))?;
         Ok(u64::from(stock)
             .min(self.resources[3] / p.gold)
-            .min(remaining / p.command)
+            .min(ceiling)
             .min(u64::from(
                 32767u32
                     .checked_sub(self.army[slot].count)

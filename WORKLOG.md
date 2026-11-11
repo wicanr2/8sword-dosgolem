@@ -3496,3 +3496,17 @@ Rust接最終原六隊、八劍門檻、勝利直接結局、撤退／全滅及v
 NPC-MONTH-RESOLVED-20261111與CALENDAR-NAMING-CORRECTION-20261111回填規格及位址索引，修正舊「六相位日曆」為原行程條資料流，不虛構年月或停用分支。README加入[成果圖](docs/images/rust-npc-month-r1.png)與現行還原入口。[核對](preserved/rust-npc-month-audit-r1.json)、[完整索引](preserved/rust-npc-month-r1.json)、[脫離核對](preserved/rust-npc-month-detached-r1.json)與[清理](preserved/rust-npc-month-cleanup-r1.json)為交接入口。下一步其餘寶物、新遊戲、工具列及行程條，不重開已驗HD。正式197／7／923／535／1071保持，沒有Release。
 
 收尾：327檔／309物件、59728067壓縮bytes永久保存。脫離workplace逐物件核對及142份執行期SHA／mode還原通過；還原原生程式載入月報，state_hash、完整SDL畫布與封存樣本相同，正常關閉退出0。只清本批1479份可重建快取與還原複本，共753838292 bytes，約718.9 MiB。原始來源、媒體、binary與擷取保持，其他專案不動。
+
+## 2026-11-11 Rust八寶物
+
+起始HEAD45c3339dbd4f6cd32707dd69572bcdce8a0f5956。依[031](docs/spec/031-rust-independent-remake.md#rust八寶物限定-conformed)完成DRAFT、IDA／原指令審查、READY及實作。F6／F1、七件被動效果、兩種旅程戰場、法術結果、募兵與v16保存接通。160測試、32搜尋／192令牌原算式、17函式4252行bytes通過，正式DB不改。
+
+已用IDA9.4既有py312-v1的UID／schema／輸入SHA探針確認工具，locked-v1缺少而未新建image。dosgolem只作開發oracle，搜尋明示stack locals、略過gfx／wait，實際執行sub16226與_rand。發現F6每次消耗一次RNG，追加SEARCH-RNG-CORRECTION-20261111；黃金令牌先算招募商值再word乘二，沒有改成有效領導差額。非法資源仍沿既有安全閘。
+
+最初158通過／1失敗是舊結局壞資料測試未移動v16尾段偏移，修正後160通過。第一輪GUI的尋寶／F1／三字型／冷讀已通過，戰場腳本只按Enter卻未先選合法敵隊，停在原cursor7；沿既有正常選敵座標修正腳本、相同fixture／seed乾淨重跑。失敗log與native/gui-first完整保留，未改產品或重擲seed。
+
+三原生程序九SDL擷取：正常F6令牌、F1八透明圖示、三字型與冷讀／重搜，以及明示八物品／1000民兵的原式戰場出手／撤退至72金／323步。建置只見crate／native，GUI只見native與單一腳本。148媒體＋binary共149檔，三字型舊849字模逐格保持，各補12字。README成果、CONTEXT現況、WORKLIST、052與位址索引已回填，不稱自然取得八物品或完整遊戲。
+
+[核對](preserved/rust-items-audit-r1.json)、[完整索引](preserved/rust-items-r1.json)、[脫離核對](preserved/rust-items-detached-r1.json)、[清理](preserved/rust-items-cleanup-r1.json)及[成果圖](docs/images/rust-items-r1.png)為交接入口。先永久保存與核還原，再清可重建快取。正式197／7／923／535／1071與Go格式保持，沒有Release。下一步新遊戲／原式開始選單及其餘工具列，不重跑已驗HD。
+
+收尾：373檔／335物件、61278742壓縮bytes永久保存。脫離workplace逐物件核對與149份執行期SHA／mode還原通過；還原native正常開F1，八寶物與已驗完整SDL畫布／state_hash相同，正常關閉退出0。清本批1530份可重建快取及還原複本，共784872355 bytes，約748.5 MiB。完整來源、素材、binary與有效／失敗證據保持，本案容器收尾，其他專案不動。

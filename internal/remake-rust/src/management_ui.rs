@@ -189,8 +189,8 @@ impl Manager {
                         }
                     }
                     1073741887 => {
-                        self.message = if j.search_book()? {
-                            "你找到魔法竹簡".into()
+                        self.message = if let Some(index) = j.search_item()? {
+                            format!("你找到{}", crate::items::names()[usize::from(index)])
                         } else {
                             "這裡沒有寶物".into()
                         };
@@ -507,7 +507,7 @@ pub fn draw(
     pack: &MediaPack,
     building: &Image,
     portrait: &Image,
-    book: &Image,
+    item_icons: &[Image; 8],
     magic_building: &Image,
     data: &WorldData,
     marker_light: bool,
@@ -647,8 +647,12 @@ pub fn draw(
             48,
             1200,
         )?;
-        if ui.page == Page::Message && j.magic.book && ui.message == "你找到魔法竹簡" {
-            sprite(f, book, 312, 870);
+        if ui.page == Page::Message {
+            for (i, name) in crate::items::names().iter().enumerate() {
+                if ui.message == format!("你找到{name}") {
+                    sprite(f, &item_icons[i], 312, 870);
+                }
+            }
         }
         return Ok(());
     }
@@ -751,7 +755,13 @@ pub fn draw(
     if ui.page == Page::Character {
         fill(f, [24, 120, 1344, 1050], [10, 37, 29]);
         sprite(f, portrait, 72, 126);
-        for row in crate::character::fields(j.resources)? {
+        for (index, mut row) in crate::character::fields(j.resources)?
+            .into_iter()
+            .enumerate()
+        {
+            if index == 4 {
+                row.value = j.displayed_leadership();
+            }
             field(
                 f,
                 font,
@@ -791,9 +801,15 @@ pub fn draw(
                 }
             }
         }
-        if !ui.swords && j.magic.book {
-            sprite(f, book, 912, 282);
-            field(f, font, "魔 法 竹 簡", 1032, 282, 288)?;
+        if !ui.swords {
+            for (i, name) in crate::items::names().iter().enumerate() {
+                if j.has_item(i) {
+                    let x = 648 + (i / 4) as i32 * 324;
+                    let y = 444 + (i % 4) as i32 * 156;
+                    sprite(f, &item_icons[i], x, y);
+                    field(f, font, name, x + 96, y, 216)?;
+                }
+            }
         }
         return Ok(());
     }
@@ -993,7 +1009,7 @@ pub fn draw(
             "金錢 {}  領導用量 {}/{}",
             j.resources[3],
             j.used(catalog)?,
-            j.resources[4]
+            j.displayed_leadership()
         )
     } else {
         ui.message.clone()

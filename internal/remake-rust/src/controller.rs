@@ -427,6 +427,12 @@ impl<'a> Controller<'a> {
                     .is_some_and(|id| id.is_native_caster())
         })
     }
+    pub fn modifiers(&self) -> Modifiers {
+        self.modifiers
+    }
+    pub fn enemy_config(&self) -> Option<&EnemyConfig> {
+        self.enemy_config.as_ref()
+    }
     pub fn spell_book(&self) -> Option<&SpellBook> {
         self.book.as_ref()
     }

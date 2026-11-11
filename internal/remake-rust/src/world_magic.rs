@@ -151,26 +151,7 @@ impl Magic {
 }
 impl<'a> Journey<'a> {
     pub fn search_book(&mut self) -> Result<bool, String> {
-        if self.phase() != "world" {
-            return Err("目前不能尋寶".into());
-        }
-        let found = items().into_iter().find(|s| {
-            (s[1], s[2], s[3])
-                == (
-                    self.world.area,
-                    self.world.position.x,
-                    self.world.position.y,
-                )
-        });
-        match found {
-            Some([0, _, _, _]) if !self.magic.book => {
-                self.magic.book = true;
-                self.resources[5] = 3;
-                Ok(true)
-            }
-            Some([0, _, _, _]) | None => Ok(false),
-            _ => Err("此寶物取得尚未接入".into()),
-        }
+        Ok(self.search_item()?.is_some())
     }
     pub(crate) fn open_magic_shop(&mut self, d: &WorldData, key: u16) -> Result<bool, String> {
         let (at, _) = crate::world::motion(self.world.position, key, self.world.facing, false)?;

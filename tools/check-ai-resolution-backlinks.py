@@ -191,3 +191,15 @@ for v in rust_month:
  assert v['original_address']in evidence.read_text()and v['original_name']in evidence.read_text()
  assert v['required_correction']in older.read_text()and v['scope']and v['not_closed']
 print('Rust NPC month/counter backlinks passed:',len(rust_month))
+
+rust_items=d.get('rust_item_resolutions',[])
+assert len(rust_items)==2
+for v in rust_items:
+ assert v['platform_module']=='dos16/PAM.AY'and v['module_sha256']=='83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0'
+ assert v['address_space']=='IDA MZ loader linear'and v['level']=='proven-in-sampled-scope'
+ assert v['key']==v['platform_module']+':'+v['module_sha256']+':IDA-MZ-loader-linear:'+v['original_address']
+ evidence=r/v['evidence'];older=r/v['older_spec'];receipt=r/v['receipt']
+ assert evidence.is_file()and older.is_file()and receipt.is_file()
+ assert v['original_address']in evidence.read_text()and v['original_name']in evidence.read_text()
+ assert v['required_correction']in older.read_text()and v['scope']and v['not_closed']
+print('Rust item/search backlinks passed:',len(rust_items))

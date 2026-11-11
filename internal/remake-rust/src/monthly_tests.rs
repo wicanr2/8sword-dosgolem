@@ -146,7 +146,9 @@ fn v2_migrates_and_checked_impossible_reports_or_overflow_leave_state_intact() {
     let d = WorldData::flat_fixture();
     let mut j = Journey::new(&d, 1);
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 8 - 17 - 169 - 42 - 2 - 1 - 1 - crate::guards::SUFFIX);
+    raw.truncate(
+        raw.len() - 8 - 17 - 169 - 42 - 2 - 1 - 1 - crate::guards::SUFFIX - crate::items::SUFFIX,
+    );
     raw[..8].copy_from_slice(b"8SJRN002");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);
@@ -205,7 +207,7 @@ fn month_refills_current_slots_keeps_cleared_guards_and_commits_two_rng_calls_on
     assert!(j.guards.swords[0]);
     assert_eq!(j.world.rng.seed, 0x5b3f58b2);
     let raw = j.encode(&c, &d).unwrap();
-    assert_eq!(&raw[..8], b"8SJRN015");
+    assert_eq!(&raw[..8], b"8SJRN016");
     let mut cold = Journey::decode(&c, &d, &raw).unwrap();
     assert_eq!(cold, j);
     let rows = j.guards.rows;

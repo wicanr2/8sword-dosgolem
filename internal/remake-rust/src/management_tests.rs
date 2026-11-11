@@ -90,8 +90,20 @@ fn old_no_camp_v1_migrates_but_new_bad_camp_bindings_are_refused() {
     let c = Catalog::builtin().unwrap();
     let j = Journey::new(&d, 1);
     let mut raw = j.encode(&c, &d).unwrap();
-    assert_eq!(&raw[..8], b"8SJRN015");
-    raw.truncate(raw.len() - 8 - 609 - 17 - 169 - 42 - 2 - 1 - 1 - crate::guards::SUFFIX);
+    assert_eq!(&raw[..8], b"8SJRN016");
+    raw.truncate(
+        raw.len()
+            - 8
+            - 609
+            - 17
+            - 169
+            - 42
+            - 2
+            - 1
+            - 1
+            - crate::guards::SUFFIX
+            - crate::items::SUFFIX,
+    );
     raw[..8].copy_from_slice(b"8SJRN001");
     raw.extend(checksum(&raw).to_le_bytes());
     let migrated = Journey::decode(&c, &d, &raw).unwrap();

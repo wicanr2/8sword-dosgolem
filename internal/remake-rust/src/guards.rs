@@ -1,6 +1,6 @@
 //! Spec031: persistent original65 guard records and sub12DDE/sub11ABE.
 use crate::{
-    battle::{Modifiers, Outcome, Side, Stack},
+    battle::{Outcome, Side, Stack},
     catalog::{Catalog, UnitId},
     controller::{Checkpoint, Controller, EnemyConfig, OriginalRng, ViewState},
     journey::{Journey, army_ok, compact},
@@ -403,8 +403,8 @@ impl<'a> Journey<'a> {
                 .then_some(SpellBook {
                     enabled: false,
                     charges: [0; 8],
-                    stat_26b0: 0,
-                    stat_26ae: 0,
+                    stat_26b0: u16::from(s.has_item(3)),
+                    stat_26ae: u16::from(s.has_item(2)),
                 });
             let scenario = if book.is_some() { 10 } else { 8 };
             s.battle = Some(Checkpoint {
@@ -412,10 +412,10 @@ impl<'a> Journey<'a> {
                     c,
                     [s.army, enemies],
                     Side::Player,
-                    Modifiers::default(),
+                    s.item_modifiers(),
                     book,
                     EnemyConfig {
-                        stat_26ae: 0,
+                        stat_26ae: u16::from(s.has_item(2)),
                         shifted_alias: 0,
                     },
                 )

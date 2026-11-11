@@ -94,7 +94,21 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let building =
         crate::media_assets::Image::load(&assets.join("recruit-building.rgba"), 1344, 600)?;
     let portrait = crate::media_assets::Image::load(&assets.join("hero-portrait.rgba"), 240, 240)?;
-    let magic_book = crate::media_assets::Image::load(&assets.join("magic-book.rgba"), 96, 96)?;
+    let item_icons: [crate::media_assets::Image; 8] = (0..8)
+        .map(|i| {
+            crate::media_assets::Image::load(
+                &assets.join(if i == 0 {
+                    "magic-book.rgba".into()
+                } else {
+                    format!("item-{i}.rgba")
+                }),
+                96,
+                96,
+            )
+        })
+        .collect::<Result<Vec<_>, _>>()?
+        .try_into()
+        .map_err(|_| "器物數量錯誤")?;
     let magic_building =
         crate::media_assets::Image::load(&assets.join("magic-building.rgba"), 1344, 600)?;
     let sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
@@ -599,7 +613,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             &battle_pack,
             &building,
             &portrait,
-            &magic_book,
+            &item_icons,
             &magic_building,
             &effective_map,
             marker_light,
@@ -662,7 +676,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 "金錢 {}  領導用量 {}/{}",
                 journey.resources[3],
                 journey.used(&catalog)?,
-                journey.resources[4]
+                journey.displayed_leadership()
             )
         };
         text(&mut frame, font, &info, 24, 1250, 20, 1872)?;
@@ -847,6 +861,12 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 .collect::<Vec<_>>()
                 .join(","),
             journey.guards.swords
+        );
+        let status = format!(
+            "{status}items\t{:?}\nitem_modifiers\t{:?}\ndisplayed_leadership\t{}\n",
+            journey.item_flags(),
+            journey.item_modifiers(),
+            journey.displayed_leadership()
         );
         if let Some(d) = &capture {
             if snap {

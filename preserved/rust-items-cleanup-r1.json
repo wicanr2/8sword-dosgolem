@@ -1,0 +1,19 @@
+{
+  "status": "passed-rust-items-cleanup",
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-items-r1/native/rust-target",
+      "files": 1371,
+      "bytes": 626212861
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-items-r1/restore-check",
+      "files": 159,
+      "bytes": 158659494
+    }
+  ],
+  "total_files": 1530,
+  "total_bytes": 784872355,
+  "ownership_findings": [],
+  "scope": "Only this batch rust-target and temporary restoration. Complete source,media,binary,original evidence and approved originals kept; no global Docker prune."
+}

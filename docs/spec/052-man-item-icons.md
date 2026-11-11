@@ -51,3 +51,7 @@ READY追加：ownedPixel為本組圖示保存繪製前的ActorBase色碼，來�
 首輪r1的跨掛載硬連結屬測試環境問題；修成容器內複製。純色底殘色為呈現缺口，依上節修訂ActorBase後才乾淨重跑r2，沒有降低檢查或把失敗收據寫成通過。原r1來源、log與失敗輸出保留。素材匯入r1誤用不透明取樣，修成已有透明取樣契約，另建r2候選，不覆寫失敗輸出。
 
 [獨立核對器](../../tools/finish-man-icons.py)收據items-runtime-audit-r1.json SHA為`5e3fb6f808df3331cd4ca890ca575e2cdfa220675990f4336c2bd1f863b450ef`，提升收據SHA為`c091eef0d5758749b0df08b3f5474d791cb7047a4773e22c8d1976cee0c25ebb`。README收[16筆原版／HD總覽](../images/item-icons-original-hd-r1.png)與[來源](../images/item-icons-original-hd-r1.json)，完整17份生成PNG、提示與收據留man-icons-r1，包含未使用的第16筆首稿。這是素材與受控來源呈現驗證，原版物品名稱、取得與能力未知；未改玩法、輸入、RNG或存檔，不冒稱新GUI、自然取得或全遊戲HD完成。沿047既有GUI／存讀代表證據，後續不重畫本組或逐物品等待。
+
+### 後續玩法定位
+
+`ITEMS-RESOLVED-20261111`：本節原美術驗收保持，MAN第12至19筆的名稱／取得／效果已由[031八寶物](031-rust-independent-remake.md#rust八寶物限定-conformed)閉合。固定PAM的sub_17FB4在18079寫DS26AA起索引旗標，以MAN偏移3870h＋388×索引取圖，對應八原名稱；七個消費端與4252行IDA bytes、32局部原指令及Rust原式GUI／保存已驗。沒有因此提升八件皆自然取得、八劍原圖自然用途或完整通關。

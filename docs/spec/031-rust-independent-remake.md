@@ -843,3 +843,50 @@ v15綁定命令包與結局遊標／原版HD模式，讀v1至v14；WorldState與
 `CALENDAR-NAMING-CORRECTION-20261111`：過去「原日曆六相位」沒有原指令支持。sub_16058使用ceil(剩餘步數／tempo)畫行程條；tempo6不是年月或六個日曆相位。DS56E6在sub_16226以word加一，但16249無條件跳過停用分支；四個counter控制包含35與375邊界，均走兩次RNG／普通月結。這部分只記已觀察資料流，不虛構原年月或重製未使用分支。原行程條呈現列UI待辦。
 
 [原生初始例程](../../internal/remake-rust/examples/npc_month_fixture.rs)、[GUI工具](../../tools/rust-npc-month-gui.py)、[來源／保存工具](../../tools/rust-npc-month.py)、[原指令工具](../../tools/rust-npc-month-reference.go)、[成果圖](../images/rust-npc-month-r1.png)及[圖片來源](../images/rust-npc-month-r1.json)為入口。最終建置只見crate／native，GUI已查實只掛native與單一腳本。下一步其餘寶物、新遊戲、全程工具列與行程條；正式197／7／923／535／1071保持，沒有Release。
+
+## Rust其餘寶物 DRAFT
+
+本輪從既有八座標／竹簡取得續接其餘七件：護身符、幸運玉佩、銀八卦、越王刀、叢林神像、登山勾、黃金令牌。名稱取固定PAM DS263A、每筆14bytes；取得函式sub_17FB4、旗標DS26AA起每筆word。沿既有MAN第12至19筆批准透明圖，不重畫。研究區沿battle-r1/rust-items-r1，[準備／保存工具](../../tools/rust-items.py)與[IDA查詢](../../tools/export-rust-items-ida.py)為入口。
+
+先以IDA9.4唯讀原DB的拷貝追旗標消費端及F6呼叫順序，再以dosgolem固定原指令驗取得、重複、效果分支與RNG。sub_17FB4已知呼叫sub_16226，前輪「F6沒有亂數」須重新查證整段；不沿舊敘述實作。未解效果保持DRAFT，不因圖示或自訂欄位名猜補。
+
+範圍以每件已證實的取得、即時／戰鬥／移動效果、F1呈現及檢查點為垂直鏈。保存如需增加欄位，沿開發v16追加並讀v1至v15，WorldState／Go格式保持。正常鍵鼠尋得、F7／冷讀、原式戰場或移動效果採代表抽驗，不等待逐件自然遠行，不稱自然通關。其餘世界、新遊戲與工具列另依WORKLIST。
+
+## Rust其餘寶物 READY
+
+固定PAM／DB SHA沿前節031，IDA Pro9.4 MZ基址10000h；既有py312-v1 image經新輸出probe驗UID1000、521函式與兩輸入雜湊，正式DB唯讀，一次性拷貝匯出17函式及八旗標直接xref。F6的32原指令案例與令牌192組原算式已通過；gfx與等待鍵略過、__chkstk依AX配置locals，sub_16226及原_rand實際執行，不稱完整原版GUI。
+
+| 寶物與原旗標 | 已證實消費端 | Rust契約 |
+|---|---|---|
+| 護身符 DS26AC | sub_1FAA2的1FAC7，敵普通傷害分母5＋旗標 | Modifiers.enemy_defense=1；其他隊及施法不改公式。 |
+| 幸運玉佩 DS26AE | sub_16B20的16B64；1EC62與1F4CB | 煉金加40；雙方暗殺用stat_26ae=1。 |
+| 銀八卦 DS26B0 | sub_16BEA的16C6F；sub_1E8A4多處 | 召兵量乘3／2；玩家戰鬥法術stat_26b0=1，沿現有已驗算式。 |
+| 越王刀 DS26B2 | sub_1FB02的1FB2A | 玩家普通傷害分母5−旗標，Modifiers.player_attack=1。 |
+| 叢林神像 DS26B4 | sub_12446的124B9 | 沿WorldState.bamboo放行地形46。 |
+| 登山勾 DS26B6 | sub_12446的124A3 | 沿WorldState.mountain放行地形15至30。 |
+| 黃金令牌 DS26B8 | sub_154EA的155D0..155E7；17242的17348／174FB；1FB33 | 玩家普通傷害倍數2；F1顯示基本領導×2；募兵先算(基本領導−已用)／單兵用量，再word左移一次、signed16非正拒絕。不能換成(2×領導−已用)／單兵用量。 |
+
+原旗標的直接xref不涵蓋F1與F6的索引讀寫，兩完整函式已人工核對原基址／stride。八圖取得座標與名稱已由固定原表核對。F6只設命中旗標及座標area255，竹簡另設容量3，其餘不直接增減資源；重複與無物亦呼叫一次_rand，固定seed12345678h均至B3E97B5Bh。不移動、不扣步、不進遭遇尾段。原主迴圈其他UI換頁RNG不在本地搜尋驗收範圍。
+
+Journey新增一個artifact mask，只保存五個非移動旗標；竹簡／登山勾／神像沿既有book／mountain／bamboo，避免雙份權威。v16在結局尾段後追加資料fingerprint與mask九bytes，讀v1至v15時五旗標預設無。未知mask、資料版本或戰中modifier／施法旗標與旅程不符則拒絕。禁止在戰鬥或其他事件時取得物品。已有保存的戰鬥沿原兵力／HP，開發舊資料保持原值。
+
+令牌不把基本領導資源改成雙倍，也不改寶箱或晉級基值。原招募的word回繞保留在非負、基本領導不超30000的已支援域；超用量與擴充兵種仍沿原生安全拒絕，不模仿非法資源的word回繞。召兵沿既有基本領導安全閘，不從F1顯示值推新規則。
+
+F6顯示對應已批准MAN透明器物，F1用兩欄四列圖示／名稱，字型沿Noto900／隸書／草書。原32×16快取為96×96；名稱去原分隔空白，單列最多四漢字、文字安全框216×96，字高48。媒體新增七份器物與名稱資料，三字型只補缺字。接入兩條旅程戰場入口、法術結果重算、原店／增援募兵、F1及保存，至少抽驗尋得／重搜、冷讀、山地移動及原式戰場。新遊戲與其餘工具列不在本切片。
+
+## Rust八寶物限定 CONFORMED
+
+`ITEMS-RESOLVED-20261111`。八件寶物已接入原生旅程：F6取得、對應透明圖示、F1兩欄四列、普通攻防、雙方暗殺、玩家法術、煉金／召兵、地形權限、令牌領導顯示／招募及v16保存。竹簡／神像／登山勾沿既有旗標，另存五個artifact bits；新v16讀v1至v15，WorldState及Go格式保持。
+
+| 項目 | 驗證與限制 |
+|---|---|
+| 核心 | 160測試通過。32個原指令搜尋、192個令牌募兵算式、七物品／重複／空地／錯區、舊v15與壞mask、法術結果與兩條戰場入口、冷讀及山／森林效果已驗。非法超用量仍沿原生安全拒絕，不稱全192狀態皆與非法原版回繞一致。 |
+| 原版證據 | IDA Pro9.4一次性DB匯出17函式4252行bytes，按MZ重定位表核對；八旗標直接xref及F1／F6索引stride分開審查。原17FB4與_rand實際執行，略過gfx／wait與__chkstk平台樣板，不稱完整原版GUI。 |
+| 媒體 | 沿批准MAN12至19圖；新增七份96×96透明快取。Pillow LANCZOS沿既有Rust呈現，不稱與Go快取逐像素相同。三字型各849舊字模全部保持，新增12字至861。共148媒體＋一個binary。 |
+| 原生視窗 | 三程序九SDL畫布／讀回相同。F6尋得黃金令牌、F1八寶物、Noto／隸書／草書、F7／獨立冷讀、重搜無物及帶三種普通modifier的原式攻城出手／撤退通過。 |
+
+GUI從真正v15保留六資源[1,0,120,107,1000,4]、魔法、324步與已清首頭目。初始明示原令牌位置4區23／37的地形16、seed1及六件既有物品，真實竹簡保持；正常F6取得最後令牌後資源與步數不改，F1基本領導1000顯示2000。F7／另一程序F1畫布及完整state_hash相同，重搜只消耗一個RNG，不重領。戰鬥另以原城鄰格、八物品、1000民兵及seed1明示配置，正常入城／出手／撤退回場為72金／323步。這是受控起始狀態後的正常操作，沒有執行期RAM／IP注入，不稱自然取得八物品或完整通關。
+
+`SEARCH-RNG-CORRECTION-20261111`推翻舊世界造橋READY的「F6無亂數」。IDA17FC6呼叫sub_16226，原32案都使固定seed12345678h至B3E97B5Bh；原counter在有效普通分支只加一，不建立新玩法。修正舊竹簡測試以比較一次呼叫，所有既有移動／法術／月報／守軍回歸仍通過，不重跑HD矩陣。舊v15過去已提交的搜尋不追補RNG，冷讀亦不重搜。
+
+[寶物規則](../../internal/remake-rust/src/items.rs)、[原值](../../internal/remake-rust/item-names.tsv)、[32原指令參考](../../internal/remake-rust/items-reference.tsv)、[令牌參考](../../internal/remake-rust/recruit-token-reference.tsv)、[受控初始例程](../../internal/remake-rust/examples/items_fixture.rs)、[GUI](../../tools/rust-items-gui.py)、[資料／保存工具](../../tools/rust-items.py)、[原指令工具](../../tools/rust-items-reference.go)、[IDA查詢](../../tools/export-rust-items-ida.py)、[核對](../../preserved/rust-items-audit-r1.json)、[成果圖](../images/rust-items-r1.png)與[永久保存／還原](../../preserved/README.md#rust八寶物保存)為入口。建置只掛crate唯讀／native可寫，GUI執行中查實只掛native與單一腳本。正式197／7／923／535／1071保持，沒有Release；下一步新遊戲／原式開始選單及其餘工具列。

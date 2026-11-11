@@ -3592,3 +3592,19 @@ PAE.AY SHA `8ae11b4c89f0361ed0a2d5b1859bbb4750047d37f0e26885e6903e4feb721a0c`沿
 NPC-MONTH-RESOLVED-20261111閉合舊NPC補兵待辦。CALENDAR-NAMING-CORRECTION-20261111推翻舊「原日曆六相位」名稱，舊記錄保留；新版CONTEXT／WORKLIST與031回填本結論。[位址索引](docs/spec/ai-resolution-backlinks-r1.json)保留固定來源雜湊、原名／位址、證據等級、限制及回查收據。
 
 2520算式向量包含正式狀態不允許的空kind正count邊界，只證算式。原月結從已存before-commit.state的真實frame接續，seed在執行前固定，不重擲；draw／IO沿來源，停止在原等待鍵之前。Rust三程序九SDL擷取則從真正v15明示原城鄰格、月底一步、seed1、30民兵及受損守軍20／5／1，後續全部正常鍵鼠。月報守軍26／10／10、116金／324步、待報冷讀、確認後攻城與戰中冷讀通過。清空守軍不復活、slot重排及壞輸入回滾由核心驗，沒有全圖逐城GUI或自然通關聲明。
+
+## 2026-11-11 Rust八寶物
+
+來源PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，PAM.i64為a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。沿[IDA工具](tools/export-rust-items-ida.py)，py312-v1 image SHA4ac62de83339c215bab10e455cee3a22d9c6efed9fd0d8ed0f068327b83a06ab，新UID1000／IDA9.4／521函式／輸入SHA probe通過。locked-v1不在主機，沿用既有專用image，沒有另建。正式DB唯讀，查詢只跑一次性拷貝；17函式4252行bytes依原MZ重定位表加1000h核對，未改名或回寫DB。以下為IDA MZ base10000h，runtime CS0110的IP另以線性減10000h換算，DS偏移另列。
+
+| 等級 | 原定位／資料流 | 已接Rust用途 |
+|---|---|---|
+| 已證實 | sub_17FB4的18079寫[bx+26AAh]，1808A將[bx+260Ah]區域設255，180A2只為index0設DS04FC=3。17FC6呼叫sub_16226，實際_rand回傳0110:6494。 | 八座標／名稱DS263A stride14及MAN3870h＋388×index明確對應。32局部原指令覆蓋命中、錯X、錯區、已領；固定seed12345678h均消耗一次至B3E97B5Bh，不扣步、不進遭遇。 |
+| 已證實 | 1FAC7讀DS26AC；1FB2A讀DS26B2；1FB33讀DS26B8。 | 護身符敵傷分母5＋1、越王刀玩家分母5−1、令牌玩家傷害×2，沿現有雙側算式接modifier。 |
+| 已證實 | 16B64讀DS26AE加40；16C6F讀DS26B0乘1.5；1EC62／1F4CB及1E8A4多個讀端。 | 玉佩煉金＋40及雙方暗殺；銀八卦召兵×3／2及玩家法術stat。F1與F6索引存取不會出現在各單獨旗標xref內，已用stride追查。 |
+| 已證實 | 124A3 DS26B6、124B9 DS26B4。 | 登山勾放行15至30、叢林神像放行46。沿已驗世界guard，所有權直接使用原生mountain／bamboo，無重複保存。 |
+| 已證實，合法資源域 | 155D0..155E7先(領導−用量)／單兵command，155E4在令牌時左移word，再signed判正；17348／174FB只把F1顯示值乘二。 | 192原算式包含合法與非法輸入；native在既有基本領導不超30000、用量不超基本領導域保留word結果，非法超用量維持安全拒絕。不能把公式換成(2×lead−used)／cost。基本資源、寶箱及晉級基值不加倍，召兵保持既有安全閘。 |
+
+ITEMS-RESOLVED-20261111回填052未知用途與031舊物品邊界；SEARCH-RNG-CORRECTION-20261111推翻031世界造橋READY「F6無RNG」。不可變定位鍵、原名、等級及收據掛在[索引](docs/spec/ai-resolution-backlinks-r1.json)。原反組譯工具的operand與bytes全部保留，沒有靠自訂名稱推玩法。
+
+[核對](preserved/rust-items-audit-r1.json)含160測試、三程序九份SDL讀回。真正v15保留107金／120月薪／1000領導／4容量、魔法與324步，起始明示原令牌位置與六件前物品；F6取得後F1與冷讀相同，重搜無物，三字型抽驗。戰場另明示八物品／1000民兵後正常入城／出手／撤退，不稱自然取得全部物品或通關。原藝術沿批准MAN12..19，Rust沿既有Pillow LANCZOS取96×96透明快取，未宣稱Go快取像素parity；三字型849舊字模全部保持，各加12字。v16只新增五個artifact bits與資料fingerprint，讀v1至v15；舊月報／搜尋不追補。WorldState、Go格式與正式基線保持。

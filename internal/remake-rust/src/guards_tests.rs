@@ -283,7 +283,7 @@ fn v13_migrates_and_guard_bad_source_rows_phases_flags_are_rejected() {
     let c = Catalog::builtin().unwrap();
     let (mut j, key) = before(&d, 0, 1);
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 8 - SUFFIX);
+    raw.truncate(raw.len() - 8 - SUFFIX - crate::items::SUFFIX);
     raw[..8].copy_from_slice(b"8SJRN013");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);
@@ -409,7 +409,7 @@ fn final_win_enters_ending_before_reward_month_and_world_tail() {
     });
     j.world.font = 1;
     let raw = j.encode(&c, &d).unwrap();
-    assert_eq!(&raw[..8], b"8SJRN015");
+    assert_eq!(&raw[..8], b"8SJRN016");
     let cold = Journey::decode(&c, &d, &raw).unwrap();
     assert_eq!(cold, j);
     for mode in 0..6 {
@@ -435,7 +435,7 @@ fn final_win_enters_ending_before_reward_month_and_world_tail() {
     }
     let mut bad = raw.clone();
     let n = bad.len();
-    bad[n - 9] = 2;
+    bad[n - 9 - crate::items::SUFFIX] = 2;
     let h = checksum(&bad[..n - 8]);
     bad[n - 8..].copy_from_slice(&h.to_le_bytes());
     assert!(Journey::decode(&c, &d, &bad).is_err());
@@ -491,7 +491,7 @@ fn real_v14_layout_migrates_without_starting_an_ending() {
     let c = Catalog::builtin().unwrap();
     let j = Journey::new(&d, 1);
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 8 - 9);
+    raw.truncate(raw.len() - 8 - 9 - crate::items::SUFFIX);
     raw[..8].copy_from_slice(b"8SJRN014");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);
