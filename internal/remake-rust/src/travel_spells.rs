@@ -110,6 +110,13 @@ impl<'a> Journey<'a> {
         s.travel_spell.shore = None;
         if p.yes {
             s.world.boat = 0;
+            let at = crate::world::motion(s.world.position, p.key, s.world.facing, false)?.0;
+            if view.tile(s.world.area, at)? == 51 {
+                s.world = s.world.event_step(&view, p.key, 51)?;
+                s.finish_notice_tail(d, p.key, c)?;
+                *self = s;
+                return Ok(());
+            }
             if let Some(b) = s.travel(d, p.key, c)? {
                 return Err(format!("上岸尚未接入：{b:?}"));
             }

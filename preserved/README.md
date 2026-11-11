@@ -1442,6 +1442,22 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 
 `freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核130測試、來源／原bytes／SDL及正式基線；`images`產生[成果圖](../docs/images/rust-empty-army-r1.png)與[來源](../docs/images/rust-empty-army-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-empty-army-r1.json`保存本批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-empty-army-detached-r1.json)、[清理](rust-empty-army-cleanup-r1.json)與[完整性](rust-empty-army-integrity-r1.json)記錄收尾。
 
-現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-empty-army-r1/native。清空workplace後，在Docker內掛儲存庫至/project可寫，執行`python /project/tools/rust-empty-army.py restore --project /project`，核SHA及mode後還原binary與138媒體。再以`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`遊玩，有進度加`--continue`。v12讀v1至v11；WorldState及Go格式保持。[失金實作](../internal/remake-rust/src/theft.rs)、[測試](../internal/remake-rust/src/theft_tests.rs)及[向量](../internal/remake-rust/theft-reference.tsv)為來源入口。51／65、未支援商品、非水特殊點組合與其餘世界仍待，不稱完整遊戲。
+本批歷史路徑為battle-r1/rust-empty-army-r1/native，現行入口見[Rust地圖51提示保存](#rust地圖51提示保存)。清空workplace後，在Docker內掛儲存庫至/project可寫，執行`python /project/tools/rust-empty-army.py restore --project /project`，核SHA及mode後還原該批binary與138媒體。v12讀v1至v11；WorldState及Go格式保持。[失金實作](../internal/remake-rust/src/theft.rs)、[測試](../internal/remake-rust/src/theft_tests.rs)及[向量](../internal/remake-rust/theft-reference.tsv)為來源入口。不稱完整遊戲。
 
 本批296檔／280物件，壓縮31552156 bytes；脫離workplace逐物件核對與139個執行期檔案還原均通過。只刪本批865份可重建Rust快取，共375671193 bytes，約358.3 MiB。完整來源、媒體、binary、存檔及證據保持，沒有新image或殘留本案容器，其他專案不動。
+
+## Rust地圖51提示保存
+
+[完整索引](rust-map-notice-r1.json)、[核對](rust-map-notice-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#地圖51提示限定-conformed)及[研究](../RESEARCH-LOG.md#rust地圖51提示)為現行入口。136測試、131原pointer／108流程、五函式1053行bytes及三程序八SDL擷取通過。12DDE只留後續65研究。完整crate、七工具、139媒體、binary、真正v12／待提示及返回後v13、IDA／原指令／GUI證據及首版視覺修正前資料，逐SHA存本機`preserved/rust-map-notice-r1/<SHA256>.gz`，不依賴workplace。原文與原始資料、完整媒體及runtime不進Git或Release。
+
+[資料工具](../tools/rust-map-notice.py)用sc-cht-hdtools:pillow11.3.0-r2、UID1000、network none執行。`prepare --project /project`從前批還原138媒體及真正v12，再依原圖掃描及PAM文字表建立本機map-notices.tsv，對[座標／文字hash](../internal/remake-rust/notice-catalog.tsv)核131列。原PAM的既有路徑與SHA見031；缺原資料時不能重生文字，直接依本批索引restore完整已保存媒體。`python /project/tools/rust-world.py fonts --project /project --work <本批路徑> --out <新JSON>`補齊三字型。
+
+[IDA匯出](../tools/export-rust-map-notice-ida.py)沿py312-v1，官方DB與原PAM唯讀，副本在/tmp分析。固定原DB／PAM雜湊、521函式及bytes核對均見保存。座標寫端145FA沿前批treasure保存。[原指令探針](../tools/rust-map-notice-reference.go)使用Go1.24.13、固定923來源dosgolem唯讀掛載，取131次文字pointer與108次局部51／上岸／扣步；draw／IO略過，選項明示受控。Space局部函式的扣一由原caller平衡，native仍不扣等待步。沒有原版完整GUI／RNG序列聲明。
+
+最終建置用mm45-rust-desktop:1.99.1-r3、offline／locked，只見crate唯讀與native可寫。[例程](../internal/remake-rust/examples/map_notice_fixture.rs)以`<媒體> <真正v12> <新目錄>`只移到原提示鄰格並設seed1；原38金／空軍隊／104步保持。[GUI](../tools/rust-map-notice-gui.py)只掛native及單一腳本，實際鍵鼠走入提示、三字型、F7／冷讀、確認與繼續移動；八張同幀SDL讀回一致。原生文字採72px，半寬換行且最多三行；首版較小畫面與來源另存，不當最終證據。
+
+`freeze --project /project`固定來源，`audit --project /project --out <新JSON>`核136測試、來源／原bytes／文字／SDL與正式基線；`images`產生[圖](../docs/images/rust-map-notice-r1.png)與[來源](../docs/images/rust-map-notice-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-map-notice-r1.json`保存全批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-map-notice-detached-r1.json)、[清理](rust-map-notice-cleanup-r1.json)及[完整性](rust-map-notice-integrity-r1.json)保存收尾結果。
+
+現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-map-notice-r1/native。清空workplace後，在Docker內掛儲存庫至/project可寫，執行`python /project/tools/rust-map-notice.py restore --project /project`，核SHA與mode後還原binary及139媒體。再用`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`遊玩，有進度加`--continue`。v13讀v1至v12；WorldState及Go格式保持。[實作](../internal/remake-rust/src/map_notice.rs)、[測試](../internal/remake-rust/src/map_notice_tests.rs)與[向量](../internal/remake-rust/notice-reference.tsv)為入口。65守軍、未支援商品、非水特殊點涉水組合與其餘世界仍待，不稱完整遊戲。
+
+本批449檔／305物件，壓縮38539738 bytes。脫離workplace逐物件核對與140個執行期檔案還原通過。只刪本批1684份可重建Rust快取，共518378049 bytes，約494.4 MiB。完整來源、素材、binary、存檔與證據保持，沒有新image或殘留本案容器，其他專案不動。

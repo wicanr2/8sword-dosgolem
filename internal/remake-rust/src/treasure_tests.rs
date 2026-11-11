@@ -127,7 +127,7 @@ fn v3_migrates_and_bad_pending_bindings_or_partial_values_are_rejected() {
     let c = Catalog::builtin().unwrap();
     let j = Journey::new(&d, 1);
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 8 - 169 - 42 - 2 - 1);
+    raw.truncate(raw.len() - 8 - 169 - 42 - 2 - 1 - 1);
     raw[..8].copy_from_slice(b"8SJRN003");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);

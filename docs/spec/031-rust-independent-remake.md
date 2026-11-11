@@ -243,6 +243,8 @@ READY補充：沿既有ida-rounds.json的原sub_20724／runtime0F67:21B4，2074B
 
 ### 普通遭遇與開發旅程 READY
 
+回填 MAP-NOTICE-RESOLVED-20261111：地圖51已依[提示限定驗收](#地圖51提示限定-conformed)接入；普通與水格入口、先提示後上岸／扣步／月報及保存已驗，65守軍保持未接。
+
 回填 `EMPTY-ARMY-RESOLVED-20261111`：空軍隊遭遇已依[失金限定驗收](#空軍隊遇敵失金限定-conformed)接回原11650..116DA；非空軍隊的cue／戰鬥／回場保持，不重開已驗矩陣。
 
 證據審查：sub_132E0的13542至136B4為獨立普通敵軍生成；sub_1151C的11713／1177A將先手修飾設0／1，既有Rust回合向量已核對0為玩家先手、1為敵軍先手。拒戰rand/8192等於1才追擊；其餘直接回場。原世界結算依030已證實Go橋接，安全封頂是既有Go工程契約，不稱原版word回繞一致。
@@ -648,6 +650,8 @@ v10追加三bytes跳躍狀態／舊鍵，讀v1至v9。WorldState、正式197來�
 
 ### 特殊地點上岸 READY
 
+回填 MAP-NOTICE-RESOLVED-20261111：地圖51已依[提示限定驗收](#地圖51提示限定-conformed)接入；普通與水格入口、先提示後上岸／扣步／月報及保存已驗，65守軍保持未接。
+
 固定來源與位址基準沿前節PAM.AY SHA256 83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0、官方PAM.i64 a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac、IDA9.4 MZ base10000h及runtime CS0110／DS1E88。以下控制流已證實。13函式匯出保留原名／bytes／operand／xref，原八圖另清點48處鄰水特殊格。
 
 - 範圍：從原水格2／11至14，以八方向進49／50出口、53已支援法術店、54至58有效營地或59寶箱。沿一般上岸的是／否、鍵鼠與先揭3×3。Space／已在非水特殊點的boat2組合、51／65及不支援商品仍保持邊界，不宣稱所有特殊事件已接。
@@ -696,3 +700,29 @@ v11只追加拒絕店方向word，讀v1至v10，WorldState與Go保存不變。�
 Noto900／隸書／草書與提示期間忽略Space／改向／F4已抽驗。v12追加失金紀錄，v11真實檔及舊合成形狀均可轉入；待提示與已確認保存各自原子提交，讀檔與確認不重扣。原生F7、字型／音樂與灰底提示沿既有呈現，未提升原版提示內F7或暫態怪物逐像素一致。`EMPTY-ARMY-RESOLVED-20261111`回填前規格，51／65、其餘寶物／守軍／日曆／結局／新遊戲仍待，不稱完整獨立遊戲。
 
 最終Rust建置只掛crate唯讀與native可寫，GUI只見native與單一腳本，看不到PAM／Go／RAM。[核對](../../preserved/rust-empty-army-audit-r1.json)、[永久保存](../../preserved/README.md#rust空軍隊遇敵失金保存)、[成果圖](../images/rust-empty-army-r1.png)、[圖片來源](../images/rust-empty-army-r1.json)及[工具](../../tools/rust-empty-army.py)提供還原入口。WorldState、Go保存及正式197來源七程式、923核心、535素材、1071美術保持，沒有Release。
+
+## 地圖51提示 DRAFT
+
+2026-11-11。先解sub_12446於124DE..124F9的51分支與sub_1649A，不連帶猜補65守軍。研究目錄沿既有battle-r1/rust-map-notice-r1；[IDA匯出工具](../../tools/export-rust-map-notice-ida.py)保留原名／位址／bytes／operand／xref，以既有py312-v1及唯讀PAM.i64的副本分析。先確認文字來源、等待返回、時間與遭遇尾段，再建立READY。
+
+### 地圖51提示 READY
+
+來源沿本規格固定PAM.AY與PAM.i64 SHA-256、IDA9.4 MZ base10000h、runtime CS0110及DS1E88。新匯出521函式探針通過；sub_145FA的座標寫端復用已存treasure匯出。原始全文只在本機媒體包，Git保存[座標與文字hash](../../internal/remake-rust/notice-catalog.tsv)、[原指令工具](../../tools/rust-map-notice-reference.go)，不把全文當公開素材。
+
+- 已證實：145FA按y外圈、x內圈掃72-byte列，遇原字元99寫`[si-7344h]`／`[si-7342h]`，即DS8CBC／8CBE。八原圖實際51格數為18／12／18／13／19／16／18／17，共131處。1649A逐index0..30比座標，按區域用DS05BE／09F6／0CC6／10FE／140A／19E6／1DA6／21DE加60*index的Big5字串。只取實際地點，不以相鄰字串表跨度推論筆數。
+- 已證實：124DE..124F9先畫地圖、呼叫1649A，再以1844C等Enter／Esc；之後才進124FC的上岸判定與126D6的扣步尾段。提示期間不抽RNG、不扣步；Space在原caller平衡步數，native維持不扣。關閉後普通移動扣一步，月底先月報，再接既有遭遇尾段；提示不是領取交易，可重訪及原地Space重看。
+- 涉水2從水格進51時先提示，再沿既有上岸是／否。接受後落地只完成尾段，不重播提示；拒絕保持原水格與涉水2、不扣步，仍走遭遇尾段。原生為保存與鍵鼠保留來源格到接受時才提交落點，先揭目標3×3，標為中間表示差異。非水特殊點持涉水2組合保持未接邊界，不猜補。
+- 實作採typed地點／文字表及待提示`site/key`，本機`map-notices.tsv`逐列核UTF8 hash、數量及長度，缺檔或不符即拒絕。WorldData舊fingerprint與WorldState不改；v13追加待提示，讀v1至v12，位置／地形／方向／互斥狀態均核綁定。普通提示落點已提交、時間尾段尚未提交；F7／冷讀／確認不得重走一步。跳躍仍沿原飛行流程，不套普通51事件。
+- UI沿原灰底提示與三字型、Enter／Esc及滑鼠確認；明確文字安全區，最長原文固定換行，最多三行，不以裁切處理。65守軍、其餘商品／寶物與完整世界不在本批完成範圍。
+
+驗收：原指令核131字串pointer與51／上岸／時鐘局部流程，列明略過draw／IO；Rust核131原圖位置、文字hash、重訪、待選冷讀、月底、涉水接受／拒絕、壞資料及舊v12。GUI用真正v12只移到原提示鄰格，正常走入、三字型／F7／獨立冷讀、Enter或滑鼠返回再走；初始位置與seed明示，不稱自然抵達或完整通關。
+
+### 地圖51提示限定 CONFORMED
+
+2026-11-11。READY範圍已接入[typed提示](../../internal/remake-rust/src/map_notice.rs)、[測試](../../internal/remake-rust/src/map_notice_tests.rs)及[原指令向量](../../internal/remake-rust/notice-reference.tsv)。136測試、131字串pointer／108條51與上岸／局部扣步流程通過。原圖131格按原掃描順序與文字hash核對，原始Big5及轉換後全文只留本機媒體。新IDA9.4匯出與既有145FA共五函式1053行bytes逐MZ核對；其中12DDE只是下輪65研究輸出，不表示守軍已驗。原指令忽略列明draw／IO，岸邊選項明示受控，不稱原版完整GUI或全程RNG一致。
+
+[開發例程](../../internal/remake-rust/examples/map_notice_fixture.rs)讀真正v12，保留38金／空軍隊／法術與104步，只指定原圖4／7及seed1。三個[原生GUI程序](../../tools/rust-map-notice-gui.py)以正常鍵鼠走入5／7落日城提示、三字型、忽略遊玩鍵、F7及另一程序冷讀同state_hash／畫布；提示仍104步，滑鼠確認後103步，再冷讀後正常走回4／7為102步，金錢與軍隊保持。共八份同幀SDL畫布／讀回一致。字體最終採72px，依ASCII半寬換行，文字安全區最多三行；首版偏小的來源／binary／GUI另存，沒有當最終證據。
+
+v13追加site與原鍵，綁定原圖位置／方向／互斥階段；待提示、待上岸與月報各沿既有原子保存，讀v1至v12。全131地點、Space重訪、月底及涉水接受／拒絕由核心驗證；GUI代表鏈採陸上提示。涉水待提示仍保留原水格到接受時才提交，沒有中間逐像素一致聲明。MAP-NOTICE-RESOLVED-20261111回填普通旅程與特殊上岸READY；65守軍、其餘寶物／八劍、日曆／結局與新遊戲仍待。
+
+最終建置只見crate唯讀與native可寫，GUI只見native與單一腳本。[資料工具](../../tools/rust-map-notice.py)、[核對](../../preserved/rust-map-notice-audit-r1.json)、[永久保存](../../preserved/README.md#rust地圖51提示保存)、[成果圖](../images/rust-map-notice-r1.png)與[圖片來源](../images/rust-map-notice-r1.json)提供重生入口。WorldState、Go保存及正式197／7／923／535／1071保持，沒有Release。

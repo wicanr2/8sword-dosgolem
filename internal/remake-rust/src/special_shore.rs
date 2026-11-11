@@ -27,6 +27,9 @@ impl<'a> Journey<'a> {
             49 | 50 => exits()
                 .iter()
                 .any(|e| e.area == self.world.area && e.position == p),
+            51 => crate::map_notice::sites()
+                .iter()
+                .any(|s| s.area == self.world.area && s.position == p),
             53 => shops().iter().any(|s| {
                 s.area == self.world.area && s.x == p.x && s.y == p.y && supported(s.offer)
             }),
@@ -72,7 +75,7 @@ impl<'a> Journey<'a> {
         let view = self.magic.view(d)?;
         let (target, face) = motion(self.world.position, key, self.world.facing, false)?;
         let tile = view.tile(self.world.area, target)?;
-        if !matches!(tile, 49 | 50 | 53..=59) {
+        if !matches!(tile, 49..=51 | 53..=59) {
             return Ok(false);
         }
         if !self.supported_shore(&view, key)? {

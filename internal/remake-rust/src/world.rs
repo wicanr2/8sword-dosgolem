@@ -25,6 +25,7 @@ pub struct WorldData {
     pub facing: u8,
     pub menu: Vec<MenuLabel>,
     pub fingerprint: u64,
+    pub(crate) notice_text: Vec<String>,
 }
 pub fn decode_map(raw: &[u8]) -> Result<Vec<u8>, String> {
     if raw.len() < 8 || raw.len() > 65535 {
@@ -85,6 +86,7 @@ mod tests {
             facing: 3,
             menu: vec![],
             fingerprint: 123,
+            notice_text: vec![String::from("地圖提示"); 131],
         }
     }
     fn compressed() -> Vec<u8> {
@@ -292,6 +294,20 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn notice_fixture(water: bool) -> Self {
+        let mut d = Self::flat_fixture();
+        for s in crate::map_notice::sites() {
+            d.maps[usize::from(s.area)]
+                [usize::from(s.position.y) * 70 + usize::from(s.position.x)] = 51;
+        }
+        if water {
+            let s = crate::map_notice::sites()[0];
+            d.maps[usize::from(s.area)]
+                [usize::from(s.position.y) * 70 + usize::from(s.position.x) - 1] = 2;
+        }
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn shore_vectors_fixture() -> Self {
         let mut d = Self::special_shore_fixture();
         for area in 0..8 {
@@ -483,6 +499,7 @@ impl WorldData {
             facing: 3,
             menu: Vec::new(),
             fingerprint: 123,
+            notice_text: vec![String::from("地圖提示"); 131],
         }
     }
     pub fn load(root: &Path) -> Result<Self, String> {
@@ -565,8 +582,10 @@ impl WorldData {
             facing,
             menu,
             fingerprint: checksum(&binding),
+            notice_text: crate::map_notice::load_texts(root)?,
         };
         crate::world_exits::validate(&data)?;
+        crate::map_notice::validate_maps(&data)?;
         Ok(data)
     }
     pub fn tile(&self, area: u8, p: Position) -> Result<u8, String> {

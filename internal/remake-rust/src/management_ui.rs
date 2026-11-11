@@ -26,6 +26,7 @@ pub enum Page {
     Shore,
     Flight,
     Theft,
+    MapNotice,
 }
 pub struct Manager {
     pub page: Page,
@@ -49,6 +50,10 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.map_notice.is_some() {
+            self.page = Page::MapNotice;
+            return;
+        }
         if j.theft.is_some() {
             self.page = Page::Theft;
             return;
@@ -101,6 +106,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::MapNotice => Some(Screen::Report),
             Page::Theft => Some(Screen::Report),
             Page::Flight => Some(Screen::Report),
             Page::Shore => Some(Screen::Shore),
@@ -184,6 +190,14 @@ impl Manager {
                 if self.page != Page::Message {
                     self.message.clear();
                 }
+            }
+            return Ok(());
+        }
+        if self.page == Page::MapNotice {
+            if key == 13 || key == 27 {
+                j.close_map_notice(data, c)?;
+                self.page = Page::World;
+                self.message.clear();
             }
             return Ok(());
         }
@@ -462,6 +476,19 @@ pub fn draw(
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::MapNotice {
+        let n = j.map_notice.ok_or("缺少地圖提示")?;
+        let message = data
+            .notice_text
+            .get(usize::from(n.site))
+            .ok_or("缺少地圖提示文字")?;
+        fill(f, [24, 684, 1344, 480], [82, 82, 82]);
+        border(f, [24, 684, 1344, 480], [206, 170, 74]);
+        for (i, line) in crate::map_notice::lines(message)?.iter().enumerate() {
+            text(f, font, line, 72, 792 + i as i32 * 90, 72, 1248)?;
+        }
+        return Ok(());
+    }
     if ui.page == Page::Theft {
         let n = j.theft.ok_or("缺少遇劫結果")?;
         fill(f, [24, 684, 1344, 480], [82, 82, 82]);

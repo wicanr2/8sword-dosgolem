@@ -156,6 +156,7 @@ pub struct Journey<'a> {
     pub survey: crate::survey_spells::Survey,
     pub travel_spell: crate::travel_spells::Travel,
     pub theft: Option<crate::theft::Theft>,
+    pub map_notice: Option<crate::map_notice::Notice>,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -182,9 +183,13 @@ impl<'a> Journey<'a> {
             survey: crate::survey_spells::Survey::default(),
             travel_spell: crate::travel_spells::Travel::default(),
             theft: None,
+            map_notice: None,
         }
     }
     pub fn phase(&self) -> &'static str {
+        if self.map_notice.is_some() {
+            return "map-notice";
+        }
         if self.theft.is_some() {
             return "theft";
         }
@@ -222,7 +227,8 @@ impl<'a> Journey<'a> {
         }
     }
     pub fn walk(&mut self, data: &WorldData, key: u16) -> Result<Option<Boundary>, String> {
-        if self.theft.is_some()
+        if self.map_notice.is_some()
+            || self.theft.is_some()
             || self.cue.is_some()
             || self.battle.is_some()
             || self.camps.pending.is_some()
@@ -365,6 +371,9 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        if let Some(n) = self.map_notice {
+            n.validate(self, data)?;
+        }
         if let Some(n) = self.theft {
             n.validate(self)?;
         }
@@ -446,7 +455,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN012".to_vec();
+        let mut b = b"8SJRN013".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -544,6 +553,11 @@ impl<'a> Journey<'a> {
             b.extend(n.seed_before.to_le_bytes());
             b.extend(n.gold_before.to_le_bytes());
         }
+        b.push(u8::from(self.map_notice.is_some()));
+        if let Some(n) = self.map_notice {
+            b.push(n.site);
+            b.extend(n.key.to_le_bytes());
+        }
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -564,7 +578,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN009"
                 && &b[..8] != b"8SJRN010"
                 && &b[..8] != b"8SJRN011"
-                && &b[..8] != b"8SJRN012")
+                && &b[..8] != b"8SJRN012"
+                && &b[..8] != b"8SJRN013")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -808,6 +823,18 @@ impl<'a> Journey<'a> {
         } else {
             None
         };
+        let map_notice = if &b[..8] >= b"8SJRN013" {
+            match r.byte()? {
+                0 => None,
+                1 => Some(crate::map_notice::Notice {
+                    site: r.byte()?,
+                    key: u16::from_le_bytes(r.take(2)?.try_into().unwrap()),
+                }),
+                _ => return Err("地圖提示旗標錯誤".into()),
+            }
+        } else {
+            None
+        };
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -829,6 +856,7 @@ impl<'a> Journey<'a> {
             survey,
             travel_spell,
             theft,
+            map_notice,
         };
         s.validate(catalog, data)?;
         Ok(s)

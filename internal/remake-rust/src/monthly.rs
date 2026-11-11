@@ -105,7 +105,7 @@ impl Monthly {
                 || j.cue.is_some()
                 || j.camps.pending.is_some()
                 || d.tile(j.world.area, j.world.position)? != r.tile
-                || matches!(r.tile, 49..=51 | 65)
+                || matches!(r.tile, 49 | 50 | 65)
                 || j.treasure.pending.is_some()
             {
                 return Err("待確認月報狀態錯誤".into());
@@ -132,6 +132,19 @@ impl<'a> Journey<'a> {
             return Ok(None);
         }
         let out = s.walk(&view, key)?;
+        let target = crate::world::motion(s.world.position, key, s.world.facing, false)?.0;
+        if crate::map_notice::sites()
+            .iter()
+            .any(|s| s.area == self.world.area && s.position == target)
+            && (out == Some(Boundary::Terrain(51))
+                || (out == Some(Boundary::BoatExit)
+                    && view.tile(s.world.area, target)? == 51
+                    && matches!(view.tile(s.world.area, s.world.position)?, 2 | 11..=14)))
+        {
+            s.open_map_notice(&view, key)?;
+            *self = s;
+            return Ok(None);
+        }
         if out == Some(Boundary::BoatExit) && s.supported_shore(&view, key)? {
             s.world = s.world.prepare_shore(&view, key)?;
             s.travel_spell.shore = Some(crate::travel_spells::Shore { key, yes: true });

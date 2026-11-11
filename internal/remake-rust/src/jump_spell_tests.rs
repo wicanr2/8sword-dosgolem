@@ -146,7 +146,7 @@ fn cold_flying_preserves_key_and_rejects_malformed_phases_and_reads_v9() {
     let mut j = ready(&d);
     j.magic.charges[3] = 0;
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 13 - 1);
+    raw.truncate(raw.len() - 13 - 1 - 1);
     raw[..8].copy_from_slice(b"8SJRN009");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);
@@ -177,7 +177,7 @@ fn cold_flying_preserves_key_and_rejects_malformed_phases_and_reads_v9() {
         assert!(b.encode(&c, &d).is_err(), "{n}");
     }
     let mut raw = j.encode(&c, &d).unwrap();
-    let at = raw.len() - 14;
+    let at = raw.len() - 15;
     raw[at] = 3;
     let n = raw.len() - 8;
     let h = checksum(&raw[..n]);

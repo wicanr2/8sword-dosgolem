@@ -3436,3 +3436,15 @@ Rust共用遭遇接收器在六隊全空時多抽一次、計算並提交失金�
 130測試、self-check及三程序十份SDL擷取通過。真正v11只改原起點及seed，75金／30民兵／兩次造橋保持；由F3解雇、正常遇敵扣37剩38，F7／獨立冷讀同state_hash與畫布。確認後F2空軍隊、F1金額、再次冷讀及正常移動均抽驗。首次編譯缺少新Page的footer分派，補齊後用相同容器命令乾淨重跑；沒有把這次編譯錯誤列為產品缺陷。最終建置只見crate與native；GUI只見native與單一腳本，執行不需Go、PAM或dosgolem。
 
 [永久索引](preserved/rust-empty-army-r1.json)、[核對](preserved/rust-empty-army-audit-r1.json)、[脫離核對](preserved/rust-empty-army-detached-r1.json)、[清理](preserved/rust-empty-army-cleanup-r1.json)、[完整性](preserved/rust-empty-army-integrity-r1.json)與[成果圖](docs/images/rust-empty-army-r1.png)保存本批。完整來源、媒體、binary、v11／v12與GUI證據先存preserved，再刪本批可重建快取。基準197／7／923／535及1071美術保持，沒有新image或Release，其他專案不動。本輪起始HEAD為0dad66b52e6037862d2e7d99b8de1580f56f1a71，實際提交與推送SHA見Git歷程。下一步51／65與其餘世界事件，不重跑已驗失金或HD矩陣。
+
+## 2026-11-11 Rust地圖51提示
+
+使用者繼續重製。命中反組譯進實作路由，載入重製與IDA9.4技能、規格閘門、文件職責及收尾／舊規格回填規則。先分清51提示與65守軍，以DRAFT／READY限定本輪51，沒有猜補守軍。IDA在官方DB副本匯出12446／1649A／1844C及後續研究用12DDE，復用145FA座標寫端；五函式1053行原bytes核對。八圖131實際地點及原Big5文字完整留本機，不將全文加入Git。
+
+131原pointer／108原51與上岸／時鐘流程及136 Rust測試通過。提示先於時間與上岸，關閉後沿月報／遭遇尾段；v13待提示保存、v1至v12遷移、Space重訪、涉水接受／拒絕、壞資料與三字型文字安全區已驗。MAP-NOTICE-RESOLVED-20261111回填兩處較早READY，WorldState與Go格式保持。
+
+三個原生GUI程序八份SDL擷取通過。真正v12只移到原圖4／7並固定seed1，原38金／空軍隊／104步保留。正常走入5／7落日城提示，F7／冷讀同state_hash與畫布；確認才103步，確認後再冷讀及正常走回為102步。第一次視覺審查發現42px偏小，改72px與按半寬換行，再重建136測試及整條代表GUI。首版來源、binary、GUI、圖與核對另存，不冒稱最終證據。只有陸上GUI代表鏈，涉水及月底由核心驗證，沒有原版完整GUI／RNG序列或自然抵達聲明。
+
+探針／腳本問題分列：技能symlink超出初始掛載，補掛實際IDA專案唯讀後正常讀取；原far文字callee改以重定位實體位址判斷後乾淨重跑。舊合成51不在原catalog，維持未提交邊界；其舊斷言及v13追加byte的合成保存截尾均已調整。最終建置只見crate與native，GUI只見native與單一腳本；音訊dummy不等於人耳驗收。
+
+[完整索引](preserved/rust-map-notice-r1.json)、[核對](preserved/rust-map-notice-audit-r1.json)、[脫離核對](preserved/rust-map-notice-detached-r1.json)、[清理](preserved/rust-map-notice-cleanup-r1.json)、[完整性](preserved/rust-map-notice-integrity-r1.json)與[成果圖](docs/images/rust-map-notice-r1.png)為本批入口。完整素材、來源、執行檔與證據先永久保存並驗還原，再清本批快取；無新image／Release，本案容器結束，其他專案保持。起始HEAD為ccd808e7e63944e0b416b91900f14dd6a14aa396，實際提交／推送見Git歷程。下一步65守軍，再推進寶物／八劍、日曆／結局與新遊戲。

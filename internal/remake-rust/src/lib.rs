@@ -18,6 +18,7 @@ pub mod jump_spell;
 pub mod management;
 #[cfg(feature = "desktop")]
 pub(crate) mod management_ui;
+pub mod map_notice;
 pub mod minimap;
 pub mod monthly;
 pub mod pointer;

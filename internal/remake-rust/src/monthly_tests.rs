@@ -144,7 +144,7 @@ fn v2_migrates_and_checked_impossible_reports_or_overflow_leave_state_intact() {
     let d = WorldData::flat_fixture();
     let mut j = Journey::new(&d, 1);
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 8 - 17 - 169 - 42 - 2 - 1);
+    raw.truncate(raw.len() - 8 - 17 - 169 - 42 - 2 - 1 - 1);
     raw[..8].copy_from_slice(b"8SJRN002");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);
