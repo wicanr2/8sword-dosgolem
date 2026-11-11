@@ -46,6 +46,7 @@ pub fn digit_box(i: usize) -> Rect {
 pub const SHORE_CHOICES: [Rect; 2] = [Rect(264, 888, 360, 96), Rect(816, 888, 360, 96)];
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Screen {
+    Intro,
     Start { count: u8, confirm: bool },
     Ending,
     World,
@@ -91,6 +92,13 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
     }
     for (i, r) in FOOTER.iter().enumerate() {
         if r.contains(x, y) {
+            if screen == Screen::Intro {
+                return match i {
+                    0 => Some(Action::Key(27)),
+                    1 => Some(Action::Key(113)),
+                    _ => None,
+                };
+            }
             if matches!(screen, Screen::Start { .. }) {
                 return match i {
                     0 => Some(Action::Key(13)),
@@ -129,6 +137,9 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         if screen == Screen::Ending && Rect(1200, 2, 232, 44).contains(x, y) {
             return Some(Action::Key(104));
         }
+        if screen == Screen::Intro && Rect(1200, 2, 232, 44).contains(x, y) {
+            return Some(Action::Key(104));
+        }
         for i in 0..3 {
             if Rect(144 + i * 228, 2, 216, 44).contains(x, y) {
                 return Some(Action::Font(i as u8));
@@ -138,7 +149,7 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
             return Some(Action::Key(109));
         }
         if Rect(1480, 2, 232, 44).contains(x, y) {
-            return if matches!(screen, Screen::Start { .. }) {
+            return if matches!(screen, Screen::Start { .. } | Screen::Intro) {
                 None
             } else {
                 Some(Action::Key(1073741888))
@@ -146,6 +157,7 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         }
     }
     match screen {
+        Screen::Intro => {}
         Screen::Start { count, confirm } => {
             if confirm {
                 for yes in [true, false] {

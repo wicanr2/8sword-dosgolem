@@ -1,0 +1,56 @@
+{
+  "status": "passed-rust-intro-cleanup",
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/native/rust-target",
+      "files": 2188,
+      "bytes": 750377008
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/export/go-cache",
+      "files": 1152,
+      "bytes": 130312861
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/restore-check",
+      "files": 195,
+      "bytes": 510003747
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/native/gui-first",
+      "files": 71,
+      "bytes": 304216481
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/native/gui-second",
+      "files": 14,
+      "bytes": 60826960
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/native/gui-silent",
+      "files": 71,
+      "bytes": 304216623
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/export/first-captures",
+      "files": 87,
+      "bytes": 468748213
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/export/captures/intro.bin",
+      "files": 1,
+      "bytes": 312398826
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/evidence/intro-silent-prototype.bin",
+      "files": 1,
+      "bytes": 193847222
+    }
+  ],
+  "total_files": 3780,
+  "total_bytes": 3034947941,
+  "ownership_findings": [],
+  "scope": "Only this batch rebuild caches,temporary restored runtime and verified archived prototypes/earlier GUI. Complete evidence preserved by SHA. Current native157 files,source and approved originals retained; other projects and images untouched. No global Docker prune.",
+  "final_added_links_checked": 86,
+  "project_containers_remaining": 0
+}

@@ -2,7 +2,7 @@
 set -euo pipefail
 task_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 task_crate="$task_root/internal/remake-rust"
-task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/native"
+task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/native"
 task_image=mm45-rust-desktop:1.99.1-r3
 test -d "$task_crate"; test -d "$task_native"
 [[ "$(id -u)" == 1000 ]]

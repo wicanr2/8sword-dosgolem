@@ -1548,7 +1548,7 @@ ITEMS-RESOLVED-20261111及SEARCH-RNG-CORRECTION-20261111的原名／位址、推
 收尾：373檔／335物件、61278742壓縮bytes永久保存。脫離workplace逐物件核對與149份執行期SHA／mode還原通過；還原native正常開F1，八寶物與已驗完整SDL畫布／state_hash相同，正常關閉退出0。清本批1530份可重建快取及還原複本，共784872355 bytes，約748.5 MiB。完整來源、素材、binary與有效／失敗證據保持，本案容器收尾，其他專案不動。
 ## Rust原式開始選單保存
 
-[完整索引](rust-start-r1.json)、[核對](rust-start-audit-r1.json)、[脫離核對](rust-start-detached-r1.json)與[清理](rust-start-cleanup-r1.json)為現行入口。完整Rust來源、155媒體、binary、真正舊v16／新建v16、原版五畫面與快照／RAM、92原指令及IDA拷貝／bytes保存於本機`preserved/rust-start-r1/`，不依賴workplace。原版衍生資料與整包媒體不公開，沒有Release；完整定稿原圖仍見[永久美術](../artwork/README.md)。
+[完整索引](rust-start-r1.json)、[核對](rust-start-audit-r1.json)、[脫離核對](rust-start-detached-r1.json)與[清理](rust-start-cleanup-r1.json)保存開始頁切片；現行入口見下方Rust完整開場保存。完整Rust來源、155媒體、binary、真正舊v16／新建v16、原版五畫面與快照／RAM、92原指令及IDA拷貝／bytes保存於本機`preserved/rust-start-r1/`，不依賴workplace。原版衍生資料與整包媒體不公開，沒有Release；完整定稿原圖仍見[永久美術](../artwork/README.md)。
 
 [啟動器](../tools/rust-native-player.sh)目前指向`workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/native`。清空workplace後，在Pillow11.3.0-r2 Docker以UID1000、--rm、--network none與相稱逾時／資源界限，將儲存庫可寫掛到/project，執行`python /project/tools/rust-start.py restore --project /project`，還原156份執行期檔案。以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`開啟主選單。方向鍵選列、Enter確認、Esc返回／退出；滑鼠點列再按確認。新遊戲取消保留舊檔，確認才重建，Continue讀原生v16並支援v1至v15。
 
@@ -1563,3 +1563,20 @@ ITEMS-RESOLVED-20261111及SEARCH-RNG-CORRECTION-20261111的原名／位址、推
 archive用`--archive /project/preserved --out /project/preserved/rust-start-r1.json`；verify只掛preserved唯讀、單一資料工具與可寫輸出，使用`verify --archive /archive --out <新JSON>`逐物件核gzip與SHA。restore可用`--work <可寫新目錄>`重建最小156份，逐SHA／mode核對後啟動還原binary抽驗。保存成功後才清本批rust-target及還原複本。現行規格見[031](../docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)，正式197／7／923／535／1071、WorldState與Go格式保持。
 
 收尾：630檔／409去重物件、61863667壓縮bytes永久保存。脫離workplace逐物件核對與156份執行期SHA／mode還原通過；還原binary的主選單完整SDL畫布與state_hash相同，正常新建、預設XDG目錄保存及退出0已驗。清本批2416份可重建快取及已核封存工作複本，共1486858128 bytes，約1.38 GiB。原始來源、完整素材與有效／失敗證據均永久保存，沒有本案殘留容器，其他專案不動。
+## Rust完整開場保存
+
+[完整索引](rust-intro-r1.json)、[核對](rust-intro-audit-r1.json)、[脫離核對](rust-intro-detached-r1.json)與[清理](rust-intro-cleanup-r1.json)為現行入口。完整Rust來源、156媒體、binary、正常原版開場的來源節點／18場景、72畫布雜湊、原圖與三原生程序15份SDL擷取，保存在本機`preserved/rust-intro-r1/`。完整來源不依賴workplace；原版衍生圖像與全媒體留本機，沒有Release。原始定稿PNG／提示仍見[永久美術](../artwork/README.md)。
+
+[啟動器](../tools/rust-native-player.sh)目前指向`workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/native`。清空workplace後，以Pillow11.3.0-r2 Docker、UID1000、--rm、--network none及相稱逾時／資源界限，將儲存庫可寫掛到/project，執行`python /project/tools/rust-intro.py restore --project /project`還原157份執行期檔案。用`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動完整開場；Esc略過，揭圖期間先完整呈現。開發可加`--skip-intro`，舊journey／run／world樣本保持。
+
+原生binary可直接執行，預設讀旁邊pack及XDG使用者存檔目錄，沿[開始頁](#rust原式開始選單保存)既有契約。Rust自行處理索引、材質、字模所有權、角色byte列、光束與揭圖，沒有Go／DOS／x86或HD影片執行依賴；Linux仍需SDL2／libsndfile平台函式庫。開場、略過與退出不改journey.chk，v16／WorldState及Go格式保持。
+
+[資料工具](../tools/rust-intro.py)的prepare恢復前批155媒體並建立197來源的隔離拷貝；[Go匯出器](../tools/rust-intro-export.go)只在此拷貝的sourceIntro提交點讀取自有場景，原版、固定923核心及535素材唯讀。正常兩次DOS選項，完整到PAM無RAM／IP注入；21.254秒、588節點、876typed命令、1014靜態材質、64000揭圖位置。來源primitive與原版native證據沿047，本輪以18來源場景四模式72畫布核對Rust，未稱新增每節點獨立ScreenRGB成對擷取。
+
+assets將V1材質裁透明邊界並逐texel重建核對，產出193847684-byte的V2；原V1／初次未裁墨層的版本及兩次正常輸出都保留。執行時讀V2並驗FNV、版本、筆數、長度、位置及所有權，封包上限256MiB、展開材質上限512MiB。三字型883舊字模逐格保持，各補6字至889。freeze保存crate／工具／媒體清單；audit核171測試、72畫布、15份SDL、來源與舊字模；images只排版[實際視窗](../docs/images/rust-intro-r1.png)。
+
+[GUI](../tools/rust-intro-gui.py)正常播完、三字型、原式開始頁、新建、移動一步／F7、另一程序Continue同畫布及state_hash；揭圖Esc先顯示64000完整點，略過／退出保持舊檔。近景在原節點只維持151毫秒，最初外部F12晚一個鏡頭；gui-first／gui-second與錯誤接觸表保留。最終只在指定capture-dir時自動讀回已提交近景，不改節奏；相同腳本乾淨重跑。建置只掛crate／native，GUI只掛native與一支輸入工具；dummy音訊非新增人耳驗收。
+
+archive用`--archive /project/preserved --out /project/preserved/rust-intro-r1.json`；verify只掛preserved唯讀、單一工具與可寫輸出，執行`verify --archive /archive --out <新JSON>`，不掛workplace。restore可用`--work <可寫新目錄>`還原最小157檔，逐SHA／mode核對後，以同一native從預設開場略過至開始頁抽驗。永久保存與還原成功後才清本批Rust／Go快取、已封存原始編譯封包及還原複本。規格與限制見[031](../docs/spec/031-rust-independent-remake.md#rust完整開場限定-conformed)；下一步原行程條及全程工具列，不重驗已驗音畫，正式197／7／923／535／1071保持。
+
+收尾：1049檔／811去重物件、434834758壓縮bytes永久保存。逐物件脫離核對與157份執行期SHA／mode還原通過；還原binary正常完整開場有聲、主選單全幅SDL及state_hash同已驗樣本，正常新建／移動／F7／退出0。清本批3780份快取、還原與已核封存prototype，共3034947941 bytes，約2.83 GiB。本案容器已收尾，完整原圖、來源與有效／失敗證據已保存，其他專案不動。

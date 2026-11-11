@@ -215,3 +215,15 @@ for v in rust_start:
  assert v['original_address']in evidence.read_text()and v['original_name']in evidence.read_text()
  assert v['required_correction']in older.read_text()and v['scope']and v['not_closed']
 print('Rust start-menu backlinks passed:',len(rust_start))
+
+rust_intro=d.get('rust_intro_resolutions',[])
+assert len(rust_intro)==1
+for v in rust_intro:
+ assert v['platform_module']=='dos16/PREDELLA.EXE'and v['module_sha256']=='b9c7abdac7849711b68b6b6fd5861052e6f3d025b25af5f96d4605bf673cadaa'
+ assert v['address_space']=='dosgolem runtime linear'and v['level']=='proven-in-sampled-scope'
+ assert v['key']==v['platform_module']+':'+v['module_sha256']+':dosgolem-runtime-linear:'+v['original_address']
+ assert v['original_name']is None and v['name_evidence']
+ assert all((r/v[k]).is_file()for k in ['evidence','prior_evidence','older_spec','receipt'])
+ assert all(v['original_address']in(r/v[k]).read_text()for k in ['evidence','prior_evidence'])
+ assert v['required_correction']in(r/v['older_spec']).read_text()and v['scope']and v['not_closed']
+print('Rust opening lifecycle backlinks passed:',len(rust_intro))

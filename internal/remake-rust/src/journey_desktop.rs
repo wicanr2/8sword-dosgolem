@@ -18,6 +18,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         (None, None, None);
     let (mut continuing, mut mute, mut fixed) = (false, false, false);
     let mut start_menu = false;
+    let mut skip_intro = false;
     let mut scale = 2.0 / 3.0;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -38,6 +39,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
             "--continue" => continuing = true,
             "--start-menu" => start_menu = true,
+            "--skip-intro" => skip_intro = true,
             "--mute" => mute = true,
             "--seed" => {
                 i += 1;
@@ -101,6 +103,16 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let map = Pack::load(&assets)?;
     let sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
     let (mut journey, initial_captures, initial_saves) = if start_menu {
+        let initial = if skip_intro {
+            (0, true, 0)
+        } else {
+            let Some(view) =
+                crate::intro_desktop::play(&sdl, &assets, &map.fonts, capture.as_deref(), mute)?
+            else {
+                return Ok(());
+            };
+            view
+        };
         let Some(launch) = crate::start_desktop::play(
             &sdl,
             &assets,
@@ -111,6 +123,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             capture.as_deref(),
             mute,
             seed,
+            initial,
         )?
         else {
             return Ok(());

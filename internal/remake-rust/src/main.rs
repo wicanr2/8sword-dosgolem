@@ -11,6 +11,7 @@ fn main() {
                     | "--scale"
                     | "--seed"
                     | "--mute"
+                    | "--skip-intro"
             )
         })
     {

@@ -21,7 +21,7 @@
 | Rust敵方特殊 | 八分派限定完成。384組Go模型、13份既有原版／Go收據及原生自動施法至普通勝局通過；第八分派只保留受控入口。 |
 | Rust戰中檢查點 | 開發樣本限定完成。F7／工具列存檔、關閉後Continue、額外行動及已扣次選敵均經視窗抽驗；35測試、五獨立程序及11擷取通過。 |
 | Rust世界資料與手動移動 | 預覽限定完成。八圖直接解析、880原CPU案例、40測試與兩程序八份擷取通過。原式HD地圖、三字型、〈遨遊〉、受阻／走路及F7冷讀已接。舊world入口仍為預覽，旅程擴充見下列。 |
-| Rust完整遊戲 | 未完成。其餘世界事件、新遊戲、原版選單、完整世界保存及其餘工具列待移植。原式管理／募兵已接本輪開發旅程。 |
+| Rust完整遊戲 | 未完成。開場、開始頁、新建、世界旅程與v16保存均已有下列限定證據；全程工具列、原行程條、未支援特殊點組合與交付／平台驗證仍待，不把局部通過稱完整通關。 |
 | Rust普通遭遇與回場 | 開發旅程限定完成。原起點30民兵、普通敵軍生成、原式戰場、撤退／全滅與回場F7冷讀已接。46測試、320新原指令及三舊結算案例、四程序12擷取通過。 |
 | Rust原式管理／募兵與滑鼠 | 開發旅程限定完成。F2／F3、原店及八種增援、獨立庫存與v2檢查點已接。53測試、120營地列／50地點核對及四個純滑鼠程序18擷取通過；舊v1實檔可轉入。 |
 | Rust玩家月報與補貨 | 限定完成。58測試、六組既有Go收支及720補貨向量，正常324步跨月、自動保存／獨立冷讀與三字型通過。三程序八擷取；v3保留待確認月報，讀v1／v2。守軍增兵見下列；原行程條呈現仍待。 |
@@ -43,21 +43,21 @@
 | Rust守軍月結 | 限定完成。42處守軍、原槽位cap、零兵不復活與兩次月結RNG已接。153測試、2520原指令向量、四原月結控制與三程序九SDL擷取通過；v15不改，舊待確認月報不追補。 |
 | Rust八寶物 | 限定完成。F6／F1、七件被動效果與v16已接，讀v1至v15。160測試、32搜尋／192令牌原指令、17函式4252行bytes及三程序九SDL擷取通過；三字型原849字模保持，各補12字。 |
 | Rust原式開始選單 | 限定完成。原三項選單、新遊戲確認與原子保存、Continue、十首HD音樂欣賞、鍵鼠及三字型已接。167測試、92局部原指令、十函式2531行bytes與五程序17份SDL通過；v16及Go格式保持。 |
+| Rust完整開場 | 限定完成。21.254秒／588節點、館景／美女／光束／迎龍揭圖及五故事頁，同視窗進開始頁。171測試、18來源場景／72畫布、三程序15份SDL及新建／F7／獨立Continue通過；揭圖Esc先完成，其他略過採原生即時UI。 |
 | 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。早期戰鬥樣本採明示編成，本輪旅程從原起點起步；SDL dummy不等於人耳確認。 |
 | 可選精修 | 新兵額外手繪動作、特殊死亡呈現、循環音樂接點與其餘平台驗收依後續範圍處理。 |
 
 ## 最近驗證與入口
 
-最新為[Rust原式開始選單限定驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)。原生執行檔直接啟動PAM三項主選單，新遊戲沿是／否確認、取消不寫檔，確認才原子建立v16後進原世界；Continue讀既有原生進度。十首批准HD OGG、鍵鼠、Noto900／隸書／草書工具列已接，完整PREDELLA動畫仍待。
+最新為[Rust完整開場限定驗收](docs/spec/031-rust-independent-remake.md#rust完整開場限定-conformed)。預設play依原順序播放發行商、標題、館景／美女／光束、迎龍揭圖及五頁故事，再進同視窗開始頁。Rust直接處理來源索引、靜態材質、字模所有權、角色byte列與光束，不依賴Go、DOS EXE或HD錄影。原版／HD、三字型及音樂可切換，偏好傳入開始頁；Continue仍讀原生v16的偏好與seed。
 
-167測試、92局部原指令、十函式2531行IDA重定位bytes、五原生程序17份SDL擷取通過。正常新遊戲從40,40／500金／30民兵／324步開始，走一步後F2／F7，另一程序Continue的state_hash及全幅畫布一致。真正舊v16保留八物品及107金等資源；損壞檔Continue保持，明確新遊戲才重建。無--play一般參數入口、binary旁pack與XDG預設存檔目錄亦經視窗驗證。
+171測試、正常dosgolem21.254秒／588節點、18來源場景×原版及三字型72畫布核對通過。三原生程序15份SDL擷取涵蓋自然播完、新建、正常移動／F7／獨立Continue同畫布及state_hash，揭圖Esc等64000點完整呈現才返回主頁；略過與退出保持舊檔。近景只停151毫秒，擷取以提交後自動SDL讀回取證，不以外部按鍵後的另一鏡頭冒充。
 
-`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`為開發入口；`journey`／`run`／`world`樣本保持。最終binary與155媒體共156檔，三字型861舊字模保持，各補22字至883。[核對](preserved/rust-start-audit-r1.json)、[成果圖](docs/images/rust-start-r1.png)、[來源／保存工具](tools/rust-start.py)及[永久保存／還原](preserved/README.md#rust原式開始選單保存)為現行入口。建置只掛crate／native，GUI只掛native與單一腳本；沒有Go或DOS執行依賴，沒有Release。
+`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`為開發入口；開場Esc略過，開發可加`--skip-intro`。舊journey／run／world樣本保持。執行期156媒體＋binary共157檔，三字型883舊字模保持，各補6字至889。來源V1經逐texel核對的透明邊界裁切輸出V2，193847684 bytes；v16、WorldState與Go格式不改。建置只掛crate／native，GUI只掛native與一支輸入工具。
 
-START-MENU-RESOLVED-20261111閉合新遊戲／原式選單邊界。原條紋底板簡化為既有配色，音樂欣賞採批准HD OGG而省略舊硬體廣告；不稱逐像素或全程UI RNG一致。SDL dummy只證明技術音訊，非新增人耳驗收。下一步完整PREDELLA開場、原行程條與全程工具列，不重新開啟已驗HD、普通戰、世界法術、八寶物或結局矩陣。
+[核對](preserved/rust-intro-audit-r1.json)、[成果圖](docs/images/rust-intro-r1.png)、[資料／來源工具](tools/rust-intro.py)及[永久保存／還原](preserved/README.md#rust完整開場保存)為現行入口。INTRO-RESOLVED-20261111閉合舊完整開場邊界。原始primitive與原版native對拍沿047，本輪72組為正常dosgolem source-owned場景至Rust的同狀態移植核對；不冒稱每節點新增獨立ScreenRGB對拍。10ms及3000cycle/ms為呈現近似，非揭圖略過採原生即時UI；dummy音訊非新的人耳驗收。
 
-前批[八寶物限定驗收](docs/spec/031-rust-independent-remake.md#rust八寶物限定-conformed)及[核對](preserved/rust-items-audit-r1.json)保持。F6／F1、七件被動效果與v16讀v1至v15已驗，初始測試位置與六件物品為明示受控，不稱自然取得全部物品；WorldState及Go格式保持。歷史命令與失敗細節見WORKLOG，現行待辦只見上表及WORKLIST。
-
+下一步原行程條呈現與全程工具列，之後按WORKLIST收束未支援特殊點及平台／交付，不重驗已驗開場、HD、戰鬥、世界法術、寶物或結局。前批[開始頁](preserved/rust-start-audit-r1.json)、[八寶物](preserved/rust-items-audit-r1.json)及[結局](preserved/rust-ending-audit-r1.json)保持，歷史細節只見WORKLOG及031，沒有Release。
 
 ## 保持的Go入口與基線
 

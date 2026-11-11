@@ -3524,3 +3524,18 @@ NPC-MONTH-RESOLVED-20261111與CALENDAR-NAMING-CORRECTION-20261111回填規格及
 [核對](preserved/rust-start-audit-r1.json)、[完整索引](preserved/rust-start-r1.json)、[脫離核對](preserved/rust-start-detached-r1.json)、[清理](preserved/rust-start-cleanup-r1.json)與[成果圖](docs/images/rust-start-r1.png)為入口。正式197／7／923／535／1071保持，沒有Release。下一步完整PREDELLA開場、行程條與其餘工具列。
 
 收尾：630檔／409去重物件、61863667壓縮bytes永久保存。脫離workplace逐物件核對與156份執行期SHA／mode還原通過；還原binary的主選單完整SDL畫布與state_hash相同，正常新建、預設XDG目錄保存及退出0已驗。清本批2416份可重建快取及已核封存工作複本，共1486858128 bytes，約1.38 GiB。原始來源、完整素材與有效／失敗證據均永久保存，沒有本案殘留容器，其他專案不動。
+## 2026-11-11 Rust完整開場
+
+從61cf503f41b4363c73fcf39d1cc4d54fff7d506f接續。命中RE規格閘門／文件與README路由，沿既有重製技能、009／047來源證據，DRAFT→正常來源→READY→實作→同狀態及原生視窗。完整PREDELLA開場接預設play與同視窗開始頁，沒有改正式Go、原版或世界v16。
+
+隔離197 Go來源，固定923核心及535媒體唯讀，正常兩次DOS選項走到PAM，無RAM／IP注入。匯出21.254秒／588節點、876命令、1014靜態材質與64000揭圖點；18場景四模式72核對皆同047來源呈現。原版native的primitive證據沿047，不冒稱本輪新做每節點獨立ScreenRGB成對實驗。透明邊界裁切逐texel保持，正式封包193847684 bytes。
+
+171測試、self-check與release通過。首個例程的usize推導及封包上限依實際資料修正，沒有改來源畫面；三字型883舊字模保持，各補6字。第一輪三程序的正常播放／新建／F7／冷讀／揭圖略過已通過，抽圖發現近景標題與實際切鏡不同；第二輪直接按F12仍晚於原151毫秒近景。重新載入GUI還原路由並核來源節點7899→8050毫秒，改為capture-dir指定時對已提交近景自動SDL讀回，保持播放速度。期間一次GUI啟動早於前置建置的目錄搬移，以環境／腳本順序分類，未記為產品故障；等待建置完成後同容器命令乾淨重跑。
+
+最終三程序15份SDL擷取涵蓋完整自然開場至五故事與開始頁、新建、正常一步／F7及另一程序Continue同state_hash／畫布；揭圖Esc先完整呈現、略過與退出保持舊檔。建置只見crate／native，GUI只見native與單一輸入工具。Rust直接繪製索引、圖層、字模、角色與光束，不使用HD影片或Go／DOS／x86執行依賴。時間軸是10ms來源節點／3000cycle的呈現近似，其他略過為原生即時UI，dummy音訊非新的人耳驗收。
+
+[核對](preserved/rust-intro-audit-r1.json)、[完整索引](preserved/rust-intro-r1.json)、[脫離核對](preserved/rust-intro-detached-r1.json)、[清理](preserved/rust-intro-cleanup-r1.json)與[成果圖](docs/images/rust-intro-r1.png)為入口。README、CONTEXT唯一現況、WORKLIST與031已回填，INTRO-RESOLVED-20261111閉合完整開場停止線。後續原行程條、全程工具列及交付；正式197／7／923／535／1071保持，沒有Release。
+
+音訊收尾發現初版開場無聲：來源CurrentCue須經Mix更新，先前只檢查到回世界後的非零佇列。已保留silent prototype及GUI，改用原Start／Stop事件。以正常prefix與handoff快照核cycle基準，增加19ms／21236ms兩純音訊節點，封包590runtime節點／193847684bytes，原588圖形與72RGBA保持。最終GUI單獨檢查開場queued_bytes，不再把世界音樂當開場輸出。
+
+收尾：1049檔／811去重物件、434834758壓縮bytes永久保存。逐物件脫離核對與157份執行期SHA／mode還原通過；還原binary正常完整開場有聲、主選單全幅SDL及state_hash同已驗樣本，正常新建／移動／F7／退出0。清本批3780份快取、還原與已核封存prototype，共3034947941 bytes，約2.83 GiB。本案容器已收尾，完整原圖、來源與有效／失敗證據已保存，其他專案不動。

@@ -1,0 +1,101 @@
+{
+  "image_sha256": "97806e53057cf929039c465a76c739dd6b7532e79dd9b6845a5a8e77b7f421c4",
+  "binary_sha256": "27751c74113f26f7f8f6c65151a9d177c86a621d65ea22fc63b603a9c6ab104c",
+  "sources": [
+    {
+      "run": "natural",
+      "label": "museum-portrait",
+      "number": 4,
+      "captured": {
+        "phase": "intro",
+        "stage": "museum-portrait",
+        "elapsed_ms": "7929",
+        "intro_frame": "61",
+        "revealed": "0",
+        "skip_pending": "false",
+        "hd": "true",
+        "font": "1",
+        "music": "true",
+        "state_hash": "f7f84a6083c843ba",
+        "scene_hash": "caca37f5f38bb15a",
+        "captures": "4",
+        "saves": "0",
+        "readback_equal": "true",
+        "queued_bytes": "1459200",
+        "frame_hash": "bd4d10fcb71fe328"
+      },
+      "sha256": "c5b728447a0cc9418be2ea92f04f2004673bad9abb1b9f281ea6c56760c73f9e"
+    },
+    {
+      "run": "skip",
+      "label": "completed-before-skip",
+      "number": 5,
+      "captured": {
+        "phase": "intro",
+        "stage": "prelude-complete",
+        "elapsed_ms": "15093",
+        "intro_frame": "249",
+        "revealed": "64000",
+        "skip_pending": "true",
+        "hd": "true",
+        "font": "1",
+        "music": "false",
+        "state_hash": "90eb3da42a95fb0c",
+        "scene_hash": "2b901bcbe8af2103",
+        "captures": "5",
+        "saves": "0",
+        "readback_equal": "true",
+        "queued_bytes": "76800",
+        "frame_hash": "04dd7613c9bef53e"
+      },
+      "sha256": "a2250da2de55d139740e615baf4af7736e198b91199667d2589181970b09f2f4"
+    },
+    {
+      "run": "natural",
+      "label": "story-5-text",
+      "requested_label": "story-5-text",
+      "number": 8,
+      "captured": {
+        "phase": "intro",
+        "stage": "story-5-text",
+        "elapsed_ms": "20842",
+        "intro_frame": "578",
+        "revealed": "0",
+        "skip_pending": "false",
+        "hd": "true",
+        "font": "0",
+        "music": "true",
+        "state_hash": "cded75054d5d5056",
+        "scene_hash": "cedb5769b3873db9",
+        "captures": "8",
+        "saves": "0",
+        "readback_equal": "true",
+        "queued_bytes": "3916800",
+        "frame_hash": "86a86162880344e4"
+      },
+      "sha256": "e848b23b52879f59ac542cad233fb3dedb18484c0931894476c43b8bd12add5b"
+    },
+    {
+      "run": "natural",
+      "label": "opening-to-menu",
+      "requested_label": "opening-to-menu",
+      "number": 10,
+      "captured": {
+        "phase": "start",
+        "selected": "0",
+        "yes": "true",
+        "font": "0",
+        "music": "true",
+        "playing": "None",
+        "state_hash": "322bdf8e35522781",
+        "captures": "10",
+        "saves": "0",
+        "readback_equal": "true",
+        "queued_bytes": "0",
+        "frame_hash": "be9ca6441dea4f53"
+      },
+      "sha256": "8d2d2a7ff3d432f7d5687f6d21ee78407349773a9ccb572438498b93d8305088"
+    }
+  ],
+  "scope": "Actual native Linux SDL captures at different moments. Natural full opening and menu; controlled world seed1 for new-game, no RAM/IP injection. Original/HD same-state checks use separate18-source-scene/72-render receipt."
+}

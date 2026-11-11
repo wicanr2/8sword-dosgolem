@@ -3624,3 +3624,22 @@ PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0
 原probe從PREDELLA正常兩次DOS選項及Esc進PAM，再依IRQ1上下／Enter／左右走取消與新建。保留原平面bitmap、五PNG／完整快照、新世界RAM與receipt。局部向量另配置明示BP／SP與原locals、跳過繪圖及輸入硬體caller，實際執行原分支；不冒充正常GUI。原Magic Sound廣告屬舊音效卡平台門檻，原生沿已批准十首HD OGG，沒有深入driver或ISR。
 
 `START-MENU-RESOLVED-20261111`只閉合原生開始頁／新建／Continue／音樂欣賞邊界。簡化底板、原始來源座標及三字型沿[031限定驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)。[核對](preserved/rust-start-audit-r1.json)與[永久保存](preserved/README.md#rust原式開始選單保存)保存原指令、工具版本／SHA、IDA重定位bytes與五原生程序17份SDL。完整PREDELLA動畫、其餘工具列、自然通關及公開交付保持未完成。
+## 2026-11-11 Rust完整開場
+
+本輪沿009／047已證實來源，不重反組譯硬體。原PREDELLA.EXE SHA `b9c7abdac7849711b68b6b6fd5861052e6f3d025b25af5f96d4605bf673cadaa`、解包runtime SHA `a764a110b9f8b1d32a6ee9cc0dd650350f917959d647fe4b45cd7f1013eaae68`；PAM SHA及固定923核心、535媒體另在核對收據。Go1.24.13隔離拷貝197來源，只在既有sourceIntro場景提交後增加唯讀匯出。沒有改正式Go、原版檔案、記憶體或IP。所有定位為runtime線性，分析檔offset=32＋linear−1100h；不混用PAM的IDA MZ基準。
+
+| 等級 | 原定位／消費端 | Rust移植 |
+|---|---|---|
+| 已證實，沿047 | 576A／52C0與5B0C、510B／517E | 原四／六平面、清頁及複製形成索引畫布；HD直接取按文字所有權清墨的畫布，原版取原索引。 |
+| 已證實，沿047 | 4C74／5954、58B1 | 中文／ASCII與整串交易；三字型alpha按來源格及所有權裁切。發行商／標題字圖亦保留三字型。 |
+| 已證實，沿047 | 館景museumPage、46／50原byte列 | 不從圖片猜角色位置。Rust處理實體列折返、透明角色、原墨層及依來源色盤最亮色的光束；18場景×四模式全部RGBA一致。 |
+| 已證實，沿047及本輪正常來源 | A3D0、A486與64000原揭圖位置 | Rust按原序及各來源節點count揭圖。原047已證Esc期間先揭完整；本輪原生視窗已驗pending及完整圖呈現後回選單，沒有把按鍵改成當下中止揭圖。 |
+| 呈現近似 | 原3000cycle/ms及10ms提交點 | 正常從兩次DOS選項至PAM，產生21.254秒／588節點。沿Start／Stop播〈幻〉；不稱硬體wall-clock、所有原poll點或新的人耳驗收。 |
+
+876命令／1014材質／533索引與遮罩形成V1開發封包。透明墨層先裁空白，另一無損資產階段將全部材質裁透明邊界後輸出V2，逐texel重建相同，正式193847684 bytes。封包上限256MiB、展開材質上限512MiB與總量／索引／位置限制明列於031。這是靜態材質與來源命令，未把HD逐幀影片當獨立繪圖。
+
+本輪72核對以正常dosgolem的source-owned索引／圖層與原版及三字型純呈現器為參考。047先前116次native／原版零差異是來源primitive的oracle證據，本輪不聲稱重新逐節點做獨立ScreenRGB成對擷取。原生完整播放、新建／移動／F7及獨立Continue、揭圖Esc／舊檔不變與退出經三程序15份SDL驗證。三字型883舊字模保持，各加6字。
+
+`INTRO-RESOLVED-20261111`閉合031「完整PREDELLA開場待移植」停止線，舊段落為當時範圍，現況以CONTEXT及本節為準。[核對](preserved/rust-intro-audit-r1.json)、[規格](docs/spec/031-rust-independent-remake.md#rust完整開場限定-conformed)、[永久保存](preserved/README.md#rust完整開場保存)與[成果圖](docs/images/rust-intro-r1.png)為入口。原行程條、全程工具列及平台／Release仍待，不重開已驗HD或玩法。
+
+開場音訊勘誤：初次原生視窗畫面通過，但分開檢查phase=intro發現queued_bytes全0。CurrentCue只在Mix更新，開發匯出沒有呼叫混音；先前非零計數只屬世界音樂。改以已觀察有效Start cycle1439578／Stop65088413、同正常prefix首Frame1380007及真正handoff快照65142016換算。V2增加19ms／21236ms兩純音訊節點至590，原588圖形節點與72RGBA核對不變；完整初版音訊為0的資料另存prototype。這是來源事件編譯修正，不深入PCM／DAC硬體時鐘。

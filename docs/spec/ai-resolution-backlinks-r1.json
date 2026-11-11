@@ -2075,5 +2075,25 @@
       "original_name": "sub_184C0",
       "semantic": "Initial world resources,position,clock,DS054A army and absent items."
     }
+  ],
+  "rust_intro_resolutions": [
+    {
+      "key": "dos16/PREDELLA.EXE:b9c7abdac7849711b68b6b6fd5861052e6f3d025b25af5f96d4605bf673cadaa:dosgolem-runtime-linear:A3D0",
+      "platform_module": "dos16/PREDELLA.EXE",
+      "module_sha256": "b9c7abdac7849711b68b6b6fd5861052e6f3d025b25af5f96d4605bf673cadaa",
+      "address_space": "dosgolem runtime linear",
+      "original_address": "A3D0",
+      "original_name": null,
+      "name_evidence": "No new IDA name query; retain the raw0000:A3D0 callback locator from047 instead of inventing a function name.",
+      "level": "proven-in-sampled-scope",
+      "semantic": "047 source-owned opening,reveal sequence and native Rust composition,handing off to the existing start menu.",
+      "evidence": "RESEARCH-LOG.md",
+      "prior_evidence": "docs/spec/047-hd-scene-renderer.md",
+      "older_spec": "docs/spec/031-rust-independent-remake.md",
+      "required_correction": "INTRO-RESOLVED-20261111",
+      "receipt": "preserved/rust-intro-audit-r1.json",
+      "scope": "Normal dosgolem opening to PAM;18 source-owned scenes and72 Rust RGBA matches; native full playback,reveal completion before skip,new-game/save/cold.",
+      "not_closed": "Hardware wall-clock,all original input poll instants,remaining toolbar and release; no fresh ScreenRGB pair per node."
+    }
   ]
 }

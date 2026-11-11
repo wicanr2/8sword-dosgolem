@@ -149,10 +149,13 @@ pub(crate) fn play<'a>(
     capture: Option<&Path>,
     mute: bool,
     seed: u32,
+    initial: (u8, bool, u32),
 ) -> Result<Option<Launch<'a>>, String> {
     let mut m = Menu::default();
+    m.font = initial.0;
+    m.music = initial.1;
     let mut pointer = Pointer::default();
-    let (mut captures, mut queued_bytes) = (0u32, 0u64);
+    let (mut captures, mut queued_bytes) = (initial.2, 0u64);
     let mut audio: Option<Music> = None;
     let mut pos = 0usize;
     let mut first = true;

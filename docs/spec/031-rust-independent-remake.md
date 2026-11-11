@@ -928,3 +928,42 @@ GUI從真正v15保留六資源[1,0,120,107,1000,4]、魔法、324步與已清首
 原sub_104A6／104A6、sub_1434E／1434E及sub_1090C／1090C的來源控制流、十函式重定位bytes核對與限制見[研究記錄](../../RESEARCH-LOG.md#2026-11-11-rust原式開始選單)。原51-byte條紋底板簡化為既有原生深綠／朱紅／暖金底板，字串與位置沿原版，不稱逐像素一致。原Magic Sound購買提示改由既有HD OGG播放器處理。SDL dummy只證明技術解碼與佇列，沒有新增人耳驗收聲明。
 
 [選單核心](../../internal/remake-rust/src/start.rs)、[原生呈現](../../internal/remake-rust/src/start_desktop.rs)、[原文字／座標](../../internal/remake-rust/start-layout.tsv)、[十曲清單](../../internal/remake-rust/start-music.tsv)、[92原指令參考](../../internal/remake-rust/start-input-reference.tsv)、[GUI](../../tools/rust-start-gui.py)、[來源／保存工具](../../tools/rust-start.py)、[原版探針](../../tools/rust-start-reference.go)、[IDA查詢](../../tools/export-rust-start-ida.py)、[核對](../../preserved/rust-start-audit-r1.json)、[成果圖](../images/rust-start-r1.png)與[永久保存／還原](../../preserved/README.md#rust原式開始選單保存)為入口。完整PREDELLA開場、原行程條呈現與全程工具列仍待；不重驗已驗HD、普通戰及結局，不稱完整通關或完整獨立版發行。正式197／7／923／535／1071保持，沒有Release。
+## Rust完整開場 DRAFT
+
+接續開始頁，將PREDELLA完整開場移植為Rust原生宣告式場景。沿[047已驗開場來源](047-hd-scene-renderer.md)、既有定稿發行商／標題、紫藍館景、古典美女、依海報修正的迎龍前導與五頁深藍故事，不重畫素材。入口為[資料工具](../../tools/rust-intro.py)及[開發匯出器](../../tools/rust-intro-export.go)，研究區沿battle-r1/rust-intro-r1。正式Go、原版EXE及媒體唯讀。
+
+先以既有固定923核心正常冷啟動至PAM，記錄來源場景、文字所有權、館景位置、色盤、揭圖次序、音樂及10ms穩定提交點。輸出來源索引畫布與靜態材質／字模、逐節點圖層命令，不匯出HD影片或讓Rust執行x86。再以Rust直接索引著色、材質混合、館景角色／光束與文字合成，單次提交完整texture。原版及三字型同狀態代表幀核對後，才接預設play開始前播放。
+
+Esc揭圖期間先完成64000點再跳故事，沿047已證實契約；其他略過點按原呼叫／正常探針核對。F7及世界保存不加入開場時間軸，播放及略過不改journey.chk；續玩仍由PAM主選單讀原生v16。原時鐘採3000cycle與10ms來源節點的呈現近似，沒有硬體wall-clock或逐指令動畫聲明，不深挖DAC／PIT。READY前不改正式入口。
+## Rust完整開場 READY
+
+原PREDELLA.EXE SHA `b9c7abdac7849711b68b6b6fd5861052e6f3d025b25af5f96d4605bf673cadaa`、解包runtime SHA `a764a110b9f8b1d32a6ee9cc0dd650350f917959d647fe4b45cd7f1013eaae68`沿009／047。來源定位為runtime線性，576A／52C0四／六平面、4C74／5954字模、58B1整串、510B／517E複製、A3D0及A486揭圖，分析檔偏移32＋線性−1100h。這些語意已有047的IDA9.4及原版收據，不重新反組譯無關硬體；本輪以固定923核心、Go1.24.13及正式197來源隔離拷貝正常兩次DOS選項，無記憶體或IP注入完整走至PAM，產生21.254秒、588來源節點與18個代表場景。僅在私有場景提交後加唯讀匯出，不修改正式Go或來源遊戲。
+
+| 宣告式資料 | Rust契約 |
+|---|---|
+| 原生索引畫布／清字索引畫布、768-byte色盤 | 索引來自047自行解碼的來源場景，沒有ScreenRGB／VGA讀回作繪圖輸入。HD直接選清字畫布，原版直接選原生畫布；完整合成後提交一次SDL。 |
+| 不可變RGBA16／角色NRGBA8材質 | 保留來源預乘色契約；HD發行商遮罩、三字型字圖、標題、故事、紫藍館景與美女皆用批准來源。來源墨層只裁透明邊界以省空間，保留原始座標；不儲存HD影片。 |
+| 館景角色／光束 | 以46／50個原byte列及實體列折返計算位置，Rust直接混合透明角色與依來源色盤取最亮色的光束。未匹配HD角色時沿原已驗墨層，不猜補新動作。 |
+| 字模與所有權 | 三字型alpha與來源文字格／前景，仍由Rust按來源格所有權裁切混合；字型與配色不以舊像素描摹。故事金字沿既定色值245／207／113。 |
+| 揭圖與節點 | 64000個uint16位置必須完整唯一；逐原順序與原節點revealed計數，由Rust畫6×6區塊。10ms穩定節點及3000cycle/ms為呈現近似，不稱逐硬體wall-clock。 |
+| 播放及輸入 | 預設play在同一SDL視窗先開場再PAM；保留--skip-intro開發略過。Esc或滑鼠略過，揭圖期間先等完整圖呈現再返回主頁；其他階段略過採原生即時UI，不外推所有原poll時點。關閉視窗退出，不寫世界進度。三字型／音樂偏好傳到開始頁，世界Continue仍以存檔偏好為準。 |
+| 音樂與保存 | 沿原觀察Start／Stop區間播放批准〈幻〉，切PAM前清音訊佇列。無F7、無開場檢查點，不改v16／WorldState／Go格式；新建及Continue沿已驗開始頁。 |
+
+`8SINTRO2`保存來源索引／遮罩、靜態材質、typed圖層與線性節點，附FNV及編譯版本／時長／筆數。V1原始匯出經透明邊界無損裁切後產生V2，逐材質展回原完整texel核對；封包上限256MiB、展開材質上限512MiB。解析器檢查長度、總量、色值、位置、遮罩、順序與索引，錯誤不啟動新遊戲。執行期只有Rust／素材／平台庫，不掛Go／原版EXE。驗收18場景×原版及三字型的同狀態畫布，原生正常完整播完與略過／揭圖延後、同視窗新建／正常存檔／獨立Continue代表抽驗。原素材、失敗輸出與全部原圖先永久保存，抽驗足夠即停止，不重跑戰鬥／世界／全部HD。
+## Rust完整開場限定 CONFORMED
+
+`INTRO-RESOLVED-20261111`。Rust預設play已在同一SDL視窗依序播放發行商、標題、博物館左右／角色走動、美女近景／光束、逐點迎龍前導與五頁故事，再進PAM三項開始頁。原版／HD及三字型可在開場切換，音樂沿既有批准〈幻〉；不改世界v16與舊Go格式。開場只讀媒體，不建立／覆寫journey.chk，正常新建與Continue仍由已驗主選單處理。
+
+| 驗證 | 限定結果 |
+|---|---|
+| 來源及資料 | 固定923核心、197 Go來源隔離拷貝、535批准媒體，正常DOS選項後完整走至PAM，無記憶體／IP注入；21.254秒、588節點、876命令、1014靜態材質及64000揭圖點。 |
+| 同狀態畫布 | 18個來源場景×原版及三字型共72畫布，Rust逐RGBA與047來源呈現器FNV一致。原版索引與畫面重建的oracle證據沿047，本輪沒有另造每節點獨立ScreenRGB對拍聲明。 |
+| 原生視窗 | 三程序15份SDL擷取。自然播到第五故事頁及主選單、新建、正常移動／F7與另一程序Continue同state_hash／畫布；揭圖Esc等完整64000點呈現後才回主頁，略過與退出均保持舊檔。 |
+| 資料安全 | 171測試與self-check通過。V2封包透明裁切逐材質重建原texel一致，193847684 bytes；資料解析上限及所有權／幾何／索引／完整揭圖檢查保持，錯誤不建立世界進度。 |
+| 媒體與執行 | 156媒體＋binary共157檔；三字型883舊字模保持，各補6字至889。最終建置只掛crate／native，GUI只掛native與單一輸入工具，執行期沒有Go、DOS或x86。 |
+
+Rust以來源索引畫布與typed圖層直接著色、字模所有權混合、館景byte列折返及光束shader繪製，沒有舊字／原版整畫面先顯示再疊HD的流程。來源材質與時間軸在開發階段編譯，執行時不讀原EXE、VGA或錄製HD影片。10ms節點與3000cycle/ms是呈現近似；非揭圖階段略過為即時原生UI，未聲稱所有原poll時點一致。SDL dummy只證明技術音訊，沒有新增人耳驗收。
+
+[Rust場景解析／繪圖](../../internal/remake-rust/src/intro.rs)、[同視窗播放](../../internal/remake-rust/src/intro_desktop.rs)、[版本](../../internal/remake-rust/intro-plan.tsv)、[72核對](../../internal/remake-rust/intro-reference.tsv)、[實際資料例程](../../internal/remake-rust/examples/intro_compare.rs)、[來源匯出](../../tools/rust-intro-export.go)、[資料／保存工具](../../tools/rust-intro.py)、[GUI](../../tools/rust-intro-gui.py)、[核對](../../preserved/rust-intro-audit-r1.json)、[成果圖](../images/rust-intro-r1.png)與[永久保存／還原](../../preserved/README.md#rust完整開場保存)為入口。後續原行程條及全程工具列，不重跑已驗開場、HD、世界或戰鬥矩陣。正式197／7／923／535／1071保持，沒有Release。
+
+開場音訊補證：V1的CurrentCue欄位須經混音才更新，不作原生時間軸權威。V2依有效Start／Stop事件及正常prefix的首Frame cycle1380007、已保存handoff cycle65142016，加入19ms開始與21236ms停止兩個純音訊節點，runtime共590節點，588個來源圖形節點及72畫布保持。GUI明確檢查開場本身queued_bytes大於0，不由回世界後的音樂佇列推稱開場有聲。
