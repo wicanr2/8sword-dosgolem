@@ -1,0 +1,18 @@
+# kind index x_byte y text; original PAM source text/coordinates
+MAIN	0	26	63	  繼  續  上  次  進  度  
+MAIN	1	26	83	    開  始  新  遊  戲    
+MAIN	2	26	103	      音  樂  欣  賞      
+WARN	0	17	133	選 擇 本 項 目 將 洗 掉 您 舊 的 遊 戲 進 度！
+ASK	0	17	153	確 定 要 開 始 新 遊 戲 嗎 ？ （ 是 ／ 否 ）
+YES	0	49	153	 是 
+NO	0	55	153	 否 
+MUSIC	0	31	3	       幻       
+MUSIC	1	31	23	   遨      遊   
+MUSIC	2	31	43	   刀      祭   
+MUSIC	3	31	63	   怡      唱   
+MUSIC	4	31	83	   馳      騁   
+MUSIC	5	31	103	       幽       
+MUSIC	6	31	123	   靈  之  舞   
+MUSIC	7	31	143	   悚      慄   
+MUSIC	8	31	163	   法      域   
+MUSIC	9	31	183	   黎      明   

@@ -42,109 +42,22 @@
 | Rust最終守軍與結局 | 限定完成。原六隊／八劍、勝後直接結局與v15已接；150測試、九階段四模式36畫布、五程序17SDL擷取通過。結局原版HD／三字型／音樂、F7冷讀與完整退出已驗，非自然通關。 |
 | Rust守軍月結 | 限定完成。42處守軍、原槽位cap、零兵不復活與兩次月結RNG已接。153測試、2520原指令向量、四原月結控制與三程序九SDL擷取通過；v15不改，舊待確認月報不追補。 |
 | Rust八寶物 | 限定完成。F6／F1、七件被動效果與v16已接，讀v1至v15。160測試、32搜尋／192令牌原指令、17函式4252行bytes及三程序九SDL擷取通過；三字型原849字模保持，各補12字。 |
+| Rust原式開始選單 | 限定完成。原三項選單、新遊戲確認與原子保存、Continue、十首HD音樂欣賞、鍵鼠及三字型已接。167測試、92局部原指令、十函式2531行bytes與五程序17份SDL通過；v16及Go格式保持。 |
 | 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。早期戰鬥樣本採明示編成，本輪旅程從原起點起步；SDL dummy不等於人耳確認。 |
 | 可選精修 | 新兵額外手繪動作、特殊死亡呈現、循環音樂接點與其餘平台驗收依後續範圍處理。 |
 
 ## 最近驗證與入口
 
-最新為[Rust八寶物限定驗收](docs/spec/031-rust-independent-remake.md#rust八寶物限定-conformed)。七件剩餘寶物的F6取得、F1透明圖示、普通攻防、雙方暗殺、玩家法術、煉金／召兵、地形權限及令牌領導／招募已接。160測試、32個原搜尋／192令牌算式、17函式4252行IDA重定位bytes與三程序九SDL擷取通過。v16追加五個非移動artifact bits及資料綁定，讀v1至v15；原book／mountain／bamboo保持單一權威，WorldState與Go格式不變。
+最新為[Rust原式開始選單限定驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)。原生執行檔直接啟動PAM三項主選單，新遊戲沿是／否確認、取消不寫檔，確認才原子建立v16後進原世界；Continue讀既有原生進度。十首批准HD OGG、鍵鼠、Noto900／隸書／草書工具列已接，完整PREDELLA動畫仍待。
 
-GUI從真正v15保留107金／120月薪／1000基本領導／4容量及魔法、324步；明示原令牌位置、seed1及六件既有物品，竹簡保持來源。正常F6取得後F1顯示八件與2000領導，F7／獨立冷讀畫布及state_hash相同，重搜不重領。原式戰場另明示八物品／1000民兵，正常出手／撤退至72金／323步。沒有自然取得八物品或完整通關聲明。
+167測試、92局部原指令、十函式2531行IDA重定位bytes、五原生程序17份SDL擷取通過。正常新遊戲從40,40／500金／30民兵／324步開始，走一步後F2／F7，另一程序Continue的state_hash及全幅畫布一致。真正舊v16保留八物品及107金等資源；損壞檔Continue保持，明確新遊戲才重建。無--play一般參數入口、binary旁pack與XDG預設存檔目錄亦經視窗驗證。
 
-ITEMS-RESOLVED-20261111閉合舊名稱／效果與取得邊界。SEARCH-RNG-CORRECTION-20261111修正舊「F6無亂數」：每次搜尋的原sub_16226消耗一次_rand，包含沒找到及重搜。三字型849舊字模全部保持，各補12字至861。現行148媒體＋binary共149檔，[核對](preserved/rust-items-audit-r1.json)、[成果圖](docs/images/rust-items-r1.png)與[永久保存／還原](preserved/README.md#rust八寶物保存)為入口。下一步新遊戲／原式開始選單、其餘工具列及原行程條；不重跑已驗HD，正式197／7／923／535／1071保持，無Release。
+`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`為開發入口；`journey`／`run`／`world`樣本保持。最終binary與155媒體共156檔，三字型861舊字模保持，各補22字至883。[核對](preserved/rust-start-audit-r1.json)、[成果圖](docs/images/rust-start-r1.png)、[來源／保存工具](tools/rust-start.py)及[永久保存／還原](preserved/README.md#rust原式開始選單保存)為現行入口。建置只掛crate／native，GUI只掛native與單一腳本；沒有Go或DOS執行依賴，沒有Release。
 
-前批為[Rust守軍月結限定驗收](docs/spec/031-rust-independent-remake.md#rust守軍月結限定-conformed)。42處守軍每月補兵沿原槽位cap，清空不復活；月報前後兩次RNG已補回。153測試、2520原指令向量、252槽cap、四固定seed完整原月結與五IDA函式1205行重定位bytes核對通過。三程序九SDL擷取含月報F7／冷讀、補兵後原式攻城與戰中F7／冷讀，完整畫布與狀態相同。
+START-MENU-RESOLVED-20261111閉合新遊戲／原式選單邊界。原條紋底板簡化為既有配色，音樂欣賞採批准HD OGG而省略舊硬體廣告；不稱逐像素或全程UI RNG一致。SDL dummy只證明技術音訊，非新增人耳驗收。下一步完整PREDELLA開場、原行程條與全程工具列，不重新開啟已驗HD、普通戰、世界法術、八寶物或結局矩陣。
 
-真正v15來源保留26金／120月薪／魔法及已清首頭目；明示原城鄰格、月底一步、seed1、30民兵與受損守軍20／5／1。正常入城取消後月報116金／324步，守軍26／10／10，確認與冷讀不重補。沒有自然取得或全程RNG一致聲明。原v15格式與141媒體保持，建置只見crate／native，GUI只見native與單一腳本。
+前批[八寶物限定驗收](docs/spec/031-rust-independent-remake.md#rust八寶物限定-conformed)及[核對](preserved/rust-items-audit-r1.json)保持。F6／F1、七件被動效果與v16讀v1至v15已驗，初始測試位置與六件物品為明示受控，不稱自然取得全部物品；WorldState及Go格式保持。歷史命令與失敗細節見WORKLOG，現行待辦只見上表及WORKLIST。
 
-NPC-MONTH-RESOLVED-20261111閉合舊補兵邊界。CALENDAR-NAMING-CORRECTION-20261111修正舊「六相位日曆」：原sub_16058按ceil(剩餘步數／tempo)畫行程條；sub_16226的counter只確認word遞增，不新增虛構年月。行程條呈現仍待。[核對](preserved/rust-npc-month-audit-r1.json)、[成果圖](docs/images/rust-npc-month-r1.png)與[永久保存／還原](preserved/README.md#rust守軍月結保存)為現行142檔入口，不依賴workplace。下一步其餘寶物、新遊戲、其餘工具列與行程條，不重跑已驗HD；正式197／7／923／535／1071保持，無Release。
-
-前批為[Rust最終戰與結局限定驗收](docs/spec/031-rust-independent-remake.md#rust最終守軍與結局限定-conformed)。150測試、36全幅來源畫布、五程序17SDL擷取通過；原式最終戰勝利直接結局，六資源與101步保持，v15讀v1至v14。從真正v14明示六隊軍隊／八劍／seed1及原東鄰地形27站立位置，後續正常鍵鼠，未稱自然抵達。戰中與結局F7／冷讀、原版HD／三字型／音樂、完整播放及完成進度冷讀退出0已驗。
-
-Rust直接處理296穩定節點、RGBA16材質、字模、排程、OGG與保存，沒有Go／DOS／x86繪圖依賴。時間取樣及首段〈刀祭〉替代MFIG屬呈現近似，dummy不等於人耳確認。資料包142個執行期檔案。[核對](preserved/rust-ending-audit-r1.json)、[成果圖](docs/images/rust-ending-r1.png)與[保存／還原](preserved/README.md#rust最終戰與結局保存)為現行入口。下一步NPC增兵／日曆、其餘寶物、新遊戲及其餘工具列；不重開已驗HD。
-
-結局畫面另補[原版／HD對照](docs/images/ending-original-hd-overview-r1.png)。現行535素材由Go／dosgolem重新完整播放，九階段逐步數／客體狀態及原版RGB配對，27份三字型HD畫面已保存；兩側最終狀態與原生PCM相同、均退出0。README提供三組代表及原尺寸HD連結。這是受控原版收尾，沒有自然通關、實際視窗或Rust結局完成聲明。[核對](preserved/ending-readme-audit-r1.json)與[保存／還原](preserved/README.md#結局原版hd對照保存)不依賴workplace。本段只記Go來源對照；Rust接入見下列最新切片。
-
-前批為[Rust守軍與頭目限定驗收](docs/spec/031-rust-independent-remake.md#rust守軍與頭目限定-conformed)。八原圖42筆守軍持久資料、41處非最終守軍含八頭目接回原式確認／HD戰場，保留北／西入場、取消／空城／無兵／缺劍提示、殘兵再戰、勝敗去向與原獎勵。v14保存42記錄、八劍及待選／戰中／戰果，讀v1至v13。
-
-146測試、1176受控原分流與52算式、六份原函式1565行MZ bytes通過。原分流內最終守軍有部隊且劍齊的兩案只驗停止線，不稱可進最終戰；draw／IO／battle與stack-check prologue略過，明示14-byte本地frame。沒有原版完整GUI或全程RNG序列一致聲明。NPC月報增兵與原日曆仍待。
-
-七程序19份SDL讀回通過：真正v13保留38金／魔法與102步，初始位置指定原城鄰格及seed1；戰鬥例程另明示1000民兵／200原弓箭手，沒有自然取得聲明。實際步入攻城、三字型、戰中F7／獨立冷讀、擊倒30猴妖後撤退，守軍保留40／30／40／20，38金扣12成26。退戰提示冷讀後再勝，月薪100→120／容量3→4，金26與經驗0保持，重訪不重領。另一頭目勝局首劍、F1與獨立冷讀已驗。
-
-GUARDS-RESOLVED-20261111回填普通旅程、F1與特殊上岸READY。[核對](preserved/rust-guards-audit-r1.json)、[成果圖](docs/images/rust-guards-r1.png)與[永久保存／還原](preserved/README.md#rust守軍與頭目保存)為現行入口。最終建置只見crate／native，GUI只見native與單一腳本，WorldState與Go保存不變。下一步最終守軍／結局、NPC增兵與日曆、其餘寶物及新遊戲，不重開已驗矩陣。
-
-
-前批為[地圖51提示限定驗收](docs/spec/031-rust-independent-remake.md#地圖51提示限定-conformed)。八原圖共131處，typed座標／順序／文字hash已核對，全文留本機媒體。提示先於上岸、扣步、月報與遭遇；Enter／Esc或滑鼠確認才續行。v13保存待提示，讀v1至v12，WorldState與Go格式不變。
-
-136測試、131原指令pointer／108流程、五函式1053行原bytes及三程序八份SDL擷取通過。12DDE匯出只留後續65研究。真正v12保留38金與空軍隊，只移原圖4／7及seed1；正常走到5／7的落日城提示，104步不變。F7／新程序冷讀同提示、state_hash及畫布，確認後103步，確認後冷讀再走回4／7為102步；未重扣，三字型已驗。涉水提示先於是／否、月底先月報及重訪另由核心驗證，沒有原版完整GUI／RNG序列或自然抵達聲明。
-
-MAP-NOTICE-RESOLVED-20261111回填普通旅程與特殊上岸READY。[核對](preserved/rust-map-notice-audit-r1.json)、[成果圖](docs/images/rust-map-notice-r1.png)及[永久保存／還原](preserved/README.md#rust地圖51提示保存)為現行入口。最終建置只見crate／native，GUI只見native與單一腳本。下一步最終守軍／結局、其餘寶物、NPC增兵／日曆及新遊戲，不重開已驗矩陣。
-
-
-前批為[空軍隊遇敵失金限定驗收](docs/spec/031-rust-independent-remake.md#空軍隊遇敵失金限定-conformed)。普通步行／等待、事件返回、上岸拒絕、月報、出口與跳躍共用同一遭遇接收器。任一存活部隊仍進原cue／戰場；六隊皆空才追加一個roll，按gold/(roll/2730+2)扣金並顯示原文提示，零損失也保留提示。跳躍期間停住，確認再沿舊鍵續跳。
-
-130測試、286原指令扣金／18六隊存在判斷及兩份已存IDA匯出260行MZ bytes核對通過。新dosgolem局部探針以明示第三roll執行11650至116A8，略過文字呼叫，不稱原版整段GUI或全流程seed一致。v12追加cue／抽前seed／扣前金錢的待確認紀錄，綁定扣後金錢與RNG，讀v1至v11，WorldState與Go格式保持。
-
-三原生程序十份SDL畫布／讀回：真正v11的75金／30民兵／兩次造橋／105步，只設原起點與固定seed；空軍隊由正常F3解雇取得。Space遇劫扣37成38金，不扣步；F7／另一程序冷讀同提示及state_hash，確認不再扣款或抽RNG。F2空軍隊、F1的38金與確認後冷讀正常走41／40至104步通過，三字型均已抽驗。沒有執行期RAM／IP注入，不稱自然通關。
-
-回填 `EMPTY-ARMY-RESOLVED-20261111`，先前普通旅程與自然出口READY所列空軍隊未接邊界由本批閉合，其他已驗矩陣保持。最終建置只見crate／native，GUI只見native與單一腳本，沒有PAM／Go／RAM。[核對](preserved/rust-empty-army-audit-r1.json)、[成果圖](docs/images/rust-empty-army-r1.png)與[永久保存／還原](preserved/README.md#rust空軍隊遇敵失金保存)為現行入口，不依賴workplace。下一步最終守軍／結局、其餘寶物、NPC增兵／日曆及新遊戲，不重開本鏈或已驗HD矩陣。
-
-前批特殊地點上岸保持[限定驗收](docs/spec/031-rust-independent-remake.md#特殊地點上岸限定-conformed)。未支援商品與非水特殊點組合仍保留邊界，既有v11拒絕商店可遷移，不把本批空軍隊失金當成所有世界事件完成。
-
-前批自然出口與跳躍遭遇限定成果保持，見[驗收](docs/spec/031-rust-independent-remake.md#自然出口與跳躍遭遇限定-conformed)。
-
-勘誤 `JUMP-RNG-CORRECTION-20261105`：舊跳躍略過12446，卻仍在10BD0執行1151C；前輪RNG／actions保持的結論錯誤。已抽出共用遭遇尾段，跳躍逐格抽RNG並計一次操作，遇敵／戰鬥暫停，返回後沿舊鍵續跳。舊1445向量僅保留位移／落地／探索證據，不重跑該矩陣。v10格式保持，讀v1至v9。
-
-116測試、468原指令出口數值、540受控roll遭遇prefix、十IDA函式996行MZ bytes及六獨立Rust程序16份SDL讀回通過。原版探針跳過IO、在月報／敵軍生成前停止，不稱完整原版GUI或全流程亂數一致。真正v10的75金／30民兵／107步只指定出口鄰格，跨區後106步；月報另指定remaining1，跨區後145金／324步及待選F7／冷讀相同。跳躍另指定原店位置、Ready與固定seed，遇敵提示至少700毫秒不前進，F7冷讀、進戰撤退及續跳落地後同為57金／107步／30民兵，最終畫布與state_hash相同。
-
-最終建置只見crate唯讀／native可寫，GUI只見native與單一腳本，沒有PAM／Go／RAM。原圖、完整來源、138媒體、binary及所有證據永久保存。圖片見[成果圖](docs/images/rust-world-exits-r1.png)，核對見[收據](preserved/rust-world-exits-audit-r1.json)。下一步特殊地點上岸、空軍隊遭遇失金及世界事件，再接七寶物、守軍／八劍、日曆／結局；不重開已驗HD／普通戰／法術矩陣。
-
-前批涉水術的102測試、90原指令及一般地形上岸鏈保持，見[限定驗收](docs/spec/031-rust-independent-remake.md#涉水術限定-conformed)，不重開本鏈。
-
-前批傳送術的96測試、八區原名／起點與四程序抽驗保持，見[限定驗收](docs/spec/031-rust-independent-remake.md#傳送術限定-conformed)，不重開本鏈。
-
-前批停時與鳥瞰限定成果保持，詳見[驗收](docs/spec/031-rust-independent-remake.md#停時與鳥瞰限定-conformed)。91測試、四程序10SDL擷取、停時與鳥瞰冷讀均已完成，不重開本鏈。
-
-前批[世界資源法術限定驗收](docs/spec/031-rust-independent-remake.md#世界資源法術限定-conformed)。Rust接煉金與召兵的原店／F4／結果、六隊資料與v6保存。前批真正v5進度明示移至後區商店旁，領導1000；RNG保留來源，不重擲。煉金購一次470→370金，施法加55成425；召兵購一次成325，召20民兵併30→50。五程序12SDL擷取含兩種結果與回場冷讀，預設2／3縮放另驗；結果關閉不重加、不重扣，三字型通過。跨區尚未接，不稱自然取得。
-
-85測試包含五個原版受控案例、rank／roll分界、併隊／空隊／滿隊、超領導／兵數拒絕且RNG不動、提示綁定與v5遷移。六個既有IDA函式的原bytes重新核對，原版規則收據以明示roll比較，不混用整段UI seed_after。50民兵於正常等待後遭遇、原式戰場出手及撤退，最後296金／50民兵再冷讀相同。最終建置只見crate與native，GUI只見native與單一腳本；測試fixture工具亦為Rust，不連入玩家入口。[核對](preserved/rust-resource-spells-audit-r1.json)、[保存](preserved/README.md#rust世界資源法術保存)、[圖](docs/images/rust-resource-spells-r1.png)及[工具](tools/rust-resource-spells.py)為入口。
-
-
-前批[世界造橋術限定驗收](docs/spec/031-rust-independent-remake.md#世界造橋術限定-conformed)。從原40／40起點、30民兵及500金正常走69步到50／60尋竹簡，容量設3；再走138步至30／7商店，購3次花30金且滿額拒絕。四步到岸邊後F4施法，待方向F7／新程序冷讀不重扣，再向上造橋並走上34／2。最終470金、次數2及橋索引174／244冷讀保持。四程序11份SDL讀回、三字型與預設2／3縮放滑鼠通過，v4實檔轉v5已驗。
-
-78測試含四方向／腳下岸地、斜向／Esc／Space差異、環繞、容量／金錢、壞橋格、冷讀與寶箱／月報接續。19函式1848行IDA bytes核對；既有dosgolem明示竹簡／次數及水格配置收據的25格、2→1次數與不移動／不扣步亦相符，沒有新原版整段遊玩對拍。第一區兩商店及八寶物位置與原RAM核對；其餘區商店只建立資料。Rust建置只見crate與native，最終GUI只見native與單一工具，沒有DOS／Go runtime。[核對](preserved/rust-world-magic-audit-r1.json)、[永久保存](preserved/README.md#rust世界造橋術保存)、[圖](docs/images/rust-world-magic-r1.png)與[工具](tools/rust-world-magic.py)為入口。
-
-
-前批[F5地圖總覽限定驗收](docs/spec/031-rust-independent-remake.md#f5地圖總覽限定-conformed)。F5或右欄第五列顯示目前區域的已探索地形，未探索區為黑；位置按原分組白／黑閃動，Enter／Esc或滑鼠返回。原起點40／40，正常三步後43／40與探索擴展、三字型、F7及獨立冷讀通過，兩程序八份SDL擷取相同；預設2／3縮放另驗。頁面不改時間、RNG、資源、軍隊或探索，保存仍v4。
-
-68測試包含66色號、5600格遮罩／區域隔離、12格原收據及頁面唯讀。IDA四函式237行bytes核對；既有dosgolem收據的806256個非標記像素同來源分類與幾何，不是新原版遊玩對拍。標記採300毫秒原生UI近似，沒有逐週期聲明。最終Rust建置僅掛crate／native，GUI僅掛單一工具及native，看不到本批Go解碼器或原版RAM。[核對](preserved/rust-minimap-audit-r1.json)、[保存](preserved/README.md#rust-f5地圖總覽保存)、[圖](docs/images/rust-minimap-r1.png)與[工具](tools/rust-minimap.py)為入口。
-
-
-前批[F1人物資料限定驗收](docs/spec/031-rust-independent-remake.md#f1人物資料限定-conformed)。F1與右欄第一列可開原式六欄及批准武將頭像，初頁Enter看八劍，第二頁Enter返回地圖，Esc兩頁皆返回。四程序八SDL擷取、三字型、原起點與真正寶箱後530金／103領導力、F7及獨立冷讀通過；預設2／3縮放滑鼠另驗。頁面不改世界時間、RNG、資源或軍隊，保存仍v4。[核對](preserved/rust-character-audit-r1.json)、[保存](preserved/README.md#rust-f1人物資料保存)、[成果圖](docs/images/rust-character-r1.png)及[工具](tools/rust-character.py)為入口。
-
-65測試通過，新增人物欄位邊界、檢視不改保存及事件間隔離。IDA9.4核對sub_17242與sub_1844C共371行原bytes；原0110:73F0是函式內掛點，不是函式起點。寶物／八劍當前無取得資料，僅保留原標題空欄；物品效果與八劍取得未由本輪提升。
-
-前批[寶箱資源限定驗收](docs/spec/031-rust-independent-remake.md#寶箱資源限定-conformed)保持。原起點正常走27步至60／41寶箱，值30；取消保留原值，再按Space開啟。兩個新程序讀同一F7待選點，分別得到530金，或500金及103領導力，30民兵保持；只清該記錄。領取自動保存，另一程序讀回相同狀態／畫布，空箱不再給獎勵。前批v3月報後進度亦能讀入並存v4。五程序九份SDL擷取相同；預設2／3縮放滑鼠選領導，結果存檔逐bytes等於原生分支。
-
-63測試包含七Go案例、80身份、取消／空箱／重複拒絕、最後一步先領或取消再月報、冷讀及異常狀態。IDA9.4新補座標寫入端：sub_145FA由上到下、由左到右掃字元107，八圖各十箱；第一圖順序與原RAM相同。533行原bytes及十一行索引語意核對，原DB唯讀不改名。v4保存80值及待選資料，讀此前未開放寶箱的v1至v3，不讀Go。[核對](preserved/rust-treasure-audit-r1.json)、[保存](preserved/README.md#rust寶箱資源保存)、[圖](docs/images/rust-treasure-r1.png)及[工具](tools/rust-treasure.py)為入口。
-
-下一步接特殊地點上岸與自然出口、世界事件，再接守軍／八劍、日曆與結局；不重跑F1／F5、寶箱、月報或既有HD。完整世界schema、手機及Release仍待。
-
-前批[玩家月報與補貨限定驗收](docs/spec/031-rust-independent-remake.md#玩家月報與補貨限定-conformed)保持。正常324步、305金月報、自動保存與獨立程序冷讀已驗；本輪不重跑月報矩陣。
-
-58測試包含六組Go收支、720補貨、金錢恰足／不足、增援補貨、營地最後一步先買兵後月結及壞報表／溢位拒絕。原店cap與初始庫存有三列不同，已分開；未開增援不預建。v3保存月報原軍隊及收支以供重算、待確認步與工程次數，支援舊v1／v2；不讀Go進度。指定存檔目錄時月報提交及關閉各保存，F7仍可用。[核對](preserved/rust-monthly-audit-r1.json)、[保存](preserved/README.md#rust玩家月報與補貨保存)、[圖](docs/images/rust-monthly-r1.png)及[工具](tools/rust-monthly.py)為入口。
-
-月報只接玩家財務與營地補貨。42處守軍增兵、原日曆六相位、其他事件／上岸、八劍與結局仍未接；工程月結次數不冒充原日曆。
-
-前批[原式管理與滑鼠限定驗收](docs/spec/031-rust-independent-remake.md#原式管理與滑鼠限定-conformed)保持。原起點購野狼及民兵、超量拒絕、營地冷讀、F2三字型、F3不退款與再戰抽驗，四程序18擷取通過。本輪不重跑此矩陣。
-
-滑鼠按下／放開落在同一有效目標才執行一次；選隊與選敵先選取，再按確認。地圖點方向走一步、中心等待，募兵數量可用畫面數字鍵盤；字型、音樂、返回、略過及F7可點。`journey --save-dir <既有絕對路徑>`開啟，加`--continue`續接。v2保存120原庫存、已開增援庫存及營地待完成步，支援前批無營地交易v1；不讀Go進度。舊run／world入口仍為原開發樣本，這輪滑鼠範圍只限journey。[核對](preserved/rust-controls-audit-r1.json)、[永久保存](preserved/README.md#rust原式管理與滑鼠保存)、[圖](docs/images/rust-controls-r1.png)及[工具](tools/rust-controls.py)為入口。
-
-營地原資料沿既有Go／IDA證據，PAM的120列及八圖全部50募兵地點已核對；沒有新的原版逐像素對拍。其餘特殊格、上岸、守軍／八劍及結局仍保留邊界。完整世界schema仍待審查，沒有手機產物或Release。
-
-前批證據保持：[普通遭遇與回場](preserved/rust-journey-audit-r1.json)的46測試、320原指令及四程序12擷取；[世界移動](preserved/rust-world-audit-r1.json)的880原指令；[戰中檢查點](preserved/rust-battle-checkpoint-audit-r2.json)的五程序11擷取；[玩家八術](preserved/rust-player-spells-audit-r2.json)的2352模型／15收據及[敵方八分派](preserved/rust-enemy-spells-audit-r1.json)的384模型／13收據。這些歷史範圍與詳細命令留在031、WORKLOG與永久保存，不重新列為待辦。
-
-原生執行期只需Rust執行檔、媒體與SDL2／libsndfile等平台函式庫。建置及GUI不掛Go／PAM，沒有DOS或模擬器執行依賴。完整音畫及binary已逐SHA保存於本機preserved，不靠workplace；只驗Linux x86_64，沒有Release。
 
 ## 保持的Go入口與基線
 

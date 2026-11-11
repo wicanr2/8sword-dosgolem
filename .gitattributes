@@ -3,3 +3,6 @@ tools/*.patch -whitespace
 
 # 原版區域名稱保留結尾空白，其間距屬畫面資料。
 internal/remake-rust/teleport-regions.tsv whitespace=-blank-at-eol
+
+# 原版選單的行末空格屬於來源字串，保留完整格位。
+internal/remake-rust/start-layout.tsv whitespace=-blank-at-eol

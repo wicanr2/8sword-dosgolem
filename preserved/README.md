@@ -1533,7 +1533,7 @@ NPC-MONTH-RESOLVED-20261111與CALENDAR-NAMING-CORRECTION-20261111的原位址、
 
 [完整索引](rust-items-r1.json)、[核對](rust-items-audit-r1.json)、[脫離核對](rust-items-detached-r1.json)與[清理](rust-items-cleanup-r1.json)保存完整Rust來源、148媒體、binary、真正v15與新v16、IDA拷貝／匯出、原指令收據及三程序九份有效SDL擷取。物件留本機`preserved/rust-items-r1/`，不依賴workplace；原版衍生資料不進公開包，沒有Release。批准器物的完整原PNG／提示仍依[永久美術](../artwork/README.md)保存，不重畫或刪除原圖。
 
-現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-items-r1/native。清空workplace後，在Pillow11.3.0-r2 Docker內以UID1000將儲存庫掛/project可寫，執行`python /project/tools/rust-items.py restore --project /project`還原149份執行期檔案。再用`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`，已有進度加`--continue`。F6或右側第六列搜尋、F1看物品、工具列換三字型／音樂、F7存檔。v16讀v1至v15，冷讀不重搜；WorldState與Go格式不變。
+本節保存八寶物切片；現行啟動器及資料包已移至下方Rust原式開始選單保存。八寶物歷史資料路徑為battle-r1/rust-items-r1/native。清空workplace後，在Pillow11.3.0-r2 Docker內以UID1000將儲存庫掛/project可寫，執行`python /project/tools/rust-items.py restore --project /project`還原149份執行期檔案。再用`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`，已有進度加`--continue`。F6或右側第六列搜尋、F1看物品、工具列換三字型／音樂、F7存檔。v16讀v1至v15，冷讀不重搜；WorldState與Go格式不變。
 
 [資料工具](../tools/rust-items.py)動作均須在有逾時、--rm、--network none、UID1000與資源界限的Docker執行。prepare恢復前批141媒體、真正v15、原IDA證據及正式DB拷貝；[IDA查詢](../tools/export-rust-items-ida.py)只在一次性DB執行，正式PAM／DB唯讀。現存py312-v1的UID、IDA9.4、521函式與輸入SHA probe通過，沒有新建image。原指令以[探針](../tools/rust-items-reference.go)及固定923核心生成32搜尋／192令牌向量，初始seed12345678h固定、不重擲。只略過gfx／wait及配置stack locals，原sub16226／_rand實際執行。
 
@@ -1546,3 +1546,20 @@ freeze保存crate／工具／媒體清單；`audit --project /project --out <新
 ITEMS-RESOLVED-20261111及SEARCH-RNG-CORRECTION-20261111的原名／位址、推論等級、公式與限制見[031](../docs/spec/031-rust-independent-remake.md#rust八寶物限定-conformed)與[研究記錄](../RESEARCH-LOG.md#2026-11-11-rust八寶物)。正式197／7／923／535／1071保持，後續新遊戲／原式開始選單與其餘工具列不重開已驗HD。
 
 收尾：373檔／335物件、61278742壓縮bytes永久保存。脫離workplace逐物件核對與149份執行期SHA／mode還原通過；還原native正常開F1，八寶物與已驗完整SDL畫布／state_hash相同，正常關閉退出0。清本批1530份可重建快取及還原複本，共784872355 bytes，約748.5 MiB。完整來源、素材、binary與有效／失敗證據保持，本案容器收尾，其他專案不動。
+## Rust原式開始選單保存
+
+[完整索引](rust-start-r1.json)、[核對](rust-start-audit-r1.json)、[脫離核對](rust-start-detached-r1.json)與[清理](rust-start-cleanup-r1.json)為現行入口。完整Rust來源、155媒體、binary、真正舊v16／新建v16、原版五畫面與快照／RAM、92原指令及IDA拷貝／bytes保存於本機`preserved/rust-start-r1/`，不依賴workplace。原版衍生資料與整包媒體不公開，沒有Release；完整定稿原圖仍見[永久美術](../artwork/README.md)。
+
+[啟動器](../tools/rust-native-player.sh)目前指向`workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/native`。清空workplace後，在Pillow11.3.0-r2 Docker以UID1000、--rm、--network none與相稱逾時／資源界限，將儲存庫可寫掛到/project，執行`python /project/tools/rust-start.py restore --project /project`，還原156份執行期檔案。以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`開啟主選單。方向鍵選列、Enter確認、Esc返回／退出；滑鼠點列再按確認。新遊戲取消保留舊檔，確認才重建，Continue讀原生v16並支援v1至v15。
+
+原生binary可直接執行，未指定素材讀旁邊`pack/`，存檔目錄用XDG_DATA_HOME/8sword-remake或HOME/.local/share/8sword-remake。省略--play仍可帶一般參數，預設目錄建立與新遊戲保存已由原生視窗驗證。開發Docker的play要求明確掛載既有--save-dir，避免存進一次性容器。Linux需SDL2／libsndfile平台庫，沒有Go／DOS EXE／dosgolem執行依賴。
+
+[來源工具](../tools/rust-start.py)的prepare恢復前批148媒體／真v16及正式DB拷貝；assets依PAM原字串／座標產生編譯表、核十首批准OGG並補七份。`rust-world.py fonts`補三字型，各861舊字模逐格保持，增加22字至883。freeze保存crate／工具／媒體清單；audit核167測試、92原指令、十函式2531行MZ重定位bytes、舊字模及五程序17份SDL；images只排版[實際成果](../docs/images/rust-start-r1.png)。
+
+[IDA查詢](../tools/export-rust-start-ida.py)只分析原PAM.i64的拷貝，正式DB唯讀；既有py312-v1 probe驗UID1000、IDA9.4、521函式與兩輸入SHA。原版[探針](../tools/rust-start-reference.go)由PREDELLA正常流程進PAM，固定主選單測試seed12345678h並走取消／新建；局部92指令向量另標明locals及略過繪圖。早期誤讀戰鬥暫存的reference與更正後reference-r2都保留，只採後者世界軍隊資料。
+
+[GUI工具](../tools/rust-start-gui.py)最終五程序17擷取包含三字型、缺檔、首尾曲、新建取消／確認、正常移動／F2／F7、冷讀全幅相同、舊v16、壞檔重建及預設入口。前輪GUI及default入口分流失敗保留於gui-first／gui-second，修正後同腳本乾淨重跑。SDL dummy只驗技術音訊，沒有新增人耳確認。原51-byte條紋底板簡化，原硬體廣告改為批准HD OGG播放器；完整PREDELLA開場仍待。
+
+archive用`--archive /project/preserved --out /project/preserved/rust-start-r1.json`；verify只掛preserved唯讀、單一資料工具與可寫輸出，使用`verify --archive /archive --out <新JSON>`逐物件核gzip與SHA。restore可用`--work <可寫新目錄>`重建最小156份，逐SHA／mode核對後啟動還原binary抽驗。保存成功後才清本批rust-target及還原複本。現行規格見[031](../docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)，正式197／7／923／535／1071、WorldState與Go格式保持。
+
+收尾：630檔／409去重物件、61863667壓縮bytes永久保存。脫離workplace逐物件核對與156份執行期SHA／mode還原通過；還原binary的主選單完整SDL畫布與state_hash相同，正常新建、預設XDG目錄保存及退出0已驗。清本批2416份可重建快取及已核封存工作複本，共1486858128 bytes，約1.38 GiB。原始來源、完整素材與有效／失敗證據均永久保存，沒有本案殘留容器，其他專案不動。

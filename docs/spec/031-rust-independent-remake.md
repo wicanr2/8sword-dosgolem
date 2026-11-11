@@ -890,3 +890,41 @@ GUI從真正v15保留六資源[1,0,120,107,1000,4]、魔法、324步與已清首
 `SEARCH-RNG-CORRECTION-20261111`推翻舊世界造橋READY的「F6無亂數」。IDA17FC6呼叫sub_16226，原32案都使固定seed12345678h至B3E97B5Bh；原counter在有效普通分支只加一，不建立新玩法。修正舊竹簡測試以比較一次呼叫，所有既有移動／法術／月報／守軍回歸仍通過，不重跑HD矩陣。舊v15過去已提交的搜尋不追補RNG，冷讀亦不重搜。
 
 [寶物規則](../../internal/remake-rust/src/items.rs)、[原值](../../internal/remake-rust/item-names.tsv)、[32原指令參考](../../internal/remake-rust/items-reference.tsv)、[令牌參考](../../internal/remake-rust/recruit-token-reference.tsv)、[受控初始例程](../../internal/remake-rust/examples/items_fixture.rs)、[GUI](../../tools/rust-items-gui.py)、[資料／保存工具](../../tools/rust-items.py)、[原指令工具](../../tools/rust-items-reference.go)、[IDA查詢](../../tools/export-rust-items-ida.py)、[核對](../../preserved/rust-items-audit-r1.json)、[成果圖](../images/rust-items-r1.png)與[永久保存／還原](../../preserved/README.md#rust八寶物保存)為入口。建置只掛crate唯讀／native可寫，GUI執行中查實只掛native與單一腳本。正式197／7／923／535／1071保持，沒有Release；下一步新遊戲／原式開始選單及其餘工具列。
+
+## Rust原式開始選單 DRAFT
+
+接續原生旅程入口，將PAM的原式主選單、新遊戲確認、初始化與繼續遊戲接回同一Rust視窗。既有PREDELLA完整開場的原版HD素材保持，不以重畫圖或改故事取代原流程；本切片先確認PAM開始頁的實際構圖、選項及控制流，完整動畫移植另按其來源命令處理。
+
+研究沿battle-r1/rust-start-r1，[準備／保存工具](../../tools/rust-start.py)與[IDA查詢](../../tools/export-rust-start-ida.py)為入口。既有Go來源交易以runtime0110:04A6／055F畫主選單、0622開新遊戲確認、06B7還原、090C／09B5音樂頁，僅作查找線索。從正式PAM.i64的唯讀拷貝匯出函式、原字串與座標，再由dosgolem正常選單／受控局部指令核對，不以測試按鍵慣例猜選單語意。
+
+開始前不能覆寫既有journey.chk；新遊戲需沿原確認，Continue只讀可驗證原生進度，讀檔失敗留在可操作選單。實際存檔提交時點與原取消／Esc、初始化副作用及鍵鼠命中區在來源審查後定READY。開發--journey／--battle／--world-preview入口保持；尚未READY前不改其預設行為，也不改v16保存格式。
+
+## Rust原式開始選單 READY
+
+固定PAM／DB SHA沿031。IDA Pro9.4在正式DB唯讀拷貝匯出十函式，位址基準MZ base10000h；原名稱及bytes保留。dosgolem從PREDELLA正常兩次DOS選項、Esc進PAM，IRQ1走主選單上環繞、開始新遊戲、右選否／取消、重新確認及首張世界。五張原版畫面、完整快照與初始RAM已保存，seed在主選單測試輸入前固定12345678h、不重擲。92局部原指令向量另驗主選單18、音樂頁60、確認14；局部只配置明示stack locals及略過繪圖，不當完整原版GUI。
+
+- sub_104A6：三項依DS009E／00DA／0116，預設Continue0，上下循環；Enter新遊戲先問DS0152／018E，sub_1434E預設是，左右皆切換，Esc等於否。取消回原選項1；主頁Esc退出，音樂頁Esc呼叫新的主選單，重設選項0。音樂頁十曲DS02F6起每筆20bytes，預設選0、Enter播index＋1、上下只移游標不換曲。
+- 新遊戲首場原資料為area0／40,40、324步、六資源1／0／100／500／100／0、DS054A六隊第一隊民兵30及八物品皆0。DS56E8是戰鬥暫存，不當世界軍隊。沿已驗Journey::new初始化其他持久資料，不重查無關檔案IO；原MAP00探索檔複製由原生explored取代。原版UI初始化RNG不與原生世界seed參數混稱全程一致。
+- 新增--play及無參數執行入口，進PAM開始選單；既有--journey／--battle／--world-preview保持。素材未指定時讀執行檔旁pack；Linux未指定存檔目錄時用XDG_DATA_HOME/8sword-remake或HOME/.local/share/8sword-remake。Docker開發啟動器的play要求明確掛載既有--save-dir，避免容器內暫存進度；原生執行檔自行建立預設使用者資料目錄。
+- Enter是之前不寫進度。是才建立新Journey並原子替換單一journey.chk，再進世界；取消／離開／缺檔Continue都保持磁碟。已損壞的普通檢查點可由玩家明確新遊戲確認替換；symlink／目錄／鎖定仍拒絕，不繞過其他槽位的舊資料核對。寫入失敗留在選單。v16、WorldState與Go格式不變，Continue仍保留存檔中的字型／音樂／seed，未來不把舊Go進度當原生進度。
+- 音樂欣賞沿原十曲順序與已批准十首HD OGG；三首沿既有檔案，新增其餘七首。Rust直接解碼／佇列，離開音樂頁清除聲音，進旅程切既有世界音樂。DOS魔奇硬體購買提示不搬到原生播放器；這是已批准HD音樂的原生平台介面，不稱舊硬體driver一致。
+- 中央三列與十列的x／y／列距依原呼叫座標，HD按既有原生深綠／朱紅／暖金控制樣式重畫底板。原51-byte寬×20高的條紋底板屬呈現來源，不把簡化底板稱逐像素原版；字型沿Noto900／隸書／草書。單行採原16×15來源格的48×90呈現，ASCII半格，先量字數再畫，不容許裁字掩蓋溢位。鍵鼠共用邏輯，滑鼠點列只選取、確認才提交，放開一次動作；工具列字型／音樂保持，未進世界不顯示F7。
+
+驗收為92原指令、原資料／文字與幾何、空目錄／已有v16／壞檔／鎖定／取消／確認的保存測試；原生視窗從選單新建、正常移動／募兵或F2、F7、另一程序Continue及音樂、鍵鼠取消／退出抽驗。建置只掛crate／native，GUI只掛native與單一腳本。完整PREDELLA動畫、其餘工具列與發行不在本切片，不將開始選單完成稱完整開場移植。
+
+## Rust原式開始選單限定 CONFORMED
+
+`START-MENU-RESOLVED-20261111`。原生執行檔的預設入口及`--play`已接原式三項選單、新遊戲是／否確認、十首HD音樂欣賞與原生進度冷讀。三種字型與音樂工具列、鍵鼠選取／確認共用同一視窗。新遊戲先原子提交v16，再進世界；取消、缺檔及壞檔Continue保持原檔。明確確認新遊戲可重建損壞普通檔，鎖定／目錄／連結仍拒絕。v16讀v1至v15，WorldState與Go格式不變。
+
+| 核對 | 限定結果 |
+|---|---|
+| 原版來源 | dosgolem從正常PREDELLA流程進PAM，五個原版畫面含取消與確認後首張世界；92局部原指令驗三項／十曲／確認。主選單測試前固定seed12345678h，不稱全程UI RNG一致。 |
+| 初始狀態 | 原sub_184C0及首次世界RAM確認area0／40,40／324步、六資源1／0／100／500／100／0、DS054A首隊30民兵、八物品皆無。DS56E8是戰鬥暫存，早期probe讀零不當世界軍隊。 |
+| Rust測試 | 167測試與self-check通過，含92原指令、新建／取消／覆寫、壞檔保留與重建、鎖定／目錄／symlink拒絕、幾何與單次放開。 |
+| 原生視窗 | 五獨立程序、17份明示SDL擷取；Noto900／隸書／草書、首尾曲播放、取消不寫檔、新建後正常移動／F2／F7、Continue同state_hash及全幅畫布、真正舊v16冷讀與損壞檔重建通過。 |
+| 獨立入口 | 省略--play仍可指定一般啟動參數；未指定素材時讀binary旁pack。未指定存檔目錄時建立XDG使用者目錄，已用同一native視窗實測。開發Docker的play要求明示既有--save-dir。 |
+| 媒體與執行 | 155媒體與binary共156檔；十首批准OGG逐SHA核對。三字型861舊字模逐格保持，各補22字至883。建置只掛crate／native，GUI只掛native與一支輸入工具。 |
+
+原sub_104A6／104A6、sub_1434E／1434E及sub_1090C／1090C的來源控制流、十函式重定位bytes核對與限制見[研究記錄](../../RESEARCH-LOG.md#2026-11-11-rust原式開始選單)。原51-byte條紋底板簡化為既有原生深綠／朱紅／暖金底板，字串與位置沿原版，不稱逐像素一致。原Magic Sound購買提示改由既有HD OGG播放器處理。SDL dummy只證明技術解碼與佇列，沒有新增人耳驗收聲明。
+
+[選單核心](../../internal/remake-rust/src/start.rs)、[原生呈現](../../internal/remake-rust/src/start_desktop.rs)、[原文字／座標](../../internal/remake-rust/start-layout.tsv)、[十曲清單](../../internal/remake-rust/start-music.tsv)、[92原指令參考](../../internal/remake-rust/start-input-reference.tsv)、[GUI](../../tools/rust-start-gui.py)、[來源／保存工具](../../tools/rust-start.py)、[原版探針](../../tools/rust-start-reference.go)、[IDA查詢](../../tools/export-rust-start-ida.py)、[核對](../../preserved/rust-start-audit-r1.json)、[成果圖](../images/rust-start-r1.png)與[永久保存／還原](../../preserved/README.md#rust原式開始選單保存)為入口。完整PREDELLA開場、原行程條呈現與全程工具列仍待；不重驗已驗HD、普通戰及結局，不稱完整通關或完整獨立版發行。正式197／7／923／535／1071保持，沒有Release。

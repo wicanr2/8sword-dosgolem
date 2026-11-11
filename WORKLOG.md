@@ -3510,3 +3510,17 @@ NPC-MONTH-RESOLVED-20261111與CALENDAR-NAMING-CORRECTION-20261111回填規格及
 [核對](preserved/rust-items-audit-r1.json)、[完整索引](preserved/rust-items-r1.json)、[脫離核對](preserved/rust-items-detached-r1.json)、[清理](preserved/rust-items-cleanup-r1.json)及[成果圖](docs/images/rust-items-r1.png)為交接入口。先永久保存與核還原，再清可重建快取。正式197／7／923／535／1071與Go格式保持，沒有Release。下一步新遊戲／原式開始選單及其餘工具列，不重跑已驗HD。
 
 收尾：373檔／335物件、61278742壓縮bytes永久保存。脫離workplace逐物件核對與149份執行期SHA／mode還原通過；還原native正常開F1，八寶物與已驗完整SDL畫布／state_hash相同，正常關閉退出0。清本批1530份可重建快取及還原複本，共784872355 bytes，約748.5 MiB。完整來源、素材、binary與有效／失敗證據保持，本案容器收尾，其他專案不動。
+
+## 2026-11-11 Rust原式開始選單
+
+從6899330b7f78d21b4195030223b27cca62548e82續接，命中RE規格閘門、文件與README路由；沿重製與IDA9.4技能完成DRAFT、來源查證、READY及實作。原生主選單／新建／Continue／十曲欣賞、同視窗鍵鼠與三字型接入，不改v16／Go格式。完整PREDELLA開場留後續，未重開既有HD或普通戰矩陣。
+
+原版正常PREDELLA→PAM及五畫面與首張世界RAM已取得，92局部原指令驗主頁／音樂／確認；十函式2531行bytes依MZ表加1000h核對。最初probe誤讀DS56E8戰鬥暫存，第二輪改DS054A後重跑確認30民兵，兩輪都保留。正式DB唯讀，使用既有py312-v1而未新建工具image。
+
+167測試、self-check與release建置通過。第一輪四GUI正常，擴大抽驗預設入口時發現無--play但帶參數落到CLI用法，修正main分流後同容器／腳本乾淨重跑五程序17份SDL擷取，全幅讀回一致。新建後正常移動、F2、F7與另一程序Continue同畫布／state_hash；舊v16八物品資源保持，壞檔Continue不寫、新建明確確認才重建。binary旁pack與XDG預設保存已驗。
+
+新增七首已批准OGG，完整十曲逐SHA核對；155媒體＋binary共156檔，三字型861舊字模保持，各補22字。最終建置只見crate／native，GUI只見native與單一腳本；不稱人耳驗收、全程UI RNG或逐像素原版底板。README成果、CONTEXT唯一現況、WORKLIST、031與位址索引已同步，完整來源／媒體／原版及失敗證據先永久保存，再清可重建快取。
+
+[核對](preserved/rust-start-audit-r1.json)、[完整索引](preserved/rust-start-r1.json)、[脫離核對](preserved/rust-start-detached-r1.json)、[清理](preserved/rust-start-cleanup-r1.json)與[成果圖](docs/images/rust-start-r1.png)為入口。正式197／7／923／535／1071保持，沒有Release。下一步完整PREDELLA開場、行程條與其餘工具列。
+
+收尾：630檔／409去重物件、61863667壓縮bytes永久保存。脫離workplace逐物件核對與156份執行期SHA／mode還原通過；還原binary的主選單完整SDL畫布與state_hash相同，正常新建、預設XDG目錄保存及退出0已驗。清本批2416份可重建快取及已核封存工作複本，共1486858128 bytes，約1.38 GiB。原始來源、完整素材與有效／失敗證據均永久保存，沒有本案殘留容器，其他專案不動。

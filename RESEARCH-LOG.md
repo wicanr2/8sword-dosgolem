@@ -3608,3 +3608,19 @@ NPC-MONTH-RESOLVED-20261111閉合舊NPC補兵待辦。CALENDAR-NAMING-CORRECTION
 ITEMS-RESOLVED-20261111回填052未知用途與031舊物品邊界；SEARCH-RNG-CORRECTION-20261111推翻031世界造橋READY「F6無RNG」。不可變定位鍵、原名、等級及收據掛在[索引](docs/spec/ai-resolution-backlinks-r1.json)。原反組譯工具的operand與bytes全部保留，沒有靠自訂名稱推玩法。
 
 [核對](preserved/rust-items-audit-r1.json)含160測試、三程序九份SDL讀回。真正v15保留107金／120月薪／1000領導／4容量、魔法與324步，起始明示原令牌位置與六件前物品；F6取得後F1與冷讀相同，重搜無物，三字型抽驗。戰場另明示八物品／1000民兵後正常入城／出手／撤退，不稱自然取得全部物品或通關。原藝術沿批准MAN12..19，Rust沿既有Pillow LANCZOS取96×96透明快取，未宣稱Go快取像素parity；三字型849舊字模全部保持，各加12字。v16只新增五個artifact bits與資料fingerprint，讀v1至v15；舊月報／搜尋不追補。WorldState、Go格式與正式基線保持。
+
+## 2026-11-11 Rust原式開始選單
+
+PAM.AY SHA-256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，正式PAM.i64 SHA-256 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA Pro9.4既有py312-v1 probe驗UID1000、521函式及輸入SHA，只分析拷貝。十函式的原名、位址、運算元與bytes保持；地址空間為IDA MZ loader base10000h。runtime CS0110的IP等於線性減10000h，DS1E88偏移另列，不混成同一地址。
+
+| 等級 | 原定位 | 語意與實測 |
+|---|---|---|
+| 已證實 | sub_104A6／104A6；1055F鍵盤；10622確認；106B7取消 | 三項主選單預設0、上下循環；新遊戲取消保留選項1，五個正常IRQ1畫面包括上環繞、確認、取消及新世界。 |
+| 已證實 | sub_1434E／1434E | 預設是1、左右都切換，Esc回0；14原指令序列涵蓋兩初態與Enter／Esc／四方向／Space。 |
+| 已證實 | sub_1090C／1090C；109B5鍵盤；10B18返回 | 十曲預設0、Enter回傳index＋1，上下只選列；Esc重新進sub_104A6，主頁重設0。另60音樂及18主頁原指令向量，合計92。 |
+| 已證實 | sub_184C0／184C0及原新世界RAM；DS054A | 新遊戲area0／40,40／324步、六資源1／0／100／500／100／0、30民兵首隊及其餘五隊0，八物品皆無。早期probe錯讀DS56E8戰鬥暫存而顯示零軍隊，reference-first保留；reference-r2修正取址並重跑完整流程。 |
+| 已證實 | sub_171D8／171D8 | 開始頁使用的pageflip不呼叫_rand，不與另一sub_1716C混稱。主選單測試前固定seed12345678h，首次世界只驗上述非隨機初始欄位，不推論全程UI RNG呼叫次序。 |
+
+原probe從PREDELLA正常兩次DOS選項及Esc進PAM，再依IRQ1上下／Enter／左右走取消與新建。保留原平面bitmap、五PNG／完整快照、新世界RAM與receipt。局部向量另配置明示BP／SP與原locals、跳過繪圖及輸入硬體caller，實際執行原分支；不冒充正常GUI。原Magic Sound廣告屬舊音效卡平台門檻，原生沿已批准十首HD OGG，沒有深入driver或ISR。
+
+`START-MENU-RESOLVED-20261111`只閉合原生開始頁／新建／Continue／音樂欣賞邊界。簡化底板、原始來源座標及三字型沿[031限定驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)。[核對](preserved/rust-start-audit-r1.json)與[永久保存](preserved/README.md#rust原式開始選單保存)保存原指令、工具版本／SHA、IDA重定位bytes與五原生程序17份SDL。完整PREDELLA動畫、其餘工具列、自然通關及公開交付保持未完成。

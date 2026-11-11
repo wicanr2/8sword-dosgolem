@@ -35,6 +35,9 @@ mod sdl;
 mod sndfile;
 pub mod special_shore;
 pub mod spells;
+pub mod start;
+#[cfg(feature = "desktop")]
+mod start_desktop;
 pub mod survey_spells;
 pub mod theft;
 pub mod travel_spells;

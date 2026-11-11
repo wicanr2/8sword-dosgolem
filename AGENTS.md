@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-11 Rust原式開始選單依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)完成。原三項選單、新遊戲確認／原子保存、Continue與十首HD音樂欣賞已接；167測試、92局部原指令、十函式2531行bytes、五程序17份SDL通過。取消不寫檔，舊v16及預設XDG目錄已抽驗，v16／WorldState／Go格式保持；三字型861舊字模保持，各補22字。START-MENU-RESOLVED-20261111閉合新建與選單；完整PREDELLA開場、原行程條及其餘工具列仍待，不重跑已驗HD／戰鬥／結局。[核對](preserved/rust-start-audit-r1.json)與[永久保存／還原](preserved/README.md#rust原式開始選單保存)為現行156檔入口。正式197／7／923／535／1071保持，無Release。
+
 2026-11-11 Rust八寶物依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust八寶物限定-conformed)完成。F6／F1、七件被動效果及v16讀v1至v15已接；160測試、32搜尋／192令牌原指令、17函式4252行bytes與三程序九SDL擷取通過。三字型849舊字模保持，各補12字。真正v15只明示原令牌位置／seed1／前六物品，正常取得、F1／冷讀與重搜已驗；戰場另明示八物品／1000民兵，不稱自然取得。ITEMS-RESOLVED-20261111閉合舊物品邊界；SEARCH-RNG-CORRECTION-20261111補回每次F6的一個_rand。[核對](preserved/rust-items-audit-r1.json)與[永久保存／還原](preserved/README.md#rust八寶物保存)為現行149檔入口，原圖及完整資料不依賴workplace。下一步新遊戲／原式開始選單與其餘工具列，不重驗已驗HD。正式197／7／923／535／1071、WorldState與Go格式保持，無Release。
 
 2026-11-11 Rust守軍月結依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust守軍月結限定-conformed)完成。42處原槽位cap、零兵不復活、兩次RNG及v15保存已接；153測試、2520原指令向量、四原月結控制、1205行IDA重定位bytes與三程序九SDL擷取通過。真正v15只明示原城鄰格／月底一步／seed1／30民兵及受損守軍20／5／1，正常月結後26／10／10、116金／324步，月報及戰中冷讀相同，不稱自然取得。NPC-MONTH-RESOLVED-20261111閉合補兵；CALENDAR-NAMING-CORRECTION-20261111修正「六相位」為ceil(剩餘步數／tempo)行程條，呈現待接，不虛構年月。[核對](preserved/rust-npc-month-audit-r1.json)與[保存／還原](preserved/README.md#rust守軍月結保存)為現行142檔入口。下一步其餘寶物、新遊戲與工具列，不重驗已驗HD。正式197／7／923／535／1071與Go格式保持，無Release。

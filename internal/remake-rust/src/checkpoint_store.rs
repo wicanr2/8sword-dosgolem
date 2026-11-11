@@ -88,6 +88,25 @@ pub(crate) fn save_named(
     validate: impl Fn(&[u8]) -> Result<(), String>,
     interrupt: bool,
 ) -> Result<(), String> {
+    save_named_inner(dir, name, raw, limit, validate, interrupt, false)
+}
+/// The start menu calls this only after explicit new-game confirmation.
+pub(crate) fn reset_journey(
+    dir: &Path,
+    raw: &[u8],
+    validate: impl Fn(&[u8]) -> Result<(), String>,
+) -> Result<(), String> {
+    save_named_inner(dir, "journey.chk", raw, 131072, validate, false, true)
+}
+fn save_named_inner(
+    dir: &Path,
+    name: &str,
+    raw: &[u8],
+    limit: u64,
+    validate: impl Fn(&[u8]) -> Result<(), String>,
+    interrupt: bool,
+    reset: bool,
+) -> Result<(), String> {
     check_directory(dir)?;
     if ![NAME, "world-preview.chk", "journey.chk"].contains(&name)
         || limit > if name == "journey.chk" { 131072 } else { 16384 }
@@ -110,8 +129,14 @@ pub(crate) fn save_named(
     };
     let path = dir.join(name);
     match path.symlink_metadata() {
-        Ok(_) => {
-            validate(&read_file(&path, limit)?)?;
+        Ok(st) => {
+            if reset {
+                if !st.is_file() || st.file_type().is_symlink() {
+                    return Err("新遊戲進度槽位不合法".into());
+                }
+            } else {
+                validate(&read_file(&path, limit)?)?;
+            }
         }
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
         Err(e) => return Err(e.to_string()),

@@ -1,5 +1,40 @@
 fn main() {
     let args: Vec<_> = std::env::args().collect();
+    if args.len() == 1
+        || args.get(1).is_some_and(|a| {
+            matches!(
+                a.as_str(),
+                "--play"
+                    | "--assets"
+                    | "--save-dir"
+                    | "--capture-dir"
+                    | "--scale"
+                    | "--seed"
+                    | "--mute"
+            )
+        })
+    {
+        #[cfg(feature = "desktop")]
+        {
+            let mut play = vec!["--start-menu".to_string()];
+            let first = if args.get(1).is_some_and(|a| a == "--play") {
+                2
+            } else {
+                1
+            };
+            play.extend_from_slice(&args[first..]);
+            if let Err(e) = eightsword_remake::journey_desktop::run(&play) {
+                eprintln!("{e}");
+                std::process::exit(1);
+            }
+        }
+        #[cfg(not(feature = "desktop"))]
+        {
+            eprintln!("此建置未包含desktop功能");
+            std::process::exit(2);
+        }
+        return;
+    }
     if args.get(1).is_some_and(|arg| arg == "--journey") {
         #[cfg(feature = "desktop")]
         if let Err(e) = eightsword_remake::journey_desktop::run(&args[2..]) {
@@ -40,7 +75,9 @@ fn main() {
         return;
     }
     if args.len() != 2 || args[1] != "--self-check" {
-        eprintln!("用法：8sword-remake --self-check 或 --battle --assets <素材目錄>。");
+        eprintln!(
+            "用法：8sword-remake [--play] [--assets <素材目錄>] [--save-dir <既有目錄>]；--self-check核對核心。"
+        );
         std::process::exit(2);
     }
     if let Err(err) = verify() {
@@ -73,11 +110,11 @@ fn verify() -> Result<(), String> {
         "原生普通回合：{}場、{}次選隊、{}次攻擊、{}次略過通過。",
         controller.battles, controller.offers, controller.actions, controller.skips
     );
-    println!("--battle 啟動原生普通戰鬥樣本；世界流程與世界存檔待接。");
+    println!("--play 啟動開始選單與原生世界；--battle 保留戰鬥樣本。");
     let (models, cases) =
         eightsword_remake::replay::check_spells(&catalog, include_str!("../spell-reference.tsv"))?;
     println!(
-        "玩家八術：{models}組模型、{cases}份既有原版介面收據通過；--battle --spells啟動施法樣本。世界流程與世界存檔待接。"
+        "玩家八術：{models}組模型、{cases}份既有原版介面收據通過；--battle --spells啟動施法樣本。"
     );
     let (models, cases) =
         eightsword_remake::replay::check_enemy(&catalog, include_str!("../enemy-reference.tsv"))?;
@@ -87,6 +124,6 @@ fn verify() -> Result<(), String> {
     println!(
         "原生戰中檢查點：--save-dir <既有目錄>，F7存檔；--continue由保存的戰鬥續接。舊Go／世界進度不變。"
     );
-    println!("--world-preview開啟八圖資料與手動移動預覽；事件／月結／世界戰鬥與正式世界保存待接。");
+    println!("--world-preview保留八圖預覽；--play可新建或繼續原生旅程，存檔格式v16。");
     Ok(())
 }

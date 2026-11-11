@@ -1,0 +1,41 @@
+{
+  "status": "passed-rust-start-cleanup",
+  "removed": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/native/rust-target",
+      "files": 2103,
+      "bytes": 710469267
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/restore-check",
+      "files": 169,
+      "bytes": 194358036
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/native/gui-first",
+      "files": 71,
+      "bytes": 289067802
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/native/gui-second",
+      "files": 71,
+      "bytes": 288979465
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/ida",
+      "files": 1,
+      "bytes": 1991779
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/ida-r2",
+      "files": 1,
+      "bytes": 1991779
+    }
+  ],
+  "total_files": 2416,
+  "total_bytes": 1486858128,
+  "ownership_findings": [],
+  "scope": "Only this batch rebuild cache,temporary restored runtime,verified archived earlier GUI and IDA working copies. Complete source,media,binary and evidence preserved by SHA. Original DB and other projects untouched; no global Docker prune.",
+  "final_added_links_checked": 80,
+  "project_containers_remaining": 0
+}

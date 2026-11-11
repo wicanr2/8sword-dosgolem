@@ -46,6 +46,7 @@ pub fn digit_box(i: usize) -> Rect {
 pub const SHORE_CHOICES: [Rect; 2] = [Rect(264, 888, 360, 96), Rect(816, 888, 360, 96)];
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Screen {
+    Start { count: u8, confirm: bool },
     Ending,
     World,
     Character,
@@ -64,6 +65,7 @@ pub enum Screen {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Action {
+    StartChoice(u8),
     Key(i32),
     Font(u8),
     Army(usize),
@@ -89,6 +91,13 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
     }
     for (i, r) in FOOTER.iter().enumerate() {
         if r.contains(x, y) {
+            if matches!(screen, Screen::Start { .. }) {
+                return match i {
+                    0 => Some(Action::Key(13)),
+                    1 => Some(Action::Key(27)),
+                    _ => None,
+                };
+            }
             if screen == Screen::Ending {
                 return Some(Action::Key([104, 27, 1073741891, 1073741888][i]));
             }
@@ -129,10 +138,29 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
             return Some(Action::Key(109));
         }
         if Rect(1480, 2, 232, 44).contains(x, y) {
-            return Some(Action::Key(1073741888));
+            return if matches!(screen, Screen::Start { .. }) {
+                None
+            } else {
+                Some(Action::Key(1073741888))
+            };
         }
     }
     match screen {
+        Screen::Start { count, confirm } => {
+            if confirm {
+                for yes in [true, false] {
+                    if crate::start::choice_box(yes).contains(x, y) {
+                        return Some(Action::Choice(yes));
+                    }
+                }
+            } else {
+                for i in 0..count {
+                    if crate::start::row_box(count == 10, usize::from(i)).contains(x, y) {
+                        return Some(Action::StartChoice(i));
+                    }
+                }
+            }
+        }
         Screen::Ending => {}
         Screen::Shore => {
             for (i, r) in SHORE_CHOICES.iter().enumerate() {

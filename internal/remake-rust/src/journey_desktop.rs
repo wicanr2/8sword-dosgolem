@@ -17,6 +17,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let (mut assets, mut capture, mut store): (Option<PathBuf>, Option<PathBuf>, Option<PathBuf>) =
         (None, None, None);
     let (mut continuing, mut mute, mut fixed) = (false, false, false);
+    let mut start_menu = false;
     let mut scale = 2.0 / 3.0;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -36,6 +37,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 }
             }
             "--continue" => continuing = true,
+            "--start-menu" => start_menu = true,
             "--mute" => mute = true,
             "--seed" => {
                 i += 1;
@@ -61,6 +63,25 @@ pub fn run(args: &[String]) -> Result<(), String> {
     if continuing && fixed {
         return Err("冷讀使用保存的seed".into());
     }
+    if start_menu && continuing {
+        return Err("請在開始選單選擇繼續遊戲".into());
+    }
+    if start_menu {
+        if assets.is_none() {
+            assets = Some(
+                std::env::current_exe()
+                    .map_err(|e| e.to_string())?
+                    .parent()
+                    .ok_or("執行檔路徑錯誤")?
+                    .join("pack"),
+            );
+        }
+        if store.is_none() {
+            let p = crate::start::default_save_root()?;
+            std::fs::create_dir_all(&p).map_err(|e| e.to_string())?;
+            store = Some(p);
+        }
+    }
     if !scale.is_finite() || !(0.5..=1.0).contains(&scale) {
         return Err("縮放範圍錯誤".into());
     }
@@ -77,16 +98,38 @@ pub fn run(args: &[String]) -> Result<(), String> {
     crate::treasure::validate_maps(&data)?;
     crate::world_magic::validate_maps(&data)?;
     let catalog = Catalog::builtin()?;
-    let mut journey = if continuing {
-        Journey::load(
-            store.as_deref().ok_or("冷讀需要--save-dir")?,
+    let map = Pack::load(&assets)?;
+    let sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
+    let (mut journey, initial_captures, initial_saves) = if start_menu {
+        let Some(launch) = crate::start_desktop::play(
+            &sdl,
+            &assets,
+            &map.fonts,
             &catalog,
             &data,
+            store.as_deref().ok_or("缺少存檔目錄")?,
+            capture.as_deref(),
+            mute,
+            seed,
         )?
+        else {
+            return Ok(());
+        };
+        continuing = launch.loaded;
+        (launch.journey, launch.captures, launch.saves)
+    } else if continuing {
+        (
+            Journey::load(
+                store.as_deref().ok_or("冷讀需要--save-dir")?,
+                &catalog,
+                &data,
+            )?,
+            0,
+            0,
+        )
     } else {
-        Journey::new(&data, seed)
+        (Journey::new(&data, seed), 0, 0)
     };
-    let map = Pack::load(&assets)?;
     let mut battle_pack = MediaPack::load(&assets)?;
     battle_pack.load_spell_assets(&assets)?;
     battle_pack.load_native_units(&assets)?;
@@ -111,9 +154,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
         .map_err(|_| "器物數量錯誤")?;
     let magic_building =
         crate::media_assets::Image::load(&assets.join("magic-building.rgba"), 1344, 600)?;
-    let sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
     let (mut boundary, mut choose, mut cursor, mut captures, mut saves) =
-        (None, false, 7usize, 0u32, 0u32);
+        (None, false, 7usize, initial_captures, initial_saves);
     if let Some(cp) = &journey.battle {
         cursor = usize::from(cp.view.cursor);
     }
@@ -242,6 +284,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         Action::MagicChoice(v) => ui.selected = v,
                         Action::TeleportChoice(v) => journey.select_teleport(v as u8)?,
                         Action::ShoreChoice(v) => journey.select_shore(v)?,
+                        Action::StartChoice(_) => {}
                     }
                 }
             }
