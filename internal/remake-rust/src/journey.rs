@@ -155,6 +155,7 @@ pub struct Journey<'a> {
     pub resource_notice: Option<crate::resource_spells::Notice>,
     pub survey: crate::survey_spells::Survey,
     pub travel_spell: crate::travel_spells::Travel,
+    pub theft: Option<crate::theft::Theft>,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -180,9 +181,13 @@ impl<'a> Journey<'a> {
             resource_notice: None,
             survey: crate::survey_spells::Survey::default(),
             travel_spell: crate::travel_spells::Travel::default(),
+            theft: None,
         }
     }
     pub fn phase(&self) -> &'static str {
+        if self.theft.is_some() {
+            return "theft";
+        }
         if matches!(
             self.travel_spell.jump,
             crate::jump_spell::Jump::Flying { .. }
@@ -217,7 +222,8 @@ impl<'a> Journey<'a> {
         }
     }
     pub fn walk(&mut self, data: &WorldData, key: u16) -> Result<Option<Boundary>, String> {
-        if self.cue.is_some()
+        if self.theft.is_some()
+            || self.cue.is_some()
             || self.battle.is_some()
             || self.camps.pending.is_some()
             || self.month.pending.is_some()
@@ -237,9 +243,7 @@ impl<'a> Journey<'a> {
         }
         match self.world.walk_encounter(data, key)? {
             WalkResult::Boundary(Boundary::Encounter(c)) => {
-                if self.army[0].count > 0 {
-                    self.cue = Some(c);
-                }
+                self.receive_encounter(c)?;
                 Ok(None)
             }
             WalkResult::Boundary(Boundary::Terrain(tile @ 54..=58)) => {
@@ -361,6 +365,9 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        if let Some(n) = self.theft {
+            n.validate(self)?;
+        }
         self.travel_spell.validate(self)?;
         self.survey.validate(self)?;
         if let Some(n) = &self.resource_notice {
@@ -439,7 +446,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN011".to_vec();
+        let mut b = b"8SJRN012".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -531,6 +538,12 @@ impl<'a> Journey<'a> {
         b.push(flag);
         b.extend(key.to_le_bytes());
         b.extend(self.travel_spell.refused_shop.unwrap_or(0).to_le_bytes());
+        b.push(u8::from(self.theft.is_some()));
+        if let Some(n) = self.theft {
+            b.push(n.cue);
+            b.extend(n.seed_before.to_le_bytes());
+            b.extend(n.gold_before.to_le_bytes());
+        }
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -550,7 +563,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN008"
                 && &b[..8] != b"8SJRN009"
                 && &b[..8] != b"8SJRN010"
-                && &b[..8] != b"8SJRN011")
+                && &b[..8] != b"8SJRN011"
+                && &b[..8] != b"8SJRN012")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -781,6 +795,19 @@ impl<'a> Journey<'a> {
                 travel_spell.refused_shop = Some(key);
             }
         }
+        let theft = if &b[..8] >= b"8SJRN012" {
+            match r.byte()? {
+                0 => None,
+                1 => Some(crate::theft::Theft {
+                    cue: r.byte()?,
+                    seed_before: u32::from_le_bytes(r.take(4)?.try_into().unwrap()),
+                    gold_before: u16::from_le_bytes(r.take(2)?.try_into().unwrap()),
+                }),
+                _ => return Err("遇劫保存旗標錯誤".into()),
+            }
+        } else {
+            None
+        };
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -801,6 +828,7 @@ impl<'a> Journey<'a> {
             resource_notice,
             survey,
             travel_spell,
+            theft,
         };
         s.validate(catalog, data)?;
         Ok(s)

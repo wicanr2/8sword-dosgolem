@@ -25,6 +25,7 @@ pub enum Page {
     Teleport,
     Shore,
     Flight,
+    Theft,
 }
 pub struct Manager {
     pub page: Page,
@@ -48,6 +49,10 @@ impl Default for Manager {
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        if j.theft.is_some() {
+            self.page = Page::Theft;
+            return;
+        }
         if j.phase() == "jump-flight" {
             self.page = Page::Flight;
             return;
@@ -96,6 +101,7 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Theft => Some(Screen::Report),
             Page::Flight => Some(Screen::Report),
             Page::Shore => Some(Screen::Shore),
             Page::Teleport => Some(Screen::Teleport),
@@ -178,6 +184,14 @@ impl Manager {
                 if self.page != Page::Message {
                     self.message.clear();
                 }
+            }
+            return Ok(());
+        }
+        if self.page == Page::Theft {
+            if key == 13 || key == 27 {
+                j.close_theft()?;
+                self.page = Page::World;
+                self.message.clear();
             }
             return Ok(());
         }
@@ -448,6 +462,22 @@ pub fn draw(
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::Theft {
+        let n = j.theft.ok_or("缺少遇劫結果")?;
+        fill(f, [24, 684, 1344, 480], [82, 82, 82]);
+        border(f, [24, 684, 1344, 480], [206, 170, 74]);
+        text(f, font, "遇 見 怪 物", 72, 720, 48, 1248)?;
+        text(
+            f,
+            font,
+            &format!("沒有部隊保護，現金被搶走：{}", n.amount()),
+            72,
+            864,
+            42,
+            1248,
+        )?;
+        return Ok(());
+    }
     if ui.page == Page::ResourceResult {
         let n = j.resource_notice.as_ref().ok_or("缺少法術結果")?;
         let out = n.effect(j, catalog)?;

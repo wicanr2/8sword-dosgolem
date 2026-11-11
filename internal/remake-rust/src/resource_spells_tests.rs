@@ -230,7 +230,7 @@ fn v5_progress_migrates_with_real_bridge_and_charges_while_new_result_is_separat
     j.begin_bridge().unwrap();
     j.finish_bridge(&d, 0x4d00).unwrap();
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 21);
+    raw.truncate(raw.len() - 21 - 1);
     raw[..8].copy_from_slice(b"8SJRN005");
     raw.extend(crate::media_assets::checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);

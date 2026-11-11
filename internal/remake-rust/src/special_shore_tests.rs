@@ -134,7 +134,7 @@ fn refused_shop_rejects_bad_geometry_flags_and_reads_real_v10_shape() {
     let s = *shops().iter().find(|s| s.offer == 1).unwrap();
     let (mut j, key) = at(&d, s.area, Position { x: s.x, y: s.y });
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 10);
+    raw.truncate(raw.len() - 10 - 1);
     raw[..8].copy_from_slice(b"8SJRN010");
     raw.extend(checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);

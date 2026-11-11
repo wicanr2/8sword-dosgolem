@@ -1,0 +1,23 @@
+{
+  "status": "passed-detached-rust-empty-army",
+  "files": 296,
+  "objects": 280,
+  "verification": {
+    "archive": "preserved/rust-empty-army-r1.json",
+    "mounts": ["preserved read-only", "tools/rust-empty-army.py read-only", "report tmpfs"],
+    "network": "none",
+    "uid": 1000,
+    "workplace_mounted": false
+  },
+  "runtime_restore": {
+    "status": "passed-detached-runtime-restore",
+    "files": 139,
+    "binary_sha256": "26ffff0dc2cced3144272c61e331440d4de7e941acd5fde225995bba442a37e6",
+    "binary_mode": "0o755",
+    "uid": 1000,
+    "mounts": ["preserved read-only", "tools read-only", "restored tmpfs"],
+    "network": "none",
+    "workplace_mounted": false
+  },
+  "image": "sc-cht-hdtools:pillow11.3.0-r2"
+}

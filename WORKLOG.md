@@ -3426,3 +3426,13 @@ Rust接水格到原出口、已支援法術店／營地／寶箱的上岸選擇�
 腳本／fixture修正另列：首次15354探針跳過prologue卻少放saved-BP，修正stack後乾淨重跑；兩測試選到未支援shop index，改以catalog offer1選取。合成多類營地圖有未使用／重疊座標，FLOW案例改核實際tile與水源條件，不改production規則。舊合成存檔測試依v11追加word調整截尾，全部122通過。來源審查再補待上岸decode的支援範圍檢查，最終重建／GUI重跑；較早來源、圖與GUI另存本批，不當最終binary證據。
 
 最終建置只掛crate唯讀與native可寫，GUI只掛native與單一腳本，沒有PAM／Go／RAM。原版探針／IDA只留開發證據；SDL dummy只證技術解碼／佇列。完整原始資料、媒體、binary與證據先逐SHA存[永久索引](preserved/rust-special-shore-r1.json)，再作[脫離核對](preserved/rust-special-shore-detached-r1.json)、[清理](preserved/rust-special-shore-cleanup-r1.json)及[完整性](preserved/rust-special-shore-integrity-r1.json)。基準197來源七程式、923核心、535素材及1071美術不改，無新image／Release；本案容器結束，其他專案不動。[核對](preserved/rust-special-shore-audit-r1.json)與[圖](docs/images/rust-special-shore-r1.png)為入口。本輪基準HEAD e6f5b374cb28eadf32ec5ee80ae394c6e770b01d，實作／文件／索引／成果圖一併提交推送origin/main，實際SHA見Git歷程。下一步空軍隊失金、51／65與其餘世界事件，不重跑本鏈。
+
+## 2026-11-11 Rust空軍隊遇敵失金
+
+使用者繼續Rust重製。命中反組譯進實作路由，沿重製技能、規格閘門及文件職責先寫DRAFT／READY。復用兩份已保存的IDA9.4匯出，核兩函式260行bytes，再以dosgolem取286扣金／18六slot原指令案例。沒有重開已驗HD或硬體時序。
+
+Rust共用遭遇接收器在六隊全空時多抽一次、計算並提交失金提示。有部隊仍進原式戰鬥；普通移動、跳躍、出口及各事件返回共用分流。v12保存待提示，讀v1至v11，冷讀與確認不重扣。`EMPTY-ARMY-RESOLVED-20261111`回填兩處較早READY；原版局部受控roll與native固定seed分開記錄，不聲稱全程原版RNG一致。
+
+130測試、self-check及三程序十份SDL擷取通過。真正v11只改原起點及seed，75金／30民兵／兩次造橋保持；由F3解雇、正常遇敵扣37剩38，F7／獨立冷讀同state_hash與畫布。確認後F2空軍隊、F1金額、再次冷讀及正常移動均抽驗。首次編譯缺少新Page的footer分派，補齊後用相同容器命令乾淨重跑；沒有把這次編譯錯誤列為產品缺陷。最終建置只見crate與native；GUI只見native與單一腳本，執行不需Go、PAM或dosgolem。
+
+[永久索引](preserved/rust-empty-army-r1.json)、[核對](preserved/rust-empty-army-audit-r1.json)、[脫離核對](preserved/rust-empty-army-detached-r1.json)、[清理](preserved/rust-empty-army-cleanup-r1.json)、[完整性](preserved/rust-empty-army-integrity-r1.json)與[成果圖](docs/images/rust-empty-army-r1.png)保存本批。完整來源、媒體、binary、v11／v12與GUI證據先存preserved，再刪本批可重建快取。基準197／7／923／535及1071美術保持，沒有新image或Release，其他專案不動。本輪起始HEAD為0dad66b52e6037862d2e7d99b8de1580f56f1a71，實際提交與推送SHA見Git歷程。下一步51／65與其餘世界事件，不重跑已驗失金或HD矩陣。

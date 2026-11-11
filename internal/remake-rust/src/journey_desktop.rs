@@ -128,6 +128,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let notice_before = journey.resource_notice.is_some();
         let survey_before = journey.survey.clone();
         let travel_before = journey.travel_spell.clone();
+        let theft_before = journey.theft;
         let phase_before = journey.phase();
         let area_before = journey.world.area;
         if phase_before == "jump-flight" && now >= jump_at {
@@ -339,6 +340,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             || notice_before != journey.resource_notice.is_some()
             || survey_before != journey.survey
             || travel_before != journey.travel_spell
+            || theft_before != journey.theft
             || area_before != journey.world.area
             || phase_before == "jump-flight" && journey.phase() != "jump-flight")
             && store.is_some()
@@ -580,6 +582,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 Page::MagicShop => ("購買一次", "離開商店", ""),
                 Page::Message => ("返回地圖", "返回地圖", ""),
                 Page::ResourceResult => ("返回地圖", "返回地圖", ""),
+                Page::Theft => ("確認", "返回", ""),
                 Page::Bird => ("返回地圖", "返回地圖", ""),
                 Page::Minimap => ("返回地圖", "返回地圖", ""),
                 Page::Character => (if ui.swords { "返回" } else { "查看八劍" }, "返回", ""),

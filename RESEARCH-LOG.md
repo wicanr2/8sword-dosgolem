@@ -3515,3 +3515,19 @@ GUI初始位置、monthly remaining1、jump Ready／seed均由獨立Rust開發�
 | 1255E..126E3、15354、159C4..15C04、120B0 | 從水格進已支援特殊點，接受／拒絕後分流，已證實 | 031涉水READY，`SPECIAL-SHORE-RESOLVED-20261106` | 待上岸F7／冷讀、寶箱領取、預設店實購與冷讀、出口續行、原式募兵 |
 
 原八圖清點48處鄰水特殊格，包含未接51與不支援商品，沒有以48當完成數。GUI沿真正v10，只指定四組原水岸、boat2與seed1，保留75金／30民兵／兩次造橋／106步。之後僅XTest鍵鼠；七程序15份SDL畫布同讀回，待上岸及拒絕店的冷讀均與已提交檔相同。原始資料、完整素材及binary只在本機保存，不稱自然取得或完整通關。
+
+## Rust空軍隊遇敵失金
+
+2026-11-11，依[031限定規格](docs/spec/031-rust-independent-remake.md#空軍隊遇敵失金限定-conformed)接入。證據見[核對](preserved/rust-empty-army-audit-r1.json)、[永久保存](preserved/README.md#rust空軍隊遇敵失金保存)與[原指令探針](tools/rust-empty-army-reference.go)。沿用已保存的IDA Pro9.4匯出，沒有改DB或推測性改名。輸入PAM.AY SHA-256為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`；PAM.i64為`a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。IDA位址採MZ base10000h；runtime CS0110的IP為IDA線性位址減10000h，DS為1E88。下表位址均為IDA線性位址，DS operand另標。
+
+| 等級 | 原始定位與結論 | 證據與範圍 |
+|---|---|---|
+| 已證實 | sub_1151C的11650..11671掃六個`DS:054A+4*i`兵數word；任一signed正數轉116E0正常戰鬥提示，皆空才失金。 | 18個原指令案例逐一包含六slot；native合法兵數範圍不包含原signed負word。 |
+| 已證實 | 1168B再次呼叫_rand，11691..116A4以`divisor=roll/2730+2`、`loss=gold/divisor`扣金。 | 286個原指令案例涵蓋gold0..30000、roll0..32767及除數邊界；零金／零損失仍抽一次。 |
+| 已證實 | 116CF呼叫sub_1844C；該helper只接受Enter 1C0Dh或Esc 011Bh。 | 兩函式共260行原bytes、operand及xref保持；native沿用兩鍵及滑鼠確認。 |
+| 已證實 | `DS:4555`為「遇 見 怪 物」，`DS:4658`為「沒 有 部 隊 保 護，現 金 被 搶 走 :」。 | 從固定PAM的DS檔案基址加offset解Big5；原暫時怪物插圖不在本批呈現一致聲明。 |
+| 原生保存契約 | v12追加失金提示、cue、第三次抽籤前seed及扣前金額，驗扣後金額、六隊及RNG。 | 待提示自動保存／F7／冷讀／確認不重抽、不重扣；讀v1至v11，WorldState及Go保存保持。 |
+
+dosgolem使用固定923來源與Go1.24.13，執行11650起的實際原指令，明示第三次roll的AX輸入、跳過列明的外部文字呼叫，停於116A8或有部隊的116E0。304案例證明局部掃描與算式，不稱原版完整GUI或全程RNG序列相同。Rust GUI則在動作前固定seed1433990721，正常遇敵第三roll335、扣37金；兩側方法分別記錄，沒有用相同seed數字冒稱相同亂數器。
+
+`EMPTY-ARMY-RESOLVED-20261111`回填031普通遭遇READY及自然出口／跳躍遭遇READY的舊邊界。共用接收器涵蓋普通移動、跳躍／出口尾段、月報、店、營地、寶箱及拒絕上岸返回；飛行中失金先停提示，再沿舊方向續行。130測試通過。GUI從真正v11，只指定原起點及seed，原75金／30民兵／兩次造橋保持，再由原F3正常解雇。三程序十份SDL擷取核失金、三字型、F7／獨立冷讀、確認、空軍隊檢閱、F1金額及後續正常走路。執行期沒有RAM／IP注入；不稱自然取得原進度或完整通關。

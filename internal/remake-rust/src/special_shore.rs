@@ -103,10 +103,10 @@ impl<'a> Journey<'a> {
                 s.world.rng.next15();
             }
             match s.world.reject_shore(&view, key)? {
-                WalkResult::Boundary(Boundary::Encounter(cue)) if s.army[0].count > 0 => {
-                    s.cue = Some(cue)
+                WalkResult::Boundary(Boundary::Encounter(cue)) => {
+                    s.receive_encounter(cue)?;
                 }
-                WalkResult::Committed { .. } | WalkResult::Boundary(Boundary::Encounter(_)) => {}
+                WalkResult::Committed { .. } => {}
                 _ => return Err("拒絕上岸尾段錯誤".into()),
             }
         }

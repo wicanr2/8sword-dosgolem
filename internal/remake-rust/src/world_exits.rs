@@ -77,8 +77,8 @@ pub fn validate(d: &WorldData) -> Result<(), String> {
 impl<'a> Journey<'a> {
     pub(crate) fn run_encounter_tail(&mut self, d: &WorldData) -> Result<(), String> {
         match self.world.encounter_tail(d, false)? {
-            WalkResult::Boundary(Boundary::Encounter(cue)) if self.army[0].count > 0 => {
-                self.cue = Some(cue)
+            WalkResult::Boundary(Boundary::Encounter(cue)) => {
+                self.receive_encounter(cue)?;
             }
             _ => {}
         }

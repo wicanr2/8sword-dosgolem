@@ -276,9 +276,7 @@ impl<'a> Journey<'a> {
         let result = s.world.walk_site(data, tile)?;
         let boundary = match result {
             WalkResult::Boundary(Boundary::Encounter(cue)) => {
-                if s.army[0].count > 0 {
-                    s.cue = Some(cue);
-                }
+                s.receive_encounter(cue)?;
                 None
             }
             WalkResult::Boundary(b) => return Err(format!("營地返回邊界：{b:?}")),

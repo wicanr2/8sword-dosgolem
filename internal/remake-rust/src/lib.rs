@@ -30,6 +30,7 @@ mod sndfile;
 pub mod special_shore;
 pub mod spells;
 pub mod survey_spells;
+pub mod theft;
 pub mod travel_spells;
 pub mod treasure;
 pub mod world;

@@ -1,0 +1,19 @@
+{
+  "status": "passed-scoped-rust-cache-cleanup",
+  "removed_path": "workplace/probe-20261023/graphics-first/battle-r1/rust-empty-army-r1/native/rust-target",
+  "removed_files": 865,
+  "removed_bytes": 375671193,
+  "archive_files": 296,
+  "archive_objects": 280,
+  "compressed_bytes": 31552156,
+  "retained": [
+    "source",
+    "media",
+    "binary",
+    "fixtures",
+    "original evidence",
+    "GUI receipts"
+  ],
+  "new_images": false,
+  "other_projects_touched": false
+}

@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-11 Rust空軍隊失金依[031限定驗收](docs/spec/031-rust-independent-remake.md#空軍隊遇敵失金限定-conformed)完成。共用遭遇入口接原六隊存在、第三roll扣金、原式提示及v12冷讀；非空軍隊保持。130測試、286扣金／18六隊原指令、既有IDA兩函式260行bytes與三程序十SDL擷取通過。真正v11只指定起點／seed，30民兵由正常F3解雇；75扣37成38，待提示F7／冷讀及確認不重扣，確認後可繼續移動。`EMPTY-ARMY-RESOLVED-20261111`回填舊邊界，v12讀v1至v11，WorldState與Go格式保持。[保存／還原](preserved/README.md#rust空軍隊遇敵失金保存)不依賴workplace。下一步51／65與世界事件，不重跑本鏈或已驗HD。建置只見crate／native，GUI只見native與單一腳本；正式197／7／923／535／1071保持，無Release。
+
 2026-11-06 Rust特殊上岸依[031限定驗收](docs/spec/031-rust-independent-remake.md#特殊地點上岸限定-conformed)完成。水格進原出口、已支援法術店／營地／寶箱，拒絕店預設造橋及v11／冷讀已接。122測試、288原指令分派／28查找、13函式1778行bytes及七程序15SDL擷取通過。`WORLD-SHOP-RNG-20261106`補回店／營地進場一次_rand；`SPECIAL-SHORE-RESOLVED-20261106`回填一般涉水舊邊界。GUI初始只指定原水岸／boat2／seed1，原資源與軍隊保持，不稱自然取得。建置只見crate／native，GUI只見native與單一腳本；[永久保存／還原](preserved/README.md#rust特殊地點上岸保存)不依賴workplace。下一步空軍隊失金、51／65與世界事件；未支援商品／非水特殊點組合仍待，不重跑本鏈或已驗HD。正式197／7／923／535／1071與Go格式保持，無Release。
 
 2026-11-05 Rust自然出口與跳躍遭遇依[031限定驗收](docs/spec/031-rust-independent-remake.md#自然出口與跳躍遭遇限定-conformed)完成。13原圖出口、原起點、橋／探索、先切區後月報及v10保存已接。116測試、468原版出口／540受控遭遇prefix、十IDA函式996行bytes與六程序16份SDL擷取通過。`JUMP-RNG-CORRECTION-20261105`推翻舊跳躍RNG／actions保持；10BD0仍呼叫1151C，已補逐格遭遇，提示／戰鬥暫停、返回續跳。舊1445向量只證位移／落地／探索。GUI明示位置、月底步數或待跳seed，不稱自然抵達或完整通關。建置只見crate／native，GUI只見native與單一腳本；[保存／還原](preserved/README.md#rust自然出口與跳躍遭遇保存)及[CONTEXT](CONTEXT.md)為現況。下一步特殊上岸、空軍隊失金與世界事件；不重跑已驗矩陣。正式197／7／923／535／1071保持，無Release。

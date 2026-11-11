@@ -210,9 +210,7 @@ impl<'a> Journey<'a> {
         }
         match s.world.walk_site(d, 59)? {
             WalkResult::Boundary(Boundary::Encounter(cue)) => {
-                if s.army[0].count > 0 {
-                    s.cue = Some(cue);
-                }
+                s.receive_encounter(cue)?;
             }
             WalkResult::Boundary(b) => return Err(format!("寶箱返回邊界：{b:?}")),
             _ => {}

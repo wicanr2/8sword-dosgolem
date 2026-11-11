@@ -243,6 +243,8 @@ READY補充：沿既有ida-rounds.json的原sub_20724／runtime0F67:21B4，2074B
 
 ### 普通遭遇與開發旅程 READY
 
+回填 `EMPTY-ARMY-RESOLVED-20261111`：空軍隊遭遇已依[失金限定驗收](#空軍隊遇敵失金限定-conformed)接回原11650..116DA；非空軍隊的cue／戰鬥／回場保持，不重開已驗矩陣。
+
 證據審查：sub_132E0的13542至136B4為獨立普通敵軍生成；sub_1151C的11713／1177A將先手修飾設0／1，既有Rust回合向量已核對0為玩家先手、1為敵軍先手。拒戰rand/8192等於1才追擊；其餘直接回場。原世界結算依030已證實Go橋接，安全封頂是既有Go工程契約，不稱原版word回繞一致。
 
 - 手動走路仍沿前節。開發旅程在正常遭遇時提交本步位置、步數、探索與兩次規則rand，進確認階段；其餘未知特殊格／月結／上岸保持原未提交邊界。舊world-preview不變。遭遇cue只作識別，不模仿原版臨時替換地圖圖塊的逐相位演出。確認保留兩選項及方向鍵／Enter，拒戰按原追擊商值，不猜補安全逃跑。
@@ -611,6 +613,8 @@ v10追加三bytes跳躍狀態／舊鍵，讀v1至v9。WorldState、正式197來�
 
 ### 自然出口與跳躍遭遇 READY
 
+回填 `EMPTY-ARMY-RESOLVED-20261111`：本節原1168B第三次rand與空軍隊失金的未接邊界，已由[新限定驗收](#空軍隊遇敵失金限定-conformed)閉合；舊原指令prefix仍保留當時的局部停止範圍。
+
 2026-11-05。來源PAM.AY SHA-256為83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0；官方PAM.i64為a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。IDA9.4 MZ線性base10000h，runtime CS0110 IP=IDA線性−10000h，runtime DS1E88的偏移另列。以下為該固定版本已證實的控制流，原版局部探針將另外標示跳過的IO及受控roll，不稱整段原版GUI／RNG序列一致。
 
 | 規則 | 原始定位與實作契約 |
@@ -666,3 +670,29 @@ v11追加拒絕上岸後法術店的方向word，0表示無，讀v1至v10。既�
 v11只追加拒絕店方向word，讀v1至v10，WorldState與Go保存不變。補回店／營地入口一次_rand後，舊跨事件seed敘述依`WORLD-SHOP-RNG-20261106`勘誤；沒有重開既有交易／HD／法術全矩陣。`SPECIAL-SHORE-RESOLVED-20261106`回填一般涉水READY，51／65、不支援商品與非水特殊點組合仍未接。空軍隊失金、七寶物、守軍／八劍、日曆、結局與新遊戲繼續依工作表，不稱完整獨立遊戲。
 
 最終Rust建置只見crate唯讀及native可寫，GUI只見native與單一腳本，沒有PAM／Go／RAM。[資料工具](../../tools/rust-special-shore.py)、[原指令工具](../../tools/rust-special-shore-reference.go)、[核對](../../preserved/rust-special-shore-audit-r1.json)、[永久保存](../../preserved/README.md#rust特殊地點上岸保存)、[圖](../images/rust-special-shore-r1.png)及[來源](../images/rust-special-shore-r1.json)提供重生入口。正式197來源七程式、923核心、535素材及1071美術保持，沒有Release。
+
+## 空軍隊遇敵失金 DRAFT
+
+2026-11-11。接回先前刻意保留的空軍隊遭遇分支。研究沿battle-r1/rust-empty-army-r1，以[資料工具](../../tools/rust-empty-army.py)還原既有IDA9.4原始匯出，再以[原指令探針](../../tools/rust-empty-army-reference.go)重生六隊存在與扣金向量。沿既有原式地圖／選單，不另建戰鬥模式。
+
+### 空軍隊遇敵失金 READY
+
+來源PAM.AY SHA256 83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0，官方PAM.i64 a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac。沿已保存IDA9.4匯出1151C與1844C，保留原名、bytes、operand、xref及匯出來源SHA。位址採IDA MZ base10000h，runtime CS0110 IP=IDA線性−10000h，runtime DS1E88偏移另列。此處不重開硬體時序或已驗非空軍隊戰鬥。
+
+- 已證實：1151C於11650..11671掃六個DS054A+4*i的兵數word，任一正數走原戰鬥確認；全為0走11677..116DA。Rust沿合法緊密六隊資料，空軍隊不再悄悄略過遭遇。負word原值只列原版限制，不映射成巨量Rust兵數。
+- 已證實：1168B再抽一次_rand，11691..116A4以roll/2730+2為除數，損失=目前金錢/除數，再扣除。有效roll0至32767、gold0至30000均取整數商，除數2至14；金錢0或損失0也照樣耗一次並顯示提示。沒有兵種、等級、領導或寶物加成。
+- 已證實：原文DS4555為「遇 見 怪 物」，DS4658為「沒 有 部 隊 保 護，現 金 被 搶 走 :」。116CF呼叫1844C等待Enter或Esc，才重畫返回；1844C的1845A與18472只接受1C0Dh／011Bh。原生沿既有灰底提示及字型、鍵鼠確認，F7／字型／音樂屬既有原生擴充，沒有原版提示內存檔或逐像素暫態怪物聲明。
+- 共用遭遇接收器處理普通步行、受阻／等待、上岸拒絕、營地／商店／寶箱返回、月報確認、出口與跳躍，非空軍隊仍走原cue／戰場。世界步數／操作與前兩次遭遇RNG沿既有核心，只在已成立的空軍隊遭遇追加第三次並扣金一次。跳躍遇劫時暫停，確認後沿舊鍵續跳；關閉提示不抽RNG、不扣步或再次扣金。
+- 原生保存v12追加待確認失金記錄的presence、cue、抽前seed與扣前金錢，保存後可重算並核對扣後金錢、cue／seed、空軍隊及互斥階段。v1至v11讀入預設無提示，WorldState與Go格式保持；資料畸形拒絕，不猜補成任意一次扣款。已扣款與待提示原子保存，讀檔／確認不重扣。
+
+驗收分開兩側：新dosgolem局部原指令驗六隊存在／第三roll邊界／扣金；Rust驗共用路由、月底清軍、途中跳躍暫停、零金／整除、壞保存、v11遷移及存退讀。GUI沿真正v11只指定原起點與固定測試seed，再以原F3解雇至空軍隊，正常Space遇劫、F7／新程序同提示、確認／F2空軍隊及冷讀後正常移動。初始位置與seed明示，不稱自然跨區或完整通關。資料／素材／binary永久存本機，不新發Release。
+
+### 空軍隊遇敵失金限定 CONFORMED
+
+2026-11-11。READY範圍通過。[共用接收器](../../internal/remake-rust/src/theft.rs)、[測試](../../internal/remake-rust/src/theft_tests.rs)及[原指令向量](../../internal/remake-rust/theft-reference.tsv)接回普通與事件返回、上岸拒絕、月報、出口及跳躍的空軍隊分支。130測試通過，含286組損失向量與18組六隊存在判斷、零金／零損失、非空軍隊保持、事件共用路由、月底清軍、跳躍暫停／恢復、壞紀錄及v1至v11遷移。原指令只執行11650..116A8，以明示第三roll替換_rand並略過文字呼叫；不稱原版整段GUI或全流程seed一致。沿用兩份IDA9.4既有匯出共260行bytes逐MZ核對，未宣稱新DB分析。
+
+三個原生程序十份SDL畫布／讀回通過。[例程](../../internal/remake-rust/examples/empty_army_fixture.rs)讀真正v11的75金、30民兵、兩次造橋與105步，只設原40／40起點及seed0x5578f641。正常F3解雇最後一隊，不改金錢／步數／RNG；Space觸發遭遇，原生first1000、cue2、third335，75−37＝38金，105步保持。待提示F7／另一程序冷讀同state_hash及畫布；Enter／滑鼠確認不再抽RNG、扣款或扣步。F2顯示空軍隊、F1為38金，確認後再冷讀可正常走41／40，104步，仍38金。
+
+Noto900／隸書／草書與提示期間忽略Space／改向／F4已抽驗。v12追加失金紀錄，v11真實檔及舊合成形狀均可轉入；待提示與已確認保存各自原子提交，讀檔與確認不重扣。原生F7、字型／音樂與灰底提示沿既有呈現，未提升原版提示內F7或暫態怪物逐像素一致。`EMPTY-ARMY-RESOLVED-20261111`回填前規格，51／65、其餘寶物／守軍／日曆／結局／新遊戲仍待，不稱完整獨立遊戲。
+
+最終Rust建置只掛crate唯讀與native可寫，GUI只見native與單一腳本，看不到PAM／Go／RAM。[核對](../../preserved/rust-empty-army-audit-r1.json)、[永久保存](../../preserved/README.md#rust空軍隊遇敵失金保存)、[成果圖](../images/rust-empty-army-r1.png)、[圖片來源](../images/rust-empty-army-r1.json)及[工具](../../tools/rust-empty-army.py)提供還原入口。WorldState、Go保存及正式197來源七程式、923核心、535素材、1071美術保持，沒有Release。

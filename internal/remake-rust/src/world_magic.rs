@@ -245,9 +245,7 @@ impl<'a> Journey<'a> {
         }
         match s.world.walk_site(&view, 53)? {
             WalkResult::Boundary(Boundary::Encounter(cue)) => {
-                if s.army[0].count > 0 {
-                    s.cue = Some(cue)
-                }
+                s.receive_encounter(cue)?;
             }
             WalkResult::Boundary(b) => return Err(format!("法術商店返回邊界：{b:?}")),
             _ => {}

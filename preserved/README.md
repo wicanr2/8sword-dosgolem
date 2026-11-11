@@ -1428,6 +1428,20 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 
 `freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核122測試、來源、原MZ bytes、SDL及基線；`images`產生[成果圖](../docs/images/rust-special-shore-r1.png)與[來源](../docs/images/rust-special-shore-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-special-shore-r1.json`保存本批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-special-shore-detached-r1.json)、[清理](rust-special-shore-cleanup-r1.json)及[完整性](rust-special-shore-integrity-r1.json)保存收尾。
 
-現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-special-shore-r1/native。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-special-shore.py restore --project /project`，依本批索引核SHA與mode，還原binary及138媒體。再以`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`遊玩，有進度加`--continue`。51／65、不支援商品、非水特殊點組合、空軍隊失金與其餘世界仍待，不稱完整遊戲。
+本批歷史路徑為battle-r1/rust-special-shore-r1/native，現行入口見[Rust空軍隊遇敵失金保存](#rust空軍隊遇敵失金保存)。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-special-shore.py restore --project /project`，依本批索引核SHA與mode，還原該批binary及138媒體。51／65、不支援商品、非水特殊點組合與其餘世界仍待，不稱完整遊戲。
 
 本批507檔／330物件，壓縮44414085 bytes；脫離workplace逐物件核對與139個執行期檔案還原均通過。只清本批1530份可重建Rust快取，共450441801 bytes，約429.6 MiB；完整來源、素材、binary、存檔與證據保持。沒有新image或殘留本案容器，其他專案不動。
+
+## Rust空軍隊遇敵失金保存
+
+[完整索引](rust-empty-army-r1.json)、[核對](rust-empty-army-audit-r1.json)、[規格](../docs/spec/031-rust-independent-remake.md#空軍隊遇敵失金限定-conformed)與[研究](../RESEARCH-LOG.md#rust空軍隊遇敵失金)為現行入口。130測試、286扣金／18六slot原指令案例、兩函式260行IDA bytes、三程序十份SDL擷取通過。完整crate、六工具、138媒體、binary、真正v11及待提示／確認後v12、原版與GUI證據逐SHA存本機`preserved/rust-empty-army-r1/<SHA256>.gz`，不依賴workplace。完整原始資料與runtime不進Git或Release。
+
+[資料工具](../tools/rust-empty-army.py)在sc-cht-hdtools:pillow11.3.0-r2、UID1000、network none執行。`prepare --project /project`還原前批媒體及真正v11，合併已保存的sub_1151C與sub_1844C匯出，保留原始名稱、bytes及位址空間。[原指令探針](../tools/rust-empty-army-reference.go)用Go1.24.13與固定923來源dosgolem唯讀掛載，從11650執行六隊掃描及扣金。第三roll明示受控，外部文字呼叫跳過，不稱原版完整GUI／RNG序列一致。完整掛載、配額及輸入雜湊見保存內execution.json。
+
+最終建置用mm45-rust-desktop:1.99.1-r3、offline／locked，只掛crate唯讀與native可寫。[開發例程](../internal/remake-rust/examples/empty_army_fixture.rs)以`<媒體> <真正v11> <新目錄>`只指定原起點及固定seed，保留原軍隊／資源，再由玩家F3實際解雇。[GUI](../tools/rust-empty-army-gui.py)只掛native及單一腳本，無PAM／Go／RAM；抽驗失金、三字型、F7／獨立冷讀、確認、F2空軍隊、F1金額及繼續移動。只稱受控初始位置後的正常操作。
+
+`freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核130測試、來源／原bytes／SDL及正式基線；`images`產生[成果圖](../docs/images/rust-empty-army-r1.png)與[來源](../docs/images/rust-empty-army-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-empty-army-r1.json`保存本批，`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-empty-army-detached-r1.json)、[清理](rust-empty-army-cleanup-r1.json)與[完整性](rust-empty-army-integrity-r1.json)記錄收尾。
+
+現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-empty-army-r1/native。清空workplace後，在Docker內掛儲存庫至/project可寫，執行`python /project/tools/rust-empty-army.py restore --project /project`，核SHA及mode後還原binary與138媒體。再以`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`遊玩，有進度加`--continue`。v12讀v1至v11；WorldState及Go格式保持。[失金實作](../internal/remake-rust/src/theft.rs)、[測試](../internal/remake-rust/src/theft_tests.rs)及[向量](../internal/remake-rust/theft-reference.tsv)為來源入口。51／65、未支援商品、非水特殊點組合與其餘世界仍待，不稱完整遊戲。
+
+本批296檔／280物件，壓縮31552156 bytes；脫離workplace逐物件核對與139個執行期檔案還原均通過。只刪本批865份可重建Rust快取，共375671193 bytes，約358.3 MiB。完整來源、媒體、binary、存檔及證據保持，沒有新image或殘留本案容器，其他專案不動。

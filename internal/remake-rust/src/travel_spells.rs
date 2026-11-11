@@ -120,9 +120,7 @@ impl<'a> Journey<'a> {
             }
             match s.world.reject_shore(&view, p.key)? {
                 crate::world::WalkResult::Boundary(crate::world::Boundary::Encounter(cue)) => {
-                    if s.army[0].count > 0 {
-                        s.cue = Some(cue);
-                    }
+                    s.receive_encounter(cue)?;
                 }
                 crate::world::WalkResult::Committed { .. } => {}
                 _ => return Err("上岸拒絕返回未知邊界".into()),

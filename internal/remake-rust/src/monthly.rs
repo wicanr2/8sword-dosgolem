@@ -227,9 +227,7 @@ impl<'a> Journey<'a> {
         let r = s.month.pending.take().ok_or("沒有待確認月報")?;
         match s.world.walk_site(d, r.tile)? {
             WalkResult::Boundary(Boundary::Encounter(cue)) => {
-                if s.army[0].count > 0 {
-                    s.cue = Some(cue);
-                }
+                s.receive_encounter(cue)?;
             }
             WalkResult::Boundary(b) => return Err(format!("月報返回邊界：{b:?}")),
             _ => {}

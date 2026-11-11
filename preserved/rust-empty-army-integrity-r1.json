@@ -1,0 +1,18 @@
+{
+  "status": "passed-rust-empty-army-integrity",
+  "crate_files": 95,
+  "frozen_tools": 6,
+  "linked_current_files": 27,
+  "index_positive_control": "README.md -> CONTEXT.md",
+  "resolution_backlinks": "EMPTY-ARMY-RESOLVED-20261111",
+  "python_ast": "passed",
+  "launcher_shell_syntax": "passed",
+  "same_binary_source_media": true,
+  "gui_captures": 10,
+  "root_owned_or_markdown_directories": [],
+  "archive_ownership_uid": 1000,
+  "cache_removed": true,
+  "no_new_images": true,
+  "container_lifecycle": "All task containers used --rm and completed; unrelated project containers retained",
+  "image": "sc-cht-hdtools:pillow11.3.0-r2"
+}
