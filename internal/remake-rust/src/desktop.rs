@@ -32,6 +32,7 @@ pub(crate) struct SpellView {
     pub(crate) cursor: usize,
     pub(crate) animation: Option<(SpellResult, Instant)>,
     pub(crate) side: Side,
+    pub(crate) map_charges: [u16; 8],
 }
 fn menu_label(frame: &mut [u8], font: &Font, value: &str, x: i32, y: i32) -> Result<(), String> {
     let mut pos = x;
@@ -400,7 +401,13 @@ pub(crate) fn compose(
             menu_label(&mut frame, font, &spaced_spell(spell.name()), 240, y + 18)?;
             menu_label(&mut frame, font, &book.charges[i].to_string(), 504, y + 18)?;
             menu_label(&mut frame, font, &spaced_spell(MAP_SPELLS[i]), 816, y + 18)?;
-            menu_label(&mut frame, font, "0", 1104, y + 18)?;
+            menu_label(
+                &mut frame,
+                font,
+                &spell_view.map_charges[i].to_string(),
+                1104,
+                y + 18,
+            )?;
         }
     }
     let status = if let Some(notice) = notice {
@@ -632,6 +639,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         }
     }
     let mut spell_view = SpellView {
+        map_charges: [0; 8],
         cursor: usize::from(view.spell_cursor),
         animation: None,
         side: Side::Player,

@@ -4,7 +4,6 @@ use crate::catalog::{Catalog, UnitId};
 use crate::controller::{Checkpoint, Controller, EnemyConfig, OriginalRng, ViewState};
 use crate::management::{CampState, camp_fingerprint, camps};
 use crate::media_assets::checksum;
-use crate::spells::SpellBook;
 use crate::world::{Boundary, WalkResult, WorldData, WorldState};
 use std::path::Path;
 pub const INITIAL: [u64; 6] = [1, 0, 100, 500, 100, 0];
@@ -319,16 +318,7 @@ impl<'a> Journey<'a> {
         s.generation_seed = s.world.rng.seed;
         s.enemy = generate(s.world.area, s.world.rank, &mut s.world.rng)?;
         s.enemy_first = first;
-        let book = self
-            .army
-            .iter()
-            .any(|s| s.unit.is_some_and(UnitId::is_native_caster))
-            .then_some(SpellBook {
-                enabled: false,
-                charges: [0; 8],
-                stat_26b0: u16::from(s.has_item(3)),
-                stat_26ae: u16::from(s.has_item(2)),
-            });
+        let book = s.journey_spell_book();
         let scenario = if book.is_some() { 10 } else { 8 };
         let controller = Controller::with_enemy_spells(
             catalog,
@@ -377,6 +367,7 @@ impl<'a> Journey<'a> {
             return Err("全滅須明確選擇去向".into());
         }
         let rows = *cp.controller.battle().rows();
+        s.magic.battle_charges = s.battle_charges();
         s.army = compact(rows[0]);
         s.world.rng = cp.rng;
         s.world.font = cp.view.font;
@@ -465,7 +456,8 @@ impl<'a> Journey<'a> {
                 .guards
                 .pending
                 .is_some_and(|p| p.stage == crate::guards::Stage::Battle);
-            if cp.controller.modifiers() != self.item_modifiers()
+            if cp.controller.spell_book().is_some() != self.journey_spell_book().is_some()
+                || cp.controller.modifiers() != self.item_modifiers()
                 || cp
                     .controller
                     .enemy_config()
@@ -474,8 +466,11 @@ impl<'a> Journey<'a> {
                 || cp.view.font != self.world.font
                 || cp.view.music != self.world.music
                 || cp.controller.spell_book().is_some_and(|b| {
-                    b.enabled
-                        || b.charges != [0; 8]
+                    b.enabled != self.magic.book
+                        || b.charges
+                            .iter()
+                            .zip(self.magic.battle_charges)
+                            .any(|(now, before)| *now > before)
                         || b.stat_26b0 != u16::from(self.has_item(3))
                         || b.stat_26ae != u16::from(self.has_item(2))
                 })
@@ -494,7 +489,16 @@ impl<'a> Journey<'a> {
             for side in 0..2 {
                 let before = if side == 0 { self.army } else { self.enemy };
                 for (i, s) in cp.controller.battle().rows()[side].iter().enumerate() {
-                    if s.unit != before[i].unit || side == 0 && s.count > before[i].count {
+                    // A consumed Clone can at most double a native stack (original factor <=20/10).
+                    // Conservative checkpoint bound, not exact clone provenance.
+                    let spent = u32::from(
+                        self.magic.battle_charges[6].saturating_sub(self.battle_charges()[6]),
+                    );
+                    let limit = before[i]
+                        .count
+                        .saturating_mul(1u32 << spent.min(15))
+                        .min(32767);
+                    if s.unit != before[i].unit || side == 0 && s.count > limit {
                         return Err("旅程戰場軍隊綁定錯誤".into());
                     }
                 }
@@ -513,7 +517,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN016".to_vec();
+        let mut b = b"8SJRN017".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -641,6 +645,9 @@ impl<'a> Journey<'a> {
         }
         b.extend(crate::items::fingerprint().to_le_bytes());
         b.push(self.artifacts);
+        for n in self.magic.battle_charges {
+            b.extend(n.to_le_bytes());
+        }
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -665,7 +672,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN013"
                 && &b[..8] != b"8SJRN014"
                 && &b[..8] != b"8SJRN015"
-                && &b[..8] != b"8SJRN016")
+                && &b[..8] != b"8SJRN016"
+                && &b[..8] != b"8SJRN017")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -999,8 +1007,19 @@ impl<'a> Journey<'a> {
         } else {
             0
         };
+        if &b[..8] >= b"8SJRN017" {
+            for n in &mut magic.battle_charges {
+                *n = u16::from_le_bytes(r.take(2)?.try_into().unwrap());
+            }
+        }
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
+        }
+        let mut battle = battle;
+        if &b[..8] < b"8SJRN017" {
+            if let Some(cp) = &mut battle {
+                cp.controller.migrate_empty_journey_book(magic.book)?;
+            }
         }
         let s = Self {
             world,

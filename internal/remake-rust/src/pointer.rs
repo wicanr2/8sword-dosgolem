@@ -63,6 +63,7 @@ pub enum Screen {
     MagicShop,
     Shop { extra: bool, quantity: bool },
     Battle { finished: bool },
+    BattleSpell { target: Option<bool> },
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Action {
@@ -269,6 +270,22 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
                 for i in 0..8 {
                     if offer_box(i).contains(x, y) {
                         return Some(Action::Offer(i));
+                    }
+                }
+            }
+        }
+        Screen::BattleSpell { target } => {
+            if let Some(ally) = target {
+                let side = if ally { 0 } else { 6 };
+                for (slot, [left, top]) in POSITIONS[side..side + 6].iter().enumerate() {
+                    if Rect(*left, *top + 48, 264, 300).contains(x, y) {
+                        return Some(Action::Target(slot + if ally { 7 } else { 1 }));
+                    }
+                }
+            } else {
+                for i in 0..8 {
+                    if Rect(96, 168 + i * 120, 1200, 120).contains(x, y) {
+                        return Some(Action::MagicChoice(i as usize));
                     }
                 }
             }

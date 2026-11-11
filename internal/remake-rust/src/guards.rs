@@ -5,7 +5,6 @@ use crate::{
     controller::{Checkpoint, Controller, EnemyConfig, OriginalRng, ViewState},
     journey::{Journey, army_ok, compact},
     media_assets::checksum,
-    spells::SpellBook,
     world::{Position, WorldData, motion},
 };
 pub const SUFFIX: usize = 1286;
@@ -396,16 +395,7 @@ impl<'a> Journey<'a> {
             s.guards.pending.as_mut().unwrap().stage = Stage::NoArmy;
         } else {
             let enemies = s.guards.rows[usize::from(p.site)];
-            let book = s
-                .army
-                .iter()
-                .any(|r| r.unit.is_some_and(UnitId::is_native_caster))
-                .then_some(SpellBook {
-                    enabled: false,
-                    charges: [0; 8],
-                    stat_26b0: u16::from(s.has_item(3)),
-                    stat_26ae: u16::from(s.has_item(2)),
-                });
+            let book = s.journey_spell_book();
             let scenario = if book.is_some() { 10 } else { 8 };
             s.battle = Some(Checkpoint {
                 controller: Controller::with_enemy_spells(
@@ -485,6 +475,7 @@ impl<'a> Journey<'a> {
             return Err("全滅須選去向".into());
         }
         let rows = *cp.controller.battle().rows();
+        s.magic.battle_charges = s.battle_charges();
         s.army = compact(rows[0]);
         s.guards.rows[usize::from(p.site)] = compact(rows[1]);
         s.world.rng = cp.rng;

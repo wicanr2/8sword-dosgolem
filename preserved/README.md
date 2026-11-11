@@ -1,5 +1,7 @@
 # 必要資料永久保存
 
+現行Rust入口為[旅程戰鬥法術庫存保存](#rust旅程戰鬥法術庫存保存)，包括完整288檔執行期、來源與證據。
+
 ## 原戰場守軍與頭目保存
 
 本批1079檔／502去重物件，壓縮50516002 bytes。本機`preserved/original-battle-guards-r1/`保存302來源候選、初版／最終測試程式、固定輸入、既有與本輪IDA匯出、索引快照、完整PNG／state、四份F7及四個獨立程序Continue。編譯型別、獎勵頁輸入、返回停止點、model空紀錄、混合編成保存標記及IDA編碼失敗均保留。原始資料、完整畫面及二進位不進Git，縮圖與索引沿私人倉庫紀錄，快取排除。
@@ -1656,3 +1658,21 @@ freeze固定crate與工具；[127圖片往返](../internal/remake-rust/examples/
 archive以專案唯讀、preserved可寫執行`archive --project /project --archive /project/preserved --out /project/preserved/rust-display-r1.json`。verify只掛此單一工具與preserved唯讀、輸出目錄可寫，執行`verify --archive /archive --out <新JSON>`，不掛workplace；restore按SHA／mode還原288執行期檔。GUI可用RUST_DISPLAY_CASES=openkb做還原抽驗，另從索引還原明示openkb-fixture，非執行期必需檔。原圖是來源像素配共用Rust介面，不稱DOS整屏或自然通關；[031](../docs/spec/031-rust-independent-remake.md#rust全程畫面切換限定-conformed)為限定範圍。正式197／7／923／535／1071保持。
 
 收尾：2112檔／602去重物件、255402365壓縮bytes永久保存；29份額外還原證據另列脫離核對。全部物件及288執行期SHA／mode還原通過，一個OpenKB程序的三份同狀態中央及全幅SDL完全相同。只清本批4201檔，邏輯4506518382 bytes；排除保留硬連結後可釋放內容2594916297 bytes，約2.42 GiB。擁有權／錯置.md目錄為零，本批容器均退出，其他專案不動。[物件核對](rust-display-verification-r1.json)、[清理計畫](rust-display-cleanup-plan-r1.json)與[收尾核對](rust-display-integrity-r1.json)可回查。
+
+## Rust旅程戰鬥法術庫存保存
+
+[完整索引](rust-combat-inventory-r1.json)、[驗收核對](rust-combat-inventory-audit-r1.json)、[獨立核對](rust-combat-inventory-detached-r1.json)與[清理收據](rust-combat-inventory-cleanup-r1.json)為現行入口。索引指向本機`preserved/rust-combat-inventory-r1/<SHA256>.gz`，保留執行檔、287媒體、完整Rust來源、準備／GUI工具、真正v16、受控v17與冷讀檔、原始SDL全幅、中央擷取及失敗資料。原始遊戲與完整音畫物件只留本機，不入Git或Release；舊Go來源及定稿原圖沿前批保存入口。
+
+以下命令在專案根目錄執行，只會啟動隔離容器。需要既有`sc-cht-hdtools:pillow11.3.0-r2`，完整SHA為`b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831`：
+
+```bash
+timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id -g)" --memory 2g --cpus 2 --pids-limit 128 \
+  --mount "type=bind,src=$PWD,dst=/r" sc-cht-hdtools:pillow11.3.0-r2 \
+  python3 /r/tools/rust-combat-inventory.py restore --project /r
+```
+
+還原至`workplace/probe-20261023/graphics-first/battle-r1/rust-combat-inventory-r1/native`，然後使用`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`。原生檔亦可直接啟動，依旁置`pack/`讀取媒體。v17讀v1至v16；世界、戰中、選敵待選與法術次數均包含在保存內，Go格式不變。原版／HD、AI、規則與三字型工具列保持。
+
+建置與視窗使用`mm45-rust-desktop:1.99.1-r3`，完整SHA為`ac10129fb2667f9be114a19db5b7a3837ba1a4457627420aec3044792715b8e1`。重建命令與掛載範圍見索引中的`execution.json`及`tools/rust-native-player.sh`快照；原PAM及IDA資料庫只供開發證據，不是執行期依賴。六程序21份SDL及兩個選敵冷讀畫布已驗；商店成功訊息為暫時UI，不隨進度保存。Linux音訊使用dummy，只保留既有音畫驗證，沒有新的人耳／手機／跨平台／完整通關聲明。
+
+本批現行索引800檔、555個內容物件；完整288檔執行期另在看不到原工作區的容器逐SHA／mode還原，並執行原生自檢。封存後才產生的獨立收據列於獨立核對檔的`additional_files`，壓縮物件放在同一保存目錄。清理3251個本輪工作檔，按實際inode計可回收約2.63GiB，保留現行執行期及原始全幅／中央畫面；本批沒有殘留Docker容器。

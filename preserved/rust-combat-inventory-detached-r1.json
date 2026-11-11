@@ -1,0 +1,58 @@
+{
+  "status": "passed-rust-combat-inventory-detached",
+  "files": 288,
+  "sha256_and_mode_equal": true,
+  "source_workplace_visible": false,
+  "go_or_dos_visible": false,
+  "archive_files": 800,
+  "archive_objects": 555,
+  "binary_sha256": "4236555afb4c5f4151386b803b0db421f378c3c30afdf301d68d67f5c718e737",
+  "self_check_exit": 0,
+  "self_check_sha256": "9d14dd0b85191d0710359fb47d1b462f900e9c291e0b1d635bfa9a26fe345f29",
+  "archive_index_sha256": "b4c330df75487ea765651ed51e4ea1f919101fb623d88164221dcdcc46ef988b",
+  "container_mounts": [
+    "tools readonly",
+    "preserved readonly",
+    "restore output writable",
+    "self-check native readonly"
+  ],
+  "notes": "No source workplace, game, Go, PAM, IDA database or DOS runtime visible during restore/self-check; all 800 archive entries and 288 runtime files verified.",
+  "additional_files": [
+    {
+      "path": "detached/objects-final.json",
+      "sha256": "b95a5fc6990801a411a7a97b343927de8ecb089df4516c1579d76cd767db6d9a",
+      "bytes": 85,
+      "object": "b95a5fc6990801a411a7a97b343927de8ecb089df4516c1579d76cd767db6d9a.gz",
+      "stored_sha256": "eb74c797db7afd32c98b046f127223a5a35bb28574b82abad96ced55fa7537e9"
+    },
+    {
+      "path": "detached/objects.json",
+      "sha256": "8764c61ce76bec830bdecc36dc67e8b5ab5668d3534569b47fcd16dd4c7e0e24",
+      "bytes": 85,
+      "object": "8764c61ce76bec830bdecc36dc67e8b5ab5668d3534569b47fcd16dd4c7e0e24.gz",
+      "stored_sha256": "6ca1a064e702a3da8c64ff8d78984aea7daa4398451a99c0e15aedfede6818ac"
+    },
+    {
+      "path": "detached/runtime-final.json",
+      "sha256": "4c0ba9881e718a8c8a0e5494ba239acae59ebd71b294d4ad2d40b0af46ed2b1c",
+      "bytes": 208,
+      "object": "4c0ba9881e718a8c8a0e5494ba239acae59ebd71b294d4ad2d40b0af46ed2b1c.gz",
+      "stored_sha256": "d508dcf46ef1620d1e76ae24e12269c8a76fd07f93ea975f135ef796e351590e"
+    },
+    {
+      "path": "detached/runtime.json",
+      "sha256": "8a948ed40af13d11568c6a7c7f6cb9295b8be396614254f51c8861297985fc0c",
+      "bytes": 208,
+      "object": "8a948ed40af13d11568c6a7c7f6cb9295b8be396614254f51c8861297985fc0c.gz",
+      "stored_sha256": "86d42d045bc70cdb8155580777cf1f0e0d912e54693da413fd1abb46d87450f2"
+    },
+    {
+      "path": "detached/self-check-final.log",
+      "sha256": "9d14dd0b85191d0710359fb47d1b462f900e9c291e0b1d635bfa9a26fe345f29",
+      "bytes": 782,
+      "object": "9d14dd0b85191d0710359fb47d1b462f900e9c291e0b1d635bfa9a26fe345f29.gz",
+      "stored_sha256": "4c31e5f395b19d52c3325cc6fa21986eeeb1745ca63f4dcb4bc326dfeefbb6d1"
+    }
+  ],
+  "additional_objects": 5
+}

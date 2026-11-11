@@ -1,0 +1,21 @@
+{
+  "status": "passed-rust-combat-inventory-cleanup",
+  "files": 3251,
+  "logical_bytes": 3164471810,
+  "reclaimable_allocated_bytes": 2823311360,
+  "removed": [
+    "native/rust-target",
+    "native/failed-gui-route",
+    "native/gui-before-diagnostic-text",
+    "detached/runtime",
+    "detached/final-runtime"
+  ],
+  "additional": "duplicate GUI readbacks; full frames and central frame originals retained",
+  "runtime_files_retained": 288,
+  "archive_files": 800,
+  "archive_objects": 555,
+  "compressed_bytes": 254547024,
+  "rights": "Original-derived full media and binary local only; no Release",
+  "additional_detached_files": 5,
+  "project_containers_after_work": []
+}

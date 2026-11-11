@@ -198,3 +198,6 @@ mod tests {
 
 #[cfg(test)]
 mod rules_tests;
+
+#[cfg(test)]
+mod combat_inventory_tests;

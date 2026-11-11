@@ -4,7 +4,7 @@ use crate::journey::Journey;
 use crate::media_assets::checksum;
 use crate::world::{Boundary, Position, WalkResult, WorldData};
 pub fn supported(offer: u8) -> bool {
-    matches!(offer, 0..=7)
+    offer < 16
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Shop {
@@ -59,6 +59,19 @@ pub fn names() -> Vec<(&'static str, &'static str, u16)> {
         })
         .collect()
 }
+// PAM DS2A98, sub_1512C: price at DS2A88 + 2*offer for offer 8..15.
+pub const BATTLE_PRICES: [u16; 8] = [20, 40, 60, 100, 200, 300, 500, 5000];
+pub fn offer_data(offer: usize) -> Result<(&'static str, u16), String> {
+    if offer >= 16 {
+        return Err("法術商品超界".into());
+    }
+    let row = names()[offer % 8];
+    Ok(if offer < 8 {
+        (row.0, row.2)
+    } else {
+        (row.1, BATTLE_PRICES[offer - 8])
+    })
+}
 pub fn fingerprint() -> u64 {
     checksum(
         [
@@ -100,6 +113,7 @@ pub struct PendingShop {
 pub struct Magic {
     pub book: bool,
     pub charges: [u16; 8],
+    pub battle_charges: [u16; 8],
     pub selected: u8,
     pub shop: Option<PendingShop>,
     pub direction: bool,
@@ -113,9 +127,11 @@ impl Magic {
         self.view(d)?;
         if self.selected >= 8
             || (!self.book
-                && (self.charges != [0; 8] || self.direction || !self.bridges.is_empty()))
-            || self.charges.iter().map(|n| u64::from(*n)).sum::<u64>() + u64::from(self.direction)
-                > j.resources[5]
+                && (self.charges != [0; 8]
+                    || self.battle_charges != [0; 8]
+                    || self.direction
+                    || !self.bridges.is_empty()))
+            || j.spell_inventory_used() + u64::from(self.direction) > j.resources[5]
             || self.shop.is_some() && self.direction
         {
             return Err("地圖法術資料超出已接範圍".into());
@@ -150,6 +166,33 @@ impl Magic {
     }
 }
 impl<'a> Journey<'a> {
+    pub fn battle_charges(&self) -> [u16; 8] {
+        self.battle
+            .as_ref()
+            .and_then(|cp| cp.controller.spell_book())
+            .map(|b| b.charges)
+            .unwrap_or(self.magic.battle_charges)
+    }
+    pub fn spell_inventory_used(&self) -> u64 {
+        self.magic
+            .charges
+            .into_iter()
+            .chain(self.battle_charges())
+            .map(u64::from)
+            .sum()
+    }
+    pub(crate) fn journey_spell_book(&self) -> Option<crate::spells::SpellBook> {
+        self.army
+            .iter()
+            .any(|r| r.unit.is_some_and(crate::catalog::UnitId::is_native_caster))
+            .then_some(crate::spells::SpellBook {
+                enabled: self.magic.book,
+                charges: self.magic.battle_charges,
+                stat_26b0: u16::from(self.has_item(3)),
+                stat_26ae: u16::from(self.has_item(2)),
+            })
+    }
+
     pub fn search_book(&mut self) -> Result<bool, String> {
         Ok(self.search_item()?.is_some())
     }
@@ -186,28 +229,25 @@ impl<'a> Journey<'a> {
     }
     pub fn buy_world_spell(&mut self) -> Result<(), String> {
         let index = self.magic_offer()?;
-        let price = u64::from(names()[index].2);
+        let price = u64::from(offer_data(index)?.1);
         if !self.magic.book {
             return Err("你不會使用法術".into());
         }
-        if self
-            .magic
-            .charges
-            .iter()
-            .map(|n| u64::from(*n))
-            .sum::<u64>()
-            >= self.resources[5]
-        {
+        if self.spell_inventory_used() >= self.resources[5] {
             return Err("法術容量已滿".into());
         }
         if self.resources[3] < price {
             return Err("金錢不足".into());
         }
-        let count = self.magic.charges[index]
-            .checked_add(1)
-            .ok_or("法術次數超界")?;
+        let charges = if index < 8 {
+            &mut self.magic.charges
+        } else {
+            &mut self.magic.battle_charges
+        };
+        let slot = index % 8;
+        let count = charges[slot].checked_add(1).ok_or("法術次數超界")?;
         self.resources[3] -= price;
-        self.magic.charges[index] = count;
+        charges[slot] = count;
         Ok(())
     }
     pub fn close_magic_shop(&mut self, c: &Catalog, d: &WorldData) -> Result<(), String> {

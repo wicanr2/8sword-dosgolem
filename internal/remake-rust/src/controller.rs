@@ -476,6 +476,15 @@ impl<'a> Controller<'a> {
     pub fn spell_book(&self) -> Option<&SpellBook> {
         self.book.as_ref()
     }
+    pub(crate) fn migrate_empty_journey_book(&mut self, enabled: bool) -> Result<(), String> {
+        if let Some(book) = &mut self.book {
+            if book.enabled || book.charges != [0; 8] {
+                return Err("舊旅程法術資料錯誤".into());
+            }
+            book.enabled = enabled;
+        }
+        Ok(())
+    }
     pub fn selected_spell(&self) -> Option<Spell> {
         self.selected_spell
     }

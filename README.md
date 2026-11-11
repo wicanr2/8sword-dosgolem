@@ -6,7 +6,7 @@
 
 本專案保留Go版dosgolem原版／HD播放器，並開發不依賴DOS EXE的Rust獨立版。Go入口沿原版操作，提供HD圖像、音樂、三種中文字型及可選AI／規則；Rust直接處理世界、戰鬥、輸入、音畫與存檔，目前已接開始選單、新遊戲、續玩及結局。
 
-既有HD及已接功能採代表抽樣。戰場與部隊管理保留原版配置、選單及操作；Rust的完整開場、新建、正常移動、軍隊檢閱、存檔與獨立程序續玩已有原生視窗證據。原行程條、全程海報、原圖／HD、Rust策略AI與規則工具列已接；特殊地點邊界與正式交付仍待。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
+既有HD及已接功能採代表抽樣。戰場與部隊管理保留原版配置、選單及操作；Rust的完整開場、新建、正常移動、軍隊檢閱、存檔與獨立程序續玩已有原生視窗證據。原行程條、全程海報、原圖／HD、Rust策略AI與規則工具列、法術店至戰場的庫存已接；特殊地點邊界與正式交付仍待。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
 
 先前的獨立卡片戰鬥介面已撤回。[原版操作開發入口](tools/original-player.sh)以Go提供兵力、管理、招募及保存，保留同一套原版HD戰場。未準備來源畫布的直接建置仍在讀寫進度前拒絕。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
 
@@ -18,9 +18,17 @@
 
 Rust已接「繼續上次進度」、「開始新遊戲」、「音樂欣賞」。新遊戲先確認，取消保留舊進度；確認後從原起點以500金、30民兵開始。音樂欣賞可播放十首已定稿HD曲目，工具列可切換Noto900、隸書與草書。鍵盤與滑鼠共用選取、確認操作。
 
-完成[現行資料包還原](preserved/README.md#rust全程畫面切換保存)後，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔亦可直接執行，預設讀取旁邊的`pack/`，存檔放在`$XDG_DATA_HOME/8sword-remake/`或`$HOME/.local/share/8sword-remake/`。目前只驗Linux，需SDL2／libsndfile平台函式庫；不需dosgolem、Go或DOS EXE。
+完成[現行資料包還原](preserved/README.md#rust旅程戰鬥法術庫存保存)後，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔亦可直接執行，預設讀取旁邊的`pack/`，存檔放在`$XDG_DATA_HOME/8sword-remake/`或`$HOME/.local/share/8sword-remake/`。目前只驗Linux，需SDL2／libsndfile平台函式庫；不需dosgolem、Go或DOS EXE。
 
 上圖來自Linux原生視窗。新遊戲、取消、正常移動／F2／F7、獨立程序續玩、既有v16冷讀與損壞進度重建已抽驗，五程序17份SDL讀回與167測試通過。主頁底板沿既有原生配色簡化，字串與位置保留原版；完整開場見下方。見[驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)、[核對](preserved/rust-start-audit-r1.json)與[圖片來源](docs/images/rust-start-r1.json)。
+
+## Rust法術購買與戰鬥
+
+![Rust購買火球、兩欄次數、戰中選術冷讀與複製增兵回場](docs/images/rust-combat-inventory-r1.png)
+
+46間原法術店提供八種地圖術與八種戰鬥術，共用持有容量。F4可查看兩欄次數；戰鬥由原施法兵種在後排施法，支援鍵盤與滑鼠選術、選敵或我方目標。選敵時Space退還次數，Esc撤退不退還；消耗與複製增兵會帶回世界並保存。
+
+上圖從真正舊檔建立明示位置及編成：搜尋原竹簡、移至火球店旁，使用30民兵與2名原施法兵。之後正常購買兩次、走路遇敵、施法及撤退，冷讀剩一次；守軍另明示測試法術次數，複製後60民兵回場。這是代表路徑抽驗，不代表自然取得或完整通關。見[限定驗收](docs/spec/031-rust-independent-remake.md#旅程戰鬥法術庫存限定-conformed)、[核對](preserved/rust-combat-inventory-audit-r1.json)與[圖片來源](docs/images/rust-combat-inventory-r1.json)。
 
 ## Rust全程原圖／HD切換
 

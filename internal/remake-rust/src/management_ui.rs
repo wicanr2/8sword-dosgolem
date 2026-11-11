@@ -692,7 +692,7 @@ pub fn draw(
         for (i, (map, battle, _)) in crate::world_magic::names().iter().enumerate() {
             let y = 186 + i as i32 * 120;
             field(f, font, battle, 240, y, 264)?;
-            field(f, font, "0", 504, y, 96)?;
+            field(f, font, &j.battle_charges()[i].to_string(), 504, y, 96)?;
             if ui.selected == i {
                 fill(f, [792, y, 312, 84], [119, 44, 41]);
             }
@@ -705,14 +705,14 @@ pub fn draw(
         sprite(f, magic_building, 24, 120);
         fill(f, [24, 720, 1344, 450], [82, 82, 82]);
         let offer = j.magic_offer()?;
-        let data = crate::world_magic::names();
+        let (name, price) = crate::world_magic::offer_data(offer)?;
         let lines = [
-            format!("法術 {}", data[offer].0),
-            format!("價格 {}", data[offer].2),
+            format!("法術 {}", name),
+            format!("價格 {}", price),
             format!(
                 "金錢 {}  次數 {}/{}",
                 j.resources[3],
-                j.magic.charges.iter().map(|n| u64::from(*n)).sum::<u64>(),
+                j.spell_inventory_used(),
                 j.resources[5]
             ),
             if ui.message.is_empty() {

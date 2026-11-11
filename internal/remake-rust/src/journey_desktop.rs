@@ -231,7 +231,12 @@ pub fn run(args: &[String]) -> Result<(), String> {
     ui.sync(&journey);
     let mut pointer = Pointer::default();
     let mut spell_view = SpellView {
-        cursor: 0,
+        map_charges: [0; 8],
+        cursor: journey
+            .battle
+            .as_ref()
+            .map(|cp| usize::from(cp.view.spell_cursor))
+            .unwrap_or(0),
         animation: None,
         side: Side::Enemy,
     };
@@ -305,8 +310,17 @@ pub fn run(args: &[String]) -> Result<(), String> {
 
             let screen = ui.screen().unwrap_or_else(|| {
                 if let Some(c) = &journey.battle {
-                    Screen::Battle {
-                        finished: c.controller.battle().outcome().is_some(),
+                    if c.controller.is_caster() && c.controller.battle().outcome().is_none() {
+                        Screen::BattleSpell {
+                            target: c
+                                .controller
+                                .selected_spell()
+                                .map(|v| v == crate::spells::Spell::Clone),
+                        }
+                    } else {
+                        Screen::Battle {
+                            finished: c.controller.battle().outcome().is_some(),
+                        }
                     }
                 } else if journey.cue.is_some() {
                     Screen::Prompt
@@ -330,12 +344,30 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         Action::Target(node) => {
                             if now >= ready
                                 && journey.battle.as_ref().is_some_and(|c| {
-                                    c.controller
-                                        .current()
-                                        .is_some_and(|a| a.side == Side::Player)
-                                        && c.controller
-                                            .legal_targets()
-                                            .is_ok_and(|t| t.contains(&(node - 1)))
+                                    if c.controller.is_caster()
+                                        && c.controller.selected_spell().is_some()
+                                    {
+                                        let ally = c.controller.selected_spell()
+                                            == Some(crate::spells::Spell::Clone);
+                                        let slot = if ally {
+                                            node.checked_sub(7)
+                                        } else {
+                                            node.checked_sub(1)
+                                        };
+                                        slot.is_some_and(|v| {
+                                            v < 6
+                                                && c.controller
+                                                    .spell_targets()
+                                                    .is_ok_and(|t| t.contains(&v))
+                                        })
+                                    } else {
+                                        c.controller
+                                            .current()
+                                            .is_some_and(|a| a.side == Side::Player)
+                                            && c.controller
+                                                .legal_targets()
+                                                .is_ok_and(|t| node >= 1 && t.contains(&(node - 1)))
+                                    }
                                 })
                             {
                                 cursor = node;
@@ -354,7 +386,17 @@ pub fn run(args: &[String]) -> Result<(), String> {
                         }
                         Action::Extra(v) => ui.extra(&mut journey, &catalog, v),
                         Action::TreasureChoice(v) => journey.select_treasure(v)?,
-                        Action::MagicChoice(v) => ui.selected = v,
+                        Action::MagicChoice(v) => {
+                            if journey
+                                .battle
+                                .as_ref()
+                                .is_some_and(|cp| cp.controller.is_caster())
+                            {
+                                spell_view.cursor = v;
+                            } else {
+                                ui.selected = v;
+                            }
+                        }
                         Action::TeleportChoice(v) => journey.select_teleport(v as u8)?,
                         Action::ShoreChoice(v) => journey.select_shore(v)?,
                         Action::StartChoice(_) => {}
@@ -413,6 +455,24 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     continue;
                 }
                 if now < ready {
+                    continue;
+                }
+                if cp.controller.is_caster()
+                    && cp
+                        .controller
+                        .current()
+                        .is_some_and(|a| a.side == Side::Player)
+                {
+                    if let Some(result) =
+                        battle_spell_key(cp, key, &mut spell_view.cursor, &mut cursor)?
+                    {
+                        spell_view.animation = Some((result, now));
+                        spell_view.side = Side::Player;
+                        ready = now + Duration::from_millis(480);
+                    }
+                    if cp.controller.current().is_none() {
+                        seen = None;
+                    }
                     continue;
                 }
                 if key == 27 {
@@ -488,6 +548,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             cp.view.font = journey.world.font;
             cp.view.music = journey.world.music;
             cp.view.cursor = cursor as u8;
+            cp.view.spell_cursor = spell_view.cursor as u8;
         }
         if magic_before.direction && !journey.magic.direction
             || !notice_before && journey.resource_notice.is_some()
@@ -551,6 +612,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 }
             }
             cp.view.cursor = cursor as u8;
+            cp.view.spell_cursor = spell_view.cursor as u8;
         }
         let active = journey.battle.is_some();
         if active != audio_battle {
@@ -593,6 +655,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         )?;
         let font = &map.fonts[usize::from(journey.world.font)];
         let effective_map = journey.magic.view(&data)?;
+        spell_view.map_charges = journey.magic.charges;
         let mut frame = if let Some(cp) = &journey.battle {
             desktop::compose(
                 &battle_pack,
@@ -962,6 +1025,21 @@ pub fn run(args: &[String]) -> Result<(), String> {
             journey.magic.shop
         );
         let status = format!(
+            "{status}battle_charges\t{:?}\nspell_cursor\t{}\nspell_phase\t{}\n",
+            journey.battle_charges(),
+            spell_view.cursor,
+            journey
+                .battle
+                .as_ref()
+                .filter(|cp| cp.controller.is_caster())
+                .map(|cp| if cp.controller.selected_spell().is_some() {
+                    "target"
+                } else {
+                    "menu"
+                })
+                .unwrap_or("ordinary")
+        );
+        let status = format!(
             "{status}resource_spell\t{:?}\n",
             journey.resource_notice.as_ref().map(|n| n.spell)
         );
@@ -1024,4 +1102,72 @@ pub fn run(args: &[String]) -> Result<(), String> {
         std::thread::sleep(Duration::from_millis(30));
     }
     Ok(())
+}
+
+/// Journey input bridge; effects, charges and refunds remain in the verified Controller.
+pub(crate) fn battle_spell_key(
+    cp: &mut crate::controller::Checkpoint<'_>,
+    key: i32,
+    spell_cursor: &mut usize,
+    cursor: &mut usize,
+) -> Result<Option<crate::spells::SpellResult>, String> {
+    use crate::{controller::ControlError, spells::Spell};
+    if !cp.controller.is_caster() {
+        return Err("目前不是施法行動".into());
+    }
+    let c = &mut cp.controller;
+    if c.selected_spell().is_none() {
+        match key {
+            1073741906 => *spell_cursor = (*spell_cursor + 7) % 8,
+            1073741905 => *spell_cursor = (*spell_cursor + 1) % 8,
+            13 => match c.select_spell(Spell::ALL[*spell_cursor]) {
+                Ok(result) => return Ok(result),
+                Err(ControlError::NoCharge | ControlError::UnsupportedArmy) => {}
+                Err(e) => return Err(format!("{e:?}")),
+            },
+            32 => {
+                c.skip().map_err(|e| format!("{e:?}"))?;
+            }
+            27 => {
+                c.retreat().map_err(|e| format!("{e:?}"))?;
+            }
+            _ => {}
+        }
+    } else {
+        match key {
+            1073741906 | 1073741905 | 1073741904 | 1073741903 => {
+                let direction = match key {
+                    1073741906 => 0,
+                    1073741905 => 1,
+                    1073741904 => 2,
+                    _ => 3,
+                };
+                let next = NAVIGATION[*cursor][direction];
+                if next != 0 {
+                    *cursor = usize::from(next);
+                }
+            }
+            13 => {
+                let ally = c.selected_spell() == Some(Spell::Clone);
+                let target = if ally {
+                    cursor.checked_sub(7)
+                } else {
+                    cursor.checked_sub(1)
+                };
+                if let Some(target) = target.filter(|v| *v < 6) {
+                    match c.target_spell(target, &mut cp.rng) {
+                        Ok(result) => return Ok(Some(result)),
+                        Err(ControlError::InvalidTarget) => {}
+                        Err(e) => return Err(format!("{e:?}")),
+                    }
+                }
+            }
+            32 | 27 => {
+                c.cancel_spell_target(key == 27)
+                    .map_err(|e| format!("{e:?}"))?;
+            }
+            _ => {}
+        }
+    }
+    Ok(None)
 }

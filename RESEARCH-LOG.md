@@ -3695,3 +3695,12 @@ OpenKB參考圖來自artwork既有保存。`/home/anr2/openkb/openkb-code/src/li
 Rust在載入期驗整組原圖，繪製前交換已預載像素，沒有原圖再疊HD。199測試、127圖往返、唯讀重建287檔、七GUI35份全幅及兩預設視窗通過。世界／人物／軍隊／營地／普通與OpenKB戰場有六對同狀態證據；開場／結局不同時刻的畫面分開記錄，未混稱同幀。前版HD世界同狀態逐像素保持。
 
 原圖使用Rust共用選單與可選字型，不稱整個DOS UI／原動畫逐像素還原。display.json獨立於玩法，舊結局hd欄在沒有新偏好／CLI時仍恢復；有形態或hash錯誤的素材組拒讀。[031](docs/spec/031-rust-independent-remake.md#rust全程畫面切換限定-conformed)、[核對](preserved/rust-display-audit-r1.json)及[永久保存](preserved/README.md#rust全程畫面切換保存)為入口。
+
+
+### 2026-11-11：旅程法術店與戰鬥庫存
+
+RUST-COMBAT-INVENTORY-RESOLVED-20261111。重用已保存IDA Pro9.4三函式sub_1512C／15354／154B0，對固定PAM逐條驗381行MZ重定位bytes。MZ線性base10000h、CS0110 IP=linear−10000h與DS1E88分列；檔案偏移保留。PAM與DB雜湊見[031](docs/spec/031-rust-independent-remake.md#旅程戰鬥法術庫存限定-conformed)及[核對](preserved/rust-combat-inventory-audit-r1.json)。
+
+已證實：1514A..15163按offer是否小於8分價格表；151A8..151B9以DS2A88+2*offer扣金、DS2A98+2*offer加次，故商品8至15取DS2A98八價格並寫DS2AA8八次數。154C6..154E9合計DS2AA8與DS2B28，共用容量DS04FC。46店是23地圖店及23戰鬥店。沒有新原版執行、函式改名或原DB修改。
+
+旅程先前只給施法兵disabled空書，視窗也未接玩家施法鍵；本輪接購買／兩欄／雙入口戰鬥／戰後／v17保存，效果仍由既有Controller處理。六程序21張SDL為明示初始位置、編成及法術書搜尋的正常後續操作；兩個選敵待選冷讀中央完全相同。商店成功訊息不持久化，邏輯狀態相同而畫面不同，不稱整屏相同。非水特殊點組合保留停止線，尚非完整通關。

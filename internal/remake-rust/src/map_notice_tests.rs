@@ -147,7 +147,7 @@ fn v12_migration_bad_notice_and_bad_text_fail_without_guessing() {
     let c = Catalog::builtin().unwrap();
     let mut j = before(&d, 0);
     let mut old = j.encode(&c, &d).unwrap();
-    old.truncate(old.len() - 9 - crate::guards::SUFFIX - crate::items::SUFFIX);
+    old.truncate(old.len() - 16 - 9 - crate::guards::SUFFIX - crate::items::SUFFIX);
     old[..8].copy_from_slice(b"8SJRN012");
     old.extend(checksum(&old).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &old).unwrap(), j);
