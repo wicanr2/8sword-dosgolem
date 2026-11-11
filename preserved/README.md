@@ -1474,7 +1474,7 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 
 `freeze --project /project`固定來源；`audit --project /project --out <新JSON>`核146測試、來源／原bytes／表與SDL，images產生[成果圖](../docs/images/rust-guards-r1.png)與[來源](../docs/images/rust-guards-r1.json)。`archive --project /project --archive /project/preserved --out /project/preserved/rust-guards-r1.json`保存本批；`verify --archive /archive --out <新JSON>`只掛preserved唯讀、單一工具及tmpfs逐物件核對。[脫離核對](rust-guards-detached-r1.json)、[清理](rust-guards-cleanup-r1.json)及[完整性](rust-guards-integrity-r1.json)為收尾收據。
 
-現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-guards-r1/native。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-guards.py restore --project /project`，依索引核SHA及mode，還原binary與139媒體。再用`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`遊玩，有進度加`--continue`。v14讀v1至v13，WorldState與Go格式不變。[實作](../internal/remake-rust/src/guards.rs)、[測試](../internal/remake-rust/src/guards_tests.rs)與[原指令向量](../internal/remake-rust/guard-reference.tsv)為來源入口。最終守軍／結局、NPC增兵／日曆、其餘寶物與新遊戲仍待，不稱完整遊戲。
+本批歷史資料路徑為battle-r1/rust-guards-r1/native。現行啟動器與完整資料包改依[最終戰與結局保存](#rust最終戰與結局保存)。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-guards.py restore --project /project`，依索引核SHA及mode，還原binary與139媒體。本段命令只還原歷史v14；要執行現行程式，改依下列最終戰與結局保存入口。v14讀v1至v13，WorldState與Go格式不變。[實作](../internal/remake-rust/src/guards.rs)、[測試](../internal/remake-rust/src/guards_tests.rs)與[原指令向量](../internal/remake-rust/guard-reference.tsv)為來源入口。最終守軍／結局、NPC增兵／日曆、其餘寶物與新遊戲仍待，不稱完整遊戲。
 
 本批357檔／320物件，壓縮49866758 bytes。脫離workplace逐物件核對與140個執行期檔案還原通過。只刪本批1707份可重建Rust快取，共562165369 bytes，約536.1 MiB。完整來源、素材、binary、存檔與證據保持，沒有新image或殘留本案容器，其他專案不動。
 
@@ -1496,3 +1496,19 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 所有容器沿Docker-only規則設外層逾時、--rm、--network none、UID1000、CPU／記憶體／pids上限；工具不替代Docker隔離。現行Rust執行入口仍是[守軍與頭目](#rust守軍與頭目保存)，v14及其binary未改。
 
 本批827檔／421物件，壓縮25768595 bytes。脫離workplace核對及827檔完整還原通過，逐SHA確認後刪除161741805 bytes的還原驗證複本。原始擷取、來源與永久物件保持，Go快取隨一次性容器刪除，本案無殘留容器或新增image。
+
+## Rust最終戰與結局保存
+
+[完整索引](rust-ending-r1.json)、[核對](rust-ending-audit-r1.json)、[脫離核對](rust-ending-detached-r1.json)與[清理](rust-ending-cleanup-r1.json)保存本批完整來源、原始材質／命令包、binary、v14／v15、原版匯出及五程序17份SDL證據。本機物件在`preserved/rust-ending-r1/`，不因刪workplace遺失；原版衍生資料不進公開發行包，沒有Release。
+
+現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-ending-r1/native，執行僅需binary與141份媒體及平台SDL2／libsndfile。清空workplace後，在Pillow11.3.0-r2 Docker中將儲存庫掛/project可寫，以UID1000執行`python /project/tools/rust-ending.py restore --project /project`，依SHA／mode還原142份執行期檔案。再用`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`，既有進度加`--continue`。正常戰鬥／世界操作保持，最終勝利直接播結局；結局H／工具列切原版HD，F8／工具列切三字型，M／工具列切音樂，F7保存，Esc／離開結束。v15讀v1至v14，已播完的進度冷讀直接結束，沒有重打或重獎。
+
+[資料工具](../tools/rust-ending.py)各動作均在Docker，沿UID1000、--rm、--network none、逾時／CPU／記憶體／pids界限。prepare還原139既有媒體與真正v14，並在既有研究區產生隔離Go擷取器；[開發匯出器](../tools/rust-ending-export.go)只在開發容器讀原版，以正式923核心與535素材匯出8SEND003命令包。將其ending.bin與已批准music-mend-batch-r1.ogg加入native/pack，按031核對固定FNV。資料含原始遮罩、typed繪圖、RGBA16材質與三字型alpha，不含CPU或RGB電影；Rust不呼叫Go。
+
+最終建置以mm45-rust-desktop:1.99.1-r3只掛crate唯讀、native可寫，offline／locked。150測試與[36畫布核對例程](../internal/remake-rust/examples/ending_audit.rs)通過；[初始例程](../internal/remake-rust/examples/ending_fixture.rs)從真正v14保留六資源／魔法／101步，明示六隊軍隊、八劍、seed1及原東鄰59／52地形27站立狀態，未改地圖或最終敵軍，不稱自然抵達。後續[GUI](../tools/rust-ending-gui.py)只掛native與單一工具，正常鍵鼠撤退、戰中F7／冷讀、勝利／結局、原版HD與三字型、音樂、結局F7／冷讀及完整退出通過。首段HD〈刀祭〉替代MFIG，原MEND讀入cue後切HD結局曲；音訊dummy只證技術輸出。
+
+`freeze --project /project`凍結crate／工具／媒體清單；`audit --project /project --out <新JSON>`核對150測試、36畫布、四處原bytes與17份SDL；`images --project /project --out <新PNG>`排版實際截圖。[成果圖](../docs/images/rust-ending-r1.png)的四格是不同演出時刻，並非同幀對照。RGBA8與NRGBA8失敗原型、來源／binary／差分／log一併保存，最終RGBA16沒有改預期hash。
+
+`archive --project /project --archive /project/preserved --out /project/preserved/rust-ending-r1.json`保存本批。`verify --archive /archive --out <新JSON>`只需preserved唯讀、單一工具與可寫輸出，不掛workplace。WorldState、Go保存、197來源／七程式／923核心／535素材與1071美術保持。下一步NPC增兵／日曆、其餘寶物、新遊戲及其餘工具列，不重開已驗音畫。
+
+本批1697檔／734物件，壓縮101479514 bytes。脫離workplace逐物件核對及142份執行期還原通過；還原包另於原生視窗載入完成進度，退出0，狀態、存檔及完整畫布與封存樣本相同。只清本批2053份Rust建置快取與還原驗證複本，共773376204 bytes，約737.5 MiB；永久來源、資料、binary與證據保持。沒有本案殘留容器或新image，其他專案不動。

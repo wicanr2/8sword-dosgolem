@@ -1,0 +1,12 @@
+{
+  "status": "passed-rust-ending-detached",
+  "files": 1697,
+  "objects": 734,
+  "runtime_files": 142,
+  "restored_without_workplace": true,
+  "smoke_exit_code": 0,
+  "smoke_state_hash": "01eb0e5257df963d",
+  "smoke_frame_sha256": "e83e645863f110dbb16d23f83940c4e1f49b3184eec1110a34472bf67f5e6580",
+  "smoke_frame_matches_archived_completed_capture": true,
+  "restored_binary_sha256": "ebb54115d9287098f7d2a21a1f31558ab644efdb2635a6481cc2deb2c5c45ec7"
+}

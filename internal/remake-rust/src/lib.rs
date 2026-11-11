@@ -10,6 +10,9 @@ pub mod media_assets;
 
 #[cfg(feature = "desktop")]
 pub mod desktop;
+pub mod ending;
+#[cfg(feature = "desktop")]
+mod ending_desktop;
 pub mod formation;
 pub mod guards;
 pub mod journey;

@@ -1,0 +1,15 @@
+{
+  "status": "passed-scoped-rust-ending-cleanup",
+  "deleted_files": 2053,
+  "deleted_bytes": 773376204,
+  "targets": [
+    "workplace/probe-20261023/graphics-first/battle-r1/rust-ending-r1/native/rust-target",
+    "workplace/probe-20261023/graphics-first/battle-r1/rust-ending-r1/detached/restored",
+    "workplace/probe-20261023/graphics-first/battle-r1/rust-ending-r1/detached/minimal"
+  ],
+  "permanent_archive": "preserved/rust-ending-r1.json",
+  "preserved_files": 1697,
+  "preserved_objects": 734,
+  "full_sources_media_binary_and_evidence_kept": true,
+  "other_projects_untouched": true
+}

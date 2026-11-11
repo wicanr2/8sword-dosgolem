@@ -8,7 +8,7 @@ use crate::{
     spells::SpellBook,
     world::{Position, WorldData, motion},
 };
-pub const SUFFIX: usize = 1277;
+pub const SUFFIX: usize = 1286;
 #[derive(Clone, Copy, Debug)]
 pub struct Site {
     pub area: u8,
@@ -129,6 +129,7 @@ pub struct Guards {
     pub rows: [[Stack; 6]; 42],
     pub swords: [bool; 8],
     pub pending: Option<Pending>,
+    pub ending: Option<crate::ending::Progress>,
 }
 impl Default for Guards {
     fn default() -> Self {
@@ -136,6 +137,7 @@ impl Default for Guards {
             rows: sites().map(|s| s.initial),
             swords: [false; 8],
             pending: None,
+            ending: None,
         }
     }
 }
@@ -173,6 +175,42 @@ impl Guards {
             {
                 return Err("守軍種類或兵數錯誤".into());
             }
+        }
+        if let Some(ending) = self.ending {
+            let final_site = sites()
+                .iter()
+                .position(|s| s.final_guard)
+                .ok_or("缺少最終守軍")?;
+            let site = sites()[final_site];
+            if ending.elapsed_ms > crate::ending::DURATION
+                || !self.swords.iter().all(|v| *v)
+                || self.rows[final_site].iter().any(|r| r.count > 0)
+                || j.world.area != site.area
+                || j.world.position != site.position
+                || !matches!(j.world.facing, 1 | 3)
+                || self.pending.is_some()
+                || j.battle.is_some()
+                || j.cue.is_some()
+                || j.enemy != [Stack::default(); 6]
+                || j.generation_seed != 0
+                || j.enemy_first
+                || j.camps.pending.is_some()
+                || j.month.pending.is_some()
+                || j.treasure.pending.is_some()
+                || j.magic.shop.is_some()
+                || j.magic.direction
+                || j.resource_notice.is_some()
+                || j.survey.bird
+                || j.theft.is_some()
+                || j.map_notice.is_some()
+                || j.travel_spell.teleport.is_some()
+                || j.travel_spell.shore.is_some()
+                || j.travel_spell.refused_shop.is_some()
+                || matches!(j.travel_spell.jump, crate::jump_spell::Jump::Flying { .. })
+            {
+                return Err("結局與最終戰果不符".into());
+            }
+            return Ok(());
         }
         let Some(p) = self.pending else { return Ok(()) };
         let site = sites().get(usize::from(p.site)).ok_or("守軍索引超界")?;
@@ -217,7 +255,7 @@ impl Guards {
         let alive = self.rows[usize::from(p.site)][0].count > 0;
         match p.stage {
             Stage::Battle => {
-                if site.final_guard
+                if (site.final_guard && !self.swords.iter().all(|v| *v))
                     || !alive
                     || j.battle.is_none()
                     || j.enemy != self.rows[usize::from(p.site)]
@@ -243,7 +281,7 @@ impl Guards {
                     },
                     &mut rng,
                 )?;
-                if site.final_guard
+                if (site.final_guard && p.stage == Stage::Win)
                     || j.resources != expected
                     || rng != j.world.rng
                     || j.battle.is_some()
@@ -334,8 +372,6 @@ impl<'a> Journey<'a> {
             s.guards.pending.as_mut().unwrap().stage = Stage::Missing;
         } else if s.army[0].count == 0 {
             s.guards.pending.as_mut().unwrap().stage = Stage::NoArmy;
-        } else if site.final_guard {
-            return Err("最終守軍與結局尚未接入，可取消返回".into());
         } else {
             let enemies = s.guards.rows[usize::from(p.site)];
             let book = s
@@ -432,14 +468,17 @@ impl<'a> Journey<'a> {
         s.world.font = cp.view.font;
         s.world.music = cp.view.music;
         p.reward_seed = s.world.rng.seed;
-        s.resources = reward(
-            p.before,
-            s.world.area,
-            s.magic.book,
-            outcome,
-            &mut s.world.rng,
-        )?;
         let site = sites()[usize::from(p.site)];
+        let final_win = site.final_guard && outcome == Outcome::Win;
+        if !final_win {
+            s.resources = reward(
+                p.before,
+                s.world.area,
+                s.magic.book,
+                outcome,
+                &mut s.world.rng,
+            )?;
+        }
         if outcome == Outcome::Win && site.boss {
             s.guards.swords[usize::from(site.area)] = true;
         }
@@ -448,7 +487,11 @@ impl<'a> Journey<'a> {
         s.generation_seed = 0;
         s.enemy_first = false;
         s.battles = s.battles.checked_add(1).ok_or("戰鬥次數超界")?;
-        if outcome == Outcome::Loss {
+        if final_win {
+            s.guards.pending = None;
+            s.guards.ending = Some(crate::ending::Progress::default());
+            s.guards.validate(&s, d)?;
+        } else if outcome == Outcome::Loss {
             s.guards.pending = None;
             if origin == Some(true) {
                 let old = s.world.area;

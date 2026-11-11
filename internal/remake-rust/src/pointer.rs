@@ -46,6 +46,7 @@ pub fn digit_box(i: usize) -> Rect {
 pub const SHORE_CHOICES: [Rect; 2] = [Rect(264, 888, 360, 96), Rect(816, 888, 360, 96)];
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Screen {
+    Ending,
     World,
     Character,
     Minimap,
@@ -88,6 +89,9 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
     }
     for (i, r) in FOOTER.iter().enumerate() {
         if r.contains(x, y) {
+            if screen == Screen::Ending {
+                return Some(Action::Key([104, 27, 1073741891, 1073741888][i]));
+            }
             if screen == Screen::Bridge {
                 return if i == 1 {
                     Some(Action::Key(32))
@@ -113,6 +117,9 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         }
     }
     if (2..46).contains(&y) {
+        if screen == Screen::Ending && Rect(1200, 2, 232, 44).contains(x, y) {
+            return Some(Action::Key(104));
+        }
         for i in 0..3 {
             if Rect(144 + i * 228, 2, 216, 44).contains(x, y) {
                 return Some(Action::Font(i as u8));
@@ -126,6 +133,7 @@ pub fn hit(screen: Screen, x: i32, y: i32) -> Option<Action> {
         }
     }
     match screen {
+        Screen::Ending => {}
         Screen::Shore => {
             for (i, r) in SHORE_CHOICES.iter().enumerate() {
                 if r.contains(x, y) {

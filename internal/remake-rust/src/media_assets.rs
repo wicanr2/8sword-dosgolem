@@ -10,7 +10,7 @@ pub fn checksum(bytes: &[u8]) -> u64 {
     })
 }
 
-fn read_checked(path: &Path, magic: &[u8; 8], max: u64) -> Result<Vec<u8>, String> {
+pub(crate) fn read_checked(path: &Path, magic: &[u8; 8], max: u64) -> Result<Vec<u8>, String> {
     let meta = path
         .symlink_metadata()
         .map_err(|e| format!("{}: {e}", path.display()))?;

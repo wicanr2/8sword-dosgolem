@@ -3569,3 +3569,11 @@ GUARDS-RESOLVED-20261111不可變鍵沿本節固定PAM雜湊＋IDA MZ base10000h
 沿[053](docs/spec/053-ending-hd.md#現行素材結局對照擷取)與既有r65／r69來源，不新增逆向語意。原版與現行HD獨立重播，九階段同指令步的完整客體快照SHA、原版RGB與最終客體／原生PCM相同，均退出0。輸入PAM／PAE SHA、時鐘、固定923核心與素材535清單見[核對](preserved/ending-readme-audit-r1.json)及保存批次的baseline-inputs.json。
 
 取樣標籤的兩個限制已確認：只記錄換頁的visibleStage會漏掉對目前可見頁的寫入，不能否定同時刻原版RGB與客體快照的配對；END9分卡清頁，單頁glyphs不能當整段片尾的總字數。前次輸出的END9代表為24字，最終取樣明示單頁至少12字。沒有改原版時序、來源命令或遊戲邏輯。失敗log與擷取保留，只有通過的captures目錄用於README。Rust結局尚未接入。
+
+## 2026-11-11 Rust最終戰與結局
+
+已證實於限定範圍：PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，既有IDA9.4 MZ基址10000h之sub_12DDE在13295寫DS:56E2=1，1329B／1329C交接，早於132A7普通獎勵。四處原bytes直接與MZ核對；完整函式沿既有rust-guards永久匯出。Rust勝利不進月薪／容量或世界尾段，撤退／全滅保持。[031限定驗收](docs/spec/031-rust-independent-remake.md#rust最終守軍與結局限定-conformed)及回填標記RUST-FINAL-GUARD-RESOLVED-20261111閉合舊停止線，沒有把新版helper推成原版全流程RNG exact。
+
+PAE.AY SHA `8ae11b4c89f0361ed0a2d5b1859bbb4750047d37f0e26885e6903e4feb721a0c`沿既有053來源命令匯出，得到296個10ms穩定節點與46825ms虛擬時間，非1049次換頁全量收據。獨立原版／HD仍138507913步、原生PCM與完整最終客體相同、退出0。Rust從typed命令／原圖遮罩／材質自行重建九階段四模式，36全幅畫布hash相同；沒有x86繪圖或RGB影片輸入。
+
+標準Go1.24.13 image/color.Color.RGBA與image/draw的Src／Over為平台契約。RGBA8預乘原型使END2有33944像素差1色階；NRGBA8反推亦被精度等價檢查拒絕。最後8SEND003保存Color.RGBA完整預乘16位元，混合後才量化，原預期hash未改。失敗包、來源、binary、差分及log留存，不另開遊戲driver逆向。MFIG SHA `4d71e3d865b6e8cd4e8a88e6bcae9ba69a6fe8fe902f340e6e4679983e9db671`與MWAR不同，HD首段〈刀祭〉屬呈現替代；MEND源讀入cue與批准HD結局曲相接。原樂譜與硬體時序未提升為exact。

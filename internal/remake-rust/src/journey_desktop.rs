@@ -120,6 +120,25 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut bridge_flash: Option<Instant> = None;
     let mut jump_at = Instant::now() + Duration::from_millis(250);
     'game: loop {
+        if journey.guards.ending.is_some() {
+            if let Some(dir) = &store {
+                journey.save(dir, &catalog, &data)?;
+            }
+            return crate::ending_desktop::play(
+                &sdl,
+                &assets,
+                &map.fonts,
+                &battle_pack.music,
+                &mut journey,
+                &catalog,
+                &data,
+                capture.as_deref(),
+                store.as_deref(),
+                mute,
+                captures,
+                saves,
+            );
+        }
         let now = Instant::now();
         let marker_light = view_clock.elapsed().as_millis() / 300 % 2 == 0;
         let month_before = (journey.month.months, journey.month.pending.is_some());

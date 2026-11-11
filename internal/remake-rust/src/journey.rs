@@ -189,6 +189,9 @@ impl<'a> Journey<'a> {
         }
     }
     pub fn phase(&self) -> &'static str {
+        if self.guards.ending.is_some() {
+            return "ending";
+        }
         if self
             .guards
             .pending
@@ -236,7 +239,8 @@ impl<'a> Journey<'a> {
         }
     }
     pub fn walk(&mut self, data: &WorldData, key: u16) -> Result<Option<Boundary>, String> {
-        if self.guards.pending.is_some()
+        if self.guards.ending.is_some()
+            || self.guards.pending.is_some()
             || self.map_notice.is_some()
             || self.theft.is_some()
             || self.cue.is_some()
@@ -478,7 +482,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN014".to_vec();
+        let mut b = b"8SJRN015".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -598,6 +602,12 @@ impl<'a> Journey<'a> {
             }
             b.extend(p.reward_seed.to_le_bytes());
         }
+        b.extend(crate::ending::PLAN_HASH.to_le_bytes());
+        b.push(u8::from(self.guards.ending.is_some()));
+        if let Some(p) = self.guards.ending {
+            b.extend(p.elapsed_ms.to_le_bytes());
+            b.push(u8::from(p.hd));
+        }
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -620,7 +630,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN011"
                 && &b[..8] != b"8SJRN012"
                 && &b[..8] != b"8SJRN013"
-                && &b[..8] != b"8SJRN014")
+                && &b[..8] != b"8SJRN014"
+                && &b[..8] != b"8SJRN015")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -926,6 +937,24 @@ impl<'a> Journey<'a> {
                     before,
                     reward_seed,
                 });
+            }
+        }
+        if &b[..8] >= b"8SJRN015" {
+            if r.q()? != crate::ending::PLAN_HASH {
+                return Err("結局命令版本錯誤".into());
+            }
+            match r.byte()? {
+                0 => {}
+                1 => {
+                    let elapsed_ms = u32::from_le_bytes(r.take(4)?.try_into().unwrap());
+                    let hd = match r.byte()? {
+                        0 => false,
+                        1 => true,
+                        _ => return Err("結局畫面模式錯誤".into()),
+                    };
+                    guards.ending = Some(crate::ending::Progress { elapsed_ms, hd });
+                }
+                _ => return Err("結局狀態錯誤".into()),
             }
         }
         if r.at != r.b.len() {

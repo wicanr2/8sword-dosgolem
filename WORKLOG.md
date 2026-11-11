@@ -3470,3 +3470,17 @@ Rust以typed記錄接41處非最終守軍，當中8處為頭目。沿原式地�
 最終命令為Go1.24.13容器內`go test -mod=mod ./internal/eightsword -run '^TestEndingReadmeOverview$' -count=1 -v`，58.146秒通過。固定535素材、923核心、12:00:00.00與3000cycles，兩側各138507913步，完整最終客體與原生PCM相同、退出0。九組同狀態原版RGB、27份三字型HD及原始尺寸PNG已保存；README展示END1／5／7三組，另放六張獨立截圖。左側640×200按640×400顯示比例展開，右側維持1920×1200。目視抽查對照圖通過。
 
 [核對](preserved/ending-readme-audit-r1.json)、[完整索引](preserved/ending-readme-r1.json)與[脫離核對](preserved/ending-readme-detached-r1.json)保存本批。工具、隔離來源、原始擷取、失敗紀錄及發布圖不依賴workplace。沒有重建Rust或重開其146測試，正式197／7／923／535及美術1071保持，沒有Release。Go快取只用容器/tmp，隨容器刪除；本案容器收尾，其他專案不動。起始HEAD為76a1cfaa42f61731c4a61154f2df44ab36303120，提交／推送見Git歷程。下一步仍為Rust最終守軍與結局，不能把本批截圖當Rust接入。
+
+## 2026-11-11 Rust最終戰與獨立結局
+
+使用者go接續最終守軍與結局。命中反組譯實作路由，載入重製技能、規格閘門、文件分工、平台契約與收尾／backlink規則。先寫DRAFT／READY，復用既有PAM sub_12DDE與PAE來源、923核心及535素材，沒有新IDA或逐行翻譯EXE。原始PAM四處bytes再核，RUST-FINAL-GUARD-RESOLVED-20261111回填較早停止線。
+
+Rust接最終原六隊、八劍門檻、勝利直接結局、撤退／全滅及v15冷讀。結局命令包採bitmap／glyph／遮罩／共用材質／三字型alpha，Rust自行混合、排程、聲音、鍵鼠、保存，沒有Go或DOS執行依賴。最終8SEND003共80019236 bytes，296穩定節點、46825ms、3381命令、28實際原圖／127字模／30材質。時間是10ms穩定交易與3000cycles近似，不稱1049次換頁全量或硬體wall-clock一致。首段HD採既有刀祭替代MFIG，MEND讀入後切批准HD結局曲，不聲明原曲音符一致。
+
+首輪編譯修正Screen::Ending漏列與測試分支分號。RGBA8預乘原型使END2有33944像素差1色階；NRGBA8候選因無法與Color.RGBA全精度等價而拒絕。改依固定Go1.24.13標準庫契約保存預乘RGBA16，Rust最後才量化；舊包、來源、binary、差分與log保留，原預期36畫布hash未改。最終Go匯出59.490秒，兩側138507913步、完整客體／原生PCM同值及退出0。150 Rust測試、self-check、release與36全幅畫布通過。
+
+五獨立原生程序17份SDL畫布／讀回通過。真正v14保留[1,0,120,38,1000,4]資源與101步；六隊玩家軍隊沿既有原版Go最終戰fixture，八劍全設、seed1、位置指定59／52地形27站立狀態，沒有自然到達或自然取得聲明。後續全為正常XTest鍵鼠。撤退38→26金、回場100步；另一戰中F7／冷讀後正常勝利，直接進結局，六資源及101步保持。結局原版HD／三字型／音樂、F7／另一程序冷讀同state_hash／scene_hash／畫布，完整播放與完成進度冷讀皆退出0、不重領。建置只見crate／native，GUI只見native與單一工具。
+
+[核對](preserved/rust-ending-audit-r1.json)、[完整索引](preserved/rust-ending-r1.json)、[脫離核對](preserved/rust-ending-detached-r1.json)、[清理](preserved/rust-ending-cleanup-r1.json)及[成果圖](docs/images/rust-ending-r1.png)為入口。完整來源、材質、binary與證據先永久保存並核還原，再清本批可重建快取。正式197／7／923／535／1071保持，沒有Release或新image；本案容器收尾，其他專案不動。起始HEAD為66ca0552df98fd8e41527e67c14e0e56fe79d887，提交／推送見Git歷程。下一步NPC增兵與日曆、其餘寶物、新遊戲與其餘工具列。
+
+收尾：1697檔／734物件、101479514壓縮bytes已永久保存。142份執行期在看不到workplace的最小還原環境逐SHA驗證；只掛還原native、保存及擷取輸出另啟原生SDL，完成進度退出0，state_hash、完整畫布及保存bytes同封存樣本。移除本批2053份可重建快取／還原複本773376204 bytes。backlink護欄、啟動器語法及擁有權檢查通過。

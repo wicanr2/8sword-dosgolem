@@ -82,8 +82,8 @@ fn original_1176_entries_32_gains_and_20_retreats_match_scoped_rules() {
                     let result = j.choose_guard(&d, &c, mode != 0);
                     if site.final_guard && mode == 4 {
                         assert_eq!(phase, 4);
-                        assert!(result.is_err());
-                        assert_eq!(j.guards.pending.unwrap().stage, Stage::Prompt);
+                        result.unwrap();
+                        assert_eq!(j.guards.pending.unwrap().stage, Stage::Battle);
                     } else {
                         result.unwrap();
                         match phase {
@@ -363,4 +363,136 @@ fn keyboard_mouse_prompt_share_choice_and_reports_ignore_gameplay() {
     assert_eq!(j, before);
     ui.key(27, &mut j, &c, &d);
     assert!(j.guards.pending.is_none());
+}
+
+fn final_army(j: &mut Journey<'_>) {
+    j.army = std::array::from_fn(|i| Stack {
+        unit: Some(UnitId::parse(&format!("native:{:02}", [19, 20, 25, 3, 24, 18][i])).unwrap()),
+        count: [1000, 600, 500, 1000, 600, 20][i],
+    });
+    j.guards.swords = [true; 8];
+}
+#[test]
+fn final_win_enters_ending_before_reward_month_and_world_tail() {
+    let d = WorldData::guards_fixture(false);
+    let c = Catalog::builtin().unwrap();
+    let (mut j, key) = before(&d, 4, 1);
+    final_army(&mut j);
+    j.world.remaining = 1;
+    let resources = j.resources;
+    let initial_npc = j.guards.rows[4];
+    j.travel(&d, key, &c).unwrap();
+    j.choose_guard(&d, &c, true).unwrap();
+    assert_eq!(j.enemy, initial_npc);
+    let checkpoint = j.encode(&c, &d).unwrap();
+    j = Journey::decode(&c, &d, &checkpoint).unwrap();
+    play(&mut j);
+    assert_eq!(
+        j.battle.as_ref().unwrap().controller.battle().outcome(),
+        Some(Outcome::Win)
+    );
+    let rng = j.battle.as_ref().unwrap().rng;
+    j.finish(&c, &d, None).unwrap();
+    assert_eq!(j.phase(), "ending");
+    assert_eq!(j.resources, resources);
+    assert_eq!(j.world.remaining, 1);
+    assert_eq!(j.month.months, 0);
+    assert_eq!(j.world.rng, rng);
+    assert_eq!(j.battles, 1);
+    assert_eq!(j.guards.rows[4], [Stack::default(); 6]);
+    assert!(j.battle.is_none() && j.guards.pending.is_none());
+    assert!(j.travel(&d, key, &c).is_err());
+    assert!(j.finish(&c, &d, None).is_err());
+    j.guards.ending = Some(crate::ending::Progress {
+        elapsed_ms: 23945,
+        hd: false,
+    });
+    j.world.font = 1;
+    let raw = j.encode(&c, &d).unwrap();
+    assert_eq!(&raw[..8], b"8SJRN015");
+    let cold = Journey::decode(&c, &d, &raw).unwrap();
+    assert_eq!(cold, j);
+    for mode in 0..6 {
+        let mut bad = j.clone();
+        match mode {
+            0 => bad.guards.ending.as_mut().unwrap().elapsed_ms = crate::ending::DURATION + 1,
+            1 => bad.guards.swords[0] = false,
+            2 => bad.guards.rows[4] = initial_npc,
+            3 => bad.world.position.x = 1,
+            4 => bad.enemy[0] = initial_npc[0],
+            _ => {
+                bad.guards.pending = Some(Pending {
+                    site: 4,
+                    key,
+                    stage: Stage::Cleared,
+                    yes: true,
+                    before: resources,
+                    reward_seed: bad.world.rng.seed,
+                })
+            }
+        };
+        assert!(bad.encode(&c, &d).is_err(), "{mode}");
+    }
+    let mut bad = raw.clone();
+    let n = bad.len();
+    bad[n - 9] = 2;
+    let h = checksum(&bad[..n - 8]);
+    bad[n - 8..].copy_from_slice(&h.to_le_bytes());
+    assert!(Journey::decode(&c, &d, &bad).is_err());
+    j.guards.ending.as_mut().unwrap().elapsed_ms = crate::ending::DURATION;
+    assert!(j.encode(&c, &d).is_ok());
+}
+#[test]
+fn final_retreat_and_loss_keep_guard_rules_and_do_not_start_ending() {
+    let d = WorldData::guards_fixture(false);
+    let c = Catalog::builtin().unwrap();
+    for retreat in [true, false] {
+        let (mut j, key) = before(&d, 4, 1);
+        j.guards.swords = [true; 8];
+        let original = j.guards.rows[4];
+        j.travel(&d, key, &c).unwrap();
+        j.choose_guard(&d, &c, true).unwrap();
+        if retreat {
+            j.battle.as_mut().unwrap().controller.retreat().unwrap();
+        } else {
+            play(&mut j)
+        }
+        let outcome = j
+            .battle
+            .as_ref()
+            .unwrap()
+            .controller
+            .battle()
+            .outcome()
+            .unwrap();
+        assert_eq!(
+            outcome,
+            if retreat {
+                Outcome::Retreat
+            } else {
+                Outcome::Loss
+            }
+        );
+        j.finish(&c, &d, (!retreat).then_some(true)).unwrap();
+        assert!(j.guards.ending.is_none());
+        assert!(j.encode(&c, &d).is_ok());
+        if retreat {
+            assert_eq!(j.guards.rows[4], original);
+            assert_eq!(j.guards.pending.unwrap().stage, Stage::Retreat);
+            assert!(j.resources[3] < 500);
+        } else {
+            assert_eq!(j.army, [Stack::default(); 6]);
+        }
+    }
+}
+#[test]
+fn real_v14_layout_migrates_without_starting_an_ending() {
+    let d = WorldData::guards_fixture(false);
+    let c = Catalog::builtin().unwrap();
+    let j = Journey::new(&d, 1);
+    let mut raw = j.encode(&c, &d).unwrap();
+    raw.truncate(raw.len() - 8 - 9);
+    raw[..8].copy_from_slice(b"8SJRN014");
+    raw.extend(checksum(&raw).to_le_bytes());
+    assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);
 }

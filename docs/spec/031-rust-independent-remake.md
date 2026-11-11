@@ -761,3 +761,52 @@ v13追加site與原鍵，綁定原圖位置／方向／互斥階段；待提示�
 v14保存42記錄、八旗標及pending context，讀v1至v13。戰果已提交再等提示確認；關閉後才完成世界扣步／月報／遭遇，冷讀不重新計算獎勵。北／西條件、Space、月底、殘兵再戰、全滅去向及水格接受／拒絕由核心覆蓋；GUI只代表陸上普通與頭目鏈。NPC月結增兵、原日曆、最終戰／結局、其餘寶物、新遊戲及其餘工具列仍待。GUARDS-RESOLVED-20261111回填普通旅程、F1與特殊上岸READY，不重開已驗HD或隨機戰矩陣。
 
 最終建置只見crate唯讀及native可寫，GUI只見native與單一腳本，執行沒有PAM／Go／dosgolem。[資料工具](../../tools/rust-guards.py)、[核對](../../preserved/rust-guards-audit-r1.json)、[永久保存](../../preserved/README.md#rust守軍與頭目保存)、[成果圖](../images/rust-guards-r1.png)及[圖片來源](../images/rust-guards-r1.json)為入口。WorldState、Go保存及正式197／7／923／535／1071保持，沒有Release。
+
+勘誤 RUST-FINAL-GUARD-RESOLVED-20261111：本節原先保留的最終有部隊停止線已由下節Rust最終守軍與結局限定驗收閉合；原41處非最終守軍證據不重跑。
+
+## Rust最終守軍與結局 DRAFT
+
+本輪接最終守軍的既有戰場與獨立結局，素材沿053及現行535組，不重製美術。已證實的控制流為PAM.AY SHA `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，IDA9.4 MZ基址10000h的sub_12DDE：1326E掃最終六隊，13295寫DS:56E2=1，1329B／1329C呼叫sub_1020E；早於132A7普通守軍獎勵。最終六隊原編成與八劍門檻沿[原Go證據](030-battle-expansion-proposal.md#原戰場結局守軍限定-conformed)，不得額外發薪、扣世界步數或進遭遇尾段。
+
+PAE.AY SHA `8ae11b4c89f0361ed0a2d5b1859bbb4750047d37f0e26885e6903e4feb721a0c`的[九階段同狀態證據](../../preserved/ending-readme-audit-r1.json)可作呈現來源。先以[開發匯出器](../../tools/rust-ending-export.go)整理可見頁的bitmap／glyph命令、原始遮罩、批准材質、三字型alpha與虛擬時間。輸出是typed命令與材質，不包含x86、Go執行檔、原版RGB電影或CPU狀態。研究區沿battle-r1/rust-ending-r1；[準備工具](../../tools/rust-ending.py)負責既有資料包還原與隔離匯出。尚未READY前不接正式Rust路徑。
+
+預計保存v15追加結局遊標／畫面模式，讀v1至v14；戰果提交一次，F7與冷讀只恢復播放，不再計算守軍。Rust直接處理原版像素畫面／HD、三字型、音樂及Esc退出。10毫秒穩定交易取樣與3000cycles時間換算是既有執行器的呈現近似，不稱硬體逐週期一致。MFIG原曲與MWAR不同，首段HD採既有〈刀祭〉作呈現替代，MEND讀入後切既有HD結局曲；不聲稱MFIG音符一致或新音樂的人耳驗收。
+
+READY之前核對命令資料完整性、九階段四畫面模式與原Go畫布的可重建性、原獎勵順序及冷讀狀態邊界。正式驗收採最終戰／撤退或失敗分支、原生視窗勝後接完整結局、F7冷讀、鍵鼠字型／原版HD／音樂及SDL讀回。其他世界事件、新遊戲與跨平台發行不在本切片。
+
+
+## Rust最終守軍與結局 READY
+
+前節DRAFT已完成來源審查。隔離匯出50.421秒通過；完整原版／HD兩側仍為138507913步、原生PCM與最終狀態相同及退出0。取得296個穩定交易畫面、3381筆共用命令、28筆實際出現原圖、127字模與30材質，命令包41329892 bytes，來源虛擬時間46825毫秒。原圖28筆不外推37筆皆自然出現。九階段四模式的預期畫布hash由既有純Go來源畫布匯出，Rust必須自行重建再核對。完整匯出在rust-ending-r1/export；原輸入／923核心／535素材清單凍結於evidence/baseline.json。
+
+- 最終戰沿現有Controller與原式六隊。八劍／無兵門檻保持；撤退／全滅沿普通守軍原規則。勝利提交雙方殘兵與一次戰鬥數，最終六隊清空後直接建立結局狀態，不進sub_11ABE對應獎勵或世界尾段，不改六資源／剩餘步數。
+- 命令包8SEND003保存共用原始索引／遮罩、預乘RGBA16材質、三字型alpha、bitmap／glyph定位及帶毫秒／來源階段／音樂cue的完整可見頁命令列。只含資料；Rust直接畫原版像素或HD，保留原黑色遮罩、Src／Over、相交命令冪等及字型alpha公式。解析核長度、FNV、幾何、枚舉、索引、時間單調及完整消耗；整包至多128MiB。
+- 原生檢查點v15在v14尾段後綁定命令包FNV，再保存有無結局、0至46825毫秒與原版／HD布林。讀v1至v14時不預建結局。結局狀態必須同時綁最終位置、八劍、空最終守軍、無戰鬥／其他互斥事件。F7及關閉保存遊標，冷讀不重打或重發獎勵；完整播放後保存終點並退出0，已完成進度冷讀亦直接退出。
+- 原生結局保留既有三字型／音樂／F7座標，新增結局畫面模式切換。鍵盤及滑鼠放開一次提交，Esc／離開退出0。圖像、聲音、游標及事件時鐘均由Rust處理。首段〈刀祭〉替代MFIG、原MEND讀入節點後切已批准HD結局曲，記為呈現近似；不聲明原MFIG樂譜相同或硬體時鐘exact。
+- 驗收為既有Rust146測試加最終戰／無額外獎勵／撤退／全滅／v14移轉與v15拒絕案例，命令解析壞資料及九階段四模式重建核對；原生視窗從明示八劍／軍隊／最終鄰格出發，正常輸入勝利進結局，F7／另一程序冷讀、模式／字型／音樂與片尾退出抽驗。最終GUI只掛native與單一輸入工具，完整建置只見crate／native。測試軍隊與八劍為fixture，不稱自然通關。
+
+
+### 結局材質精度勘誤
+
+`ENDING-COLOR-PRECISION-20261111`：首個8SEND001原型先把PNG材質轉預乘RGBA8，END2的33944像素與既有Go畫布差1色階。原版／Src不受影響。Go1.24.13標準庫image/draw/draw.go的drawNRGBAOver先以sa=alpha×257、sr=red×sa/255保留16位元，再與目的色混合；不能先降為預乘8位元。依此把READY命令包修正為8SEND002非預乘RGBA8，匯出逐像素核對原Color.RGBA()與NRGBA表示完全等價，Rust在Src／Over時計算16位元預乘。格式大小不變，不調整原圖或預期hash。舊包、原型Rust來源、binary、差分像素及失敗log保留於rust-ending-r1，尚未接正式入口。
+
+
+前項NRGBA8候選因無法與材質載入器回傳的Color.RGBA()保持全精度等價而主動拒絕，未產生有效包。依固定Go標準庫Color.RGBA契約，READY改為8SEND003：直接保存每材質像素的預乘RGBA16四個u16，Rust不再反推非預乘RGB。Src取各通道高8位；Over以目的8位×257、來源16位及65535分母混合，最後才取高8位。包上限改128MiB，其餘索引／幾何／時間閘不變。這是資料精度契約修正，不涉及遊戲反組譯或硬體時序。舊NRGBA拒絕log另存，禁止用重新取樣預期圖掩蓋差異。
+
+
+## Rust最終守軍與結局限定 CONFORMED
+
+`RUST-FINAL-GUARD-RESOLVED-20261111`。Rust原式最終戰已接入：原最終六隊與八劍門檻保持，勝利在PAM sub_12DDE的13295／1329C交接語意之前提交殘兵，略過132A7的sub_11ABE獎勵與世界尾段。撤退與全滅仍走守軍規則。這是原版既有證據的Rust移植，沒有新增完整原版最終戰骰序一致聲明。
+
+| 項目 | 驗收 |
+|---|---|
+| 核心 | 150測試通過；最終勝利不加六資源、不扣步／進月底，撤退／全滅、終點及壞狀態拒絕、v14移轉至v15已驗。 |
+| 畫布 | 296穩定節點、3381共用命令、28實際原圖、127字模與30預乘RGBA16材質。8SEND003共80019236 bytes，FNV `13b0f4ebc624c905`。九階段×原版／Noto／隸書／草書共36全幅1920×1200畫布與既有Go來源逐hash相同。 |
+| 原版來源 | 匯出59.490秒通過；原版／HD均138507913步、退出0，完整客體與原生PCM同值。四處PAM原bytes再核，既有923核心／535素材保持。 |
+| 原生視窗 | 五獨立程序、17份SDL畫布／讀回相同。原最終戰撤退、戰中F7／冷讀、正常出手勝利、結局原版／HD與三字型、音樂、結局F7／另一程序冷讀及完整播放／已完成冷讀退出0均通過。 |
+
+GUI從真正v14保留六資源[1,0,120,38,1000,4]、魔法與101步。軍隊明示沿既有原版Go最終戰的六隊，八劍全設、seed1，起始位置指定原圖東鄰59／52的地形27站立狀態，沒有改原地圖或最終敵軍，也不稱自然到達。後續左移、攻城、戰鬥及結局均用正常XTest鍵鼠，不於執行期注入RAM／IP。撤退38→26金、回場100步；另一程序勝利後仍為38金／120月薪／4容量／101步。結局F7冷讀的完整state_hash、scene_hash與畫布相同；播放至終點與再次冷讀維持相同狀態，不重打／重領。
+
+v15綁定命令包與結局遊標／原版HD模式，讀v1至v14；WorldState與Go格式不變。結局由Rust直接解碼命令、選材質、畫布混合、排程、播放OGG及保存，執行不含Go／DOS／x86繪圖。10毫秒穩定節點及3000cycles換算仍為呈現近似，不稱1049次換頁全保留或硬體wall-clock一致。首段HD以〈刀祭〉替代MFIG，依原MEND讀入節點切HD結局曲；dummy只證技術音訊，非人耳或MFIG樂譜一致。
+
+[繪圖與解析](../../internal/remake-rust/src/ending.rs)、[原生播放](../../internal/remake-rust/src/ending_desktop.rs)、[最終戰資料](../../internal/remake-rust/src/guards.rs)、[保存](../../internal/remake-rust/src/journey.rs)、[36畫布抽驗](../../internal/remake-rust/examples/ending_audit.rs)及[參考值](../../internal/remake-rust/ending-reference.tsv)為實作入口。[受控初始進度](../../internal/remake-rust/examples/ending_fixture.rs)、[GUI工具](../../tools/rust-ending-gui.py)、[資料／保存工具](../../tools/rust-ending.py)、[開發匯出器](../../tools/rust-ending-export.go)、[核對](../../preserved/rust-ending-audit-r1.json)、[成果圖](../images/rust-ending-r1.png)與[永久保存／還原](../../preserved/README.md#rust最終戰與結局保存)可重現。建置只見crate／native，最終GUI只見native／單一工具。其餘世界事件、NPC日曆、寶物、新遊戲、全程工具列及手機續依WORKLIST，不重開已驗音畫矩陣，沒有Release。
