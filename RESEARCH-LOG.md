@@ -3563,3 +3563,9 @@ MAP-NOTICE-RESOLVED-20261111的不可變鍵為本節PAM雜湊＋IDA MZ base10000
 GUARDS-RESOLVED-20261111不可變鍵沿本節固定PAM雜湊＋IDA MZ base10000h＋12DDE／132E0／11ABE，回填031普通旅程、F1與特殊上岸READY。原指令1176分流包含兩案最終有部隊正向，只核native停止線，不提升該戰完成。最初探針略過__chkstk卻未配14-byte locals，IO覆寫flag，r1／r2失效。依原AX0E與DI／SI saves明示frame後從12DEB執行，r3才是本輪原分支證據，沒有深挖runtime helper或平台時序。
 
 146測試與七程序19份SDL擷取通過。真正v13的38金／102步／法術保留，只指定原城鄰格及seed1；實戰另明示1000民兵／200弓箭手。正常確認、戰中F7／冷讀、擊倒30猴妖後撤退至26金，守軍40／30／40／20留存，再戰勝利月薪120／容量4，金與經驗不變。普通勝後重訪、頭目首劍／F1與各自獨立冷讀均已抽驗。沒有自然招募、所有地點GUI或完整通關聲明。完整來源、媒體與證據見[保存／還原](preserved/README.md#rust守軍與頭目保存)，最終戰／結局、NPC補兵及其他世界仍待。
+
+## 2026-11-11 結局原版／HD畫面補證
+
+沿[053](docs/spec/053-ending-hd.md#現行素材結局對照擷取)與既有r65／r69來源，不新增逆向語意。原版與現行HD獨立重播，九階段同指令步的完整客體快照SHA、原版RGB與最終客體／原生PCM相同，均退出0。輸入PAM／PAE SHA、時鐘、固定923核心與素材535清單見[核對](preserved/ending-readme-audit-r1.json)及保存批次的baseline-inputs.json。
+
+取樣標籤的兩個限制已確認：只記錄換頁的visibleStage會漏掉對目前可見頁的寫入，不能否定同時刻原版RGB與客體快照的配對；END9分卡清頁，單頁glyphs不能當整段片尾的總字數。前次輸出的END9代表為24字，最終取樣明示單頁至少12字。沒有改原版時序、來源命令或遊戲邏輯。失敗log與擷取保留，只有通過的captures目錄用於README。Rust結局尚未接入。

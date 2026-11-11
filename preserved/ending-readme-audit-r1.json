@@ -1,0 +1,336 @@
+{
+  "status": "passed-ending-readme-audit",
+  "baseline": {
+    "source_inputs": 197,
+    "programs": 7,
+    "core_files": 923,
+    "asset_hashes": 535
+  },
+  "overview": {
+    "clock": "12:00:00.00, 3000 DOSBox cycles",
+    "exit_code": 0,
+    "full_guest_and_native_pcm_equal": true,
+    "hd": "current Engine.Frame, approved assets and three fonts",
+    "native_pcm_sha256": "dedaf49acc1c65c1fbaa31d132717d8814c218fb69a344dcfd54df7799832b4c",
+    "original": "dosgolem Oracle.ScreenRGB, HD=false independent execution",
+    "original_steps": 138507913,
+    "pairs": [
+      {
+        "cycles": 50394297,
+        "glyphs": 0,
+        "guest_sha256": "cfe0f8dfdc03f9238bc89ec7ae9cfeae4e7e1bf1e1962f41adcdd4bcc80a2b1f",
+        "original_rgb_sha256": "ab78ed340509dd66e241371fca5b011062dc2eaa498422414b7eb3eacce9e7e5",
+        "stage": "END1.AY",
+        "step": 49316027
+      },
+      {
+        "cycles": 54778322,
+        "glyphs": 0,
+        "guest_sha256": "62c4e7325c19726398a0b98a418ef262e5680f765e3d7f385250c4ef9ec99ca2",
+        "original_rgb_sha256": "626c7797651e762dd4473f9da935bcbbf61e0f29cb398046269378f5fbc67ed7",
+        "stage": "END2.AY",
+        "step": 51100372
+      },
+      {
+        "cycles": 60630649,
+        "glyphs": 0,
+        "guest_sha256": "2f7cf0c806316d8698e487292a2d201318a67e9dec1d06c3f32c414374a53ccb",
+        "original_rgb_sha256": "5021780f78c0c5cbca3c8f1db1a3e4b746f0a831e8d623da5c0ffe385018e005",
+        "stage": "END3.AY",
+        "step": 54425387
+      },
+      {
+        "cycles": 101866694,
+        "glyphs": 0,
+        "guest_sha256": "a615980fe34f7669d4404f9ddc4426e13f4e1f16c38117767e1a77b282912d7f",
+        "original_rgb_sha256": "432e881a564728bf9dff23cddfa4b94e704d6f0eabcd198778f6566d4f595952",
+        "stage": "END4.AY",
+        "step": 88559872
+      },
+      {
+        "cycles": 115059838,
+        "glyphs": 13,
+        "guest_sha256": "cf88b9d6ca6f772d38cf03cd49aa3adc5eb7955920fbf9a5226d040a5231030e",
+        "original_rgb_sha256": "a84e3150a8412a14a87e84eeb4459339fba0cbf6893747af961d67630649eaba",
+        "stage": "END5.AY",
+        "step": 97049568
+      },
+      {
+        "cycles": 129483143,
+        "glyphs": 0,
+        "guest_sha256": "445eac0fb787d964960b14769e56a03a4b8eaff37f486fe8311fe60672aa8470",
+        "original_rgb_sha256": "d75a0ede332f69df112898101ad637772060b4d3634873b146bacd0ebf88d001",
+        "stage": "END6.AY",
+        "step": 107780825
+      },
+      {
+        "cycles": 142656533,
+        "glyphs": 0,
+        "guest_sha256": "b61161c5d9fbd9779f62d0ff07145a3c13d2e49772aa93ffcfda494835e173a4",
+        "original_rgb_sha256": "7dba51d05f6ff1022a88c7edb5b36885067cd5dc992fbd67d8d7e0ecd7a0f109",
+        "stage": "END7.AY",
+        "step": 118812575
+      },
+      {
+        "cycles": 145391327,
+        "glyphs": 0,
+        "guest_sha256": "d7cacb8d1f8e38d24938d798c33ffa8f8322981c27d8fb0a9c1cca9ff54ba1e9",
+        "original_rgb_sha256": "e4c008e1e0166980804d5d45f6ad21978fcd1cad473c3f39505cdd10bf3b58f1",
+        "stage": "END8.AY",
+        "step": 121458361
+      },
+      {
+        "cycles": 150797924,
+        "glyphs": 18,
+        "guest_sha256": "182ec13438019cc9243c2cf36a0a3878a3dbfd949206681f4aa3df8baefde19d",
+        "original_rgb_sha256": "023bcd6588e9804da1981505b1461773dad7ca3d59d3175c8eef8a6f35bf977d",
+        "stage": "END9.AY",
+        "step": 123673810
+      }
+    ],
+    "same_state": true,
+    "scenario": "normal boot/new game/F1/F2/F7; explicit DS:56E2=1 at original 0110:020E; no natural campaign claim",
+    "status": "passed-ending-overview"
+  },
+  "sources": [
+    {
+      "cycles": 50394297,
+      "glyphs": 0,
+      "guest_sha256": "cfe0f8dfdc03f9238bc89ec7ae9cfeae4e7e1bf1e1962f41adcdd4bcc80a2b1f",
+      "original_rgb_sha256": "ab78ed340509dd66e241371fca5b011062dc2eaa498422414b7eb3eacce9e7e5",
+      "stage": "END1.AY",
+      "step": 49316027,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END1-original.png",
+        "sha256": "dbc4217713383dea98910ae2367994c9a8ac57e809dcb5f31f3f417e7ee37c24"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END1-noto.png",
+          "sha256": "175a312c25af2262461cfea6ed737ae5247d18eafe60085a946212b52ccddb76"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END1-lishu.png",
+          "sha256": "175a312c25af2262461cfea6ed737ae5247d18eafe60085a946212b52ccddb76"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END1-caoshu.png",
+          "sha256": "175a312c25af2262461cfea6ed737ae5247d18eafe60085a946212b52ccddb76"
+        }
+      }
+    },
+    {
+      "cycles": 54778322,
+      "glyphs": 0,
+      "guest_sha256": "62c4e7325c19726398a0b98a418ef262e5680f765e3d7f385250c4ef9ec99ca2",
+      "original_rgb_sha256": "626c7797651e762dd4473f9da935bcbbf61e0f29cb398046269378f5fbc67ed7",
+      "stage": "END2.AY",
+      "step": 51100372,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END2-original.png",
+        "sha256": "69682d042396b4e93a6ffdc1710ed628f608dca17a09893712c235bcaa87904f"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END2-noto.png",
+          "sha256": "3010784337ccb90240ca1f9a5ebf9763b16e01c302fa905bd60395ae2e4c91dd"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END2-lishu.png",
+          "sha256": "3010784337ccb90240ca1f9a5ebf9763b16e01c302fa905bd60395ae2e4c91dd"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END2-caoshu.png",
+          "sha256": "3010784337ccb90240ca1f9a5ebf9763b16e01c302fa905bd60395ae2e4c91dd"
+        }
+      }
+    },
+    {
+      "cycles": 60630649,
+      "glyphs": 0,
+      "guest_sha256": "2f7cf0c806316d8698e487292a2d201318a67e9dec1d06c3f32c414374a53ccb",
+      "original_rgb_sha256": "5021780f78c0c5cbca3c8f1db1a3e4b746f0a831e8d623da5c0ffe385018e005",
+      "stage": "END3.AY",
+      "step": 54425387,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END3-original.png",
+        "sha256": "a731514a386fd7ee2f61b094935fb96f9c4ca0671e887a1b7663e88516dcf1f5"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END3-noto.png",
+          "sha256": "4cf7b018f4b5f01ba8689ff5387fe9237c8c9fc0bd1abf8f41f2834f62144776"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END3-lishu.png",
+          "sha256": "4cf7b018f4b5f01ba8689ff5387fe9237c8c9fc0bd1abf8f41f2834f62144776"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END3-caoshu.png",
+          "sha256": "4cf7b018f4b5f01ba8689ff5387fe9237c8c9fc0bd1abf8f41f2834f62144776"
+        }
+      }
+    },
+    {
+      "cycles": 101866694,
+      "glyphs": 0,
+      "guest_sha256": "a615980fe34f7669d4404f9ddc4426e13f4e1f16c38117767e1a77b282912d7f",
+      "original_rgb_sha256": "432e881a564728bf9dff23cddfa4b94e704d6f0eabcd198778f6566d4f595952",
+      "stage": "END4.AY",
+      "step": 88559872,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END4-original.png",
+        "sha256": "20153c471cab346d31aa64fd00e0ce61d8db3b0e2bf3313dd4604755cdea03ac"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END4-noto.png",
+          "sha256": "7e740b219dd00733dab18e559bc9a02bf6e2c6aa630f0558cef1c92e37f1f793"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END4-lishu.png",
+          "sha256": "7e740b219dd00733dab18e559bc9a02bf6e2c6aa630f0558cef1c92e37f1f793"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END4-caoshu.png",
+          "sha256": "7e740b219dd00733dab18e559bc9a02bf6e2c6aa630f0558cef1c92e37f1f793"
+        }
+      }
+    },
+    {
+      "cycles": 115059838,
+      "glyphs": 13,
+      "guest_sha256": "cf88b9d6ca6f772d38cf03cd49aa3adc5eb7955920fbf9a5226d040a5231030e",
+      "original_rgb_sha256": "a84e3150a8412a14a87e84eeb4459339fba0cbf6893747af961d67630649eaba",
+      "stage": "END5.AY",
+      "step": 97049568,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END5-original.png",
+        "sha256": "fdad273157918c1cc7fd6e1874b0e6ce39c81aff53ca1f8702b87fcb945c0613"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END5-noto.png",
+          "sha256": "a79e6e6babb595d7d102372cf772228238c052e215749845149fc243c74a2e1c"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END5-lishu.png",
+          "sha256": "712a6dcf1520a76b135d3988890c9fc092161997aa2d278d7137a1fa72455691"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END5-caoshu.png",
+          "sha256": "42b550fcee2d0a20e4b479d70c109c6e93d9b84b647e0ff1319f27d92280bc3f"
+        }
+      }
+    },
+    {
+      "cycles": 129483143,
+      "glyphs": 0,
+      "guest_sha256": "445eac0fb787d964960b14769e56a03a4b8eaff37f486fe8311fe60672aa8470",
+      "original_rgb_sha256": "d75a0ede332f69df112898101ad637772060b4d3634873b146bacd0ebf88d001",
+      "stage": "END6.AY",
+      "step": 107780825,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END6-original.png",
+        "sha256": "84cd5c5f0b02b649e36512980b8226224e66492011fb8e5f2ca872415f694514"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END6-noto.png",
+          "sha256": "958c8ed306919ba92c61c87ca048da7333d5d62eeea72bd695a344708ca52a7d"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END6-lishu.png",
+          "sha256": "958c8ed306919ba92c61c87ca048da7333d5d62eeea72bd695a344708ca52a7d"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END6-caoshu.png",
+          "sha256": "958c8ed306919ba92c61c87ca048da7333d5d62eeea72bd695a344708ca52a7d"
+        }
+      }
+    },
+    {
+      "cycles": 142656533,
+      "glyphs": 0,
+      "guest_sha256": "b61161c5d9fbd9779f62d0ff07145a3c13d2e49772aa93ffcfda494835e173a4",
+      "original_rgb_sha256": "7dba51d05f6ff1022a88c7edb5b36885067cd5dc992fbd67d8d7e0ecd7a0f109",
+      "stage": "END7.AY",
+      "step": 118812575,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END7-original.png",
+        "sha256": "d08042bdd09fb06482a2958dde795370b17b38275cfa36e16416049c0aadf936"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END7-noto.png",
+          "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END7-lishu.png",
+          "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END7-caoshu.png",
+          "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+        }
+      }
+    },
+    {
+      "cycles": 145391327,
+      "glyphs": 0,
+      "guest_sha256": "d7cacb8d1f8e38d24938d798c33ffa8f8322981c27d8fb0a9c1cca9ff54ba1e9",
+      "original_rgb_sha256": "e4c008e1e0166980804d5d45f6ad21978fcd1cad473c3f39505cdd10bf3b58f1",
+      "stage": "END8.AY",
+      "step": 121458361,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END8-original.png",
+        "sha256": "d6325949e1c1a44c3c3be7d4ceaf326c28295019d7407330b5e3e8f04386f9f1"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END8-noto.png",
+          "sha256": "132571e2c5c46e83e4c39cfb0f4867ee49dc126f1b19573ea8f6d9a4305aa938"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END8-lishu.png",
+          "sha256": "87276c7f516332ac864f82d3cf3b1eee3501a493aa1d85df6e454a8e5ed9d181"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END8-caoshu.png",
+          "sha256": "1f2f36f2a4f494b46d4032d269427fa765f35d7cb24158e2ccc52b63334dacc3"
+        }
+      }
+    },
+    {
+      "cycles": 150797924,
+      "glyphs": 18,
+      "guest_sha256": "182ec13438019cc9243c2cf36a0a3878a3dbfd949206681f4aa3df8baefde19d",
+      "original_rgb_sha256": "023bcd6588e9804da1981505b1461773dad7ca3d59d3175c8eef8a6f35bf977d",
+      "stage": "END9.AY",
+      "step": 123673810,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END9-original.png",
+        "sha256": "61cbaa0a7f8ddf178b53af39de8251465acae9ca16bcbeeefb84fdf024969361"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END9-noto.png",
+          "sha256": "3846510ff00c74f844f21c281eece7c147ca311c45361b302051c7a1369d3d86"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END9-lishu.png",
+          "sha256": "1b2da5ce2ae2eb734bda34f5425d040157290f5c6b9d20e998ac00064e31e895"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END9-caoshu.png",
+          "sha256": "67aef99542898075b519141e8f1d9b64e37893e201fe36fc54dbdbdc143c86ea"
+        }
+      }
+    }
+  ],
+  "generated_harness_sha256": "ab3f7a7524117b9f8fe41f17d25541c34819491cbb56f391c46771ac2ac592ee",
+  "capture_tool_sha256": "9a8725ef6240e10938394772a008deb2c9f4feda00f9fb762f421ce18b1be741",
+  "software": "Go1.24.13 / dosgolem fixed923 / Pillow11.3.0",
+  "gui_window": false,
+  "rust_ending": false
+}

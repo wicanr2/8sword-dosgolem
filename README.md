@@ -12,6 +12,18 @@
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
+## 結局原版／HD對照
+
+![結局同狀態原版與HD：對峙、人物文字及男女主角場景](docs/images/ending-original-hd-overview-r1.png)
+
+左欄是獨立執行原版程式取得的畫面，右欄是現行HD素材與Noto Black 900。原版640×200畫面按640×400顯示比例展開，HD原尺寸為1920×1200。九個結局階段已配對相同指令步與客體狀態，另保存隸書、草書擷取。這是Go／dosgolem的受控結局播放，尚不代表Rust結局接入或自然通關；見[核對收據](preserved/ending-readme-audit-r1.json)與[完整保存](preserved/README.md#結局原版hd對照保存)。
+
+| 場景 | 原版截圖 | HD截圖 |
+|---|---|---|
+| 最終對峙 | [原版](docs/images/ending-end1-original-r1.png) | [HD](docs/images/ending-end1-hd-r1.png) |
+| 人物與文字 | [原版](docs/images/ending-end5-original-r1.png) | [HD](docs/images/ending-end5-hd-r1.png) |
+| 男女主角場景 | [原版](docs/images/ending-end7-original-r1.png) | [HD](docs/images/ending-end7-hd-r1.png) |
+
 ## 原版操作整合與獨立重製
 
 ![整合入口沿原版F2呈現Go軍隊與HD新增兵種](docs/images/original-player-integrated-r1.png)

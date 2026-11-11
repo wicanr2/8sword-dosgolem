@@ -3460,3 +3460,13 @@ Rust以typed記錄接41處非最終守軍，當中8處為頭目。沿原式地�
 七獨立原生程序19份SDL畫布／讀回通過，GUI只掛native及單一工具。真正v13只改原城鄰格與seed1，原38金／102步／魔法及空軍隊保持；戰鬥另明示1000民兵／200弓箭手，不稱自然招募。原式確認／取消／無兵與三字型、戰中F7／冷讀、擊倒30猴妖後撤退、殘兵再戰勝利、重訪、頭目首劍／F1冷讀均已驗。退戰金26，再勝月薪120／容量4而金26、經驗0保持；頭目另例金38／首劍。全滅、月底與水岸由核心代表測試覆蓋，沒有所有地點GUI或原版全程RNG聲明。
 
 [完整索引](preserved/rust-guards-r1.json)、[核對](preserved/rust-guards-audit-r1.json)、[脫離核對](preserved/rust-guards-detached-r1.json)、[清理](preserved/rust-guards-cleanup-r1.json)、[完整性](preserved/rust-guards-integrity-r1.json)及[成果圖](docs/images/rust-guards-r1.png)保存本批。完整素材、source、binary、v13／v14與原／GUI證據先永久保存並驗還原，再清本批可重建快取。正式197／7／923／535／1071保持，無新image或Release；本案容器收尾，其他專案不動。起始HEAD為0babe90f15d066e78109d02d78216de9be5335ef，實際提交與推送見Git歷程。下一步最終守軍／結局、NPC增兵／日曆、其餘寶物與新遊戲。
+
+## 2026-11-11 結局原版／HD截圖
+
+使用者要求繼續並將結局原版／HD截圖放README。命中反組譯實作與README聲明路由，載入重製技能、規格閘門、文件分工、README標準及驗收參考。先補明確要求的截圖：從現行Go來源的完整結局測試產生隔離擷取器，不改正式Go或Rust；Rust最終戰／結局仍待接，沒有用Go畫面替代Rust完成聲明。
+
+準備期三次編譯失敗依序為缺少既有唯讀gomodcache、誤掛舊數值探針core、改測試名後未保留completion測試引用的helper。改回正式runtime-render-r1/src的923核心，補相依helper。兩次取樣失敗分別為換頁標籤漏掉可見頁寫入，以及把END9分卡字數誤設為整段總字數80；沿實際原版RGB／完整快照與既有24字代表修正，只改擷取器。所有失敗來源或log與擷取留存，不記成產品缺陷。
+
+最終命令為Go1.24.13容器內`go test -mod=mod ./internal/eightsword -run '^TestEndingReadmeOverview$' -count=1 -v`，58.146秒通過。固定535素材、923核心、12:00:00.00與3000cycles，兩側各138507913步，完整最終客體與原生PCM相同、退出0。九組同狀態原版RGB、27份三字型HD及原始尺寸PNG已保存；README展示END1／5／7三組，另放六張獨立截圖。左側640×200按640×400顯示比例展開，右側維持1920×1200。目視抽查對照圖通過。
+
+[核對](preserved/ending-readme-audit-r1.json)、[完整索引](preserved/ending-readme-r1.json)與[脫離核對](preserved/ending-readme-detached-r1.json)保存本批。工具、隔離來源、原始擷取、失敗紀錄及發布圖不依賴workplace。沒有重建Rust或重開其146測試，正式197／7／923／535及美術1071保持，沒有Release。Go快取只用容器/tmp，隨容器刪除；本案容器收尾，其他專案不動。起始HEAD為76a1cfaa42f61731c4a61154f2df44ab36303120，提交／推送見Git歷程。下一步仍為Rust最終守軍與結局，不能把本批截圖當Rust接入。

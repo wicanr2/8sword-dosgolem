@@ -1477,3 +1477,22 @@ Rust建置只掛crate唯讀及native可寫，使用mm45-rust-desktop:1.99.1-r3�
 現行[啟動器](../tools/rust-native-player.sh)指向battle-r1/rust-guards-r1/native。清空workplace後，在Docker內把儲存庫掛/project可寫，執行`python /project/tools/rust-guards.py restore --project /project`，依索引核SHA及mode，還原binary與139媒體。再用`bash tools/rust-native-player.sh journey --save-dir <既有可寫絕對路徑>`遊玩，有進度加`--continue`。v14讀v1至v13，WorldState與Go格式不變。[實作](../internal/remake-rust/src/guards.rs)、[測試](../internal/remake-rust/src/guards_tests.rs)與[原指令向量](../internal/remake-rust/guard-reference.tsv)為來源入口。最終守軍／結局、NPC增兵／日曆、其餘寶物與新遊戲仍待，不稱完整遊戲。
 
 本批357檔／320物件，壓縮49866758 bytes。脫離workplace逐物件核對與140個執行期檔案還原通過。只刪本批1707份可重建Rust快取，共562165369 bytes，約536.1 MiB。完整來源、素材、binary、存檔與證據保持，沒有新image或殘留本案容器，其他專案不動。
+
+## 結局原版HD對照保存
+
+[完整索引](ending-readme-r1.json)、[九組核對](ending-readme-audit-r1.json)、[脫離核對](ending-readme-detached-r1.json)與[README圖片來源](../docs/images/ending-original-hd-overview-r1.json)保存現行535素材的完整結局對照。完整PNG、三字型擷取、最終客體快照、原生PCM收據、隔離來源、擷取器與失敗紀錄放本機永久物件`preserved/ending-readme-r1/`，不依賴workplace，也不進公開包。
+
+原版採HD=false獨立執行的Oracle.ScreenRGB，HD採現行Engine.Frame；九階段逐指令步、完整客體SHA及原版RGB相同。每側138507913步、退出0，完整最終客體與原生PCM相同。這是固定時鐘下的受控原版收尾，沒有自然通關、實際GUI視窗或Rust結局完成聲明。較早完整最終守軍戰證據仍見[原戰場結局守軍](#原戰場結局守軍保存)。
+
+[擷取與保存工具](../tools/capture-ending-overview.py)必須在Docker執行，使用既有Pillow11.3.0-r2。將專案掛/project、指定既有可寫輸出父目錄：
+
+- `prepare --project /project --out <新研究目錄>`凍結兩個Go套件並產生測試。原始資料、535素材及923核心唯讀；核心用`workplace/player/runtime-render-r1/src`，不能替換成僅支援舊數值探針的`workplace/dosgolem`。
+- Go1.24.13容器將上述source掛工作目錄、原版目錄掛/game、535素材掛/assets、923核心掛/core、既有gomodcache掛/gomodcache唯讀。設`GOMODCACHE=/gomodcache GOCACHE=/tmp/go-cache GOPROXY=off GOWORK=off EIGHTSWORD_TEST_ORIGINAL=/game EIGHTSWORD_TEST_ENDING_ASSETS=/assets EIGHTSWORD_TEST_ENDING_OUT=<既有captures目錄>`，執行`go test -mod=mod ./internal/eightsword -run '^TestEndingReadmeOverview$' -count=1 -v`。
+- `audit --project /project --out <新JSON>`核對535素材與原版／HD原始PNG；`images --project /project --out <新PNG>`只排版三組代表及輸出六張獨立截圖。非預設研究目錄另傳`--work`。
+- `archive --project /project --archive /project/preserved --out /project/preserved/ending-readme-r1.json`保存本批。索引已存在時不重建或覆寫。
+- `verify --archive /archive --out <新JSON>`只需preserved唯讀、單一工具與可寫輸出，不掛workplace。
+- `restore --archive /archive --out <新目錄>`依SHA與mode還原完整研究來源、擷取及published。輸出父目錄先建立為1000:1000；原始遊戲檔與基礎535素材的還原仍依本頁既有入口。
+
+所有容器沿Docker-only規則設外層逾時、--rm、--network none、UID1000、CPU／記憶體／pids上限；工具不替代Docker隔離。現行Rust執行入口仍是[守軍與頭目](#rust守軍與頭目保存)，v14及其binary未改。
+
+本批827檔／421物件，壓縮25768595 bytes。脫離workplace核對及827檔完整還原通過，逐SHA確認後刪除161741805 bytes的還原驗證複本。原始擷取、來源與永久物件保持，Go快取隨一次性容器刪除，本案無殘留容器或新增image。

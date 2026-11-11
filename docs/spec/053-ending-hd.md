@@ -554,3 +554,13 @@ effects-audit-r1.json SHA8c24328eaa77ab0566ad19b56f739f496a785f8c1a3a74a237d6813
 - 首兩輪為取樣條件及頻率問題，失敗log與私有診斷保持。r3每10毫秒只在測試模式檢查完整來源，不增加正式計時、輸入或玩法；沒有重跑完整結局、Esc、GUI或存讀，沿相同機制既有代表。圖片／遮罩前綴接管不變，不推定FPS。
 
 ring-audit-r1.json SHA132b83232f1f22a59123328e8ad5c53275b784ec2a853505e21ad199b5db37f6；ring-promotion-r1.json SHAb094fcae6af754de5fcf7fe08ba7f2f28084f454004fc6fd3544bf8223b95df3，均在既有ending-hd-r1。[README比較圖](../images/ending-ring-original-hd-r1.png)及[完整提示與來源](../images/ending-ring-original-hd-r1.json)只收縮小成果，完整PNG及生成紀錄留end3-ring-art-r1。白色人影、END4人物／掛畫與光臺、END6空白掛畫仍待補，本規格整體DRAFT保持；不冒稱自然通關或全HD完成。
+
+## 現行素材結局對照擷取
+
+本節只補現行535素材的畫面收據，不新增原版行為或Rust接入聲明。[擷取器](../../tools/capture-ending-overview.py)沿既有完整結局測試，在隔離副本加入九階段取樣。HD與原版各自由PREDELLA正常啟動、新遊戲、F1／F2、F7退出，僅在原0110:020E明示設DS:56E2=1選取結局；沒有改最終守軍或宣稱自然通關。
+
+原版PAE SHA為`8ae11b4c89f0361ed0a2d5b1859bbb4750047d37f0e26885e6903e4feb721a0c`，PAM SHA為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`。使用Go1.24.13與既有923核心，時鐘12:00:00.00、3000虛擬cycles。九組原版RGB來自獨立HD=false的Oracle.ScreenRGB，逐步數、完整客體快照SHA及HD側的原版索引畫面核對。HD圖由現行Engine.Frame回傳，Noto／隸書／草書各九張；擷取與換字型不改客體快照。
+
+兩側完整播放均為138507913指令步、退出0，最終客體狀態及原生PCM相同。原生PCM SHA為`dedaf49acc1c65c1fbaa31d132717d8814c218fb69a344dcfd54df7799832b4c`；此值不代表HD音樂的人耳驗收。原版640×200原始PNG完整保存，README按640×400顯示比例展開，HD為1920×1200。三組代表已目視抽看，不新增GUI視窗或Rust播放驗收。
+
+[九組核對](../../preserved/ending-readme-audit-r1.json)、[README對照圖](../images/ending-original-hd-overview-r1.png)、[圖片來源](../images/ending-original-hd-overview-r1.json)及[保存／還原入口](../../preserved/README.md#結局原版hd對照保存)可回查。較早各素材段落保持其當時範圍，現行對照優先看本節；Rust最終戰及結局仍依031接續。

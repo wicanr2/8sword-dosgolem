@@ -44,6 +44,8 @@
 
 ## 最近驗證與入口
 
+結局畫面另補[原版／HD對照](docs/images/ending-original-hd-overview-r1.png)。現行535素材由Go／dosgolem重新完整播放，九階段逐步數／客體狀態及原版RGB配對，27份三字型HD畫面已保存；兩側最終狀態與原生PCM相同、均退出0。README提供三組代表及原尺寸HD連結。這是受控原版收尾，沒有自然通關、實際視窗或Rust結局完成聲明。[核對](preserved/ending-readme-audit-r1.json)與[保存／還原](preserved/README.md#結局原版hd對照保存)不依賴workplace。Rust現行仍為下列v14守軍，下一步最終戰／結局未變。
+
 最新為[Rust守軍與頭目限定驗收](docs/spec/031-rust-independent-remake.md#rust守軍與頭目限定-conformed)。八原圖42筆守軍持久資料、41處非最終守軍含八頭目接回原式確認／HD戰場，保留北／西入場、取消／空城／無兵／缺劍提示、殘兵再戰、勝敗去向與原獎勵。v14保存42記錄、八劍及待選／戰中／戰果，讀v1至v13。
 
 146測試、1176受控原分流與52算式、六份原函式1565行MZ bytes通過。原分流內最終守軍有部隊且劍齊的兩案只驗停止線，不稱可進最終戰；draw／IO／battle與stack-check prologue略過，明示14-byte本地frame。沒有原版完整GUI或全程RNG序列一致聲明。NPC月報增兵與原日曆仍待。

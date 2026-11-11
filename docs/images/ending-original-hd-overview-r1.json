@@ -1,0 +1,128 @@
+{
+  "image_sha256": "2d209377c51c6d40b484e2abc510e1fa8be467662614f4ef0edd6a2a7bd005d2",
+  "sources": [
+    {
+      "cycles": 50394297,
+      "glyphs": 0,
+      "guest_sha256": "cfe0f8dfdc03f9238bc89ec7ae9cfeae4e7e1bf1e1962f41adcdd4bcc80a2b1f",
+      "original_rgb_sha256": "ab78ed340509dd66e241371fca5b011062dc2eaa498422414b7eb3eacce9e7e5",
+      "stage": "END1.AY",
+      "step": 49316027,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END1-original.png",
+        "sha256": "dbc4217713383dea98910ae2367994c9a8ac57e809dcb5f31f3f417e7ee37c24"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END1-noto.png",
+          "sha256": "175a312c25af2262461cfea6ed737ae5247d18eafe60085a946212b52ccddb76"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END1-lishu.png",
+          "sha256": "175a312c25af2262461cfea6ed737ae5247d18eafe60085a946212b52ccddb76"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END1-caoshu.png",
+          "sha256": "175a312c25af2262461cfea6ed737ae5247d18eafe60085a946212b52ccddb76"
+        }
+      },
+      "published": {
+        "original": {
+          "path": "docs/images/ending-end1-original-r1.png",
+          "sha256": "c29a021657abde8f71dd4e61df7ead2a6a6f4815c601fc5e4bc3c060b098857b"
+        },
+        "hd": {
+          "path": "docs/images/ending-end1-hd-r1.png",
+          "sha256": "59bebab6e5ebc4dd1a8550b24ca5de4758156e0be880d9be2043d6bb8409af3f"
+        }
+      }
+    },
+    {
+      "cycles": 115059838,
+      "glyphs": 13,
+      "guest_sha256": "cf88b9d6ca6f772d38cf03cd49aa3adc5eb7955920fbf9a5226d040a5231030e",
+      "original_rgb_sha256": "a84e3150a8412a14a87e84eeb4459339fba0cbf6893747af961d67630649eaba",
+      "stage": "END5.AY",
+      "step": 97049568,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END5-original.png",
+        "sha256": "fdad273157918c1cc7fd6e1874b0e6ce39c81aff53ca1f8702b87fcb945c0613"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END5-noto.png",
+          "sha256": "a79e6e6babb595d7d102372cf772228238c052e215749845149fc243c74a2e1c"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END5-lishu.png",
+          "sha256": "712a6dcf1520a76b135d3988890c9fc092161997aa2d278d7137a1fa72455691"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END5-caoshu.png",
+          "sha256": "42b550fcee2d0a20e4b479d70c109c6e93d9b84b647e0ff1319f27d92280bc3f"
+        }
+      },
+      "published": {
+        "original": {
+          "path": "docs/images/ending-end5-original-r1.png",
+          "sha256": "7bd8d49822648fe12e7efa72fd665fd5d1def1a83faafb9a55761c76461acbbb"
+        },
+        "hd": {
+          "path": "docs/images/ending-end5-hd-r1.png",
+          "sha256": "2d3662122741e6d69cabad1d0eda3e8448deecc048a0db1203180f6acdd6230e"
+        }
+      }
+    },
+    {
+      "cycles": 142656533,
+      "glyphs": 0,
+      "guest_sha256": "b61161c5d9fbd9779f62d0ff07145a3c13d2e49772aa93ffcfda494835e173a4",
+      "original_rgb_sha256": "7dba51d05f6ff1022a88c7edb5b36885067cd5dc992fbd67d8d7e0ecd7a0f109",
+      "stage": "END7.AY",
+      "step": 118812575,
+      "original": {
+        "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/native/END7-original.png",
+        "sha256": "d08042bdd09fb06482a2958dde795370b17b38275cfa36e16416049c0aadf936"
+      },
+      "hd": {
+        "noto": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END7-noto.png",
+          "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+        },
+        "lishu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END7-lishu.png",
+          "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+        },
+        "caoshu": {
+          "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/captures/hd/END7-caoshu.png",
+          "sha256": "383754a5804a6d2d6a92a13c4b3e3cc4a3ddae64751314d607e00ef0822afc09"
+        }
+      },
+      "published": {
+        "original": {
+          "path": "docs/images/ending-end7-original-r1.png",
+          "sha256": "adcb441d02b5a53c9dccf65bf28c563f10e822fd07883081fc992fca4d676105"
+        },
+        "hd": {
+          "path": "docs/images/ending-end7-hd-r1.png",
+          "sha256": "f92c62462c72011829cef2b8a2f9965e993a9db1abb59b330c108b853e80dde3"
+        }
+      }
+    }
+  ],
+  "all_pairs": "../../preserved/ending-readme-audit-r1.json",
+  "scope": "Independent original HD=false Oracle RGB vs current HD Engine.Frame; same guest state and steps; controlled ending branch; no natural campaign or Rust ending claim",
+  "original_logical": [
+    640,
+    200
+  ],
+  "original_display_aspect": [
+    640,
+    400
+  ],
+  "hd": [
+    1920,
+    1200
+  ],
+  "actual_window": false
+}

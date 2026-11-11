@@ -1,0 +1,11 @@
+{
+  "status": "passed-ending-readme-detached",
+  "files": 827,
+  "objects": 421,
+  "restore_files": 827,
+  "restored_bytes": 161741805,
+  "restored_sha256_checked": true,
+  "published_image_hashes_checked": true,
+  "frozen_tools_match": true,
+  "original_executable_publication": false
+}
