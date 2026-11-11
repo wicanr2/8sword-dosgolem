@@ -1071,3 +1071,33 @@ Rust規則工具列READY補註：戰鬥樣本冷讀依實際存活typed ID載入
 159媒體中158逐SHA保持；固定Noto工具列22字墨保留，僅增12字成34字，三個遊戲字庫／音樂／美術不變。兩條桌面路徑支援--battle-rules auto|native|formation|tactics，預設auto。開始頁／戰中診斷列出實際規則及鎖定；戰鬥樣本依存活ID載入已有且通過header／hash／尺寸檢查的材質。原生執行仍無Go／DOS／x86依賴。正式197／7／923／535／1071保持，沒有Release。
 
 [規則與標記](../../internal/remake-rust/src/rules.rs)、[雙側核心與保存測試](../../internal/remake-rust/src/rules_tests.rs)、[SHA-256](../../internal/remake-rust/src/sha256.rs)、[控制器](../../internal/remake-rust/src/controller.rs)、[AI](../../internal/remake-rust/src/ai.rs)、[明示編成](../../internal/remake-rust/examples/rules_fixture.rs)、[製作／核對／保存](../../tools/rust-rules.py)、[GUI](../../tools/rust-rules-gui.py)、[CLI](../../tools/rust-rules-cli.py)、[核對](../../preserved/rust-rules-audit-r1.json)、[成果圖](../images/rust-rules-r1.png)與[保存／還原](../../preserved/README.md#rust規則工具列保存)為入口。下一步全程原版／HD；新兵動作、完整通關與平台／交付保持邊界，不重驗已完成音畫。
+
+## Rust全程畫面切換 DRAFT
+
+沿已批准的原版／HD選擇，新增整組原圖像素供Rust直接組圖。開場／結局沿既有雙路render；世界65地表／12主角、25原兵、PON、原框架／建築／頭像／八器物依現有graphics-inventory及解碼器投影。OpenKB八兵使用既有保存的原參考像素。保留原生共用選單與可選三字型，不稱整屏DOS像素或原動畫逐相位一致。音樂維持已批准HD OGG，玩法／規則／AI／原始v16及8SBCHK01保持。
+
+原圖組預計127張、各有確定幾何及來源hash，整組預檢後才開放切換；使用nearest保留像素。工具列在右側下方空間新增「畫面」，中央及既有控制不移動。開場／結局的H與原切換按鈕共用此設定。設定沿海報獨立偏好模式，不改玩法schema。未具原圖組的舊包保持HD，不能靜默拼出半套原圖。入口為本節、[素材準備](../../tools/rust-display.py)及現行圖形索引；研究區沿battle-r1/rust-display-r1。先驗素材再補READY，不從DRAFT進正式程式。
+
+## Rust全程畫面切換 READY
+
+已審查圖形索引逐來源檔／記錄／RGBA hash及127張投影；原解碼器catalog-all-graphics.py與Huffman來源均保留hash。65原地表、12原主角、25原兵、四PON、兩建築、框架／戰場／頭像及八器物依已知記錄，nearest到現行幾何；新增OpenKB八兵採已保存參考圖frame0，透明index255由openkb/src/lib/free-data.c:1579的SDL_SetColorKey確認。來源、完整hash與幾何保存在rust-display-r1/evidence/original-assets.json及openkb-transparency.json，不新增DOS語意推測。
+
+載入期以original/images.tsv固定127個名稱／幾何／SHA預檢，Image再驗header／FNV／長度。所有實際素材同時備妥HD及原圖，切換只在組畫布前交換整組像素，不先畫一層再覆蓋另一層。原圖組缺失的舊包可沿HD；原圖組存在但不完整或hash錯誤拒啟動，不半套回退。共用選單／字型／按鍵／六隊／法術規則保持，地圖HD光環只在HD顯示。原圖模式是原素材呈現，不提升為DOS整屏／完整原動畫exact。
+
+全程「畫面」按鈕放右側底部空位；放開提交，不移動中央或既有控制。原開場／結局H及按鈕使用同一模式，切換不改時間、seed、兵數、HP、資源或世界步數。display.json為schema1、mode hd|original的獨立呈現偏好；與海報同目錄，以create_new暫存／sync／rename保存，保存失敗回報且模式不提交。缺偏好預設HD，壞偏好拒讀；--display auto|hd|original可明選。v16／8SBCHK01及rules標記保持；無新偏好或CLI時，舊結局hd欄仍能恢復，之後同步現行模式到既有欄。
+
+驗收採相同狀態切來回、HD中央與前版同狀態、正常v16移動／F1／F2／營地、受控普通戰／F7冷讀及開場／結局代表；驗字型／規則／AI獨立、原圖缺件／hash／偏好拒絕、兩組圖及透明材質切換無殘影。原圖解碼對照與remake內部測試分開，不重驗已完成規則、整段結局或所有HD。完整來源／素材／原始畫面先永久保存、還原抽驗，再清本批快取。
+
+## Rust全程畫面切換限定 CONFORMED
+
+`RUST-DISPLAY-RESOLVED-20261111`。127張原圖已供Rust直接組圖，包含65地表、12主角、25原兵、四PON、兩建築、戰場／框架／頭像、八器物與八OpenKB參考圖。原檔、記錄及解碼RGBA逐hash對既有圖形索引；原圖用nearest，OpenKB取frame0、依free-data.c:1579的index255透明契約。完整127記錄與來源hash在保存內original-assets.json，OpenKB原始碼／hash及唯讀重建證據另存。來源唯讀重建287媒體，全部SHA與當前包相同。
+
+載入期驗127個固定名稱、幾何及SHA，再驗圖片header／FNV／長度；雙組在首張畫布前預載。每幀組圖前交換整組像素，直接畫選中的RGBA，沒有原圖畫完再疊HD的路徑。舊包無原圖組時維持HD，完整組存在卻壞件時拒啟動。開場／結局沿既有typed render，H與原切換鍵共用全程模式，計時不重設；一般場景沿Rust共用選單與Noto／隸書／草書，原圖不是DOS整屏或完整動畫exact。地圖額外HD光環只在HD繪製，音樂保持原OGG／佇列。
+
+199測試、127圖片各九次原圖／HD往返及來源唯讀重建通過。七GUI程序29份手動與六份自動擷取，共35份全幅SDL／中央裁切核對；另兩程序驗預設2/3視窗1962×880。三類原圖缺件／hash／尺寸、非法CLI及偏好／symlink共七拒絕案例，輸入檔不變。缺任一組員的交換在提交前拒絕，百次透明／HD往返保持原bytes；舊34字工具列與HD-only包保持可用。原34字墨保留，新畫面工具列只補畫、H、D三字成37，三遊戲字庫與158個原媒體SHA保持。
+
+正常v16 Continue後切原圖，F1／F2、隸書、四步走入原營地、募一民兵30→31／500→499金、返回F7及獨立程序冷讀通過。原圖／HD在相同玩法hash比較，切回HD的世界中央與前版同state_hash8473f43c4b6a804c、逐像素相同。戰鬥以已保存100民兵／100矮人對50原弓箭手及另組OpenKB編成抽驗，包含策略AI、結陣固定、切回HD無殘影、F7與獨立冷讀；不是自然取得。原開場美女近景切換後回同模式開始頁；真正v15原圖結局冷讀、H／全程按鈕／F7保持資源與步數，未重跑完整通關。
+
+畫面偏好是同存檔目錄的display.json、schema1、mode hd|original，以create_new暫存／sync／rename寫入，失敗不提交選擇。無偏好預設HD；--display auto|hd|original明選為程序選項；工具列或H選擇持久化。玩法v16／8SBCHK01／rules標記保持，預設縮放下切換前後F7原始bytes相同。無新偏好／CLI時，舊結局hd欄恢復，後續保存沿既有欄同步。原生288檔為binary＋287媒體，不需Go／DOS／x86；原資料／完整圖只留本機，不作Release。正式197／7／923／535／1071保持。
+
+[畫面契約與偏好](../../internal/remake-rust/src/display.rs)、[雙組素材](../../internal/remake-rust/src/media_assets.rs)、[127圖往返](../../internal/remake-rust/examples/display_audit.rs)、[工具列](../../internal/remake-rust/src/poster.rs)、[準備／核對／保存](../../tools/rust-display.py)、[GUI](../../tools/rust-display-gui.py)、[拒絕案例](../../tools/rust-display-cli.py)、[預設縮放](../../tools/rust-display-smoke.py)、[核對](../../preserved/rust-display-audit-r1.json)、[成果圖](../images/rust-display-r1.png)與[保存／還原](../../preserved/README.md#rust全程畫面切換保存)為入口。較早031中的全程畫面待接由本限定項閉合；下一步收束特殊地點邊界及交付，既有音畫／玩法矩陣不重開。

@@ -14,6 +14,7 @@ fn main() {
                     | "--skip-intro"
                     | "--battle-ai"
                     | "--battle-rules"
+                    | "--display"
             )
         })
     {

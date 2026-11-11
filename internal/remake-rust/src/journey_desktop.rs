@@ -22,6 +22,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut ai_mode = crate::ai::Mode::Native;
     let mut rule_mode = None;
     let mut scale = 2.0 / 3.0;
+    let mut display_mode = None;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .map_err(|e| e.to_string())?
@@ -29,6 +30,16 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
+            "--display" => {
+                i += 1;
+                let value = args.get(i).ok_or("缺少畫面模式")?;
+                display_mode = if value == "auto" {
+                    None
+                } else {
+                    Some(crate::display::Mode::parse(value)?)
+                };
+            }
+
             "--battle-rules" => {
                 i += 1;
                 let value = args.get(i).ok_or("缺少規則模式")?;
@@ -115,9 +126,12 @@ pub fn run(args: &[String]) -> Result<(), String> {
     crate::treasure::validate_maps(&data)?;
     crate::world_magic::validate_maps(&data)?;
     let catalog = Catalog::builtin()?;
-    let map = Pack::load(&assets)?;
+    let mut map = Pack::load(&assets)?;
     let mut sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
     sdl.configure_poster(&assets, store.as_deref(), capture.as_deref(), scale)?;
+    if let Some(mode) = display_mode {
+        sdl.set_display(mode, false)?;
+    }
     sdl.set_battle_ai(ai_mode);
     sdl.set_rules(rule_mode.unwrap_or_default(), rule_mode.is_some());
     let (mut journey, initial_captures, initial_saves) = if start_menu {
@@ -161,6 +175,18 @@ pub fn run(args: &[String]) -> Result<(), String> {
     } else {
         (Journey::new(&data, seed), 0, 0)
     };
+    if !sdl.display_configured() {
+        if let Some(p) = journey.guards.ending {
+            sdl.set_display(
+                if p.hd {
+                    crate::display::Mode::Hd
+                } else {
+                    crate::display::Mode::Original
+                },
+                false,
+            )?;
+        }
+    }
     if journey.battle.is_some() {
         if rule_mode.is_some_and(|m| m != journey.rules) {
             return Err("冷讀戰鬥的規則已固定".into());
@@ -175,12 +201,13 @@ pub fn run(args: &[String]) -> Result<(), String> {
     battle_pack.load_spell_assets(&assets)?;
     battle_pack.load_native_units(&assets)?;
     battle_pack.load_extra_units(&assets)?;
-    let building =
-        crate::media_assets::Image::load(&assets.join("recruit-building.rgba"), 1344, 600)?;
-    let portrait = crate::media_assets::Image::load(&assets.join("hero-portrait.rgba"), 240, 240)?;
-    let item_icons: [crate::media_assets::Image; 8] = (0..8)
+    let mut building =
+        crate::media_assets::Image::load_dual(&assets.join("recruit-building.rgba"), 1344, 600)?;
+    let mut portrait =
+        crate::media_assets::Image::load_dual(&assets.join("hero-portrait.rgba"), 240, 240)?;
+    let mut item_icons: [crate::media_assets::Image; 8] = (0..8)
         .map(|i| {
-            crate::media_assets::Image::load(
+            crate::media_assets::Image::load_dual(
                 &assets.join(if i == 0 {
                     "magic-book.rgba".into()
                 } else {
@@ -193,8 +220,8 @@ pub fn run(args: &[String]) -> Result<(), String> {
         .collect::<Result<Vec<_>, _>>()?
         .try_into()
         .map_err(|_| "器物數量錯誤")?;
-    let magic_building =
-        crate::media_assets::Image::load(&assets.join("magic-building.rgba"), 1344, 600)?;
+    let mut magic_building =
+        crate::media_assets::Image::load_dual(&assets.join("magic-building.rgba"), 1344, 600)?;
     let (mut boundary, mut choose, mut cursor, mut captures, mut saves) =
         (None, false, 7usize, initial_captures, initial_saves);
     if let Some(cp) = &journey.battle {
@@ -554,6 +581,16 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
             last_queue = sdl.queued();
         }
+        let original = sdl.display_mode().original();
+        map.select(original)?;
+        battle_pack.select(original)?;
+        crate::display::select_group(
+            std::iter::once(&mut building)
+                .chain(std::iter::once(&mut portrait))
+                .chain(item_icons.iter_mut())
+                .chain(std::iter::once(&mut magic_building)),
+            original,
+        )?;
         let font = &map.fonts[usize::from(journey.world.font)];
         let effective_map = journey.magic.view(&data)?;
         let mut frame = if let Some(cp) = &journey.battle {

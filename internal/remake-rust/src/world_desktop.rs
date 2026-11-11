@@ -16,6 +16,15 @@ pub(crate) struct Pack {
     pub(crate) music: Music,
 }
 impl Pack {
+    pub(crate) fn select(&mut self, original: bool) -> Result<(), String> {
+        crate::display::select_group(
+            std::iter::once(&mut self.frame)
+                .chain(self.tiles.iter_mut())
+                .chain(self.heroes.iter_mut()),
+            original,
+        )
+    }
+
     pub(crate) fn spell_cue(
         &self,
         f: &mut [u8],
@@ -23,6 +32,9 @@ impl Pack {
         elapsed: Duration,
         color: [u8; 3],
     ) {
+        if self.frame.is_original() {
+            return;
+        }
         let progress = (elapsed.as_secs_f32() / 1.2).clamp(0.0, 1.0);
         if progress >= 1.0 {
             return;
@@ -53,12 +65,12 @@ impl Pack {
     }
     pub(crate) fn load(root: &Path) -> Result<Self, String> {
         Ok(Self {
-            frame: Image::load(&root.join("world-frame.rgba"), 1920, 1200)?,
+            frame: Image::load_dual(&root.join("world-frame.rgba"), 1920, 1200)?,
             tiles: (0..65)
-                .map(|i| Image::load(&root.join(format!("map-tile-{i:02}.rgba")), 192, 150))
+                .map(|i| Image::load_dual(&root.join(format!("map-tile-{i:02}.rgba")), 192, 150))
                 .collect::<Result<_, _>>()?,
             heroes: (0..12)
-                .map(|i| Image::load(&root.join(format!("map-hero-{i:02}.rgba")), 192, 150))
+                .map(|i| Image::load_dual(&root.join(format!("map-hero-{i:02}.rgba")), 192, 150))
                 .collect::<Result<_, _>>()?,
             fonts: ["noto", "lishu", "caoshu"]
                 .iter()
@@ -179,6 +191,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let (mut continuing, mut mute, mut seed_given) = (false, false, false);
     let mut check_only = false;
     let mut scale = 2.0 / 3.0;
+    let mut display_mode = None;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .map_err(|e| e.to_string())?
@@ -186,6 +199,16 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
+            "--display" => {
+                i += 1;
+                let value = args.get(i).ok_or("缺少畫面模式")?;
+                display_mode = if value == "auto" {
+                    None
+                } else {
+                    Some(crate::display::Mode::parse(value)?)
+                };
+            }
+
             "--assets" | "--capture-dir" | "--save-dir" => {
                 let k = args[i].as_str();
                 i += 1;
@@ -241,7 +264,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     } else {
         WorldState::new(&data, seed)
     };
-    let pack = Pack::load(&assets)?;
+    let mut pack = Pack::load(&assets)?;
     // Check every displayed glyph before opening the window.
     for font in &pack.fonts {
         for ch in UI_TEXT
@@ -269,6 +292,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
     }
     let mut sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 世界移動預覽")?;
     sdl.configure_poster(&assets, saves.as_deref(), capture.as_deref(), scale)?;
+    if let Some(mode) = display_mode {
+        sdl.set_display(mode, false)?;
+    }
     let (mut pending, mut audio, mut captures, mut saved, mut readback_equal) =
         (None, 0, 0, 0, true);
     let (mut queued_bytes, mut drains, mut last_queue) = (0u64, 0u64, 0u32);
@@ -337,6 +363,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
             last_queue = sdl.queued();
         }
+        pack.select(sdl.display_mode().original())?;
         let frame = compose(&pack, &data, &state, pending, saves.is_some(), 6, false)?;
         let back = sdl.draw(&frame, snap)?;
         if let Some(pixels) = &back {

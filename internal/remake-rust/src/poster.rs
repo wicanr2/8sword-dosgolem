@@ -30,6 +30,7 @@ pub struct Shell {
     id: usize,
     menu: Option<Menu>,
     pub ai: crate::ai::Mode,
+    pub display: crate::display::Settings,
     pub rules: crate::rules::Mode,
     pub rules_locked: bool,
     pub rules_selected: bool,
@@ -95,6 +96,15 @@ impl Shell {
                     .insert(ch, base.glyphs.get(&ch).ok_or("規則工具列缺字")?.clone());
             }
         }
+        if "畫面 HD原版".chars().any(|c| !font.glyphs.contains_key(&c)) {
+            let base = Font::load(&root.join("font-noto.bin"))?;
+            for ch in "畫面 HD原版".chars() {
+                if !font.glyphs.contains_key(&ch) {
+                    font.glyphs
+                        .insert(ch, base.glyphs.get(&ch).ok_or("畫面工具列缺字")?.clone());
+                }
+            }
+        }
         let mut error = String::new();
         let mut panels = Vec::new();
         for name in ["wings", "cover"] {
@@ -135,6 +145,7 @@ impl Shell {
             id,
             menu: None,
             ai: crate::ai::Mode::Native,
+            display: crate::display::Settings::default(),
             rules: crate::rules::Mode::Native,
             rules_locked: false,
             rules_selected: false,
@@ -250,6 +261,9 @@ impl Shell {
         }
     }
     fn hit(&self, x: i32, y: i32) -> Option<i32> {
+        if (2464..2904).contains(&x) && (1274..1318).contains(&y) {
+            return Some(-5);
+        }
         if (24..488).contains(&x) && (2..46).contains(&y) {
             return Some(-4);
         }
@@ -334,6 +348,20 @@ impl Shell {
             if kind == 0x402 {
                 if let Some(pressed) = self.pressed.take() {
                     if hit == Some(pressed) {
+                        if pressed == -5 {
+                            if self.display.available {
+                                let mode = if self.display.mode.original() {
+                                    crate::display::Mode::Hd
+                                } else {
+                                    crate::display::Mode::Original
+                                };
+                                if let Err(e) = self.display.choose(mode, true) {
+                                    self.error = e;
+                                }
+                            }
+                            self.menu = None;
+                            return true;
+                        }
                         if pressed == -4 && self.rules_locked {
                             self.menu = None;
                             return true;
@@ -399,6 +427,15 @@ impl Shell {
         )?;
         self.label(&mut out, self.ai_label(self.ai), [2716, 2, 204, 44])?;
         self.label(&mut out, &self.rule_label(self.rules), [24, 2, 464, 44])?;
+        self.label(
+            &mut out,
+            if self.display.mode.original() {
+                "畫面 原版"
+            } else {
+                "畫面 HD"
+            },
+            [2464, 1274, 440, 44],
+        )?;
         if let Some(menu) = self.menu {
             let rule_names: Vec<String> = (0..3)
                 .map(|i| self.rule_label(crate::rules::Mode::from_index(i)))
@@ -485,7 +522,7 @@ mod tests {
                 blank(),
             ],
             font: Font {
-                glyphs: "海報龍虎延展經典封面關閉錯誤* 原版策略AI nativeargetRules formationtactics LOCK"
+                glyphs: "海報龍虎延展經典封面關閉錯誤* 原版策略AI nativeargetRules formationtactics LOCK畫面 HD"
                     .chars()
                     .map(|c| (c, vec![0; 4096]))
                     .collect(),
@@ -495,6 +532,7 @@ mod tests {
             id: 1,
             menu: None,
             ai: crate::ai::Mode::Native,
+            display: crate::display::Settings::default(),
             rules: crate::rules::Mode::Native,
             rules_locked: false,
             rules_selected: false,
@@ -541,6 +579,25 @@ mod tests {
         }
         assert_eq!(s.ai, crate::ai::Mode::Target);
         assert_eq!(s.rules, crate::rules::Mode::Tactics);
+    }
+
+    #[test]
+    fn display_toggle_commits_on_release_and_is_independent_of_battle_lock() {
+        let mut s = shell();
+        s.display.available = true;
+        s.rules_locked = true;
+        assert!(s.event(&mut event(0x401, 2600, 1290)));
+        assert_eq!(s.display.mode, crate::display::Mode::Hd);
+        assert!(s.event(&mut event(0x402, 2600, 1290)));
+        assert_eq!(s.display.mode, crate::display::Mode::Original);
+        assert!(s.display.configured);
+        s.event(&mut event(0x402, 2600, 1290));
+        assert_eq!(s.display.mode, crate::display::Mode::Original);
+        for kind in [0x401, 0x402] {
+            s.event(&mut event(kind, 2600, 1290));
+        }
+        assert_eq!(s.display.mode, crate::display::Mode::Hd);
+        assert_eq!(s.rules, crate::rules::Mode::Native);
     }
     fn event(kind: u32, x: i32, y: i32) -> [u8; 56] {
         let mut b = [0; 56];

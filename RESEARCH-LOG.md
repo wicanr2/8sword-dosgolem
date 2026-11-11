@@ -3685,3 +3685,13 @@ SDL2本機/usr/include/SDL2/SDL_video.h為可用桌面界限契約來源，SDL_G
 Go1.24.13直接匯出5184資格／倍率向量及1224三模式View，含原版受控View的模式投影，不稱新CPU案例。Rust1.99.1普通結算與AI呼叫同一Scale；原版安全上限保留，傷害先減百分比，再除HP／encoded及提交兵數。64敵術seed確認普通倍率不滲入特殊分派。SHA以Python hashlib的264個長度及兩個標準值交叉核對。
 
 Linux原生SDL以正常鍵鼠完成三模式、戰中固定、正常v16遭遇與F7冷讀，20份全幅及中央讀回通過。後排弓箭手GUI只證明結陣；前排壓制由雙方實際核心攻擊另驗，不混稱同一GUI證據。兩檔保存不具組合原子性，錯標記拒讀。完整來源、映像、配額與限制見[核對](preserved/rust-rules-audit-r1.json)及[永久保存](preserved/README.md#rust規則工具列保存)。
+
+## 2026-11-11：Rust原圖素材組與全程選擇
+
+證據等級為既有來源像素的限定投影與原生呈現。原圖依graphics-inventory-r1.json SHA `c07d1b196eb8e8292d2f3db143775790a802ec91f092da0899eb8763c791d32f`，每筆原檔／記錄／RGBA皆先核hash，再以nearest投影；不新增DOS函式語意，不重開硬體時序RE。解碼器SHA `3b349e00d8dfee79e16e09057d17fab2736d0273d5a30599633c8dbc280d9c4f`，Huffman工具SHA `1b88a91085c294fe8d060f05d7341bc01304d368ce7b5237497f6275c374b4f9`。完整127來源表及原始大小在保存內evidence/original-assets.json。
+
+OpenKB參考圖來自artwork既有保存。`/home/anr2/openkb/openkb-code/src/lib/free-data.c:1579` SHA `778f1fe8c0751791121b86db0bc789c794fa921ee074b471e278dff876a5c626`明示透明表面使用SDL_SetColorKey的0xFF；本輪取32×34第一姿，不冒稱神州原生兵或完整動畫。原始碼、hash與定位已複製到本批證據，後續不依賴外部專案存續。
+
+Rust在載入期驗整組原圖，繪製前交換已預載像素，沒有原圖再疊HD。199測試、127圖往返、唯讀重建287檔、七GUI35份全幅及兩預設視窗通過。世界／人物／軍隊／營地／普通與OpenKB戰場有六對同狀態證據；開場／結局不同時刻的畫面分開記錄，未混稱同幀。前版HD世界同狀態逐像素保持。
+
+原圖使用Rust共用選單與可選字型，不稱整個DOS UI／原動畫逐像素還原。display.json獨立於玩法，舊結局hd欄在沒有新偏好／CLI時仍恢復；有形態或hash錯誤的素材組拒讀。[031](docs/spec/031-rust-independent-remake.md#rust全程畫面切換限定-conformed)、[核對](preserved/rust-display-audit-r1.json)及[永久保存](preserved/README.md#rust全程畫面切換保存)為入口。

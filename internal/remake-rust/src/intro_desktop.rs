@@ -19,7 +19,7 @@ pub(crate) fn play(
 ) -> Result<Option<(u8, bool, u32)>, String> {
     let pack = Pack::load(root)?;
     let music = Music::load(&root.join("start-music-1.ogg"))?;
-    let (mut font, mut enabled, mut hd) = (0u8, true, true);
+    let (mut font, mut enabled) = (0u8, true);
     let mut pointer = Pointer::default();
     let clock = Instant::now();
     let (mut first, mut pending) = (true, false);
@@ -77,13 +77,14 @@ pub(crate) fn play(
                     sdl.clear_music();
                     return Ok(None);
                 }
-                104 => hd = !hd,
+                104 => sdl.toggle_display()?,
                 109 => enabled = !enabled,
                 1073741891 => font = (font + 1) % 3,
                 1073741893 => snap = capture.is_some(),
                 _ => {}
             }
         }
+        let hd = !sdl.display_mode().original();
         if skip {
             if pack.skip_waits_for_reveal(index) {
                 pending = true;
@@ -165,6 +166,7 @@ pub(crate) fn play(
             checksum(&pixels),
             captures + u32::from(snap)
         );
+        let status = format!("{status}{}", sdl.ai_status());
         if let Some(dir) = capture {
             if snap {
                 captures += 1;

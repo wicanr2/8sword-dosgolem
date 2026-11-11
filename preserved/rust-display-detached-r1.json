@@ -1,0 +1,2023 @@
+{
+  "status": "passed-rust-display-detached",
+  "primary_verification": {
+    "status": "passed-rust-display-detached",
+    "files": 2112,
+    "objects": 602
+  },
+  "runtime_restore": {
+    "status": "passed-288-runtime-sha-mode-restore",
+    "files": [
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/8sword-remake",
+        "sha256": "ee64595ea86882407b7484941389c2b89aaa80ac486d36df962088e1c6da7985",
+        "bytes": 1773920,
+        "mode": 493
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/background.rgba",
+        "sha256": "c6faea4ca9ef89aeae2419ccb9ee558fd8d2a64b646548b2d737ceff316ab2f8",
+        "bytes": 9216024,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/ending.bin",
+        "sha256": "6312b4bc757b2ac500fda80590c621fc9b372dbe031e77e75580b6724edd7177",
+        "bytes": 80019236,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/font-NOTICE.txt",
+        "sha256": "fccf145c93b6d931a48374b3c89075899d4a78ab7731be2d8e79b9c8b7328c8c",
+        "bytes": 229,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/font-caoshu.bin",
+        "sha256": "4bcc4faad9603bc3a8f253741db952acb7d09f628246dc1dbadc0ac313f441a0",
+        "bytes": 3644920,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/font-choice-caoshu-LICENSE.txt",
+        "sha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc",
+        "bytes": 4406,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/font-choice-lishu-LICENSE.txt",
+        "sha256": "7fee8149f68d8690d3d05f2d64172a33f7b6de0bba216413553895bdfba3503b",
+        "bytes": 115,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/font-choice-lishu-NOTICE.txt",
+        "sha256": "e18c80c8a92e3f747f9a14cd3328f5ac640cc373a84719c9a1aa9f1d92bcd143",
+        "bytes": 504,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/font-lishu.bin",
+        "sha256": "84898ba34af57746c26514c85cd8c632f5ac545bad896bc01592243b803aab07",
+        "bytes": 3644920,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/font-noto.bin",
+        "sha256": "79613afd066e3d4f0d505171585680cdc70c023c3140478890a912100598ffe5",
+        "bytes": 3644920,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/hero-portrait.rgba",
+        "sha256": "a405e8694c65a984a24e81c06dd2c9fe11a9eeb219230d0b0cd996c899b2e422",
+        "bytes": 230424,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/intro.bin",
+        "sha256": "8a0dda51398738ff0a10a271581586c5658f8306eea282dbe809a13844aa2912",
+        "bytes": 193847684,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/item-1.rgba",
+        "sha256": "4de71b034709402a59e31e5cbb75672890080fc278e972c1029551bf24b5cdfb",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/item-2.rgba",
+        "sha256": "5900e9ee41a8294aaaae52867354c46b00155b10ef88048f800c42fc7a7ec3cd",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/item-3.rgba",
+        "sha256": "bccfe6827185aea6c1472592b25a910c22d6f6bafcbe9627fff1b56ec685a60d",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/item-4.rgba",
+        "sha256": "d570cf862dfa13f805a9d9ab447db4f8c5f69e04aeb70db7cdecbf1d377aefaa",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/item-5.rgba",
+        "sha256": "71baafdcd4ac27edabdc0eab020a2e172cd4ff4eaef08cb990d2be2767d7b9af",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/item-6.rgba",
+        "sha256": "e001843ff45ff675d4a09ce963feb9acb0e78ecfc5b655518929f6bb428b8c30",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/item-7.rgba",
+        "sha256": "3258a87ddb7c89c1e5b5430b56b7553b693e651513987632e0b7ef125b4f9979",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/magic-book.rgba",
+        "sha256": "80fbad6fabeac0d82e51f54bd009ecf1bb15ea735bc181e1e094a3bc4f389377",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/magic-building.rgba",
+        "sha256": "0046daf4cc9d656f37fa3060349c4b97add1e635605e26862c21702b2b1168fc",
+        "bytes": 3225624,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-00.rgba",
+        "sha256": "582bbcf8d56d57bbb3ac24725e41a9507ad1925b3b6a9ddb198981ddf294f0a9",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-01.rgba",
+        "sha256": "cb4c81ccf2d5a1d2fda534350d7d4d1544cc53721a3cf57646fcf232cd03e072",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-02.rgba",
+        "sha256": "f231e7a417b8d55694805b6e342c19a434fa9bfe3e5fb67aef98783f5a838a6f",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-03.rgba",
+        "sha256": "9d4c82f76f852509e55328159c632b9f4c91526795339c4eb7ef601ab72c018e",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-04.rgba",
+        "sha256": "05d266ae05402610f007395802a5ef4cc612fba2a65100e157772d9af72011b9",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-05.rgba",
+        "sha256": "8581a91dada08c92810bea20c62dfd398483eb74621c4671c6893a507e1d79ae",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-06.rgba",
+        "sha256": "82ab7d48e65101c639a4c9011bb98b9a8f2d9832274fdfac6ff1a6e5cf8ead4d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-07.rgba",
+        "sha256": "22dd405ea58ec90bb689e8882496ecb501f4113d711240af8b6fb36ee70e0fc5",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-08.rgba",
+        "sha256": "7f6a6916c5e66dc7fffee1685a4fd13a2c1bdcc250aca32bee8c8303d1d0bd78",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-09.rgba",
+        "sha256": "3ec2580e92b50280b9c2627ac4fd27ec7ce2a88874a7bc75ebdb0e461ddda89b",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-10.rgba",
+        "sha256": "6ba2a1eb6b8167cba5c4b7f6e693a862d60b773c7ecb0f80ae89fe53216ed02c",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-hero-11.rgba",
+        "sha256": "2a6694bc110213bd5e2baf083384663783f1d86ad30e4d67ff2006de9525b94d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-notices.tsv",
+        "sha256": "d2d8f1cc0c98f8c895cd913b0b655b32af4d58548dae9455014b1672c1908560",
+        "bytes": 3997,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-00.rgba",
+        "sha256": "6effc2b7ebba05249fef9ae85259cbe8763be2741adfaceddab64818b6c9ff67",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-01.rgba",
+        "sha256": "a3dbe40a666e557023071e7d08325a04d4df3ef9c6e25099d81f758db3b1d265",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-02.rgba",
+        "sha256": "3b48aac520e7f768dcb6dacfd6ab48411a1e3c7b40925d57a10a8eaac852b212",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-03.rgba",
+        "sha256": "e7f3791538390a698b9364c49b4a858ae1fef0f7309ed3e7a1927ec8ad4cc8aa",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-04.rgba",
+        "sha256": "e9d46a6723902b6caf5f6efc8e71e052214642357da482c39b682deeab4e585e",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-05.rgba",
+        "sha256": "7166c620b0a6545de15d8f096881ae35233eff1ab299aab33e75cabc558c7449",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-06.rgba",
+        "sha256": "d54d6a3bf751fb3c75512c37e0f3069b30191f135fde8a34eda4fcb99295a121",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-07.rgba",
+        "sha256": "b7db58bc326d7a90c48edcb7bac220afe9e1506d4bbd8ffc56187bae496991ce",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-08.rgba",
+        "sha256": "3e9d8953d56b18588418779af85c95d65f659e7d36eef3ad3a6e2718dd480803",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-09.rgba",
+        "sha256": "bda4dc7c0c2c101243f91dd6018020f34cdfef30ee1df921061bc01a0fffdbf1",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-10.rgba",
+        "sha256": "8aca2ac70b0a6eb320d12058236ffb90336a59c834086939c5499e91e844c14d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-11.rgba",
+        "sha256": "28587cd4ba905a6e3afc707a5f9132240537624188dc767305ff697e73bd16db",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-12.rgba",
+        "sha256": "45dfbd3865cbfa4221099d830c37fd6a2247573cafb954152a9db690b54cfb5e",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-13.rgba",
+        "sha256": "1cc181118c0696964dccf4c0781759de3c02399b22bbe4a1714ea7bea565caf1",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-14.rgba",
+        "sha256": "ce9e03ccb38d6ff18824fce27a995d72995619defd26d7221d6d6f0ff5773113",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-15.rgba",
+        "sha256": "0d2db684ec4268b72bcb480992e52fafd2700bb73e93d3852479157889b200a5",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-16.rgba",
+        "sha256": "53d10f8da68ca147f2397eaeef65dc93ab5fda84792416a4e18ba9e8ae51b448",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-17.rgba",
+        "sha256": "26d68780d98cb9187c60370be85bbfdd85fff7f41ec395e8653255fc77c76c46",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-18.rgba",
+        "sha256": "9fb5c05dd804f5d4a8a220270f2f97e3d531608a17fc97a84cd2f3c2030ed954",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-19.rgba",
+        "sha256": "3183652a286bdd40ad6c47ef18a57143f9579f88cb8ec517d58195843a8d72c3",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-20.rgba",
+        "sha256": "d1b78094cc5dacad90c3faae9e636ab7b56b1a24727c3db35dedee8f57cce1f3",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-21.rgba",
+        "sha256": "58237667527519d999cc4cf6fb6b97880f60fb84f865e916acf109256bed8de8",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-22.rgba",
+        "sha256": "4ca7804f6a22e55fdd3edd644b45461c4e2b113a76b0f1ef2df744162fd22861",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-23.rgba",
+        "sha256": "fa17254caccdd4a93ee15c073397c5aea1741c1abb2cb8c46a9455147467b768",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-24.rgba",
+        "sha256": "8928701cc34334682155c2daf0c2de02e101525bd41e5243f7f733a509f9f58a",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-25.rgba",
+        "sha256": "46e80f093559fa7ac5dfc8a5b444a9136abe28831b7d70969f70bbbb50d41588",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-26.rgba",
+        "sha256": "30ae74714c6c0fde3edb39895c3e35af52fa3f6e25244adba0e668d1246e9e2a",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-27.rgba",
+        "sha256": "567599d9f0cf30c8af76f888261816f328cb035fe8e6ea528a0bba2950b4cfeb",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-28.rgba",
+        "sha256": "3028764c6901a4e6dafc093361ab8455993d0d02a843f63738d41fc3b2ad1281",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-29.rgba",
+        "sha256": "b43cfece3b50c3961d005649ca41de5944f72ecd0cfc44bf52efcea58081df83",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-30.rgba",
+        "sha256": "b852d4240d4964338c144d4ef761a381f8b6b061caa366fbfda71cb4ce52bf1f",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-31.rgba",
+        "sha256": "18f3f89307a1817c4b136bafbabde6d285cf0e0ed0c5b05dcc46b2573c56c48b",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-32.rgba",
+        "sha256": "170e540f3705dc09aba0af1064364d2b7aefe75c92fe94fea37f826c478f30f7",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-33.rgba",
+        "sha256": "0fb584e458c848c38c17fbd31251836c7f6d5b609d2391ea92c31f20046fabc0",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-34.rgba",
+        "sha256": "95f6110e239d537799275a846f8d7964f3ef9f05423c1576cc3de4e662a5437f",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-35.rgba",
+        "sha256": "3b8d0e2fdf0722a9a63d2f2d670c4c3ea76aef35d98ef3c3343412aedaab01ab",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-36.rgba",
+        "sha256": "9df87c14171d7da4069b3213f18da9a151d1a254bb8ac62fb4adc6047666c94c",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-37.rgba",
+        "sha256": "410ef0436bb782304afdfc41d1d096eb5aafb3f34d5ad4c7111d7b2d4888741c",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-38.rgba",
+        "sha256": "e3e225ac3962427c9652e37da17c625e29c63673ac411029eb7f56958b00f8ce",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-39.rgba",
+        "sha256": "103a47d98efd7d34a74a4c35863e2d4df21a6fb0702f64b30e1df4eb99c33ddd",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-40.rgba",
+        "sha256": "517e320e2136946acac80c45a02450675d71ab45036744fdcb061bf0fb656d4c",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-41.rgba",
+        "sha256": "62f52885b8a9bf0fa4d1073a1addc10adb79a880c32f8f691e7ccf5bb82ed5ee",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-42.rgba",
+        "sha256": "c524c7569cb6110f1aa3c7b97eaf63652f74d445b0168dfd0b39ab58d82a5138",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-43.rgba",
+        "sha256": "056d4c9b86106badc357b999cf2a10884c990bede46149a68353bdb343ed9e7a",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-44.rgba",
+        "sha256": "7e91df1185c9771973c9fd99633d27ee399a2e89f52a8f42bd2e8059e514d83a",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-45.rgba",
+        "sha256": "dcbc168ecfa3338f8e750aa14353c1c574c9128058cb3a54fa74206af96f4f7c",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-46.rgba",
+        "sha256": "43c86c5f8d9296e398117a0e28e12f66c35f7e19098b261c962344a6ac4f7dc5",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-47.rgba",
+        "sha256": "296dbcf041bdd5a66ed5e0f7f25c92360426b80a8e8cdec5c815137d9cc9fddd",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-48.rgba",
+        "sha256": "c0ed6dc49b6189342d1d74019434cbf25ae7e7d44d32a0eeb9683576208d9e1c",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-49.rgba",
+        "sha256": "b2adfc523309b3bd56ccf0cfa8dab7fbf19cf661d5b0e6e2c57caae54f8b813b",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-50.rgba",
+        "sha256": "e7de3d22e1132d4d6ada121ed7cbaf3379216dcf5bf1b534735537aa7e952b89",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-51.rgba",
+        "sha256": "048bf50f3759ce8ba1a1e93db851b4eda77328fb4bfa779409d642ce4f16448d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-52.rgba",
+        "sha256": "877ae752989fabca8c4d873ad6ec50596f883d41555be230adcdc0c691c39e01",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-53.rgba",
+        "sha256": "5cbbfa52d96a6e4c6cfaab22f57ba980934ca2a9c67b125206d9fdbabe921286",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-54.rgba",
+        "sha256": "d2c83623af04602204a95e5d3fe209d8af12097c3867e3c55a637c2f61bbfde3",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-55.rgba",
+        "sha256": "876e0f56d0cc3c8fdc6a82529396379adc49d7898b982240979cc22c3cdaf104",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-56.rgba",
+        "sha256": "44265aedb3f9f4f6c418edf1a73a7bab3decf21820507afb5ca1b9ef420c0555",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-57.rgba",
+        "sha256": "5ca69e093e5c9d5cf730b3f1fcc3c5392a704ed150e7cdcaf5572856195b1ae6",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-58.rgba",
+        "sha256": "6688eecb85efe7e2dcf0115471cb27190f60bad9225f7255755b0c8d29058116",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-59.rgba",
+        "sha256": "96a2a7fe8a1f9bf78764695c657470d68d2b1a6ad1c08f3384ec417345fbc48b",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-60.rgba",
+        "sha256": "e2c18e533746487031fc8bbb0e99c9be83a92f78bfb4fe911b9ab967594e4601",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-61.rgba",
+        "sha256": "25ce5fdc36dd22284de8559f02dad60ca6d3945afba9048c85492d3a72b5c44a",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-62.rgba",
+        "sha256": "b9cef06cc63eae9d7a4044813a60a3539fb740ef6f31dcfcd85d4c8181a7305d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-63.rgba",
+        "sha256": "1765c1b24006090ae88c27dca2909e95510b2fd44200a7860d297bf16785bfc0",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map-tile-64.rgba",
+        "sha256": "31c8283862330107da1bba96cd4f41943809bbc64ae8a64e8337b14a118854cd",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map1.ay",
+        "sha256": "7835299e69ca627034132cb6dffa6f40df640f46dfce430642ad9780093a346a",
+        "bytes": 2564,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map2.ay",
+        "sha256": "73b6e6a515ad50c4853750ed0a744c2b62502331f4fce288612a676594e242a9",
+        "bytes": 2133,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map3.ay",
+        "sha256": "c4a317089b4a1c2c548b3db9355e2d5b5507439ab671c6f31e519dd954dddf24",
+        "bytes": 1808,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map4.ay",
+        "sha256": "ee87b3cddc33422a00cafe658cbc3132b28864cf281e922c3a1528d2985cb60a",
+        "bytes": 2540,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map5.ay",
+        "sha256": "623cdbaecdba70bbde68c55f92461e22a1007a9d7629708ffb248117ea3e2e0f",
+        "bytes": 2639,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map6.ay",
+        "sha256": "95a88d1843db86f9a12572a2826b9d701260dcdf86e1937cdeaf5d76322a203f",
+        "bytes": 1960,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map7.ay",
+        "sha256": "f601a09175c0d4955f4692fd899d17242f0418435f0b3ae8c2bf0fe62e953c07",
+        "bytes": 2559,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/map8.ay",
+        "sha256": "b48e7c95e54afc437963451eda648390a8e9d1c38e220043cb5e042013d5ec0a",
+        "bytes": 2248,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/music-ending.ogg",
+        "sha256": "74c0e42a47b6b8a68fdea192a87cd6f172d6129fc32b90190cb36af93b5c21ae",
+        "bytes": 2229381,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/music.ogg",
+        "sha256": "62ca844a3508c94dc4cfff4ea8df6eda481fb3b84cf7e15e9bcb8f1f6a9b4976",
+        "bytes": 1325192,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/background.rgba",
+        "sha256": "79fa61c7563f5fdfa6e42d684acf6edc78fc7d5f7788952a01336a3ca9e757f5",
+        "bytes": 9216024,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/hero-portrait.rgba",
+        "sha256": "2a257fe209273001fee65896e96fabc067c02983c2e9b3923d6fdd648621262b",
+        "bytes": 230424,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/images.tsv",
+        "sha256": "56cc311c62114885689d9536a6c95e62d8608b173d6b77ba63cd82d5d19efed9",
+        "bytes": 11530,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/item-1.rgba",
+        "sha256": "4cb906313d8a28ac2ffac46ded4ca81c7c9670aa61baeaeed2452f495e20a7f8",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/item-2.rgba",
+        "sha256": "ec491ca50a26d8747e0d3213131c7f19f68a6aa26b71af721c90881d2eee9ea8",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/item-3.rgba",
+        "sha256": "6a63d0d5b9016668c6f5651518712bc54f09c0a16e2a8e0ecb3732ae7e41915d",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/item-4.rgba",
+        "sha256": "806df54904736f9af9ef7789c52634593a61a81a5f6ff03b49fcef9b1f405d38",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/item-5.rgba",
+        "sha256": "f912073297f7626bf92f5224dd1b3b39f040559038f056fbdeeed49c9fa97ecc",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/item-6.rgba",
+        "sha256": "63c5d25c71d1ba13df3b8e5aebfe351bd896bce73c037ed314cd6368dfa7f1b8",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/item-7.rgba",
+        "sha256": "a8249d15a0b977e108cc4d90454747d4f57f87fd0797e109229a06d1aa95336a",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/magic-book.rgba",
+        "sha256": "727f5e25101d296890eab6ede4b92c235501c5e71b973c616fd7c015957ecc04",
+        "bytes": 36888,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/magic-building.rgba",
+        "sha256": "9331821a8a366609903a81b246c77582b6dba9cff3f6f888d064c7928ec04ca7",
+        "bytes": 3225624,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-00.rgba",
+        "sha256": "6bbd9f0b4832a9ff5280d4bd73875fa6403436f213105a518a3e278efcfd3b59",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-01.rgba",
+        "sha256": "eaeaff497887ff3dc74072927ba5e8f112314bf5219ec4bf2c76705ec5979336",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-02.rgba",
+        "sha256": "6937f02043c1e866b19ea48ff15c39c643e1a2e7d851984e11e6fa5967c0c672",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-03.rgba",
+        "sha256": "e6299c735cf48b7f9130ddb65ef0db3608bed2b553cc5d5404866f8da5ec8983",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-04.rgba",
+        "sha256": "b8ea1d76d05640e893a695c008b30d54f4f0eaec1b937587974509b8bbc35f35",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-05.rgba",
+        "sha256": "e0dd3718ec82f6082deeb3b14fb6bc4562081e872daafcaa1601e669a8a8acfc",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-06.rgba",
+        "sha256": "0e0a2bf5e0c721e4336844b14ddbeb7964ec32f0bda2667d75b1d44cc3b657ca",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-07.rgba",
+        "sha256": "c59d2420f3d0cbe7e634cb823052fa2a52d3801e06f3668b98fbcf27674bbe6f",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-08.rgba",
+        "sha256": "fd46f8ac393ed543ae3ee080d9b2ff490763511af67d1c217d4200cb92541dbc",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-09.rgba",
+        "sha256": "82bfee3c538d0e566856ff640fe861a8069f296067c9a713fe517ef5d300fcdd",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-10.rgba",
+        "sha256": "70235c5bb8c4df59f5c10fd02ca8d4465e637c881c315fafd7705c93ce845c7f",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-hero-11.rgba",
+        "sha256": "84b29ed79f2f580ae7887966c98561f5d8c85901fa8a6355af5f802a2d668e4c",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-00.rgba",
+        "sha256": "a4ab4ba76860a9039467d7464f4c82f198d55a03ba91e1f3b7b31b7be463110a",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-01.rgba",
+        "sha256": "4c70f68a86edc202539a6ad06f115be6c5d8a3d5e48e5ac3d630798ee9a30956",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-02.rgba",
+        "sha256": "def7a6f6c176677006b5b39acbd4d1669a7e31382cfef2d3625e43ae89cb08ab",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-03.rgba",
+        "sha256": "cedc35d5ea5189d3adf7fa1243188a8bf5e350baaea295cc45a6850e5ffbfc08",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-04.rgba",
+        "sha256": "84202000cd98ff7f5920c5f12525bc672da7b77a56b47067c1bfb271176deaf4",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-05.rgba",
+        "sha256": "f157da32077a44d4e9d367c38d8a8c4694b824663230e582ed4e906760d1fcda",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-06.rgba",
+        "sha256": "a841d36f920cde3fda423900058140c8e28633b413a81412dc671cd1458d71e2",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-07.rgba",
+        "sha256": "d656015cb6bbaa9ef1d928f00eb9395feb2e838871bb5402b9036945051b4d0f",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-08.rgba",
+        "sha256": "9446e99e11ab9157f20aa3d92f2df128b0ea223c9f3f78ac7d695cfe41eec73d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-09.rgba",
+        "sha256": "7304a381ea24ac6bcfc6d39ab11e5c9084c78cc7e69be2b9c2279e914e55ea54",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-10.rgba",
+        "sha256": "336ef8c7d5fc6c4004db2df9c8c203d91f41237eee3d00d42d649336a338ca6d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-11.rgba",
+        "sha256": "6e83fc621263ddffe9002aa8923ac5dd7b050e36368a364a8612d32fd6aa2a77",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-12.rgba",
+        "sha256": "9f15b11d0765fbfc3d251bd5058e7d10a8efce2219ffa1e8ceabd474a2d44b23",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-13.rgba",
+        "sha256": "c4545882fd020e3736db417d16ddd5b27034e43ce08180751730d415a7a16b3e",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-14.rgba",
+        "sha256": "a4a5f25e2f2231e6d0f2cba898cc7230647ab49084ee699fbc32c74af722519d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-15.rgba",
+        "sha256": "2b1024987aab5758774440264b2c75dcb17ae93a77310350383fbec246a17527",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-16.rgba",
+        "sha256": "4ec61aa6dd7b128a2eed4bba6520c2a11280fbd080560b678ee6f345903c72bf",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-17.rgba",
+        "sha256": "74db670d5914c22709293d005e3635f92e6b1bdc6b60ca806ef160191f703d66",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-18.rgba",
+        "sha256": "34bda4833f2fe956bc84b76d4aa356b62b7b8805a840ca29c8b0abf1d95b935b",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-19.rgba",
+        "sha256": "7193df2f781679d76f86c721adede6c7f5b33b16edda2a2469910fdb8ebf9f58",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-20.rgba",
+        "sha256": "da77244de081cffa0dbde6fabbc3502946317f1a088b6238dbcb4c39784ef063",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-21.rgba",
+        "sha256": "79fb0c798d10853aefb55716fbb1afafa2ec72322d6447c635ae29fd936603f8",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-22.rgba",
+        "sha256": "3d254b960b4f9eba2f763fc9f289fa46d19c89e165b95cb08aebda074ffe6c14",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-23.rgba",
+        "sha256": "e78833b58cc485c568305deeb968c0172cc832a4172cce3ed81b78551b2668c1",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-24.rgba",
+        "sha256": "f51e3d46f905a2f841da35b23468e35e223a7bb3249abcd5c4f7b81661308f00",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-25.rgba",
+        "sha256": "139cba082ed598a0834f096fc54a59e5495b8d48734e352137dd066718c86c52",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-26.rgba",
+        "sha256": "02854bcbb7cf13f0ac75dec40ce40ab64e9956a3efb7b25858b3c6b9b8740aa5",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-27.rgba",
+        "sha256": "022467d2aabcd4a6a9b33cf27f098dbfde56c8fb5e2521fe109fd012717e22f4",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-28.rgba",
+        "sha256": "bf3458f7205114d19da105d431f7fb8fd2c18e7d09ff219381449a3c98cda93b",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-29.rgba",
+        "sha256": "095711fa86390ce14b3c6354e8de45711628d87ac7f2f8a25a7bbec423a8a93d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-30.rgba",
+        "sha256": "8885a501abd9159b66bc67e067a991c98c98586d58c0a8f8c1c61fbe46db28dd",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-31.rgba",
+        "sha256": "5280475d994779f6845c368843c4e00f94646a2ff10533aaa017afda52297509",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-32.rgba",
+        "sha256": "685ff657a23bd150fa1d42f49fd1171c4f12b6992367e782bae4983cf822763b",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-33.rgba",
+        "sha256": "1b68c59729d3faf153479c61d4f392609a5298950f3e363c4201493e9c53eb9e",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-34.rgba",
+        "sha256": "3dccbe0f849e21107ca45af9e21cfce0b6121d4e80d3d442dfa0640f7959c117",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-35.rgba",
+        "sha256": "ec07b6b349640b8095bc028a94723cd19e2ec5064c618fcefaa1eef520c514a3",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-36.rgba",
+        "sha256": "f1a8b2fb79176137570126ecebf35a7a6f1ec473878eeb4fd2477160d6b7833a",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-37.rgba",
+        "sha256": "c682f9d11b2103174c049cb2cbe26f214b651b05d0c94c218c6fdd9443b04235",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-38.rgba",
+        "sha256": "b32dd72621d48a474685715f24de72e5f00aecdb64d46f046417324d64cd8f41",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-39.rgba",
+        "sha256": "4371dfacee207e283579116a79ccec7ccd10e4df540b1cda07c00c4a58974f36",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-40.rgba",
+        "sha256": "771955e839fec2c21fe745bcda73a5353de1d66de25fc2373a1bca752c2731b0",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-41.rgba",
+        "sha256": "04c296bf52308b8baa3b248fc8c979ac5b3f574916ede9ecccd54075f3ca445b",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-42.rgba",
+        "sha256": "21d1ac566c57273ef49098a550c33ac686e019c68d9dd438a4adc3b2b5b8e0c6",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-43.rgba",
+        "sha256": "7058e75a5c996f4c730e5769d4798e2fe0c0f20bcf4cf5a87a6736838666c093",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-44.rgba",
+        "sha256": "be8329218c233ef43d57adc2a2cbdc28b4bab8e598f2bf491c40006239864fd5",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-45.rgba",
+        "sha256": "225050af12420b4f516ce9707f654b4c777101c59a80d32700b1c6e6d26806e4",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-46.rgba",
+        "sha256": "9e8f8ffae068a39132c42d9e726bf507272903c349e9300dc7c36afadbec1afa",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-47.rgba",
+        "sha256": "296dbcf041bdd5a66ed5e0f7f25c92360426b80a8e8cdec5c815137d9cc9fddd",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-48.rgba",
+        "sha256": "697920205f854c8c69003805284928bf44a57a7b07fe5a02659971730979b1c1",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-49.rgba",
+        "sha256": "c12acf94b7169dda1a614020dd99684e32172d49e821f01ffc358ddacc50096d",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-50.rgba",
+        "sha256": "6a21332ed902bb8c4a325cf7037e9f03a37535ca089b43de20e0864349f62563",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-51.rgba",
+        "sha256": "649acde375bbe345067a36c3a04f442d0e3ae03774f51fb01db0d08784c0e585",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-52.rgba",
+        "sha256": "452c3949353f4176f7ffb7ba8c1f86b80ab3b8115368e744394b0c36bfce12f6",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-53.rgba",
+        "sha256": "3570633a0b8c33e034bd988351ab380e58fa16a1e137a6d51f0f81a16168e07f",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-54.rgba",
+        "sha256": "a6be974379ea742b2b98d51da1d8117070f3838a9ccae1389275dd8f48440915",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-55.rgba",
+        "sha256": "bc19e225ceec58ef3c631013755bb9e3e889f1e0dbf247cb2978cf688655b1cb",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-56.rgba",
+        "sha256": "ff461f8132f0ef9b8b0683b7a789d5969ee1fef3aeb5044ad6f22c07c8f0b0e0",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-57.rgba",
+        "sha256": "f38e4fa71d25e05f9e31d8525fe21d81274fda5105c11d58c84ec10937d9d0e8",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-58.rgba",
+        "sha256": "10b43a6a046469aeb6226bcfe0f2f45baa275b12c2865b5e17a7d1fc114db0f2",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-59.rgba",
+        "sha256": "f9aa5476d271601661f7c9c116a9414f327fe22122cc904800f15b5aafa6d238",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-60.rgba",
+        "sha256": "8c93996ff26ad10c7d8df8bee4afc1493c045f4b01c2c532aa6fa127076a78f3",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-61.rgba",
+        "sha256": "7011167bc06aa884f23e7a2bd535cb58732cc6174aa0288af9d2aba30e272e57",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-62.rgba",
+        "sha256": "25bd7569d5a171e0a09a5ea0f08242f8bf66bd0b69869cf10b1a07a81a5635e2",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-63.rgba",
+        "sha256": "bd65b0f48d6310589042800aabf4b4a4f8278d9ac35bc88374d515b2819a9f33",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/map-tile-64.rgba",
+        "sha256": "5b4d7d7f26d78fa4695511e60bd02ce6dbcec153efef21b771c6624c85565782",
+        "bytes": 115224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/recruit-building.rgba",
+        "sha256": "08f2e97708b2807f46f7563ce0e040fc37fa277f86f62553571f7a31f9df3c23",
+        "bytes": 3225624,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/spell-impact-0.rgba",
+        "sha256": "8300474dc5a34dbaaa814e9f1e50eaa0900cd550ebfb2173ca39919bd313fdc6",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/spell-impact-1.rgba",
+        "sha256": "a1b99a4bb44a464cf1cf9a12340a7fec1939579c2b7bccbbebdd65956c17e03d",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/spell-impact-2.rgba",
+        "sha256": "996fa9498349a6569a9e9bd86efdbfbdbc32c1b99628808a5484a72577210ce8",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/spell-impact-3.rgba",
+        "sha256": "68b8292b8b73d19b9e4f9b37f97fcaccb44e75d18cfbfa8bb03e26059c6290c9",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_01.rgba",
+        "sha256": "a5ec5ea2210305b2a751eb644320aa66bdc40afd3ce37ff10fd830a916f74d8f",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_02.rgba",
+        "sha256": "37b3a8abf859685b2818dc6179fea2be575501910d64ec76b316bb5b743694dd",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_03.rgba",
+        "sha256": "5d4f0fc138c0223d6400118238c52b8cef2f1a890eb053f67b6c7e7b34a8dc63",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_04.rgba",
+        "sha256": "58b78081ed1ebeecf1e88d5684bbcea3bb465a3f96b392ddf20ee736fff9c3a9",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_05.rgba",
+        "sha256": "f570606ed988545925d86eba37bffde4f918826c0b7f2bf5b45581f6c1b4b5e2",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_06.rgba",
+        "sha256": "5d800a6b56c0ee96e9ebf683d79a07bd8d45b5d54af41bd10f3b1d2107d2906a",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_07.rgba",
+        "sha256": "65ce70bb4cccc64ce3d4fd59d692c7af50a28c01b2539e51e792f882ec33380a",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_08.rgba",
+        "sha256": "e0726af23753f1abb95132c78d575f0866ad279d6adfaa5bbe1ba4a8a2a5b125",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_09.rgba",
+        "sha256": "6807f78e50c569b831edf02ae13ddcf0f1a2f8bc3d85ab92ea0d60cabb8ce990",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_10.rgba",
+        "sha256": "1690912a89b401928d98bc77c181dc6090fabf8d89ce5c3ef6d5a7c6c183213e",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_11.rgba",
+        "sha256": "ee3e01c1d16d66695fb8ffae69a8715a9c5d75488b72f12e54c8d413194b4a2a",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_12.rgba",
+        "sha256": "b4a505081ef70bd067f4831df590a596b8ed765f20682e757c826b009527b05e",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_13.rgba",
+        "sha256": "aec51b353c05b8036313b99af9edfb17bbe7862758206338408795f6ecd8ca32",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_14.rgba",
+        "sha256": "a8198b2a48726283f01c6bfab50f94ba1fbeb5a53b16b811c2298e578639dd8e",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_15.rgba",
+        "sha256": "789009275fc5cc1158776384ca000d5e106bda8b5011cea6162460f534905b79",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_16.rgba",
+        "sha256": "234222ebaf4c1ab86eda6e14c0c53af16cae7c764fdea9df959e3568a61f70a4",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_17.rgba",
+        "sha256": "108dfc4b77a9d51700fd86093a1dc8dec27fd5aadf8e0cb33045d1a84ab61693",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_18.rgba",
+        "sha256": "6261f476d1b831350e81d5c3bd9d5d5ba8efa06a436f5ebc5a7a67749256f4e6",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_19.rgba",
+        "sha256": "0aa745ba7ee41068e59f21109185a0bd52892b319dced9327d1b948f24f8d3ae",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_20.rgba",
+        "sha256": "88c416b196f774cc381277bd9255c6e34ed23a8f9adeed8a29f1cda573c14f46",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_21.rgba",
+        "sha256": "c4b4bdbcfd80e8bc1cd2cf22dc617c9bead677c445280fdf07b361f59bd9d03e",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_22.rgba",
+        "sha256": "83193825ebdbbe4596d9ecb81d1f15400bb94c6b5d74a3addba7f0e9687ed239",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_23.rgba",
+        "sha256": "5c5453787a65bc1dae9dfdb675b294e8feffb0b9a076df71c3a1eddadf39eb79",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_24.rgba",
+        "sha256": "fa14380553519a0c199948099c8a53d3cc8f2ee1e03a4497c5edc269eff5effa",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_native_25.rgba",
+        "sha256": "bb3d4c4b2d56d971e1a0e876364696e735dff49b649167e19613d8ea9eb7cd10",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_openkb_arcr.rgba",
+        "sha256": "8240ba3015b309f0c8332ced2049128395fce5534b0fdf4e120082474959c6c7",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_openkb_drag.rgba",
+        "sha256": "20122f4dab83cd99abd292d7a82d51e9b1e5844ab5caa07a850c1db60a6b24cd",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_openkb_drui.rgba",
+        "sha256": "d89194a26e65b0bfe81a2ba20953de9b65da44f05410a4e2f3f73a1b226b7392",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_openkb_pike.rgba",
+        "sha256": "f40cbe04c64d17530f0d6999d60b095f3c164b6ded5872b22a9a49021641bb3c",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_openkb_skel.rgba",
+        "sha256": "c08ee18ba014423167ce206a73434dece5eaa18b94628f56b7df1cfcdf456090",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_openkb_troll.rgba",
+        "sha256": "e5890a3af8a6369af5ad71fc67e36c1c4b43b86f60522e7ba5a84c22b1ddb007",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_openkb_vamp.rgba",
+        "sha256": "9847b1b000bf39033db4c2373fc61e0b132d5ac8e5f672833d2be0ee010fe5e6",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/unit_openkb_wolf.rgba",
+        "sha256": "d714df6289562c4fdbe32ac52fe2cae5001e3ff67c173397a60ac0dc01b6075f",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/original/world-frame.rgba",
+        "sha256": "f6fd9f2e63250b23dc23f5df906bb8cafc21bea4164048e20b0ea51d07025c30",
+        "bytes": 9216024,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/poster-cover.rgba",
+        "sha256": "97a1bcb00d78ae4969c84301eaffc07a1ad1292a24f8b4b9b1254b944fdf65e8",
+        "bytes": 4915224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/poster-font.bin",
+        "sha256": "6534aa19e9df44e7a812a92571609fdf0c5f7ab50f3861b9d6c72957334a4842",
+        "bytes": 151720,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/poster-wings.rgba",
+        "sha256": "306f978f6daeafa793e170eaadae4a34cf5cf40f327b875008a875c688fb4d49",
+        "bytes": 4915224,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/recruit-building.rgba",
+        "sha256": "37b80a9109a998261d452cba9a5ae4528cf19da13342403bd0c5636983614d1a",
+        "bytes": 3225624,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/spell-impact-0.rgba",
+        "sha256": "45cdbf6d6544e45b5805f4bf20827d0b877e7b86163fb180cb7d60498b5bfed0",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/spell-impact-1.rgba",
+        "sha256": "de99b20e9cabf88aeb8786392a0792d8de1aaf5489fa8ed02d9744a2cd1d0a32",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/spell-impact-2.rgba",
+        "sha256": "bdfd62962d62c0ee1e18e58dd3ff26f2112fb27221405696a9a18d74ae0eaaf4",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/spell-impact-3.rgba",
+        "sha256": "6bf7611b927e402afe6f5733eb7ac94eab9524c02b5103a32ace16e91be843cf",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/start-music-1.ogg",
+        "sha256": "4012e14dc7d03c017a532c5c56655794a03a62f395972c026273a2ec99fcbc91",
+        "bytes": 1952187,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/start-music-4.ogg",
+        "sha256": "eb65be105d329f6b267cbe3f846a936f15b9c8ef78d9a63e9dcba5324a92e213",
+        "bytes": 364376,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/start-music-5.ogg",
+        "sha256": "3e1de88b57839e2ac33e2de0f52f7c3aaaf83cd0d64d2201ae94057d1e287450",
+        "bytes": 373961,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/start-music-6.ogg",
+        "sha256": "4e66369af70f05e7866b19bef74abbf3961eba86a24385181d48f374e48e888e",
+        "bytes": 679824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/start-music-7.ogg",
+        "sha256": "7ffc8e08e84abdd00023a8d823b56e56df86340c548f5ddadc7ea3254d94a355",
+        "bytes": 592250,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/start-music-8.ogg",
+        "sha256": "1eac924524e5c316e88992546bfcb847c342a07f22f0381ff0fb56c83616d923",
+        "bytes": 609725,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/start-music-9.ogg",
+        "sha256": "16c4e4093115a74a0c0a8d783616002b9a9593328dbef6b2b33b4c0e546340cd",
+        "bytes": 396852,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_01.rgba",
+        "sha256": "b1fa452eda8b143ae6c9b681c4d6be907efcb7909f64908311489a77a3029ed5",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_02.rgba",
+        "sha256": "30798f62b4d9d7344e51bbfcc0e7c2042209d0a899d18edfe88b8a08e3ca36c8",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_03.rgba",
+        "sha256": "dde11d67d90e05598fd344aef2429f125b61da6171644eae3430a8e2537bba6b",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_04.rgba",
+        "sha256": "8dfe2eb3740fb4e270ba0c2890c1e5168be605366e3e029ff5034b0ad80e6484",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_05.rgba",
+        "sha256": "1e86efa89b194b28c79116d289934f62b5df96edf32c8b2c95149d3f1352946d",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_06.rgba",
+        "sha256": "b95c78295e998bf3fda949182d6fc19ec226d8fe1246a8cdf2b836c483851df6",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_07.rgba",
+        "sha256": "e8e4290e3f42126253affb49a65cd1849a644e60542dc4c2287e37c7e2d430d3",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_08.rgba",
+        "sha256": "32c558c379516d8a7817c4bde2acf83ebf18e55592e0fa1ea1996623910b2847",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_09.rgba",
+        "sha256": "e699be91a8fab7b1097714c9e27f0812df677ec7dcd863e9e010c033f397814c",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_10.rgba",
+        "sha256": "34f04b22ec74df908370e4fb2f43b8ce304792b7727c59835e45797e1692071b",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_11.rgba",
+        "sha256": "30487cce2b8f0f8c0610c75687441c50e98429dbba3c85245097a33b461d317e",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_12.rgba",
+        "sha256": "5515ec3b834d84a725245f132287dda447bf5068c2518cc259095107fd91cff7",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_13.rgba",
+        "sha256": "45824242d3b810fe688c8e064b51be4cc1927bc43c801c051320862cbda8da37",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_14.rgba",
+        "sha256": "7e6a89e0029eeda184ea76b638db0e0dac1244fabca3833d046e7a047bb3a9a4",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_15.rgba",
+        "sha256": "1cb17d6a8506598e05a810295a701f067dab9af44333d057b0afe2faa6d67bf3",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_16.rgba",
+        "sha256": "c13a8af97c0c862f46f0fdc6f0505936f56163293758d7fc4b374c8e180da44b",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_17.rgba",
+        "sha256": "2c3da3f69859122a9446736bd9956abb60b032cd6138b748ba60ec2544523043",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_18.rgba",
+        "sha256": "19348fd875f903af4d3469567cebe8a2435c702b060e640c0afd3c294a2275c5",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_19.rgba",
+        "sha256": "7197f5d31f5eae4306438771eee1e715e549f139d99e1cbb8728143e972b586b",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_20.rgba",
+        "sha256": "ea1e12608ab2103f6563dec9ec0fadf48979ee30816eb7d72375fc55743efe62",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_21.rgba",
+        "sha256": "6ad6046b6523591905e728c608269c6cbe0ac90a5c22b193ef72bf8a0f5ee2c1",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_22.rgba",
+        "sha256": "a98365c36d3cd78f4410fa6b80e2aa37f71ba64c71a121d5dda8f574e0a5febf",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_23.rgba",
+        "sha256": "21b53c2db06c2d0edbd4e050815cfc52ba72b1da5c7ddced1faba3251114c5bd",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_24.rgba",
+        "sha256": "169c2f12db4f72ddebba01676c0be7d6db81d5001cbaef75fafa5d96d72061ac",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_native_25.rgba",
+        "sha256": "3fed859e1c6d752a73774867854bef9c7cb33417b915ffdef4ccb3daafc6eb2a",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_openkb_arcr.rgba",
+        "sha256": "9d7a203af3b61ce5e783889d2cdb20f22cdb7f57a35220d6472eb8aee7201ea6",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_openkb_drag.rgba",
+        "sha256": "95aecb3793aa33e3871e33d21c06f91a081d29eac66f91e1dc54a020914242e8",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_openkb_drui.rgba",
+        "sha256": "99c3862b1eb91888abba44687f7c932e3f0b762ca3d7f69dd4694726ff157a0b",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_openkb_pike.rgba",
+        "sha256": "2d93dbd4e5692895f861af862de8c98b95992040084da60f5b3c5d3fdc726191",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_openkb_skel.rgba",
+        "sha256": "df32deb4e53ca15e6a6f1fd582997a834c27152e9e839b81f3cef179e9f78a27",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_openkb_troll.rgba",
+        "sha256": "d8f54cf2be2a735b18762abbffc74f4c42a4e6a5928fc800f17fc4ebbb7a9c14",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_openkb_vamp.rgba",
+        "sha256": "0b1b4ff8b893de2f0adf9fc3359725c391ad8b6235baf2f253b9db6bb51ce21f",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/unit_openkb_wolf.rgba",
+        "sha256": "c45b431e8f2fcb48f9ba2e820197f1bfb4ac141fecf9159f59d23b717a5392f8",
+        "bytes": 316824,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/world-frame.rgba",
+        "sha256": "8f6a44dd105af6ae9d02cc63c55b8ef0ef1e2b52a9c87fe3e825ecffb460d8b5",
+        "bytes": 9216024,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/world-music.ogg",
+        "sha256": "9ef427c4dc0f845ae048177aa0a4c73e1ec7490a127e5b2c7e779bcf0131aae8",
+        "bytes": 1727532,
+        "mode": 420
+      },
+      {
+        "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native/pack/world-start.tsv",
+        "sha256": "c2aae669343b975de45f2c6f454be511345382a2e7b5860572549c97c0ad3c37",
+        "bytes": 369,
+        "mode": 420
+      }
+    ]
+  },
+  "gui_matches": [
+    {
+      "run": "openkb",
+      "label": "battle-hd",
+      "central_sha256": "a27f1646d9b5f32753bc620e7d672b7a047d20cabaeffa0a46f46601cfedf0f6",
+      "full_sha256": "1cc70112fe93ed790591c15a79a8056efb8e8d7a7fea8f9a7cf9ba37032b4b39",
+      "checkpoint_hash": "6fb7ce3c1d444ab2"
+    },
+    {
+      "run": "openkb",
+      "label": "battle-original",
+      "central_sha256": "3d37667049bb48710912286ad054e4745d9c00aceb18a1ef1abc8045f86ec98b",
+      "full_sha256": "81a2fb26ee65be186798e517bf9a4e40d2282cd995bd9b2c79053921f684df66",
+      "checkpoint_hash": "6fb7ce3c1d444ab2"
+    },
+    {
+      "run": "openkb",
+      "label": "battle-hd-return",
+      "central_sha256": "a27f1646d9b5f32753bc620e7d672b7a047d20cabaeffa0a46f46601cfedf0f6",
+      "full_sha256": "1cc70112fe93ed790591c15a79a8056efb8e8d7a7fea8f9a7cf9ba37032b4b39",
+      "checkpoint_hash": "6fb7ce3c1d444ab2"
+    }
+  ],
+  "additional_files": [
+    {
+      "path": "native/gui/completed-runs.json",
+      "sha256": "87585375c0050b848a469827e982c9c7321b023299fa43f6e84495d73aae6251",
+      "bytes": 14672,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/audio-001.wav",
+      "sha256": "c4714e977fd096dcff2b8c6d20659ad3ada713a8205eb4ca67e90fca61cf9cbd",
+      "bytes": 384044,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/audio-002.wav",
+      "sha256": "dca5276550238648fdabe724ac3a783e7eb6b49c4936bcc20e9e03cb3af3f610",
+      "bytes": 460844,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/audio-003.wav",
+      "sha256": "98c24553a2c3073e204dc8c4f30b1fe5848763b877648465d7c976decefcc7fd",
+      "bytes": 537644,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/capture-001.tsv",
+      "sha256": "0190dda86ad681730214c092386237f28685f80511101b27be6bb3cbf75c42ff",
+      "bytes": 471,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/capture-002.tsv",
+      "sha256": "d43bcfd25231b22a729c93fafd8b6c3f8c6cae6f50e88ff662f79111c6f41df0",
+      "bytes": 476,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/capture-003.tsv",
+      "sha256": "8daea69db0ff5e1ff7591fad4d4316c1099fc8a06c37d0df778d2f81a43fd254",
+      "bytes": 470,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/frame-001.ppm",
+      "sha256": "a27f1646d9b5f32753bc620e7d672b7a047d20cabaeffa0a46f46601cfedf0f6",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/frame-002.ppm",
+      "sha256": "3d37667049bb48710912286ad054e4745d9c00aceb18a1ef1abc8045f86ec98b",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/frame-003.ppm",
+      "sha256": "a27f1646d9b5f32753bc620e7d672b7a047d20cabaeffa0a46f46601cfedf0f6",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/readback-001.ppm",
+      "sha256": "a27f1646d9b5f32753bc620e7d672b7a047d20cabaeffa0a46f46601cfedf0f6",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/readback-002.ppm",
+      "sha256": "3d37667049bb48710912286ad054e4745d9c00aceb18a1ef1abc8045f86ec98b",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/readback-003.ppm",
+      "sha256": "a27f1646d9b5f32753bc620e7d672b7a047d20cabaeffa0a46f46601cfedf0f6",
+      "bytes": 7603217,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-001.tsv",
+      "sha256": "7d27989e804c1874132926f13ad041806e08a10ae1aa98a5d5e9fdc25170a219",
+      "bytes": 322,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-002.tsv",
+      "sha256": "4ce135438e512ff6e5916745303c32b2fd54681c63b799858f16a6f1d6f3edc8",
+      "bytes": 327,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-003.tsv",
+      "sha256": "4d633e68ebaac188c75da039319be6a1daff2a47a137fd213399492858df67b5",
+      "bytes": 321,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-frame-001.ppm",
+      "sha256": "1cc70112fe93ed790591c15a79a8056efb8e8d7a7fea8f9a7cf9ba37032b4b39",
+      "bytes": 11658257,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-frame-002.ppm",
+      "sha256": "81a2fb26ee65be186798e517bf9a4e40d2282cd995bd9b2c79053921f684df66",
+      "bytes": 11658257,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-frame-003.ppm",
+      "sha256": "1cc70112fe93ed790591c15a79a8056efb8e8d7a7fea8f9a7cf9ba37032b4b39",
+      "bytes": 11658257,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-readback-001.ppm",
+      "sha256": "1cc70112fe93ed790591c15a79a8056efb8e8d7a7fea8f9a7cf9ba37032b4b39",
+      "bytes": 11658257,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-readback-002.ppm",
+      "sha256": "81a2fb26ee65be186798e517bf9a4e40d2282cd995bd9b2c79053921f684df66",
+      "bytes": 11658257,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/shell-readback-003.ppm",
+      "sha256": "1cc70112fe93ed790591c15a79a8056efb8e8d7a7fea8f9a7cf9ba37032b4b39",
+      "bytes": 11658257,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb/status.tsv",
+      "sha256": "4d20ce7289ac4319d2a3271fe2aaad76c689dda37ea7bfb3ee3c941e560e5108",
+      "bytes": 726,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb-store/battle.chk",
+      "sha256": "54e82ff04515b76842449d382462313a3d00e065d921de216d4d087e0c90889d",
+      "bytes": 305,
+      "mode": 420
+    },
+    {
+      "path": "native/gui/openkb-store/display.json",
+      "sha256": "9b8bf043a71e55c190eb25d9a85b04813b39788988137d80c4d6b48b64f6c7a0",
+      "bytes": 25,
+      "mode": 384
+    },
+    {
+      "path": "native/gui/receipt.json",
+      "sha256": "3b7ac51c498e6fb2e7dc18610f25438dc4da91b296179723b59ff82a5cb3cc02",
+      "bytes": 16128,
+      "mode": 420
+    },
+    {
+      "path": "native/openkb-fixture/battle.chk",
+      "sha256": "54e82ff04515b76842449d382462313a3d00e065d921de216d4d087e0c90889d",
+      "bytes": 305,
+      "mode": 420
+    },
+    {
+      "path": "restored-runtime.json",
+      "sha256": "ce499a46463dea6f5b9f16d8d4c54c462a831193523915dbdb24a56097890d5d",
+      "bytes": 73330,
+      "mode": 420
+    }
+  ],
+  "additional_objects": {
+    "87585375c0050b848a469827e982c9c7321b023299fa43f6e84495d73aae6251": {
+      "file": "87585375c0050b848a469827e982c9c7321b023299fa43f6e84495d73aae6251.gz",
+      "stored_sha256": "99f040d021fce70bc6a68c36dd9b222319eb2179848c80889bfb687c4fba52af"
+    },
+    "c4714e977fd096dcff2b8c6d20659ad3ada713a8205eb4ca67e90fca61cf9cbd": {
+      "file": "c4714e977fd096dcff2b8c6d20659ad3ada713a8205eb4ca67e90fca61cf9cbd.gz",
+      "stored_sha256": "75d466c99a5d0f2368336beda5784f88d32b0272c43a6bb0e266d32ef2d05a4f"
+    },
+    "dca5276550238648fdabe724ac3a783e7eb6b49c4936bcc20e9e03cb3af3f610": {
+      "file": "dca5276550238648fdabe724ac3a783e7eb6b49c4936bcc20e9e03cb3af3f610.gz",
+      "stored_sha256": "4a16db7d55500d5c0c043757137e797fc1a977629acb13c56cc29c1286870871"
+    },
+    "98c24553a2c3073e204dc8c4f30b1fe5848763b877648465d7c976decefcc7fd": {
+      "file": "98c24553a2c3073e204dc8c4f30b1fe5848763b877648465d7c976decefcc7fd.gz",
+      "stored_sha256": "9d9fd5ac4f759a20f49ba6abd5d54a084c3ab5d0fe69ef96f311b6d12a5bd373"
+    },
+    "0190dda86ad681730214c092386237f28685f80511101b27be6bb3cbf75c42ff": {
+      "file": "0190dda86ad681730214c092386237f28685f80511101b27be6bb3cbf75c42ff.gz",
+      "stored_sha256": "dd0cc20fa26a7b26cd5d8ed20e9eaf724c86f5d803f3ee7a0cb1bc8b2fb486d3"
+    },
+    "d43bcfd25231b22a729c93fafd8b6c3f8c6cae6f50e88ff662f79111c6f41df0": {
+      "file": "d43bcfd25231b22a729c93fafd8b6c3f8c6cae6f50e88ff662f79111c6f41df0.gz",
+      "stored_sha256": "bb46f23e8fead5330115bfec239b819801718dd715dcb6f4aac3a6e89f580205"
+    },
+    "8daea69db0ff5e1ff7591fad4d4316c1099fc8a06c37d0df778d2f81a43fd254": {
+      "file": "8daea69db0ff5e1ff7591fad4d4316c1099fc8a06c37d0df778d2f81a43fd254.gz",
+      "stored_sha256": "16a1ceebf3a1da82fcf245a27163f02ea49a62606c05da78ec4aca478339a63a"
+    },
+    "a27f1646d9b5f32753bc620e7d672b7a047d20cabaeffa0a46f46601cfedf0f6": {
+      "file": "a27f1646d9b5f32753bc620e7d672b7a047d20cabaeffa0a46f46601cfedf0f6.gz",
+      "stored_sha256": "4f0372183310c819b2ee56b07de5c52daa846abc9ae965c4b97b00198bacaa57"
+    },
+    "3d37667049bb48710912286ad054e4745d9c00aceb18a1ef1abc8045f86ec98b": {
+      "file": "3d37667049bb48710912286ad054e4745d9c00aceb18a1ef1abc8045f86ec98b.gz",
+      "stored_sha256": "eb6c189011d448454975d8205e4a076c088825d2b1ed02445fde37b5bd73a846"
+    },
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
+      "file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.gz",
+      "stored_sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    "7d27989e804c1874132926f13ad041806e08a10ae1aa98a5d5e9fdc25170a219": {
+      "file": "7d27989e804c1874132926f13ad041806e08a10ae1aa98a5d5e9fdc25170a219.gz",
+      "stored_sha256": "a67b4289d1bac80eb12e2cd99145f14d021355a2d5eef67614ea822b3555f58b"
+    },
+    "4ce135438e512ff6e5916745303c32b2fd54681c63b799858f16a6f1d6f3edc8": {
+      "file": "4ce135438e512ff6e5916745303c32b2fd54681c63b799858f16a6f1d6f3edc8.gz",
+      "stored_sha256": "604f36050407d74489be23a6a9867be030dd65b031a741891a94cb8c09581119"
+    },
+    "4d633e68ebaac188c75da039319be6a1daff2a47a137fd213399492858df67b5": {
+      "file": "4d633e68ebaac188c75da039319be6a1daff2a47a137fd213399492858df67b5.gz",
+      "stored_sha256": "264160cdebb305106465e96d49570308de8b5c0d38c2cfe05a29c10be0cf34e5"
+    },
+    "1cc70112fe93ed790591c15a79a8056efb8e8d7a7fea8f9a7cf9ba37032b4b39": {
+      "file": "1cc70112fe93ed790591c15a79a8056efb8e8d7a7fea8f9a7cf9ba37032b4b39.gz",
+      "stored_sha256": "d62a6de49aa71d2265d13ceb065223567315540455a9a2e012a28704402d5739"
+    },
+    "81a2fb26ee65be186798e517bf9a4e40d2282cd995bd9b2c79053921f684df66": {
+      "file": "81a2fb26ee65be186798e517bf9a4e40d2282cd995bd9b2c79053921f684df66.gz",
+      "stored_sha256": "365a634d4fc7e78dcf4caa71d8b635fe57ad76f8eb6cb4789389052e1fa4cd8c"
+    },
+    "4d20ce7289ac4319d2a3271fe2aaad76c689dda37ea7bfb3ee3c941e560e5108": {
+      "file": "4d20ce7289ac4319d2a3271fe2aaad76c689dda37ea7bfb3ee3c941e560e5108.gz",
+      "stored_sha256": "41e30a1753bd7753c23af0081802d34cae40ef718fb54c25188b391fc15e6a2a"
+    },
+    "54e82ff04515b76842449d382462313a3d00e065d921de216d4d087e0c90889d": {
+      "file": "54e82ff04515b76842449d382462313a3d00e065d921de216d4d087e0c90889d.gz",
+      "stored_sha256": "f6c8393cb3d49e3634840a7825a8be03c79c1defba6e1bbaeeb785e32f691630"
+    },
+    "9b8bf043a71e55c190eb25d9a85b04813b39788988137d80c4d6b48b64f6c7a0": {
+      "file": "9b8bf043a71e55c190eb25d9a85b04813b39788988137d80c4d6b48b64f6c7a0.gz",
+      "stored_sha256": "afc41951030bf995e8386632ceea6d6f63a5762edff8785a2f894d9ca6fdb35d"
+    },
+    "3b7ac51c498e6fb2e7dc18610f25438dc4da91b296179723b59ff82a5cb3cc02": {
+      "file": "3b7ac51c498e6fb2e7dc18610f25438dc4da91b296179723b59ff82a5cb3cc02.gz",
+      "stored_sha256": "2553b64372f0e226e9a1ca231b420e2ca43ca8077d4ca6d28e1880ffd9427532"
+    },
+    "ce499a46463dea6f5b9f16d8d4c54c462a831193523915dbdb24a56097890d5d": {
+      "file": "ce499a46463dea6f5b9f16d8d4c54c462a831193523915dbdb24a56097890d5d.gz",
+      "stored_sha256": "b7fc014a7eeda501c0e776c4039cc28f76c4472f4e492259f60439a82a01aa9c"
+    }
+  },
+  "scope": "Restore inputs only tools+preserved;288 runtime SHA/mode match; one OpenKB normal GUI run,original/HD/HD-return with three exact central+full matches at identical checkpoint hashes; extra evidence separate from2112-file original index."
+}

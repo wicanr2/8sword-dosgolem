@@ -81,10 +81,7 @@ pub(crate) fn play<'a>(
             }
             match key {
                 27 => leave = true,
-                104 => {
-                    let p = j.guards.ending.as_mut().unwrap();
-                    p.hd = !p.hd
-                }
+                104 => sdl.toggle_display()?,
                 1073741891 => j.world.font = (j.world.font + 1) % 3,
                 109 => j.world.music = !j.world.music,
                 1073741888 => save = store.is_some(),
@@ -92,6 +89,7 @@ pub(crate) fn play<'a>(
                 _ => {}
             }
         }
+        j.guards.ending.as_mut().unwrap().hd = !sdl.display_mode().original();
         if (save || leave) && store.is_some() {
             j.save(store.unwrap(), c, d)?;
             saves += 1;
@@ -195,6 +193,7 @@ pub(crate) fn play<'a>(
             j.resources,
             j.world.remaining
         );
+        let status = format!("{status}{}", sdl.ai_status());
         if let Some(dir) = capture {
             if snap {
                 captures += 1;

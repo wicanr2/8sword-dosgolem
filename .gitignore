@@ -188,3 +188,7 @@ journey.chk
 battle.chk.rules.json
 journey.chk.rules.json
 .rules-*.tmp
+
+/preserved/rust-display-r1/
+display.json
+.display-*.tmp

@@ -1,0 +1,10 @@
+{
+  "status": "passed-rust-display-cleanup",
+  "files": 4201,
+  "logical_bytes": 4506518382,
+  "reclaimable_content_bytes_excluding_retained_hardlinks": 2594916297,
+  "runtime_sha_mode_files": 288,
+  "ownership_and_md_directories": 0,
+  "other_projects_untouched": true,
+  "scope": "This batch only: Rust cache,verified CLI/failed-GUI/readonly-rebuild/detached-restore copies and duplicate readbacks; current288 runtime and complete archived sources retained; no other project/image cleanup."
+}

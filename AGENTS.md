@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-11 Rust全程原圖／HD依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust全程畫面切換限定-conformed)完成。127原圖預檢／預載、組圖前切換，開場／結局H與全程按鈕共用display.json。199測試、35全幅SDL、兩預設視窗、七拒絕及287媒體唯讀重建通過；正常v16原營地購兵／F7冷讀、受控戰鬥／OpenKB、原開場及舊v15結局已抽驗。共用Rust選單／三字型，不稱DOS整屏或自然通關。288執行期，158舊媒體及34舊工具列字墨保持，只增三字。RUST-DISPLAY-RESOLVED-20261111閉合舊待接；[核對](preserved/rust-display-audit-r1.json)與[保存／還原](preserved/README.md#rust全程畫面切換保存)為現行入口。下一步特殊地點邊界及交付，不重驗既有矩陣。正式197／7／923／535／1071保持，無Release。
+
 2026-11-11 Rust規則依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust規則工具列限定-conformed)完成。原版／結陣／戰術共用普通減傷及知情AI，戰外切換／本場固定，v16與8SBCHK01保持，旁置標記綁實檔SHA。193測試、5184 Go倍率／1224三模式View、七程序20SDL及六CLI拒絕通過；正常v16遭遇／隸書／F7冷讀已驗，受控編成不稱自然取得。160執行期、158媒體SHA與22舊工具列字墨保持，新增12字。[核對](preserved/rust-rules-audit-r1.json)及[保存／還原](preserved/README.md#rust規則工具列保存)為現行入口。RUST-RULES-RESOLVED-20261111回填030；下一步全程原版／HD，不重驗既有音畫。正式197／7／923／535／1071保持，無Release。
 
 2026-11-11 Rust策略AI工具列依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust策略ai工具列限定-conformed)完成。兩條桌面路徑接030既有選敵政策，普通／遠程與特殊0／2／5、切換／取消／F10及下一次選敵生效；183測試、408 Go View、64固定seed與七程序20份SDL通過。受控首擊原版97／2、策略100／0，同seed1七roll後752224798；正常v16自然遭遇三決策／零改選及F7冷讀已驗。模式不持久化，重啟native，CLI --battle-ai target可選。160執行期檔保持，158媒體與原16工具列字墨不變，只補六字，舊字集ASCII回退已驗。RUST-AI-RESOLVED-20261111只閉合AI；下一步規則與全程原版／HD，不重驗舊音畫／玩法。[核對](preserved/rust-ai-audit-r1.json)與[現行保存／還原](preserved/README.md#rust策略ai工具列保存)為入口。v16／WorldState／Go格式及正式197／7／923／535／1071保持，無Release。

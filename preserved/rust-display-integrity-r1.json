@@ -1,0 +1,107 @@
+{
+  "status": "passed-rust-display-integrity",
+  "binary_sha256": "ee64595ea86882407b7484941389c2b89aaa80ac486d36df962088e1c6da7985",
+  "runtime_files": 288,
+  "tests": 199,
+  "all_sdl_captures": 35,
+  "manual_sdl_captures": 29,
+  "default_scale_runs": 2,
+  "rejected_cli_cases": 7,
+  "source_files_verified": 145,
+  "source_tools_verified": 7,
+  "readonly_rebuilt_media_files": 287,
+  "ownership_and_md_directories": 0,
+  "new_links": [
+    [
+      "README.md",
+      "docs/images/rust-display-r1.png"
+    ],
+    [
+      "README.md",
+      "preserved/rust-display-audit-r1.json"
+    ],
+    [
+      "README.md",
+      "docs/images/rust-display-r1.json"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../tools/rust-display.py"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../tools/rust-display.py"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../tools/rust-display-gui.py"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../tools/rust-display-cli.py"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../tools/rust-display-smoke.py"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../preserved/rust-display-audit-r1.json"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../images/rust-display-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "rust-display-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "rust-display-audit-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "rust-display-detached-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "rust-display-cleanup-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/rust-display.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/rust-display-gui.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/rust-display-cli.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/rust-display-smoke.py"
+    ]
+  ],
+  "resolution_marker": "RUST-DISPLAY-RESOLVED-20261111",
+  "stats": {
+    "files": 2112,
+    "objects": 602,
+    "compressed_bytes": 255402365,
+    "additional_restore_files": 29,
+    "restore_full_matches": 3,
+    "cleanup": {
+      "status": "passed-rust-display-cleanup",
+      "files": 4201,
+      "logical_bytes": 4506518382,
+      "reclaimable_content_bytes_excluding_retained_hardlinks": 2594916297,
+      "runtime_sha_mode_files": 288,
+      "ownership_and_md_directories": 0,
+      "other_projects_untouched": true,
+      "scope": "This batch only: Rust cache,verified CLI/failed-GUI/readonly-rebuild/detached-restore copies and duplicate readbacks; current288 runtime and complete archived sources retained; no other project/image cleanup."
+    }
+  },
+  "containers": "All batch commands completed and --rm removed task containers; shared-host unrelated containers untouched."
+}

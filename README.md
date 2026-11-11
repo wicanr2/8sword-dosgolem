@@ -6,7 +6,7 @@
 
 本專案保留Go版dosgolem原版／HD播放器，並開發不依賴DOS EXE的Rust獨立版。Go入口沿原版操作，提供HD圖像、音樂、三種中文字型及可選AI／規則；Rust直接處理世界、戰鬥、輸入、音畫與存檔，目前已接開始選單、新遊戲、續玩及結局。
 
-既有HD及已接功能採代表抽樣。戰場與部隊管理保留原版配置、選單及操作；Rust的完整開場、新建、正常移動、軍隊檢閱、存檔與獨立程序續玩已有原生視窗證據。原行程條、全程海報工具列、Rust策略AI與規則切換已接；全程原版／HD及正式交付仍待。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
+既有HD及已接功能採代表抽樣。戰場與部隊管理保留原版配置、選單及操作；Rust的完整開場、新建、正常移動、軍隊檢閱、存檔與獨立程序續玩已有原生視窗證據。原行程條、全程海報、原圖／HD、Rust策略AI與規則工具列已接；特殊地點邊界與正式交付仍待。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
 
 先前的獨立卡片戰鬥介面已撤回。[原版操作開發入口](tools/original-player.sh)以Go提供兵力、管理、招募及保存，保留同一套原版HD戰場。未準備來源畫布的直接建置仍在讀寫進度前拒絕。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
 
@@ -18,9 +18,19 @@
 
 Rust已接「繼續上次進度」、「開始新遊戲」、「音樂欣賞」。新遊戲先確認，取消保留舊進度；確認後從原起點以500金、30民兵開始。音樂欣賞可播放十首已定稿HD曲目，工具列可切換Noto900、隸書與草書。鍵盤與滑鼠共用選取、確認操作。
 
-完成[現行資料包還原](preserved/README.md#rust規則工具列保存)後，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔亦可直接執行，預設讀取旁邊的`pack/`，存檔放在`$XDG_DATA_HOME/8sword-remake/`或`$HOME/.local/share/8sword-remake/`。目前只驗Linux，需SDL2／libsndfile平台函式庫；不需dosgolem、Go或DOS EXE。
+完成[現行資料包還原](preserved/README.md#rust全程畫面切換保存)後，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔亦可直接執行，預設讀取旁邊的`pack/`，存檔放在`$XDG_DATA_HOME/8sword-remake/`或`$HOME/.local/share/8sword-remake/`。目前只驗Linux，需SDL2／libsndfile平台函式庫；不需dosgolem、Go或DOS EXE。
 
 上圖來自Linux原生視窗。新遊戲、取消、正常移動／F2／F7、獨立程序續玩、既有v16冷讀與損壞進度重建已抽驗，五程序17份SDL讀回與167測試通過。主頁底板沿既有原生配色簡化，字串與位置保留原版；完整開場見下方。見[驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)、[核對](preserved/rust-start-audit-r1.json)與[圖片來源](docs/images/rust-start-r1.json)。
+
+## Rust全程原圖／HD切換
+
+![Rust地圖、原營地與原式戰場的原圖／HD同狀態比較](docs/images/rust-display-r1.png)
+
+右下「畫面」可在原圖與HD之間切換，從開場、開始選單、地圖、管理、募兵、戰鬥到結局共用設定。原圖直接使用原始像素素材，HD使用已批准的手繪素材；選單與可選Noto900、隸書、草書沿用Rust介面。音樂保持HD，AI與規則獨立。
+
+切換前已預載完整素材組，Rust直接組出所選畫面，沒有原圖畫完再疊HD的流程。設定會另存在`display.json`；也可用`--display auto|hd|original`啟動。舊資料包沒有原圖組時維持HD。
+
+上圖每對畫面使用相同玩法狀態與字型。營地由正常舊進度走入，戰鬥採明示編成；原圖模式不代表DOS整屏或完整原動畫還原。127張原圖往返、正常購兵／F7冷讀、35份全幅SDL及預設縮放已抽驗，切回HD的世界中央與前版逐像素相同。見[限定驗收](docs/spec/031-rust-independent-remake.md#rust全程畫面切換限定-conformed)、[核對](preserved/rust-display-audit-r1.json)、[圖片來源](docs/images/rust-display-r1.json)與[保存／還原](preserved/README.md#rust全程畫面切換保存)。
 
 ## Rust規則切換
 

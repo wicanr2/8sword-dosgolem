@@ -119,6 +119,7 @@ pub struct Sdl {
     rule_mode: Cell<crate::rules::Mode>,
     rules_selected: Cell<bool>,
     rules_locked: Cell<bool>,
+    display_fallback: RefCell<crate::display::Settings>,
     ai_trace: RefCell<Vec<crate::ai::Decision>>,
     ai_decisions: Cell<u64>,
     ai_changed: Cell<u64>,
@@ -152,6 +153,7 @@ impl Sdl {
                 rule_mode: Cell::new(crate::rules::Mode::Native),
                 rules_selected: Cell::new(false),
                 rules_locked: Cell::new(false),
+                display_fallback: RefCell::new(crate::display::Settings::default()),
                 ai_trace: RefCell::new(Vec::new()),
                 ai_decisions: Cell::new(0),
                 ai_changed: Cell::new(0),
@@ -338,16 +340,21 @@ impl Sdl {
         capture: Option<&Path>,
         scale: f64,
     ) -> Result<(), String> {
-        let shell = match crate::poster::Shell::load(root, store) {
+        let settings = crate::display::Settings::load(root, store)?;
+        let mut shell = match crate::poster::Shell::load(root, store) {
             Ok(v) => v,
             Err(e) => {
                 eprintln!("海報工具列：{e}");
                 None
             }
         };
-        if shell.is_none() {
+        if let Some(s) = shell.as_mut() {
+            s.display = settings;
+        } else {
+            *self.display_fallback.borrow_mut() = settings;
             return Ok(());
         }
+
         unsafe {
             let new = SDL_CreateTexture(
                 self.renderer,
@@ -397,6 +404,37 @@ impl Sdl {
         *self.poster.borrow_mut() = shell;
         self.capture = capture.map(Path::to_path_buf);
         Ok(())
+    }
+    pub fn display_mode(&self) -> crate::display::Mode {
+        self.poster
+            .borrow()
+            .as_ref()
+            .map_or_else(|| self.display_fallback.borrow().mode, |s| s.display.mode)
+    }
+    pub fn display_configured(&self) -> bool {
+        self.poster.borrow().as_ref().map_or_else(
+            || self.display_fallback.borrow().configured,
+            |s| s.display.configured,
+        )
+    }
+    pub fn set_display(&self, mode: crate::display::Mode, persist: bool) -> Result<(), String> {
+        if let Some(s) = self.poster.borrow_mut().as_mut() {
+            s.display.choose(mode, persist)?;
+            s.display.configured = true;
+        } else {
+            let mut s = self.display_fallback.borrow_mut();
+            s.choose(mode, persist)?;
+            s.configured = true;
+        }
+        Ok(())
+    }
+    pub fn toggle_display(&self) -> Result<(), String> {
+        let mode = if self.display_mode().original() {
+            crate::display::Mode::Hd
+        } else {
+            crate::display::Mode::Original
+        };
+        self.set_display(mode, true)
     }
     pub fn set_rules(&self, mode: crate::rules::Mode, selected: bool) {
         self.rule_mode.set(mode);
@@ -479,8 +517,18 @@ impl Sdl {
             .map(|d| format!("{}:{}>{}", d.route.name(), d.original, d.selected))
             .collect::<Vec<_>>()
             .join(";");
+        let settings = self.poster.borrow();
+        let settings = settings.as_ref().map(|s| &s.display);
+        let fallback = self.display_fallback.borrow();
+        let settings = settings.unwrap_or(&fallback);
+        let display = format!(
+            "display_mode\t{}\ndisplay_available\t{}\ndisplay_configured\t{}\n",
+            settings.mode.name(),
+            settings.available,
+            settings.configured
+        );
         format!(
-            "{base}ai_candidates\t{candidates}\nai_recent\t{recent}\nbattle_rules\t{}\nrules_locked\t{}\n",
+            "{display}{base}ai_candidates\t{candidates}\nai_recent\t{recent}\nbattle_rules\t{}\nrules_locked\t{}\n",
             self.rule_mode().name(),
             self.rules_locked.get()
         )

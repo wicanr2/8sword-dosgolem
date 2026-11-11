@@ -11,6 +11,7 @@ pub mod media_assets;
 
 #[cfg(feature = "desktop")]
 pub mod desktop;
+pub mod display;
 pub mod ending;
 #[cfg(feature = "desktop")]
 mod ending_desktop;

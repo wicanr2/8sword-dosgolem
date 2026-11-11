@@ -495,6 +495,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut ai_mode = crate::ai::Mode::Native;
     let mut rule_mode = None;
     let mut scale = 2.0 / 3.0;
+    let mut display_mode = None;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .map_err(|e| e.to_string())?
@@ -502,6 +503,16 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
+            "--display" => {
+                i += 1;
+                let value = args.get(i).ok_or("缺少畫面模式")?;
+                display_mode = if value == "auto" {
+                    None
+                } else {
+                    Some(crate::display::Mode::parse(value)?)
+                };
+            }
+
             "--battle-rules" => {
                 i += 1;
                 let value = args.get(i).ok_or("缺少規則模式")?;
@@ -616,7 +627,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let id = row.unit.ok_or("存活部隊缺少識別碼")?;
         if !pack.units.contains_key(&id) {
             let path = assets.join(format!("unit_{}.rgba", id.to_string().replace(':', "_")));
-            let image = crate::media_assets::Image::load(&path, 264, 300)?;
+            let image = crate::media_assets::Image::load_dual(&path, 264, 300)?;
             pack.units.insert(id, image);
         }
     }
@@ -627,6 +638,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
     };
     let mut sdl = Sdl::open(W, H, scale, mute)?;
     sdl.configure_poster(&assets, save_dir.as_deref(), capture.as_deref(), scale)?;
+    if let Some(mode) = display_mode {
+        sdl.set_display(mode, false)?;
+    }
     sdl.set_battle_ai(ai_mode);
     sdl.set_rules(c.rules(), false);
     let (mut font, mut music, mut cursor) = (
@@ -918,6 +932,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             }
             last_queue = sdl.queued();
         }
+        pack.select(sdl.display_mode().original())?;
         let frame = compose(
             &pack,
             &catalog,

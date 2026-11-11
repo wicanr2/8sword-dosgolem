@@ -1625,6 +1625,8 @@ archive以專案唯讀、preserved可寫執行`archive --project /project --arch
 
 ## Rust規則工具列保存
 
+此為規則階段保存；現行288檔執行期改見[Rust全程畫面切換保存](#rust全程畫面切換保存)。
+
 [完整索引](rust-rules-r1.json)、[核對](rust-rules-audit-r1.json)、[脫離核對](rust-rules-detached-r1.json)與[清理](rust-rules-cleanup-r1.json)為現行入口。本機preserved/rust-rules-r1/保存完整Rust來源、binary及159媒體、Go規則原函式／候選器／向量、真正v16與明示戰中進度、七程序20份全幅SDL／中央讀回、CLI拒絕及GUI失敗資料。原圖與音樂只留本機，定稿來源見[永久美術](../artwork/README.md)，不依賴workplace，沒有Release。
 
 [啟動器](../tools/rust-native-player.sh)指向workplace/probe-20261023/graphics-first/battle-r1/rust-rules-r1/native。清空workplace後，用Pillow11.3.0-r2 Docker、UID1000、--rm／network none及相稱配額／逾時，將專案掛/project，執行`python /project/tools/rust-rules.py restore --project /project`還原160份執行期檔；可用--work <新的可寫目錄>。binary直接讀旁邊pack，需SDL2／libsndfile，不需Go／DOS／x86。
@@ -1638,3 +1640,19 @@ freeze固定crate與工具；audit核193測試、向量、20全幅及中央像�
 archive以專案唯讀、preserved可寫執行`archive --project /project --archive /project/preserved --out /project/preserved/rust-rules-r1.json`。verify只掛此單一工具及preserved唯讀、輸出目錄可寫，執行`verify --archive /archive --out <新JSON>`，不掛workplace；restore按SHA／mode還原最小160檔。GUI可用RUST_RULES_CASES=formation,tactics做還原抽驗，另須從保存索引取回明示fixture，非執行期必要檔。[031](../docs/spec/031-rust-independent-remake.md#rust規則工具列限定-conformed)及030原證據保持，下一步全程原版／HD。正式197／7／923／535／1071不變。
 
 收尾：907檔／431去重物件、249900083壓縮bytes永久保存；50份額外還原證據另列脫離核對。全部物件及160份執行期SHA／mode還原通過，還原後兩程序、五份同狀態中央與全幅SDL逐像素相同。只清本批3687檔，邏輯合計3389343343 bytes；排除保留硬連結後可釋放內容2685502000 bytes，約2.50 GiB。擁有權及錯置.md目錄檢查為零，本批容器均退出，其他專案不動。[保存物件核對](rust-rules-verification-r1.json)、[清理計畫](rust-rules-cleanup-plan-r1.json)與[收尾核對](rust-rules-integrity-r1.json)可回查。
+
+## Rust全程畫面切換保存
+
+[完整索引](rust-display-r1.json)、[核對](rust-display-audit-r1.json)、[脫離核對](rust-display-detached-r1.json)及[清理](rust-display-cleanup-r1.json)為現行入口。本機preserved/rust-display-r1/保存完整Rust來源、binary＋287媒體、127原圖記錄／hash、唯讀重建、OpenKB透明色原始碼／定位、真正v16與v15結局、明示戰中進度、35份完整SDL／中央讀回、七拒絕、預設縮放與GUI失敗資料，不依賴workplace。完整原圖及音畫只留本機，定稿見[永久美術](../artwork/README.md)，沒有Release。
+
+[啟動器](../tools/rust-native-player.sh)指向workplace/probe-20261023/graphics-first/battle-r1/rust-display-r1/native。刪除workplace後，以Pillow11.3.0-r2 Docker、UID1000、--rm／network none及相稱逾時／配額，將tools與preserved唯讀掛在/project，工作輸出掛/out，執行`python /project/tools/rust-display.py restore --project /project --work /out`，還原288檔；預設不傳--work時還原啟動器所指位置。binary直接讀旁邊pack，需SDL2／libsndfile，不需Go／DOS／x86。不同既有檔拒絕覆寫。
+
+play／journey／run可用`--display auto|hd|original`，命令列為程序選項；右下畫面按鈕或開場／結局H會另存同目錄display.json。schema1、mode hd|original，缺偏好用HD，壞形態拒讀；舊包無原圖組維持HD。無新偏好／CLI時尊重舊結局hd欄。玩法v16／8SBCHK01、rules及AI設定契約保持，HD音樂不因畫面模式更換。
+
+[資料工具](../tools/rust-display.py)prepare從前批保存恢復159媒體、真v16，再依[圖形索引](../docs/images/graphics-inventory-r1.json)、[平面解碼器](../tools/catalog-all-graphics.py)與既有Huffman解碼器取得原圖；原檔／記錄／RGBA hash都核對。OpenKB使用已有artwork原參考frame0，透明255由已保存free-data.c確認。產生127張原圖、original/images.tsv及三個新增固定工具列字。用--work <新目錄>重建，原始專案唯讀、僅本批輸出可寫；唯讀重建287媒體與現行包逐SHA相同。
+
+freeze固定crate與工具；[127圖片往返](../internal/remake-rust/examples/display_audit.rs)以Rust載入／交換兩組。audit核199測試、35全幅及中央像素、六對同狀態、前版HD世界、158舊媒體及34舊字墨；images只排版已核對的六張擷取。[GUI](../tools/rust-display-gui.py)走正常v16人物／軍隊／原營地購兵／存讀、受控戰鬥及原開場／舊結局；[CLI](../tools/rust-display-cli.py)驗七拒絕，[預設縮放](../tools/rust-display-smoke.py)驗兩程序及舊資料包。後者不宣稱預設縮放像素讀回。建置只掛crate／native，GUI只掛native與單一工具，完整命令／映像SHA見保存內execution.json。
+
+archive以專案唯讀、preserved可寫執行`archive --project /project --archive /project/preserved --out /project/preserved/rust-display-r1.json`。verify只掛此單一工具與preserved唯讀、輸出目錄可寫，執行`verify --archive /archive --out <新JSON>`，不掛workplace；restore按SHA／mode還原288執行期檔。GUI可用RUST_DISPLAY_CASES=openkb做還原抽驗，另從索引還原明示openkb-fixture，非執行期必需檔。原圖是來源像素配共用Rust介面，不稱DOS整屏或自然通關；[031](../docs/spec/031-rust-independent-remake.md#rust全程畫面切換限定-conformed)為限定範圍。正式197／7／923／535／1071保持。
+
+收尾：2112檔／602去重物件、255402365壓縮bytes永久保存；29份額外還原證據另列脫離核對。全部物件及288執行期SHA／mode還原通過，一個OpenKB程序的三份同狀態中央及全幅SDL完全相同。只清本批4201檔，邏輯4506518382 bytes；排除保留硬連結後可釋放內容2594916297 bytes，約2.42 GiB。擁有權／錯置.md目錄為零，本批容器均退出，其他專案不動。[物件核對](rust-display-verification-r1.json)、[清理計畫](rust-display-cleanup-plan-r1.json)與[收尾核對](rust-display-integrity-r1.json)可回查。
