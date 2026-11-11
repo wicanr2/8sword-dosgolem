@@ -2,7 +2,7 @@
 set -euo pipefail
 task_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 task_crate="$task_root/internal/remake-rust"
-task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-ai-r1/native"
+task_native="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-rules-r1/native"
 task_image=mm45-rust-desktop:1.99.1-r3
 test -d "$task_crate"; test -d "$task_native"
 [[ "$(id -u)" == 1000 ]]
@@ -59,5 +59,5 @@ case "$task_action" in
    "${task_options[@]}" --mount "type=bind,src=$task_native/8sword-remake,dst=/player,readonly" \
    --mount "type=bind,src=$task_native/pack,dst=/media,readonly" "$task_image" /player "$task_mode" --assets /media "${task_run_args[@]}"
   ;;
- *) echo '用法：bash tools/rust-native-player.sh test|build|play|run|world|journey [--mute] [--save-dir <既有絕對路徑> [--continue]]；play必須指定存檔目錄。play／journey／run可加--battle-ai native|target；run另可用--weak|--spells|--taoist|--enemy-spells' >&2; exit 2 ;;
+ *) echo '用法：bash tools/rust-native-player.sh test|build|play|run|world|journey [--mute] [--save-dir <既有絕對路徑> [--continue]]；play必須指定存檔目錄。play／journey／run可加--battle-ai native|target及--battle-rules auto|native|formation|tactics；run另可用--weak|--spells|--taoist|--enemy-spells' >&2; exit 2 ;;
 esac

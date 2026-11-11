@@ -183,3 +183,8 @@ journey.chk
 /preserved/rust-travelbar-r1/
 /preserved/rust-poster-r1/
 /preserved/rust-ai-r1/
+
+/preserved/rust-rules-r1/
+battle.chk.rules.json
+journey.chk.rules.json
+.rules-*.tmp

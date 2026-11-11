@@ -2850,3 +2850,7 @@ READY勘誤：一隻狼放第一隊的抽驗，在首次站姿、尚未出手時
 ## Rust策略AI移植入口
 
 Rust已依[031限定驗收](031-rust-independent-remake.md#rust策略ai工具列限定-conformed)移植本頁原選敵政策與工具列，標記RUST-AI-RESOLVED-20261111。183測試、408個Go View、64固定seed與七程序20份SDL通過。只將現有政策接到獨立typed控制器，不重新猜測DOS掛點；本頁Go政策、原版受控證據、模式不持久化與改選範圍保持。OpenKB參數屬明示合成延伸，不稱原版新兵種oracle。[核對](../../preserved/rust-ai-audit-r1.json)與[保存](../../preserved/README.md#rust策略ai工具列保存)為入口，規則與全程原版／HD仍待。
+
+### Rust規則移植回填
+
+`RUST-RULES-RESOLVED-20261111`：本規格已批准的結陣、弓箭手壓制及規則知情AI已移植到Rust獨立路徑，限定證據見[031](031-rust-independent-remake.md#rust規則工具列限定-conformed)。沿當前陣位套倍率，並以本場固定、雜湊綁定旁置標記串接工具列及冷讀。這是既有擴充規則的移植，不改本規格的原版掛點、原版oracle等級或Go原版操作整合入口邊界。

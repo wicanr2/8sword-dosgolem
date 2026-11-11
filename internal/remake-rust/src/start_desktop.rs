@@ -254,18 +254,21 @@ pub(crate) fn play<'a>(
                     }
                     Err(_) => m.fail("無法讀取進度 請檢查存檔或開始新遊戲"),
                 },
-                Intent::NewGame => match start::new_game(c, d, store, seed, m.font, m.music) {
-                    Ok(j) => {
-                        sdl.clear_music();
-                        return Ok(Some(Launch {
-                            journey: j,
-                            loaded: false,
-                            captures,
-                            saves: 1,
-                        }));
+                Intent::NewGame => {
+                    match start::new_game_rules(c, d, store, seed, m.font, m.music, sdl.rule_mode())
+                    {
+                        Ok(j) => {
+                            sdl.clear_music();
+                            return Ok(Some(Launch {
+                                journey: j,
+                                loaded: false,
+                                captures,
+                                saves: 1,
+                            }));
+                        }
+                        Err(_) => m.fail("無法建立新遊戲 請檢查存檔目錄"),
                     }
-                    Err(_) => m.fail("無法建立新遊戲 請檢查存檔目錄"),
-                },
+                }
                 Intent::Play(id) => {
                     let t = &start::tracks()[usize::from(id - 1)];
                     let path = root.join(t.file);
@@ -323,6 +326,7 @@ pub(crate) fn play<'a>(
             checksum(format!("{m:?}").as_bytes()),
             captures + u32::from(snap)
         );
+        let status = format!("{status}{}", sdl.ai_status());
         if let Some(dir) = capture {
             if snap {
                 captures += 1;

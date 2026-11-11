@@ -45,22 +45,23 @@
 | Rust原式開始選單 | 限定完成。原三項選單、新遊戲確認與原子保存、Continue、十首HD音樂欣賞、鍵鼠及三字型已接。167測試、92局部原指令、十函式2531行bytes與五程序17份SDL通過；v16及Go格式保持。 |
 | Rust完整開場 | 限定完成。21.254秒／588節點、館景／美女／光束／迎龍揭圖及五故事頁，同視窗進開始頁。171測試、18來源場景／72畫布、三程序15份SDL及新建／F7／獨立Continue通過；揭圖Esc先完成，其他略過採原生即時UI。 |
 | Rust原行程條 | 限定完成。54格及原三列正常／停時色、尾端清除與F7冷讀已接。173測試、84局部原指令、1924行IDA bytes及三程序八份SDL通過；156媒體保持，v16不改。 |
-| Rust全程海報工具列 | 限定完成。兩側512、三種海報／400ms切換、鍵鼠及偏好已接。177測試、六程序20份全幅SDL與預設縮放通過；中央與前版同狀態世界逐像素保持。全程原版／HD與規則見下一步，AI見下列。 |
+| Rust全程海報工具列 | 限定完成。兩側512、三種海報／400ms切換、鍵鼠及偏好已接。177測試、六程序20份全幅SDL與預設縮放通過；中央與前版同狀態世界逐像素保持。全程原版／HD見下一步，AI與規則見下列。 |
 | Rust策略AI工具列 | 限定完成。普通／遠程及特殊0／2／5的既有選敵政策、原版／策略切換已接。183測試、408 Go View、64固定seed與七程序20份SDL通過；預設native，不存模式。 |
+| Rust規則工具列 | 限定完成。原版／結陣／戰術、普通減傷及知情AI、戰中固定與SHA旁置標記已接。193測試、5184 Go倍率／1224三模式View、七程序20份SDL及六CLI拒絕通過；v16／8SBCHK01不變。 |
 | 原版oracle限制 | 原生普通選敵驗合法集合與固定seed重播，未稱完整原版亂數呼叫序列一致。早期戰鬥樣本採明示編成，本輪旅程從原起點起步；SDL dummy不等於人耳確認。 |
 | 可選精修 | 新兵額外手繪動作、特殊死亡呈現、循環音樂接點與其餘平台驗收依後續範圍處理。 |
 
 ## 最近驗證與入口
 
-最新為[Rust策略AI工具列限定驗收](docs/spec/031-rust-independent-remake.md#rust策略ai工具列限定-conformed)。沿030既有「先全滅，再比減員比例，同分保留原目標」，接兩條桌面路徑的普通／遠程與特殊0／2／5。工具列可取消、切換、F10與下一次選敵生效；正式兵力、法術selector及RNG前綴保持。原版AI預設，重啟不保存模式，可加--battle-ai target。
+最新為[Rust規則工具列限定驗收](docs/spec/031-rust-independent-remake.md#rust規則工具列限定-conformed)。原版／結陣／戰術共用普通結算及AI倍率，先75%再80%，各自取整，特殊術保持。戰外可切換，本場固定；AI仍能獨立切換。保存使用SHA-256綁定旁置標記，舊檔沒有標記時用原版規則。raw v16／8SBCHK01不變，需file load恢復規則，不與Go保存互換。
 
-183測試、408純Go View及64固定法術seed通過。408包含八個原版舊受控View、384固定原兵種與16合成OpenKB參數，不稱新原版CPU對拍。七程序20份全幅SDL及中央裁切，受控首擊原版97猴妖／2僵屍、策略100／0；seed1均七次roll後752224798。正常v16 Continue、走路／等待後自然遇敵，三次決策／零改選，F7／獨立冷讀同狀態及中央畫布。受控軍隊非自然取得，不稱勝率提升。
+193測試、5184個Go規則向量、1224個三模式AI View及既有408 View、64個敵術seed、264個Python SHA長度通過。七程序20份全幅SDL及中央裁切核對、六CLI拒絕已驗。受控後排弓箭手使原版民兵100→84，結陣／戰術100→88；前排壓制另有雙側核心測試。正常v16 Continue、走路／等待、自然遭遇、結陣固定及AI／隸書操作、F7與獨立冷讀同狀態及中央畫布。明示戰鬥編成非自然取得，不稱新DOS oracle或自然通關。
 
-160執行期檔保持，159媒體中158逐SHA保持，只補固定Noto工具列六字，原16字與三遊戲字庫保持。舊字集以AI native／AI target回退並已驗。世界中央與前版同真正v16逐像素相同；v16／戰中／WorldState／Go格式不改，沒有AI偏好檔。原生執行不需Go／DOS／x86；建置只掛crate／native，GUI只掛native與一支輸入工具。
+160執行期檔保持。159媒體中158逐SHA不變，工具列舊22字墨保留，增12字成34字；舊字集ASCII回退已驗。三遊戲字庫、美術／音樂、正式197／7／923／535／1071保持。建置只掛crate／native，GUI只掛native與一支工具，原生執行不需Go／DOS／x86。兩檔保存不宣稱組合原子性；標記失配拒讀。
 
-開發入口為`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`；可加`--battle-ai target`或`--skip-intro`，run／journey亦接受AI參數。[核對](preserved/rust-ai-audit-r1.json)、[成果圖](docs/images/rust-ai-r1.png)、[製作工具](tools/rust-ai.py)與[現行保存／還原](preserved/README.md#rust策略ai工具列保存)為入口。
+開發入口為`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`；可加`--battle-rules auto|native|formation|tactics`、`--battle-ai native|target`或`--skip-intro`，run／journey亦接受規則及AI參數。auto恢復保存規則；AI仍每次預設native。[核對](preserved/rust-rules-audit-r1.json)、[成果圖](docs/images/rust-rules-r1.png)、[製作工具](tools/rust-rules.py)與[現行保存／還原](preserved/README.md#rust規則工具列保存)為入口。
 
-RUST-AI-RESOLVED-20261111閉合Rust AI；下一步規則與全程原版／HD，再收束未支援特殊點及平台／交付。舊開場、行程條、海報、普通戰、世界法術、寶物與結局保持，不重跑全量矩陣。正式197／7／923／535／1071保持，沒有Release。
+RUST-RULES-RESOLVED-20261111閉合Rust規則；下一步全程原版／HD，再收束未支援特殊點及平台／交付。不重跑既有音畫與世界／戰鬥矩陣，沒有Release。
 
 ## 保持的Go入口與基線
 

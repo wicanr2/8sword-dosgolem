@@ -212,11 +212,24 @@ pub fn new_game<'a>(
     font: u8,
     music: bool,
 ) -> Result<Journey<'a>, String> {
+    new_game_rules(c, d, dir, seed, font, music, crate::rules::Mode::Native)
+}
+pub fn new_game_rules<'a>(
+    c: &'a Catalog,
+    d: &WorldData,
+    dir: &Path,
+    seed: u32,
+    font: u8,
+    music: bool,
+    rules: crate::rules::Mode,
+) -> Result<Journey<'a>, String> {
     let mut j = Journey::new(d, seed);
+    j.rules = rules;
     j.world.font = font;
     j.world.music = music;
     let raw = j.encode(c, d)?;
     crate::checkpoint_store::reset_journey(dir, &raw, |b| Journey::decode(c, d, b).map(|_| ()))?;
+    crate::rules::write_marker(dir, "journey.chk", &raw, rules)?;
     Ok(j)
 }
 #[cfg(test)]

@@ -3677,3 +3677,11 @@ SDL2本機/usr/include/SDL2/SDL_video.h為可用桌面界限契約來源，SDL_G
 七原生程序20份全幅SDL及中央讀回通過。受控軍隊100猴妖／2僵屍對250名OpenKB弓箭手、seed1；原版首擊97／2，策略首擊100／0，兩側同七個目標roll，seed752224798，原目標slot0→slot1。正常v16旅程先Continue及正常移動／等待才自然遇敵，三次策略決策／零改選；F7冷讀同state_hash／中央畫面，模式重啟回native。受控編成不稱自然取得、整體策略或勝率改善。
 
 同前版真正v16世界中央逐像素相同。160執行期檔保持，只改poster-font六字，原16字墨／其他158媒體逐SHA相同；舊16字字集ASCII回退亦有正式視窗。RUST-AI-RESOLVED-20261111閉合Rust AI接線，規則及全程原版／HD仍待。[規格](docs/spec/031-rust-independent-remake.md#rust策略ai工具列限定-conformed)、[核對](preserved/rust-ai-audit-r1.json)與[永久保存](preserved/README.md#rust策略ai工具列保存)為入口。
+
+## 2026-11-11：批准規則的Rust移植
+
+證據等級為既有Go擴充規則的限定一致，不新增DOS原版行為結論。`internal/eightsword/battle_rules.go` SHA `c2004d466b2a33634c034600b0a28e6fe3aabc10f908cfbd5cc2d388badcac1a`；AI純候選器SHA `54ac5e33643b4f11079284d397a1bb7fd7dafa90d5b41c8966bbbb3e6dd9fa5a`。原PAM／IDA位址、helper與同狀態原版證據沿[030](docs/spec/030-battle-expansion-proposal.md)，沒有新IDA匯出或推測性改名。
+
+Go1.24.13直接匯出5184資格／倍率向量及1224三模式View，含原版受控View的模式投影，不稱新CPU案例。Rust1.99.1普通結算與AI呼叫同一Scale；原版安全上限保留，傷害先減百分比，再除HP／encoded及提交兵數。64敵術seed確認普通倍率不滲入特殊分派。SHA以Python hashlib的264個長度及兩個標準值交叉核對。
+
+Linux原生SDL以正常鍵鼠完成三模式、戰中固定、正常v16遭遇與F7冷讀，20份全幅及中央讀回通過。後排弓箭手GUI只證明結陣；前排壓制由雙方實際核心攻擊另驗，不混稱同一GUI證據。兩檔保存不具組合原子性，錯標記拒讀。完整來源、映像、配額與限制見[核對](preserved/rust-rules-audit-r1.json)及[永久保存](preserved/README.md#rust規則工具列保存)。

@@ -159,8 +159,17 @@ pub struct Journey<'a> {
     pub map_notice: Option<crate::map_notice::Notice>,
     pub guards: crate::guards::Guards,
     pub artifacts: u8,
+    pub rules: crate::rules::Mode,
 }
 impl<'a> Journey<'a> {
+    pub fn set_rules(&mut self, mode: crate::rules::Mode) -> Result<(), String> {
+        if self.battle.is_some() && mode != self.rules {
+            return Err("本場規則已固定".into());
+        }
+        self.rules = mode;
+        Ok(())
+    }
+
     pub fn new(data: &WorldData, seed: u32) -> Self {
         let mut army = [Stack::default(); 6];
         army[0] = Stack {
@@ -188,6 +197,7 @@ impl<'a> Journey<'a> {
             map_notice: None,
             guards: crate::guards::Guards::default(),
             artifacts: 0,
+            rules: crate::rules::Mode::Native,
         }
     }
     pub fn phase(&self) -> &'static str {
@@ -331,6 +341,7 @@ impl<'a> Journey<'a> {
                 shifted_alias: 0,
             },
         )
+        .and_then(|c| c.with_rule_mode(s.rules))
         .map_err(|e| format!("{e:?}"))?;
         s.battle = Some(Checkpoint {
             controller,
@@ -394,6 +405,13 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        if self
+            .battle
+            .as_ref()
+            .is_some_and(|c| c.controller.rules() != self.rules)
+        {
+            return Err("戰中規則不一致".into());
+        }
         if self.artifacts & !crate::items::MASK != 0 {
             return Err("寶物旗標錯誤".into());
         }
@@ -1005,6 +1023,7 @@ impl<'a> Journey<'a> {
             map_notice,
             guards,
             artifacts,
+            rules: crate::rules::Mode::Native,
         };
         s.validate(catalog, data)?;
         Ok(s)
@@ -1018,14 +1037,18 @@ impl<'a> Journey<'a> {
             131072,
             |b| Self::decode(catalog, data, b).map(|_| ()),
             false,
-        )
+        )?;
+        crate::rules::write_marker(dir, "journey.chk", &raw, self.rules)
     }
     pub fn load(dir: &Path, catalog: &'a Catalog, data: &WorldData) -> Result<Self, String> {
-        Self::decode(
-            catalog,
-            data,
-            &crate::checkpoint_store::read_named(dir, "journey.chk", 131072)?,
-        )
+        let raw = crate::checkpoint_store::read_named(dir, "journey.chk", 131072)?;
+        let mut s = Self::decode(catalog, data, &raw)?;
+        s.rules = crate::rules::read_marker(dir, "journey.chk", &raw)?;
+        if let Some(cp) = &mut s.battle {
+            cp.controller.restore_rules(s.rules);
+        }
+        s.validate(catalog, data)?;
+        Ok(s)
     }
 }
 fn catalog_hash(c: &Catalog) -> u64 {

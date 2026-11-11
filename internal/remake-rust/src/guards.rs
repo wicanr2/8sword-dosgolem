@@ -419,6 +419,7 @@ impl<'a> Journey<'a> {
                         shifted_alias: 0,
                     },
                 )
+                .and_then(|c| c.with_rule_mode(s.rules))
                 .map_err(|e| format!("{e:?}"))?,
                 rng: s.world.rng,
                 view: ViewState {

@@ -422,6 +422,7 @@ impl<'a> Checkpoint<'a> {
             spell_returns,
             enemy_config,
             enemy_returns,
+            rules: crate::rules::Mode::Native,
         };
         let value = Self {
             controller,

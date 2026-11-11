@@ -100,9 +100,31 @@ pub struct Controller<'a> {
     spell_returns: u64,
     enemy_config: Option<EnemyConfig>,
     enemy_returns: u64,
+    rules: crate::rules::Mode,
 }
 
 impl<'a> Controller<'a> {
+    pub fn rules(&self) -> crate::rules::Mode {
+        self.rules
+    }
+    pub fn with_rule_mode(mut self, mode: crate::rules::Mode) -> Result<Self, ControlError> {
+        if self.rules != mode
+            && (self.actor.is_some()
+                || self.battle.sequence() > 0
+                || self.half_turn != 1
+                || self.scan != Scan::start()
+                || self.spell_returns > 0
+                || self.enemy_returns > 0)
+        {
+            return Err(ControlError::WrongPhase);
+        }
+        self.rules = mode;
+        Ok(self)
+    }
+    pub(crate) fn restore_rules(&mut self, mode: crate::rules::Mode) {
+        self.rules = mode;
+    }
+
     pub(crate) fn ai_catalog(&self) -> &'a Catalog {
         self.catalog
     }
@@ -166,6 +188,7 @@ impl<'a> Controller<'a> {
             spell_returns: 0,
             enemy_config,
             enemy_returns: 0,
+            rules: crate::rules::Mode::Native,
         };
         c.remaining[first.index()] = [1; 6];
         Ok(c)
@@ -332,17 +355,30 @@ impl<'a> Controller<'a> {
                 target,
             )?
         };
-        let action = if actor.slot < 3
-            && self.battle.rows()[side][actor.raw]
-                .unit
-                .is_some_and(|id| id.is_native_caster())
-        {
-            self.battle
-                .attack_front_caster(actor.side, actor.raw, target_raw, self.modifiers)?
-        } else {
-            self.battle
-                .attack(actor.side, actor.raw, target_raw, self.modifiers)?
-        };
+        let source = self.battle.rows()[side][actor.raw];
+        let defender = self.battle.rows()[1 - side][target_raw];
+        let front = std::array::from_fn(|i| {
+            self.battle.rows()[1 - side][usize::from(self.slots[1 - side][i])].count
+        });
+        let scale = crate::rules::scale(
+            self.rules,
+            actor.slot,
+            source.unit.and_then(|u| u.native_kind()).unwrap_or(0),
+            source.count,
+            target,
+            defender.unit.and_then(|u| u.native_kind()).unwrap_or(0),
+            defender.count,
+            front,
+        );
+        let front_caster = actor.slot < 3 && source.unit.is_some_and(|id| id.is_native_caster());
+        let action = self.battle.attack_scaled(
+            actor.side,
+            actor.raw,
+            target_raw,
+            self.modifiers,
+            front_caster,
+            scale,
+        )?;
         self.slots[side] = motion;
         self.actor = None;
         if self.battle.outcome().is_none() {

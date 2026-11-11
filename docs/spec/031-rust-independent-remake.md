@@ -1042,3 +1042,32 @@ World預覽沿tempo6／未停時，Journey明確傳Survey.tempo／stopped；步�
 160份執行期檔數保持，159媒體中158逐SHA保持；poster-font只補原版策略AI六字，原16字墨不變，三種遊戲字庫及全部美術／音樂保持。策略選單在右側與海報並列，中央／字型／音樂位置不變。診斷明列實際模式、原／新陣位、候選分數、改選計數與最多32筆最近決策；來源、製作與執行期分開，原生執行不需Go／DOS／x86。正式197／7／923／535／1071保持，沒有Release。
 
 [純政策及介接](../../internal/remake-rust/src/ai.rs)、[敵方施法](../../internal/remake-rust/src/enemy.rs)、[工具列](../../internal/remake-rust/src/poster.rs)、[408參考](../../internal/remake-rust/ai-reference.tsv)、[明示檢查點](../../internal/remake-rust/examples/ai_fixture.rs)、[Go匯出主程式](../../tools/rust-ai-reference-main.txt)、[製作／核對／保存](../../tools/rust-ai.py)、[GUI](../../tools/rust-ai-gui.py)、[核對](../../preserved/rust-ai-audit-r1.json)、[成果圖](../images/rust-ai-r1.png)與[保存／還原](../../preserved/README.md#rust策略ai工具列保存)為入口。下一步規則與全程原版／HD，既有Go AI及原掛點證據保持，不重開已驗音畫或原版RE。
+## Rust規則工具列 DRAFT
+
+沿030已批准native／formation／tactics：前排民兵另有前排活隊時普通傷害減20%；tactics另有原弓箭手kind3在前排正對活軍時普通傷害減25%，先75%再80%，各自floor。敵我對稱，不疊加，特殊術不套，鳥人與OpenKB同名兵不自動取得新特性。來源為internal/eightsword/battle_rules.go及030原helper／AI對拍，不新增DOS逆向。入口為本節、030、tools/rust-rules.py，研究區沿battle-r1/rust-rules-r1。
+
+## Rust規則工具列 READY
+
+已審查030倍率／次序／生命週期／SHA綁定標記及現行Rust傷害與選敵。純Rust Scale由同一資格函式供實際普通結算及AI估值，按目前六陣位判斷；對傷害量套百分比後才除HP／編碼。原版模式沿既有算式及安全上限；特殊術與RNG保持。Controller固定本場Mode，初建時設定，開始取行動後拒絕變更；旅程含隨機、守軍／頭目／最終戰，兩條桌面路徑共用。
+
+旅程及戰中原始資料格式保持v16／8SBCHK01，沿Go已批准schema1旁置標記的rules／save_sha256／save_bytes四欄，檔名為journey.chk.rules.json或battle.chk.rules.json。標記只在實際成功保存後，以實檔SHA-256及長度原子寫入；無標記沿native，錯Hash／未知模式／壞形態拒讀，不猜補。這是兩檔交易，標記失敗會回報；已有標記不匹配時保持拒讀，不宣稱跨兩檔原子性。SHA-256用純Rust並以Python hashlib及標準已知向量驗證，不新增執行期工具依賴。
+
+World的規則由Journey欄位持有、實際保存時寫旁置標記，進戰時固定到Controller；F7、月報／法術等既有自動保存與結局沿同一路徑。Continue先驗標記再恢復本場；戰中不允許CLI改成其他模式。戰外可用--battle-rules auto|native|formation|tactics，預設auto恢復標記；明選模式在真正保存前不覆寫標記。新遊戲確認後以選中規則重設進度與標記，取消保持舊資料。原始decode API仍只解析原資料，需file load才恢復標記；不冒稱與Go檔案可互換。
+
+在Rust工具列左側既有512空間加入規則選單，中央／字型／音樂／海報／AI不移動。本場固定時吞規則操作，AI仍可切換；新字僅補固定Noto工具列，舊字集ASCII回退。正常旅程與戰中保存／獨立冷讀、規則切回native、本場鎖定、AI知情、雙側普通減員及特殊不受影響作代表抽驗，明示fixture不稱自然取得。原始資料、Go原函式向量、Rust、完整SDL與保存資料永久封存後才清快取；不重跑已驗HD或整段結局。下一步全程原版／HD。
+
+Rust規則工具列READY補註：戰鬥樣本冷讀依實際存活typed ID載入包內既有264×300材質，沿Image的header／hash／尺寸檢查；不要求舊樣本包含所有兵種，不改美術。
+
+## Rust規則工具列限定 CONFORMED
+
+`RUST-RULES-RESOLVED-20261111`。沿030已批准原版／結陣／戰術三模式，普通結算與策略AI共用資格及倍率。前排民兵另有前排活隊時80%；戰術模式的原弓箭手kind3前排正對活軍時75%，先壓制再結陣，各自向下取整。按當下六陣位處理，敵我相同；特殊術不套，鳥人與OpenKB同名兵不自動取得特性。Controller初建時設定，開始取行動或略過後固定本場；隨機與守軍皆從Journey傳入。
+
+193測試、5184個直接匯出Go原函式的資格／傷害向量、1224個三模式AI View及既有408 View通過。三模式View包含舊原版受控View的模式投影、固定原兵種及合成OpenKB參數，不稱新DOS CPU對拍。雙方前排弓箭手打結陣民兵，400→320→240傷害在除HP及正式扣兵前套入；9傷害兩次取整成4，與合併倍率不同。另驗64個固定敵術seed，結果、RNG與普通傷害以外的狀態保持。SHA-256以264種Python hashlib長度及空字串／abc標準值核對。
+
+七個原生程序、20份全幅SDL及中央裁切逐像素核對通過。明示編成為100民兵／100原矮人對50原弓箭手、seed1、玩家先手；後排弓箭手首擊使原版民兵100→84，結陣／戰術100→88，三者seed皆752224798。這個GUI編成只驗結陣，前排壓制另由雙側核心測試證明，不稱自然取得。真正v16從原式Continue、工具列選規則、正常走路／等待、自然遭遇至原戰場，結陣固定時仍可改AI及F10隸書，產生三次策略決策；F7與獨立程序冷讀同state_hash及中央畫布。戰鬥樣本亦完成F7／獨立冷讀，舊22字工具列用ASCII規則回退。
+
+原始保存格式維持v16／8SBCHK01，旁置schema1標記綁定實檔SHA-256與長度。無標記用native；真正保存才寫入，從檔案load恢復Journey及本場Controller，raw decode保持native。確認新遊戲以選中模式重設標記，取消不改檔。六個CLI拒絕案例涵蓋戰中改規則、未知選項／標記、hash不符及symlink，原檔皆保持。兩檔交易不是整組原子提交；標記失敗回報，失配拒讀，不猜測修復。
+
+159媒體中158逐SHA保持；固定Noto工具列22字墨保留，僅增12字成34字，三個遊戲字庫／音樂／美術不變。兩條桌面路徑支援--battle-rules auto|native|formation|tactics，預設auto。開始頁／戰中診斷列出實際規則及鎖定；戰鬥樣本依存活ID載入已有且通過header／hash／尺寸檢查的材質。原生執行仍無Go／DOS／x86依賴。正式197／7／923／535／1071保持，沒有Release。
+
+[規則與標記](../../internal/remake-rust/src/rules.rs)、[雙側核心與保存測試](../../internal/remake-rust/src/rules_tests.rs)、[SHA-256](../../internal/remake-rust/src/sha256.rs)、[控制器](../../internal/remake-rust/src/controller.rs)、[AI](../../internal/remake-rust/src/ai.rs)、[明示編成](../../internal/remake-rust/examples/rules_fixture.rs)、[製作／核對／保存](../../tools/rust-rules.py)、[GUI](../../tools/rust-rules-gui.py)、[CLI](../../tools/rust-rules-cli.py)、[核對](../../preserved/rust-rules-audit-r1.json)、[成果圖](../images/rust-rules-r1.png)與[保存／還原](../../preserved/README.md#rust規則工具列保存)為入口。下一步全程原版／HD；新兵動作、完整通關與平台／交付保持邊界，不重驗已完成音畫。

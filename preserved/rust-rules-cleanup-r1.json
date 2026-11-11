@@ -1,0 +1,10 @@
+{
+  "status": "passed-rust-rules-cleanup",
+  "files": 3687,
+  "logical_bytes": 3389343343,
+  "reclaimable_content_bytes_excluding_retained_hardlinks": 2685502000,
+  "runtime_sha_mode_files": 160,
+  "ownership_and_md_directories": 0,
+  "other_projects_untouched": true,
+  "scope": "Only this batch caches, archived failed/duplicate captures, legacy hardlinks and detached restore; no other project or Docker image deletion."
+}

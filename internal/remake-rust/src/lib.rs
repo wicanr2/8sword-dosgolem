@@ -35,8 +35,10 @@ pub mod pointer;
 pub mod poster;
 pub mod replay;
 pub mod resource_spells;
+pub mod rules;
 #[cfg(feature = "desktop")]
 mod sdl;
+mod sha256;
 #[cfg(feature = "desktop")]
 mod sndfile;
 pub mod special_shore;
@@ -90,6 +92,12 @@ pub enum AttackError {
 }
 
 pub fn player_attack(input: AttackInput) -> Result<AttackResult, AttackError> {
+    player_attack_scaled(input, rules::Scale::default())
+}
+fn player_attack_scaled(
+    input: AttackInput,
+    scale: rules::Scale,
+) -> Result<AttackResult, AttackError> {
     let AttackInput {
         attack,
         count,
@@ -113,6 +121,7 @@ pub fn player_attack(input: AttackInput) -> Result<AttackResult, AttackError> {
     if damage > u64::from(u16::MAX) {
         return Err(AttackError::CompatibilityRange);
     }
+    let damage = scale.apply(damage);
     let encoded = damage / hp + 1;
     let encoded = u16::try_from(encoded).map_err(|_| AttackError::CompatibilityRange)?;
     Ok(AttackResult {
@@ -185,3 +194,6 @@ mod tests {
         assert!(check_reference("1\t65536\t1\t1\t1\t2\t3\tERR").is_err());
     }
 }
+
+#[cfg(test)]
+mod rules_tests;

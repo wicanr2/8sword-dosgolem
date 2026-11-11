@@ -20,6 +20,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut start_menu = false;
     let mut skip_intro = false;
     let mut ai_mode = crate::ai::Mode::Native;
+    let mut rule_mode = None;
     let mut scale = 2.0 / 3.0;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -28,6 +29,15 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
+            "--battle-rules" => {
+                i += 1;
+                let value = args.get(i).ok_or("缺少規則模式")?;
+                rule_mode = if value == "auto" {
+                    None
+                } else {
+                    Some(crate::rules::Mode::parse(value)?)
+                };
+            }
             "--battle-ai" => {
                 i += 1;
                 ai_mode = crate::ai::Mode::parse(args.get(i).ok_or("缺少AI模式")?)?;
@@ -109,6 +119,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut sdl = Sdl::open_named(W, H, scale, mute, "神州八劍・Rust 原生旅程")?;
     sdl.configure_poster(&assets, store.as_deref(), capture.as_deref(), scale)?;
     sdl.set_battle_ai(ai_mode);
+    sdl.set_rules(rule_mode.unwrap_or_default(), rule_mode.is_some());
     let (mut journey, initial_captures, initial_saves) = if start_menu {
         let initial = if skip_intro {
             (0, true, 0)
@@ -150,6 +161,16 @@ pub fn run(args: &[String]) -> Result<(), String> {
     } else {
         (Journey::new(&data, seed), 0, 0)
     };
+    if journey.battle.is_some() {
+        if rule_mode.is_some_and(|m| m != journey.rules) {
+            return Err("冷讀戰鬥的規則已固定".into());
+        }
+        sdl.set_rules(journey.rules, false);
+    } else if sdl.rules_selected() {
+        journey.set_rules(sdl.rule_mode())?;
+    } else {
+        sdl.set_rules(journey.rules, false);
+    }
     let mut battle_pack = MediaPack::load(&assets)?;
     battle_pack.load_spell_assets(&assets)?;
     battle_pack.load_native_units(&assets)?;
@@ -234,7 +255,12 @@ pub fn run(args: &[String]) -> Result<(), String> {
         }
         let mut snap = false;
         ui.sync(&journey);
-        for e in sdl.events() {
+        sdl.lock_rules(journey.battle.is_some());
+        let events = sdl.events();
+        if journey.battle.is_none() {
+            journey.set_rules(sdl.rule_mode())?;
+        }
+        for e in events {
             ui.sync(&journey);
             let b = e.bytes;
             let kind = u32::from_ne_bytes(b[..4].try_into().unwrap());

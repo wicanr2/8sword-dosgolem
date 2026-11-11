@@ -1,0 +1,90 @@
+{
+  "status": "passed-rust-rules-integrity",
+  "binary_sha256": "e49040e62ce2a7c8b3eae5dd9abfb26e2ca4d4f38e7dacfcedabfee420554bba",
+  "runtime_files": 160,
+  "tests": 193,
+  "source_files_verified": 143,
+  "source_tools_verified": 6,
+  "ownership_and_md_directories": 0,
+  "new_links": [
+    [
+      "README.md",
+      "docs/images/rust-rules-r1.png"
+    ],
+    [
+      "README.md",
+      "preserved/rust-rules-audit-r1.json"
+    ],
+    [
+      "README.md",
+      "docs/images/rust-rules-r1.json"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../tools/rust-rules.py"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../tools/rust-rules-gui.py"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../tools/rust-rules-cli.py"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../../preserved/rust-rules-audit-r1.json"
+    ],
+    [
+      "docs/spec/031-rust-independent-remake.md",
+      "../images/rust-rules-r1.png"
+    ],
+    [
+      "preserved/README.md",
+      "rust-rules-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "rust-rules-audit-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "rust-rules-detached-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "rust-rules-cleanup-r1.json"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/rust-rules.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/rust-rules-gui.py"
+    ],
+    [
+      "preserved/README.md",
+      "../tools/rust-rules-cli.py"
+    ]
+  ],
+  "original_spec_backlink": true,
+  "stats": {
+    "files": 907,
+    "objects": 431,
+    "compressed_bytes": 249900083,
+    "extra_files": 50,
+    "restore_full_matches": 5,
+    "cleanup": {
+      "status": "passed-rust-rules-cleanup",
+      "files": 3687,
+      "logical_bytes": 3389343343,
+      "reclaimable_content_bytes_excluding_retained_hardlinks": 2685502000,
+      "runtime_sha_mode_files": 160,
+      "ownership_and_md_directories": 0,
+      "other_projects_untouched": true,
+      "scope": "Only this batch caches, archived failed/duplicate captures, legacy hardlinks and detached restore; no other project or Docker image deletion."
+    }
+  },
+  "containers": "All commands in this batch completed; --rm removed task containers; unrelated shared-host containers left alone."
+}

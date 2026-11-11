@@ -13,6 +13,7 @@ fn main() {
                     | "--mute"
                     | "--skip-intro"
                     | "--battle-ai"
+                    | "--battle-rules"
             )
         })
     {

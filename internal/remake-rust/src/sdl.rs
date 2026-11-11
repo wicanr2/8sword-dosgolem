@@ -116,6 +116,9 @@ pub struct Sdl {
     capture: Option<PathBuf>,
     capture_index: Cell<u32>,
     ai_mode: Cell<crate::ai::Mode>,
+    rule_mode: Cell<crate::rules::Mode>,
+    rules_selected: Cell<bool>,
+    rules_locked: Cell<bool>,
     ai_trace: RefCell<Vec<crate::ai::Decision>>,
     ai_decisions: Cell<u64>,
     ai_changed: Cell<u64>,
@@ -146,6 +149,9 @@ impl Sdl {
                 capture: None,
                 capture_index: Cell::new(0),
                 ai_mode: Cell::new(crate::ai::Mode::Native),
+                rule_mode: Cell::new(crate::rules::Mode::Native),
+                rules_selected: Cell::new(false),
+                rules_locked: Cell::new(false),
                 ai_trace: RefCell::new(Vec::new()),
                 ai_decisions: Cell::new(0),
                 ai_changed: Cell::new(0),
@@ -392,6 +398,35 @@ impl Sdl {
         self.capture = capture.map(Path::to_path_buf);
         Ok(())
     }
+    pub fn set_rules(&self, mode: crate::rules::Mode, selected: bool) {
+        self.rule_mode.set(mode);
+        self.rules_selected.set(selected);
+        if let Some(s) = self.poster.borrow_mut().as_mut() {
+            s.rules = mode;
+            s.rules_selected = selected;
+        }
+    }
+    pub fn rule_mode(&self) -> crate::rules::Mode {
+        self.poster
+            .borrow()
+            .as_ref()
+            .map_or(self.rule_mode.get(), |s| s.rules)
+    }
+    pub fn rules_selected(&self) -> bool {
+        self.poster
+            .borrow()
+            .as_ref()
+            .map_or(self.rules_selected.get(), |s| s.rules_selected)
+    }
+    pub fn lock_rules(&self, locked: bool) {
+        self.rules_locked.set(locked);
+        if let Some(s) = self.poster.borrow_mut().as_mut() {
+            s.rules_locked = locked;
+            if locked {
+                s.close_rules_menu();
+            }
+        }
+    }
     pub fn set_battle_ai(&self, mode: crate::ai::Mode) {
         self.ai_mode.set(mode);
         if let Some(shell) = self.poster.borrow_mut().as_mut() {
@@ -444,7 +479,11 @@ impl Sdl {
             .map(|d| format!("{}:{}>{}", d.route.name(), d.original, d.selected))
             .collect::<Vec<_>>()
             .join(";");
-        format!("{base}ai_candidates\t{candidates}\nai_recent\t{recent}\n")
+        format!(
+            "{base}ai_candidates\t{candidates}\nai_recent\t{recent}\nbattle_rules\t{}\nrules_locked\t{}\n",
+            self.rule_mode().name(),
+            self.rules_locked.get()
+        )
     }
     pub fn queued(&self) -> u32 {
         if self.audio == 0 {

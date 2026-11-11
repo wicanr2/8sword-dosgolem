@@ -1,6 +1,6 @@
 use crate::catalog::{Catalog, UnitId};
 use crate::formation::initial_formation;
-use crate::{AttackError, AttackInput, player_attack};
+use crate::{AttackError, AttackInput, player_attack_scaled};
 
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
 pub struct Stack {
@@ -195,24 +195,23 @@ impl<'a> Battle<'a> {
         target_raw: usize,
         modifiers: Modifiers,
     ) -> Result<ActionResult, BattleError> {
-        self.attack_inner(side, source_raw, target_raw, modifiers, false)
+        self.attack_scaled(
+            side,
+            source_raw,
+            target_raw,
+            modifiers,
+            false,
+            crate::rules::Scale::default(),
+        )
     }
-    pub(crate) fn attack_front_caster(
-        &mut self,
-        side: Side,
-        source_raw: usize,
-        target_raw: usize,
-        modifiers: Modifiers,
-    ) -> Result<ActionResult, BattleError> {
-        self.attack_inner(side, source_raw, target_raw, modifiers, true)
-    }
-    fn attack_inner(
+    pub(crate) fn attack_scaled(
         &mut self,
         side: Side,
         source_raw: usize,
         target_raw: usize,
         modifiers: Modifiers,
         front_caster: bool,
+        scale: crate::rules::Scale,
     ) -> Result<ActionResult, BattleError> {
         if self.outcome().is_some() {
             return Err(BattleError::Finished);
@@ -257,15 +256,18 @@ impl<'a> Battle<'a> {
                 1,
             )
         };
-        let amount = player_attack(AttackInput {
-            attack: profile.attack,
-            count: source.count as u16,
-            hp: defender.hp,
-            divisor,
-            multiplier,
-            pending_hp: self.hp[t][target_raw],
-            target_count: target.count,
-        })
+        let amount = player_attack_scaled(
+            AttackInput {
+                attack: profile.attack,
+                count: source.count as u16,
+                hp: defender.hp,
+                divisor,
+                multiplier,
+                pending_hp: self.hp[t][target_raw],
+                target_count: target.count,
+            },
+            scale,
+        )
         .map_err(BattleError::Arithmetic)?;
         let count_after = if side == Side::Player {
             amount.count_after

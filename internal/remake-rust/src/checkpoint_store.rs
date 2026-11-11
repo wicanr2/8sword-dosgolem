@@ -32,7 +32,11 @@ fn read_file(path: &Path, limit: u64) -> Result<Vec<u8>, String> {
 }
 pub fn load<'a>(dir: &Path, catalog: &'a Catalog) -> Result<Checkpoint<'a>, String> {
     check_directory(dir)?;
-    Checkpoint::decode(catalog, &read_file(&dir.join(NAME), LIMIT)?)
+    let raw = read_file(&dir.join(NAME), LIMIT)?;
+    let mut cp = Checkpoint::decode(catalog, &raw)?;
+    cp.controller
+        .restore_rules(crate::rules::read_marker(dir, NAME, &raw)?);
+    Ok(cp)
 }
 fn fresh(path: &Path) -> Result<File, String> {
     let mut options = OpenOptions::new();
@@ -69,7 +73,8 @@ fn save_inner(dir: &Path, checkpoint: &Checkpoint<'_>, interrupt: bool) -> Resul
         LIMIT,
         |b| Checkpoint::decode(checkpoint.catalog(), b).map(|_| ()),
         interrupt,
-    )
+    )?;
+    crate::rules::write_marker(dir, NAME, &raw, checkpoint.controller.rules())
 }
 pub(crate) fn read_named(dir: &Path, name: &str, limit: u64) -> Result<Vec<u8>, String> {
     check_directory(dir)?;

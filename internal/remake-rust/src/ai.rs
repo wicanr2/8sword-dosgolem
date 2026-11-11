@@ -59,6 +59,7 @@ pub struct View {
     pub original: usize,
     pub divisor: u16,
     pub alias_alive: bool,
+    pub rules: crate::rules::Mode,
     pub route: Route,
 }
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -156,6 +157,20 @@ impl View {
                     }
                     let amount =
                         (u32::from(source.attack) * u32::from(source.count)) as u16 / divisor;
+                    let front = std::array::from_fn(|i| {
+                        u32::from(self.rows[0][usize::from(self.slots[0][i])].count)
+                    });
+                    let scale = crate::rules::scale(
+                        self.rules,
+                        self.source,
+                        source.kind,
+                        u32::from(source.count),
+                        slot,
+                        target.kind,
+                        u32::from(target.count),
+                        front,
+                    );
+                    let amount = scale.apply(u64::from(amount)) as u16;
                     let encoded = (amount / target.hp).wrapping_add(1);
                     let loss = if encoded <= 1 {
                         0
@@ -274,6 +289,7 @@ impl Controller<'_> {
             original,
             divisor: self.modifiers().enemy_defense,
             alias_alive,
+            rules: self.rules(),
             route,
         }
         .choose()
@@ -399,6 +415,7 @@ mod tests {
         let mut checked = 0;
         for line in include_str!("../ai-reference.tsv")
             .lines()
+            .chain(include_str!("../rules-ai-reference.tsv").lines())
             .filter(|l| !l.starts_with('#'))
         {
             let mut fields = line.split('\t');
@@ -439,7 +456,7 @@ mod tests {
                     at += 5;
                 }
             }
-            assert_eq!(at, nums.len());
+            assert!(at == nums.len() || at + 1 == nums.len());
             let view = View {
                 rows,
                 slots,
@@ -447,6 +464,9 @@ mod tests {
                 original: usize::from(nums[2]),
                 divisor: nums[3],
                 alias_alive: nums[4] != 0,
+                rules: nums.get(at).map_or(crate::rules::Mode::Native, |n| {
+                    crate::rules::Mode::from_index(usize::from(*n))
+                }),
                 route,
             };
             let d = view.choose().unwrap();
@@ -474,7 +494,7 @@ mod tests {
             assert_eq!(actual, list);
             checked += 1;
         }
-        assert!(checked >= 400);
+        assert_eq!(checked, 1632);
     }
     #[test]
     fn modes_are_strict_and_default_native() {
@@ -491,6 +511,7 @@ mod tests {
             original: 0,
             divisor: 0,
             alias_alive: false,
+            rules: crate::rules::Mode::Native,
             route: Route::Ranged,
         };
         v.rows[1][0] = Unit {

@@ -493,6 +493,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let (mut mute, mut weak, mut spells, mut taoist) = (false, false, false, false);
     let mut enemy_spells = false;
     let mut ai_mode = crate::ai::Mode::Native;
+    let mut rule_mode = None;
     let mut scale = 2.0 / 3.0;
     let mut seed = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -501,6 +502,15 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
+            "--battle-rules" => {
+                i += 1;
+                let value = args.get(i).ok_or("缺少規則模式")?;
+                rule_mode = if value == "auto" {
+                    None
+                } else {
+                    Some(crate::rules::Mode::parse(value)?)
+                };
+            }
             "--battle-ai" => {
                 i += 1;
                 ai_mode = crate::ai::Mode::parse(args.get(i).ok_or("缺少AI模式")?)?;
@@ -574,6 +584,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
         None
     };
     if let Some(s) = &restored {
+        if rule_mode.is_some_and(|m| m != s.controller.rules()) {
+            return Err("冷讀戰鬥的規則已固定".into());
+        }
         weak = s.view.scenario & 1 != 0;
         spells = s.view.scenario & 2 != 0;
         taoist = s.view.scenario & 4 != 0;
@@ -592,14 +605,19 @@ pub fn run(args: &[String]) -> Result<(), String> {
         (s.controller, s.rng, s.view)
     } else {
         (
-            battle_controller(&catalog, weak, spells, taoist, enemy_spells)?,
+            battle_controller(&catalog, weak, spells, taoist, enemy_spells)?
+                .with_rule_mode(rule_mode.unwrap_or_default())
+                .map_err(|e| format!("{e:?}"))?,
             OriginalRng { seed },
             ViewState::default(),
         )
     };
     for row in c.battle().rows().iter().flatten().filter(|r| r.count > 0) {
-        if !row.unit.is_some_and(|id| pack.units.contains_key(&id)) {
-            return Err("存活部隊缺少素材".into());
+        let id = row.unit.ok_or("存活部隊缺少識別碼")?;
+        if !pack.units.contains_key(&id) {
+            let path = assets.join(format!("unit_{}.rgba", id.to_string().replace(':', "_")));
+            let image = crate::media_assets::Image::load(&path, 264, 300)?;
+            pack.units.insert(id, image);
         }
     }
     let mut spell_view = SpellView {
@@ -610,6 +628,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut sdl = Sdl::open(W, H, scale, mute)?;
     sdl.configure_poster(&assets, save_dir.as_deref(), capture.as_deref(), scale)?;
     sdl.set_battle_ai(ai_mode);
+    sdl.set_rules(c.rules(), false);
     let (mut font, mut music, mut cursor) = (
         usize::from(view.font),
         view.music && !mute,
@@ -638,6 +657,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut readback_equal = true;
     'game: loop {
         let now = Instant::now();
+        sdl.lock_rules(c.battle().outcome().is_none());
         for event in sdl.events() {
             let b = event.bytes;
             let kind = u32::from_le_bytes(b[0..4].try_into().map_err(|_| "輸入截斷")?);
@@ -684,7 +704,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 continue;
             }
             if key == 114 || key == 82 {
-                c = battle_controller(&catalog, weak, spells, taoist, enemy_spells)?;
+                c = battle_controller(&catalog, weak, spells, taoist, enemy_spells)?
+                    .with_rule_mode(sdl.rule_mode())
+                    .map_err(|e| format!("{e:?}"))?;
                 spell_view.animation = None;
                 seen = None;
                 ready = now;
