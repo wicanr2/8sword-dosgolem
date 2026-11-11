@@ -27,6 +27,9 @@ impl<'a> Journey<'a> {
             49 | 50 => exits()
                 .iter()
                 .any(|e| e.area == self.world.area && e.position == p),
+            65 => crate::guards::sites()
+                .iter()
+                .any(|s| s.area == self.world.area && s.position == p),
             51 => crate::map_notice::sites()
                 .iter()
                 .any(|s| s.area == self.world.area && s.position == p),
@@ -75,7 +78,7 @@ impl<'a> Journey<'a> {
         let view = self.magic.view(d)?;
         let (target, face) = motion(self.world.position, key, self.world.facing, false)?;
         let tile = view.tile(self.world.area, target)?;
-        if !matches!(tile, 49..=51 | 53..=59) {
+        if !matches!(tile, 49..=51 | 53..=59 | 65) {
             return Ok(false);
         }
         if !self.supported_shore(&view, key)? {
@@ -83,7 +86,25 @@ impl<'a> Journey<'a> {
         }
         let mut s = self.clone();
         s.world.facing = face;
-        if matches!(tile, 49 | 50) {
+        if tile == 65 {
+            if matches!(face, 1 | 3) {
+                let index = crate::guards::sites()
+                    .iter()
+                    .position(|p| p.area == s.world.area && p.position == target)
+                    .ok_or("缺少拒絕上岸守軍")?;
+                s.guards.pending = Some(crate::guards::Pending {
+                    site: index as u8,
+                    key,
+                    stage: crate::guards::Stage::Refused,
+                    yes: false,
+                    before: s.resources,
+                    reward_seed: s.world.rng.seed,
+                });
+                s.guards.validate(&s, d)?;
+            } else {
+                s.finish_guard_tail(d, key, c, true)?;
+            }
+        } else if matches!(tile, 49 | 50) {
             let e = *exits()
                 .iter()
                 .find(|e| e.area == s.world.area && e.position == target && e.tile == tile)

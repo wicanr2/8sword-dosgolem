@@ -111,7 +111,7 @@ pub fn settle_resources(
     *rng = next;
     Ok(resources)
 }
-fn compact(rows: [Stack; 6]) -> [Stack; 6] {
+pub(crate) fn compact(rows: [Stack; 6]) -> [Stack; 6] {
     let mut out = [Stack::default(); 6];
     for (i, s) in rows.into_iter().filter(|s| s.count > 0).enumerate() {
         out[i] = s;
@@ -157,6 +157,7 @@ pub struct Journey<'a> {
     pub travel_spell: crate::travel_spells::Travel,
     pub theft: Option<crate::theft::Theft>,
     pub map_notice: Option<crate::map_notice::Notice>,
+    pub guards: crate::guards::Guards,
 }
 impl<'a> Journey<'a> {
     pub fn new(data: &WorldData, seed: u32) -> Self {
@@ -184,9 +185,17 @@ impl<'a> Journey<'a> {
             travel_spell: crate::travel_spells::Travel::default(),
             theft: None,
             map_notice: None,
+            guards: crate::guards::Guards::default(),
         }
     }
     pub fn phase(&self) -> &'static str {
+        if self
+            .guards
+            .pending
+            .is_some_and(|p| p.stage != crate::guards::Stage::Battle)
+        {
+            return "guard";
+        }
         if self.map_notice.is_some() {
             return "map-notice";
         }
@@ -227,7 +236,8 @@ impl<'a> Journey<'a> {
         }
     }
     pub fn walk(&mut self, data: &WorldData, key: u16) -> Result<Option<Boundary>, String> {
-        if self.map_notice.is_some()
+        if self.guards.pending.is_some()
+            || self.map_notice.is_some()
             || self.theft.is_some()
             || self.cue.is_some()
             || self.battle.is_some()
@@ -336,6 +346,13 @@ impl<'a> Journey<'a> {
         origin: Option<bool>,
     ) -> Result<Outcome, String> {
         self.validate(catalog, data)?;
+        if self
+            .guards
+            .pending
+            .is_some_and(|p| p.stage == crate::guards::Stage::Battle)
+        {
+            return self.finish_guard_battle(catalog, data, origin);
+        }
         let mut s = self.clone();
         let cp = s.battle.as_ref().ok_or("不在戰場")?;
         let outcome = cp.controller.battle().outcome().ok_or("戰鬥未完成")?;
@@ -371,6 +388,7 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        self.guards.validate(self, data)?;
         if let Some(n) = self.map_notice {
             n.validate(self, data)?;
         }
@@ -416,7 +434,11 @@ impl<'a> Journey<'a> {
         }
         if let Some(cp) = &self.battle {
             cp.encode()?;
-            if self.cue.is_none()
+            let guarded = self
+                .guards
+                .pending
+                .is_some_and(|p| p.stage == crate::guards::Stage::Battle);
+            if (!guarded && self.cue.is_none())
                 || cp.view.font != self.world.font
                 || cp.view.music != self.world.music
                 || cp.controller.spell_book().is_some_and(|b| {
@@ -428,8 +450,9 @@ impl<'a> Journey<'a> {
             let mut rng = OriginalRng {
                 seed: self.generation_seed,
             };
-            if generate(self.world.area, self.world.rank, &mut rng)? != self.enemy
-                || rng != self.world.rng
+            if !guarded
+                && (generate(self.world.area, self.world.rank, &mut rng)? != self.enemy
+                    || rng != self.world.rng)
             {
                 return Err("旅程敵軍來源錯誤".into());
             }
@@ -455,7 +478,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN013".to_vec();
+        let mut b = b"8SJRN014".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -558,6 +581,23 @@ impl<'a> Journey<'a> {
             b.push(n.site);
             b.extend(n.key.to_le_bytes());
         }
+        b.extend(crate::guards::fingerprint().to_le_bytes());
+        for rows in &self.guards.rows {
+            for row in rows {
+                b.push(row.unit.and_then(UnitId::native_kind).unwrap_or(0) as u8);
+                b.extend(row.count.to_le_bytes());
+            }
+        }
+        b.extend(self.guards.swords.map(u8::from));
+        b.push(self.guards.pending.map(|p| p.site).unwrap_or(255));
+        if let Some(p) = self.guards.pending {
+            b.extend(p.key.to_le_bytes());
+            b.extend([p.stage as u8, u8::from(p.yes)]);
+            for v in p.before {
+                b.extend(v.to_le_bytes());
+            }
+            b.extend(p.reward_seed.to_le_bytes());
+        }
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -579,7 +619,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN010"
                 && &b[..8] != b"8SJRN011"
                 && &b[..8] != b"8SJRN012"
-                && &b[..8] != b"8SJRN013")
+                && &b[..8] != b"8SJRN013"
+                && &b[..8] != b"8SJRN014")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -835,6 +876,58 @@ impl<'a> Journey<'a> {
         } else {
             None
         };
+        let mut guards = crate::guards::Guards::default();
+        if &b[..8] >= b"8SJRN014" {
+            if r.q()? != crate::guards::fingerprint() {
+                return Err("守軍資料版本不符".into());
+            }
+            for rows in &mut guards.rows {
+                for row in rows {
+                    let kind = r.byte()?;
+                    if kind > 25 {
+                        return Err("守軍ID超界".into());
+                    }
+                    *row = Stack {
+                        unit: if kind == 0 {
+                            None
+                        } else {
+                            Some(UnitId::parse(&format!("native:{kind:02}"))?)
+                        },
+                        count: u32::from_le_bytes(r.take(4)?.try_into().unwrap()),
+                    };
+                }
+            }
+            for flag in &mut guards.swords {
+                *flag = match r.byte()? {
+                    0 => false,
+                    1 => true,
+                    _ => return Err("劍旗標錯誤".into()),
+                };
+            }
+            let site = r.byte()?;
+            if site != 255 {
+                let key = u16::from_le_bytes(r.take(2)?.try_into().unwrap());
+                let stage = crate::guards::Stage::decode(r.byte()?)?;
+                let yes = match r.byte()? {
+                    0 => false,
+                    1 => true,
+                    _ => return Err("攻城選擇錯誤".into()),
+                };
+                let mut before = [0; 6];
+                for v in &mut before {
+                    *v = r.q()?;
+                }
+                let reward_seed = u32::from_le_bytes(r.take(4)?.try_into().unwrap());
+                guards.pending = Some(crate::guards::Pending {
+                    site,
+                    key,
+                    stage,
+                    yes,
+                    before,
+                    reward_seed,
+                });
+            }
+        }
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -857,6 +950,7 @@ impl<'a> Journey<'a> {
             travel_spell,
             theft,
             map_notice,
+            guards,
         };
         s.validate(catalog, data)?;
         Ok(s)

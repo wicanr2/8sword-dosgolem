@@ -243,6 +243,8 @@ READY補充：沿既有ida-rounds.json的原sub_20724／runtime0F67:21B4，2074B
 
 ### 普通遭遇與開發旅程 READY
 
+回填 GUARDS-RESOLVED-20261111：[守軍／頭目限定驗收](#rust守軍與頭目限定-conformed)已接65、八劍持有與F1、v14及水格上岸後分流。最終有部隊守軍戰／結局與NPC增兵仍待，原隨機戰與舊證據範圍保持。
+
 回填 MAP-NOTICE-RESOLVED-20261111：地圖51已依[提示限定驗收](#地圖51提示限定-conformed)接入；普通與水格入口、先提示後上岸／扣步／月報及保存已驗，65守軍保持未接。
 
 回填 `EMPTY-ARMY-RESOLVED-20261111`：空軍隊遭遇已依[失金限定驗收](#空軍隊遇敵失金限定-conformed)接回原11650..116DA；非空軍隊的cue／戰鬥／回場保持，不重開已驗矩陣。
@@ -366,6 +368,8 @@ v4追加80箱及待選資料，支援此前從未開放寶箱的v1至v3；不匯
 本切片沿已確認原式選單，補六項人物資源與已批准武將頭像。既有原版文字收據的DS來源1170至1242及原座標為先行證據；以[IDA匯出器](../../tools/export-rust-character-ida.py)確認sub_173F0讀取與幾何後才升READY。研究輸出沿既有battle-r1/rust-character-r1，完整來源與素材後續掛入永久保存索引。不新增寶物邏輯或存檔格式，不把空寶物欄稱為物品系統完成。
 
 ### F1人物資料 READY
+
+回填 GUARDS-RESOLVED-20261111：[守軍／頭目限定驗收](#rust守軍與頭目限定-conformed)已接65、八劍持有與F1、v14及水格上岸後分流。最終有部隊守軍戰／結局與NPC增兵仍待，原隨機戰與舊證據範圍保持。
 
 證據審查：固定PAM `83e32f13…28d6c0`、正式i64 `a9089db0…ad21ac`，IDA9.4／MZ base10000h。原掛點0110:73F0位於`sub_17242`內，並非函式入口；新匯出保留真實邊界，不沿掛點命名。IDA資料段base2D780h的word_2DC72至word_2DC7C，分別是DS04F2至04FC，對應現有六資源。完整SHA與bytes見本批ida-character.json與後續核對。
 
@@ -650,6 +654,8 @@ v10追加三bytes跳躍狀態／舊鍵，讀v1至v9。WorldState、正式197來�
 
 ### 特殊地點上岸 READY
 
+回填 GUARDS-RESOLVED-20261111：[守軍／頭目限定驗收](#rust守軍與頭目限定-conformed)已接65、八劍持有與F1、v14及水格上岸後分流。最終有部隊守軍戰／結局與NPC增兵仍待，原隨機戰與舊證據範圍保持。
+
 回填 MAP-NOTICE-RESOLVED-20261111：地圖51已依[提示限定驗收](#地圖51提示限定-conformed)接入；普通與水格入口、先提示後上岸／扣步／月報及保存已驗，65守軍保持未接。
 
 固定來源與位址基準沿前節PAM.AY SHA256 83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0、官方PAM.i64 a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac、IDA9.4 MZ base10000h及runtime CS0110／DS1E88。以下控制流已證實。13函式匯出保留原名／bytes／operand／xref，原八圖另清點48處鄰水特殊格。
@@ -726,3 +732,32 @@ Noto900／隸書／草書與提示期間忽略Space／改向／F4已抽驗。v12
 v13追加site與原鍵，綁定原圖位置／方向／互斥階段；待提示、待上岸與月報各沿既有原子保存，讀v1至v12。全131地點、Space重訪、月底及涉水接受／拒絕由核心驗證；GUI代表鏈採陸上提示。涉水待提示仍保留原水格到接受時才提交，沒有中間逐像素一致聲明。MAP-NOTICE-RESOLVED-20261111回填普通旅程與特殊上岸READY；65守軍、其餘寶物／八劍、日曆／結局與新遊戲仍待。
 
 最終建置只見crate唯讀與native可寫，GUI只見native與單一腳本。[資料工具](../../tools/rust-map-notice.py)、[核對](../../preserved/rust-map-notice-audit-r1.json)、[永久保存](../../preserved/README.md#rust地圖51提示保存)、[成果圖](../images/rust-map-notice-r1.png)與[圖片來源](../images/rust-map-notice-r1.json)提供重生入口。WorldState、Go保存及正式197／7／923／535／1071保持，沒有Release。
+
+## Rust守軍與頭目 DRAFT
+
+2026-11-11。接續原65入口、原式確認／戰場與世界持久守軍，不另建戰場。沿既有battle-r1/rust-guards-r1、固定PAM及IDA永久匯出，先核42處原座標／軍隊、方向門檻、取消／空城／無兵／八劍門檻、勝敗與月薪／劍旗標，再補READY。最終守軍戰勝後的結局播放另待，不用一般守軍獎勵代替原結局。研究入口為[資料工具](../../tools/rust-guards.py)與[原指令探針](../../tools/rust-guards-reference.go)。
+
+### Rust守軍與頭目 READY
+
+輸入沿固定PAM.AY SHA-256 83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0、PAM.i64 a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac與既有original-battle-guards-r1的IDA9.4匯出。原名／bytes／operand／file offset保持，IDA MZ base10000h、runtime CS0110 IP=線性減10000h、DS1E88偏移分列。本輪復用六函式匯出，不宣稱新DB研究。以[42地點與六隊資料](../../internal/remake-rust/guard-catalog.tsv)串原圖65、typed守軍、原式確認／戰鬥、世界回傳與保存。
+
+- 已證實：12DFF..12E0D只放行方向1／3。12F27..12F4E以DS8C30／8C32座標掃12筆，讀該區NPC記錄的六個kind；42實際地點按原145FA掃描順序，區域容量7／4／4／4／4／4／4／11。原資料基址DS365E／3706／3766／37C6／3826／3886／38E6／3946，每記錄24 bytes，kind／count各word。只解析實際地點，不外推12筆容量。
+- 已證實：全空守軍先顯示DS460E「本城已光復，目前在抗暴軍控制中」。活守軍顯示DS4530是／否；否返回，沒有戰果。是先檢查0區索引4的八劍門檻，再掃六隊玩家；缺劍用DS485E，沒有部隊用DS4633。其他41處可進戰；最終守軍在缺劍時保留原提示，劍齊後仍停於明示未接邊界，結局另批接入，不能給它一般守軍獎勵。
+- 已證實：13094設DS8D6A=0後進132E0，守軍由固定表取得，沿既有普通／特殊回合及玩家先手契約。敵軍六隊死亡後整理回寫原記錄，撤退與全滅也保留殘兵；勝利才清除該記錄。Rust沿目前native Controller及原式HD戰場，新增玩家兵種仍留typed六隊，不引入舊卡片UI。
+- 已證實：11ABE勝利增加月薪20*(區域+1)，有竹簡時另加法術容量區域+1，原19856將六資源限制0..30000；頭目依DS26BC／26BE座標給該區一劍。普通守軍不給隨機戰金錢／經驗，也不走11796晉級。撤退多抽一次，以gold/(roll/2730+3)扣金；全滅選浪跡或回原起點，回起點時區域0、方向3、涉水0並重載地圖。原版其餘畫面helper內的rand次數不稱全程一致。
+- 世界尾段延後至取消、提示或戰果確認後才扣步／月報，再進既有遭遇尾段；Space不扣步，側面移動不出攻城確認仍完成正常尾段。已清地點重訪只提示、不重領。涉水2從水格進65先選上岸，接受進正常守軍；拒絕後原位置查無守軍，方向1／3沿原空城提示，其他方向直接尾段，不扣步，涉水2保持。非水特殊點的涉水2組合仍不放行。
+- 原生保存v14追加42筆typed守軍、八劍旗標與待確認／戰中／戰果context，讀v1至v13時初始化原表。綁定地點／方向、來源軍隊、原生battle及互斥階段，拒絕超界ID／兵數。F7／冷讀保留實際殘兵與待獎勵畫面，確認不再扣款或重領。WorldState、Go保存及正式基線保持。NPC月結增兵與完整日曆仍待，本輪不假造補兵。
+
+驗收分層：原指令只比2DDE局部分流、11ABE獎勵／撤退算式，列明跳過draw／IO／battle；既有Go原戰場勝利／撤退／頭目成對收據供世界規則來源，不當新Rust GUI。Rust驗42地點、兩側回合、退戰殘兵／再戰、頭目劍／F1、全滅去向、涉水、月報與v13遷移。GUI以真正v13的受控起始位置與明示戰鬥編成，正常確認／選敵、戰中F7／獨立冷讀、勝利／撤退／再訪與保存抽樣；不稱自然取得部隊、八劍或完整通關。
+
+### Rust守軍與頭目限定 CONFORMED
+
+2026-11-11。READY範圍由[守軍核心](../../internal/remake-rust/src/guards.rs)、[測試](../../internal/remake-rust/src/guards_tests.rs)、[42筆原資料](../../internal/remake-rust/guard-catalog.tsv)與[原指令收據](../../internal/remake-rust/guard-reference.tsv)接入。41處非最終守軍可進戰，當中8處為頭目；最終守軍保留缺劍／無兵提示，有部隊且劍齊的正向入口仍拒絕且可取消，不稱最終戰或結局完成。原生F1顯示持有名劍，沒有新增卡片戰場。
+
+146測試與1228個局部原指令案例通過：1176入口／方向／取消／空城／無兵／缺劍／未匹配座標，另32獎勵與20撤退算式。最終有部隊正向兩案只核原版可到戰場、native明示停止線，沒有當作已接戰鬥；未匹配座標168案核原空城分支，native水岸共用路徑另以核心代表案例驗證。原body由12DEB起，明示14-byte locals與DI／SI保存，略過stack-check prologue、draw／IO及battle，不稱整段原版GUI或完整RNG序列一致。r1／r2因漏配local frame而被IO覆寫flags，已失效並留存；只有r3供驗收。六份既有IDA9.4函式共1565行bytes逐MZ核對，未修改原DB。
+
+七個[原生視窗程序](../../tools/rust-guards-gui.py)共19份SDL畫布／讀回通過。[例程](../../internal/remake-rust/examples/guards_fixture.rs)從真正v13保留38金／102步／魔法與實際空軍隊，只移原城鄰格並設seed1；戰鬥例程另明示1000民兵／200弓箭手，未稱自然招募。正常步入原0區守軍0，原式確認／取消／無兵提示及三字型可用。戰中F7／另一程序冷讀同state_hash與畫布，打掉30猴妖後撤退，守軍保留40／30／40／20，38金扣12成26；退戰提示冷讀後再戰取勝。月薪100→120、容量3→4，金26與經驗0保持，勝後冷讀／重訪不重領。另一0區頭目1勝局，第一劍與F1冷讀畫布相同。
+
+v14保存42記錄、八旗標及pending context，讀v1至v13。戰果已提交再等提示確認；關閉後才完成世界扣步／月報／遭遇，冷讀不重新計算獎勵。北／西條件、Space、月底、殘兵再戰、全滅去向及水格接受／拒絕由核心覆蓋；GUI只代表陸上普通與頭目鏈。NPC月結增兵、原日曆、最終戰／結局、其餘寶物、新遊戲及其餘工具列仍待。GUARDS-RESOLVED-20261111回填普通旅程、F1與特殊上岸READY，不重開已驗HD或隨機戰矩陣。
+
+最終建置只見crate唯讀及native可寫，GUI只見native與單一腳本，執行沒有PAM／Go／dosgolem。[資料工具](../../tools/rust-guards.py)、[核對](../../preserved/rust-guards-audit-r1.json)、[永久保存](../../preserved/README.md#rust守軍與頭目保存)、[成果圖](../images/rust-guards-r1.png)及[圖片來源](../images/rust-guards-r1.json)為入口。WorldState、Go保存及正式197／7／923／535／1071保持，沒有Release。

@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-11 Rust守軍／頭目依[031限定驗收](docs/spec/031-rust-independent-remake.md#rust守軍與頭目限定-conformed)完成。42原記錄、41處非最終守軍含八頭目、原式確認／戰場、殘兵再戰、月薪／容量／八劍與v14冷讀已接。146測試、1176原分流／52算式、六函式1565行bytes及七程序19SDL擷取通過；原分流最終有部隊兩例只核停止線。GUI從真正v13指定原城鄰格／seed1，戰鬥明示1000民兵／200弓箭手，不稱自然取得。撤退38→26金、再勝月薪100→120／容量3→4，普通戰不加金／經驗；頭目首劍與F1冷讀已驗。GUARDS-RESOLVED-20261111回填舊邊界。最終守軍缺劍／無兵提示保留，有部隊且劍齊的最終戰／結局仍待；NPC月結增兵、寶物與新遊戲續按WORKLIST。[永久保存／還原](preserved/README.md#rust守軍與頭目保存)不依賴workplace。正式197／7／923／535／1071保持，無Release。
+
 2026-11-11 Rust地圖51提示依[031限定驗收](docs/spec/031-rust-independent-remake.md#地圖51提示限定-conformed)完成。131原圖提示與文字hash、先提示後上岸／扣步／月報／遭遇及v13冷讀已接。136測試、131原pointer／108流程、五函式1053行bytes及三程序八SDL擷取通過。五函式包含供下輪研究的12DDE，未提升65守軍語意。真正v12只指定原提示鄰格及seed1，正常走入落日城提示104步保持，確認103、冷讀再走102，38金／軍隊保持。MAP-NOTICE-RESOLVED-20261111回填舊邊界；WorldState及Go格式保持。[保存／還原](preserved/README.md#rust地圖51提示保存)不依賴workplace。下一步65守軍、寶物／八劍與其餘世界，不重跑本鏈或HD。正式197／7／923／535／1071保持，沒有Release。
 
 2026-11-11 Rust空軍隊失金依[031限定驗收](docs/spec/031-rust-independent-remake.md#空軍隊遇敵失金限定-conformed)完成。共用遭遇入口接原六隊存在、第三roll扣金、原式提示及v12冷讀；非空軍隊保持。130測試、286扣金／18六隊原指令、既有IDA兩函式260行bytes與三程序十SDL擷取通過。真正v11只指定起點／seed，30民兵由正常F3解雇；75扣37成38，待提示F7／冷讀及確認不重扣，確認後可繼續移動。`EMPTY-ARMY-RESOLVED-20261111`回填舊邊界，v12讀v1至v11，WorldState與Go格式保持。[保存／還原](preserved/README.md#rust空軍隊遇敵失金保存)不依賴workplace。下一步51／65與世界事件，不重跑本鏈或已驗HD。建置只見crate／native，GUI只見native與單一腳本；正式197／7／923／535／1071保持，無Release。

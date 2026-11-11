@@ -27,6 +27,7 @@ pub enum Page {
     Flight,
     Theft,
     MapNotice,
+    Guard,
 }
 pub struct Manager {
     pub page: Page,
@@ -35,6 +36,7 @@ pub struct Manager {
     pub digits: String,
     pub message: String,
     pub swords: bool,
+    pub guard_prompt: bool,
 }
 impl Default for Manager {
     fn default() -> Self {
@@ -45,11 +47,23 @@ impl Default for Manager {
             digits: String::new(),
             message: String::new(),
             swords: false,
+            guard_prompt: false,
         }
     }
 }
 impl Manager {
     pub fn sync(&mut self, j: &Journey<'_>) {
+        self.guard_prompt = j
+            .guards
+            .pending
+            .is_some_and(|p| p.stage == crate::guards::Stage::Prompt);
+        if j.guards
+            .pending
+            .is_some_and(|p| p.stage != crate::guards::Stage::Battle)
+        {
+            self.page = Page::Guard;
+            return;
+        }
         if j.map_notice.is_some() {
             self.page = Page::MapNotice;
             return;
@@ -106,6 +120,11 @@ impl Manager {
     }
     pub fn screen(&self) -> Option<Screen> {
         match self.page {
+            Page::Guard => Some(if self.guard_prompt {
+                Screen::Prompt
+            } else {
+                Screen::Report
+            }),
             Page::MapNotice => Some(Screen::Report),
             Page::Theft => Some(Screen::Report),
             Page::Flight => Some(Screen::Report),
@@ -145,16 +164,16 @@ impl Manager {
         self.page = Page::Shop;
         self.digits.clear();
     }
-    pub fn key(&mut self, key: i32, j: &mut Journey<'_>, c: &Catalog, data: &WorldData) {
+    pub fn key<'a>(&mut self, key: i32, j: &mut Journey<'a>, c: &'a Catalog, data: &WorldData) {
         if let Err(e) = self.key_inner(key, j, c, data) {
             self.message = e;
         }
     }
-    fn key_inner(
+    fn key_inner<'a>(
         &mut self,
         key: i32,
-        j: &mut Journey<'_>,
-        c: &Catalog,
+        j: &mut Journey<'a>,
+        c: &'a Catalog,
         data: &WorldData,
     ) -> Result<(), String> {
         if self.page == Page::World {
@@ -190,6 +209,27 @@ impl Manager {
                 if self.page != Page::Message {
                     self.message.clear();
                 }
+            }
+            return Ok(());
+        }
+        if self.page == Page::Guard {
+            let p = j.guards.pending.ok_or("缺少守軍階段")?;
+            if p.stage == crate::guards::Stage::Prompt {
+                match key {
+                    1073741903 | 1073741904 | 1073741905 | 1073741906 => j.select_guard(!p.yes)?,
+                    13 => {
+                        j.choose_guard(data, c, p.yes)?;
+                        self.page = Page::World;
+                    }
+                    27 => {
+                        j.choose_guard(data, c, false)?;
+                        self.page = Page::World;
+                    }
+                    _ => {}
+                }
+            } else if key == 13 || key == 27 {
+                j.close_guard(data, c)?;
+                self.page = Page::World;
             }
             return Ok(());
         }
@@ -476,6 +516,48 @@ pub fn draw(
         return Ok(());
     }
     let font = &pack.fonts[usize::from(j.world.font)];
+    if ui.page == Page::Guard {
+        use crate::guards::Stage;
+        let p = j.guards.pending.ok_or("缺少守軍提示")?;
+        fill(f, [24, 684, 1344, 480], [82, 82, 82]);
+        border(f, [24, 684, 1344, 480], [206, 170, 74]);
+        let message = match p.stage {
+            Stage::Prompt => "要攻城嗎？（是／否）".into(),
+            Stage::Cleared | Stage::Refused => "本城已光復，目前在抗暴軍控制中".into(),
+            Stage::NoArmy => "沒有部隊，不能攻城！".into(),
+            Stage::Missing => "你還沒有找齊八大名劍，不要進去送死！".into(),
+            Stage::Win => format!(
+                "攻城獲勝，月薪增加 {}{}",
+                j.resources[2] - p.before[2],
+                if crate::guards::sites()[usize::from(p.site)].boss {
+                    "，取得名劍"
+                } else {
+                    ""
+                }
+            ),
+            Stage::Retreat => format!("攻城撤退，現金損失 {}", p.before[3] - j.resources[3]),
+            Stage::Battle => return Err("守軍提示誤入戰場".into()),
+        };
+        for (i, line) in crate::map_notice::lines(&message)?.iter().enumerate() {
+            text(f, font, line, 72, 720 + i as i32 * 90, 72, 1248)?;
+        }
+        if p.stage == Stage::Prompt {
+            for (i, r) in crate::pointer::CHOICES.iter().enumerate() {
+                if p.yes == (i == 0) {
+                    fill(f, r.array(), [119, 44, 41]);
+                }
+                field(
+                    f,
+                    font,
+                    if i == 0 { "是" } else { "否" },
+                    r.0 + 48,
+                    r.1 + 6,
+                    r.2 - 96,
+                )?;
+            }
+        }
+        return Ok(());
+    }
     if ui.page == Page::MapNotice {
         let n = j.map_notice.ok_or("缺少地圖提示")?;
         let message = data
@@ -695,6 +777,20 @@ pub fn draw(
             282,
             288,
         )?;
+        if ui.swords {
+            for (i, name) in crate::guards::sword_names().iter().enumerate() {
+                if j.guards.swords[i] {
+                    field(
+                        f,
+                        font,
+                        name,
+                        696 + (i / 4) as i32 * 324,
+                        444 + (i % 4) as i32 * 156,
+                        300,
+                    )?;
+                }
+            }
+        }
         if !ui.swords && j.magic.book {
             sprite(f, book, 912, 282);
             field(f, font, "魔 法 竹 簡", 1032, 282, 288)?;

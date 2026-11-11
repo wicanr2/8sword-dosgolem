@@ -1,0 +1,22 @@
+{
+  "status": "passed-detached-rust-guards",
+  "files": 357,
+  "objects": 320,
+  "verification": {
+    "mounts": ["preserved read-only", "tools/rust-guards.py read-only", "report tmpfs"],
+    "network": "none",
+    "uid": 1000,
+    "workplace_mounted": false
+  },
+  "runtime_restore": {
+    "status": "passed-detached-runtime-restore",
+    "files": 140,
+    "binary_sha256": "40b8ba6cff7c84da74c7b3a1be704c8cb0429d9be36ea4129ba0d465e04b292b",
+    "binary_mode": "0o755",
+    "uid": 1000,
+    "mounts": ["preserved read-only", "tools read-only", "restored tmpfs"],
+    "network": "none",
+    "workplace_mounted": false
+  },
+  "image": "sc-cht-hdtools:pillow11.3.0-r2"
+}

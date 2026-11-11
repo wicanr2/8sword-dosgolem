@@ -3448,3 +3448,15 @@ Rust共用遭遇接收器在六隊全空時多抽一次、計算並提交失金�
 探針／腳本問題分列：技能symlink超出初始掛載，補掛實際IDA專案唯讀後正常讀取；原far文字callee改以重定位實體位址判斷後乾淨重跑。舊合成51不在原catalog，維持未提交邊界；其舊斷言及v13追加byte的合成保存截尾均已調整。最終建置只見crate與native，GUI只見native與單一腳本；音訊dummy不等於人耳驗收。
 
 [完整索引](preserved/rust-map-notice-r1.json)、[核對](preserved/rust-map-notice-audit-r1.json)、[脫離核對](preserved/rust-map-notice-detached-r1.json)、[清理](preserved/rust-map-notice-cleanup-r1.json)、[完整性](preserved/rust-map-notice-integrity-r1.json)與[成果圖](docs/images/rust-map-notice-r1.png)為本批入口。完整素材、來源、執行檔與證據先永久保存並驗還原，再清本批快取；無新image／Release，本案容器結束，其他專案保持。起始HEAD為ccd808e7e63944e0b416b91900f14dd6a14aa396，實際提交／推送見Git歷程。下一步65守軍，再推進寶物／八劍、日曆／結局與新遊戲。
+
+## 2026-11-11 Rust守軍與頭目
+
+使用者go接續65守軍。依反組譯進實作路由載入重製技能、規格閘門、文件分工及收尾／回填規則，先寫DRAFT／READY。復用Go守軍的固定PAM／IDA9.4來源，核42原地點與六隊、六函式1565行bytes；原版局部探針1176分流／52算式，沒有重開HD或逐行翻譯執行檔。
+
+Rust以typed記錄接41處非最終守軍，當中8處為頭目。沿原式地圖、是／否及戰場，接側面通過、空城／無兵／缺劍、殘兵／再戰、勝利月薪／容量／八劍、F1、退戰／全滅去向及水岸分流。v14保存42軍隊、八旗標與待選／戰中／戰果context，讀v1至v13；WorldState與Go格式保持。GUARDS-RESOLVED-20261111回填三處較早READY。最終有部隊且劍齊入口仍明示拒絕並可取消，不用普通獎勵代替原結局；NPC月報增兵與原日曆未接。
+
+初次146測試145通過，失敗揭露原探針跳過__chkstk卻漏配14-byte本地frame，IO pushes覆寫guard flags。修正探針為明示frame、12DEB局部body後重生r3，舊r1／r2與來源均保留且不當有效收據。另依原門檻順序保留最終劍齊而無兵的原提示。較早合成存檔測試按v14固定1277-byte無pending後綴調整。最終readonly建置146測試、self-check及release編譯通過；未為通過測試改原NPC或兵種算式。
+
+七獨立原生程序19份SDL畫布／讀回通過，GUI只掛native及單一工具。真正v13只改原城鄰格與seed1，原38金／102步／魔法及空軍隊保持；戰鬥另明示1000民兵／200弓箭手，不稱自然招募。原式確認／取消／無兵與三字型、戰中F7／冷讀、擊倒30猴妖後撤退、殘兵再戰勝利、重訪、頭目首劍／F1冷讀均已驗。退戰金26，再勝月薪120／容量4而金26、經驗0保持；頭目另例金38／首劍。全滅、月底與水岸由核心代表測試覆蓋，沒有所有地點GUI或原版全程RNG聲明。
+
+[完整索引](preserved/rust-guards-r1.json)、[核對](preserved/rust-guards-audit-r1.json)、[脫離核對](preserved/rust-guards-detached-r1.json)、[清理](preserved/rust-guards-cleanup-r1.json)、[完整性](preserved/rust-guards-integrity-r1.json)及[成果圖](docs/images/rust-guards-r1.png)保存本批。完整素材、source、binary、v13／v14與原／GUI證據先永久保存並驗還原，再清本批可重建快取。正式197／7／923／535／1071保持，無新image或Release；本案容器收尾，其他專案不動。起始HEAD為0babe90f15d066e78109d02d78216de9be5335ef，實際提交與推送見Git歷程。下一步最終守軍／結局、NPC增兵／日曆、其餘寶物與新遊戲。

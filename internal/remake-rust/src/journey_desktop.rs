@@ -130,6 +130,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         let travel_before = journey.travel_spell.clone();
         let theft_before = journey.theft;
         let map_notice_before = journey.map_notice;
+        let guards_before = journey.guards.clone();
         let phase_before = journey.phase();
         let area_before = journey.world.area;
         if phase_before == "jump-flight" && now >= jump_at {
@@ -192,7 +193,17 @@ pub fn run(args: &[String]) -> Result<(), String> {
                                 cursor = node;
                             }
                         }
-                        Action::Choice(v) => choose = v,
+                        Action::Choice(v) => {
+                            if journey
+                                .guards
+                                .pending
+                                .is_some_and(|p| p.stage == crate::guards::Stage::Prompt)
+                            {
+                                journey.select_guard(!v)?;
+                            } else {
+                                choose = v;
+                            }
+                        }
                         Action::Extra(v) => ui.extra(&mut journey, &catalog, v),
                         Action::TreasureChoice(v) => journey.select_treasure(v)?,
                         Action::MagicChoice(v) => ui.selected = v,
@@ -343,6 +354,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
             || travel_before != journey.travel_spell
             || theft_before != journey.theft
             || map_notice_before != journey.map_notice
+            || guards_before != journey.guards
             || area_before != journey.world.area
             || phase_before == "jump-flight" && journey.phase() != "jump-flight")
             && store.is_some()
@@ -584,7 +596,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 Page::MagicShop => ("購買一次", "離開商店", ""),
                 Page::Message => ("返回地圖", "返回地圖", ""),
                 Page::ResourceResult => ("返回地圖", "返回地圖", ""),
-                Page::Theft | Page::MapNotice => ("確認", "返回", ""),
+                Page::Theft | Page::MapNotice | Page::Guard => ("確認", "返回", ""),
                 Page::Bird => ("返回地圖", "返回地圖", ""),
                 Page::Minimap => ("返回地圖", "返回地圖", ""),
                 Page::Character => (if ui.swords { "返回" } else { "查看八劍" }, "返回", ""),
@@ -805,6 +817,17 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 .map(|n| n.count_ones())
                 .sum::<u32>(),
             checksum(&journey.world.encode(&data)?)
+        );
+        let status = format!(
+            "{status}guard_stage\t{:?}\nguard_site\t{:?}\nguard0\t{}\nswords\t{:?}\n",
+            journey.guards.pending.map(|p| p.stage),
+            journey.guards.pending.map(|p| p.site),
+            journey.guards.rows[0]
+                .iter()
+                .map(|r| r.count.to_string())
+                .collect::<Vec<_>>()
+                .join(","),
+            journey.guards.swords
         );
         if let Some(d) = &capture {
             if snap {

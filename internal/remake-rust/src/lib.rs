@@ -11,6 +11,7 @@ pub mod media_assets;
 #[cfg(feature = "desktop")]
 pub mod desktop;
 pub mod formation;
+pub mod guards;
 pub mod journey;
 #[cfg(feature = "desktop")]
 pub mod journey_desktop;

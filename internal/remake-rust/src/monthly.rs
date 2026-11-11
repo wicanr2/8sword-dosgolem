@@ -105,7 +105,7 @@ impl Monthly {
                 || j.cue.is_some()
                 || j.camps.pending.is_some()
                 || d.tile(j.world.area, j.world.position)? != r.tile
-                || matches!(r.tile, 49 | 50 | 65)
+                || matches!(r.tile, 49 | 50)
                 || j.treasure.pending.is_some()
             {
                 return Err("待確認月報狀態錯誤".into());
@@ -149,6 +149,15 @@ impl<'a> Journey<'a> {
             s.world = s.world.prepare_shore(&view, key)?;
             s.travel_spell.shore = Some(crate::travel_spells::Shore { key, yes: true });
             s.travel_spell.validate(&s)?;
+            *self = s;
+            return Ok(None);
+        }
+        if out == Some(Boundary::Terrain(65))
+            && crate::guards::sites()
+                .iter()
+                .any(|s| s.area == self.world.area && s.position == target)
+        {
+            s.open_guard(&view, key, c)?;
             *self = s;
             return Ok(None);
         }

@@ -182,7 +182,7 @@ fn invalid_shore_bindings_and_bytes_reject_and_v8_migrates() {
     let mut j = ready(&d);
     j.magic.charges[6] = 0;
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 16 - 1 - 1);
+    raw.truncate(raw.len() - 16 - 1 - 1 - crate::guards::SUFFIX);
     raw[..8].copy_from_slice(b"8SJRN008");
     raw.extend(crate::media_assets::checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);
@@ -203,7 +203,7 @@ fn invalid_shore_bindings_and_bytes_reject_and_v8_migrates() {
         assert!(b.encode(&c, &d).is_err(), "{n}");
     }
     let mut raw = j.encode(&c, &d).unwrap();
-    let at = raw.len() - 16;
+    let at = raw.len() - 16 - crate::guards::SUFFIX;
     raw[at] = 2;
     let end = raw.len() - 8;
     let sum = crate::media_assets::checksum(&raw[..end]);

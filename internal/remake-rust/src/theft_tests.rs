@@ -82,7 +82,7 @@ fn pending_cold_confirm_does_not_charge_or_advance_and_v11_shape_migrates() {
     let c = Catalog::builtin().unwrap();
     let mut j = empty(&d);
     let mut old = j.encode(&c, &d).unwrap();
-    old.truncate(old.len() - 9 - 1);
+    old.truncate(old.len() - 9 - 1 - crate::guards::SUFFIX);
     old[..8].copy_from_slice(b"8SJRN011");
     old.extend(checksum(&old).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &old).unwrap(), j);
@@ -233,7 +233,7 @@ fn corrupted_notice_seed_army_gold_phase_or_bytes_reject() {
         assert!(b.encode(&c, &d).is_err(), "{i}");
     }
     let mut raw = j.encode(&c, &d).unwrap();
-    let at = raw.len() - 17;
+    let at = raw.len() - 17 - crate::guards::SUFFIX;
     raw[at] = 2;
     let end = raw.len() - 8;
     let h = checksum(&raw[..end]);

@@ -1,0 +1,19 @@
+{
+  "status": "passed-rust-guards-integrity",
+  "crate_files": 105,
+  "frozen_tools": 6,
+  "linked_current_files": 65,
+  "verified_new_anchors": 26,
+  "index_positive_control": "README.md -> CONTEXT.md",
+  "resolution_backlinks": "GUARDS-RESOLVED-20261111",
+  "python_ast": "passed",
+  "launcher_shell_syntax": "passed",
+  "same_binary_source_media": true,
+  "gui_captures": 19,
+  "root_owned_or_markdown_directories": [],
+  "archive_ownership_uid": 1000,
+  "cache_removed": true,
+  "no_new_images": true,
+  "container_lifecycle": "Task containers used --rm and completed; unrelated project containers retained",
+  "image": "sc-cht-hdtools:pillow11.3.0-r2"
+}

@@ -1,0 +1,16 @@
+{
+  "status": "passed-scoped-rust-cache-cleanup",
+  "removed_path": "workplace/probe-20261023/graphics-first/battle-r1/rust-guards-r1/native/rust-target",
+  "removed_files": 1707,
+  "removed_bytes": 562165369,
+  "archive_files": 357,
+  "archive_objects": 320,
+  "compressed_bytes": 49866758,
+  "retained": [
+    "source,binary,139media,v13-v14 checkpoints",
+    "authoritative r3 and invalidated r1-r2 source/receipts",
+    "seven GUI process receipts"
+  ],
+  "new_images": false,
+  "other_projects_touched": false
+}

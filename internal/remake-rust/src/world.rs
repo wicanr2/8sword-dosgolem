@@ -294,6 +294,27 @@ mod tests {
 }
 impl WorldData {
     #[cfg(test)]
+    pub(crate) fn guards_fixture(water: bool) -> Self {
+        let mut d = Self::flat_fixture();
+        for s in crate::guards::sites() {
+            d.maps[usize::from(s.area)]
+                [usize::from(s.position.y) * 70 + usize::from(s.position.x)] = 65;
+        }
+        if water {
+            for s in crate::guards::sites() {
+                for key in [0x4800, 0x5000, 0x4b00, 0x4d00] {
+                    let p = motion(s.position, key, 3, true).unwrap().0;
+                    assert_ne!(
+                        d.maps[usize::from(s.area)][usize::from(p.y) * 70 + usize::from(p.x)],
+                        65
+                    );
+                    d.maps[usize::from(s.area)][usize::from(p.y) * 70 + usize::from(p.x)] = 2;
+                }
+            }
+        }
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn notice_fixture(water: bool) -> Self {
         let mut d = Self::flat_fixture();
         for s in crate::map_notice::sites() {
@@ -586,6 +607,7 @@ impl WorldData {
         };
         crate::world_exits::validate(&data)?;
         crate::map_notice::validate_maps(&data)?;
+        crate::guards::validate_maps(&data)?;
         Ok(data)
     }
     pub fn tile(&self, area: u8, p: Position) -> Result<u8, String> {
