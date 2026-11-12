@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-12 使用者指出的男主角頭頸問題已完成兩張原圖修正：[龍虎海報／深藍故事背景對照](docs/images/hero-head-neck-comparison-r1.html)。內建image_gen修改，完整PNG、實際提示與來源永久保存，原1071列保持、追加五列為1076檔，[獨立核對](preserved/head-neck-artwork-verification-r1.json)不依賴workplace。狀態僅原圖修正完成，未接入Rust／Go或覆寫v.0.1.0-20261112三平台包；後續需重建海報側翼及intro.bin／編譯期校驗再抽驗，不把生成圖冒稱GUI成果。現況見CONTEXT與WORKLIST，不重開已驗玩法矩陣。
+
 2026-11-12 [三平台本機完整包](docs/spec/056-native-three-platform-packages.md#本機三平台限定-conformed)完成，版本v.0.1.0-20261112。Linux x86_64／Windows x86_64／macOS universal2各含287媒體；Linux214／Wine211測試、四程序完整開場／新建／隸書／原圖切換／F7冷讀與24份SDL通過。Mac僅雙架構、載入與簽章雜湊核對，未Apple真機／公證；音訊僅技術驗證。[永久保存](preserved/README.md#rust三平台完整包保存)不依賴workplace，現行交付在dist-all同版full-local，promo保持。RUST-PACKAGE-RESOLVED-20261112閉合本機三平台打包；正式197／7／923／535／1071及v18／Go格式保持。未建tag或Release，不公開完整素材。
 
 2026-11-12 [Rust推廣影片本機預覽](docs/spec/055-rust-promo-preview.md#本機預覽-conformed)完成。92.767秒、1920×1080／30fps、H.264／AAC，華語合成旁白、繁體字幕與現行HD〈幻〉，清楚交代保存／原式玩法／美術與Rust繪圖緣由。四個現行實錄程序與13抽幀目視，影音檢查通過；原圖模式、受控法術、美術停格及既有正常進度續玩均明示。[核對](preserved/rust-promo-audit-r1.json)、[總覽](docs/images/rust-promo-contact-r1.jpg)與[保存／還原](preserved/README.md#rust推廣影片保存)為入口。RUST-PROMO-RESOLVED-20261112閉合影片預覽；本機dist-all/v.0.1.0-20261112/promo為唯一影片交付，識別不作遊戲定版，未上傳或Release。產品Rust與288執行期保持，下一步正式封包與平台實測，不重開玩法。正式197／7／923／535／1071保持。

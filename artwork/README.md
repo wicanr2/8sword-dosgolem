@@ -1,5 +1,9 @@
 # 定稿原圖永久保存
 
+## 男主角頭頸修正
+
+[海報／深藍故事背景對照](../docs/images/hero-head-neck-comparison-r1.html)已完成原圖修正。海報補順頭頸、領口與肩線；深藍版改為朝左上迎龍，與彩色前導一致。完整PNG及提示追加在 `approved/masters/head-neck-correction-r1/` 與 `approved/provenance/head-neck-correction-r1/`，原1071列保持，現1076檔。[生成與來源](head-neck-corrections-r1.json)、[永久核對](../preserved/head-neck-artwork-verification-r1.json)保留SHA、尺寸與狀態。這兩張是已檢視的原圖修正版，尚未接入現有Rust／Go或三平台包，不把生成原圖當成遊戲內驗收。
+
 ## openKB新增單位HD
 
 使用者更正弓箭手應為中國古風美女，槍兵應為持削尖木棍的布衣農民。[兩圖修正提示](openkb-hd-corrections-r2.json)與[追加保存](openkb-hd-corrections-preservation-r2.json)為新版本入口。完整透明PNG及提示追加在`approved/masters/openkb-hd-r2/`與`approved/provenance/openkb-hd-r2/`，r1舊圖與來源不刪。新版本總覽與接入結果依[030呈現修正](../docs/spec/030-battle-expansion-proposal.md#募兵圖示透明與openkb身份修正)更新；八個兵種ID、數值與存檔保持。

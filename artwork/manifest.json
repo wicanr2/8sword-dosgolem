@@ -12246,6 +12246,60 @@
       "bytes": 4162,
       "role": "provenance",
       "basis": "User corrected archer to Chinese female and pike to peasant with sharpened wooden pole."
+    },
+    {
+      "source": "docs/images/poster-wings-head-fixed-r2.png",
+      "path": "approved/masters/head-neck-correction-r1/poster-wings-head-fixed-r2.png",
+      "sha256": "5e78e93b8176e31b3beca5ba1e2746d675ec60fc64afbc13a42901f5a5048edf",
+      "bytes": 3061288,
+      "role": "master",
+      "basis": "User-requested head/neck correction. Reviewed image-only revision; NOT integrated into runtime or existing platform packages.",
+      "image": {
+        "size": [
+          2172,
+          724
+        ],
+        "mode": "RGB"
+      }
+    },
+    {
+      "source": "docs/images/poster-wings-head-fixed-r2.prompt.txt",
+      "path": "approved/provenance/head-neck-correction-r1/poster-wings-head-fixed-r2.prompt.txt",
+      "sha256": "b8c979e2f9637469579e6d101418ceddc38478c761f6196412f4b81652c57ddd",
+      "bytes": 1647,
+      "role": "prompt",
+      "basis": "User-requested head/neck correction. Reviewed image-only revision; NOT integrated into runtime or existing platform packages."
+    },
+    {
+      "source": "docs/images/story-background-head-fixed-r5.png",
+      "path": "approved/masters/head-neck-correction-r1/story-background-head-fixed-r5.png",
+      "sha256": "8996354d445b38897ff0c521b82b5f604aa58918c6affef917ae8fb4b255d107",
+      "bytes": 2576112,
+      "role": "master",
+      "basis": "User-requested head/neck correction. Reviewed image-only revision; NOT integrated into runtime or existing platform packages.",
+      "image": {
+        "size": [
+          1586,
+          992
+        ],
+        "mode": "RGB"
+      }
+    },
+    {
+      "source": "docs/images/story-background-head-fixed-r5.prompt.txt",
+      "path": "approved/provenance/head-neck-correction-r1/story-background-head-fixed-r5.prompt.txt",
+      "sha256": "fa50d97193da5ce18a01cccf1ae03d0846dd7988045f6358ed737c7b1180ad35",
+      "bytes": 1642,
+      "role": "prompt",
+      "basis": "User-requested head/neck correction. Reviewed image-only revision; NOT integrated into runtime or existing platform packages."
+    },
+    {
+      "source": "artwork/head-neck-corrections-r1.json",
+      "path": "approved/provenance/head-neck-correction-r1/generation.json",
+      "sha256": "714d616ce9d29698835783a5c32c4ca8e3dc34d95e807fdf3ad66e2991a297bf",
+      "bytes": 2580,
+      "role": "provenance",
+      "basis": "Built-in generation prompts, references, review and explicit non-runtime status."
     }
   ],
   "additions": [

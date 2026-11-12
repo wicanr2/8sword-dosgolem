@@ -1,0 +1,17 @@
+{
+  "status": "PASS-independent-artwork-archive",
+  "files": 1076,
+  "bytes": 474380995,
+  "roles": {
+    "master": 205,
+    "prompt": 177,
+    "provenance": 143,
+    "reference": 91,
+    "registered-texture": 231,
+    "registration": 227,
+    "approved-reference": 2
+  },
+  "manifest_sha256": "690bddc19abbca75d3a6012b4dfdf4af1cea3881df4ddd5aa9ef8aad25b6d678",
+  "workplace_required": false,
+  "symbolic_links": false
+}

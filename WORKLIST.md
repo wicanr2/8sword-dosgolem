@@ -52,3 +52,5 @@ SPACE-EVENTS-RESOLVED-20261112及PLAYER-PATH-RESOLVED-20261112已閉合Space與L
 RUST-PROMO-RESOLVED-20261112：[推廣影片預覽](docs/spec/055-rust-promo-preview.md#本機預覽-conformed)已完成，93秒、四程序新實錄、13幀目視與影音檢查通過，含清楚的保存／原式玩法／HD／Rust重寫緣由。只作本機預覽；同版三平台本機完整包已依056完成。工具入口為[rust-promo.py](tools/rust-promo.py)。
 
 RUST-PACKAGE-RESOLVED-20261112：[三平台本機完整包](docs/spec/056-native-three-platform-packages.md#本機三平台限定-conformed)完成。現行入口為 `dist-all/v.0.1.0-20261112/full-local/`；[保存工具](tools/rust-package-preserve.sh)可核對／還原。真機與人耳試聽列為限制，不重開已完成矩陣。
+
+男主角頭頸：[兩張完整原圖及對照](docs/images/hero-head-neck-comparison-r1.html)已完成並永久保存。尚待呈現接入與代表抽驗：海報重建側翼，深藍背景同步重建intro.bin與編譯期校驗；既有三平台包保持，不冒稱已更新。

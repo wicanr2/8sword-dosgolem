@@ -10,6 +10,10 @@
 
 使用者追加滑鼠操作，方便後續手機移植。原生旅程的滑鼠與鍵盤共用操作命令，保留邏輯座標與正規化接口；Linux與Wine已抽驗滑鼠，不稱手機平台或真實觸控驗收。
 
+## 男主角頭頸美術修正
+
+依使用者指出的兩處問題，以內建image_gen完成龍虎延展海報及深藍故事背景的原圖修正。[對照](docs/images/hero-head-neck-comparison-r1.html)與[完整來源／提示](artwork/head-neck-corrections-r1.json)已保存，不依賴workplace。狀態為原圖修正完成，尚未接入：Rust海報需重建poster-wings.rgba，深藍背景在含編譯期校驗的intro.bin內，接入須同步重建來源校驗與播放器，不能只換PNG。現行三平台包及287媒體保持原版本；不重開已驗玩法矩陣。
+
 ## 目前狀態表
 
 | 範圍 | 狀態與證據 |

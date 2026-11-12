@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "tool": "built-in image_gen edit",
+  "transparent_background": false,
+  "status": "reviewed-image-corrections-not-runtime",
+  "images": [
+    {
+      "name": "poster-wings-head-fixed-r2",
+      "title": "龍虎延展：頭頸與領口連接",
+      "file": "docs/images/poster-wings-head-fixed-r2.png",
+      "sha256": "5e78e93b8176e31b3beca5ba1e2746d675ec60fc64afbc13a42901f5a5048edf",
+      "size": [
+        2172,
+        724
+      ],
+      "source_file": "exec-4e5e9499-9acc-4343-a754-bf5a40e5b58d.png",
+      "reference": "docs/images/poster-wings-approved-r1.png",
+      "reference_sha256": "f14552801e98d4171befeb1220a9626c9e2e7a25efdad011896d2d3abfcba341",
+      "prompt": "docs/images/poster-wings-head-fixed-r2.prompt.txt",
+      "prompt_sha256": "b8c979e2f9637469579e6d101418ceddc38478c761f6196412f4b81652c57ddd",
+      "master": "artwork/approved/masters/head-neck-correction-r1/poster-wings-head-fixed-r2.png",
+      "production": false,
+      "review": "Head/neck connection reviewed visually; blue head now faces left/up, consistent with colored prelude. Generative redraw is not pixel-identical outside the requested area."
+    },
+    {
+      "name": "story-background-head-fixed-r5",
+      "title": "深藍故事頁：改回左上迎龍方向",
+      "file": "docs/images/story-background-head-fixed-r5.png",
+      "sha256": "8996354d445b38897ff0c521b82b5f604aa58918c6affef917ae8fb4b255d107",
+      "size": [
+        1586,
+        992
+      ],
+      "source_file": "exec-b2e78965-1d77-4ffc-b7a9-c30e52b9ab28.png",
+      "reference": "docs/images/story-background-corrected-r4.png",
+      "reference_sha256": "9c26111247a7bf3606798c6ffb0708312bd939ecbec29db351ce1fc828e760d2",
+      "prompt": "docs/images/story-background-head-fixed-r5.prompt.txt",
+      "prompt_sha256": "fa50d97193da5ce18a01cccf1ae03d0846dd7988045f6358ed737c7b1180ad35",
+      "master": "artwork/approved/masters/head-neck-correction-r1/story-background-head-fixed-r5.png",
+      "production": false,
+      "review": "Head/neck connection reviewed visually; blue head now faces left/up, consistent with colored prelude. Generative redraw is not pixel-identical outside the requested area."
+    }
+  ],
+  "unchanged_runtime_and_packages": "v.0.1.0-20261112",
+  "color_orientation_reference": {
+    "path": "docs/images/story-prelude-color-poster-pose-r4.png",
+    "sha256": "92c27b8030dfa335883483b06e8b81a1beeca846a150d92940da044baf35476e"
+  },
+  "rights": "Existing project art correction; full original-derived runtime distribution remains local."
+}

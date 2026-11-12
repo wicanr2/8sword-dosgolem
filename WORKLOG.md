@@ -3671,3 +3671,9 @@ Linux214／Wine211測試通過。真正解壓包從中文安裝路徑正常播�
 RUST-PACKAGE-RESOLVED-20261112閉合本機三平台打包，未建tag或Release，含完整素材的封包不公開。既有推廣影片保留，同版校驗表涵蓋完整包、影片及smoke。永久物件已逐SHA核對，無workplace掛載的獨立還原核對42份交付檔。清理本批建置／安裝暫存、Wine prefix、重複解壓、已保存SDL工作副本，共7179950590 bytes，約6.69GiB；原圖、現行交付與其他專案不動。
 
 入口：[056](docs/spec/056-native-three-platform-packages.md)、[封包核對](preserved/rust-package-audit-r1.json)、[保存與還原](preserved/README.md#rust三平台完整包保存)、[還原收據](preserved/rust-package-restore-r1.json)、[清理收據](preserved/rust-package-cleanup-r1.json)。正式197／7／923／535／1071保持，下一步只列可選的平台真機、手機或精修，不重開已完成矩陣。
+
+## 2026-11-12：男主角頭頸原圖修正
+
+使用者指出一張海報與深藍背景的男主角轉頭不自然。核對現行來源後，以內建image_gen分別修改龍虎延展海報與深藍故事背景。海報補順頸部／領口及肩線，藍色版依彩色前導方向改為左上迎龍，保留原構圖與色調；生成結果有區域外重繪差異，不宣稱逐像素保持。兩張完整PNG與實際完整提示已保存於docs/images及artwork永久目錄，原1071列不改，追加五列成1076檔，舊原圖不覆寫。比較頁以SVG視窗顯示來源PNG局部，沒有程式修畫或CLI代替image_gen。
+
+本輪完成原圖修正，未接入播放器或更動v.0.1.0-20261112三平台包。藍色故事背景已烘入intro.bin，且有編譯期計畫校驗，後續接入需一併重建與抽樣，不能僅換PNG。正式197／7／923／535、287媒體與既有封包SHA保持。永久核對見preserved/head-neck-artwork-verification-r1.json；本批Docker工作完成即刪除容器，無建置快取或暫存工作目錄。
