@@ -16,19 +16,21 @@
 
 ## 三平台本機完整包
 
-目前版本為 `v.0.1.1-20261112`。完整包保存在本機 `dist-all/v.0.1.1-20261112/full-local/`，含287份原圖／HD音畫素材、三字型、海報及33種兵種。執行不需要Go、Rust開發工具、DOS EXE或dosgolem。
+交付檔名使用 `v1.0`，內容沿用已驗證的 `v.0.1.1-20261112`，包內程式版本不變。完整包保存在本機 `dist-all/v.0.1.1-20261112/full-local/`，含287份原圖／HD音畫素材、三字型、海報及33種兵種。執行不需要Go、Rust開發工具、DOS EXE或dosgolem。
 
 | 平台 | 封包 | 啟動 |
 | --- | --- | --- |
-| Linux x86_64 | `8sword-v.0.1.1-20261112-linux-x86_64.tar.gz`，約112MiB | 解壓後執行 `Start.sh`，需glibc 2.36以上。 |
-| Windows x86_64 | `8sword-v.0.1.1-20261112-windows-x86_64.zip`，約107MiB | 全部解壓後開啟 `8sword.exe`，需Windows 10以上。 |
-| macOS Intel／Apple Silicon | `8sword-v.0.1.1-20261112-macos-universal2.zip`，約109MiB | 解壓後開啟 `8sword.app`，需macOS 11以上。 |
+| Linux x86_64 | `8sword-v1.0-linux-x86_64.tar.gz`，約112MiB | 解壓後執行 `Start.sh`，需glibc 2.36以上。 |
+| Windows x86_64 | `8sword-v1.0-windows-x86_64.zip`，約107MiB | 全部解壓後開啟 `8sword.exe`，需Windows 10以上。 |
+| macOS Intel／Apple Silicon | `8sword-v1.0-macos-universal2.zip`，約109MiB | 解壓後開啟 `8sword.app`，需macOS 11以上。 |
 
 Linux與Wine已從解壓包走過完整開場、新遊戲、隸書／原圖切換、F7保存與重啟續玩。macOS完成雙架構、載入路徑與簽章雜湊核對，採ad-hoc簽署，尚未公證或真機驗收。存檔位置與操作見包內 `README.txt`；完整素材僅供本機，不隨GitHub公開。
 
 ![修正後的故事背景、龍虎海報與重啟續玩](docs/images/rust-head-art-runtime-r1.png)
 
 [封包驗收](docs/spec/057-head-art-package-update.md#限定-conformed)、[逐包核對](preserved/rust-head-art-package-audit-r1.json)、[重建工具](tools/rust-package.sh)與[永久保存／還原](preserved/README.md#rust頭頸修正版三平台保存)。版本根目錄的 `SHA256SUMS.json` 保存三平台包與驗證紀錄的雜湊；舊版封包與推廣影片保留在原版本目錄。
+
+[v1.0檔名與SHA對照](preserved/v1.0-filenames-r1.json)另列名稱映射；原封包、內部資料夾與程式版本保持，不另作重新驗收或正式1.0功能完成聲明。
 
 ## 推廣影片
 

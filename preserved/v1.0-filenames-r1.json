@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "display_label": "v1.0",
+  "build_version": "v.0.1.1-20261112",
+  "scope": "User explicitly requested filenames only. Archive bytes, internal directory names, embedded program version, manifests, signatures and tests remain the verified v.0.1.1 build.",
+  "operation": "Hard-link delivery filename aliases; original filenames and checksum manifest remain intact.",
+  "additional_package_data_bytes": 0,
+  "delivery_root": "dist-all/v.0.1.1-20261112",
+  "files": [
+    {
+      "path": "full-local/8sword-v1.0-linux-x86_64.tar.gz",
+      "source_path": "full-local/8sword-v.0.1.1-20261112-linux-x86_64.tar.gz",
+      "sha256": "8d4f58aabb7443dc832123d75c4ef907466a91c7865a40029fbbfdbe3d242249",
+      "bytes": 117452467,
+      "content_unchanged": true,
+      "same_inode": true
+    },
+    {
+      "path": "full-local/8sword-v1.0-macos-universal2.zip",
+      "source_path": "full-local/8sword-v.0.1.1-20261112-macos-universal2.zip",
+      "sha256": "c1d92afe266f541df9fb24ad97feff904fbfa8ab7cefe71acd03ba26b1ad7de3",
+      "bytes": 113852403,
+      "content_unchanged": true,
+      "same_inode": true
+    },
+    {
+      "path": "full-local/8sword-v1.0-windows-x86_64.zip",
+      "source_path": "full-local/8sword-v.0.1.1-20261112-windows-x86_64.zip",
+      "sha256": "c734428674938f90f55f4d10f21795494f041d050d85213b96ab51de43422348",
+      "bytes": 112510447,
+      "content_unchanged": true,
+      "same_inode": true
+    }
+  ],
+  "permanent_source_index": "preserved/rust-head-art-package-r1.json",
+  "recovery": "Restore the verified build using its existing preservation tools, then recreate each path as a hard link to source_path using this mapping. No archive rebuild is needed."
+}

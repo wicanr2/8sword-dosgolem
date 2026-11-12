@@ -16,6 +16,10 @@
 
 [實際畫面](docs/images/rust-head-art-runtime-r1.png)、[核對](preserved/rust-head-art-package-audit-r1.json)、[素材接入](artwork/head-neck-runtime-r1.json)與[現行保存](preserved/README.md#rust頭頸修正版三平台保存)為入口。現行交付在 `dist-all/v.0.1.1-20261112/full-local/`；v.0.1.0封包與影片完整保留。RUST-HEAD-ART-RESOLVED-20261112閉合上輪尚未接入，不重開已驗玩法矩陣。
 
+## v1.0交付檔名
+
+使用者明確指定「v1.0，改檔名就好」。現行對外檔名為8sword-v1.0加平台後綴，位於既有dist-all/v.0.1.1-20261112/full-local；包內程式、資料夾、manifest及簽章保持v.0.1.1。三個名稱以硬連結提供，原名及原校驗表保留，不增加封包內容佔用。[名稱與SHA](preserved/v1.0-filenames-r1.json)為入口。這是使用者指定的檔名標示，不是重新建置或正式1.0驗收。
+
 ## 目前狀態表
 
 | 範圍 | 狀態與證據 |

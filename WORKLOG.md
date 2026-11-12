@@ -3689,3 +3689,7 @@ RUST-HEAD-ART-RESOLVED-20261112閉合上輪尚未接入。完整新包在dist-al
 清理本輪建置／安裝、Wine prefix、重複解壓、已保存SDL工作副本共6774266656 bytes，約6.31GiB。現行native／dist-all、永久物件與其他專案保持。正式Go197／7／923／535與所有既有玩法驗收維持；可選真機／手機工作不自行重開。
 
 入口：[057](docs/spec/057-head-art-package-update.md)、[核對](preserved/rust-head-art-package-audit-r1.json)、[畫面](docs/images/rust-head-art-runtime-r1.png)、[保存](preserved/README.md#rust頭頸修正版三平台保存)、[還原](preserved/rust-head-art-package-restore-r1.json)、[清理](preserved/rust-head-art-package-cleanup-r1.json)。
+
+## 2026-11-12：v1.0交付檔名
+
+依使用者明確要求「變成v1.0，改檔名就好」，只提供三個v1.0交付檔名，不重建、重壓或修改包內程式。採硬連結保留原v.0.1.1檔名、原SHA表及永久保存證據；新增名稱不增加封包內容磁碟佔用。三包大小、SHA、UID與共用inode已核對。名稱映射寫入preserved/v1.0-filenames-r1.json及交付目錄SHA256SUMS-v1.0.json，README與CONTEXT明列內部版號仍為v.0.1.1；不把外部標示當作正式1.0功能驗收。全部檔案操作在有界Docker完成，容器即刪除，無新快取；未改原tag或Release。
