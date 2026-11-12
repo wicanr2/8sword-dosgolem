@@ -43,7 +43,7 @@
 | Rust 原地Space特殊點 | 限定完成 | 212測試、132原分派／16守軍／28查找、1354行原bytes及六程序15SDL通過；v18與交易／戰中冷讀已接，見[核對](preserved/rust-space-events-audit-r1.json)。 |
 | Rust 正常玩家路徑 | 代表抽驗完成 | 正常新建／原店與女弓箭手／自然勝利／F3管理／正常跨月及三組冷讀，四程序23份SDL通過。見[核對](preserved/rust-player-path-audit-r1.json)，不重跑本鏈。 |
 | Rust 可選美術精修 | 不阻塞收尾 | 新兵額外手繪動作、特殊死亡呈現與音樂循環接點，保持已批准素材。 |
-| 獨立版交付 | 三平台本機完整包完成 | [056](docs/spec/056-native-three-platform-packages.md)交付v.0.1.0-20261112。287媒體逐包相同，Linux214／Wine211測試及四程序正常啟動／F7冷讀通過；Mac雙架構與靜態簽章核對，真機另列限制。不建立公開完整遊戲Release。 |
+| 獨立版交付 | 三平台本機完整包完成 | [056](docs/spec/056-native-three-platform-packages.md)交付v.0.1.1-20261112。兩份頭頸美術已依[057](docs/spec/057-head-art-package-update.md)更新，287媒體逐包相同，Linux214／Wine211測試及四程序正常啟動／F7冷讀通過；Mac雙架構與靜態簽章核對，真機另列限制。不建立公開完整遊戲Release。 |
 
 原版 oracle 未知與可選精修分開記錄。新兵額外手繪動作、逐硬體時序及所有場景全量截圖，不阻塞開始 Rust 移植。守軍／空軍隊與戰中續接以[031](docs/spec/031-rust-independent-remake.md)各限定收據為準；超領導、超 word 顯示等未驗超域保留限制，不因正常路徑通過而外推，也不重列為本輪功能待辦。
 
@@ -53,4 +53,4 @@ RUST-PROMO-RESOLVED-20261112：[推廣影片預覽](docs/spec/055-rust-promo-pre
 
 RUST-PACKAGE-RESOLVED-20261112：[三平台本機完整包](docs/spec/056-native-three-platform-packages.md#本機三平台限定-conformed)完成。現行入口為 `dist-all/v.0.1.0-20261112/full-local/`；[保存工具](tools/rust-package-preserve.sh)可核對／還原。真機與人耳試聽列為限制，不重開已完成矩陣。
 
-男主角頭頸：[兩張完整原圖及對照](docs/images/hero-head-neck-comparison-r1.html)已完成並永久保存。尚待呈現接入與代表抽驗：海報重建側翼，深藍背景同步重建intro.bin與編譯期校驗；既有三平台包保持，不冒稱已更新。
+RUST-HEAD-ART-RESOLVED-20261112：男主角頭頸兩張原圖已接入海報側翼及intro.bin，並完成v.0.1.1-20261112三平台包。Linux214／Wine211測試、四程序26份SDL與新舊同狀態中央比較通過。見[057](docs/spec/057-head-art-package-update.md#限定-conformed)，不重開既有矩陣；Mac／Windows真機與人耳驗收仍分開列限制。

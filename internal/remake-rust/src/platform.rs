@@ -3,7 +3,7 @@ use std::path::{Path, PathBuf};
 
 pub const VERSION: &str = match option_env!("EIGHTSWORD_BUILD_VERSION") {
     Some(v) => v,
-    None => "v.0.1.0-dev",
+    None => "v.0.1.1-dev",
 };
 
 pub fn asset_root(exe: &Path) -> Result<PathBuf, String> {

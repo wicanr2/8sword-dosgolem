@@ -48,7 +48,7 @@ def main():
                     if s and pred(s):return s
                     time.sleep(.04)
                 raise AssertionError((platform,name,'timeout',state(),(folder/'player.log').read_text()))
-            wait(lambda s:s.get('phase')=='start')
+            wait(lambda s:s.get('phase') in ['intro','start'])
             names=[];found=[]
             def search(win):
                 actual=C.c_ulong();fmt=C.c_int();items=C.c_ulong();after=C.c_ulong();data=C.POINTER(C.c_ubyte)()
@@ -85,6 +85,10 @@ def main():
                 assert s['readback_equal']=='true';assert(folder/f'frame-{num:03}.ppm').read_bytes()==(folder/f'readback-{num:03}.ppm').read_bytes()
                 assert(folder/f'shell-frame-{num:03}.ppm').read_bytes()==(folder/f'shell-readback-{num:03}.ppm').read_bytes()
                 captures.append(dict(label=label,number=num,state=s,central_sha256=hashlib.sha256((folder/f'frame-{num:03}.ppm').read_bytes()).hexdigest()))
+            if name=='fresh' and (q/'media-overlay.json').exists():
+                wait(lambda s:s.get('stage','').startswith('story-1'))
+                capture('corrected-story-background')
+            wait(lambda s:s.get('phase')=='start')
             capture('start-menu')
             if name=='fresh':
                 key(0xff54);key(0xff0d);wait(lambda s:s['phase']=='new-confirm');key(0xff0d);wait(lambda s:s['phase']=='world')

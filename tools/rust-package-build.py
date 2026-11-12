@@ -2,10 +2,11 @@
 """056：Linux 或三目標交叉建置。由 rust-package.sh 在 Docker 呼叫。"""
 import os, subprocess, sys
 from pathlib import Path
+from rust_package_settings import VERSION
 
 def main():
     assert Path('/.dockerenv').exists() and os.getuid() == 1000
-    q = Path('/q'); env = dict(os.environ, EIGHTSWORD_BUILD_VERSION='v.0.1.0-20261112')
+    q = Path('/q'); env = dict(os.environ, EIGHTSWORD_BUILD_VERSION=VERSION)
     def run(cmd, name, **kw):
         with (q/'logs'/name).open('w') as log:
             subprocess.run(cmd, check=True, env=env, cwd='/crate', stdout=log, stderr=subprocess.STDOUT, **kw)

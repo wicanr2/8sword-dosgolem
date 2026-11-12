@@ -54,3 +54,7 @@ READY 審查：排版、畫風與選項已由使用者確認；來源幾何、�
 ## Rust移植入口
 
 Rust全程海報已依[031限定驗收](031-rust-independent-remake.md#rust全程海報工具列限定-conformed)完成，標記RUST-POSTER-RESOLVED-20261111。沿本頁原圖、雙512側翼、三選項／400ms與獨立schema1偏好；保留Rust既有1920×1320中央與底列，外層為2944×1320，側翼y48..1248。177測試、六程序20份全幅SDL及預設縮放通過。此段不改上列Go完成範圍，也不稱Rust全程原版／HD、AI或規則選項已接。[核對](../../preserved/rust-poster-audit-r1.json)與[永久保存](../../preserved/README.md#rust全程海報工具列保存)為入口。
+
+## 頭頸美術修正版接續
+
+RUST-HEAD-ART-RESOLVED-20261112：使用者確認的兩張頭頸修正版已依[057](057-head-art-package-update.md#限定-conformed)接入Rust v.0.1.1-20261112。新海報側翼與第96號深藍故事材質已通過實際視窗與三平台包核對；舊版圖像、來源及本頁歷史驗收保持。現行Rust入口見[保存](../../preserved/README.md#rust頭頸修正版三平台保存)。Go來源及舊封包不變。

@@ -12,13 +12,15 @@
 
 ## 男主角頭頸美術修正
 
-依使用者指出的兩處問題，以內建image_gen完成龍虎延展海報及深藍故事背景的原圖修正。[對照](docs/images/hero-head-neck-comparison-r1.html)與[完整來源／提示](artwork/head-neck-corrections-r1.json)已保存，不依賴workplace。狀態為原圖修正完成，尚未接入：Rust海報需重建poster-wings.rgba，深藍背景在含編譯期校驗的intro.bin內，接入須同步重建來源校驗與播放器，不能只換PNG。現行三平台包及287媒體保持原版本；不重開已驗玩法矩陣。
+兩張頭頸修正版已依[057](docs/spec/057-head-art-package-update.md#限定-conformed)接入Rust並完成三平台重打包，版本 `v.0.1.1-20261112`。海報側翼與開場第96號深藍材質更新，287媒體中285份保持，590節點、故事文字、時鐘、音樂與玩法不變。Linux214／Wine211測試、四程序26份SDL、正常開場／新建／F7與獨立冷讀通過；新舊同狀態世界中央逐像素保持，原圖的18組開場樣本亦保持。Mac完成雙架構、載入與靜態簽章核對，真機／公證限制保持。
+
+[實際畫面](docs/images/rust-head-art-runtime-r1.png)、[核對](preserved/rust-head-art-package-audit-r1.json)、[素材接入](artwork/head-neck-runtime-r1.json)與[現行保存](preserved/README.md#rust頭頸修正版三平台保存)為入口。現行交付在 `dist-all/v.0.1.1-20261112/full-local/`；v.0.1.0封包與影片完整保留。RUST-HEAD-ART-RESOLVED-20261112閉合上輪尚未接入，不重開已驗玩法矩陣。
 
 ## 目前狀態表
 
 | 範圍 | 狀態與證據 |
 |---|---|
-| Rust三平台本機完整包 | 限定完成。v.0.1.0-20261112，Linux x86_64／Windows x86_64／macOS universal2各含287媒體。Linux214／Wine211測試、四程序完整開場／新建／F7冷讀與24份SDL通過；Mac只作雙架構、載入與簽章雜湊核對，未真機驗收。 |
+| Rust三平台本機完整包 | 限定完成。v.0.1.1-20261112，Linux x86_64／Windows x86_64／macOS universal2各含287媒體。Linux214／Wine211測試、四程序完整開場／新建／F7冷讀與26份SDL通過；Mac只作雙架構、載入與簽章雜湊核對，未真機驗收。 |
 | Go原版操作整合 | 限定完成。同組控制器串接管理、募兵、隨機／守軍戰、勝敗／撤退、戰果、F7與獨立程序冷讀。見[030](docs/spec/030-battle-expansion-proposal.md#原版操作整合限定-conformed)。 |
 | Rust資料與普通行動 | 限定完成。33種typed兵種、201組算式、309組陣位／補位／換位及既有40動作保持。見[031](docs/spec/031-rust-independent-remake.md#兵種與普通行動移植限定-conformed)。 |
 | Rust普通回合 | 限定完成。四場原版介面Go記錄的71次來源選取、42次攻擊、6次略過及一次撤退相同；Rust自行排程，不從記錄提供來源隊。 |
@@ -67,7 +69,7 @@
 
 ## 最近驗證與入口
 
-最新為[三平台本機完整包](docs/spec/056-native-three-platform-packages.md#本機三平台限定-conformed)，原生來源只補跨平台音訊、保存與素材路徑，既有規則和287媒體保持。Linux214／Wine211測試、四程序完整開場／新建／保存／獨立冷讀及Mac雙架構靜態核對完成。
+最新為[頭頸修正版三平台完整包](docs/spec/057-head-art-package-update.md#限定-conformed)，原生來源只增加版本、開場校驗／參考與驗證例，既有規則保持，兩份美術媒體更新。Linux214／Wine211測試、四程序完整開場／新建／保存／獨立冷讀及Mac雙架構靜態核對完成。舊056的驗證範圍保持，現行交付由057接續。
 
 先前的[正常玩家路徑抽驗](docs/spec/031-rust-independent-remake.md#現行rust正常玩家路徑抽驗-conformed)保持其限定範圍。四個獨立程序只用正常鍵鼠，從完整開場／新遊戲、原營地購入60民兵與1名OpenKB女弓箭手，到自然遇敵／普通行動／戰中冷讀、勝利回場、解雇與正常跨月，最後月報冷讀及F1／F2／F5／世界保存。
 
@@ -75,7 +77,7 @@
 
 PLAYER-PATH-RESOLVED-20261112閉合現行正常玩家路徑抽驗。入口為`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`，使用`rust-player-path-r1/native`。[核對](preserved/rust-player-path-audit-r1.json)、[成果圖](docs/images/rust-player-path-r1.png)、[工具](tools/rust-player-path.py)與[現行保存／還原](preserved/README.md#rust正常玩家路徑保存)為入口。v18、8SBCHK01及Go格式保持；SPACE-EVENTS-RESOLVED-20261112與既有特殊點完成狀態保持。
 
-RUST-PACKAGE-RESOLVED-20261112閉合三平台本機完整包。現行交付為 `dist-all/v.0.1.0-20261112/full-local/`。Linux與Wine從解壓包、中文安裝路徑與預設使用者存檔目錄完成完整開場、新建、隸書／原圖切換、兩次F7、關窗與獨立續玩，兩側玩法hash皆為48d5a87b8b9ced97。見[056](docs/spec/056-native-three-platform-packages.md#本機三平台限定-conformed)、[核對](preserved/rust-package-audit-r1.json)與[永久保存](preserved/README.md#rust三平台完整包保存)。Mac未經Apple真機、codesign／Gatekeeper或公證，Windows只驗Wine，音訊只驗解碼與dummy送出；這些限制不冒稱通過。平台真機、手機與精修列可選工作，不自動重開矩陣。正式197／7／923／535／1071、v18與Go格式保持；未建tag或Release，不公開完整素材。
+RUST-PACKAGE-RESOLVED-20261112閉合首版三平台本機完整包。首版封存於 `dist-all/v.0.1.0-20261112/full-local/`，現行交付依057更新。Linux與Wine從解壓包、中文安裝路徑與預設使用者存檔目錄完成完整開場、新建、隸書／原圖切換、兩次F7、關窗與獨立續玩，兩側玩法hash皆為48d5a87b8b9ced97。見[056](docs/spec/056-native-three-platform-packages.md#本機三平台限定-conformed)、[核對](preserved/rust-package-audit-r1.json)與[永久保存](preserved/README.md#rust三平台完整包保存)。Mac未經Apple真機、codesign／Gatekeeper或公證，Windows只驗Wine，音訊只驗解碼與dummy送出；這些限制不冒稱通過。平台真機、手機與精修列可選工作，不自動重開矩陣。正式197／7／923／535／1071、v18與Go格式保持；未建tag或Release，不公開完整素材。
 
 ## 保持的Go入口與基線
 

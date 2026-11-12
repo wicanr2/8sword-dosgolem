@@ -3677,3 +3677,15 @@ RUST-PACKAGE-RESOLVED-20261112閉合本機三平台打包，未建tag或Release�
 使用者指出一張海報與深藍背景的男主角轉頭不自然。核對現行來源後，以內建image_gen分別修改龍虎延展海報與深藍故事背景。海報補順頸部／領口及肩線，藍色版依彩色前導方向改為左上迎龍，保留原構圖與色調；生成結果有區域外重繪差異，不宣稱逐像素保持。兩張完整PNG與實際完整提示已保存於docs/images及artwork永久目錄，原1071列不改，追加五列成1076檔，舊原圖不覆寫。比較頁以SVG視窗顯示來源PNG局部，沒有程式修畫或CLI代替image_gen。
 
 本輪完成原圖修正，未接入播放器或更動v.0.1.0-20261112三平台包。藍色故事背景已烘入intro.bin，且有編譯期計畫校驗，後續接入需一併重建與抽樣，不能僅換PNG。正式197／7／923／535、287媒體與既有封包SHA保持。永久核對見preserved/head-neck-artwork-verification-r1.json；本批Docker工作完成即刪除容器，無建置快取或暫存工作目錄。
+
+## 2026-11-12：頭頸修正版接入與三平台重打包
+
+使用者確認兩張原圖並要求重打包，依057 READY契約接入v.0.1.1-20261112。海報編碼先重建舊圖，逐byte等於Go原輸出，再用相同取樣及漸淡規格轉新圖。開場明確辨識第96號深藍材質，只改其RGBA16與校驗尾碼；193847684 bytes總長、21254ms／590節點、文字、音樂與指令保持。287媒體中285檔逐SHA保持，72組開場參考只更新30組HD故事，42組保持。Rust程式只更新版本、開場計畫／參考與驗證例，玩法來源及v18／Go格式不變。
+
+Linux214／Wine211測試、四程序26份全幅SDL通過。真正解壓包正常完整開場、修正版故事頁擷取、新建、原圖／隸書、F2、兩次F7、關窗與獨立續玩均已抽驗；兩側狀態48d5a87b8b9ced97與首版相同，世界中央逐像素保持。Mac完成universal2、載入與簽章頁／資源靜態核對，不稱真機或公證。音訊僅解碼與dummy送出。新版411／320／322檔，原圖與所有音畫隨包；不含DOS／Go執行依賴。
+
+RUST-HEAD-ART-RESOLVED-20261112閉合上輪尚未接入。完整新包在dist-all/v.0.1.1-20261112/full-local，舊v.0.1.0包／影片及1076檔永久原圖保持，不建tag／Release。來源與成品已逐SHA永久保存，沒有原workplace輸入掛載的獨立還原核對22檔。開發執行期288檔另由已驗Linux包還原比較；還原工具的Python io變數作用域問題已修正，以同一容器與命令重跑通過，修正工具快照另追加保存，不改舊快照。
+
+清理本輪建置／安裝、Wine prefix、重複解壓、已保存SDL工作副本共6774266656 bytes，約6.31GiB。現行native／dist-all、永久物件與其他專案保持。正式Go197／7／923／535與所有既有玩法驗收維持；可選真機／手機工作不自行重開。
+
+入口：[057](docs/spec/057-head-art-package-update.md)、[核對](preserved/rust-head-art-package-audit-r1.json)、[畫面](docs/images/rust-head-art-runtime-r1.png)、[保存](preserved/README.md#rust頭頸修正版三平台保存)、[還原](preserved/rust-head-art-package-restore-r1.json)、[清理](preserved/rust-head-art-package-cleanup-r1.json)。

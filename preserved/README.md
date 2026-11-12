@@ -1,6 +1,24 @@
 # 必要資料永久保存
 
-現行交付入口為[Rust三平台完整包保存](#rust三平台完整包保存)，開發玩家路徑見[正常玩家路徑保存](#rust正常玩家路徑保存)。
+現行交付入口為[Rust頭頸修正版三平台保存](#rust頭頸修正版三平台保存)。首版與舊玩家路徑保存仍可回查。
+
+## Rust頭頸修正版三平台保存
+
+[獨立還原收據](rust-head-art-package-restore-r1.json)核對22份交付檔；[清理收據](rust-head-art-package-cleanup-r1.json)記錄回收6774266656 bytes，約6.31GiB。現行288檔原生執行期、舊／新dist-all與全部永久原圖保留，其他專案不動。
+
+現行 `v.0.1.1-20261112` 完整包位於 `dist-all/v.0.1.1-20261112/full-local/`，分Linux x86_64、Windows x86_64及macOS universal2。男主角頭頸修正版已進入海報側翼與五頁故事背景；原287份媒體中285份保持。舊版 `v.0.1.0-20261112` 的封包、影片與校驗表保持，不將舊片冒稱新版實錄。
+
+[逐檔索引](rust-head-art-package-r1.json)、[封包核對](rust-head-art-package-audit-r1.json)、[契約](../docs/spec/057-head-art-package-update.md)、[素材接入](../artwork/head-neck-runtime-r1.json)與[實際截圖](../docs/images/rust-head-art-runtime-r1.png)為入口。本機 `preserved/rust-head-art-package-r1/` 保存完整包、固定來源、原碼／工具快照、開場差分、26份SDL與真實v18存檔，不依賴workplace。
+
+```bash
+bash tools/rust-package-preserve.sh verify
+bash tools/rust-package-preserve.sh restore
+bash tools/rust-package-preserve.sh restore-native
+```
+
+`verify`逐gzip物件核對。`restore`還原本版dist-all交付，拒絕覆寫不同內容；不需要原workplace或DOS EXE。`restore-native`由已驗Linux包還原開發播放器的288檔，配合`tools/rust-native-player.sh`，不從舊版執行期猜補。準備、核對與保存均由既有Pillow容器離線執行，UID/GID1000與資源有界。
+
+Linux214／Wine211測試、四程序正常完整開場、HD故事擷取、新建／F7／獨立冷讀通過。新舊同狀態世界中央保持；Mac只作雙架構、載入及靜態簽章核對，未真機或公證。音訊只驗解碼與dummy送出。原版oracle與既有受控結局證據不擴張，完整媒體不公開。
 
 ## Rust三平台完整包保存
 
@@ -11,8 +29,8 @@
 從專案根目錄執行：
 
 ```bash
-bash tools/rust-package-preserve.sh verify
-bash tools/rust-package-preserve.sh restore
+EIGHTSWORD_PACKAGE_VERSION=v.0.1.0-20261112 EIGHTSWORD_PACKAGE_BATCH=rust-package-r1 bash tools/rust-package-preserve.sh verify
+EIGHTSWORD_PACKAGE_VERSION=v.0.1.0-20261112 EIGHTSWORD_PACKAGE_BATCH=rust-package-r1 bash tools/rust-package-preserve.sh restore
 ```
 
 `verify`逐物件解壓核對；`restore`只還原完整版本的dist-all交付，不覆寫不同內容，不需要原workplace或建置工具。腳本使用既有Pillow工具容器與本機永久物件，UID/GID1000、離線與資源有界。重建則先用`prepare`還原287媒體及鎖定依賴，依056步驟在隔離工作副本執行。

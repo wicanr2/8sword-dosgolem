@@ -1,0 +1,90 @@
+{
+  "status": "completed-after-permanent-and-detached-verification",
+  "version": "v.0.1.1-20261112",
+  "areas": [
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/build",
+      "files": 4387,
+      "bytes": 2011880260
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/deps",
+      "files": 227,
+      "bytes": 20490553
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/stage",
+      "files": 1053,
+      "bytes": 1263140428
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/smoke/windows-prefix",
+      "files": 846,
+      "bytes": 720389684
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/smoke/linux",
+      "files": 87,
+      "bytes": 500922114
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/smoke/windows",
+      "files": 95,
+      "bytes": 500937094
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/smoke/解壓 測試-linux-x86_64",
+      "files": 411,
+      "bytes": 426392971
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/smoke/解壓 測試-macos-universal2",
+      "files": 322,
+      "bytes": 419744530
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/smoke/解壓 測試-windows-x86_64",
+      "files": 320,
+      "bytes": 417002927
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/sources/opus-1.5.2",
+      "files": 475,
+      "bytes": 23057920
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/sources/libogg-1.3.5",
+      "files": 134,
+      "bytes": 2035483
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/sources/libsndfile-1.2.2",
+      "files": 352,
+      "bytes": 5633694
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/sources/flac-1.4.3",
+      "files": 835,
+      "bytes": 12153218
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/sources/libvorbis-1.3.7",
+      "files": 428,
+      "bytes": 6358917
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/sources/apple-codesign-0.29.0-x86_64-unknown-linux-musl",
+      "files": 2,
+      "bytes": 29921140
+    },
+    {
+      "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/detached-restore",
+      "files": 22,
+      "bytes": 414205723
+    }
+  ],
+  "bytes": 6774266656,
+  "current_native_runtime_retained": true,
+  "old_and_new_dist_all_retained": true,
+  "other_projects_untouched": true
+}

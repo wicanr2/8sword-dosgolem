@@ -1,0 +1,34 @@
+{
+  "image_sha256": "6bf8c96bc331b33a241626c66cace25478cce914940abbe21056a7e48dfca82f",
+  "sources": [
+    {
+      "platform": "linux",
+      "run": "fresh",
+      "label": "corrected-story-background",
+      "sha256": "5cacae97dd7bb6a6312521678b2e8d27ad6287790b1764c16835709d9747372e",
+      "package_sha256": "8d4f58aabb7443dc832123d75c4ef907466a91c7865a40029fbbfdbe3d242249"
+    },
+    {
+      "platform": "windows",
+      "run": "fresh",
+      "label": "new-world-hd",
+      "sha256": "fd164552c90f2340912257db64d41499e5be466909d79ba09fff226d9c1ca1cc",
+      "package_sha256": "c734428674938f90f55f4d10f21795494f041d050d85213b96ab51de43422348"
+    },
+    {
+      "platform": "linux",
+      "run": "fresh",
+      "label": "original-world",
+      "sha256": "558e07a1f26a7c9d8d93a818bcb36901a268530165425b73b7776a8aaa581295",
+      "package_sha256": "8d4f58aabb7443dc832123d75c4ef907466a91c7865a40029fbbfdbe3d242249"
+    },
+    {
+      "platform": "windows",
+      "run": "cold",
+      "label": "cold-world",
+      "sha256": "fb1fb98da397d75e39d06e5498a1d87f7f226f49815aabf508b308eaf0edb35a",
+      "package_sha256": "c734428674938f90f55f4d10f21795494f041d050d85213b96ab51de43422348"
+    }
+  ],
+  "limits": "Actual extracted Linux and Windows/Wine packages; no macOS execution image."
+}

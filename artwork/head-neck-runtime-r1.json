@@ -1,0 +1,56 @@
+{
+  "status": "runtime-integrated-and-three-platforms-verified",
+  "version": "v.0.1.1-20261112",
+  "artwork_source": "artwork/head-neck-corrections-r1.json",
+  "runtime_files": [
+    {
+      "name": "poster-wings.rgba",
+      "old_sha256": "306f978f6daeafa793e170eaadae4a34cf5cf40f327b875008a875c688fb4d49",
+      "sha256": "dcad214f916c1d600e862ca9f9e8caaadeb9745a2670dc10d40f0e170993bed1",
+      "bytes": 4915224
+    },
+    {
+      "name": "intro.bin",
+      "old_sha256": "8a0dda51398738ff0a10a271581586c5658f8306eea282dbe809a13844aa2912",
+      "sha256": "96b12bd11755490e11203448962ccc9c4148514038f85a5acedb1db69bd5c25d",
+      "bytes": 193847684
+    }
+  ],
+  "intro_texture": 96,
+  "intro_hd_samples_updated": 30,
+  "intro_samples_unchanged": 42,
+  "unchanged_media": 285,
+  "artwork_files": 1076,
+  "packages": [
+    {
+      "path": "full-local/8sword-v.0.1.1-20261112-linux-x86_64.tar.gz",
+      "bytes": 117452467,
+      "sha256": "8d4f58aabb7443dc832123d75c4ef907466a91c7865a40029fbbfdbe3d242249",
+      "files": 411,
+      "media": 287,
+      "extracted": "/q/smoke/解壓 測試-linux-x86_64/8sword-v.0.1.1-20261112-linux-x86_64",
+      "extracted_files_verified": 410
+    },
+    {
+      "path": "full-local/8sword-v.0.1.1-20261112-macos-universal2.zip",
+      "bytes": 113852403,
+      "sha256": "c1d92afe266f541df9fb24ad97feff904fbfa8ab7cefe71acd03ba26b1ad7de3",
+      "files": 322,
+      "media": 287,
+      "extracted": "/q/smoke/解壓 測試-macos-universal2/8sword-v.0.1.1-20261112-macos-universal2",
+      "extracted_files_verified": 321
+    },
+    {
+      "path": "full-local/8sword-v.0.1.1-20261112-windows-x86_64.zip",
+      "bytes": 112510447,
+      "sha256": "c734428674938f90f55f4d10f21795494f041d050d85213b96ab51de43422348",
+      "files": 320,
+      "media": 287,
+      "extracted": "/q/smoke/解壓 測試-windows-x86_64/8sword-v.0.1.1-20261112-windows-x86_64",
+      "extracted_files_verified": 319
+    }
+  ],
+  "audit": "preserved/rust-head-art-package-audit-r1.json",
+  "screenshots": "docs/images/rust-head-art-runtime-r1.png",
+  "old_packages_preserved": true
+}

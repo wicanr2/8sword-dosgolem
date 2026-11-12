@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 task_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
-task_q="$task_root/workplace/probe-20261023/graphics-first/battle-r1/rust-package-r1"
+source "$task_root/tools/rust-package-defaults.env"
+task_version="${EIGHTSWORD_PACKAGE_VERSION:-$EIGHTSWORD_DEFAULT_VERSION}"
+task_batch="${EIGHTSWORD_PACKAGE_BATCH:-$EIGHTSWORD_DEFAULT_BATCH}"
+[[ "$task_version" =~ ^v\.[0-9]+\.[0-9]+\.[0-9]+-[0-9]{8}$ ]]
+[[ "$task_batch" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]
+task_q="$task_root/workplace/probe-20261023/graphics-first/battle-r1/$task_batch"
 task_native=mm45-rust-desktop:1.99.1-r3
 task_cross=dosgolem-rust-cross:1.99.1-sdk15.5-r1
 test "$(id -u)" = 1000
@@ -23,7 +28,7 @@ esac
 task_mount="type=bind,src=$task_root,dst=/r"
 if [[ "$task_rw" = readonly ]]; then task_mount+=,readonly; fi
 exec timeout -k 10s "$((task_seconds + 20))"s docker run --rm --init --network "$task_network" --user "$(id -u):$(id -g)" --memory 3g --cpus 2 --pids-limit 192 \
- --label org.wicanr2.project=8sword-package-r1 \
+ -e "EIGHTSWORD_PACKAGE_VERSION=$task_version" -e "EIGHTSWORD_PACKAGE_BATCH=$task_batch" --label "org.wicanr2.project=$task_batch" \
  --mount "$task_mount" --mount "type=bind,src=$task_root/tools,dst=/tools,readonly" \
  --mount "type=bind,src=$task_root/internal/remake-rust,dst=/crate,readonly" \
  --mount "type=bind,src=$task_q,dst=/q" \

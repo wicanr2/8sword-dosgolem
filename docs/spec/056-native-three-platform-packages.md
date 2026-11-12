@@ -62,3 +62,7 @@ bash tools/rust-package-preserve.sh audit
 ```
 
 建置使用固定`mm45-rust-desktop:1.99.1-r3`與`dosgolem-rust-cross:1.99.1-sdk15.5-r1`，完整image SHA及所有Rust輸入SHA另記公開核對的`execution`。Wine使用`sotn-hd-movie-vulkan:mesa25.2.8-r2`，Xvfb及控制器只共享本批私有socket，完成後清理。準備、保存與核對使用`sc-cht-hdtools:pillow11.3.0-r2`，所有工作均在Docker，UID/GID1000、資源與時間有界。首次下載之外皆離線。
+
+## 頭頸美術修正版接續
+
+RUST-HEAD-ART-RESOLVED-20261112：使用者確認的兩張頭頸修正版已依[057](057-head-art-package-update.md#限定-conformed)接入Rust v.0.1.1-20261112。新海報側翼與第96號深藍故事材質已通過實際視窗與三平台包核對；舊版圖像、來源及本頁歷史驗收保持。現行Rust入口見[保存](../../preserved/README.md#rust頭頸修正版三平台保存)。Go來源及舊封包不變。

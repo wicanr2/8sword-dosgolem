@@ -8,9 +8,9 @@ export LANG=C.UTF-8 LC_ALL=C.UTF-8
 export WINEPREFIX=/q/smoke/windows-prefix HOME=/tmp/8sword-home
 export SDL_AUDIODRIVER=dummy SDL_RENDER_DRIVER=software
 mkdir -p "$HOME" /q/smoke/windows
-task_package='/q/smoke/解壓 測試-windows-x86_64/8sword-v.0.1.0-20261112-windows-x86_64'
+task_package="/q/smoke/解壓 測試-windows-x86_64/8sword-${EIGHTSWORD_PACKAGE_VERSION}-windows-x86_64"
 test -f "$task_package/8sword.exe"
-export WINEPATH='Z:\q\smoke\解壓 測試-windows-x86_64\8sword-v.0.1.0-20261112-windows-x86_64'
+export WINEPATH="$(winepath -w "$task_package")"
 Xvfb :98 -screen 0 3100x1450x24 -nolisten tcp -ac >/q/smoke/windows/xvfb.log 2>&1 &
 task_xvfb=$!
 trap 'wineserver -k || true; kill "$task_xvfb" || true; wait "$task_xvfb" || true' EXIT INT TERM

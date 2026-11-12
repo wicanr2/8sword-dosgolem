@@ -3,7 +3,7 @@
 import gzip, hashlib, json, os, plistlib, re, shutil, subprocess, sys, tarfile, zipfile
 from pathlib import Path
 sys.dont_write_bytecode = True
-VERSION = 'v.0.1.0-20261112'
+from rust_package_settings import VERSION
 Q = Path('/q'); R = Path('/r')
 
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -23,9 +23,16 @@ def common(label):
     root = Q/'stage'/f'8sword-{VERSION}-{label}'; root.mkdir()
     pack = root/'pack' if label != 'macos-universal2' else root/'8sword.app/Contents/Resources/pack'
     source, files = media(); shutil.copytree(source, pack)
+    overlay = json.loads((Q/'media-overlay.json').read_text()) if (Q/'media-overlay.json').exists() else None
+    if overlay:
+        for f in overlay['files']:
+            assert f['name'] in ['poster-wings.rgba', 'intro.bin']
+            assert sha(pack/f['name']) == f['old_sha256']
+            src = Q/'native/pack'/f['name']; assert sha(src) == f['sha256']
+            shutil.copy2(src, pack/f['name'])
     licenses = root/'licenses'; licenses.mkdir()
     shutil.copy2(R/'LICENSE', root/'LICENSE.txt')
-    for name in ['rust-package-deps.py', 'rust-package-build.py', 'rust-package.py', 'rust-package.sh', 'rust-package-macho.py']:
+    for name in ['rust-package-deps.py', 'rust-package-build.py', 'rust-package.py', 'rust-package.sh', 'rust-package-macho.py', 'rust_package_settings.py', 'rust-package-defaults.env', 'prepare-head-art-package.py']:
         shutil.copy2(R/'tools'/name, licenses/name)
     source_dir = licenses/'source'; source_dir.mkdir()
     from importlib.util import spec_from_file_location, module_from_spec
@@ -72,6 +79,7 @@ def common(label):
 
 {launch}
 包含原圖、HD、HD音樂、Noto900／隸書風／草書、三種海報與33種兵種。
+本版已修正龍虎海報與故事背景的男主角頭頸。
 不需要安裝 Go、Rust、DOSBox 或 dosgolem，也不需要執行原版 DOS EXE。
 
 開始選單可新建、繼續與欣賞音樂。方向鍵移動，Enter確認，Esc取消；滑鼠可選單、選兵與選敵。
@@ -91,7 +99,7 @@ HD直接由Rust繪製；原版Go播放器與這個獨立版是分開的程式。
 專案：https://github.com/wicanr2/8sword-dosgolem
 '''
     (root/'README.txt').write_bytes(text.replace('\n','\r\n').encode('utf-8-sig') if label == 'windows-x86_64' else text.encode())
-    write(root/'media-sources.json', dict(version=VERSION, original_runtime='rust-player-path-r1', unchanged_media=files))
+    write(root/'media-sources.json', dict(version=VERSION, original_runtime='rust-player-path-r1', base_media=files, overrides=overlay['files'] if overlay else []))
     return root
 
 def stage_linux():
@@ -142,7 +150,8 @@ def stage_cross():
     subprocess.run([prefix+'lipo','-create',str(Q/'deps/mac-x86_64/lib/libsndfile.1.dylib'),str(Q/'deps/mac-arm64/lib/libsndfile.1.dylib'),'-output',str(frameworks/'libsndfile.1.dylib')], check=True)
     shutil.copy2('/opt/mm3-sdl-license/SDL2-LICENSE.txt', root/'licenses/SDL2-LICENSE.txt')
     for p in [bin/'8sword-remake',*frameworks.glob('*.dylib')]: p.chmod(0o755)
-    (contents/'Info.plist').write_bytes(plistlib.dumps(dict(CFBundleExecutable='8sword-remake',CFBundleIdentifier='org.wicanr2.eightsword',CFBundleName='神州八劍',CFBundleDisplayName='神州八劍',CFBundlePackageType='APPL',CFBundleShortVersionString='0.1.0',CFBundleVersion='0.1.0',EightswordFullVersion=VERSION,LSMinimumSystemVersion='11.0',NSHighResolutionCapable=True)))
+    numeric = VERSION.split('-')[0][2:]
+    (contents/'Info.plist').write_bytes(plistlib.dumps(dict(CFBundleExecutable='8sword-remake',CFBundleIdentifier='org.wicanr2.eightsword',CFBundleName='神州八劍',CFBundleDisplayName='神州八劍',CFBundlePackageType='APPL',CFBundleShortVersionString=numeric,CFBundleVersion=numeric,EightswordFullVersion=VERSION,LSMinimumSystemVersion='11.0',NSHighResolutionCapable=True)))
     sign = Q/'sources/apple-codesign-0.29.0-x86_64-unknown-linux-musl/rcodesign'
     assert sha(Q/'sources/apple-codesign-0.29.0-x86_64-unknown-linux-musl.tar.gz') == 'dbe85cedd8ee4217b64e9a0e4c2aef92ab8bcaaa41f20bde99781ff02e600002'
     (Q/'logs/macos-sign.log').write_text(run([str(sign), 'sign', '--digest', 'sha256', str(app)]))
@@ -164,7 +173,7 @@ def inspect_mac(root=None):
     write(root/'libraries.json', details)
 
 def pack():
-    out = R/'dist-all'/VERSION; full = out/'full-local'; full.mkdir(exist_ok=True); (out/'smoke').mkdir(exist_ok=True)
+    out = R/'dist-all'/VERSION; full = out/'full-local'; full.mkdir(parents=True,exist_ok=True); (out/'smoke').mkdir(exist_ok=True)
     records=[]
     for root in sorted((Q/'stage').iterdir()):
         label=root.name.split(VERSION+'-')[1]
@@ -200,7 +209,7 @@ def pack():
             readme=(extracted/root.name/'README.txt').read_bytes();assert readme.startswith(b'\xef\xbb\xbf')and b'\n'not in readme.replace(b'\r\n',b'')
         records.append(dict(path=str(archive.relative_to(out)),bytes=archive.stat().st_size,sha256=sha(archive),files=len(files)+1,media=287,extracted=str(extracted/root.name)))
     write(Q/'package-records.json',dict(version=VERSION,packages=records))
-    old=json.loads((out/'SHA256SUMS.json').read_text()); assert old['version']==VERSION
+    old=json.loads((out/'SHA256SUMS.json').read_text()) if (out/'SHA256SUMS.json').exists() else dict(version=VERSION,files=[]); assert old['version']==VERSION
     old['kind']='local-full-three-platforms-and-promo';old['files']=[f for f in old['files']if not f['path'].startswith('full-local/')]+[{k:v for k,v in p.items()if k in ['path','sha256','bytes']}for p in records]
     assert all(sha(out/f['path'])==f['sha256']for f in old['files']);write(out/'SHA256SUMS.json',old)
     print(json.dumps(records,ensure_ascii=False,indent=2))

@@ -221,3 +221,7 @@ r3圖片已檢視，原PNG1585×992、SHA `7d4fcc5e4fde78ca0694010705b052f763fb5
 - 既有hero-poster-pose-r4/runtime-audit-r4.json SHA173e4ead5c85b2d55691fe6daef5324e469d62af9dc7762e27ea64de064df2b9；promotion-r4.json SHA9cdbf9387cc44fa8a3f53c665694a1d5eef807702caf9ddd68bbe40ae0e390fc。首次核對器殘留舊測試檔名，改成tests-r4.log後以相同收據重核，不重跑開場或改驗收條件。
 
 本節取代彩色前導男主角背影站姿。五頁深藍故事背景、兩側海報與其他既有美術保持；整體HD尚未完成。
+
+## 頭頸美術修正版接續
+
+RUST-HEAD-ART-RESOLVED-20261112：使用者確認的兩張頭頸修正版已依[057](057-head-art-package-update.md#限定-conformed)接入Rust v.0.1.1-20261112。新海報側翼與第96號深藍故事材質已通過實際視窗與三平台包核對；舊版圖像、來源及本頁歷史驗收保持。現行Rust入口見[保存](../../preserved/README.md#rust頭頸修正版三平台保存)。Go來源及舊封包不變。

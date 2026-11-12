@@ -1,0 +1,18 @@
+{
+  "status": "passed-detached-whole-version-restore",
+  "version": "v.0.1.1-20261112",
+  "files": 22,
+  "packages": 3,
+  "all_sha_bytes_mode_uid_verified": true,
+  "workplace_or_original_runtime_mounted": false,
+  "source_mounts": [
+    "preserved readonly",
+    "tools readonly"
+  ],
+  "native_runtime_restore_files": 288,
+  "native_runtime_restore": {
+    "files": 288,
+    "source": "preserved verified Linux archive",
+    "verification": "Existing current native files compared byte-for-byte; separate from isolated dist-all restore."
+  }
+}

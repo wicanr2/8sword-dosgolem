@@ -1,6 +1,6 @@
 [package]
 name = "eightsword-remake"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 publish = false
 description = "神州八劍 Rust 獨立重製核心"
