@@ -1,0 +1,76 @@
+{
+  "delivery_id": "v.0.1.0-20261112",
+  "kind": "local-development-promo-preview",
+  "product_head": "732dd48",
+  "runtime_source_head": "4c1fe9f",
+  "frame_size": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "scenes": [
+    {
+      "id": 1,
+      "name": "開場",
+      "narration": "神州八劍，一段走進古畫、尋找名劍的中國奇幻冒險。",
+      "title": "神州八劍｜讓冒險繼續",
+      "clip": "hd-intro"
+    },
+    {
+      "id": 2,
+      "name": "緣由",
+      "narration": "我們想保存早期中文遊戲獨特的神怪風貌，也讓這段冒險，能在今天繼續玩。",
+      "title": "為什麼重製？",
+      "clip": "original"
+    },
+    {
+      "id": 3,
+      "name": "保留",
+      "narration": "因此，先研究原版的資料與行為，保留地圖探索、六隊管理，以及熟悉的原式戰場。",
+      "title": "先理解原作，再接回玩法",
+      "clip": "hd-world"
+    },
+    {
+      "id": 4,
+      "name": "美術",
+      "narration": "畫面以原版構圖與配色為底，重繪中國古風人物和場景。原圖與高畫質，隨時切換。",
+      "title": "沿原版風格重繪HD",
+      "clip": "hd-intro"
+    },
+    {
+      "id": 5,
+      "name": "音畫",
+      "narration": "隸書、草書和兩側海報，都能自行選擇。原曲也換上撥弦與長笛等高畫質音色。",
+      "title": "字型、海報與HD原曲",
+      "clip": "settings"
+    },
+    {
+      "id": 6,
+      "name": "部隊",
+      "narration": "新夥伴沿用原版的募兵流程。策略判斷、結陣與戰術規則，也保留自由切換的選擇。",
+      "title": "原式募兵＋可選AI與規則",
+      "clip": "recruit"
+    },
+    {
+      "id": 7,
+      "name": "重寫",
+      "narration": "為了處理高畫質疊圖閃爍，先接管繪圖，再逐步把邏輯與音畫，重寫成Rust獨立程式。",
+      "title": "從繪圖接管，走向Rust獨立版",
+      "clip": "effects"
+    },
+    {
+      "id": 8,
+      "name": "遊玩",
+      "narration": "如今，新遊戲、招募、自然戰鬥、存檔續玩與跨月，已走過正常操作的代表抽驗。",
+      "title": "正常玩家路徑已抽驗",
+      "clip": "battle"
+    },
+    {
+      "id": 9,
+      "name": "結語",
+      "narration": "這是一項持續開發的保存與重製計畫。讓舊作的味道留下，也讓冒險繼續。",
+      "title": "保存經典，繼續冒險",
+      "clip": "closing"
+    }
+  ]
+}

@@ -48,3 +48,5 @@
 原版 oracle 未知與可選精修分開記錄。新兵額外手繪動作、逐硬體時序及所有場景全量截圖，不阻塞開始 Rust 移植。守軍／空軍隊與戰中續接以[031](docs/spec/031-rust-independent-remake.md)各限定收據為準；超領導、超 word 顯示等未驗超域保留限制，不因正常路徑通過而外推，也不重列為本輪功能待辦。
 
 SPACE-EVENTS-RESOLVED-20261112及PLAYER-PATH-RESOLVED-20261112已閉合Space與Linux正常玩家路徑代表抽驗。下一步只做正式交付準備，先讀既定dist-all與版號契約，不重開HD／玩法矩陣。三平台與手機分開實測，Linux隔離視窗不替代其餘平台。
+
+RUST-PROMO-RESOLVED-20261112：[推廣影片預覽](docs/spec/055-rust-promo-preview.md#本機預覽-conformed)已完成，93秒、四程序新實錄、13幀目視與影音檢查通過，含清楚的保存／原式玩法／HD／Rust重寫緣由。只作本機預覽，下一步回正式封包。工具入口為[rust-promo.py](tools/rust-promo.py)。

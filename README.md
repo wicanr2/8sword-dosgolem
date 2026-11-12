@@ -12,6 +12,14 @@
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
 
+## 推廣影片
+
+約93秒的本機預覽，以繁體字幕、華語旁白和遊戲HD〈幻〉，說明為何保存這款早期中文遊戲、如何保留原式玩法，以及從HD繪圖接管走向Rust獨立重寫的緣由。畫面以現行版本重新錄製，包含原圖／HD、募兵、自然戰鬥、設定與真實存檔續玩。
+
+[![推廣影片九幕總覽](docs/images/rust-promo-contact-r1.jpg)](docs/spec/055-rust-promo-preview.md)
+
+影片主檔在本機`dist-all/v.0.1.0-20261112/promo/8sword-rust-promo-v.0.1.0-20261112.mp4`，未隨Git提供。見[旁白與分鏡](docs/spec/055-rust-promo-preview.md#旁白與分鏡)、[製作工具](tools/rust-promo.sh)、[影音核對](preserved/rust-promo-audit-r1.json)及[永久保存／還原](preserved/README.md#rust推廣影片保存)。這是開發中介紹片，受控法術與美術停格已明標。
+
 ## Rust正常玩家路徑
 
 ![Rust正常新遊戲、OpenKB女弓箭手、自然戰鬥、跨月與軍隊管理](docs/images/rust-player-path-r1.png)

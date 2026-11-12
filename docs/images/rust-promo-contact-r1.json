@@ -1,0 +1,61 @@
+{
+  "movie_sha256": "e7a1afd7e4b067346b611db0e9696736bb64313b60c0f403b4946f8a26d70e59",
+  "image_sha256": "53b87ea56e3bb7faee8feb8de308c97693320d0882a377451dbbbbce93a4d3d3",
+  "source_frames": [
+    {
+      "label": "scene-01",
+      "seconds": 4.0,
+      "scene": 1,
+      "sha256": "8afaede721ade1fd81a9a322266555ea704cbfd4d731d36a48091d1787103ce7"
+    },
+    {
+      "label": "scene-02",
+      "seconds": 12.633333333333333,
+      "scene": 2,
+      "sha256": "27a894302f28e9c0a5675d8730bfdf4e9bf48e86d14aa813a0ab1d082a31beb2"
+    },
+    {
+      "label": "scene-03",
+      "seconds": 22.566667000000002,
+      "scene": 3,
+      "sha256": "ad8f78c6242c09e17761e2637806f6af965ca999344694495de4af6a1e9d53d0"
+    },
+    {
+      "label": "scene-04",
+      "seconds": 33.533333666666664,
+      "scene": 4,
+      "sha256": "77e2682b70c948a11f6e791d46d0f99c021ce4dba66332971865181090c6c2e7"
+    },
+    {
+      "label": "scene-05",
+      "seconds": 44.7,
+      "scene": 5,
+      "sha256": "1186b92eea42e12aecf712770e067756d0351051faa4b95f43029f266f31d272"
+    },
+    {
+      "label": "scene-06",
+      "seconds": 55.800000000000004,
+      "scene": 6,
+      "sha256": "b1f6480587cd93dea5a51076d596b6b6d1a9d37c2c621f27d6987d3006141362"
+    },
+    {
+      "label": "scene-07",
+      "seconds": 66.65,
+      "scene": 7,
+      "sha256": "073b8f3c08cbbb6994f8a7aaa9c87284798eee4f7e683e4068930d6efb61ec62"
+    },
+    {
+      "label": "scene-08",
+      "seconds": 77.35000000000001,
+      "scene": 8,
+      "sha256": "5c91ba44e2a64f7fb31b4c0e5ae435eba414084148abca021eccdf2be65f823d"
+    },
+    {
+      "label": "scene-09",
+      "seconds": 87.78333333333333,
+      "scene": 9,
+      "sha256": "1994e15e030270d41b26c255c03e1d94e442d2971cb22fde9d4ab268551fdad0"
+    }
+  ],
+  "scope": "Midpoint of each scene from the final encoded local preview; live Rust footage, controlled spell clip labeled."
+}

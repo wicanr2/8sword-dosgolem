@@ -1,0 +1,45 @@
+{
+  "status": "passed-detached-rust-promo",
+  "archive": {
+    "status": "passed-detached-rust-world-exits",
+    "files": 291,
+    "objects": 205
+  },
+  "restored_delivery_files": 22,
+  "sha_mode_uid_equal": true,
+  "movie_sha256": "e7a1afd7e4b067346b611db0e9696736bb64313b60c0f403b4946f8a26d70e59",
+  "ffprobe_passed": true,
+  "two_seconds_decode_passed": true,
+  "no_workplace_game_or_runtime_mounts": true,
+  "additional_files": [
+    {
+      "name": "objects.json",
+      "sha256": "62b920849cb229f470c21e7b6f499b9713347c46b7bc25efe07580e4c5d4a0b3",
+      "bytes": 85,
+      "file": "62b920849cb229f470c21e7b6f499b9713347c46b7bc25efe07580e4c5d4a0b3.gz",
+      "stored_sha256": "fa05948620d77e394516ac52ded5326ddb7e075e79925cfc997caa7b10e3799f"
+    },
+    {
+      "name": "restored-ffprobe.json",
+      "sha256": "4b8aa826f2d2284653a2290697ebc976f6c2f200b6a40f2c5c81df682fc00726",
+      "bytes": 4266,
+      "file": "4b8aa826f2d2284653a2290697ebc976f6c2f200b6a40f2c5c81df682fc00726.gz",
+      "stored_sha256": "9746dfa5194e7ad4728bc40ff5e3c9568f17067f44e25296cde43cac8da2433d"
+    },
+    {
+      "name": "restored-decode.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.gz",
+      "stored_sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "name": "links.json",
+      "sha256": "f1b356159e25550ee222d2bada1847352f185b157f83b76104926b37209b6fdf",
+      "file": "f1b356159e25550ee222d2bada1847352f185b157f83b76104926b37209b6fdf.gz",
+      "stored_sha256": "3eeb28e53a74439f2b60cdc7151c8a91ce5c47d255fe8a05c3855f3187374cc0",
+      "bytes": 4891
+    }
+  ],
+  "link_references_verified": 58
+}

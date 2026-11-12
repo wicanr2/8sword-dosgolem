@@ -1732,3 +1732,24 @@ timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id 
 固定seed1正常新遊戲，沒有座標／資源／軍隊或勝負注入。營地／戰中／月報三組冷讀玩法hash相同；戰中／月報中央逐像素相同，營地extra頁是暫時選擇。全程正常取得的90民兵／1女弓箭手自然勝利，後續解雇弓箭手與跨月176金／83民兵已驗。這是Linux代表路徑，不是自然完整通關、其他平台、人耳或正式發行包驗收。封存後的獨立核對記錄另列`additional_files`。
 
 本批索引600檔、508個內容物件，另附獨立核對收據；壓縮202579053 bytes。隔離還原及只靠前批保存重建各288檔，SHA／mode／UID一致，自檢v18通過。清理910份已保存且逐SHA相同的讀回副本、還原暫存及前批執行期，可回收1642639360 bytes，約1.53GiB。現行288檔、完整來源、原始全幅／中央畫面及所有永久物件保留，本批容器均已退出並刪除。
+
+## Rust推廣影片保存
+
+[完整索引](rust-promo-r1.json)、[影音與目視核對](rust-promo-audit-r1.json)、[脫離workplace還原](rust-promo-detached-r1.json)與[清理收據](rust-promo-cleanup-r1.json)為入口。影片、字幕、九幕分鏡、來源／權利、13抽樣幀與技術log，現行交付在本機`dist-all/v.0.1.0-20261112/promo/`，根`SHA256SUMS.json`列逐檔SHA。識別為本機開發預覽，不是遊戲定版，沒有Release或公開上傳。
+
+完整原始實錄、首次失敗／粗剪、九段旁白及文字、真實HD配樂、字型、字幕圖層、製作腳本與最終交付，另存本機`preserved/rust-promo-r1/<SHA256>.gz`，不依賴workplace。原圖模式為Rust素材呈現，法術是明示的受控樣本；月報重新讀取真實正常路徑進度，不以舊截圖冒充新錄影。旁白為合成華語、〈幻〉為現行遊戲HD編曲，完整影片／音樂不加入Git。
+
+從專案根目錄還原到既定影片交付位置：
+
+```bash
+timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id -g)" --memory 2g --cpus 2 --pids-limit 128 \
+  --mount "type=bind,src=$PWD,dst=/r" sc-cht-hdtools:pillow11.3.0-r2 \
+  python /r/tools/rust-promo.py restore --project /r \
+  --out /r/dist-all/v.0.1.0-20261112/promo
+```
+
+已有不同內容時拒絕覆寫。沿用Pillow工具映像`sc-cht-hdtools:pillow11.3.0-r2`，SHA256 `b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831`。重新錄製見[Docker編排](../tools/rust-promo.sh)，製作／分鏡見[055](../docs/spec/055-rust-promo-preview.md)。原生／FFmpeg映像為`mm45-rust-desktop:1.99.1-r3`，SHA256 `ac10129fb2667f9be114a19db5b7a3837ba1a4457627420aec3044792715b8e1`；旁白映像為`rich2-narration:edge-tts7.3.1-20261101-r1`，SHA256 `cfad34b2da56da721c42a93d9802d345a85e5b3de1e0d49befc209a37ec3ef63`。只有旁白文字步驟開網路，其餘離線。
+
+影片92.767秒、1080p／30fps、H.264／AAC48kHz雙聲道；峰值−3.1dB／平均−17.6dB。九幕中點、片頭片尾、美術與真實月報共13幀目視，字幕無裁切；無黑幀或靜音區間，有界選單與明示停格單列，沒有聲稱人耳或其他平台驗收。封存後的獨立還原記錄另列`additional_files`，物件仍放同一保存目錄。現行288檔遊戲執行期與定稿原圖不動。
+
+本批索引291檔／205個內容物件，壓縮397424149 bytes；另附獨立還原收據。隔離還原22份影片交付檔的SHA／mode／UID一致，主檔FFprobe及解碼通過，沒有workplace或遊戲掛載。清理154份已保存且逐SHA相同的中間片、原始錄影工作副本與重複讀回，可回收712712192 bytes，約0.66GiB；dist-all最終影片與所有永久來源保留。本批容器均已退出並刪除，其他專案不動。

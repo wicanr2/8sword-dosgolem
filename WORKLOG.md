@@ -3647,3 +3647,17 @@ PLAYER-PATH-RESOLVED-20261112。先固定四程序、seed1與正常新建初態�
 README標準與收尾路由已載入，更新唯一CONTEXT及WORKLIST，下一步正式交付／平台實測。另讀dist-all／version-date契約，尚未定正式版號或建立交付目錄。根LICENSE已為RRSAL-1.0，無授權變更。ldd記錄SDL2／libsndfile與平台依賴，dummy音訊不當人耳驗收。工具入口為[rust-player-path.py](tools/rust-player-path.py)及[GUI](tools/rust-player-path-gui.py)，[核對](preserved/rust-player-path-audit-r1.json)與[完整保存](preserved/README.md#rust正常玩家路徑保存)另列。正式197／7／923／535／1071保持，無Release。
 
 本批永久保存600檔／508個物件，隔離還原與archive-only prepare各288檔均逐SHA／mode／UID相同，自檢v18通過。新wrapper指向rust-player-path-r1。只刪910份逐SHA已保存副本及已取代執行期，清出約1.53GiB；現行來源、媒體、全幅與中央原圖保持。本批Docker容器零殘留，未清理其他專案。
+
+## 2026-11-12 有緣由敘事的Rust推廣影片
+
+使用者要求先拍推廣影片並把緣由講清楚。載入推廣流水線／素材來源、文件職責及dist-all／version-date契約；沿逆向重製技能，不新造玩法／配樂。以現有Cargo0.1.0與Asia/Taipei日期作v.0.1.0-20261112本機影片識別，沒有遊戲定版、tag或Release。
+
+九段旁白依序說古畫冒險、保存早期中文神怪風貌、沿原資料與原式玩法、HD風格、字型／海報／原曲音色、新部隊／AI／規則、解決疊圖閃爍及Rust獨立重寫、正常玩家路徑與開發中結語。旁白使用既有鎖版edge-tts7.3.1容器、zh-TW-HsiaoChenNeural／−8%；只有文字旁白步驟開bridge網路。配樂逐SHA取實際start-music-1.ogg，沒有另造或假稱原OPL。素材與影片均只留本機。
+
+四個現行程式實錄：原圖模式新建、HD正常新建／購90民兵與1女弓箭手／自然勝局、既有受控施法樣本、重讀上批正常玩家路徑的真實v18月報進度。法術第一輪滑鼠未選到目標，鏡頭停在spell-target，屬擷取腳本輸入問題；改用既有已驗鍵盤導航，只重錄該場。原圖／HD成功原錄影保留，沒有改兵力、seed或遊戲邏輯。失敗來源與記錄留在本批evidence與capture。
+
+初剪後目視，調整原圖鏡頭為地圖／營地，HD美術加入明標停格與迎龍畫面，補真正Continue／月報錄影，片尾公司署名精確為原版版權標示。只重編受影響鏡頭，未發布的初剪另存。最終92.767秒、1080p30、H.264／AAC48kHz雙聲道，峰值−3.1dB／平均−17.6dB，無黑幀／靜音區間；有界選單與明示停格單列。九幕中點及片頭／片尾／美術／月報共13幀目視無裁切，沒有聲稱人耳驗收。來源與執行期逐SHA沿現行版本，未改Rust或重跑212單元測試。
+
+[055](docs/spec/055-rust-promo-preview.md)、[核對](preserved/rust-promo-audit-r1.json)、[分鏡總覽](docs/images/rust-promo-contact-r1.jpg)、[工具](tools/rust-promo.sh)及[保存](preserved/README.md#rust推廣影片保存)為入口。電影／字幕／分鏡／來源／FFprobe／影音log與抽幀集中dist-all，腳本與縮圖放Git。RUST-PROMO-RESOLVED-20261112，下一步回正式封包與平台實測；正式197／7／923／535／1071保持。
+
+永久保存291檔／205物件，隔離還原22交付檔逐SHA／mode／UID一致，FFprobe與解碼通過。清理154份已保存中間片／工作副本，清出約0.66GiB；原始錄影與影音在preserved，最終片與13抽幀仍在dist-all。新增文件／圖像引用58項核對通過；Bash／Python語法通過。本批容器零殘留，未碰其他專案程序。
