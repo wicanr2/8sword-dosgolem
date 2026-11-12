@@ -6,11 +6,19 @@
 
 本專案保留Go版dosgolem原版／HD播放器，並開發不依賴DOS EXE的Rust獨立版。Go入口沿原版操作，提供HD圖像、音樂、三種中文字型及可選AI／規則；Rust直接處理世界、戰鬥、輸入、音畫與存檔，目前已接開始選單、新遊戲、續玩及結局。
 
-既有HD及已接功能採代表抽樣。戰場與部隊管理保留原版配置、選單及操作；Rust的完整開場、新建、正常移動、軍隊檢閱、存檔與獨立程序續玩已有原生視窗證據。原行程條、全程海報、原圖／HD、Rust策略AI與規則工具列、法術店至戰場的庫存已接；非水特殊地點的八方向與原地Space交易已接，玩家路徑收尾與正式交付仍待。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
+既有HD及已接功能採代表抽樣。戰場與部隊管理保留原版配置、選單及操作；Rust的完整開場、新建、正常移動、軍隊檢閱、存檔與獨立程序續玩已有原生視窗證據。原行程條、全程海報、原圖／HD、Rust策略AI與規則工具列、法術店至戰場的庫存已接；非水特殊地點的八方向與原地Space交易已接，Linux正常新建至跨月與存退讀已抽驗，正式交付仍待。現況與限制集中在[目前狀態](CONTEXT.md)，下一步見[工作表](WORKLIST.md)。
 
 先前的獨立卡片戰鬥介面已撤回。[原版操作開發入口](tools/original-player.sh)以Go提供兵力、管理、招募及保存，保留同一套原版HD戰場。未準備來源畫布的直接建置仍在讀寫進度前拒絕。範圍見[戰場呈現契約](docs/spec/030-battle-expansion-proposal.md#原版戰場呈現定案與卡片介面撤回)。
 
 原版遊戲、手冊及完整執行期音畫素材不隨本倉庫提供。經使用者批准的定稿與成果圖另存 `docs/images/`。執行研究工具須自備合法來源資料；目前沒有供玩家下載的完整遊戲包。
+
+## Rust正常玩家路徑
+
+![Rust正常新遊戲、OpenKB女弓箭手、自然戰鬥、跨月與軍隊管理](docs/images/rust-player-path-r1.png)
+
+這組畫面從正常新遊戲開始：走到原營地購兵、從增援頁招募女弓箭手、自然遇敵並獲勝，再管理軍隊與走路跨月。營地、戰中及月報都經過保存、退出、開始頁續玩，沒有注入位置、資源或勝負。
+
+這是Linux代表路徑抽驗；完整自然通關與其他平台仍分開驗證。戰中及月報的冷讀中央畫布相同，營地暫時分頁不保存。見[限定驗收](docs/spec/031-rust-independent-remake.md#現行rust正常玩家路徑抽驗-conformed)、[核對](preserved/rust-player-path-audit-r1.json)與[圖片來源](docs/images/rust-player-path-r1.json)。
 
 ## Rust開始選單與新遊戲
 
@@ -18,7 +26,7 @@
 
 Rust已接「繼續上次進度」、「開始新遊戲」、「音樂欣賞」。新遊戲先確認，取消保留舊進度；確認後從原起點以500金、30民兵開始。音樂欣賞可播放十首已定稿HD曲目，工具列可切換Noto900、隸書與草書。鍵盤與滑鼠共用選取、確認操作。
 
-完成[現行資料包還原](preserved/README.md#rust原地space事件保存)後，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔亦可直接執行，預設讀取旁邊的`pack/`，存檔放在`$XDG_DATA_HOME/8sword-remake/`或`$HOME/.local/share/8sword-remake/`。目前只驗Linux，需SDL2／libsndfile平台函式庫；不需dosgolem、Go或DOS EXE。
+完成[現行資料包還原](preserved/README.md#rust正常玩家路徑保存)後，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔亦可直接執行，預設讀取旁邊的`pack/`，存檔放在`$XDG_DATA_HOME/8sword-remake/`或`$HOME/.local/share/8sword-remake/`。目前只驗Linux，需SDL2／libsndfile平台函式庫；不需dosgolem、Go或DOS EXE。
 
 上圖來自Linux原生視窗。新遊戲、取消、正常移動／F2／F7、獨立程序續玩、既有v16冷讀與損壞進度重建已抽驗，五程序17份SDL讀回與167測試通過。主頁底板沿既有原生配色簡化，字串與位置保留原版；完整開場見下方。見[驗收](docs/spec/031-rust-independent-remake.md#rust原式開始選單限定-conformed)、[核對](preserved/rust-start-audit-r1.json)與[圖片來源](docs/images/rust-start-r1.json)。
 

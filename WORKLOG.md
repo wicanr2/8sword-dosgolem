@@ -3637,3 +3637,13 @@ SPACE-EVENTS-RESOLVED-20261112依031 READY完成。補原Space預增／扣回與
 [核對](preserved/rust-space-events-audit-r1.json)、[成果圖](docs/images/rust-space-events-r1.png)與[保存／還原](preserved/README.md#rust原地space事件保存)為入口。初始原座標／boat2／面向3／remaining1／seed1受控，資源／軍隊保持，不稱自然取得或完整通關。下一步玩家路徑收尾與正式交付，既有HD矩陣不重開，無Release。
 
 完整來源與原始畫面保存後，脫離workplace還原288檔並自檢v18。清理3891份本批快取／已保存副本，可回收約1.71GiB；所有本批Docker程序已結束。
+
+## 2026-11-12 現行Rust正常玩家路徑
+
+PLAYER-PATH-RESOLVED-20261112。先固定四程序、seed1與正常新建初態，再以4c1fe9f現行執行檔跑完整開場、確認新遊戲、原營地購60民兵／一名OpenKB女弓箭手，F7／退出／開始頁Continue。自然遭遇於40／41，首個普通行動後戰中F7，再Continue完成八行動勝利，回場83民兵／1弓箭手、252金／戰績23。正常F3解雇弓箭手後走路，另三次正常撤退；月底159＋100−83＝176、軍隊83保持。第四程序冷讀月報，返回F1／F2／F5及世界保存。
+
+四程序396筆X11輸入、14手動／九自動擷取共23全幅SDL通過，首輪即通過。營地、戰中及月報三組玩法hash相同；戰中／月報中央逐像素相同，營地extra頁不保存，不宣稱該畫面相同。沒有記憶體／IP／座標／資源注入或改seed；不稱自然完整通關。產品Rust來源、binary與287媒體逐SHA等於上一批，沿用212測試，不冒稱新增編譯／原版oracle。
+
+README標準與收尾路由已載入，更新唯一CONTEXT及WORKLIST，下一步正式交付／平台實測。另讀dist-all／version-date契約，尚未定正式版號或建立交付目錄。根LICENSE已為RRSAL-1.0，無授權變更。ldd記錄SDL2／libsndfile與平台依賴，dummy音訊不當人耳驗收。工具入口為[rust-player-path.py](tools/rust-player-path.py)及[GUI](tools/rust-player-path-gui.py)，[核對](preserved/rust-player-path-audit-r1.json)與[完整保存](preserved/README.md#rust正常玩家路徑保存)另列。正式197／7／923／535／1071保持，無Release。
+
+本批永久保存600檔／508個物件，隔離還原與archive-only prepare各288檔均逐SHA／mode／UID相同，自檢v18通過。新wrapper指向rust-player-path-r1。只刪910份逐SHA已保存副本及已取代執行期，清出約1.53GiB；現行來源、媒體、全幅與中央原圖保持。本批Docker容器零殘留，未清理其他專案。

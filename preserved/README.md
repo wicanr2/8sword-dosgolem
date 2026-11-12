@@ -1,8 +1,8 @@
 # 必要資料永久保存
 
-現行Rust入口為[原地Space事件保存](#rust原地space事件保存)。
+現行Rust入口為[正常玩家路徑保存](#rust正常玩家路徑保存)。
 
-前批Rust保存入口為[非水特殊地點八方向保存](#rust非水特殊地點八方向保存)，包括完整288檔執行期、來源與證據。
+前批Rust保存入口為[原地Space事件保存](#rust原地space事件保存)，包括完整288檔執行期、來源與證據。
 
 ## 原戰場守軍與頭目保存
 
@@ -1714,3 +1714,21 @@ timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id 
 六程序15份全幅SDL、三組冷讀玩法hash及原生自檢已驗。戰中冷讀中央逐像素相同，商店／營地的購買成功訊息不保存。初態原座標、boat2、面向3、seed1及剩餘一步明示受控，資源／軍隊保持；不稱自然取得、完整通關或整段RNG一致。封存後的獨立還原記錄另列`additional_files`，物件仍存同目錄。
 
 本批索引669檔、536個內容物件，另附封存後獨立收據。壓縮物件199853884 bytes。隔離還原288檔SHA／mode／UID一致，自檢v18通過。清理3891個本批快取及已保存副本，按inode計可回收1839251456 bytes，約1.71GiB；現行執行期與全幅／中央原始畫面保留。專案本批容器均已退出並刪除。
+
+## Rust正常玩家路徑保存
+
+[完整索引](rust-player-path-r1.json)、[驗收核對](rust-player-path-audit-r1.json)、[獨立還原](rust-player-path-detached-r1.json)與[清理收據](rust-player-path-cleanup-r1.json)為現行入口。完整288檔執行期、Rust來源、四程序輸入／23份全幅與中央原始畫面、三次保存／冷讀、工具與ldd平台依賴，存於本機`preserved/rust-player-path-r1/<SHA256>.gz`。產品Rust來源／binary／287媒體與前批相同；不入Git或Release，不新增原版oracle聲明。
+
+在專案根目錄執行下列命令。沿用`sc-cht-hdtools:pillow11.3.0-r2`，SHA256為`b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831`：
+
+```bash
+timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id -g)" --memory 2g --cpus 2 --pids-limit 128 \
+  --mount "type=bind,src=$PWD,dst=/r" sc-cht-hdtools:pillow11.3.0-r2 \
+  python3 /r/tools/rust-player-path.py restore --project /r
+```
+
+還原至`workplace/probe-20261023/graphics-first/battle-r1/rust-player-path-r1/native`，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。獨立binary亦可從旁置`pack/`直接執行，仍需SDL2／libsndfile等平台函式庫，不需Go／DOS／dosgolem。v18與Go格式保持，完整媒體只在本機。視窗工具沿`mm45-rust-desktop:1.99.1-r3`，SHA256為`ac10129fb2667f9be114a19db5b7a3837ba1a4457627420aec3044792715b8e1`。
+
+固定seed1正常新遊戲，沒有座標／資源／軍隊或勝負注入。營地／戰中／月報三組冷讀玩法hash相同；戰中／月報中央逐像素相同，營地extra頁是暫時選擇。全程正常取得的90民兵／1女弓箭手自然勝利，後續解雇弓箭手與跨月176金／83民兵已驗。這是Linux代表路徑，不是自然完整通關、其他平台、人耳或正式發行包驗收。封存後的獨立核對記錄另列`additional_files`。
+
+本批索引600檔、508個內容物件，另附獨立核對收據；壓縮202579053 bytes。隔離還原及只靠前批保存重建各288檔，SHA／mode／UID一致，自檢v18通過。清理910份已保存且逐SHA相同的讀回副本、還原暫存及前批執行期，可回收1642639360 bytes，約1.53GiB。現行288檔、完整來源、原始全幅／中央畫面及所有永久物件保留，本批容器均已退出並刪除。

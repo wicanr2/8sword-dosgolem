@@ -1189,3 +1189,23 @@ v18只比v17增加一byte，0為無事務，1為未受阻，2為受阻。讀v1�
 SPACE-CLOCK-CORRECTION-20261112：早期90涉水案例只從12446尾段驗Space，未含10BDC的10C0C預增。舊「拒絕原地上岸步數不變」解釋由本輪原指令推翻；單一尾段的原bytes與結果仍保留，不回寫歷史收據。現行旅程測試改驗整個輸入步驟的淨結果。
 
 [事務與步數](../../internal/remake-rust/src/space_events.rs)、[測試](../../internal/remake-rust/src/space_events_tests.rs)、[原指令](../../tools/rust-space-events-reference.go)、[明示進度](../../internal/remake-rust/examples/space_events_fixture.rs)、[視窗工具](../../tools/rust-space-events-gui.py)、[核對／保存](../../tools/rust-space-events.py)、[核對收據](../../preserved/rust-space-events-audit-r1.json)、[成果圖](../images/rust-space-events-r1.png)及[現行保存／還原](../../preserved/README.md#rust原地space事件保存)為入口。完整執行期288檔由Rust直接執行，GUI只掛native與單一輸入工具，無Go／DOS／x86依賴。下一步玩家路徑收尾與交付；正式197／7／923／535／1071保持，沒有Release、自然取得或完整通關聲明。
+
+## 現行Rust正常玩家路徑抽驗 READY
+
+2026-11-12，沿現行4c1fe9f執行檔、v18、287媒體及已完成規格，只新增整合驗證，不改產品規則、格式或介面。固定seed1，從正式play入口、新遊戲確認與原500金／30民兵開始，不注入座標、軍隊、資源或勝負。第一批正常走到起點附近營地，以原店購60民兵，再從已批准增援頁買一名OpenKB女弓箭手；當時用量100、餘金190，後續由正常鍵鼠操作。
+
+事前固定四個程序與完成條件：新建／營地保存；開始頁Continue、離店／走路、自然遭遇與首個普通行動後戰中保存；Continue後正常完成該場勝利、全滅或撤退的合法結果，回場／管理、正常走路跨月；月報Continue、確認返回及F1／F2／F5後世界保存。戰鬥不是固定勝局，保留實際結果與所有失敗，不改seed或賜予兵力。月結前可正常解雇昂貴增援，操作記錄明列。每個冷讀核對v18實檔、玩法hash；穩定畫面另比中央像素，暫時購買訊息明示不保存。
+
+全程只用X11鍵鼠，F12為診斷擷取；SDL中央及全幅讀回核對。總步數上限400、玩家出手上限150、各畫面等待有界。完整收據、來源及原始畫面保存至本機preserved後，才清理本批重複檔。入口為[驗證工具](../../tools/rust-player-path.py)與[視窗操作](../../tools/rust-player-path-gui.py)，研究區沿既有battle-r1/rust-player-path-r1。此抽驗不取代既有原版oracle，不宣稱自然完整通關、其他平台或發行包完成。
+
+### 現行Rust正常玩家路徑抽驗 CONFORMED
+
+2026-11-12依READY通過，識別PLAYER-PATH-RESOLVED-20261112。產品Rust來源、執行檔與287媒體逐SHA等於4c1fe9f已測版本；沿用其212測試，本批只新增正常路徑收據，沒有重新建置或聲稱新增原版對拍。既有原版／HD、AI／規則、八術與受控結局證據保持。
+
+四個獨立程序、396筆X11輸入、14張手動與九張自動畫面，共23份全幅SDL／中央讀回通過。第一個程序完整播放開場後，正常確認新遊戲，從500金／30民兵走到原營地，購60民兵及一名OpenKB女弓箭手，用量100、餘金190。營地F7／退出／開始頁Continue後，正常離店走路，於40／41自然遇敵。首個普通行動後再次F7／退出，從開始頁Continue戰中，八個戰鬥行動後獲勝，回場83民兵／1弓箭手、252金／戰績23。敵軍原生成為11狐狸／19矮人／16僵屍，沒有改seed、座標、資源或戰果。
+
+正常F3解雇弓箭手後繼續走路，途中另三次自然遭遇以原式撤退。月底159＋100−83＝176金，83民兵保留，原月報自動保存及F7一致。第四程序從開始頁Continue待確認月報，確認後F1／F2／F5及世界F7完成，仍176金／戰績23／83民兵／月序1。初始正常新遊戲seed1，後續seed由實際遊戲消耗，不重新指定、不反覆重擲。完整輸入與所有中間畫面存於[核對](../../preserved/rust-player-path-audit-r1.json)及[保存](../../preserved/README.md#rust正常玩家路徑保存)。
+
+營地、戰中、月報三組冷讀玩法hash相同。戰中與月報中央逐像素相同；營地原店／增援分頁與選取為暫時UI狀態，冷讀回原店，明示不作營地中央逐像素聲明。所有23份畫面逐幀比SDL讀回及中央裁切，不遮罩動態內容。此為Linux原生代表玩家路徑，完整自然通關、人耳與其他平台不在本批聲明內。
+
+[成果圖](../images/rust-player-path-r1.png)、[圖片來源](../images/rust-player-path-r1.json)、[核對工具](../../tools/rust-player-path.py)與[視窗操作](../../tools/rust-player-path-gui.py)為入口。原生Linux直接依賴SDL2／libsndfile等平台動態函式庫，完整ldd在保存內；不是免平台依賴的靜態包。沒有Go／DOS EXE／dosgolem執行期。來源授權沿根RRSAL-1.0；原版衍生媒體保持本機，不建立公開包或Release。正式197／7／923／535／1071保持。玩家路徑代表抽驗閉合，下一步正式交付與各平台實測，既有功能不重開矩陣。
