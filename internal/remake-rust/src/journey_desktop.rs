@@ -96,13 +96,9 @@ pub fn run(args: &[String]) -> Result<(), String> {
     }
     if start_menu {
         if assets.is_none() {
-            assets = Some(
-                std::env::current_exe()
-                    .map_err(|e| e.to_string())?
-                    .parent()
-                    .ok_or("執行檔路徑錯誤")?
-                    .join("pack"),
-            );
+            assets = Some(crate::platform::asset_root(
+                &std::env::current_exe().map_err(|e| e.to_string())?,
+            )?);
         }
         if store.is_none() {
             let p = crate::start::default_save_root()?;

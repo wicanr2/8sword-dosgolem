@@ -3661,3 +3661,13 @@ README標準與收尾路由已載入，更新唯一CONTEXT及WORKLIST，下一�
 [055](docs/spec/055-rust-promo-preview.md)、[核對](preserved/rust-promo-audit-r1.json)、[分鏡總覽](docs/images/rust-promo-contact-r1.jpg)、[工具](tools/rust-promo.sh)及[保存](preserved/README.md#rust推廣影片保存)為入口。電影／字幕／分鏡／來源／FFprobe／影音log與抽幀集中dist-all，腳本與縮圖放Git。RUST-PROMO-RESOLVED-20261112，下一步回正式封包與平台實測；正式197／7／923／535／1071保持。
 
 永久保存291檔／205物件，隔離還原22交付檔逐SHA／mode／UID一致，FFprobe與解碼通過。清理154份已保存中間片／工作副本，清出約0.66GiB；原始錄影與影音在preserved，最終片與13抽幀仍在dist-all。新增文件／圖像引用58項核對通過；Bash／Python語法通過。本批容器零殘留，未碰其他專案程序。
+
+## 2026-11-12：Rust三平台本機完整包
+
+使用者要求打包三平台完整版，依056 READY契約完成 `v.0.1.0-20261112`。Linux x86_64、Windows x86_64與macOS universal2各帶287份原圖／HD媒體及平台函式庫，包內附授權、固定來源、README、manifest與SHA。程式補跨平台虛擬音訊I/O、預設使用者目錄、原子替換保存、Mac素材定位與完整版號；v18、既有規則與Go格式保持。
+
+Linux214／Wine211測試通過。真正解壓包從中文安裝路徑正常播放完整開場、新建、移動、隸書／原圖往返、F2、兩次F7、關窗與獨立續玩，四程序24份SDL讀回通過，兩側冷讀玩法hash均48d5a87b8b9ced97。音訊確認解碼與dummy送出，未做人耳或硬體驗收。Wine的UTF-8、路徑引號與_NET_WM_NAME修正屬驗證腳本；Mac ad-hoc簽署採獨立頁／特殊槽／287資源雜湊核對，rcodesign既知無CMS誤報保留，未稱Apple工具／真機或公證通過。
+
+RUST-PACKAGE-RESOLVED-20261112閉合本機三平台打包，未建tag或Release，含完整素材的封包不公開。既有推廣影片保留，同版校驗表涵蓋完整包、影片及smoke。永久物件已逐SHA核對，無workplace掛載的獨立還原核對42份交付檔。清理本批建置／安裝暫存、Wine prefix、重複解壓、已保存SDL工作副本，共7179950590 bytes，約6.69GiB；原圖、現行交付與其他專案不動。
+
+入口：[056](docs/spec/056-native-three-platform-packages.md)、[封包核對](preserved/rust-package-audit-r1.json)、[保存與還原](preserved/README.md#rust三平台完整包保存)、[還原收據](preserved/rust-package-restore-r1.json)、[清理收據](preserved/rust-package-cleanup-r1.json)。正式197／7／923／535／1071保持，下一步只列可選的平台真機、手機或精修，不重開已完成矩陣。

@@ -185,10 +185,8 @@ pub(crate) fn write_marker(dir: &Path, name: &str, data: &[u8], mode: Mode) -> R
             .and_then(|_| f.sync_all())
             .map_err(|e| e.to_string())?;
         drop(f);
-        fs::rename(&temp, &path).map_err(|e| e.to_string())?;
-        fs::File::open(dir)
-            .and_then(|f| f.sync_all())
-            .map_err(|e| e.to_string())
+        crate::platform::replace_file(&temp, &path).map_err(|e| e.to_string())?;
+        crate::platform::sync_directory(dir).map_err(|e| e.to_string())
     })();
     if result.is_err() {
         let _ = fs::remove_file(temp);

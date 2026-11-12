@@ -207,9 +207,8 @@ impl Settings {
                     .and_then(|_| f.sync_all())
                     .map_err(|e| e.to_string())?;
                     drop(f);
-                    fs::rename(&temp, path).map_err(|e| e.to_string())?;
-                    fs::File::open(path.parent().unwrap())
-                        .and_then(|f| f.sync_all())
+                    crate::platform::replace_file(&temp, path).map_err(|e| e.to_string())?;
+                    crate::platform::sync_directory(path.parent().unwrap())
                         .map_err(|e| e.to_string())
                 })();
                 if result.is_err() {

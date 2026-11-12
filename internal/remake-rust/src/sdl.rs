@@ -32,6 +32,7 @@ pub struct Event {
 }
 #[link(name = "SDL2")]
 unsafe extern "C" {
+    fn SDL_SetMainReady();
     fn SDL_Init(flags: u32) -> c_int;
     fn SDL_Quit();
     fn SDL_GetError() -> *const c_char;
@@ -136,6 +137,7 @@ impl Sdl {
         title: &str,
     ) -> Result<Self, String> {
         unsafe {
+            SDL_SetMainReady();
             if SDL_Init(0x20 | if mute { 0 } else { 0x10 }) != 0 {
                 return Err(error());
             }

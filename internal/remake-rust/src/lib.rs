@@ -31,6 +31,7 @@ pub(crate) mod management_ui;
 pub mod map_notice;
 pub mod minimap;
 pub mod monthly;
+pub mod platform;
 pub mod pointer;
 #[cfg(feature = "desktop")]
 pub mod poster;

@@ -155,10 +155,8 @@ fn save_named_inner(
     if interrupt {
         return Err("受控提交前中斷".into());
     }
-    fs::rename(&pending.temp, &path).map_err(|e| e.to_string())?;
-    File::open(dir)
-        .and_then(|f| f.sync_all())
-        .map_err(|e| e.to_string())?;
+    crate::platform::replace_file(&pending.temp, &path).map_err(|e| e.to_string())?;
+    crate::platform::sync_directory(dir).map_err(|e| e.to_string())?;
     drop(pending);
     Ok(())
 }

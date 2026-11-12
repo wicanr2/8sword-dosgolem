@@ -1,5 +1,9 @@
 fn main() {
     let args: Vec<_> = std::env::args().collect();
+    if args.len() == 2 && args[1] == "--version" {
+        println!("{}", eightsword_remake::platform::VERSION);
+        return;
+    }
     if args.len() == 1
         || args.get(1).is_some_and(|a| {
             matches!(

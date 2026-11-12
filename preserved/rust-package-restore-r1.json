@@ -1,0 +1,16 @@
+{
+  "status": "passed-detached-whole-version-restore",
+  "version": "v.0.1.0-20261112",
+  "files": 42,
+  "packages": 3,
+  "promo_preserved": true,
+  "all_sha_bytes_uid_verified": true,
+  "source_mounts": [
+    "preserved readonly",
+    "tools readonly"
+  ],
+  "workplace_or_original_runtime_mounted": false,
+  "output": "empty dedicated restore directory",
+  "sha256_manifest": "7f77a591f58c99d295bc2d936b0ad6b91fa7e551928c3e88bfb79947c557d60a",
+  "all_modes_verified": true
+}

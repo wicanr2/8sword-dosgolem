@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-12 [三平台本機完整包](docs/spec/056-native-three-platform-packages.md#本機三平台限定-conformed)完成，版本v.0.1.0-20261112。Linux x86_64／Windows x86_64／macOS universal2各含287媒體；Linux214／Wine211測試、四程序完整開場／新建／隸書／原圖切換／F7冷讀與24份SDL通過。Mac僅雙架構、載入與簽章雜湊核對，未Apple真機／公證；音訊僅技術驗證。[永久保存](preserved/README.md#rust三平台完整包保存)不依賴workplace，現行交付在dist-all同版full-local，promo保持。RUST-PACKAGE-RESOLVED-20261112閉合本機三平台打包；正式197／7／923／535／1071及v18／Go格式保持。未建tag或Release，不公開完整素材。
+
 2026-11-12 [Rust推廣影片本機預覽](docs/spec/055-rust-promo-preview.md#本機預覽-conformed)完成。92.767秒、1920×1080／30fps、H.264／AAC，華語合成旁白、繁體字幕與現行HD〈幻〉，清楚交代保存／原式玩法／美術與Rust繪圖緣由。四個現行實錄程序與13抽幀目視，影音檢查通過；原圖模式、受控法術、美術停格及既有正常進度續玩均明示。[核對](preserved/rust-promo-audit-r1.json)、[總覽](docs/images/rust-promo-contact-r1.jpg)與[保存／還原](preserved/README.md#rust推廣影片保存)為入口。RUST-PROMO-RESOLVED-20261112閉合影片預覽；本機dist-all/v.0.1.0-20261112/promo為唯一影片交付，識別不作遊戲定版，未上傳或Release。產品Rust與288執行期保持，下一步正式封包與平台實測，不重開玩法。正式197／7／923／535／1071保持。
 
 2026-11-12 Rust正常玩家路徑依[031抽驗](docs/spec/031-rust-independent-remake.md#現行rust正常玩家路徑抽驗-conformed)完成。4c1fe9f產品Rust來源／binary／287媒體逐SHA保持，沿用212測試。四程序23SDL、三組冷讀hash、戰中／月報中央逐像素通過。正常500金／30民兵新建，原營地購至90民兵／1女弓箭手，首場自然勝利83民兵／1弓箭手；正常管理／跨月後176金／83民兵。固定seed1，全程正常鍵鼠，不注入座標／資源／勝負，不稱自然完整通關。[核對](preserved/rust-player-path-audit-r1.json)與[現行保存／還原](preserved/README.md#rust正常玩家路徑保存)為入口。PLAYER-PATH-RESOLVED-20261112閉合代表玩家路徑；下一步正式交付與平台實測，不重開既有功能。v18／Go格式與正式197／7／923／535／1071保持，無Release。

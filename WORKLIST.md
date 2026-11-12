@@ -43,10 +43,12 @@
 | Rust 原地Space特殊點 | 限定完成 | 212測試、132原分派／16守軍／28查找、1354行原bytes及六程序15SDL通過；v18與交易／戰中冷讀已接，見[核對](preserved/rust-space-events-audit-r1.json)。 |
 | Rust 正常玩家路徑 | 代表抽驗完成 | 正常新建／原店與女弓箭手／自然勝利／F3管理／正常跨月及三組冷讀，四程序23份SDL通過。見[核對](preserved/rust-player-path-audit-r1.json)，不重跑本鏈。 |
 | Rust 可選美術精修 | 不阻塞收尾 | 新兵額外手繪動作、特殊死亡呈現與音樂循環接點，保持已批准素材。 |
-| 獨立版交付 | 待接 | 代表玩家路徑已驗。下一步乾淨打包、manifest／SHA、平台實測及權利清單，沿規定版號與dist-all契約；未達條件不發布完整遊戲。 |
+| 獨立版交付 | 三平台本機完整包完成 | [056](docs/spec/056-native-three-platform-packages.md)交付v.0.1.0-20261112。287媒體逐包相同，Linux214／Wine211測試及四程序正常啟動／F7冷讀通過；Mac雙架構與靜態簽章核對，真機另列限制。不建立公開完整遊戲Release。 |
 
 原版 oracle 未知與可選精修分開記錄。新兵額外手繪動作、逐硬體時序及所有場景全量截圖，不阻塞開始 Rust 移植。守軍／空軍隊與戰中續接以[031](docs/spec/031-rust-independent-remake.md)各限定收據為準；超領導、超 word 顯示等未驗超域保留限制，不因正常路徑通過而外推，也不重列為本輪功能待辦。
 
-SPACE-EVENTS-RESOLVED-20261112及PLAYER-PATH-RESOLVED-20261112已閉合Space與Linux正常玩家路徑代表抽驗。下一步只做正式交付準備，先讀既定dist-all與版號契約，不重開HD／玩法矩陣。三平台與手機分開實測，Linux隔離視窗不替代其餘平台。
+SPACE-EVENTS-RESOLVED-20261112及PLAYER-PATH-RESOLVED-20261112已閉合Space與Linux正常玩家路徑代表抽驗。三平台本機交付已依056閉合，不重開HD／玩法矩陣。Windows真機、Mac真機與手機分開列為可選驗收。
 
-RUST-PROMO-RESOLVED-20261112：[推廣影片預覽](docs/spec/055-rust-promo-preview.md#本機預覽-conformed)已完成，93秒、四程序新實錄、13幀目視與影音檢查通過，含清楚的保存／原式玩法／HD／Rust重寫緣由。只作本機預覽，下一步回正式封包。工具入口為[rust-promo.py](tools/rust-promo.py)。
+RUST-PROMO-RESOLVED-20261112：[推廣影片預覽](docs/spec/055-rust-promo-preview.md#本機預覽-conformed)已完成，93秒、四程序新實錄、13幀目視與影音檢查通過，含清楚的保存／原式玩法／HD／Rust重寫緣由。只作本機預覽；同版三平台本機完整包已依056完成。工具入口為[rust-promo.py](tools/rust-promo.py)。
+
+RUST-PACKAGE-RESOLVED-20261112：[三平台本機完整包](docs/spec/056-native-three-platform-packages.md#本機三平台限定-conformed)完成。現行入口為 `dist-all/v.0.1.0-20261112/full-local/`；[保存工具](tools/rust-package-preserve.sh)可核對／還原。真機與人耳試聽列為限制，不重開已完成矩陣。

@@ -1,6 +1,25 @@
 # 必要資料永久保存
 
-現行Rust入口為[正常玩家路徑保存](#rust正常玩家路徑保存)。
+現行交付入口為[Rust三平台完整包保存](#rust三平台完整包保存)，開發玩家路徑見[正常玩家路徑保存](#rust正常玩家路徑保存)。
+
+## Rust三平台完整包保存
+
+`v.0.1.0-20261112`的Linux x86_64、Windows x86_64與macOS universal2完整包，連同同版推廣影片、manifest、授權、24份全幅SDL、真正v18保存、固定依賴來源、原碼與工具快照，保存於本機`preserved/rust-package-r1/`。完整包現行入口為`dist-all/v.0.1.0-20261112/full-local/`，不加入Git或公開Release。刪除workplace不影響這兩處。
+
+[逐檔索引](rust-package-r1.json)、[三平台核對](rust-package-audit-r1.json)、[契約與重建](../docs/spec/056-native-three-platform-packages.md)、[成果圖來源](../docs/images/rust-three-platform-packages-r1.json)為入口。索引以SHA定址gzip物件，含來源與成品SHA、大小、權限、權利分類及排除項。
+
+從專案根目錄執行：
+
+```bash
+bash tools/rust-package-preserve.sh verify
+bash tools/rust-package-preserve.sh restore
+```
+
+`verify`逐物件解壓核對；`restore`只還原完整版本的dist-all交付，不覆寫不同內容，不需要原workplace或建置工具。腳本使用既有Pillow工具容器與本機永久物件，UID/GID1000、離線與資源有界。重建則先用`prepare`還原287媒體及鎖定依賴，依056步驟在隔離工作副本執行。
+
+Linux214／Wine211測試與四程序完整開場、新建、F7、獨立冷讀通過。Mac僅雙架構、載入路徑與簽章雜湊核對，未真機、公證或Apple工具驗收；Windows只驗Wine，音訊只驗解碼及dummy送出。既有自然戰鬥與受控結局證據保持，不外推自然完整通關。
+
+[獨立還原收據](rust-package-restore-r1.json)核對42份完整版本交付檔的SHA、大小、UID與權限，含三平台包及原推廣影片，不掛載workplace或原遊戲。[清理收據](rust-package-cleanup-r1.json)記錄移除本輪建置／安裝／暫存、Wine prefix、重複解壓及已保存GUI工作副本，共7179950590 bytes，約6.69GiB。現行交付、永久物件、原版基準與定稿原圖保持，其他專案容器／映像不動。
 
 前批Rust保存入口為[原地Space事件保存](#rust原地space事件保存)，包括完整288檔執行期、來源與證據。
 

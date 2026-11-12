@@ -203,7 +203,8 @@ impl Shell {
             f.write_all(format!("{{\"schema\":1,\"poster\":\"{}\"}}\n", IDS[self.id]).as_bytes())
                 .map_err(|e| e.to_string())?;
             f.sync_all().map_err(|e| e.to_string())?;
-            fs::rename(&temp, p).map_err(|e| e.to_string())
+            drop(f);
+            crate::platform::replace_file(&temp, p).map_err(|e| e.to_string())
         })();
         if result.is_err() && owns_temp {
             let _ = fs::remove_file(&temp);

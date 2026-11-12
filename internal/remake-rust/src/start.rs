@@ -196,13 +196,26 @@ pub fn tracks() -> &'static Vec<Track> {
     })
 }
 pub fn default_save_root() -> Result<PathBuf, String> {
-    if let Some(p) = std::env::var_os("XDG_DATA_HOME").filter(|p| !p.is_empty()) {
-        return Ok(PathBuf::from(p).join("8sword-remake"));
-    }
-    std::env::var_os("HOME")
+    #[cfg(windows)]
+    let location = std::env::var_os("LOCALAPPDATA")
         .filter(|p| !p.is_empty())
-        .map(|p| PathBuf::from(p).join(".local/share/8sword-remake"))
-        .ok_or_else(|| "請用--save-dir指定存檔目錄".into())
+        .map(|p| PathBuf::from(p).join("8sword-remake"));
+    #[cfg(target_os = "macos")]
+    let location = std::env::var_os("HOME")
+        .filter(|p| !p.is_empty())
+        .map(|p| PathBuf::from(p).join("Library/Application Support/8sword-remake"));
+    #[cfg(any(windows, target_os = "macos"))]
+    return location.ok_or_else(|| "請用--save-dir指定存檔目錄".into());
+    #[cfg(not(any(windows, target_os = "macos")))]
+    {
+        if let Some(p) = std::env::var_os("XDG_DATA_HOME").filter(|p| !p.is_empty()) {
+            return Ok(PathBuf::from(p).join("8sword-remake"));
+        }
+        std::env::var_os("HOME")
+            .filter(|p| !p.is_empty())
+            .map(|p| PathBuf::from(p).join(".local/share/8sword-remake"))
+            .ok_or_else(|| "請用--save-dir指定存檔目錄".into())
+    }
 }
 pub fn new_game<'a>(
     c: &'a Catalog,
