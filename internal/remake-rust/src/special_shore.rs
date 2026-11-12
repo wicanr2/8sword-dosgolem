@@ -18,7 +18,8 @@ impl<'a> Journey<'a> {
         }
         let mut probe = self.world.clone();
         if probe.walk_encounter(d, key)? != WalkResult::Boundary(Boundary::BoatExit)
-            || !crate::jump_spell::DIRECTIONS.contains(&key)
+            || !(crate::jump_spell::DIRECTIONS.contains(&key)
+                || key == 0x3920 && self.wait_event.is_some())
         {
             return Ok(false);
         }
@@ -85,6 +86,48 @@ impl<'a> Journey<'a> {
         }
         let mut s = self.clone();
         s.world.facing = face;
+        if key == 0x3920 {
+            s.wait_event.as_mut().ok_or("缺少Space事務")?.blocked = true;
+            match tile {
+                49 | 50 => {
+                    let e = *exits()
+                        .iter()
+                        .find(|e| e.area == s.world.area && e.position == target && e.tile == tile)
+                        .ok_or("缺少Space出口")?;
+                    s.complete_exit(d, e, key, true, c)?;
+                }
+                53 => {
+                    let index = shops()
+                        .iter()
+                        .position(|p| p.area == s.world.area && p.x == target.x && p.y == target.y)
+                        .ok_or("缺少Space商店")?;
+                    s.world.rng.next15();
+                    s.magic.shop = Some(PendingShop {
+                        index: index as u8,
+                        moved: false,
+                    });
+                }
+                54..=58 => {
+                    let index = camps()
+                        .iter()
+                        .enumerate()
+                        .position(|(i, p)| {
+                            i / 24 == usize::from(tile - 54)
+                                && p.kind > 0
+                                && p.area == s.world.area
+                                && p.x == target.x
+                                && p.y == target.y
+                        })
+                        .ok_or("缺少Space營地")?;
+                    s.queue_camp(index)?;
+                }
+                59 => s.queue_treasure(c, &view, false)?,
+                65 => s.queue_guard(&view, key, c)?,
+                _ => s.run_encounter_tail(&view)?,
+            }
+            *self = s;
+            return Ok(true);
+        }
         if tile == 65 {
             if matches!(face, 1 | 3) {
                 let index = crate::guards::sites()

@@ -195,17 +195,17 @@ fn v15_migration_unknown_flags_and_changed_data_are_checked() {
     j.resources[5] = 3;
     j.world.mountain = true;
     let mut old = j.encode(&c, &d).unwrap();
-    old.truncate(old.len() - 16 - 8 - SUFFIX);
+    old.truncate(old.len() - crate::space_events::SUFFIX - 16 - 8 - SUFFIX);
     old[..8].copy_from_slice(b"8SJRN015");
     old.extend(checksum(&old).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &old).unwrap(), j);
     j.artifacts = MASK;
     let raw = j.encode(&c, &d).unwrap();
-    assert_eq!(&raw[..8], b"8SJRN017");
+    assert_eq!(&raw[..8], b"8SJRN018");
     for offset in [9, 10] {
         let mut bad = raw.clone();
         let n = bad.len();
-        bad[n - 16 - offset] ^= if offset == 9 { 1 } else { 2 };
+        bad[n - crate::space_events::SUFFIX - 16 - offset] ^= if offset == 9 { 1 } else { 2 };
         let sum = checksum(&bad[..n - 8]);
         bad[n - 8..].copy_from_slice(&sum.to_le_bytes());
         assert!(Journey::decode(&c, &d, &bad).is_err());

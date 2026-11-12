@@ -3,7 +3,7 @@ use crate::{
     journey::Journey,
     world::{self, Position, WorldData},
 };
-fn site(tile: u8) -> (u8, Position) {
+pub(crate) fn site(tile: u8) -> (u8, Position) {
     match tile {
         49 | 50 => {
             let s = crate::world_exits::exits()
@@ -40,7 +40,7 @@ fn site(tile: u8) -> (u8, Position) {
     }
 }
 #[test]
-fn space_on_special_sites_stays_an_atomic_boundary() {
+fn space_on_special_sites_reserves_one_clock_step_and_stays_in_place() {
     let d = WorldData::land_shore_fixture();
     let c = Catalog::builtin().unwrap();
     for tile in [49, 50, 51, 53, 54, 55, 56, 57, 58, 59, 65] {
@@ -49,15 +49,14 @@ fn space_on_special_sites_stays_an_atomic_boundary() {
         j.world.area = area;
         j.world.position = position;
         j.world.boat = 2;
-        let before = j.clone();
-        assert_eq!(
-            j.travel(&d, 0x3920, &c).unwrap(),
-            Some(world::Boundary::BoatExit)
-        );
-        assert_eq!(j, before);
+        assert_eq!(j.travel(&d, 0x3920, &c).unwrap(), None);
+        assert_eq!(j.world.position, position);
+        assert_eq!(j.world.remaining, 325);
+        assert!(j.wait_event.is_some());
         assert!(j.encode(&c, &d).is_ok());
     }
 }
+
 fn cold<'a>(j: &Journey<'a>, c: &'a Catalog, d: &WorldData) -> Journey<'a> {
     let s = Journey::decode(c, d, &j.encode(c, d).unwrap()).unwrap();
     assert_eq!(&s, j);

@@ -3715,3 +3715,11 @@ LAND-SHORE-RESOLVED-20261112。PAM與i64固定雜湊、IDA9.4及MZ base10000h沿
 Space在10BDC的10C0C先增加一步，再進12446；同地拒絕後可能匹配目前商店／營地／寶箱／守軍，不能套八方向回退後未匹配的假設。此分支仍未知且未接，另列下一步，不以本輪綠色單元測試閉合。
 
 實際46店、42守軍及五類營地13／8／10／9／10處另驗同類地點沒有八鄰格相鄰，故方向回退後不會匹配另一處同類consumer。這只適用目前原表；Space同地匹配仍獨立，不延用此結論。
+
+## 2026-11-12 原地Space事件
+
+SPACE-EVENTS-RESOLVED-20261112。PAM.AY SHA256 83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0、PAM.i64 a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac，沿IDA9.4九函式1354行bytes。IDA MZ base10000h，runtimeCS0110 IP=linear−10000h，DS1E88與file offsets分列。10BDC:10C0C預增Space步數；12446:126D6至126DF受阻跳過扣回；10C32／10D72不位移；12DDE以同地守軍／面向1或3確認，無boat閘門。以上已證實，原名與運算元保留在[完整保存](preserved/rust-space-events-r1.json)，原DB未更動。
+
+原指令132分派、16守軍及28查找，draw／UI／loader／consumer本體略過，rand固定0。守軍初探略過__chkstk卻未配置locals，巢狀far call覆寫locals；改用已驗BPee00／SPedee及12DEB框架後同一指令契約通過。兩份失敗輸出及修正說明保存，不提升為產品錯誤。SPACE-CLOCK-CORRECTION-20261112修正舊90涉水案例只驗尾段、漏算10C0C的淨步數解釋，原切片歷史保持。
+
+[規格](docs/spec/031-rust-independent-remake.md#原地space事件限定-conformed)、[原指令工具](tools/rust-space-events-reference.go)與[核對](preserved/rust-space-events-audit-r1.json)列證據邊界。Rust212測試、六程序15SDL及v18冷讀通過；原指令比較與remake內部自洽分列，不聲稱完整玩家路徑／骰序或自然通關。

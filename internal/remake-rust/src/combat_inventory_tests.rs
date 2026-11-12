@@ -206,7 +206,7 @@ fn target_space_refunds_esc_does_not_and_old_v16_has_no_new_inventory() {
     }
     let j = Journey::new(&d, 1);
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 24);
+    raw.truncate(raw.len() - crate::space_events::SUFFIX - 24);
     raw[..8].copy_from_slice(b"8SJRN016");
     raw.extend(crate::media_assets::checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);
@@ -220,7 +220,7 @@ fn target_space_refunds_esc_does_not_and_old_v16_has_no_new_inventory() {
     let tag = world_magic::fingerprint().to_le_bytes();
     let at = raw.windows(8).position(|v| v == tag).unwrap();
     raw[at + 8] = 1;
-    raw.truncate(raw.len() - 24);
+    raw.truncate(raw.len() - crate::space_events::SUFFIX - 24);
     raw[..8].copy_from_slice(b"8SJRN016");
     raw.extend(crate::media_assets::checksum(&raw).to_le_bytes());
     let upgraded = Journey::decode(&c, &d, &raw).unwrap();

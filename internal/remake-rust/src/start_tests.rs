@@ -81,7 +81,7 @@ fn fresh_world_matches_original_initial_fields_and_round_trips() {
     assert!((0..8).all(|i| !j.has_item(i)));
     assert_eq!((j.world.font, j.world.music), (2, false));
     assert_eq!(Journey::load(&p, &c, &d).unwrap(), j);
-    assert_eq!(&fs::read(p.join("journey.chk")).unwrap()[..8], b"8SJRN017");
+    assert_eq!(&fs::read(p.join("journey.chk")).unwrap()[..8], b"8SJRN018");
     fs::remove_dir_all(p).unwrap();
 }
 #[test]

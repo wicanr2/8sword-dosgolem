@@ -123,7 +123,9 @@ impl Notice {
             return Err("提示按鍵錯誤".into());
         }
         let position = if j.world.boat == 2 {
-            if !crate::jump_spell::DIRECTIONS.contains(&self.key) {
+            if !crate::jump_spell::DIRECTIONS.contains(&self.key)
+                && !(self.key == 0x3920 && j.wait_event.is_some())
+            {
                 return Err("未接提示上岸方向".into());
             }
             motion(j.world.position, self.key, j.world.facing, false)?.0
@@ -170,7 +172,9 @@ impl<'a> Journey<'a> {
             .ok_or("沒有原圖提示")?;
         let mut s = self.clone();
         if s.world.boat == 2 {
-            if !crate::jump_spell::DIRECTIONS.contains(&key) {
+            if !crate::jump_spell::DIRECTIONS.contains(&key)
+                && !(key == 0x3920 && s.wait_event.is_some())
+            {
                 return Err("未接提示上岸方向".into());
             }
             s.world = s.world.prepare_shore(d, key)?;
@@ -191,6 +195,9 @@ impl<'a> Journey<'a> {
         c: &Catalog,
     ) -> Result<(), String> {
         let view = self.magic.view(d)?;
+        if self.wait_event.is_some() {
+            return self.run_encounter_tail(&view);
+        }
         if key != 0x3920 && self.world.remaining == 1 {
             self.begin_month(c, &view, 51)?
         } else {

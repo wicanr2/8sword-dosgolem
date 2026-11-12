@@ -159,6 +159,7 @@ pub struct Journey<'a> {
     pub guards: crate::guards::Guards,
     pub artifacts: u8,
     pub rules: crate::rules::Mode,
+    pub wait_event: Option<crate::space_events::Wait>,
 }
 impl<'a> Journey<'a> {
     pub fn set_rules(&mut self, mode: crate::rules::Mode) -> Result<(), String> {
@@ -196,6 +197,7 @@ impl<'a> Journey<'a> {
             map_notice: None,
             guards: crate::guards::Guards::default(),
             artifacts: 0,
+            wait_event: None,
             rules: crate::rules::Mode::Native,
         }
     }
@@ -289,8 +291,7 @@ impl<'a> Journey<'a> {
                 }) {
                     self.world.position = target;
                     self.world.facing = facing;
-                    self.world.rng.next15(); // Original125A8..125D8 discarded entry roll.
-                    self.camps.pending = Some(i);
+                    self.queue_camp(i)?;
                     Ok(None)
                 } else {
                     Ok(Some(Boundary::Terrain(tile)))
@@ -396,6 +397,7 @@ impl<'a> Journey<'a> {
         Ok(outcome)
     }
     fn validate(&self, catalog: &Catalog, data: &WorldData) -> Result<(), String> {
+        self.validate_wait()?;
         if self
             .battle
             .as_ref()
@@ -517,7 +519,7 @@ impl<'a> Journey<'a> {
     }
     pub fn encode(&self, catalog: &Catalog, data: &WorldData) -> Result<Vec<u8>, String> {
         self.validate(catalog, data)?;
-        let mut b = b"8SJRN017".to_vec();
+        let mut b = b"8SJRN018".to_vec();
         b.extend(catalog_hash(catalog).to_le_bytes());
         b.extend(self.world.encode(data)?);
         for n in self.resources {
@@ -648,6 +650,11 @@ impl<'a> Journey<'a> {
         for n in self.magic.battle_charges {
             b.extend(n.to_le_bytes());
         }
+        b.push(
+            self.wait_event
+                .map(|w| if w.blocked { 2 } else { 1 })
+                .unwrap_or(0),
+        );
         b.extend(checksum(&b).to_le_bytes());
         if b.len() > 131072 {
             return Err("旅程檢查點過大".into());
@@ -673,7 +680,8 @@ impl<'a> Journey<'a> {
                 && &b[..8] != b"8SJRN014"
                 && &b[..8] != b"8SJRN015"
                 && &b[..8] != b"8SJRN016"
-                && &b[..8] != b"8SJRN017")
+                && &b[..8] != b"8SJRN017"
+                && &b[..8] != b"8SJRN018")
             || u64::from_le_bytes(b[b.len() - 8..].try_into().unwrap())
                 != checksum(&b[..b.len() - 8])
         {
@@ -1012,6 +1020,16 @@ impl<'a> Journey<'a> {
                 *n = u16::from_le_bytes(r.take(2)?.try_into().unwrap());
             }
         }
+        let wait_event = if &b[..8] >= b"8SJRN018" {
+            match r.byte()? {
+                0 => None,
+                1 => Some(crate::space_events::Wait { blocked: false }),
+                2 => Some(crate::space_events::Wait { blocked: true }),
+                _ => return Err("Space事務旗標錯誤".into()),
+            }
+        } else {
+            None
+        };
         if r.at != r.b.len() {
             return Err("旅程尾端多餘資料".into());
         }
@@ -1042,6 +1060,7 @@ impl<'a> Journey<'a> {
             map_notice,
             guards,
             artifacts,
+            wait_event,
             rules: crate::rules::Mode::Native,
         };
         s.validate(catalog, data)?;

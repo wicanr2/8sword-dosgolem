@@ -1039,6 +1039,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 })
                 .unwrap_or("ordinary")
         );
+        let status = format!("{status}wait_event\t{:?}\n", journey.wait_event);
         let status = format!(
             "{status}resource_spell\t{:?}\n",
             journey.resource_notice.as_ref().map(|n| n.spell)

@@ -1,0 +1,37 @@
+{
+  "status": "passed-detached-rust-space-events",
+  "objects": {
+    "status": "passed-detached-rust-world-exits",
+    "files": 669,
+    "objects": 536
+  },
+  "runtime_files": 288,
+  "all_runtime_sha_and_mode_equal": true,
+  "uid": 1000,
+  "self_check": "v18 passed",
+  "no_workplace_game_or_go_mounts": true,
+  "additional_files": [
+    {
+      "name": "objects.json",
+      "sha256": "a8f48a7f252f24cf7732d6f109c935ad41778b9959831d3d7c68783ab6ec86d4",
+      "file": "a8f48a7f252f24cf7732d6f109c935ad41778b9959831d3d7c68783ab6ec86d4.gz",
+      "stored_sha256": "c367be279524efd418a3b9c81e2603fb3c0525651d689cb5ce3133cded78a5ba",
+      "bytes": 85
+    },
+    {
+      "name": "self-check.log",
+      "sha256": "98a2c1a65e3972c4058d039c703239ccbffe93939098ac63f78899f7aea907ae",
+      "file": "98a2c1a65e3972c4058d039c703239ccbffe93939098ac63f78899f7aea907ae.gz",
+      "stored_sha256": "68cc3f3f86ab1fe6a16237e812e085e6bfa84ac4c0877e514b61de77ed823bf4",
+      "bytes": 782
+    },
+    {
+      "name": "links.json",
+      "sha256": "50a2e7f1980a82338a926ed4293c57b9f9a90d9e94ca6d03dcee229acb8fe9fd",
+      "file": "50a2e7f1980a82338a926ed4293c57b9f9a90d9e94ca6d03dcee229acb8fe9fd.gz",
+      "stored_sha256": "1e446cda68b551ad2f2f1f688665b05952a67247d8fa6ca1699fe340f53a68c6",
+      "bytes": 6751
+    }
+  ],
+  "link_references_verified": 71
+}

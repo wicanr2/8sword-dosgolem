@@ -252,7 +252,16 @@ fn pending_direction_cold_completion_does_not_double_spend_and_v4_migrates() {
     let old = Journey::new(&d, 1);
     let mut raw = old.encode(&c, &d).unwrap();
     raw.truncate(
-        raw.len() - 16 - 8 - 42 - 2 - 1 - 1 - crate::guards::SUFFIX - crate::items::SUFFIX,
+        raw.len()
+            - crate::space_events::SUFFIX
+            - 16
+            - 8
+            - 42
+            - 2
+            - 1
+            - 1
+            - crate::guards::SUFFIX
+            - crate::items::SUFFIX,
     );
     raw[..8].copy_from_slice(b"8SJRN004");
     raw.extend(checksum(&raw).to_le_bytes());

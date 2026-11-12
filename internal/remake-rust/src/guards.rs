@@ -344,6 +344,20 @@ impl<'a> Journey<'a> {
         }
         let mut s = self.clone();
         s.world = s.world.event_step(d, key, 65)?;
+        s.queue_guard(d, key, c)?;
+        *self = s;
+        Ok(())
+    }
+    pub(crate) fn queue_guard(
+        &mut self,
+        d: &WorldData,
+        key: u16,
+        c: &Catalog,
+    ) -> Result<(), String> {
+        if self.phase() != "world" {
+            return Err("目前不能開啟守軍".into());
+        }
+        let mut s = self.clone();
         let i = sites()
             .iter()
             .position(|v| v.area == s.world.area && v.position == s.world.position)
@@ -433,6 +447,9 @@ impl<'a> Journey<'a> {
         blocked: bool,
     ) -> Result<(), String> {
         let view = self.magic.view(d)?;
+        if self.wait_event.is_some() {
+            return self.run_encounter_tail(&view);
+        }
         if !blocked && key != 0x3920 && self.world.remaining == 1 {
             let tile = view.tile(self.world.area, self.world.position)?;
             self.begin_month(c, &view, tile)?;
@@ -501,6 +518,8 @@ impl<'a> Journey<'a> {
         s.enemy_first = false;
         s.battles = s.battles.checked_add(1).ok_or("戰鬥次數超界")?;
         if final_win {
+            // Original ending does not return to126DF: keep the credited Space step.
+            s.wait_event = None;
             s.guards.pending = None;
             s.guards.ending = Some(crate::ending::Progress::default());
             s.guards.validate(&s, d)?;

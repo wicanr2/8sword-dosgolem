@@ -42,6 +42,7 @@ mod sdl;
 mod sha256;
 #[cfg(feature = "desktop")]
 mod sndfile;
+pub mod space_events;
 pub mod special_shore;
 pub mod spells;
 pub mod start;

@@ -3627,3 +3627,13 @@ LAND-SHORE-RESOLVED-20261112。先比對現況、原IDA與出口證據，建立D
 收尾另外補原地Space範圍回歸，首次1失敗指出51提示入口未限定八方向，可能建立尚未支援的上岸模態。按既有READY的Space停止線補方向閘，原地Space維持原子BoatExit邊界；新增全11類Space案例，最終總數207。舊206版來源／視窗索引另外保留，再重建與抽驗最後執行檔。
 
 最終693檔／533現行物件已保存，隔離還原288檔SHA及mode一致，自檢v17通過；後產生收據另列additional_files。清理3692檔，可回收1952174080 bytes，保留現行runtime與全幅／中央原始畫面。本批Docker容器已退出並刪除，其他專案不動。最終文件差異檢查修正了數字替換誤觸的舊位址／座標，原證據與DB沒有改動。提交訊息採`fix: continue special shore events from land`，遠端結果以Git輸出為準。
+
+## 2026-11-12 原地Space事件接入
+
+SPACE-EVENTS-RESOLVED-20261112依031 READY完成。補原Space預增／扣回與同地consumer，v18追加一byte保存待結算事務，讀v1至v17；Go、8SBCHK01及287媒體保持。212測試、132原指令分派／16守軍／28查找、九函式1354行原bytes與六程序15全幅SDL通過。正常買火球1→2扣20金、民兵29→30、拒絕上岸後攻城、F7／重啟、撤退返回步數2均抽驗；接受同地營地清boat且淨步數不變。
+
+編譯的測試生命週期、合成舊schema尾長與招募fixture的rank/world.rank一致性已修正。另查出正常上岸後遞迴旅程尚未結清Space事務，已修正並由原132案例回歸通過。GUI首輪把actor字串誤認為Debug結構，實際為player；更正驗證腳本後在同一image乾淨重跑六程序。失敗分類為測試工具／初始條件，資料另保留；沒有調整原遊戲招募階級或選單。SPACE-CLOCK-CORRECTION-20261112另見研究記錄。
+
+[核對](preserved/rust-space-events-audit-r1.json)、[成果圖](docs/images/rust-space-events-r1.png)與[保存／還原](preserved/README.md#rust原地space事件保存)為入口。初始原座標／boat2／面向3／remaining1／seed1受控，資源／軍隊保持，不稱自然取得或完整通關。下一步玩家路徑收尾與正式交付，既有HD矩陣不重開，無Release。
+
+完整來源與原始畫面保存後，脫離workplace還原288檔並自檢v18。清理3891份本批快取／已保存副本，可回收約1.71GiB；所有本批Docker程序已結束。

@@ -128,6 +128,6 @@ fn verify() -> Result<(), String> {
     println!(
         "原生戰中檢查點：--save-dir <既有目錄>，F7存檔；--continue由保存的戰鬥續接。舊Go／世界進度不變。"
     );
-    println!("--world-preview保留八圖預覽；--play可新建或繼續原生旅程，存檔格式v17。");
+    println!("--world-preview保留八圖預覽；--play可新建或繼續原生旅程，存檔格式v18。");
     Ok(())
 }

@@ -76,6 +76,7 @@ pub fn validate(d: &WorldData) -> Result<(), String> {
 }
 impl<'a> Journey<'a> {
     pub(crate) fn run_encounter_tail(&mut self, d: &WorldData) -> Result<(), String> {
+        self.finish_wait_clock()?;
         match self.world.encounter_tail(d, false)? {
             WalkResult::Boundary(Boundary::Encounter(cue)) => {
                 self.receive_encounter(cue)?;

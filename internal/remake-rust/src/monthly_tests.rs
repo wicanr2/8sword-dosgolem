@@ -148,6 +148,7 @@ fn v2_migrates_and_checked_impossible_reports_or_overflow_leave_state_intact() {
     let mut raw = j.encode(&c, &d).unwrap();
     raw.truncate(
         raw.len()
+            - crate::space_events::SUFFIX
             - 16
             - 8
             - 17
@@ -217,7 +218,7 @@ fn month_refills_current_slots_keeps_cleared_guards_and_commits_two_rng_calls_on
     assert!(j.guards.swords[0]);
     assert_eq!(j.world.rng.seed, 0x5b3f58b2);
     let raw = j.encode(&c, &d).unwrap();
-    assert_eq!(&raw[..8], b"8SJRN017");
+    assert_eq!(&raw[..8], b"8SJRN018");
     let mut cold = Journey::decode(&c, &d, &raw).unwrap();
     assert_eq!(cold, j);
     let rows = j.guards.rows;

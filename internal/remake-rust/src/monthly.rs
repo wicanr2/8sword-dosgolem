@@ -115,7 +115,7 @@ impl Monthly {
     }
 }
 impl<'a> Journey<'a> {
-    pub fn travel(
+    pub(crate) fn travel_inner(
         &mut self,
         d: &WorldData,
         key: u16,
@@ -138,7 +138,8 @@ impl<'a> Journey<'a> {
             .any(|s| s.area == self.world.area && s.position == target)
             && (out == Some(Boundary::Terrain(51))
                 || (out == Some(Boundary::BoatExit)
-                    && crate::jump_spell::DIRECTIONS.contains(&key)
+                    && (crate::jump_spell::DIRECTIONS.contains(&key)
+                        || key == 0x3920 && s.wait_event.is_some())
                     && view.tile(s.world.area, target)? == 51))
         {
             s.open_map_notice(&view, key)?;

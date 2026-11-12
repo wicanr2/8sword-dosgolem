@@ -113,6 +113,23 @@ impl CampState {
     }
 }
 impl<'a> Journey<'a> {
+    pub(crate) fn queue_camp(&mut self, index: usize) -> Result<(), String> {
+        let site = camps().get(index).ok_or("營地索引錯誤")?;
+        if site.kind == 0
+            || self.camps.pending.is_some()
+            || (
+                self.world.area,
+                self.world.position.x,
+                self.world.position.y,
+            ) != (site.area, site.x, site.y)
+        {
+            return Err("營地位置錯誤".into());
+        }
+        self.world.rng.next15();
+        self.camps.pending = Some(index);
+        Ok(())
+    }
+
     fn camp_index(&self) -> Result<usize, String> {
         self.camps
             .pending
@@ -266,6 +283,12 @@ impl<'a> Journey<'a> {
         let mut s = self.clone();
         let i = s.camp_index()?;
         let tile = 54 + (i / 24) as u8;
+        if s.wait_event.is_some() {
+            s.camps.pending = None;
+            s.run_encounter_tail(data)?;
+            *self = s;
+            return Ok(None);
+        }
         if s.world.remaining <= 1 {
             s.camps.pending = None;
             s.begin_month(catalog, data, tile)?;

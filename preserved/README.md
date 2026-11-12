@@ -1,8 +1,8 @@
 # 必要資料永久保存
 
-現行Rust入口為[非水特殊地點八方向保存](#rust非水特殊地點八方向保存)。
+現行Rust入口為[原地Space事件保存](#rust原地space事件保存)。
 
-前批Rust保存入口為[旅程戰鬥法術庫存保存](#rust旅程戰鬥法術庫存保存)，包括完整288檔執行期、來源與證據。
+前批Rust保存入口為[非水特殊地點八方向保存](#rust非水特殊地點八方向保存)，包括完整288檔執行期、來源與證據。
 
 ## 原戰場守軍與頭目保存
 
@@ -1696,3 +1696,21 @@ timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id 
 六程序15份全幅SDL、兩個模態冷讀中央畫布與原生自檢已驗，完整還原另核對SHA及mode。初始原座標、boat2／seed1及剩餘步數明示受控；後續正常鍵鼠，不稱自然取得或完整通關。原片段跳過UI與consumer、rand固定0，未宣稱整段RNG相同。原地Space特殊點仍待，沒有Release。封存後產生的獨立核對記錄另列`additional_files`，物件仍放同一保存目錄。
 
 本批現行索引693檔、533個內容物件，另附封存後產生的獨立收據。隔離還原288檔SHA及mode一致，自檢v17通過。清理3692個本輪工作檔，按實際inode計可回收1952174080 bytes，約1.82GiB；現行執行期與全幅／中央原始畫面保持。本批Docker容器均已退出並刪除。
+
+## Rust原地Space事件保存
+
+[完整索引](rust-space-events-r1.json)、[驗收核對](rust-space-events-audit-r1.json)、[獨立還原](rust-space-events-detached-r1.json)與[清理收據](rust-space-events-cleanup-r1.json)為現行入口。完整執行期288檔、Rust來源、原指令132分派／16守軍／28查找、九函式IDA證據、GUI全幅／中央原始畫面與成功／失敗記錄，存於本機`preserved/rust-space-events-r1/<SHA256>.gz`。原始遊戲、完整音畫與執行檔不入Git或Release；定稿原圖與前批來源保持。
+
+在專案根目錄執行下列命令，只啟動容器。沿用`sc-cht-hdtools:pillow11.3.0-r2`，SHA256為`b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831`：
+
+```bash
+timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id -g)" --memory 2g --cpus 2 --pids-limit 128 \
+  --mount "type=bind,src=$PWD,dst=/r" sc-cht-hdtools:pillow11.3.0-r2 \
+  python3 /r/tools/rust-space-events.py restore --project /r
+```
+
+還原至`workplace/probe-20261023/graphics-first/battle-r1/rust-space-events-r1/native`，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。binary直接從旁置`pack/`讀取媒體，v18讀v1至v17；Go格式、8SBCHK01及287媒體保持。建置／視窗沿`mm45-rust-desktop:1.99.1-r3`，SHA256為`ac10129fb2667f9be114a19db5b7a3837ba1a4457627420aec3044792715b8e1`。
+
+六程序15份全幅SDL、三組冷讀玩法hash及原生自檢已驗。戰中冷讀中央逐像素相同，商店／營地的購買成功訊息不保存。初態原座標、boat2、面向3、seed1及剩餘一步明示受控，資源／軍隊保持；不稱自然取得、完整通關或整段RNG一致。封存後的獨立還原記錄另列`additional_files`，物件仍存同目錄。
+
+本批索引669檔、536個內容物件，另附封存後獨立收據。壓縮物件199853884 bytes。隔離還原288檔SHA／mode／UID一致，自檢v18通過。清理3891個本批快取及已保存副本，按inode計可回收1839251456 bytes，約1.71GiB；現行執行期與全幅／中央原始畫面保留。專案本批容器均已退出並刪除。

@@ -149,6 +149,20 @@ impl<'a> Journey<'a> {
         }
         let mut s = self.clone();
         s.world = s.world.event_step(d, key, 59)?;
+        s.queue_treasure(c, d, key != 0x3920)?;
+        *self = s;
+        Ok(())
+    }
+    pub(crate) fn queue_treasure(
+        &mut self,
+        c: &Catalog,
+        d: &WorldData,
+        moved: bool,
+    ) -> Result<(), String> {
+        if self.phase() != "world" {
+            return Err("目前不能開啟寶箱".into());
+        }
+        let mut s = self.clone();
         let at = sites()
             .iter()
             .position(|v| {
@@ -158,7 +172,7 @@ impl<'a> Journey<'a> {
         s.treasure.pending = Some(Pending {
             index: at as u8,
             choice: 1,
-            moved: key != 0x3920,
+            moved,
         });
         if s.treasure.amounts[at] == 0 {
             s.finish_treasure(c, d, true)?;
@@ -199,6 +213,11 @@ impl<'a> Journey<'a> {
             s.resources[3] = gold;
             s.resources[4] = lead;
             s.treasure.amounts[at] = 0;
+        }
+        if s.wait_event.is_some() {
+            s.run_encounter_tail(d)?;
+            *self = s;
+            return Ok(());
         }
         if p.moved {
             if s.world.remaining == 1 {

@@ -150,7 +150,16 @@ fn malformed_flags_and_real_v6_shape_are_checked_at_save_boundary() {
     j.magic.charges[4] = 0;
     j.magic.charges[5] = 0;
     let mut raw = j.encode(&c, &d).unwrap();
-    raw.truncate(raw.len() - 16 - 20 - 1 - 1 - crate::guards::SUFFIX - crate::items::SUFFIX);
+    raw.truncate(
+        raw.len()
+            - crate::space_events::SUFFIX
+            - 16
+            - 20
+            - 1
+            - 1
+            - crate::guards::SUFFIX
+            - crate::items::SUFFIX,
+    );
     raw[..8].copy_from_slice(b"8SJRN006");
     raw.extend(crate::media_assets::checksum(&raw).to_le_bytes());
     assert_eq!(Journey::decode(&c, &d, &raw).unwrap(), j);

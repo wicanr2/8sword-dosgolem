@@ -145,11 +145,11 @@ fn exits_preserve_exploration_and_boat_but_clear_only_reloaded_bridges() {
         water.world.position = e.position;
         water.world.boat = 2;
         let old = water.clone();
-        assert_eq!(
-            water.travel(&d, 0x3920, &c).unwrap(),
-            Some(Boundary::BoatExit)
-        );
-        assert_eq!(water, old);
+        assert_eq!(water.travel(&d, 0x3920, &c).unwrap(), None);
+        assert_eq!(water.phase(), "shore");
+        assert_eq!(water.world.position, old.world.position);
+        assert_eq!(water.world.remaining, old.world.remaining + 1);
+        assert!(water.wait_event.is_some());
     }
 }
 #[test]

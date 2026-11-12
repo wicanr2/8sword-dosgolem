@@ -256,7 +256,7 @@ impl<'a> Journey<'a> {
         let mut s = self.clone();
         let p = s.magic.shop.take().ok_or("沒有待完成法術商店")?;
         let refused = s.travel_spell.refused_shop.take().is_some();
-        if refused {
+        if refused || s.wait_event.is_some() {
             // Original blocked return:1259B..125A6 ->126D6 ->10BD0, no second shore check.
             s.run_encounter_tail(&view)?;
             *self = s;

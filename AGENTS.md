@@ -1,5 +1,7 @@
 # 神州八劍：dosgolem、HD 畫面與 HD 音樂
 
+2026-11-12 Rust原地Space事件依[031限定驗收](docs/spec/031-rust-independent-remake.md#原地space事件限定-conformed)接入。原10C0C預增、受阻保留／正常扣回、同地交易／募兵／守軍與v18已接。212測試、132原分派／16守軍／28查找、九函式1354行bytes及六程序15份SDL通過，正常交易／F7冷讀／戰中撤退已抽驗。真正v17只明示位置／boat2／面向3／remaining1／seed1，其餘資料保持，不稱自然取得或整段RNG對拍。[核對](preserved/rust-space-events-audit-r1.json)及[現行保存／還原](preserved/README.md#rust原地space事件保存)為入口。SPACE-EVENTS-RESOLVED-20261112閉合舊Space邊界，讀v1至v17；Go／287媒體與正式197／7／923／535／1071保持。下一步玩家路徑收尾與交付，無Release。
+
 2026-11-12 Rust非水特殊地點八方向依[031限定驗收](docs/spec/031-rust-independent-remake.md#非水特殊地點八方向限定-conformed)接入。移除來源水格限制，保留boat2／實際目的地／面向／互斥；陸地拒絕店離店直接接遭遇，避免重入BoatExit。207測試、352原指令分派／28查找及六程序15份全幅SDL通過；提示、拒絕／冷讀、再接受／月報、實購離店及守軍取消已驗。GUI初態原座標／boat2／seed1／remaining1或2明示受控，不稱自然取得或整段RNG對拍。[核對](preserved/rust-land-shore-audit-r1.json)與[現行保存／還原](preserved/README.md#rust非水特殊地點八方向保存)為入口。LAND-SHORE-RESOLVED-20261112閉合八方向；下一步原地Space特殊點，v17／Go／287媒體及正式197／7／923／535／1071保持，無Release。
 
 2026-11-11 Rust旅程戰鬥法術庫存依[031限定驗收](docs/spec/031-rust-independent-remake.md#旅程戰鬥法術庫存限定-conformed)完成。46店共16術／共用容量、F4及隨機／守軍玩家施法、回場／v17冷讀已接。203測試、既有IDA三函式381行bytes及六程序21份全幅SDL通過，火球購兩次／施法／冷讀剩一、複製30→60及回場已抽驗。位置、竹簡搜尋、施法兵與守軍次數明示受控，不稱自然取得或新DOS對拍。[核對](preserved/rust-combat-inventory-audit-r1.json)與[現行保存／還原](preserved/README.md#rust旅程戰鬥法術庫存保存)為入口，287媒體保持。RUST-COMBAT-INVENTORY-RESOLVED-20261111閉合法術商品邊界；下一步非水特殊點，再收尾玩家路徑與交付。正式197／7／923／535／1071與Go格式保持，無Release。
