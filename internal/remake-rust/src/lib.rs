@@ -201,3 +201,6 @@ mod rules_tests;
 
 #[cfg(test)]
 mod combat_inventory_tests;
+
+#[cfg(test)]
+mod land_shore_tests;

@@ -7,6 +7,7 @@ use crate::{
     world_exits::exits,
     world_magic::{PendingShop, shops, supported},
 };
+#[cfg(test)]
 fn water(t: u8) -> bool {
     matches!(t, 2 | 11..=14)
 }
@@ -17,7 +18,6 @@ impl<'a> Journey<'a> {
         }
         let mut probe = self.world.clone();
         if probe.walk_encounter(d, key)? != WalkResult::Boundary(Boundary::BoatExit)
-            || !water(d.tile(self.world.area, self.world.position)?)
             || !crate::jump_spell::DIRECTIONS.contains(&key)
         {
             return Ok(false);
@@ -59,7 +59,6 @@ impl<'a> Journey<'a> {
         if !crate::jump_spell::DIRECTIONS.contains(&key)
             || p.moved
             || self.world.boat != 2
-            || !water(d.tile(self.world.area, self.world.position)?)
             || face != self.world.facing
             || (self.world.area, at.x, at.y) != (site.area, site.x, site.y)
             || d.tile(site.area, at)? != 53

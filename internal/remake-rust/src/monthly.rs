@@ -138,8 +138,8 @@ impl<'a> Journey<'a> {
             .any(|s| s.area == self.world.area && s.position == target)
             && (out == Some(Boundary::Terrain(51))
                 || (out == Some(Boundary::BoatExit)
-                    && view.tile(s.world.area, target)? == 51
-                    && matches!(view.tile(s.world.area, s.world.position)?, 2 | 11..=14)))
+                    && crate::jump_spell::DIRECTIONS.contains(&key)
+                    && view.tile(s.world.area, target)? == 51))
         {
             s.open_map_notice(&view, key)?;
             *self = s;

@@ -242,8 +242,7 @@ impl Guards {
             return Err("守軍來源錯誤".into());
         }
         let pos = if p.stage == Stage::Refused {
-            if j.world.boat != 2 || !matches!(d.tile(j.world.area, j.world.position)?, 2 | 11..=14)
-            {
+            if j.world.boat != 2 || !crate::jump_spell::DIRECTIONS.contains(&p.key) {
                 return Err("拒絕守軍上岸來源錯誤".into());
             }
             motion(j.world.position, p.key, j.world.facing, false)?.0

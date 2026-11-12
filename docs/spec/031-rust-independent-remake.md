@@ -562,7 +562,7 @@ Rust直接讀原圖資料、算狀態、繪製畫布、播放既有OGG並處理S
 
 ### 涉水術 READY
 
-回填 `SPECIAL-SHORE-RESOLVED-20261106`：本節特殊上岸的邊界已依[新限定驗收](#特殊地點上岸限定-conformed)接入從水格進原出口、已支援法術店／營地／寶箱；51／65、未支援商品及非水特殊點組合仍保留邊界。 RUST-COMBAT-INVENTORY-RESOLVED-20261111：商品0至15已依[旅程庫存驗收](#旅程戰鬥法術庫存限定-conformed)接入；非水特殊點仍維持原停止線。
+回填 `SPECIAL-SHORE-RESOLVED-20261106`：本節特殊上岸的邊界已依[新限定驗收](#特殊地點上岸限定-conformed)接入從水格進原出口、已支援法術店／營地／寶箱；51／65、未支援商品及非水特殊點組合仍保留邊界。 RUST-COMBAT-INVENTORY-RESOLVED-20261111：商品0至15已依[旅程庫存驗收](#旅程戰鬥法術庫存限定-conformed)接入；非水特殊點仍維持原停止線。 LAND-SHORE-RESOLVED-20261112：八方向已依[新驗收](#非水特殊地點八方向限定-conformed)接入，原地Space特殊點仍保留邊界。
 
 本節經原指令資料流審查，由移動法術DRAFT提升涉水的限定範圍。跳躍保持DRAFT。來源、雜湊及位址基準沿[傳送研究](../../RESEARCH-LOG.md#rust傳送術)，本批以[工具](../../tools/rust-water-spell.py)還原既有IDA與map-6快照，另以[原指令探針](../../tools/rust-water-reference.go)抽驗上岸兩分支。研究目錄沿battle-r1/rust-water-spell-r1，完整來源後續掛入永久索引。
 
@@ -677,7 +677,7 @@ v11追加拒絕上岸後法術店的方向word，0表示無，讀v1至v10。既�
 
 區1的9／31向東進出口後拒絕，仍到區2的16／5，保持106步／boat2；F7獨立冷讀後往17／5普通上岸可清boat，105步。營地從區1的51／10正常往南接受上岸，原式募兵與透明步兵圖示、返回及F7已驗。這是固定初始水岸的正常後續鍵鼠，不稱自然取得涉水或自然抵達各地點。
 
-v11只追加拒絕店方向word，讀v1至v10，WorldState與Go保存不變。補回店／營地入口一次_rand後，舊跨事件seed敘述依`WORLD-SHOP-RNG-20261106`勘誤；沒有重開既有交易／HD／法術全矩陣。`SPECIAL-SHORE-RESOLVED-20261106`回填一般涉水READY，51／65、不支援商品與非水特殊點組合仍未接。空軍隊失金、七寶物、守軍／八劍、日曆、結局與新遊戲繼續依工作表，不稱完整獨立遊戲。 RUST-COMBAT-INVENTORY-RESOLVED-20261111：商品0至15已依[旅程庫存驗收](#旅程戰鬥法術庫存限定-conformed)接入；非水特殊點仍維持原停止線。
+v11只追加拒絕店方向word，讀v1至v10，WorldState與Go保存不變。補回店／營地入口一次_rand後，舊跨事件seed敘述依`WORLD-SHOP-RNG-20261106`勘誤；沒有重開既有交易／HD／法術全矩陣。`SPECIAL-SHORE-RESOLVED-20261106`回填一般涉水READY，51／65、不支援商品與非水特殊點組合仍未接。空軍隊失金、七寶物、守軍／八劍、日曆、結局與新遊戲繼續依工作表，不稱完整獨立遊戲。 RUST-COMBAT-INVENTORY-RESOLVED-20261111：商品0至15已依[旅程庫存驗收](#旅程戰鬥法術庫存限定-conformed)接入；非水特殊點仍維持原停止線。 LAND-SHORE-RESOLVED-20261112：八方向已依[新驗收](#非水特殊地點八方向限定-conformed)接入，原地Space特殊點仍保留邊界。
 
 最終Rust建置只見crate唯讀及native可寫，GUI只見native與單一腳本，沒有PAM／Go／RAM。[資料工具](../../tools/rust-special-shore.py)、[原指令工具](../../tools/rust-special-shore-reference.go)、[核對](../../preserved/rust-special-shore-audit-r1.json)、[永久保存](../../preserved/README.md#rust特殊地點上岸保存)、[圖](../images/rust-special-shore-r1.png)及[來源](../images/rust-special-shore-r1.json)提供重生入口。正式197來源七程式、923核心、535素材及1071美術保持，沒有Release。
 
@@ -1124,4 +1124,34 @@ Rust規則工具列READY補註：戰鬥樣本冷讀依實際存活typed ID載入
 
 [核對](../../preserved/rust-combat-inventory-audit-r1.json)逐條重驗既有IDA9.4三函式381行重定位bytes及PAM八價格，無新原版執行對拍聲明。原PAM SHA256為`83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`，原DB為`a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`。287媒體與Go格式保持；建置只見crate／native，GUI只見native及單一工具，無Go／DOS／x86依賴。完整執行期288檔、來源及證據見[保存／還原](../../preserved/README.md#rust旅程戰鬥法術庫存保存)，[成果圖](../images/rust-combat-inventory-r1.png)列入README。
 
-RUST-COMBAT-INVENTORY-RESOLVED-20261111閉合法術商品停止線，舊1512C／154B0及特殊上岸段已回填。剩餘為非水特殊點組合、正常玩家路徑收尾與正式交付；不重開已驗HD或八術算式，沒有Release、自然取得或完整通關聲明。
+RUST-COMBAT-INVENTORY-RESOLVED-20261111閉合法術商品停止線，舊1512C／154B0及特殊上岸段已回填。剩餘為非水特殊點組合、正常玩家路徑收尾與正式交付；不重開已驗HD或八術算式，沒有Release、自然取得或完整通關聲明。 LAND-SHORE-RESOLVED-20261112：八方向已依[新驗收](#非水特殊地點八方向限定-conformed)接入，原地Space特殊點仍保留邊界。
+
+
+
+## 非水特殊地點八方向 DRAFT
+
+2026-11-12，從現行v17與[目前狀態](../../CONTEXT.md)接續。範圍為boat2在非水格，使用八方向進49／50、51、53至59或65的既有地點。原地Space先維持現行邊界，不改遊戲規則或保存格式。
+
+原輸入PAM.AY SHA256 `83e32f132e808d70ac7e170aa1c0019eb4c579b9c785f2cbaf0d3e00af28d6c0`、PAM.i64 `a9089db0a8921c732a96f9d4082020f7d3575c98af0925c2c1fb91c3c7ad21ac`，沿既有IDA9.4證據，MZ base10000h、runtime CS0110 IP=linear−10000h，DS1E88分列。sub_12446的12500至12519只檢查目的地是否水、boat2及受阻旗標；12566確認後清boat，12573拒絕以sub_10D72回退，consumer仍按原目的地分派。來源地形不在這個判定內，語意已證實。原拒絕出口仍跨區並保留boat2，會形成陸地上的boat2，已見前批出口驗收。
+
+[工具](../../tools/rust-land-shore.py)建立本輪資料，沿[原指令切片工具](../../tools/rust-land-shore-reference.go)補51／65分派。預計核對原bytes、受控分派、地圖提示先顯示、接受／拒絕、最後一步／月報及v17冷讀。正常視窗採明示原座標、boat2／seed1，後續鍵鼠走既有流程；不稱自然取得或完整通關。完整資料沿本機preserved保存，原版資料不入Git。
+
+### 非水特殊地點八方向 READY
+
+DRAFT審查通過：新增352組受控原指令分派及28組原consumer查找，沿固定PAM及現行923檔Go執行器，輸出見`land-shore-reference.tsv`。起點為原12446內1255E，明示提示回值／目的地型別／方向／剩餘步數；UI、draw、loader與consumer本體跳過，原_rand以固定0隔離，seed不作整段對拍。這些收據只證明提示後boat／blocked／時間與consumer分派，既有地圖查找、出口、守軍及交易證據仍各負其責，不稱完整原版玩家路徑。
+
+實作只移除來源水格限制，保留boat2、八方向、實際目的地、面向、互斥狀態與原先拒絕後consumer。51仍先顯示原提示，再確認上岸；拒絕商店仍經來源座標查找預設造橋，拒絕守軍仍依原面向及未匹配訊息，不進戰。v17與287媒體保持；Space特殊點留在本輪範圍外。測試以來源地形1代替水，沿既有八方向／是非／最後一步及冷讀鏈；GUI抽驗原提示、拒絕店及守軍一組，明示初始boat2位置，不稱自然取得。
+
+READY補充：陸地拒絕店的離店不能再次經世界移動判斷。原1259B至125A6回到126D6，blocked=1直接返回，再由10BC7至10BD0進1151C遭遇尾段，沒有再次上岸。Rust須在已驗證refused_shop事務離店後直接跑遭遇尾段；保留位置／boat2／步數並清除事務，不放寬普通商店入口。已新增sub_10B38原始caller證據，沿同一IDA9.4及PAM雜湊，語意已證實。
+
+### 非水特殊地點八方向限定 CONFORMED
+
+2026-11-12依READY接入。移除來源水格條件，保留boat2、八方向、實際地點、面向及互斥狀態。陸地拒絕店離店直接走既有遭遇尾段，避免再次BoatExit；其他consumer保持原流程。v17、Go格式及287媒體不改。
+
+207測試與352原指令分派／28查找通過。Rust從非水格測11種地點、是／否、八方向、remaining1／2，逐階段冷讀並關閉交易／提示／守軍，月底接月報。拒絕火球店仍預設造橋，490金／1造橋／boat2及步數保持；拒絕原出口仍跨區至非水起點並保留boat2。原片段明示跳過UI、draw、loader與consumer本體，rand固定0；Rust固定seed1，只比較列出的分派／clock欄位，不宣稱完整骰序或原版整段同狀態。
+
+六獨立程序15份全幅SDL與中央讀回通過。真正v17明示原圖陸地座標、boat2／seed1及remaining1或2，其餘資源／軍隊保持。提示後拒絕、F7冷讀、再接受及月報返回324步；拒絕店購造橋、F7冷讀／正常離店；拒絕守軍冷讀、再接受／原確認頁及取消回場均正常鍵鼠操作。提示及守軍兩個冷讀中央逐像素相同；商店只驗邏輯同狀態，成功訊息不持久化。
+
+[核對](../../preserved/rust-land-shore-audit-r1.json)保存七函式原名、位址、operands與重定位bytes。位址／來源雜湊沿DRAFT與READY，不修改原DB或推測性改名。[成果圖](../images/rust-land-shore-r1.png)、[工具](../../tools/rust-land-shore.py)及[現行保存／還原](../../preserved/README.md#rust非水特殊地點八方向保存)為入口。LAND-SHORE-RESOLVED-20261112回填舊停止線；原地Space特殊點仍未接，不稱完整獨立遊戲、自然取得或完整通關。無Release。
+
+本批原表另確認46店、42守軍與五類營地13／8／10／9／10處各無八鄰同類相鄰，方向拒絕後不會落到另一個匹配consumer。此檢查納入核對工具，Space同地匹配不適用。

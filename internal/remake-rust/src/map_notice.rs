@@ -123,8 +123,8 @@ impl Notice {
             return Err("提示按鍵錯誤".into());
         }
         let position = if j.world.boat == 2 {
-            if !matches!(d.tile(j.world.area, j.world.position)?, 2 | 11..=14) {
-                return Err("提示上岸來源錯誤".into());
+            if !crate::jump_spell::DIRECTIONS.contains(&self.key) {
+                return Err("未接提示上岸方向".into());
             }
             motion(j.world.position, self.key, j.world.facing, false)?.0
         } else {
@@ -170,8 +170,8 @@ impl<'a> Journey<'a> {
             .ok_or("沒有原圖提示")?;
         let mut s = self.clone();
         if s.world.boat == 2 {
-            if !matches!(d.tile(s.world.area, s.world.position)?, 2 | 11..=14) {
-                return Err("未接非水提示上岸".into());
+            if !crate::jump_spell::DIRECTIONS.contains(&key) {
+                return Err("未接提示上岸方向".into());
             }
             s.world = s.world.prepare_shore(d, key)?;
         } else {

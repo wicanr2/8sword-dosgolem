@@ -1,0 +1,36 @@
+{
+  "status": "passed-rust-land-shore-detached",
+  "runtime_files": 288,
+  "sha256_and_mode_equal": true,
+  "source_workplace_visible": false,
+  "go_or_dos_visible": false,
+  "archive_files": 693,
+  "archive_objects": 533,
+  "binary_sha256": "44f2d1136962fe3222395bc00318868e78d1ed5b0f7eb472c2cb546f0c719e87",
+  "self_check_exit": 0,
+  "archive_index_sha256": "e86ef535163fb5c7d1287683d99a01b151376d15d69153b659d2c45cb831219b",
+  "additional_files": [
+    {
+      "path": "detached/objects.json",
+      "sha256": "eb0a3dc3cc34c8f80fc438d1559bca9c0ec13efd7008214008918b68c2f98e97",
+      "bytes": 85,
+      "object": "eb0a3dc3cc34c8f80fc438d1559bca9c0ec13efd7008214008918b68c2f98e97.gz",
+      "stored_sha256": "e02e66eadf0f201119e970fc7bdb8b3124afb8883e85519d9b625121b0164243"
+    },
+    {
+      "path": "detached/runtime.json",
+      "sha256": "4b0e1063ad754deace1324f61da6c63ba481a4b6ae572f55243ac1f2f6f5e5f8",
+      "bytes": 216,
+      "object": "4b0e1063ad754deace1324f61da6c63ba481a4b6ae572f55243ac1f2f6f5e5f8.gz",
+      "stored_sha256": "70f1a9a2daecc83c76beb1f9440aec9526fdf7764c3cc9357b0ae2ecb248a53e"
+    },
+    {
+      "path": "detached/self-check.log",
+      "sha256": "9d14dd0b85191d0710359fb47d1b462f900e9c291e0b1d635bfa9a26fe345f29",
+      "bytes": 782,
+      "object": "9d14dd0b85191d0710359fb47d1b462f900e9c291e0b1d635bfa9a26fe345f29.gz",
+      "stored_sha256": "4c31e5f395b19d52c3325cc6fa21986eeeb1745ca63f4dcb4bc326dfeefbb6d1"
+    }
+  ],
+  "notes": "Only tools and preserved inputs visible during restore, then only restored native plus an output directory for self-check. All 693 archive entries and 288 runtime SHA/modes verified."
+}

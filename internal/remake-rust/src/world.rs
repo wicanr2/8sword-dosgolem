@@ -511,6 +511,26 @@ impl WorldData {
         d
     }
     #[cfg(test)]
+    pub(crate) fn land_shore_fixture() -> Self {
+        let mut d = Self::special_shore_fixture();
+        for map in &mut d.maps {
+            for tile in map {
+                if matches!(*tile, 2 | 11..=14) {
+                    *tile = 1;
+                }
+            }
+        }
+        for site in crate::guards::sites() {
+            d.maps[usize::from(site.area)]
+                [usize::from(site.position.y) * 70 + usize::from(site.position.x)] = 65;
+        }
+        for site in crate::map_notice::sites() {
+            d.maps[usize::from(site.area)]
+                [usize::from(site.position.y) * 70 + usize::from(site.position.x)] = 51;
+        }
+        d
+    }
+    #[cfg(test)]
     pub(crate) fn flat_fixture() -> Self {
         Self {
             maps: std::array::from_fn(|_| vec![1; 5600]),

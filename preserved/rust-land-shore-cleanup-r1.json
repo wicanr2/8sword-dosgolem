@@ -1,0 +1,19 @@
+{
+  "status": "passed-rust-land-shore-cleanup",
+  "files": 3692,
+  "logical_bytes": 2310920158,
+  "reclaimable_allocated_bytes": 1952174080,
+  "removed": [
+    "go-cache",
+    "native/rust-target",
+    "native/gui-before-space-gate",
+    "detached/runtime"
+  ],
+  "additional": "duplicate GUI readbacks; full and central source frames retained",
+  "archive_files": 693,
+  "archive_objects": 533,
+  "compressed_bytes": 176211537,
+  "runtime_files_retained": 288,
+  "project_containers_after_work": [],
+  "additional_detached_files": 3
+}

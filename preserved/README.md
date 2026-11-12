@@ -1,6 +1,8 @@
 # 必要資料永久保存
 
-現行Rust入口為[旅程戰鬥法術庫存保存](#rust旅程戰鬥法術庫存保存)，包括完整288檔執行期、來源與證據。
+現行Rust入口為[非水特殊地點八方向保存](#rust非水特殊地點八方向保存)。
+
+前批Rust保存入口為[旅程戰鬥法術庫存保存](#rust旅程戰鬥法術庫存保存)，包括完整288檔執行期、來源與證據。
 
 ## 原戰場守軍與頭目保存
 
@@ -1676,3 +1678,21 @@ timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id 
 建置與視窗使用`mm45-rust-desktop:1.99.1-r3`，完整SHA為`ac10129fb2667f9be114a19db5b7a3837ba1a4457627420aec3044792715b8e1`。重建命令與掛載範圍見索引中的`execution.json`及`tools/rust-native-player.sh`快照；原PAM及IDA資料庫只供開發證據，不是執行期依賴。六程序21份SDL及兩個選敵冷讀畫布已驗；商店成功訊息為暫時UI，不隨進度保存。Linux音訊使用dummy，只保留既有音畫驗證，沒有新的人耳／手機／跨平台／完整通關聲明。
 
 本批現行索引800檔、555個內容物件；完整288檔執行期另在看不到原工作區的容器逐SHA／mode還原，並執行原生自檢。封存後才產生的獨立收據列於獨立核對檔的`additional_files`，壓縮物件放在同一保存目錄。清理3251個本輪工作檔，按實際inode計可回收約2.63GiB，保留現行執行期及原始全幅／中央畫面；本批沒有殘留Docker容器。
+
+## Rust非水特殊地點八方向保存
+
+[完整索引](rust-land-shore-r1.json)、[驗收核對](rust-land-shore-audit-r1.json)、[獨立還原](rust-land-shore-detached-r1.json)與[清理收據](rust-land-shore-cleanup-r1.json)為現行入口。完整原生執行期288檔、Rust來源、原指令352分派／28查找、七函式IDA證據、GUI原始全幅／中央畫面與成功／失敗log保存於本機`preserved/rust-land-shore-r1/<SHA256>.gz`。原始遊戲、完整音畫與執行檔不入Git或Release；前批來源與定稿原圖入口保持。
+
+在專案根目錄執行以下命令，只啟動隔離容器。沿用`sc-cht-hdtools:pillow11.3.0-r2`，SHA256為`b050fc7c49003ea6eecbbe0fc93b465b6869daf550c3284d5039e5e87517e831`：
+
+```bash
+timeout -k 10s 180s docker run --rm --init --network none --user "$(id -u):$(id -g)" --memory 2g --cpus 2 --pids-limit 128 \
+  --mount "type=bind,src=$PWD,dst=/r" sc-cht-hdtools:pillow11.3.0-r2 \
+  python3 /r/tools/rust-land-shore.py restore --project /r
+```
+
+還原至`workplace/probe-20261023/graphics-first/battle-r1/rust-land-shore-r1/native`，以`bash tools/rust-native-player.sh play --save-dir <既有可寫絕對路徑>`啟動。原生執行檔可直接從旁置`pack/`讀取媒體，v17、Go格式及287媒體保持。建置／視窗沿`mm45-rust-desktop:1.99.1-r3`，SHA256為`ac10129fb2667f9be114a19db5b7a3837ba1a4457627420aec3044792715b8e1`。
+
+六程序15份全幅SDL、兩個模態冷讀中央畫布與原生自檢已驗，完整還原另核對SHA及mode。初始原座標、boat2／seed1及剩餘步數明示受控；後續正常鍵鼠，不稱自然取得或完整通關。原片段跳過UI與consumer、rand固定0，未宣稱整段RNG相同。原地Space特殊點仍待，沒有Release。封存後產生的獨立核對記錄另列`additional_files`，物件仍放同一保存目錄。
+
+本批現行索引693檔、533個內容物件，另附封存後產生的獨立收據。隔離還原288檔SHA及mode一致，自檢v17通過。清理3692個本輪工作檔，按實際inode計可回收1952174080 bytes，約1.82GiB；現行執行期與全幅／中央原始畫面保持。本批Docker容器均已退出並刪除。
