@@ -4,13 +4,13 @@
 
 ## v1.0交付檔名
 
-使用者指定只改交付檔名，三包現以8sword-v1.0加平台後綴提供；內容與內部版號維持v.0.1.1-20261112。[名稱與SHA對照](v1.0-filenames-r1.json)記錄原名、新名、大小與相同SHA。新名為原包的硬連結，不重壓、不改簽章，原名及保存索引保持。若重新還原完整包，依對照把`source_path`連結為`path`即可恢復v1.0名稱。
+使用者指定交付檔名與目錄名稱均改為v1.0，三包現以8sword-v1.0加平台後綴提供；內容與內部版號維持v.0.1.1-20261112。[名稱與SHA對照](v1.0-filenames-r1.json)記錄原名、新名、大小與相同SHA。新名為原包的硬連結，不重壓、不改簽章，原名及保存索引保持。若重新還原完整包，先將原版本目錄改名為`dist-all/v1.0`，再將舊路徑設為指向`v1.0`的相容連結；依對照把`source_path`硬連結為`path`即可恢復封包名稱。
 
 ## Rust頭頸修正版三平台保存
 
 [獨立還原收據](rust-head-art-package-restore-r1.json)核對22份交付檔；[清理收據](rust-head-art-package-cleanup-r1.json)記錄回收6774266656 bytes，約6.31GiB。現行288檔原生執行期、舊／新dist-all與全部永久原圖保留，其他專案不動。
 
-現行 `v.0.1.1-20261112` 完整包位於 `dist-all/v.0.1.1-20261112/full-local/`，分Linux x86_64、Windows x86_64及macOS universal2。男主角頭頸修正版已進入海報側翼與五頁故事背景；原287份媒體中285份保持。舊版 `v.0.1.0-20261112` 的封包、影片與校驗表保持，不將舊片冒稱新版實錄。
+現行 `v.0.1.1-20261112` 完整包位於 `dist-all/v1.0/full-local/`，分Linux x86_64、Windows x86_64及macOS universal2。男主角頭頸修正版已進入海報側翼與五頁故事背景；原287份媒體中285份保持。舊版 `v.0.1.0-20261112` 的封包、影片與校驗表保持，不將舊片冒稱新版實錄。
 
 [逐檔索引](rust-head-art-package-r1.json)、[封包核對](rust-head-art-package-audit-r1.json)、[契約](../docs/spec/057-head-art-package-update.md)、[素材接入](../artwork/head-neck-runtime-r1.json)與[實際截圖](../docs/images/rust-head-art-runtime-r1.png)為入口。本機 `preserved/rust-head-art-package-r1/` 保存完整包、固定來源、原碼／工具快照、開場差分、26份SDL與真實v18存檔，不依賴workplace。
 

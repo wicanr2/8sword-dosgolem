@@ -14,11 +14,11 @@
 
 兩張頭頸修正版已依[057](docs/spec/057-head-art-package-update.md#限定-conformed)接入Rust並完成三平台重打包，版本 `v.0.1.1-20261112`。海報側翼與開場第96號深藍材質更新，287媒體中285份保持，590節點、故事文字、時鐘、音樂與玩法不變。Linux214／Wine211測試、四程序26份SDL、正常開場／新建／F7與獨立冷讀通過；新舊同狀態世界中央逐像素保持，原圖的18組開場樣本亦保持。Mac完成雙架構、載入與靜態簽章核對，真機／公證限制保持。
 
-[實際畫面](docs/images/rust-head-art-runtime-r1.png)、[核對](preserved/rust-head-art-package-audit-r1.json)、[素材接入](artwork/head-neck-runtime-r1.json)與[現行保存](preserved/README.md#rust頭頸修正版三平台保存)為入口。現行交付在 `dist-all/v.0.1.1-20261112/full-local/`；v.0.1.0封包與影片完整保留。RUST-HEAD-ART-RESOLVED-20261112閉合上輪尚未接入，不重開已驗玩法矩陣。
+[實際畫面](docs/images/rust-head-art-runtime-r1.png)、[核對](preserved/rust-head-art-package-audit-r1.json)、[素材接入](artwork/head-neck-runtime-r1.json)與[現行保存](preserved/README.md#rust頭頸修正版三平台保存)為入口。現行交付在 `dist-all/v1.0/full-local/`；v.0.1.0封包與影片完整保留。RUST-HEAD-ART-RESOLVED-20261112閉合上輪尚未接入，不重開已驗玩法矩陣。
 
-## v1.0交付檔名
+## v1.0交付名稱
 
-使用者明確指定「v1.0，改檔名就好」。現行對外檔名為8sword-v1.0加平台後綴，位於既有dist-all/v.0.1.1-20261112/full-local；包內程式、資料夾、manifest及簽章保持v.0.1.1。三個名稱以硬連結提供，原名及原校驗表保留，不增加封包內容佔用。[名稱與SHA](preserved/v1.0-filenames-r1.json)為入口。這是使用者指定的檔名標示，不是重新建置或正式1.0驗收。
+使用者指定交付檔名與目錄名稱均改為v1.0。現行對外檔名為8sword-v1.0加平台後綴，位於dist-all/v1.0/full-local；包內程式、資料夾、manifest及簽章保持v.0.1.1。實體交付目錄已改名，舊路徑以相對符號連結保留，維持原校驗與還原工具可用。三個封包名稱以硬連結提供，原名及原校驗表保留，不增加封包內容佔用。[名稱與SHA](preserved/v1.0-filenames-r1.json)為入口。這是使用者指定的檔名標示，不是重新建置或正式1.0驗收。
 
 ## 目前狀態表
 

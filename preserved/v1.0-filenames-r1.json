@@ -3,10 +3,10 @@
   "date": "2026-11-12",
   "display_label": "v1.0",
   "build_version": "v.0.1.1-20261112",
-  "scope": "User explicitly requested filenames only. Archive bytes, internal directory names, embedded program version, manifests, signatures and tests remain the verified v.0.1.1 build.",
-  "operation": "Hard-link delivery filename aliases; original filenames and checksum manifest remain intact.",
+  "scope": "User requested v1.0 delivery filenames and directory name. Archive bytes, internal directory names, embedded program version, original manifests, signatures and tests remain the verified v.0.1.1 build.",
+  "operation": "Delivery directory renamed to dist-all/v1.0. Original directory path is a relative compatibility symlink; package filenames remain hard-link aliases.",
   "additional_package_data_bytes": 0,
-  "delivery_root": "dist-all/v.0.1.1-20261112",
+  "delivery_root": "dist-all/v1.0",
   "files": [
     {
       "path": "full-local/8sword-v1.0-linux-x86_64.tar.gz",
@@ -34,5 +34,10 @@
     }
   ],
   "permanent_source_index": "preserved/rust-head-art-package-r1.json",
-  "recovery": "Restore the verified build using its existing preservation tools, then recreate each path as a hard link to source_path using this mapping. No archive rebuild is needed."
+  "recovery": "Restore the verified build using its existing preservation tools. Rename the restored dist-all/v.0.1.1-20261112 directory to dist-all/v1.0 and create the original path as a relative symlink to v1.0. Recreate each filename path as a hard link to source_path within delivery_root. No archive rebuild is needed.",
+  "directory_rename": {
+    "from": "dist-all/v.0.1.1-20261112",
+    "to": "dist-all/v1.0",
+    "compatibility_symlink": "v1.0"
+  }
 }
