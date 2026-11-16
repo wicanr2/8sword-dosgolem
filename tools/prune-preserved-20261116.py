@@ -5,14 +5,24 @@
 - 被名稱以 rust-、hd-music、v1.0 開頭，或含 20261116 的保存清單引用
 - 任一來源路徑在 music-first、dist-all，或不在 workplace 之下
 - 不被 catalog.json.gz 或較早的 workspace-cleanup 清單引用（屬其他類別，不在本次範圍）
+第二輪 plan-r2（Go 版退役）改用明確保留清單，清單外一律刪除：
+- rust-head-art-package-r1、v1.0-filenames-r1、hd-music* 清單引用的物件
+- artwork/manifest.json 原圖的備份
+- 任一來源路徑屬 KEEP_R2_PATHS
 子命令：
   plan  --project P --out PLAN.json.gz        # preserved 唯讀
+  plan-r2 --project P --out PLAN.json.gz      # preserved 唯讀
   apply --project P --plan PLAN --out R.json  # preserved 可寫
 """
 import argparse, collections, glob, gzip, hashlib, json, os, pathlib, re
 
 HEX = re.compile(r'^([0-9a-f]{64})\.(gz|gzip|raw)$')
 KEEP_MANIFEST = re.compile(r'^(rust-|hd-music|v1\.0)|20261116')
+KEEP_R2_MANIFEST = re.compile(r'^(rust-head-art-package-r1\.json|v1\.0-filenames-r1\.json|hd-music)')
+KEEP_R2_PATHS = ('workplace/player/assets-painted-r69/', '/music-first/', 'dist-all/v1.0/', 'dist-all/v.0.1.1-20261112/',
+                 'workplace/intake-20261023/', 'workplace/dosgolem/', 'workplace/probe-20261023/text-first/',
+                 'workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/',
+                 '珍092-神州八劍.rar', '8sword.zip')
 
 
 def manifests(pres):
@@ -62,6 +72,39 @@ def plan(a):
                           unique_bytes=out['unique_bytes'], keep=keep)))
 
 
+def plan_r2(a):
+    r = a.project; pres = r / 'preserved'
+    keep = set(); why = collections.Counter()
+    art = json.load(open(r / 'artwork' / 'manifest.json'))['files']
+    keep |= {f['sha256'] for f in art}
+    for name, files in manifests(pres):
+        if name.startswith('preserved-prune'):
+            continue
+        for f in files:
+            if not (isinstance(f, dict) and isinstance(f.get('sha256'), str)):
+                continue
+            ps = [f[k] for k in ('path', 'source_path') if isinstance(f.get(k), str)]
+            if KEEP_R2_MANIFEST.search(name) or any(k in x for x in ps for k in KEEP_R2_PATHS):
+                keep.add(f['sha256'])
+    rows = []
+    for folder, dirs, names in os.walk(pres, followlinks=False):
+        for n in names:
+            m = HEX.match(n)
+            if not m:
+                continue
+            if m.group(1) in keep:
+                why['kept'] += 1; continue
+            p = pathlib.Path(folder, n); s = p.lstat()
+            rows.append(dict(path=str(p.relative_to(r)), sha256=m.group(1), bytes=s.st_size, ino=s.st_ino, mtime_ns=s.st_mtime_ns))
+    uniq = {}
+    for x in rows:
+        uniq.setdefault(x['ino'], x['bytes'])
+    out = dict(schema=1, mode='go-retire', keep_shas=len(keep), files=rows, unique_bytes=sum(uniq.values()))
+    assert not a.out.exists()
+    a.out.write_bytes(gzip.compress(json.dumps(out, ensure_ascii=False).encode()))
+    print(json.dumps(dict(files=len(rows), shas=len({x['sha256'] for x in rows}), unique_bytes=out['unique_bytes'], keep=why)))
+
+
 def apply(a):
     r = a.project; pres = r / 'preserved'
     d = json.loads(gzip.decompress(a.plan.read_bytes()))
@@ -87,9 +130,9 @@ def apply(a):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
-    p.add_argument('cmd', choices=['plan', 'apply'])
+    p.add_argument('cmd', choices=['plan', 'plan-r2', 'apply'])
     p.add_argument('--project', type=pathlib.Path, required=True)
     p.add_argument('--plan', type=pathlib.Path)
     p.add_argument('--out', type=pathlib.Path, required=True)
     a = p.parse_args(); assert os.getuid() == 1000
-    (plan if a.cmd == 'plan' else apply)(a)
+    dict(plan=plan, apply=apply)[a.cmd](a) if a.cmd != 'plan-r2' else plan_r2(a)

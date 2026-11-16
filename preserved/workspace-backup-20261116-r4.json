@@ -1,0 +1,12 @@
+{
+ "schema": 1,
+ "purpose": "2026-11-16 補存v1.0校驗表",
+ "files": [
+  {
+   "path": "dist-all/v1.0/SHA256SUMS-v1.0.json",
+   "sha256": "1a3f76bfa64b05ee039f736c3bf910c10c55cee0708e6570208762dff4bad6b8",
+   "bytes": 2073,
+   "stored": "preserved/objects/1a/1a3f76bfa64b05ee039f736c3bf910c10c55cee0708e6570208762dff4bad6b8.gzip"
+  }
+ ]
+}

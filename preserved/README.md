@@ -17,6 +17,24 @@
 
 保留現行預設批次`rust-head-art-package-r1`（`tools/rust-native-player.sh`使用）、`intake-20261023`原版解包、`dosgolem`核心與`text-first`的IDA資料庫。Go玩家`workplace/player`已清空，`tools/player.sh`使用前以`--plan preserved/workspace-cleanup-20261116-plan-r2.json.gz --prefix workplace/player/`還原。`gomodcache`已清空，離線Go建置前先還原：`clean-workspace-20261116.py restore --project <專案> --plan preserved/workspace-cleanup-20261116-plan-r1.json.gz --prefix workplace/gomodcache/ --out <新JSON>`，workplace可寫、preserved唯讀。其他批次換成對應前綴，工具拒絕覆寫不同內容；rust-guards-r1還原試跑357檔通過。
 
+## 2026-11-16 Go版退役後的保存範圍
+
+使用者確認舊Go版不再使用，剩下的必要檔案留在本機。[刪除工具](../tools/prune-preserved-20261116.py)的`plan-r2`改用明確保留清單，清單外的物件一律刪除：
+
+- `rust-head-art-package-r1`、`v1.0-filenames-r1`與`hd-music*`清單引用的物件。
+- artwork原圖的備份。
+- 來源路徑屬於r69素材組、`music-first`、dist-all v1.0，或workplace仍保留的目錄。
+- 原始封包。
+
+這一輪移除14968個物件、28371個檔案，約5.47GiB，另刪除不進版控的`completion-r65`與`ai-observation-r1`；逐檔清單見[計畫](preserved-prune-20261116-plan-r2.json.gz)，結果見[收據](preserved-prune-20261116-r2.json)。核對時發現兩批備份缺漏，已從現有檔案補回：
+
+- 現行媒體包`native/pack`的備份，原本只記在較早的Rust批次清單。
+- `intake-20261023`、`dosgolem`、`text-first`的備份，在前一輪被刪。
+
+補回清單見[r3](workspace-backup-20261116-r3.json)與[r4](workspace-backup-20261116-r4.json)。最後核對：workplace現存檔、dist-all v1.0、保留清單及r69共6842個SHA，全部有保存物件且解壓相符。preserved剩1.6G，專案共3.7G。
+
+Go版還原入口已失效：`workspace-cleanup-20261116-plan-r1／r2`只剩r69素材組（`--prefix workplace/player/assets-painted-r69/`）可以還原，其餘前綴會回報缺少物件。artwork有377個原圖的舊備份已刪，artwork目錄本身完整，目前是單一副本。
+
 ## 2026-11-16 Go／HD研究物件刪除
 
 使用者確認現行Rust版不需要後，刪除只屬Go／HD階段研究的保存物件。[刪除工具](../tools/prune-preserved-20261116.py)在固定Pillow11.3.0 r2容器執行。物件只要符合下列任一條就保留：
