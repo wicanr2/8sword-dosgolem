@@ -3719,3 +3719,4 @@ RUST-HEAD-ART-RESOLVED-20261112閉合上輪尚未接入。完整新包在dist-al
 - 第一次執行時`git check-ignore -q`收到多個路徑而報錯，同一回合後續的刪除目錄指令仍照常執行；事後以`git ls-files`確認兩目錄沒有被追蹤，刪除範圍與使用者同意的一致。
 - 刪除後核對發現兩批備份缺漏：現行媒體包備份（179MB），原本只記在較早的Rust批次清單；`intake`、`dosgolem`、`text-first`的備份（84MB），在第一輪preserved刪除時被刪。兩者的現有檔案都在，已重新存入preserved，最終6842個必要SHA全部核對通過。教訓：保留清單要以現存檔案的SHA為準，不只看清單名稱或路徑。
 
+- 依使用者要求打包本機資料供放上Google Drive：`~/Downloads/8sword-backup-20261116.zip`，含preserved、artwork、workplace保留目錄與原始封包，共37645檔、2867644207 bytes，SHA-256 `a2d0e15e3746e77c8babd298f27718a452568e8b4b2b24d07e8dce8dba461bdf`。對應commit `f5b01d5`，包內附SHA256SUMS與還原說明，打包後重新讀取逐檔比對SHA全部相符。
