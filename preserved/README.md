@@ -2,6 +2,19 @@
 
 現行交付入口為[Rust頭頸修正版三平台保存](#rust頭頸修正版三平台保存)。首版與舊玩家路徑保存仍可回查。
 
+## 2026-11-16 工作區清理
+
+依使用者要求清理中介資料。[清理工具](../tools/clean-workspace-20261116.py)全部步驟在固定Pillow11.3.0 r2容器以UID1000、network none執行。
+
+| 步驟 | 結果 |
+|---|---|
+| 保存未覆蓋檔 | 25檔先壓縮存入`objects/`，[清單](workspace-cleanup-20261116-uncovered-r1.json) |
+| 刪除計畫 | 範圍為`graphics-first`與`gomodcache`，50054檔／13404物件逐一解壓核對，[計畫](workspace-cleanup-20261116-plan-r1.json.gz) |
+| 刪除 | 移除22715738924 bytes，約21.2GiB，沒有內容變動被略過，[結果](workspace-cleanup-20261116-r1.json) |
+| 保存區去重 | 34351份同名同SHA物件改為硬連結，省2501024274 bytes，[結果](workspace-dedup-20261116-r1.json) |
+
+保留現行預設批次`rust-head-art-package-r1`（`tools/rust-native-player.sh`使用）、`ending-hd-r1`、`all-graphics-integration-r1`、`workplace/player`、`intake-20261023`與`dosgolem`。`gomodcache`已清空，離線Go建置前先還原：`clean-workspace-20261116.py restore --project <專案> --plan preserved/workspace-cleanup-20261116-plan-r1.json.gz --prefix workplace/gomodcache/ --out <新JSON>`，workplace可寫、preserved唯讀。其他批次換成對應前綴，工具拒絕覆寫不同內容；rust-guards-r1還原試跑357檔通過。
+
 ## v1.0交付檔名
 
 使用者指定交付檔名與目錄名稱均改為v1.0，三包現以8sword-v1.0加平台後綴提供；內容與內部版號維持v.0.1.1-20261112。[名稱與SHA對照](v1.0-filenames-r1.json)記錄原名、新名、大小與相同SHA。新名為原包的硬連結，不重壓、不改簽章，原名及保存索引保持。若重新還原完整包，先將原版本目錄改名為`dist-all/v1.0`，再將舊路徑設為指向`v1.0`的相容連結；依對照把`source_path`硬連結為`path`即可恢復封包名稱。

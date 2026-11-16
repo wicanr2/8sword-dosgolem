@@ -1,0 +1,16 @@
+{
+ "schema": 1,
+ "status": "completed",
+ "removed_files": 50054,
+ "removed_logical_bytes": 22715738924,
+ "free_bytes_before": 308586962944,
+ "free_bytes_after": 331426750464,
+ "changed_files_kept": [],
+ "chmodded_dirs": 1002,
+ "plan_sha256": "dd05fa7e8af7853f56507d62a45be4452e813b4b79de03198e17f5917f0fe7c2",
+ "protected": [
+  "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/",
+  "workplace/probe-20261023/graphics-first/ending-hd-r1/",
+  "workplace/probe-20261023/graphics-first/all-graphics-integration-r1/"
+ ]
+}

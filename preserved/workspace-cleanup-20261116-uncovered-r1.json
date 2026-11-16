@@ -1,0 +1,181 @@
+{
+ "schema": 1,
+ "purpose": "2026-11-16 清理前保存未覆蓋檔",
+ "files": [
+  {
+   "path": "workplace/probe-20261023/graphics-first/ending-hd-r1/readme-overview-r1/detached/verify.json",
+   "sha256": "e76fd61fa70422c0fea71f871c377c1a61510d3f3e8f02ca9f8482ce5c46f26c",
+   "bytes": 82,
+   "stored": "preserved/objects/e7/e76fd61fa70422c0fea71f871c377c1a61510d3f3e8f02ca9f8482ce5c46f26c.gzip",
+   "stored_sha256": "15a3e880f65616a20a7236a10f205cf03c2ac5ee84d4ff8a4e7a9547ced3a689"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/all-graphics-integration-r1/gui-r3/menus/cpu.pprof",
+   "sha256": "c58b38ce9a98986152124cc721c766c1ea917cbcd05b9dcf7afa7ac6da337801",
+   "bytes": 56496,
+   "stored": "preserved/objects/c5/c58b38ce9a98986152124cc721c766c1ea917cbcd05b9dcf7afa7ac6da337801.gzip",
+   "stored_sha256": "276048adeaba7a67fd6a862eb7ef18a701eb0f69c9fa0900bc24a3b7ec7ec0e6"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/all-graphics-integration-r1/gui-r2/menus/cpu.pprof",
+   "sha256": "cc9807aa3093ab31c58f16c971b9ecc7bfb8e12af3895905d57a5c803da6837d",
+   "bytes": 60932,
+   "stored": "preserved/objects/cc/cc9807aa3093ab31c58f16c971b9ecc7bfb8e12af3895905d57a5c803da6837d.gzip",
+   "stored_sha256": "efd682ca42e8d7d916c01042dcab37fa0a395f8c3ed519d1a4469438a1577fd6"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/battle-vfx-r1/promotion-r1.json",
+   "sha256": "549b93d86d2f5f999ab117239b9e9d7b9f12068460d28db0305a21b7fcd89d5b",
+   "bytes": 866,
+   "stored": "preserved/objects/54/549b93d86d2f5f999ab117239b9e9d7b9f12068460d28db0305a21b7fcd89d5b.gzip",
+   "stored_sha256": "bc82a0ff76c587d49051903933db7a986770f7cbc6a3779e4179f9dc2be04464"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/annihilation-roam-r1/verification-r1.json",
+   "sha256": "a163655f39ca338bdba3e239d03d4c4384adf6221728de26b55d1603a1d6f379",
+   "bytes": 86,
+   "stored": "preserved/objects/a1/a163655f39ca338bdba3e239d03d4c4384adf6221728de26b55d1603a1d6f379.gzip",
+   "stored_sha256": "19514154e46b9fec6ea9d94cd1c658eead3fb459d109b8e81ab1610ce8e4b908"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/annihilation-roam-r1/detached-output-r1/verification-r1.json",
+   "sha256": "a163655f39ca338bdba3e239d03d4c4384adf6221728de26b55d1603a1d6f379",
+   "bytes": 86,
+   "stored": "preserved/objects/a1/a163655f39ca338bdba3e239d03d4c4384adf6221728de26b55d1603a1d6f379.gzip",
+   "stored_sha256": "19514154e46b9fec6ea9d94cd1c658eead3fb459d109b8e81ab1610ce8e4b908"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-ending-r1/new-docs.diff",
+   "sha256": "4d7ac5ea47af8bf38a7ab7e63f8ae9f71936c2d2bb7a9cc9a03b3bcd6aebbd81",
+   "bytes": 21241,
+   "stored": "preserved/objects/4d/4d7ac5ea47af8bf38a7ab7e63f8ae9f71936c2d2bb7a9cc9a03b3bcd6aebbd81.gzip",
+   "stored_sha256": "5f83a31563985af0c3d5b1d1952e71f1cdb95448b2a2ecdb61dd447672dfe5ae"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/original-battle-session-r1/new-docs.diff",
+   "sha256": "d10a4b38202f5faaa95365429e238c858dcdc25aaae13cafb424f53faf69e3b8",
+   "bytes": 21158,
+   "stored": "preserved/objects/d1/d10a4b38202f5faaa95365429e238c858dcdc25aaae13cafb424f53faf69e3b8.gzip",
+   "stored_sha256": "ffde9b50df5708200004170533e79f6c4b663882419d1a8566c4f2c672938136"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-ending-r1/detached/verify.json",
+   "sha256": "a3455192a27c6ea317272d37e388b7ea6957b45c43b3aa0962eb7ebcddb4d9c5",
+   "bytes": 81,
+   "stored": "preserved/objects/a3/a3455192a27c6ea317272d37e388b7ea6957b45c43b3aa0962eb7ebcddb4d9c5.gzip",
+   "stored_sha256": "db8fc411895f565011f6a2e397aa2730012e93aff494ddd96f05c8ff528db705"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/annihilation-origin-r1/detached-output-r1/verification-r1.json",
+   "sha256": "3157802387ec88e71596bc701ae10720466b7334b8648e1ccd65a7b97a45e983",
+   "bytes": 88,
+   "stored": "preserved/objects/31/3157802387ec88e71596bc701ae10720466b7334b8648e1ccd65a7b97a45e983.gzip",
+   "stored_sha256": "0edee22a6c80329860736f5bcea51cbd488fffec3eb3a18e4b5d0aba89451b59"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/evidence/restored-files.json",
+   "sha256": "6763e35faea324315daef06262ff45517da10a13f2eae82135905bcdb8757779",
+   "bytes": 61,
+   "stored": "preserved/objects/67/6763e35faea324315daef06262ff45517da10a13f2eae82135905bcdb8757779.gzip",
+   "stored_sha256": "c1b7027f6be93aa98f2a0b6491720e9d22d31a083cd849df717d675feb3a8998"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/evidence/doc-diff.patch",
+   "sha256": "f26ac9c002a18368fdaa00f495a21a77fb19cad63cd56a6238e467e47f872bcd",
+   "bytes": 71080,
+   "stored": "preserved/objects/f2/f26ac9c002a18368fdaa00f495a21a77fb19cad63cd56a6238e467e47f872bcd.gzip",
+   "stored_sha256": "3a5990d440176e3e861777c5304a7bd8f69c677b81f329a2b268714b77098e8a"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-start-r1/evidence/detached-objects.json",
+   "sha256": "892afa539b7291d90e86bc7b80c814fd5bc0db51eccaaecc28f0c599ffb8ddce",
+   "bytes": 79,
+   "stored": "preserved/objects/89/892afa539b7291d90e86bc7b80c814fd5bc0db51eccaaecc28f0c599ffb8ddce.gzip",
+   "stored_sha256": "790c4ecf014431c922390d561d25fe4e71c22ad8b892825a7ad77b9dccd00160"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/evidence/restored-files.json",
+   "sha256": "f2267b0c79e3b04f41a3295ab9db388328018f24860d70ec5692c39549db20a0",
+   "bytes": 61,
+   "stored": "preserved/objects/f2/f2267b0c79e3b04f41a3295ab9db388328018f24860d70ec5692c39549db20a0.gzip",
+   "stored_sha256": "031af44532d37a93ff34bf381e461efe1e01b7b55e7671a062f47554b0b00c21"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/evidence/doc-diff.patch",
+   "sha256": "eba26fea7f00b326d5ee1685269c15d23720d8feeff39b868560f347652872d9",
+   "bytes": 45954,
+   "stored": "preserved/objects/eb/eba26fea7f00b326d5ee1685269c15d23720d8feeff39b868560f347652872d9.gzip",
+   "stored_sha256": "bbb57659c0e98e8114e77250d7ed23566cc1d1d8e1da759d35e368e797c7ff66"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-intro-r1/evidence/detached-objects.json",
+   "sha256": "0a425a09fe03b434b62cb31268e20168b54f4704d7c4a8fae0c8522d606b2604",
+   "bytes": 72,
+   "stored": "preserved/objects/0a/0a425a09fe03b434b62cb31268e20168b54f4704d7c4a8fae0c8522d606b2604.gzip",
+   "stored_sha256": "7c736d3818154d1d615c11f86baa84737d53b675c88ca4f2262dfaa4df9d7e3a"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/promotion-r1.json",
+   "sha256": "ff41b7b632271df8806a587b896efc1cd6639a3b52a6fdb5ed5c65f8955ff155",
+   "bytes": 856,
+   "stored": "preserved/objects/ff/ff41b7b632271df8806a587b896efc1cd6639a3b52a6fdb5ed5c65f8955ff155.gzip",
+   "stored_sha256": "95f1565c93541a9251467120690317921830a35e080fc7ba11655fb23a1a60a8"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/quake-r1/promotion-r1.json",
+   "sha256": "dd3a59bf06b42f42a0cd2f285ab81f5f9ca08685e1944ef3081fd4555499c912",
+   "bytes": 853,
+   "stored": "preserved/objects/dd/dd3a59bf06b42f42a0cd2f285ab81f5f9ca08685e1944ef3081fd4555499c912.gzip",
+   "stored_sha256": "554d7307a7f3afe596089bd193610eebd600194e2db200ba568d9164c65e13f4"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/thunder-r1/promotion-r1.json",
+   "sha256": "35ca9058ccfd7f1e1495a110edddcf96f2edb4ce67141cb7c6b9399e43bbb6b0",
+   "bytes": 855,
+   "stored": "preserved/objects/35/35ca9058ccfd7f1e1495a110edddcf96f2edb4ce67141cb7c6b9399e43bbb6b0.gzip",
+   "stored_sha256": "3271d2acb65b016c2ccd2dece061bbd5a1c897c52df730485130b06493bb6534"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/exorcism-r1/promotion-r1.json",
+   "sha256": "9cbfc865d1bfb6044840fe0fcf47e54b709243d4c995b6fb9b9ce9ca6d64edbb",
+   "bytes": 856,
+   "stored": "preserved/objects/9c/9cbfc865d1bfb6044840fe0fcf47e54b709243d4c995b6fb9b9ce9ca6d64edbb.gzip",
+   "stored_sha256": "264b6af96fd9c86344f88d9957209452d51e01d10aedef56dc288f559bbf47d2"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/player-spells-r1/target-spells-r1/promotion-r1.json",
+   "sha256": "f0f8f4c414ca8d2138ec0d943a2baa9d599d0abfc830b21c932b1fad69a75d0c",
+   "bytes": 861,
+   "stored": "preserved/objects/f0/f0f8f4c414ca8d2138ec0d943a2baa9d599d0abfc830b21c932b1fad69a75d0c.gzip",
+   "stored_sha256": "6e1ae3bebd9edc7ddb11a6e9dccb21201f8bd2e92db51911a5b86d522a54803c"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/openkb-hd-r1/cleanup-r1.json",
+   "sha256": "c691be2cac6b40521bdb0b85e824fd4a699fec2efba7607f73b711922d6da194",
+   "bytes": 219,
+   "stored": "preserved/objects/c6/c691be2cac6b40521bdb0b85e824fd4a699fec2efba7607f73b711922d6da194.gzip",
+   "stored_sha256": "674af4a9b07e81920def74e3298d80bfdfb4e0b55ef862035b6b3c114ad7228d"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/native/8sword-remake",
+   "sha256": "546d3b981f816d69bc763717da9996a7268a4669e8332b298bba06479e5f4644",
+   "bytes": 1791112,
+   "stored": "preserved/objects/54/546d3b981f816d69bc763717da9996a7268a4669e8332b298bba06479e5f4644.gzip",
+   "stored_sha256": "ab4d3873fa9c5748067d7a943a4f890e31b38b4b74d4f5b7721bd6674423eafd"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/native/pack/poster-wings.rgba",
+   "sha256": "dcad214f916c1d600e862ca9f9e8caaadeb9745a2670dc10d40f0e170993bed1",
+   "bytes": 4915224,
+   "stored": "preserved/objects/dc/dcad214f916c1d600e862ca9f9e8caaadeb9745a2670dc10d40f0e170993bed1.gzip",
+   "stored_sha256": "18352d4bb9965316ddc76b3e3646d6af06cbce9a52ea56519069e97739bd6ddf"
+  },
+  {
+   "path": "workplace/probe-20261023/graphics-first/battle-r1/rust-head-art-package-r1/native/pack/intro.bin",
+   "sha256": "96b12bd11755490e11203448962ccc9c4148514038f85a5acedb1db69bd5c25d",
+   "bytes": 193847684,
+   "stored": "preserved/objects/96/96b12bd11755490e11203448962ccc9c4148514038f85a5acedb1db69bd5c25d.gzip",
+   "stored_sha256": "bddf398fc17d6402f6c1c359bb1321c667beedc6cfbb531a112640a8f8542466"
+  }
+ ]
+}
