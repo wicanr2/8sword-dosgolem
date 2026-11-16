@@ -40,8 +40,10 @@ def store_index(root):
     return idx
 
 
-def in_scope(path):
-    return any(path.startswith(s) for s in SCOPE) and not any(path.startswith(p) for p in PROTECTED)
+def in_scope(path, scope=None, protected=None):
+    scope = SCOPE if scope is None else scope
+    protected = PROTECTED if protected is None else protected
+    return any(path.startswith(s) for s in scope) and not any(path.startswith(p) for p in protected)
 
 
 def load_scan(p):
@@ -59,7 +61,7 @@ def check_obj(args):
 
 def cmd_preserve(a):
     r = a.project
-    rows = [x for x in load_scan(a.scan) if x.get('covered') is False and x['path'].startswith(SCOPE[0])]
+    rows = [x for x in load_scan(a.scan) if x.get('covered') is False and in_scope(x['path'], a.scope, a.protect)]
     out = []
     for x in rows:
         f = r / x['path']
@@ -86,7 +88,7 @@ def cmd_plan(a):
     r = a.project
     idx = store_index(r)
     rows = load_scan(a.scan)
-    cand = [x for x in rows if in_scope(x['path'])]
+    cand = [x for x in rows if in_scope(x['path'], a.scope, a.protect)]
     need = {}
     for x in cand:
         if x.get('kind') == 'symlink':
@@ -108,7 +110,7 @@ def cmd_plan(a):
                               mtime_ns=x['mtime_ns'], ino=x['ino'],
                               stored=str(pathlib.Path(need[x['sha256']]).relative_to(r))))
     assert not a.out.exists()
-    plan = dict(schema=1, scope=SCOPE, protected=PROTECTED, verified_objects=len(need), files=files)
+    plan = dict(schema=1, scope=a.scope or SCOPE, protected=PROTECTED if a.protect is None else a.protect, verified_objects=len(need), files=files)
     a.out.write_bytes(gzip.compress(json.dumps(plan, ensure_ascii=False).encode()))
     print(json.dumps(dict(files=len(files), verified_objects=len(need),
                           bytes=sum(v.get('bytes', 0) for v in files))))
@@ -118,6 +120,7 @@ def cmd_apply(a):
     r = a.project
     work = r / 'workplace'
     plan = json.loads(gzip.decompress(a.plan.read_bytes()))
+    sc, pr = plan['scope'], plan['protected']
     assert a.out and not a.out.exists()
     before = os.statvfs(work)
     removed = size = 0
@@ -126,7 +129,7 @@ def cmd_apply(a):
     chmodded = set()
     for v in plan['files']:
         rel = pathlib.PurePosixPath(v['path'])
-        assert not rel.is_absolute() and '..' not in rel.parts and in_scope(v['path'])
+        assert not rel.is_absolute() and '..' not in rel.parts and in_scope(v['path'], sc, pr)
         f = r / rel
         assert all(not (r / pathlib.PurePosixPath(*rel.parts[:n])).is_symlink() for n in range(1, len(rel.parts)))
         try:
@@ -143,12 +146,12 @@ def cmd_apply(a):
             f.unlink()
         except PermissionError:
             d = f.parent  # Go 模組快取等唯讀目錄：只放寬清理範圍內的目錄
-            assert in_scope(str(d.relative_to(r)) + '/')
+            assert in_scope(str(d.relative_to(r)) + '/', sc, pr)
             os.chmod(d, d.stat().st_mode | 0o200); chmodded.add(str(d.relative_to(r)))
             f.unlink()
         removed += 1; size += v.get('bytes', 0); parents.add(f.parent)
     for parent in sorted(parents, key=lambda p: len(p.parts), reverse=True):
-        while parent != work and str(parent.relative_to(r)) + '/' not in PROTECTED:
+        while parent != work and str(parent.relative_to(r)) + '/' not in pr:
             try:
                 parent.rmdir()
             except OSError:
@@ -157,7 +160,7 @@ def cmd_apply(a):
     after = os.statvfs(work)
     res = dict(schema=1, status='completed', removed_files=removed, removed_logical_bytes=size,
                free_bytes_before=before.f_bavail * before.f_frsize, free_bytes_after=after.f_bavail * after.f_frsize,
-               changed_files_kept=skipped, chmodded_dirs=len(chmodded), plan_sha256=sha_file(a.plan), protected=PROTECTED)
+               changed_files_kept=skipped, chmodded_dirs=len(chmodded), plan_sha256=sha_file(a.plan), scope=sc, protected=pr)
     a.out.write_text(json.dumps(res, ensure_ascii=False, indent=1) + '\n')
     print(json.dumps(res, ensure_ascii=False))
 
@@ -234,7 +237,11 @@ def main():
     p.add_argument('--out', type=pathlib.Path, required=True)
     p.add_argument('--apply', action='store_true')
     p.add_argument('--prefix', default='workplace/')
+    p.add_argument('--scope', action='append', help='覆寫預設 SCOPE，可重複')
+    p.add_argument('--protect', action='append', help='覆寫預設 PROTECTED，可重複')
     a = p.parse_args()
+    if a.scope and a.protect is None:
+        a.protect = []
     assert os.getuid() == 1000
     dict(preserve=cmd_preserve, plan=cmd_plan, apply=cmd_apply, dedup=cmd_dedup, restore=cmd_restore)[a.cmd](a)
 

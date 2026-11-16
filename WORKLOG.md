@@ -3711,4 +3711,6 @@ RUST-HEAD-ART-RESOLVED-20261112閉合上輪尚未接入。完整新包在dist-al
 - preserved內34351份重複物件改硬連結，省約2.33GiB；隨機3000物件解壓核對通過。
 - git gc將鬆散物件打包，.git由434M降為248M，fsck無錯誤。
 - 現行Rust預設批次、Go玩家、原版解包、dosgolem、dist-all、原圖與原始封包保留。root擁有及誤建.md目錄檢查無結果，未動其他專案Docker資源。還原方式見preserved/README「2026-11-16 工作區清理」。
+- 第二輪依使用者指示刪除`workplace/player`、`ending-hd-r1`與`all-graphics-integration-r1`。工具改為可由參數指定範圍，3個未覆蓋檔先保存；7381檔約1.75GiB核對後移除，workplace剩532M。
+- 檢視preserved：不重複物件15.6GiB，現行交付佔1.12GiB，其餘為研究證據，以及今天刪除的工作區的唯一副本。抽樣估算gzip -9只省2.8%，xz約19%但會讓既有gzip讀取工具失效，均未採用。
 

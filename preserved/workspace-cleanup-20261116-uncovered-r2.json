@@ -1,0 +1,27 @@
+{
+ "schema": 1,
+ "purpose": "2026-11-16 清理前保存未覆蓋檔",
+ "files": [
+  {
+   "path": "workplace/player/recruit-gui-diagnosis-verification-r1.json",
+   "sha256": "778547399541d88d69cde71d9829fe049879a50d27105ff1f1da53e479125c1f",
+   "bytes": 86,
+   "stored": "preserved/objects/77/778547399541d88d69cde71d9829fe049879a50d27105ff1f1da53e479125c1f.gzip",
+   "stored_sha256": "5cb22add684899eeb7f6e5c812fc316c489c575853af50a9495397843c0c3d6a"
+  },
+  {
+   "path": "workplace/player/runtime.json",
+   "sha256": "18f413783e86e337125348a132f84d6e3a6b99177faf34c657ca9f0e0e887fcc",
+   "bytes": 200751,
+   "stored": "preserved/objects/18/18f413783e86e337125348a132f84d6e3a6b99177faf34c657ca9f0e0e887fcc.gzip",
+   "stored_sha256": "08a036a75b1946e76434e478d23679191207487abacc15ede44f287cecb72bdb"
+  },
+  {
+   "path": "workplace/player/build-outputs.sha256",
+   "sha256": "8eee860593cd6790f9698fd54d6eaa9ff180b0455e9444d9d4a856ce56c0b9b8",
+   "bytes": 587,
+   "stored": "preserved/objects/8e/8eee860593cd6790f9698fd54d6eaa9ff180b0455e9444d9d4a856ce56c0b9b8.gzip",
+   "stored_sha256": "79865c307377a998404d74e237421f269be3697722d65cce0de0b4297dfa1361"
+  }
+ ]
+}

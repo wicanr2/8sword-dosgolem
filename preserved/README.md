@@ -13,7 +13,9 @@
 | 刪除 | 移除22715738924 bytes，約21.2GiB，沒有內容變動被略過，[結果](workspace-cleanup-20261116-r1.json) |
 | 保存區去重 | 34351份同名同SHA物件改為硬連結，省2501024274 bytes，[結果](workspace-dedup-20261116-r1.json) |
 
-保留現行預設批次`rust-head-art-package-r1`（`tools/rust-native-player.sh`使用）、`ending-hd-r1`、`all-graphics-integration-r1`、`workplace/player`、`intake-20261023`與`dosgolem`。`gomodcache`已清空，離線Go建置前先還原：`clean-workspace-20261116.py restore --project <專案> --plan preserved/workspace-cleanup-20261116-plan-r1.json.gz --prefix workplace/gomodcache/ --out <新JSON>`，workplace可寫、preserved唯讀。其他批次換成對應前綴，工具拒絕覆寫不同內容；rust-guards-r1還原試跑357檔通過。
+第二輪依使用者指示再刪`workplace/player`、`ending-hd-r1`與`all-graphics-integration-r1`：3檔先保存（[清單](workspace-cleanup-20261116-uncovered-r2.json)），7381檔／2494物件核對後移除1881492643 bytes（[計畫](workspace-cleanup-20261116-plan-r2.json.gz)、[結果](workspace-cleanup-20261116-r2.json)）。workplace剩532M。
+
+保留現行預設批次`rust-head-art-package-r1`（`tools/rust-native-player.sh`使用）、`intake-20261023`原版解包、`dosgolem`核心與`text-first`的IDA資料庫。Go玩家`workplace/player`已清空，`tools/player.sh`使用前以`--plan preserved/workspace-cleanup-20261116-plan-r2.json.gz --prefix workplace/player/`還原。`gomodcache`已清空，離線Go建置前先還原：`clean-workspace-20261116.py restore --project <專案> --plan preserved/workspace-cleanup-20261116-plan-r1.json.gz --prefix workplace/gomodcache/ --out <新JSON>`，workplace可寫、preserved唯讀。其他批次換成對應前綴，工具拒絕覆寫不同內容；rust-guards-r1還原試跑357檔通過。
 
 ## v1.0交付檔名
 

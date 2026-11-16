@@ -1,0 +1,17 @@
+{
+ "schema": 1,
+ "status": "completed",
+ "removed_files": 7381,
+ "removed_logical_bytes": 1881492643,
+ "free_bytes_before": 333952913408,
+ "free_bytes_after": 335799328768,
+ "changed_files_kept": [],
+ "chmodded_dirs": 0,
+ "plan_sha256": "bf88e97cea1d88a1a74c309e550343cbe1bb0d638e0472949fff289a4a9be337",
+ "scope": [
+  "workplace/player/",
+  "workplace/probe-20261023/graphics-first/ending-hd-r1/",
+  "workplace/probe-20261023/graphics-first/all-graphics-integration-r1/"
+ ],
+ "protected": []
+}
