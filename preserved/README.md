@@ -17,6 +17,17 @@
 
 保留現行預設批次`rust-head-art-package-r1`（`tools/rust-native-player.sh`使用）、`intake-20261023`原版解包、`dosgolem`核心與`text-first`的IDA資料庫。Go玩家`workplace/player`已清空，`tools/player.sh`使用前以`--plan preserved/workspace-cleanup-20261116-plan-r2.json.gz --prefix workplace/player/`還原。`gomodcache`已清空，離線Go建置前先還原：`clean-workspace-20261116.py restore --project <專案> --plan preserved/workspace-cleanup-20261116-plan-r1.json.gz --prefix workplace/gomodcache/ --out <新JSON>`，workplace可寫、preserved唯讀。其他批次換成對應前綴，工具拒絕覆寫不同內容；rust-guards-r1還原試跑357檔通過。
 
+## 2026-11-16 Go／HD研究物件刪除
+
+使用者確認現行Rust版不需要後，刪除只屬Go／HD階段研究的保存物件。[刪除工具](../tools/prune-preserved-20261116.py)在固定Pillow11.3.0 r2容器執行。物件只要符合下列任一條就保留：
+
+- 被`rust-*`、`hd-music*`、`v1.0*`或今天的清理清單引用。
+- 任一來源路徑在`music-first`、`dist-all`，或不在workplace下。
+
+結果移除26790個物件、28806個檔案，釋出9637539400 bytes，約8.98GiB；preserved剩7.3G。逐檔清單見[刪除計畫](preserved-prune-20261116-plan-r1.json.gz)，結果見[收據](preserved-prune-20261116-r1.json)。刪除後保留清單引用的16175個物件全部存在且解壓核對通過，r69素材組535檔還原試跑通過。
+
+Go／HD階段研究批次與`catalog.json.gz`的物件已部分刪除。舊批次的verify或restore回報缺少物件時，對照刪除計畫即可確認；這類物件無法復原。規格、收據JSON與README圖仍在git。
+
 ## v1.0交付檔名
 
 使用者指定交付檔名與目錄名稱均改為v1.0，三包現以8sword-v1.0加平台後綴提供；內容與內部版號維持v.0.1.1-20261112。[名稱與SHA對照](v1.0-filenames-r1.json)記錄原名、新名、大小與相同SHA。新名為原包的硬連結，不重壓、不改簽章，原名及保存索引保持。若重新還原完整包，先將原版本目錄改名為`dist-all/v1.0`，再將舊路徑設為指向`v1.0`的相容連結；依對照把`source_path`硬連結為`path`即可恢復封包名稱。

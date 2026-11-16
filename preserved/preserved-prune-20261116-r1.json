@@ -1,0 +1,8 @@
+{
+ "schema": 1,
+ "removed_files": 28806,
+ "skipped": [],
+ "plan_sha256": "b1847ae2f9ec4f9d2b9a8ec831b4f6b8e8a8627cb7db1e47b50bf276a384dd16",
+ "free_bytes_before": 335203344384,
+ "free_bytes_after": 344909938688
+}
